@@ -672,7 +672,8 @@ function showProfile(name) {
     const allKadencje = RAW.kadencje.map(k => k.id);
     html += `<div class="profile-kadencja-toggle">`;
     for (const k of allKadencje) {
-      const label = k === '2018-2023' ? 'VIII kadencja (2018–2024)' : 'IX kadencja (2024–2029)';
+      const kadObj = RAW.kadencje.find(kk => kk.id === k);
+      const label = kadObj ? kadObj.label : k;
       const hasData = kids.includes(k);
       if (hasData) {
         html += `<button class="kadencja-btn ${k===kid?'active':''}" onclick="window._profileKadSwitch('${k}')">${label}</button>`;
