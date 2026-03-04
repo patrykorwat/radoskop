@@ -415,8 +415,8 @@ async function init() {
     }
     if (path.startsWith('/sesja/')) {
       selectKadencjaQuiet(defaultKid);
-      const sdate = path.replace('/sesja/', '');
-      showSession(sdate);
+      const snum = decodeURIComponent(path.replace('/sesja/', ''));
+      showSession(snum);
       navigateTo(path, true);
       return;
     }
@@ -871,7 +871,7 @@ function showProfile(name) {
         const voteLabel = (v) => ({za:'za',przeciw:'przeciw',wstrzymal_sie:isFemale(profile.name)?'wstrzymała się':'wstrzymał się',brak_glosu:'brak głosu',nieobecny:isFemale(profile.name)?'nieobecna':'nieobecny'})[v]||v||'—';
         const votePillClass = (v) => ({za:'za',przeciw:'przeciw',wstrzymal_sie:'wstrzymal',brak_glosu:'wstrzymal',nieobecny:'wstrzymal'})[v]||'wstrzymal';
         for (const sess of sessions) {
-          const sessionVotes = kadData.votes.filter(v => v.session_date === sess.date);
+          const sessionVotes = getSessionVotes(kadData.votes, kadData.sessions, sess);
           if (sessionVotes.length === 0) continue;
           const personVotes = sessionVotes.map(v => {
             const nv = v.named_votes || {};
@@ -907,7 +907,7 @@ function showProfile(name) {
           const { sess, votes: pvs } = sessGroups[sk];
           html += `<div class="profile-sess-group" data-sessdate="${sess.date}" style="margin-bottom:16px">
             <div style="font-weight:600;margin-bottom:6px;font-size:0.9rem">
-              <a class="name-link" href="/sesja/${sess.date}" onclick="event.preventDefault();showSession('${sess.date}')">Sesja ${sess.number} · ${sess.date}</a>
+              <a class="name-link" href="/sesja/${encodeURIComponent(sess.number)}" onclick="event.preventDefault();showSession('${sess.number}')">Sesja ${sess.number} · ${sess.date}</a>
               <span class="sess-vote-count" style="color:var(--muted);font-weight:400;margin-left:8px">(${pvs.length} głosowań)</span>
             </div>
             <table><tbody>`;
@@ -1037,12 +1037,24 @@ function pctBar(pct) {
   </div>`;
 }
 
+// Match votes to a session: prefer session_number, fall back to date if it's the only session on that date
+function getSessionVotes(votes, sessions, sess) {
+  const byNum = votes.filter(v => v.session_number === sess.number);
+  if (byNum.length > 0) return byNum;
+  // Fallback: if this date has only one session, match by date
+  const sameDateSessions = sessions.filter(s => s.date === sess.date);
+  if (sameDateSessions.length === 1) {
+    return votes.filter(v => v.session_date === sess.date);
+  }
+  return [];
+}
+
 function renderSessionsTable() {
   const sessions = [...K.sessions].sort((a,b) => b.date.localeCompare(a.date));
   const tbody = document.querySelector('#sessions-table tbody');
   tbody.innerHTML = sessions.map(s => {
     // Count passed/rejected from votes
-    const sessionVotes = K.votes.filter(v => v.session_date === s.date);
+    const sessionVotes = getSessionVotes(K.votes, K.sessions, s);
     const passed = sessionVotes.filter(v => {
       const c = v.counts || {};
       const total = (c.za||0) + (c.przeciw||0) + (c.wstrzymal_sie||0);
@@ -1050,10 +1062,10 @@ function renderSessionsTable() {
     }).length;
     const rejected = sessionVotes.length - passed;
     const speakers = (s.speakers || []).length;
-    return `<tr class="vote-row" onclick="showSession('${s.date}')">
+    return `<tr class="vote-row" onclick="showSession('${s.number}')">
       <td style="font-weight:600">${s.number || '?'}</td>
       <td>${s.date}</td>
-      <td>${s.vote_count}</td>
+      <td>${sessionVotes.length}</td>
       <td><span class="pill pill-za">${passed}</span></td>
       <td>${rejected > 0 ? `<span class="pill pill-przeciw">${rejected}</span>` : '0'}</td>
       <td>${s.attendee_count}</td>
@@ -1099,7 +1111,7 @@ function renderVotesTable() {
   for (const s of sortedSessions) {
     const key = `${s.number} (${s.date})`;
     const cnt = sessionCounts[key] || s.vote_count;
-    pills += `<button class="session-pill ${currentSession===s.date?'active':''}" data-sess="${s.date}">${s.number || '?'} · ${s.date} <span class="pill-count">(${cnt})</span></button>`;
+    pills += `<button class="session-pill ${currentSession===s.number?'active':''}" data-sess="${s.number}">${s.number || '?'} · ${s.date} <span class="pill-count">(${cnt})</span></button>`;
   }
   filterBar.innerHTML = pills;
   filterBar.querySelectorAll('.session-pill').forEach(btn => {
@@ -1115,7 +1127,9 @@ function renderVotesTable() {
     votes = votes.filter(v => categorizeVote(v.topic) === currentCatFilter);
   }
   if (currentSession !== 'all') {
-    votes = votes.filter(v => v.session_date === currentSession);
+    const selSess = K.sessions.find(s => s.number === currentSession);
+    const sessVoteIds = selSess ? new Set(getSessionVotes(K.votes, K.sessions, selSess).map(v => v.id)) : null;
+    votes = sessVoteIds ? votes.filter(v => sessVoteIds.has(v.id)) : votes.filter(v => v.session_number === currentSession);
   }
 
   const tbody = document.querySelector('#votes-table tbody');
@@ -1173,9 +1187,9 @@ function showVote(voteId) {
   }
 
   let html = `
-    <button class="profile-back" onclick="showSession('${vote.session_date}')">← Sesja ${vote.session_number}</button>
+    <button class="profile-back" onclick="showSession('${vote.session_number}')">← Sesja ${vote.session_number}</button>
     <div style="margin-bottom:24px">
-      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px"><a class="name-link" href="/sesja/${vote.session_date}" onclick="event.preventDefault();showSession('${vote.session_date}')" style="color:var(--muted)">Sesja ${vote.session_number} · ${vote.session_date}</a></div>
+      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px"><a class="name-link" href="/sesja/${encodeURIComponent(vote.session_number)}" onclick="event.preventDefault();showSession('${vote.session_number}')" style="color:var(--muted)">Sesja ${vote.session_number} · ${vote.session_date}</a></div>
       <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
       ${vote.druk ? `<div style="color:var(--muted);margin-top:4px">Druk: ${vote.druk}</div>` : ''}
       ${vote.resolution ? `<div style="color:var(--muted)">Uchwała: ${vote.resolution}</div>` : ''}
@@ -1254,19 +1268,27 @@ function backFromVote() {
   document.getElementById('tab-votes').style.display = 'block';
 }
 
-function showSession(sessionDate) {
-  // Find session and kadencja
+function showSession(sessionNumber) {
+  // Find session and kadencja by session number — search current kadencja first
   let sess = null, sessKad = null;
-  for (const kad of RAW.kadencje) {
-    const found = kad.sessions.find(s => s.date === sessionDate);
-    if (found) { sess = found; sessKad = kad; break; }
+  // Prioritize current kadencja (session numbers repeat across kadencje)
+  const currentKadData = RAW.kadencje.find(k => k.id === currentKid);
+  if (currentKadData) {
+    const found = currentKadData.sessions.find(s => s.number === sessionNumber);
+    if (found) { sess = found; sessKad = currentKadData; }
+  }
+  if (!sess) {
+    for (const kad of RAW.kadencje) {
+      const found = kad.sessions.find(s => s.number === sessionNumber);
+      if (found) { sess = found; sessKad = kad; break; }
+    }
   }
   if (!sess) return;
 
   hideAllViews();
   const view = document.getElementById('session-view');
   view.style.display = 'block';
-  navigateTo('/sesja/' + sessionDate);
+  navigateTo('/sesja/' + encodeURIComponent(sessionNumber));
 
   // Club lookup
   const clubMap = {};
@@ -1278,7 +1300,7 @@ function showSession(sessionDate) {
   const absent = sortByLastName([...allNames].filter(n => !present.has(n)));
 
   // Session votes
-  const sessionVotes = sessKad.votes.filter(v => v.session_date === sessionDate);
+  const sessionVotes = getSessionVotes(sessKad.votes, sessKad.sessions, sess);
 
   // Vote stats
   const passed = sessionVotes.filter(v => {
@@ -1297,7 +1319,7 @@ function showSession(sessionDate) {
 
     <div class="profile-metrics" style="margin-bottom:24px">
       <div class="metric-card">
-        <div class="metric-value">${sess.vote_count}</div>
+        <div class="metric-value">${sessionVotes.length}</div>
         <div class="metric-label">Głosowań</div>
       </div>
       <div class="metric-card">
@@ -1678,8 +1700,8 @@ window.addEventListener('popstate', () => {
     return;
   }
   if (path.startsWith('/sesja/')) {
-    const sdate = path.replace('/sesja/', '');
-    showSession(sdate);
+    const snum = decodeURIComponent(path.replace('/sesja/', ''));
+    showSession(snum);
     _popstateActive = false;
     return;
   }
