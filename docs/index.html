@@ -91,6 +91,25 @@ footer a:hover { text-decoration:underline; }
 .budget-links a { display:inline-block; padding:6px 16px; border:1px solid var(--accent); border-radius:8px; color:var(--accent); text-decoration:none; font-size:0.85rem; font-weight:600; transition:background 0.15s, color 0.15s; }
 .budget-links a:hover { background:var(--accent); color:#fff; }
 .budget-note { color:var(--muted); font-size:0.78rem; margin-top:16px; }
+.controversial { border-top:1px solid var(--border); padding:40px 0; }
+.controversial h3 { font-size:1.3rem; font-weight:700; margin-bottom:4px; }
+.controversial-subtitle { color:var(--muted); font-size:0.85rem; margin-bottom:24px; }
+.vote-list { display:flex; flex-direction:column; gap:12px; margin-bottom:24px; }
+.vote-item { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 20px; display:flex; flex-direction:column; gap:6px; text-decoration:none; color:var(--text); transition:border-color 0.15s, box-shadow 0.15s; }
+a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70,229,0.08); }
+.vote-item .vote-header { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+.vote-item .vote-city { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; padding:2px 8px; border-radius:4px; }
+.vote-city.gd { background:rgba(79,70,229,0.1); color:#4f46e5; }
+.vote-city.waw { background:rgba(2,132,199,0.1); color:#0284c7; }
+.vote-city.krk { background:rgba(22,163,74,0.1); color:#16a34a; }
+.vote-item .vote-date { font-size:0.78rem; color:var(--muted); }
+.vote-item .vote-topic { font-size:0.88rem; line-height:1.5; }
+.vote-item .vote-result { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:2px; }
+.vote-pill { display:inline-block; padding:2px 10px; border-radius:12px; font-size:0.75rem; font-weight:600; }
+.pill-za { background:rgba(22,163,74,0.1); color:var(--green); }
+.pill-przeciw { background:rgba(220,38,38,0.1); color:var(--red); }
+.pill-wstrz { background:rgba(107,114,128,0.1); color:var(--muted); }
+.pill-pct { background:rgba(220,38,38,0.08); color:var(--red); font-weight:700; border:1px solid rgba(220,38,38,0.2); }
 </style>
 </head>
 <body>
@@ -177,10 +196,114 @@ footer a:hover { text-decoration:underline; }
     </div>
 
     <div class="budget-links">
-      <a href="https://gdansk.radoskop.pl/#tab-budget">Budżet Gdańska →</a>
-      <a href="https://warszawa.radoskop.pl/#tab-budget">Budżet Warszawy →</a>
+      <a href="https://gdansk.radoskop.pl/budzet">Budżet Gdańska →</a>
+      <a href="https://warszawa.radoskop.pl/budzet">Budżet Warszawy →</a>
     </div>
     <p class="budget-note">Źródło: BIP Gdańska i m.st. Warszawy. Kwoty w miliardach złotych.</p>
+  </div>
+
+  <div class="controversial" id="controversial">
+    <h3>Kontrowersyjne głosowania</h3>
+    <p class="controversial-subtitle">Kadencja 2024–2029 — głosowania z najniższym poparciem (% za)</p>
+
+    <div class="vote-list">
+      <a class="vote-item" href="https://krakow.radoskop.pl/glosowanie/2024-09-25_011">
+        <div class="vote-header">
+          <span class="vote-city krk">Kraków</span>
+          <span class="vote-date">25.09.2024</span>
+        </div>
+        <div class="vote-topic">Nazwa ulicy — druk nr 216</div>
+        <div class="vote-result">
+          <span class="vote-pill pill-za">0 za</span>
+          <span class="vote-pill pill-przeciw">34 przeciw</span>
+          <span class="vote-pill pill-pct">0% za</span>
+        </div>
+      </a>
+
+      <a class="vote-item" href="https://warszawa.radoskop.pl/glosowanie/2025-10-16_029">
+        <div class="vote-header">
+          <span class="vote-city waw">Warszawa</span>
+          <span class="vote-date">16.10.2025</span>
+        </div>
+        <div class="vote-topic">Wyrażenie opinii o lokalizacji kasyna gry (4 głosowania)</div>
+        <div class="vote-result">
+          <span class="vote-pill pill-za">0 za</span>
+          <span class="vote-pill pill-przeciw">21–24 przeciw</span>
+          <span class="vote-pill pill-wstrz">13–16 wstrz.</span>
+          <span class="vote-pill pill-pct">0% za</span>
+        </div>
+      </a>
+
+      <a class="vote-item" href="https://warszawa.radoskop.pl/glosowanie/2025-06-26_015">
+        <div class="vote-header">
+          <span class="vote-city waw">Warszawa</span>
+          <span class="vote-date">26.06.2025</span>
+        </div>
+        <div class="vote-topic">Zmiana uchwały w sprawie ustalenia cen za usługi przewozowe (transport publiczny)</div>
+        <div class="vote-result">
+          <span class="vote-pill pill-za">0 za</span>
+          <span class="vote-pill pill-przeciw">36 przeciw</span>
+          <span class="vote-pill pill-wstrz">4 wstrz.</span>
+          <span class="vote-pill pill-pct">0% za</span>
+        </div>
+      </a>
+
+      <a class="vote-item" href="https://krakow.radoskop.pl/glosowanie/2025-12-17_012">
+        <div class="vote-header">
+          <span class="vote-city krk">Kraków</span>
+          <span class="vote-date">17.12.2025</span>
+        </div>
+        <div class="vote-topic">Zmiana uchwały w sprawie ustalenia strefy płatnego parkowania</div>
+        <div class="vote-result">
+          <span class="vote-pill pill-za">1 za</span>
+          <span class="vote-pill pill-przeciw">40 przeciw</span>
+          <span class="vote-pill pill-pct">2,4% za</span>
+        </div>
+      </a>
+
+      <a class="vote-item" href="https://gdansk.radoskop.pl/glosowanie/2025-06-26_29">
+        <div class="vote-header">
+          <span class="vote-city gd">Gdańsk</span>
+          <span class="vote-date">26.06.2025</span>
+        </div>
+        <div class="vote-topic">Wyrażenie opinii o lokalizacji kasyna gry (3 głosowania)</div>
+        <div class="vote-result">
+          <span class="vote-pill pill-za">3 za</span>
+          <span class="vote-pill pill-przeciw">28 przeciw</span>
+          <span class="vote-pill pill-wstrz">1 wstrz.</span>
+          <span class="vote-pill pill-pct">9,4% za</span>
+        </div>
+      </a>
+
+      <a class="vote-item" href="https://krakow.radoskop.pl/glosowanie/2024-06-19_008">
+        <div class="vote-header">
+          <span class="vote-city krk">Kraków</span>
+          <span class="vote-date">19.06.2024</span>
+        </div>
+        <div class="vote-topic">Zmiana uchwały w sprawie ustanowienia Strefy Czystego Transportu w Krakowie</div>
+        <div class="vote-result">
+          <span class="vote-pill pill-za">5 za</span>
+          <span class="vote-pill pill-przeciw">24 przeciw</span>
+          <span class="vote-pill pill-pct">17,2% za</span>
+        </div>
+      </a>
+
+      <a class="vote-item" href="https://gdansk.radoskop.pl/glosowanie/2024-09-26_18">
+        <div class="vote-header">
+          <span class="vote-city gd">Gdańsk</span>
+          <span class="vote-date">26.09.2024</span>
+        </div>
+        <div class="vote-topic">Określenie warunków udzielania bonifikat od cen nieruchomości gruntowych</div>
+        <div class="vote-result">
+          <span class="vote-pill pill-za">6 za</span>
+          <span class="vote-pill pill-przeciw">18 przeciw</span>
+          <span class="vote-pill pill-wstrz">7 wstrz.</span>
+          <span class="vote-pill pill-pct">19,4% za</span>
+        </div>
+      </a>
+    </div>
+
+    <p class="budget-note">Kadencja 2024–2029. Uwzględniono głosowania merytoryczne z ≥20 aktywnymi głosami. Źródło: BIP.</p>
   </div>
 
   <div class="about">
