@@ -91,6 +91,24 @@ footer a:hover { text-decoration:underline; }
 .budget-links a { display:inline-block; padding:6px 16px; border:1px solid var(--accent); border-radius:8px; color:var(--accent); text-decoration:none; font-size:0.85rem; font-weight:600; transition:background 0.15s, color 0.15s; }
 .budget-links a:hover { background:var(--accent); color:#fff; }
 .budget-note { color:var(--muted); font-size:0.78rem; margin-top:16px; }
+.chart-legend { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; margin-top:12px; font-size:0.82rem; color:var(--muted); }
+.chart-legend span { display:inline-flex; align-items:center; gap:6px; }
+.chart-legend svg { flex-shrink:0; }
+.sessions-feed { border-top:1px solid var(--border); padding:40px 0; }
+.sessions-feed h3 { font-size:1.3rem; font-weight:700; margin-bottom:4px; }
+.sessions-feed .comparison-subtitle { margin-bottom:20px; }
+.feed-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-bottom:16px; }
+.feed-city { display:flex; flex-direction:column; gap:0; }
+.feed-city-name { font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); padding-bottom:8px; border-bottom:2px solid var(--border); margin-bottom:4px; }
+.feed-city-name.gd { border-color:#4f46e5; color:#4f46e5; }
+.feed-city-name.waw { border-color:#0284c7; color:#0284c7; }
+.feed-city-name.krk { border-color:#16a34a; color:#16a34a; }
+.feed-item { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border); text-decoration:none; color:var(--text); transition:background 0.1s; gap:6px; }
+.feed-item:hover { background:rgba(79,70,229,0.03); }
+.feed-item .sess-label { font-size:0.82rem; font-weight:500; white-space:nowrap; }
+.feed-item .sess-date { font-size:0.75rem; color:var(--muted); white-space:nowrap; }
+.feed-item .sess-votes { font-size:0.72rem; color:var(--muted); background:var(--bg); padding:1px 7px; border-radius:10px; white-space:nowrap; }
+@media (max-width:600px) { .feed-grid { grid-template-columns:1fr; gap:24px; } }
 .controversial { border-top:1px solid var(--border); padding:40px 0; }
 .controversial h3 { font-size:1.3rem; font-weight:700; margin-bottom:4px; }
 .controversial-subtitle { color:var(--muted); font-size:0.85rem; margin-bottom:24px; }
@@ -171,6 +189,38 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
     </div>
   </div>
 
+  <div class="sessions-feed" id="sessions">
+    <h3>Ostatnie sesje</h3>
+    <p class="comparison-subtitle">Kadencja 2024–2029 — 5 ostatnich sesji każdej rady</p>
+
+    <div class="feed-grid">
+      <div class="feed-city">
+        <div class="feed-city-name gd">Gdańsk</div>
+        <a class="feed-item" href="https://gdansk.radoskop.pl/sesja/XXIII"><span class="sess-label">Sesja XXIII</span><span class="sess-date">05.02.2026</span><span class="sess-votes">16 gł.</span></a>
+        <a class="feed-item" href="https://gdansk.radoskop.pl/sesja/XXII"><span class="sess-label">Sesja XXII</span><span class="sess-date">19.12.2025</span><span class="sess-votes">34 gł.</span></a>
+        <a class="feed-item" href="https://gdansk.radoskop.pl/sesja/XXI"><span class="sess-label">Sesja XXI</span><span class="sess-date">28.11.2025</span><span class="sess-votes">65 gł.</span></a>
+        <a class="feed-item" href="https://gdansk.radoskop.pl/sesja/XX"><span class="sess-label">Sesja XX</span><span class="sess-date">31.10.2025</span><span class="sess-votes">33 gł.</span></a>
+        <a class="feed-item" href="https://gdansk.radoskop.pl/sesja/XIX"><span class="sess-label">Sesja XIX</span><span class="sess-date">25.09.2025</span><span class="sess-votes">16 gł.</span></a>
+      </div>
+      <div class="feed-city">
+        <div class="feed-city-name waw">Warszawa</div>
+        <a class="feed-item" href="https://warszawa.radoskop.pl/sesja/XXXII"><span class="sess-label">Sesja XXXII</span><span class="sess-date">12.02.2026</span><span class="sess-votes">65 gł.</span></a>
+        <a class="feed-item" href="https://warszawa.radoskop.pl/sesja/XXXI"><span class="sess-label">Sesja XXXI</span><span class="sess-date">15.01.2026</span><span class="sess-votes">42 gł.</span></a>
+        <a class="feed-item" href="https://warszawa.radoskop.pl/sesja/XXX"><span class="sess-label">Sesja XXX</span><span class="sess-date">11.12.2025</span><span class="sess-votes">150 gł.</span></a>
+        <a class="feed-item" href="https://warszawa.radoskop.pl/sesja/XXIX"><span class="sess-label">Sesja XXIX</span><span class="sess-date">20.11.2025</span><span class="sess-votes">33 gł.</span></a>
+        <a class="feed-item" href="https://warszawa.radoskop.pl/sesja/XXVIII"><span class="sess-label">Sesja XXVIII</span><span class="sess-date">16.10.2025</span><span class="sess-votes">51 gł.</span></a>
+      </div>
+      <div class="feed-city">
+        <div class="feed-city-name krk">Kraków</div>
+        <a class="feed-item" href="https://krakow.radoskop.pl/sesja/XLVI"><span class="sess-label">Sesja XLVI</span><span class="sess-date">25.02.2026</span><span class="sess-votes">59 gł.</span></a>
+        <a class="feed-item" href="https://krakow.radoskop.pl/sesja/XLV"><span class="sess-label">Sesja XLV</span><span class="sess-date">21.01.2026</span><span class="sess-votes">28 gł.</span></a>
+        <a class="feed-item" href="https://krakow.radoskop.pl/sesja/XLIV"><span class="sess-label">Sesja XLIV</span><span class="sess-date">17.12.2025</span><span class="sess-votes">27 gł.</span></a>
+        <a class="feed-item" href="https://krakow.radoskop.pl/sesja/XLII"><span class="sess-label">Sesja XLII</span><span class="sess-date">03.12.2025</span><span class="sess-votes">27 gł.</span></a>
+        <a class="feed-item" href="https://krakow.radoskop.pl/sesja/XLI"><span class="sess-label">Sesja XLI</span><span class="sess-date">19.11.2025</span><span class="sess-votes">35 gł.</span></a>
+      </div>
+    </div>
+  </div>
+
   <div class="budget" id="budget">
     <h3>Budżety miast</h3>
     <p class="budget-subtitle">Porównanie budżetów Gdańska i Warszawy — dane z uchwalonych budżetów (2020–2025)</p>
@@ -184,8 +234,9 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
           <tr><td class="label">Dochody (2025)</td><td>5,43 mld zł</td><td>26,28 mld zł</td></tr>
           <tr><td class="label">Wydatki (2025)</td><td>6,03 mld zł</td><td>29,48 mld zł</td></tr>
           <tr class="highlight"><td class="label">Deficyt (2025)</td><td>−0,60 mld zł</td><td>−3,20 mld zł</td></tr>
-          <tr><td class="label">Wzrost dochodów 2020→2025</td><td>+14,3%</td><td>+44,5%</td></tr>
-          <tr><td class="label">Wzrost wydatków 2020→2025</td><td>+18,2%</td><td>+47,9%</td></tr>
+          <tr class="highlight"><td class="label">Wydatki per capita (2025)</td><td>12 803 zł</td><td class="best">15 849 zł</td></tr>
+          <tr><td class="label">Wzrost dochodów 2020→2025</td><td>+14,3%</td><td class="best">+44,5%</td></tr>
+          <tr><td class="label">Wzrost wydatków 2020→2025</td><td>+18,2%</td><td class="best">+47,9%</td></tr>
           <tr><td class="label">Głosowania budżetowe</td><td>96</td><td>34</td></tr>
         </tbody>
       </table>
@@ -193,13 +244,19 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
 
     <div class="comp-charts">
       <canvas id="chartBudgetTrend" height="260"></canvas>
+      <div class="chart-legend">
+        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#4f46e5" stroke-width="2.5"/></svg> Gdańsk — dochody</span>
+        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#4f46e5" stroke-width="2.5" stroke-dasharray="6 3"/></svg> Gdańsk — wydatki</span>
+        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#dc2626" stroke-width="2.5"/></svg> Warszawa — dochody</span>
+        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="6 3"/></svg> Warszawa — wydatki</span>
+      </div>
     </div>
 
     <div class="budget-links">
       <a href="https://gdansk.radoskop.pl/budzet">Budżet Gdańska →</a>
       <a href="https://warszawa.radoskop.pl/budzet">Budżet Warszawy →</a>
     </div>
-    <p class="budget-note">Źródło: BIP Gdańska i m.st. Warszawy. Kwoty w miliardach złotych.</p>
+    <p class="budget-note">Źródło: BIP Gdańska i m.st. Warszawy. Kwoty w miliardach złotych. Per capita: Gdańsk ~471 tys. mieszkańców, Warszawa ~1,86 mln (GUS 2024).</p>
   </div>
 
   <div class="controversial" id="controversial">
@@ -359,17 +416,17 @@ new Chart(document.getElementById('chartAktywnosc'), {
   options: { ...commonOpts, plugins: { ...commonOpts.plugins, title: { display: true, text: 'Aktywność i zgodność z klubem', font: { size: 14, weight: 600 } } } }
 });
 
-// Budget trend chart
+// Budget trend chart — custom legend to show dashed lines
 const budgetYears = ['2020','2021','2022','2023','2024','2025'];
-new Chart(document.getElementById('chartBudgetTrend'), {
+const budgetChart = new Chart(document.getElementById('chartBudgetTrend'), {
   type: 'line',
   data: {
     labels: budgetYears,
     datasets: [
-      { label: 'Gdańsk — dochody', data: [4.75,4.85,5.10,4.89,5.16,5.43], borderColor: '#4f46e5', backgroundColor: 'rgba(79,70,229,0.08)', fill: true, tension: 0.3, pointRadius: 4, borderWidth: 2 },
-      { label: 'Gdańsk — wydatki', data: [5.10,5.25,5.50,5.38,5.71,6.03], borderColor: '#4f46e5', borderDash: [6,3], fill: false, tension: 0.3, pointRadius: 3, borderWidth: 2 },
-      { label: 'Warszawa — dochody', data: [18.19,20.57,19.21,20.22,24.52,26.28], borderColor: '#0284c7', backgroundColor: 'rgba(2,132,199,0.08)', fill: true, tension: 0.3, pointRadius: 4, borderWidth: 2, yAxisID: 'yRight' },
-      { label: 'Warszawa — wydatki', data: [19.93,21.63,21.42,24.37,27.77,29.48], borderColor: '#0284c7', borderDash: [6,3], fill: false, tension: 0.3, pointRadius: 3, borderWidth: 2, yAxisID: 'yRight' }
+      { label: 'Gdańsk — dochody', data: [4.75,4.85,5.10,4.89,5.16,5.43], borderColor: '#4f46e5', backgroundColor: 'rgba(79,70,229,0.08)', fill: true, tension: 0.3, pointRadius: 4, pointStyle: 'circle', borderWidth: 2.5 },
+      { label: 'Gdańsk — wydatki', data: [5.10,5.25,5.50,5.38,5.71,6.03], borderColor: '#4f46e5', backgroundColor: 'transparent', fill: false, tension: 0.3, pointRadius: 4, pointStyle: 'rect', borderWidth: 2.5, borderDash: [8,4] },
+      { label: 'Warszawa — dochody', data: [18.19,20.57,19.21,20.22,24.52,26.28], borderColor: '#dc2626', backgroundColor: 'rgba(220,38,38,0.08)', fill: true, tension: 0.3, pointRadius: 4, pointStyle: 'circle', borderWidth: 2.5 },
+      { label: 'Warszawa — wydatki', data: [19.93,21.63,21.42,24.37,27.77,29.48], borderColor: '#dc2626', backgroundColor: 'transparent', fill: false, tension: 0.3, pointRadius: 4, pointStyle: 'rect', borderWidth: 2.5, borderDash: [8,4] }
     ]
   },
   options: {
@@ -377,12 +434,11 @@ new Chart(document.getElementById('chartBudgetTrend'), {
     interaction: { mode: 'index', intersect: false },
     plugins: {
       title: { display: true, text: 'Dochody i wydatki (mld zł)', font: { size: 14, weight: 600 } },
-      legend: { display: true, position: 'bottom', labels: { usePointStyle: true, padding: 12, font: { size: 11 } } },
+      legend: { display: false },
       tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(2) + ' mld zł' } }
     },
     scales: {
-      y: { type: 'linear', position: 'left', title: { display: true, text: 'Gdańsk (mld zł)', font: { size: 11 } }, ticks: { callback: v => v.toFixed(1) }, beginAtZero: false },
-      yRight: { type: 'linear', position: 'right', title: { display: true, text: 'Warszawa (mld zł)', font: { size: 11 } }, ticks: { callback: v => v.toFixed(0) }, grid: { drawOnChartArea: false }, beginAtZero: false }
+      y: { type: 'linear', title: { display: true, text: 'mld zł', font: { size: 11 } }, ticks: { callback: v => v.toFixed(0) }, beginAtZero: true }
     }
   }
 });
