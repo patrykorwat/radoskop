@@ -72,6 +72,18 @@ footer { margin-top:auto; border-top:1px solid var(--border); padding:20px 0; te
 footer p { color:var(--muted); font-size:0.8rem; }
 footer a { color:var(--accent); text-decoration:none; }
 footer a:hover { text-decoration:underline; }
+.comparison { border-top:1px solid var(--border); padding:40px 0; }
+.comparison h3 { font-size:1.3rem; font-weight:700; margin-bottom:4px; }
+.comparison-subtitle { color:var(--muted); font-size:0.85rem; margin-bottom:24px; }
+.comp-table-wrap { overflow-x:auto; margin-bottom:32px; }
+.comp-table { width:100%; border-collapse:collapse; font-size:0.9rem; }
+.comp-table th { text-align:center; padding:10px 16px; border-bottom:2px solid var(--border); font-weight:700; color:var(--text); }
+.comp-table th:first-child { text-align:left; }
+.comp-table td { padding:8px 16px; text-align:center; border-bottom:1px solid var(--border); }
+.comp-table td.label { text-align:left; font-weight:500; color:var(--muted); }
+.comp-table td.best { font-weight:700; color:var(--green); }
+.comp-table tr.highlight td { background:rgba(79,70,229,0.04); }
+.comp-charts { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:24px; margin-bottom:16px; }
 </style>
 </head>
 <body>
@@ -104,6 +116,35 @@ footer a:hover { text-decoration:underline; }
     </a>
   </div>
 
+  <div class="comparison" id="comparison">
+    <h3>Porównanie miast</h3>
+    <p class="comparison-subtitle">Kadencja 2024–2029 — dane z sesji rad miejskich</p>
+
+    <div class="comp-table-wrap">
+      <table class="comp-table">
+        <thead>
+          <tr><th></th><th>Gdańsk</th><th>Warszawa</th><th>Kraków</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="label">Radni</td><td>36</td><td>63</td><td>47</td></tr>
+          <tr><td class="label">Sesje</td><td>21</td><td>32</td><td>39</td></tr>
+          <tr><td class="label">Głosowania</td><td>709</td><td>1 398</td><td>1 144</td></tr>
+          <tr class="highlight"><td class="label">Śr. frekwencja</td><td class="best">93,6%</td><td>69,0%</td><td>84,7%</td></tr>
+          <tr class="highlight"><td class="label">Śr. aktywność</td><td class="best">92,6%</td><td>88,3%</td><td>80,4%</td></tr>
+          <tr><td class="label">Śr. zgodność z klubem</td><td class="best">98,8%</td><td>92,6%</td><td>89,7%</td></tr>
+          <tr><td class="label">Śr. buntów / radny</td><td>8,1</td><td>33,2</td><td>16,8</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="comp-charts">
+      <canvas id="chartFrekwencja" height="200"></canvas>
+    </div>
+    <div class="comp-charts">
+      <canvas id="chartAktywnosc" height="200"></canvas>
+    </div>
+  </div>
+
   <div class="about">
     <h3>Czym jest Radoskop?</h3>
     <p>Radoskop to otwarte narzędzie, które pozwala śledzić aktywność radnych miejskich — frekwencję na sesjach, wyniki głosowań, przynależność klubową i pracę w komisjach. Wszystkie dane pochodzą z oficjalnych źródeł (BIP) i są przetwarzane automatycznie.</p>
@@ -116,5 +157,46 @@ footer a:hover { text-decoration:underline; }
     <p>Radoskop &middot; <a href="https://github.com/patrykorwat/radoskop">GitHub</a> &middot; AGPL-3.0</p>
   </div>
 </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const cities = ['Gdańsk','Warszawa','Kraków'];
+const colors = ['#4f46e5','#0284c7','#16a34a'];
+const bgColors = ['rgba(79,70,229,0.15)','rgba(2,132,199,0.15)','rgba(22,163,74,0.15)'];
+
+const commonOpts = {
+  responsive: true,
+  plugins: { legend: { display: true, position: 'bottom', labels: { usePointStyle: true, padding: 16, font: { size: 12 } } } },
+  scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } }, x: { display: false } }
+};
+
+new Chart(document.getElementById('chartFrekwencja'), {
+  type: 'bar',
+  data: {
+    labels: cities,
+    datasets: [{
+      label: 'Średnia frekwencja (%)',
+      data: [93.6, 69.0, 84.7],
+      backgroundColor: bgColors,
+      borderColor: colors,
+      borderWidth: 2,
+      borderRadius: 6,
+      barPercentage: 0.6
+    }]
+  },
+  options: { ...commonOpts, plugins: { ...commonOpts.plugins, title: { display: true, text: 'Średnia frekwencja radnych', font: { size: 14, weight: 600 } } } }
+});
+
+new Chart(document.getElementById('chartAktywnosc'), {
+  type: 'bar',
+  data: {
+    labels: cities,
+    datasets: [
+      { label: 'Aktywność (%)', data: [92.6, 88.3, 80.4], backgroundColor: bgColors, borderColor: colors, borderWidth: 2, borderRadius: 6, barPercentage: 0.5 },
+      { label: 'Zgodność z klubem (%)', data: [98.8, 92.6, 89.7], backgroundColor: ['rgba(79,70,229,0.05)','rgba(2,132,199,0.05)','rgba(22,163,74,0.05)'], borderColor: colors, borderWidth: 2, borderRadius: 6, borderDash: [4,4], barPercentage: 0.5 }
+    ]
+  },
+  options: { ...commonOpts, plugins: { ...commonOpts.plugins, title: { display: true, text: 'Aktywność i zgodność z klubem', font: { size: 14, weight: 600 } } } }
+});
+</script>
 </body>
 </html>

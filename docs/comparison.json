@@ -1,0 +1,275 @@
+{
+  "generated": "2026-03-05",
+  "cities": [
+    {
+      "name": "Gdańsk",
+      "slug": "gdansk",
+      "url": "https://gdansk.radoskop.pl",
+      "kadencja": "2024-2029",
+      "total_sessions": 21,
+      "total_votes": 709,
+      "total_councilors": 36,
+      "avg_frekwencja": 93.6,
+      "avg_aktywnosc": 92.6,
+      "avg_zgodnosc": 98.8,
+      "avg_rebellions": 8.1,
+      "clubs": {
+        "KO": {
+          "count": 17,
+          "avg_frekwencja": 93.0,
+          "avg_aktywnosc": 93.0,
+          "avg_zgodnosc": 99.3
+        },
+        "PiS": {
+          "count": 8,
+          "avg_frekwencja": 100.0,
+          "avg_aktywnosc": 92.8,
+          "avg_zgodnosc": 96.7
+        },
+        "WdG": {
+          "count": 11,
+          "avg_frekwencja": 90.0,
+          "avg_aktywnosc": 91.9,
+          "avg_zgodnosc": 99.4
+        }
+      },
+      "top_frekwencja": [
+        {
+          "name": "Agnieszka Bartków",
+          "club": "KO",
+          "value": 100.0
+        },
+        {
+          "name": "Agnieszka Owczarczak",
+          "club": "KO",
+          "value": 100.0
+        },
+        {
+          "name": "Aleksander Jankowski",
+          "club": "PiS",
+          "value": 100.0
+        }
+      ],
+      "bottom_frekwencja": [
+        {
+          "name": "Teresa Wasilewska",
+          "club": "WdG",
+          "value": 61.9
+        },
+        {
+          "name": "Sylwia Rydlewska-Kowalik",
+          "club": "WdG",
+          "value": 28.6
+        },
+        {
+          "name": "Emilia Lodzińska",
+          "club": "KO",
+          "value": 14.3
+        }
+      ],
+      "top_rebels": [
+        {
+          "name": "Przemysław Majewski",
+          "club": "PiS",
+          "count": 37
+        },
+        {
+          "name": "Andrzej Skiba",
+          "club": "PiS",
+          "count": 36
+        },
+        {
+          "name": "Barbara Imianowska",
+          "club": "PiS",
+          "count": 33
+        }
+      ]
+    },
+    {
+      "name": "Warszawa",
+      "slug": "warszawa",
+      "url": "https://warszawa.radoskop.pl",
+      "kadencja": "2024-2029",
+      "total_sessions": 32,
+      "total_votes": 1398,
+      "total_councilors": 63,
+      "avg_frekwencja": 69.0,
+      "avg_aktywnosc": 88.3,
+      "avg_zgodnosc": 92.6,
+      "avg_rebellions": 33.2,
+      "clubs": {
+        "Lewica": {
+          "count": 8,
+          "avg_frekwencja": 71.5,
+          "avg_aktywnosc": 90.7,
+          "avg_zgodnosc": 94.7
+        },
+        "KO": {
+          "count": 37,
+          "avg_frekwencja": 72.2,
+          "avg_aktywnosc": 94.0,
+          "avg_zgodnosc": 99.2
+        },
+        "PiS": {
+          "count": 15,
+          "avg_frekwencja": 71.3,
+          "avg_aktywnosc": 89.9,
+          "avg_zgodnosc": 93.9
+        },
+        "?": {
+          "count": 3,
+          "avg_frekwencja": 10.4,
+          "avg_aktywnosc": 3.9,
+          "avg_zgodnosc": 0.0
+        }
+      },
+      "top_frekwencja": [
+        {
+          "name": "Agata Diduszko-Zyglewska",
+          "club": "Lewica",
+          "value": 75.0
+        },
+        {
+          "name": "Agnieszka Borowska",
+          "club": "KO",
+          "value": 75.0
+        },
+        {
+          "name": "Agnieszka Miękwicz",
+          "club": "KO",
+          "value": 75.0
+        }
+      ],
+      "bottom_frekwencja": [
+        {
+          "name": "Magdalena Roguska",
+          "club": "?",
+          "value": 12.5
+        },
+        {
+          "name": "Patrycja Czerska",
+          "club": "?",
+          "value": 12.5
+        },
+        {
+          "name": "Tobiasz Bocheński",
+          "club": "?",
+          "value": 6.2
+        }
+      ],
+      "top_rebels": [
+        {
+          "name": "Piotr Mazurek",
+          "club": "PiS",
+          "count": 159
+        },
+        {
+          "name": "Jacek Cieślikowski",
+          "club": "PiS",
+          "count": 148
+        },
+        {
+          "name": "Maciej Binkowski",
+          "club": "PiS",
+          "count": 143
+        }
+      ]
+    },
+    {
+      "name": "Kraków",
+      "slug": "krakow",
+      "url": "https://krakow.radoskop.pl",
+      "kadencja": "2024-2029",
+      "total_sessions": 39,
+      "total_votes": 1144,
+      "total_councilors": 47,
+      "avg_frekwencja": 84.7,
+      "avg_aktywnosc": 80.4,
+      "avg_zgodnosc": 89.7,
+      "avg_rebellions": 16.8,
+      "clubs": {
+        "PiS": {
+          "count": 12,
+          "avg_frekwencja": 93.2,
+          "avg_aktywnosc": 76.1,
+          "avg_zgodnosc": 97.7
+        },
+        "KO": {
+          "count": 20,
+          "avg_frekwencja": 91.8,
+          "avg_aktywnosc": 94.0,
+          "avg_zgodnosc": 99.3
+        },
+        "?": {
+          "count": 4,
+          "avg_frekwencja": 7.7,
+          "avg_aktywnosc": 6.2,
+          "avg_zgodnosc": 0.0
+        },
+        "KdM": {
+          "count": 7,
+          "avg_frekwencja": 91.9,
+          "avg_aktywnosc": 84.9,
+          "avg_zgodnosc": 95.6
+        },
+        "Lewica": {
+          "count": 4,
+          "avg_frekwencja": 88.5,
+          "avg_aktywnosc": 92.1,
+          "avg_zgodnosc": 97.9
+        }
+      },
+      "top_frekwencja": [
+        {
+          "name": "Agnieszka Pogoda-Tota",
+          "club": "KO",
+          "value": 94.9
+        },
+        {
+          "name": "Agnieszka Łętocha",
+          "club": "KO",
+          "value": 94.9
+        },
+        {
+          "name": "Aleksandra Witek",
+          "club": "PiS",
+          "value": 94.9
+        }
+      ],
+      "bottom_frekwencja": [
+        {
+          "name": "Aleksandra Kot",
+          "club": "?",
+          "value": 10.3
+        },
+        {
+          "name": "Dominik Jaśkowiec",
+          "club": "?",
+          "value": 2.6
+        },
+        {
+          "name": "Łukasz Sęk",
+          "club": "?",
+          "value": 2.6
+        }
+      ],
+      "top_rebels": [
+        {
+          "name": "Aleksandra Owca",
+          "club": "KdM",
+          "count": 82
+        },
+        {
+          "name": "Renata Piętka",
+          "club": "KO",
+          "count": 72
+        },
+        {
+          "name": "Łukasz Maślona",
+          "club": "KdM",
+          "count": 67
+        }
+      ]
+    }
+  ]
+}
