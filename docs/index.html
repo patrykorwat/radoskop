@@ -352,8 +352,8 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
       </div>
     </div>
 
-    <h3 style="margin-top:40px; font-size:1.3rem; font-weight:700; margin-bottom:4px;">Najdroższa inwestycja w roku</h3>
-    <p style="color:var(--muted); font-size:0.85rem; margin-bottom:12px;">Największy projekt inwestycyjny w budżecie każdego miasta — wybierz rok</p>
+    <h3 style="margin-top:40px; font-size:1.3rem; font-weight:700; margin-bottom:4px;">Najdroższe inwestycje w roku</h3>
+    <p style="color:var(--muted); font-size:0.85rem; margin-bottom:12px;">Top 3 największe projekty inwestycyjne w budżecie każdego miasta — wybierz rok</p>
     <div id="flagship-year-bar" style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:16px;"></div>
     <div id="flagship-container" class="flagship-grid"></div>
 
@@ -559,59 +559,63 @@ const invChart = new Chart(document.getElementById('chartInvestments'), {
 // Flagship investments by year
 const flagshipData = {
   gdansk: { label: 'Gdańsk', cls: 'gda', color: '#4f46e5', projects: {
-    '2020': { name: 'Gdański Projekt Komunikacji Miejskiej (GPKM)', amount: 340 },
-    '2021': { name: 'Nowa Warszawska — linia tramwajowa', amount: 60 },
-    '2022': { name: 'Nowa Warszawska (GPKM etap IVa)', amount: 41 },
-    '2023': { name: 'Nowa Świętokrzyska (etap I)', amount: 90 },
-    '2024': { name: 'Port Czystej Energii', amount: 661 },
-    '2025': { name: 'AmberExpo — IV hala targowa i hotel', amount: 146 },
-    '2026': { name: 'Tramwaj Gdańsk Południe — Wrzeszcz', amount: 801 }
+    '2020': [{name:'Gdański Projekt Komunikacji Miejskiej (GPKM)',amount:340},{name:'Port Czystej Energii (budowa)',amount:294},{name:'Wiadukt Biskupia Górka i parking',amount:174}],
+    '2021': [{name:'Termomodernizacja budynków komunalnych',amount:87},{name:'TBS — budowa 217 mieszkań',amount:61},{name:'Nowa Warszawska — linia tramwajowa',amount:60}],
+    '2022': [{name:'Rewitalizacja dzielnic',amount:52},{name:'Nowa Warszawska (GPKM etap IVa)',amount:41},{name:'Modernizacja dróg',amount:37}],
+    '2023': [{name:'Port Czystej Energii (dokończenie)',amount:140},{name:'Nowa Świętokrzyska (etap I)',amount:90},{name:'Rewitalizacja Dolnego Miasta',amount:80}],
+    '2024': [{name:'Port Czystej Energii',amount:661},{name:'Nowa Bulońska Północna',amount:192},{name:'Nowa Świętokrzyska (etap I)',amount:120}],
+    '2025': [{name:'Tramwaj Południe — Wrzeszcz (przygotowanie)',amount:160},{name:'AmberExpo — IV hala i hotel',amount:146},{name:'Nowa Świętokrzyska (kontynuacja)',amount:81}],
+    '2026': [{name:'Tramwaj Gdańsk Południe — Wrzeszcz',amount:801},{name:'Nowa Świętokrzyska (etap I)',amount:82},{name:'Tramwaj ul. Klonowa',amount:55}]
   }},
   warszawa: { label: 'Warszawa', cls: 'waw', color: '#dc2626', projects: {
-    '2020': { name: 'II linia metra — odcinek zachodni', amount: 839 },
-    '2021': { name: 'II linia metra — odcinek zachodni', amount: 640 },
-    '2022': { name: 'II linia metra — odcinek zachodni', amount: 549 },
-    '2023': { name: 'II linia metra — odcinek zachodni', amount: 541 },
-    '2024': { name: 'II linia metra — odcinek zachodni', amount: 670 },
-    '2025': { name: 'II linia metra — odcinek zachodni', amount: 711 },
-    '2026': { name: 'II linia metra — odcinek zachodni do Ursusa', amount: 724 }
+    '2020': [{name:'II linia metra — odcinek zachodni',amount:839},{name:'Drogi i infrastruktura drogowa',amount:428},{name:'Szkoły, przedszkola, żłobki',amount:300}],
+    '2021': [{name:'II linia metra — odcinek zachodni',amount:640},{name:'Drogi i mosty',amount:203},{name:'Szkoły, przedszkola, żłobki',amount:120}],
+    '2022': [{name:'II linia metra — odcinek zachodni',amount:549},{name:'Drogi i infrastruktura drogowa',amount:270},{name:'Muzeum Sztuki Nowoczesnej',amount:82}],
+    '2023': [{name:'II linia metra — odcinek zachodni',amount:541},{name:'Drogi i infrastruktura drogowa',amount:522},{name:'Muzeum Sztuki Nowoczesnej',amount:123}],
+    '2024': [{name:'II linia metra — odcinek zachodni',amount:670},{name:'Drogi i infrastruktura drogowa',amount:610},{name:'Szkoły, przedszkola, żłobki',amount:500}],
+    '2025': [{name:'Drogi i infrastruktura drogowa',amount:730},{name:'II linia metra — odcinek zachodni',amount:711},{name:'Sala Kongresowa PKiN',amount:130}],
+    '2026': [{name:'II linia metra — odcinek do Ursusa',amount:724},{name:'Szkoły, przedszkola, żłobki',amount:450},{name:'Drogi i infrastruktura drogowa',amount:400}]
   }},
   krakow: { label: 'Kraków', cls: 'krk', color: '#16a34a', projects: {
-    '2020': { name: 'Tramwaj do Górki Narodowej (KST etap III)', amount: 154 },
-    '2021': { name: 'Tramwaj do Górki Narodowej (KST etap III)', amount: 180 },
-    '2022': { name: 'Tramwaj KST etap III (Krowodrza Górka — Górka Narodowa)', amount: 150 },
-    '2023': { name: 'Tramwaj KST etap III (Krowodrza Górka — Górka Narodowa)', amount: 200 },
-    '2024': { name: 'Tramwaj do Mistrzejowic (KST etap IV)', amount: 215 },
-    '2025': { name: 'Tramwaj do Mistrzejowic (KST etap IV)', amount: 280 },
-    '2026': { name: 'Tramwaj do Mistrzejowic (KST etap IV)', amount: 250 }
+    '2020': [{name:'Tramwaj do Górki Narodowej (KST III)',amount:154},{name:'Modernizacja torowisk',amount:54},{name:'Rozbudowa al. 29 Listopada',amount:49}],
+    '2021': [{name:'Tramwaj do Górki Narodowej (KST III)',amount:205},{name:'Modernizacja torowisk',amount:50},{name:'Przebudowa stacji Swoszowice',amount:37}],
+    '2022': [{name:'Tramwaj KST III (Krowodrza Górka — Górka Narodowa)',amount:200},{name:'Krakowskie Centrum Muzyki (etap I)',amount:120},{name:'Trasa Wolbromska',amount:75}],
+    '2023': [{name:'Tramwaj KST III (Krowodrza Górka — Górka Narodowa)',amount:180},{name:'Stadion Reymana (Igrzyska Europejskie)',amount:80},{name:'Tor kajakarstwa Kolna',amount:40}],
+    '2024': [{name:'Tramwaj do Mistrzejowic (KST IV)',amount:200},{name:'Krakowskie Centrum Muzyki (etap II)',amount:177},{name:'Kompleks basenowy Clepardii',amount:80}],
+    '2025': [{name:'Tramwaj do Mistrzejowic (KST IV)',amount:220},{name:'Pakt dla Krakowskich Osiedli',amount:200},{name:'Krakowskie Centrum Muzyki (etap II)',amount:180}],
+    '2026': [{name:'Tramwaj do Mistrzejowic (KST IV)',amount:250},{name:'Pakt dla Krakowskich Osiedli',amount:200},{name:'Metro — dokumentacja i badania',amount:77}]
   }},
   wroclaw: { label: 'Wrocław', cls: 'wro', color: '#db2777', projects: {
-    '2020': { name: 'Trasa Autobusowo-Tramwajowa i prace torowe', amount: 150 },
-    '2021': { name: 'Tramwaj na Popowice', amount: 112 },
-    '2022': { name: 'Tramwaj na Popowice', amount: 112 },
-    '2023': { name: 'Trasa Autobusowo-Tramwajowa na Nowy Dwór', amount: 73 },
-    '2024': { name: 'Aleja Wielkiej Wyspy', amount: 51 },
-    '2025': { name: 'Infrastruktura tramwajowa i drogowa', amount: 200 },
-    '2026': { name: 'Inwestycje transportowe i drogowe', amount: 572 }
+    '2020': [{name:'Trasa Autobusowo-Tramwajowa (TAT)',amount:150},{name:'Szkoły i infrastruktura edukacyjna',amount:103},{name:'Tramwaj na Popowice (rozpoczęcie)',amount:100}],
+    '2021': [{name:'Tramwaj na Popowice',amount:120},{name:'Szkoły i przedszkola',amount:103},{name:'Rewitalizacja i muzea',amount:80}],
+    '2022': [{name:'Tramwaj na Popowice (dokończenie)',amount:112},{name:'Szkoły i infrastruktura sportowa',amount:107},{name:'TAT na Nowy Dwór (budowa)',amount:76}],
+    '2023': [{name:'Obwodnica Leśnicy',amount:181},{name:'Drogi i infrastruktura drogowa',amount:120},{name:'TAT na Nowy Dwór (faza III)',amount:73}],
+    '2024': [{name:'Drogi i remonty ulic',amount:80},{name:'Aleja Wielkiej Wyspy',amount:51},{name:'Szkoły i edukacja',amount:40}],
+    '2025': [{name:'Infrastruktura tramwajowa i torowiska',amount:200},{name:'Program Na Dobrej Drodze',amount:150},{name:'Drogi i mosty',amount:100}],
+    '2026': [{name:'Inwestycje transportowe i łączność',amount:572},{name:'Infrastruktura drogowa (Na Dobrej Drodze)',amount:197},{name:'Tramwaj na Swojczyce + węzeł Dubois',amount:109}]
   }},
   gdynia: { label: 'Gdynia', cls: 'gdy', color: '#d97706', projects: {
-    '2020': { name: 'Inwestycje drogowe (transport i komunikacja)', amount: 217 },
-    '2021': { name: 'Węzeł Karwiny', amount: 102 },
-    '2022': { name: 'Wiadukt na ul. Puckiej (projektowanie)', amount: 79 },
-    '2023': { name: 'Węzeł Karwiny (dokończenie)', amount: 99 },
-    '2024': { name: 'Wiadukt na ul. Puckiej (realizacja)', amount: 79 },
-    '2025': { name: 'Zintegrowane Inwestycje Transportowe (ITI)', amount: 126 },
-    '2026': { name: 'Modernizacja Wiczlińskiej i Estakady Kwiatkowskiego', amount: 50 }
+    '2020': [{name:'Inwestycje drogowe i transportowe',amount:217},{name:'Drogi i mosty',amount:113},{name:'Infrastruktura komunalna',amount:100}],
+    '2021': [{name:'Drogi i infrastruktura drogowa',amount:120},{name:'Węzeł Karwiny',amount:102},{name:'Pływalnia Chwarzno-Wiczlino (projekt)',amount:35}],
+    '2022': [{name:'Drogi i remonty drogowe',amount:100},{name:'Wiadukt na ul. Puckiej (budowa)',amount:79},{name:'Infrastruktura sportowa',amount:50}],
+    '2023': [{name:'Węzeł Karwiny (dokończenie)',amount:99},{name:'Drogi i infrastruktura drogowa',amount:80},{name:'Wiadukt na ul. Puckiej',amount:79}],
+    '2024': [{name:'Drogi i ulice',amount:80},{name:'Wiadukt na ul. Puckiej (zakończenie)',amount:79},{name:'Infrastruktura komunalna',amount:68}],
+    '2025': [{name:'Zintegrowane Inwestycje Transportowe (ITI)',amount:126},{name:'Węzły integracyjne komunikacji',amount:80},{name:'Drogi i infrastruktura drogowa',amount:50}],
+    '2026': [{name:'Infrastruktura na 100-lecie miasta',amount:200},{name:'Drogi i transport',amount:150},{name:'Modernizacja Wiczlińskiej i Estakady Kwiatkowskiego',amount:50}]
   }}
 };
 
 function renderFlagship(year) {
   const container = document.getElementById('flagship-container');
-  const cities = Object.values(flagshipData);
-  const items = cities.map(c => ({ ...c.projects[year], label: c.label, cls: c.cls, color: c.color }));
-  items.sort((a, b) => b.amount - a.amount);
-  const max = items[0].amount;
-  container.innerHTML = items.map(p => `
+  const cities = Object.entries(flagshipData);
+  let allItems = [];
+  cities.forEach(([key, c]) => {
+    const projs = c.projects[year] || [];
+    projs.forEach(p => allItems.push({ ...p, label: c.label, cls: c.cls, color: c.color }));
+  });
+  allItems.sort((a, b) => b.amount - a.amount);
+  const max = allItems.length > 0 ? allItems[0].amount : 1;
+  container.innerHTML = allItems.map(p => `
     <div class="flagship-card">
       <div class="fc-header"><span class="fc-city ${p.cls}">${p.label}</span><span class="fc-amount">${p.amount} mln zł</span></div>
       <div class="fc-name">${p.name}</div>
