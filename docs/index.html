@@ -95,6 +95,20 @@ footer a:hover { text-decoration-color:var(--accent); }
 .budget-links a { display:inline-block; padding:6px 16px; border:1px solid var(--accent); border-radius:8px; color:var(--accent); text-decoration:none; font-size:0.85rem; font-weight:600; transition:background 0.15s, color 0.15s; }
 .budget-links a:hover { background:var(--accent); color:#fff; }
 .budget-note { color:var(--muted); font-size:0.78rem; margin-top:16px; }
+.flagship-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:16px; margin-top:20px; }
+.flagship-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 20px; }
+.flagship-card .fc-header { display:flex; justify-content:space-between; align-items:flex-start; gap:8px; margin-bottom:8px; }
+.flagship-card .fc-city { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; padding:2px 8px; border-radius:4px; }
+.fc-city.gda { background:rgba(79,70,229,0.1); color:#4f46e5; }
+.fc-city.waw { background:rgba(220,38,38,0.1); color:#dc2626; }
+.fc-city.krk { background:rgba(22,163,74,0.1); color:#16a34a; }
+.fc-city.wro { background:rgba(219,39,119,0.1); color:#db2777; }
+.fc-city.gdy { background:rgba(217,119,6,0.1); color:#d97706; }
+.flagship-card .fc-amount { font-size:1.4rem; font-weight:700; color:var(--text); }
+.flagship-card .fc-name { font-size:0.9rem; font-weight:600; margin-bottom:4px; }
+.flagship-card .fc-meta { font-size:0.78rem; color:var(--muted); }
+.flagship-card .fc-bar { height:5px; border-radius:3px; background:var(--border); margin-top:10px; position:relative; }
+.flagship-card .fc-bar-fill { height:100%; border-radius:3px; position:absolute; left:0; top:0; }
 .chart-legend { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; margin-top:12px; font-size:0.82rem; color:var(--muted); }
 .chart-legend span { display:inline-flex; align-items:center; gap:6px; }
 .chart-legend svg { flex-shrink:0; }
@@ -328,14 +342,115 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
       <canvas id="chartInvestments" height="260"></canvas>
       <div class="chart-legend">
         <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#4f46e5"/></svg> Gdańsk</span>
-        <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#dc2626"/></svg> Warszawa (×0.1)</span>
+        <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#dc2626"/></svg> Warszawa</span>
         <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#16a34a"/></svg> Kraków</span>
         <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#db2777"/></svg> Wrocław</span>
         <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#d97706"/></svg> Gdynia</span>
       </div>
     </div>
 
-    <div class="budget-links">
+    <h3 style="margin-top:40px; font-size:1.3rem; font-weight:700; margin-bottom:4px;">Flagowe inwestycje 2026</h3>
+    <p style="color:var(--muted); font-size:0.85rem; margin-bottom:4px;">Największe projekty inwestycyjne w budżetach miast na rok 2026</p>
+    <div class="flagship-grid">
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city gda">Gdańsk</span><span class="fc-amount">801 mln zł</span></div>
+        <div class="fc-name">Tramwaj Gdańsk Południe — Wrzeszcz</div>
+        <div class="fc-meta">Transport · W budowie</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:100%; background:#4f46e5;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city waw">Warszawa</span><span class="fc-amount">724 mln zł</span></div>
+        <div class="fc-name">II linia metra — odcinek zachodni do Ursusa</div>
+        <div class="fc-meta">Metro · W budowie</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:90%; background:#dc2626;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city waw">Warszawa</span><span class="fc-amount">350 mln zł</span></div>
+        <div class="fc-name">Tramwaj na Gocław</div>
+        <div class="fc-meta">Transport · Projektowanie</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:44%; background:#dc2626;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city waw">Warszawa</span><span class="fc-amount">280 mln zł</span></div>
+        <div class="fc-name">Tramwaj na Zieloną Białołękę</div>
+        <div class="fc-meta">Transport · Projektowanie</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:35%; background:#dc2626;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city krk">Kraków</span><span class="fc-amount">250 mln zł</span></div>
+        <div class="fc-name">Tramwaj do Mistrzejowic (KST IV)</div>
+        <div class="fc-meta">Transport · W budowie</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:31%; background:#16a34a;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city wro">Wrocław</span><span class="fc-amount">197 mln zł</span></div>
+        <div class="fc-name">Infrastruktura drogowa i program Na Dobrej Drodze</div>
+        <div class="fc-meta">Drogi · Realizacja</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:25%; background:#db2777;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city gda">Gdańsk</span><span class="fc-amount">127 mln zł</span></div>
+        <div class="fc-name">Autobusy elektryczne (40 szt.)</div>
+        <div class="fc-meta">Transport · Realizacja</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:16%; background:#4f46e5;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city gda">Gdańsk</span><span class="fc-amount">112 mln zł</span></div>
+        <div class="fc-name">Infrastruktura rowerowa</div>
+        <div class="fc-meta">Transport · Realizacja</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:14%; background:#4f46e5;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city wro">Wrocław</span><span class="fc-amount">109 mln zł</span></div>
+        <div class="fc-name">Tramwaj na Swojczyce + węzeł Dubois</div>
+        <div class="fc-meta">Transport · Projektowanie</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:14%; background:#db2777;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city waw">Warszawa</span><span class="fc-amount">91 mln zł</span></div>
+        <div class="fc-name">Modernizacja Sali Kongresowej PKiN</div>
+        <div class="fc-meta">Kultura · W budowie</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:11%; background:#dc2626;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city wro">Wrocław</span><span class="fc-amount">90 mln zł</span></div>
+        <div class="fc-name">Zespół szkolno-przedszkolny ul. Zwycięska</div>
+        <div class="fc-meta">Edukacja · W budowie</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:11%; background:#db2777;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city gda">Gdańsk</span><span class="fc-amount">82 mln zł</span></div>
+        <div class="fc-name">Nowa Świętokrzyska (etap I)</div>
+        <div class="fc-meta">Drogi · W budowie</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:10%; background:#4f46e5;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city gdy">Gdynia</span><span class="fc-amount">80 mln zł</span></div>
+        <div class="fc-name">Droga Czerwona — udział miasta</div>
+        <div class="fc-meta">Drogi · Projektowanie</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:10%; background:#d97706;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city krk">Kraków</span><span class="fc-amount">77 mln zł</span></div>
+        <div class="fc-name">Przygotowanie I linii metra</div>
+        <div class="fc-meta">Metro · Projektowanie</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:10%; background:#16a34a;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city krk">Kraków</span><span class="fc-amount">65 mln zł</span></div>
+        <div class="fc-name">Węzeł przesiadkowy P+R Bronowice</div>
+        <div class="fc-meta">Transport · W budowie</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:8%; background:#16a34a;"></div></div>
+      </div>
+      <div class="flagship-card">
+        <div class="fc-header"><span class="fc-city gdy">Gdynia</span><span class="fc-amount">60 mln zł</span></div>
+        <div class="fc-name">Pływalnia Chwarzno-Wiczlino</div>
+        <div class="fc-meta">Sport · W budowie</div>
+        <div class="fc-bar"><div class="fc-bar-fill" style="width:7%; background:#d97706;"></div></div>
+      </div>
+    </div>
+
+    <div class="budget-links" style="margin-top:24px;">
       <a href="https://gdansk.radoskop.pl/budzet">Budżet Gdańska →</a>
       <a href="https://warszawa.radoskop.pl/budzet">Budżet Warszawy →</a>
       <a href="https://krakow.radoskop.pl/budzet">Budżet Krakowa →</a>
@@ -514,7 +629,7 @@ const invChart = new Chart(document.getElementById('chartInvestments'), {
     labels: budgetYears,
     datasets: [
       { label: 'Gdańsk', data: [0.79,0.75,0.83,0.79,0.92,1.05,1.28], backgroundColor: 'rgba(79,70,229,0.7)', borderColor: '#4f46e5', borderWidth: 1 },
-      { label: 'Warszawa (×0.1)', data: [0.25,0.28,0.29,0.29,0.31,0.31,0.39], backgroundColor: 'rgba(220,38,38,0.7)', borderColor: '#dc2626', borderWidth: 1 },
+      { label: 'Warszawa', data: [2.50,2.80,2.90,2.90,3.10,3.10,3.94], backgroundColor: 'rgba(220,38,38,0.7)', borderColor: '#dc2626', borderWidth: 1 },
       { label: 'Kraków', data: [0.90,1.05,1.31,1.71,1.00,1.20,1.50], backgroundColor: 'rgba(22,163,74,0.7)', borderColor: '#16a34a', borderWidth: 1 },
       { label: 'Wrocław', data: [0.80,0.75,0.90,1.08,0.81,1.10,1.54], backgroundColor: 'rgba(219,39,119,0.7)', borderColor: '#db2777', borderWidth: 1 },
       { label: 'Gdynia', data: [0.43,0.35,0.35,0.36,0.23,0.26,0.40], backgroundColor: 'rgba(217,119,6,0.7)', borderColor: '#d97706', borderWidth: 1 }
@@ -524,9 +639,9 @@ const invChart = new Chart(document.getElementById('chartInvestments'), {
     responsive: true,
     interaction: { mode: 'index', intersect: false },
     plugins: {
-      title: { display: true, text: 'Wydatki inwestycyjne (mld zł) — Warszawa ×0.1 dla czytelności', font: { size: 14, weight: 600 } },
+      title: { display: true, text: 'Wydatki inwestycyjne (mld zł)', font: { size: 14, weight: 600 } },
       legend: { display: false },
-      tooltip: { callbacks: { label: ctx => { const real = ctx.dataset.label.includes('Warszawa') ? ctx.parsed.y*10 : ctx.parsed.y; return ctx.dataset.label.replace(' (×0.1)','') + ': ' + real.toFixed(2) + ' mld zł'; } } }
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(2) + ' mld zł' } }
     },
     scales: {
       y: { type: 'linear', title: { display: true, text: 'mld zł', font: { size: 11 } }, ticks: { callback: v => v.toFixed(1) }, beginAtZero: true }
