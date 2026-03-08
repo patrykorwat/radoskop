@@ -43,7 +43,7 @@
   --text: #1a1d27;
   --muted: #6b7280;
   --accent: #4f46e5;
-  --green: #16a34a;
+  --green: #15803d;
   --red: #dc2626;
   --blue: #2563eb;
 }
@@ -67,11 +67,13 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .about h3 { font-size:1.1rem; font-weight:600; margin-bottom:12px; }
 .about p { color:var(--muted); font-size:0.9rem; line-height:1.7; margin-bottom:12px; }
 .about a { color:var(--accent); text-decoration:none; }
-.about a:hover { text-decoration:underline; }
+.about a { text-decoration:underline; text-decoration-color:rgba(79,70,229,0.3); text-underline-offset:2px; }
+.about a:hover { text-decoration-color:var(--accent); }
 footer { margin-top:auto; border-top:1px solid var(--border); padding:20px 0; text-align:center; }
 footer p { color:var(--muted); font-size:0.8rem; }
 footer a { color:var(--accent); text-decoration:none; }
-footer a:hover { text-decoration:underline; }
+footer a { text-decoration:underline; text-decoration-color:rgba(79,70,229,0.3); text-underline-offset:2px; }
+footer a:hover { text-decoration-color:var(--accent); }
 .comparison { border-top:1px solid var(--border); padding:40px 0; }
 .comparison h3 { font-size:1.3rem; font-weight:700; margin-bottom:4px; }
 .comparison-subtitle { color:var(--muted); font-size:0.85rem; margin-bottom:24px; }
@@ -139,6 +141,7 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
 </style>
 </head>
 <body>
+<main>
 <div class="container">
   <div class="hero">
     <h1>Rado<span>skop</span></h1>
@@ -481,5 +484,6 @@ const budgetChart = new Chart(document.getElementById('chartBudgetTrend'), {
   }
 });
 </script>
+</main>
 </body>
 </html>
