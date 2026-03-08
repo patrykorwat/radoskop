@@ -299,6 +299,11 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
           <tr><td class="label">Wzrost dochodów 2020→2026</td><td>+31,1%</td><td>+56,7%</td><td class="best">+65,8%</td><td>+60,2%</td><td>+51,7%</td></tr>
           <tr><td class="label">Wzrost wydatków 2020→2026</td><td>+35,0%</td><td>+61,6%</td><td>+72,1%</td><td class="best">+72,7%</td><td>+50,4%</td></tr>
           <tr><td class="label">Głosowania budżetowe</td><td>96</td><td>34</td><td>13</td><td>—</td><td>12</td></tr>
+          <tr style="border-top:2px solid var(--border)"><td class="label" style="font-weight:700">Inwestycje (2026)</td><td>1,28 mld zł</td><td class="best">3,94 mld zł</td><td>1,50 mld zł</td><td>1,54 mld zł</td><td>0,40 mld zł</td></tr>
+          <tr><td class="label">Inwestycje per capita (2026)</td><td class="best">2 722 zł</td><td>2 117 zł</td><td>1 875 zł</td><td>2 396 zł</td><td>1 626 zł</td></tr>
+          <tr><td class="label">Inwestycje / wydatki (2026)</td><td class="best">18,6%</td><td>12,2%</td><td>13,1%</td><td>15,9%</td><td>13,7%</td></tr>
+          <tr><td class="label">Wzrost inwestycji 2020→2026</td><td>+62,3%</td><td>+57,4%</td><td>+66,7%</td><td class="best">+92,5%</td><td>−7,0%</td></tr>
+          <tr><td class="label">Top kategoria inwestycji</td><td>Tramwaje</td><td>Metro</td><td>Drogi</td><td>Transport</td><td>Drogi</td></tr>
         </tbody>
       </table>
     </div>
@@ -316,6 +321,17 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
         <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#db2777" stroke-width="2.5" stroke-dasharray="6 3"/></svg> Wrocław — wydatki</span>
         <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#d97706" stroke-width="2.5"/></svg> Gdynia — dochody</span>
         <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#d97706" stroke-width="2.5" stroke-dasharray="6 3"/></svg> Gdynia — wydatki</span>
+      </div>
+    </div>
+
+    <div class="comp-charts" style="margin-top:24px">
+      <canvas id="chartInvestments" height="260"></canvas>
+      <div class="chart-legend">
+        <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#4f46e5"/></svg> Gdańsk</span>
+        <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#dc2626"/></svg> Warszawa (×0.1)</span>
+        <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#16a34a"/></svg> Kraków</span>
+        <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#db2777"/></svg> Wrocław</span>
+        <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#d97706"/></svg> Gdynia</span>
       </div>
     </div>
 
@@ -487,6 +503,33 @@ const budgetChart = new Chart(document.getElementById('chartBudgetTrend'), {
     },
     scales: {
       y: { type: 'linear', title: { display: true, text: 'mld zł', font: { size: 11 } }, ticks: { callback: v => v.toFixed(0) }, beginAtZero: true }
+    }
+  }
+});
+
+// Investment chart
+const invChart = new Chart(document.getElementById('chartInvestments'), {
+  type: 'bar',
+  data: {
+    labels: budgetYears,
+    datasets: [
+      { label: 'Gdańsk', data: [0.79,0.75,0.83,0.79,0.92,1.05,1.28], backgroundColor: 'rgba(79,70,229,0.7)', borderColor: '#4f46e5', borderWidth: 1 },
+      { label: 'Warszawa (×0.1)', data: [0.25,0.28,0.29,0.29,0.31,0.31,0.39], backgroundColor: 'rgba(220,38,38,0.7)', borderColor: '#dc2626', borderWidth: 1 },
+      { label: 'Kraków', data: [0.90,1.05,1.31,1.71,1.00,1.20,1.50], backgroundColor: 'rgba(22,163,74,0.7)', borderColor: '#16a34a', borderWidth: 1 },
+      { label: 'Wrocław', data: [0.80,0.75,0.90,1.08,0.81,1.10,1.54], backgroundColor: 'rgba(219,39,119,0.7)', borderColor: '#db2777', borderWidth: 1 },
+      { label: 'Gdynia', data: [0.43,0.35,0.35,0.36,0.23,0.26,0.40], backgroundColor: 'rgba(217,119,6,0.7)', borderColor: '#d97706', borderWidth: 1 }
+    ]
+  },
+  options: {
+    responsive: true,
+    interaction: { mode: 'index', intersect: false },
+    plugins: {
+      title: { display: true, text: 'Wydatki inwestycyjne (mld zł) — Warszawa ×0.1 dla czytelności', font: { size: 14, weight: 600 } },
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => { const real = ctx.dataset.label.includes('Warszawa') ? ctx.parsed.y*10 : ctx.parsed.y; return ctx.dataset.label.replace(' (×0.1)','') + ': ' + real.toFixed(2) + ' mld zł'; } } }
+    },
+    scales: {
+      y: { type: 'linear', title: { display: true, text: 'mld zł', font: { size: 11 } }, ticks: { callback: v => v.toFixed(1) }, beginAtZero: true }
     }
   }
 });
