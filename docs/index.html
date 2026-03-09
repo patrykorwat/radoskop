@@ -51,11 +51,11 @@
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:var(--bg); color:var(--text); line-height:1.5; min-height:100vh; display:flex; flex-direction:column; }
-.container { max-width:800px; margin:0 auto; padding:20px; width:100%; }
+.container { max-width:1100px; margin:0 auto; padding:20px; width:100%; }
 .hero { text-align:center; padding:80px 0 40px; }
 .hero h1 { font-size:2.8rem; font-weight:700; margin-bottom:8px; }
 .hero h1 span { color:var(--accent); }
-.hero p { color:var(--muted); font-size:1.1rem; max-width:500px; margin:0 auto; }
+.hero p { color:var(--muted); font-size:1.1rem; max-width:600px; margin:0 auto; }
 .cities { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin:40px 0 60px; }
 .city-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:32px; text-decoration:none; color:var(--text); transition:border-color 0.15s, box-shadow 0.15s; display:flex; flex-direction:column; gap:12px; }
 .city-card:hover { border-color:var(--accent); box-shadow:0 4px 24px rgba(79,70,229,0.1); }
@@ -67,7 +67,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .city-card .status { font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; }
 .about { border-top:1px solid var(--border); padding:40px 0; }
 .about h3 { font-size:1.1rem; font-weight:600; margin-bottom:12px; }
-.about p { color:var(--muted); font-size:0.9rem; line-height:1.7; margin-bottom:12px; }
+.about p { color:var(--muted); font-size:0.9rem; line-height:1.7; margin-bottom:12px; max-width:800px; }
 .about a { color:var(--accent); text-decoration:none; }
 .about a { text-decoration:underline; text-decoration-color:rgba(79,70,229,0.3); text-underline-offset:2px; }
 .about a:hover { text-decoration-color:var(--accent); }
@@ -101,7 +101,7 @@ footer a:hover { text-decoration-color:var(--accent); }
 .sessions-feed { border-top:1px solid var(--border); padding:40px 0; }
 .sessions-feed h3 { font-size:1.3rem; font-weight:700; margin-bottom:4px; }
 .sessions-feed .comparison-subtitle { margin-bottom:20px; }
-.feed-grid { display:grid; grid-template-columns:repeat(6, 1fr); gap:16px; margin-bottom:16px; }
+.feed-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; margin-bottom:16px; }
 .feed-city { display:flex; flex-direction:column; gap:0; }
 .feed-city-name { font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); padding-bottom:8px; border-bottom:2px solid var(--border); margin-bottom:4px; }
 .feed-city-name.gd { border-color:#4f46e5; color:#4f46e5; }
@@ -110,12 +110,13 @@ footer a:hover { text-decoration-color:var(--accent); }
 .feed-city-name.gdy { border-color:#d97706; color:#d97706; }
 .feed-city-name.sop { border-color:#ec4899; color:#ec4899; }
 .feed-city-name.wro { border-color:#7c3aed; color:#7c3aed; }
-.feed-item { display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid var(--border); text-decoration:none; color:var(--text); transition:background 0.1s; gap:6px; }
+.feed-item { display:flex; justify-content:space-between; align-items:center; padding:8px 4px; border-bottom:1px solid var(--border); text-decoration:none; color:var(--text); transition:background 0.1s; gap:8px; border-radius:4px; }
 .feed-item:hover { background:rgba(79,70,229,0.03); }
 .feed-item .sess-label { font-size:0.82rem; font-weight:500; white-space:nowrap; }
 .feed-item .sess-date { font-size:0.75rem; color:var(--muted); white-space:nowrap; }
 .feed-item .sess-votes { font-size:0.72rem; color:var(--muted); background:var(--bg); padding:1px 7px; border-radius:10px; white-space:nowrap; }
-@media (max-width:600px) { .feed-grid { grid-template-columns:1fr; gap:24px; } }
+@media (max-width:768px) { .feed-grid { grid-template-columns:repeat(2, 1fr); gap:16px; } }
+@media (max-width:500px) { .feed-grid { grid-template-columns:1fr; gap:24px; } }
 .controversial { border-top:1px solid var(--border); padding:40px 0; }
 .controversial h3 { font-size:1.3rem; font-weight:700; margin-bottom:4px; }
 .controversial-subtitle { color:var(--muted); font-size:0.85rem; margin-bottom:24px; }
