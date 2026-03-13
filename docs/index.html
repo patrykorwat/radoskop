@@ -89,7 +89,7 @@ footer a:hover { text-decoration-color:var(--accent); }
 .comp-table th:first-child { text-align:left; }
 .comp-table td { padding:8px 16px; text-align:center; border-bottom:1px solid var(--border); }
 .comp-table td.label { text-align:left; font-weight:500; color:var(--muted); }
-.comp-table td.best { font-weight:700; color:var(--green); }
+.comp-table td.best { font-weight:700; color:#4f46e5; }
 .comp-table tr.highlight td { background:rgba(79,70,229,0.04); }
 .comp-charts { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:24px; margin-bottom:16px; }
 .budget { border-top:1px solid var(--border); padding:40px 0; }
@@ -263,9 +263,9 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
           <tr><td class="label">Radni</td><td>36</td><td>63</td><td>47</td><td>38</td><td>34</td><td>28</td><td>21</td></tr>
           <tr><td class="label">Sesje</td><td>21</td><td>32</td><td>39</td><td>9</td><td>31</td><td>28</td><td>20</td></tr>
           <tr><td class="label">Głosowania</td><td>709</td><td>1 398</td><td>1 144</td><td>433</td><td>868</td><td>628</td><td>529</td></tr>
-          <tr class="highlight"><td class="label">Śr. zgodność z klubem</td><td class="best">98,8%</td><td>92,6%</td><td>89,7%</td><td>96,0%</td><td>—</td><td>96,5%</td><td>95,1%</td></tr>
-          <tr><td class="label">Śr. buntów / radny</td><td>8,1</td><td>33,2</td><td>16,8</td><td>14,2</td><td>—</td><td>18,9</td><td>24,0</td></tr>
-          <tr><td class="label">Interpelacje</td><td>6 586</td><td>1 751</td><td>2 325</td><td>603</td><td>516</td><td>677</td><td>565</td></tr>
+          <tr><td class="label">Śr. zgodność z klubem</td><td>98,8%</td><td>92,6%</td><td>89,7%</td><td>96,0%</td><td>90,8%</td><td>96,5%</td><td>95,1%</td></tr>
+          <tr><td class="label">Śr. buntów / radny</td><td>8,1</td><td>33,2</td><td>16,8</td><td>14,2</td><td>69,1</td><td>18,9</td><td>24,0</td></tr>
+          <tr><td class="label">Interpelacje</td><td>1 768</td><td>1 751</td><td>2 325</td><td>603</td><td>516</td><td>677</td><td>221</td></tr>
         </tbody>
       </table>
     </div>
@@ -344,14 +344,14 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
       <a class="interp-city-card" href="https://gdansk.radoskop.pl/interpelacje">
         <div class="interp-city-name gd">Gdańsk</div>
         <div class="interp-nums">
-          <div><div class="n">6 586</div><div class="l">Interpelacji</div></div>
-          <div><div class="n">6 286</div><div class="l">Z odpowiedzią</div></div>
+          <div><div class="n">1 768</div><div class="l">Interpelacji</div></div>
+          <div><div class="n">1 570</div><div class="l">Z odpowiedzią</div></div>
         </div>
         <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;margin-top:4px">Najaktywniejsze osoby</div>
         <div class="interp-top">
-          <div class="interp-top-item"><span class="name">Przemysław Majewski</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#4f46e5"></div></div><span class="cnt">1 207</span></div>
-          <div class="interp-top-item"><span class="name">Cezary Śpiewak-Dowbór</span><div class="bar-wrap"><div class="bar-fill" style="width:81.6%;background:#4f46e5"></div></div><span class="cnt">985</span></div>
-          <div class="interp-top-item"><span class="name">Agnieszka Owczarczak</span><div class="bar-wrap"><div class="bar-fill" style="width:33.9%;background:#4f46e5"></div></div><span class="cnt">409</span></div>
+          <div class="interp-top-item"><span class="name">Przemysław Majewski</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#4f46e5"></div></div><span class="cnt">489</span></div>
+          <div class="interp-top-item"><span class="name">Cezary Śpiewak-Dowbór</span><div class="bar-wrap"><div class="bar-fill" style="width:46.4%;background:#4f46e5"></div></div><span class="cnt">227</span></div>
+          <div class="interp-top-item"><span class="name">Andrzej Skiba</span><div class="bar-wrap"><div class="bar-fill" style="width:23.3%;background:#4f46e5"></div></div><span class="cnt">114</span></div>
         </div>
         <span class="arrow" style="color:#4f46e5;font-weight:600;font-size:0.85rem;margin-top:4px">Otwórz →</span>
       </a>
@@ -359,8 +359,7 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
       <a class="interp-city-card" href="https://warszawa.radoskop.pl/interpelacje">
         <div class="interp-city-name waw">Warszawa</div>
         <div class="interp-nums">
-          <div><div class="n">1 617</div><div class="l">Interpelacji</div></div>
-          <div><div class="n">134</div><div class="l">Zapytań</div></div>
+          <div><div class="n">1 751</div><div class="l">Interpelacji</div></div>
           <div><div class="n">1 688</div><div class="l">Z odpowiedzią</div></div>
         </div>
         <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;margin-top:4px">Najaktywniejsze osoby</div>
@@ -375,13 +374,13 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
       <a class="interp-city-card" href="https://sopot.radoskop.pl/interpelacje">
         <div class="interp-city-name sop">Sopot</div>
         <div class="interp-nums">
-          <div><div class="n">565</div><div class="l">Interpelacji</div></div>
+          <div><div class="n">221</div><div class="l">Interpelacji</div></div>
         </div>
         <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;margin-top:4px">Najaktywniejsze osoby</div>
         <div class="interp-top">
-          <div class="interp-top-item"><span class="name">Wojciech Fułek</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#ec4899"></div></div><span class="cnt">119</span></div>
-          <div class="interp-top-item"><span class="name">Jakub Świderski</span><div class="bar-wrap"><div class="bar-fill" style="width:92.4%;background:#ec4899"></div></div><span class="cnt">110</span></div>
-          <div class="interp-top-item"><span class="name">Paweł Petkowski</span><div class="bar-wrap"><div class="bar-fill" style="width:43.7%;background:#ec4899"></div></div><span class="cnt">52</span></div>
+          <div class="interp-top-item"><span class="name">Jakub Świderski</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#ec4899"></div></div><span class="cnt">110</span></div>
+          <div class="interp-top-item"><span class="name">Wojciech Fułek</span><div class="bar-wrap"><div class="bar-fill" style="width:24.5%;background:#ec4899"></div></div><span class="cnt">27</span></div>
+          <div class="interp-top-item"><span class="name">Jarosław Zawada</span><div class="bar-wrap"><div class="bar-fill" style="width:16.4%;background:#ec4899"></div></div><span class="cnt">18</span></div>
         </div>
         <span class="arrow" style="color:#ec4899;font-weight:600;font-size:0.85rem;margin-top:4px">Otwórz →</span>
       </a>
@@ -453,8 +452,8 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
           <tr><th></th><th>Gdańsk</th><th>Warszawa</th><th>Sopot</th><th>Wrocław</th><th>Kraków</th><th>Gdynia</th><th>Poznań</th></tr>
         </thead>
         <tbody>
-          <tr><td class="label">Razem</td><td>6 586</td><td>1 751</td><td>565</td><td>603</td><td>2 325</td><td>677</td><td>516</td></tr>
-          <tr><td class="label">Z odpowiedzią</td><td>6 286</td><td>1 688</td><td>—</td><td>590</td><td>2 325</td><td>597</td><td>495</td></tr>
+          <tr><td class="label">Razem</td><td>1 768</td><td>1 751</td><td>221</td><td>603</td><td>2 325</td><td>677</td><td>516</td></tr>
+          <tr><td class="label">Z odpowiedzią</td><td>1 570</td><td>1 688</td><td>—</td><td>590</td><td>2 325</td><td>597</td><td>495</td></tr>
           <tr><td class="label">Najaktywniejszy</td><td>P. Majewski (475)</td><td>D. Kowalczyk (166)</td><td>J. Świderski (109)</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
         </tbody>
       </table>
@@ -589,6 +588,34 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
         </div>
       </a>
 
+      <a class="vote-item" href="https://wroclaw.radoskop.pl/glosowanie/2025-07-10_040_000">
+        <div class="vote-header">
+          <span class="vote-city wro">Wrocław</span>
+          <span class="vote-date">10.07.2025</span>
+        </div>
+        <div class="vote-topic">Rozpatrzenie petycji w sprawie zmiany nazwy mostu</div>
+        <div class="vote-result">
+          <span class="vote-pill pill-za">1 za</span>
+          <span class="vote-pill pill-przeciw">17 przeciw</span>
+          <span class="vote-pill pill-wstrz">7 wstrz.</span>
+          <span class="vote-pill pill-pct">4,0% za</span>
+        </div>
+      </a>
+
+      <a class="vote-item" href="https://gdynia.radoskop.pl/glosowanie/2024-09-25_008">
+        <div class="vote-header">
+          <span class="vote-city gdy">Gdynia</span>
+          <span class="vote-date">25.09.2024</span>
+        </div>
+        <div class="vote-topic">Zasady zbywania nieruchomości zabudowanych budynkiem mieszkalnym</div>
+        <div class="vote-result">
+          <span class="vote-pill pill-za">2 za</span>
+          <span class="vote-pill pill-przeciw">17 przeciw</span>
+          <span class="vote-pill pill-wstrz">8 wstrz.</span>
+          <span class="vote-pill pill-pct">7,4% za</span>
+        </div>
+      </a>
+
       <a class="vote-item" href="https://gdansk.radoskop.pl/glosowanie/2025-06-26_29">
         <div class="vote-header">
           <span class="vote-city gd">Gdańsk</span>
@@ -600,6 +627,20 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
           <span class="vote-pill pill-przeciw">28 przeciw</span>
           <span class="vote-pill pill-wstrz">1 wstrz.</span>
           <span class="vote-pill pill-pct">9,4% za</span>
+        </div>
+      </a>
+
+      <a class="vote-item" href="https://sopot.radoskop.pl/glosowanie/2025-12-18_011">
+        <div class="vote-header">
+          <span class="vote-city sop">Sopot</span>
+          <span class="vote-date">18.12.2025</span>
+        </div>
+        <div class="vote-topic">Poprawka radnego Melera do projektu budżetu miasta na rok 2026</div>
+        <div class="vote-result">
+          <span class="vote-pill pill-za">3 za</span>
+          <span class="vote-pill pill-przeciw">15 przeciw</span>
+          <span class="vote-pill pill-wstrz">2 wstrz.</span>
+          <span class="vote-pill pill-pct">15,0% za</span>
         </div>
       </a>
 
