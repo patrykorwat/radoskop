@@ -294,7 +294,7 @@ def fix_city(city_dir: Path):
 
 
 def main():
-    base = Path("/sessions/busy-youthful-brown/mnt/gdansk-network")
+    base = Path("/sessions/stoic-epic-maxwell/mnt/gdansk-network")
 
     cities = [
         "radoskop-gdansk",

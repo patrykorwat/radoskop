@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Radoskop — Jak głosują radni?</title>
-<meta name="description" content="Radoskop — bezpłatne narzędzie monitoringu rad miejskich w Polsce. Frekwencja, głosowania, profile radnych i budżety siedmiu miast: Gdańska, Warszawy, Krakowa, Wrocławia, Poznania, Gdyni i Sopotu. Kadencja 2024–2029. Dane z BIP.">
-<meta name="keywords" content="rada miasta, radni, głosowania, frekwencja, samorząd, monitoring, transparentność, Gdańsk, Warszawa, Kraków, Wrocław, Poznań, Gdynia, Sopot">
+<meta name="description" content="Radoskop — bezpłatne narzędzie monitoringu rad miejskich w Polsce. Frekwencja, głosowania, profile radnych i budżety trzynastu miast: Gdańska, Warszawy, Krakowa, Wrocławia, Poznania, Gdyni, Sopotu, Łodzi, Szczecina, Lublina, Bydgoszczy, Katowic i Białegostoku. Kadencja 2024–2029. Dane z BIP.">
+<meta name="keywords" content="rada miasta, radni, głosowania, frekwencja, samorząd, monitoring, transparentność, Gdańsk, Warszawa, Kraków, Wrocław, Poznań, Gdynia, Sopot, Łódź, Szczecin, Lublin, Bydgoszcz, Katowice, Białystok">
 <meta name="author" content="Patryk Orwat">
 <link rel="canonical" href="https://radoskop.pl/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Radoskop — Jak głosują radni?">
-<meta property="og:description" content="Bezpłatne narzędzie monitoringu rad miejskich w Polsce. Frekwencja, głosowania, profile radnych i budżety siedmiu miast: Gdańska, Warszawy, Krakowa, Wrocławia, Poznania, Gdyni i Sopotu. Kadencja 2024–2029.">
+<meta property="og:description" content="Bezpłatne narzędzie monitoringu rad miejskich w Polsce. Frekwencja, głosowania, profile radnych i budżety trzynastu miast: Gdańska, Warszawy, Krakowa, Wrocławia, Poznania, Gdyni, Sopotu, Łodzi, Szczecina, Lublina, Bydgoszczy, Katowic i Białegostoku. Kadencja 2024–2029.">
 <meta property="og:url" content="https://radoskop.pl/">
 <meta property="og:locale" content="pl_PL">
 <meta property="og:site_name" content="Radoskop">
@@ -19,7 +19,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Radoskop — Jak głosują radni?">
-<meta name="twitter:description" content="Bezpłatne narzędzie monitoringu rad miejskich w Polsce. Frekwencja, głosowania, profile radnych i budżety siedmiu miast: Gdańska, Warszawy, Krakowa, Wrocławia, Poznania, Gdyni i Sopotu.">
+<meta name="twitter:description" content="Bezpłatne narzędzie monitoringu rad miejskich w Polsce. Frekwencja, głosowania, profile radnych i budżety trzynastu miast: Gdańska, Warszawy, Krakowa, Wrocławia, Poznania, Gdyni, Sopotu, Łodzi, Szczecina, Lublina, Bydgoszczy, Katowic i Białegostoku.">
 <meta name="twitter:image" content="https://radoskop.pl/og-image.png">
 <script type="application/ld+json">
 {
@@ -69,6 +69,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .city-card .club { display:inline-block; padding:2px 10px; border-radius:4px; font-size:0.75rem; font-weight:600; }
 .city-card .arrow { color:var(--accent); font-weight:600; font-size:0.9rem; margin-top:4px; }
 .city-card .status { font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; }
+.city-card.soon { opacity:0.55; border-style:dashed; cursor:default; }
+.city-card.soon:hover { border-color:var(--border); box-shadow:none; }
+.city-card .status.coming { color:#d97706; font-weight:600; }
 .about { border-top:1px solid var(--border); padding:40px 0; }
 .about h3 { font-size:1.1rem; font-weight:600; margin-bottom:12px; }
 .about p { color:var(--muted); font-size:0.9rem; line-height:1.7; margin-bottom:12px; max-width:800px; }
@@ -90,6 +93,7 @@ footer a:hover { text-decoration-color:var(--accent); }
 .comp-table td { padding:8px 16px; text-align:center; border-bottom:1px solid var(--border); }
 .comp-table td.label { text-align:left; font-weight:500; color:var(--muted); }
 .comp-table td.best { font-weight:700; color:#4f46e5; }
+.comp-table th.soon-col, .comp-table td.soon-col { opacity:0.4; font-style:italic; }
 .comp-table tr.highlight td { background:rgba(79,70,229,0.04); }
 .comp-charts { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:24px; margin-bottom:16px; }
 .budget { border-top:1px solid var(--border); padding:40px 0; }
@@ -196,7 +200,7 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
   </div>
 
   <div class="seo-intro">
-    <p>Radoskop automatycznie przetwarza dane z Biuletynów Informacji Publicznej (BIP) siedmiu miast Polski — Gdańska, Warszawy, Krakowa, Wrocławia, Poznania, Gdyni i Sopotu — i prezentuje je w przystępnej formie. Sprawdź frekwencję radnych na sesjach, analizuj wyniki głosowań nad budżetem, inwestycjami i planowaniem przestrzennym, porównaj aktywność radnych z różnych klubów i śledź, jak zmieniają się budżety miejskie. Wszystkie dane dotyczą kadencji samorządowej 2024–2029.</p>
+    <p>Radoskop automatycznie przetwarza dane z Biuletynów Informacji Publicznej (BIP) trzynastu miast Polski — Gdańska, Warszawy, Krakowa, Wrocławia, Poznania, Gdyni, Sopotu, Łodzi, Szczecina, Lublina, Bydgoszczy, Katowic i Białegostoku — i prezentuje je w przystępnej formie. Sprawdź frekwencję radnych na sesjach, analizuj wyniki głosowań nad budżetem, inwestycjami i planowaniem przestrzennym, porównaj aktywność radnych z różnych klubów i śledź, jak zmieniają się budżety miejskie. Wszystkie dane dotyczą kadencji samorządowej 2024–2029.</p>
   </div>
 
   <div class="cities">
@@ -248,6 +252,42 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
       <p class="desc">Rada Miejska Wrocławia — frekwencja, głosowania i aktywność radnych na sesjach.</p>
       <span class="arrow">Otwórz →</span>
     </a>
+
+    <a class="city-card soon" href="#">
+      <span class="status coming">Wkrótce</span>
+      <h2>Łódź</h2>
+      <p class="desc">Rada Miejska Łodzi — 43 radnych, kadencja 2024–2029.</p>
+    </a>
+
+    <a class="city-card soon" href="#">
+      <span class="status coming">Wkrótce</span>
+      <h2>Szczecin</h2>
+      <p class="desc">Rada Miasta Szczecin — 31 radnych, kadencja 2024–2029.</p>
+    </a>
+
+    <a class="city-card soon" href="#">
+      <span class="status coming">Wkrótce</span>
+      <h2>Lublin</h2>
+      <p class="desc">Rada Miasta Lublin — 31 radnych, kadencja 2024–2029.</p>
+    </a>
+
+    <a class="city-card soon" href="#">
+      <span class="status coming">Wkrótce</span>
+      <h2>Bydgoszcz</h2>
+      <p class="desc">Rada Miasta Bydgoszczy — 28 radnych, kadencja 2024–2029.</p>
+    </a>
+
+    <a class="city-card soon" href="#">
+      <span class="status coming">Wkrótce</span>
+      <h2>Katowice</h2>
+      <p class="desc">Rada Miasta Katowice — 28 radnych, kadencja 2024–2029.</p>
+    </a>
+
+    <a class="city-card soon" href="#">
+      <span class="status coming">Wkrótce</span>
+      <h2>Białystok</h2>
+      <p class="desc">Rada Miasta Białegostoku — 28 radnych, kadencja 2024–2029.</p>
+    </a>
   </div>
 
   <div class="comparison" id="comparison">
@@ -257,15 +297,15 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
     <div class="comp-table-wrap">
       <table class="comp-table">
         <thead>
-          <tr><th></th><th>Gdańsk</th><th>Warszawa</th><th>Kraków</th><th>Wrocław</th><th>Poznań</th><th>Gdynia</th><th>Sopot</th></tr>
+          <tr><th></th><th>Gdańsk</th><th>Warszawa</th><th>Kraków</th><th>Wrocław</th><th>Poznań</th><th>Gdynia</th><th>Sopot</th><th class="soon-col">Łódź</th><th class="soon-col">Szczecin</th><th class="soon-col">Lublin</th><th class="soon-col">Bydgoszcz</th><th class="soon-col">Katowice</th><th class="soon-col">Białystok</th></tr>
         </thead>
         <tbody>
-          <tr><td class="label">Radni</td><td>36</td><td>63</td><td>47</td><td>38</td><td>34</td><td>28</td><td>21</td></tr>
-          <tr><td class="label">Sesje</td><td>21</td><td>32</td><td>39</td><td>9</td><td>31</td><td>28</td><td>20</td></tr>
-          <tr><td class="label">Głosowania</td><td>709</td><td>1 398</td><td>1 144</td><td>433</td><td>868</td><td>628</td><td>529</td></tr>
-          <tr><td class="label">Śr. zgodność z klubem</td><td>98,8%</td><td>92,6%</td><td>89,7%</td><td>96,0%</td><td>90,8%</td><td>96,5%</td><td>95,1%</td></tr>
-          <tr><td class="label">Śr. buntów / radny</td><td>8,1</td><td>33,2</td><td>16,8</td><td>14,2</td><td>69,1</td><td>18,9</td><td>24,0</td></tr>
-          <tr><td class="label">Interpelacje</td><td>1 768</td><td>1 751</td><td>2 325</td><td>603</td><td>516</td><td>677</td><td>221</td></tr>
+          <tr><td class="label">Radni</td><td>36</td><td>63</td><td>47</td><td>38</td><td>34</td><td>28</td><td>21</td><td class="soon-col">43</td><td class="soon-col">31</td><td class="soon-col">31</td><td class="soon-col">28</td><td class="soon-col">28</td><td class="soon-col">28</td></tr>
+          <tr><td class="label">Sesje</td><td>21</td><td>32</td><td>39</td><td>9</td><td>31</td><td>28</td><td>20</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td></tr>
+          <tr><td class="label">Głosowania</td><td>709</td><td>1 398</td><td>1 144</td><td>433</td><td>868</td><td>628</td><td>529</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td></tr>
+          <tr><td class="label">Śr. zgodność z klubem</td><td>98,8%</td><td>92,6%</td><td>89,7%</td><td>96,0%</td><td>90,8%</td><td>96,5%</td><td>95,1%</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td></tr>
+          <tr><td class="label">Śr. buntów / radny</td><td>8,1</td><td>33,2</td><td>16,8</td><td>14,2</td><td>69,1</td><td>18,9</td><td>24,0</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td></tr>
+          <tr><td class="label">Interpelacje</td><td>1 768</td><td>1 751</td><td>2 325</td><td>603</td><td>516</td><td>677</td><td>221</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td><td class="soon-col">—</td></tr>
         </tbody>
       </table>
     </div>
@@ -274,7 +314,7 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
 
   <div class="sessions-feed" id="sessions">
     <h3>Ostatnie sesje</h3>
-    <p class="comparison-subtitle">Kadencja 2024–2029 — 5 ostatnich sesji każdej rady (7 miast)</p>
+    <p class="comparison-subtitle">Kadencja 2024–2029 — 5 ostatnich sesji każdej rady (7 aktywnych miast)</p>
 
     <div class="feed-grid">
       <div class="feed-city">
@@ -338,7 +378,7 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
 
   <div class="interpelacje-section" id="interpelacje">
     <h3>Interpelacje i zapytania radnych</h3>
-    <p class="comparison-subtitle">Kadencja 2024–2029 — dane z BIP siedmiu miast</p>
+    <p class="comparison-subtitle">Kadencja 2024–2029 — dane z BIP trzynastu miast</p>
 
     <div class="interp-grid">
       <a class="interp-city-card" href="https://gdansk.radoskop.pl/interpelacje">
@@ -454,7 +494,7 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
         <tbody>
           <tr><td class="label">Razem</td><td>1 768</td><td>1 751</td><td>221</td><td>603</td><td>2 325</td><td>677</td><td>516</td></tr>
           <tr><td class="label">Z odpowiedzią</td><td>1 570</td><td>1 688</td><td>—</td><td>590</td><td>2 325</td><td>597</td><td>495</td></tr>
-          <tr><td class="label">Najaktywniejszy</td><td>P. Majewski (475)</td><td>D. Kowalczyk (166)</td><td>J. Świderski (109)</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td class="label">Najaktywniejszy</td><td>P. Majewski (489)</td><td>D. Kowalczyk (166)</td><td>J. Świderski (110)</td><td>J. Nowotarski (106)</td><td>Ł. Gibała (322)</td><td>J. Ubych (133)</td><td>A. Prendke (62)</td></tr>
         </tbody>
       </table>
     </div>
@@ -677,8 +717,8 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
 
   <div class="about">
     <h3>Czym jest Radoskop?</h3>
-    <p>Radoskop to bezpłatne, otwarte narzędzie do monitorowania pracy rad miejskich w Polsce. Analizujemy oficjalne dane z Biuletynów Informacji Publicznej (BIP) Gdańska, Warszawy, Krakowa, Wrocławia, Poznania, Gdyni i Sopotu, aby mieszkańcy mogli łatwo sprawdzić, jak ich radni głosują, jak często uczestniczą w sesjach i jak wydawane są publiczne pieniądze.</p>
-    <p>Dla każdego z siedmiu miast udostępniamy ranking radnych według frekwencji i aktywności, pełną bazę głosowań pogrupowanych tematycznie (budżet, transport, inwestycje, nieruchomości, edukacja, planowanie przestrzenne), szczegóły każdej sesji rady, analizę podobieństwa głosowań między radnymi oraz wieloletnią analizę budżetu miejskiego z podziałem na kategorie wydatków.</p>
+    <p>Radoskop to bezpłatne, otwarte narzędzie do monitorowania pracy rad miejskich w Polsce. Analizujemy oficjalne dane z Biuletynów Informacji Publicznej (BIP) Gdańska, Warszawy, Krakowa, Wrocławia, Poznania, Gdyni, Sopotu, Łodzi, Szczecina, Lublina, Bydgoszczy, Katowic i Białegostoku, aby mieszkańcy mogli łatwo sprawdzić, jak ich radni głosują, jak często uczestniczą w sesjach i jak wydawane są publiczne pieniądze.</p>
+    <p>Dla każdego z trzynastu miast udostępniamy ranking radnych według frekwencji i aktywności, pełną bazę głosowań pogrupowanych tematycznie (budżet, transport, inwestycje, nieruchomości, edukacja, planowanie przestrzenne), szczegóły każdej sesji rady, analizę podobieństwa głosowań między radnymi oraz wieloletnią analizę budżetu miejskiego z podziałem na kategorie wydatków.</p>
     <p>Dane aktualizowane są automatycznie po każdej sesji rady. Kod źródłowy jest dostępny na <a href="https://github.com/patrykorwat/radoskop">GitHubie</a> na licencji AGPL-3.0. Chcesz dodać swoje miasto? Otwórz issue lub pull request.</p>
   </div>
 </div>

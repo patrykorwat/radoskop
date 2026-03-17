@@ -418,7 +418,7 @@ async function init() {
       navigateTo(path, true);
       return;
     }
-    if (path === '/budzet') {
+    if (path === '/budzet' || path === '/budzet/') {
       selectKadencjaQuiet(defaultKid);
       activateTab('budget');
       navigateTo(path, true);
@@ -506,15 +506,17 @@ function setTitle(subtitle) {
 function mainPath(tab, kid) {
   tab = tab || currentTab;
   kid = kid || currentKid;
-  if (tab === 'budget') return '/budzet';
+  if (tab === 'budget') return '/budzet/';
   const kadSlug = KAD_SLUGS[kid] || kid;
   const tabSlug = TAB_SLUGS[tab] || tab;
   if (tab === 'ranking' && kid === (RAW.default_kadencja || '2024-2029')) return '/';
-  return '/kadencja/' + kadSlug + '/' + tabSlug;
+  return '/kadencja/' + kadSlug + '/' + tabSlug + '/';
 }
 
 function navigateTo(path, replace) {
   if (typeof _popstateActive !== 'undefined' && _popstateActive) return;
+  // Ensure trailing slash for all paths except root
+  if (path !== '/' && !path.endsWith('/')) path += '/';
   if (replace) history.replaceState(null, '', path);
   else history.pushState(null, '', path);
 }
@@ -604,7 +606,7 @@ function renderCouncilorTable() {
 
   tbody.innerHTML = data.map(c => {
     return `<tr>
-      <td><a class="name-link" href="/profil/${profileSlug(c.name)}" onclick="event.preventDefault();showProfile('${c.name.replace(/'/g, "\\'")}')">${c.name}</a></td>
+      <td><a class="name-link" href="/profil/${profileSlug(c.name)}/" onclick="event.preventDefault();showProfile('${c.name.replace(/'/g, "\\'")}')">${c.name}</a></td>
       <td><span class="club ${clubClass(c.club)}">${c.club}</span></td>
       <td>${pctBar(c.frekwencja)}</td>
       <td>${pctBar(c.aktywnosc)}</td>
@@ -685,7 +687,7 @@ function showProfile(name) {
   hideAllViews();
   const view = document.getElementById('profile-view');
   view.style.display = 'block';
-  navigateTo('/profil/' + profile.slug);
+  navigateTo('/profil/' + profile.slug + '/');
   setTitle(profile.name);
 
   // Find which kadencje this person has data for
@@ -855,7 +857,7 @@ function showProfile(name) {
         // Find matching vote ID by date + topic prefix (use kadencja matching kid, not global K)
         const kadVotes = (RAW.kadencje.find(k => k.id === kid) || {}).votes || [];
         const matchVote = kadVotes.find(v => v.session_date === r.session && r.topic && v.topic && v.topic.substring(0,80) === r.topic.substring(0,80));
-        const topicHtml = matchVote ? `<a class="name-link" href="/glosowanie/${matchVote.id}" onclick="event.preventDefault();showVote('${matchVote.id}')">${r.topic}</a>` : r.topic;
+        const topicHtml = matchVote ? `<a class="name-link" href="/glosowanie/${matchVote.id}/" onclick="event.preventDefault();showVote('${matchVote.id}')">${r.topic}</a>` : r.topic;
         return `<div class="rebellion-item">
           <div class="reb-date">${r.session} · głos: <span class="pill pill-${r.their_vote === 'przeciw' ? 'przeciw' : 'wstrzymal'}">${({za:'za',przeciw:'przeciw',wstrzymal_sie:isFemale(profile.name)?'wstrzymała się':'wstrzymał się'})[r.their_vote]||r.their_vote}</span> (klub: ${({za:'za',przeciw:'przeciw',wstrzymal_sie:'wstrzymał się'})[r.club_majority]||r.club_majority})</div>
           <div>${catPill(categorizeVote(r.topic))} ${topicHtml}</div>
@@ -914,7 +916,7 @@ function showProfile(name) {
           const { sess, votes: pvs } = sessGroups[sk];
           html += `<div class="profile-sess-group" data-sessdate="${sess.date}" style="margin-bottom:16px">
             <div style="font-weight:600;margin-bottom:6px;font-size:0.9rem">
-              <a class="name-link" href="/sesja/${encodeURIComponent(sess.number)}" onclick="event.preventDefault();showSession('${sess.number}')">Sesja ${sess.number} · ${sess.date}</a>
+              <a class="name-link" href="/sesja/${encodeURIComponent(sess.number)}/" onclick="event.preventDefault();showSession('${sess.number}')">Sesja ${sess.number} · ${sess.date}</a>
               <span class="sess-vote-count" style="color:var(--muted);font-weight:400;margin-left:8px">(${pvs.length} głosowań)</span>
             </div>
             <table><tbody>`;
@@ -1131,7 +1133,7 @@ function renderVotesTable() {
       <div class="votes-sess-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="votes-sess-title">
           <span class="votes-sess-toggle">▼</span>
-          <a href="/sesja/${encodeURIComponent(s.number)}" onclick="event.preventDefault();event.stopPropagation();showSession('${s.number}')">Sesja ${s.number} · ${s.date}</a>
+          <a href="/sesja/${encodeURIComponent(s.number)}/" onclick="event.preventDefault();event.stopPropagation();showSession('${s.number}')">Sesja ${s.number} · ${s.date}</a>
         </div>
         <div class="votes-sess-stats">
           <span>${sessVotes.length} głos.</span>
@@ -1174,7 +1176,7 @@ function showVote(voteId) {
   hideAllViews();
   const view = document.getElementById('vote-view');
   view.style.display = 'block';
-  navigateTo('/glosowanie/' + voteId);
+  navigateTo('/glosowanie/' + voteId + '/');
   setTitle('Głosowanie: ' + (vote.topic || voteId).substring(0, 60));
 
   const c = vote.counts || {};
@@ -1196,7 +1198,7 @@ function showVote(voteId) {
       const cl = clubMap[n] || '?';
       return `<div class="vote-name-item" style="background:${bgColor}">
         <span class="club ${clubClass(cl)}">${cl}</span>
-        <a class="name-link" href="/profil/${profileSlug(n)}" onclick="event.preventDefault();showProfile('${n.replace(/'/g, "\\'")}')">${n}</a>
+        <a class="name-link" href="/profil/${profileSlug(n)}/" onclick="event.preventDefault();showProfile('${n.replace(/'/g, "\\'")}')">${n}</a>
       </div>`;
     }).join('')}</div>`;
   }
@@ -1204,7 +1206,7 @@ function showVote(voteId) {
   let html = `
     <button class="profile-back" onclick="showSession('${vote.session_number}')">← Sesja ${vote.session_number}</button>
     <div style="margin-bottom:24px">
-      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px"><a class="name-link" href="/sesja/${encodeURIComponent(vote.session_number)}" onclick="event.preventDefault();showSession('${vote.session_number}')" style="color:var(--muted)">Sesja ${vote.session_number} · ${vote.session_date}</a></div>
+      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px"><a class="name-link" href="/sesja/${encodeURIComponent(vote.session_number)}/" onclick="event.preventDefault();showSession('${vote.session_number}')" style="color:var(--muted)">Sesja ${vote.session_number} · ${vote.session_date}</a></div>
       <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
       ${vote.druk ? `<div style="color:var(--muted);margin-top:4px">Druk: ${vote.druk}</div>` : ''}
       ${vote.resolution ? `<div style="color:var(--muted)">Uchwała: ${vote.resolution}</div>` : ''}
@@ -1303,7 +1305,7 @@ function showSession(sessionNumber) {
   hideAllViews();
   const view = document.getElementById('session-view');
   view.style.display = 'block';
-  navigateTo('/sesja/' + encodeURIComponent(sessionNumber));
+  navigateTo('/sesja/' + encodeURIComponent(sessionNumber) + '/');
   setTitle('Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : ''));
 
   // Club lookup
@@ -1365,7 +1367,7 @@ function showSession(sessionNumber) {
       const cl = clubMap[sp.name] || '?';
       const barPct = Math.max((sp.words / maxWords) * 100, 2);
       return `<div class="speaker-bar">
-        <span class="speaker-name"><span class="club ${clubClass(cl)}">${cl}</span> <a class="name-link" href="/profil/${profileSlug(sp.name)}" onclick="event.preventDefault();showProfile('${sp.name.replace(/'/g, "\\'")}')">${sp.name}</a></span>
+        <span class="speaker-name"><span class="club ${clubClass(cl)}">${cl}</span> <a class="name-link" href="/profil/${profileSlug(sp.name)}/" onclick="event.preventDefault();showProfile('${sp.name.replace(/'/g, "\\'")}')">${sp.name}</a></span>
         <div class="speaker-bar-fill" style="width:${barPct}%"></div>
         <span style="color:var(--muted);font-size:0.8rem;white-space:nowrap">${sp.statements} wyp. · ${sp.words.toLocaleString('pl')} słów</span>
       </div>`;
@@ -1425,7 +1427,7 @@ function showSession(sessionNumber) {
     <div class="session-attendees">`;
   sortByLastName([...present]).forEach(n => {
     const cl = clubMap[n] || '?';
-    html += `<div class="session-attendee"><span class="club ${clubClass(cl)}">${cl}</span> <a class="name-link" href="/profil/${profileSlug(n)}" onclick="event.preventDefault();showProfile('${n.replace(/'/g, "\\'")}')">${n}</a></div>`;
+    html += `<div class="session-attendee"><span class="club ${clubClass(cl)}">${cl}</span> <a class="name-link" href="/profil/${profileSlug(n)}/" onclick="event.preventDefault();showProfile('${n.replace(/'/g, "\\'")}')">${n}</a></div>`;
   });
   html += `</div></div>`;
 
@@ -1435,7 +1437,7 @@ function showSession(sessionNumber) {
       <div class="session-attendees">`;
     absent.forEach(n => {
       const cl = clubMap[n] || '?';
-      html += `<div class="session-attendee session-absent"><span class="club ${clubClass(cl)}">${cl}</span> <a class="name-link" href="/profil/${profileSlug(n)}" onclick="event.preventDefault();showProfile('${n.replace(/'/g, "\\'")}')">${n}</a></div>`;
+      html += `<div class="session-attendee session-absent"><span class="club ${clubClass(cl)}">${cl}</span> <a class="name-link" href="/profil/${profileSlug(n)}/" onclick="event.preventDefault();showProfile('${n.replace(/'/g, "\\'")}')">${n}</a></div>`;
     });
     html += `</div></div>`;
   }
@@ -1463,7 +1465,7 @@ function renderSimilarity() {
     el.innerHTML = pairs.map(p => `
       <div class="similarity-pair">
         <span class="similarity-score" style="color:${p.score>=90?'var(--green)':p.score>=70?'var(--yellow)':'var(--red)'}">${p.score}%</span>
-        <span><a class="name-link" href="/profil/${profileSlug(p.a)}" onclick="event.preventDefault();showProfile('${p.a.replace(/'/g, "\\'")}')">${p.a}</a> <span style="color:var(--muted)">↔</span> <a class="name-link" href="/profil/${profileSlug(p.b)}" onclick="event.preventDefault();showProfile('${p.b.replace(/'/g, "\\'")}')">${p.b}</a></span>
+        <span><a class="name-link" href="/profil/${profileSlug(p.a)}/" onclick="event.preventDefault();showProfile('${p.a.replace(/'/g, "\\'")}')">${p.a}</a> <span style="color:var(--muted)">↔</span> <a class="name-link" href="/profil/${profileSlug(p.b)}/" onclick="event.preventDefault();showProfile('${p.b.replace(/'/g, "\\'")}')">${p.b}</a></span>
       </div>
     `).join('');
   };
@@ -1724,7 +1726,7 @@ window.addEventListener('popstate', () => {
   // Main page tab/kadencja paths
   hideAllViews();
   document.getElementById('app').style.display = 'block';
-  if (path === '/budzet') {
+  if (path === '/budzet' || path === '/budzet/') {
     activateTab('budget');
   } else if (path.startsWith('/kadencja/')) {
     const parts = path.replace('/kadencja/', '').split('/');
