@@ -77,6 +77,7 @@ def generate_robots(config: dict) -> str:
         f"User-agent: *\n"
         f"Allow: /\n"
         f"Disallow: /*.json$\n"
+        f"Disallow: /*?p=\n"
         f"\n"
         f"Sitemap: {config['site_url']}/sitemap.xml\n"
     )
