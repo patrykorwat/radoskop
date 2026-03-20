@@ -211,6 +211,7 @@ footer a { color:var(--accent); text-decoration:none; }
         <button class="tab" data-tab="sessions">Sesje</button>
         <button class="tab" data-tab="votes">Głosowania</button>
         <button class="tab" data-tab="similarity">Kto z kim głosuje</button>
+        <button class="tab" data-tab="interpelacje">Interpelacje</button>
         <button class="tab tab-budget" data-tab="budget">Budżet</button>
       </div>
       <div class="kadencja-bar" id="kadencja-bar"></div>
@@ -273,6 +274,10 @@ footer a { color:var(--accent); text-decoration:none; }
       <div id="sim-top"></div>
       <h2 style="margin-top:30px">Najrzadziej głosują tak samo</h2>
       <div id="sim-bottom"></div>
+    </div>
+
+    <div id="tab-interpelacje" class="section" style="display:none">
+      <div id="interpelacje-content"></div>
     </div>
 
     <div id="tab-budget" class="section" style="display:none">
@@ -379,14 +384,16 @@ async function init() {
     history.replaceState(null, '', decodeURIComponent(sp.get('p')));
   }
   try {
-    const [dataResp, profResp, budgetResp] = await Promise.all([
+    const [dataResp, profResp, budgetResp, interpResp] = await Promise.all([
       fetch('/data.json'),
       fetch('/profiles.json'),
-      fetch('/budget.json')
+      fetch('/budget.json'),
+      fetch('/interpelacje.json').catch(() => new Response('[]'))
     ]);
     RAW = await dataResp.json();
     PROFILES = await profResp.json();
     window.BUDGET = await budgetResp.json();
+    window.INTERPELACJE = await interpResp.json();
     document.getElementById('loading').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     renderKadencjaBar();
@@ -415,6 +422,12 @@ async function init() {
       selectKadencjaQuiet(defaultKid);
       const snum = decodeURIComponent(path.replace('/sesja/', ''));
       showSession(snum);
+      navigateTo(path, true);
+      return;
+    }
+    if (path === '/interpelacje' || path === '/interpelacje/') {
+      selectKadencjaQuiet(defaultKid);
+      activateTab('interpelacje');
       navigateTo(path, true);
       return;
     }
@@ -472,7 +485,7 @@ function selectKadencja(kid) {
 
 function activateTab(tabName) {
   trackEvent('view_tab', {tab_name: tabName});
-  const allTabs = ['ranking','profiles','sessions','votes','similarity','budget'];
+  const allTabs = ['ranking','profiles','sessions','votes','similarity','interpelacje','budget'];
   currentTab = tabName;
   document.querySelectorAll('.tab').forEach(t => {
     t.classList.toggle('active', t.dataset.tab === tabName);
@@ -481,7 +494,8 @@ function activateTab(tabName) {
     const el = document.getElementById('tab-'+t);
     if (el) el.style.display = (t === tabName) ? 'block' : 'none';
   });
-  document.getElementById('kadencja-bar').style.display = tabName === 'budget' ? 'none' : '';
+  document.getElementById('kadencja-bar').style.display = (tabName === 'budget' || tabName === 'interpelacje') ? 'none' : '';
+  if (tabName === 'interpelacje') renderInterpelacje();
   setTitle(TAB_TITLES[tabName] || '');
 }
 
@@ -493,13 +507,13 @@ function hideAllViews() {
 }
 
 let currentTab = 'ranking';
-const TAB_SLUGS = {ranking:'ranking',profiles:'radni',sessions:'sesje',votes:'glosowania',similarity:'podobienstwo',budget:'budzet'};
+const TAB_SLUGS = {ranking:'ranking',profiles:'radni',sessions:'sesje',votes:'glosowania',similarity:'podobienstwo',interpelacje:'interpelacje',budget:'budzet'};
 const SLUG_TABS = Object.fromEntries(Object.entries(TAB_SLUGS).map(([k,v])=>[v,k]));
 const KAD_SLUGS = {'2018-2023':'viii','2024-2029':'ix'};
 const SLUG_KADS = Object.fromEntries(Object.entries(KAD_SLUGS).map(([k,v])=>[v,k]));
 
 const BASE_TITLE = '{{SITE_TITLE}}';
-const TAB_TITLES = {ranking:'Ranking radnych',profiles:'Profile radnych',sessions:'Sesje',votes:'Głosowania',similarity:'Podobieństwo',budget:'Budżet'};
+const TAB_TITLES = {ranking:'Ranking radnych',profiles:'Profile radnych',sessions:'Sesje',votes:'Głosowania',similarity:'Podobieństwo',interpelacje:'Interpelacje',budget:'Budżet'};
 function setTitle(subtitle) {
   document.title = subtitle ? subtitle + ' — ' + BASE_TITLE : BASE_TITLE;
 }
@@ -508,6 +522,7 @@ function mainPath(tab, kid) {
   tab = tab || currentTab;
   kid = kid || currentKid;
   if (tab === 'budget') return '/budzet/';
+  if (tab === 'interpelacje') return '/interpelacje/';
   const kadSlug = KAD_SLUGS[kid] || kid;
   const tabSlug = TAB_SLUGS[tab] || tab;
   if (tab === 'ranking' && kid === (RAW.default_kadencja || '2024-2029')) return '/';
@@ -1316,7 +1331,7 @@ function backFromVote() {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   const votesTab = document.querySelector('.tab[data-tab="votes"]');
   if (votesTab) votesTab.classList.add('active');
-  ['ranking','profiles','sessions','similarity','budget'].forEach(t => {
+  ['ranking','profiles','sessions','similarity','interpelacje','budget'].forEach(t => {
     document.getElementById('tab-'+t).style.display = 'none';
   });
   document.getElementById('tab-votes').style.display = 'block';
@@ -1509,6 +1524,93 @@ function renderSimilarity() {
   };
   renderPairs(K.similarity_top || [], document.getElementById('sim-top'));
   renderPairs(K.similarity_bottom || [], document.getElementById('sim-bottom'));
+}
+
+let interpelacjeRendered = false;
+function renderInterpelacje() {
+  if (interpelacjeRendered) return;
+  interpelacjeRendered = true;
+  trackEvent('view_interpelacje');
+  const data = window.INTERPELACJE || [];
+  if (!data.length) {
+    document.getElementById('interpelacje-content').innerHTML = '<p style="color:var(--muted)">Brak danych o interpelacjach.</p>';
+    return;
+  }
+  // Filter to current kadencja (IX by default)
+  const kadencje = [...new Set(data.map(d => d.kadencja))].sort();
+  let currentIntKad = kadencje.includes('IX') ? 'IX' : kadencje[kadencje.length - 1];
+  const container = document.getElementById('interpelacje-content');
+
+  function renderForKadencja(kad) {
+    currentIntKad = kad;
+    const items = data.filter(d => d.kadencja === kad);
+    // Stats
+    const total = items.length;
+    const interp = items.filter(d => d.typ === 'interpelacja').length;
+    const zapyt = items.filter(d => d.typ === 'zapytanie').length;
+    const answered = items.filter(d => d.data_odpowiedzi).length;
+    // Per-councillor stats
+    const byRadny = {};
+    items.forEach(d => {
+      const names = d.radny.split(/\r?\n/).map(n => n.trim()).filter(Boolean);
+      names.forEach(n => { byRadny[n] = (byRadny[n] || 0) + 1; });
+    });
+    const topRadni = Object.entries(byRadny).sort((a, b) => b[1] - a[1]).slice(0, 15);
+
+    let html = `<div class="kadencja-bar" id="interp-kad-bar" style="margin-bottom:16px">`;
+    kadencje.forEach(k => {
+      html += `<button class="kadencja-btn${k === kad ? ' active' : ''}" data-kad="${k}">Kadencja ${k}</button>`;
+    });
+    html += `</div>`;
+    html += `<div class="stats-grid">
+      <div class="stat-card"><div class="label">Interpelacje i zapytania</div><div class="value">${total}</div></div>
+      <div class="stat-card"><div class="label">Interpelacje</div><div class="value">${interp}</div></div>
+      <div class="stat-card"><div class="label">Zapytania</div><div class="value">${zapyt}</div></div>
+      <div class="stat-card"><div class="label">Z odpowiedzią</div><div class="value">${answered} <span style="font-size:0.9rem;color:var(--muted)">(${total ? Math.round(100*answered/total) : 0}%)</span></div></div>
+    </div>`;
+
+    // Top radni chart
+    html += `<div class="section"><h2>Najbardziej aktywni radni</h2><div style="overflow-x:auto"><table><thead><tr>
+      <th>Radny/a</th><th>Liczba</th><th></th></tr></thead><tbody>`;
+    const maxCount = topRadni.length ? topRadni[0][1] : 1;
+    topRadni.forEach(([name, count]) => {
+      const pct = Math.round(100 * count / maxCount);
+      html += `<tr><td style="font-weight:600">${name}</td><td>${count}</td>
+        <td style="min-width:120px"><div class="bar"><div class="bar-fill" style="width:${pct}%;background:var(--accent)"></div></div></td></tr>`;
+    });
+    html += `</tbody></table></div></div>`;
+
+    // List of interpelacje
+    html += `<div class="section"><h2>Lista interpelacji i zapytań</h2>`;
+    html += `<div style="overflow-x:auto"><table id="interp-table"><thead><tr>
+      <th>Data</th><th>Typ</th><th>Radny/a</th><th>Przedmiot</th><th>Treść</th><th>Odpowiedź</th>
+    </tr></thead><tbody>`;
+    const sorted = [...items].sort((a, b) => (b.data_wplywu || '').localeCompare(a.data_wplywu || ''));
+    sorted.forEach(d => {
+      const typClass = d.typ === 'interpelacja' ? 'pill-za' : 'pill-wstrzymal';
+      const typLabel = d.typ === 'interpelacja' ? 'Interpelacja' : 'Zapytanie';
+      const trescLink = d.tresc_url ? `<a href="${d.tresc_url}" target="_blank" style="color:var(--accent)">PDF</a>` : '';
+      const odpLink = d.odpowiedz_url ? `<a href="${d.odpowiedz_url}" target="_blank" style="color:var(--accent)">PDF</a>` : (d.data_odpowiedzi ? d.data_odpowiedzi : '<span style="color:var(--muted)">brak</span>');
+      html += `<tr>
+        <td style="white-space:nowrap">${d.data_wplywu || ''}</td>
+        <td><span class="pill ${typClass}">${typLabel}</span></td>
+        <td style="font-weight:500">${d.radny.replace(/\r?\n/g, ', ')}</td>
+        <td style="max-width:400px">${d.przedmiot}</td>
+        <td>${trescLink}</td>
+        <td>${odpLink}</td>
+      </tr>`;
+    });
+    html += `</tbody></table></div></div>`;
+
+    container.innerHTML = html;
+
+    // Bind kadencja buttons
+    container.querySelectorAll('#interp-kad-bar .kadencja-btn').forEach(btn => {
+      btn.onclick = () => renderForKadencja(btn.dataset.kad);
+    });
+  }
+
+  renderForKadencja(currentIntKad);
 }
 
 let budgetChartTrend = null, budgetChartCat = null;
@@ -1764,7 +1866,9 @@ window.addEventListener('popstate', () => {
   // Main page tab/kadencja paths
   hideAllViews();
   document.getElementById('app').style.display = 'block';
-  if (path === '/budzet' || path === '/budzet/') {
+  if (path === '/interpelacje' || path === '/interpelacje/') {
+    activateTab('interpelacje');
+  } else if (path === '/budzet' || path === '/budzet/') {
     activateTab('budget');
   } else if (path.startsWith('/kadencja/')) {
     const parts = path.replace('/kadencja/', '').split('/');

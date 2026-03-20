@@ -232,6 +232,40 @@ def fix_city(city_dir: Path):
     print(f"  Updated {kad_count} kadencja tab pages")
 
     # ──────────────────────────────────────────
+    # 3b. Profil directory catch-all page
+    # ──────────────────────────────────────────
+    profil_dir = docs / "profil"
+    if profil_dir.is_dir():
+        canonical = f"{site_url}/profil/"
+        title = f"Radni {city_gen} — Radoskop {city_name}"
+        desc = f"Profile radnych {city_gen}. Sprawdź aktywność, frekwencję i głosowania każdego radnego."
+        html = make_page(canonical, title, desc)
+        write_page(profil_dir / "index.html", html)
+        sitemap_entries.append({
+            "loc": canonical,
+            "changefreq": "monthly",
+            "priority": "0.9"
+        })
+        print(f"  Updated profil/ catch-all page")
+
+    # ──────────────────────────────────────────
+    # 3c. Kadencja directory catch-all page
+    # ──────────────────────────────────────────
+    kadencja_dir = docs / "kadencja"
+    if kadencja_dir.is_dir():
+        canonical = f"{site_url}/kadencja/"
+        title = f"Kadencje Rady Miasta {city_gen} — Radoskop {city_name}"
+        desc = f"Kadencje Rady Miasta {city_gen}. Ranking, sesje, głosowania i aktywność radnych."
+        html = make_page(canonical, title, desc)
+        write_page(kadencja_dir / "index.html", html)
+        sitemap_entries.append({
+            "loc": canonical,
+            "changefreq": "monthly",
+            "priority": "0.9"
+        })
+        print(f"  Updated kadencja/ catch-all page")
+
+    # ──────────────────────────────────────────
     # 4. Glosowanie catch-all page
     # ──────────────────────────────────────────
     glos_dir = docs / "glosowanie"
@@ -294,7 +328,7 @@ def fix_city(city_dir: Path):
 
 
 def main():
-    base = Path("/sessions/stoic-epic-maxwell/mnt/gdansk-network")
+    base = Path("/sessions/friendly-gracious-hypatia/mnt/gdansk-network")
 
     cities = [
         "radoskop-gdansk",
@@ -304,6 +338,7 @@ def main():
         "radoskop-poznan",
         "radoskop-gdynia",
         "radoskop-sopot",
+        "radoskop-lodz",
     ]
 
     for city in cities:
