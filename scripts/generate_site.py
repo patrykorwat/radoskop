@@ -28,10 +28,11 @@ def generate_club_js(clubs: dict) -> str:
 
     if not clubs:
         # No clubs defined: return safe fallback functions
+        # NOTE: clubClass is left without closing } — the template provides it
         return (
             "function clubColor(club) {\n  return 'var(--muted)';\n}\n"
             "function clubBg(club) {\n  return '#374151';\n}\n"
-            "function clubClass(club) {\n  return 'club-unknown';\n}"
+            "function clubClass(club) {\n  return 'club-unknown';"
         )
 
     # clubColor — uses color_var if available, falls back to color
