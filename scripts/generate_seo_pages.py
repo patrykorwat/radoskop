@@ -1,34 +1,135 @@
 #!/usr/bin/env python3
 """
-Fix SEO issues for Radoskop city instances.
+Generate SEO-optimized static pages for Radoskop city instances.
 
-Problems found in Google Search Console:
-1. All sub-pages (profil/, budzet/, kadencja/) have <link rel="canonical"> pointing to homepage
-   → Google reports "Page with redirect" for 20+ profile pages
-2. /budzet canonical points to homepage → "Redirect error"
-3. Missing directories for sitemap URLs (uchwaly, interpelacje in kadencja)
-4. Sub-page index.html files are outdated (pre-uchwaly/interpelacje code)
+Creates content-rich HTML pages for search engines to index:
+  - /profil/{slug}/index.html   (councillor profiles)
+  - /glosowanie/{id}/index.html (individual votes)
+  - /sesja/{number}/index.html  (sessions)
+  - /kadencja/{slug}/index.html (kadencja tabs)
+  - /budzet/index.html          (budget page)
+  - sitemap.xml                 (full sitemap)
 
-Fix: Update all sub-page index.html files with current code + unique SEO meta tags.
+Each page:
+  1. Has unique <title>, <meta description>, <link canonical>, OG tags
+  2. Has og:image pointing to generated OG image (if available)
+  3. Contains visible text content for Google to index
+  4. Loads the full SPA JS so the page becomes interactive after hydration
+
+Usage:
+    python generate_seo_pages.py --base /path/to/gdansk-network
+    python generate_seo_pages.py --base /path/to/gdansk-network --city radoskop-gdansk
 """
 
+import argparse
+import html
 import json
 import re
-import os
-import shutil
 from pathlib import Path
 
 
-def fix_city(city_dir: Path):
-    """Fix SEO for a single city instance."""
-    docs = city_dir / "docs"
-    if not docs.exists():
-        print(f"  Skipping {city_dir.name}: no docs/ directory")
-        return
+def esc(text):
+    """HTML-escape text for safe embedding."""
+    return html.escape(str(text), quote=True)
 
+
+def make_page(main_html, canonical_url, title, description, og_image=None, extra_body=""):
+    """Create a page variant with unique SEO tags and optional body content."""
+    h = main_html
+
+    # Replace canonical
+    h = re.sub(
+        r'<link rel="canonical" href="[^"]*">',
+        f'<link rel="canonical" href="{canonical_url}">',
+        h
+    )
+
+    # Replace <title>
+    h = re.sub(r'<title>[^<]*</title>', f'<title>{esc(title)}</title>', h)
+
+    # Replace meta description
+    h = re.sub(
+        r'<meta name="description" content="[^"]*">',
+        f'<meta name="description" content="{esc(description)}">',
+        h
+    )
+
+    # Replace og:title
+    h = re.sub(
+        r'<meta property="og:title" content="[^"]*">',
+        f'<meta property="og:title" content="{esc(title)}">',
+        h
+    )
+
+    # Replace og:description
+    h = re.sub(
+        r'<meta property="og:description" content="[^"]*">',
+        f'<meta property="og:description" content="{esc(description)}">',
+        h
+    )
+
+    # Replace og:url
+    h = re.sub(
+        r'<meta property="og:url" content="[^"]*">',
+        f'<meta property="og:url" content="{canonical_url}">',
+        h
+    )
+
+    # Replace twitter:title
+    h = re.sub(
+        r'<meta name="twitter:title" content="[^"]*">',
+        f'<meta name="twitter:title" content="{esc(title)}">',
+        h
+    )
+
+    # Replace twitter:description
+    h = re.sub(
+        r'<meta name="twitter:description" content="[^"]*">',
+        f'<meta name="twitter:description" content="{esc(description)}">',
+        h
+    )
+
+    # Add og:image if provided (insert after og:url)
+    if og_image:
+        og_image_tag = f'<meta property="og:image" content="{og_image}">'
+        og_image_tw = '<meta name="twitter:card" content="summary_large_image">'
+        # Remove existing og:image if any
+        h = re.sub(r'<meta property="og:image" content="[^"]*">\n?', '', h)
+        # Change twitter card to summary_large_image
+        h = re.sub(r'<meta name="twitter:card" content="[^"]*">', og_image_tw, h)
+        # Insert og:image after og:url
+        h = h.replace(
+            f'<meta property="og:url" content="{canonical_url}">',
+            f'<meta property="og:url" content="{canonical_url}">\n{og_image_tag}'
+        )
+
+    # Inject SEO body content (visible text for crawlers) before the loading div
+    if extra_body:
+        # Insert as a noscript-visible section right after <div id="loading">
+        seo_block = f'\n<div id="seo-content" style="padding:20px;max-width:800px;margin:0 auto">\n{extra_body}\n</div>\n'
+        # Hide seo-content once JS loads (the SPA will take over)
+        hide_script = '<script>var sc=document.getElementById("seo-content");if(sc)sc.style.display="none";</script>\n'
+        h = h.replace(
+            '<div id="loading">',
+            seo_block + hide_script + '<div id="loading">'
+        )
+
+    return h
+
+
+def write_page(path: Path, content: str):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+
+def process_city(city_dir: Path):
+    """Generate all SEO pages for one city."""
+    docs = city_dir / "docs"
     config_path = city_dir / "config.json"
-    if not config_path.exists():
-        print(f"  Skipping {city_dir.name}: no config.json")
+
+    if not docs.exists() or not config_path.exists():
+        print(f"  Skipping {city_dir.name}: missing docs/ or config.json")
         return
 
     with open(config_path, "r", encoding="utf-8") as f:
@@ -38,258 +139,264 @@ def fix_city(city_dir: Path):
     city_name = config["city_name"]
     city_gen = config["city_genitive"]
 
-    # Read current main index.html (most up-to-date version)
+    # Read main index.html
     main_html_path = docs / "index.html"
     with open(main_html_path, "r", encoding="utf-8") as f:
         main_html = f.read()
 
-    # Read profiles
+    # Load profiles
+    profiles = []
     profiles_path = docs / "profiles.json"
-    if not profiles_path.exists():
-        print(f"  WARNING: no profiles.json in {city_dir.name}")
-        profiles = []
-    else:
+    if profiles_path.exists():
         with open(profiles_path, "r", encoding="utf-8") as f:
             profiles = json.load(f).get("profiles", [])
 
-    # Read data.json for kadencje info
-    data_path = docs / "data.json"
+    # Load data.json for kadencje index
     kadencje = []
+    data_path = docs / "data.json"
     if data_path.exists():
         with open(data_path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-            kadencje = data.get("kadencje", [])
+            kadencje = json.load(f).get("kadencje", [])
 
-    # ──────────────────────────────────────────
-    # Helper: replace meta tags in HTML
-    # ──────────────────────────────────────────
-    def make_page(canonical_url, title, description):
-        """Create a page variant with unique SEO tags."""
-        html = main_html
+    # Extract KAD_SLUGS from JS
+    KAD_SLUGS = {}
+    kad_match = re.search(r"const\s+KAD_SLUGS\s*=\s*\{([^}]+)\}", main_html)
+    if kad_match:
+        for m in re.finditer(r"'([^']+)'\s*:\s*'([^']+)'", kad_match.group(1)):
+            KAD_SLUGS[m.group(1)] = m.group(2)
+    if not KAD_SLUGS:
+        for k in kadencje:
+            KAD_SLUGS[k["id"]] = k["id"]
 
-        # Replace canonical
-        html = re.sub(
-            r'<link rel="canonical" href="[^"]*">',
-            f'<link rel="canonical" href="{canonical_url}">',
-            html
-        )
-
-        # Replace <title>
-        html = re.sub(
-            r'<title>[^<]*</title>',
-            f'<title>{title}</title>',
-            html
-        )
-
-        # Replace meta description
-        html = re.sub(
-            r'<meta name="description" content="[^"]*">',
-            f'<meta name="description" content="{description}">',
-            html
-        )
-
-        # Replace og:title
-        html = re.sub(
-            r'<meta property="og:title" content="[^"]*">',
-            f'<meta property="og:title" content="{title}">',
-            html
-        )
-
-        # Replace og:description
-        html = re.sub(
-            r'<meta property="og:description" content="[^"]*">',
-            f'<meta property="og:description" content="{description}">',
-            html
-        )
-
-        # Replace og:url
-        html = re.sub(
-            r'<meta property="og:url" content="[^"]*">',
-            f'<meta property="og:url" content="{canonical_url}">',
-            html
-        )
-
-        # Replace twitter:title
-        html = re.sub(
-            r'<meta name="twitter:title" content="[^"]*">',
-            f'<meta name="twitter:title" content="{title}">',
-            html
-        )
-
-        # Replace twitter:description
-        html = re.sub(
-            r'<meta name="twitter:description" content="[^"]*">',
-            f'<meta name="twitter:description" content="{description}">',
-            html
-        )
-
-        return html
-
-    def write_page(path: Path, html: str):
-        path.parent.mkdir(parents=True, exist_ok=True)
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(html)
-
-    # Track sitemap entries
     sitemap_entries = []
 
-    # ──────────────────────────────────────────
+    # ════════════════════════════════════════════
     # 1. Profile pages
-    # ──────────────────────────────────────────
+    # ════════════════════════════════════════════
     profile_count = 0
     for p in profiles:
         slug = p["slug"]
         name = p["name"]
-        canonical = f"{site_url}/profil/{slug}/"
-        title = f"{name} - Radoskop {city_name}"
-        desc = f"Profil: {name}. Sprawdz glosowania, frekwencje i aktywnosc w Radzie Miasta {city_gen}."
 
-        html = make_page(canonical, title, desc)
-        write_page(docs / "profil" / slug / "index.html", html)
+        # Get stats from most recent kadencja
+        kad_keys = sorted(p.get("kadencje", {}).keys(), reverse=True)
+        kad = p["kadencje"][kad_keys[0]] if kad_keys else {}
+
+        club = kad.get("club", "")
+        club_full = kad.get("club_full", club)
+        frekwencja = kad.get("frekwencja", 0)
+        aktywnosc = kad.get("aktywnosc", 0)
+        zgodnosc = kad.get("zgodnosc_z_klubem", 0)
+        votes_za = kad.get("votes_za", 0)
+        votes_przeciw = kad.get("votes_przeciw", 0)
+        votes_wstrzymal = kad.get("votes_wstrzymal", 0)
+
+        canonical = f"{site_url}/profil/{slug}/"
+        title = f"{name}, {club} \u2013 Radoskop {city_name}"
+        desc = (
+            f"{name}, klub {club_full}. "
+            f"Frekwencja {frekwencja:.0f}%, aktywnosc {aktywnosc:.0f}%, "
+            f"zgodnosc z klubem {zgodnosc:.0f}%. "
+            f"Rada Miasta {city_gen}."
+        )
+
+        og_img = f"{site_url}/profil/{slug}/og.png"
+        og_img_path = docs / "profil" / slug / "og.png"
+        if not og_img_path.exists():
+            og_img = None
+
+        body = (
+            f"<h1>{esc(name)}</h1>\n"
+            f"<p>Klub: {esc(club_full)}</p>\n"
+            f"<p>Frekwencja: {frekwencja:.0f}% · "
+            f"Aktywnosc: {aktywnosc:.0f}% · "
+            f"Zgodnosc z klubem: {zgodnosc:.0f}%</p>\n"
+            f"<p>Za: {votes_za} · Przeciw: {votes_przeciw} · Wstrzymal sie: {votes_wstrzymal}</p>\n"
+            f"<p><a href=\"{site_url}/\">Radoskop {esc(city_name)}</a></p>\n"
+        )
+
+        page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body)
+        write_page(docs / "profil" / slug / "index.html", page)
         profile_count += 1
 
-        sitemap_entries.append({
-            "loc": canonical,
-            "changefreq": "monthly",
-            "priority": "0.7"
-        })
+        sitemap_entries.append({"loc": canonical, "changefreq": "weekly", "priority": "0.7"})
 
-    print(f"  Updated {profile_count} profile pages")
+    print(f"  {profile_count} profile pages")
 
-    # ──────────────────────────────────────────
-    # 2. Budzet page
-    # ──────────────────────────────────────────
-    if config.get("has_budget") and (docs / "budzet").is_dir():
-        canonical = f"{site_url}/budzet/"
-        title = f"Budzet {city_gen} - Radoskop {city_name}"
-        desc = f"Analiza budzetu miasta {city_gen}. Wydatki, dochody i inwestycje miejskie."
+    # ════════════════════════════════════════════
+    # 2. Vote pages (per kadencja)
+    # ════════════════════════════════════════════
+    vote_count = 0
+    for k in kadencje:
+        kid = k.get("id", "")
+        kad_file = docs / f"kadencja-{kid}.json"
+        if not kad_file.exists():
+            continue
 
-        html = make_page(canonical, title, desc)
-        write_page(docs / "budzet" / "index.html", html)
-        print(f"  Updated budzet page")
+        with open(kad_file, "r", encoding="utf-8") as f:
+            kad_data = json.load(f)
 
-        sitemap_entries.append({
-            "loc": canonical,
-            "changefreq": "monthly",
-            "priority": "0.8"
-        })
+        for vote in kad_data.get("votes", []):
+            vid = vote.get("id", "")
+            if not vid:
+                continue
 
-    # ──────────────────────────────────────────
-    # 3. Kadencja pages
-    # ──────────────────────────────────────────
-    # Extract KAD_SLUGS from JS in index.html (e.g. const KAD_SLUGS = {'2018-2023':'viii','2024-2029':'ix'};)
-    KAD_SLUGS = {}
-    kad_match = re.search(r"const\s+KAD_SLUGS\s*=\s*\{([^}]+)\}", main_html)
-    if kad_match:
-        # Parse JS object literal
-        for m in re.finditer(r"'([^']+)'\s*:\s*'([^']+)'", kad_match.group(1)):
-            KAD_SLUGS[m.group(1)] = m.group(2)
-    if not KAD_SLUGS:
-        # Fallback: use kadencja IDs as-is
-        for k in kadencje:
-            KAD_SLUGS[k["id"]] = k["id"]
+            topic = vote.get("topic", "").replace(";", "").strip()
+            counts = vote.get("counts", {})
+            za = counts.get("za", 0)
+            przeciw = counts.get("przeciw", 0)
+            wstrzymal = counts.get("wstrzymal_sie", 0)
+            session_date = vote.get("session_date", "")
+            session_number = vote.get("session_number", "")
 
+            if za > przeciw:
+                result = "przyjete"
+            elif przeciw > za:
+                result = "odrzucone"
+            else:
+                result = "remis"
+
+            canonical = f"{site_url}/glosowanie/{vid}/"
+            title_text = topic[:80] if topic else f"Glosowanie {vid}"
+            title = f"{title_text} \u2013 Radoskop {city_name}"
+            desc = (
+                f"Glosowanie: {topic[:120]}. "
+                f"Wynik: za {za}, przeciw {przeciw}, wstrzymal sie {wstrzymal}. "
+                f"Sesja {session_number}, {session_date}."
+            )
+
+            og_img = f"{site_url}/glosowanie/{vid}/og.png"
+            og_img_path = docs / "glosowanie" / vid / "og.png"
+            if not og_img_path.exists():
+                og_img = None
+
+            body = (
+                f"<h1>{esc(topic or f'Glosowanie {vid}')}</h1>\n"
+                f"<p>Sesja {esc(session_number)}, {esc(session_date)}</p>\n"
+                f"<p>Wynik: <strong>{result}</strong></p>\n"
+                f"<p>Za: {za} · Przeciw: {przeciw} · Wstrzymal sie: {wstrzymal}</p>\n"
+                f"<p><a href=\"{site_url}/\">Radoskop {esc(city_name)}</a></p>\n"
+            )
+
+            page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body)
+            write_page(docs / "glosowanie" / vid / "index.html", page)
+            vote_count += 1
+
+            sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.5"})
+
+    print(f"  {vote_count} vote pages")
+
+    # ════════════════════════════════════════════
+    # 3. Session pages
+    # ════════════════════════════════════════════
+    session_count = 0
+    for k in kadencje:
+        kid = k.get("id", "")
+        kad_file = docs / f"kadencja-{kid}.json"
+        if not kad_file.exists():
+            continue
+
+        with open(kad_file, "r", encoding="utf-8") as f:
+            kad_data = json.load(f)
+
+        for s in kad_data.get("sessions", []):
+            snum = s.get("number", "")
+            if not snum:
+                continue
+
+            sdate = s.get("date", "")
+            vote_cnt = s.get("vote_count", 0)
+            attendee_cnt = s.get("attendee_count", 0)
+
+            canonical = f"{site_url}/sesja/{snum}/"
+            title = f"Sesja {snum} ({sdate}) \u2013 Radoskop {city_name}"
+            desc = (
+                f"Sesja {snum} Rady Miasta {city_gen}, {sdate}. "
+                f"{vote_cnt} glosowan, {attendee_cnt} obecnych radnych."
+            )
+
+            body = (
+                f"<h1>Sesja {esc(snum)}</h1>\n"
+                f"<p>Data: {esc(sdate)}</p>\n"
+                f"<p>Glosowan: {vote_cnt} · Obecnych: {attendee_cnt}</p>\n"
+                f"<p><a href=\"{site_url}/\">Radoskop {esc(city_name)}</a></p>\n"
+            )
+
+            page = make_page(main_html, canonical, title, desc, extra_body=body)
+            write_page(docs / "sesja" / snum / "index.html", page)
+            session_count += 1
+
+            sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.5"})
+
+    print(f"  {session_count} session pages")
+
+    # ════════════════════════════════════════════
+    # 4. Kadencja tab pages
+    # ════════════════════════════════════════════
     TAB_NAMES = {
-        "ranking": "Ranking",
-        "radni": "Radni",
+        "ranking": "Ranking radnych",
+        "radni": "Profile radnych",
         "sesje": "Sesje",
         "glosowania": "Glosowania",
-        "podobienstwo": "Podobienstwo",
-        "uchwaly": "Uchwaly",
+        "podobienstwo": "Podobienstwo glosowan",
         "interpelacje": "Interpelacje",
     }
 
     kad_count = 0
     for kid, kslug in KAD_SLUGS.items():
-        # Main kadencja page
-        kad_dir = docs / "kadencja" / kslug
-        if not kad_dir.exists():
-            kad_dir.mkdir(parents=True, exist_ok=True)
-
         canonical = f"{site_url}/kadencja/{kslug}/"
-        title = f"Kadencja {kid} - Radoskop {city_name}"
-        desc = f"Monitoring Rady Miasta {city_gen}, kadencja {kid}. Ranking, sesje, glosowania."
+        title = f"Kadencja {kid} \u2013 Radoskop {city_name}"
+        desc = f"Monitoring Rady Miasta {city_gen}, kadencja {kid}. Ranking, sesje, glosowania i aktywnosc radnych."
 
-        html = make_page(canonical, title, desc)
-        # kadencja/ level index.html (catch-all)
-        write_page(kad_dir / "index.html", html)
+        page = make_page(main_html, canonical, title, desc)
+        write_page(docs / "kadencja" / kslug / "index.html", page)
+
+        sitemap_entries.append({"loc": canonical, "changefreq": "weekly", "priority": "0.8"})
 
         for tab_slug, tab_name in TAB_NAMES.items():
             tab_canonical = f"{site_url}/kadencja/{kslug}/{tab_slug}/"
-            tab_title = f"{tab_name} - kadencja {kid} - Radoskop {city_name}"
+            tab_title = f"{tab_name}, kadencja {kid} \u2013 Radoskop {city_name}"
             tab_desc = f"{tab_name} Rady Miasta {city_gen}, kadencja {kid}."
 
-            tab_html = make_page(tab_canonical, tab_title, tab_desc)
-            write_page(kad_dir / tab_slug / "index.html", tab_html)
+            tab_page = make_page(main_html, tab_canonical, tab_title, tab_desc)
+            write_page(docs / "kadencja" / kslug / tab_slug / "index.html", tab_page)
             kad_count += 1
 
-            sitemap_entries.append({
-                "loc": tab_canonical,
-                "changefreq": "weekly" if kid == kadencje[-1]["id"] else "monthly",
-                "priority": "0.6" if kid != kadencje[-1]["id"] else "0.8"
-            })
+            sitemap_entries.append({"loc": tab_canonical, "changefreq": "weekly", "priority": "0.6"})
 
-    print(f"  Updated {kad_count} kadencja tab pages")
+    print(f"  {kad_count} kadencja tab pages")
 
-    # ──────────────────────────────────────────
-    # 3b. Profil directory catch-all page
-    # ──────────────────────────────────────────
-    profil_dir = docs / "profil"
-    if profil_dir.is_dir():
-        canonical = f"{site_url}/profil/"
-        title = f"Radni {city_gen} — Radoskop {city_name}"
-        desc = f"Profile radnych {city_gen}. Sprawdź aktywność, frekwencję i głosowania każdego radnego."
-        html = make_page(canonical, title, desc)
-        write_page(profil_dir / "index.html", html)
-        sitemap_entries.append({
-            "loc": canonical,
-            "changefreq": "monthly",
-            "priority": "0.9"
-        })
-        print(f"  Updated profil/ catch-all page")
+    # ════════════════════════════════════════════
+    # 5. Budget page
+    # ════════════════════════════════════════════
+    if config.get("has_budget"):
+        canonical = f"{site_url}/budzet/"
+        title = f"Budzet {city_gen} \u2013 Radoskop {city_name}"
+        desc = f"Analiza budzetu miasta {city_gen}. Wydatki, dochody i inwestycje miejskie."
 
-    # ──────────────────────────────────────────
-    # 3c. Kadencja directory catch-all page
-    # ──────────────────────────────────────────
-    kadencja_dir = docs / "kadencja"
-    if kadencja_dir.is_dir():
-        canonical = f"{site_url}/kadencja/"
-        title = f"Kadencje Rady Miasta {city_gen} — Radoskop {city_name}"
-        desc = f"Kadencje Rady Miasta {city_gen}. Ranking, sesje, głosowania i aktywność radnych."
-        html = make_page(canonical, title, desc)
-        write_page(kadencja_dir / "index.html", html)
-        sitemap_entries.append({
-            "loc": canonical,
-            "changefreq": "monthly",
-            "priority": "0.9"
-        })
-        print(f"  Updated kadencja/ catch-all page")
+        page = make_page(main_html, canonical, title, desc)
+        write_page(docs / "budzet" / "index.html", page)
+        sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.8"})
+        print(f"  1 budget page")
 
-    # ──────────────────────────────────────────
-    # 4. Glosowanie catch-all page
-    # ──────────────────────────────────────────
-    glos_dir = docs / "glosowanie"
-    if glos_dir.is_dir():
-        canonical = f"{site_url}/"
-        # Keep glosowanie index.html pointing to main page (it's a catch-all for SPA)
-        html = make_page(f"{site_url}/",
-                         f"Radoskop {city_name} - Monitoring Rady Miasta {city_gen}",
-                         config.get("site_description", ""))
-        write_page(glos_dir / "index.html", html)
+    # ════════════════════════════════════════════
+    # 6. Catch-all directory pages
+    # ════════════════════════════════════════════
+    for dirname, title_part, desc_part, prio in [
+        ("profil", f"Radni {city_gen}", f"Profile radnych {city_gen}. Frekwencja, glosowania i aktywnosc.", "0.9"),
+        ("kadencja", f"Kadencje Rady Miasta {city_gen}", f"Kadencje Rady Miasta {city_gen}. Ranking, sesje i glosowania.", "0.9"),
+    ]:
+        d = docs / dirname
+        if d.is_dir() or profiles:  # create even if not existing yet
+            canonical = f"{site_url}/{dirname}/"
+            title = f"{title_part} \u2013 Radoskop {city_name}"
+            page = make_page(main_html, canonical, title, desc_part)
+            write_page(d / "index.html", page)
+            sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": prio})
 
-    # ──────────────────────────────────────────
-    # 5. Sesja catch-all page
-    # ──────────────────────────────────────────
-    sesja_dir = docs / "sesja"
-    if sesja_dir.is_dir():
-        html = make_page(f"{site_url}/",
-                         f"Radoskop {city_name} - Monitoring Rady Miasta {city_gen}",
-                         config.get("site_description", ""))
-        write_page(sesja_dir / "index.html", html)
-
-    # ──────────────────────────────────────────
-    # 6. Update main index.html canonical (should already be correct)
-    # ──────────────────────────────────────────
+    # ════════════════════════════════════════════
+    # 7. Fix main index.html canonical
+    # ════════════════════════════════════════════
     main_canonical = f"{site_url}/"
     main_check = re.search(r'<link rel="canonical" href="([^"]*)">', main_html)
     if main_check and main_check.group(1) != main_canonical:
@@ -300,54 +407,54 @@ def fix_city(city_dir: Path):
         )
         with open(main_html_path, "w", encoding="utf-8") as f:
             f.write(main_html)
-        print(f"  Fixed main index.html canonical")
+        print(f"  Fixed main canonical")
 
-    # ──────────────────────────────────────────
-    # 7. Regenerate sitemap.xml
-    # ──────────────────────────────────────────
+    # ════════════════════════════════════════════
+    # 8. Generate sitemap.xml
+    # ════════════════════════════════════════════
     sitemap_lines = [
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
         f'  <url>\n    <loc>{site_url}/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>',
     ]
-
     for entry in sitemap_entries:
         sitemap_lines.append(
             f'  <url>\n    <loc>{entry["loc"]}</loc>\n'
             f'    <changefreq>{entry["changefreq"]}</changefreq>\n'
             f'    <priority>{entry["priority"]}</priority>\n  </url>'
         )
-
     sitemap_lines.append('</urlset>')
 
     with open(docs / "sitemap.xml", "w", encoding="utf-8") as f:
         f.write("\n".join(sitemap_lines) + "\n")
 
-    entry_count = len(sitemap_entries) + 1  # +1 for homepage
-    print(f"  Updated sitemap.xml ({entry_count} URLs)")
+    total_urls = len(sitemap_entries) + 1
+    print(f"  sitemap.xml: {total_urls} URLs")
 
 
 def main():
-    base = Path("/sessions/friendly-gracious-hypatia/mnt/gdansk-network")
+    parser = argparse.ArgumentParser(description="Generate SEO pages for Radoskop")
+    parser.add_argument("--base", required=True, help="Base directory containing radoskop-* city dirs")
+    parser.add_argument("--city", default=None, help="Process only this city (e.g. radoskop-gdansk)")
+    args = parser.parse_args()
 
-    cities = [
-        "radoskop-gdansk",
-        "radoskop-warszawa",
-        "radoskop-krakow",
-        "radoskop-wroclaw",
-        "radoskop-poznan",
-        "radoskop-gdynia",
-        "radoskop-sopot",
-        "radoskop-lodz",
-    ]
+    base = Path(args.base)
+
+    if args.city:
+        cities = [args.city]
+    else:
+        cities = sorted([
+            d.name for d in base.iterdir()
+            if d.is_dir() and d.name.startswith("radoskop-") and d.name != "radoskop"
+        ])
 
     for city in cities:
         city_dir = base / city
         if city_dir.exists():
             print(f"\n=== {city} ===")
-            fix_city(city_dir)
+            process_city(city_dir)
         else:
-            print(f"\nSkipping {city}: directory not found")
+            print(f"  Skipping {city}: not found")
 
 
 if __name__ == "__main__":

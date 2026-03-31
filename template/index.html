@@ -569,7 +569,50 @@ const SLUG_KADS = Object.fromEntries(Object.entries(KAD_SLUGS).map(([k,v])=>[v,k
 const BASE_TITLE = '{{SITE_TITLE}}';
 const TAB_TITLES = {ranking:'Ranking radnych',profiles:'Profile radnych',sessions:'Sesje',votes:'Głosowania',similarity:'Podobieństwo',interpelacje:'Interpelacje',budget:'Budżet'};
 function setTitle(subtitle) {
-  document.title = subtitle ? subtitle + ' — ' + BASE_TITLE : BASE_TITLE;
+  document.title = subtitle ? subtitle + ' \u2013 ' + BASE_TITLE : BASE_TITLE;
+}
+
+function setOgMeta(opts) {
+  // opts: { title, description, url, image }
+  var t = opts.title || document.title;
+  var d = opts.description || '';
+  var u = opts.url || location.href;
+  var tags = {
+    'og:title': t,
+    'og:description': d,
+    'og:url': u,
+    'twitter:title': t,
+    'twitter:description': d
+  };
+  for (var prop in tags) {
+    var isOg = prop.indexOf('og:') === 0;
+    var sel = isOg ? 'meta[property="' + prop + '"]' : 'meta[name="' + prop + '"]';
+    var el = document.querySelector(sel);
+    if (el) el.setAttribute('content', tags[prop]);
+  }
+  // OG image
+  var imgEl = document.querySelector('meta[property="og:image"]');
+  if (opts.image) {
+    if (imgEl) { imgEl.setAttribute('content', opts.image); }
+    else {
+      imgEl = document.createElement('meta');
+      imgEl.setAttribute('property', 'og:image');
+      imgEl.setAttribute('content', opts.image);
+      document.head.appendChild(imgEl);
+    }
+    var tw = document.querySelector('meta[name="twitter:card"]');
+    if (tw) tw.setAttribute('content', 'summary_large_image');
+  } else if (imgEl) {
+    imgEl.remove();
+    var tw = document.querySelector('meta[name="twitter:card"]');
+    if (tw) tw.setAttribute('content', 'summary');
+  }
+  // Canonical
+  var can = document.querySelector('link[rel="canonical"]');
+  if (can) can.setAttribute('href', u);
+  // Meta description
+  var desc = document.querySelector('meta[name="description"]');
+  if (desc && d) desc.setAttribute('content', d);
 }
 
 function mainPath(tab, kid) {
@@ -666,6 +709,11 @@ function showMain() {
   document.getElementById('app').style.display = 'block';
   navigateTo(mainPath());
   setTitle(TAB_TITLES[currentTab] || '');
+  setOgMeta({
+    title: BASE_TITLE,
+    description: '{{SITE_DESCRIPTION}}',
+    url: '{{SITE_URL}}' + mainPath()
+  });
 }
 
 function render() {
@@ -823,6 +871,13 @@ function showProfile(name) {
   view.style.display = 'block';
   navigateTo('/profil/' + profile.slug + '/');
   setTitle(profile.name);
+  var _pk = profile.kadencje[Object.keys(profile.kadencje).pop()] || {};
+  setOgMeta({
+    title: profile.name + ' \u2013 Radoskop {{CITY_NAME}}',
+    description: profile.name + ', ' + (_pk.club_full || _pk.club || '') + '. Frekwencja ' + (_pk.frekwencja||0).toFixed(0) + '%, aktywnosc ' + (_pk.aktywnosc||0).toFixed(0) + '%.',
+    url: '{{SITE_URL}}/profil/' + profile.slug + '/',
+    image: '{{SITE_URL}}/profil/' + profile.slug + '/og.png'
+  });
 
   // Find which kadencje this person has data for
   const kids = Object.keys(profile.kadencje);
@@ -1371,6 +1426,13 @@ function showVote(voteId) {
   view.style.display = 'block';
   navigateTo('/glosowanie/' + voteId + '/');
   setTitle('Głosowanie: ' + (vote.topic || voteId).substring(0, 60));
+  var _vc = vote.counts || {};
+  setOgMeta({
+    title: (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop {{CITY_NAME}}',
+    description: 'Za ' + (_vc.za||0) + ', przeciw ' + (_vc.przeciw||0) + ', wstrzym. ' + (_vc.wstrzymal_sie||0) + '. Sesja ' + (vote.session_number||'') + ', ' + (vote.session_date||'') + '.',
+    url: '{{SITE_URL}}/glosowanie/' + voteId + '/',
+    image: '{{SITE_URL}}/glosowanie/' + voteId + '/og.png'
+  });
 
   const c = vote.counts || {};
   const nv = resolveNV(vote.named_votes || {}, voteKad.councilor_index);
@@ -1502,6 +1564,11 @@ function showSession(sessionNumber) {
   view.style.display = 'block';
   navigateTo('/sesja/' + encodeURIComponent(sessionNumber) + '/');
   setTitle('Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : ''));
+  setOgMeta({
+    title: 'Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' \u2013 Radoskop {{CITY_NAME}}',
+    description: 'Sesja ' + sessionNumber + ', ' + (sess.date||'') + '. ' + (sess.vote_count||0) + ' glosowan, ' + (sess.attendee_count||0) + ' obecnych.',
+    url: '{{SITE_URL}}/sesja/' + encodeURIComponent(sessionNumber) + '/'
+  });
 
   // Club lookup
   const clubMap = {};
