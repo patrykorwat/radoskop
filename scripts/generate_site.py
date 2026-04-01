@@ -54,12 +54,24 @@ def generate_club_js(clubs: dict) -> str:
 
 
 def generate_ga_snippet(ga_id: str) -> str:
-    """Generate Google Analytics snippet, or empty if no ID."""
+    """Generate Google Analytics snippet with cookie consent check."""
     if not ga_id:
         return "<!-- No analytics configured -->"
     return (
-        f'<script async src="https://www.googletagmanager.com/gtag/js?id={ga_id}"></script>\n'
-        f'<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag(\'js\',new Date());gtag(\'config\',\'{ga_id}\');</script>'
+        f'<script>\n'
+        f'window.dataLayer=window.dataLayer||[];\n'
+        f'function gtag(){{dataLayer.push(arguments);}}\n'
+        f'(function(){{\n'
+        f'  var c=document.cookie.match(/(?:^|;\\s*)cookie_consent=([^;]*)/);\n'
+        f'  if(c&&c[1]==="rejected"){{window["ga-disable-{ga_id}"]=true;return;}}\n'
+        f'  if(!c||c[1]==="accepted"){{\n'
+        f'    var s=document.createElement("script");\n'
+        f'    s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id={ga_id}";\n'
+        f'    document.head.appendChild(s);\n'
+        f'    gtag("js",new Date());gtag("config","{ga_id}");\n'
+        f'  }}\n'
+        f'}})();\n'
+        f'</script>'
     )
 
 
@@ -127,6 +139,7 @@ def main():
         "{{BIP_NAME}}": config["bip_name"],
         "{{GITHUB_URL}}": config["github_url"],
         "{{AUTHOR}}": config["author"],
+        "{{GA_ID}}": config.get("ga_id", ""),
         "{{GA_SNIPPET}}": generate_ga_snippet(config.get("ga_id", "")),
         "{{CLUB_CSS}}": generate_club_css(config.get("clubs", {})),
         "{{CLUB_JS}}": generate_club_js(config.get("clubs", {})),

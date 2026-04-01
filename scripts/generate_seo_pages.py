@@ -395,6 +395,23 @@ def process_city(city_dir: Path):
             sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": prio})
 
     # ════════════════════════════════════════════
+    # 6b. Privacy policy page
+    # ════════════════════════════════════════════
+    privacy_canonical = f"{site_url}/polityka-prywatnosci/"
+    privacy_title = f"Polityka prywatności \u2013 Radoskop {city_name}"
+    privacy_desc = f"Polityka prywatności i informacje o plikach cookies serwisu Radoskop {city_name}."
+    privacy_page = make_page(main_html, privacy_canonical, privacy_title, privacy_desc)
+    write_page(docs / "polityka-prywatnosci" / "index.html", privacy_page)
+    sitemap_entries.append({"loc": privacy_canonical, "changefreq": "yearly", "priority": "0.3"})
+
+    terms_canonical = f"{site_url}/regulamin/"
+    terms_title = f"Regulamin \u2013 Radoskop {city_name}"
+    terms_desc = f"Regulamin serwisu Radoskop {city_name}. Źródła danych, metodologia i zasady korzystania."
+    terms_page = make_page(main_html, terms_canonical, terms_title, terms_desc)
+    write_page(docs / "regulamin" / "index.html", terms_page)
+    sitemap_entries.append({"loc": terms_canonical, "changefreq": "yearly", "priority": "0.3"})
+
+    # ════════════════════════════════════════════
     # 7. Fix main index.html canonical
     # ════════════════════════════════════════════
     main_canonical = f"{site_url}/"
