@@ -54,20 +54,11 @@ def generate_club_js(clubs: dict) -> str:
 
 
 def generate_adsense_snippet(pub_id: str) -> str:
-    """Generate Google AdSense snippet with cookie consent check."""
+    """Generate static Google AdSense tag (must be in HTML for crawler verification)."""
     if not pub_id:
         return "<!-- No AdSense configured -->"
     return (
-        f'<script>\n'
-        f'(function(){{\n'
-        f'  var c=document.cookie.match(/(?:^|;\\s*)cookie_consent=([^;]*)/);\n'
-        f'  if(c&&c[1]==="rejected")return;\n'
-        f'  var s=document.createElement("script");\n'
-        f'  s.async=true;s.crossOrigin="anonymous";\n'
-        f'  s.src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={pub_id}";\n'
-        f'  document.head.appendChild(s);\n'
-        f'}})();\n'
-        f'</script>'
+        f'<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={pub_id}" crossorigin="anonymous"></script>'
     )
 
 
