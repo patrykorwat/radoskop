@@ -193,11 +193,19 @@ def main():
         with open(output_dir / "CNAME", "w") as f:
             f.write(config["cname"] + "\n")
 
+    # ads.txt
+    pub_id = config.get("adsense_pub_id", "")
+    if pub_id:
+        with open(output_dir / "ads.txt", "w", encoding="utf-8") as f:
+            f.write(f"google.com, {pub_id}, DIRECT, f08c47fec0942fa0\n")
+
     print(f"Generated site for {config['city_name']}:")
     print(f"  index.html  → {output_dir / 'index.html'}")
     print(f"  404.html    → {output_dir / '404.html'}")
     print(f"  sitemap.xml → {output_dir / 'sitemap.xml'}")
     print(f"  robots.txt  → {output_dir / 'robots.txt'}")
+    if pub_id:
+        print(f"  ads.txt     → {output_dir / 'ads.txt'}")
     if config.get("cname"):
         print(f"  CNAME       → {output_dir / 'CNAME'}")
 
