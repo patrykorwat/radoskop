@@ -766,7 +766,24 @@ function rejectCookies() {
   // Disable GA
   window['ga-disable-{{GA_ID}}'] = true;
 }
+function isGoogleCmpPresent() {
+  // Google Funding Choices registers the IAB TCF API
+  if (typeof window.__tcfapi === 'function') return true;
+  // Also check for Google FC cookie
+  if (document.cookie.indexOf('__gfc_consent_info') !== -1) return true;
+  if (document.cookie.indexOf('FCCDCF') !== -1) return true;
+  return false;
+}
 function initCookieBanner() {
+  // If Google CMP already handles consent, skip our banner entirely
+  if (isGoogleCmpPresent()) return;
+  // Retry once after 1.5s in case Google CMP loads late
+  setTimeout(function() {
+    if (isGoogleCmpPresent()) {
+      document.getElementById('cookie-banner').style.display = 'none';
+      return;
+    }
+  }, 1500);
   var consent = getCookieConsent();
   if (!consent) {
     document.getElementById('cookie-banner').style.display = 'block';

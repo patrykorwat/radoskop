@@ -887,7 +887,17 @@ function rejectCookies(){
   document.getElementById('cookie-banner').style.display='none';
   window['ga-disable-G-1SH24XVXR3']=true;
 }
+function isGoogleCmpPresent(){
+  if(typeof window.__tcfapi==='function')return true;
+  if(document.cookie.indexOf('__gfc_consent_info')!==-1)return true;
+  if(document.cookie.indexOf('FCCDCF')!==-1)return true;
+  return false;
+}
 (function(){
+  if(isGoogleCmpPresent())return;
+  setTimeout(function(){
+    if(isGoogleCmpPresent()){document.getElementById('cookie-banner').style.display='none';return;}
+  },1500);
   var c=getCookieConsent();
   if(!c)document.getElementById('cookie-banner').style.display='block';
   else if(c==='rejected')window['ga-disable-G-1SH24XVXR3']=true;
