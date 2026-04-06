@@ -93,6 +93,12 @@ def generate_sitemap(config: dict) -> str:
     if config.get("has_budget"):
         entries.append(f'  <url>\n    <loc>{url}/budzet</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>')
 
+    # Mój radny page
+    entries.append(f'  <url>\n    <loc>{url}/moj-radny/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.9</priority>\n  </url>')
+
+    # Aktualności page
+    entries.append(f'  <url>\n    <loc>{url}/aktualnosci/</loc>\n    <changefreq>daily</changefreq>\n    <priority>0.8</priority>\n  </url>')
+
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
