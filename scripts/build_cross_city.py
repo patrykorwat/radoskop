@@ -242,7 +242,9 @@ def build_cross_city_json(base_path: Path, output_path: Path):
 
 
 if __name__ == '__main__':
-    base_path = Path('/sessions/modest-exciting-darwin/mnt/git/gdansk-network')
+    # Uruchamiamy z dowolnego miejsca: zakładamy strukturę
+    # <root>/radoskop/scripts/build_cross_city.py + <root>/radoskop-<city>/
+    base_path = Path(__file__).resolve().parent.parent.parent
     output_path = base_path / 'radoskop' / 'docs' / 'cross-city.json'
 
     build_cross_city_json(base_path, output_path)
