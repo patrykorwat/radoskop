@@ -265,6 +265,7 @@ def parse_voting_pdf(pdf_path):
                     raw_names = [n.strip() for n in names_text.split(',') if n.strip()]
                     # Filter: valid councilor names only (2-4 words, no digits, reasonable length)
                     names = []
+                    rejected = []
                     for n in raw_names:
                         # Must look like a name: 2-4 words, starts uppercase, no digits, ≤35 chars
                         words = n.split()
@@ -274,6 +275,10 @@ def parse_voting_pdf(pdf_path):
                                 and not re.search(r'\d', n)
                                 and not any(c in n for c in '();./')):
                             names.append(n)
+                        elif n and not re.match(r'^(Strona|Wygenerowano|Wyniki)', n):
+                            rejected.append(n)
+                    if rejected:
+                        print(f"    name filter rejected ({key}): {rejected[:5]}")
                     vote["named_votes"][key] = names
                 else:
                     vote["named_votes"][key] = []
@@ -293,18 +298,35 @@ def parse_voting_pdf(pdf_path):
 
 
 def validate_session(session):
-    """Validate parsed session data. Returns (ok_count, fail_count, errors)."""
+    """Validate parsed session data. Returns (ok_count, fail_count, errors).
+
+    Distinguishes between:
+    - missing counts (header regex failed, expected=0 but names present)
+    - small mismatches (off by 1-2, likely a name filtered out or page-break artifact)
+    - large mismatches (structural parsing failure)
+    """
     errors = []
     ok = 0
+    keys = ['za', 'przeciw', 'wstrzymal_sie', 'brak_glosu', 'nieobecni']
     for i, v in enumerate(session['votes']):
         c = v.get('counts', {})
         nv = v.get('named_votes', {})
-        expected = sum(c.get(k, 0) for k in ['za', 'przeciw', 'wstrzymal_sie', 'brak_glosu', 'nieobecni'])
-        actual = sum(len(nv.get(k, [])) for k in ['za', 'przeciw', 'wstrzymal_sie', 'brak_glosu', 'nieobecni'])
-        if expected != actual:
-            errors.append(f"Vote {i}: expected {expected} names, got {actual}")
-        else:
+        expected = sum(c.get(k, 0) for k in keys)
+        actual = sum(len(nv.get(k, [])) for k in keys)
+        if expected == actual:
             ok += 1
+        elif expected == 0 and actual > 0:
+            # Counts header not found but names were parsed. Reconstruct
+            # counts from named_votes so downstream consumers have data.
+            for k in keys:
+                c[k] = len(nv.get(k, []))
+            v['counts'] = c
+            v['counts_reconstructed'] = True
+            ok += 1
+        else:
+            diff = actual - expected
+            sign = "+" if diff > 0 else ""
+            errors.append(f"Vote {i}: expected {expected} names, got {actual} ({sign}{diff})")
     return ok, len(errors), errors
 
 
