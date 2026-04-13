@@ -1706,6 +1706,15 @@ function showProfile(name) {
         let _interpQuery = '';
         let _interpPageNum = 1;
 
+        // Build stable shell once: heading, search input, and a results slot
+        iContainer.innerHTML = `<div class="section"><h2 id="interp-heading">Interpelacje i zapytania (${allInterp.length})</h2>`
+          + `<input type="text" id="interp-search" placeholder="Szukaj w interpelacjach..." style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:0.85rem;margin-bottom:12px;font-family:inherit">`
+          + `<div id="interp-results"></div></div>`;
+
+        const _interpResultsEl = document.getElementById('interp-results');
+        const _interpHeadingEl = document.getElementById('interp-heading');
+        const _interpSearchEl = document.getElementById('interp-search');
+
         function renderProfileInterp() {
           let filtered = allInterp;
           if (_interpQuery) {
@@ -1720,9 +1729,9 @@ function showProfile(name) {
           if (_interpPageNum > totalPages) _interpPageNum = totalPages;
           const pageItems = filtered.slice((_interpPageNum - 1) * INTERP_PER_PAGE, _interpPageNum * INTERP_PER_PAGE);
 
-          let iHtml = `<div class="section"><h2>Interpelacje i zapytania (${filtered.length})</h2>`;
-          iHtml += `<input type="text" id="interp-search" placeholder="Szukaj w interpelacjach..." value="${_interpQuery.replace(/"/g, '&quot;')}" style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:0.85rem;margin-bottom:12px;font-family:inherit">`;
-          iHtml += `<div style="overflow-x:auto"><table><thead><tr><th>Data</th><th>Typ</th><th>Przedmiot</th><th>Treść</th><th>Odpowiedź</th></tr></thead><tbody>`;
+          _interpHeadingEl.textContent = `Interpelacje i zapytania (${filtered.length})`;
+
+          let iHtml = `<div style="overflow-x:auto"><table><thead><tr><th>Data</th><th>Typ</th><th>Przedmiot</th><th>Treść</th><th>Odpowiedź</th></tr></thead><tbody>`;
           pageItems.forEach(d => {
             const tC = d.typ === 'interpelacja' ? 'pill-za' : 'pill-wstrzymal';
             const tL = d.typ === 'interpelacja' ? 'Interpelacja' : 'Zapytanie';
@@ -1740,27 +1749,24 @@ function showProfile(name) {
             iHtml += `<button class="prof-interp-next" style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:${_interpPageNum < totalPages ? 'var(--text)' : 'var(--muted)'};cursor:${_interpPageNum < totalPages ? 'pointer' : 'default'};font-size:0.85rem;font-family:inherit" ${_interpPageNum >= totalPages ? 'disabled' : ''}>Nast\u0119pne &rarr;</button>`;
             iHtml += `</div>`;
           }
-          iHtml += `</div>`;
-          iContainer.innerHTML = iHtml;
+          _interpResultsEl.innerHTML = iHtml;
 
-          // Wire search
-          const searchEl = document.getElementById('interp-search');
-          if (searchEl) {
-            let debounce;
-            searchEl.addEventListener('input', () => {
-              clearTimeout(debounce);
-              debounce = setTimeout(() => {
-                _interpQuery = searchEl.value.trim();
-                _interpPageNum = 1;
-                renderProfileInterp();
-                document.getElementById('interp-search')?.focus();
-              }, 250);
-            });
-          }
-          // Wire pagination
-          iContainer.querySelector('.prof-interp-prev')?.addEventListener('click', () => { if (_interpPageNum > 1) { _interpPageNum--; renderProfileInterp(); }});
-          iContainer.querySelector('.prof-interp-next')?.addEventListener('click', () => { if (_interpPageNum < totalPages) { _interpPageNum++; renderProfileInterp(); }});
+          // Wire pagination (search input is stable, no re-wiring needed)
+          _interpResultsEl.querySelector('.prof-interp-prev')?.addEventListener('click', () => { if (_interpPageNum > 1) { _interpPageNum--; renderProfileInterp(); }});
+          _interpResultsEl.querySelector('.prof-interp-next')?.addEventListener('click', () => { if (_interpPageNum < totalPages) { _interpPageNum++; renderProfileInterp(); }});
         }
+
+        // Wire search once on the stable input element
+        let _interpDebounce;
+        _interpSearchEl.addEventListener('input', () => {
+          clearTimeout(_interpDebounce);
+          _interpDebounce = setTimeout(() => {
+            _interpQuery = _interpSearchEl.value.trim();
+            _interpPageNum = 1;
+            renderProfileInterp();
+          }, 250);
+        });
+
         renderProfileInterp();
       } catch(e) {}
     })();
