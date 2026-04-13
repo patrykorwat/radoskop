@@ -542,16 +542,14 @@ async function init() {
     history.replaceState(null, '', decodeURIComponent(sp.get('p')));
   }
   try {
-    const [dataResp, profResp, budgetResp, interpResp] = await Promise.all([
+    const [dataResp, profResp, budgetResp] = await Promise.all([
       fetch(API_BASE + '/data'),
       fetch(API_BASE + '/profiles'),
       fetch(API_BASE + '/budget'),
-      fetch(API_BASE + '/interpelacje?per_page=600'),
     ]);
     RAW = await dataResp.json();
     PROFILES = await profResp.json();
     window.BUDGET = await budgetResp.json();
-    window.INTERPELACJE = (await interpResp.json()).items || [];
 
     // Determine which kadencja to load first
     const defaultKid = RAW.default_kadencja || RAW.kadencje[RAW.kadencje.length-1].id;
@@ -1588,60 +1586,8 @@ function showProfile(name) {
       window._pendingRebPage = null;
     }
 
-    // Interpelacje section
-    const interpData = window.INTERPELACJE || [];
-    if (interpData.length > 0) {
-      const pName = profile.name.trim();
-      const pLow = pName.toLowerCase();
-      const pNameParts = pName.split(' ');
-      const pNameReversed = pNameParts.length >= 2 ? pNameParts.slice(1).join(' ') + ' ' + pNameParts[0] : pName;
-      const pRevLow = pNameReversed.toLowerCase();
-      function interpMatchesName(radnyField) {
-        // Normalize: replace non-breaking spaces, collapse whitespace
-        const norm = radnyField.replace(/\u00a0/g, ' ').replace(/\s{2,}/g, ' ');
-        // Split on comma, semicolon, newline, or " i " (Polish "and") for multi-author
-        const authors = norm.split(/[,;\r\n]+| i /).map(s => s.replace(/\.$/,'').trim()).filter(Boolean);
-        return authors.some(a => {
-          const al = a.toLowerCase();
-          if (al === pLow || al === pRevLow) return true;
-          // Prefix match: "Karol Masztalerz" flipped to "Masztalerz Karol" matches "Masztalerz Karol Konrad"
-          var aParts = al.split(/\s+/);
-          if (aParts.length >= 2) {
-            var aFlipped = aParts.slice(-1).concat(aParts.slice(0, -1)).join(' ');
-            if (pLow.indexOf(aFlipped) === 0 || aFlipped.indexOf(pLow) === 0) return true;
-          }
-          return false;
-        });
-      }
-      const kadSlugUpper = (KAD_SLUGS[kid] || '').toUpperCase();
-      const personInterp = interpData.filter(d => {
-        if (!interpMatchesName(d.radny || '')) return false;
-        // Filter by kadencja: support both slug format ("IX") and date-range format ("2024-2029")
-        if (d.kadencja && kadSlugUpper) return d.kadencja.toUpperCase() === kadSlugUpper || d.kadencja === kid;
-        return true;
-      }).sort((a,b) => (b.data_wplywu || '').localeCompare(a.data_wplywu || ''));
-      if (personInterp.length > 0) {
-        html += `<div class="section">
-          <h2>Interpelacje i zapytania (${personInterp.length})</h2>
-          <div style="overflow-x:auto"><table><thead><tr>
-            <th>Data</th><th>Typ</th><th>Przedmiot</th><th>Treść</th><th>Odpowiedź</th>
-          </tr></thead><tbody>`;
-        personInterp.forEach(d => {
-          const typClass = d.typ === 'interpelacja' ? 'pill-za' : 'pill-wstrzymal';
-          const typLabel = d.typ === 'interpelacja' ? 'Interpelacja' : 'Zapytanie';
-          const trescLink = d.tresc_url ? `<a href="${d.tresc_url}" target="_blank" style="color:var(--accent)">PDF</a>` : '';
-          const odpLink = d.odpowiedz_url ? `<a href="${d.odpowiedz_url}" target="_blank" style="color:var(--accent)">PDF</a>` : (d.data_odpowiedzi ? d.data_odpowiedzi : '<span style="color:var(--muted)">brak</span>');
-          html += `<tr>
-            <td style="white-space:nowrap">${d.data_wplywu || ''}</td>
-            <td><span class="pill ${typClass}">${typLabel}</span></td>
-            <td style="max-width:400px">${d.przedmiot || ''}</td>
-            <td>${trescLink}</td>
-            <td>${odpLink}</td>
-          </tr>`;
-        });
-        html += `</tbody></table></div></div>`;
-      }
-    }
+    // Interpelacje placeholder — rendered async
+    html += `<div id="profile-interp-container"></div>`;
 
     // Votes placeholder - loaded async after the view is rendered
     if (hasVotes) {
@@ -1722,7 +1668,103 @@ function showProfile(name) {
       }
     }
 
-    // Fetch person votes from API async and render into placeholder
+    // Fetch interpelacje for this person async and render into placeholder
+    (async () => {
+      const iContainer = document.getElementById('profile-interp-container');
+      if (!iContainer) return;
+      try {
+        const iResp = await fetch(API_BASE + '/interpelacje?radny=' + encodeURIComponent(profile.name) + '&per_page=500');
+        const iData = await iResp.json();
+        const kadSlugUpper = (KAD_SLUGS[kid] || '').toUpperCase();
+        const pName = profile.name.trim();
+        const pLow = pName.toLowerCase();
+        const pNameParts = pName.split(' ');
+        const pRevLow = pNameParts.length >= 2
+          ? (pNameParts.slice(1).join(' ') + ' ' + pNameParts[0]).toLowerCase() : pLow;
+        function interpMatchesName(radnyField) {
+          const norm = radnyField.replace(/ /g, ' ').replace(/\s{2,}/g, ' ');
+          const authors = norm.split(/[,;
+]+| i /).map(s => s.replace(/\.$/, '').trim()).filter(Boolean);
+          return authors.some(a => {
+            const al = a.toLowerCase();
+            if (al === pLow || al === pRevLow) return true;
+            const aParts = al.split(/\s+/);
+            if (aParts.length >= 2) {
+              const aFlipped = aParts.slice(-1).concat(aParts.slice(0, -1)).join(' ');
+              if (pLow.indexOf(aFlipped) === 0 || aFlipped.indexOf(pLow) === 0) return true;
+            }
+            return false;
+          });
+        }
+        const personInterp = (iData.items || []).filter(d => {
+          if (!interpMatchesName(d.radny || '')) return false;
+          if (d.kadencja && kadSlugUpper) return d.kadencja.toUpperCase() === kadSlugUpper || d.kadencja === kid;
+          return true;
+        }).sort((a, b) => (b.data_wplywu || '').localeCompare(a.data_wplywu || ''));
+        if (personInterp.length > 0) {
+          let iHtml = `<div class="section"><h2>Interpelacje i zapytania (${personInterp.length})</h2><div style="overflow-x:auto"><table><thead><tr><th>Data</th><th>Typ</th><th>Przedmiot</th><th>Treść</th><th>Odpowiedź</th></tr></thead><tbody>`;
+          personInterp.forEach(d => {
+            const typClass = d.typ === 'interpelacja' ? 'pill-za' : 'pill-wstrzymal';
+            const typLabel = d.typ === 'interpelacja' ? 'Interpelacja' : 'Zapytanie';
+            const trescLink = d.tresc_url ? `<a href="${d.tresc_url}" target="_blank" style="color:var(--accent)">PDF</a>` : '';
+            const odpLink = d.odpowiedz_url ? `<a href="${d.odpowiedz_url}" target="_blank" style="color:var(--accent)">PDF</a>` : (d.data_odpowiedzi ? d.data_odpowiedzi : '<span style="color:var(--muted)">brak</span>');
+            iHtml += `<tr><td style="white-space:nowrap">${d.data_wplywu || ''}</td><td><span class="pill ${typClass}">${typLabel}</span></td><td style="max-width:400px">${d.przedmiot || ''}</td><td>${trescLink}</td><td>${odpLink}</td></tr>`;
+          });
+          iHtml += `</tbody></table></div></div>`;
+          iContainer.innerHTML = iHtml;
+        }
+      } catch(e) { /* silent fail */ }
+    })();
+
+        // Fetch interpelacje for this person async
+    (async () => {
+      const iContainer = document.getElementById('profile-interp-container');
+      if (!iContainer) return;
+      try {
+        const iResp = await fetch(API_BASE + '/interpelacje?radny=' + encodeURIComponent(profile.name) + '&per_page=500');
+        const iData = await iResp.json();
+        const kadSlugUpper = (KAD_SLUGS[kid] || '').toUpperCase();
+        const pName = profile.name.trim();
+        const pLow = pName.toLowerCase();
+        const pNameParts = pName.split(' ');
+        const pRevLow = pNameParts.length >= 2
+          ? (pNameParts.slice(1).join(' ') + ' ' + pNameParts[0]).toLowerCase() : pLow;
+        function iMatchesName(f) {
+          const norm = f.replace(/ /g, ' ').replace(/\s{2,}/g, ' ');
+          const authors = norm.split(/[,;
+]+| i /).map(s => s.replace(/\.$/, '').trim()).filter(Boolean);
+          return authors.some(a => {
+            const al = a.toLowerCase();
+            if (al === pLow || al === pRevLow) return true;
+            const ap = al.split(/\s+/);
+            if (ap.length >= 2) {
+              const af = ap.slice(-1).concat(ap.slice(0, -1)).join(' ');
+              if (pLow.indexOf(af) === 0 || af.indexOf(pLow) === 0) return true;
+            }
+            return false;
+          });
+        }
+        const personInterp = (iData.items || []).filter(d => {
+          if (!iMatchesName(d.radny || '')) return false;
+          if (d.kadencja && kadSlugUpper) return d.kadencja.toUpperCase() === kadSlugUpper || d.kadencja === kid;
+          return true;
+        }).sort((a, b) => (b.data_wplywu || '').localeCompare(a.data_wplywu || ''));
+        if (personInterp.length > 0) {
+          let iHtml = `<div class="section"><h2>Interpelacje i zapytania (${personInterp.length})</h2><div style="overflow-x:auto"><table><thead><tr><th>Data</th><th>Typ</th><th>Przedmiot</th><th>Treść</th><th>Odpowiedź</th></tr></thead><tbody>`;
+          personInterp.forEach(d => {
+            const tC = d.typ === 'interpelacja' ? 'pill-za' : 'pill-wstrzymal';
+            const tL = d.typ === 'interpelacja' ? 'Interpelacja' : 'Zapytanie';
+            const tUrl = d.tresc_url ? `<a href="${d.tresc_url}" target="_blank" style="color:var(--accent)">PDF</a>` : '';
+            const oUrl = d.odpowiedz_url ? `<a href="${d.odpowiedz_url}" target="_blank" style="color:var(--accent)">PDF</a>` : (d.data_odpowiedzi ? d.data_odpowiedzi : '<span style="color:var(--muted)">brak</span>');
+            iHtml += `<tr><td style="white-space:nowrap">${d.data_wplywu || ''}</td><td><span class="pill ${tC}">${tL}</span></td><td style="max-width:400px">${d.przedmiot || ''}</td><td>${tUrl}</td><td>${oUrl}</td></tr>`;
+          });
+          iHtml += `</tbody></table></div></div>`;
+          iContainer.innerHTML = iHtml;
+        }
+      } catch(e) {}
+    })();
+
+        // Fetch person votes from API async and render into placeholder
     if (hasVotes) {
       const profCatOrder = Object.keys(VOTE_CATS).sort((a,b) => (VOTE_CATS[a]?.order||99) - (VOTE_CATS[b]?.order||99));
       const voteLabel = (v) => ({za:'za',przeciw:'przeciw',wstrzymal_sie:isFemale(profile.name)?'wstrzymała się':'wstrzymał się',brak_glosu:'brak głosu',nieobecny:isFemale(profile.name)?'nieobecna':'nieobecny'})[v]||v||'—';
