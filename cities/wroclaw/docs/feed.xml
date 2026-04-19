@@ -5,11 +5,38 @@
   <link href="https://wroclaw.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://wroclaw.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://wroclaw.radoskop.pl/</id>
-  <updated>2026-04-13T15:31:27Z</updated>
+  <updated>2026-04-17T13:34:31Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
+  <entry>
+    <title>Zapytanie: opóźnienia realizacji remontu chodnika przy ul. Jedności Narodowej</title>
+    <link href="https://wroclaw.radoskop.pl/profil/izabela-duchnowska/" rel="alternate" type="text/html"/>
+    <id>https://wroclaw.radoskop.pl/profil/izabela-duchnowska/#interpelacja</id>
+    <published>2026-04-17T12:00:00+01:00</published>
+    <updated>2026-04-17T12:00:00+01:00</updated>
+    <summary type="html">Izabela Duchnowska. opóźnienia realizacji remontu chodnika przy ul. Jedności Narodowej</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: ustawienia lustra drogowego w obrębie skrzyżowania ulic Wróblej i Sztabowej</title>
+    <link href="https://wroclaw.radoskop.pl/profil/joanna-pieczynska/" rel="alternate" type="text/html"/>
+    <id>https://wroclaw.radoskop.pl/profil/joanna-pieczynska/#interpelacja</id>
+    <published>2026-04-14T12:00:00+01:00</published>
+    <updated>2026-04-14T12:00:00+01:00</updated>
+    <summary type="html">Joanna Pieczyńska. ustawienia lustra drogowego w obrębie skrzyżowania ulic Wróblej i Sztabowej</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: poprawy bezpieczeństwa ruchu drogowego na skrzyżowaniu ul. Pułaskiego i ul. Komuny Paryskiej we Wroc</title>
+    <link href="https://wroclaw.radoskop.pl/profil/agnieszka-dusza/" rel="alternate" type="text/html"/>
+    <id>https://wroclaw.radoskop.pl/profil/agnieszka-dusza/#interpelacja</id>
+    <published>2026-04-13T12:00:00+01:00</published>
+    <updated>2026-04-13T12:00:00+01:00</updated>
+    <summary type="html">Agnieszka Dusza. poprawy bezpieczeństwa ruchu drogowego na skrzyżowaniu ul. Pułaskiego i ul. Komuny Paryskiej we Wrocławiu</summary>
+    <category term="interpelacja"/>
+  </entry>
   <entry>
     <title>Interpelacja: budowy infrastruktury pieszo-rowerowej w rejonie wiaduktu przy ul. Krzyckiej</title>
     <link href="https://wroclaw.radoskop.pl/profil/mateusz-zak/" rel="alternate" type="text/html"/>
@@ -65,15 +92,6 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
-    <title>Interpelacja: przygotowania polityki muralowej dla Wrocławia z uwzględnieniem zasad dotyczących street artu i prze</title>
-    <link href="https://wroclaw.radoskop.pl/profil/izabela-duchnowska/" rel="alternate" type="text/html"/>
-    <id>https://wroclaw.radoskop.pl/profil/izabela-duchnowska/#interpelacja</id>
-    <published>2026-03-31T12:00:00+01:00</published>
-    <updated>2026-03-31T12:00:00+01:00</updated>
-    <summary type="html">Izabela Duchnowska. przygotowania polityki muralowej dla Wrocławia z uwzględnieniem zasad dotyczących street artu i przeciwdziałania wandalizmowi</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
     <title>Sesja XXIX Rady Miasta Wrocław</title>
     <link href="https://wroclaw.radoskop.pl/sesja/XXIX/" rel="alternate" type="text/html"/>
     <id>https://wroclaw.radoskop.pl/sesja/XXIX/#session</id>
@@ -81,15 +99,6 @@
     <updated>2026-03-19T12:00:00+01:00</updated>
     <summary type="html">0 glosowan.</summary>
     <category term="session"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: wprowadzenia dodatkowych postojów pociągów na stacji kolejowej Wrocław-Brochów w czasie remontu esta</title>
-    <link href="https://wroclaw.radoskop.pl/profil/agnieszka-dusza/" rel="alternate" type="text/html"/>
-    <id>https://wroclaw.radoskop.pl/profil/agnieszka-dusza/#interpelacja</id>
-    <published>2026-03-19T12:00:00+01:00</published>
-    <updated>2026-03-19T12:00:00+01:00</updated>
-    <summary type="html">Agnieszka Dusza. wprowadzenia dodatkowych postojów pociągów na stacji kolejowej Wrocław-Brochów w czasie remontu estakady Mościckiego - Gazowa - Karwińska</summary>
-    <category term="interpelacja"/>
   </entry>
   <entry>
     <title>Zapytanie: okoliczności opróżnienia lokalu komunalnego w grudniu 2025 roku</title>
@@ -692,15 +701,6 @@
     <published>2026-02-25T12:00:00+01:00</published>
     <updated>2026-02-25T12:00:00+01:00</updated>
     <summary type="html">Piotr Uhle. działalności Rad Społecznych przy Prezydencie Wrocławia w latach 2018-2026</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Zapytanie: opóźnień w kursowaniu linii autobusowych 124 i 134 Księże Wielkie - Nowy Dwór P+R</title>
-    <link href="https://wroclaw.radoskop.pl/profil/joanna-pieczynska/" rel="alternate" type="text/html"/>
-    <id>https://wroclaw.radoskop.pl/profil/joanna-pieczynska/#interpelacja</id>
-    <published>2026-02-16T12:00:00+01:00</published>
-    <updated>2026-02-16T12:00:00+01:00</updated>
-    <summary type="html">Joanna Pieczyńska. opóźnień w kursowaniu linii autobusowych 124 i 134 Księże Wielkie - Nowy Dwór P+R</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

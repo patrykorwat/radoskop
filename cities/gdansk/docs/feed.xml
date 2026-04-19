@@ -5,7 +5,7 @@
   <link href="https://gdansk.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://gdansk.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://gdansk.radoskop.pl/</id>
-  <updated>2026-04-13T13:31:37Z</updated>
+  <updated>2026-04-17T14:02:58Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
@@ -20,30 +20,49 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
+    <title>Interpelacja: w sprawie ustawienia wiaty przystankowej na przystanku Swojska 04 w Gdańsku</title>
+    <link href="https://gdansk.radoskop.pl/profil/marcin-makowski/" rel="alternate" type="text/html"/>
+    <id>https://gdansk.radoskop.pl/profil/marcin-makowski/#interpelacja</id>
+    <published>2026-04-17T12:00:00+01:00</published>
+    <updated>2026-04-17T12:00:00+01:00</updated>
+    <summary type="html">Marcin Makowski. w sprawie ustawienia wiaty przystankowej na przystanku Swojska 04 w Gdańsku</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: w sprawie wsparcia w roku bieżącym dodatkowymi środkami finansowymi Szkoły Podstawowej nr 86 im. p</title>
+    <link href="https://gdansk.radoskop.pl/interpelacje/" rel="alternate" type="text/html"/>
+    <id>https://gdansk.radoskop.pl/interpelacje/#interpelacja</id>
+    <published>2026-04-17T12:00:00+01:00</published>
+    <updated>2026-04-17T12:00:00+01:00</updated>
+    <summary type="html">Mateusz Skarbek
+Kamila Błaszczyk. w sprawie wsparcia w roku bieżącym dodatkowymi środkami finansowymi Szkoły Podstawowej nr 86 im. prof. Jerzego Sampa</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: w sprawie przeprowadzenia konsultacji z zakresu przebiegu oraz rozkładu jazdy linii komunikacyjnych</title>
+    <link href="https://gdansk.radoskop.pl/profil/lukasz-swiacki/" rel="alternate" type="text/html"/>
+    <id>https://gdansk.radoskop.pl/profil/lukasz-swiacki/#interpelacja</id>
+    <published>2026-04-16T12:00:00+01:00</published>
+    <updated>2026-04-16T12:00:00+01:00</updated>
+    <summary type="html">Łukasz Świacki. w sprawie przeprowadzenia konsultacji z zakresu przebiegu oraz rozkładu jazdy linii komunikacyjnych transportu zbiorowego</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: w sprawie postulatów radnego dzielnicy Stogi</title>
+    <link href="https://gdansk.radoskop.pl/profil/andrzej-skiba/" rel="alternate" type="text/html"/>
+    <id>https://gdansk.radoskop.pl/profil/andrzej-skiba/#interpelacja</id>
+    <published>2026-04-15T12:00:00+01:00</published>
+    <updated>2026-04-15T12:00:00+01:00</updated>
+    <summary type="html">Andrzej Skiba. w sprawie postulatów radnego dzielnicy Stogi</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
     <title>Interpelacja: w sprawie remontu ulicy Prezydenta Lecha Kaczyńskiego oraz przebudowy przystanków autobusowych Biały</title>
     <link href="https://gdansk.radoskop.pl/profil/agnieszka-owczarczak/" rel="alternate" type="text/html"/>
     <id>https://gdansk.radoskop.pl/profil/agnieszka-owczarczak/#interpelacja</id>
     <published>2026-04-13T12:00:00+01:00</published>
     <updated>2026-04-13T12:00:00+01:00</updated>
     <summary type="html">Agnieszka Owczarczak. w sprawie remontu ulicy Prezydenta Lecha Kaczyńskiego oraz przebudowy przystanków autobusowych Biały Dwór</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: w sprawie poprawy organizacji ruchu i bezpieczeństwa przy zatoce parkingowej przy restauracji KFC </title>
-    <link href="https://gdansk.radoskop.pl/profil/marcin-makowski/" rel="alternate" type="text/html"/>
-    <id>https://gdansk.radoskop.pl/profil/marcin-makowski/#interpelacja</id>
-    <published>2026-04-13T12:00:00+01:00</published>
-    <updated>2026-04-13T12:00:00+01:00</updated>
-    <summary type="html">Marcin Makowski. w sprawie poprawy organizacji ruchu i bezpieczeństwa przy zatoce parkingowej przy restauracji KFC na ul. Jana Pawła II</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Zapytanie: w sprawie czystości wiat na przystankach komunikacji miejskiej w Gdańsku</title>
-    <link href="https://gdansk.radoskop.pl/profil/andrzej-skiba/" rel="alternate" type="text/html"/>
-    <id>https://gdansk.radoskop.pl/profil/andrzej-skiba/#interpelacja</id>
-    <published>2026-04-13T12:00:00+01:00</published>
-    <updated>2026-04-13T12:00:00+01:00</updated>
-    <summary type="html">Andrzej Skiba. w sprawie czystości wiat na przystankach komunikacji miejskiej w Gdańsku</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -92,17 +111,6 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
-    <title>Interpelacja: Dot. zamiaru wszczęcia działań,  zmierzających do przejęcia funduszu socjalnego</title>
-    <link href="https://gdansk.radoskop.pl/interpelacje/" rel="alternate" type="text/html"/>
-    <id>https://gdansk.radoskop.pl/interpelacje/#interpelacja</id>
-    <published>2026-04-03T12:00:00+01:00</published>
-    <updated>2026-04-03T12:00:00+01:00</updated>
-    <summary type="html">Piotr  Gierszewski
-Aleksander  Jankowski
-Kazimierz  Koralewski. Dot. zamiaru wszczęcia działań,  zmierzających do przejęcia funduszu socjalnego</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
     <title>Interpelacja: w sprawie remontu chodnika i warstwy ścieralnej w ul. Barniewickiej</title>
     <link href="https://gdansk.radoskop.pl/profil/jan-perucki/" rel="alternate" type="text/html"/>
     <id>https://gdansk.radoskop.pl/profil/jan-perucki/#interpelacja</id>
@@ -145,15 +153,6 @@ Kazimierz  Koralewski. Dot. zamiaru wszczęcia działań,  zmierzających do prz
     <published>2026-03-09T12:00:00+01:00</published>
     <updated>2026-03-09T12:00:00+01:00</updated>
     <summary type="html">Jolanta Banach. w sprawie realizacji placu zabaw na Biskupiej Górce</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: w sprawie naprawy lub wymiany drzwi wejściowych do budynku przy ul. Zakopiańskiej</title>
-    <link href="https://gdansk.radoskop.pl/profil/lukasz-swiacki/" rel="alternate" type="text/html"/>
-    <id>https://gdansk.radoskop.pl/profil/lukasz-swiacki/#interpelacja</id>
-    <published>2026-03-04T12:00:00+01:00</published>
-    <updated>2026-03-04T12:00:00+01:00</updated>
-    <summary type="html">Łukasz Świacki. w sprawie naprawy lub wymiany drzwi wejściowych do budynku przy ul. Zakopiańskiej</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

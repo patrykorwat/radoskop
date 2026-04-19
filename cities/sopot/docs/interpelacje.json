@@ -1,14 +1,38 @@
 [
   {
+    "cri": "244/2026",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Piotr Kurdziel",
+    "przedmiot": "dot. zasad określania korzyści gminy wynikających ze zmian Miejscowych Planów Zagospodarowania Przestrzennego lub ZPI",
+    "data_wplywu": "2026-04-16",
+    "tresc_url": "https://bip.sopot.pl/api/files/58265",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": ""
+  },
+  {
+    "cri": "243/2026",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Piotr Kurdziel",
+    "przedmiot": "dot. wyników konsultacji społecznych dotyczących wyznaczeni przejść dla pieszych przez Aleję Niepodległości",
+    "data_wplywu": "2026-04-16",
+    "tresc_url": "https://bip.sopot.pl/api/files/58263",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": ""
+  },
+  {
     "cri": "241/2026",
     "typ": "interpelacja",
     "rok": 2026,
     "kadencja": "2024-2029",
     "radny": "Piotr Kurdziel",
     "przedmiot": "dot. połowu śledzia z Molo w Sopocie",
-    "data_wplywu": "2026-04-09",
+    "data_wplywu": "2026-04-16",
     "tresc_url": "https://bip.sopot.pl/api/files/58226",
-    "odpowiedz_url": "",
+    "odpowiedz_url": "https://bip.sopot.pl/api/files/58273",
     "data_odpowiedzi": ""
   },
   {

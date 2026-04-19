@@ -5,20 +5,11 @@
   <link href="https://lublin.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://lublin.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://lublin.radoskop.pl/</id>
-  <updated>2026-04-13T16:39:59Z</updated>
+  <updated>2026-04-17T12:56:29Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
-  <entry>
-    <title>Interpelacja: Interpelacja w sprawie zmiany organizacji ruchu na skrzyżowaniu ul. Żywnego z ul. Żelazowej Woli – p</title>
-    <link href="https://lublin.radoskop.pl/profil/tomasz-gontarz/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/profil/tomasz-gontarz/#interpelacja</id>
-    <published>2029-04-30T12:00:00+01:00</published>
-    <updated>2029-04-30T12:00:00+01:00</updated>
-    <summary type="html">Tomasz Gontarz. Interpelacja w sprawie zmiany organizacji ruchu na skrzyżowaniu ul. Żywnego z ul. Żelazowej Woli – pilne uzupełnienie słupków blokujących U-12c</summary>
-    <category term="interpelacja"/>
-  </entry>
   <entry>
     <title>Interpelacja: Interpelacja w sprawie planów, koncepcji oraz kosztów rewitalizacji Podzamcza i doliny Czechówki</title>
     <link href="https://lublin.radoskop.pl/profil/konrad-wcislo/" rel="alternate" type="text/html"/>
@@ -29,30 +20,48 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
+    <title>Interpelacja: Interpelacja w sprawie zmiany organizacji ruchu na skrzyżowaniu ul. Żywnego z ul. Żelazowej Woli – p</title>
+    <link href="https://lublin.radoskop.pl/profil/tomasz-gontarz/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/profil/tomasz-gontarz/#interpelacja</id>
+    <published>2029-04-30T12:00:00+01:00</published>
+    <updated>2029-04-30T12:00:00+01:00</updated>
+    <summary type="html">Tomasz Gontarz. Interpelacja w sprawie zmiany organizacji ruchu na skrzyżowaniu ul. Żywnego z ul. Żelazowej Woli – pilne uzupełnienie słupków blokujących U-12c</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: Interpelacja w sprawie oznaczeń tras na Placu Litewskim dla ruchu rowerowego</title>
+    <link href="https://lublin.radoskop.pl/profil/robert-derewenda/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/profil/robert-derewenda/#interpelacja</id>
+    <published>2026-04-14T12:00:00+01:00</published>
+    <updated>2026-04-14T12:00:00+01:00</updated>
+    <summary type="html">Robert Derewenda. Interpelacja w sprawie oznaczeń tras na Placu Litewskim dla ruchu rowerowego</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: Interpelacja w sprawie wymiany murawy na stadionie Motor Lublin Arena</title>
+    <link href="https://lublin.radoskop.pl/profil/marcin-jakobczyk/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/profil/marcin-jakobczyk/#interpelacja</id>
+    <published>2026-04-14T12:00:00+01:00</published>
+    <updated>2026-04-14T12:00:00+01:00</updated>
+    <summary type="html">Marcin Jakóbczyk. Interpelacja w sprawie wymiany murawy na stadionie Motor Lublin Arena</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: Interpelacja w sprawie spowolnienia ruchu na ul. Gabriela Narutowicza w Lublinie</title>
+    <link href="https://lublin.radoskop.pl/profil/kamila-florek/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/profil/kamila-florek/#interpelacja</id>
+    <published>2026-04-13T12:00:00+01:00</published>
+    <updated>2026-04-13T12:00:00+01:00</updated>
+    <summary type="html">Kamila Florek. Interpelacja w sprawie spowolnienia ruchu na ul. Gabriela Narutowicza w Lublinie</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
     <title>Interpelacja: Interpelacja w sprawie planowanej budowy dwóch budynków wielorodzinnych przy ul. Berylowej/Jantarowe</title>
     <link href="https://lublin.radoskop.pl/profil/anna-glijer/" rel="alternate" type="text/html"/>
     <id>https://lublin.radoskop.pl/profil/anna-glijer/#interpelacja</id>
     <published>2026-04-09T12:00:00+01:00</published>
     <updated>2026-04-09T12:00:00+01:00</updated>
     <summary type="html">Anna Glijer. Interpelacja w sprawie planowanej budowy dwóch budynków wielorodzinnych przy ul. Berylowej/Jantarowej w Lublinie</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: Interpelacja w sprawie liczebności uczniów z terenu miasta Lublin</title>
-    <link href="https://lublin.radoskop.pl/profil/marcin-jakobczyk/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/profil/marcin-jakobczyk/#interpelacja</id>
-    <published>2026-03-31T12:00:00+01:00</published>
-    <updated>2026-03-31T12:00:00+01:00</updated>
-    <summary type="html">Marcin Jakóbczyk. Interpelacja w sprawie liczebności uczniów z terenu miasta Lublin</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: Interpelacja w sprawie kursowania autobusów z przystanku „Kampus Zachodni UMCS” i „Nałęczowska 04”</title>
-    <link href="https://lublin.radoskop.pl/profil/robert-derewenda/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/profil/robert-derewenda/#interpelacja</id>
-    <published>2026-03-30T12:00:00+01:00</published>
-    <updated>2026-03-30T12:00:00+01:00</updated>
-    <summary type="html">Robert Derewenda. Interpelacja w sprawie kursowania autobusów z przystanku „Kampus Zachodni UMCS” i „Nałęczowska 04”</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -488,12 +497,12 @@
     <category term="session"/>
   </entry>
   <entry>
-    <title>Interpelacja: Interpelacja w sprawie rażących zaniedbań oraz planów dotyczących „Dworku Grafa” w Lublinie</title>
+    <title>Interpelacja: Interpelacja w sprawie rozbudowy infrastruktury sportowo-rekreacyjnej na zielonym skwerze przy ul. B</title>
     <link href="https://lublin.radoskop.pl/profil/justyna-budzynska/" rel="alternate" type="text/html"/>
     <id>https://lublin.radoskop.pl/profil/justyna-budzynska/#interpelacja</id>
     <published>2026-03-26T12:00:00+01:00</published>
     <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Justyna Budzyńska. Interpelacja w sprawie rażących zaniedbań oraz planów dotyczących „Dworku Grafa” w Lublinie</summary>
+    <summary type="html">Justyna Budzyńska. Interpelacja w sprawie rozbudowy infrastruktury sportowo-rekreacyjnej na zielonym skwerze przy ul. Bluszczowej w Lublinie</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -548,15 +557,6 @@
     <published>2026-02-24T12:00:00+01:00</published>
     <updated>2026-02-24T12:00:00+01:00</updated>
     <summary type="html">Marta Gutkowska. Interpelacja w sprawie przyszłości pętli autobusowej Paderewskiego (okolice ul. Choiny)</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: Interpelacja w sprawie udostępnienia energii elektrycznej dla kupców prowadzących działalność przy u</title>
-    <link href="https://lublin.radoskop.pl/profil/kamila-florek/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/profil/kamila-florek/#interpelacja</id>
-    <published>2026-02-11T12:00:00+01:00</published>
-    <updated>2026-02-11T12:00:00+01:00</updated>
-    <summary type="html">Kamila Florek. Interpelacja w sprawie udostępnienia energii elektrycznej dla kupców prowadzących działalność przy ul. Szambelańskiej w Lublinie</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

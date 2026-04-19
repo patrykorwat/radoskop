@@ -1,5 +1,71 @@
 [
   {
+    "przedmiot": "opóźnienia realizacji remontu chodnika przy ul. Jedności Narodowej",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/88936/zapytanie-w-sprawie-opoznienia-realizacji-remontu-chodnika-przy-ul-jednosci-narodowej",
+    "typ": "zapytanie",
+    "radny": "Izabela Duchnowska",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-17",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173383",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173383"
+      }
+    ],
+    "kategoria": "transport",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "ustawienia lustra drogowego w obrębie skrzyżowania ulic Wróblej i Sztabowej",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/88877/interpelacja-w-sprawie-ustawienia-lustra-drogowego-w-obrebie-skrzyzowania-ulic-wroblej-i-sztabowej",
+    "typ": "interpelacja",
+    "radny": "Joanna Pieczyńska",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Interpelacja",
+    "data_wplywu": "2026-04-14",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173239",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja",
+        "url": "https://bip.um.wroc.pl/attachments/download/173239"
+      }
+    ],
+    "kategoria": "transport",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "poprawy bezpieczeństwa ruchu drogowego na skrzyżowaniu ul. Pułaskiego i ul. Komuny Paryskiej we Wrocławiu",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/88852/interpelacja-w-sprawie-poprawy-bezpieczenstwa-ruchu-drogowego-na-skrzyzowaniu-ul-pulaskiego-i-ul-komuny-paryskiej-we-wroclawiu",
+    "typ": "interpelacja",
+    "radny": "Agnieszka Dusza",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Interpelacja",
+    "data_wplywu": "2026-04-13",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173189",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja",
+        "url": "https://bip.um.wroc.pl/attachments/download/173189"
+      }
+    ],
+    "kategoria": "transport",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
     "przedmiot": "budowy infrastruktury pieszo-rowerowej w rejonie wiaduktu przy ul. Krzyckiej",
     "bip_url": "https://bip.um.wroc.pl/interpelacja/88833/interpelacja-w-sprawie-budowy-infrastruktury-pieszo-rowerowej-w-rejonie-wiaduktu-przy-ul-krzyckiej",
     "typ": "interpelacja",
@@ -640,21 +706,29 @@
     "bip_url": "https://bip.um.wroc.pl/interpelacja/88255/interpelacja-w-sprawie-narastajacego-problemu-komunikacyjnego-w-polnocno-zachodniej-czesci-wroclawia-w-szczegolnosci-na-osiedlu-lipa-piotrowska",
     "typ": "interpelacja",
     "radny": "Mateusz Żak",
-    "status": "oczekuje na odpowiedź",
+    "status": "udzielono odpowiedzi",
     "kadencja": "IX",
     "typ_full": "Interpelacja",
     "data_wplywu": "2026-03-19",
     "tresc_url": "https://bip.um.wroc.pl/attachments/download/172347",
+    "odpowiedz_url": "https://bip.um.wroc.pl/attachments/download/173386",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja",
         "url": "https://bip.um.wroc.pl/attachments/download/172347"
+      },
+      {
+        "nazwa": "Odpowiedź na interpelację",
+        "url": "https://bip.um.wroc.pl/attachments/download/173372"
+      },
+      {
+        "nazwa": "Odpowiedź na interpelację (wersja tekstowa)",
+        "url": "https://bip.um.wroc.pl/attachments/download/173386"
       }
     ],
     "kategoria": "inne",
-    "odpowiedz_status": "oczekuje na odpowiedź",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "data_odpowiedzi": "",
-    "odpowiedz_url": "",
     "nr_sprawy": ""
   },
   {

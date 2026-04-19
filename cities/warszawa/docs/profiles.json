@@ -14,17 +14,31 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 91.2,
+          "frekwencja": 92.6,
+          "aktywnosc": 90.8,
           "zgodnosc_z_klubem": 95.7,
-          "votes_za": 1299,
+          "votes_za": 1340,
           "votes_przeciw": 79,
-          "votes_wstrzymal": 188,
+          "votes_wstrzymal": 192,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 68,
+          "votes_total": 1775,
+          "rebellion_count": 70,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_009",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radnego P. Mazurka o wprowadzenie punktu pt.: „Informacja Prezydenta m.st. Warszawy w sprawie li",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_011",
+              "session": "2026-04-16",
+              "topic": "Przyjęcie protokołu obrad XXXIII sesji Rady m.st. Warszawy.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
             {
               "vote_id": "2026-03-12_008",
               "session": "2026-03-12",
@@ -505,11 +519,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 25,
-            "total_statements": 60,
-            "total_words": 30106,
+            "sessions_spoke": 26,
+            "total_statements": 63,
+            "total_words": 31222,
             "avg_statements_per_session": 2.4,
-            "avg_words_per_session": 1204,
+            "avg_words_per_session": 1201,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -660,6 +674,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 2,
                 "words": 401
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 3,
+                "words": 1116
               }
             ]
           }
@@ -1089,15 +1109,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 93.6,
+          "frekwencja": 88.9,
+          "aktywnosc": 93.8,
           "zgodnosc_z_klubem": 99.3,
-          "votes_za": 1143,
-          "votes_przeciw": 397,
-          "votes_wstrzymal": 68,
+          "votes_za": 1192,
+          "votes_przeciw": 398,
+          "votes_wstrzymal": 75,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 11,
           "rebellions": [
             {
@@ -1212,15 +1232,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 98.2,
+          "frekwencja": 92.6,
+          "aktywnosc": 98.3,
           "zgodnosc_z_klubem": 99.1,
-          "votes_za": 1218,
-          "votes_przeciw": 409,
-          "votes_wstrzymal": 60,
+          "votes_za": 1267,
+          "votes_przeciw": 410,
+          "votes_wstrzymal": 67,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 16,
           "rebellions": [
             {
@@ -1791,17 +1811,38 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 96.3,
-          "zgodnosc_z_klubem": 99.8,
-          "votes_za": 1206,
-          "votes_przeciw": 398,
-          "votes_wstrzymal": 51,
+          "frekwencja": 88.9,
+          "aktywnosc": 96.5,
+          "zgodnosc_z_klubem": 99.6,
+          "votes_za": 1256,
+          "votes_przeciw": 399,
+          "votes_wstrzymal": 57,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 3,
+          "votes_total": 1775,
+          "rebellion_count": 6,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_005",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radną Z. Smełkę-Leszczyńską o wprowadzenie punktu pt.: „Informacja Prezydenta m.st. Warszawy w s",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-04-16_006",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radną M. Szczepańską o wprowadzenie – Projekt stanowiska Rady m.st. Warszawy w sprawie powołania",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-04-16_011",
+              "session": "2026-04-16",
+              "topic": "Przyjęcie protokołu obrad XXXIII sesji Rady m.st. Warszawy.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
             {
               "vote_id": "2025-04-24_006",
               "session": "2025-04-24",
@@ -1882,15 +1923,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 98.4,
+          "frekwencja": 92.6,
+          "aktywnosc": 98.5,
           "zgodnosc_z_klubem": 99.9,
-          "votes_za": 1237,
-          "votes_przeciw": 397,
-          "votes_wstrzymal": 57,
+          "votes_za": 1286,
+          "votes_przeciw": 398,
+          "votes_wstrzymal": 64,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 1,
           "rebellions": [
             {
@@ -1947,15 +1988,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 88.1,
+          "frekwencja": 85.2,
+          "aktywnosc": 85.2,
           "zgodnosc_z_klubem": 99.8,
           "votes_za": 1068,
           "votes_przeciw": 390,
           "votes_wstrzymal": 55,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 3,
           "rebellions": [
             {
@@ -2482,17 +2523,31 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 93.1,
+          "frekwencja": 92.6,
+          "aktywnosc": 93.2,
           "zgodnosc_z_klubem": 96.9,
-          "votes_za": 1317,
-          "votes_przeciw": 89,
-          "votes_wstrzymal": 193,
+          "votes_za": 1364,
+          "votes_przeciw": 93,
+          "votes_wstrzymal": 198,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 50,
+          "votes_total": 1775,
+          "rebellion_count": 52,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_029",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1377/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na zawarcie przez m.st. Warszawa porozumienia w",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_036",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1384/2026 Rady m.st. Warszawy w sprawie wyrażenia opinii dotyczącej pozbawienia lasu charakteru ochronn",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
             {
               "vote_id": "2026-03-12_008",
               "session": "2026-03-12",
@@ -3770,17 +3825,24 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
+          "frekwencja": 92.6,
           "aktywnosc": 98.4,
-          "zgodnosc_z_klubem": 99.9,
-          "votes_za": 1233,
-          "votes_przeciw": 398,
-          "votes_wstrzymal": 59,
+          "zgodnosc_z_klubem": 99.8,
+          "votes_za": 1280,
+          "votes_przeciw": 400,
+          "votes_wstrzymal": 66,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 2,
+          "votes_total": 1775,
+          "rebellion_count": 3,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_036",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1384/2026 Rady m.st. Warszawy w sprawie wyrażenia opinii dotyczącej pozbawienia lasu charakteru ochronn",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
             {
               "vote_id": "2025-09-18_017",
               "session": "2025-09-18",
@@ -3799,11 +3861,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 9,
-            "total_statements": 13,
-            "total_words": 3252,
-            "avg_statements_per_session": 1.4,
-            "avg_words_per_session": 361,
+            "sessions_spoke": 10,
+            "total_statements": 15,
+            "total_words": 3999,
+            "avg_statements_per_session": 1.5,
+            "avg_words_per_session": 400,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -3858,6 +3920,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 2,
                 "words": 708
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 2,
+                "words": 747
               }
             ]
           }
@@ -4261,17 +4329,24 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 80.8,
-          "aktywnosc": 87.0,
+          "frekwencja": 81.5,
+          "aktywnosc": 87.4,
           "zgodnosc_z_klubem": 99.3,
-          "votes_za": 1038,
-          "votes_przeciw": 390,
-          "votes_wstrzymal": 66,
+          "votes_za": 1088,
+          "votes_przeciw": 391,
+          "votes_wstrzymal": 72,
           "votes_brak": 0,
           "votes_nieobecny": 1,
-          "votes_total": 1718,
-          "rebellion_count": 10,
+          "votes_total": 1775,
+          "rebellion_count": 11,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_009",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radnego P. Mazurka o wprowadzenie punktu pt.: „Informacja Prezydenta m.st. Warszawy w sprawie li",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
             {
               "vote_id": "2026-03-12_083",
               "session": "2026-03-12",
@@ -4875,17 +4950,24 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 90.4,
-          "zgodnosc_z_klubem": 97.2,
-          "votes_za": 1255,
-          "votes_przeciw": 106,
-          "votes_wstrzymal": 192,
+          "frekwencja": 88.9,
+          "aktywnosc": 90.7,
+          "zgodnosc_z_klubem": 97.3,
+          "votes_za": 1304,
+          "votes_przeciw": 110,
+          "votes_wstrzymal": 196,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 43,
+          "votes_total": 1775,
+          "rebellion_count": 44,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_036",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1384/2026 Rady m.st. Warszawy w sprawie wyrażenia opinii dotyczącej pozbawienia lasu charakteru ochronn",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
             {
               "vote_id": "2026-03-12_047",
               "session": "2026-03-12",
@@ -5306,15 +5388,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 94.9,
+          "frekwencja": 92.6,
+          "aktywnosc": 95.0,
           "zgodnosc_z_klubem": 99.9,
-          "votes_za": 1176,
-          "votes_przeciw": 398,
-          "votes_wstrzymal": 56,
+          "votes_za": 1225,
+          "votes_przeciw": 399,
+          "votes_wstrzymal": 63,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 1,
           "rebellions": [
             {
@@ -5735,17 +5817,24 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 95.1,
+          "frekwencja": 92.6,
+          "aktywnosc": 93.5,
           "zgodnosc_z_klubem": 95.8,
-          "votes_za": 1304,
-          "votes_przeciw": 117,
-          "votes_wstrzymal": 213,
+          "votes_za": 1326,
+          "votes_przeciw": 118,
+          "votes_wstrzymal": 216,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 69,
+          "votes_total": 1775,
+          "rebellion_count": 70,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_036",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1384/2026 Rady m.st. Warszawy w sprawie wyrażenia opinii dotyczącej pozbawienia lasu charakteru ochronn",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
             {
               "vote_id": "2026-03-12_008",
               "session": "2026-03-12",
@@ -6233,11 +6322,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 19,
-            "total_statements": 28,
-            "total_words": 5863,
-            "avg_statements_per_session": 1.5,
-            "avg_words_per_session": 309,
+            "sessions_spoke": 20,
+            "total_statements": 31,
+            "total_words": 6203,
+            "avg_statements_per_session": 1.6,
+            "avg_words_per_session": 310,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -6352,6 +6441,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 1,
                 "words": 395
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 3,
+                "words": 340
               }
             ]
           }
@@ -6372,17 +6467,66 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 80.8,
-          "aktywnosc": 82.1,
-          "zgodnosc_z_klubem": 91.5,
-          "votes_za": 1079,
-          "votes_przeciw": 102,
-          "votes_wstrzymal": 229,
+          "frekwencja": 81.5,
+          "aktywnosc": 82.6,
+          "zgodnosc_z_klubem": 91.3,
+          "votes_za": 1122,
+          "votes_przeciw": 106,
+          "votes_wstrzymal": 239,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 120,
+          "votes_total": 1775,
+          "rebellion_count": 127,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_003",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez Zastępcę Prezydenta m.st. Warszawy T. Mencinę o wprowadzenie – Projekt uchwały Rady m.st. Warsza",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_011",
+              "session": "2026-04-16",
+              "topic": "Przyjęcie protokołu obrad XXXIII sesji Rady m.st. Warszawy.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_028",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1376/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na nabycie przez m.st. Warszawę nieruchomości z",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2026-04-16_029",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1377/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na zawarcie przez m.st. Warszawa porozumienia w",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_032",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1380/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na wniesienie do jednoosobowej spółki m.st. War",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_033",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1381/2026  Rady m.st. Warszawy w sprawie wyrażenia zgody na wniesienie do jednoosobowej spółki m.st. Wa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_039",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1387/2026 Rady m.st. Warszawy w sprawie zaliczenia drogi do kategorii dróg gminnych – druk nr 1500",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
             {
               "vote_id": "2026-03-12_008",
               "session": "2026-03-12",
@@ -7306,17 +7450,38 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 95.9,
+          "frekwencja": 92.6,
+          "aktywnosc": 96.0,
           "zgodnosc_z_klubem": 97.4,
-          "votes_za": 1359,
-          "votes_przeciw": 107,
-          "votes_wstrzymal": 181,
+          "votes_za": 1406,
+          "votes_przeciw": 113,
+          "votes_wstrzymal": 185,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 42,
+          "votes_total": 1775,
+          "rebellion_count": 45,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_003",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez Zastępcę Prezydenta m.st. Warszawy T. Mencinę o wprowadzenie – Projekt uchwały Rady m.st. Warsza",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_029",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1377/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na zawarcie przez m.st. Warszawa porozumienia w",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_047",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1395/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Zarządu ",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
             {
               "vote_id": "2026-03-12_066",
               "session": "2026-03-12",
@@ -7615,11 +7780,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 25,
-            "total_statements": 138,
-            "total_words": 45437,
-            "avg_statements_per_session": 5.5,
-            "avg_words_per_session": 1817,
+            "sessions_spoke": 26,
+            "total_statements": 141,
+            "total_words": 46922,
+            "avg_statements_per_session": 5.4,
+            "avg_words_per_session": 1805,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -7770,6 +7935,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 4,
                 "words": 605
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 3,
+                "words": 1485
               }
             ]
           }
@@ -8523,15 +8694,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 94.0,
+          "frekwencja": 88.9,
+          "aktywnosc": 94.2,
           "zgodnosc_z_klubem": 98.8,
-          "votes_za": 1150,
-          "votes_przeciw": 410,
-          "votes_wstrzymal": 55,
+          "votes_za": 1199,
+          "votes_przeciw": 411,
+          "votes_wstrzymal": 62,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 20,
           "rebellions": [
             {
@@ -9305,15 +9476,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 96.5,
+          "frekwencja": 92.6,
+          "aktywnosc": 96.6,
           "zgodnosc_z_klubem": 98.9,
-          "votes_za": 1201,
-          "votes_przeciw": 404,
-          "votes_wstrzymal": 52,
+          "votes_za": 1250,
+          "votes_przeciw": 405,
+          "votes_wstrzymal": 59,
           "votes_brak": 1,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 19,
           "rebellions": [
             {
@@ -9502,25 +9673,25 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 95.8,
+          "frekwencja": 92.6,
+          "aktywnosc": 95.9,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 1192,
-          "votes_przeciw": 397,
-          "votes_wstrzymal": 57,
+          "votes_za": 1241,
+          "votes_przeciw": 398,
+          "votes_wstrzymal": 64,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 0,
           "rebellions": [],
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 22,
-            "total_statements": 447,
-            "total_words": 28643,
-            "avg_statements_per_session": 20.3,
-            "avg_words_per_session": 1302,
+            "sessions_spoke": 23,
+            "total_statements": 505,
+            "total_words": 33028,
+            "avg_statements_per_session": 22.0,
+            "avg_words_per_session": 1436,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -9653,6 +9824,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 56,
                 "words": 6494
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 58,
+                "words": 4385
               }
             ]
           }
@@ -10216,15 +10393,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 93.2,
+          "frekwencja": 92.6,
+          "aktywnosc": 93.4,
           "zgodnosc_z_klubem": 98.9,
-          "votes_za": 1144,
-          "votes_przeciw": 404,
-          "votes_wstrzymal": 53,
+          "votes_za": 1192,
+          "votes_przeciw": 405,
+          "votes_wstrzymal": 60,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 18,
           "rebellions": [
             {
@@ -10357,11 +10534,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 28,
-            "total_statements": 1157,
-            "total_words": 79484,
-            "avg_statements_per_session": 41.3,
-            "avg_words_per_session": 2839,
+            "sessions_spoke": 29,
+            "total_statements": 1208,
+            "total_words": 82821,
+            "avg_statements_per_session": 41.7,
+            "avg_words_per_session": 2856,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -10530,6 +10707,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 64,
                 "words": 2239
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 51,
+                "words": 3337
               }
             ]
           }
@@ -11258,17 +11441,31 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 89.9,
+          "frekwencja": 88.9,
+          "aktywnosc": 90.2,
           "zgodnosc_z_klubem": 97.3,
-          "votes_za": 1260,
-          "votes_przeciw": 96,
-          "votes_wstrzymal": 189,
+          "votes_za": 1308,
+          "votes_przeciw": 101,
+          "votes_wstrzymal": 192,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 41,
+          "votes_total": 1775,
+          "rebellion_count": 43,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_011",
+              "session": "2026-04-16",
+              "topic": "Przyjęcie protokołu obrad XXXIII sesji Rady m.st. Warszawy.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_047",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1395/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Zarządu ",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
             {
               "vote_id": "2026-03-12_008",
               "session": "2026-03-12",
@@ -11560,11 +11757,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 17,
-            "total_statements": 50,
-            "total_words": 11734,
+            "sessions_spoke": 18,
+            "total_statements": 52,
+            "total_words": 12565,
             "avg_statements_per_session": 2.9,
-            "avg_words_per_session": 690,
+            "avg_words_per_session": 698,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -11667,6 +11864,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 3,
                 "words": 1342
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 2,
+                "words": 831
               }
             ]
           }
@@ -12539,17 +12742,24 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 91.2,
-          "zgodnosc_z_klubem": 96.1,
-          "votes_za": 1260,
-          "votes_przeciw": 115,
-          "votes_wstrzymal": 192,
+          "frekwencja": 88.9,
+          "aktywnosc": 91.5,
+          "zgodnosc_z_klubem": 96.2,
+          "votes_za": 1308,
+          "votes_przeciw": 120,
+          "votes_wstrzymal": 196,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 61,
+          "votes_total": 1775,
+          "rebellion_count": 62,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_003",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez Zastępcę Prezydenta m.st. Warszawy T. Mencinę o wprowadzenie – Projekt uchwały Rady m.st. Warsza",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
             {
               "vote_id": "2026-03-12_012",
               "session": "2026-03-12",
@@ -13042,15 +13252,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
+          "frekwencja": 92.6,
           "aktywnosc": 98.8,
           "zgodnosc_z_klubem": 99.1,
-          "votes_za": 1226,
-          "votes_przeciw": 395,
-          "votes_wstrzymal": 76,
+          "votes_za": 1275,
+          "votes_przeciw": 396,
+          "votes_wstrzymal": 83,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 16,
           "rebellions": [
             {
@@ -13644,17 +13854,24 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 93.3,
+          "frekwencja": 92.6,
+          "aktywnosc": 93.5,
           "zgodnosc_z_klubem": 99.4,
-          "votes_za": 1159,
+          "votes_za": 1209,
           "votes_przeciw": 390,
-          "votes_wstrzymal": 54,
+          "votes_wstrzymal": 61,
           "votes_brak": 0,
           "votes_nieobecny": 1,
-          "votes_total": 1718,
-          "rebellion_count": 9,
+          "votes_total": 1775,
+          "rebellion_count": 10,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_027",
+              "session": "2026-04-16",
+              "topic": "Projekt uchwały Rady m.st. Warszawy w sprawie wyrażenia zgody na nabycie przez m.st. Warszawę nieruchomości zlokalizowan",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
             {
               "vote_id": "2026-02-12_059",
               "session": "2026-02-12",
@@ -14258,17 +14475,31 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
+          "frekwencja": 88.9,
           "aktywnosc": 93.4,
-          "zgodnosc_z_klubem": 89.5,
-          "votes_za": 1167,
-          "votes_przeciw": 158,
-          "votes_wstrzymal": 279,
+          "zgodnosc_z_klubem": 89.7,
+          "votes_za": 1211,
+          "votes_przeciw": 162,
+          "votes_wstrzymal": 284,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 169,
+          "votes_total": 1775,
+          "rebellion_count": 171,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_011",
+              "session": "2026-04-16",
+              "topic": "Przyjęcie protokołu obrad XXXIII sesji Rady m.st. Warszawy.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_048",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1396/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Zarządu ",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
             {
               "vote_id": "2026-03-12_008",
               "session": "2026-03-12",
@@ -16496,17 +16727,45 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 91.2,
+          "frekwencja": 92.6,
+          "aktywnosc": 90.8,
           "zgodnosc_z_klubem": 91.8,
-          "votes_za": 1248,
-          "votes_przeciw": 86,
-          "votes_wstrzymal": 233,
+          "votes_za": 1289,
+          "votes_przeciw": 87,
+          "votes_wstrzymal": 235,
           "votes_brak": 0,
           "votes_nieobecny": 1,
-          "votes_total": 1718,
-          "rebellion_count": 128,
+          "votes_total": 1775,
+          "rebellion_count": 132,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_009",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radnego P. Mazurka o wprowadzenie punktu pt.: „Informacja Prezydenta m.st. Warszawy w sprawie li",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_010",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radną M. Szymborską o wprowadzenie – Projekt stanowiska Rady m.st. Warszawy w sprawie sytuacji u",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-04-16_011",
+              "session": "2026-04-16",
+              "topic": "Przyjęcie protokołu obrad XXXIII sesji Rady m.st. Warszawy.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_049",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1397/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Schronis",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
             {
               "vote_id": "2026-03-12_008",
               "session": "2026-03-12",
@@ -17407,11 +17666,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 25,
-            "total_statements": 83,
-            "total_words": 36492,
+            "sessions_spoke": 26,
+            "total_statements": 87,
+            "total_words": 38407,
             "avg_statements_per_session": 3.3,
-            "avg_words_per_session": 1460,
+            "avg_words_per_session": 1477,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -17562,6 +17821,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 3,
                 "words": 1193
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 4,
+                "words": 1915
               }
             ]
           }
@@ -17582,15 +17847,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 96.0,
+          "frekwencja": 92.6,
+          "aktywnosc": 96.2,
           "zgodnosc_z_klubem": 99.8,
-          "votes_za": 1199,
-          "votes_przeciw": 397,
-          "votes_wstrzymal": 54,
+          "votes_za": 1248,
+          "votes_przeciw": 398,
+          "votes_wstrzymal": 61,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 3,
           "rebellions": [
             {
@@ -17763,15 +18028,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 95.1,
-          "zgodnosc_z_klubem": 99.1,
-          "votes_za": 1171,
-          "votes_przeciw": 395,
-          "votes_wstrzymal": 67,
+          "frekwencja": 92.6,
+          "aktywnosc": 94.9,
+          "zgodnosc_z_klubem": 99.2,
+          "votes_za": 1214,
+          "votes_przeciw": 396,
+          "votes_wstrzymal": 74,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 14,
           "rebellions": [
             {
@@ -17876,11 +18141,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 29,
-            "total_statements": 215,
-            "total_words": 32396,
-            "avg_statements_per_session": 7.4,
-            "avg_words_per_session": 1117,
+            "sessions_spoke": 30,
+            "total_statements": 227,
+            "total_words": 33634,
+            "avg_statements_per_session": 7.6,
+            "avg_words_per_session": 1121,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -18055,6 +18320,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 9,
                 "words": 1255
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 12,
+                "words": 1238
               }
             ]
           }
@@ -18986,17 +19257,24 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 98.4,
+          "frekwencja": 92.6,
+          "aktywnosc": 98.5,
           "zgodnosc_z_klubem": 99.4,
-          "votes_za": 1223,
-          "votes_przeciw": 397,
-          "votes_wstrzymal": 71,
+          "votes_za": 1273,
+          "votes_przeciw": 398,
+          "votes_wstrzymal": 77,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 10,
+          "votes_total": 1775,
+          "rebellion_count": 11,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_009",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radnego P. Mazurka o wprowadzenie punktu pt.: „Informacja Prezydenta m.st. Warszawy w sprawie li",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
             {
               "vote_id": "2025-10-16_028",
               "session": "2025-10-16",
@@ -19114,15 +19392,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 93.2,
+          "frekwencja": 88.9,
+          "aktywnosc": 93.4,
           "zgodnosc_z_klubem": 99.8,
-          "votes_za": 1148,
-          "votes_przeciw": 399,
-          "votes_wstrzymal": 54,
+          "votes_za": 1196,
+          "votes_przeciw": 400,
+          "votes_wstrzymal": 61,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 3,
           "rebellions": [
             {
@@ -19520,15 +19798,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 94.4,
+          "frekwencja": 92.6,
+          "aktywnosc": 94.5,
           "zgodnosc_z_klubem": 99.9,
-          "votes_za": 1176,
-          "votes_przeciw": 392,
-          "votes_wstrzymal": 53,
+          "votes_za": 1225,
+          "votes_przeciw": 393,
+          "votes_wstrzymal": 60,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 2,
           "rebellions": [
             {
@@ -19859,17 +20137,31 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 80.8,
-          "aktywnosc": 94.2,
+          "frekwencja": 81.5,
+          "aktywnosc": 94.3,
           "zgodnosc_z_klubem": 97.3,
-          "votes_za": 1336,
-          "votes_przeciw": 89,
-          "votes_wstrzymal": 194,
+          "votes_za": 1384,
+          "votes_przeciw": 91,
+          "votes_wstrzymal": 199,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 43,
+          "votes_total": 1775,
+          "rebellion_count": 45,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_006",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radną M. Szczepańską o wprowadzenie – Projekt stanowiska Rady m.st. Warszawy w sprawie powołania",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2026-04-16_057",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1405/2026 Rady m.st. Warszawy w sprawie przekazania wniosków [dane zanonimizowane] Prezydentowi m.st. W",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
             {
               "vote_id": "2026-03-12_062",
               "session": "2026-03-12",
@@ -20206,15 +20498,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
+          "frekwencja": 92.6,
           "aktywnosc": 97.8,
           "zgodnosc_z_klubem": 98.9,
-          "votes_za": 1215,
-          "votes_przeciw": 392,
-          "votes_wstrzymal": 74,
+          "votes_za": 1262,
+          "votes_przeciw": 393,
+          "votes_wstrzymal": 81,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 19,
           "rebellions": [
             {
@@ -20634,17 +20926,31 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 94.6,
-          "zgodnosc_z_klubem": 95.9,
-          "votes_za": 1381,
-          "votes_przeciw": 77,
-          "votes_wstrzymal": 168,
+          "frekwencja": 88.9,
+          "aktywnosc": 94.8,
+          "zgodnosc_z_klubem": 96.0,
+          "votes_za": 1434,
+          "votes_przeciw": 78,
+          "votes_wstrzymal": 171,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 66,
+          "votes_total": 1775,
+          "rebellion_count": 68,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_011",
+              "session": "2026-04-16",
+              "topic": "Przyjęcie protokołu obrad XXXIII sesji Rady m.st. Warszawy.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_028",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1376/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na nabycie przez m.st. Warszawę nieruchomości z",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
             {
               "vote_id": "2026-03-12_006",
               "session": "2026-03-12",
@@ -21111,11 +21417,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 6,
-            "total_statements": 119,
-            "total_words": 14786,
-            "avg_statements_per_session": 19.8,
-            "avg_words_per_session": 2464,
+            "sessions_spoke": 7,
+            "total_statements": 145,
+            "total_words": 18330,
+            "avg_statements_per_session": 20.7,
+            "avg_words_per_session": 2619,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -21152,6 +21458,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 27,
                 "words": 4579
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 26,
+                "words": 3544
               }
             ]
           }
@@ -21172,17 +21484,31 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 84.6,
-          "aktywnosc": 87.8,
+          "frekwencja": 85.2,
+          "aktywnosc": 86.9,
           "zgodnosc_z_klubem": 95.8,
-          "votes_za": 1266,
-          "votes_przeciw": 91,
+          "votes_za": 1297,
+          "votes_przeciw": 93,
           "votes_wstrzymal": 152,
           "votes_brak": 0,
           "votes_nieobecny": 1,
-          "votes_total": 1718,
-          "rebellion_count": 63,
+          "votes_total": 1775,
+          "rebellion_count": 65,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_010",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radną M. Szymborską o wprowadzenie – Projekt stanowiska Rady m.st. Warszawy w sprawie sytuacji u",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-04-16_027",
+              "session": "2026-04-16",
+              "topic": "Projekt uchwały Rady m.st. Warszawy w sprawie wyrażenia zgody na nabycie przez m.st. Warszawę nieruchomości zlokalizowan",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
             {
               "vote_id": "2026-03-12_004",
               "session": "2026-03-12",
@@ -21628,11 +21954,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 20,
-            "total_statements": 86,
-            "total_words": 5710,
-            "avg_statements_per_session": 4.3,
-            "avg_words_per_session": 286,
+            "sessions_spoke": 21,
+            "total_statements": 88,
+            "total_words": 6361,
+            "avg_statements_per_session": 4.2,
+            "avg_words_per_session": 303,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -21753,6 +22079,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 2,
                 "words": 446
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 2,
+                "words": 651
               }
             ]
           }
@@ -21773,15 +22105,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 92.3,
+          "frekwencja": 88.9,
+          "aktywnosc": 89.4,
           "zgodnosc_z_klubem": 99.4,
           "votes_za": 1130,
           "votes_przeciw": 396,
           "votes_wstrzymal": 60,
           "votes_brak": 0,
           "votes_nieobecny": 1,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 10,
           "rebellions": [
             {
@@ -21901,17 +22233,94 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 89.8,
-          "zgodnosc_z_klubem": 89.8,
-          "votes_za": 1256,
-          "votes_przeciw": 106,
-          "votes_wstrzymal": 180,
+          "frekwencja": 92.6,
+          "aktywnosc": 90.1,
+          "zgodnosc_z_klubem": 89.4,
+          "votes_za": 1300,
+          "votes_przeciw": 111,
+          "votes_wstrzymal": 188,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 158,
+          "votes_total": 1775,
+          "rebellion_count": 169,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_011",
+              "session": "2026-04-16",
+              "topic": "Przyjęcie protokołu obrad XXXIII sesji Rady m.st. Warszawy.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_015",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1364/2026 Rady m.st. Warszawy w sprawie nadania statutu Samodzielnemu Publicznemu Zakładowi Opieki Zdro",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_027",
+              "session": "2026-04-16",
+              "topic": "Projekt uchwały Rady m.st. Warszawy w sprawie wyrażenia zgody na nabycie przez m.st. Warszawę nieruchomości zlokalizowan",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_028",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1376/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na nabycie przez m.st. Warszawę nieruchomości z",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2026-04-16_030",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1378/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na wniesienie do jednoosobowej spółki m.st. War",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_031",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1379/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na wniesienie do jednoosobowej spółki m.st. War",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_032",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1380/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na wniesienie do jednoosobowej spółki m.st. War",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_033",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1381/2026  Rady m.st. Warszawy w sprawie wyrażenia zgody na wniesienie do jednoosobowej spółki m.st. Wa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_047",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1395/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Zarządu ",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-04-16_048",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1396/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Zarządu ",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_049",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1397/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Schronis",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
             {
               "vote_id": "2026-03-12_004",
               "session": "2026-03-12",
@@ -23022,11 +23431,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 13,
-            "total_statements": 28,
-            "total_words": 2913,
+            "sessions_spoke": 14,
+            "total_statements": 31,
+            "total_words": 3192,
             "avg_statements_per_session": 2.2,
-            "avg_words_per_session": 224,
+            "avg_words_per_session": 228,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -23105,6 +23514,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 3,
                 "words": 559
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 3,
+                "words": 279
               }
             ]
           }
@@ -24089,15 +24504,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 84.6,
-          "aktywnosc": 82.5,
+          "frekwencja": 85.2,
+          "aktywnosc": 83.0,
           "zgodnosc_z_klubem": 99.8,
-          "votes_za": 979,
-          "votes_przeciw": 390,
-          "votes_wstrzymal": 49,
+          "votes_za": 1026,
+          "votes_przeciw": 391,
+          "votes_wstrzymal": 56,
           "votes_brak": 0,
           "votes_nieobecny": 1,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 3,
           "rebellions": [
             {
@@ -24174,15 +24589,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
+          "frekwencja": 92.6,
           "aktywnosc": 98.3,
           "zgodnosc_z_klubem": 99.9,
-          "votes_za": 1236,
-          "votes_przeciw": 398,
-          "votes_wstrzymal": 55,
+          "votes_za": 1284,
+          "votes_przeciw": 399,
+          "votes_wstrzymal": 62,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 2,
           "rebellions": [
             {
@@ -24203,11 +24618,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 11,
-            "total_statements": 16,
-            "total_words": 3699,
-            "avg_statements_per_session": 1.5,
-            "avg_words_per_session": 336,
+            "sessions_spoke": 12,
+            "total_statements": 17,
+            "total_words": 3702,
+            "avg_statements_per_session": 1.4,
+            "avg_words_per_session": 308,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -24274,6 +24689,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 2,
                 "words": 38
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 1,
+                "words": 3
               }
             ]
           }
@@ -24294,15 +24715,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 97.8,
+          "frekwencja": 92.6,
+          "aktywnosc": 97.9,
           "zgodnosc_z_klubem": 99.5,
-          "votes_za": 1222,
-          "votes_przeciw": 394,
-          "votes_wstrzymal": 65,
+          "votes_za": 1271,
+          "votes_przeciw": 395,
+          "votes_wstrzymal": 72,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 9,
           "rebellions": [
             {
@@ -24825,17 +25246,24 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 92.6,
+          "frekwencja": 88.9,
+          "aktywnosc": 92.8,
           "zgodnosc_z_klubem": 99.9,
-          "votes_za": 1142,
-          "votes_przeciw": 394,
-          "votes_wstrzymal": 54,
+          "votes_za": 1192,
+          "votes_przeciw": 395,
+          "votes_wstrzymal": 60,
           "votes_brak": 1,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 1,
+          "votes_total": 1775,
+          "rebellion_count": 2,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_006",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radną M. Szczepańską o wprowadzenie – Projekt stanowiska Rady m.st. Warszawy w sprawie powołania",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
             {
               "vote_id": "2024-10-17_070",
               "session": "2024-10-17",
@@ -24878,17 +25306,31 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 96.4,
+          "frekwencja": 92.6,
+          "aktywnosc": 96.6,
           "zgodnosc_z_klubem": 96.0,
-          "votes_za": 1366,
-          "votes_przeciw": 98,
-          "votes_wstrzymal": 193,
+          "votes_za": 1420,
+          "votes_przeciw": 99,
+          "votes_wstrzymal": 195,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 66,
+          "votes_total": 1775,
+          "rebellion_count": 68,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_007",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radnego P. Szyszko o wprowadzenie punktu pt.: „Informacja Prezydenta m.st. Warszawy na temat pro",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_049",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1397/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Schronis",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
             {
               "vote_id": "2026-03-12_069",
               "session": "2026-03-12",
@@ -25355,11 +25797,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 25,
-            "total_statements": 140,
-            "total_words": 37634,
-            "avg_statements_per_session": 5.6,
-            "avg_words_per_session": 1505,
+            "sessions_spoke": 26,
+            "total_statements": 143,
+            "total_words": 38712,
+            "avg_statements_per_session": 5.5,
+            "avg_words_per_session": 1489,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -25510,6 +25952,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 14,
                 "words": 3677
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 3,
+                "words": 1078
               }
             ]
           }
@@ -25530,17 +25978,38 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
+          "frekwencja": 88.9,
           "aktywnosc": 94.5,
-          "zgodnosc_z_klubem": 97.1,
-          "votes_za": 1349,
-          "votes_przeciw": 87,
-          "votes_wstrzymal": 187,
+          "zgodnosc_z_klubem": 97.0,
+          "votes_za": 1398,
+          "votes_przeciw": 88,
+          "votes_wstrzymal": 191,
           "votes_brak": 1,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 47,
+          "votes_total": 1775,
+          "rebellion_count": 50,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_009",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radnego P. Mazurka o wprowadzenie punktu pt.: „Informacja Prezydenta m.st. Warszawy w sprawie li",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_027",
+              "session": "2026-04-16",
+              "topic": "Projekt uchwały Rady m.st. Warszawy w sprawie wyrażenia zgody na nabycie przez m.st. Warszawę nieruchomości zlokalizowan",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_028",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1376/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na nabycie przez m.st. Warszawę nieruchomości z",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
             {
               "vote_id": "2026-03-12_062",
               "session": "2026-03-12",
@@ -25874,11 +26343,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 22,
-            "total_statements": 64,
-            "total_words": 9423,
+            "sessions_spoke": 23,
+            "total_statements": 66,
+            "total_words": 9932,
             "avg_statements_per_session": 2.9,
-            "avg_words_per_session": 428,
+            "avg_words_per_session": 432,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -26011,6 +26480,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 1,
                 "words": 705
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 2,
+                "words": 509
               }
             ]
           }
@@ -26031,15 +26506,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 98.8,
+          "frekwencja": 92.6,
+          "aktywnosc": 96.3,
           "zgodnosc_z_klubem": 99.3,
-          "votes_za": 1228,
+          "votes_za": 1233,
           "votes_przeciw": 398,
-          "votes_wstrzymal": 72,
+          "votes_wstrzymal": 79,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 12,
           "rebellions": [
             {
@@ -26459,17 +26934,38 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 95.2,
-          "zgodnosc_z_klubem": 93.9,
-          "votes_za": 1351,
-          "votes_przeciw": 94,
-          "votes_wstrzymal": 191,
+          "frekwencja": 92.6,
+          "aktywnosc": 95.4,
+          "zgodnosc_z_klubem": 94.0,
+          "votes_za": 1404,
+          "votes_przeciw": 96,
+          "votes_wstrzymal": 193,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 99,
+          "votes_total": 1775,
+          "rebellion_count": 102,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_009",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radnego P. Mazurka o wprowadzenie punktu pt.: „Informacja Prezydenta m.st. Warszawy w sprawie li",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_028",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1376/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na nabycie przez m.st. Warszawę nieruchomości z",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_049",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1397/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Schronis",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
             {
               "vote_id": "2026-03-12_004",
               "session": "2026-03-12",
@@ -27167,11 +27663,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 22,
-            "total_statements": 448,
-            "total_words": 57768,
-            "avg_statements_per_session": 20.4,
-            "avg_words_per_session": 2626,
+            "sessions_spoke": 23,
+            "total_statements": 453,
+            "total_words": 59278,
+            "avg_statements_per_session": 19.7,
+            "avg_words_per_session": 2577,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -27304,6 +27800,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 4,
                 "words": 2121
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 5,
+                "words": 1510
               }
             ]
           }
@@ -27324,17 +27826,24 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 82.5,
-          "zgodnosc_z_klubem": 92.4,
-          "votes_za": 1098,
-          "votes_przeciw": 107,
-          "votes_wstrzymal": 213,
+          "frekwencja": 88.9,
+          "aktywnosc": 82.8,
+          "zgodnosc_z_klubem": 92.6,
+          "votes_za": 1142,
+          "votes_przeciw": 113,
+          "votes_wstrzymal": 215,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 108,
+          "votes_total": 1775,
+          "rebellion_count": 109,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_047",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1395/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Zarządu ",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
             {
               "vote_id": "2026-03-12_011",
               "session": "2026-03-12",
@@ -28162,17 +28671,24 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
+          "frekwencja": 92.6,
           "aktywnosc": 97.6,
-          "zgodnosc_z_klubem": 99.8,
-          "votes_za": 1224,
-          "votes_przeciw": 396,
-          "votes_wstrzymal": 56,
+          "zgodnosc_z_klubem": 99.7,
+          "votes_za": 1274,
+          "votes_przeciw": 397,
+          "votes_wstrzymal": 62,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 4,
+          "votes_total": 1775,
+          "rebellion_count": 5,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_007",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radnego P. Szyszko o wprowadzenie punktu pt.: „Informacja Prezydenta m.st. Warszawy na temat pro",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
             {
               "vote_id": "2026-03-12_083",
               "session": "2026-03-12",
@@ -28205,11 +28721,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 14,
-            "total_statements": 74,
-            "total_words": 3117,
-            "avg_statements_per_session": 5.3,
-            "avg_words_per_session": 223,
+            "sessions_spoke": 15,
+            "total_statements": 75,
+            "total_words": 3174,
+            "avg_statements_per_session": 5.0,
+            "avg_words_per_session": 212,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -28294,6 +28810,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 6,
                 "words": 239
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 1,
+                "words": 57
               }
             ]
           }
@@ -28314,15 +28836,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 76.9,
-          "aktywnosc": 87.1,
+          "frekwencja": 77.8,
+          "aktywnosc": 87.5,
           "zgodnosc_z_klubem": 99.7,
-          "votes_za": 1060,
+          "votes_za": 1109,
           "votes_przeciw": 384,
-          "votes_wstrzymal": 53,
+          "votes_wstrzymal": 60,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 5,
           "rebellions": [
             {
@@ -28395,15 +28917,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 76.9,
-          "aktywnosc": 92.0,
+          "frekwencja": 77.8,
+          "aktywnosc": 92.3,
           "zgodnosc_z_klubem": 99.4,
-          "votes_za": 1115,
-          "votes_przeciw": 397,
-          "votes_wstrzymal": 69,
+          "votes_za": 1164,
+          "votes_przeciw": 398,
+          "votes_wstrzymal": 76,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 10,
           "rebellions": [
             {
@@ -28511,17 +29033,80 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 96.4,
-          "zgodnosc_z_klubem": 97.3,
-          "votes_za": 1184,
-          "votes_przeciw": 389,
-          "votes_wstrzymal": 84,
+          "frekwencja": 92.6,
+          "aktywnosc": 96.6,
+          "zgodnosc_z_klubem": 96.8,
+          "votes_za": 1236,
+          "votes_przeciw": 390,
+          "votes_wstrzymal": 88,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 45,
+          "votes_total": 1775,
+          "rebellion_count": 54,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_004",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radną M. Jałoszyńską o wprowadzenie punktu pt.: „Informacja Prezydenta m.st. Warszawy w sprawie ",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-04-16_006",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radną M. Szczepańską o wprowadzenie – Projekt stanowiska Rady m.st. Warszawy w sprawie powołania",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-04-16_007",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radnego P. Szyszko o wprowadzenie punktu pt.: „Informacja Prezydenta m.st. Warszawy na temat pro",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-04-16_008",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radnego P. Szyszko o wprowadzenie punktu pt.: „Informacja Prezydenta m.st. Warszawy na temat pro",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-04-16_009",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radnego P. Mazurka o wprowadzenie punktu pt.: „Informacja Prezydenta m.st. Warszawy w sprawie li",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-04-16_010",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radną M. Szymborską o wprowadzenie – Projekt stanowiska Rady m.st. Warszawy w sprawie sytuacji u",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-04-16_011",
+              "session": "2026-04-16",
+              "topic": "Przyjęcie protokołu obrad XXXIII sesji Rady m.st. Warszawy.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_036",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1384/2026 Rady m.st. Warszawy w sprawie wyrażenia opinii dotyczącej pozbawienia lasu charakteru ochronn",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_057",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1405/2026 Rady m.st. Warszawy w sprawie przekazania wniosków [dane zanonimizowane] Prezydentowi m.st. W",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
             {
               "vote_id": "2026-03-12_001",
               "session": "2026-03-12",
@@ -28841,11 +29426,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 11,
-            "total_statements": 30,
-            "total_words": 6855,
-            "avg_statements_per_session": 2.7,
-            "avg_words_per_session": 623,
+            "sessions_spoke": 12,
+            "total_statements": 31,
+            "total_words": 7077,
+            "avg_statements_per_session": 2.6,
+            "avg_words_per_session": 590,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -28912,6 +29497,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 1,
                 "words": 290
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 1,
+                "words": 222
               }
             ]
           }
@@ -29388,17 +29979,52 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 93.5,
-          "zgodnosc_z_klubem": 89.2,
-          "votes_za": 1158,
-          "votes_przeciw": 131,
-          "votes_wstrzymal": 318,
+          "frekwencja": 88.9,
+          "aktywnosc": 93.7,
+          "zgodnosc_z_klubem": 89.3,
+          "votes_za": 1204,
+          "votes_przeciw": 136,
+          "votes_wstrzymal": 324,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 173,
+          "votes_total": 1775,
+          "rebellion_count": 178,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_011",
+              "session": "2026-04-16",
+              "topic": "Przyjęcie protokołu obrad XXXIII sesji Rady m.st. Warszawy.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_029",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1377/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na zawarcie przez m.st. Warszawa porozumienia w",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_036",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1384/2026 Rady m.st. Warszawy w sprawie wyrażenia opinii dotyczącej pozbawienia lasu charakteru ochronn",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2026-04-16_047",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1395/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Zarządu ",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "2026-04-16_048",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1396/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Zarządu ",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
             {
               "vote_id": "2026-03-12_012",
               "session": "2026-03-12",
@@ -30614,11 +31240,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 11,
-            "total_statements": 26,
-            "total_words": 18559,
-            "avg_statements_per_session": 2.4,
-            "avg_words_per_session": 1687,
+            "sessions_spoke": 12,
+            "total_statements": 35,
+            "total_words": 22716,
+            "avg_statements_per_session": 2.9,
+            "avg_words_per_session": 1893,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -30685,6 +31311,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 5,
                 "words": 4117
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 9,
+                "words": 4157
               }
             ]
           }
@@ -30705,17 +31337,38 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
+          "frekwencja": 92.6,
           "aktywnosc": 96.3,
-          "zgodnosc_z_klubem": 96.9,
-          "votes_za": 1316,
-          "votes_przeciw": 106,
-          "votes_wstrzymal": 231,
+          "zgodnosc_z_klubem": 96.8,
+          "votes_za": 1363,
+          "votes_przeciw": 109,
+          "votes_wstrzymal": 237,
           "votes_brak": 1,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 51,
+          "votes_total": 1775,
+          "rebellion_count": 54,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_011",
+              "session": "2026-04-16",
+              "topic": "Przyjęcie protokołu obrad XXXIII sesji Rady m.st. Warszawy.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_028",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1376/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na nabycie przez m.st. Warszawę nieruchomości z",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2026-04-16_036",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1384/2026 Rady m.st. Warszawy w sprawie wyrażenia opinii dotyczącej pozbawienia lasu charakteru ochronn",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
             {
               "vote_id": "2026-03-12_008",
               "session": "2026-03-12",
@@ -31077,11 +31730,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 15,
-            "total_statements": 37,
-            "total_words": 6867,
+            "sessions_spoke": 16,
+            "total_statements": 40,
+            "total_words": 7513,
             "avg_statements_per_session": 2.5,
-            "avg_words_per_session": 458,
+            "avg_words_per_session": 470,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -31172,6 +31825,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 1,
                 "words": 712
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 3,
+                "words": 646
               }
             ]
           }
@@ -31725,15 +32384,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 92.0,
+          "frekwencja": 88.9,
+          "aktywnosc": 92.3,
           "zgodnosc_z_klubem": 99.9,
-          "votes_za": 1129,
-          "votes_przeciw": 399,
-          "votes_wstrzymal": 53,
+          "votes_za": 1178,
+          "votes_przeciw": 400,
+          "votes_wstrzymal": 60,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 2,
           "rebellions": [
             {
@@ -31754,11 +32413,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 20,
-            "total_statements": 66,
-            "total_words": 12192,
-            "avg_statements_per_session": 3.3,
-            "avg_words_per_session": 610,
+            "sessions_spoke": 21,
+            "total_statements": 68,
+            "total_words": 13113,
+            "avg_statements_per_session": 3.2,
+            "avg_words_per_session": 624,
             "sessions": [
               {
                 "date": "2024-06-06",
@@ -31879,6 +32538,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 6,
                 "words": 160
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 2,
+                "words": 921
               }
             ]
           }
@@ -31899,15 +32564,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 97.7,
+          "frekwencja": 88.9,
+          "aktywnosc": 97.8,
           "zgodnosc_z_klubem": 99.9,
-          "votes_za": 1226,
-          "votes_przeciw": 397,
-          "votes_wstrzymal": 56,
+          "votes_za": 1275,
+          "votes_przeciw": 398,
+          "votes_wstrzymal": 63,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 1,
           "rebellions": [
             {
@@ -32153,17 +32818,25 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
+          "frekwencja": 92.6,
           "aktywnosc": 98.3,
-          "zgodnosc_z_klubem": 100.0,
-          "votes_za": 1233,
-          "votes_przeciw": 399,
-          "votes_wstrzymal": 57,
+          "zgodnosc_z_klubem": 99.9,
+          "votes_za": 1281,
+          "votes_przeciw": 401,
+          "votes_wstrzymal": 63,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 0,
-          "rebellions": [],
+          "votes_total": 1775,
+          "rebellion_count": 1,
+          "rebellions": [
+            {
+              "vote_id": "2026-04-16_006",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radną M. Szczepańską o wprowadzenie – Projekt stanowiska Rady m.st. Warszawy w sprawie powołania",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            }
+          ],
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
@@ -32743,15 +33416,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 88.5,
-          "aktywnosc": 96.4,
+          "frekwencja": 88.9,
+          "aktywnosc": 96.5,
           "zgodnosc_z_klubem": 99.2,
-          "votes_za": 1192,
-          "votes_przeciw": 392,
-          "votes_wstrzymal": 72,
+          "votes_za": 1241,
+          "votes_przeciw": 393,
+          "votes_wstrzymal": 79,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 13,
           "rebellions": [
             {
@@ -32904,15 +33577,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 97.3,
+          "frekwencja": 92.6,
+          "aktywnosc": 97.4,
           "zgodnosc_z_klubem": 99.3,
-          "votes_za": 1209,
-          "votes_przeciw": 396,
-          "votes_wstrzymal": 67,
+          "votes_za": 1258,
+          "votes_przeciw": 397,
+          "votes_wstrzymal": 74,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 12,
           "rebellions": [
             {
@@ -33046,15 +33719,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 98.2,
-          "zgodnosc_z_klubem": 99.6,
-          "votes_za": 1232,
-          "votes_przeciw": 399,
-          "votes_wstrzymal": 56,
+          "frekwencja": 92.6,
+          "aktywnosc": 98.3,
+          "zgodnosc_z_klubem": 99.7,
+          "votes_za": 1281,
+          "votes_przeciw": 400,
+          "votes_wstrzymal": 63,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
+          "votes_total": 1775,
           "rebellion_count": 6,
           "rebellions": [
             {
@@ -33103,11 +33776,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 25,
-            "total_statements": 1726,
-            "total_words": 164804,
-            "avg_statements_per_session": 69.0,
-            "avg_words_per_session": 6592,
+            "sessions_spoke": 26,
+            "total_statements": 1771,
+            "total_words": 167456,
+            "avg_statements_per_session": 68.1,
+            "avg_words_per_session": 6441,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -33258,6 +33931,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 22,
                 "words": 1081
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 45,
+                "words": 2652
               }
             ]
           }
@@ -33977,17 +34656,52 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
+          "frekwencja": 92.6,
           "aktywnosc": 95.9,
-          "zgodnosc_z_klubem": 98.8,
-          "votes_za": 1359,
-          "votes_przeciw": 92,
-          "votes_wstrzymal": 196,
+          "zgodnosc_z_klubem": 98.5,
+          "votes_za": 1406,
+          "votes_przeciw": 94,
+          "votes_wstrzymal": 202,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 20,
+          "votes_total": 1775,
+          "rebellion_count": 25,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_006",
+              "session": "2026-04-16",
+              "topic": "wniosek zgłoszony przez radną M. Szczepańską o wprowadzenie – Projekt stanowiska Rady m.st. Warszawy w sprawie powołania",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2026-04-16_011",
+              "session": "2026-04-16",
+              "topic": "Przyjęcie protokołu obrad XXXIII sesji Rady m.st. Warszawy.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_029",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1377/2026 Rady m.st. Warszawy w sprawie wyrażenia zgody na zawarcie przez m.st. Warszawa porozumienia w",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_036",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1384/2026 Rady m.st. Warszawy w sprawie wyrażenia opinii dotyczącej pozbawienia lasu charakteru ochronn",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2026-04-16_057",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1405/2026 Rady m.st. Warszawy w sprawie przekazania wniosków [dane zanonimizowane] Prezydentowi m.st. W",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
             {
               "vote_id": "2026-02-12_003",
               "session": "2026-02-12",
@@ -34132,11 +34846,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 25,
-            "total_statements": 133,
-            "total_words": 30900,
-            "avg_statements_per_session": 5.3,
-            "avg_words_per_session": 1236,
+            "sessions_spoke": 26,
+            "total_statements": 136,
+            "total_words": 31290,
+            "avg_statements_per_session": 5.2,
+            "avg_words_per_session": 1203,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -34287,6 +35001,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 7,
                 "words": 1817
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 3,
+                "words": 390
               }
             ]
           }
@@ -35016,17 +35736,31 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 98.2,
+          "frekwencja": 92.6,
+          "aktywnosc": 98.1,
           "zgodnosc_z_klubem": 97.4,
-          "votes_za": 1191,
-          "votes_przeciw": 410,
-          "votes_wstrzymal": 86,
+          "votes_za": 1235,
+          "votes_przeciw": 411,
+          "votes_wstrzymal": 95,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 44,
+          "votes_total": 1775,
+          "rebellion_count": 46,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_011",
+              "session": "2026-04-16",
+              "topic": "Przyjęcie protokołu obrad XXXIII sesji Rady m.st. Warszawy.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "2026-04-16_049",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1397/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Schronis",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
             {
               "vote_id": "2026-03-12_008",
               "session": "2026-03-12",
@@ -35876,17 +36610,31 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 92.3,
-          "aktywnosc": 97.0,
-          "zgodnosc_z_klubem": 95.0,
-          "votes_za": 1305,
-          "votes_przeciw": 128,
-          "votes_wstrzymal": 233,
+          "frekwencja": 92.6,
+          "aktywnosc": 97.1,
+          "zgodnosc_z_klubem": 95.1,
+          "votes_za": 1355,
+          "votes_przeciw": 132,
+          "votes_wstrzymal": 236,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 83,
+          "votes_total": 1775,
+          "rebellion_count": 85,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_036",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1384/2026 Rady m.st. Warszawy w sprawie wyrażenia opinii dotyczącej pozbawienia lasu charakteru ochronn",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "2026-04-16_047",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1395/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Zarządu ",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
             {
               "vote_id": "2026-03-12_060",
               "session": "2026-03-12",
@@ -36472,11 +37220,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 21,
-            "total_statements": 68,
-            "total_words": 13469,
-            "avg_statements_per_session": 3.2,
-            "avg_words_per_session": 641,
+            "sessions_spoke": 22,
+            "total_statements": 75,
+            "total_words": 13935,
+            "avg_statements_per_session": 3.4,
+            "avg_words_per_session": 633,
             "sessions": [
               {
                 "date": "2024-05-07",
@@ -36603,6 +37351,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 3,
                 "words": 570
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 7,
+                "words": 466
               }
             ]
           }
@@ -36623,17 +37377,24 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 80.8,
-          "aktywnosc": 81.0,
+          "frekwencja": 81.5,
+          "aktywnosc": 81.4,
           "zgodnosc_z_klubem": 97.3,
-          "votes_za": 1138,
+          "votes_za": 1189,
           "votes_przeciw": 72,
-          "votes_wstrzymal": 181,
+          "votes_wstrzymal": 184,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1718,
-          "rebellion_count": 38,
+          "votes_total": 1775,
+          "rebellion_count": 39,
           "rebellions": [
+            {
+              "vote_id": "2026-04-16_048",
+              "session": "2026-04-16",
+              "topic": "Uchwała Nr XXXIV/1396/2026 Rady m.st. Warszawy w sprawie rozpatrzenia skargi [dane zanonimizowane] na Dyrektora Zarządu ",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
             {
               "vote_id": "2026-03-12_008",
               "session": "2026-03-12",
@@ -36904,11 +37665,11 @@
           "has_voting_data": true,
           "has_activity_data": true,
           "activity": {
-            "sessions_spoke": 14,
-            "total_statements": 36,
-            "total_words": 3720,
-            "avg_statements_per_session": 2.6,
-            "avg_words_per_session": 266,
+            "sessions_spoke": 15,
+            "total_statements": 38,
+            "total_words": 3805,
+            "avg_statements_per_session": 2.5,
+            "avg_words_per_session": 254,
             "sessions": [
               {
                 "date": "2024-07-04",
@@ -36993,6 +37754,12 @@
                 "session": "Sesja rady miasta",
                 "statements": 3,
                 "words": 178
+              },
+              {
+                "date": "2026-03-12",
+                "session": "Sesja rady miasta",
+                "statements": 2,
+                "words": 85
               }
             ]
           }

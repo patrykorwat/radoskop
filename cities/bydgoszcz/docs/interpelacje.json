@@ -1,5 +1,101 @@
 [
   {
+    "przedmiot": "wydarzenia  \"Aktywny Poranek 60+\"",
+    "bip_url": "https://bip.um.bydgoszcz.pl/interpelacja/9931/interpelacja-w-sprawie-wydarzenia-aktywny-poranek-60",
+    "typ": "interpelacja",
+    "nr_sprawy": "RM.0003.215.2026",
+    "radny": "Maria Gałęska",
+    "status": "",
+    "kadencja": "IX",
+    "typ_full": "Interpelacja",
+    "data_wplywu": "2026-04-13",
+    "tresc_url": "https://bip.um.bydgoszcz.pl/attachments/download/31188",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31188"
+      }
+    ],
+    "kategoria": "inne",
+    "odpowiedz_status": "",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": ""
+  },
+  {
+    "przedmiot": "likwidacji dzikiego wysypiska  śmieci przy ul. Przemysłowej",
+    "bip_url": "https://bip.um.bydgoszcz.pl/interpelacja/9930/interpelacja-w-sprawie-likwidacji-dzikiego-wysypiska-smieci-przy-ul-przemyslowej",
+    "typ": "interpelacja",
+    "nr_sprawy": "RM.0003.214.2026",
+    "radny": "Paweł Bokiej",
+    "status": "",
+    "kadencja": "IX",
+    "typ_full": "Interpelacja",
+    "data_wplywu": "2026-04-10",
+    "tresc_url": "https://bip.um.bydgoszcz.pl/attachments/download/31187",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31187"
+      }
+    ],
+    "kategoria": "środowisko",
+    "odpowiedz_status": "",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": ""
+  },
+  {
+    "przedmiot": "uciążliwego zapachu wydobywającego się z terenu Remondis Bydgoszcz S.A.",
+    "bip_url": "https://bip.um.bydgoszcz.pl/interpelacja/9935/interpelacja-w-sprawie-uciazliwego-zapachu-wydobywajacego-sie-z-terenu-remondis-bydgoszcz-s-a",
+    "typ": "interpelacja",
+    "nr_sprawy": "RM.0003.213.2026",
+    "radny": "Grażyna Szabelska",
+    "status": "",
+    "kadencja": "IX",
+    "typ_full": "Interpelacja",
+    "data_wplywu": "2026-04-09",
+    "tresc_url": "https://bip.um.bydgoszcz.pl/attachments/download/31192",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31192"
+      }
+    ],
+    "kategoria": "inne",
+    "odpowiedz_status": "",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": ""
+  },
+  {
+    "przedmiot": "planowanej likwidacji stacji ładowania pojazdów elektrycznych",
+    "bip_url": "https://bip.um.bydgoszcz.pl/interpelacja/9934/interpelacja-w-sprawie-planowanej-likwidacji-stacji-ladowania-pojazdow-elektrycznych",
+    "typ": "interpelacja",
+    "nr_sprawy": "RM.0003.212.2026",
+    "radny": "Joanna Czerska-Thomas",
+    "status": "",
+    "kadencja": "IX",
+    "typ_full": "Interpelacja",
+    "data_wplywu": "2026-04-03",
+    "tresc_url": "https://bip.um.bydgoszcz.pl/attachments/download/31191",
+    "odpowiedz_url": "https://bip.um.bydgoszcz.pl/attachments/download/31237",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31191"
+      },
+      {
+        "nazwa": "Odpowiedź",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31236"
+      },
+      {
+        "nazwa": "Odpowiedź",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31237"
+      }
+    ],
+    "kategoria": "inne",
+    "odpowiedz_status": "",
+    "data_odpowiedzi": ""
+  },
+  {
     "przedmiot": "ul. Łowickiej 3 i bezpieczeństwa w rejonie SP nr 43 i Przedszkola Misiolandia",
     "bip_url": "https://bip.um.bydgoszcz.pl/interpelacja/9880/interpelacja-w-sprawie-ul-lowickiej-3-i-bezpieczenstwa-w-rejonie-sp-nr-43-i-przedszkola-misiolandia",
     "typ": "interpelacja",
@@ -74,16 +170,24 @@
     "typ_full": "Interpelacja",
     "data_wplywu": "2026-03-31",
     "tresc_url": "https://bip.um.bydgoszcz.pl/attachments/download/31082",
+    "odpowiedz_url": "https://bip.um.bydgoszcz.pl/attachments/download/31186",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja",
         "url": "https://bip.um.bydgoszcz.pl/attachments/download/31082"
+      },
+      {
+        "nazwa": "Odpowiedź",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31185"
+      },
+      {
+        "nazwa": "Odpowiedź",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31186"
       }
     ],
     "kategoria": "inne",
     "odpowiedz_status": "",
-    "data_odpowiedzi": "",
-    "odpowiedz_url": ""
+    "data_odpowiedzi": ""
   },
   {
     "przedmiot": "naprawy nawierzchni ul. Podolskiej",

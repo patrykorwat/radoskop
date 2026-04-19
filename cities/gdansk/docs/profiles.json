@@ -15,15 +15,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 90.8,
-          "zgodnosc_z_klubem": 98.9,
-          "votes_za": 259,
-          "votes_przeciw": 22,
-          "votes_wstrzymal": 4,
-          "votes_brak": 8,
-          "votes_nieobecny": 21,
-          "votes_total": 314,
-          "rebellion_count": 3,
+          "aktywnosc": 84.2,
+          "zgodnosc_z_klubem": 99.3,
+          "votes_za": 565,
+          "votes_przeciw": 27,
+          "votes_wstrzymal": 5,
+          "votes_brak": 59,
+          "votes_nieobecny": 53,
+          "votes_total": 709,
+          "rebellion_count": 4,
           "rebellions": [
             {
               "session": "2024-06-06",
@@ -34,6 +34,12 @@
             {
               "session": "2024-09-26",
               "topic": "w sprawie rozpatrzenia petycji Pana XY w sprawie umożliwienia grillowania na terenie Hevelianum (dru",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-02-13",
+              "topic": "w sprawie uchwalenia miejscowego planu zagospodarowania przestrzennego Płonia rejon ul. Płońskiej i ",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -135,16 +141,47 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 95.5,
-          "zgodnosc_z_klubem": 100.0,
-          "votes_za": 277,
-          "votes_przeciw": 22,
-          "votes_wstrzymal": 1,
-          "votes_brak": 14,
+          "aktywnosc": 97.7,
+          "zgodnosc_z_klubem": 99.3,
+          "votes_za": 655,
+          "votes_przeciw": 32,
+          "votes_wstrzymal": 6,
+          "votes_brak": 16,
           "votes_nieobecny": 0,
-          "votes_total": 314,
-          "rebellion_count": 0,
-          "rebellions": [],
+          "votes_total": 709,
+          "rebellion_count": 5,
+          "rebellions": [
+            {
+              "session": "2025-03-28",
+              "topic": "WNIOSEK FORMALNY O ZAMKNIĘCIE LISTY MÓWCÓW w sprawie wprowadzenia na terenie miasta Gdańska ogranicz",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 265);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 266);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 267);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 268);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
           "has_voting_data": true,
           "has_activity_data": false
         }
@@ -165,15 +202,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 96.8,
-          "zgodnosc_z_klubem": 98.0,
-          "votes_za": 241,
-          "votes_przeciw": 28,
-          "votes_wstrzymal": 35,
-          "votes_brak": 10,
+          "aktywnosc": 94.8,
+          "zgodnosc_z_klubem": 96.4,
+          "votes_za": 498,
+          "votes_przeciw": 64,
+          "votes_wstrzymal": 110,
+          "votes_brak": 37,
           "votes_nieobecny": 0,
-          "votes_total": 314,
-          "rebellion_count": 6,
+          "votes_total": 709,
+          "rebellion_count": 24,
           "rebellions": [
             {
               "session": "2024-10-24",
@@ -208,6 +245,30 @@
             {
               "session": "2024-12-13",
               "topic": "włączenie druku nr 200;",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 266);",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 267);",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 268);",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-05-30",
+              "topic": "w sprawie nadania nowego Statutu miejskiej instytucji kultury pod nazwą Gdański Archipelag Kultury (",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             }
@@ -431,16 +492,77 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 90.4,
-          "zgodnosc_z_klubem": 100.0,
-          "votes_za": 261,
-          "votes_przeciw": 22,
-          "votes_wstrzymal": 1,
-          "votes_brak": 30,
+          "aktywnosc": 92.4,
+          "zgodnosc_z_klubem": 97.7,
+          "votes_za": 609,
+          "votes_przeciw": 30,
+          "votes_wstrzymal": 16,
+          "votes_brak": 54,
           "votes_nieobecny": 0,
-          "votes_total": 314,
-          "rebellion_count": 0,
-          "rebellions": [],
+          "votes_total": 709,
+          "rebellion_count": 15,
+          "rebellions": [
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 366);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 367);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 368);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 369);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 371);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 372);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 373);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 374);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 375);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 376);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
           "has_voting_data": true,
           "has_activity_data": false
         }
@@ -546,15 +668,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 97.5,
-          "zgodnosc_z_klubem": 97.1,
-          "votes_za": 238,
-          "votes_przeciw": 32,
-          "votes_wstrzymal": 36,
-          "votes_brak": 3,
-          "votes_nieobecny": 5,
-          "votes_total": 314,
-          "rebellion_count": 9,
+          "aktywnosc": 96.2,
+          "zgodnosc_z_klubem": 94.7,
+          "votes_za": 494,
+          "votes_przeciw": 70,
+          "votes_wstrzymal": 118,
+          "votes_brak": 20,
+          "votes_nieobecny": 7,
+          "votes_total": 709,
+          "rebellion_count": 36,
           "rebellions": [
             {
               "session": "2024-06-20",
@@ -607,6 +729,12 @@
             {
               "session": "2024-12-13",
               "topic": "w sprawie skargi Pana XY na Prezydenta Miasta Gdańska (druk 201);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-02-13",
+              "topic": "w sprawie zamiaru przekształcenia Poradni Psychologiczno – Pedagogicznej Nr 4 w Gdańsku poprzez likw",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             }
@@ -779,16 +907,23 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 98.4,
-          "zgodnosc_z_klubem": 100.0,
-          "votes_za": 286,
-          "votes_przeciw": 22,
+          "aktywnosc": 96.3,
+          "zgodnosc_z_klubem": 99.9,
+          "votes_za": 651,
+          "votes_przeciw": 31,
           "votes_wstrzymal": 1,
-          "votes_brak": 5,
+          "votes_brak": 26,
           "votes_nieobecny": 0,
-          "votes_total": 314,
-          "rebellion_count": 0,
-          "rebellions": [],
+          "votes_total": 709,
+          "rebellion_count": 1,
+          "rebellions": [
+            {
+              "session": "2025-08-29",
+              "topic": "WNIOSEK FORMALNY O ODESŁANIE DO KOMISJI w sprawie nadania nazwy park im. prof. Franciszka Duszeńki (",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            }
+          ],
           "has_voting_data": true,
           "has_activity_data": false
         }
@@ -894,15 +1029,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 97.5,
-          "zgodnosc_z_klubem": 96.7,
-          "votes_za": 239,
-          "votes_przeciw": 34,
-          "votes_wstrzymal": 33,
-          "votes_brak": 8,
+          "aktywnosc": 96.3,
+          "zgodnosc_z_klubem": 95.2,
+          "votes_za": 502,
+          "votes_przeciw": 91,
+          "votes_wstrzymal": 90,
+          "votes_brak": 26,
           "votes_nieobecny": 0,
-          "votes_total": 314,
-          "rebellion_count": 10,
+          "votes_total": 709,
+          "rebellion_count": 33,
           "rebellions": [
             {
               "session": "2024-08-29",
@@ -1117,19 +1252,37 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 98.4,
-          "zgodnosc_z_klubem": 99.7,
-          "votes_za": 287,
-          "votes_przeciw": 21,
+          "aktywnosc": 89.0,
+          "zgodnosc_z_klubem": 99.4,
+          "votes_za": 603,
+          "votes_przeciw": 27,
           "votes_wstrzymal": 1,
-          "votes_brak": 4,
-          "votes_nieobecny": 1,
-          "votes_total": 314,
-          "rebellion_count": 1,
+          "votes_brak": 8,
+          "votes_nieobecny": 70,
+          "votes_total": 709,
+          "rebellion_count": 4,
           "rebellions": [
             {
               "session": "2024-09-26",
               "topic": "w sprawie określenia warunków udzielania bonifikat od cen nieruchomości gruntowych sprzedawanych ich",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 378);",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 379);",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 380);",
               "their_vote": "za",
               "club_majority": "przeciw"
             }
@@ -1217,14 +1370,14 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 98.7,
-          "zgodnosc_z_klubem": 98.4,
-          "votes_za": 286,
-          "votes_przeciw": 23,
+          "aktywnosc": 98.9,
+          "zgodnosc_z_klubem": 99.3,
+          "votes_za": 667,
+          "votes_przeciw": 33,
           "votes_wstrzymal": 1,
-          "votes_brak": 4,
+          "votes_brak": 8,
           "votes_nieobecny": 0,
-          "votes_total": 314,
+          "votes_total": 709,
           "rebellion_count": 5,
           "rebellions": [
             {
@@ -1369,16 +1522,35 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 97.8,
-          "zgodnosc_z_klubem": 100.0,
-          "votes_za": 284,
-          "votes_przeciw": 22,
+          "aktywnosc": 95.5,
+          "zgodnosc_z_klubem": 99.6,
+          "votes_za": 640,
+          "votes_przeciw": 36,
           "votes_wstrzymal": 1,
-          "votes_brak": 7,
+          "votes_brak": 32,
           "votes_nieobecny": 0,
-          "votes_total": 314,
-          "rebellion_count": 0,
-          "rebellions": [],
+          "votes_total": 709,
+          "rebellion_count": 3,
+          "rebellions": [
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 367);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 368);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 369);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            }
+          ],
           "has_voting_data": true,
           "has_activity_data": false
         }
@@ -1534,7 +1706,7 @@
           "notes": "Objęła stanowisko zastępcy prezydenta miasta Gdańska.",
           "mid_term": false,
           "former": true,
-          "frekwencja": 27.3,
+          "frekwencja": 14.3,
           "aktywnosc": 98.7,
           "zgodnosc_z_klubem": 100.0,
           "votes_za": 77,
@@ -1743,20 +1915,44 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 97.8,
-          "zgodnosc_z_klubem": 99.7,
-          "votes_za": 283,
-          "votes_przeciw": 23,
-          "votes_wstrzymal": 1,
-          "votes_brak": 7,
+          "aktywnosc": 97.2,
+          "zgodnosc_z_klubem": 99.3,
+          "votes_za": 656,
+          "votes_przeciw": 31,
+          "votes_wstrzymal": 2,
+          "votes_brak": 20,
           "votes_nieobecny": 0,
-          "votes_total": 314,
-          "rebellion_count": 1,
+          "votes_total": 709,
+          "rebellion_count": 5,
           "rebellions": [
             {
               "session": "2024-06-06",
               "topic": "w sprawie zmiany uchwały w sprawie zmiany Statutu Dzielnicy Wzgórze Mickiewicza (druk nr 57);",
               "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 378);",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 379);",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 380);",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-08-29",
+              "topic": "zmieniająca uchwałę w sprawie regulaminu wynagradzania nauczycieli szkół, dla których organem prowad",
+              "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             }
           ],
@@ -1873,15 +2069,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 98.1,
-          "zgodnosc_z_klubem": 98.4,
-          "votes_za": 280,
-          "votes_przeciw": 24,
-          "votes_wstrzymal": 4,
-          "votes_brak": 6,
-          "votes_nieobecny": 0,
-          "votes_total": 314,
-          "rebellion_count": 5,
+          "aktywnosc": 90.3,
+          "zgodnosc_z_klubem": 98.9,
+          "votes_za": 603,
+          "votes_przeciw": 31,
+          "votes_wstrzymal": 6,
+          "votes_brak": 24,
+          "votes_nieobecny": 45,
+          "votes_total": 709,
+          "rebellion_count": 7,
           "rebellions": [
             {
               "session": "2024-09-26",
@@ -1910,6 +2106,18 @@
             {
               "session": "2025-01-31",
               "topic": "włączenie druku nr 222;",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie uzgodnienia realizacji inwestycji celu publicznego w obrębie strefy ochrony pomników przyr",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-05-30",
+              "topic": "w sprawie skargi Pani XY na Prezydenta Miasta Gdańska oraz na Komendanta Straży Miejskiej w Gdańsku ",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             }
@@ -1989,16 +2197,59 @@
           "mid_term": true,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 83.7,
-          "zgodnosc_z_klubem": 100.0,
-          "votes_za": 240,
-          "votes_przeciw": 21,
+          "aktywnosc": 92.8,
+          "zgodnosc_z_klubem": 98.9,
+          "votes_za": 617,
+          "votes_przeciw": 39,
           "votes_wstrzymal": 1,
           "votes_brak": 0,
           "votes_nieobecny": 51,
-          "votes_total": 313,
-          "rebellion_count": 0,
-          "rebellions": [],
+          "votes_total": 708,
+          "rebellion_count": 7,
+          "rebellions": [
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 371);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 372);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 373);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 374);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 375);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 376);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 377);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            }
+          ],
           "has_voting_data": true,
           "has_activity_data": false
         }
@@ -2108,15 +2359,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 90.1,
-          "zgodnosc_z_klubem": 97.2,
-          "votes_za": 238,
-          "votes_przeciw": 22,
-          "votes_wstrzymal": 23,
-          "votes_brak": 29,
-          "votes_nieobecny": 2,
-          "votes_total": 314,
-          "rebellion_count": 8,
+          "aktywnosc": 78.7,
+          "zgodnosc_z_klubem": 97.3,
+          "votes_za": 429,
+          "votes_przeciw": 63,
+          "votes_wstrzymal": 66,
+          "votes_brak": 123,
+          "votes_nieobecny": 28,
+          "votes_total": 709,
+          "rebellion_count": 15,
           "rebellions": [
             {
               "session": "2024-06-06",
@@ -2163,6 +2414,18 @@
             {
               "session": "2024-12-13",
               "topic": "w sprawie skargi Pani XY na Dyrektora Zespołu Szkół Ogólnokształcących nr 8 w Gdańsku (druk 108);",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-02-13",
+              "topic": "w sprawie ustanowienia Nagrody Miasta Gdańska w Dziedzinie Kultury „Splendor Gedanensis” i Tytułu Me",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-02-13",
+              "topic": "w sprawie uchwalenia miejscowego planu zagospodarowania przestrzennego Płonia rejon ul. Płońskiej i ",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             }
@@ -2238,16 +2501,23 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 78.3,
-          "zgodnosc_z_klubem": 100.0,
-          "votes_za": 224,
-          "votes_przeciw": 21,
+          "aktywnosc": 88.4,
+          "zgodnosc_z_klubem": 99.8,
+          "votes_za": 595,
+          "votes_przeciw": 31,
           "votes_wstrzymal": 1,
-          "votes_brak": 17,
-          "votes_nieobecny": 51,
-          "votes_total": 314,
-          "rebellion_count": 0,
-          "rebellions": [],
+          "votes_brak": 29,
+          "votes_nieobecny": 53,
+          "votes_total": 709,
+          "rebellion_count": 1,
+          "rebellions": [
+            {
+              "session": "2025-03-28",
+              "topic": "WNIOSEK FORMALNY O ZAMKNIĘCIE LISTY MÓWCÓW w sprawie wprowadzenia na terenie miasta Gdańska ogranicz",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            }
+          ],
           "has_voting_data": true,
           "has_activity_data": false
         }
@@ -2339,14 +2609,14 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 97.1,
-          "zgodnosc_z_klubem": 99.3,
-          "votes_za": 281,
-          "votes_przeciw": 22,
+          "aktywnosc": 96.5,
+          "zgodnosc_z_klubem": 99.7,
+          "votes_za": 650,
+          "votes_przeciw": 32,
           "votes_wstrzymal": 2,
-          "votes_brak": 8,
+          "votes_brak": 24,
           "votes_nieobecny": 1,
-          "votes_total": 314,
+          "votes_total": 709,
           "rebellion_count": 2,
           "rebellions": [
             {
@@ -2473,15 +2743,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 89.1,
-          "zgodnosc_z_klubem": 98.2,
-          "votes_za": 220,
-          "votes_przeciw": 27,
-          "votes_wstrzymal": 32,
-          "votes_brak": 8,
-          "votes_nieobecny": 26,
-          "votes_total": 313,
-          "rebellion_count": 5,
+          "aktywnosc": 93.8,
+          "zgodnosc_z_klubem": 98.6,
+          "votes_za": 490,
+          "votes_przeciw": 78,
+          "votes_wstrzymal": 96,
+          "votes_brak": 15,
+          "votes_nieobecny": 29,
+          "votes_total": 708,
+          "rebellion_count": 9,
           "rebellions": [
             {
               "session": "2024-08-29",
@@ -2510,6 +2780,30 @@
             {
               "session": "2025-01-31",
               "topic": "w sprawie przystąpienia do Polskiego Stowarzyszenia Nowej Mobilności (druk 216);",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-02-13",
+              "topic": "zmieniająca uchwałę w sprawie określenia wzoru deklaracji o wysokości opłaty za gospodarowanie odpad",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-08-29",
+              "topic": "w sprawie nadania nazwy park im. prof. Franciszka Duszeńki (druk 357);",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-12-19",
+              "topic": "w sprawie określenia wzoru deklaracji o wysokości opłaty za gospodarowanie odpadami komunalnymi skła",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-19",
+              "topic": "w sprawie skargi Pana XY na Prezydenta Miasta Gdańska (druk 567);",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             }
@@ -2620,20 +2914,32 @@
           "notes": "Objął mandat w miejsce Emilii Lodzińskiej.",
           "mid_term": true,
           "former": false,
-          "frekwencja": 72.7,
-          "aktywnosc": 83.4,
+          "frekwencja": 85.7,
+          "aktywnosc": 91.6,
           "zgodnosc_z_klubem": 99.5,
-          "votes_za": 176,
-          "votes_przeciw": 19,
-          "votes_wstrzymal": 1,
-          "votes_brak": 14,
+          "votes_za": 546,
+          "votes_przeciw": 29,
+          "votes_wstrzymal": 2,
+          "votes_brak": 28,
           "votes_nieobecny": 25,
-          "votes_total": 235,
-          "rebellion_count": 1,
+          "votes_total": 630,
+          "rebellion_count": 3,
           "rebellions": [
             {
               "session": "2024-09-26",
               "topic": "w sprawie określenia warunków udzielania bonifikat od cen nieruchomości gruntowych sprzedawanych ich",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-02-13",
+              "topic": "w sprawie składania wniosków o przyjęcie do publicznych liceów ogólnokształcących, techników i branż",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-08-29",
+              "topic": "WNIOSEK FORMALNY O ODESŁANIE DO KOMISJI w sprawie nadania nazwy park im. prof. Franciszka Duszeńki (",
               "their_vote": "za",
               "club_majority": "przeciw"
             }
@@ -2735,21 +3041,27 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 85.0,
-          "zgodnosc_z_klubem": 99.6,
-          "votes_za": 245,
-          "votes_przeciw": 21,
-          "votes_wstrzymal": 1,
-          "votes_brak": 6,
+          "aktywnosc": 89.7,
+          "zgodnosc_z_klubem": 99.7,
+          "votes_za": 604,
+          "votes_przeciw": 30,
+          "votes_wstrzymal": 2,
+          "votes_brak": 32,
           "votes_nieobecny": 41,
-          "votes_total": 314,
-          "rebellion_count": 1,
+          "votes_total": 709,
+          "rebellion_count": 2,
           "rebellions": [
             {
               "session": "2024-06-06",
               "topic": "zmieniająca uchwałę w sprawie wprowadzenia programu restrukturyzacji należności pieniężnych mających",
               "their_vote": "przeciw",
               "club_majority": "za"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "WNIOSEK O ODESŁANIE DO KOMISJI w sprawie skargi Pana XY na Dyrektora Szkoły Podstawowej nr 38 w Gdań",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             }
           ],
           "has_voting_data": true,
@@ -2774,14 +3086,14 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 99.4,
-          "zgodnosc_z_klubem": 99.4,
-          "votes_za": 287,
-          "votes_przeciw": 22,
+          "aktywnosc": 98.2,
+          "zgodnosc_z_klubem": 99.7,
+          "votes_za": 660,
+          "votes_przeciw": 33,
           "votes_wstrzymal": 3,
-          "votes_brak": 2,
-          "votes_nieobecny": 0,
-          "votes_total": 314,
+          "votes_brak": 12,
+          "votes_nieobecny": 1,
+          "votes_total": 709,
           "rebellion_count": 2,
           "rebellions": [
             {
@@ -2821,15 +3133,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 94.9,
-          "zgodnosc_z_klubem": 99.3,
-          "votes_za": 274,
-          "votes_przeciw": 22,
-          "votes_wstrzymal": 2,
-          "votes_brak": 16,
+          "aktywnosc": 95.1,
+          "zgodnosc_z_klubem": 99.6,
+          "votes_za": 640,
+          "votes_przeciw": 31,
+          "votes_wstrzymal": 3,
+          "votes_brak": 35,
           "votes_nieobecny": 0,
-          "votes_total": 314,
-          "rebellion_count": 2,
+          "votes_total": 709,
+          "rebellion_count": 3,
           "rebellions": [
             {
               "session": "2024-09-26",
@@ -2842,6 +3154,12 @@
               "topic": "w sprawie rozpatrzenia skargi Pani XY i Pana XY z dnia 4 marca 2024 roku na Dyrektora Gdańskiej Szko",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "WNIOSEK FORMALNY O ZAMKNIĘCIE LISTY MÓWCÓW w sprawie wprowadzenia na terenie miasta Gdańska ogranicz",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -2953,16 +3271,77 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 73.2,
-          "zgodnosc_z_klubem": 100.0,
-          "votes_za": 209,
-          "votes_przeciw": 20,
+          "aktywnosc": 85.6,
+          "zgodnosc_z_klubem": 97.2,
+          "votes_za": 558,
+          "votes_przeciw": 48,
           "votes_wstrzymal": 1,
-          "votes_brak": 9,
+          "votes_brak": 27,
           "votes_nieobecny": 75,
-          "votes_total": 314,
-          "rebellion_count": 0,
-          "rebellions": [],
+          "votes_total": 709,
+          "rebellion_count": 17,
+          "rebellions": [
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 265);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 266);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 267);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 268);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 364);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 365);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 366);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 367);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 368);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 369);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            }
+          ],
           "has_voting_data": true,
           "has_activity_data": false
         }
@@ -2985,15 +3364,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 97.8,
-          "zgodnosc_z_klubem": 99.3,
-          "votes_za": 284,
-          "votes_przeciw": 22,
+          "aktywnosc": 94.9,
+          "zgodnosc_z_klubem": 99.4,
+          "votes_za": 643,
+          "votes_przeciw": 29,
           "votes_wstrzymal": 1,
-          "votes_brak": 7,
-          "votes_nieobecny": 0,
-          "votes_total": 314,
-          "rebellion_count": 2,
+          "votes_brak": 20,
+          "votes_nieobecny": 16,
+          "votes_total": 709,
+          "rebellion_count": 4,
           "rebellions": [
             {
               "session": "2024-10-24",
@@ -3006,6 +3385,18 @@
               "topic": "w sprawie rozpatrzenia petycji Pana XY w sprawie pozostawienia boiska znajdującego się przy ul. Dwor",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie przeprowadzenia konsultacji społecznych dotyczących wyrażenia zgody na realizację planowan",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-08-29",
+              "topic": "włączenie druku (440);",
+              "their_vote": "za",
+              "club_majority": "przeciw"
             }
           ],
           "has_voting_data": true,
@@ -3102,15 +3493,15 @@
           "notes": "Objął mandat w miejsce Piotra Borawskiego.",
           "mid_term": true,
           "former": false,
-          "frekwencja": 72.7,
-          "aktywnosc": 89.4,
+          "frekwencja": 85.7,
+          "aktywnosc": 96.0,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 189,
-          "votes_przeciw": 20,
+          "votes_za": 573,
+          "votes_przeciw": 31,
           "votes_wstrzymal": 1,
           "votes_brak": 1,
           "votes_nieobecny": 24,
-          "votes_total": 235,
+          "votes_total": 630,
           "rebellion_count": 0,
           "rebellions": [],
           "has_voting_data": true,
@@ -3231,21 +3622,27 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 79.0,
-          "zgodnosc_z_klubem": 99.6,
-          "votes_za": 227,
-          "votes_przeciw": 21,
+          "aktywnosc": 83.4,
+          "zgodnosc_z_klubem": 99.7,
+          "votes_za": 563,
+          "votes_przeciw": 28,
           "votes_wstrzymal": 0,
-          "votes_brak": 26,
-          "votes_nieobecny": 40,
-          "votes_total": 314,
-          "rebellion_count": 1,
+          "votes_brak": 75,
+          "votes_nieobecny": 43,
+          "votes_total": 709,
+          "rebellion_count": 2,
           "rebellions": [
             {
               "session": "2024-10-24",
               "topic": "włączenie druku nr 132;",
               "their_vote": "przeciw",
               "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-08-29",
+              "topic": "włączenie druku (440);",
+              "their_vote": "za",
+              "club_majority": "przeciw"
             }
           ],
           "has_voting_data": true,
@@ -3358,19 +3755,73 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 97.8,
-          "zgodnosc_z_klubem": 99.7,
-          "votes_za": 248,
-          "votes_przeciw": 27,
-          "votes_wstrzymal": 32,
-          "votes_brak": 7,
+          "aktywnosc": 98.4,
+          "zgodnosc_z_klubem": 97.4,
+          "votes_za": 525,
+          "votes_przeciw": 65,
+          "votes_wstrzymal": 108,
+          "votes_brak": 11,
           "votes_nieobecny": 0,
-          "votes_total": 314,
-          "rebellion_count": 1,
+          "votes_total": 709,
+          "rebellion_count": 18,
           "rebellions": [
             {
               "session": "2024-12-13",
               "topic": "w sprawie skargi Pani XY na Prezydenta Miasta Gdańska (druk 199);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 364);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 365);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 366);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 367);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 368);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 369);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 371);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 372);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 373);",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
             }
@@ -3501,15 +3952,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 98.7,
-          "zgodnosc_z_klubem": 97.4,
-          "votes_za": 242,
-          "votes_przeciw": 32,
-          "votes_wstrzymal": 36,
-          "votes_brak": 4,
-          "votes_nieobecny": 0,
-          "votes_total": 314,
-          "rebellion_count": 8,
+          "aktywnosc": 98.0,
+          "zgodnosc_z_klubem": 94.7,
+          "votes_za": 505,
+          "votes_przeciw": 72,
+          "votes_wstrzymal": 118,
+          "votes_brak": 9,
+          "votes_nieobecny": 5,
+          "votes_total": 709,
+          "rebellion_count": 37,
           "rebellions": [
             {
               "session": "2024-06-20",
@@ -3556,6 +4007,18 @@
             {
               "session": "2024-12-13",
               "topic": "zmieniająca uchwałę w sprawie nadania nowego Statutu miejskiej instytucji kultury pod nazwą Gdańska ",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-02-13",
+              "topic": "w sprawie zamiaru przekształcenia Poradni Psychologiczno – Pedagogicznej Nr 4 w Gdańsku poprzez likw",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-02-13",
+              "topic": "zmieniająca uchwałę w sprawie utworzenia i nadania statutu Gdańskiego Centrum Informatycznego (druk ",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             }
@@ -3837,21 +4300,51 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 97.8,
-          "zgodnosc_z_klubem": 99.7,
-          "votes_za": 285,
-          "votes_przeciw": 21,
-          "votes_wstrzymal": 1,
-          "votes_brak": 7,
-          "votes_nieobecny": 0,
-          "votes_total": 314,
-          "rebellion_count": 1,
+          "aktywnosc": 95.6,
+          "zgodnosc_z_klubem": 99.1,
+          "votes_za": 642,
+          "votes_przeciw": 31,
+          "votes_wstrzymal": 5,
+          "votes_brak": 15,
+          "votes_nieobecny": 16,
+          "votes_total": 709,
+          "rebellion_count": 6,
           "rebellions": [
             {
               "session": "2024-12-13",
               "topic": "POPRAWKA NR 1 do uchwały w sprawie uchwalenia budżetu Miasta Gdańska na 2025 rok (druk 160 + poprawk",
               "their_vote": "za",
               "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "WNIOSEK FORMALNY O ZAMKNIĘCIE LISTY MÓWCÓW w sprawie wprowadzenia na terenie miasta Gdańska ogranicz",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 367);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 368);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 369);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-11-28",
+              "topic": "w sprawie nadania nazwy rondo 318. Dywizjonu Myśliwsko-Rozpoznawczego Gdańskiego (druk 524);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -3875,15 +4368,15 @@
           "notes": "Objęła mandat w miejsce Teresy Wasilewskiej.",
           "mid_term": true,
           "former": false,
-          "frekwencja": 9.1,
+          "frekwencja": 28.6,
           "aktywnosc": 100.0,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 16,
-          "votes_przeciw": 0,
+          "votes_za": 230,
+          "votes_przeciw": 3,
           "votes_wstrzymal": 0,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 16,
+          "votes_total": 233,
           "rebellion_count": 0,
           "rebellions": [],
           "has_voting_data": true,
@@ -3992,15 +4485,15 @@
           "notes": "Zmarła 27.05.2025.",
           "mid_term": false,
           "former": true,
-          "frekwencja": 90.9,
-          "aktywnosc": 89.9,
+          "frekwencja": 61.9,
+          "aktywnosc": 68.6,
           "zgodnosc_z_klubem": 98.9,
-          "votes_za": 248,
+          "votes_za": 259,
           "votes_przeciw": 18,
           "votes_wstrzymal": 1,
-          "votes_brak": 12,
-          "votes_nieobecny": 18,
-          "votes_total": 297,
+          "votes_brak": 18,
+          "votes_nieobecny": 109,
+          "votes_total": 405,
           "rebellion_count": 3,
           "rebellions": [
             {
@@ -4044,21 +4537,51 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 75.5,
-          "zgodnosc_z_klubem": 99.6,
-          "votes_za": 188,
-          "votes_przeciw": 25,
-          "votes_wstrzymal": 24,
-          "votes_brak": 9,
+          "aktywnosc": 86.0,
+          "zgodnosc_z_klubem": 99.0,
+          "votes_za": 443,
+          "votes_przeciw": 72,
+          "votes_wstrzymal": 95,
+          "votes_brak": 31,
           "votes_nieobecny": 68,
-          "votes_total": 314,
-          "rebellion_count": 1,
+          "votes_total": 709,
+          "rebellion_count": 6,
           "rebellions": [
             {
               "session": "2024-12-13",
               "topic": "w sprawie rozpatrzenia petycji Pani XY (druk 192);",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "WNIOSEK FORMALNY O ZAMKNIĘCIE LISTY MÓWCÓW w sprawie wprowadzenia na terenie miasta Gdańska ogranicz",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 265);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-08-29",
+              "topic": "zmieniająca uchwałę w sprawie nadania Statutu instytucji kultury pod nazwą: Centrum Sztuki Współczes",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-10-31",
+              "topic": "w sprawie Regulaminu programu stypendialnego Prezydenta Miasta Gdańska dla studentów i doktorantów i",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-11-28",
+              "topic": "w sprawie nadania nazwy ulica Pępowska (druk 522);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -4253,14 +4776,14 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 97.5,
-          "zgodnosc_z_klubem": 99.7,
-          "votes_za": 285,
-          "votes_przeciw": 20,
+          "aktywnosc": 98.2,
+          "zgodnosc_z_klubem": 99.9,
+          "votes_za": 665,
+          "votes_przeciw": 30,
           "votes_wstrzymal": 1,
-          "votes_brak": 8,
+          "votes_brak": 13,
           "votes_nieobecny": 0,
-          "votes_total": 314,
+          "votes_total": 709,
           "rebellion_count": 1,
           "rebellions": [
             {
@@ -4381,16 +4904,35 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 97.1,
-          "zgodnosc_z_klubem": 100.0,
-          "votes_za": 282,
-          "votes_przeciw": 22,
+          "aktywnosc": 85.9,
+          "zgodnosc_z_klubem": 99.5,
+          "votes_za": 578,
+          "votes_przeciw": 30,
           "votes_wstrzymal": 1,
-          "votes_brak": 9,
-          "votes_nieobecny": 0,
-          "votes_total": 314,
-          "rebellion_count": 0,
-          "rebellions": [],
+          "votes_brak": 81,
+          "votes_nieobecny": 19,
+          "votes_total": 709,
+          "rebellion_count": 3,
+          "rebellions": [
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 378);",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 379);",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-26",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk 380);",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            }
+          ],
           "has_voting_data": true,
           "has_activity_data": false
         }
@@ -4413,15 +4955,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 95.2,
-          "zgodnosc_z_klubem": 98.3,
-          "votes_za": 278,
-          "votes_przeciw": 19,
-          "votes_wstrzymal": 2,
-          "votes_brak": 14,
+          "aktywnosc": 95.1,
+          "zgodnosc_z_klubem": 98.7,
+          "votes_za": 640,
+          "votes_przeciw": 28,
+          "votes_wstrzymal": 6,
+          "votes_brak": 34,
           "votes_nieobecny": 1,
-          "votes_total": 314,
-          "rebellion_count": 5,
+          "votes_total": 709,
+          "rebellion_count": 9,
           "rebellions": [
             {
               "session": "2024-06-06",
@@ -4452,6 +4994,30 @@
               "topic": "POPRAWKA NR 1 do uchwały w sprawie uchwalenia budżetu Miasta Gdańska na 2025 rok (druk 160 + poprawk",
               "their_vote": "za",
               "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 265);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 266);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 267);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-28",
+              "topic": "w sprawie wyrażenia opinii o lokalizacji kasyna gry (druk nr 268);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -4475,15 +5041,15 @@
           "notes": "Objęła mandat w miejsce Piotra Grzelaka.",
           "mid_term": true,
           "former": false,
-          "frekwencja": 90.9,
-          "aktywnosc": 94.9,
-          "zgodnosc_z_klubem": 99.7,
-          "votes_za": 273,
-          "votes_przeciw": 21,
+          "frekwencja": 95.2,
+          "aktywnosc": 95.3,
+          "zgodnosc_z_klubem": 99.9,
+          "votes_za": 641,
+          "votes_przeciw": 31,
           "votes_wstrzymal": 2,
-          "votes_brak": 16,
+          "votes_brak": 33,
           "votes_nieobecny": 0,
-          "votes_total": 312,
+          "votes_total": 707,
           "rebellion_count": 1,
           "rebellions": [
             {

@@ -1,5 +1,27 @@
 [
   {
+    "nr": "334",
+    "przedmiot": "ustawienia dwóch stałych koszy na śmieci przy ciągu rowerowo-pieszym łączącym ul. Racławicką z ul. Brzeską",
+    "radny": "Karol Masztalerz",
+    "data_wplywu": "2026-04-13",
+    "bip_url": "https://www.bip.bialystok.pl/wladze/rada_miasta_bialystok/interpelacje-i-zapytania/nr-interpelacji-kadencja-2024-2029-334.html",
+    "typ": "interpelacja",
+    "kadencja": "IX",
+    "data_przekazania": "Data przekazania do Prezydenta",
+    "tresc_url": "https://www.bip.bialystok.pl/resource/103727/K.+Masztaalerz+15.04.2026.pdf",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103727/K.+Masztaalerz+15.04.2026.pdf"
+      }
+    ],
+    "kategoria": "transport",
+    "data_odpowiedzi": "Data przekazania do Prezydenta",
+    "odpowiedz_url": "",
+    "odpowiedz_status": "",
+    "nr_sprawy": "334"
+  },
+  {
     "nr": "333",
     "przedmiot": "pomiarów głośności ruchu na Trasie Niepodległości na odcinku Starosielce",
     "radny": "Karol Masztalerz",
@@ -9,16 +31,20 @@
     "kadencja": "IX",
     "data_przekazania": "Data przekazania do Prezydenta",
     "tresc_url": "https://www.bip.bialystok.pl/resource/103684/K.Masztalerz+10.04+%25283%2529.pdf",
+    "odpowiedz_url": "https://www.bip.bialystok.pl/resource/103684/K.+Masztalerz+17.04.2026.pdf",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja (skan)",
         "url": "https://www.bip.bialystok.pl/resource/103684/K.Masztalerz+10.04+%25283%2529.pdf"
+      },
+      {
+        "nazwa": "Odpowiedź (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103684/K.+Masztalerz+17.04.2026.pdf"
       }
     ],
     "kategoria": "inne",
     "data_odpowiedzi": "Data przekazania do Prezydenta",
-    "odpowiedz_url": "",
-    "odpowiedz_status": "",
     "nr_sprawy": "333"
   },
   {
@@ -141,16 +167,20 @@
     "kadencja": "IX",
     "data_przekazania": "Data przekazania do Prezydenta",
     "tresc_url": "https://www.bip.bialystok.pl/resource/103576/S.+Putra+31.03.2026.pdf",
+    "odpowiedz_url": "https://www.bip.bialystok.pl/resource/103576/S.+Putra+13.04.2026.pdf",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja (skan)",
         "url": "https://www.bip.bialystok.pl/resource/103576/S.+Putra+31.03.2026.pdf"
+      },
+      {
+        "nazwa": "Odpowiedź (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103576/S.+Putra+13.04.2026.pdf"
       }
     ],
     "kategoria": "bezpieczeństwo",
     "data_odpowiedzi": "Data przekazania do Prezydenta",
-    "odpowiedz_url": "",
-    "odpowiedz_status": "",
     "nr_sprawy": "327"
   },
   {
@@ -189,16 +219,20 @@
     "kadencja": "IX",
     "data_przekazania": "Data przekazania do Prezydenta",
     "tresc_url": "https://www.bip.bialystok.pl/resource/103566/S.+Putra+31.03.2026+%25283%2529.pdf",
+    "odpowiedz_url": "https://www.bip.bialystok.pl/resource/103566/S.+Putra+13.04.2026+%25282%2529.pdf",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja (skan)",
         "url": "https://www.bip.bialystok.pl/resource/103566/S.+Putra+31.03.2026+%25283%2529.pdf"
+      },
+      {
+        "nazwa": "Odpowiedź (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103566/S.+Putra+13.04.2026+%25282%2529.pdf"
       }
     ],
     "kategoria": "infrastruktura",
     "data_odpowiedzi": "Data przekazania do Prezydenta",
-    "odpowiedz_url": "",
-    "odpowiedz_status": "",
     "nr_sprawy": "325"
   },
   {
@@ -211,16 +245,20 @@
     "kadencja": "IX",
     "data_przekazania": "Data przekazania do Prezydenta",
     "tresc_url": "https://www.bip.bialystok.pl/resource/103564/S.+Putra+31.03.2026+%25284%2529.pdf",
+    "odpowiedz_url": "https://www.bip.bialystok.pl/resource/103564/S.+Putra+13.04.2026+%25283%2529.pdf",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja (skan)",
         "url": "https://www.bip.bialystok.pl/resource/103564/S.+Putra+31.03.2026+%25284%2529.pdf"
+      },
+      {
+        "nazwa": "Odpowiedź (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103564/S.+Putra+13.04.2026+%25283%2529.pdf"
       }
     ],
     "kategoria": "infrastruktura",
     "data_odpowiedzi": "Data przekazania do Prezydenta",
-    "odpowiedz_url": "",
-    "odpowiedz_status": "",
     "nr_sprawy": "324"
   },
   {
@@ -233,16 +271,20 @@
     "kadencja": "IX",
     "data_przekazania": "Data przekazania do Prezydenta",
     "tresc_url": "https://www.bip.bialystok.pl/resource/103561/H.+D%25C4%2599bowski+31.03.2026+%25282%2529-1.pdf",
+    "odpowiedz_url": "https://www.bip.bialystok.pl/resource/103561/H.+D%25C4%2599bowski+14.04.2026+%25282%2529.pdf",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja (skan)",
         "url": "https://www.bip.bialystok.pl/resource/103561/H.+D%25C4%2599bowski+31.03.2026+%25282%2529-1.pdf"
+      },
+      {
+        "nazwa": "Odpowiedź (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103561/H.+D%25C4%2599bowski+14.04.2026+%25282%2529.pdf"
       }
     ],
     "kategoria": "inne",
     "data_odpowiedzi": "Data przekazania do Prezydenta",
-    "odpowiedz_url": "",
-    "odpowiedz_status": "",
     "nr_sprawy": "323"
   },
   {
@@ -255,16 +297,20 @@
     "kadencja": "IX",
     "data_przekazania": "Data przekazania do Prezydenta",
     "tresc_url": "https://www.bip.bialystok.pl/resource/103560/H.+D%25C4%2599bowski+31.03.2026-1.pdf",
+    "odpowiedz_url": "https://www.bip.bialystok.pl/resource/103560/H.+D%25C4%2599bowski+14.04.2026+%25283%2529.pdf",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja (skan)",
         "url": "https://www.bip.bialystok.pl/resource/103560/H.+D%25C4%2599bowski+31.03.2026-1.pdf"
+      },
+      {
+        "nazwa": "Odpowiedź (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103560/H.+D%25C4%2599bowski+14.04.2026+%25283%2529.pdf"
       }
     ],
     "kategoria": "inne",
     "data_odpowiedzi": "Data przekazania do Prezydenta",
-    "odpowiedz_url": "",
-    "odpowiedz_status": "",
     "nr_sprawy": "322"
   },
   {
@@ -277,16 +323,20 @@
     "kadencja": "IX",
     "data_przekazania": "Data przekazania do Prezydenta",
     "tresc_url": "https://www.bip.bialystok.pl/resource/103528/H.+D%25C4%2599bowski+31.03.2026.pdf",
+    "odpowiedz_url": "https://www.bip.bialystok.pl/resource/103528/H.+D%25C4%2599bowski+14.04.2026.pdf",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja (skan)",
         "url": "https://www.bip.bialystok.pl/resource/103528/H.+D%25C4%2599bowski+31.03.2026.pdf"
+      },
+      {
+        "nazwa": "Odpowiedź (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103528/H.+D%25C4%2599bowski+14.04.2026.pdf"
       }
     ],
     "kategoria": "transport",
     "data_odpowiedzi": "Data przekazania do Prezydenta",
-    "odpowiedz_url": "",
-    "odpowiedz_status": "",
     "nr_sprawy": "321"
   },
   {
@@ -299,16 +349,20 @@
     "kadencja": "IX",
     "data_przekazania": "Data przekazania do Prezydenta",
     "tresc_url": "https://www.bip.bialystok.pl/resource/103527/H.+D%25C4%2599bowski+31.03.2026+%25282%2529.pdf",
+    "odpowiedz_url": "https://www.bip.bialystok.pl/resource/103527/H.+D%25C4%2599bowski+13.04.2026.pdf",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja (skan)",
         "url": "https://www.bip.bialystok.pl/resource/103527/H.+D%25C4%2599bowski+31.03.2026+%25282%2529.pdf"
+      },
+      {
+        "nazwa": "Odpowiedź (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103527/H.+D%25C4%2599bowski+13.04.2026.pdf"
       }
     ],
     "kategoria": "inne",
     "data_odpowiedzi": "Data przekazania do Prezydenta",
-    "odpowiedz_url": "",
-    "odpowiedz_status": "",
     "nr_sprawy": "320"
   },
   {
@@ -347,16 +401,20 @@
     "kadencja": "IX",
     "data_przekazania": "Data przekazania do Prezydenta",
     "tresc_url": "https://www.bip.bialystok.pl/resource/103523/E.+Tokajuk+A.+Leonowicz+31.03.2026.pdf",
+    "odpowiedz_url": "https://www.bip.bialystok.pl/resource/103523/doc01571420260413132121.pdf",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja (skan)",
         "url": "https://www.bip.bialystok.pl/resource/103523/E.+Tokajuk+A.+Leonowicz+31.03.2026.pdf"
+      },
+      {
+        "nazwa": "Odpowiedź (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103523/doc01571420260413132121.pdf"
       }
     ],
     "kategoria": "infrastruktura",
     "data_odpowiedzi": "Data przekazania do Prezydenta",
-    "odpowiedz_url": "",
-    "odpowiedz_status": "",
     "nr_sprawy": "318"
   },
   {
@@ -369,16 +427,20 @@
     "kadencja": "IX",
     "data_przekazania": "Data przekazania do Prezydenta",
     "tresc_url": "https://www.bip.bialystok.pl/resource/103522/E.+Tokajuk+31.03.2026.pdf",
+    "odpowiedz_url": "https://www.bip.bialystok.pl/resource/103522/E.+Tokajuk+17.04.2026.pdf",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja (skan)",
         "url": "https://www.bip.bialystok.pl/resource/103522/E.+Tokajuk+31.03.2026.pdf"
+      },
+      {
+        "nazwa": "Odpowiedź (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103522/E.+Tokajuk+17.04.2026.pdf"
       }
     ],
     "kategoria": "inne",
     "data_odpowiedzi": "Data przekazania do Prezydenta",
-    "odpowiedz_url": "",
-    "odpowiedz_status": "",
     "nr_sprawy": "317"
   },
   {

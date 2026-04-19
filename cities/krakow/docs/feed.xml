@@ -5,11 +5,47 @@
   <link href="https://krakow.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://krakow.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://krakow.radoskop.pl/</id>
-  <updated>2026-04-13T15:16:37Z</updated>
+  <updated>2026-04-17T13:53:28Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
+  <entry>
+    <title>Interpelacja: umów inwestorskich zawartych na terenie osiedla Złocień</title>
+    <link href="https://krakow.radoskop.pl/profil/michal-ciechowski/" rel="alternate" type="text/html"/>
+    <id>https://krakow.radoskop.pl/profil/michal-ciechowski/#interpelacja</id>
+    <published>2026-04-15T12:00:00+01:00</published>
+    <updated>2026-04-15T12:00:00+01:00</updated>
+    <summary type="html">Michał Ciechowski. umów inwestorskich zawartych na terenie osiedla Złocień</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: wycieku oleju napędowego z zajezdni autobusowej MPK w Bieńczycach do rzeki Dłubni</title>
+    <link href="https://krakow.radoskop.pl/profil/aleksandra-owca/" rel="alternate" type="text/html"/>
+    <id>https://krakow.radoskop.pl/profil/aleksandra-owca/#interpelacja</id>
+    <published>2026-04-15T12:00:00+01:00</published>
+    <updated>2026-04-15T12:00:00+01:00</updated>
+    <summary type="html">Aleksandra Owca. wycieku oleju napędowego z zajezdni autobusowej MPK w Bieńczycach do rzeki Dłubni</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: rewitalizacji Bulwarów Wiślanych</title>
+    <link href="https://krakow.radoskop.pl/profil/lukasz-maslona/" rel="alternate" type="text/html"/>
+    <id>https://krakow.radoskop.pl/profil/lukasz-maslona/#interpelacja</id>
+    <published>2026-04-14T12:00:00+01:00</published>
+    <updated>2026-04-14T12:00:00+01:00</updated>
+    <summary type="html">Łukasz Maślona. rewitalizacji Bulwarów Wiślanych</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: wariantów wschodniego i zachodniego projektowanej drogi ekspresowej S7 Kraków-Myślenice przesłanych </title>
+    <link href="https://krakow.radoskop.pl/profil/michal-starobrat/" rel="alternate" type="text/html"/>
+    <id>https://krakow.radoskop.pl/profil/michal-starobrat/#interpelacja</id>
+    <published>2026-04-14T12:00:00+01:00</published>
+    <updated>2026-04-14T12:00:00+01:00</updated>
+    <summary type="html">Michał Starobrat. wariantów wschodniego i zachodniego projektowanej drogi ekspresowej S7 Kraków-Myślenice przesłanych do GDDKiA  jako efekt pracy krakowskiego zespołu w</summary>
+    <category term="interpelacja"/>
+  </entry>
   <entry>
     <title>Interpelacja: wyboru wykonawcy i rozpoczęcia prac budowlanych przy przystanku kolei aglomeracyjnej SKA Prądnik Cze</title>
     <link href="https://krakow.radoskop.pl/profil/agnieszka-paderewska/" rel="alternate" type="text/html"/>
@@ -17,15 +53,6 @@
     <published>2026-04-13T12:00:00+01:00</published>
     <updated>2026-04-13T12:00:00+01:00</updated>
     <summary type="html">Agnieszka Paderewska. wyboru wykonawcy i rozpoczęcia prac budowlanych przy przystanku kolei aglomeracyjnej SKA Prądnik Czerwony</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: lądowiska przy Szpitalu im. Gabriela Narutowicza w Krakowie</title>
-    <link href="https://krakow.radoskop.pl/profil/michal-ciechowski/" rel="alternate" type="text/html"/>
-    <id>https://krakow.radoskop.pl/profil/michal-ciechowski/#interpelacja</id>
-    <published>2026-04-10T12:00:00+01:00</published>
-    <updated>2026-04-10T12:00:00+01:00</updated>
-    <summary type="html">Michał Ciechowski. lądowiska przy Szpitalu im. Gabriela Narutowicza w Krakowie</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -89,24 +116,6 @@
     <published>2026-03-31T12:00:00+01:00</published>
     <updated>2026-03-31T12:00:00+01:00</updated>
     <summary type="html">Marek Hohenauer. standardów stosowanych przy organizacji tymczasowych ciągów pieszych podczas realizacji inwestycji drogowych na terenie Krakowa, w szczególności w dzi</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: pracy adw. Kamila Kociołka na rzecz Urzędu Miasta Krakowa</title>
-    <link href="https://krakow.radoskop.pl/profil/aleksandra-owca/" rel="alternate" type="text/html"/>
-    <id>https://krakow.radoskop.pl/profil/aleksandra-owca/#interpelacja</id>
-    <published>2026-03-30T12:00:00+01:00</published>
-    <updated>2026-03-30T12:00:00+01:00</updated>
-    <summary type="html">Aleksandra Owca. pracy adw. Kamila Kociołka na rzecz Urzędu Miasta Krakowa</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: zamontowania słupków na skrzyżowaniu Zaporoska/Krymska/Wicherkiewicza w celu uniemożliwienia parkowa</title>
-    <link href="https://krakow.radoskop.pl/profil/michal-starobrat/" rel="alternate" type="text/html"/>
-    <id>https://krakow.radoskop.pl/profil/michal-starobrat/#interpelacja</id>
-    <published>2026-03-25T12:00:00+01:00</published>
-    <updated>2026-03-25T12:00:00+01:00</updated>
-    <summary type="html">Michał Starobrat. zamontowania słupków na skrzyżowaniu Zaporoska/Krymska/Wicherkiewicza w celu uniemożliwienia parkowania samochodów na skrzyżowaniu</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -197,15 +206,6 @@
     <published>2026-03-18T12:00:00+01:00</published>
     <updated>2026-03-18T12:00:00+01:00</updated>
     <summary type="html">Grzegorz Garboliński. wycinki drzew przy ul. Łężce w Podgórzu Duchackim</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: kamienicy przy ul. Grzegórzeckiej</title>
-    <link href="https://krakow.radoskop.pl/profil/lukasz-maslona/" rel="alternate" type="text/html"/>
-    <id>https://krakow.radoskop.pl/profil/lukasz-maslona/#interpelacja</id>
-    <published>2026-03-17T12:00:00+01:00</published>
-    <updated>2026-03-17T12:00:00+01:00</updated>
-    <summary type="html">Łukasz Maślona. kamienicy przy ul. Grzegórzeckiej</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

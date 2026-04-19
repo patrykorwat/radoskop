@@ -5,11 +5,20 @@
   <link href="https://gdynia.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://gdynia.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://gdynia.radoskop.pl/</id>
-  <updated>2026-04-13T13:33:50Z</updated>
+  <updated>2026-04-17T14:05:09Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
+  <entry>
+    <title>Interpelacja: Interpelacja w sprawie zapewnienia ciągu komunikacyjnego dla mieszkańców Gdyni Cisowej.</title>
+    <link href="https://gdynia.radoskop.pl/profil/agnieszka-tokarska/" rel="alternate" type="text/html"/>
+    <id>https://gdynia.radoskop.pl/profil/agnieszka-tokarska/#interpelacja</id>
+    <published>2026-04-13T12:00:00+01:00</published>
+    <updated>2026-04-13T12:00:00+01:00</updated>
+    <summary type="html">Agnieszka Tokarska. Interpelacja w sprawie zapewnienia ciągu komunikacyjnego dla mieszkańców Gdyni Cisowej.</summary>
+    <category term="interpelacja"/>
+  </entry>
   <entry>
     <title>Interpelacja: Interpelacja w sprawie wyznaczenia przejść pieszych przez drogi dla rowerów: brak realizacji zobowią</title>
     <link href="https://gdynia.radoskop.pl/profil/dawid-biernacik/" rel="alternate" type="text/html"/>
@@ -899,15 +908,6 @@
     <published>2025-11-26T12:00:00+01:00</published>
     <updated>2025-11-26T12:00:00+01:00</updated>
     <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja XXIV.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>projekt uchwały w sprawie wyrażenia zgody na nabycie na rzecz Gminy Miasta Gdyni własności nieruchom</title>
-    <link href="https://gdynia.radoskop.pl/glosowanie/2025-11-26_029/" rel="alternate" type="text/html"/>
-    <id>https://gdynia.radoskop.pl/glosowanie/2025-11-26_029/#vote</id>
-    <published>2025-11-26T12:00:00+01:00</published>
-    <updated>2025-11-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja XXIV.</summary>
     <category term="vote"/>
   </entry>
 </feed>
