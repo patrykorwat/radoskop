@@ -1,0 +1,302 @@
+[
+  {
+    "citySlug": "warszawa",
+    "id": "2024-08-29_028",
+    "date": "2024-08-29",
+    "topic": "wniosek mniejszości nr 2",
+    "za": 0,
+    "przeciw": 36,
+    "wstrz": 1,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "krakow",
+    "id": "2024-09-25_011",
+    "date": "2024-09-25",
+    "topic": "Nazwa ulicy / projektodawca Prezydent Miasta Krakowa/ Druk nr 216",
+    "za": 0,
+    "przeciw": 34,
+    "wstrz": 0,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "katowice",
+    "id": "2024-10-24_003_000",
+    "date": "2024-10-24",
+    "topic": "5. Wniosek formalny o wprowadzenie poiprawki",
+    "za": 0,
+    "przeciw": 25,
+    "wstrz": 3,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "lodz",
+    "id": "2025-01-15_608_000",
+    "date": "2025-01-15",
+    "topic": "9G. Rozpatrzenie projektu uchwały w sprawie ustalenia lokalizacji inwestycji mieszkaniowej przy ulicy Piotrkowskiej 293- 305 w Łodzi - druk nr 10/2025.",
+    "za": 0,
+    "przeciw": 36,
+    "wstrz": 0,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "lodz",
+    "id": "2025-04-16_803_000",
+    "date": "2025-04-16",
+    "topic": "Uwaga nr 2",
+    "za": 0,
+    "przeciw": 29,
+    "wstrz": 0,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "warszawa",
+    "id": "2025-04-24_033",
+    "date": "2025-04-24",
+    "topic": "Projekt uchwały Rady m.st. Warszawy w sprawie przystąpienia do sporządzenia miejscowego planu zagospodarowania przestrzennego os. Tarchomin cz. VII – druk nr 5…",
+    "za": 0,
+    "przeciw": 34,
+    "wstrz": 9,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "warszawa",
+    "id": "2025-06-26_015",
+    "date": "2025-06-26",
+    "topic": "Projekt uchwały Rady m.st. Warszawy zmieniającej uchwałę w sprawie ustalenia cen za usługi przewozowe środkami lokalnego transportu zbiorowego w m.st. Warszawi…",
+    "za": 0,
+    "przeciw": 36,
+    "wstrz": 4,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "warszawa",
+    "id": "2025-10-16_032",
+    "date": "2025-10-16",
+    "topic": "Projekt uchwały Rady m.st. Warszawy w sprawie wyrażenia opinii o lokalizacji kasyna gry – druk nr 1104",
+    "za": 0,
+    "przeciw": 24,
+    "wstrz": 14,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "warszawa",
+    "id": "2025-10-16_031",
+    "date": "2025-10-16",
+    "topic": "Projekt uchwały Rady m.st. Warszawy w sprawie wyrażenia opinii o lokalizacji kasyna gry – druk nr 1103",
+    "za": 0,
+    "przeciw": 24,
+    "wstrz": 14,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "warszawa",
+    "id": "2025-10-16_030",
+    "date": "2025-10-16",
+    "topic": "Projekt uchwały Rady m.st. Warszawy w sprawie wyrażenia opinii o lokalizacji kasyna gry – druk nr 1102",
+    "za": 0,
+    "przeciw": 24,
+    "wstrz": 13,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "warszawa",
+    "id": "2025-10-16_029",
+    "date": "2025-10-16",
+    "topic": "Projekt uchwały Rady m.st. Warszawy w sprawie wyrażenia opinii o lokalizacji kasyna gry – druk nr 1101",
+    "za": 0,
+    "przeciw": 21,
+    "wstrz": 16,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "poznan",
+    "id": "2025-12-02_002_000",
+    "date": "2025-12-02",
+    "topic": "XXVIII sesja Rady Miasta Poznania",
+    "za": 0,
+    "przeciw": 34,
+    "wstrz": 0,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "warszawa",
+    "id": "2025-12-11_124",
+    "date": "2025-12-11",
+    "topic": "Uchwała Nr XXX/1141/2025 Rady Miasta Stołecznego Warszawy w sprawie zmian w budżecie miasta stołecznego Warszawy na 2025 rok – druk nr 1241 wraz z autopoprawką",
+    "za": 0,
+    "przeciw": 15,
+    "wstrz": 6,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "poznan",
+    "id": "2025-12-18_041_000",
+    "date": "2025-12-18",
+    "topic": "XXIX sesja budżetowa Rady Miasta Poznania",
+    "za": 0,
+    "przeciw": 33,
+    "wstrz": 0,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "poznan",
+    "id": "2025-12-18_040_000",
+    "date": "2025-12-18",
+    "topic": "XXIX sesja budżetowa Rady Miasta Poznania",
+    "za": 0,
+    "przeciw": 28,
+    "wstrz": 6,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "poznan",
+    "id": "2025-12-18_019_000",
+    "date": "2025-12-18",
+    "topic": "XXIX sesja budżetowa Rady Miasta Poznania",
+    "za": 0,
+    "przeciw": 33,
+    "wstrz": 0,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "warszawa",
+    "id": "2026-01-15_039",
+    "date": "2026-01-15",
+    "topic": "Projekt uchwały Rady m.st. Warszawy w sprawie przekształcenia Szkoły Podstawowej nr 32 z Oddziałami Integracyjnymi im. Małego Powstańca w Warszawie, ul. D. B. …",
+    "za": 0,
+    "przeciw": 22,
+    "wstrz": 1,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "poznan",
+    "id": "2026-01-20_003_000",
+    "date": "2026-01-20",
+    "topic": "XXX sesja Rady Miasta Poznania",
+    "za": 0,
+    "przeciw": 26,
+    "wstrz": 4,
+    "pctZa": 0.0
+  },
+  {
+    "citySlug": "krakow",
+    "id": "2025-12-17_012",
+    "date": "2025-12-17",
+    "topic": "Zmieniająca uchwałę nr LXXXIX/2177/17 w sprawie ustalenia strefy płatnego parkowania, ustalenia opłat za postój pojazdów samochodowych na drogach publicznych w…",
+    "za": 1,
+    "przeciw": 40,
+    "wstrz": 0,
+    "pctZa": 2.44
+  },
+  {
+    "citySlug": "krakow",
+    "id": "2025-12-17_009",
+    "date": "2025-12-17",
+    "topic": "Zmieniająca uchwałę nr CII/2778/22 w sprawie przystąpienia do sporządzenia miejscowego planu zagospodarowania przestrzennego obszaru „Mogiła - Wschód” / projek…",
+    "za": 1,
+    "przeciw": 40,
+    "wstrz": 0,
+    "pctZa": 2.44
+  },
+  {
+    "citySlug": "warszawa",
+    "id": "2026-01-15_038",
+    "date": "2026-01-15",
+    "topic": "Projekt uchwały Rady m.st. Warszawy w sprawie zamiaru likwidacji Przedszkola nr 36 „Odkrywcy Nowego Świata” w Warszawie, ul. Nowy Świat 41A – druk nr 1322 - wn…",
+    "za": 1,
+    "przeciw": 22,
+    "wstrz": 15,
+    "pctZa": 2.63
+  },
+  {
+    "citySlug": "poznan",
+    "id": "2025-12-18_043_000",
+    "date": "2025-12-18",
+    "topic": "XXIX sesja budżetowa Rady Miasta Poznania",
+    "za": 1,
+    "przeciw": 31,
+    "wstrz": 1,
+    "pctZa": 3.03
+  },
+  {
+    "citySlug": "warszawa",
+    "id": "2024-08-29_032",
+    "date": "2024-08-29",
+    "topic": "wniosek mniejszości nr 6",
+    "za": 2,
+    "przeciw": 41,
+    "wstrz": 17,
+    "pctZa": 3.33
+  },
+  {
+    "citySlug": "katowice",
+    "id": "2024-11-21_003_000",
+    "date": "2024-11-21",
+    "topic": "5. Wniosek o rozszerzenie porządku obrad. Wniosek Pana Radnego Piechoty",
+    "za": 1,
+    "przeciw": 25,
+    "wstrz": 2,
+    "pctZa": 3.57
+  },
+  {
+    "citySlug": "katowice",
+    "id": "2025-01-23_015_000",
+    "date": "2025-01-23",
+    "topic": "9a. Wniosek formalny o zwiększenie czasu i ilości wystąpień dyskutantów.",
+    "za": 1,
+    "przeciw": 27,
+    "wstrz": 0,
+    "pctZa": 3.57
+  },
+  {
+    "citySlug": "katowice",
+    "id": "2025-05-29_007_000",
+    "date": "2025-05-29",
+    "topic": "5. Wniosek formalny o zdjęcie z obrad pkt 17",
+    "za": 1,
+    "przeciw": 27,
+    "wstrz": 0,
+    "pctZa": 3.57
+  },
+  {
+    "citySlug": "katowice",
+    "id": "2025-12-18_007_000",
+    "date": "2025-12-18",
+    "topic": "6a. Głosowanie nad poprawką do projektu uchwały. Wniosek Pana Radnego Leszka 8 Piechoty.",
+    "za": 1,
+    "przeciw": 26,
+    "wstrz": 0,
+    "pctZa": 3.7
+  },
+  {
+    "citySlug": "katowice",
+    "id": "2025-12-18_009_000",
+    "date": "2025-12-18",
+    "topic": "7. Poprawka do projektu uchwały wniesiona przez Radnego Leszka Piechotę.",
+    "za": 1,
+    "przeciw": 21,
+    "wstrz": 4,
+    "pctZa": 3.85
+  },
+  {
+    "citySlug": "wroclaw",
+    "id": "2025-07-10_040_000",
+    "date": "2025-07-10",
+    "topic": "Projekt uchwały w sprawie rozpatrzenia petycji w przedmiocie zmiany nazwy mostu we",
+    "za": 1,
+    "przeciw": 17,
+    "wstrz": 7,
+    "pctZa": 4.0
+  },
+  {
+    "citySlug": "katowice",
+    "id": "2025-12-18_012_000",
+    "date": "2025-12-18",
+    "topic": "7. Wniosek formalny: dot reasumpcji głosowania Piechota Leszek",
+    "za": 1,
+    "przeciw": 24,
+    "wstrz": 0,
+    "pctZa": 4.0
+  }
+]

@@ -43,7 +43,7 @@
       "start": "2018-11-22"
     }
   },
-  "has_budget": false,
+  "has_budget": true,
   "has_komisje": false,
   "budget_note": "",
   "adsense_pub_id": "ca-pub-1616606963057752",

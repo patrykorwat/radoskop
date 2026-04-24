@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Radoskop — Jak głosują radni?</title>
-<meta name="description" content="Radoskop — bezpłatne narzędzie monitoringu rad miejskich w Polsce. Frekwencja, głosowania, profile radnych i budżety trzynastu miast: Gdańska, Warszawy, Krakowa, Wrocławia, Poznania, Gdyni, Sopotu, Łodzi, Szczecina, Lublina, Bydgoszczy, Katowic i Białegostoku. Kadencja 2024–2029. Dane z BIP.">
-<meta name="keywords" content="rada miasta, radni, głosowania, frekwencja, samorząd, monitoring, transparentność, Gdańsk, Warszawa, Kraków, Wrocław, Poznań, Gdynia, Sopot, Łódź, Szczecin, Lublin, Bydgoszcz, Katowice, Białystok">
+<title>Radoskop: jak głosują radni w Polsce?</title>
+<meta name="description" content="Radoskop to bezpłatne narzędzie monitoringu rad miejskich w Polsce. Frekwencja, głosowania, interpelacje, profile radnych i budżety miast. Dane z BIP. Kadencja 2024–2029.">
+<meta name="keywords" content="rada miasta, radni, głosowania, frekwencja, samorząd, monitoring, transparentność, interpelacje, budżet miasta, BIP">
 <meta name="author" content="Patryk Orwat">
 <link rel="canonical" href="https://radoskop.pl/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Radoskop — Jak głosują radni?">
-<meta property="og:description" content="Bezpłatne narzędzie monitoringu rad miejskich w Polsce. Frekwencja, głosowania, profile radnych i budżety trzynastu miast: Gdańska, Warszawy, Krakowa, Wrocławia, Poznania, Gdyni, Sopotu, Łodzi, Szczecina, Lublina, Bydgoszczy, Katowic i Białegostoku. Kadencja 2024–2029.">
+<meta property="og:title" content="Radoskop: jak głosują radni w Polsce?">
+<meta property="og:description" content="Bezpłatne narzędzie monitoringu rad miejskich w Polsce. Frekwencja, głosowania, interpelacje, profile radnych i budżety miast. Kadencja 2024–2029.">
 <meta property="og:url" content="https://radoskop.pl/">
 <meta property="og:locale" content="pl_PL">
 <meta property="og:site_name" content="Radoskop">
@@ -18,8 +18,8 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Radoskop — Jak głosują radni?">
-<meta name="twitter:description" content="Bezpłatne narzędzie monitoringu rad miejskich w Polsce. Frekwencja, głosowania, profile radnych i budżety trzynastu miast: Gdańska, Warszawy, Krakowa, Wrocławia, Poznania, Gdyni, Sopotu, Łodzi, Szczecina, Lublina, Bydgoszczy, Katowic i Białegostoku.">
+<meta name="twitter:title" content="Radoskop: jak głosują radni w Polsce?">
+<meta name="twitter:description" content="Bezpłatne narzędzie monitoringu rad miejskich w Polsce. Frekwencja, głosowania, interpelacje i budżety miast.">
 <meta name="twitter:image" content="https://radoskop.pl/og-image.png">
 <script type="application/ld+json">
 {
@@ -30,10 +30,7 @@
   "url": "https://radoskop.pl/",
   "applicationCategory": "GovernmentApplication",
   "operatingSystem": "Web",
-  "author": {
-    "@type": "Person",
-    "name": "Patryk Orwat"
-  },
+  "author": { "@type": "Person", "name": "Patryk Orwat" },
   "license": "https://www.gnu.org/licenses/agpl-3.0.html",
   "isAccessibleForFree": true,
   "inLanguage": "pl"
@@ -56,257 +53,177 @@ function gtag(){dataLayer.push(arguments);}
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1616606963057752" crossorigin="anonymous"></script>
 <style>
 :root {
-  --bg: #f8f9fa;
-  --surface: #ffffff;
-  --border: #e2e5e9;
-  --text: #1a1d27;
-  --muted: #6b7280;
-  --accent: #4f46e5;
-  --green: #15803d;
-  --red: #dc2626;
-  --blue: #2563eb;
+  --bg:#f8f9fa; --surface:#ffffff; --border:#e2e5e9; --text:#1a1d27; --muted:#6b7280;
+  --accent:#4f46e5; --green:#15803d; --red:#dc2626; --yellow:#ca8a04;
 }
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:var(--bg); color:var(--text); line-height:1.5; min-height:100vh; display:flex; flex-direction:column; }
-.container { max-width:1100px; margin:0 auto; padding:20px; width:100%; }
-.hero { text-align:center; padding:80px 0 40px; }
-.hero h1 { font-size:2.8rem; font-weight:700; margin-bottom:8px; }
-.hero h1 span { color:var(--accent); }
-.hero p { color:var(--muted); font-size:1.1rem; max-width:600px; margin:0 auto; }
-.cities { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:20px; margin:40px 0 60px; }
-.city-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:32px; text-decoration:none; color:var(--text); transition:border-color 0.15s, box-shadow 0.15s; display:flex; flex-direction:column; gap:12px; }
-.city-card:hover { border-color:var(--accent); box-shadow:0 4px 24px rgba(79,70,229,0.1); }
-.city-card h2 { font-size:1.5rem; font-weight:700; }
-.city-card .desc { color:var(--muted); font-size:0.9rem; line-height:1.6; flex:1; }
-.city-card .clubs { display:flex; gap:6px; flex-wrap:wrap; margin-top:4px; }
-.city-card .club { display:inline-block; padding:2px 10px; border-radius:4px; font-size:0.75rem; font-weight:600; }
-.city-card .arrow { color:var(--accent); font-weight:600; font-size:0.9rem; margin-top:4px; }
-.city-card .status { font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; }
-.city-card.soon { opacity:0.55; border-style:dashed; cursor:default; }
-.city-card.soon:hover { border-color:var(--border); box-shadow:none; }
-.city-card .status.coming { color:#d97706; font-weight:600; }
-.about { border-top:1px solid var(--border); padding:40px 0; }
-.about h3 { font-size:1.1rem; font-weight:600; margin-bottom:12px; }
-.about p { color:var(--muted); font-size:0.9rem; line-height:1.7; margin-bottom:12px; max-width:800px; }
-.about a { color:var(--accent); text-decoration:none; }
-.about a { text-decoration:underline; text-decoration-color:rgba(79,70,229,0.3); text-underline-offset:2px; }
-.about a:hover { text-decoration-color:var(--accent); }
-footer { margin-top:auto; border-top:1px solid var(--border); padding:20px 0; text-align:center; }
-footer p { color:var(--muted); font-size:0.8rem; }
-footer a { color:var(--accent); text-decoration:none; }
-footer a { text-decoration:underline; text-decoration-color:rgba(79,70,229,0.3); text-underline-offset:2px; }
-footer a:hover { text-decoration-color:var(--accent); }
-.comparison { border-top:1px solid var(--border); padding:40px 0; }
-.comparison h3 { font-size:1.3rem; font-weight:700; margin-bottom:4px; }
-.comparison-subtitle { color:var(--muted); font-size:0.85rem; margin-bottom:24px; }
-.comp-table-wrap { overflow-x:auto; margin-bottom:32px; }
-.comp-table { width:100%; border-collapse:collapse; font-size:0.9rem; }
-.comp-table th { text-align:center; padding:10px 16px; border-bottom:2px solid var(--border); font-weight:700; color:var(--text); }
-.comp-table th:first-child { text-align:left; }
-.comp-table td { padding:8px 16px; text-align:center; border-bottom:1px solid var(--border); }
-.comp-table td.label { text-align:left; font-weight:500; color:var(--muted); }
-.comp-table td.best { font-weight:700; color:#4f46e5; }
-.comp-table th.soon-col, .comp-table td.soon-col { opacity:0.4; font-style:italic; }
-.comp-table tr.highlight td { background:rgba(79,70,229,0.04); }
-.comp-charts { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:24px; margin-bottom:16px; }
-.budget { border-top:1px solid var(--border); padding:40px 0; }
-.budget h3 { font-size:1.3rem; font-weight:700; margin-bottom:4px; }
-.budget-subtitle { color:var(--muted); font-size:0.85rem; margin-bottom:24px; }
-.budget-links { display:flex; gap:12px; flex-wrap:wrap; margin-top:16px; }
-.budget-links a { display:inline-block; padding:6px 16px; border:1px solid var(--accent); border-radius:8px; color:var(--accent); text-decoration:none; font-size:0.85rem; font-weight:600; transition:background 0.15s, color 0.15s; }
-.budget-links a:hover { background:var(--accent); color:#fff; }
-.budget-note { color:var(--muted); font-size:0.78rem; margin-top:16px; }
-.chart-legend { display:flex; justify-content:center; gap:24px; flex-wrap:wrap; margin-top:12px; font-size:0.82rem; color:var(--muted); }
-.chart-legend span { display:inline-flex; align-items:center; gap:6px; }
-.chart-legend svg { flex-shrink:0; }
-.sessions-feed { border-top:1px solid var(--border); padding:40px 0; }
-.sessions-feed h3 { font-size:1.3rem; font-weight:700; margin-bottom:4px; }
-.sessions-feed .comparison-subtitle { margin-bottom:20px; }
-.feed-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:20px; margin-bottom:16px; }
-.feed-city { display:flex; flex-direction:column; gap:0; }
-.feed-city-name { font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:var(--muted); padding-bottom:8px; border-bottom:2px solid var(--border); margin-bottom:4px; }
-.feed-city-name.gd { border-color:#4f46e5; color:#4f46e5; }
-.feed-city-name.waw { border-color:#0284c7; color:#0284c7; }
-.feed-city-name.krk { border-color:#16a34a; color:#16a34a; }
-.feed-city-name.gdy { border-color:#d97706; color:#d97706; }
-.feed-city-name.sop { border-color:#ec4899; color:#ec4899; }
-.feed-city-name.wro { border-color:#7c3aed; color:#7c3aed; }
-.feed-city-name.poz { border-color:#0891b2; color:#0891b2; }
-.feed-city-name.ldz { border-color:#dc2626; color:#dc2626; }
-.feed-city-name.szn { border-color:#059669; color:#059669; }
-.feed-city-name.lub { border-color:#b45309; color:#b45309; }
-.feed-city-name.byd { border-color:#9333ea; color:#9333ea; }
-.feed-city-name.kat { border-color:#0d9488; color:#0d9488; }
-.feed-city-name.bia { border-color:#ea580c; color:#ea580c; }
-.feed-item { display:flex; justify-content:space-between; align-items:center; padding:8px 4px; border-bottom:1px solid var(--border); text-decoration:none; color:var(--text); transition:background 0.1s; gap:8px; border-radius:4px; }
-.feed-item:hover { background:rgba(79,70,229,0.03); }
-.feed-item .sess-label { font-size:0.82rem; font-weight:500; white-space:nowrap; }
-.feed-item .sess-date { font-size:0.75rem; color:var(--muted); white-space:nowrap; }
-.feed-item .sess-votes { font-size:0.72rem; color:var(--muted); background:var(--bg); padding:1px 7px; border-radius:10px; white-space:nowrap; }
-@media (max-width:900px) { .feed-grid { grid-template-columns:repeat(2, 1fr); gap:16px; } }
-@media (max-width:500px) { .feed-grid { grid-template-columns:1fr; gap:24px; } }
-.interpelacje-section { border-top:1px solid var(--border); padding:40px 0; }
-.interpelacje-section h3 { font-size:1.3rem; font-weight:700; margin-bottom:4px; }
-.interp-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; margin-bottom:16px; }
-.interp-city-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; text-decoration:none; color:var(--text); transition:border-color 0.15s, box-shadow 0.15s; display:flex; flex-direction:column; gap:12px; }
-a.interp-city-card:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70,229,0.08); }
-.interp-city-card .interp-city-name { font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; }
-.interp-city-card .interp-city-name.gd { color:#4f46e5; }
-.interp-city-card .interp-city-name.waw { color:#0284c7; }
-.interp-city-card .interp-city-name.sop { color:#ec4899; }
-.interp-nums { display:flex; gap:16px; flex-wrap:wrap; }
-.interp-nums > div > .n { font-size:1.4rem; font-weight:700; }
-.interp-nums > div > .l { font-size:0.72rem; color:var(--muted); text-transform:uppercase; }
-.interp-top { display:flex; flex-direction:column; gap:3px; }
-.interp-top-item { display:flex; align-items:center; gap:8px; }
-.interp-top-item .bar-wrap { flex:1; background:var(--border); border-radius:3px; height:6px; overflow:hidden; }
-.interp-top-item .bar-fill { height:100%; border-radius:3px; }
-.interp-top-item .name { font-size:0.8rem; width:150px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.interp-top-item .cnt { font-size:0.75rem; color:var(--muted); width:30px; text-align:right; }
-@media (max-width:900px) { .interp-grid { grid-template-columns:1fr; } }
-.controversial { border-top:1px solid var(--border); padding:40px 0; }
-.controversial h3 { font-size:1.3rem; font-weight:700; margin-bottom:4px; }
-.controversial-subtitle { color:var(--muted); font-size:0.85rem; margin-bottom:24px; }
-.vote-list { display:flex; flex-direction:column; gap:12px; margin-bottom:24px; }
-.vote-item { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 20px; display:flex; flex-direction:column; gap:6px; text-decoration:none; color:var(--text); transition:border-color 0.15s, box-shadow 0.15s; }
-a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70,229,0.08); }
-.vote-item .vote-header { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
-.vote-item .vote-city { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; padding:2px 8px; border-radius:4px; }
-.vote-city.gd { background:rgba(79,70,229,0.1); color:#4f46e5; }
-.vote-city.waw { background:rgba(2,132,199,0.1); color:#0284c7; }
-.vote-city.krk { background:rgba(22,163,74,0.1); color:#16a34a; }
-.vote-city.gdy { background:rgba(217,119,6,0.1); color:#d97706; }
-.vote-city.sop { background:rgba(236,72,153,0.1); color:#ec4899; }
-.vote-city.wro { background:rgba(124,58,237,0.1); color:#7c3aed; }
-.vote-city.poz { background:rgba(8,145,178,0.1); color:#0891b2; }
-.vote-city.ldz { background:rgba(220,38,38,0.1); color:#dc2626; }
-.vote-city.byd { background:rgba(147,51,234,0.1); color:#9333ea; }
-.vote-city.kat { background:rgba(13,148,136,0.1); color:#0d9488; }
-.vote-city.bia { background:rgba(234,88,12,0.1); color:#ea580c; }
-.vote-item .vote-date { font-size:0.78rem; color:var(--muted); }
-.vote-item .vote-topic { font-size:0.88rem; line-height:1.5; }
-.vote-item .vote-result { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:2px; }
-.vote-pill { display:inline-block; padding:2px 10px; border-radius:12px; font-size:0.75rem; font-weight:600; }
-.pill-za { background:rgba(22,163,74,0.1); color:var(--green); }
-.pill-przeciw { background:rgba(220,38,38,0.1); color:var(--red); }
-.pill-wstrz { background:rgba(107,114,128,0.1); color:var(--muted); }
-.pill-pct { background:rgba(220,38,38,0.08); color:var(--red); font-weight:700; border:1px solid rgba(220,38,38,0.2); }
-.seo-intro { max-width:700px; margin:0 auto 10px; text-align:center; }
-.seo-intro p { color:var(--muted); font-size:0.88rem; line-height:1.7; }
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh;display:flex;flex-direction:column;}
+.container{max-width:1200px;margin:0 auto;padding:20px;width:100%;}
+.hero{text-align:center;padding:72px 0 36px;}
+.hero h1{font-size:2.8rem;font-weight:700;margin-bottom:8px;}
+.hero h1 span{color:var(--accent);}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:640px;margin:0 auto;}
+.seo-intro{max-width:760px;margin:0 auto 10px;text-align:center;}
+.seo-intro p{color:var(--muted);font-size:0.9rem;line-height:1.7;}
 
-/* ── Ranking radnych z 13 miast ── */
-.ranking-section { border-top:1px solid var(--border); padding:40px 0; }
-.ranking-section h3 { font-size:1.3rem; font-weight:700; margin-bottom:4px; }
-.ranking-controls { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:20px; }
-.ranking-tab { padding:6px 14px; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-size:0.82rem; font-weight:500; font-family:inherit; transition:border-color 0.15s, color 0.15s, background 0.15s; }
-.ranking-tab:hover { border-color:var(--accent); color:var(--accent); }
-.ranking-tab.active { background:var(--accent); color:white; border-color:var(--accent); }
-.ranking-sep { width:1px; height:20px; background:var(--border); margin:0 4px; }
-.ranking-dir { padding:6px 14px; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-size:0.82rem; font-weight:500; font-family:inherit; transition:border-color 0.15s, color 0.15s; }
-.ranking-dir:hover { color:var(--text); border-color:var(--text); }
-.ranking-dir.active { color:var(--text); border-color:var(--text); font-weight:600; }
-.ranking-list { display:flex; flex-direction:column; gap:0; }
-.ranking-row { display:flex; align-items:center; gap:12px; padding:10px 12px; border-bottom:1px solid var(--border); text-decoration:none; color:var(--text); transition:background 0.1s; border-radius:4px; }
-.ranking-row:hover { background:rgba(79,70,229,0.04); }
-.ranking-pos { font-size:0.82rem; font-weight:700; color:var(--muted); min-width:28px; text-align:right; }
-.ranking-pos.top3 { color:var(--accent); font-size:0.92rem; }
-.ranking-avatar { width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.78rem; font-weight:700; color:white; flex-shrink:0; }
-.ranking-info { flex:1; min-width:0; }
-.ranking-name { font-weight:600; font-size:0.88rem; }
-.ranking-meta { font-size:0.75rem; color:var(--muted); display:flex; gap:8px; }
-.ranking-stat { font-size:0.82rem; font-weight:700; min-width:56px; text-align:right; }
-.ranking-stat.good { color:var(--green); }
-.ranking-stat.medium { color:#ca8a04; }
-.ranking-stat.low { color:var(--red); }
-.ranking-bar-wrap { width:80px; height:6px; background:var(--border); border-radius:3px; overflow:hidden; flex-shrink:0; }
-.ranking-bar-fill { height:100%; border-radius:3px; }
-.ranking-more-btn { display:block; width:100%; padding:12px; margin-top:12px; border:1px solid var(--border); border-radius:10px; background:transparent; color:var(--accent); font-size:0.88rem; font-weight:600; cursor:pointer; font-family:inherit; transition:background 0.15s, border-color 0.15s; }
-.ranking-more-btn:hover { background:rgba(79,70,229,0.05); border-color:var(--accent); }
-@media (max-width:600px) {
-  .ranking-bar-wrap { display:none; }
-  .ranking-controls { gap:4px; }
-  .ranking-tab, .ranking-dir { padding:5px 10px; font-size:0.78rem; }
-  .ranking-sep { display:none; }
+/* Dual search */
+.dual-search{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:1160px;margin:20px auto 40px;}
+.search-section{position:relative;}
+.search-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted);margin-bottom:6px;padding-left:4px;}
+.search-field{position:relative;}
+.search-input{width:100%;padding:14px 18px 14px 44px;border:2px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);font-size:1rem;font-family:inherit;outline:none;transition:border-color .2s;}
+.search-input:focus{border-color:var(--accent);}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;z-index:2;}
+.search-results{position:absolute;top:calc(100% + 4px);left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.12);max-height:420px;overflow-y:auto;z-index:100;display:none;}
+.search-results.visible{display:block;}
+.search-result,.vote-result{display:flex;gap:12px;padding:12px 16px;text-decoration:none;color:var(--text);border-bottom:1px solid var(--border);transition:background .1s;}
+.vote-result{flex-direction:column;gap:6px;}
+.search-result:last-child,.vote-result:last-child{border-bottom:none;}
+.search-result:hover,.vote-result:hover{background:rgba(79,70,229,0.05);}
+.search-result-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#fff;flex-shrink:0;background:var(--accent);}
+.search-result-info{flex:1;min-width:0;}
+.search-result-name{font-weight:600;font-size:.92rem;}
+.search-result-meta{font-size:.78rem;color:var(--muted);display:flex;gap:8px;align-items:center;}
+.search-result-stat{font-size:.75rem;font-weight:600;padding:1px 6px;border-radius:4px;}
+.search-result-stat.good{background:rgba(22,163,74,.12);color:#16a34a;}
+.search-result-stat.medium{background:rgba(202,138,4,.12);color:#ca8a04;}
+.search-result-stat.low{background:rgba(220,38,38,.12);color:#dc2626;}
+.search-result-name mark,.vote-result-topic mark{background:rgba(79,70,229,.18);color:var(--text);border-radius:2px;padding:0 1px;}
+.vote-result-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.vote-result-date{font-size:.72rem;color:var(--muted);}
+.vote-result-topic{font-size:.88rem;line-height:1.45;}
+.vote-result-counts{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px;}
+.pill{display:inline-block;padding:1px 8px;border-radius:10px;font-size:.7rem;font-weight:600;}
+.pill-za{background:rgba(22,163,74,.1);color:#16a34a;}
+.pill-przeciw{background:rgba(220,38,38,.1);color:#dc2626;}
+.pill-wstrz{background:rgba(107,114,128,.1);color:#6b7280;}
+.pill-outcome{background:rgba(79,70,229,.08);color:#4f46e5;}
+.search-empty,.search-loading{padding:20px;text-align:center;color:var(--muted);font-size:.88rem;}
+.search-count{text-align:center;color:var(--muted);font-size:.8rem;margin-top:8px;}
+
+/* City color badge (derived from slug hash at runtime) */
+.city-badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+
+/* Section base */
+section{border-top:1px solid var(--border);padding:40px 0;}
+section.no-border{border-top:none;}
+section h3{font-size:1.3rem;font-weight:700;margin-bottom:4px;}
+.section-subtitle{color:var(--muted);font-size:.85rem;margin-bottom:20px;}
+
+/* Filter bar */
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px;}
+.filter-bar input[type=text],.filter-bar select{padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:.88rem;font-family:inherit;outline:none;transition:border-color .2s;}
+.filter-bar input[type=text]:focus,.filter-bar select:focus{border-color:var(--accent);}
+.filter-bar input[type=text]{min-width:200px;flex:1;max-width:320px;}
+.filter-bar .filter-count{color:var(--muted);font-size:.82rem;margin-left:auto;}
+
+/* City cards grid */
+.cities-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+.city-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;text-decoration:none;color:var(--text);transition:border-color .15s,box-shadow .15s;display:flex;flex-direction:column;gap:6px;}
+.city-card:hover{border-color:var(--accent);box-shadow:0 4px 18px rgba(79,70,229,.08);}
+.city-card .ccard-head{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.city-card h2{font-size:1.1rem;font-weight:700;}
+.city-card .ccard-meta{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;}
+.city-card .ccard-stats{display:flex;gap:14px;margin-top:8px;}
+.city-card .ccard-stat{display:flex;flex-direction:column;}
+.city-card .ccard-stat .n{font-size:1.1rem;font-weight:700;}
+.city-card .ccard-stat .l{font-size:.7rem;color:var(--muted);text-transform:uppercase;}
+.city-card .arrow{color:var(--accent);font-weight:600;font-size:.82rem;margin-top:8px;}
+.show-more-btn{display:block;width:100%;padding:12px;margin-top:14px;border:1px solid var(--border);border-radius:10px;background:transparent;color:var(--accent);font-size:.88rem;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s;}
+.show-more-btn:hover{background:rgba(79,70,229,.05);border-color:var(--accent);}
+
+/* Sortable table */
+.table-wrap{overflow-x:auto;}
+.data-table{width:100%;border-collapse:collapse;font-size:.88rem;}
+.data-table th{text-align:right;padding:10px 12px;border-bottom:2px solid var(--border);font-weight:700;color:var(--text);cursor:pointer;user-select:none;white-space:nowrap;}
+.data-table th:first-child,.data-table td:first-child{text-align:left;}
+.data-table th.sorted{color:var(--accent);}
+.data-table th .arrow{font-size:.7rem;margin-left:3px;}
+.data-table td{padding:8px 12px;text-align:right;border-bottom:1px solid var(--border);white-space:nowrap;}
+.data-table tr:hover td{background:rgba(79,70,229,.03);}
+.data-table a{color:var(--text);text-decoration:none;}
+.data-table a:hover{color:var(--accent);}
+
+/* Ranking (councilors) */
+.ranking-controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:20px;}
+.ranking-tab,.ranking-dir{padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:.82rem;font-weight:500;font-family:inherit;transition:border-color .15s,color .15s,background .15s;}
+.ranking-tab:hover{border-color:var(--accent);color:var(--accent);}
+.ranking-tab.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.ranking-dir:hover{color:var(--text);border-color:var(--text);}
+.ranking-dir.active{color:var(--text);border-color:var(--text);font-weight:600;}
+.ranking-sep{width:1px;height:20px;background:var(--border);margin:0 4px;}
+.ranking-list{display:flex;flex-direction:column;}
+.ranking-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid var(--border);text-decoration:none;color:var(--text);transition:background .1s;}
+.ranking-row:hover{background:rgba(79,70,229,.04);}
+.ranking-pos{font-size:.82rem;font-weight:700;color:var(--muted);min-width:28px;text-align:right;}
+.ranking-pos.top3{color:var(--accent);font-size:.92rem;}
+.ranking-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:#fff;flex-shrink:0;}
+.ranking-info{flex:1;min-width:0;}
+.ranking-name{font-weight:600;font-size:.88rem;}
+.ranking-meta{font-size:.75rem;color:var(--muted);display:flex;gap:8px;}
+.ranking-stat{font-size:.82rem;font-weight:700;min-width:72px;text-align:right;}
+.ranking-stat.good{color:var(--green);}
+.ranking-stat.medium{color:var(--yellow);}
+.ranking-stat.low{color:var(--red);}
+.ranking-bar-wrap{width:80px;height:6px;background:var(--border);border-radius:3px;overflow:hidden;flex-shrink:0;}
+.ranking-bar-fill{height:100%;border-radius:3px;}
+
+/* Recent sessions feed (unified) */
+.sessions-list{display:flex;flex-direction:column;}
+.sess-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border-bottom:1px solid var(--border);text-decoration:none;color:var(--text);transition:background .1s;}
+.sess-row:hover{background:rgba(79,70,229,.04);}
+.sess-row .sess-city-col{min-width:120px;}
+.sess-row .sess-label{flex:1;font-size:.88rem;font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.sess-row .sess-date{font-size:.78rem;color:var(--muted);white-space:nowrap;min-width:88px;text-align:right;}
+.sess-row .sess-votes{font-size:.72rem;color:var(--muted);background:var(--bg);padding:1px 7px;border-radius:10px;white-space:nowrap;}
+
+/* Controversial votes */
+.vote-list{display:flex;flex-direction:column;gap:10px;}
+.vote-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px 18px;display:flex;flex-direction:column;gap:6px;text-decoration:none;color:var(--text);transition:border-color .15s,box-shadow .15s;}
+.vote-item:hover{border-color:var(--accent);box-shadow:0 2px 12px rgba(79,70,229,.08);}
+.vote-item .vote-header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;}
+.vote-item .vote-date{font-size:.78rem;color:var(--muted);}
+.vote-item .vote-topic{font-size:.88rem;line-height:1.5;}
+.vote-item .vote-result{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:2px;}
+.pill-pct{background:rgba(220,38,38,.08);color:var(--red);font-weight:700;border:1px solid rgba(220,38,38,.2);}
+
+.about p{color:var(--muted);font-size:.9rem;line-height:1.7;margin-bottom:12px;max-width:800px;}
+.about a{color:var(--accent);text-decoration:underline;text-decoration-color:rgba(79,70,229,.3);text-underline-offset:2px;}
+.about a:hover{text-decoration-color:var(--accent);}
+footer{margin-top:auto;border-top:1px solid var(--border);padding:20px 0;text-align:center;}
+footer p{color:var(--muted);font-size:.8rem;}
+footer a{color:var(--accent);text-decoration:underline;text-decoration-color:rgba(79,70,229,.3);text-underline-offset:2px;}
+footer a:hover{text-decoration-color:var(--accent);}
+
+@media (max-width:900px){
+  .dual-search{grid-template-columns:1fr;gap:12px;}
+  .cities-grid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;}
 }
-
-/* ── Wyszukiwarki (radnych i głosowań) ── */
-.dual-search { display:grid; grid-template-columns:1fr 1fr; gap:16px; max-width:1160px; margin:0 auto 40px; }
-.dual-search .search-section { max-width:none; margin:0; }
-@media (max-width:760px) { .dual-search { grid-template-columns:1fr; gap:14px; } }
-.search-label { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--muted); margin-bottom:6px; padding-left:4px; }
-.search-field { position:relative; }
-.search-section { max-width:560px; margin:0 auto 40px; }
-.vote-result { display:flex; flex-direction:column; gap:6px; padding:12px 16px; text-decoration:none; color:var(--text); border-bottom:1px solid var(--border); transition:background 0.1s; }
-.vote-result:last-child { border-bottom:none; }
-.vote-result:hover { background:rgba(79,70,229,0.05); }
-.vote-result-head { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
-.vote-result-city { font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; padding:2px 8px; border-radius:4px; }
-.vote-result-date { font-size:0.72rem; color:var(--muted); }
-.vote-result-topic { font-size:0.88rem; line-height:1.45; color:var(--text); }
-.vote-result-topic mark { background:rgba(79,70,229,0.18); color:var(--text); border-radius:2px; padding:0 1px; }
-.vote-result-counts { display:flex; gap:6px; flex-wrap:wrap; margin-top:2px; }
-.vote-result-counts .pill { display:inline-block; padding:1px 8px; border-radius:10px; font-size:0.7rem; font-weight:600; }
-.vote-result-counts .pill-za { background:rgba(22,163,74,0.1); color:#16a34a; }
-.vote-result-counts .pill-przeciw { background:rgba(220,38,38,0.1); color:#dc2626; }
-.vote-result-counts .pill-wstrz { background:rgba(107,114,128,0.1); color:#6b7280; }
-.vote-result-counts .pill-outcome { background:rgba(79,70,229,0.08); color:#4f46e5; }
-.search-loading { padding:20px; text-align:center; color:var(--muted); font-size:0.88rem; }
-.search-input { width:100%; padding:14px 18px 14px 44px; border:2px solid var(--border); border-radius:12px; background:var(--surface); color:var(--text); font-size:1rem; font-family:inherit; outline:none; transition:border-color 0.2s; }
-.search-input:focus { border-color:var(--accent); }
-.search-input::placeholder { color:var(--muted); }
-.search-icon { position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--muted); pointer-events:none; z-index:2; }
-.search-results { position:absolute; top:calc(100% + 4px); left:0; right:0; background:var(--surface); border:1px solid var(--border); border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,0.12); max-height:400px; overflow-y:auto; z-index:100; display:none; }
-.search-results.visible { display:block; }
-.search-result { display:flex; align-items:center; gap:12px; padding:12px 16px; text-decoration:none; color:var(--text); border-bottom:1px solid var(--border); transition:background 0.1s; }
-.search-result:last-child { border-bottom:none; }
-.search-result:hover { background:rgba(79,70,229,0.05); }
-.search-result-avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.85rem; font-weight:700; color:white; background:var(--accent); flex-shrink:0; }
-.search-result-info { flex:1; min-width:0; }
-.search-result-name { font-weight:600; font-size:0.92rem; }
-.search-result-name mark { background:rgba(79,70,229,0.15); color:var(--text); border-radius:2px; padding:0 1px; }
-.search-result-meta { font-size:0.78rem; color:var(--muted); display:flex; gap:8px; align-items:center; }
-.search-result-stat { font-size:0.75rem; font-weight:600; padding:1px 6px; border-radius:4px; }
-.search-result-stat.good { background:rgba(22,163,74,0.12); color:#16a34a; }
-.search-result-stat.medium { background:rgba(202,138,4,0.12); color:#ca8a04; }
-.search-result-stat.low { background:rgba(220,38,38,0.12); color:#dc2626; }
-.search-empty { padding:20px; text-align:center; color:var(--muted); font-size:0.9rem; }
-.search-count { text-align:center; color:var(--muted); font-size:0.8rem; margin-top:8px; }
-
-/* ── Mobile ── */
-@media (max-width: 600px) {
-  .container { padding:12px; }
-  .hero { padding:40px 0 20px; }
-  .hero h1 { font-size:2rem; }
-  .hero p { font-size:0.95rem; }
-  .cities { grid-template-columns:1fr; gap:12px; margin:20px 0 40px; }
-  .city-card { padding:20px; }
-  .city-card h2 { font-size:1.2rem; }
-  .comp-table { font-size:0.75rem; }
-  .comp-table th, .comp-table td { padding:6px 8px; }
-  .comp-charts { padding:12px; }
-  .budget-links { gap:8px; }
-  .budget-links a { padding:5px 12px; font-size:0.8rem; }
-  .vote-item { padding:12px 14px; }
-  .vote-item .vote-topic { font-size:0.82rem; }
-  .comparison h3, .budget h3, .sessions-feed h3, .controversial h3 { font-size:1.1rem; }
-  .search-section { margin:0 auto 24px; }
-  .search-input { padding:12px 14px 12px 40px; font-size:0.92rem; }
-  .search-results { max-height:320px; }
+@media (max-width:600px){
+  .container{padding:12px;}
+  .hero{padding:36px 0 18px;}
+  .hero h1{font-size:2rem;}
+  .hero p{font-size:.95rem;}
+  .ranking-bar-wrap{display:none;}
+  .filter-bar input[type=text]{min-width:140px;}
+  .sess-row .sess-city-col{min-width:90px;}
 }
 </style>
 </head>
 <body>
 <main>
 <div class="container">
+
   <div class="hero">
     <h1>Rado<span>skop</span></h1>
-    <p>Otwarte narzędzie monitoringu rad miejskich w Polsce. Jak głosują radni?</p>
+    <p>Otwarte narzędzie monitoringu rad miejskich w Polsce. Sprawdź, jak głosują radni.</p>
   </div>
 
   <div class="seo-intro">
-    <p>13 miast · 10 406 głosowań · 457 radnych · frekwencja · interpelacje · budżety · kadencja 2024–2029</p>
+    <p id="global-stats">Ładowanie danych…</p>
   </div>
 
+  <!-- Dual search -->
   <div class="dual-search">
     <div class="search-section" id="councilor-search">
       <div class="search-label">Wyszukaj radnego</div>
@@ -315,7 +232,7 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
         <input type="text" class="search-input" id="search-input" placeholder="Wpisz nazwisko radnego..." autocomplete="off" aria-label="Wyszukaj radnego po nazwisku">
         <div class="search-results" id="search-results"></div>
       </div>
-      <div class="search-count" id="search-count">457 radnych z 13 miast</div>
+      <div class="search-count" id="search-count">Ładowanie…</div>
     </div>
 
     <div class="search-section" id="vote-search">
@@ -325,129 +242,69 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
         <input type="text" class="search-input" id="vote-search-input" placeholder="Np. budżet, parking, kasyno, tramwaj..." autocomplete="off" aria-label="Wyszukaj głosowanie po temacie">
         <div class="search-results" id="vote-search-results"></div>
       </div>
-      <div class="search-count" id="vote-search-count">10 406 głosowań z 13 miast</div>
+      <div class="search-count" id="vote-search-count">Ładowanie…</div>
     </div>
   </div>
 
-  <div class="cities">
-    <a class="city-card" href="https://gdansk.radoskop.pl">
-      <span class="status">Aktywne</span>
-      <h2>Gdańsk</h2>
-      <p class="desc">Rada Miasta Gdańska — frekwencja, głosowania, uchwały, interpelacje, profile radnych i budżet.</p>
-      <span class="arrow">Otwórz →</span>
-    </a>
+  <!-- City directory -->
+  <section class="no-border" id="cities">
+    <h3>Miasta</h3>
+    <p class="section-subtitle">Kadencja 2024–2029. Wybierz miasto, żeby zobaczyć pełne dane rady.</p>
 
-    <a class="city-card" href="https://gdynia.radoskop.pl">
-      <span class="status">Aktywne</span>
-      <h2>Gdynia</h2>
-      <p class="desc">Rada Miasta Gdyni — frekwencja, głosowania, interpelacje i aktywność radnych na sesjach.</p>
-      <span class="arrow">Otwórz →</span>
-    </a>
+    <div class="filter-bar">
+      <input type="text" id="city-filter" placeholder="Szukaj miasta..." aria-label="Filtr miast">
+      <select id="voivo-filter" aria-label="Województwo">
+        <option value="">Wszystkie województwa</option>
+      </select>
+      <select id="pop-filter" aria-label="Wielkość miasta">
+        <option value="">Każda wielkość</option>
+        <option value="1">do 50 tys.</option>
+        <option value="2">50–200 tys.</option>
+        <option value="3">200–500 tys.</option>
+        <option value="4">powyżej 500 tys.</option>
+      </select>
+      <select id="city-sort" aria-label="Sortowanie">
+        <option value="name">alfabetycznie</option>
+        <option value="population">po liczbie mieszkańców</option>
+        <option value="votes">po liczbie głosowań</option>
+        <option value="sessions">po liczbie sesji</option>
+        <option value="frekwencja">po frekwencji</option>
+      </select>
+      <span class="filter-count" id="city-count"></span>
+    </div>
 
-    <a class="city-card" href="https://krakow.radoskop.pl">
-      <span class="status">Aktywne</span>
-      <h2>Kraków</h2>
-      <p class="desc">Rada Miasta Krakowa — frekwencja, głosowania, interpelacje i aktywność radnych na sesjach.</p>
-      <span class="arrow">Otwórz →</span>
-    </a>
+    <div class="cities-grid" id="cities-grid"></div>
+    <button class="show-more-btn" id="cities-more" style="display:none"></button>
+  </section>
 
-    <a class="city-card" href="https://poznan.radoskop.pl">
-      <span class="status">Aktywne</span>
-      <h2>Poznań</h2>
-      <p class="desc">Rada Miasta Poznania — frekwencja, głosowania, interpelacje, aktywność radnych na sesjach i budżet.</p>
-      <span class="arrow">Otwórz →</span>
-    </a>
-
-    <a class="city-card" href="https://sopot.radoskop.pl">
-      <span class="status">Aktywne</span>
-      <h2>Sopot</h2>
-      <p class="desc">Rada Miasta Sopotu — frekwencja, głosowania, interpelacje i aktywność radnych na sesjach.</p>
-      <span class="arrow">Otwórz →</span>
-    </a>
-
-    <a class="city-card" href="https://warszawa.radoskop.pl">
-      <span class="status">Aktywne</span>
-      <h2>Warszawa</h2>
-      <p class="desc">Rada m.st. Warszawy — frekwencja, głosowania, interpelacje i aktywność radnych na sesjach.</p>
-      <span class="arrow">Otwórz →</span>
-    </a>
-
-    <a class="city-card" href="https://wroclaw.radoskop.pl">
-      <span class="status">Aktywne</span>
-      <h2>Wrocław</h2>
-      <p class="desc">Rada Miejska Wrocławia — frekwencja, głosowania i aktywność radnych na sesjach.</p>
-      <span class="arrow">Otwórz →</span>
-    </a>
-
-    <a class="city-card" href="https://lodz.radoskop.pl">
-      <span class="status">Aktywne</span>
-      <h2>Łódź</h2>
-      <p class="desc">Rada Miejska w Łodzi — frekwencja, głosowania i aktywność radnych na sesjach.</p>
-      <span class="arrow">Otwórz →</span>
-    </a>
-
-    <a class="city-card" href="https://szczecin.radoskop.pl">
-      <span class="status">Aktywne</span>
-      <h2>Szczecin</h2>
-      <p class="desc">Rada Miasta Szczecina — frekwencja, głosowania i aktywność radnych na sesjach.</p>
-      <span class="arrow">Otwórz →</span>
-    </a>
-
-    <a class="city-card" href="https://lublin.radoskop.pl">
-      <span class="status active">Aktywne</span>
-      <h2>Lublin</h2>
-      <p class="desc">Rada Miasta Lublin — 31 radnych, kadencja 2024–2029.</p>
-      <span class="arrow">Otwórz →</span>
-    </a>
-
-    <a class="city-card" href="https://bydgoszcz.radoskop.pl">
-      <span class="status">Aktywne</span>
-      <h2>Bydgoszcz</h2>
-      <p class="desc">Rada Miasta Bydgoszczy — frekwencja, głosowania, interpelacje i aktywność radnych na sesjach.</p>
-      <span class="arrow">Otwórz →</span>
-    </a>
-
-    <a class="city-card" href="https://katowice.radoskop.pl">
-      <span class="status">Aktywne</span>
-      <h2>Katowice</h2>
-      <p class="desc">Rada Miasta Katowice — frekwencja, głosowania, interpelacje i aktywność radnych na sesjach.</p>
-      <span class="arrow">Otwórz →</span>
-    </a>
-
-    <a class="city-card" href="https://bialystok.radoskop.pl">
-      <span class="status">Aktywne</span>
-      <h2>Białystok</h2>
-      <p class="desc">Rada Miasta Białegostoku — frekwencja, głosowania, interpelacje i aktywność radnych na sesjach.</p>
-      <span class="arrow">Otwórz →</span>
-    </a>
-  </div>
-
-  <div class="comparison" id="comparison">
+  <!-- Comparison table (rows = cities) -->
+  <section id="comparison">
     <h3>Porównanie miast</h3>
-    <p class="comparison-subtitle">Kadencja 2024–2029 — dane z sesji rad miejskich</p>
-
-    <div class="comp-table-wrap">
-      <table class="comp-table">
+    <p class="section-subtitle">Kadencja 2024–2029. Dane z sesji rad miejskich. Kliknij nagłówek kolumny, żeby sortować.</p>
+    <div class="table-wrap">
+      <table class="data-table" id="comp-table">
         <thead>
-          <tr><th></th><th>Gdańsk</th><th>Warszawa</th><th>Kraków</th><th>Wrocław</th><th>Poznań</th><th>Gdynia</th><th>Sopot</th><th>Łódź</th><th>Szczecin</th><th>Lublin</th><th>Bydgoszcz</th><th>Katowice</th><th>Białystok</th></tr>
+          <tr>
+            <th data-sort="name">Miasto</th>
+            <th data-sort="councilors">Radni</th>
+            <th data-sort="sessions">Sesje</th>
+            <th data-sort="votes">Głosowania</th>
+            <th data-sort="frekwencja">Frekwencja</th>
+            <th data-sort="zgodnosc">Zgodność z klubem</th>
+            <th data-sort="rebellions">Bunty / radny</th>
+            <th data-sort="interpelacje">Interpelacje</th>
+          </tr>
         </thead>
-        <tbody>
-          <tr><td class="label">Radni</td><td>36</td><td>63</td><td>47</td><td>38</td><td>34</td><td>28</td><td>21</td><td>38</td><td>33</td><td>31</td><td>29</td><td>31</td><td>28</td></tr>
-          <tr><td class="label">Sesje</td><td>21</td><td>32</td><td>39</td><td>9</td><td>31</td><td>28</td><td>20</td><td>29</td><td>22</td><td>18</td><td>11</td><td>25</td><td>17</td></tr>
-          <tr><td class="label">Głosowania</td><td>709</td><td>1 398</td><td>1 144</td><td>433</td><td>868</td><td>628</td><td>529</td><td>1 645</td><td>479</td><td>981</td><td>296</td><td>673</td><td>445</td></tr>
-          <tr><td class="label">Śr. zgodność z klubem</td><td>98,8%</td><td>92,6%</td><td>89,7%</td><td>96,0%</td><td>90,8%</td><td>96,5%</td><td>95,1%</td><td>88,4%</td><td>98,5%</td><td>91,8%</td><td>—</td><td>99,1%</td><td>—</td></tr>
-          <tr><td class="label">Śr. buntów / radny</td><td>8,1</td><td>33,2</td><td>16,8</td><td>14,2</td><td>69,1</td><td>18,9</td><td>24,0</td><td>22,1</td><td>6,0</td><td>72,9</td><td>—</td><td>5,3</td><td>—</td></tr>
-          <tr><td class="label">Interpelacje</td><td>1 768</td><td>1 751</td><td>2 325</td><td>603</td><td>516</td><td>677</td><td>221</td><td>—</td><td>—</td><td>—</td><td>369</td><td>963</td><td>316</td></tr>
-        </tbody>
+        <tbody id="comp-tbody"></tbody>
       </table>
     </div>
+    <button class="show-more-btn" id="comp-more" style="display:none"></button>
+  </section>
 
-  </div>
-
-  <div class="ranking-section" id="ranking-all">
-    <h3>Ranking radnych z 13 miast</h3>
-    <p class="comparison-subtitle">Kadencja 2024–2029 — kto jest najaktywniejszy, a kto najczęściej opuszcza sesje?</p>
-
+  <!-- Councillor ranking -->
+  <section id="ranking-all">
+    <h3>Ranking radnych</h3>
+    <p class="section-subtitle" id="ranking-subtitle">Kadencja 2024–2029. Kto jest najaktywniejszy, a kto najczęściej opuszcza sesje?</p>
     <div class="ranking-controls">
       <button class="ranking-tab active" data-sort="f" onclick="rankingSort('f',this)">Frekwencja</button>
       <button class="ranking-tab" data-sort="a" onclick="rankingSort('a',this)">Aktywność</button>
@@ -456,535 +313,99 @@ a.vote-item:hover { border-color:var(--accent); box-shadow:0 2px 12px rgba(79,70
       <button class="ranking-dir active" data-dir="desc" onclick="rankingDir('desc',this)">Najwyżsi</button>
       <button class="ranking-dir" data-dir="asc" onclick="rankingDir('asc',this)">Najniżsi</button>
     </div>
-
     <div class="ranking-list" id="ranking-list"></div>
-    <button class="ranking-more-btn" id="ranking-more" onclick="rankingShowMore()" style="display:none">Pokaż więcej</button>
-  </div>
+    <button class="show-more-btn" id="ranking-more" style="display:none" onclick="rankingShowMore()">Pokaż więcej</button>
+  </section>
 
-  <div class="sessions-feed" id="sessions">
-    <h3>Ostatnie sesje</h3>
-    <p class="comparison-subtitle">Kadencja 2024–2029 — 5 ostatnich sesji każdej rady (13 aktywnych miast)</p>
+  <!-- Recent sessions feed (unified) -->
+  <section id="sessions">
+    <h3>Ostatnie sesje rad miejskich</h3>
+    <p class="section-subtitle">Najnowsze sesje z całej Polski. Kliknij, żeby zobaczyć głosowania.</p>
+    <div class="sessions-list" id="sessions-list"></div>
+    <button class="show-more-btn" id="sessions-more" style="display:none">Pokaż więcej</button>
+  </section>
 
-    <div class="feed-grid">
-      <div class="feed-city">
-        <div class="feed-city-name gd">Gdańsk</div>
-        <a class="feed-item" href="https://gdansk.radoskop.pl/sesja/XXIII"><span class="sess-label">Sesja XXIII</span><span class="sess-date">05.02.2026</span><span class="sess-votes">16 gł.</span></a>
-        <a class="feed-item" href="https://gdansk.radoskop.pl/sesja/XXII"><span class="sess-label">Sesja XXII</span><span class="sess-date">19.12.2025</span><span class="sess-votes">34 gł.</span></a>
-        <a class="feed-item" href="https://gdansk.radoskop.pl/sesja/XXI"><span class="sess-label">Sesja XXI</span><span class="sess-date">28.11.2025</span><span class="sess-votes">65 gł.</span></a>
-        <a class="feed-item" href="https://gdansk.radoskop.pl/sesja/XX"><span class="sess-label">Sesja XX</span><span class="sess-date">31.10.2025</span><span class="sess-votes">33 gł.</span></a>
-        <a class="feed-item" href="https://gdansk.radoskop.pl/sesja/XIX"><span class="sess-label">Sesja XIX</span><span class="sess-date">25.09.2025</span><span class="sess-votes">16 gł.</span></a>
-      </div>
-      <div class="feed-city">
-        <div class="feed-city-name waw">Warszawa</div>
-        <a class="feed-item" href="https://warszawa.radoskop.pl/sesja/XXXII"><span class="sess-label">Sesja XXXII</span><span class="sess-date">12.02.2026</span><span class="sess-votes">65 gł.</span></a>
-        <a class="feed-item" href="https://warszawa.radoskop.pl/sesja/XXXI"><span class="sess-label">Sesja XXXI</span><span class="sess-date">15.01.2026</span><span class="sess-votes">42 gł.</span></a>
-        <a class="feed-item" href="https://warszawa.radoskop.pl/sesja/XXX"><span class="sess-label">Sesja XXX</span><span class="sess-date">11.12.2025</span><span class="sess-votes">150 gł.</span></a>
-        <a class="feed-item" href="https://warszawa.radoskop.pl/sesja/XXIX"><span class="sess-label">Sesja XXIX</span><span class="sess-date">20.11.2025</span><span class="sess-votes">33 gł.</span></a>
-        <a class="feed-item" href="https://warszawa.radoskop.pl/sesja/XXVIII"><span class="sess-label">Sesja XXVIII</span><span class="sess-date">16.10.2025</span><span class="sess-votes">51 gł.</span></a>
-      </div>
-      <div class="feed-city">
-        <div class="feed-city-name krk">Kraków</div>
-        <a class="feed-item" href="https://krakow.radoskop.pl/sesja/XLVI"><span class="sess-label">Sesja XLVI</span><span class="sess-date">25.02.2026</span><span class="sess-votes">59 gł.</span></a>
-        <a class="feed-item" href="https://krakow.radoskop.pl/sesja/XLV"><span class="sess-label">Sesja XLV</span><span class="sess-date">21.01.2026</span><span class="sess-votes">28 gł.</span></a>
-        <a class="feed-item" href="https://krakow.radoskop.pl/sesja/XLIV"><span class="sess-label">Sesja XLIV</span><span class="sess-date">17.12.2025</span><span class="sess-votes">27 gł.</span></a>
-        <a class="feed-item" href="https://krakow.radoskop.pl/sesja/XLII"><span class="sess-label">Sesja XLII</span><span class="sess-date">03.12.2025</span><span class="sess-votes">27 gł.</span></a>
-        <a class="feed-item" href="https://krakow.radoskop.pl/sesja/XLI"><span class="sess-label">Sesja XLI</span><span class="sess-date">19.11.2025</span><span class="sess-votes">35 gł.</span></a>
-      </div>
-      <div class="feed-city">
-        <div class="feed-city-name wro">Wrocław</div>
-        <a class="feed-item" href="https://wroclaw.radoskop.pl/sesja/XXVIII"><span class="sess-label">Sesja XXVIII</span><span class="sess-date">26.02.2026</span><span class="sess-votes">61 gł.</span></a>
-        <a class="feed-item" href="https://wroclaw.radoskop.pl/sesja/XXVII"><span class="sess-label">Sesja XXVII</span><span class="sess-date">22.01.2026</span><span class="sess-votes">78 gł.</span></a>
-        <a class="feed-item" href="https://wroclaw.radoskop.pl/sesja/XXVI"><span class="sess-label">Sesja XXVI</span><span class="sess-date">18.12.2025</span><span class="sess-votes">31 gł.</span></a>
-        <a class="feed-item" href="https://wroclaw.radoskop.pl/sesja/XXV"><span class="sess-label">Sesja XXV</span><span class="sess-date">20.11.2025</span><span class="sess-votes">86 gł.</span></a>
-        <a class="feed-item" href="https://wroclaw.radoskop.pl/sesja/XXIV"><span class="sess-label">Sesja XXIV</span><span class="sess-date">20.10.2025</span><span class="sess-votes">48 gł.</span></a>
-      </div>
-      <div class="feed-city">
-        <div class="feed-city-name poz">Poznań</div>
-        <a class="feed-item" href="https://poznan.radoskop.pl/sesja/XXXI"><span class="sess-label">Sesja XXXI</span><span class="sess-date">10.02.2026</span><span class="sess-votes">39 gł.</span></a>
-        <a class="feed-item" href="https://poznan.radoskop.pl/sesja/XXX"><span class="sess-label">Sesja XXX</span><span class="sess-date">20.01.2026</span><span class="sess-votes">30 gł.</span></a>
-        <a class="feed-item" href="https://poznan.radoskop.pl/sesja/XXIX"><span class="sess-label">Sesja XXIX</span><span class="sess-date">18.12.2025</span><span class="sess-votes">79 gł.</span></a>
-        <a class="feed-item" href="https://poznan.radoskop.pl/sesja/XXVIII"><span class="sess-label">Sesja XXVIII</span><span class="sess-date">02.12.2025</span><span class="sess-votes">31 gł.</span></a>
-        <a class="feed-item" href="https://poznan.radoskop.pl/sesja/XXVII"><span class="sess-label">Sesja XXVII</span><span class="sess-date">18.11.2025</span><span class="sess-votes">16 gł.</span></a>
-      </div>
-      <div class="feed-city">
-        <div class="feed-city-name gdy">Gdynia</div>
-        <a class="feed-item" href="https://gdynia.radoskop.pl/sesja/XXVI"><span class="sess-label">Sesja XXVI</span><span class="sess-date">14.01.2026</span><span class="sess-votes">13 gł.</span></a>
-        <a class="feed-item" href="https://gdynia.radoskop.pl/sesja/XXV"><span class="sess-label">Sesja XXV</span><span class="sess-date">17.12.2025</span><span class="sess-votes">39 gł.</span></a>
-        <a class="feed-item" href="https://gdynia.radoskop.pl/sesja/XXIV"><span class="sess-label">Sesja XXIV</span><span class="sess-date">26.11.2025</span><span class="sess-votes">43 gł.</span></a>
-        <a class="feed-item" href="https://gdynia.radoskop.pl/sesja/XXIII"><span class="sess-label">Sesja XXIII</span><span class="sess-date">22.10.2025</span><span class="sess-votes">35 gł.</span></a>
-        <a class="feed-item" href="https://gdynia.radoskop.pl/sesja/XXII"><span class="sess-label">Sesja XXII</span><span class="sess-date">24.09.2025</span><span class="sess-votes">22 gł.</span></a>
-      </div>
-      <div class="feed-city">
-        <div class="feed-city-name sop">Sopot</div>
-        <a class="feed-item" href="https://sopot.radoskop.pl/sesja/XX"><span class="sess-label">Sesja XX</span><span class="sess-date">19.02.2026</span><span class="sess-votes">25 gł.</span></a>
-        <a class="feed-item" href="https://sopot.radoskop.pl/sesja/XIX"><span class="sess-label">Sesja XIX</span><span class="sess-date">15.01.2026</span><span class="sess-votes">22 gł.</span></a>
-        <a class="feed-item" href="https://sopot.radoskop.pl/sesja/XVIII"><span class="sess-label">Sesja XVIII</span><span class="sess-date">18.12.2025</span><span class="sess-votes">20 gł.</span></a>
-        <a class="feed-item" href="https://sopot.radoskop.pl/sesja/XVII"><span class="sess-label">Sesja XVII</span><span class="sess-date">27.11.2025</span><span class="sess-votes">20 gł.</span></a>
-        <a class="feed-item" href="https://sopot.radoskop.pl/sesja/XVI"><span class="sess-label">Sesja XVI</span><span class="sess-date">23.10.2025</span><span class="sess-votes">33 gł.</span></a>
-      </div>
-      <div class="feed-city">
-        <div class="feed-city-name ldz">Łódź</div>
-        <a class="feed-item" href="https://lodz.radoskop.pl/sesja/XXVIII"><span class="sess-label">Sesja XXVIII</span><span class="sess-date">18.03.2026</span><span class="sess-votes">61 gł.</span></a>
-        <a class="feed-item" href="https://lodz.radoskop.pl/sesja/XXVII"><span class="sess-label">Sesja XXVII</span><span class="sess-date">25.02.2026</span><span class="sess-votes">100 gł.</span></a>
-        <a class="feed-item" href="https://lodz.radoskop.pl/sesja/XXVI"><span class="sess-label">Sesja XXVI</span><span class="sess-date">14.01.2026</span><span class="sess-votes">43 gł.</span></a>
-        <a class="feed-item" href="https://lodz.radoskop.pl/sesja/XXV"><span class="sess-label">Sesja XXV</span><span class="sess-date">17.12.2025</span><span class="sess-votes">63 gł.</span></a>
-        <a class="feed-item" href="https://lodz.radoskop.pl/sesja/XXIV"><span class="sess-label">Sesja XXIV</span><span class="sess-date">03.12.2025</span><span class="sess-votes">52 gł.</span></a>
-      </div>
-      <div class="feed-city">
-        <div class="feed-city-name szn">Szczecin</div>
-        <a class="feed-item" href="https://szczecin.radoskop.pl/sesja/XVIII"><span class="sess-label">Sesja XVIII</span><span class="sess-date">27.01.2026</span><span class="sess-votes">26 gł.</span></a>
-        <a class="feed-item" href="https://szczecin.radoskop.pl/sesja/XVII"><span class="sess-label">Sesja XVII</span><span class="sess-date">16.12.2025</span><span class="sess-votes">44 gł.</span></a>
-        <a class="feed-item" href="https://szczecin.radoskop.pl/sesja/XVI"><span class="sess-label">Sesja XVI</span><span class="sess-date">25.11.2025</span><span class="sess-votes">28 gł.</span></a>
-        <a class="feed-item" href="https://szczecin.radoskop.pl/sesja/XIII"><span class="sess-label">Sesja XIII</span><span class="sess-date">17.06.2025</span><span class="sess-votes">65 gł.</span></a>
-        <a class="feed-item" href="https://szczecin.radoskop.pl/sesja/II"><span class="sess-label">Sesja II</span><span class="sess-date">02.07.2025</span><span class="sess-votes">9 gł.</span></a>
-      </div>
-      <div class="feed-city">
-        <div class="feed-city-name lub">Lublin</div>
-        <a class="feed-item" href="https://lublin.radoskop.pl/sesja/XVII"><span class="sess-label">Sesja XVII</span><span class="sess-date">05.02.2026</span><span class="sess-votes">50 gł.</span></a>
-        <a class="feed-item" href="https://lublin.radoskop.pl/sesja/XVI"><span class="sess-label">Sesja XVI</span><span class="sess-date">18.12.2025</span><span class="sess-votes">55 gł.</span></a>
-        <a class="feed-item" href="https://lublin.radoskop.pl/sesja/XV"><span class="sess-label">Sesja XV</span><span class="sess-date">20.11.2025</span><span class="sess-votes">59 gł.</span></a>
-        <a class="feed-item" href="https://lublin.radoskop.pl/sesja/XIV"><span class="sess-label">Sesja XIV</span><span class="sess-date">23.10.2025</span><span class="sess-votes">70 gł.</span></a>
-        <a class="feed-item" href="https://lublin.radoskop.pl/sesja/XIII"><span class="sess-label">Sesja XIII</span><span class="sess-date">04.09.2025</span><span class="sess-votes">71 gł.</span></a>
-      </div>
-      <div class="feed-city">
-        <div class="feed-city-name byd">Bydgoszcz</div>
-        <a class="feed-item" href="https://bydgoszcz.radoskop.pl/sesja/XII"><span class="sess-label">Sesja XII</span><span class="sess-date">18.12.2024</span><span class="sess-votes">28 gł.</span></a>
-        <a class="feed-item" href="https://bydgoszcz.radoskop.pl/sesja/XI"><span class="sess-label">Sesja XI</span><span class="sess-date">27.11.2024</span><span class="sess-votes">28 gł.</span></a>
-        <a class="feed-item" href="https://bydgoszcz.radoskop.pl/sesja/X"><span class="sess-label">Sesja X</span><span class="sess-date">30.10.2024</span><span class="sess-votes">28 gł.</span></a>
-        <a class="feed-item" href="https://bydgoszcz.radoskop.pl/sesja/IX"><span class="sess-label">Sesja IX</span><span class="sess-date">25.09.2024</span><span class="sess-votes">28 gł.</span></a>
-        <a class="feed-item" href="https://bydgoszcz.radoskop.pl/sesja/VIII"><span class="sess-label">Sesja VIII</span><span class="sess-date">11.09.2024</span><span class="sess-votes">25 gł.</span></a>
-      </div>
-      <div class="feed-city">
-        <div class="feed-city-name kat">Katowice</div>
-        <a class="feed-item" href="https://katowice.radoskop.pl/sesja/2026-03-26"><span class="sess-label">Sesja 26.03</span><span class="sess-date">26.03.2026</span><span class="sess-votes">23 gł.</span></a>
-        <a class="feed-item" href="https://katowice.radoskop.pl/sesja/2026-03-05"><span class="sess-label">Sesja 05.03</span><span class="sess-date">05.03.2026</span><span class="sess-votes">14 gł.</span></a>
-        <a class="feed-item" href="https://katowice.radoskop.pl/sesja/2026-01-29"><span class="sess-label">Sesja 29.01</span><span class="sess-date">29.01.2026</span><span class="sess-votes">34 gł.</span></a>
-        <a class="feed-item" href="https://katowice.radoskop.pl/sesja/2025-12-18"><span class="sess-label">Sesja 18.12</span><span class="sess-date">18.12.2025</span><span class="sess-votes">47 gł.</span></a>
-        <a class="feed-item" href="https://katowice.radoskop.pl/sesja/2025-11-20"><span class="sess-label">Sesja 20.11</span><span class="sess-date">20.11.2025</span><span class="sess-votes">25 gł.</span></a>
-      </div>
-      <div class="feed-city">
-        <div class="feed-city-name bia">Białystok</div>
-        <a class="feed-item" href="https://bialystok.radoskop.pl/sesja/2026-02-23"><span class="sess-label">Sesja 23.02</span><span class="sess-date">23.02.2026</span><span class="sess-votes">47 gł.</span></a>
-        <a class="feed-item" href="https://bialystok.radoskop.pl/sesja/2026-01-15"><span class="sess-label">Sesja 15.01</span><span class="sess-date">15.01.2026</span><span class="sess-votes">13 gł.</span></a>
-        <a class="feed-item" href="https://bialystok.radoskop.pl/sesja/2025-12-22"><span class="sess-label">Sesja 22.12</span><span class="sess-date">22.12.2025</span><span class="sess-votes">37 gł.</span></a>
-        <a class="feed-item" href="https://bialystok.radoskop.pl/sesja/2025-12-03"><span class="sess-label">Sesja 03.12</span><span class="sess-date">03.12.2025</span><span class="sess-votes">1 gł.</span></a>
-        <a class="feed-item" href="https://bialystok.radoskop.pl/sesja/2025-11-24"><span class="sess-label">Sesja 24.11</span><span class="sess-date">24.11.2025</span><span class="sess-votes">32 gł.</span></a>
-      </div>
-    </div>
-  </div>
-
-  <div class="interpelacje-section" id="interpelacje">
+  <!-- Interpelacje leaderboard -->
+  <section id="interpelacje">
     <h3>Interpelacje i zapytania radnych</h3>
-    <p class="comparison-subtitle">Kadencja 2024–2029 — dane z BIP trzynastu miast</p>
-
-    <div class="interp-grid">
-      <a class="interp-city-card" href="https://gdansk.radoskop.pl/interpelacje">
-        <div class="interp-city-name gd">Gdańsk</div>
-        <div class="interp-nums">
-          <div><div class="n">1 768</div><div class="l">Interpelacji</div></div>
-          <div><div class="n">1 570</div><div class="l">Z odpowiedzią</div></div>
-        </div>
-        <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;margin-top:4px">Najaktywniejsze osoby</div>
-        <div class="interp-top">
-          <div class="interp-top-item"><span class="name">Przemysław Majewski</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#4f46e5"></div></div><span class="cnt">489</span></div>
-          <div class="interp-top-item"><span class="name">Cezary Śpiewak-Dowbór</span><div class="bar-wrap"><div class="bar-fill" style="width:46.4%;background:#4f46e5"></div></div><span class="cnt">227</span></div>
-          <div class="interp-top-item"><span class="name">Andrzej Skiba</span><div class="bar-wrap"><div class="bar-fill" style="width:23.3%;background:#4f46e5"></div></div><span class="cnt">114</span></div>
-        </div>
-        <span class="arrow" style="color:#4f46e5;font-weight:600;font-size:0.85rem;margin-top:4px">Otwórz →</span>
-      </a>
-
-      <a class="interp-city-card" href="https://warszawa.radoskop.pl/interpelacje">
-        <div class="interp-city-name waw">Warszawa</div>
-        <div class="interp-nums">
-          <div><div class="n">1 751</div><div class="l">Interpelacji</div></div>
-          <div><div class="n">1 688</div><div class="l">Z odpowiedzią</div></div>
-        </div>
-        <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;margin-top:4px">Najaktywniejsze osoby</div>
-        <div class="interp-top">
-          <div class="interp-top-item"><span class="name">Damian Kowalczyk</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#0284c7"></div></div><span class="cnt">166</span></div>
-          <div class="interp-top-item"><span class="name">Melania Łuczak</span><div class="bar-wrap"><div class="bar-fill" style="width:96.4%;background:#0284c7"></div></div><span class="cnt">160</span></div>
-          <div class="interp-top-item"><span class="name">Wojciech Zabłocki</span><div class="bar-wrap"><div class="bar-fill" style="width:78.3%;background:#0284c7"></div></div><span class="cnt">130</span></div>
-        </div>
-        <span class="arrow" style="color:#0284c7;font-weight:600;font-size:0.85rem;margin-top:4px">Otwórz →</span>
-      </a>
-
-      <a class="interp-city-card" href="https://sopot.radoskop.pl/interpelacje">
-        <div class="interp-city-name sop">Sopot</div>
-        <div class="interp-nums">
-          <div><div class="n">221</div><div class="l">Interpelacji</div></div>
-        </div>
-        <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;margin-top:4px">Najaktywniejsze osoby</div>
-        <div class="interp-top">
-          <div class="interp-top-item"><span class="name">Jakub Świderski</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#ec4899"></div></div><span class="cnt">110</span></div>
-          <div class="interp-top-item"><span class="name">Wojciech Fułek</span><div class="bar-wrap"><div class="bar-fill" style="width:24.5%;background:#ec4899"></div></div><span class="cnt">27</span></div>
-          <div class="interp-top-item"><span class="name">Jarosław Zawada</span><div class="bar-wrap"><div class="bar-fill" style="width:16.4%;background:#ec4899"></div></div><span class="cnt">18</span></div>
-        </div>
-        <span class="arrow" style="color:#ec4899;font-weight:600;font-size:0.85rem;margin-top:4px">Otwórz →</span>
-      </a>
-
-      <a class="interp-city-card" href="https://wroclaw.radoskop.pl/interpelacje">
-        <div class="interp-city-name" style="color:#059669">Wrocław</div>
-        <div class="interp-nums">
-          <div><div class="n">603</div><div class="l">Interpelacji</div></div>
-          <div><div class="n">590</div><div class="l">Z odpowiedzią</div></div>
-        </div>
-        <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;margin-top:4px">Najaktywniejsze osoby</div>
-        <div class="interp-top">
-          <div class="interp-top-item"><span class="name">Jakub Nowotarski</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#059669"></div></div><span class="cnt">106</span></div>
-          <div class="interp-top-item"><span class="name">Mateusz Żak</span><div class="bar-wrap"><div class="bar-fill" style="width:98.1%;background:#059669"></div></div><span class="cnt">104</span></div>
-          <div class="interp-top-item"><span class="name">Izabela Duchnowska</span><div class="bar-wrap"><div class="bar-fill" style="width:49.1%;background:#059669"></div></div><span class="cnt">52</span></div>
-        </div>
-        <span class="arrow" style="color:#059669;font-weight:600;font-size:0.85rem;margin-top:4px">Otwórz →</span>
-      </a>
-
-      <a class="interp-city-card" href="https://krakow.radoskop.pl/interpelacje">
-        <div class="interp-city-name" style="color:#dc2626">Kraków</div>
-        <div class="interp-nums">
-          <div><div class="n">2 325</div><div class="l">Interpelacji</div></div>
-          <div><div class="n">2 325</div><div class="l">Z odpowiedzią</div></div>
-        </div>
-        <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;margin-top:4px">Najaktywniejsze osoby</div>
-        <div class="interp-top">
-          <div class="interp-top-item"><span class="name">Łukasz Gibała</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#dc2626"></div></div><span class="cnt">322</span></div>
-          <div class="interp-top-item"><span class="name">Piotr Moskała</span><div class="bar-wrap"><div class="bar-fill" style="width:56.2%;background:#dc2626"></div></div><span class="cnt">181</span></div>
-          <div class="interp-top-item"><span class="name">Jakub Kosek</span><div class="bar-wrap"><div class="bar-fill" style="width:51.9%;background:#dc2626"></div></div><span class="cnt">167</span></div>
-        </div>
-        <span class="arrow" style="color:#dc2626;font-weight:600;font-size:0.85rem;margin-top:4px">Otwórz →</span>
-      </a>
-
-      <a class="interp-city-card" href="https://gdynia.radoskop.pl/interpelacje">
-        <div class="interp-city-name" style="color:#7c3aed">Gdynia</div>
-        <div class="interp-nums">
-          <div><div class="n">677</div><div class="l">Interpelacji</div></div>
-          <div><div class="n">597</div><div class="l">Z odpowiedzią</div></div>
-        </div>
-        <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;margin-top:4px">Najaktywniejsze osoby</div>
-        <div class="interp-top">
-          <div class="interp-top-item"><span class="name">Jakub Ubych</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#7c3aed"></div></div><span class="cnt">133</span></div>
-          <div class="interp-top-item"><span class="name">Łukasz Piesiewicz</span><div class="bar-wrap"><div class="bar-fill" style="width:44.4%;background:#7c3aed"></div></div><span class="cnt">59</span></div>
-          <div class="interp-top-item"><span class="name">Agnieszka Tokarska</span><div class="bar-wrap"><div class="bar-fill" style="width:38.3%;background:#7c3aed"></div></div><span class="cnt">51</span></div>
-        </div>
-        <span class="arrow" style="color:#7c3aed;font-weight:600;font-size:0.85rem;margin-top:4px">Otwórz →</span>
-      </a>
-
-      <a class="interp-city-card" href="https://poznan.radoskop.pl/interpelacje">
-        <div class="interp-city-name" style="color:#ca8a04">Poznań</div>
-        <div class="interp-nums">
-          <div><div class="n">516</div><div class="l">Interpelacji</div></div>
-          <div><div class="n">495</div><div class="l">Z odpowiedzią</div></div>
-        </div>
-        <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;margin-top:4px">Najaktywniejsze osoby</div>
-        <div class="interp-top">
-          <div class="interp-top-item"><span class="name">Andrzej Prendke</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#ca8a04"></div></div><span class="cnt">62</span></div>
-          <div class="interp-top-item"><span class="name">Adam Szabelski</span><div class="bar-wrap"><div class="bar-fill" style="width:90.3%;background:#ca8a04"></div></div><span class="cnt">56</span></div>
-          <div class="interp-top-item"><span class="name">Przemysław Plewiński</span><div class="bar-wrap"><div class="bar-fill" style="width:75.8%;background:#ca8a04"></div></div><span class="cnt">47</span></div>
-        </div>
-        <span class="arrow" style="color:#ca8a04;font-weight:600;font-size:0.85rem;margin-top:4px">Otwórz →</span>
-      </a>
-
-      <a class="interp-city-card" href="https://katowice.radoskop.pl/interpelacje">
-        <div class="interp-city-name" style="color:#0d9488">Katowice</div>
-        <div class="interp-nums">
-          <div><div class="n">963</div><div class="l">Interpelacji</div></div>
-          <div><div class="n">914</div><div class="l">Z odpowiedzią</div></div>
-        </div>
-        <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;margin-top:4px">Najaktywniejsze osoby</div>
-        <div class="interp-top">
-          <div class="interp-top-item"><span class="name">Adam Lejman-Gąska</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#0d9488"></div></div><span class="cnt">295</span></div>
-          <div class="interp-top-item"><span class="name">Tomasz Maśnica</span><div class="bar-wrap"><div class="bar-fill" style="width:54.2%;background:#0d9488"></div></div><span class="cnt">160</span></div>
-          <div class="interp-top-item"><span class="name">Jacek Kalisz</span><div class="bar-wrap"><div class="bar-fill" style="width:37.6%;background:#0d9488"></div></div><span class="cnt">111</span></div>
-        </div>
-        <span class="arrow" style="color:#0d9488;font-weight:600;font-size:0.85rem;margin-top:4px">Otwórz →</span>
-      </a>
-
-      <a class="interp-city-card" href="https://bydgoszcz.radoskop.pl/interpelacje">
-        <div class="interp-city-name" style="color:#9333ea">Bydgoszcz</div>
-        <div class="interp-nums">
-          <div><div class="n">369</div><div class="l">Interpelacji</div></div>
-          <div><div class="n">358</div><div class="l">Z odpowiedzią</div></div>
-        </div>
-        <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;margin-top:4px">Najaktywniejsze osoby</div>
-        <div class="interp-top">
-          <div class="interp-top-item"><span class="name">Szymon Róg</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#9333ea"></div></div><span class="cnt">85</span></div>
-          <div class="interp-top-item"><span class="name">Radosław Ginther</span><div class="bar-wrap"><div class="bar-fill" style="width:48.2%;background:#9333ea"></div></div><span class="cnt">41</span></div>
-          <div class="interp-top-item"><span class="name">Jędrzej Gralik</span><div class="bar-wrap"><div class="bar-fill" style="width:45.9%;background:#9333ea"></div></div><span class="cnt">39</span></div>
-        </div>
-        <span class="arrow" style="color:#9333ea;font-weight:600;font-size:0.85rem;margin-top:4px">Otwórz →</span>
-      </a>
-
-      <a class="interp-city-card" href="https://bialystok.radoskop.pl/interpelacje">
-        <div class="interp-city-name" style="color:#ea580c">Białystok</div>
-        <div class="interp-nums">
-          <div><div class="n">316</div><div class="l">Interpelacji</div></div>
-          <div><div class="n">316</div><div class="l">Z odpowiedzią</div></div>
-        </div>
-        <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;margin-top:4px">Najaktywniejsze osoby</div>
-        <div class="interp-top">
-          <div class="interp-top-item"><span class="name">Henryk Dębowski</span><div class="bar-wrap"><div class="bar-fill" style="width:100%;background:#ea580c"></div></div><span class="cnt">169</span></div>
-          <div class="interp-top-item"><span class="name">Paweł Myszkowski</span><div class="bar-wrap"><div class="bar-fill" style="width:14.8%;background:#ea580c"></div></div><span class="cnt">25</span></div>
-          <div class="interp-top-item"><span class="name">Karol Masztalerz</span><div class="bar-wrap"><div class="bar-fill" style="width:11.2%;background:#ea580c"></div></div><span class="cnt">19</span></div>
-        </div>
-        <span class="arrow" style="color:#ea580c;font-weight:600;font-size:0.85rem;margin-top:4px">Otwórz →</span>
-      </a>
-    </div>
-
-    <div class="comp-table-wrap">
-      <table class="comp-table">
+    <p class="section-subtitle">Ranking miast po liczbie interpelacji zgłoszonych w kadencji 2024–2029.</p>
+    <div class="table-wrap">
+      <table class="data-table" id="interp-table">
         <thead>
-          <tr><th></th><th>Gdańsk</th><th>Warszawa</th><th>Sopot</th><th>Wrocław</th><th>Kraków</th><th>Gdynia</th><th>Poznań</th><th>Katowice</th><th>Bydgoszcz</th><th>Białystok</th></tr>
+          <tr>
+            <th data-sort="name">Miasto</th>
+            <th data-sort="total">Interpelacji</th>
+            <th data-sort="answered">Z odpowiedzią</th>
+            <th data-sort="top">Najaktywniejszy radny</th>
+            <th data-sort="topCount">Liczba</th>
+          </tr>
         </thead>
-        <tbody>
-          <tr><td class="label">Razem</td><td>1 768</td><td>1 751</td><td>221</td><td>603</td><td>2 325</td><td>677</td><td>516</td><td>963</td><td>369</td><td>316</td></tr>
-          <tr><td class="label">Z odpowiedzią</td><td>1 570</td><td>1 688</td><td>—</td><td>590</td><td>2 325</td><td>597</td><td>495</td><td>914</td><td>358</td><td>316</td></tr>
-          <tr><td class="label">Najaktywniejszy</td><td>P. Majewski (489)</td><td>D. Kowalczyk (166)</td><td>J. Świderski (110)</td><td>J. Nowotarski (106)</td><td>Ł. Gibała (322)</td><td>J. Ubych (133)</td><td>A. Prendke (62)</td><td>A. Lejman-Gąska (295)</td><td>S. Róg (85)</td><td>H. Dębowski (169)</td></tr>
-        </tbody>
+        <tbody id="interp-tbody"></tbody>
       </table>
     </div>
+    <button class="show-more-btn" id="interp-more" style="display:none"></button>
+  </section>
 
-    <p class="budget-note">Źródło: BIP miast. Dane dotyczą kadencji 2024–2029. Pełna baza dostępna na stronach miast.</p>
-  </div>
-
-  <div class="budget" id="budget">
-    <h3>Budżety miast</h3>
-    <p class="budget-subtitle">Porównanie budżetów miast — dane z uchwalonych budżetów i sprawozdań (2020–2025)</p>
-
-    <div class="comp-table-wrap">
-      <table class="comp-table">
-        <thead>
-          <tr><th></th><th>Gdańsk</th><th>Warszawa</th><th>Kraków</th><th>Wrocław</th><th>Poznań</th><th>Gdynia</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="label">Dochody (2026)</td><td>6,23 mld zł</td><td>28,50 mld zł</td><td>10,27 mld zł</td><td>8,49 mld zł</td><td>6,63 mld zł</td><td>2,64 mld zł</td></tr>
-          <tr><td class="label">Wydatki (2026)</td><td>6,88 mld zł</td><td>32,20 mld zł</td><td>11,47 mld zł</td><td>9,67 mld zł</td><td>7,41 mld zł</td><td>2,92 mld zł</td></tr>
-          <tr class="highlight"><td class="label">Deficyt (2026)</td><td>−0,66 mld zł</td><td>−3,70 mld zł</td><td>−1,20 mld zł</td><td>−1,10 mld zł</td><td>−0,78 mld zł</td><td>−0,28 mld zł</td></tr>
-          <tr class="highlight"><td class="label">Wydatki per capita (2026)</td><td>14 615 zł</td><td class="best">17 310 zł</td><td>14 340 zł</td><td>15 040 zł</td><td>13 850 zł</td><td>11 860 zł</td></tr>
-          <tr><td class="label">Wzrost dochodów 2020→2026</td><td>+31,1%</td><td>+56,7%</td><td class="best">+65,8%</td><td>+60,2%</td><td>+44,1%</td><td>+51,7%</td></tr>
-          <tr><td class="label">Wzrost wydatków 2020→2026</td><td>+35,0%</td><td>+61,6%</td><td>+72,1%</td><td class="best">+72,7%</td><td>+42,5%</td><td>+50,4%</td></tr>
-          <tr><td class="label">Głosowania budżetowe</td><td>96</td><td>34</td><td>13</td><td>—</td><td>—</td><td>12</td></tr>
-          <tr style="border-top:2px solid var(--border)"><td class="label" style="font-weight:700">Inwestycje (2026)</td><td>1,28 mld zł</td><td class="best">3,94 mld zł</td><td>1,50 mld zł</td><td>1,54 mld zł</td><td>1,24 mld zł</td><td>0,40 mld zł</td></tr>
-          <tr><td class="label">Inwestycje per capita (2026)</td><td class="best">2 722 zł</td><td>2 117 zł</td><td>1 875 zł</td><td>2 396 zł</td><td>2 318 zł</td><td>1 626 zł</td></tr>
-          <tr><td class="label">Inwestycje / wydatki (2026)</td><td class="best">18,6%</td><td>12,2%</td><td>13,1%</td><td>15,9%</td><td>16,7%</td><td>13,7%</td></tr>
-          <tr><td class="label">Wzrost inwestycji 2020→2026</td><td>+62,3%</td><td>+57,4%</td><td>+66,7%</td><td class="best">+92,5%</td><td>+90,8%</td><td>−7,0%</td></tr>
-          <tr><td class="label">Top kategoria inwestycji</td><td>Tramwaje</td><td>Metro</td><td>Drogi</td><td>Transport</td><td>Transport</td><td>Drogi</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="comp-charts">
-      <canvas id="chartBudgetTrend" height="260"></canvas>
-      <div class="chart-legend">
-        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#4f46e5" stroke-width="2.5"/></svg> Gdańsk — dochody</span>
-        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#4f46e5" stroke-width="2.5" stroke-dasharray="6 3"/></svg> Gdańsk — wydatki</span>
-        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#dc2626" stroke-width="2.5"/></svg> Warszawa — dochody</span>
-        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="6 3"/></svg> Warszawa — wydatki</span>
-        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#16a34a" stroke-width="2.5"/></svg> Kraków — dochody</span>
-        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#16a34a" stroke-width="2.5" stroke-dasharray="6 3"/></svg> Kraków — wydatki</span>
-        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#db2777" stroke-width="2.5"/></svg> Wrocław — dochody</span>
-        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#db2777" stroke-width="2.5" stroke-dasharray="6 3"/></svg> Wrocław — wydatki</span>
-        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#0891b2" stroke-width="2.5"/></svg> Poznań — dochody</span>
-        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#0891b2" stroke-width="2.5" stroke-dasharray="6 3"/></svg> Poznań — wydatki</span>
-        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#d97706" stroke-width="2.5"/></svg> Gdynia — dochody</span>
-        <span><svg width="28" height="12"><line x1="0" y1="6" x2="28" y2="6" stroke="#d97706" stroke-width="2.5" stroke-dasharray="6 3"/></svg> Gdynia — wydatki</span>
-      </div>
-    </div>
-
-    <div class="comp-charts" style="margin-top:24px">
-      <canvas id="chartInvestments" height="260"></canvas>
-      <div class="chart-legend">
-        <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#4f46e5"/></svg> Gdańsk</span>
-        <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#dc2626"/></svg> Warszawa</span>
-        <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#16a34a"/></svg> Kraków</span>
-        <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#db2777"/></svg> Wrocław</span>
-        <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#0891b2"/></svg> Poznań</span>
-        <span><svg width="28" height="12"><rect width="28" height="12" rx="2" fill="#d97706"/></svg> Gdynia</span>
-      </div>
-    </div>
-
-    <div class="budget-links" style="margin-top:24px;">
-      <a href="https://gdansk.radoskop.pl/budzet">Budżet Gdańska →</a>
-      <a href="https://warszawa.radoskop.pl/budzet">Budżet Warszawy →</a>
-      <a href="https://krakow.radoskop.pl/budzet">Budżet Krakowa →</a>
-      <a href="https://wroclaw.radoskop.pl/budzet">Budżet Wrocławia →</a>
-      <a href="https://poznan.radoskop.pl/budzet">Budżet Poznania →</a>
-      <a href="https://gdynia.radoskop.pl/budzet">Budżet Gdyni →</a>
-    </div>
-    <p class="budget-note">Źródło: BIP Gdańska, m.st. Warszawy, Krakowa, Wrocławia, Poznania i Gdyni. Dane za 2026 — uchwały budżetowe. Kwoty w miliardach złotych. Per capita: Gdańsk ~471 tys., Warszawa ~1,86 mln, Kraków ~800 tys., Wrocław ~643 tys., Poznań ~535 tys., Gdynia ~246 tys. mieszkańców (GUS 2024).</p>
-  </div>
-
-  <div class="controversial" id="controversial">
+  <!-- Controversial votes -->
+  <section id="controversial">
     <h3>Kontrowersyjne głosowania</h3>
-    <p class="controversial-subtitle">Kadencja 2024–2029 — głosowania z najniższym poparciem (% za)</p>
+    <p class="section-subtitle">Głosowania z najniższym poparciem (% za) z całej Polski. Kadencja 2024–2029.</p>
+    <div class="vote-list" id="controversial-list"></div>
+    <button class="show-more-btn" id="controversial-more" style="display:none">Pokaż więcej</button>
+    <p class="section-subtitle" style="margin-top:16px;font-size:.75rem">Uwzględniono głosowania merytoryczne z co najmniej 20 aktywnymi głosami. Źródło: BIP.</p>
+  </section>
 
-    <div class="vote-list">
-      <a class="vote-item" href="https://krakow.radoskop.pl/glosowanie/2024-09-25_011">
-        <div class="vote-header">
-          <span class="vote-city krk">Kraków</span>
-          <span class="vote-date">25.09.2024</span>
-        </div>
-        <div class="vote-topic">Nazwa ulicy — druk nr 216</div>
-        <div class="vote-result">
-          <span class="vote-pill pill-za">0 za</span>
-          <span class="vote-pill pill-przeciw">34 przeciw</span>
-          <span class="vote-pill pill-pct">0% za</span>
-        </div>
-      </a>
-
-      <a class="vote-item" href="https://warszawa.radoskop.pl/glosowanie/2025-10-16_029">
-        <div class="vote-header">
-          <span class="vote-city waw">Warszawa</span>
-          <span class="vote-date">16.10.2025</span>
-        </div>
-        <div class="vote-topic">Wyrażenie opinii o lokalizacji kasyna gry (4 głosowania)</div>
-        <div class="vote-result">
-          <span class="vote-pill pill-za">0 za</span>
-          <span class="vote-pill pill-przeciw">21–24 przeciw</span>
-          <span class="vote-pill pill-wstrz">13–16 wstrz.</span>
-          <span class="vote-pill pill-pct">0% za</span>
-        </div>
-      </a>
-
-      <a class="vote-item" href="https://warszawa.radoskop.pl/glosowanie/2025-06-26_015">
-        <div class="vote-header">
-          <span class="vote-city waw">Warszawa</span>
-          <span class="vote-date">26.06.2025</span>
-        </div>
-        <div class="vote-topic">Zmiana uchwały w sprawie ustalenia cen za usługi przewozowe (transport publiczny)</div>
-        <div class="vote-result">
-          <span class="vote-pill pill-za">0 za</span>
-          <span class="vote-pill pill-przeciw">36 przeciw</span>
-          <span class="vote-pill pill-wstrz">4 wstrz.</span>
-          <span class="vote-pill pill-pct">0% za</span>
-        </div>
-      </a>
-
-      <a class="vote-item" href="https://krakow.radoskop.pl/glosowanie/2025-12-17_012">
-        <div class="vote-header">
-          <span class="vote-city krk">Kraków</span>
-          <span class="vote-date">17.12.2025</span>
-        </div>
-        <div class="vote-topic">Zmiana uchwały w sprawie ustalenia strefy płatnego parkowania</div>
-        <div class="vote-result">
-          <span class="vote-pill pill-za">1 za</span>
-          <span class="vote-pill pill-przeciw">40 przeciw</span>
-          <span class="vote-pill pill-pct">2,4% za</span>
-        </div>
-      </a>
-
-      <a class="vote-item" href="https://wroclaw.radoskop.pl/glosowanie/2025-07-10_040_000">
-        <div class="vote-header">
-          <span class="vote-city wro">Wrocław</span>
-          <span class="vote-date">10.07.2025</span>
-        </div>
-        <div class="vote-topic">Rozpatrzenie petycji w sprawie zmiany nazwy mostu</div>
-        <div class="vote-result">
-          <span class="vote-pill pill-za">1 za</span>
-          <span class="vote-pill pill-przeciw">17 przeciw</span>
-          <span class="vote-pill pill-wstrz">7 wstrz.</span>
-          <span class="vote-pill pill-pct">4,0% za</span>
-        </div>
-      </a>
-
-      <a class="vote-item" href="https://gdynia.radoskop.pl/glosowanie/2024-09-25_008">
-        <div class="vote-header">
-          <span class="vote-city gdy">Gdynia</span>
-          <span class="vote-date">25.09.2024</span>
-        </div>
-        <div class="vote-topic">Zasady zbywania nieruchomości zabudowanych budynkiem mieszkalnym</div>
-        <div class="vote-result">
-          <span class="vote-pill pill-za">2 za</span>
-          <span class="vote-pill pill-przeciw">17 przeciw</span>
-          <span class="vote-pill pill-wstrz">8 wstrz.</span>
-          <span class="vote-pill pill-pct">7,4% za</span>
-        </div>
-      </a>
-
-      <a class="vote-item" href="https://gdansk.radoskop.pl/glosowanie/2025-06-26_29">
-        <div class="vote-header">
-          <span class="vote-city gd">Gdańsk</span>
-          <span class="vote-date">26.06.2025</span>
-        </div>
-        <div class="vote-topic">Wyrażenie opinii o lokalizacji kasyna gry (3 głosowania)</div>
-        <div class="vote-result">
-          <span class="vote-pill pill-za">3 za</span>
-          <span class="vote-pill pill-przeciw">28 przeciw</span>
-          <span class="vote-pill pill-wstrz">1 wstrz.</span>
-          <span class="vote-pill pill-pct">9,4% za</span>
-        </div>
-      </a>
-
-      <a class="vote-item" href="https://sopot.radoskop.pl/glosowanie/2025-12-18_011">
-        <div class="vote-header">
-          <span class="vote-city sop">Sopot</span>
-          <span class="vote-date">18.12.2025</span>
-        </div>
-        <div class="vote-topic">Poprawka radnego Melera do projektu budżetu miasta na rok 2026</div>
-        <div class="vote-result">
-          <span class="vote-pill pill-za">3 za</span>
-          <span class="vote-pill pill-przeciw">15 przeciw</span>
-          <span class="vote-pill pill-wstrz">2 wstrz.</span>
-          <span class="vote-pill pill-pct">15,0% za</span>
-        </div>
-      </a>
-
-      <a class="vote-item" href="https://krakow.radoskop.pl/glosowanie/2024-06-19_008">
-        <div class="vote-header">
-          <span class="vote-city krk">Kraków</span>
-          <span class="vote-date">19.06.2024</span>
-        </div>
-        <div class="vote-topic">Zmiana uchwały w sprawie ustanowienia Strefy Czystego Transportu w Krakowie</div>
-        <div class="vote-result">
-          <span class="vote-pill pill-za">5 za</span>
-          <span class="vote-pill pill-przeciw">24 przeciw</span>
-          <span class="vote-pill pill-pct">17,2% za</span>
-        </div>
-      </a>
-
-      <a class="vote-item" href="https://gdansk.radoskop.pl/glosowanie/2024-09-26_18">
-        <div class="vote-header">
-          <span class="vote-city gd">Gdańsk</span>
-          <span class="vote-date">26.09.2024</span>
-        </div>
-        <div class="vote-topic">Określenie warunków udzielania bonifikat od cen nieruchomości gruntowych</div>
-        <div class="vote-result">
-          <span class="vote-pill pill-za">6 za</span>
-          <span class="vote-pill pill-przeciw">18 przeciw</span>
-          <span class="vote-pill pill-wstrz">7 wstrz.</span>
-          <span class="vote-pill pill-pct">19,4% za</span>
-        </div>
-      </a>
+  <!-- Budgets (top N by expenditure) -->
+  <section id="budget">
+    <h3>Budżety miast</h3>
+    <p class="section-subtitle">Ranking po wydatkach i inwestycjach. Kliknij nagłówek kolumny, żeby sortować.</p>
+    <div class="table-wrap">
+      <table class="data-table" id="budget-table">
+        <thead>
+          <tr>
+            <th data-sort="name">Miasto</th>
+            <th data-sort="income">Dochody (2026)</th>
+            <th data-sort="expense">Wydatki (2026)</th>
+            <th data-sort="deficit">Deficyt</th>
+            <th data-sort="perCapita">Wydatki per capita</th>
+            <th data-sort="invest">Inwestycje (2026)</th>
+            <th data-sort="investShare">Inwestycje / wydatki</th>
+          </tr>
+        </thead>
+        <tbody id="budget-tbody"></tbody>
+      </table>
     </div>
+    <button class="show-more-btn" id="budget-more" style="display:none"></button>
+    <p class="section-subtitle" style="margin-top:16px;font-size:.75rem">Źródło: BIP miast, uchwały budżetowe. Kwoty w miliardach złotych.</p>
+  </section>
 
-    <p class="budget-note">Kadencja 2024–2029. Uwzględniono głosowania merytoryczne z ≥20 aktywnymi głosami. Źródło: BIP.</p>
-  </div>
-
-  <div class="about">
+  <section class="about">
     <h3>Czym jest Radoskop?</h3>
-    <p>Bezpłatne narzędzie do monitorowania rad miejskich w Polsce. Przetwarzamy dane z BIP 13 miast: frekwencja, głosowania, interpelacje, profile radnych, budżety. Kadencja 2024–2029.</p>
-    <p>Dane aktualizowane automatycznie po każdej sesji. Kod źródłowy na <a href="https://github.com/radoskoppl/radoskop">GitHubie</a> (AGPL-3.0). Chcesz dodać swoje miasto? Otwórz issue lub pull request.</p>
-  </div>
+    <p>Bezpłatne narzędzie do monitorowania rad miejskich w Polsce. Przetwarzamy dane z BIP: frekwencję, głosowania, interpelacje, profile radnych i budżety. Kadencja 2024–2029.</p>
+    <p>Dane aktualizowane automatycznie po każdej sesji. Kod źródłowy na <a href="https://github.com/radoskoppl/radoskop">GitHubie</a> (AGPL-3.0). Chcesz dodać swoje miasto? Otwórz issue albo pull request.</p>
+  </section>
 </div>
 
 <footer>
   <div class="container">
-    <p style="margin-bottom:8px">
-      <a href="https://bialystok.radoskop.pl">Białystok</a> · <a href="https://bydgoszcz.radoskop.pl">Bydgoszcz</a> · <a href="https://gdansk.radoskop.pl">Gdańsk</a> · <a href="https://gdynia.radoskop.pl">Gdynia</a> · <a href="https://katowice.radoskop.pl">Katowice</a> · <a href="https://krakow.radoskop.pl">Kraków</a> · <a href="https://lublin.radoskop.pl">Lublin</a> · <a href="https://lodz.radoskop.pl">Łódź</a> · <a href="https://poznan.radoskop.pl">Poznań</a> · <a href="https://sopot.radoskop.pl">Sopot</a> · <a href="https://szczecin.radoskop.pl">Szczecin</a> · <a href="https://warszawa.radoskop.pl">Warszawa</a> · <a href="https://wroclaw.radoskop.pl">Wrocław</a>
-    </p>
-    <p>Radoskop &middot; <a href="https://github.com/radoskoppl/radoskop">GitHub</a> &middot; <a href="/sitemap.xml">Sitemap</a> &middot; <a href="https://gdansk.radoskop.pl/polityka-prywatnosci/">Polityka prywatności</a> &middot; <a href="https://gdansk.radoskop.pl/regulamin/">Regulamin</a> &middot; AGPL-3.0</p>
+    <p>Radoskop &middot; <a href="https://github.com/radoskoppl/radoskop">GitHub</a> &middot; <a href="/sitemap.xml">Sitemap</a> &middot; <a href="/polityka-prywatnosci/">Polityka prywatności</a> &middot; <a href="/regulamin/">Regulamin</a> &middot; AGPL-3.0</p>
   </div>
 </footer>
 
-<!-- Cookie consent banner -->
-<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1f2937;color:#e5e7eb;padding:14px 20px;font-size:0.85rem;z-index:9999;box-shadow:0 -2px 10px rgba(0,0,0,0.3)">
+<!-- Cookie banner -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1f2937;color:#e5e7eb;padding:14px 20px;font-size:.85rem;z-index:9999;box-shadow:0 -2px 10px rgba(0,0,0,.3)">
   <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
     <span style="flex:1;min-width:200px">Ta strona używa plików cookies do analizy ruchu (Google Analytics) i wyświetlania reklam (Google AdSense).</span>
     <span style="display:flex;gap:8px;flex-shrink:0">
-      <button onclick="acceptCookies()" style="background:#4f46e5;color:#fff;border:none;padding:7px 18px;border-radius:6px;cursor:pointer;font-size:0.85rem">Akceptuję</button>
-      <button onclick="rejectCookies()" style="background:transparent;color:#e5e7eb;border:1px solid #4b5563;padding:7px 18px;border-radius:6px;cursor:pointer;font-size:0.85rem">Odrzucam</button>
-      <a href="https://gdansk.radoskop.pl/polityka-prywatnosci/" style="color:#93c5fd;padding:7px 4px;font-size:0.85rem;text-decoration:underline;white-space:nowrap">Więcej</a>
+      <button onclick="acceptCookies()" style="background:#4f46e5;color:#fff;border:none;padding:7px 18px;border-radius:6px;cursor:pointer;font-size:.85rem">Akceptuję</button>
+      <button onclick="rejectCookies()" style="background:transparent;color:#e5e7eb;border:1px solid #4b5563;padding:7px 18px;border-radius:6px;cursor:pointer;font-size:.85rem">Odrzucam</button>
+      <a href="/polityka-prywatnosci/" style="color:#93c5fd;padding:7px 4px;font-size:.85rem;text-decoration:underline;white-space:nowrap">Więcej</a>
     </span>
   </div>
 </div>
+
 <script>
+// ── Cookie consent ──
 function getCookieConsent(){var m=document.cookie.match(/(?:^|;\s*)cookie_consent=([^;]*)/);return m?m[1]:null;}
 function setCookieConsent(v){var d=new Date();d.setFullYear(d.getFullYear()+1);document.cookie='cookie_consent='+v+';expires='+d.toUTCString()+';path=/;SameSite=Lax';}
 function acceptCookies(){
@@ -1002,11 +423,7 @@ function acceptCookies(){
     document.head.appendChild(a);
   }
 }
-function rejectCookies(){
-  setCookieConsent('rejected');
-  document.getElementById('cookie-banner').style.display='none';
-  window['ga-disable-G-1SH24XVXR3']=true;
-}
+function rejectCookies(){setCookieConsent('rejected');document.getElementById('cookie-banner').style.display='none';window['ga-disable-G-1SH24XVXR3']=true;}
 function isGoogleCmpPresent(){
   if(typeof window.__tcfapi==='function')return true;
   if(document.cookie.indexOf('__gfc_consent_info')!==-1)return true;
@@ -1015,586 +432,481 @@ function isGoogleCmpPresent(){
 }
 (function(){
   if(isGoogleCmpPresent())return;
-  setTimeout(function(){
-    if(isGoogleCmpPresent()){document.getElementById('cookie-banner').style.display='none';return;}
-  },1500);
+  setTimeout(function(){if(isGoogleCmpPresent()){document.getElementById('cookie-banner').style.display='none';return;}},1500);
   var c=getCookieConsent();
   if(!c)document.getElementById('cookie-banner').style.display='block';
   else if(c==='rejected')window['ga-disable-G-1SH24XVXR3']=true;
 })();
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<script>
-const cities = ['Gdańsk','Warszawa','Kraków','Wrocław','Poznań','Gdynia','Sopot'];
-const colors = ['#4f46e5','#0284c7','#16a34a','#db2777','#0891b2','#d97706','#ec4899'];
-const bgColors = ['rgba(79,70,229,0.15)','rgba(2,132,199,0.15)','rgba(22,163,74,0.15)','rgba(219,39,119,0.15)','rgba(8,145,178,0.15)','rgba(217,119,6,0.15)','rgba(236,72,153,0.15)'];
 
-const commonOpts = {
-  responsive: true,
-  plugins: { legend: { display: true, position: 'bottom', labels: { usePointStyle: true, padding: 16, font: { size: 12 } } } },
-  scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%' } }, x: { display: false } }
-};
+// ── Shared utilities ──
+function normalize(s){return (s||'').toLowerCase().replace(/ą/g,'a').replace(/ć/g,'c').replace(/ę/g,'e').replace(/ł/g,'l').replace(/ń/g,'n').replace(/ó/g,'o').replace(/ś/g,'s').replace(/ź/g,'z').replace(/ż/g,'z');}
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function hashStr(s){var h=0;for(var i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return Math.abs(h);}
+function cityColor(slug){var h=hashStr(slug||'')%360;return 'hsl('+h+',62%,42%)';}
+function cityBadge(city){return '<span class="city-badge" style="background:'+cityColor(city.slug)+'22;color:'+cityColor(city.slug)+'">'+esc(city.name)+'</span>';}
+function formatInt(n){return (n||0).toLocaleString('pl-PL');}
+function formatPct(v){return v==null?'—':v.toFixed(1)+'%';}
+function formatMld(v){return v==null?'—':v.toFixed(2)+' mld zł';}
+function formatZl(v){return v==null?'—':formatInt(Math.round(v))+' zł';}
+function formatDatePL(d){if(!d||d.length<10)return d||'';return d.substring(8,10)+'.'+d.substring(5,7)+'.'+d.substring(0,4);}
+function popBucket(p){if(!p)return 0;if(p<50000)return 1;if(p<200000)return 2;if(p<500000)return 3;return 4;}
+function fekkClass(v){if(v==null)return '';if(v>=90)return 'good';if(v>=70)return 'medium';return 'low';}
+function initials(name){var p=(name||'').split(' ');if(p.length>=2)return (p[0][0]+p[p.length-1][0]).toUpperCase();return (p[0]||'').substring(0,2).toUpperCase();}
+function highlight(text,query){if(!query)return esc(text);var n=normalize(text),q=normalize(query);var i=n.indexOf(q);if(i===-1)return esc(text);return esc(text.substring(0,i))+'<mark>'+esc(text.substring(i,i+query.length))+'</mark>'+esc(text.substring(i+query.length));}
 
-// Budget trend chart — custom legend to show dashed lines
-const budgetYears = ['2020','2021','2022','2023','2024','2025','2026'];
-const budgetChart = new Chart(document.getElementById('chartBudgetTrend'), {
-  type: 'line',
-  data: {
-    labels: budgetYears,
-    datasets: [
-      { label: 'Gdańsk — dochody', data: [4.75,4.85,5.10,4.89,5.16,5.43,6.23], borderColor: '#4f46e5', backgroundColor: 'rgba(79,70,229,0.08)', fill: true, tension: 0.3, pointRadius: 4, pointStyle: 'circle', borderWidth: 2.5 },
-      { label: 'Gdańsk — wydatki', data: [5.10,5.25,5.50,5.38,5.71,6.03,6.88], borderColor: '#4f46e5', backgroundColor: 'transparent', fill: false, tension: 0.3, pointRadius: 4, pointStyle: 'rect', borderWidth: 2.5, borderDash: [8,4] },
-      { label: 'Kraków — dochody', data: [6.20,7.19,7.22,7.33,9.01,9.07,10.27], borderColor: '#16a34a', backgroundColor: 'rgba(22,163,74,0.08)', fill: true, tension: 0.3, pointRadius: 4, pointStyle: 'circle', borderWidth: 2.5 },
-      { label: 'Kraków — wydatki', data: [6.67,7.45,8.05,8.98,9.86,9.80,11.47], borderColor: '#16a34a', backgroundColor: 'transparent', fill: false, tension: 0.3, pointRadius: 4, pointStyle: 'rect', borderWidth: 2.5, borderDash: [8,4] },
-      { label: 'Warszawa — dochody', data: [18.19,20.57,19.21,20.22,24.52,26.28,28.50], borderColor: '#dc2626', backgroundColor: 'rgba(220,38,38,0.08)', fill: true, tension: 0.3, pointRadius: 4, pointStyle: 'circle', borderWidth: 2.5 },
-      { label: 'Warszawa — wydatki', data: [19.93,21.63,21.42,24.37,27.77,29.48,32.20], borderColor: '#dc2626', backgroundColor: 'transparent', fill: false, tension: 0.3, pointRadius: 4, pointStyle: 'rect', borderWidth: 2.5, borderDash: [8,4] },
-      { label: 'Wrocław — dochody', data: [5.30,5.40,5.30,5.59,6.78,7.70,8.49], borderColor: '#db2777', backgroundColor: 'rgba(219,39,119,0.08)', fill: true, tension: 0.3, pointRadius: 4, pointStyle: 'circle', borderWidth: 2.5 },
-      { label: 'Wrocław — wydatki', data: [5.60,5.90,6.16,6.40,7.20,8.50,9.67], borderColor: '#db2777', backgroundColor: 'transparent', fill: false, tension: 0.3, pointRadius: 4, pointStyle: 'rect', borderWidth: 2.5, borderDash: [8,4] },
-      { label: 'Poznań — dochody', data: [4.60,4.99,5.13,5.09,6.10,6.17,6.63], borderColor: '#0891b2', backgroundColor: 'rgba(8,145,178,0.08)', fill: true, tension: 0.3, pointRadius: 4, pointStyle: 'circle', borderWidth: 2.5 },
-      { label: 'Poznań — wydatki', data: [5.20,5.40,5.30,5.58,6.60,6.93,7.41], borderColor: '#0891b2', backgroundColor: 'transparent', fill: false, tension: 0.3, pointRadius: 4, pointStyle: 'rect', borderWidth: 2.5, borderDash: [8,4] },
-      { label: 'Gdynia — dochody', data: [1.74,1.82,1.73,1.86,2.11,2.43,2.64], borderColor: '#d97706', backgroundColor: 'rgba(217,119,6,0.08)', fill: true, tension: 0.3, pointRadius: 4, pointStyle: 'circle', borderWidth: 2.5 },
-      { label: 'Gdynia — wydatki', data: [1.94,1.93,1.93,2.06,2.15,2.58,2.92], borderColor: '#d97706', backgroundColor: 'transparent', fill: false, tension: 0.3, pointRadius: 4, pointStyle: 'rect', borderWidth: 2.5, borderDash: [8,4] }
-    ]
-  },
-  options: {
-    responsive: true,
-    interaction: { mode: 'index', intersect: false },
-    plugins: {
-      title: { display: true, text: 'Dochody i wydatki (mld zł)', font: { size: 14, weight: 600 } },
-      legend: { display: false },
-      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(2) + ' mld zł' } }
-    },
-    scales: {
-      y: { type: 'linear', title: { display: true, text: 'mld zł', font: { size: 11 } }, ticks: { callback: v => v.toFixed(0) }, beginAtZero: true }
-    }
+// ── Load cities manifest ──
+// Expected schema (one fetch, drives nearly everything):
+// [{ slug, name, url, voivodeship, population, councilors, sessions, votes,
+//    frekwencja, zgodnosc, rebellions,
+//    interpelacje:{total,answered,top:{name,count}},
+//    recentSession:{label,date,votes,url},
+//    budget:{income,expense,invest,perCapita,investShare} (opcjonalne)
+// }]
+var CITIES = [];
+var CITY_BY_SLUG = {};
+var VIS_CITIES = [];
+var VIS_SHOWN = 24;
+
+var PAGE_SIZES = { comp: 20, interp: 15, budget: 15, sessions: 30, controversial: 10 };
+var SHOWN = { comp: 20, interp: 15, budget: 15, sessions: 30, controversial: 10 };
+
+function loadCities(){
+  return fetch('/cities.json')
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+    .then(function(data){
+      CITIES = Array.isArray(data)?data:(data.cities||[]);
+      CITIES.forEach(function(c){CITY_BY_SLUG[c.slug]=c;});
+      return CITIES;
+    });
+}
+
+// ── Global stats header ──
+function renderGlobalStats(){
+  var totV=0,totC=0;
+  CITIES.forEach(function(c){totV+=(c.votes||0);totC+=(c.councilors||0);});
+  document.getElementById('global-stats').textContent =
+    CITIES.length + ' miast · ' + formatInt(totV) + ' głosowań · ' + formatInt(totC) + ' radnych · frekwencja · interpelacje · budżety · kadencja 2024–2029';
+  var sc=document.getElementById('search-count');
+  if(sc) sc.textContent = formatInt(totC)+' radnych z '+CITIES.length+' miast';
+  var vc=document.getElementById('vote-search-count');
+  if(vc) vc.textContent = 'Wpisz min. 2 znaki, by szukać w '+CITIES.length+' miastach';
+  document.getElementById('ranking-subtitle').textContent =
+    'Kadencja 2024–2029. '+formatInt(totC)+' radnych z '+CITIES.length+' miast.';
+}
+
+// ── City directory ──
+function populateVoivoFilter(){
+  var set={};CITIES.forEach(function(c){if(c.voivodeship)set[c.voivodeship]=1;});
+  var names=Object.keys(set).sort(function(a,b){return a.localeCompare(b,'pl');});
+  var sel=document.getElementById('voivo-filter');
+  names.forEach(function(n){var o=document.createElement('option');o.value=n;o.textContent=n;sel.appendChild(o);});
+}
+
+function sortCities(list,key){
+  var cp=list.slice();
+  if(key==='name')cp.sort(function(a,b){return a.name.localeCompare(b.name,'pl');});
+  else if(key==='population')cp.sort(function(a,b){return (b.population||0)-(a.population||0);});
+  else if(key==='votes')cp.sort(function(a,b){return (b.votes||0)-(a.votes||0);});
+  else if(key==='sessions')cp.sort(function(a,b){return (b.sessions||0)-(a.sessions||0);});
+  else if(key==='frekwencja')cp.sort(function(a,b){return (b.frekwencja||0)-(a.frekwencja||0);});
+  return cp;
+}
+
+function renderCities(){
+  var q=normalize(document.getElementById('city-filter').value);
+  var voivo=document.getElementById('voivo-filter').value;
+  var pop=document.getElementById('pop-filter').value;
+  var sortKey=document.getElementById('city-sort').value;
+
+  var filtered=CITIES.filter(function(c){
+    if(q && normalize(c.name).indexOf(q)===-1)return false;
+    if(voivo && c.voivodeship!==voivo)return false;
+    if(pop && String(popBucket(c.population))!==pop)return false;
+    return true;
+  });
+  filtered=sortCities(filtered,sortKey);
+  VIS_CITIES=filtered;
+
+  var max=Math.min(filtered.length,VIS_SHOWN);
+  var html='';
+  for(var i=0;i<max;i++){
+    var c=filtered[i];
+    html += '<a class="city-card" href="'+esc(c.url)+'">'
+         +   '<div class="ccard-head">'+cityBadge(c)+'<span class="ccard-meta">'+(c.voivodeship?esc(c.voivodeship):'')+'</span></div>'
+         +   '<h2>'+esc(c.name)+'</h2>'
+         +   '<div class="ccard-stats">'
+         +     '<div class="ccard-stat"><span class="n">'+formatInt(c.councilors)+'</span><span class="l">Radnych</span></div>'
+         +     '<div class="ccard-stat"><span class="n">'+formatInt(c.sessions)+'</span><span class="l">Sesji</span></div>'
+         +     '<div class="ccard-stat"><span class="n">'+formatInt(c.votes)+'</span><span class="l">Głosowań</span></div>'
+         +   '</div>'
+         +   '<span class="arrow">Otwórz →</span>'
+         + '</a>';
   }
+  document.getElementById('cities-grid').innerHTML=html;
+  document.getElementById('city-count').textContent = filtered.length + ' z ' + CITIES.length;
+
+  var btn=document.getElementById('cities-more');
+  if(max<filtered.length){btn.style.display='block';btn.textContent='Pokaż więcej miast ('+max+' z '+filtered.length+')';}
+  else btn.style.display='none';
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  ['city-filter','voivo-filter','pop-filter','city-sort'].forEach(function(id){
+    document.getElementById(id).addEventListener('input',renderCities);
+    document.getElementById(id).addEventListener('change',renderCities);
+  });
+  document.getElementById('cities-more').addEventListener('click',function(){VIS_SHOWN+=24;renderCities();});
 });
 
-// Investment chart
-const invChart = new Chart(document.getElementById('chartInvestments'), {
-  type: 'bar',
-  data: {
-    labels: budgetYears,
-    datasets: [
-      { label: 'Gdańsk', data: [0.79,0.75,0.83,0.79,0.92,1.05,1.28], backgroundColor: 'rgba(79,70,229,0.7)', borderColor: '#4f46e5', borderWidth: 1 },
-      { label: 'Warszawa', data: [2.50,2.80,2.90,2.90,3.10,3.10,3.94], backgroundColor: 'rgba(220,38,38,0.7)', borderColor: '#dc2626', borderWidth: 1 },
-      { label: 'Kraków', data: [0.90,1.05,1.31,1.71,1.00,1.20,1.50], backgroundColor: 'rgba(22,163,74,0.7)', borderColor: '#16a34a', borderWidth: 1 },
-      { label: 'Wrocław', data: [0.80,0.75,0.90,1.08,0.81,1.10,1.54], backgroundColor: 'rgba(219,39,119,0.7)', borderColor: '#db2777', borderWidth: 1 },
-      { label: 'Poznań', data: [0.65,0.70,0.75,0.85,1.00,1.25,1.24], backgroundColor: 'rgba(8,145,178,0.7)', borderColor: '#0891b2', borderWidth: 1 },
-      { label: 'Gdynia', data: [0.43,0.35,0.35,0.36,0.23,0.26,0.40], backgroundColor: 'rgba(217,119,6,0.7)', borderColor: '#d97706', borderWidth: 1 }
-    ]
-  },
-  options: {
-    responsive: true,
-    interaction: { mode: 'index', intersect: false },
-    plugins: {
-      title: { display: true, text: 'Wydatki inwestycyjne (mld zł)', font: { size: 14, weight: 600 } },
-      legend: { display: false },
-      tooltip: { callbacks: { label: ctx => ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(2) + ' mld zł' } }
-    },
-    scales: {
-      y: { type: 'linear', title: { display: true, text: 'mld zł', font: { size: 11 } }, ticks: { callback: v => v.toFixed(1) }, beginAtZero: true }
+// ── Comparison table ──
+var COMP_SORT = { key:'votes', dir:'desc' };
+function renderCompTable(){
+  var rows=CITIES.slice().sort(function(a,b){
+    var va,vb;
+    switch(COMP_SORT.key){
+      case 'name': return COMP_SORT.dir==='asc' ? a.name.localeCompare(b.name,'pl') : b.name.localeCompare(a.name,'pl');
+      case 'councilors': va=a.councilors||0;vb=b.councilors||0;break;
+      case 'sessions': va=a.sessions||0;vb=b.sessions||0;break;
+      case 'votes': va=a.votes||0;vb=b.votes||0;break;
+      case 'frekwencja': va=a.frekwencja||0;vb=b.frekwencja||0;break;
+      case 'zgodnosc': va=a.zgodnosc||0;vb=b.zgodnosc||0;break;
+      case 'rebellions': va=a.rebellions||0;vb=b.rebellions||0;break;
+      case 'interpelacje': va=(a.interpelacje&&a.interpelacje.total)||0;vb=(b.interpelacje&&b.interpelacje.total)||0;break;
+      default: va=0;vb=0;
     }
+    return COMP_SORT.dir==='asc' ? va-vb : vb-va;
+  });
+  var max=Math.min(rows.length,SHOWN.comp);
+  var h='';
+  for(var i=0;i<max;i++){
+    var c=rows[i];
+    h += '<tr>'
+       + '<td><a href="'+esc(c.url)+'">'+cityBadge(c)+' '+esc(c.name)+'</a></td>'
+       + '<td>'+formatInt(c.councilors)+'</td>'
+       + '<td>'+formatInt(c.sessions)+'</td>'
+       + '<td>'+formatInt(c.votes)+'</td>'
+       + '<td>'+formatPct(c.frekwencja)+'</td>'
+       + '<td>'+formatPct(c.zgodnosc)+'</td>'
+       + '<td>'+(c.rebellions==null?'—':c.rebellions.toFixed(1))+'</td>'
+       + '<td>'+(c.interpelacje?formatInt(c.interpelacje.total):'—')+'</td>'
+       + '</tr>';
   }
+  document.getElementById('comp-tbody').innerHTML=h;
+  document.querySelectorAll('#comp-table th').forEach(function(th){
+    th.classList.toggle('sorted', th.dataset.sort===COMP_SORT.key);
+    var arrow=th.querySelector('.arrow');if(arrow)arrow.remove();
+    if(th.dataset.sort===COMP_SORT.key){var s=document.createElement('span');s.className='arrow';s.textContent=COMP_SORT.dir==='asc'?'▲':'▼';th.appendChild(s);}
+  });
+  var btn=document.getElementById('comp-more');
+  if(max<rows.length){btn.style.display='block';btn.textContent='Pokaż więcej ('+max+' z '+rows.length+')';}
+  else btn.style.display='none';
+}
+
+// Generic attach-sort for a table
+function attachTableSort(tableId,state,onRender){
+  document.querySelectorAll('#'+tableId+' th').forEach(function(th){
+    th.addEventListener('click',function(){
+      var k=th.dataset.sort;if(!k)return;
+      if(state.key===k)state.dir=(state.dir==='asc'?'desc':'asc');
+      else{state.key=k;state.dir='desc';}
+      onRender();
+    });
+  });
+}
+
+// ── Councillor ranking ──
+var _rankState={data:[],sortKey:'f',dir:'desc',shown:20};
+function _rankStatClass(val,key){if(key==='z'){if(val>=10)return 'low';if(val>=3)return 'medium';return 'good';}if(val>=90)return 'good';if(val>=70)return 'medium';return 'low';}
+function _rankBarColor(val,key){if(key==='z'){if(val>=10)return '#dc2626';if(val>=3)return '#ca8a04';return '#16a34a';}if(val>=90)return '#16a34a';if(val>=70)return '#ca8a04';return '#dc2626';}
+function _rankLabel(key){return key==='f'?'frekw.':key==='a'?'aktywn.':'bunt.';}
+function rankingInit(data){_rankState.data=data;_rankState.shown=20;rankingRender();}
+function rankingSort(key,btn){_rankState.sortKey=key;_rankState.shown=20;document.querySelectorAll('.ranking-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');rankingRender();}
+function rankingDir(dir,btn){_rankState.dir=dir;_rankState.shown=20;document.querySelectorAll('.ranking-dir').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');rankingRender();}
+function rankingShowMore(){_rankState.shown+=30;rankingRender();}
+function rankingRender(){
+  var data=_rankState.data;if(!data||!data.length)return;
+  var key=_rankState.sortKey,asc=(_rankState.dir==='asc');
+  var sorted=data.slice().sort(function(a,b){var va=a[key]||0,vb=b[key]||0;return asc?(va-vb):(vb-va);});
+  var max=Math.min(sorted.length,_rankState.shown);
+  var maxVal=key==='z'?Math.max(sorted[0][key]||0,1):100;
+  var html='';
+  for(var i=0;i<max;i++){
+    var c=sorted[i];var val=c[key]||0;
+    var profileUrl=c.u+'/profil/'+c.s;
+    var badgeSlug=(CITY_BY_SLUG[c.s&&c.s.split('/')[0]]||{}).slug;
+    // prefer explicit city slug field if present
+    var citySlug = c.citySlug || c.cs || (c.u?c.u.replace(/^https?:\/\//,'').split('.')[0]:'');
+    var col=cityColor(citySlug);
+    var barPct=key==='z'?Math.min((val/maxVal)*100,100):val;
+    html += '<a class="ranking-row" href="'+esc(profileUrl)+'">'
+          + '<span class="ranking-pos'+(i<3?' top3':'')+'">'+(i+1)+'.</span>'
+          + '<div class="ranking-avatar" style="background:'+col+'">'+initials(c.n)+'</div>'
+          + '<div class="ranking-info">'
+          +   '<div class="ranking-name">'+esc(c.n)+'</div>'
+          +   '<div class="ranking-meta">'
+          +     '<span class="city-badge" style="background:'+col+'22;color:'+col+'">'+esc(c.c)+'</span>'
+          +     (c.k?'<span>'+esc(c.k)+'</span>':'')
+          +   '</div>'
+          + '</div>'
+          + '<div class="ranking-bar-wrap"><div class="ranking-bar-fill" style="width:'+barPct.toFixed(0)+'%;background:'+_rankBarColor(val,key)+'"></div></div>'
+          + '<span class="ranking-stat '+_rankStatClass(val,key)+'">'+val.toFixed(1)+'% '+_rankLabel(key)+'</span>'
+          + '</a>';
+  }
+  document.getElementById('ranking-list').innerHTML=html;
+  var mb=document.getElementById('ranking-more');
+  if(max<sorted.length){mb.style.display='block';mb.textContent='Pokaż więcej ('+max+' z '+sorted.length+')';}
+  else mb.style.display='none';
+}
+
+// ── Councillor search ──
+(function(){
+  var idx=null;
+  var input=document.getElementById('search-input');
+  var results=document.getElementById('search-results');
+  var count=document.getElementById('search-count');
+  var timer=null;
+  function render(q){
+    if(!idx)return;
+    q=q.trim();
+    if(q.length<2){results.classList.remove('visible');count.textContent=formatInt(idx.length)+' radnych z '+CITIES.length+' miast';return;}
+    var qn=normalize(q),r=[];
+    for(var i=0;i<idx.length;i++){if(normalize(idx[i].n).indexOf(qn)!==-1)r.push(idx[i]);}
+    if(!r.length){results.innerHTML='<div class="search-empty">Nie znaleziono radnego o nazwisku „'+esc(q)+'"</div>';results.classList.add('visible');count.textContent='0 wyników';return;}
+    r.sort(function(a,b){var an=normalize(a.n),bn=normalize(b.n);var as=an.indexOf(qn)===0||an.indexOf(' '+qn)!==-1;var bs=bn.indexOf(qn)===0||bn.indexOf(' '+qn)!==-1;if(as&&!bs)return -1;if(!as&&bs)return 1;return a.n.localeCompare(b.n,'pl');});
+    var max=Math.min(r.length,15),html='';
+    for(var j=0;j<max;j++){
+      var c=r[j];var col=cityColor(c.citySlug||c.cs||'');
+      html += '<a class="search-result" href="'+esc(c.u)+'/profil/'+esc(c.s)+'">'
+            + '<div class="search-result-avatar" style="background:'+col+'">'+initials(c.n)+'</div>'
+            + '<div class="search-result-info">'
+            +   '<div class="search-result-name">'+highlight(c.n,q)+'</div>'
+            +   '<div class="search-result-meta"><span>'+esc(c.c)+'</span>'+(c.k?'<span>'+esc(c.k)+'</span>':'')+'</div>'
+            + '</div>'
+            + '<span class="search-result-stat '+fekkClass(c.f)+'">'+(c.f==null?'—':c.f+'% frekw.')+'</span>'
+            + '</a>';
+    }
+    results.innerHTML=html;results.classList.add('visible');
+    var txt=r.length===1?'1 wynik':r.length+' wyników';if(r.length>max)txt+=' (pokazano '+max+')';
+    count.textContent=txt;
+  }
+  input.addEventListener('input',function(){clearTimeout(timer);var v=this.value;timer=setTimeout(function(){render(v);},120);});
+  input.addEventListener('focus',function(){if(this.value.trim().length>=2&&idx)render(this.value);});
+  input.addEventListener('keydown',function(e){if(e.key==='Escape')results.classList.remove('visible');});
+  document.addEventListener('click',function(e){if(!e.target.closest('#councilor-search'))results.classList.remove('visible');});
+  fetch('/councilors-index.json').then(function(r){return r.json();}).then(function(d){idx=d;count.textContent=formatInt(d.length)+' radnych z '+CITIES.length+' miast';rankingInit(d);}).catch(function(){document.getElementById('councilor-search').style.display='none';});
+})();
+
+// ── Vote search ──
+(function(){
+  var idx=null,loading=false,failed=false;
+  var input=document.getElementById('vote-search-input');
+  var results=document.getElementById('vote-search-results');
+  var count=document.getElementById('vote-search-count');
+  var timer=null;
+  function showLoading(){results.innerHTML='<div class="search-loading">Ładuję bazę głosowań…</div>';results.classList.add('visible');}
+  function showError(){results.innerHTML='<div class="search-empty">Nie udało się pobrać bazy głosowań.</div>';results.classList.add('visible');}
+  function render(q){
+    if(!idx)return;q=q.trim();
+    if(q.length<2){results.classList.remove('visible');count.textContent=formatInt(idx.length)+' głosowań z '+CITIES.length+' miast';return;}
+    var qn=normalize(q),m=[];
+    for(var i=0;i<idx.length;i++){if(normalize(idx[i][0]).indexOf(qn)!==-1){m.push(idx[i]);if(m.length>=200)break;}}
+    if(!m.length){results.innerHTML='<div class="search-empty">Nie znaleziono głosowań zawierających „'+esc(q)+'"</div>';results.classList.add('visible');count.textContent='0 wyników';return;}
+    m.sort(function(a,b){return a[3]<b[3]?1:(a[3]>b[3]?-1:0);});
+    var max=Math.min(m.length,30),html='';
+    for(var j=0;j<max;j++){
+      var e=m[j];var topic=e[0],slug=e[1],id=e[2],date=e[3],za=e[4]||0,prze=e[5]||0,wst=e[6]||0;
+      var c=CITY_BY_SLUG[slug]||{name:slug,slug:slug,url:'#'};
+      var col=cityColor(c.slug);var outcome=(za+prze===0)?null:(za>prze?'Przyjęte':'Odrzucone');
+      html += '<a class="vote-result" href="'+esc(c.url)+'/glosowanie/'+encodeURIComponent(id)+'/" target="_blank" rel="noopener">'
+            + '<div class="vote-result-head">'
+            +   '<span class="city-badge" style="background:'+col+'22;color:'+col+'">'+esc(c.name)+'</span>'
+            +   '<span class="vote-result-date">'+formatDatePL(date)+'</span>'
+            + '</div>'
+            + '<div class="vote-result-topic">'+highlight(topic,q)+'</div>'
+            + '<div class="vote-result-counts">'
+            +   '<span class="pill pill-za">'+za+' za</span>'
+            +   '<span class="pill pill-przeciw">'+prze+' przeciw</span>'
+            +   (wst>0?'<span class="pill pill-wstrz">'+wst+' wstrz.</span>':'')
+            +   (outcome?'<span class="pill pill-outcome">'+outcome+'</span>':'')
+            + '</div>'
+            + '</a>';
+    }
+    results.innerHTML=html;results.classList.add('visible');
+    var txt=m.length===1?'1 głosowanie':formatInt(m.length)+' głosowań';if(m.length>max)txt+=' (pokazano pierwsze '+max+')';
+    count.textContent=txt;
+  }
+  function ensure(cb){if(idx){cb();return;}if(failed){showError();return;}if(loading)return;loading=true;showLoading();
+    fetch('/votes-index.json').then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(d){idx=d;loading=false;count.textContent=formatInt(d.length)+' głosowań z '+CITIES.length+' miast';cb();}).catch(function(){loading=false;failed=true;showError();});
+  }
+  input.addEventListener('input',function(){var v=this.value;clearTimeout(timer);if(v.trim().length<2){results.classList.remove('visible');if(idx)count.textContent=formatInt(idx.length)+' głosowań z '+CITIES.length+' miast';return;}timer=setTimeout(function(){ensure(function(){render(v);});},150);});
+  input.addEventListener('focus',function(){if(!idx&&!loading&&!failed){loading=true;fetch('/votes-index.json').then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(d){idx=d;loading=false;count.textContent=formatInt(d.length)+' głosowań z '+CITIES.length+' miast';}).catch(function(){loading=false;failed=true;});}if(this.value.trim().length>=2&&idx)render(this.value);});
+  input.addEventListener('keydown',function(e){if(e.key==='Escape'){results.classList.remove('visible');this.blur();}});
+  document.addEventListener('click',function(e){if(!e.target.closest('#vote-search'))results.classList.remove('visible');});
+})();
+
+// ── Recent sessions feed (unified cross-city) ──
+function renderSessions(){
+  var rows=CITIES.filter(function(c){return c.recentSession&&c.recentSession.date;})
+    .map(function(c){return {city:c,s:c.recentSession};})
+    .sort(function(a,b){return a.s.date<b.s.date?1:(a.s.date>b.s.date?-1:0);});
+  var max=Math.min(rows.length,SHOWN.sessions);
+  var html='';
+  for(var i=0;i<max;i++){
+    var r=rows[i],c=r.city,s=r.s;
+    var href=s.url||(c.url+'/sesja/'+encodeURIComponent(s.label||''));
+    html += '<a class="sess-row" href="'+esc(href)+'">'
+          +   '<span class="sess-city-col">'+cityBadge(c)+'</span>'
+          +   '<span class="sess-label">Sesja '+esc(s.label||'')+'</span>'
+          +   '<span class="sess-votes">'+formatInt(s.votes||0)+' gł.</span>'
+          +   '<span class="sess-date">'+formatDatePL(s.date)+'</span>'
+          + '</a>';
+  }
+  document.getElementById('sessions-list').innerHTML=html;
+  var b=document.getElementById('sessions-more');
+  if(max<rows.length){b.style.display='block';b.textContent='Pokaż więcej ('+max+' z '+rows.length+')';}
+  else b.style.display='none';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('sessions-more').addEventListener('click',function(){SHOWN.sessions+=30;renderSessions();});
 });
 
-// ── Wyszukiwarka radnych ──
-(function() {
-  var councilorsIndex = null;
-  var searchInput = document.getElementById('search-input');
-  var searchResults = document.getElementById('search-results');
-  var searchCount = document.getElementById('search-count');
-  var searchTimer = null;
-
-  // Zamienia polskie znaki diakrytyczne na ASCII (do wyszukiwania)
-  function normalize(s) {
-    return s.toLowerCase()
-      .replace(/ą/g,'a').replace(/ć/g,'c').replace(/ę/g,'e')
-      .replace(/ł/g,'l').replace(/ń/g,'n').replace(/ó/g,'o')
-      .replace(/ś/g,'s').replace(/ź/g,'z').replace(/ż/g,'z');
-  }
-
-  // Kolorki avatara na podstawie pierwszej litery nazwiska
-  var avatarColors = ['#4f46e5','#0284c7','#16a34a','#d97706','#dc2626','#7c3aed','#0891b2','#db2777','#059669','#ea580c'];
-  function avatarColor(name) {
-    var parts = name.split(' ');
-    var ch = (parts.length > 1 ? parts[parts.length-1] : parts[0]).charCodeAt(0);
-    return avatarColors[ch % avatarColors.length];
-  }
-
-  function initials(name) {
-    var p = name.split(' ');
-    if (p.length >= 2) return (p[0][0] + p[p.length-1][0]).toUpperCase();
-    return p[0].substring(0,2).toUpperCase();
-  }
-
-  // Podswietlenie trafien w tekscie
-  function highlight(text, query) {
-    if (!query) return text;
-    var norm = normalize(text);
-    var qNorm = normalize(query);
-    var idx = norm.indexOf(qNorm);
-    if (idx === -1) return text;
-    return text.substring(0, idx) + '<mark>' + text.substring(idx, idx + query.length) + '</mark>' + text.substring(idx + query.length);
-  }
-
-  function frekwencjaClass(f) {
-    if (f >= 90) return 'good';
-    if (f >= 70) return 'medium';
-    return 'low';
-  }
-
-  function renderResults(query) {
-    if (!councilorsIndex) return;
-    var q = query.trim();
-    if (q.length < 2) {
-      searchResults.classList.remove('visible');
-      searchCount.textContent = councilorsIndex.length + ' radnych z 13 miast';
-      return;
+// ── Interpelacje table ──
+var INTERP_SORT={key:'total',dir:'desc'};
+function renderInterpTable(){
+  var rows=CITIES.filter(function(c){return c.interpelacje&&c.interpelacje.total;}).slice().sort(function(a,b){
+    var va,vb;
+    switch(INTERP_SORT.key){
+      case 'name': return INTERP_SORT.dir==='asc'?a.name.localeCompare(b.name,'pl'):b.name.localeCompare(a.name,'pl');
+      case 'total': va=a.interpelacje.total||0;vb=b.interpelacje.total||0;break;
+      case 'answered': va=a.interpelacje.answered||0;vb=b.interpelacje.answered||0;break;
+      case 'top': return INTERP_SORT.dir==='asc'?((a.interpelacje.top||{}).name||'').localeCompare(((b.interpelacje.top||{}).name||''),'pl'):((b.interpelacje.top||{}).name||'').localeCompare(((a.interpelacje.top||{}).name||''),'pl');
+      case 'topCount': va=(a.interpelacje.top||{}).count||0;vb=(b.interpelacje.top||{}).count||0;break;
+      default: va=0;vb=0;
     }
-
-    var qNorm = normalize(q);
-    var results = [];
-    for (var i = 0; i < councilorsIndex.length; i++) {
-      var c = councilorsIndex[i];
-      if (normalize(c.n).indexOf(qNorm) !== -1) {
-        results.push(c);
-      }
-    }
-
-    if (results.length === 0) {
-      searchResults.innerHTML = '<div class="search-empty">Nie znaleziono radnego o nazwisku „' + q.replace(/</g,'&lt;') + '"</div>';
-      searchResults.classList.add('visible');
-      searchCount.textContent = '0 wyników';
-      return;
-    }
-
-    // Sortuj: trafienia na początku nazwiska wyżej
-    results.sort(function(a, b) {
-      var aN = normalize(a.n), bN = normalize(b.n);
-      var aStart = aN.indexOf(qNorm) === 0 || aN.indexOf(' ' + qNorm) !== -1;
-      var bStart = bN.indexOf(qNorm) === 0 || bN.indexOf(' ' + qNorm) !== -1;
-      if (aStart && !bStart) return -1;
-      if (!aStart && bStart) return 1;
-      return a.n.localeCompare(b.n, 'pl');
-    });
-
-    var max = Math.min(results.length, 15);
-    var html = '';
-    for (var j = 0; j < max; j++) {
-      var r = results[j];
-      var profileUrl = r.u + '/profil/' + r.s;
-      var fClass = frekwencjaClass(r.f);
-      html += '<a class="search-result" href="' + profileUrl + '">'
-        + '<div class="search-result-avatar" style="background:' + avatarColor(r.n) + '">' + initials(r.n) + '</div>'
-        + '<div class="search-result-info">'
-        + '<div class="search-result-name">' + highlight(r.n, q) + '</div>'
-        + '<div class="search-result-meta">'
-        + '<span>' + r.c + '</span>'
-        + (r.k ? '<span>' + r.k + '</span>' : '')
-        + '</div>'
-        + '</div>'
-        + '<span class="search-result-stat ' + fClass + '">' + r.f + '% frekw.</span>'
-        + '</a>';
-    }
-    searchResults.innerHTML = html;
-    searchResults.classList.add('visible');
-
-    var countText = results.length === 1 ? '1 wynik' : results.length + ' wyników';
-    if (results.length > max) countText += ' (pokazano ' + max + ')';
-    searchCount.textContent = countText;
+    return INTERP_SORT.dir==='asc'?va-vb:vb-va;
+  });
+  var max=Math.min(rows.length,SHOWN.interp);var h='';
+  for(var i=0;i<max;i++){
+    var c=rows[i],ip=c.interpelacje;var top=ip.top||{};
+    h += '<tr>'
+       + '<td><a href="'+esc(c.url)+'/interpelacje">'+cityBadge(c)+' '+esc(c.name)+'</a></td>'
+       + '<td>'+formatInt(ip.total)+'</td>'
+       + '<td>'+(ip.answered==null?'—':formatInt(ip.answered))+'</td>'
+       + '<td>'+(top.name?esc(top.name):'—')+'</td>'
+       + '<td>'+(top.count?formatInt(top.count):'—')+'</td>'
+       + '</tr>';
   }
+  document.getElementById('interp-tbody').innerHTML=h;
+  document.querySelectorAll('#interp-table th').forEach(function(th){
+    th.classList.toggle('sorted',th.dataset.sort===INTERP_SORT.key);
+    var a=th.querySelector('.arrow');if(a)a.remove();
+    if(th.dataset.sort===INTERP_SORT.key){var s=document.createElement('span');s.className='arrow';s.textContent=INTERP_SORT.dir==='asc'?'▲':'▼';th.appendChild(s);}
+  });
+  var b=document.getElementById('interp-more');
+  if(max<rows.length){b.style.display='block';b.textContent='Pokaż więcej ('+max+' z '+rows.length+')';}
+  else b.style.display='none';
+}
 
-  searchInput.addEventListener('input', function() {
-    clearTimeout(searchTimer);
-    var val = this.value;
-    searchTimer = setTimeout(function() { renderResults(val); }, 120);
+// ── Budget table ──
+var BUDGET_SORT={key:'expense',dir:'desc'};
+function renderBudgetTable(){
+  var rows=CITIES.filter(function(c){return c.budget&&c.budget.expense!=null;}).slice().sort(function(a,b){
+    var ab=a.budget,bb=b.budget,va,vb;
+    switch(BUDGET_SORT.key){
+      case 'name': return BUDGET_SORT.dir==='asc'?a.name.localeCompare(b.name,'pl'):b.name.localeCompare(a.name,'pl');
+      case 'income': va=ab.income||0;vb=bb.income||0;break;
+      case 'expense': va=ab.expense||0;vb=bb.expense||0;break;
+      case 'deficit': va=(ab.income||0)-(ab.expense||0);vb=(bb.income||0)-(bb.expense||0);break;
+      case 'perCapita': va=ab.perCapita||0;vb=bb.perCapita||0;break;
+      case 'invest': va=ab.invest||0;vb=bb.invest||0;break;
+      case 'investShare': va=ab.investShare||0;vb=bb.investShare||0;break;
+      default: va=0;vb=0;
+    }
+    return BUDGET_SORT.dir==='asc'?va-vb:vb-va;
+  });
+  var max=Math.min(rows.length,SHOWN.budget);var h='';
+  for(var i=0;i<max;i++){
+    var c=rows[i],b=c.budget;var deficit=(b.income||0)-(b.expense||0);
+    h += '<tr>'
+       + '<td><a href="'+esc(c.url)+'/budzet">'+cityBadge(c)+' '+esc(c.name)+'</a></td>'
+       + '<td>'+formatMld(b.income)+'</td>'
+       + '<td>'+formatMld(b.expense)+'</td>'
+       + '<td>'+(b.income==null||b.expense==null?'—':formatMld(deficit))+'</td>'
+       + '<td>'+formatZl(b.perCapita)+'</td>'
+       + '<td>'+formatMld(b.invest)+'</td>'
+       + '<td>'+formatPct(b.investShare)+'</td>'
+       + '</tr>';
+  }
+  document.getElementById('budget-tbody').innerHTML=h;
+  document.querySelectorAll('#budget-table th').forEach(function(th){
+    th.classList.toggle('sorted',th.dataset.sort===BUDGET_SORT.key);
+    var a=th.querySelector('.arrow');if(a)a.remove();
+    if(th.dataset.sort===BUDGET_SORT.key){var s=document.createElement('span');s.className='arrow';s.textContent=BUDGET_SORT.dir==='asc'?'▲':'▼';th.appendChild(s);}
+  });
+  var btn=document.getElementById('budget-more');
+  if(max<rows.length){btn.style.display='block';btn.textContent='Pokaż więcej ('+max+' z '+rows.length+')';}
+  else btn.style.display='none';
+}
+
+// ── Controversial votes ──
+var CONTROV=[];
+function renderControversial(){
+  var max=Math.min(CONTROV.length,SHOWN.controversial);var h='';
+  for(var i=0;i<max;i++){
+    var v=CONTROV[i];var c=CITY_BY_SLUG[v.citySlug]||{name:v.citySlug,slug:v.citySlug,url:'#'};var col=cityColor(c.slug);
+    var total=(v.za||0)+(v.przeciw||0)+(v.wstrz||0);var pct=total>0?((v.za||0)/total*100):0;
+    h += '<a class="vote-item" href="'+esc(c.url)+'/glosowanie/'+encodeURIComponent(v.id)+'/">'
+       +   '<div class="vote-header">'
+       +     '<span class="city-badge" style="background:'+col+'22;color:'+col+'">'+esc(c.name)+'</span>'
+       +     '<span class="vote-date">'+formatDatePL(v.date)+'</span>'
+       +   '</div>'
+       +   '<div class="vote-topic">'+esc(v.topic)+'</div>'
+       +   '<div class="vote-result">'
+       +     '<span class="pill pill-za">'+(v.za||0)+' za</span>'
+       +     '<span class="pill pill-przeciw">'+(v.przeciw||0)+' przeciw</span>'
+       +     (v.wstrz?'<span class="pill pill-wstrz">'+v.wstrz+' wstrz.</span>':'')
+       +     '<span class="pill pill-pct">'+pct.toFixed(1)+'% za</span>'
+       +   '</div>'
+       + '</a>';
+  }
+  document.getElementById('controversial-list').innerHTML=h;
+  var btn=document.getElementById('controversial-more');
+  if(max<CONTROV.length){btn.style.display='block';btn.textContent='Pokaż więcej ('+max+' z '+CONTROV.length+')';}
+  else btn.style.display='none';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  document.getElementById('controversial-more').addEventListener('click',function(){SHOWN.controversial+=20;renderControversial();});
+});
+
+// ── Boot sequence ──
+document.addEventListener('DOMContentLoaded',function(){
+  loadCities().then(function(){
+    renderGlobalStats();
+    populateVoivoFilter();
+    renderCities();
+    renderCompTable();
+    renderSessions();
+    renderInterpTable();
+    renderBudgetTable();
+    attachTableSort('comp-table',COMP_SORT,renderCompTable);
+    attachTableSort('interp-table',INTERP_SORT,renderInterpTable);
+    attachTableSort('budget-table',BUDGET_SORT,renderBudgetTable);
+    document.getElementById('comp-more').addEventListener('click',function(){SHOWN.comp+=20;renderCompTable();});
+    document.getElementById('interp-more').addEventListener('click',function(){SHOWN.interp+=20;renderInterpTable();});
+    document.getElementById('budget-more').addEventListener('click',function(){SHOWN.budget+=20;renderBudgetTable();});
+  }).catch(function(err){
+    document.getElementById('global-stats').textContent='Nie udało się pobrać manifestu miast (/cities.json).';
+    console.error(err);
   });
 
-  // Zamknij wyniki po kliknięciu poza
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('#councilor-search')) {
-      searchResults.classList.remove('visible');
-    }
+  // Optional separate feed for controversial votes (top N by lowest % za across all cities)
+  fetch('/controversial-votes.json').then(function(r){if(!r.ok)throw 0;return r.json();}).then(function(d){
+    CONTROV=Array.isArray(d)?d:(d.votes||[]);
+    renderControversial();
+  }).catch(function(){
+    document.getElementById('controversial').style.display='none';
   });
-
-  // Otwórz wyniki po kliknięciu w input jeśli jest tekst
-  searchInput.addEventListener('focus', function() {
-    if (this.value.trim().length >= 2 && councilorsIndex) renderResults(this.value);
-  });
-
-  // Nawigacja klawiaturą
-  searchInput.addEventListener('keydown', function(e) {
-    var items = searchResults.querySelectorAll('.search-result');
-    if (!items.length) return;
-    var active = searchResults.querySelector('.search-result:focus');
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      if (!active) items[0].focus();
-      else if (active.nextElementSibling) active.nextElementSibling.focus();
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      if (active && active.previousElementSibling) active.previousElementSibling.focus();
-      else searchInput.focus();
-    } else if (e.key === 'Escape') {
-      searchResults.classList.remove('visible');
-    }
-  });
-
-  // Pobierz indeks radnych
-  fetch('/councilors-index.json')
-    .then(function(r) { return r.json(); })
-    .then(function(data) {
-      councilorsIndex = data;
-      window._radoskopCouncilors = data;
-      if (searchCount) searchCount.textContent = data.length + ' radnych z 13 miast';
-      rankingInit(data);
-    })
-    .catch(function() {
-      // Indeks niedostępny, ukryj szukajkę
-      var section = document.getElementById('councilor-search');
-      if (section) section.style.display = 'none';
-    });
-})();
-
-// ── Wyszukiwarka głosowań (cross-city) ──
-(function() {
-  var votesIndex = null;      // pełna tablica po załadowaniu
-  var votesLoading = false;   // czy trwa pobieranie
-  var votesFailed = false;    // czy pobieranie nie powiodło się
-  var input = document.getElementById('vote-search-input');
-  var results = document.getElementById('vote-search-results');
-  var countEl = document.getElementById('vote-search-count');
-  var searchTimer = null;
-
-  if (!input || !results || !countEl) return;
-
-  // Mapa slug, nazwa wyświetlana, kolor, skrót badge
-  var CITY_MAP = {
-    'gdansk':    { name:'Gdańsk',    url:'https://gdansk.radoskop.pl',    cls:'gd' },
-    'warszawa':  { name:'Warszawa',  url:'https://warszawa.radoskop.pl',  cls:'waw' },
-    'krakow':    { name:'Kraków',    url:'https://krakow.radoskop.pl',    cls:'krk' },
-    'wroclaw':   { name:'Wrocław',   url:'https://wroclaw.radoskop.pl',   cls:'wro' },
-    'poznan':    { name:'Poznań',    url:'https://poznan.radoskop.pl',    cls:'poz' },
-    'gdynia':    { name:'Gdynia',    url:'https://gdynia.radoskop.pl',    cls:'gdy' },
-    'sopot':     { name:'Sopot',     url:'https://sopot.radoskop.pl',     cls:'sop' },
-    'lodz':      { name:'Łódź',      url:'https://lodz.radoskop.pl',      cls:'ldz' },
-    'szczecin':  { name:'Szczecin',  url:'https://szczecin.radoskop.pl',  cls:'szn' },
-    'lublin':    { name:'Lublin',    url:'https://lublin.radoskop.pl',    cls:'lub' },
-    'bydgoszcz': { name:'Bydgoszcz', url:'https://bydgoszcz.radoskop.pl', cls:'byd' },
-    'katowice':  { name:'Katowice',  url:'https://katowice.radoskop.pl',  cls:'kat' },
-    'bialystok': { name:'Białystok', url:'https://bialystok.radoskop.pl', cls:'bia' }
-  };
-
-  // Zamiana polskich znaków na ASCII (do wyszukiwania bez polskich liter)
-  function normalize(s) {
-    return (s || '').toLowerCase()
-      .replace(/ą/g,'a').replace(/ć/g,'c').replace(/ę/g,'e')
-      .replace(/ł/g,'l').replace(/ń/g,'n').replace(/ó/g,'o')
-      .replace(/ś/g,'s').replace(/ź/g,'z').replace(/ż/g,'z');
-  }
-
-  // Escape HTML żeby tematy z PDF-ów nie rozsypały layoutu
-  function esc(s) {
-    return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  // Zaznacz trafione fragmenty w temacie (bez wrażliwości na polskie litery)
-  function highlight(text, query) {
-    if (!query) return esc(text);
-    var norm = normalize(text);
-    var qNorm = normalize(query);
-    var idx = norm.indexOf(qNorm);
-    if (idx === -1) return esc(text);
-    return esc(text.substring(0, idx))
-      + '<mark>' + esc(text.substring(idx, idx + query.length)) + '</mark>'
-      + esc(text.substring(idx + query.length));
-  }
-
-  // Sformatowana data PL DD.MM.YYYY
-  function formatDate(d) {
-    if (!d || d.length < 10) return d || '';
-    return d.substring(8,10) + '.' + d.substring(5,7) + '.' + d.substring(0,4);
-  }
-
-  function voteUrl(citySlug, voteId) {
-    var city = CITY_MAP[citySlug];
-    if (!city) return '#';
-    return city.url + '/glosowanie/' + encodeURIComponent(voteId) + '/';
-  }
-
-  // "Przyjęte/Odrzucone" na podstawie liczby głosów (heurystyka: więcej za niż przeciw)
-  function outcomeLabel(za, przeciw) {
-    if (za + przeciw === 0) return null;
-    return za > przeciw ? 'Przyjęte' : 'Odrzucone';
-  }
-
-  function showLoading() {
-    results.innerHTML = '<div class="search-loading">Ładuję bazę głosowań…</div>';
-    results.classList.add('visible');
-  }
-
-  function showError() {
-    results.innerHTML = '<div class="search-empty">Nie udało się pobrać bazy głosowań. Spróbuj ponownie później.</div>';
-    results.classList.add('visible');
-  }
-
-  function renderResults(query) {
-    if (!votesIndex) return;
-    var q = query.trim();
-    if (q.length < 2) {
-      results.classList.remove('visible');
-      countEl.textContent = votesIndex.length.toLocaleString('pl-PL') + ' głosowań z 13 miast';
-      return;
-    }
-
-    var qNorm = normalize(q);
-    var matches = [];
-    // Pełne skanowanie; 10k wpisów mieści się w kilka milisekund
-    for (var i = 0; i < votesIndex.length; i++) {
-      var entry = votesIndex[i];
-      if (normalize(entry[0]).indexOf(qNorm) !== -1) {
-        matches.push(entry);
-        if (matches.length >= 200) break; // twardy limit na wypadek zbyt ogólnych zapytań
-      }
-    }
-
-    if (matches.length === 0) {
-      results.innerHTML = '<div class="search-empty">Nie znaleziono głosowań zawierających „' + esc(q) + '"</div>';
-      results.classList.add('visible');
-      countEl.textContent = '0 wyników';
-      return;
-    }
-
-    // Sortuj po dacie malejąco (najnowsze na górze)
-    matches.sort(function(a, b) {
-      if (a[3] < b[3]) return 1;
-      if (a[3] > b[3]) return -1;
-      return 0;
-    });
-
-    var max = Math.min(matches.length, 30);
-    var html = '';
-    for (var j = 0; j < max; j++) {
-      var e = matches[j];
-      var topic = e[0];
-      var citySlug = e[1];
-      var voteId = e[2];
-      var date = e[3];
-      var za = e[4] || 0;
-      var przeciw = e[5] || 0;
-      var wstrz = e[6] || 0;
-      var city = CITY_MAP[citySlug] || { name:citySlug, cls:'' };
-      var outcome = outcomeLabel(za, przeciw);
-
-      html += '<a class="vote-result" href="' + voteUrl(citySlug, voteId) + '" target="_blank" rel="noopener">'
-        + '<div class="vote-result-head">'
-        +   '<span class="vote-result-city vote-city ' + city.cls + '">' + esc(city.name) + '</span>'
-        +   '<span class="vote-result-date">' + formatDate(date) + '</span>'
-        + '</div>'
-        + '<div class="vote-result-topic">' + highlight(topic, q) + '</div>'
-        + '<div class="vote-result-counts">'
-        +   '<span class="pill pill-za">' + za + ' za</span>'
-        +   '<span class="pill pill-przeciw">' + przeciw + ' przeciw</span>'
-        +   (wstrz > 0 ? '<span class="pill pill-wstrz">' + wstrz + ' wstrz.</span>' : '')
-        +   (outcome ? '<span class="pill pill-outcome">' + outcome + '</span>' : '')
-        + '</div>'
-        + '</a>';
-    }
-    results.innerHTML = html;
-    results.classList.add('visible');
-
-    var countText = matches.length === 1 ? '1 głosowanie' : matches.length.toLocaleString('pl-PL') + ' głosowań';
-    if (matches.length > max) countText += ' (pokazano pierwsze ' + max + ')';
-    countEl.textContent = countText;
-  }
-
-  function ensureIndexLoaded(onReady) {
-    if (votesIndex) { onReady(); return; }
-    if (votesFailed) { showError(); return; }
-    if (votesLoading) return;
-    votesLoading = true;
-    showLoading();
-    fetch('/votes-index.json')
-      .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function(data) {
-        votesIndex = data;
-        votesLoading = false;
-        countEl.textContent = data.length.toLocaleString('pl-PL') + ' głosowań z 13 miast';
-        onReady();
-      })
-      .catch(function() {
-        votesLoading = false;
-        votesFailed = true;
-        showError();
-      });
-  }
-
-  input.addEventListener('input', function() {
-    var val = this.value;
-    clearTimeout(searchTimer);
-    if (val.trim().length < 2) {
-      results.classList.remove('visible');
-      if (votesIndex) countEl.textContent = votesIndex.length.toLocaleString('pl-PL') + ' głosowań z 13 miast';
-      return;
-    }
-    searchTimer = setTimeout(function() {
-      ensureIndexLoaded(function() { renderResults(val); });
-    }, 150);
-  });
-
-  input.addEventListener('focus', function() {
-    // Pobierz indeks od razu przy pierwszym focusie, żeby pierwsze wpisanie było natychmiastowe
-    if (!votesIndex && !votesLoading && !votesFailed) {
-      votesLoading = true;
-      fetch('/votes-index.json')
-        .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-        .then(function(data) {
-          votesIndex = data;
-          votesLoading = false;
-          countEl.textContent = data.length.toLocaleString('pl-PL') + ' głosowań z 13 miast';
-        })
-        .catch(function() { votesLoading = false; votesFailed = true; });
-    }
-    if (this.value.trim().length >= 2 && votesIndex) renderResults(this.value);
-  });
-
-  // Zamknij po kliknięciu poza
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('#vote-search')) {
-      results.classList.remove('visible');
-    }
-  });
-
-  input.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      results.classList.remove('visible');
-      this.blur();
-    }
-  });
-})();
-
-// ── Ranking radnych z 13 miast ──
-var _rankState = { data: [], sortKey: 'f', dir: 'desc', shown: 20 };
-
-var _rankAvatarColors = ['#4f46e5','#0284c7','#16a34a','#d97706','#dc2626','#7c3aed','#0891b2','#db2777','#059669','#ea580c'];
-function _rankAvatarColor(name) {
-  var parts = name.split(' ');
-  var ch = (parts.length > 1 ? parts[parts.length-1] : parts[0]).charCodeAt(0);
-  return _rankAvatarColors[ch % _rankAvatarColors.length];
-}
-function _rankInitials(name) {
-  var p = name.split(' ');
-  if (p.length >= 2) return (p[0][0] + p[p.length-1][0]).toUpperCase();
-  return p[0].substring(0,2).toUpperCase();
-}
-function _rankStatClass(val, key) {
-  if (key === 'z') {
-    // Buntownictwo: higher = more rebellious (reversed scale)
-    if (val >= 10) return 'low';
-    if (val >= 3) return 'medium';
-    return 'good';
-  }
-  if (val >= 90) return 'good';
-  if (val >= 70) return 'medium';
-  return 'low';
-}
-function _rankBarColor(val, key) {
-  if (key === 'z') {
-    if (val >= 10) return '#dc2626';
-    if (val >= 3) return '#ca8a04';
-    return '#16a34a';
-  }
-  if (val >= 90) return '#16a34a';
-  if (val >= 70) return '#ca8a04';
-  return '#dc2626';
-}
-function _rankLabel(key) {
-  if (key === 'f') return 'frekw.';
-  if (key === 'a') return 'aktywn.';
-  return 'bunt.';
-}
-function _rankCitySlug(city) {
-  var map = {'Gdańsk':'gd','Warszawa':'waw','Kraków':'krk','Wrocław':'wro','Poznań':'poz','Gdynia':'gdy','Sopot':'sop','Łódź':'ldz','Szczecin':'szn','Lublin':'lub','Bydgoszcz':'byd','Katowice':'kat','Białystok':'bia'};
-  return map[city] || '';
-}
-
-function rankingInit(data) {
-  _rankState.data = data;
-  _rankState.shown = 20;
-  rankingRender();
-}
-
-function rankingSort(key, btn) {
-  _rankState.sortKey = key;
-  _rankState.shown = 20;
-  document.querySelectorAll('.ranking-tab').forEach(function(b){ b.classList.remove('active'); });
-  btn.classList.add('active');
-  rankingRender();
-}
-
-function rankingDir(dir, btn) {
-  _rankState.dir = dir;
-  _rankState.shown = 20;
-  document.querySelectorAll('.ranking-dir').forEach(function(b){ b.classList.remove('active'); });
-  btn.classList.add('active');
-  rankingRender();
-}
-
-function rankingShowMore() {
-  _rankState.shown += 30;
-  rankingRender();
-}
-
-function rankingRender() {
-  var data = _rankState.data;
-  if (!data || !data.length) return;
-
-  var key = _rankState.sortKey;
-  var asc = (_rankState.dir === 'asc');
-
-  // Kopiuj i sortuj
-  var sorted = data.slice().sort(function(a, b) {
-    var va = a[key] || 0, vb = b[key] || 0;
-    return asc ? (va - vb) : (vb - va);
-  });
-
-  var max = Math.min(sorted.length, _rankState.shown);
-  var maxVal = key === 'z' ? Math.max(sorted[0][key] || 0, 1) : 100;
-  var html = '';
-
-  for (var i = 0; i < max; i++) {
-    var c = sorted[i];
-    var val = c[key] || 0;
-    var profileUrl = c.u + '/profil/' + c.s;
-    var cSlug = _rankCitySlug(c.c);
-    var barPct = key === 'z' ? Math.min((val / maxVal) * 100, 100) : val;
-
-    html += '<a class="ranking-row" href="' + profileUrl + '">'
-      + '<span class="ranking-pos' + (i < 3 ? ' top3' : '') + '">' + (i+1) + '.</span>'
-      + '<div class="ranking-avatar" style="background:' + _rankAvatarColor(c.n) + '">' + _rankInitials(c.n) + '</div>'
-      + '<div class="ranking-info">'
-      + '<div class="ranking-name">' + c.n + '</div>'
-      + '<div class="ranking-meta">'
-      + '<span class="vote-city ' + cSlug + '" style="font-size:0.68rem;padding:1px 6px">' + c.c + '</span>'
-      + (c.k ? '<span>' + c.k + '</span>' : '')
-      + '</div>'
-      + '</div>'
-      + '<div class="ranking-bar-wrap"><div class="ranking-bar-fill" style="width:' + barPct.toFixed(0) + '%;background:' + _rankBarColor(val, key) + '"></div></div>'
-      + '<span class="ranking-stat ' + _rankStatClass(val, key) + '">' + val.toFixed(1) + '% ' + _rankLabel(key) + '</span>'
-      + '</a>';
-  }
-
-  document.getElementById('ranking-list').innerHTML = html;
-
-  var moreBtn = document.getElementById('ranking-more');
-  if (max < sorted.length) {
-    moreBtn.style.display = 'block';
-    moreBtn.textContent = 'Pokaż więcej (' + max + ' z ' + sorted.length + ')';
-  } else {
-    moreBtn.style.display = 'none';
-  }
-}
+});
 </script>
 </main>
 </body>
