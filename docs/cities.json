@@ -6,25 +6,38 @@
     "voivodeship": "podlaskie",
     "population": 292000,
     "councilors": 28,
-    "sessions": 18,
-    "votes": 474,
+    "sessions": 19,
+    "votes": 490,
     "frekwencja": 95.1,
     "zgodnosc": null,
     "rebellions": 0.0,
     "recentSession": {
-      "label": "2026-03-30",
-      "date": "2026-03-30",
-      "votes": 29,
-      "url": "https://bialystok.radoskop.pl/sesja/2026-03-30"
+      "label": "2026-04-22",
+      "date": "2026-04-22",
+      "votes": 16,
+      "url": "https://bialystok.radoskop.pl/sesja/2026-04-22"
     },
     "interpelacje": {
-      "total": 334,
-      "answered": 334,
+      "total": 348,
+      "answered": 348,
       "top": {
         "name": "Henryk Dębowski",
-        "count": 175
+        "count": 185
       }
     }
+  },
+  {
+    "slug": "bielsko-biala",
+    "name": "Bielsko-Biała",
+    "url": "https://bielsko-biala.radoskop.pl",
+    "voivodeship": "śląskie",
+    "population": 166000,
+    "councilors": null,
+    "sessions": null,
+    "votes": null,
+    "frekwencja": null,
+    "zgodnosc": null,
+    "rebellions": null
   },
   {
     "slug": "bydgoszcz",
@@ -45,13 +58,26 @@
       "url": "https://bydgoszcz.radoskop.pl/sesja/XII"
     },
     "interpelacje": {
-      "total": 381,
+      "total": 383,
       "answered": 0,
       "top": {
         "name": "Szymon Róg",
         "count": 87
       }
     }
+  },
+  {
+    "slug": "bytom",
+    "name": "Bytom",
+    "url": "https://bytom.radoskop.pl",
+    "voivodeship": "śląskie",
+    "population": 150000,
+    "councilors": null,
+    "sessions": null,
+    "votes": null,
+    "frekwencja": null,
+    "zgodnosc": null,
+    "rebellions": null
   },
   {
     "slug": "czestochowa",
@@ -85,11 +111,11 @@
       "url": "https://gdansk.radoskop.pl/sesja/XXIII"
     },
     "interpelacje": {
-      "total": 6678,
-      "answered": 6398,
+      "total": 6708,
+      "answered": 6432,
       "top": {
         "name": "Przemysław Majewski",
-        "count": 1157
+        "count": 1161
       }
     },
     "budget": {
@@ -119,11 +145,11 @@
       "url": "https://gdynia.radoskop.pl/sesja/XXVI"
     },
     "interpelacje": {
-      "total": 709,
-      "answered": 638,
+      "total": 726,
+      "answered": 644,
       "top": {
         "name": "Jakub Ubych",
-        "count": 140
+        "count": 153
       }
     },
     "budget": {
@@ -133,6 +159,19 @@
       "perCapita": 11870,
       "investShare": 13.7
     }
+  },
+  {
+    "slug": "gliwice",
+    "name": "Gliwice",
+    "url": "https://gliwice.radoskop.pl",
+    "voivodeship": "śląskie",
+    "population": 165000,
+    "councilors": null,
+    "sessions": null,
+    "votes": null,
+    "frekwencja": null,
+    "zgodnosc": null,
+    "rebellions": null
   },
   {
     "slug": "katowice",
@@ -153,13 +192,26 @@
       "url": "https://katowice.radoskop.pl/sesja/2026-03-26"
     },
     "interpelacje": {
-      "total": 1004,
-      "answered": 940,
+      "total": 1013,
+      "answered": 956,
       "top": {
         "name": "Adam Lejman-Gąska",
-        "count": 258
+        "count": 260
       }
     }
+  },
+  {
+    "slug": "kielce",
+    "name": "Kielce",
+    "url": "https://kielce.radoskop.pl",
+    "voivodeship": "świętokrzyskie",
+    "population": 190000,
+    "councilors": null,
+    "sessions": null,
+    "votes": null,
+    "frekwencja": null,
+    "zgodnosc": null,
+    "rebellions": null
   },
   {
     "slug": "krakow",
@@ -180,11 +232,11 @@
       "url": "https://krakow.radoskop.pl/sesja/XLVI"
     },
     "interpelacje": {
-      "total": 2404,
-      "answered": 2404,
+      "total": 2426,
+      "answered": 2426,
       "top": {
         "name": "Łukasz Gibała",
-        "count": 335
+        "count": 336
       }
     },
     "budget": {
@@ -202,25 +254,38 @@
     "voivodeship": "lubelskie",
     "population": 330000,
     "councilors": 32,
-    "sessions": 18,
+    "sessions": 19,
     "votes": 1028,
     "frekwencja": 95.7,
     "zgodnosc": 91.7,
     "rebellions": 74.4,
     "recentSession": {
-      "label": "XVIII",
-      "date": "2026-03-26",
-      "votes": 47,
-      "url": "https://lublin.radoskop.pl/sesja/XVIII"
+      "label": "XIX",
+      "date": "2026-04-30",
+      "votes": 0,
+      "url": "https://lublin.radoskop.pl/sesja/XIX"
     },
     "interpelacje": {
-      "total": 789,
-      "answered": 711,
+      "total": 798,
+      "answered": 728,
       "top": {
         "name": "Konrad Wcisło",
-        "count": 188
+        "count": 193
       }
     }
+  },
+  {
+    "slug": "olsztyn",
+    "name": "Olsztyn",
+    "url": "https://olsztyn.radoskop.pl",
+    "voivodeship": "warmińsko-mazurskie",
+    "population": 167000,
+    "councilors": null,
+    "sessions": null,
+    "votes": null,
+    "frekwencja": null,
+    "zgodnosc": null,
+    "rebellions": null
   },
   {
     "slug": "poznan",
@@ -241,11 +306,11 @@
       "url": "https://poznan.radoskop.pl/sesja/XXXII"
     },
     "interpelacje": {
-      "total": 550,
+      "total": 560,
       "answered": 0,
       "top": {
         "name": "Andrzej Prendke",
-        "count": 62
+        "count": 64
       }
     },
     "budget": {
@@ -257,6 +322,32 @@
     }
   },
   {
+    "slug": "radom",
+    "name": "Radom",
+    "url": "https://radom.radoskop.pl",
+    "voivodeship": "mazowieckie",
+    "population": 213000,
+    "councilors": null,
+    "sessions": null,
+    "votes": null,
+    "frekwencja": null,
+    "zgodnosc": null,
+    "rebellions": null
+  },
+  {
+    "slug": "rzeszow",
+    "name": "Rzeszów",
+    "url": "https://rzeszow.radoskop.pl",
+    "voivodeship": "podkarpackie",
+    "population": 194000,
+    "councilors": null,
+    "sessions": null,
+    "votes": null,
+    "frekwencja": null,
+    "zgodnosc": null,
+    "rebellions": null
+  },
+  {
     "slug": "sopot",
     "name": "Sopot",
     "url": "https://sopot.radoskop.pl",
@@ -264,10 +355,10 @@
     "population": 35000,
     "councilors": 21,
     "sessions": 21,
-    "votes": 552,
+    "votes": 560,
     "frekwencja": 98.2,
     "zgodnosc": 95.1,
-    "rebellions": 24.1,
+    "rebellions": 24.4,
     "recentSession": {
       "label": "XXI",
       "date": "2026-03-19",
@@ -275,7 +366,7 @@
       "url": "https://sopot.radoskop.pl/sesja/XXI"
     },
     "interpelacje": {
-      "total": 572,
+      "total": 575,
       "answered": 0,
       "top": {
         "name": "Wojciech Fułek",
@@ -309,13 +400,39 @@
       "url": "https://szczecin.radoskop.pl/sesja/XXI"
     },
     "interpelacje": {
-      "total": 1962,
-      "answered": 1835,
+      "total": 1981,
+      "answered": 1871,
       "top": {
         "name": "Kaup Stanisław",
-        "count": 383
+        "count": 384
       }
     }
+  },
+  {
+    "slug": "torun",
+    "name": "Toruń",
+    "url": "https://torun.radoskop.pl",
+    "voivodeship": "kujawsko-pomorskie",
+    "population": 196000,
+    "councilors": null,
+    "sessions": null,
+    "votes": null,
+    "frekwencja": null,
+    "zgodnosc": null,
+    "rebellions": null
+  },
+  {
+    "slug": "tychy",
+    "name": "Tychy",
+    "url": "https://tychy.radoskop.pl",
+    "voivodeship": "śląskie",
+    "population": 123000,
+    "councilors": null,
+    "sessions": null,
+    "votes": null,
+    "frekwencja": null,
+    "zgodnosc": null,
+    "rebellions": null
   },
   {
     "slug": "warszawa",
@@ -336,7 +453,7 @@
       "url": "https://warszawa.radoskop.pl/sesja/Sesja rady miasta"
     },
     "interpelacje": {
-      "total": 1865,
+      "total": 1876,
       "answered": 0,
       "top": {
         "name": "Kowalczyk Damian",
@@ -370,7 +487,7 @@
       "url": "https://wroclaw.radoskop.pl/sesja/XXIX"
     },
     "interpelacje": {
-      "total": 639,
+      "total": 645,
       "answered": 0,
       "top": {
         "name": "Mateusz Żak",
@@ -386,22 +503,35 @@
     }
   },
   {
+    "slug": "zabrze",
+    "name": "Zabrze",
+    "url": "https://zabrze.radoskop.pl",
+    "voivodeship": "śląskie",
+    "population": 159000,
+    "councilors": null,
+    "sessions": null,
+    "votes": null,
+    "frekwencja": null,
+    "zgodnosc": null,
+    "rebellions": null
+  },
+  {
     "slug": "lodz",
     "name": "Łódź",
     "url": "https://lodz.radoskop.pl",
     "voivodeship": "łódzkie",
     "population": 664000,
     "councilors": 38,
-    "sessions": 29,
-    "votes": 1645,
+    "sessions": 30,
+    "votes": 1730,
     "frekwencja": 100.0,
     "zgodnosc": 93.6,
-    "rebellions": 37.3,
+    "rebellions": 39.2,
     "recentSession": {
-      "label": "XXVIII",
-      "date": "2026-03-18",
-      "votes": 61,
-      "url": "https://lodz.radoskop.pl/sesja/XXVIII"
+      "label": "XXIX",
+      "date": "2026-04-22",
+      "votes": 85,
+      "url": "https://lodz.radoskop.pl/sesja/XXIX"
     }
   }
 ]

@@ -1,0 +1,29 @@
+{
+  "city_name": "Bielsko-Biała",
+  "city_genitive": "Bielska-Białej",
+  "site_title": "Radoskop Bielsko-Biała — Jak głosują radni?",
+  "site_url": "https://bielsko-biala.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska Bielska-Białej. Sprawdź frekwencję, głosowania i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska Bielska-Białej.",
+  "bip_url": "https://bip.bielsko-biala.pl/",
+  "bip_name": "BIP Bielsko-Biała",
+  "esesja_url": null,
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "ga_id": "G-1SH24XVXR3",
+  "author": "Patryk Orwat",
+  "cname": "bielsko-biala.radoskop.pl",
+  "clubs": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "adsense_pub_id": "ca-pub-1616606963057752",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska Bielska-Białej",
+  "rada_name_genitive": "Rady Miejska Bielska-Białej"
+}

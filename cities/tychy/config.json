@@ -1,0 +1,29 @@
+{
+  "city_name": "Tychy",
+  "city_genitive": "Tychów",
+  "site_title": "Radoskop Tychy — Jak głosują radni?",
+  "site_url": "https://tychy.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Tychy. Sprawdź frekwencję, głosowania i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Tychy.",
+  "bip_url": "https://bip.umtychy.pl/",
+  "bip_name": "BIP Tychy",
+  "esesja_url": "https://tychy.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "ga_id": "G-1SH24XVXR3",
+  "author": "Patryk Orwat",
+  "cname": "tychy.radoskop.pl",
+  "clubs": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "adsense_pub_id": "ca-pub-1616606963057752",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Tychy",
+  "rada_name_genitive": "Rady Miasta Tychy"
+}

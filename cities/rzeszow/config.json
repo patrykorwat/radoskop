@@ -1,0 +1,29 @@
+{
+  "city_name": "Rzeszów",
+  "city_genitive": "Rzeszowa",
+  "site_title": "Radoskop Rzeszów — Jak głosują radni?",
+  "site_url": "https://rzeszow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Rzeszowa. Sprawdź frekwencję, głosowania i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Rzeszowa.",
+  "bip_url": "https://bip.erzeszow.pl/",
+  "bip_name": "BIP Rzeszów",
+  "esesja_url": null,
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "ga_id": "G-1SH24XVXR3",
+  "author": "Patryk Orwat",
+  "cname": "rzeszow.radoskop.pl",
+  "clubs": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "adsense_pub_id": "ca-pub-1616606963057752",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Rzeszowa",
+  "rada_name_genitive": "Rady Miasta Rzeszowa"
+}

@@ -1,0 +1,29 @@
+{
+  "city_name": "Gliwice",
+  "city_genitive": "Gliwic",
+  "site_title": "Radoskop Gliwice — Jak głosują radni?",
+  "site_url": "https://gliwice.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Gliwice. Sprawdź frekwencję, głosowania i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Gliwice.",
+  "bip_url": "https://bip.gliwice.eu/",
+  "bip_name": "BIP Gliwice",
+  "esesja_url": null,
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "ga_id": "G-1SH24XVXR3",
+  "author": "Patryk Orwat",
+  "cname": "gliwice.radoskop.pl",
+  "clubs": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "adsense_pub_id": "ca-pub-1616606963057752",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Gliwice",
+  "rada_name_genitive": "Rady Miasta Gliwice"
+}

@@ -1,0 +1,29 @@
+{
+  "city_name": "Bytom",
+  "city_genitive": "Bytomia",
+  "site_title": "Radoskop Bytom — Jak głosują radni?",
+  "site_url": "https://bytom.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Bytomiu. Sprawdź frekwencję, głosowania i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Bytomiu.",
+  "bip_url": "https://www.bip.um.bytom.pl/",
+  "bip_name": "BIP Bytom",
+  "esesja_url": "https://bytom.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "ga_id": "G-1SH24XVXR3",
+  "author": "Patryk Orwat",
+  "cname": "bytom.radoskop.pl",
+  "clubs": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "adsense_pub_id": "ca-pub-1616606963057752",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Bytomiu",
+  "rada_name_genitive": "Rady Miejska w Bytomiu"
+}
