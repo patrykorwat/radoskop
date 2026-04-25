@@ -48,7 +48,10 @@ HEADERS = {
 
 
 def parse_date(raw):
-    """Konwertuje datę z formatu DD.MM.YYYY lub YYYY-MM-DD na YYYY-MM-DD."""
+    """Konwertuje datę z formatu DD.MM.YYYY lub YYYY-MM-DD na YYYY-MM-DD.
+
+    Akceptuje też format z czasem (YYYY-MM-DD HH:MM:SS) i zwraca samą datę.
+    """
     if not raw or not raw.strip():
         return ""
     raw = raw.strip()
@@ -57,7 +60,7 @@ def parse_date(raw):
         return f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
     m = re.match(r"(\d{4})-(\d{2})-(\d{2})", raw)
     if m:
-        return raw
+        return f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
     return raw
 
 
@@ -108,6 +111,45 @@ def fetch_year(session, base_url, year, debug=False):
         print(f"[DEBUG] Content-Type: {content_type}")
 
     return resp.text
+
+
+_PUBL_DATE_RE = re.compile(
+    r"Data publikacji informacji:\s*(\d{4}-\d{2}-\d{2})",
+    re.IGNORECASE,
+)
+
+
+def extract_publikacja_date(table):
+    """Wyciąga 'Data publikacji informacji' z metryki interpelacji jeśli istnieje.
+
+    Metryka jest w collapsed div wewnątrz komórki Uwagi:
+      <span class="d-block">Data publikacji informacji: 2026-01-05 13:40:57</span>
+    """
+    text = table.get_text(" ", strip=True)
+    m = _PUBL_DATE_RE.search(text)
+    return m.group(1) if m else ""
+
+
+def reconcile_dates(obj, today_iso):
+    """Heurystyka naprawiająca błędne daty wpływu z BIP Gdańska.
+
+    BIP czasem ma data_wplywu w przyszłości albo po data_odpowiedzi (literówka
+    urzędnika). W takich przypadkach podmienia ją na data_publikacji z metryki,
+    która zwykle pokrywa się z momentem rzeczywistego wpływu.
+    """
+    wpl = obj.get("data_wplywu", "")
+    odp = obj.get("data_odpowiedzi", "")
+    publ = obj.get("data_publikacji", "")
+    if not wpl:
+        return
+    invalid = wpl > today_iso or (odp and wpl > odp)
+    if not invalid:
+        return
+    if publ and publ <= today_iso and (not odp or publ <= odp):
+        obj["data_wplywu_oryginal"] = wpl
+        obj["data_wplywu"] = publ
+        obj["rok"] = int(publ[:4])
+        obj["kadencja"] = get_kadencja(publ)
 
 
 def parse_tables(html, typ, url_prefix, debug=False):
@@ -167,6 +209,11 @@ def parse_tables(html, typ, url_prefix, debug=False):
             if typ == "zapytanie" and not obj["cri"].startswith("Z"):
                 obj["cri"] = "Z" + obj["cri"]
 
+            # Metryka publikacji (defensywny fallback dla błędnych dat z BIP)
+            publ = extract_publikacja_date(table)
+            if publ:
+                obj["data_publikacji"] = publ
+
             obj.setdefault("ezd", "")
             obj.setdefault("data_wplywu", "")
             obj.setdefault("radny", "")
@@ -174,6 +221,11 @@ def parse_tables(html, typ, url_prefix, debug=False):
             obj.setdefault("data_odpowiedzi", "")
             obj.setdefault("tresc_url", "")
             obj.setdefault("odpowiedz_url", "")
+
+            # Naprawa błędów BIP: jeśli wpływ jest w przyszłości albo po
+            # odpowiedzi, podmień na datę publikacji z metryki.
+            from datetime import date
+            reconcile_dates(obj, date.today().isoformat())
 
             rok = int(obj["data_wplywu"][:4]) if obj["data_wplywu"] else 0
             obj["rok"] = rok
