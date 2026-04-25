@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /*.json$
+Disallow: /*?p=
+
+Sitemap: https://rzeszow.radoskop.pl/sitemap.xml

@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Radoskop Tychy</title>
+  <subtitle>Glosowania, interpelacje i sesje Rady Miasta Tychów.</subtitle>
+  <link href="https://tychy.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://tychy.radoskop.pl/" rel="alternate" type="text/html"/>
+  <id>https://tychy.radoskop.pl/</id>
+  <updated>2026-04-25T14:00:18Z</updated>
+  <author>
+    <name>Radoskop</name>
+    <uri>https://radoskop.pl</uri>
+  </author>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie przystąpienia Miasta Tychy do Stowarzyszenia Biznes - Nauka </title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_000_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_000_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 16, przeciw 0, wstrzym. 7). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany uchwały Nr XVIII/322/25 Rady Miasta Tychy z dnia 18 g</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_001_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_001_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmian uchwały budżetowej miasta Tychy na 2026 r.</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_002_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_002_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmian w Wieloletniej Prognozie Finansowej miasta Tychy      </title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_003_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_003_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie uchylenia Uchwały nr 601/98 Rady Miejskiej w Tychach z dnia </title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_004_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_004_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wykorzystania środków na finansowanie zadań z zakresu rehabi</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_005_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_005_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany Uchwały Nr XVI/326/20 Rady Miasta Tychy z dnia 30 kwi</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_006_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_006_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie planu nadzoru nad żłobkami, klubami dziecięcymi oraz dzienny</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_007_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_007_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany uchwały nr XVI/297/25 Rady Miasta Tychy  z dnia
+ 30 p</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_008_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_008_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie planu ogólnego miasta Tychy.</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_009_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_009_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 16, przeciw 0, wstrzym. 8). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na odstąpienie od obowiązku przetargowego tr</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_010_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_010_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na odstąpienie od obowiązku przetargowego tr</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_011_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_011_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 22, przeciw 0, wstrzym. 1). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na odstąpienie od obowiązku zbycia w drodze
+</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_012_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_012_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 21, przeciw 0, wstrzym. 3). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na odstąpienie od obowiązku przetargowego tr</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_013_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_013_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany Uchwały Nr XI/220/11 Rady Miasta Tychy z dnia 29 wrze</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_014_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_014_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 22, przeciw 0, wstrzym. 2). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie potwierdzenia statusu pomnika przyrody przy jeziorze Paproca</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_015_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_015_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie Programu opieki nad zwierzętami bezdomnymi oraz zapobiegania</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_016_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_016_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie rozpatrzenia petycji dotyczącej lokalnego programu zdrowotne</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_017_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_017_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 11, przeciw 6, wstrzym. 7). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie przedłużenia terminu załatwienia skargi.</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_018_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_018_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie nadania nazwy obiektowi sportowemu w Tychach przy 
+ul. Jaros</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-03-26_019_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-03-26_019_000/#vote</id>
+    <published>2026-03-26T12:00:00+01:00</published>
+    <updated>2026-03-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Zmiana porządku obrad sesji poprzez wprowadzenie na wniosek radnych do porządku obrad punktu: 
+3a w </title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_000_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_000_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 14, przeciw 9, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Zmiana porządku obrad sesji poprzez wprowadzenie na wniosek Komisji Skarg, Wniosków i Petycji do por</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_001_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_001_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie przyjęcia apelu skierowanego do Prezydenta Rzeczypospolitej </title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_002_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_002_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 15, przeciw 9, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany uchwały Nr XVIII/322/25 Rady Miasta Tychy z dnia 18 g</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_003_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_003_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmian uchwały budżetowej miasta Tychy na 2026 r.</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_004_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_004_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmian w Wieloletniej Prognozie Finansowej miasta Tychy na la</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_005_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_005_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany Uchwały Nr XLVII/872/23 Rady Miasta Tychy z dnia 9 lu</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_006_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_006_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie powierzenia Prezydentowi Miasta Tychy uprawnień w zakresie u</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_007_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_007_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na odstąpienie od obowiązku przetargowego tr</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_008_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_008_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie określenia zadań powiatu z zakresu rehabilitacji społecznej,</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_009_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_009_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie przyjęcia sprawozdania Prezydenta Miasta Tychy z działalnośc</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_010_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_010_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie przyjęcia programu polityki zdrowotnej pod nazwą: „Program w</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_011_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_011_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany Uchwały Nr XLVI/755/18 Rady Miasta Tychy z dnia 22 ma</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_012_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_012_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany uchwały nr XIII/240/25 Rady Miasta Tychy z dnia 26 cz</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_013_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_013_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie powierzenia Tyski Sport Spółce Akcyjnej zadań własnych Gminy</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_014_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_014_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 14, przeciw 0, wstrzym. 10). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie przedłużenia terminu załatwienia skargi.</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2026-01-29_015_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2026-01-29_015_000/#vote</id>
+    <published>2026-01-29T12:00:00+01:00</published>
+    <updated>2026-01-29T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 22, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie przyjęcia planów pracy komisji Rady Miasta na I półrocze 202</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_000_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_000_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 1). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmian uchwały budżetowej miasta Tychy na 2025 r.</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_001_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_001_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmian w Wieloletniej Prognozie Finansowej miasta Tychy na la</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_002_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_002_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany Uchwały Nr XLVII/872/23 Rady Miasta Tychy z dnia 9 lu</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_003_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_003_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 16, przeciw 8, wstrzym. 1). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie ustalenia stawek jednostkowych dotacji przedmiotowych udziel</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_004_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_004_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie Wieloletniej Prognozy Finansowej miasta Tychy na lata 2026 –</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_005_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_005_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 16, przeciw 9, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie budżetu miasta Tychy na 2026 rok.</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_006_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_006_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 16, przeciw 9, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany uchwały nr III/41/24 Rady Miasta Tychy z dnia 20 czer</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_007_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_007_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 22, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany Uchwały Nr XI/201/25 Rady Miasta Tychy z dnia 24 kwie</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_008_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_008_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie ustalenia zasad finansowania inwestycji w nieruchomościach s</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_009_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_009_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na odstąpienie od obowiązku przetargowego tr</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_010_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_010_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na zbycie nieruchomości gruntowej położonej </title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_011_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_011_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 21, przeciw 1, wstrzym. 1). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie uchylenia Uchwały nr LIX/1117/24 Rady Miasta Tychy z dnia 21</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_012_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_012_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie nadania Statutu Tyskiego Zakładu Usług Komunalnych w Tychach</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_013_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_013_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zawarcia porozumienia z Gminą Sosnowiec w zakresie określeni</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_014_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_014_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na zawarcie porozumienia międzygminnego doty</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_015_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_015_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na zawarcie porozumienia międzygminnego doty</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_016_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_016_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie złożenia wniosku o zezwolenie na utworzenie oddziału o profi</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_017_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_017_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie nadania Statutu Miejskiego Ośrodka Sportu i Rekreacji w Tych</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_018_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_018_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie przyjęcia planu pracy i kontroli Komisji Rewizyjnej na I pół</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_019_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_019_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Wniosek radnych o poprawkę do projektu uchwały w sprawie przekazania wniosku dot. sytuacji w Zespole</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_020_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_020_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie przekazania wniosku dot. sytuacji w Zespole Szkół Muzycznych</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-12-18_021_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-12-18_021_000/#vote</id>
+    <published>2025-12-18T12:00:00+01:00</published>
+    <updated>2025-12-18T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany uchwały Nr VIII/132/24 Rady Miasta Tychy 
+z dnia 19 g</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-11-27_000_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-11-27_000_000/#vote</id>
+    <published>2025-11-27T12:00:00+01:00</published>
+    <updated>2025-11-27T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmian uchwały budżetowej miasta Tychy na 2025 r.</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-11-27_001_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-11-27_001_000/#vote</id>
+    <published>2025-11-27T12:00:00+01:00</published>
+    <updated>2025-11-27T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmian w Wieloletniej Prognozie Finansowej miasta Tychy na la</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-11-27_002_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-11-27_002_000/#vote</id>
+    <published>2025-11-27T12:00:00+01:00</published>
+    <updated>2025-11-27T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany Uchwały nr XVI/295/25 Rady Miasta Tychy 
+z dnia 30 pa</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-11-27_003_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-11-27_003_000/#vote</id>
+    <published>2025-11-27T12:00:00+01:00</published>
+    <updated>2025-11-27T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 16, przeciw 8, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany miejscowego planu zagospodarowania przestrzennego dla</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-11-27_004_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-11-27_004_000/#vote</id>
+    <published>2025-11-27T12:00:00+01:00</published>
+    <updated>2025-11-27T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na odstąpienie od obowiązku przetargowego tr</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-11-27_005_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-11-27_005_000/#vote</id>
+    <published>2025-11-27T12:00:00+01:00</published>
+    <updated>2025-11-27T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na nabycie prawa własności nieruchomości ozn</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-11-27_006_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-11-27_006_000/#vote</id>
+    <published>2025-11-27T12:00:00+01:00</published>
+    <updated>2025-11-27T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie przyznania pierwszeństwa w nabyciu lokalu (garaż).</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-11-27_007_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-11-27_007_000/#vote</id>
+    <published>2025-11-27T12:00:00+01:00</published>
+    <updated>2025-11-27T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie pozbawienia części drogi gminnej dotychczasowej kategorii or</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-11-27_008_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-11-27_008_000/#vote</id>
+    <published>2025-11-27T12:00:00+01:00</published>
+    <updated>2025-11-27T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie ustalenia wysokości opłat za usunięcie i parkowanie pojazdu </title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-11-27_009_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-11-27_009_000/#vote</id>
+    <published>2025-11-27T12:00:00+01:00</published>
+    <updated>2025-11-27T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie przyjęcia Programu współpracy miasta Tychy 
+z organizacjami </title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-11-27_010_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-11-27_010_000/#vote</id>
+    <published>2025-11-27T12:00:00+01:00</published>
+    <updated>2025-11-27T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie skargi na działalność Dyrektora Przedszkola nr 19 
+w Tychach</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-11-27_011_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-11-27_011_000/#vote</id>
+    <published>2025-11-27T12:00:00+01:00</published>
+    <updated>2025-11-27T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie przedłużenia terminu załatwienia skargi.</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-11-27_012_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-11-27_012_000/#vote</id>
+    <published>2025-11-27T12:00:00+01:00</published>
+    <updated>2025-11-27T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Zmiana porządku dziennego sesji poprzez wprowadzenie punktu 3a w brzmieniu: Rozpatrzenie projektu uc</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_000_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_000_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>3a. Rozpatrzenie projektu uchwały w sprawie przyjęcia apelu dotyczącego utrzymania Wojskowego Centru</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_001_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_001_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany uchwały Nr VIII/132/24 Rady Miasta Tychy z dnia 19 g</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_002_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_002_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmian uchwały budżetowej miasta Tychy na 2025 r.</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_003_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_003_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmian w Wieloletniej Prognozie Finansowej miasta Tychy na la</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_004_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_004_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 22, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie nadania Statutu Powiatowego Urzędu Pracy w Tychach.</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_005_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_005_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie nadania imienia Przedszkolu nr 4 w Tychach w Zespole Szkolno</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_006_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_006_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany Uchwały Nr 0150/XLIV/987/10 Rady Miasta Tychy z dnia </title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_007_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_007_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie zmiany Uchwały Nr 0150/XXVII/596/09 Rady Miasta Tychy z dnia</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_008_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_008_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie udzielenia odpowiedzi na skargę Centrum Nauki i Biznesu Żak</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_009_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_009_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na odstąpienie od obowiązku przetargowego tr</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_010_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_010_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na odstąpienie od obowiązku przetargowego tr</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_011_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_011_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na odstąpienie od obowiązku przetargowego tr</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_012_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_012_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na nabycie prawa własności nieruchomości, po</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_013_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_013_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Rozpatrzenie projektu uchwały w sprawie miejscowego planu zagospodarowania przestrzennego dla obszar</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_014_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_014_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Uwaga nr 1 Uwagę dotyczącą zwiększenia maksymalnej wysokości budynków w terenie 1MWK-U z 18 m do 25 </title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_015_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_015_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Uwaga nr 2 Uwagę dotyczącą rezygnacji z ograniczenia maksymalnej liczby kondygnacji nadziemnych do 5</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_016_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_016_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Uwaga nr 3 Uwagę dotyczącą utworzenia strefy podwyższonej zabudowy w terenie 1MWK-U, pozwalającej na</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_017_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_017_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Uwaga nr 4 Uwagę dotyczącą rezygnacji z obowiązujących linii zabudowy wewnątrz terenu 1MWK-U lub ich</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_018_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_018_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Uwaga nr 5 Uwagę dotyczącą rezygnacji z wyznaczania stref zieleni urządzonej (sz) w terenie 1MW-U – </title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_019_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_019_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Uwaga nr 6 Uwagę dotyczącą zmiany ustaleń dla terenów 1MKW-U i 1MW-U z: „udział powierzchni biologic</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_020_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_020_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Uwaga nr 7 Uwagę dotyczącą wydzielenia drogi wewnętrznej w terenie 1MWK-U wraz ze zmianą z: „udział </title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_021_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_021_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Uwaga nr 8 Uwagę dotyczącą zwiększenia maksymalnego wskaźnika nadziemnej intensywności zabudowy w te</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_022_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_022_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Uwaga nr 9 Uwagę dotyczącą zmniejszenia wskaźnika miejsc parkingowych dla zabudowy mieszkaniowej z: </title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_023_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_023_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Uwaga nr 10 Uwagę dotyczącą zwiększenia możliwości bilansowania wymaganej liczby miejsc parkingowych</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_024_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_024_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Uwaga nr 11 Uwagę dotyczącą rezygnacji z zakazu realizacji terenowych miejsc parkingowych wewnątrz o</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_025_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_025_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Uwaga nr 12 Uwagę dotyczącą zwiększenia maksymalnego udziału powierzchni zabudowy w terenie 1MWK-U z</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_026_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_026_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Uwaga nr 13 Uwagę dotyczącą zwiększenia wskaźnika maksymalnej nadziemnej intensywności zabudowy w te</title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_027_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_027_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Uwaga nr 14 Uwagę dotyczącą zwiększenia maksymalnej liczby kondygnacji nadziemnych w terenie 1MWK-U </title>
+    <link href="https://tychy.radoskop.pl/glosowanie/2025-08-28_028_000/" rel="alternate" type="text/html"/>
+    <id>https://tychy.radoskop.pl/glosowanie/2025-08-28_028_000/#vote</id>
+    <published>2025-08-28T12:00:00+01:00</published>
+    <updated>2025-08-28T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+</feed>

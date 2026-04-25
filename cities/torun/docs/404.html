@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script>
+  // GitHub Pages SPA redirect: preserves path for client-side routing
+  var path = location.pathname + location.search;
+  location.replace(location.origin + '/?p=' + encodeURIComponent(path));
+</script>
+</head>
+<body></body>
+</html>

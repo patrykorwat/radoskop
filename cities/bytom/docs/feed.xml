@@ -1,0 +1,913 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Radoskop Bytom</title>
+  <subtitle>Glosowania, interpelacje i sesje Rady Miasta Bytomia.</subtitle>
+  <link href="https://bytom.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://bytom.radoskop.pl/" rel="alternate" type="text/html"/>
+  <id>https://bytom.radoskop.pl/</id>
+  <updated>2026-04-25T13:57:35Z</updated>
+  <author>
+    <name>Radoskop</name>
+    <uri>https://radoskop.pl</uri>
+  </author>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały w sprawie pokrycia przez Miasto Bytom części straty </title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-04-02_000_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-04-02_000_000/#vote</id>
+    <published>2026-04-02T12:00:00+01:00</published>
+    <updated>2026-04-02T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę nr XXVI/223/25 Rady Miejskiej w</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-04-02_001_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-04-02_001_000/#vote</id>
+    <published>2026-04-02T12:00:00+01:00</published>
+    <updated>2026-04-02T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę budżetową miasta Bytomia na 202</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-04-02_002_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-04-02_002_000/#vote</id>
+    <published>2026-04-02T12:00:00+01:00</published>
+    <updated>2026-04-02T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie pokrycia przez Miasto Bytom części straty netto Szpitala Specjalistyczneg</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-04-02_003_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-04-02_003_000/#vote</id>
+    <published>2026-04-02T12:00:00+01:00</published>
+    <updated>2026-04-02T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę nr XXVI/223/25 Rady Miejskiej w Bytomiu w sprawie wieloletniej</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-04-02_004_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-04-02_004_000/#vote</id>
+    <published>2026-04-02T12:00:00+01:00</published>
+    <updated>2026-04-02T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę budżetową miasta Bytomia na 2026 rok (R-274).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-04-02_005_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-04-02_005_000/#vote</id>
+    <published>2026-04-02T12:00:00+01:00</published>
+    <updated>2026-04-02T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę nr XXVI/223/25 Rady Miejskiej w</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_000_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_000_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę budżetową miasta Bytomia na 202</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_001_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_001_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę budżetową miasta Bytomia na 202</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_002_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_002_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały w sprawie stanowiska Rady Miejskiej dotyczącego skar</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_003_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_003_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały w sprawie stanowiska Rady Miejskiej dotyczącego skar</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_004_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_004_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały w sprawie przekazania skargi  (R-267) do pkt 19c.</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_005_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_005_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę nr XXVI/233/25 Rady Miejskiej w</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_006_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_006_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Przyjęcie protokołu z XXVII sesji Rady Miejskiej w Bytomiu.</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_007_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_007_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Przyjęcie protokołu z XXVIII sesji Rady Miejskiej w Bytomiu.</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_008_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_008_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę nr XXVI/223/25 Rady Miejskiej w Bytomiu w sprawie wieloletniej</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_009_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_009_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę budżetową miasta Bytomia na 2026 rok (R-270).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_010_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_010_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę budżetową miasta Bytomia na 2026 rok (R-271).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_011_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_011_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie przyjęcia „Programu Opieki nad Zabytkami Miasta Bytomia na lata 2026- 202</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_012_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_012_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie poparcia inicjatywy lokalizacji Centrum Technologicznego Europejskiej Age</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_013_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_013_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 2). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie wyrażenia zgody na odstąpienie od obowiązku przetargowego trybu zawarcia </title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_014_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_014_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie poparcia działań zmierzających do zrzeczenia się przez Prezydenta Bytomia</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_015_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_015_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie poparcia działań zmierzających do zrzeczenia się przez Prezydenta Bytomia</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_016_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_016_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie poparcia działań zmierzających do zrzeczenia się przez Prezydenta Bytomia</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_017_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_017_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę nr XX/183/25 Rady Miejskiej w Bytomiu w sprawie wyznaczenia Ce</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_018_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_018_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 20, przeciw 4, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę nr XV/130/25 Rady Miejskiej w Bytomiu w sprawie ustalenia tryb</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_019_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_019_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie określenia zadań z zakresu rehabilitacji zawodowej i społecznej osób niep</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_020_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_020_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę nr XXI/284/19 Rady Miejskiej w Bytomiu w sprawie nadania Statu</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_021_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_021_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie utworzenia Żłobka Miejskiego Nr 3 w Bytomiu (R-254).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_022_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_022_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie nadania Statutu Żłobkowi Miejskiemu Nr 3 w Bytomiu (R-261).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_023_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_023_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie utworzenia Żłobka Miejskiego Nr 4 w Bytomiu (R-255).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_024_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_024_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie nadania Statutu Żłobkowi Miejskiemu Nr 4 w Bytomiu (R-262).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_025_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_025_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie stanowiska Rady Miejskiej dotyczącego skargi na działalność Prezydenta Mi</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_026_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_026_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie stanowiska Rady Miejskiej dotyczącego skargi na działanie Komisji Rewizyj</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_027_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_027_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 20, przeciw 0, wstrzym. 5). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Przyjęcie poprawki radnego Mariusza Janasa do projektu uchwały na druku R-267 polegającej na zastąpi</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_028_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_028_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie przekazania skargi (R-267) wraz z przyjętą poprawką.</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_029_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_029_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę nr XXVI/233/25 Rady Miejskiej w Bytomiu w sprawie zatwierdzeni</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-03-23_030_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-03-23_030_000/#vote</id>
+    <published>2026-03-23T12:00:00+01:00</published>
+    <updated>2026-03-23T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały w sprawie pokrycia przez Miasto Bytom części straty </title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-02-12_000_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-02-12_000_000/#vote</id>
+    <published>2026-02-12T12:00:00+01:00</published>
+    <updated>2026-02-12T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę budżetową miasta Bytomia na 202</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-02-12_001_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-02-12_001_000/#vote</id>
+    <published>2026-02-12T12:00:00+01:00</published>
+    <updated>2026-02-12T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie pokrycia przez Miasto Bytom części straty netto Szpitala Specjalistyczneg</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-02-12_002_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-02-12_002_000/#vote</id>
+    <published>2026-02-12T12:00:00+01:00</published>
+    <updated>2026-02-12T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę budżetową miasta Bytomia na 2026 rok (R-250).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-02-12_003_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-02-12_003_000/#vote</id>
+    <published>2026-02-12T12:00:00+01:00</published>
+    <updated>2026-02-12T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Przyjęcie wniosku formalnego prowadzącego obrady o zmianę porządku obrad polegającą na przeniesieniu</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_000_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_000_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały w sprawie pokrycia przez Miasto Bytom części straty </title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_001_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_001_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę nr XXVI/223/25 Rady Miejskiej w</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_002_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_002_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 16, przeciw 8, wstrzym. 1). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę budżetową miasta Bytomia na 202</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_003_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_003_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 17, przeciw 7, wstrzym. 1). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały w sprawie uchwalenia programu osłonowego „Korpus Wsp</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_004_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_004_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę nr XVI/204/19 Rady Miejskiej w </title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_005_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_005_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały w sprawie stanowiska Rady Miejskiej dotyczącego skar</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_006_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_006_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę nr XXVI/233/25 Rady Miejskiej w</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_007_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_007_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Przyjęcie protokołu z XXIII sesji Rady Miejskiej w Bytomiu.</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_008_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_008_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Przyjęcie protokołu z XXIV sesji Rady Miejskiej w Bytomiu.</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_009_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_009_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Przyjęcie protokołu z XXV sesji Rady Miejskiej w Bytomiu.</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_010_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_010_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Przyjęcie protokołu z XXVI sesji Rady Miejskiej w Bytomiu.</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_011_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_011_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie pokrycia przez Miasto Bytom części straty netto Szpitala Specjalistyczneg</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_012_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_012_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę nr XXVI/223/25 Rady Miejskiej w Bytomiu w sprawie wieloletniej</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_013_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_013_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 16, przeciw 8, wstrzym. 1). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę budżetową miasta Bytomia na 2026 rok (R-244).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_014_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_014_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 16, przeciw 7, wstrzym. 2). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie powołania, spośród dotychczasowych laureatów „Medalu Miasta Bytomia", czł</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_015_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_015_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę nr IX/104/11 Rady Miejskiej w Bytomiu w sprawie określenia war</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_016_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_016_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie zamiaru przekształcenia Przedszkola Miejskiego nr 18 w Bytomiu poprzez ut</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_017_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_017_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 18, przeciw 0, wstrzym. 7). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie regulaminu przyznawania nagród nauczycielom szkół i placówek prowadzonych</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_018_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_018_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 18, przeciw 7, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę nr V/52/24 Rady Miejskiej w Bytomiu w sprawie określenia szcze</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_019_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_019_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie uchwalenia programu osłonowego „Korpus Wsparcia Seniorów w Bytomiu” na ro</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_020_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_020_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę nr XVI/204/19 Rady Miejskiej w Bytomiu w sprawie obywatelskiej</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_021_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_021_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 17, przeciw 0, wstrzym. 8). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie stanowiska Rady Miejskiej dotyczącego skargi na działalność Prezydenta Mi</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_022_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_022_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 19, przeciw 0, wstrzym. 6). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę nr XXVI/233/25 Rady Miejskiej w Bytomiu w sprawie zatwierdzeni</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-01-26_023_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-01-26_023_000/#vote</id>
+    <published>2026-01-26T12:00:00+01:00</published>
+    <updated>2026-01-26T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę nr XII/100/24 Rady Miejskiej w </title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_000_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_000_000/#vote</id>
+    <published>2025-12-15T12:00:00+01:00</published>
+    <updated>2025-12-15T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 18, przeciw 0, wstrzym. 7). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę budżetową miasta Bytomia na 202</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_001_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_001_000/#vote</id>
+    <published>2025-12-15T12:00:00+01:00</published>
+    <updated>2025-12-15T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 18, przeciw 0, wstrzym. 7). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie wieloletniej prognozy finansowej miasta Bytomia na lata 2026-2046 (R-221)</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_002_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_002_000/#vote</id>
+    <published>2025-12-15T12:00:00+01:00</published>
+    <updated>2025-12-15T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 15, przeciw 7, wstrzym. 3). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie uchwały budżetowej miasta Bytomia na 2026 rok (R-222) wraz z autopoprawką</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_003_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_003_000/#vote</id>
+    <published>2025-12-15T12:00:00+01:00</published>
+    <updated>2025-12-15T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 15, przeciw 8, wstrzym. 2). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę nr XII/100/24 Rady Miejskiej w Bytomiu w sprawie wieloletniej </title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_004_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_004_000/#vote</id>
+    <published>2025-12-15T12:00:00+01:00</published>
+    <updated>2025-12-15T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 16, przeciw 7, wstrzym. 1). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę budżetową miasta Bytomia na 2025 rok (R-234).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_005_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_005_000/#vote</id>
+    <published>2025-12-15T12:00:00+01:00</published>
+    <updated>2025-12-15T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 16, przeciw 7, wstrzym. 1). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie Zespołu Przyrodniczo-Krajobrazowego „Żabie Doły w Bytomiu” (R-227).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_006_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_006_000/#vote</id>
+    <published>2025-12-15T12:00:00+01:00</published>
+    <updated>2025-12-15T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie ustanowienia pomnika przyrody (R-226).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_007_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_007_000/#vote</id>
+    <published>2025-12-15T12:00:00+01:00</published>
+    <updated>2025-12-15T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie przyjęcia rocznego planu potrzeb w zakresie wykonywania prac społecznie u</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_008_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_008_000/#vote</id>
+    <published>2025-12-15T12:00:00+01:00</published>
+    <updated>2025-12-15T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie przyjęcia planu nadzoru nad żłobkami, klubami dziecięcymi oraz dziennymi </title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_009_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_009_000/#vote</id>
+    <published>2025-12-15T12:00:00+01:00</published>
+    <updated>2025-12-15T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie uchwalenia Gminnego Programu Profilaktyki i Rozwiązywania Problemów Alkoh</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_010_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_010_000/#vote</id>
+    <published>2025-12-15T12:00:00+01:00</published>
+    <updated>2025-12-15T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały uchylającej uchwałę nr LXVIII/903/06 Rady Miejskiej w Bytomiu w sprawie nadania Sta</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_011_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_011_000/#vote</id>
+    <published>2025-12-15T12:00:00+01:00</published>
+    <updated>2025-12-15T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie zatwierdzenia „Planu pracy Komisji Rewizyjnej Rady Miejskiej w Bytomiu na</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_012_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_012_000/#vote</id>
+    <published>2025-12-15T12:00:00+01:00</published>
+    <updated>2025-12-15T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę budżetową miasta Bytomia na 202</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-05_000_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-05_000_000/#vote</id>
+    <published>2025-12-05T12:00:00+01:00</published>
+    <updated>2025-12-05T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 20, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę budżetową miasta Bytomia na 2025 rok (R-225).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-05_001_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-05_001_000/#vote</id>
+    <published>2025-12-05T12:00:00+01:00</published>
+    <updated>2025-12-05T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 20, przeciw 0, wstrzym. 1). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę budżetową miasta Bytomia na 2025 rok (R-228).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-05_002_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-12-05_002_000/#vote</id>
+    <published>2025-12-05T12:00:00+01:00</published>
+    <updated>2025-12-05T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 20, przeciw 0, wstrzym. 1). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę nr XII/100/24 Rady Miejskiej w </title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_000_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_000_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę budżetową miasta Bytomia na 202</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_001_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_001_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały w sprawie przekazania petycji  (R-219) do pkt 10a.</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_002_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_002_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały w sprawie stanowiska Rady Miejskiej dotyczącego skar</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_003_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_003_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Przyjęcie protokołu z XXI sesji Rady Miejskiej w Bytomiu.</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_004_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_004_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Przyjęcie protokołu z XXII sesji Rady Miejskiej w Bytomiu.</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_005_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_005_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę nr XII/100/24 Rady Miejskiej w Bytomiu w sprawie wieloletniej </title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_006_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_006_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę budżetową miasta Bytomia na 2025 rok (R-224).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_007_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_007_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie określenia wysokości stawek podatku od nieruchomości na terenie miasta By</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_008_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_008_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 16, przeciw 8, wstrzym. 1). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie ustalenia wysokości opłaty za usunięcie pojazdu z drogi oraz jego parkowa</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_009_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_009_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Przyjęcie poprawki radnego Kamila Probierza do projektu uchwały na druku R-215 polegającej na zmiani</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_010_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_010_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 22, przeciw 1, wstrzym. 2). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Przyjęcie poprawki radnego Kamila Probierza do projektu uchwały na druku R-215 polegającej na zmiani</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_011_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_011_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 2). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Przyjęcie poprawki radnego Kamila Probierza do projektu uchwały na druku R-215 polegającej na zmiani</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_012_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_012_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 22, przeciw 0, wstrzym. 3). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie określenia przystanków komunikacyjnych, dworców i węzłów przesiadkowych, </title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_013_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_013_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 1). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę nr XV/129/25 Rady Miejskiej w Bytomiu w sprawie określenia zad</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_014_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_014_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie przyjęcia „Programu współpracy miasta Bytomia z organizacjami pozarządowy</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_015_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_015_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 1). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie przekazania petycji (R-219).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_016_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_016_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 2). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie stanowiska Rady Miejskiej dotyczącego skargi na działalność Dyrektora Szk</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-11-24_017_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-11-24_017_000/#vote</id>
+    <published>2025-11-24T12:00:00+01:00</published>
+    <updated>2025-11-24T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 20, przeciw 0, wstrzym. 4). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę nr XII/100/24 Rady Miejskiej w </title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2025-08-25_000_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2025-08-25_000_000/#vote</id>
+    <published>2025-08-25T12:00:00+01:00</published>
+    <updated>2025-08-25T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 16, przeciw 8, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+</feed>

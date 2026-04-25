@@ -2865,21 +2865,6 @@
     "odpowiedz_status": "udzielono odpowiedzi"
   },
   {
-    "przedmiot": "Interpelacja w sprawie podjęcia działań mających na celu ochronę, wsparcie i promocję ginących zawodów rzemieślniczych w Lublinie poprzez stworzenie miejskiego programu wsparcia, wprowadzenie preferencyjnych warunków najmu lokali użytkowych oraz powołanie Rady Rzemieślników przy Prezydencie Miasta Lublin",
-    "bip_url": "https://bip.lublin.eu/rada-miasta-lublin/ix-kadencja/interpelacje-i-zapytania-radnych/interpelacja-w-sprawie-podjecia-dzialan-majacych-na-celu-ochrone-wsparcie-i-promocje-ginacych-zawodow-rzemieslniczych-w-lublinie-poprzez-stworzenie-miejskiego-programu-wsparcia-wprowadzenie-preferencyjnych-warunkow-najmu-lokali-uzytkowych-oraz-,182,28683,2.html",
-    "typ": "interpelacja",
-    "typ_full": "interpelacja",
-    "nr_sprawy": "IR_332_2025",
-    "data_wplywu": "2025-10-29",
-    "data_odpowiedzi": "2025-11-13",
-    "radny": "Konrad Wcisło",
-    "tresc_url": "https://bip.lublin.eu/download/gfx/bip/userfiles/_public/import/rada_miasta_lublin/ix_kadencja/interpelacje_i_zapytania/interpelacje/interp_2025/ir_332_2025.pdf",
-    "odpowiedz_url": "https://bip.lublin.eu/download/gfx/bip/userfiles/_public/import/rada_miasta_lublin/ix_kadencja/interpelacje_i_zapytania/interpelacje/interp_2025/ir_332_2025_odp.pdf",
-    "kategoria": "mieszkalnictwo",
-    "kadencja": "IX",
-    "odpowiedz_status": "udzielono odpowiedzi"
-  },
-  {
     "przedmiot": "Interpelacja w sprawie pilnych kontroli sal zabaw na terenie miasta Lublin",
     "bip_url": "https://bip.lublin.eu/rada-miasta-lublin/ix-kadencja/interpelacje-i-zapytania-radnych/interpelacja-w-sprawie-pilnych-kontroli-sal-zabaw-na-terenie-miasta-lublin,29,28669,2.html",
     "typ": "interpelacja",
@@ -6041,6 +6026,21 @@
     "tresc_url": "https://bip.lublin.eu/download/gfx/bip/userfiles/_public/import/rada_miasta_lublin/ix_kadencja/interpelacje_i_zapytania/interpelacje/interp_2025/ir_122_2025.pdf",
     "odpowiedz_url": "https://bip.lublin.eu/download/gfx/bip/userfiles/_public/import/rada_miasta_lublin/ix_kadencja/interpelacje_i_zapytania/interpelacje/interp_2025/ir_122_2025_odp.pdf",
     "kategoria": "bezpieczeństwo",
+    "kadencja": "IX",
+    "odpowiedz_status": "udzielono odpowiedzi"
+  },
+  {
+    "przedmiot": "Zapytanie w sprawie montażu automatycznych słupków blokujących wjazd na deptak przy Krakowskim Przedmieściu",
+    "bip_url": "https://bip.lublin.eu/rada-miasta-lublin/ix-kadencja/interpelacje-i-zapytania-radnych/zapytanie-w-sprawie-montazu-automatycznych-slupkow-blokujacych-wjazd-na-deptak-przy-krakowskim-przedmiesciu,6,28713,2.html",
+    "typ": "zapytanie",
+    "typ_full": "zapytanie",
+    "nr_sprawy": "ZR_02_2025",
+    "data_wplywu": "2025-04-16",
+    "data_odpowiedzi": "2025-04-25",
+    "radny": "Konrad Wcisło",
+    "tresc_url": "https://bip.lublin.eu/download/gfx/bip/userfiles/_public/import/rada_miasta_lublin/ix_kadencja/interpelacje_i_zapytania/zapytania/zapytania_2025/zr_02_2025.pdf",
+    "odpowiedz_url": "https://bip.lublin.eu/download/gfx/bip/userfiles/_public/import/rada_miasta_lublin/ix_kadencja/interpelacje_i_zapytania/zapytania/zapytania_2025/zr_02_2025_odp.pdf",
+    "kategoria": "inne",
     "kadencja": "IX",
     "odpowiedz_status": "udzielono odpowiedzi"
   },
@@ -11955,10 +11955,10 @@
     "data_odpowiedzi": ""
   },
   {
-    "przedmiot": "Zapytanie w sprawie montażu automatycznych słupków blokujących wjazd na deptak przy Krakowskim Przedmieściu",
-    "bip_url": "https://bip.lublin.eu/rada-miasta-lublin/ix-kadencja/interpelacje-i-zapytania-radnych/zapytanie-w-sprawie-montazu-automatycznych-slupkow-blokujacych-wjazd-na-deptak-przy-krakowskim-przedmiesciu,6,28713,2.html",
-    "typ": "zapytanie",
-    "kategoria": "inne",
+    "przedmiot": "Interpelacja w sprawie podjęcia działań mających na celu ochronę, wsparcie i promocję ginących zawodów rzemieślniczych w Lublinie poprzez stworzenie miejskiego programu wsparcia, wprowadzenie preferencyjnych warunków najmu lokali użytkowych oraz powołanie Rady Rzemieślników przy Prezydencie Miasta Lublin",
+    "bip_url": "https://bip.lublin.eu/rada-miasta-lublin/ix-kadencja/interpelacje-i-zapytania-radnych/interpelacja-w-sprawie-podjecia-dzialan-majacych-na-celu-ochrone-wsparcie-i-promocje-ginacych-zawodow-rzemieslniczych-w-lublinie-poprzez-stworzenie-miejskiego-programu-wsparcia-wprowadzenie-preferencyjnych-warunkow-najmu-lokali-uzytkowych-oraz-,182,28683,2.html",
+    "typ": "interpelacja",
+    "kategoria": "mieszkalnictwo",
     "kadencja": "IX",
     "odpowiedz_status": "oczekuje na odpowiedź",
     "radny": "",
