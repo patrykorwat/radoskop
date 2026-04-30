@@ -1,16 +1,485 @@
 [
   {
-    "przedmiot": "oddania do ruchu ulicy Pomorskiej od 1 czerwca 2024 r.",
-    "bip_url": "https://bip.um.wroc.pl/interpelacja/73834/interpelacja-w-sprawie-oddania-do-ruchu-ulicy-pomorskiej-od-1-czerwca-2024-r",
+    "przedmiot": "wprowadzenia działań na rzecz ograniczenia biernego palenia w przestrzeni publicznej we Wrocławiu",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89192/interpelacja-w-sprawie-wprowadzenia-dzialan-na-rzecz-ograniczenia-biernego-palenia-w-przestrzeni-publicznej-we-wroclawiu",
     "typ": "interpelacja",
-    "radny": "Izabela Duchnowska",
-    "status": "udzielono odpowiedzi",
+    "radny": "Michał Kurczewski",
+    "status": "oczekuje na odpowiedź",
     "kadencja": "IX",
-    "kategoria": "transport",
-    "odpowiedz_status": "udzielono odpowiedzi",
-    "data_wplywu": "",
+    "typ_full": "Interpelacja",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173933",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja",
+        "url": "https://bip.um.wroc.pl/attachments/download/173933"
+      }
+    ],
+    "kategoria": "inne",
+    "odpowiedz_status": "oczekuje na odpowiedź",
     "data_odpowiedzi": "",
-    "tresc_url": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "podjęcia pilnych działań w zakresie poprawy bezpieczeństwa pieszych oraz ukrócenia procederu nielegalnej jazdy rowerzystów po chodnikach na terenie Wrocławia",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89190/interpelacja-w-sprawie-podjecia-pilnych-dzialan-w-zakresie-poprawy-bezpieczenstwa-pieszych-oraz-ukrocenia-procederu-nielegalnej-jazdy-rowerzystow-po-chodnikach-na-terenie-wroclawia",
+    "typ": "interpelacja",
+    "radny": "Andrzej Kilijanek",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Interpelacja",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173930",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja",
+        "url": "https://bip.um.wroc.pl/attachments/download/173930"
+      }
+    ],
+    "kategoria": "transport",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "skutecznego ograniczania prędkości aut poruszających się jezdnią ulicy Widawskiej",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89189/interpelacja-w-sprawie-skutecznego-ograniczania-predkosci-aut-poruszajacych-sie-jezdnia-ulicy-widawskiej",
+    "typ": "interpelacja",
+    "radny": "Michał Kurczewski",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Interpelacja",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173929",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja",
+        "url": "https://bip.um.wroc.pl/attachments/download/173929"
+      }
+    ],
+    "kategoria": "transport",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "danych o zasobie mieszkaniowym Wrocławia w podziale na osiedla w latach 2005- 2026",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89188/zapytanie-w-sprawie-danych-o-zasobie-mieszkaniowym-wroclawia-w-podziale-na-osiedla-w-latach-2005-2026",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173928",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173928"
+      }
+    ],
+    "kategoria": "mieszkalnictwo",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "liczby uczniów wrocławskich szkół podstawowych w podziale na osiedla w latach 2005-2026",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89186/zapytanie-w-sprawie-liczby-uczniow-wroclawskich-szkol-podstawowych-w-podziale-na-osiedla-w-latach-2005-2026",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173926",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173926"
+      }
+    ],
+    "kategoria": "edukacja",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "salda migracji wewnątrzmiejskich pomiędzy osiedlami Wrocławia w latach 2005-2026",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89185/zapytanie-w-sprawie-salda-migracji-wewnatrzmiejskich-pomiedzy-osiedlami-wroclawia-w-latach-2005-2026",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173925",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173925"
+      }
+    ],
+    "kategoria": "inne",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "przebudowy ul. Pomorskiej we Wrocławiu oraz stanu nawierzchni po zakończeniu inwestycji",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89184/zapytanie-w-sprawie-przebudowy-ul-pomorskiej-we-wroclawiu-oraz-stanu-nawierzchni-po-zakonczeniu-inwestycji",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173931",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173931"
+      }
+    ],
+    "kategoria": "infrastruktura",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "remontu ul. Powstańców Śląskich we Wrocławiu oraz jakości wykonania nawierzchni po zakończeniu prac",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89183/zapytanie-w-sprawie-remontu-ul-powstancow-slaskich-we-wroclawiu-oraz-jakosci-wykonania-nawierzchni-po-zakonczeniu-prac",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173921",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173921"
+      }
+    ],
+    "kategoria": "infrastruktura",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "wpływów z podatku od nieruchomości od osób fizycznych i prawnych w podziale na osiedla Wrocławia",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89182/zapytanie-w-sprawie-wplywow-z-podatku-od-nieruchomosci-od-osob-fizycznych-i-prawnych-w-podziale-na-osiedla-wroclawia",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173920",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173920"
+      }
+    ],
+    "kategoria": "budżet",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "wpływów z udziału gminy w podatku dochodowym od osób fizycznych (PIT) per capita w latach 2025 - 2026 oraz porównania z Krakowem, Poznaniem i Gdańskiem",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89181/zapytanie-w-sprawie-wplywow-z-udzialu-gminy-w-podatku-dochodowym-od-osob-fizycznych-pit-per-capita-w-latach-2025-2026-oraz-porownania-z-krakowem-poznaniem-i-gdanskiem",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173919",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173919"
+      }
+    ],
+    "kategoria": "budżet",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "liczby nowych miejsc pracy zadeklarowanych przez inwestorów obsługiwanych przez Agencję Rozwoju Aglomeracji Wrocławskiej w latach 2005 - 2026 w podziale na sektory",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89180/zapytanie-w-sprawie-liczby-nowych-miejsc-pracy-zadeklarowanych-przez-inwestorow-obslugiwanych-przez-agencje-rozwoju-aglomeracji-wroclawskiej-w-latach-2005-2026-w-podziale-na-sektory",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173918",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173918"
+      }
+    ],
+    "kategoria": "inne",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "wartości inwestycji prywatnych we Wrocławiu na podstawie pozwoleń na budowę dla obiektów niemieszkalnych w latach 2005 - 2026",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89179/zapytanie-w-sprawie-wartosci-inwestycji-prywatnych-we-wroclawiu-na-podstawie-pozwolen-na-budowe-dla-obiektow-niemieszkalnych-w-latach-2005-2026",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173917",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173917"
+      }
+    ],
+    "kategoria": "infrastruktura",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "wyników frekwencji oraz finansowych ZOO Wrocław sp. z o.o.",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89178/zapytanie-w-sprawie-wynikow-frekwencji-oraz-finansowych-zoo-wroclaw-sp-z-o-o",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173916",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173916"
+      }
+    ],
+    "kategoria": "budżet",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "prywatyzacji Wrocławskiego Przedsiębiorstwa Oczyszczania sp. z o. o.",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89177/zapytanie-w-sprawie-prywatyzacji-wroclawskiego-przedsiebiorstwa-oczyszczania-sp-z-o-o",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173915",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173915"
+      }
+    ],
+    "kategoria": "inne",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "zadłużenia spółek z udziałem Gminy Wrocław, jego struktury i kosztów",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89175/zapytanie-w-sprawie-zadluzenia-spolek-z-udzialem-gminy-wroclaw-jego-struktury-i-kosztow",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173914",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173914"
+      }
+    ],
+    "kategoria": "inne",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "zmian liczby ludności na osiedlach Wrocławia w latach 2005 - 2026",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89171/zapytanie-w-sprawie-zmian-liczby-ludnosci-na-osiedlach-wroclawia-w-latach-2005-2026",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-28",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173906",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173906"
+      }
+    ],
+    "kategoria": "inne",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "szacunków liczby mieszkańców Wrocławia na podstawie danych MPWiK w podziale na osiedla",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89170/zapytanie-w-sprawie-szacunkow-liczby-mieszkancow-wroclawia-na-podstawie-danych-mpwik-w-podziale-na-osiedla",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-28",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173905",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173905"
+      }
+    ],
+    "kategoria": "mieszkalnictwo",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "planów remontu oraz działań porządkowych i bezpieczeństwa na podwórku w kwartale ulic Kościuszki - Stawowej - Piłsudskiego",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89169/zapytanie-w-sprawie-planow-remontu-oraz-dzialan-porzadkowych-i-bezpieczenstwa-na-podworku-w-kwartale-ulic-kosciuszki-stawowej-pilsudskiego",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-28",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173904",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173904"
+      }
+    ],
+    "kategoria": "transport",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "przyszłości targowiska na Dworcu Świebodzkim oraz polityki miasta wobec lokalnych targowisk",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89168/zapytanie-w-sprawie-przyszlosci-targowiska-na-dworcu-swiebodzkim-oraz-polityki-miasta-wobec-lokalnych-targowisk",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-28",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173903",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173903"
+      }
+    ],
+    "kategoria": "mieszkalnictwo",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "stanu torowiska tramwajowego przy ul. Piłsudskiego na odcinku od pl.Legionów do ul. Kołłątaja oraz uciążliwości hałasu",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89167/zapytanie-w-sprawie-stanu-torowiska-tramwajowego-przy-ul-pilsudskiego-na-odcinku-od-pl-legionow-do-ul-kollataja-oraz-uciazliwosci-halasu",
+    "typ": "zapytanie",
+    "radny": "Piotr Uhle",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-04-28",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173902",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/173902"
+      }
+    ],
+    "kategoria": "transport",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "współpracy spółki Stadion Wrocław sp. z o. o. z podmiotem Stadion Catering",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89165/interpelacja-w-sprawie-wspolpracy-spolki-stadion-wroclaw-sp-z-o-o-z-podmiotem-stadion-catering",
+    "typ": "interpelacja",
+    "radny": "Andrzej Kilijanek",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Interpelacja",
+    "data_wplywu": "2026-04-28",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173897",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja",
+        "url": "https://bip.um.wroc.pl/attachments/download/173897"
+      }
+    ],
+    "kategoria": "sport",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "podjęcia działań ograniczających narażenie mieszkańców Wrocławia na bierne palenie tytoniu w przestrzeni publicznej",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89164/interpelacja-w-sprawie-podjecia-dzialan-ograniczajacych-narazenie-mieszkancow-wroclawia-na-bierne-palenie-tytoniu-w-przestrzeni-publicznej",
+    "typ": "interpelacja",
+    "radny": "Andrzej Kilijanek",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Interpelacja",
+    "data_wplywu": "2026-04-28",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/173898",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja",
+        "url": "https://bip.um.wroc.pl/attachments/download/173898"
+      }
+    ],
+    "kategoria": "mieszkalnictwo",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
     "odpowiedz_url": "",
     "nr_sprawy": ""
   },
@@ -310,7 +779,7 @@
     "typ_full": "Zapytanie",
     "data_wplywu": "2026-04-17",
     "tresc_url": "https://bip.um.wroc.pl/attachments/download/173383",
-    "odpowiedz_url": "https://bip.um.wroc.pl/attachments/download/173831",
+    "odpowiedz_url": "https://bip.um.wroc.pl/attachments/download/173975",
     "zalaczniki": [
       {
         "nazwa": "Zapytanie",
@@ -319,6 +788,10 @@
       {
         "nazwa": "Odpowiedź na zapytanie",
         "url": "https://bip.um.wroc.pl/attachments/download/173831"
+      },
+      {
+        "nazwa": "Odpowiedź na zapytanie (wersja tekstowa)",
+        "url": "https://bip.um.wroc.pl/attachments/download/173975"
       }
     ],
     "kategoria": "transport",
@@ -440,7 +913,7 @@
     "typ_full": "Interpelacja",
     "data_wplywu": "2026-04-13",
     "tresc_url": "https://bip.um.wroc.pl/attachments/download/173166",
-    "odpowiedz_url": "https://bip.um.wroc.pl/attachments/download/173768",
+    "odpowiedz_url": "https://bip.um.wroc.pl/attachments/download/173976",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja",
@@ -449,6 +922,10 @@
       {
         "nazwa": "Odpowiedź na interpelację",
         "url": "https://bip.um.wroc.pl/attachments/download/173768"
+      },
+      {
+        "nazwa": "Odpowiedź na interpelację (wersja tekstowa)",
+        "url": "https://bip.um.wroc.pl/attachments/download/173976"
       }
     ],
     "kategoria": "transport",
@@ -16968,6 +17445,36 @@
       }
     ],
     "kategoria": "administracja",
+    "odpowiedz_status": "udzielono odpowiedzi",
+    "data_odpowiedzi": "",
+    "nr_sprawy": ""
+  },
+  {
+    "przedmiot": "oddania do ruchu ulicy Pomorskiej od 1 czerwca 2024 r.",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/73834/interpelacja-w-sprawie-oddania-do-ruchu-ulicy-pomorskiej-od-1-czerwca-2024-r",
+    "typ": "interpelacja",
+    "radny": "Izabela Duchnowska",
+    "status": "udzielono odpowiedzi",
+    "kadencja": "IX",
+    "typ_full": "Interpelacja",
+    "data_wplywu": "2024-06-17",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/146224",
+    "odpowiedz_url": "https://bip.um.wroc.pl/attachments/download/147078",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja",
+        "url": "https://bip.um.wroc.pl/attachments/download/146224"
+      },
+      {
+        "nazwa": "Odpowiedź na interpelację",
+        "url": "https://bip.um.wroc.pl/attachments/download/147077"
+      },
+      {
+        "nazwa": "Odpowiedź na interpelację (wersja tekstowa)",
+        "url": "https://bip.um.wroc.pl/attachments/download/147078"
+      }
+    ],
+    "kategoria": "transport",
     "odpowiedz_status": "udzielono odpowiedzi",
     "data_odpowiedzi": "",
     "nr_sprawy": ""

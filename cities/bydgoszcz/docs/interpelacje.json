@@ -1,5 +1,27 @@
 [
   {
+    "przedmiot": "wjazdu i parkowania na terenach zielonych LPKiW \"Myślęcinek\"",
+    "bip_url": "https://bip.um.bydgoszcz.pl/interpelacja/10028/interpelacja-w-sprawie-wjazdu-i-parkowania-na-terenach-zielonych-lpkiw-myslecinek",
+    "typ": "interpelacja",
+    "nr_sprawy": "RM.0003.219.2026",
+    "radny": "Lech Zagłoba-Zygler",
+    "status": "",
+    "kadencja": "IX",
+    "typ_full": "Interpelacja",
+    "data_wplywu": "2026-04-28",
+    "tresc_url": "https://bip.um.bydgoszcz.pl/attachments/download/31418",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31418"
+      }
+    ],
+    "kategoria": "transport",
+    "odpowiedz_status": "",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": ""
+  },
+  {
     "przedmiot": "oznakowania skrzyżowania ul. Kruszyńskiej z ul. Podmiejską",
     "bip_url": "https://bip.um.bydgoszcz.pl/interpelacja/10000/interpelacja-w-sprawie-oznakowania-skrzyzowania-ul-kruszynskiej-z-ul-podmiejska",
     "typ": "interpelacja",
@@ -128,16 +150,28 @@
     "typ_full": "Interpelacja",
     "data_wplywu": "2026-04-17",
     "tresc_url": "https://bip.um.bydgoszcz.pl/attachments/download/31273",
+    "odpowiedz_url": "https://bip.um.bydgoszcz.pl/attachments/download/31463",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja",
         "url": "https://bip.um.bydgoszcz.pl/attachments/download/31273"
+      },
+      {
+        "nazwa": "Interpelacja",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31273"
+      },
+      {
+        "nazwa": "Odpowiedź",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31461"
+      },
+      {
+        "nazwa": "Odpowiedź",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31463"
       }
     ],
     "kategoria": "inne",
     "odpowiedz_status": "",
-    "data_odpowiedzi": "",
-    "odpowiedz_url": ""
+    "data_odpowiedzi": ""
   },
   {
     "przedmiot": "wydarzenia  \"Aktywny Poranek 60+\"",

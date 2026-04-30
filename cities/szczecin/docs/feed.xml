@@ -5,11 +5,20 @@
   <link href="https://szczecin.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://szczecin.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://szczecin.radoskop.pl/</id>
-  <updated>2026-04-28T14:46:53Z</updated>
+  <updated>2026-04-30T09:54:37Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
+  <entry>
+    <title>Zapytanie (Romianowski Krzysztof)</title>
+    <link href="https://szczecin.radoskop.pl/profil/romianowski-krzysztof/" rel="alternate" type="text/html"/>
+    <id>https://szczecin.radoskop.pl/profil/romianowski-krzysztof/#interpelacja</id>
+    <published>2026-04-29T12:00:00+01:00</published>
+    <updated>2026-04-29T12:00:00+01:00</updated>
+    <summary type="html">Romianowski Krzysztof</summary>
+    <category term="interpelacja"/>
+  </entry>
   <entry>
     <title>Interpelacja (Słowik Przemysław)</title>
     <link href="https://szczecin.radoskop.pl/profil/slowik-przemyslaw/" rel="alternate" type="text/html"/>
@@ -17,15 +26,6 @@
     <published>2026-04-28T12:00:00+01:00</published>
     <updated>2026-04-28T12:00:00+01:00</updated>
     <summary type="html">Słowik Przemysław</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja (Romianowski Krzysztof)</title>
-    <link href="https://szczecin.radoskop.pl/profil/romianowski-krzysztof/" rel="alternate" type="text/html"/>
-    <id>https://szczecin.radoskop.pl/profil/romianowski-krzysztof/#interpelacja</id>
-    <published>2026-04-28T12:00:00+01:00</published>
-    <updated>2026-04-28T12:00:00+01:00</updated>
-    <summary type="html">Romianowski Krzysztof</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

@@ -5,7 +5,7 @@
   <link href="https://katowice.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://katowice.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://katowice.radoskop.pl/</id>
-  <updated>2026-04-28T14:58:30Z</updated>
+  <updated>2026-04-30T10:08:15Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
@@ -17,6 +17,33 @@
     <published>2029-07-15T12:00:00+01:00</published>
     <updated>2029-07-15T12:00:00+01:00</updated>
     <summary type="html">Tomasz Maśnica. wzmożonej kontroli Straży Miejskiej i Policji w rejonie Sklepu Nocnego oraz Placu Miast Partnerskich przy ul. Koszalińskiej w Ligocie.</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: zagospodarowania zieleni wokół Pomnika Orląt i Kadetów Lwowskich przy Kościele Mariackim w Katowicac</title>
+    <link href="https://katowice.radoskop.pl/profil/barbara-wnek-gabor/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/barbara-wnek-gabor/#interpelacja</id>
+    <published>2026-04-29T12:00:00+01:00</published>
+    <updated>2026-04-29T12:00:00+01:00</updated>
+    <summary type="html">Barbara Wnęk-Gabor. zagospodarowania zieleni wokół Pomnika Orląt i Kadetów Lwowskich przy Kościele Mariackim w Katowicach</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: przeanalizowania możliwych rozwiązań komunikacyjnych w rejonie ul. Gen. Henryka Le Ronda</title>
+    <link href="https://katowice.radoskop.pl/profil/maria-rys/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/maria-rys/#interpelacja</id>
+    <published>2026-04-29T12:00:00+01:00</published>
+    <updated>2026-04-29T12:00:00+01:00</updated>
+    <summary type="html">Maria Ryś. przeanalizowania możliwych rozwiązań komunikacyjnych w rejonie ul. Gen. Henryka Le Ronda</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: utworzenia dodatkowego przystanku dla linii autobusowej nr 989</title>
+    <link href="https://katowice.radoskop.pl/profil/mariusz-skiba/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/mariusz-skiba/#interpelacja</id>
+    <published>2026-04-29T12:00:00+01:00</published>
+    <updated>2026-04-29T12:00:00+01:00</updated>
+    <summary type="html">Mariusz Skiba. utworzenia dodatkowego przystanku dla linii autobusowej nr 989</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -378,15 +405,6 @@ Ewa Sadkowska. śmieci w strefach: Park Wełnowiecki, Bulwary Rawy, Dworcowa/Mar
     <published>2026-04-22T12:00:00+01:00</published>
     <updated>2026-04-22T12:00:00+01:00</updated>
     <summary type="html">Barbara Mańdok. przywrócenia małej architektury (ławki i stolika) przy ul. Pogodnej 4b /zasoby KZGM/ w dzielnicy Dąbrówka Mała.</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: rozważenia wprowadzenia aktywnego przejścia dla pieszych na ul. Przyjaznej przy skrzyżowaniu z ul. D</title>
-    <link href="https://katowice.radoskop.pl/profil/maria-rys/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/profil/maria-rys/#interpelacja</id>
-    <published>2026-04-21T12:00:00+01:00</published>
-    <updated>2026-04-21T12:00:00+01:00</updated>
-    <summary type="html">Maria Ryś. rozważenia wprowadzenia aktywnego przejścia dla pieszych na ul. Przyjaznej przy skrzyżowaniu z ul. Działkową</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -891,24 +909,6 @@ Ewa Sadkowska. śmieci w strefach: Park Wełnowiecki, Bulwary Rawy, Dworcowa/Mar
     <published>2026-01-29T12:00:00+01:00</published>
     <updated>2026-01-29T12:00:00+01:00</updated>
     <summary type="html">Wynik: odrzucone (za 4, przeciw 24, wstrzym. 0). Sesja .</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>7. Rozpatrzenie projektu Apelu Rady Miasta Katowice do Prezydenta Rzeczypospolitej 8 Polskiej o podp</title>
-    <link href="https://katowice.radoskop.pl/glosowanie/2026-01-29_007_000/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/glosowanie/2026-01-29_007_000/#vote</id>
-    <published>2026-01-29T12:00:00+01:00</published>
-    <updated>2026-01-29T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 23, przeciw 5, wstrzym. 0). Sesja .</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>8. Rozpatrzenie projektu Oświadczenia Rady Miasta Katowice w sprawie upamiętnienia 45- 9 lecia Nieza</title>
-    <link href="https://katowice.radoskop.pl/glosowanie/2026-01-29_008_000/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/glosowanie/2026-01-29_008_000/#vote</id>
-    <published>2026-01-29T12:00:00+01:00</published>
-    <updated>2026-01-29T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 28, przeciw 0, wstrzym. 0). Sesja .</summary>
     <category term="vote"/>
   </entry>
 </feed>

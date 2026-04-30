@@ -1,5 +1,29 @@
 [
   {
+    "cri": "244/2026",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Piotr Kurdziel",
+    "przedmiot": "dot. zasad określania korzyści gminy wynikających ze zmian Miejscowych Planów Zagospodarowania Przestrzennego lub ZPI",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.sopot.pl/api/files/58265",
+    "odpowiedz_url": "https://bip.sopot.pl/api/files/58391",
+    "data_odpowiedzi": ""
+  },
+  {
+    "cri": "243/2026",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Piotr Kurdziel",
+    "przedmiot": "dot. wyników konsultacji społecznych dotyczących wyznaczeni przejść dla pieszych przez Aleję Niepodległości",
+    "data_wplywu": "2026-04-29",
+    "tresc_url": "https://bip.sopot.pl/api/files/58263",
+    "odpowiedz_url": "https://bip.sopot.pl/api/files/58390",
+    "data_odpowiedzi": ""
+  },
+  {
     "cri": "245/2026",
     "typ": "interpelacja",
     "rok": 2026,
@@ -32,30 +56,6 @@
     "przedmiot": "dot. toalety bezobsługowej dostępnej 24/h przy ulicy Haffnera",
     "data_wplywu": "2026-04-22",
     "tresc_url": "https://bip.sopot.pl/api/files/58306",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": ""
-  },
-  {
-    "cri": "244/2026",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Piotr Kurdziel",
-    "przedmiot": "dot. zasad określania korzyści gminy wynikających ze zmian Miejscowych Planów Zagospodarowania Przestrzennego lub ZPI",
-    "data_wplywu": "2026-04-16",
-    "tresc_url": "https://bip.sopot.pl/api/files/58265",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": ""
-  },
-  {
-    "cri": "243/2026",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Piotr Kurdziel",
-    "przedmiot": "dot. wyników konsultacji społecznych dotyczących wyznaczeni przejść dla pieszych przez Aleję Niepodległości",
-    "data_wplywu": "2026-04-16",
-    "tresc_url": "https://bip.sopot.pl/api/files/58263",
     "odpowiedz_url": "",
     "data_odpowiedzi": ""
   },

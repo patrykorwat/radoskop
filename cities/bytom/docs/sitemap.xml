@@ -2301,6 +2301,26 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://bytom.radoskop.pl/glosowanie/2026-04-30_000_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bytom.radoskop.pl/glosowanie/2026-04-30_001_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bytom.radoskop.pl/glosowanie/2026-04-30_002_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bytom.radoskop.pl/glosowanie/2026-04-30_003_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://bytom.radoskop.pl/sesja/2024-05-07/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -2412,6 +2432,11 @@
   </url>
   <url>
     <loc>https://bytom.radoskop.pl/sesja/2026-04-27/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://bytom.radoskop.pl/sesja/2026-04-30/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

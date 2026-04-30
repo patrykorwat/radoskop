@@ -5,11 +5,56 @@
   <link href="https://bytom.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://bytom.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://bytom.radoskop.pl/</id>
-  <updated>2026-04-28T15:34:21Z</updated>
+  <updated>2026-04-30T10:44:02Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały w sprawie pokrycia przez Miasto Bytom części straty </title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-04-30_000_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-04-30_000_000/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 21, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę budżetową miasta Bytomia na 202</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-04-30_001_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-04-30_001_000/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 21, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały w sprawie pokrycia przez Miasto Bytom części straty netto Szpitala Specjalistyczneg</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-04-30_002_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-04-30_002_000/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 21, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Podjęcie uchwały zmieniającej uchwałę budżetową miasta Bytomia na 2026 rok (R-288).</title>
+    <link href="https://bytom.radoskop.pl/glosowanie/2026-04-30_003_000/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/glosowanie/2026-04-30_003_000/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 21, przeciw 0, wstrzym. 0). Sesja .</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Sesja 2026-04-30 Rady Miasta Bytom</title>
+    <link href="https://bytom.radoskop.pl/sesja/2026-04-30/" rel="alternate" type="text/html"/>
+    <id>https://bytom.radoskop.pl/sesja/2026-04-30/#session</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">4 glosowan, 21 obecnych.</summary>
+    <category term="session"/>
+  </entry>
   <entry>
     <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę nr XXVI/223/25 Rady Miejskiej w</title>
     <link href="https://bytom.radoskop.pl/glosowanie/2026-04-27_000_000/" rel="alternate" type="text/html"/>
@@ -863,51 +908,6 @@
     <published>2026-01-26T12:00:00+01:00</published>
     <updated>2026-01-26T12:00:00+01:00</updated>
     <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja .</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>Sesja 2026-01-26 Rady Miasta Bytom</title>
-    <link href="https://bytom.radoskop.pl/sesja/2026-01-26/" rel="alternate" type="text/html"/>
-    <id>https://bytom.radoskop.pl/sesja/2026-01-26/#session</id>
-    <published>2026-01-26T12:00:00+01:00</published>
-    <updated>2026-01-26T12:00:00+01:00</updated>
-    <summary type="html">24 glosowan, 25 obecnych.</summary>
-    <category term="session"/>
-  </entry>
-  <entry>
-    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę nr XII/100/24 Rady Miejskiej w </title>
-    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_000_000/" rel="alternate" type="text/html"/>
-    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_000_000/#vote</id>
-    <published>2025-12-15T12:00:00+01:00</published>
-    <updated>2025-12-15T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 18, przeciw 0, wstrzym. 7). Sesja .</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wprowadzenie do porządku obrad projektu uchwały zmieniającej uchwałę budżetową miasta Bytomia na 202</title>
-    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_001_000/" rel="alternate" type="text/html"/>
-    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_001_000/#vote</id>
-    <published>2025-12-15T12:00:00+01:00</published>
-    <updated>2025-12-15T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 18, przeciw 0, wstrzym. 7). Sesja .</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>Podjęcie uchwały w sprawie wieloletniej prognozy finansowej miasta Bytomia na lata 2026-2046 (R-221)</title>
-    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_002_000/" rel="alternate" type="text/html"/>
-    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_002_000/#vote</id>
-    <published>2025-12-15T12:00:00+01:00</published>
-    <updated>2025-12-15T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 15, przeciw 7, wstrzym. 3). Sesja .</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>Podjęcie uchwały w sprawie uchwały budżetowej miasta Bytomia na 2026 rok (R-222) wraz z autopoprawką</title>
-    <link href="https://bytom.radoskop.pl/glosowanie/2025-12-15_003_000/" rel="alternate" type="text/html"/>
-    <id>https://bytom.radoskop.pl/glosowanie/2025-12-15_003_000/#vote</id>
-    <published>2025-12-15T12:00:00+01:00</published>
-    <updated>2025-12-15T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 15, przeciw 8, wstrzym. 2). Sesja .</summary>
     <category term="vote"/>
   </entry>
 </feed>

@@ -1,33 +1,33 @@
 [
   {
-    "cri": "1837",
+    "cri": "1841",
     "typ": "interpelacja",
     "rok": 2026,
     "kadencja": "2024-2029",
-    "radny": "Młynarek Christian",
-    "przedmiot": "zakupu defibrylatorów AED oraz ich montażu w autobusach miejskich.",
-    "data_wplywu": "2026-04-27",
-    "klub": "Klub Prawo i Sprawiedliwość",
-    "odpowiedz_status": "Nie udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1837_int_27_04_2026_Mlynarek.pdf/fd47d451-f890-7a28-18d3-9d73f027f6aa?t=1777364618488",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mlynarek-christian-interpelacja-nr-1837"
-  },
-  {
-    "cri": "1838",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Zioło-Pużuk Karolina",
-    "przedmiot": "poprawy bezpieczeństwa na ul. Prętowej w Wilanowie poprzez budowę progów zwalniających na odcinku od skrzyżowania z ul. Sągi do mostku na Wilanówce.",
+    "radny": "Szczepańska Marta",
+    "przedmiot": "utworzenia nowego zadania inwestycyjnego - zagospodarowania skweru im. Haliny Skibniewskiej na Żoliborzu.",
     "data_wplywu": "2026-04-27",
     "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
     "odpowiedz_status": "Nie udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1838_int_27_04_2026_Ziolo-Puzuk.pdf/05546c3b-3d81-533c-81b3-0331d422ac1f?t=1777364618730",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1841_int_27_04_2026_Szczepanska.pdf/ae6e6244-14f4-49ab-106b-a4eda7d906bb?t=1777453023539",
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/ziolo-puzuk-karolina-interpelacja-nr-1838"
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/szczepanska-marta-interpelacja-nr-1841"
+  },
+  {
+    "cri": "1842",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Zabłocki Wojciech",
+    "przedmiot": "planowanej inwestycji polegającej na budowie zespołu przedszkolno-żłobkowego przy ul. Ficowskiego na Żoliborzu.",
+    "data_wplywu": "2026-04-27",
+    "klub": "Klub Prawo i Sprawiedliwość",
+    "odpowiedz_status": "Nie udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1842_int_27_04_2026_Zablocki.pdf/04c3f95d-43d0-2d7f-4859-9c165e387f87?t=1777453023793",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/zablocki-wojciech-interpelacja-nr-1842"
   },
   {
     "cri": "1839",
@@ -39,10 +39,55 @@
     "data_wplywu": "2026-04-27",
     "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
     "odpowiedz_status": "Nie udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1839_int_27_04_2026_Ziolo-Puzuk.pdf/2d5eb024-5c48-2dc9-166a-adc6626955cc?t=1777364618943",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1839_int_27_04_2026_Ziolo-Puzuk.pdf/a8d9cca7-2aad-6a5d-9b6c-8c1837e90815?t=1777456299221",
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/ziolo-puzuk-karolina-interpelacja-nr-1839"
+  },
+  {
+    "cri": "1838",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Zioło-Pużuk Karolina",
+    "przedmiot": "poprawy bezpieczeństwa na ul. Prętowej w Wilanowie poprzez budowę progów zwalniających na odcinku od skrzyżowania z ul. Sągi do mostku na Wilanówce.",
+    "data_wplywu": "2026-04-27",
+    "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
+    "odpowiedz_status": "Nie udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1838_int_27_04_2026_Ziolo-Puzuk.pdf/9d94993e-0536-9d82-89ef-1390ca9e0455?t=1777456179142",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/ziolo-puzuk-karolina-interpelacja-nr-1838"
+  },
+  {
+    "cri": "1837",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Młynarek Christian",
+    "przedmiot": "zakupu defibrylatorów AED oraz ich montażu w autobusach miejskich.",
+    "data_wplywu": "2026-04-27",
+    "klub": "Klub Prawo i Sprawiedliwość",
+    "odpowiedz_status": "Nie udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1837_int_27_04_2026_Mlynarek.pdf/9157288c-2986-458b-0ddd-4ee31e785573?t=1777456081533",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mlynarek-christian-interpelacja-nr-1837"
+  },
+  {
+    "cri": "1840",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Szczepańska Marta",
+    "przedmiot": "utworzenia nowego zadania inwestycyjnego - rewitalizacji i zagospodarowania terenu Dolinki Służewieckiej, rowu Wolickiego oraz dostępnych ciągów komunikacyjnych.",
+    "data_wplywu": "2026-04-27",
+    "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
+    "odpowiedz_status": "Nie udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1840_int_27_04_2026_Szczepanska.pdf/9215f1ef-3c0a-b1aa-30ae-82ff226a7ad9?t=1777453023273",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/szczepanska-marta-interpelacja-nr-1840"
   },
   {
     "cri": "1836",
@@ -54,7 +99,7 @@
     "data_wplywu": "2026-04-24",
     "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
     "odpowiedz_status": "Nie udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1836_int_24_04_2026_Szczepanska.pdf/6621cd70-2788-fa57-5bcb-16a80b66db62?t=1777280554312",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1836_int_24_04_2026_Szczepanska.pdf/1349fc11-9327-ea18-4a97-e9e839bbe31c?t=1777456004111",
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/szczepanska-marta-interpelacja-nr-1836"
@@ -720,21 +765,6 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/kowalczyk-damian-interpelacja-nr-1791"
   },
   {
-    "cri": "1792",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Kowalczyk Damian",
-    "przedmiot": "niebezpiecznych zachowań użytkownika hulajnogi elektrycznej publikującego nagrania w mediach społecznościowych.",
-    "data_wplywu": "2026-04-07",
-    "klub": "Klub Prawo i Sprawiedliwość",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1792_int_07_04_2026_Kowalczyk.pdf/2eb2a606-a923-a700-847b-904c4f0912dd?t=1775636203671",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/kowalczyk-damian-interpelacja-nr-1792"
-  },
-  {
     "cri": "1788",
     "typ": "interpelacja",
     "rok": 2026,
@@ -748,6 +778,21 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/zablocki-wojciech-interpelacja-nr-1788"
+  },
+  {
+    "cri": "1792",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Kowalczyk Damian",
+    "przedmiot": "niebezpiecznych zachowań użytkownika hulajnogi elektrycznej publikującego nagrania w mediach społecznościowych.",
+    "data_wplywu": "2026-04-07",
+    "klub": "Klub Prawo i Sprawiedliwość",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1792_int_07_04_2026_Kowalczyk.pdf/2eb2a606-a923-a700-847b-904c4f0912dd?t=1775636203671",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/kowalczyk-damian-interpelacja-nr-1792"
   },
   {
     "cri": "1790",
@@ -853,36 +898,6 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mencwel-jan-interpelacja-nr-1785"
-  },
-  {
-    "cri": "1779",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Binkowski Maciej",
-    "przedmiot": "planowanej budowy stacji metra Muranów.",
-    "data_wplywu": "2026-03-31",
-    "klub": "Klub Prawo i Sprawiedliwość",
-    "odpowiedz_status": "Nie udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1779_int_31_03_2026_Binkowski.pdf/6dba057b-0e02-cdb3-b312-d4891a68976c?t=1775112724378",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/binkowski-maciej-interpelacja-nr-1779"
-  },
-  {
-    "cri": "1780",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Binkowski Maciej",
-    "przedmiot": "rezygnacji z montażu ozdobnych elementów na słupach trakcyjnych oraz ochrony estetyki warszawskich tras tramwajowych.",
-    "data_wplywu": "2026-03-31",
-    "klub": "Klub Prawo i Sprawiedliwość",
-    "odpowiedz_status": "Nie udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1780_int_31_03_2026_Binkowski.pdf/e134df1c-d032-2223-0f8c-05cc6d60d293?t=1775112724606",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/binkowski-maciej-interpelacja-nr-1780"
   },
   {
     "cri": "1775",
@@ -1018,6 +1033,36 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/zablocki-wojciech-interpelacja-nr-1782"
+  },
+  {
+    "cri": "1780",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Binkowski Maciej",
+    "przedmiot": "rezygnacji z montażu ozdobnych elementów na słupach trakcyjnych oraz ochrony estetyki warszawskich tras tramwajowych.",
+    "data_wplywu": "2026-03-31",
+    "klub": "Klub Prawo i Sprawiedliwość",
+    "odpowiedz_status": "Nie udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1780_int_31_03_2026_Binkowski.pdf/e134df1c-d032-2223-0f8c-05cc6d60d293?t=1775112724606",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/binkowski-maciej-interpelacja-nr-1780"
+  },
+  {
+    "cri": "1779",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Binkowski Maciej",
+    "przedmiot": "planowanej budowy stacji metra Muranów.",
+    "data_wplywu": "2026-03-31",
+    "klub": "Klub Prawo i Sprawiedliwość",
+    "odpowiedz_status": "Nie udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1779_int_31_03_2026_Binkowski.pdf/6dba057b-0e02-cdb3-b312-d4891a68976c?t=1775112724378",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/binkowski-maciej-interpelacja-nr-1779"
   },
   {
     "cri": "1771",
@@ -1470,21 +1515,6 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/figura-dariusz-interpelacja-nr-1741"
   },
   {
-    "cri": "1740",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Figura Dariusz",
-    "przedmiot": "przebudowy skrzyżowania ul. Mickiewicza z ul. Zajączka.",
-    "data_wplywu": "2026-03-17",
-    "klub": "Klub Prawo i Sprawiedliwość",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1740_int_17_03_2026_Figura.pdf/97394c6f-2f19-53dc-5e48-8dc979fe4e63?t=1773824284874",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/figura-dariusz-interpelacja-nr-1740"
-  },
-  {
     "cri": "1739",
     "typ": "interpelacja",
     "rok": 2026,
@@ -1498,6 +1528,21 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/figura-dariusz-interpelacja-nr-1739"
+  },
+  {
+    "cri": "1740",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Figura Dariusz",
+    "przedmiot": "przebudowy skrzyżowania ul. Mickiewicza z ul. Zajączka.",
+    "data_wplywu": "2026-03-17",
+    "klub": "Klub Prawo i Sprawiedliwość",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1740_int_17_03_2026_Figura.pdf/97394c6f-2f19-53dc-5e48-8dc979fe4e63?t=1773824284874",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/figura-dariusz-interpelacja-nr-1740"
   },
   {
     "cri": "1743",
@@ -1528,6 +1573,21 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/szczepanska-marta-interpelacja-nr-1744"
+  },
+  {
+    "cri": "Z1737",
+    "typ": "zapytanie",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Zabłocki Wojciech",
+    "przedmiot": "planowanej inwestycji przy Powązkowskiej 44a.",
+    "data_wplywu": "2026-03-16",
+    "klub": "Klub Prawo i Sprawiedliwość",
+    "odpowiedz_status": "Nie udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1737_zap_16_03_2026_Zablocki.pdf/fc329adb-9bb8-78b7-0e9f-c192cc3dfc40?t=1773750288785",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/zablocki-wojciech-zapytanie-nr-1737"
   },
   {
     "cri": "1733",
@@ -1575,21 +1635,6 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/zablocki-wojciech-interpelacja-nr-1736"
   },
   {
-    "cri": "Z1737",
-    "typ": "zapytanie",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Zabłocki Wojciech",
-    "przedmiot": "planowanej inwestycji przy Powązkowskiej 44a.",
-    "data_wplywu": "2026-03-16",
-    "klub": "Klub Prawo i Sprawiedliwość",
-    "odpowiedz_status": "Nie udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1737_zap_16_03_2026_Zablocki.pdf/fc329adb-9bb8-78b7-0e9f-c192cc3dfc40?t=1773750288785",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/zablocki-wojciech-zapytanie-nr-1737"
-  },
-  {
     "cri": "1734",
     "typ": "interpelacja",
     "rok": 2026,
@@ -1620,21 +1665,6 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mazurek-piotr-pis-interpelacja-nr-1719"
   },
   {
-    "cri": "1713",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Mazurek Piotr",
-    "przedmiot": "problemu mieszkaniowego kolejnej mieszkanki Pragi-Północ.",
-    "data_wplywu": "2026-03-12",
-    "klub": "Klub Prawo i Sprawiedliwość",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1713_int_12_03_2026_Mazurek.pdf/b65511ee-b364-099e-fe15-60a83a264873?t=1773401701851",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mazurek-piotr-pis-interpelacja-nr-1713"
-  },
-  {
     "cri": "1728",
     "typ": "interpelacja",
     "rok": 2026,
@@ -1648,6 +1678,21 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/szyszko-piotr-interpelacja-nr-1728"
+  },
+  {
+    "cri": "1721",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Mazurek Piotr",
+    "przedmiot": "problemu mieszkaniowego mieszkanki Pragi-Północ.",
+    "data_wplywu": "2026-03-12",
+    "klub": "Klub Prawo i Sprawiedliwość",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1721_int_12_03_2026_Mazurek.pdf/bc6d1a73-96b0-3f23-f2fe-e8de4557b4e6?t=1773401706982",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mazurek-piotr-pis-interpelacja-nr-1721"
   },
   {
     "cri": "1715",
@@ -1665,19 +1710,34 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mazurek-piotr-pis-interpelacja-nr-1715"
   },
   {
-    "cri": "1721",
+    "cri": "1713",
     "typ": "interpelacja",
     "rok": 2026,
     "kadencja": "2024-2029",
     "radny": "Mazurek Piotr",
-    "przedmiot": "problemu mieszkaniowego mieszkanki Pragi-Północ.",
+    "przedmiot": "problemu mieszkaniowego kolejnej mieszkanki Pragi-Północ.",
     "data_wplywu": "2026-03-12",
     "klub": "Klub Prawo i Sprawiedliwość",
     "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1721_int_12_03_2026_Mazurek.pdf/bc6d1a73-96b0-3f23-f2fe-e8de4557b4e6?t=1773401706982",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1713_int_12_03_2026_Mazurek.pdf/b65511ee-b364-099e-fe15-60a83a264873?t=1773401701851",
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mazurek-piotr-pis-interpelacja-nr-1721"
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mazurek-piotr-pis-interpelacja-nr-1713"
+  },
+  {
+    "cri": "1717",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Mazurek Piotr",
+    "przedmiot": "słupkozy na Pradze-Północ.",
+    "data_wplywu": "2026-03-12",
+    "klub": "Klub Prawo i Sprawiedliwość",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1717_int_12_03_2026_Mazurek.pdf/141c4341-bb1f-3956-7f81-18096800c9e8?t=1773401704426",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mazurek-piotr-pis-interpelacja-nr-1717"
   },
   {
     "cri": "1723",
@@ -1710,21 +1770,6 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/auksel-sekutowicz-anna-interpelacja-nr-1724"
   },
   {
-    "cri": "1717",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Mazurek Piotr",
-    "przedmiot": "słupkozy na Pradze-Północ.",
-    "data_wplywu": "2026-03-12",
-    "klub": "Klub Prawo i Sprawiedliwość",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1717_int_12_03_2026_Mazurek.pdf/141c4341-bb1f-3956-7f81-18096800c9e8?t=1773401704426",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mazurek-piotr-pis-interpelacja-nr-1717"
-  },
-  {
     "cri": "1718",
     "typ": "interpelacja",
     "rok": 2026,
@@ -1738,6 +1783,21 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mazurek-piotr-pis-interpelacja-nr-1718"
+  },
+  {
+    "cri": "1730",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Wertenstein-Żuławski Piotr",
+    "przedmiot": "rozszerzenia funkcji aplikacji 19115 o możliwość zgłaszania nieprawidłowo zaparkowanych hulajnóg elektrycznych.",
+    "data_wplywu": "2026-03-12",
+    "klub": "Klub Koalicja Obywatelska",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1730_int_12_03_2026_Wertenstein-Zulawski.pdf/6ea2dbf3-f7a4-0b3c-f18b-912da189404b?t=1773409966937",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/wertenstein-zulawski-piotr-interpelacja-nr-1730"
   },
   {
     "cri": "1731",
@@ -1768,21 +1828,6 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mazurek-piotr-pis-interpelacja-nr-1722"
-  },
-  {
-    "cri": "1730",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Wertenstein-Żuławski Piotr",
-    "przedmiot": "rozszerzenia funkcji aplikacji 19115 o możliwość zgłaszania nieprawidłowo zaparkowanych hulajnóg elektrycznych.",
-    "data_wplywu": "2026-03-12",
-    "klub": "Klub Koalicja Obywatelska",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1730_int_12_03_2026_Wertenstein-Zulawski.pdf/6ea2dbf3-f7a4-0b3c-f18b-912da189404b?t=1773409966937",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/wertenstein-zulawski-piotr-interpelacja-nr-1730"
   },
   {
     "cri": "1714",
@@ -2205,49 +2250,49 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1695"
   },
   {
-    "cri": "1687",
+    "cri": "1680",
     "typ": "interpelacja",
     "rok": 2026,
     "kadencja": "2024-2029",
-    "radny": "Borowska Agnieszka",
-    "przedmiot": "budowy żłobka przy ul. Kobiałka.",
+    "radny": "Zioło-Pużuk Karolina",
+    "przedmiot": "wyposażenia autobusów miejskich w apteczki pierwszej pomocy.",
     "data_wplywu": "2026-03-05",
-    "klub": "Klub Koalicja Obywatelska",
+    "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
     "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1687_int_05_03_2026_Borowska.pdf/374ab7ba-4821-47dd-bf99-be0c80cb5565?t=1772792278269",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1680_int_05_03_2026_Ziolo-Puzuk.pdf/dd481c55-0c1a-3a10-11b8-91cfa7f88df7?t=1772792276368",
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1687"
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/ziolo-puzuk-karolina-interpelacja-nr-1680"
   },
   {
-    "cri": "1693",
+    "cri": "1694",
     "typ": "interpelacja",
     "rok": 2026,
     "kadencja": "2024-2029",
     "radny": "Borowska Agnieszka",
-    "przedmiot": "budowy chodnika w ul. Kobiałka ze ścieżką rowerową.",
+    "przedmiot": "utworzenia miejsca pamięci na Szlaku Czarnym \"Polski Walczącej\" w rejonie Kobiałka na Białołęce.",
     "data_wplywu": "2026-03-05",
     "klub": "Klub Koalicja Obywatelska",
     "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1693_int_05_03_2026_Borowska.pdf/d89e8924-4dc1-14fa-c79a-630a6b57dc51?t=1772792279760",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1694_int_05_03_2026_Borowska.pdf/2f374725-5824-c1ff-250b-cfff470266d9?t=1772792279989",
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1693"
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1694"
   },
   {
-    "cri": "1689",
+    "cri": "1679",
     "typ": "interpelacja",
     "rok": 2026,
     "kadencja": "2024-2029",
-    "radny": "Borowska Agnieszka",
-    "przedmiot": "rozbudowy pętli autobusowej Olesin.",
+    "radny": "Diduszko-Zyglewska Agata",
+    "przedmiot": "zasad wyznaczania wysokości czynszu organizacjom działającym w domkach fińskich na Jazdowie.",
     "data_wplywu": "2026-03-05",
-    "klub": "Klub Koalicja Obywatelska",
+    "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
     "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1689_int_05_03_2026_Borowska.pdf/56043b08-ece3-8ee4-38d3-79f342c3e208?t=1772792278776",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1679_int_05_03_2026_Diduszko-Zyglewska_Smelka-Leszczynska.pdf/57d59ab6-8a92-5801-a6c7-2c6211e44400?t=1772792276106",
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1689"
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/grupa-radnych-interpelacja-nr-1679"
   },
   {
     "cri": "1693",

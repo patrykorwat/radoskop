@@ -5,11 +5,20 @@
   <link href="https://gdansk.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://gdansk.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://gdansk.radoskop.pl/</id>
-  <updated>2026-04-28T15:31:00Z</updated>
+  <updated>2026-04-30T10:39:25Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
+  <entry>
+    <title>Interpelacja: w sprawie funkcjonowania linii autobusowej nr 283.</title>
+    <link href="https://gdansk.radoskop.pl/profil/piotr-gierszewski/" rel="alternate" type="text/html"/>
+    <id>https://gdansk.radoskop.pl/profil/piotr-gierszewski/#interpelacja</id>
+    <published>2026-04-28T12:00:00+01:00</published>
+    <updated>2026-04-28T12:00:00+01:00</updated>
+    <summary type="html">Piotr Gierszewski. w sprawie funkcjonowania linii autobusowej nr 283.</summary>
+    <category term="interpelacja"/>
+  </entry>
   <entry>
     <title>Interpelacja: w sprawie stanu technicznego oraz potrzeby remontu sali gimnastycznej w Szkołach Okrętowych i Techni</title>
     <link href="https://gdansk.radoskop.pl/interpelacje/" rel="alternate" type="text/html"/>
@@ -170,15 +179,6 @@
     <published>2026-03-09T12:00:00+01:00</published>
     <updated>2026-03-09T12:00:00+01:00</updated>
     <summary type="html">Jolanta Banach. w sprawie realizacji placu zabaw na Biskupiej Górce</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: Dot. ustalenia właściciela płotu (ekranu dźwiękochłonnego) oraz decyzji co do jego naprawy lub rozb</title>
-    <link href="https://gdansk.radoskop.pl/profil/piotr-gierszewski/" rel="alternate" type="text/html"/>
-    <id>https://gdansk.radoskop.pl/profil/piotr-gierszewski/#interpelacja</id>
-    <published>2026-02-26T12:00:00+01:00</published>
-    <updated>2026-02-26T12:00:00+01:00</updated>
-    <summary type="html">Piotr Gierszewski. Dot. ustalenia właściciela płotu (ekranu dźwiękochłonnego) oraz decyzji co do jego naprawy lub rozbiórki</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

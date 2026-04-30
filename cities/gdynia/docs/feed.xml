@@ -5,18 +5,36 @@
   <link href="https://gdynia.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://gdynia.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://gdynia.radoskop.pl/</id>
-  <updated>2026-04-28T15:32:57Z</updated>
+  <updated>2026-04-30T10:41:29Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
   <entry>
-    <title>Interpelacja: Interpelacja w sprawie tunelu między Śródmieściem a Działkami Leśnymi.</title>
+    <title>Interpelacja: Interpelacja w sprawie odbioru dokumentacji projektowej dla zadania budowy nowego układu drogowego n</title>
+    <link href="https://gdynia.radoskop.pl/profil/anna-szpajer/" rel="alternate" type="text/html"/>
+    <id>https://gdynia.radoskop.pl/profil/anna-szpajer/#interpelacja</id>
+    <published>2026-04-29T12:00:00+01:00</published>
+    <updated>2026-04-29T12:00:00+01:00</updated>
+    <summary type="html">Anna Szpajer. Interpelacja w sprawie odbioru dokumentacji projektowej dla zadania budowy nowego układu drogowego na Kaczych Bukach.</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: Interpelacja w sprawie realizacji nowego połączenia drogowego ul.Witomińskiej, budowa i urządzanie t</title>
     <link href="https://gdynia.radoskop.pl/profil/lukasz-piesiewicz/" rel="alternate" type="text/html"/>
     <id>https://gdynia.radoskop.pl/profil/lukasz-piesiewicz/#interpelacja</id>
-    <published>2026-04-23T12:00:00+01:00</published>
-    <updated>2026-04-23T12:00:00+01:00</updated>
-    <summary type="html">Łukasz Piesiewicz. Interpelacja w sprawie tunelu między Śródmieściem a Działkami Leśnymi.</summary>
+    <published>2026-04-29T12:00:00+01:00</published>
+    <updated>2026-04-29T12:00:00+01:00</updated>
+    <summary type="html">Łukasz Piesiewicz. Interpelacja w sprawie realizacji nowego połączenia drogowego ul.Witomińskiej, budowa i urządzanie trasy rowerowej wzdłuż ulicy Śląskiej.</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: Interpelacja w sprawie oczyszczania miasta z zalegającego piachu na Działkach Leśnych.</title>
+    <link href="https://gdynia.radoskop.pl/profil/joanna-zielinska/" rel="alternate" type="text/html"/>
+    <id>https://gdynia.radoskop.pl/profil/joanna-zielinska/#interpelacja</id>
+    <published>2026-04-29T12:00:00+01:00</published>
+    <updated>2026-04-29T12:00:00+01:00</updated>
+    <summary type="html">Joanna Zielińska. Interpelacja w sprawie oczyszczania miasta z zalegającego piachu na Działkach Leśnych.</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -29,12 +47,12 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
-    <title>Interpelacja: Interpelacja w sprawie postępu realizacji zadania inwestycyjnego pn. „Budowa ul. Mosiężnej, Magnezjo</title>
+    <title>Interpelacja: Interpelacja w sprawie remontów mieszkań komunalnych przygotowywanych do ponownego zamieszkania w 20</title>
     <link href="https://gdynia.radoskop.pl/profil/jakub-ubych/" rel="alternate" type="text/html"/>
     <id>https://gdynia.radoskop.pl/profil/jakub-ubych/#interpelacja</id>
     <published>2026-04-21T12:00:00+01:00</published>
     <updated>2026-04-21T12:00:00+01:00</updated>
-    <summary type="html">Jakub Ubych. Interpelacja w sprawie postępu realizacji zadania inwestycyjnego pn. „Budowa ul. Mosiężnej, Magnezjowej i Cynkowej” - aktualizacja od października 202</summary>
+    <summary type="html">Jakub Ubych. Interpelacja w sprawie remontów mieszkań komunalnych przygotowywanych do ponownego zamieszkania w 2025 roku.</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -83,15 +101,6 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
-    <title>Interpelacja: Interpelacja w sprawie punktów odbioru zniszczonych tekstyliów.</title>
-    <link href="https://gdynia.radoskop.pl/profil/anna-szpajer/" rel="alternate" type="text/html"/>
-    <id>https://gdynia.radoskop.pl/profil/anna-szpajer/#interpelacja</id>
-    <published>2026-04-03T12:00:00+01:00</published>
-    <updated>2026-04-03T12:00:00+01:00</updated>
-    <summary type="html">Anna Szpajer. Interpelacja w sprawie punktów odbioru zniszczonych tekstyliów.</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
     <title>Interpelacja: Interpelacja w sprawie planowanej likwidacji linii W.</title>
     <link href="https://gdynia.radoskop.pl/profil/beata-horala/" rel="alternate" type="text/html"/>
     <id>https://gdynia.radoskop.pl/profil/beata-horala/#interpelacja</id>
@@ -107,15 +116,6 @@
     <published>2026-03-27T12:00:00+01:00</published>
     <updated>2026-03-27T12:00:00+01:00</updated>
     <summary type="html">Emilia Rogała. Interpelacja w sprawie planowanych zmian w organizacji komunikacji miejskiej.</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: Interpelacja w sprawie opieki nad Parkiem Centralnym.</title>
-    <link href="https://gdynia.radoskop.pl/profil/joanna-zielinska/" rel="alternate" type="text/html"/>
-    <id>https://gdynia.radoskop.pl/profil/joanna-zielinska/#interpelacja</id>
-    <published>2026-03-25T12:00:00+01:00</published>
-    <updated>2026-03-25T12:00:00+01:00</updated>
-    <summary type="html">Joanna Zielińska. Interpelacja w sprawie opieki nad Parkiem Centralnym.</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

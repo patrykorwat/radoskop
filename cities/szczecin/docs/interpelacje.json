@@ -1,11 +1,23 @@
 [
   {
+    "cri": "szczecin-2024-2029-1990",
+    "miasto": "szczecin",
+    "kadencja": "2024-2029",
+    "numer": "1990",
+    "typ": "zapytanie",
+    "tytul": "Dot. Toru Motocrossowego w Żydowcach",
+    "radny": "Romianowski Krzysztof",
+    "data_wplywu": "2026-04-29",
+    "data_odpowiedzi": null,
+    "url": "https://bip.um.szczecin.pl/chapter_131447.asp?soid=898B7365E2334DB29BD4EFC5493A90EF"
+  },
+  {
     "cri": "szczecin-2024-2029-1989",
     "miasto": "szczecin",
     "kadencja": "2024-2029",
     "numer": "1989",
     "typ": "interpelacja",
-    "tytul": "Dot. dalszego użytkowania hali pneumatycznej zniszczonej w roku 2023 na obiekcie przy ul. Twardowkiego",
+    "tytul": "Dot. dalszego użytkowania hali pneumatycznej zniszczonej w roku 2023 na obiekcie przy ul. Twardowskiego",
     "radny": "Słowik Przemysław",
     "data_wplywu": "2026-04-28",
     "data_odpowiedzi": null,
@@ -164,7 +176,7 @@
     "tytul": "Dot. edukacji prawnej młodzieży oraz współpracy szkół z Policją w Szczecinie",
     "radny": "Smoliński Dariusz",
     "data_wplywu": "2026-04-21",
-    "data_odpowiedzi": null,
+    "data_odpowiedzi": "2026-04-30",
     "url": "https://bip.um.szczecin.pl/chapter_131447.asp?soid=90E893D5A90F4160A70A08C3C5A24CFA"
   },
   {
@@ -632,7 +644,7 @@
     "tytul": "Dot. otoczenia Enea Areny - tryptyk cz. 3 z 3: Infrastrukturalna Ruina (Plac i oświetlenie)",
     "radny": "Duklanowski Marek",
     "data_wplywu": "2026-04-10",
-    "data_odpowiedzi": null,
+    "data_odpowiedzi": "2026-04-29",
     "url": "https://bip.um.szczecin.pl/chapter_131447.asp?soid=21BADAA5994142CB91D5A7AC1616E47A"
   },
   {
@@ -692,7 +704,7 @@
     "tytul": "Dot. utwardzenia nawierzchni i wyznaczenia miejsc parkingowych przy ul. Budziszyńskiej",
     "radny": "Szałabawka Julia",
     "data_wplywu": "2026-04-09",
-    "data_odpowiedzi": null,
+    "data_odpowiedzi": "2026-04-29",
     "url": "https://bip.um.szczecin.pl/chapter_131447.asp?soid=4DB041DB539D462AA81FA2FB1DFE8C2E"
   },
   {
@@ -848,7 +860,7 @@
     "tytul": "Dot. ochrony i zabezpieczenia Cegielni Lindkego",
     "radny": "Jeleniewska Zuzanna",
     "data_wplywu": "2026-04-02",
-    "data_odpowiedzi": null,
+    "data_odpowiedzi": "2026-04-29",
     "url": "https://bip.um.szczecin.pl/chapter_131447.asp?soid=D34F1C0FE5AC43EEA04FA177B438B0E3"
   },
   {

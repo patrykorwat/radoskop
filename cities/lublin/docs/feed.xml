@@ -5,7 +5,7 @@
   <link href="https://lublin.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://lublin.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://lublin.radoskop.pl/</id>
-  <updated>2026-04-28T14:23:30Z</updated>
+  <updated>2026-04-30T09:31:23Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
@@ -36,6 +36,24 @@
     <updated>2026-04-30T12:00:00+01:00</updated>
     <summary type="html">0 glosowan.</summary>
     <category term="session"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: Interpelacja w sprawie popularyzacji czytelnictwa wśród najmłodszych</title>
+    <link href="https://lublin.radoskop.pl/profil/marcin-jakobczyk/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/profil/marcin-jakobczyk/#interpelacja</id>
+    <published>2026-04-29T12:00:00+01:00</published>
+    <updated>2026-04-29T12:00:00+01:00</updated>
+    <summary type="html">Marcin Jakóbczyk. Interpelacja w sprawie popularyzacji czytelnictwa wśród najmłodszych</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: Interpelacja w sprawie rozszerzenia zwolnienia z części opłaty za gospodarowanie odpadami komunalnym</title>
+    <link href="https://lublin.radoskop.pl/profil/marcin-wronski/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/profil/marcin-wronski/#interpelacja</id>
+    <published>2026-04-27T12:00:00+01:00</published>
+    <updated>2026-04-27T12:00:00+01:00</updated>
+    <summary type="html">Marcin Wroński. Interpelacja w sprawie rozszerzenia zwolnienia z części opłaty za gospodarowanie odpadami komunalnymi na właścicieli lokali w budynkach wielorodzinnyc</summary>
+    <category term="interpelacja"/>
   </entry>
   <entry>
     <title>Interpelacja: Interpelacja w sprawie braku miejsc pochówku oraz wysokich kosztów usług cmentarnych na terenie Mias</title>
@@ -71,15 +89,6 @@
     <published>2026-04-22T12:00:00+01:00</published>
     <updated>2026-04-22T12:00:00+01:00</updated>
     <summary type="html">Elżbieta Boczkowska. Interpelacja w sprawie remontu podjazdu dla wózków przy ul. Nowowiejskiego 2</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: Interpelacja w sprawie wymiany murawy na stadionie Motor Lublin Arena</title>
-    <link href="https://lublin.radoskop.pl/profil/marcin-jakobczyk/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/profil/marcin-jakobczyk/#interpelacja</id>
-    <published>2026-04-14T12:00:00+01:00</published>
-    <updated>2026-04-14T12:00:00+01:00</updated>
-    <summary type="html">Marcin Jakóbczyk. Interpelacja w sprawie wymiany murawy na stadionie Motor Lublin Arena</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -557,15 +566,6 @@
     <published>2026-03-09T12:00:00+01:00</published>
     <updated>2026-03-09T12:00:00+01:00</updated>
     <summary type="html">Radosław Skrzetuski. Interpelacja w sprawie budowy chodnika przy ul. Wyżynnej</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: Interpelacja w sprawie dalszego przeznaczenia budynku dawnego Domu Kultury w Głusku w związku ze zbl</title>
-    <link href="https://lublin.radoskop.pl/profil/marcin-wronski/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/profil/marcin-wronski/#interpelacja</id>
-    <published>2026-03-02T12:00:00+01:00</published>
-    <updated>2026-03-02T12:00:00+01:00</updated>
-    <summary type="html">Marcin Wroński. Interpelacja w sprawie dalszego przeznaczenia budynku dawnego Domu Kultury w Głusku w związku ze zbliżającym się terminem wygaśnięciem umowy użyczenia</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
