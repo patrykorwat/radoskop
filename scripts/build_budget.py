@@ -3,6 +3,7 @@
 import json
 import re
 import os
+from datetime import datetime, timezone
 
 DOCS_DIR = os.path.join(os.path.dirname(__file__), '..', 'docs')
 
@@ -105,6 +106,7 @@ for kad in data['kadencje']:
 
 # Build final structure
 budget_data = {
+    "scraped_at": datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
     "totals": BUDGET_TOTALS,
     "categories": {str(y): cats for y, cats in categories_by_year.items()},
     "votes": {str(y): votes for y, votes in sorted(budget_votes.items())},

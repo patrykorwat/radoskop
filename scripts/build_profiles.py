@@ -9,6 +9,7 @@ Usage:
 import json
 import sys
 import os
+from datetime import datetime, timezone
 
 # ── Wikipedia data: X kadencja (2024-2029) ─────────────────────────────
 
@@ -710,6 +711,7 @@ def build_profiles(data_json_path, out_path, activity_path=None):
             profiles.append(profile)
 
     output = {
+        "scraped_at": datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "profiles": profiles,
         "total": len(profiles),
     }

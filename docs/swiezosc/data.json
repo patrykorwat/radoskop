@@ -1,0 +1,1089 @@
+{
+  "generated_at": "2026-05-03T21:32:04Z",
+  "schema_version": 1,
+  "sources": [
+    {
+      "id": "kadencja",
+      "label": "Głosowania",
+      "description": "Sesje, głosowania, frekwencja, kadencja {id}"
+    },
+    {
+      "id": "interpelacje",
+      "label": "Interpelacje",
+      "description": "Interpelacje radnych"
+    },
+    {
+      "id": "aktualnosci",
+      "label": "Aktualności",
+      "description": "Feed sesji i aktywności"
+    },
+    {
+      "id": "profiles",
+      "label": "Profile",
+      "description": "Profile radnych z biogramami"
+    },
+    {
+      "id": "budget",
+      "label": "Budżet",
+      "description": "Wydatki, dochody, plan finansowy"
+    }
+  ],
+  "cities": [
+    {
+      "slug": "bialystok",
+      "name": "Białystok",
+      "url": "https://bialystok.radoskop.pl",
+      "bip_url": "https://www.bip.bialystok.pl/",
+      "voivodeship": "podlaskie",
+      "population": 292000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-04-26T13:06:53Z",
+          "source": "mtime",
+          "mtime": "2026-04-26T13:06:53Z",
+          "size_bytes": 327763,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:46:59Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:46:59Z",
+          "size_bytes": 391823,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-04-26T13:06:52Z",
+          "source": "mtime",
+          "mtime": "2026-04-26T13:06:52Z",
+          "size_bytes": 142451,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-25T06:43:56Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T06:43:56Z",
+          "size_bytes": 19098,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": true,
+          "scraped_at": "2026-03-14T08:37:16Z",
+          "source": "mtime",
+          "mtime": "2026-03-14T08:37:16Z",
+          "size_bytes": 2,
+          "filename": "budget.json"
+        }
+      }
+    },
+    {
+      "slug": "bielsko-biala",
+      "name": "Bielsko-Biała",
+      "url": "https://bielsko-biala.radoskop.pl",
+      "bip_url": "https://bip.bielsko-biala.pl/",
+      "voivodeship": "śląskie",
+      "population": 166000,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-04-25T16:09:47Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T16:09:47Z",
+          "size_bytes": 2,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-26T20:28:00Z",
+          "source": "mtime",
+          "mtime": "2026-04-26T20:28:00Z",
+          "size_bytes": 20,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "bydgoszcz",
+      "name": "Bydgoszcz",
+      "url": "https://bydgoszcz.radoskop.pl",
+      "bip_url": "https://bip.um.bydgoszcz.pl/",
+      "voivodeship": "kujawsko-pomorskie",
+      "population": 336000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-04-14T12:32:47Z",
+          "source": "mtime",
+          "mtime": "2026-04-14T12:32:47Z",
+          "size_bytes": 193840,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:46:59Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:46:59Z",
+          "size_bytes": 418306,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:46:59Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:46:59Z",
+          "size_bytes": 76722,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-12T08:58:53Z",
+          "source": "mtime",
+          "mtime": "2026-04-12T08:58:53Z",
+          "size_bytes": 19597,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": true,
+          "scraped_at": "2026-03-14T08:37:16Z",
+          "source": "mtime",
+          "mtime": "2026-03-14T08:37:16Z",
+          "size_bytes": 2,
+          "filename": "budget.json"
+        }
+      }
+    },
+    {
+      "slug": "bytom",
+      "name": "Bytom",
+      "url": "https://bytom.radoskop.pl",
+      "bip_url": "https://www.bip.um.bytom.pl/",
+      "voivodeship": "śląskie",
+      "population": 150000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:46:59Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:46:59Z",
+          "size_bytes": 295113,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-04-25T16:09:47Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T16:09:47Z",
+          "size_bytes": 2,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:46:59Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:46:59Z",
+          "size_bytes": 131007,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 16722,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "czestochowa",
+      "name": "Częstochowa",
+      "url": "https://czestochowa.radoskop.pl",
+      "bip_url": "https://bip.czestochowa.pl",
+      "voivodeship": "śląskie",
+      "population": 213000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-04-14T19:07:06Z",
+          "source": "mtime",
+          "mtime": "2026-04-14T19:07:06Z",
+          "size_bytes": 100,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "gdansk",
+      "name": "Gdańsk",
+      "url": "https://gdansk.radoskop.pl",
+      "bip_url": "https://bip.gdansk.pl/rada-miasta",
+      "voivodeship": "pomorskie",
+      "population": 471000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-03-21T07:25:54Z",
+          "source": "mtime",
+          "mtime": "2026-03-21T07:25:54Z",
+          "size_bytes": 455349,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 3398064,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-05-03T11:47:05Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T11:47:05Z",
+          "size_bytes": 137803,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-19T17:21:06Z",
+          "source": "mtime",
+          "mtime": "2026-04-19T17:21:06Z",
+          "size_bytes": 190222,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": true,
+          "scraped_at": "2026-03-09T07:25:01Z",
+          "source": "mtime",
+          "mtime": "2026-03-09T07:25:01Z",
+          "size_bytes": 40990,
+          "filename": "budget.json"
+        }
+      }
+    },
+    {
+      "slug": "gdynia",
+      "name": "Gdynia",
+      "url": "https://gdynia.radoskop.pl",
+      "bip_url": "https://bip.um.gdynia.pl",
+      "voivodeship": "pomorskie",
+      "population": 246000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-03-21T07:25:54Z",
+          "source": "mtime",
+          "mtime": "2026-03-21T07:25:54Z",
+          "size_bytes": 464763,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 540899,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 141148,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-03-18T10:56:17Z",
+          "source": "mtime",
+          "mtime": "2026-03-18T10:56:17Z",
+          "size_bytes": 128712,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": true,
+          "scraped_at": "2026-03-09T07:25:01Z",
+          "source": "mtime",
+          "mtime": "2026-03-09T07:25:01Z",
+          "size_bytes": 15084,
+          "filename": "budget.json"
+        }
+      }
+    },
+    {
+      "slug": "gliwice",
+      "name": "Gliwice",
+      "url": "https://gliwice.radoskop.pl",
+      "bip_url": "https://bip.gliwice.eu/",
+      "voivodeship": "śląskie",
+      "population": 165000,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-04-25T16:09:47Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T16:09:47Z",
+          "size_bytes": 2,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-26T20:28:00Z",
+          "source": "mtime",
+          "mtime": "2026-04-26T20:28:00Z",
+          "size_bytes": 20,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "katowice",
+      "name": "Katowice",
+      "url": "https://katowice.radoskop.pl",
+      "bip_url": "https://bip.katowice.eu/Rada_Miasta/",
+      "voivodeship": "śląskie",
+      "population": 286000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-04-30T09:12:11Z",
+          "source": "mtime",
+          "mtime": "2026-04-30T09:12:11Z",
+          "size_bytes": 516986,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 893834,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 145598,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-30T09:12:11Z",
+          "source": "mtime",
+          "mtime": "2026-04-30T09:12:11Z",
+          "size_bytes": 78388,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": true,
+          "scraped_at": "2026-03-14T08:37:16Z",
+          "source": "mtime",
+          "mtime": "2026-03-14T08:37:16Z",
+          "size_bytes": 2,
+          "filename": "budget.json"
+        }
+      }
+    },
+    {
+      "slug": "kielce",
+      "name": "Kielce",
+      "url": "https://kielce.radoskop.pl",
+      "bip_url": "https://www.bip.kielce.eu/",
+      "voivodeship": "świętokrzyskie",
+      "population": 190000,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-04-25T16:09:47Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T16:09:47Z",
+          "size_bytes": 2,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "krakow",
+      "name": "Kraków",
+      "url": "https://krakow.radoskop.pl",
+      "bip_url": "https://www.bip.krakow.pl/?bip_id=1&mmi=26458",
+      "voivodeship": "małopolskie",
+      "population": 800000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-03-21T07:25:54Z",
+          "source": "mtime",
+          "mtime": "2026-03-21T07:25:54Z",
+          "size_bytes": 945973,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 1803381,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-04-30T09:12:11Z",
+          "source": "mtime",
+          "mtime": "2026-04-30T09:12:11Z",
+          "size_bytes": 146421,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-03-18T12:04:49Z",
+          "source": "mtime",
+          "mtime": "2026-03-18T12:04:49Z",
+          "size_bytes": 180643,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": true,
+          "scraped_at": "2026-03-09T07:25:01Z",
+          "source": "mtime",
+          "mtime": "2026-03-09T07:25:01Z",
+          "size_bytes": 14761,
+          "filename": "budget.json"
+        }
+      }
+    },
+    {
+      "slug": "lodz",
+      "name": "Łódź",
+      "url": "https://lodz.radoskop.pl",
+      "bip_url": "https://bip.uml.lodz.pl/samorzad/rada-miejska/",
+      "voivodeship": "łódzkie",
+      "population": 664000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-04-25T06:43:59Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T06:43:59Z",
+          "size_bytes": 1422596,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-03-22T23:52:38Z",
+          "source": "mtime",
+          "mtime": "2026-03-22T23:52:38Z",
+          "size_bytes": 2,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-04-25T06:43:58Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T06:43:58Z",
+          "size_bytes": 137767,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-25T06:43:59Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T06:43:59Z",
+          "size_bytes": 534291,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": true,
+          "scraped_at": "2026-03-14T08:37:16Z",
+          "source": "mtime",
+          "mtime": "2026-03-14T08:37:16Z",
+          "size_bytes": 2,
+          "filename": "budget.json"
+        }
+      }
+    },
+    {
+      "slug": "lublin",
+      "name": "Lublin",
+      "url": "https://lublin.radoskop.pl",
+      "bip_url": "https://bip.lublin.eu/rada-miasta-lublin/",
+      "voivodeship": "lubelskie",
+      "population": 330000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-04-25T06:44:00Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T06:44:00Z",
+          "size_bytes": 945487,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 830913,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 134907,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-14T12:29:59Z",
+          "source": "mtime",
+          "mtime": "2026-04-14T12:29:59Z",
+          "size_bytes": 728378,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": true,
+          "scraped_at": "2026-03-14T08:37:16Z",
+          "source": "mtime",
+          "mtime": "2026-03-14T08:37:16Z",
+          "size_bytes": 2,
+          "filename": "budget.json"
+        }
+      }
+    },
+    {
+      "slug": "olsztyn",
+      "name": "Olsztyn",
+      "url": "https://olsztyn.radoskop.pl",
+      "bip_url": "https://bip.olsztyn.eu/",
+      "voivodeship": "warmińsko-mazurskie",
+      "population": 167000,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-04-25T16:09:47Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T16:09:47Z",
+          "size_bytes": 2,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-26T20:28:00Z",
+          "source": "mtime",
+          "mtime": "2026-04-26T20:28:00Z",
+          "size_bytes": 20,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "poznan",
+      "name": "Poznań",
+      "url": "https://poznan.radoskop.pl",
+      "bip_url": "https://bip.poznan.pl/bip/sesje/",
+      "voivodeship": "wielkopolskie",
+      "population": 535000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-03-21T07:25:55Z",
+          "source": "mtime",
+          "mtime": "2026-03-21T07:25:55Z",
+          "size_bytes": 552951,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 393045,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 116919,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-03-18T13:04:58Z",
+          "source": "mtime",
+          "mtime": "2026-03-18T13:04:58Z",
+          "size_bytes": 119834,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": true,
+          "scraped_at": "2026-03-09T07:25:01Z",
+          "source": "mtime",
+          "mtime": "2026-03-09T07:25:01Z",
+          "size_bytes": 10107,
+          "filename": "budget.json"
+        }
+      }
+    },
+    {
+      "slug": "radom",
+      "name": "Radom",
+      "url": "https://radom.radoskop.pl",
+      "bip_url": "https://www.bip.radom.pl/",
+      "voivodeship": "mazowieckie",
+      "population": 213000,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-04-25T16:09:47Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T16:09:47Z",
+          "size_bytes": 2,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "rzeszow",
+      "name": "Rzeszów",
+      "url": "https://rzeszow.radoskop.pl",
+      "bip_url": "https://bip.erzeszow.pl/",
+      "voivodeship": "podkarpackie",
+      "population": 194000,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-04-25T16:09:47Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T16:09:47Z",
+          "size_bytes": 2,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-26T20:28:00Z",
+          "source": "mtime",
+          "mtime": "2026-04-26T20:28:00Z",
+          "size_bytes": 20,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "sopot",
+      "name": "Sopot",
+      "url": "https://sopot.radoskop.pl",
+      "bip_url": "https://bip.sopot.pl",
+      "voivodeship": "pomorskie",
+      "population": 35000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-04-30T09:12:11Z",
+          "source": "mtime",
+          "mtime": "2026-04-30T09:12:11Z",
+          "size_bytes": 434326,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 228880,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 132445,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-30T09:12:11Z",
+          "source": "mtime",
+          "mtime": "2026-04-30T09:12:11Z",
+          "size_bytes": 178787,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": true,
+          "scraped_at": "2026-03-09T07:25:01Z",
+          "source": "mtime",
+          "mtime": "2026-03-09T07:25:01Z",
+          "size_bytes": 9380,
+          "filename": "budget.json"
+        }
+      }
+    },
+    {
+      "slug": "szczecin",
+      "name": "Szczecin",
+      "url": "https://szczecin.radoskop.pl",
+      "bip_url": "https://bip.um.szczecin.pl/chapter_11124.asp",
+      "voivodeship": "zachodniopomorskie",
+      "population": 395000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-04-28T06:02:22Z",
+          "source": "mtime",
+          "mtime": "2026-04-28T06:02:22Z",
+          "size_bytes": 400892,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 868882,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 143307,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-28T06:02:22Z",
+          "source": "mtime",
+          "mtime": "2026-04-28T06:02:22Z",
+          "size_bytes": 96838,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": true,
+          "scraped_at": "2026-03-14T08:37:16Z",
+          "source": "mtime",
+          "mtime": "2026-03-14T08:37:16Z",
+          "size_bytes": 2,
+          "filename": "budget.json"
+        }
+      }
+    },
+    {
+      "slug": "torun",
+      "name": "Toruń",
+      "url": "https://torun.radoskop.pl",
+      "bip_url": "https://www.bip.torun.pl/",
+      "voivodeship": "kujawsko-pomorskie",
+      "population": 196000,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-04-25T16:09:47Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T16:09:47Z",
+          "size_bytes": 2,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-26T20:28:00Z",
+          "source": "mtime",
+          "mtime": "2026-04-26T20:28:00Z",
+          "size_bytes": 20,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "tychy",
+      "name": "Tychy",
+      "url": "https://tychy.radoskop.pl",
+      "bip_url": "https://bip.umtychy.pl/",
+      "voivodeship": "śląskie",
+      "population": 123000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-04-26T13:06:57Z",
+          "source": "mtime",
+          "mtime": "2026-04-26T13:06:57Z",
+          "size_bytes": 262788,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-04-25T16:09:47Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T16:09:47Z",
+          "size_bytes": 2,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-04-26T13:06:57Z",
+          "source": "mtime",
+          "mtime": "2026-04-26T13:06:57Z",
+          "size_bytes": 111778,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-25T16:09:47Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T16:09:47Z",
+          "size_bytes": 18139,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "warszawa",
+      "name": "Warszawa",
+      "url": "https://warszawa.radoskop.pl",
+      "bip_url": "https://bip.warszawa.pl/sesje-rady-m.st.-warszawy",
+      "voivodeship": "mazowieckie",
+      "population": 1860000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-04-28T14:06:15Z",
+          "source": "mtime",
+          "mtime": "2026-04-28T14:06:15Z",
+          "size_bytes": 2119619,
+          "filename": "kadencja-2018-2024.json",
+          "kadencja_id": "2018-2024"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 1238416,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 140388,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-28T14:06:15Z",
+          "source": "mtime",
+          "mtime": "2026-04-28T14:06:15Z",
+          "size_bytes": 1488758,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": true,
+          "scraped_at": "2026-03-09T07:25:01Z",
+          "source": "mtime",
+          "mtime": "2026-03-09T07:25:01Z",
+          "size_bytes": 22588,
+          "filename": "budget.json"
+        }
+      }
+    },
+    {
+      "slug": "wroclaw",
+      "name": "Wrocław",
+      "url": "https://wroclaw.radoskop.pl",
+      "bip_url": "https://bip.um.wroc.pl/artykuly/769/sesje-rady",
+      "voivodeship": "dolnośląskie",
+      "population": 643000,
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-03-21T07:25:56Z",
+          "source": "mtime",
+          "mtime": "2026-03-21T07:25:56Z",
+          "size_bytes": 310947,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 760372,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": true,
+          "scraped_at": "2026-05-03T09:47:00Z",
+          "source": "mtime",
+          "mtime": "2026-05-03T09:47:00Z",
+          "size_bytes": 120329,
+          "filename": "aktualnosci.json"
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-03-18T12:06:11Z",
+          "source": "mtime",
+          "mtime": "2026-03-18T12:06:11Z",
+          "size_bytes": 140433,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": true,
+          "scraped_at": "2026-03-09T07:25:01Z",
+          "source": "mtime",
+          "mtime": "2026-03-09T07:25:01Z",
+          "size_bytes": 10776,
+          "filename": "budget.json"
+        }
+      }
+    },
+    {
+      "slug": "zabrze",
+      "name": "Zabrze",
+      "url": "https://zabrze.radoskop.pl",
+      "bip_url": "https://bip.um.zabrze.pl/",
+      "voivodeship": "śląskie",
+      "population": 159000,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-04-25T16:09:47Z",
+          "source": "mtime",
+          "mtime": "2026-04-25T16:09:47Z",
+          "size_bytes": 2,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": true,
+          "scraped_at": "2026-04-26T20:28:00Z",
+          "source": "mtime",
+          "mtime": "2026-04-26T20:28:00Z",
+          "size_bytes": 20,
+          "filename": "profiles.json"
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Świeżość danych — Radoskop</title>
+<meta name="description" content="Kiedy ostatnio aktualizowaliśmy dane dla każdego miasta i każdego źródła: głosowania, interpelacje, aktualności, profile, budżet, komisje.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://radoskop.pl/swiezosc/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Świeżość danych — Radoskop">
+<meta property="og:description" content="Kiedy ostatnio aktualizowaliśmy dane dla każdego miasta i każdego źródła.">
+<meta property="og:url" content="https://radoskop.pl/swiezosc/">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="Radoskop">
+<meta property="og:image" content="https://radoskop.pl/og-image.png">
+<style>
+:root {
+  --bg:#f8f9fa; --surface:#ffffff; --border:#e2e5e9; --text:#1a1d27; --muted:#6b7280;
+  --accent:#4f46e5; --green:#15803d; --yellow:#ca8a04; --orange:#ea580c; --red:#dc2626;
+  --green-bg:rgba(22,163,74,.10); --yellow-bg:rgba(202,138,4,.10);
+  --orange-bg:rgba(234,88,12,.10); --red-bg:rgba(220,38,38,.10); --gray-bg:rgba(107,114,128,.10);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh;display:flex;flex-direction:column;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+.container{max-width:1200px;margin:0 auto;padding:20px;width:100%;flex:1;}
+.crumbs{font-size:.82rem;color:var(--muted);margin-bottom:16px;}
+.crumbs a{color:var(--muted);}
+.crumbs a:hover{color:var(--accent);text-decoration:underline;}
+.hero{padding:24px 0 12px;}
+.hero h1{font-size:2.1rem;font-weight:700;margin-bottom:8px;}
+.hero h1 span{color:var(--accent);}
+.hero p.lead{color:var(--muted);font-size:1.02rem;max-width:760px;}
+.meta-row{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;color:var(--muted);font-size:.86rem;}
+.meta-row strong{color:var(--text);font-weight:600;}
+
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0 16px;}
+.legend-item{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:6px 12px;font-size:.8rem;color:var(--muted);}
+.legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.legend-dot.fresh{background:var(--green);}
+.legend-dot.recent{background:var(--yellow);}
+.legend-dot.aging{background:var(--orange);}
+.legend-dot.stale{background:var(--red);}
+.legend-dot.missing{background:var(--muted);}
+
+.controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
+.controls input[type=text],.controls select{padding:9px 14px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:.9rem;font-family:inherit;outline:none;transition:border-color .2s;}
+.controls input[type=text]:focus,.controls select:focus{border-color:var(--accent);}
+.controls .count{color:var(--muted);font-size:.85rem;margin-left:auto;}
+
+.matrix-wrap{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.matrix-scroll{overflow-x:auto;}
+table.matrix{width:100%;border-collapse:collapse;font-size:.88rem;min-width:760px;}
+table.matrix th,table.matrix td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--border);}
+table.matrix thead th{background:#f3f4f6;font-weight:600;font-size:.78rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted);position:sticky;top:0;z-index:2;cursor:pointer;user-select:none;}
+table.matrix thead th:hover{color:var(--text);background:#eef0f3;}
+table.matrix thead th.sorted{color:var(--accent);}
+table.matrix thead th.sorted::after{content:" \25BE";font-size:.7rem;}
+table.matrix thead th.sorted.asc::after{content:" \25B4";}
+table.matrix tbody tr:hover{background:#fafbfc;}
+table.matrix tbody tr:last-child td{border-bottom:none;}
+.city-cell{display:flex;flex-direction:column;gap:2px;}
+.city-cell a{font-weight:600;color:var(--text);}
+.city-cell a:hover{color:var(--accent);}
+.city-meta{font-size:.74rem;color:var(--muted);}
+.cell-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font-size:.78rem;font-weight:500;white-space:nowrap;}
+.cell-pill.fresh{background:var(--green-bg);color:var(--green);}
+.cell-pill.recent{background:var(--yellow-bg);color:var(--yellow);}
+.cell-pill.aging{background:var(--orange-bg);color:var(--orange);}
+.cell-pill.stale{background:var(--red-bg);color:var(--red);}
+.cell-pill.missing{background:var(--gray-bg);color:var(--muted);font-style:italic;}
+.cell-pill .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.cell-pill.fresh .dot{background:var(--green);}
+.cell-pill.recent .dot{background:var(--yellow);}
+.cell-pill.aging .dot{background:var(--orange);}
+.cell-pill.stale .dot{background:var(--red);}
+.cell-pill.missing .dot{background:var(--muted);}
+
+.about{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:22px 26px;margin-top:32px;}
+.about h3{font-size:1.05rem;margin-bottom:10px;}
+.about p{color:var(--muted);font-size:.9rem;margin-bottom:8px;}
+.about ul{margin:6px 0 8px 22px;color:var(--muted);font-size:.9rem;}
+.about ul li{margin-bottom:4px;}
+
+.empty,.loading{padding:40px;text-align:center;color:var(--muted);font-size:.95rem;}
+.error{padding:24px;background:#fef2f2;border:1px solid #fecaca;border-radius:12px;color:#991b1b;font-size:.9rem;}
+
+footer{background:#1f2937;color:#9ca3af;padding:18px 0;text-align:center;font-size:.85rem;margin-top:auto;}
+footer a{color:#93c5fd;}
+
+@media (max-width:720px){
+  .hero h1{font-size:1.6rem;}
+  .container{padding:14px;}
+  table.matrix{font-size:.82rem;}
+  table.matrix th,table.matrix td{padding:9px 10px;}
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <p class="crumbs"><a href="/">Strona główna</a> &rsaquo; Świeżość danych</p>
+
+  <section class="hero">
+    <h1><span>Świeżość</span> danych</h1>
+    <p class="lead">Kiedy ostatnio odświeżyliśmy dane dla każdego miasta i każdego źródła. Pipeline scrape uruchamia się dwa razy w tygodniu (pon i czw o 03:00 CET). Niektóre źródła aktualizują się rzadziej, np. budżet (rocznie) albo komisje (po zmianach składu).</p>
+    <div class="meta-row">
+      <span>Ostatnie odświeżenie manifestu: <strong id="generated-at">—</strong></span>
+      <span>Liczba miast: <strong id="city-count">—</strong></span>
+      <span>Liczba źródeł: <strong id="source-count">—</strong></span>
+    </div>
+  </section>
+
+  <div class="legend">
+    <span class="legend-item"><span class="legend-dot fresh"></span>do 7 dni</span>
+    <span class="legend-item"><span class="legend-dot recent"></span>8 do 30 dni</span>
+    <span class="legend-item"><span class="legend-dot aging"></span>31 do 90 dni</span>
+    <span class="legend-item"><span class="legend-dot stale"></span>ponad 90 dni</span>
+    <span class="legend-item"><span class="legend-dot missing"></span>brak źródła</span>
+  </div>
+
+  <div class="controls">
+    <input type="text" id="filter-input" placeholder="Filtruj po mieście (Gdańsk, Warszawa, ...)" autocomplete="off">
+    <select id="sort-select">
+      <option value="name">Sortuj: alfabetycznie</option>
+      <option value="freshest">Sortuj: od najświeższych</option>
+      <option value="stalest">Sortuj: od najstarszych</option>
+    </select>
+    <span class="count" id="filter-count"></span>
+  </div>
+
+  <div class="matrix-wrap">
+    <div class="matrix-scroll">
+      <div id="matrix-host" class="loading">Wczytuję manifest...</div>
+    </div>
+  </div>
+
+  <section class="about">
+    <h3>Jak to działa?</h3>
+    <p>Każdy znacznik czasu pochodzi z pola <code>scraped_at</code> w pliku JSON, jeśli skrypt scrape go zapisuje, albo z czasu modyfikacji pliku jako fallback. Mtime jest wiarygodne w naszym pipeline NAS, bo plik dostaje świeży mtime tylko wtedy, gdy scrape go nadpisał.</p>
+    <p>Pełny manifest w postaci JSON: <a href="data.json">/swiezosc/data.json</a>. Zawiera dla każdego miasta i każdego źródła: znacznik czasu, rozmiar pliku, źródło znacznika (json_field albo mtime), nazwę pliku.</p>
+    <p>Źródła danych:</p>
+    <ul>
+      <li><strong>Głosowania:</strong> bieżący plik kadencja-{id}.json (sesje, głosowania imienne, frekwencja).</li>
+      <li><strong>Interpelacje:</strong> interpelacje radnych z BIP albo systemu eSesja.</li>
+      <li><strong>Aktualności:</strong> feed sesji i aktywności miasta, generowany przez generate_feed.py.</li>
+      <li><strong>Profile:</strong> profile radnych z biogramami z Wikipedii i metrykami głosowań.</li>
+      <li><strong>Budżet:</strong> wydatki, dochody, plan finansowy. Aktualizowane rocznie.</li>
+    </ul>
+  </section>
+</div>
+
+<footer>
+  <p>Radoskop &middot; <a href="/">Strona główna</a> &middot; <a href="https://github.com/radoskoppl/radoskop">GitHub</a> &middot; <a href="/sitemap.xml">Sitemap</a> &middot; AGPL-3.0</p>
+</footer>
+
+<script>
+const FRESH_DAYS = 7;
+const RECENT_DAYS = 30;
+const AGING_DAYS = 90;
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+
+function ageDays(iso){
+  if(!iso) return null;
+  const t = Date.parse(iso);
+  if(isNaN(t)) return null;
+  return Math.floor((Date.now()-t)/(86400000));
+}
+
+function classifyAge(days){
+  if(days==null) return 'missing';
+  if(days<=FRESH_DAYS) return 'fresh';
+  if(days<=RECENT_DAYS) return 'recent';
+  if(days<=AGING_DAYS) return 'aging';
+  return 'stale';
+}
+
+function formatRelative(days){
+  if(days==null) return 'brak';
+  if(days===0) return 'dzisiaj';
+  if(days===1) return 'wczoraj';
+  if(days<7) return days + ' dni temu';
+  if(days<30){
+    const w = Math.floor(days/7);
+    return w + (w===1?' tydzień temu':(w<5?' tygodnie temu':' tygodni temu'));
+  }
+  if(days<365){
+    const m = Math.floor(days/30);
+    return m + (m===1?' miesiąc temu':(m<5?' miesiące temu':' miesięcy temu'));
+  }
+  const y = Math.floor(days/365);
+  return y + (y===1?' rok temu':(y<5?' lata temu':' lat temu'));
+}
+
+function formatAbsolute(iso){
+  if(!iso) return '';
+  const d = new Date(iso);
+  if(isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString('pl-PL',{year:'numeric',month:'short',day:'numeric'});
+}
+
+function citySortKey(city, mode){
+  const ages = Object.values(city.sources).map(s => s.available ? ageDays(s.scraped_at) : null).filter(v => v!=null);
+  if(mode==='freshest') return ages.length ? Math.min.apply(null, ages) : 9999;
+  if(mode==='stalest') return ages.length ? -Math.max.apply(null, ages) : 9999;
+  return city.name.toLocaleLowerCase('pl');
+}
+
+let MANIFEST = null;
+let SORT_MODE = 'name';
+let FILTER = '';
+
+function render(){
+  const host = document.getElementById('matrix-host');
+  if(!MANIFEST){return;}
+  const sources = MANIFEST.sources;
+  const filterLower = FILTER.toLocaleLowerCase('pl');
+  let cities = MANIFEST.cities.filter(c => !filterLower || c.name.toLocaleLowerCase('pl').includes(filterLower) || c.slug.includes(filterLower));
+  cities = cities.slice().sort((a,b)=>{
+    const ka = citySortKey(a, SORT_MODE);
+    const kb = citySortKey(b, SORT_MODE);
+    if(typeof ka === 'string') return ka.localeCompare(kb,'pl');
+    return ka - kb;
+  });
+
+  document.getElementById('filter-count').textContent = cities.length === MANIFEST.cities.length
+    ? cities.length + ' miast'
+    : cities.length + ' z ' + MANIFEST.cities.length + ' miast';
+
+  if(cities.length===0){
+    host.className = 'empty';
+    host.textContent = 'Brak miast pasujących do filtra.';
+    return;
+  }
+
+  let html = '<table class="matrix"><thead><tr>';
+  html += '<th>Miasto</th>';
+  for(const s of sources){
+    html += '<th title="'+esc(s.description)+'">'+esc(s.label)+'</th>';
+  }
+  html += '</tr></thead><tbody>';
+
+  for(const c of cities){
+    html += '<tr>';
+    html += '<td><div class="city-cell">';
+    html += '<a href="'+esc(c.url)+'">'+esc(c.name)+'</a>';
+    if(c.voivodeship){
+      html += '<span class="city-meta">'+esc(c.voivodeship)+'</span>';
+    }
+    html += '</div></td>';
+    for(const s of sources){
+      const data = c.sources[s.id] || {available:false};
+      if(!data.available){
+        html += '<td><span class="cell-pill missing"><span class="dot"></span>brak</span></td>';
+        continue;
+      }
+      const days = ageDays(data.scraped_at);
+      const cls = classifyAge(days);
+      const rel = formatRelative(days);
+      const abs = formatAbsolute(data.scraped_at);
+      const titleParts = [];
+      if(abs) titleParts.push(abs);
+      if(data.filename) titleParts.push(data.filename);
+      if(data.source) titleParts.push('źródło znacznika: '+data.source);
+      const title = titleParts.join(' · ');
+      html += '<td><span class="cell-pill '+cls+'" title="'+esc(title)+'"><span class="dot"></span>'+esc(rel)+'</span></td>';
+    }
+    html += '</tr>';
+  }
+  html += '</tbody></table>';
+  host.className = '';
+  host.innerHTML = html;
+}
+
+function bind(){
+  document.getElementById('filter-input').addEventListener('input', e => {
+    FILTER = e.target.value.trim();
+    render();
+  });
+  document.getElementById('sort-select').addEventListener('change', e => {
+    SORT_MODE = e.target.value;
+    render();
+  });
+}
+
+async function boot(){
+  bind();
+  try{
+    const res = await fetch('data.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    MANIFEST = await res.json();
+  }catch(err){
+    document.getElementById('matrix-host').className = 'error';
+    document.getElementById('matrix-host').textContent = 'Nie udało się wczytać manifestu: '+err.message;
+    return;
+  }
+  document.getElementById('generated-at').textContent = formatAbsolute(MANIFEST.generated_at);
+  document.getElementById('city-count').textContent = MANIFEST.cities.length;
+  document.getElementById('source-count').textContent = MANIFEST.sources.length;
+  render();
+}
+
+boot();
+</script>
+</body>
+</html>

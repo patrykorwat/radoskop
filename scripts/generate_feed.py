@@ -377,8 +377,12 @@ def process_city(city_dir: Path):
         f.write(atom)
 
     # Write JSON
+    aktualnosci_payload = {
+        "scraped_at": datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "items": unique_items[:500],
+    }
     with open(docs / "aktualnosci.json", "w", encoding="utf-8") as f:
-        json.dump({"items": unique_items[:500]}, f, ensure_ascii=False, indent=None)
+        json.dump(aktualnosci_payload, f, ensure_ascii=False, indent=None)
 
     # Write HTML page
     main_html_path = docs / "index.html"
