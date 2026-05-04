@@ -5,11 +5,20 @@
   <link href="https://bialystok.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://bialystok.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://bialystok.radoskop.pl/</id>
-  <updated>2026-05-04T07:32:45Z</updated>
+  <updated>2026-05-04T12:36:33Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
+  <entry>
+    <title>Interpelacja: stanu procedowania Zintegrowanych Planów Inwestycyjnych</title>
+    <link href="https://bialystok.radoskop.pl/interpelacje/" rel="alternate" type="text/html"/>
+    <id>https://bialystok.radoskop.pl/interpelacje/#interpelacja</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Jacek Krzysztof Chańko. stanu procedowania Zintegrowanych Planów Inwestycyjnych</summary>
+    <category term="interpelacja"/>
+  </entry>
   <entry>
     <title>wprowadzenia do porządku obrad projektu uchwały w sprawie wyrażenia zgody na zawarcie porozumienia p</title>
     <link href="https://bialystok.radoskop.pl/glosowanie/2026-04-22_000_000/" rel="alternate" type="text/html"/>
@@ -162,15 +171,6 @@
     <updated>2026-04-22T12:00:00+01:00</updated>
     <summary type="html">16 glosowan, 28 obecnych.</summary>
     <category term="session"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: podziękowania za działania podjęte na terenie Ośrodka Sportów Wodnych Dojlidy</title>
-    <link href="https://bialystok.radoskop.pl/interpelacje/" rel="alternate" type="text/html"/>
-    <id>https://bialystok.radoskop.pl/interpelacje/#interpelacja</id>
-    <published>2026-04-22T12:00:00+01:00</published>
-    <updated>2026-04-22T12:00:00+01:00</updated>
-    <summary type="html">Paweł Skowroński. podziękowania za działania podjęte na terenie Ośrodka Sportów Wodnych Dojlidy</summary>
-    <category term="interpelacja"/>
   </entry>
   <entry>
     <title>wprowadzenia do porządku obrad projektu uchwały w sprawie wyrażenia zgody na zawarcie porozumienia w</title>

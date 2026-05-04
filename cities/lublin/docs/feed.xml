@@ -5,7 +5,7 @@
   <link href="https://lublin.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://lublin.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://lublin.radoskop.pl/</id>
-  <updated>2026-05-04T07:40:34Z</updated>
+  <updated>2026-05-04T12:45:15Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
@@ -36,6 +36,15 @@
     <updated>2026-04-30T12:00:00+01:00</updated>
     <summary type="html">0 glosowan.</summary>
     <category term="session"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: interpelacja w sprawie zmiany miejscowego planu zagospodarowania przestrzennego przy ul. Szmaragdowe</title>
+    <link href="https://lublin.radoskop.pl/profil/radoslaw-skrzetuski/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/profil/radoslaw-skrzetuski/#interpelacja</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Radosław Skrzetuski. interpelacja w sprawie zmiany miejscowego planu zagospodarowania przestrzennego przy ul. Szmaragdowej</summary>
+    <category term="interpelacja"/>
   </entry>
   <entry>
     <title>Interpelacja: Interpelacja w sprawie popularyzacji czytelnictwa wśród najmłodszych</title>
@@ -557,15 +566,6 @@
     <published>2026-03-23T12:00:00+01:00</published>
     <updated>2026-03-23T12:00:00+01:00</updated>
     <summary type="html">Tomasz Pitucha. Interpelacja w sprawie złożenia wniosku o dofinansowanie przebudowy ul. Romera ze środków rezerwy subwencji na 2026 r. i przyspieszenie realizacji zad</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: Interpelacja w sprawie budowy chodnika przy ul. Wyżynnej</title>
-    <link href="https://lublin.radoskop.pl/profil/radoslaw-skrzetuski/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/profil/radoslaw-skrzetuski/#interpelacja</id>
-    <published>2026-03-09T12:00:00+01:00</published>
-    <updated>2026-03-09T12:00:00+01:00</updated>
-    <summary type="html">Radosław Skrzetuski. Interpelacja w sprawie budowy chodnika przy ul. Wyżynnej</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

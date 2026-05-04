@@ -1,5 +1,77 @@
 [
   {
+    "cri": "Z252/2026",
+    "typ": "zapytanie",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Barbara Brzezicka",
+    "przedmiot": "dot. transkrypcji zagranicznego aktu małżeństwa osób tej samej płci przez Urząd Stanu Cywilnego w Sopocie",
+    "data_wplywu": "2026-05-04",
+    "tresc_url": "https://bip.sopot.pl/api/files/58417",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": ""
+  },
+  {
+    "cri": "Z251/2026",
+    "typ": "zapytanie",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Jarosław Zawada",
+    "przedmiot": "dot. przejść dla pieszych na skrzyżowaniu ul. Armii Krajowej, ul. Jana Kochanowskiego oraz ul. Juliusza Słowackiego",
+    "data_wplywu": "2026-05-04",
+    "tresc_url": "https://bip.sopot.pl/api/files/58416",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": ""
+  },
+  {
+    "cri": "Z250/2026",
+    "typ": "zapytanie",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Jarosław Zawada",
+    "przedmiot": "dot. postawienia toalet miejskich przy ul. Armii Krajowej i ul. Marynarzy",
+    "data_wplywu": "2026-05-04",
+    "tresc_url": "https://bip.sopot.pl/api/files/58415",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": ""
+  },
+  {
+    "cri": "249/2026",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Wojciech Fułek",
+    "przedmiot": "dot. pojemników na odzież używaną zlokalizowanych w okolicach Hipodromu",
+    "data_wplywu": "2026-05-04",
+    "tresc_url": "https://bip.sopot.pl/api/files/58414",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": ""
+  },
+  {
+    "cri": "248/2026",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Wojciech Fułek",
+    "przedmiot": "dot. nieporządku wokół prywatnych nieruchomości w Sopocie",
+    "data_wplywu": "2026-05-04",
+    "tresc_url": "https://bip.sopot.pl/api/files/58413",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": ""
+  },
+  {
+    "cri": "247/2026",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Piotr Bagiński, Piotr Harhaj, Jarosław Zawada, Adam Gil, Piotr Kurdziel, Zbigniew Duzinkiewicz, Justyna Lewandowska, Barbara Brzezicka",
+    "przedmiot": "dot. poparcia petycji w sprawie strzelnicy Playground",
+    "data_wplywu": "2026-05-04",
+    "tresc_url": "https://bip.sopot.pl/api/files/58412",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": ""
+  },
+  {
     "cri": "244/2026",
     "typ": "interpelacja",
     "rok": 2026,

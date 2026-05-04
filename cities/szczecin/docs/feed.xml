@@ -5,11 +5,20 @@
   <link href="https://szczecin.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://szczecin.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://szczecin.radoskop.pl/</id>
-  <updated>2026-05-04T08:03:35Z</updated>
+  <updated>2026-05-04T13:06:59Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
+  <entry>
+    <title>Sesja XXII Rady Miasta Szczecin</title>
+    <link href="https://szczecin.radoskop.pl/sesja/XXII/" rel="alternate" type="text/html"/>
+    <id>https://szczecin.radoskop.pl/sesja/XXII/#session</id>
+    <published>2026-05-12T12:00:00+01:00</published>
+    <updated>2026-05-12T12:00:00+01:00</updated>
+    <summary type="html">0 glosowan.</summary>
+    <category term="session"/>
+  </entry>
   <entry>
     <title>Interpelacja (Radziwinowicz Andrzej)</title>
     <link href="https://szczecin.radoskop.pl/profil/radziwinowicz-andrzej/" rel="alternate" type="text/html"/>
@@ -899,15 +908,6 @@
     <published>2026-03-24T12:00:00+01:00</published>
     <updated>2026-03-24T12:00:00+01:00</updated>
     <summary type="html">Wynik: przyjete (za 31, przeciw 0, wstrzym. 0). Sesja XX.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przyjęcia projektu uchwały nr 54/26 w sprawie przyjęcia apelu dotyczącego wprowadzenia skutecznych n</title>
-    <link href="https://szczecin.radoskop.pl/glosowanie/2026-03-24_027/" rel="alternate" type="text/html"/>
-    <id>https://szczecin.radoskop.pl/glosowanie/2026-03-24_027/#vote</id>
-    <published>2026-03-24T12:00:00+01:00</published>
-    <updated>2026-03-24T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 29, przeciw 0, wstrzym. 0). Sesja XX.</summary>
     <category term="vote"/>
   </entry>
 </feed>

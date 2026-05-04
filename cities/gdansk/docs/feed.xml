@@ -5,11 +5,20 @@
   <link href="https://gdansk.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://gdansk.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://gdansk.radoskop.pl/</id>
-  <updated>2026-05-04T09:02:51Z</updated>
+  <updated>2026-05-04T13:54:39Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
+  <entry>
+    <title>Interpelacja: w sprawie utworzenia przejścia dla pieszych na ul. Traugutta przy Wydziale Zarządzania i Ekonomii P</title>
+    <link href="https://gdansk.radoskop.pl/profil/michal-hajduk/" rel="alternate" type="text/html"/>
+    <id>https://gdansk.radoskop.pl/profil/michal-hajduk/#interpelacja</id>
+    <published>2026-05-04T12:00:00+01:00</published>
+    <updated>2026-05-04T12:00:00+01:00</updated>
+    <summary type="html">Michał Hajduk. w sprawie utworzenia przejścia dla pieszych na ul. Traugutta przy Wydziale Zarządzania i Ekonomii Politechniki Gdańskiej</summary>
+    <category term="interpelacja"/>
+  </entry>
   <entry>
     <title>Interpelacja: w sprawie planowanych inwestycji oraz kierunków zagospodarowania przestrzennego na terenie ogródków </title>
     <link href="https://gdansk.radoskop.pl/profil/marcin-makowski/" rel="alternate" type="text/html"/>
@@ -711,15 +720,6 @@
     <updated>2025-12-19T12:00:00+01:00</updated>
     <summary type="html">Wynik: przyjete (za 31, przeciw 0, wstrzym. 0). Sesja XXII.</summary>
     <category term="vote"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: w sprawie remontu chodników oraz nawierzchni jezdni na ul. Grząskiej</title>
-    <link href="https://gdansk.radoskop.pl/profil/michal-hajduk/" rel="alternate" type="text/html"/>
-    <id>https://gdansk.radoskop.pl/profil/michal-hajduk/#interpelacja</id>
-    <published>2025-12-18T12:00:00+01:00</published>
-    <updated>2025-12-18T12:00:00+01:00</updated>
-    <summary type="html">Michał Hajduk. w sprawie remontu chodników oraz nawierzchni jezdni na ul. Grząskiej</summary>
-    <category term="interpelacja"/>
   </entry>
   <entry>
     <title>Interpelacja: w sprawie wyjaśnienia kwestii ewentualnej wycinki drzew w związku z realizacją projektu prowadzoneg</title>
