@@ -1,6 +1,16 @@
 {
-  "generated_at": "2026-05-03T21:32:04Z",
-  "schema_version": 1,
+  "generated_at": "2026-05-04T06:51:38Z",
+  "schema_version": 2,
+  "levels": [
+    {
+      "id": "city",
+      "label": "Miasta"
+    },
+    {
+      "id": "sejmik",
+      "label": "Sejmiki województw"
+    }
+  ],
   "sources": [
     {
       "id": "kadencja",
@@ -28,14 +38,15 @@
       "description": "Wydatki, dochody, plan finansowy"
     }
   ],
-  "cities": [
+  "units": [
     {
       "slug": "bialystok",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Białystok",
       "url": "https://bialystok.radoskop.pl",
       "bip_url": "https://www.bip.bialystok.pl/",
-      "voivodeship": "podlaskie",
-      "population": 292000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -78,15 +89,18 @@
           "size_bytes": 2,
           "filename": "budget.json"
         }
-      }
+      },
+      "voivodeship": "podlaskie",
+      "population": 292000
     },
     {
       "slug": "bielsko-biala",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Bielsko-Biała",
       "url": "https://bielsko-biala.radoskop.pl",
       "bip_url": "https://bip.bielsko-biala.pl/",
-      "voivodeship": "śląskie",
-      "population": 166000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": false
@@ -113,15 +127,18 @@
         "budget": {
           "available": false
         }
-      }
+      },
+      "voivodeship": "śląskie",
+      "population": 166000
     },
     {
       "slug": "bydgoszcz",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Bydgoszcz",
       "url": "https://bydgoszcz.radoskop.pl",
       "bip_url": "https://bip.um.bydgoszcz.pl/",
-      "voivodeship": "kujawsko-pomorskie",
-      "population": 336000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -164,15 +181,18 @@
           "size_bytes": 2,
           "filename": "budget.json"
         }
-      }
+      },
+      "voivodeship": "kujawsko-pomorskie",
+      "population": 336000
     },
     {
       "slug": "bytom",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Bytom",
       "url": "https://bytom.radoskop.pl",
       "bip_url": "https://www.bip.um.bytom.pl/",
-      "voivodeship": "śląskie",
-      "population": 150000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -210,15 +230,18 @@
         "budget": {
           "available": false
         }
-      }
+      },
+      "voivodeship": "śląskie",
+      "population": 150000
     },
     {
       "slug": "czestochowa",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Częstochowa",
       "url": "https://czestochowa.radoskop.pl",
       "bip_url": "https://bip.czestochowa.pl",
-      "voivodeship": "śląskie",
-      "population": 213000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -241,15 +264,18 @@
         "budget": {
           "available": false
         }
-      }
+      },
+      "voivodeship": "śląskie",
+      "population": 213000
     },
     {
       "slug": "gdansk",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Gdańsk",
       "url": "https://gdansk.radoskop.pl",
       "bip_url": "https://bip.gdansk.pl/rada-miasta",
-      "voivodeship": "pomorskie",
-      "population": 471000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -292,15 +318,18 @@
           "size_bytes": 40990,
           "filename": "budget.json"
         }
-      }
+      },
+      "voivodeship": "pomorskie",
+      "population": 471000
     },
     {
       "slug": "gdynia",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Gdynia",
       "url": "https://gdynia.radoskop.pl",
       "bip_url": "https://bip.um.gdynia.pl",
-      "voivodeship": "pomorskie",
-      "population": 246000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -343,15 +372,18 @@
           "size_bytes": 15084,
           "filename": "budget.json"
         }
-      }
+      },
+      "voivodeship": "pomorskie",
+      "population": 246000
     },
     {
       "slug": "gliwice",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Gliwice",
       "url": "https://gliwice.radoskop.pl",
       "bip_url": "https://bip.gliwice.eu/",
-      "voivodeship": "śląskie",
-      "population": 165000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": false
@@ -378,15 +410,18 @@
         "budget": {
           "available": false
         }
-      }
+      },
+      "voivodeship": "śląskie",
+      "population": 165000
     },
     {
       "slug": "katowice",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Katowice",
       "url": "https://katowice.radoskop.pl",
       "bip_url": "https://bip.katowice.eu/Rada_Miasta/",
-      "voivodeship": "śląskie",
-      "population": 286000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -429,15 +464,18 @@
           "size_bytes": 2,
           "filename": "budget.json"
         }
-      }
+      },
+      "voivodeship": "śląskie",
+      "population": 286000
     },
     {
       "slug": "kielce",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Kielce",
       "url": "https://kielce.radoskop.pl",
       "bip_url": "https://www.bip.kielce.eu/",
-      "voivodeship": "świętokrzyskie",
-      "population": 190000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": false
@@ -459,15 +497,18 @@
         "budget": {
           "available": false
         }
-      }
+      },
+      "voivodeship": "świętokrzyskie",
+      "population": 190000
     },
     {
       "slug": "krakow",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Kraków",
       "url": "https://krakow.radoskop.pl",
       "bip_url": "https://www.bip.krakow.pl/?bip_id=1&mmi=26458",
-      "voivodeship": "małopolskie",
-      "population": 800000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -510,15 +551,18 @@
           "size_bytes": 14761,
           "filename": "budget.json"
         }
-      }
+      },
+      "voivodeship": "małopolskie",
+      "population": 800000
     },
     {
       "slug": "lodz",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Łódź",
       "url": "https://lodz.radoskop.pl",
       "bip_url": "https://bip.uml.lodz.pl/samorzad/rada-miejska/",
-      "voivodeship": "łódzkie",
-      "population": 664000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -561,15 +605,18 @@
           "size_bytes": 2,
           "filename": "budget.json"
         }
-      }
+      },
+      "voivodeship": "łódzkie",
+      "population": 664000
     },
     {
       "slug": "lublin",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Lublin",
       "url": "https://lublin.radoskop.pl",
       "bip_url": "https://bip.lublin.eu/rada-miasta-lublin/",
-      "voivodeship": "lubelskie",
-      "population": 330000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -612,15 +659,18 @@
           "size_bytes": 2,
           "filename": "budget.json"
         }
-      }
+      },
+      "voivodeship": "lubelskie",
+      "population": 330000
     },
     {
       "slug": "olsztyn",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Olsztyn",
       "url": "https://olsztyn.radoskop.pl",
       "bip_url": "https://bip.olsztyn.eu/",
-      "voivodeship": "warmińsko-mazurskie",
-      "population": 167000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": false
@@ -647,15 +697,18 @@
         "budget": {
           "available": false
         }
-      }
+      },
+      "voivodeship": "warmińsko-mazurskie",
+      "population": 167000
     },
     {
       "slug": "poznan",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Poznań",
       "url": "https://poznan.radoskop.pl",
       "bip_url": "https://bip.poznan.pl/bip/sesje/",
-      "voivodeship": "wielkopolskie",
-      "population": 535000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -698,15 +751,18 @@
           "size_bytes": 10107,
           "filename": "budget.json"
         }
-      }
+      },
+      "voivodeship": "wielkopolskie",
+      "population": 535000
     },
     {
       "slug": "radom",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Radom",
       "url": "https://radom.radoskop.pl",
       "bip_url": "https://www.bip.radom.pl/",
-      "voivodeship": "mazowieckie",
-      "population": 213000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": false
@@ -728,15 +784,18 @@
         "budget": {
           "available": false
         }
-      }
+      },
+      "voivodeship": "mazowieckie",
+      "population": 213000
     },
     {
       "slug": "rzeszow",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Rzeszów",
       "url": "https://rzeszow.radoskop.pl",
       "bip_url": "https://bip.erzeszow.pl/",
-      "voivodeship": "podkarpackie",
-      "population": 194000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": false
@@ -763,15 +822,18 @@
         "budget": {
           "available": false
         }
-      }
+      },
+      "voivodeship": "podkarpackie",
+      "population": 194000
     },
     {
       "slug": "sopot",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Sopot",
       "url": "https://sopot.radoskop.pl",
       "bip_url": "https://bip.sopot.pl",
-      "voivodeship": "pomorskie",
-      "population": 35000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -814,15 +876,18 @@
           "size_bytes": 9380,
           "filename": "budget.json"
         }
-      }
+      },
+      "voivodeship": "pomorskie",
+      "population": 35000
     },
     {
       "slug": "szczecin",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Szczecin",
       "url": "https://szczecin.radoskop.pl",
       "bip_url": "https://bip.um.szczecin.pl/chapter_11124.asp",
-      "voivodeship": "zachodniopomorskie",
-      "population": 395000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -865,15 +930,18 @@
           "size_bytes": 2,
           "filename": "budget.json"
         }
-      }
+      },
+      "voivodeship": "zachodniopomorskie",
+      "population": 395000
     },
     {
       "slug": "torun",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Toruń",
       "url": "https://torun.radoskop.pl",
       "bip_url": "https://www.bip.torun.pl/",
-      "voivodeship": "kujawsko-pomorskie",
-      "population": 196000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": false
@@ -900,15 +968,18 @@
         "budget": {
           "available": false
         }
-      }
+      },
+      "voivodeship": "kujawsko-pomorskie",
+      "population": 196000
     },
     {
       "slug": "tychy",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Tychy",
       "url": "https://tychy.radoskop.pl",
       "bip_url": "https://bip.umtychy.pl/",
-      "voivodeship": "śląskie",
-      "population": 123000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -946,15 +1017,18 @@
         "budget": {
           "available": false
         }
-      }
+      },
+      "voivodeship": "śląskie",
+      "population": 123000
     },
     {
       "slug": "warszawa",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Warszawa",
       "url": "https://warszawa.radoskop.pl",
       "bip_url": "https://bip.warszawa.pl/sesje-rady-m.st.-warszawy",
-      "voivodeship": "mazowieckie",
-      "population": 1860000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -997,15 +1071,18 @@
           "size_bytes": 22588,
           "filename": "budget.json"
         }
-      }
+      },
+      "voivodeship": "mazowieckie",
+      "population": 1860000
     },
     {
       "slug": "wroclaw",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Wrocław",
       "url": "https://wroclaw.radoskop.pl",
       "bip_url": "https://bip.um.wroc.pl/artykuly/769/sesje-rady",
-      "voivodeship": "dolnośląskie",
-      "population": 643000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": true,
@@ -1048,15 +1125,18 @@
           "size_bytes": 10776,
           "filename": "budget.json"
         }
-      }
+      },
+      "voivodeship": "dolnośląskie",
+      "population": 643000
     },
     {
       "slug": "zabrze",
+      "level": "city",
+      "samorzad_type": "miasto",
       "name": "Zabrze",
       "url": "https://zabrze.radoskop.pl",
       "bip_url": "https://bip.um.zabrze.pl/",
-      "voivodeship": "śląskie",
-      "population": 159000,
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
           "available": false
@@ -1079,6 +1159,499 @@
           "mtime": "2026-04-26T20:28:00Z",
           "size_bytes": 20,
           "filename": "profiles.json"
+        },
+        "budget": {
+          "available": false
+        }
+      },
+      "voivodeship": "śląskie",
+      "population": 159000
+    },
+    {
+      "slug": "dolnoslaskie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Dolnośląskiego",
+      "url": "https://sejmik.dolnoslaskie.radoskop.pl",
+      "bip_url": "https://bip.umwd.dolnyslask.pl/",
+      "scrape_status": "pilot_pending",
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      },
+      "voivodeship": "dolnośląskie",
+      "capital": "Wrocław",
+      "population": 2900000,
+      "councilor_count": 36
+    },
+    {
+      "slug": "mazowieckie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Mazowieckiego",
+      "url": "https://sejmik.mazowieckie.radoskop.pl",
+      "bip_url": "https://www.mazovia.pl/pl/bip/sejmik/",
+      "scrape_status": "active",
+      "sources": {
+        "kadencja": {
+          "available": true,
+          "scraped_at": "2026-05-03T22:36:54Z",
+          "source": "json_field",
+          "mtime": "2026-05-03T22:36:54Z",
+          "size_bytes": 819916,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
+        },
+        "interpelacje": {
+          "available": true,
+          "scraped_at": "2026-05-04T06:51:20Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T06:51:20Z",
+          "size_bytes": 90622,
+          "filename": "interpelacje.json"
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      },
+      "voivodeship": "mazowieckie",
+      "capital": "Warszawa",
+      "population": 5510000,
+      "councilor_count": 51
+    },
+    {
+      "slug": "pomorskie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Pomorskiego",
+      "url": "https://sejmik.pomorskie.radoskop.pl",
+      "bip_url": "https://bip.pomorskie.eu/",
+      "scrape_status": "pilot_pending",
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      },
+      "voivodeship": "pomorskie",
+      "capital": "Gdańsk",
+      "population": 2360000,
+      "councilor_count": 33
+    },
+    {
+      "slug": "kujawsko-pomorskie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Kujawsko-Pomorskiego",
+      "url": "https://sejmik.kujawsko-pomorskie.radoskop.pl",
+      "bip_url": null,
+      "scrape_status": "planned",
+      "voivodeship": "kujawsko-pomorskie",
+      "capital": "Toruń",
+      "population": 2030000,
+      "councilor_count": 33,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "lubelskie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Lubelskiego",
+      "url": "https://sejmik.lubelskie.radoskop.pl",
+      "bip_url": null,
+      "scrape_status": "planned",
+      "voivodeship": "lubelskie",
+      "capital": "Lublin",
+      "population": 2080000,
+      "councilor_count": 33,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "lubuskie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Lubuskiego",
+      "url": "https://sejmik.lubuskie.radoskop.pl",
+      "bip_url": null,
+      "scrape_status": "planned",
+      "voivodeship": "lubuskie",
+      "capital": "Gorzów Wielkopolski",
+      "population": 990000,
+      "councilor_count": 30,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "lodzkie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Łódzkiego",
+      "url": "https://sejmik.lodzkie.radoskop.pl",
+      "bip_url": null,
+      "scrape_status": "planned",
+      "voivodeship": "łódzkie",
+      "capital": "Łódź",
+      "population": 2400000,
+      "councilor_count": 33,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "malopolskie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Małopolskiego",
+      "url": "https://sejmik.malopolskie.radoskop.pl",
+      "bip_url": null,
+      "scrape_status": "planned",
+      "voivodeship": "małopolskie",
+      "capital": "Kraków",
+      "population": 3400000,
+      "councilor_count": 39,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "opolskie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Opolskiego",
+      "url": "https://sejmik.opolskie.radoskop.pl",
+      "bip_url": null,
+      "scrape_status": "planned",
+      "voivodeship": "opolskie",
+      "capital": "Opole",
+      "population": 940000,
+      "councilor_count": 30,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "podkarpackie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Podkarpackiego",
+      "url": "https://sejmik.podkarpackie.radoskop.pl",
+      "bip_url": null,
+      "scrape_status": "planned",
+      "voivodeship": "podkarpackie",
+      "capital": "Rzeszów",
+      "population": 2090000,
+      "councilor_count": 33,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "podlaskie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Podlaskiego",
+      "url": "https://sejmik.podlaskie.radoskop.pl",
+      "bip_url": null,
+      "scrape_status": "planned",
+      "voivodeship": "podlaskie",
+      "capital": "Białystok",
+      "population": 1140000,
+      "councilor_count": 30,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "slaskie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Śląskiego",
+      "url": "https://sejmik.slaskie.radoskop.pl",
+      "bip_url": null,
+      "scrape_status": "planned",
+      "voivodeship": "śląskie",
+      "capital": "Katowice",
+      "population": 4380000,
+      "councilor_count": 45,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "swietokrzyskie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Świętokrzyskiego",
+      "url": "https://sejmik.swietokrzyskie.radoskop.pl",
+      "bip_url": null,
+      "scrape_status": "planned",
+      "voivodeship": "świętokrzyskie",
+      "capital": "Kielce",
+      "population": 1190000,
+      "councilor_count": 30,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "warminsko-mazurskie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Warmińsko-Mazurskiego",
+      "url": "https://sejmik.warminsko-mazurskie.radoskop.pl",
+      "bip_url": null,
+      "scrape_status": "planned",
+      "voivodeship": "warmińsko-mazurskie",
+      "capital": "Olsztyn",
+      "population": 1380000,
+      "councilor_count": 30,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "wielkopolskie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Wielkopolskiego",
+      "url": "https://sejmik.wielkopolskie.radoskop.pl",
+      "bip_url": null,
+      "scrape_status": "planned",
+      "voivodeship": "wielkopolskie",
+      "capital": "Poznań",
+      "population": 3490000,
+      "councilor_count": 39,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
+        },
+        "budget": {
+          "available": false
+        }
+      }
+    },
+    {
+      "slug": "zachodniopomorskie",
+      "level": "sejmik",
+      "samorzad_type": "wojewodztwo",
+      "name": "Sejmik Województwa Zachodniopomorskiego",
+      "url": "https://sejmik.zachodniopomorskie.radoskop.pl",
+      "bip_url": null,
+      "scrape_status": "planned",
+      "voivodeship": "zachodniopomorskie",
+      "capital": "Szczecin",
+      "population": 1660000,
+      "councilor_count": 30,
+      "sources": {
+        "kadencja": {
+          "available": false
+        },
+        "interpelacje": {
+          "available": false
+        },
+        "aktualnosci": {
+          "available": false
+        },
+        "profiles": {
+          "available": false
         },
         "budget": {
           "available": false

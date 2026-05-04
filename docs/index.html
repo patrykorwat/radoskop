@@ -287,106 +287,204 @@ footer a:hover{text-decoration-color:var(--accent);}
     <button class="show-more-btn" id="cities-more" style="display:none"></button>
   </section>
 
-  <!-- Comparison table (rows = cities) -->
-  <section id="comparison">
-    <h3>Porównanie miast</h3>
-    <p class="section-subtitle">Kadencja 2024–2029. Dane z sesji rad miejskich. Kliknij nagłówek kolumny, żeby sortować.</p>
-    <div class="table-wrap">
-      <table class="data-table" id="comp-table">
-        <thead>
-          <tr>
-            <th data-sort="name">Miasto</th>
-            <th data-sort="councilors">Radni</th>
-            <th data-sort="sessions">Sesje</th>
-            <th data-sort="votes">Głosowania</th>
-            <th data-sort="frekwencja">Frekwencja</th>
-            <th data-sort="zgodnosc">Zgodność z klubem</th>
-            <th data-sort="rebellions">Bunty / radny</th>
-            <th data-sort="interpelacje">Interpelacje</th>
-          </tr>
-        </thead>
-        <tbody id="comp-tbody"></tbody>
-      </table>
+  <!-- Sejmiki województw (osobna sekcja, równoległa do miast) -->
+  <section id="sejmiki" style="margin-top:36px">
+    <h3>Sejmiki województw</h3>
+    <p class="section-subtitle">Drugi poziom samorządu: 16 sejmików wojewódzkich, kadencja 2024 do 2029. Marszałek i zarząd województwa odpowiadają za drogi wojewódzkie, regionalne szpitale, fundusze unijne (RPO), transport regionalny. Pilotujemy 3 sejmiki (mazowiecki, dolnośląski, pomorski), pozostałe w kolejce.</p>
+    <div class="sejmiki-meta">
+      <span><strong id="sejmik-active-count">3</strong> sejmiki aktywne</span>
+      <span><strong id="sejmik-planned-count">13</strong> w kolejce</span>
+      <span><a href="/swiezosc/?level=sejmik">Sprawdź świeżość danych</a></span>
     </div>
-    <button class="show-more-btn" id="comp-more" style="display:none"></button>
-  </section>
-
-  <!-- Councillor ranking -->
-  <section id="ranking-all">
-    <h3>Ranking radnych</h3>
-    <p class="section-subtitle" id="ranking-subtitle">Kadencja 2024–2029. Kto jest najaktywniejszy, a kto najczęściej opuszcza sesje?</p>
-    <div class="ranking-controls">
-      <button class="ranking-tab active" data-sort="f" onclick="rankingSort('f',this)">Frekwencja</button>
-      <button class="ranking-tab" data-sort="a" onclick="rankingSort('a',this)">Aktywność</button>
-      <button class="ranking-tab" data-sort="z" onclick="rankingSort('z',this)">Buntownictwo</button>
-      <div class="ranking-sep"></div>
-      <button class="ranking-dir active" data-dir="desc" onclick="rankingDir('desc',this)">Najwyżsi</button>
-      <button class="ranking-dir" data-dir="asc" onclick="rankingDir('asc',this)">Najniżsi</button>
+    <div class="sejmiki-grid">
+      <div class="sejmik-card sejmik-pilot"><span class="sejmik-name">mazowieckie</span><span class="sejmik-cap">Warszawa</span><span class="sejmik-badge sejmik-badge-pilot">pilot</span></div>
+      <div class="sejmik-card sejmik-pilot"><span class="sejmik-name">dolnośląskie</span><span class="sejmik-cap">Wrocław</span><span class="sejmik-badge sejmik-badge-pilot">pilot</span></div>
+      <div class="sejmik-card sejmik-pilot"><span class="sejmik-name">pomorskie</span><span class="sejmik-cap">Gdańsk</span><span class="sejmik-badge sejmik-badge-pilot">pilot</span></div>
+      <div class="sejmik-card"><span class="sejmik-name">śląskie</span><span class="sejmik-cap">Katowice</span><span class="sejmik-badge">wkrótce</span></div>
+      <div class="sejmik-card"><span class="sejmik-name">wielkopolskie</span><span class="sejmik-cap">Poznań</span><span class="sejmik-badge">wkrótce</span></div>
+      <div class="sejmik-card"><span class="sejmik-name">małopolskie</span><span class="sejmik-cap">Kraków</span><span class="sejmik-badge">wkrótce</span></div>
+      <div class="sejmik-card"><span class="sejmik-name">łódzkie</span><span class="sejmik-cap">Łódź</span><span class="sejmik-badge">wkrótce</span></div>
+      <div class="sejmik-card"><span class="sejmik-name">lubelskie</span><span class="sejmik-cap">Lublin</span><span class="sejmik-badge">wkrótce</span></div>
+      <div class="sejmik-card"><span class="sejmik-name">podkarpackie</span><span class="sejmik-cap">Rzeszów</span><span class="sejmik-badge">wkrótce</span></div>
+      <div class="sejmik-card"><span class="sejmik-name">kujawsko-pomorskie</span><span class="sejmik-cap">Toruń</span><span class="sejmik-badge">wkrótce</span></div>
+      <div class="sejmik-card"><span class="sejmik-name">zachodniopomorskie</span><span class="sejmik-cap">Szczecin</span><span class="sejmik-badge">wkrótce</span></div>
+      <div class="sejmik-card"><span class="sejmik-name">warmińsko-mazurskie</span><span class="sejmik-cap">Olsztyn</span><span class="sejmik-badge">wkrótce</span></div>
+      <div class="sejmik-card"><span class="sejmik-name">świętokrzyskie</span><span class="sejmik-cap">Kielce</span><span class="sejmik-badge">wkrótce</span></div>
+      <div class="sejmik-card"><span class="sejmik-name">podlaskie</span><span class="sejmik-cap">Białystok</span><span class="sejmik-badge">wkrótce</span></div>
+      <div class="sejmik-card"><span class="sejmik-name">lubuskie</span><span class="sejmik-cap">Gorzów Wlkp.</span><span class="sejmik-badge">wkrótce</span></div>
+      <div class="sejmik-card"><span class="sejmik-name">opolskie</span><span class="sejmik-cap">Opole</span><span class="sejmik-badge">wkrótce</span></div>
     </div>
-    <div class="ranking-list" id="ranking-list"></div>
-    <button class="show-more-btn" id="ranking-more" style="display:none" onclick="rankingShowMore()">Pokaż więcej</button>
   </section>
 
-  <!-- Recent sessions feed (unified) -->
-  <section id="sessions">
-    <h3>Ostatnie sesje rad miejskich</h3>
-    <p class="section-subtitle">Najnowsze sesje z całej Polski. Kliknij, żeby zobaczyć głosowania.</p>
-    <div class="sessions-list" id="sessions-list"></div>
-    <button class="show-more-btn" id="sessions-more" style="display:none">Pokaż więcej</button>
-  </section>
+  <!-- Tabbed zestawienia miast (skrócenie strony) -->
+  <section id="zestawienia" style="margin-top:36px">
+    <h3>Zestawienia i rankingi miast</h3>
+    <p class="section-subtitle">Wybierz zakładkę, żeby zobaczyć ranking miast albo radnych. Kadencja 2024 do 2029.</p>
 
-  <!-- Interpelacje leaderboard -->
-  <section id="interpelacje">
-    <h3>Interpelacje i zapytania radnych</h3>
-    <p class="section-subtitle">Ranking miast po liczbie interpelacji zgłoszonych w kadencji 2024–2029.</p>
-    <div class="table-wrap">
-      <table class="data-table" id="interp-table">
-        <thead>
-          <tr>
-            <th data-sort="name">Miasto</th>
-            <th data-sort="total">Interpelacji</th>
-            <th data-sort="answered">Z odpowiedzią</th>
-            <th data-sort="top">Najaktywniejszy radny</th>
-            <th data-sort="topCount">Liczba</th>
-          </tr>
-        </thead>
-        <tbody id="interp-tbody"></tbody>
-      </table>
+    <div class="tabs-nav" role="tablist" id="zest-tabs">
+      <button class="tab-btn active" data-tab="comp" role="tab" aria-selected="true">Porównanie miast</button>
+      <button class="tab-btn" data-tab="ranking" role="tab" aria-selected="false">Ranking radnych</button>
+      <button class="tab-btn" data-tab="sessions" role="tab" aria-selected="false">Ostatnie sesje</button>
+      <button class="tab-btn" data-tab="interp" role="tab" aria-selected="false">Interpelacje</button>
+      <button class="tab-btn" data-tab="contr" role="tab" aria-selected="false">Kontrowersyjne</button>
+      <button class="tab-btn" data-tab="budget" role="tab" aria-selected="false">Budżety</button>
     </div>
-    <button class="show-more-btn" id="interp-more" style="display:none"></button>
-  </section>
 
-  <!-- Controversial votes -->
-  <section id="controversial">
-    <h3>Kontrowersyjne głosowania</h3>
-    <p class="section-subtitle">Głosowania z najniższym poparciem (% za) z całej Polski. Kadencja 2024–2029.</p>
-    <div class="vote-list" id="controversial-list"></div>
-    <button class="show-more-btn" id="controversial-more" style="display:none">Pokaż więcej</button>
-    <p class="section-subtitle" style="margin-top:16px;font-size:.75rem">Uwzględniono głosowania merytoryczne z co najmniej 20 aktywnymi głosami. Źródło: BIP.</p>
-  </section>
-
-  <!-- Budgets (top N by expenditure) -->
-  <section id="budget">
-    <h3>Budżety miast</h3>
-    <p class="section-subtitle">Ranking po wydatkach i inwestycjach. Kliknij nagłówek kolumny, żeby sortować.</p>
-    <div class="table-wrap">
-      <table class="data-table" id="budget-table">
-        <thead>
-          <tr>
-            <th data-sort="name">Miasto</th>
-            <th data-sort="income">Dochody (2026)</th>
-            <th data-sort="expense">Wydatki (2026)</th>
-            <th data-sort="deficit">Deficyt</th>
-            <th data-sort="perCapita">Wydatki per capita</th>
-            <th data-sort="invest">Inwestycje (2026)</th>
-            <th data-sort="investShare">Inwestycje / wydatki</th>
-          </tr>
-        </thead>
-        <tbody id="budget-tbody"></tbody>
-      </table>
+    <div class="tab-panel active" data-panel="comp" id="comparison">
+      <p class="section-subtitle" style="margin-top:14px">Dane z sesji rad miejskich. Kliknij nagłówek kolumny, żeby sortować.</p>
+      <div class="table-wrap">
+        <table class="data-table" id="comp-table">
+          <thead>
+            <tr>
+              <th data-sort="name">Miasto</th>
+              <th data-sort="councilors">Radni</th>
+              <th data-sort="sessions">Sesje</th>
+              <th data-sort="votes">Głosowania</th>
+              <th data-sort="frekwencja">Frekwencja</th>
+              <th data-sort="zgodnosc">Zgodność z klubem</th>
+              <th data-sort="rebellions">Bunty / radny</th>
+              <th data-sort="interpelacje">Interpelacje</th>
+            </tr>
+          </thead>
+          <tbody id="comp-tbody"></tbody>
+        </table>
+      </div>
+      <button class="show-more-btn" id="comp-more" style="display:none"></button>
     </div>
-    <button class="show-more-btn" id="budget-more" style="display:none"></button>
-    <p class="section-subtitle" style="margin-top:16px;font-size:.75rem">Źródło: BIP miast, uchwały budżetowe. Kwoty w miliardach złotych.</p>
+
+    <div class="tab-panel" data-panel="ranking" id="ranking-all">
+      <p class="section-subtitle" id="ranking-subtitle" style="margin-top:14px">Kto jest najaktywniejszy, a kto najczęściej opuszcza sesje?</p>
+      <div class="ranking-controls">
+        <button class="ranking-tab active" data-sort="f" onclick="rankingSort('f',this)">Frekwencja</button>
+        <button class="ranking-tab" data-sort="a" onclick="rankingSort('a',this)">Aktywność</button>
+        <button class="ranking-tab" data-sort="z" onclick="rankingSort('z',this)">Buntownictwo</button>
+        <div class="ranking-sep"></div>
+        <button class="ranking-dir active" data-dir="desc" onclick="rankingDir('desc',this)">Najwyżsi</button>
+        <button class="ranking-dir" data-dir="asc" onclick="rankingDir('asc',this)">Najniżsi</button>
+      </div>
+      <div class="ranking-list" id="ranking-list"></div>
+      <button class="show-more-btn" id="ranking-more" style="display:none" onclick="rankingShowMore()">Pokaż więcej</button>
+    </div>
+
+    <div class="tab-panel" data-panel="sessions" id="sessions">
+      <p class="section-subtitle" style="margin-top:14px">Najnowsze sesje z całej Polski. Kliknij, żeby zobaczyć głosowania.</p>
+      <div class="sessions-list" id="sessions-list"></div>
+      <button class="show-more-btn" id="sessions-more" style="display:none">Pokaż więcej</button>
+    </div>
+
+    <div class="tab-panel" data-panel="interp" id="interpelacje">
+      <p class="section-subtitle" style="margin-top:14px">Ranking miast po liczbie interpelacji zgłoszonych w kadencji.</p>
+      <div class="table-wrap">
+        <table class="data-table" id="interp-table">
+          <thead>
+            <tr>
+              <th data-sort="name">Miasto</th>
+              <th data-sort="total">Interpelacji</th>
+              <th data-sort="answered">Z odpowiedzią</th>
+              <th data-sort="top">Najaktywniejszy radny</th>
+              <th data-sort="topCount">Liczba</th>
+            </tr>
+          </thead>
+          <tbody id="interp-tbody"></tbody>
+        </table>
+      </div>
+      <button class="show-more-btn" id="interp-more" style="display:none"></button>
+    </div>
+
+    <div class="tab-panel" data-panel="contr" id="controversial">
+      <p class="section-subtitle" style="margin-top:14px">Głosowania z najniższym poparciem (% za) z całej Polski.</p>
+      <div class="vote-list" id="controversial-list"></div>
+      <button class="show-more-btn" id="controversial-more" style="display:none">Pokaż więcej</button>
+      <p class="section-subtitle" style="margin-top:16px;font-size:.75rem">Uwzględniono głosowania merytoryczne z co najmniej 20 aktywnymi głosami. Źródło: BIP.</p>
+    </div>
+
+    <div class="tab-panel" data-panel="budget" id="budget">
+      <p class="section-subtitle" style="margin-top:14px">Ranking po wydatkach i inwestycjach. Kliknij nagłówek kolumny, żeby sortować.</p>
+      <div class="table-wrap">
+        <table class="data-table" id="budget-table">
+          <thead>
+            <tr>
+              <th data-sort="name">Miasto</th>
+              <th data-sort="income">Dochody (2026)</th>
+              <th data-sort="expense">Wydatki (2026)</th>
+              <th data-sort="deficit">Deficyt</th>
+              <th data-sort="perCapita">Wydatki per capita</th>
+              <th data-sort="invest">Inwestycje (2026)</th>
+              <th data-sort="investShare">Inwestycje / wydatki</th>
+            </tr>
+          </thead>
+          <tbody id="budget-tbody"></tbody>
+        </table>
+      </div>
+      <button class="show-more-btn" id="budget-more" style="display:none"></button>
+      <p class="section-subtitle" style="margin-top:16px;font-size:.75rem">Źródło: BIP miast, uchwały budżetowe. Kwoty w miliardach złotych.</p>
+    </div>
+
+    <style>
+      /* Tabs */
+      .tabs-nav{display:flex;flex-wrap:wrap;gap:4px;border-bottom:1px solid var(--border);margin:14px 0 0;overflow-x:auto;}
+      .tab-btn{appearance:none;background:transparent;border:none;border-bottom:2px solid transparent;padding:10px 14px;font-size:.92rem;font-weight:500;font-family:inherit;color:var(--muted);cursor:pointer;white-space:nowrap;transition:color .15s,border-color .15s;}
+      .tab-btn:hover{color:var(--text);}
+      .tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600;}
+      .tab-panel{display:none;animation:fadeIn .18s ease-out;}
+      .tab-panel.active{display:block;}
+      @keyframes fadeIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:none;}}
+
+      /* Sejmiki */
+      .sejmiki-meta{display:flex;flex-wrap:wrap;gap:18px;font-size:.86rem;color:var(--muted);margin:6px 0 14px;}
+      .sejmiki-meta strong{color:var(--text);font-weight:600;}
+      .sejmiki-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;}
+      .sejmik-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:3px;position:relative;}
+      .sejmik-card.sejmik-pilot{border-color:rgba(202,138,4,.4);background:rgba(202,138,4,.04);}
+      .sejmik-name{font-weight:600;color:var(--text);font-size:.92rem;}
+      .sejmik-cap{font-size:.74rem;color:var(--muted);}
+      .sejmik-badge{position:absolute;top:10px;right:10px;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:2px 7px;border-radius:999px;background:rgba(107,114,128,.14);color:var(--muted);}
+      .sejmik-badge-pilot{background:rgba(202,138,4,.16);color:var(--yellow);}
+
+      @media (max-width:720px){
+        .tab-btn{padding:9px 10px;font-size:.86rem;}
+        .sejmiki-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;}
+      }
+    </style>
+
+    <script>
+      (function(){
+        var nav = document.getElementById('zest-tabs');
+        if(!nav) return;
+        var section = document.getElementById('zestawienia');
+
+        function activate(tab){
+          var btns = section.querySelectorAll('.tab-btn');
+          var panels = section.querySelectorAll('.tab-panel');
+          btns.forEach(function(b){
+            var on = b.dataset.tab === tab;
+            b.classList.toggle('active', on);
+            b.setAttribute('aria-selected', on ? 'true' : 'false');
+          });
+          panels.forEach(function(p){
+            p.classList.toggle('active', p.dataset.panel === tab);
+          });
+          // window.dispatchEvent: niektóre rendery (recharts/grid) reagują na resize
+          window.dispatchEvent(new Event('resize'));
+        }
+
+        nav.addEventListener('click', function(e){
+          var btn = e.target.closest('.tab-btn');
+          if(!btn) return;
+          var tab = btn.dataset.tab;
+          activate(tab);
+          if(history.replaceState){
+            history.replaceState(null, '', '#z-' + tab);
+          }
+        });
+
+        // Deep link: #z-ranking otwiera tab Ranking radnych
+        var hash = (location.hash || '').replace(/^#z-/, '');
+        if(hash && section.querySelector('.tab-btn[data-tab="' + hash + '"]')){
+          activate(hash);
+        }
+      })();
+    </script>
   </section>
 
   <section class="about">

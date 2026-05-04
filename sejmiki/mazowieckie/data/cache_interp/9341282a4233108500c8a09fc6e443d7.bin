@@ -1,0 +1,993 @@
+<!DOCTYPE html><html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Interpelacje i zapytania radnych - Witryna Mazovia.pl</title>    <meta name="keywords" content="&#x20;">
+<meta name="description" content="&#x20;">
+<meta name="generator" content="SmartSite&#x20;by&#x20;BIT&#x20;Sp.&#x20;z&#x20;o.o.&#x20;-&#x20;https&#x3A;&#x2F;&#x2F;www.bit-sa.pl&#x20;&#x5B;web1&#x5D;">
+<meta name="viewport" content="width&#x3D;device-width,&#x20;initial-scale&#x3D;1">
+<meta property="og&#x3A;title" content="Interpelacje&#x20;i&#x20;zapytania&#x20;radnych&#x20;-&#x20;Witryna&#x20;Mazovia.pl">
+<meta property="og&#x3A;type" content="website">
+<meta property="og&#x3A;url" content="http&#x3A;&#x2F;&#x2F;mazovia.pl&#x2F;pl&#x2F;bip&#x2F;sejmik&#x2F;interpelacje-i-zapytania-radnych&#x2F;vii-kadencja&#x2F;&#x3F;p&#x3D;2026&#x25;5Einterpelacja&amp;page&#x3D;1">
+<meta property="og&#x3A;site_name" content="Witryna&#x20;Mazovia.pl">
+<meta property="og&#x3A;locale" content="pl_PL">
+<meta property="og&#x3A;image" content="https&#x3A;&#x2F;&#x2F;mazovia.pl&#x2F;projects&#x2F;mazovia&#x2F;img&#x2F;miniature.png">
+<meta property="og&#x3A;image&#x3A;alt" content="Mazovia.pl&#x20;-&#x20;Portal&#x20;Informacyjny&#x20;Wojew&#xF3;dztwa&#x20;Mazovieckiego">    <link href="&#x2F;assets&#x2F;css&#x2F;custom-css&#x2F;jquery.gritter.custom.css" media="screen" rel="stylesheet" type="text&#x2F;css">
+<link href="&#x2F;assets&#x2F;css&#x2F;jquery.gritter.css" media="screen" rel="stylesheet" type="text&#x2F;css">
+<link href="&#x2F;js&#x2F;fancybox&#x2F;jquery.fancybox.css" media="screen" rel="stylesheet" type="text&#x2F;css">
+<link href="&#x2F;projects&#x2F;mazovia&#x2F;css&#x2F;bootstrap-theme.min.css" media="screen" rel="stylesheet" type="text&#x2F;css">
+<link href="&#x2F;projects&#x2F;mazovia&#x2F;libs&#x2F;font-awesome&#x2F;css&#x2F;font-awesome.min.css" media="screen" rel="stylesheet" type="text&#x2F;css">
+<link href="&#x2F;system&#x2F;css&#x2F;jquery.cookiebar.css" media="screen" rel="stylesheet" type="text&#x2F;css">
+<link href="&#x2F;projects&#x2F;mazovia&#x2F;css&#x2F;owl.carousel.css" media="screen" rel="stylesheet" type="text&#x2F;css">
+<link href="&#x2F;projects&#x2F;mazovia&#x2F;node_modules&#x2F;swiper&#x2F;swiper-bundle.min.css" media="screen" rel="stylesheet" type="text&#x2F;css">
+<link href="&#x2F;projects&#x2F;mazovia&#x2F;css&#x2F;owl.theme.css" media="screen" rel="stylesheet" type="text&#x2F;css">
+<link href="&#x2F;projects&#x2F;mazovia&#x2F;css&#x2F;owl.transitions.css" media="screen" rel="stylesheet" type="text&#x2F;css">
+<link href="&#x2F;projects&#x2F;mazovia&#x2F;css&#x2F;jquery.mCustomScrollbar.css" media="screen" rel="stylesheet" type="text&#x2F;css">
+<link href="&#x2F;projects&#x2F;mazovia&#x2F;css&#x2F;keyframes.css" media="screen" rel="stylesheet" type="text&#x2F;css">
+<link href="&#x2F;projects&#x2F;mazovia&#x2F;css&#x2F;print.css" media="print" rel="stylesheet" type="text&#x2F;css">
+<link href="&#x2F;projects&#x2F;mazovia&#x2F;css&#x2F;theme.css" media="all" rel="stylesheet" type="text&#x2F;css">    <link rel="stylesheet" href="https://use.typekit.net/esm1ixu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <script  src="&#x2F;mainVariables.js"></script>
+<script  src="&#x2F;js&#x2F;jquery.min.js"></script>
+<script  defer="defer" src="&#x2F;js&#x2F;fancybox&#x2F;jquery.fancybox.min.js"></script>
+<script  defer="defer" src="&#x2F;components&#x2F;contentWYSIWYG&#x2F;component.js"></script>
+<script  src="&#x2F;libs&#x2F;translate-js&#x2F;dist&#x2F;translate.min.js"></script>
+<script  src="&#x2F;system&#x2F;js&#x2F;jquery.cookie.min.js"></script>
+<script  src="&#x2F;app&#x2F;js&#x2F;admin&#x2F;counter&#x2F;objectcounter.js"></script>
+<script  src="&#x2F;app&#x2F;js&#x2F;jquery.bitResource2.js"></script>
+<script  src="&#x2F;libs&#x2F;bootbox&#x2F;bootbox.js"></script>
+<script  src="&#x2F;app&#x2F;js&#x2F;cms&#x2F;component&#x2F;attachment&#x2F;pdfConverter.js"></script>
+<script  src="&#x2F;system&#x2F;js&#x2F;bit-show-componenet-data.js"></script>
+<script  src="&#x2F;app&#x2F;js&#x2F;jquery.bitTopMenu.js"></script>
+<script  src="&#x2F;js&#x2F;bootstrap.min.js"></script>
+<script  src="&#x2F;system&#x2F;js&#x2F;jquery.cookiebar.min.js"></script>
+<script  src="&#x2F;libs&#x2F;bootbox&#x2F;dist&#x2F;bootbox.all.min.js"></script>
+<script  src="&#x2F;system&#x2F;js&#x2F;component-pagebreak.js"></script>
+<script  src="&#x2F;assets&#x2F;js&#x2F;jquery.gritter.min.js"></script>
+<script  src="&#x2F;app&#x2F;js&#x2F;jquery.bitFlashMessenger.js"></script>
+<script  src="&#x2F;projects&#x2F;mazovia&#x2F;js&#x2F;index.min.js"></script>
+<script  src="&#x2F;projects&#x2F;mazovia&#x2F;js&#x2F;owl.carousel.min.js"></script>
+<script  src="&#x2F;projects&#x2F;mazovia&#x2F;node_modules&#x2F;swiper&#x2F;swiper-bundle.min.js"></script>
+<script  src="&#x2F;projects&#x2F;mazovia&#x2F;js&#x2F;jquery.mCustomScrollbar.concat.min.js"></script>
+<script  src="&#x2F;projects&#x2F;mazovia&#x2F;js&#x2F;component-page-list.js"></script>    <link rel="shortcut icon" href="/projects/mazovia/img/favicon.png" type="image/x-icon" />
+    <link rel="icon" href="/projects/mazovia/img/favicon.png" type="image/x-icon" />
+    </head>
+<body  class="project_dev-bazy-mazoviapl theme_mazovia tmpl_mazovia-bip_podstrona ">
+
+        <ul id="skip-links">
+   <li><a class="sr-only sr-only-focusable" href="#main-content">Przejdź do głównej treści</a></li>
+   <li><a class="sr-only sr-only-focusable" href="#menu-row">Przejdź do menu</a></li>
+   <li><a class="sr-only sr-only-focusable" href="#footer">Przejdź do stopki (dane kontaktowe)</a></li>
+<li><a class="sr-only sr-only-focusable" href="/pl/mapa-serwisu.html">Przejdź do mapy serwisu Mazovia</a></li><li><a class="sr-only sr-only-focusable" href="/pl/bip/mapa-serwisu-bip.html">Przejdź do mapy serwisu BIP</a></li></ul>
+    
+<div class="container hidden">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="flash-message">
+                            </div>
+        </div>
+    </div>
+</div>
+    <header class="bip" data-is-droppable="true"><div class="component component-accepted" data-id="c756d95d-3a02-11eb-8c9b-0050568c021d" data-is-editable="5" data-name="Cms_TemplateRenderer"><div class="container webpage">
+<div class="row" id="tools-menu"><div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 hidden-xs" data-is-droppable="true" id="tools-icon"><div class="component component-accepted" data-id="4963d30b-66f3-4bba-ad74-cc6826f87fb5" data-is-editable="3" data-name="Cms_Html" style="position: relative; top: 0px; left: 0px;">
+<div  class="component-html">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <nav class="navbar navbar-default transparent" aria-label="Menu udogodnień dla niepełnosprawnych">
+<div class="collapse navbar-collapse">
+<ul class="nav navbar-nav navbar-right btn-toolbar">
+<li class="btn-group btn-toolbar-group"><a href="/pl/dostepnosc" class="btn btn-default btn-transparent btn-accessibility">Dostępność</a></li>
+<li class="btn-group btn-toolbar-group"><button class="btn btn-default btn-transparent btn-contrast" type="button" title="Przełącz pomiędzy widokiem o wysokim i normalnym kontraście"><span class="sr-only">Dla słabowidzących</span></button></li>
+<li class="btn-group btn-toolbar-group"><a href="https://tlumacz.migam.org/Mazovia" class="btn btn-default btn-transparent btn-migam" title="Tłumacz polskiego języka migowego"><span class="sr-only">Dla niesłyszących - język polski</span></a></li>
+<li class="btn-group btn-toolbar-group"><a href="/pl/slownik-skrotow.html" class="btn btn-default btn-transparent btn-dictionary">Słownik skr&oacute;t&oacute;w</a></li>
+</ul>
+</div>
+</nav>        </div>
+    </div>
+</div>
+
+</div></div><div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 col-xl-3" data-is-droppable="true" id="search"><div class="component component-accepted" data-id="1080f9b7-62d9-47d0-bdb0-cb349113fc7b" data-is-editable="3" data-name="Cms_Html" style="position: relative; top: 0px; left: 0px;">
+<div  class="component-html">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <form id="main-search" class="search-form" method="get" role="search" action="/cms/search/index">
+<div class="form-group">
+<div class="input-group"><label class="sr-only" for="search-term">Szukaj: </label> <input class="form-control pull-right" type="text" id="search-term" placeholder="wpisz czego szukasz..." name="q" value="" /> <span class="input-group-btn"> <button class="btn btn-default" type="submit"> <img src="/resource/image/1/3/11/193/0x0.png" alt="Ikona lupy" /> <span class="sr-only">Szukaj</span> </button> </span></div>
+</div>
+</form>        </div>
+    </div>
+</div>
+
+</div></div><div class="text-right col-xs-12 col-sm-6 col-md-3 col-lg-3 col-xl-3" data-is-droppable="true"><div class="component component-accepted" data-id="e2cab63d-c7a4-49be-8ac0-54102b3d380e" data-is-editable="3" data-name="Cms_Html">
+<div  class="component-html">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <div><a href="/newsletter/subscriber/add" class="btn-newsletter">Dołącz do newslettera<i class="fa fa-angle-right" aria-hidden="true"></i></a></div>        </div>
+    </div>
+</div>
+
+</div></div></div><div class="row" id="logo-row"><div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" data-is-droppable="true" id="logo-bip"><div class="component component-accepted" data-id="a9f68319-d9ee-41b4-9f71-b10968149902" data-is-editable="3" data-name="Cms_Html">
+<div  class="component-html">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <div><a href="https://bip.mazovia.pl/" title="Przejdź do strony gł&oacute;wnej BIP UMWM"><img src="/resource/image/1/3/12/328/0x0.png" alt="Logo Biuletynu Informacji Publicznej" class="img-responsive" /></a></div>        </div>
+    </div>
+</div>
+
+</div></div><div class="text-center col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8" data-is-droppable="true" id="logo"><div class="component component-accepted" data-id="801c5ce9-ab82-4c38-a6ee-fc55710f1092" data-is-editable="3" data-name="Cms_Html">
+<div  class="component-html">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <a href="/" title="przejdź do strony gł&oacute;wnej"><img src="/resource/image/1/3/12/699/0x0.png" alt="Logo Mazowsze serce Polski" caption="false" class="img-responsive" width="375" height="133" /></a>
+<div class="page-name">Biuletyn Informacji Publicznej<br />Samorządu Wojew&oacute;dztwa Mazowieckiego</div>        </div>
+    </div>
+</div>
+
+</div></div><div class="text-right col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xl-2" data-is-droppable="true" id="herb"><div class="component component-accepted" data-id="3e8e09e0-010c-40de-9730-18b1ecf3794b" data-is-editable="3" data-name="Cms_Html" style="position: relative; top: 0px; left: 0px;">
+<div  class="component-html">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <div><a href="https://mazovia.pl/" title="Przejdź do strony gł&oacute;wnej serwisu Mazovia"><img src="/resource/image/1/3/12/194/0x0.png" alt="Herb Wojew&oacute;dztwa Mazowieckiego" class="img-responsive" /></a></div>        </div>
+    </div>
+</div>
+
+</div></div></div><div class="row" id="menu-row"><div class="home-link col-xs-12 col-sm-1 col-md-1 col-lg-1" data-is-droppable="true"><div class="component component-accepted" data-id="8fd98dae-3982-11eb-8c9b-0050568c021d" data-is-editable="3" data-name="Cms_Html">
+<div  class="component-html">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <div><a href="https://bip.mazovia.pl/"><span class="sr-only">Link do strony gł&oacute;wnej Biuletynu Informacji Publicznej Samorządu Wojew&oacute;dztwa Mazowieckiego</span></a></div>        </div>
+    </div>
+</div>
+
+</div></div><div class="col-xs-12 col-sm-11 col-md-10 col-lg-10" data-is-droppable="true"><div class="component component-accepted" data-id="8ff6c329-3982-11eb-8c9b-0050568c021d" data-is-editable="1" data-name="Cms_Menu"><nav aria-label="Menu główne" class="navbar navbar-default component-nav" id="menuTopH8ff6c329-3982-11eb-8c9b-0050568c021d">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#horizontal-menu-8ff6c329-3982-11eb-8c9b-0050568c021d"  aria-expanded="false">
+                <span class="sr-only">Włącz menu</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand visible-xs" href="#">Menu</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="horizontal-menu-8ff6c329-3982-11eb-8c9b-0050568c021d">
+            <ul class="nav navbar-nav main-nav">
+                                                                                                                                <li class=""><a href="/pl/bip/zalatw-sprawe/zalatw-sprawe-1.html" target="_self"><span>Załatw sprawę</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/bip/sejmik/informacje-ogolne.html" target="_self"><span>Sejmik</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/bip/zarzad/informacje-ogolne.html" target="_self"><span>Zarząd</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/bip/urzad-marszalkowski/informacje-ogolne.html" target="_self"><span>Urząd marszałkowski</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/bip/ewidencje-rejestry-archiwa/ewidencje-rejestry-archiwa.html" target="_self"><span>Ewidencje, rejestry, archiwa</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/bip/finanse-i-mienie/finanse-i-mienie-1.html" target="_self"><span>Finanse i mienie</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/bip/konta-bankowe.html" target="_self"><span>Konta bankowe</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/bip/kontrole/" target="_self"><span>Kontrole</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/bip/oferty_pracy" target="_self"><span>Kariera</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/bip/oswiadczenia-majatkowe/oswiadczenia-majatkowe-1.html" target="_self"><span>Oświadczenia majątkowe</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/bip/pozwolenia-zawiadomienia-obwieszczenia-decyzje/powiadomienia-i-decyzje.html" target="_self"><span>Pozwolenia, obwieszczenia, decyzje</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/bip/finanse-i-mienie/wojewodzkie-samorzadowe-jednostki-organizacyjne-i-spolki.html" target="_self"><span>WSJO i spółki</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/bip/dokumenty-strategiczne/dokumenty-strategiczne-1.html" target="_self" title="przejdź to dokumentów strategicznych"><span>Dokumenty strategiczne</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="http://edziennik.mazowieckie.pl/actbymonths" target="_self"><span>Dziennik Urzędowy</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="https://ems.ms.gov.pl/msig/przegladaniemonitorow" target="_self"><span>Monitor Sądowy i Gospodarczy</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/bip/zasoby-bip" target="_self"><span>Zasoby BIP</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/bip/wybory-samorzadowe" target="_self"><span>Wybory samorządowe 2024</span><span class="frame"></span></a>
+</li>
+                                                                                                                                    <li class=""><a href="/pl/samorzad/sygnalisci/informacje-ogolne.html" target="_self"><span>Sygnaliści</span><span class="frame"></span></a>
+</li>
+                                        </ul>
+            <div class="collapse-border visible-xs">&nbsp;</div>
+        </div>
+    </div>
+</nav>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            try {
+                var settings = {'more' : 0};
+                $('#menuTopH8ff6c329-3982-11eb-8c9b-0050568c021d').bitTopMenu(settings);
+            }
+            catch(exp) {
+                console.error("Brak ładowania biblioteki jquery.bitTopMenu.js");
+            }
+        });
+    </script>
+</div></div></div>
+</div>
+<div class="container infokiosk">
+    <div class="row"><div class="col-eto col-12 col-xs-12 col-md-3" data-is-droppable="true"><div class="component component-accepted" data-id="e6e9a677-a00a-11ee-a60a-00155d005433" data-is-editable="3" data-name="Cms_Html">
+<div  class="component-html">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <a href="/" title="Powr&oacute;t do strony gł&oacute;wnej">ELEKTRONICZNA<br />TABLICA OGŁOSZEŃ</a>        </div>
+    </div>
+</div>
+
+</div></div><div class="col-swm col-5 col-xs-5 col-md-3" data-is-droppable="true"><div class="component component-accepted" data-id="e6e868d4-a00a-11ee-a60a-00155d005433" data-is-editable="3" data-name="Cms_Html">
+<div  class="component-html">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <img src="/projects/mazovia/img/herb-swm.png" alt="Herb Wojew&oacute;dztwa Mazowieckiego i napis Samorząd Wojew&oacute;dztwa Mazowieckiego" class="img-responsive" />        </div>
+    </div>
+</div>
+
+</div></div><div class="col-25lm col-7 col-xs-7 col-md-3" data-is-droppable="true"><div class="component component-accepted highlight" data-id="e6e7104c-a00a-11ee-a60a-00155d005433" data-is-editable="3" data-name="Cms_Html" style="position: relative; top: 0px; left: 0px;">
+<div  class="component-html">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <div class="row">
+<div class="col-8 col-xs-8"><a href="https://mazovia.pl" title="Przejdź do strony gł&oacute;wnej witryny Mazowia"><img src="/resource/image/1/3/70701/213479/0x0.png" alt="Okolicznościowe logo Mazowsza z okazji 25-lecia" class="img-responsive" height="80" caption="false" /></a></div>
+<div class="col-4 col-xs-4"><a href="https://bip.mazovia.pl/" title="Przejdź do strony gł&oacute;wnej BIP UMWM" class="pull-right"><img src="/resource/image/1/3/12/328/0x0.png" alt="Logo Biuletynu Informacji Publicznej" class="img-responsive" style="max-height: 70px; margin: 8px 0 0 0;" /></a></div>
+</div>        </div>
+    </div>
+</div>
+
+</div></div><div class="col-dt text-right col-12 col-xs-12 col-md-3" data-is-droppable="true"><div class="component component-accepted" data-id="e6eaf718-a00a-11ee-a60a-00155d005433" data-is-editable="3" data-name="Cms_NameDay"><div  class="component-name-day">
+    <div class="component-wrapper">
+                <div class="component-content">
+                            <p class="name-day-time time"></p>
+
+                <script>
+                    $(function() {
+                        startTime();
+
+                        function startTime() {
+                            const today = new Date();
+                            let h = checkTime(today.getHours());
+                            let m = checkTime(today.getMinutes());
+
+                            $('.time').text(h + ":" + m);
+                            setTimeout(startTime, 1000);
+                        }
+
+                        function checkTime(i) {
+                            if (i < 10) {
+                                i = "0" + i
+                            }
+
+                            return i;
+                        }
+                    });
+                </script>
+                                        <p class="name-day-date date">4.05.2026</p>
+                                            </div>
+    </div>
+</div></div></div></div>
+</div>
+</div></header><main class="bip"><div class="container" id="main-content">
+<div class="row"><div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" data-is-droppable="true"><div class="component component-accepted" data-id="4e66d7fe-04cd-11ec-8807-00155d00fb12" data-is-editable="1" data-name="Cms_Breadcrumb">
+    <div class="component-breadcrumb">
+        <div class="component-wrapper">
+            <div class="component-content">
+                <ul class="breadcrumb">
+                                                                        <li ><a href="/">Strona główna</a></li>
+                                                                                                <li ><a href="/pl/bip/">BIP</a></li>
+                                                                                                <li ><a href="/pl/bip/sejmik/">Sejmik Województwa Mazowieckiego</a></li>
+                                                                                                <li ><a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/">Interpelacje i zapytania radnych</a></li>
+                                                                                                <li ><a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/">VII kadencja</a></li>
+                                                                                                <li ><a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/?p=2026">2026</a></li>
+                                                                                                <li class="active"><a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/?p=2026^interpelacja">interpelacja</a></li>
+                                                            </ul>
+            </div>
+        </div>
+    </div>
+</div></div></div>
+<div class="row">
+<div class="col-xs-12 col-sm-8 col-md-9 col-lg-9 col-sm-push-4 col-md-push-3" data-is-droppable="true">
+<div class="component component-accepted" data-id="5f5e717a-3300-11eb-b8ca-0050568c021d" data-is-editable="1" data-name="Cms_PageTitle" style="position: relative; top: 0px; left: 0px;">    <div class="component-title component-page-title">
+        <div class="component-wrapper">
+            <div class="component-head">
+                <p><span>VII kadencja</span></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row" style=""><div class="col-12 col-xs-12 col-sm-10 col-md-10 col-lg-10 col-infokiosk" data-is-droppable="true"><div class="component component-accepted" data-id="231014ca-80e8-11eb-a90d-0050568c868b" data-is-editable="1" data-name="Cms_PageTitle"><h1 class="component-page-title">Interpelacje i zapytania radnych</h1>
+</div><div class="component component-accepted" data-id="9113c9b9-a40a-11eb-b405-0050568c8094" data-is-editable="1" data-name="Cms_PageThumbnail"></div><div class="component component-accepted" data-id="8207d42e-3a91-11eb-8c9b-0050568c021d" data-is-editable="1" data-name="Cms_PageDescription"></div><div class="component component-accepted" data-id="93beb19c-3d76-11eb-8807-0050568c021d" data-is-editable="2" data-name="Bip_PageList" style="position: relative; top: 0px; left: 0px;">            <div class="component-sidebar-menu item component-side-links printable levels">
+            <div class="component-wrapper">
+                <div class="component-head">
+                                    </div>
+                <div class="accordion" id="sidebar-menu-1">
+                    <ul>
+                                                                                                                                                <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/2726-interpelacja-radnego-artura-czaplinskiego.html"
+                                       title="27/26 interpelacja radnego Artura Czaplińskiego">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">27/26 interpelacja radnego Artura Czaplińskiego</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie zakupu fortepianu przez Zespół Szkół Drzewnych i Leśnych w Garbatce-Letnisku</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;nie</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/2526-interpelacja-radnej-edyty-wietrak.html"
+                                       title="25/26 interpelacja radnej Edyty Wietrak">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">25/26 interpelacja radnej Edyty Wietrak</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie regulaminu Budżetu Obywatelskiego Mazowsza</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/2326-interpelacja-radnego-igora-sulicha.html"
+                                       title="23/26 interpelacja radnego Igora Sulicha">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">23/26 interpelacja radnego Igora Sulicha</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie  unieważnienia postępowania przetargowego na wykonanie zastępcze usunięcia odpadów niebezpiecznych przy ul. Łukasiewicza 11 w Wołominie oraz dalszych planów działań Zarządu Województwa Mazowieckiego</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/2226-interpelacja-radnego-ludwika-rakowskiego.html"
+                                       title="22/26 interpelacja radnego Ludwika Rakowskiego">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">22/26 interpelacja radnego Ludwika Rakowskiego</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie realizacji zadania publicznego w obszarze „Wspieranie i upowszechnianie kultury fizycznej” pn. „Wspieranie klubów i zawodników Mazowsza na podstawie wyników Systemu Sportu Młodzieżowego”</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/2126-interpelacja-radnego-zdzislawa-sipiery.html"
+                                       title="21/26 interpelacja radnego Zdzisława Sipiery">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">21/26 interpelacja radnego Zdzisława Sipiery</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie zgłoszonych poprawek do projektu budżetu Województwa Mazowieckiego na 2026 rok</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/2026-interpelacja-radnego-klubu-koalicji-obywatelskiej.html"
+                                       title="20/26 interpelacja radnych Klubu Koalicji Obywatelskiej">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">20/26 interpelacja radnych Klubu Koalicji Obywatelskiej</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie przywrócenia historycznej dekoracji sgraffitowej autorstwa prof. Leonarda Pękalskiego na wschodniej elewacji budynku Arsenału Królewskiego w Warszawie (siedziba Państwowego Muzeum Archeologicznego</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/1926-interpelacja-radnych-klubu-koalicji-obywatelskiej.html"
+                                       title="19/26 interpelacja radnych Klubu Koalicji Obywatelskiej">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">19/26 interpelacja radnych Klubu Koalicji Obywatelskiej</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie utworzenia Mazowieckiego Ośrodka Leczenia Uzależnień przy Szpitalu Nowowiejskim w Warszawie</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/1826-interpelacja-radnych-klubu-koalicji-obywatelski.html"
+                                       title="18/26 interpelacja radnych Klubu Koalicji Obywatelski">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">18/26 interpelacja radnych Klubu Koalicji Obywatelski</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie wdrożenia projektu „Geolokalizacja 2.0” oraz cyfryzacji procesów pielęgniarskich w Mazowieckim Szpitalu Bródnowskim Sp. z o.o.</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/1726-interpelacja-radnych-klubu-koalicji-obywatelskiej.html"
+                                       title="17/26 interpelacja radnych Klubu Koalicji Obywatelskiej">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">17/26 interpelacja radnych Klubu Koalicji Obywatelskiej</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie udzielenia wsparcia finansowego dla Powiatu Wołomińskiego na przebudowę Alei Marszałka Józefa Piłsudskiego w Markach (odcinek od ulicy Szpitalnej do ulicy Lisa-Kuli)</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/1626-interpelacja-radnej-sylwii-lacek.html"
+                                       title="16/26 interpelacja radnej Sylwii Lacek">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">16/26 interpelacja radnej Sylwii Lacek</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie zasadności wpisania do Wojewódzkiego Planu Gospodarki Odpadami instalacji odzysku energii z odpadów przy ul. Wólczyńskiej w Warszawie</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/1526-interpelacja-radnej-sylwii-lacek.html"
+                                       title="15/26 interpelacja radnej Sylwii Lacek">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">15/26 interpelacja radnej Sylwii Lacek</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie zasad premiowania pracowników w Wojewódzkim Ośrodku Ruchu Drogowego w Ciechanowie, w kontekście korzystania z uprawnień przysługujących honorowym dawcom krwi</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/1426-interpelacja-radnej-sylwii-lacek.html"
+                                       title="14/26 interpelacja radnej Sylwii Lacek">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">14/26 interpelacja radnej Sylwii Lacek</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie uzupełnienia informacji dotyczących wpisania Zakładu Odzysku Energii z odpadów przy ul. Wólczyńskiej w Warszawie do Wojewódzkiego Planu Gospodarki Odpadami</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/1326-interpelacja-radnej-sylwii-lacek.html"
+                                       title="13/26 interpelacja radnej Sylwii Lacek">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">13/26 interpelacja radnej Sylwii Lacek</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie zasad głosowania obowiązujących w Budżecie Obywatelskim Mazowsza</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/1126-interpelacja-radnej-katarzyny-bornowskiej.html"
+                                       title="11/26 interpelacja radnej Katarzyny Bornowskiej">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">11/26 interpelacja radnej Katarzyny Bornowskiej</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie powołania programu wsparcia pod nazwą "Mazowsze dla czytelnictwa"</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/1026-interpelacja-radnej-anny-kaszuby.html"
+                                       title="10/26 interpelacja radnej Anny Kaszuby">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">10/26 interpelacja radnej Anny Kaszuby</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie modyfikacji rozkładu jazdy kolei mazowieckich na linii Warszawa Wileńska - Małkinia</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/926-interpelacja-radnej-anny-kaszuby.html"
+                                       title="9/26 interpelacja radnej Anny Kaszuby">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">9/26 interpelacja radnej Anny Kaszuby</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie zmiany rozkładu jazdy pociągów Kolei Mazowieckich na trasie Małkinia-Warszawa Wileńska</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/726-interpelacja-radnej-anny-kaszuby.html"
+                                       title="7/26 interpelacja radnej Anny Kaszuby">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">7/26 interpelacja radnej Anny Kaszuby</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie pilnego zabezpieczenia środków na budowę chodników i ścieżek rowerowych w ciągu drogi wojewódzkiej nr 697</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/626-interpelacja-radnego-jakuba-kowalskiego.html"
+                                       title="6/26 interpelacja radnego Jakuba Kowalskiego">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">6/26 interpelacja radnego Jakuba Kowalskiego</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie niepokojącej sytuacji w Zespole Szkół Drzewnych i Leśnych im. Jana Kochanowskiego w Garbatce-Letnisku, jednostce prowadzonej przez Samorząd Województwa Mazowieckiego</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/426-interpelacja-radnej-teresy-wargockiej.html"
+                                       title="4/26 interpelacja radnej Teresy Wargockiej">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">4/26 interpelacja radnej Teresy Wargockiej</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie długotrwałego braku skutecznych działań prowadzących do likwidacji składowiska odpadów niebezpiecznych zlokalizowanego w miejscowości Ryczołek, gmina Kałuszyn, powiat miński</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                                            <li class="component-item">
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/326-interpelacja-radnego-michala-orlinskiego-1.html"
+                                       title="3/26 interpelacja radnego Michała Orlińskiego">
+                                        <i class="sidebar-menu-arrow fa fa-long-arrow-right"></i>
+                                        <em class="item-title">3/26 interpelacja radnego Michała Orlińskiego</em>
+                                    </a>
+                                                                            <div class="desc with-num">
+                                                                                            <p><span class="description">Czego dotyczy:</span>&nbsp;w sprawie narastającego problemu wykluczenia komunikacyjnego mieszkańców północno-zachodniej części województwa mazowieckiego, w szczególności powiatu gostynińskiego, a także części powiatów płockiego i sochaczewskiego</p>
+                                                                                            <p><span class="description">Udzielono odpowiedzi:</span>&nbsp;tak</p>
+                                                                                    </div>
+                                                                    </li>
+                                                                        </ul>
+                </div>
+            </div>
+                                <nav class="component-paginator" aria-label="Paginacja listy stron">
+        <ul class="pagination">
+                                                                        <li class="active">
+                        <a aria-current="true" aria-label="Aktualnie wybrana strona">
+                            1                                        </a>
+                    </li>
+                                                <li>
+                        <a aria-label="Przejdź do strony numer 2" href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/?p=2026%5Einterpelacja&page=2" data-toggle="tooltip" data-placement="bottom" data-original-title="Przejdź do strony numer 2">
+                            2                                        </a>
+                    </li>
+                                        <li>
+                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/?p=2026%5Einterpelacja&page=2" aria-label="Następna strona" data-toggle="tooltip" data-placement="bottom" data-original-title="Następna strona">
+                        <span class="fa fa-angle-right" aria-hidden="true"></span>
+                        <span class="sr-only">Następna strona</span>
+                    </a>
+                </li>
+                                        <li>
+                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/?p=2026%5Einterpelacja&page=2" aria-label="Ostatnia strona" data-toggle="tooltip" data-placement="bottom" data-original-title="Ostatnia strona">
+                        <span class="fa fa-angle-double-right" aria-hidden="true"></span>
+                        <span class="sr-only">Ostatnia strona</span>
+                    </a>
+                </li>
+                    </ul>
+    </nav>
+                    </div>
+    
+<script>
+    jQuery(document).ready(function($){
+        //when a group is shown, save it as the active accordion group
+        $("#sidebar-menu-1").bind('shown', function() {
+            var active = $("#sidebar-menu-1 .in").attr('id');
+            $.cookie('activeAccordionGroup', active)
+        });
+    });
+</script>
+</div><div class="component component-accepted highlight" data-id="2f7baf69-0be1-11f1-ab23-00155d00712e" data-is-editable="3" data-name="Bip_PageList" style=""></div><div class="component component-accepted" data-id="8e6ca813-3d78-11eb-8807-0050568c021d" data-is-editable="2" data-name="Bip_PageData" style="position: relative; top: 0px; left: 0px;"></div><div class="component component-accepted" data-id="3d1c74e5-7233-4ca7-b622-ce8ff79aa16a" data-is-editable="7" data-name="Cms_ContentWYSIWYG" style="position: relative; top: 0px; left: 0px;"></div><div class="component component-accepted" data-id="99d44529-9b0f-46da-bbe0-850e27ca091e" data-is-editable="7" data-name="Cms_Attachment" style="position: relative; top: 0px; left: 0px;">
+</div><div class="component component-accepted" data-id="4ecb1661-3bba-11eb-8c9b-0050568c021d" data-is-editable="1" data-name="Cms_PageRelations"></div><div class="component component-accepted" data-id="7a8b56cc-3300-11eb-b8ca-0050568c021d" data-is-editable="5" data-name="Bip_PageMetric" style="position: relative; top: 0px; left: 0px;">        <div class="component-bip-metric item">
+        <div class="component-wrapper">
+                        <div class="row component-content bit-expand-area" >
+                <div class="col-xs-12">
+                    <p>Podmiot udostępniający: Urząd Marszałkowski Województwa Mazowieckiego w Warszawie</p>
+                                        <p>Wytworzył: Redakcja BIP</p>
+                                                            <p>Data wytworzenia: 09.05.2024</p>
+                                                            <p>Opublikował w BIP: <a href="mailto:superadministrator@smartsite.pl">
+                        Super Administrator                    </a></p>
+                                                            <p>Data opublikowania: 09.05.2024 12:48</p>
+                                                            <p>Ostatnio zaktualizował: <a href="mailto:agnieszka.niedbalko@mazovia.pl">
+                                                Agnieszka Czarnecka-Niedbałko                    </a></p>
+                                                            <p>Data ostatniej aktualizacji: 10.12.2025 13:04</p>
+                                                                <p>Liczba wyświetleń: 13262</p>
+                                                                                                </div>
+                <div class="col-xs-12 metric-buttons">
+                                                                            </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var likeUrl = "/admin/counter/count-like";
+        var pageId = 80471;
+
+        $(function () {
+            $(".fa-thumbs-o-up").click(function () {
+                $.ajax({
+                    url: likeUrl,
+                    method: 'post',
+                    dataType: 'json',
+                    data: {
+                        id: pageId,
+                        type: 'up'
+                    },
+                    error: function (response) {
+                        var upCnt;
+                        var downCnt;
+                        if (response.data.up != undefined && response.data.down != undefined && response.status != undefined && response.status == 2)
+                        {
+                            upCnt = response.data.up;
+                            downCnt = response.data.down;
+
+                            $('#counterUp').text(upCnt);
+                            $('#counterDown').text(downCnt);
+
+                            $.flashMessenger(response.message, 'info', true);
+                        } else
+                        if (response.data.up != undefined && response.data.down != undefined)
+                        {
+                            upCnt = response.data.up;
+                            downCnt = response.data.down;
+
+                            $('#counterUp').text(upCnt);
+                            $('#counterDown').text(downCnt);
+                        } else
+                            $.flashMessenger('Błąd aplikacji, proszę spróbować ponownie lub skontaktować się z administratorem systemu.', 'error', true);
+                    },
+                    success: function (response) {
+                        var upCnt = response.data.up;
+                        var downCnt = response.data.down;
+
+                        $('#counterUp').text(upCnt);
+                        $('#counterDown').text(downCnt);
+                    },
+                    complete: function () {
+                        $('.fa-thumbs-o-up').off('click');
+                        $('.fa-thumbs-o-down').off('click');
+                    }
+                });
+
+            });
+
+            $(".fa-thumbs-o-down").click(function () {
+                $.ajax({
+                    url: likeUrl,
+                    method: 'post',
+                    dataType: 'json',
+                    data: {
+                        id: pageId,
+                        type: 'down'
+                    },
+                    error: function (response) {
+                        $.flashMessenger('Błąd aplikacji, proszę spróbować ponownie lub skontaktować się z administratorem systemu.', 'error', true);
+                    },
+                    success: function (response) {
+                        var upCnt;
+                        var downCnt;
+                        if (response.data.up != undefined && response.data.down != undefined && response.status != undefined && response.status == 2)
+                        {
+                            upCnt = response.data.up;
+                            downCnt = response.data.down;
+
+                            $('#counterUp').text(upCnt);
+                            $('#counterDown').text(downCnt);
+
+                            $.flashMessenger(response.message, 'info', true);
+                        } else
+                        if (response.data.up != undefined && response.data.down != undefined)
+                        {
+                            upCnt = response.data.up;
+                            downCnt = response.data.down;
+
+                            $('#counterUp').text(upCnt);
+                            $('#counterDown').text(downCnt);
+                        } else
+                            $.flashMessenger('Błąd aplikacji, proszę spróbować ponownie lub skontaktować się z administratorem systemu.', 'error', true);
+                    },
+                    complete: function () {
+                        $('.fa-thumbs-o-up').off('click');
+                        $('.fa-thumbs-o-down').off('click');
+                    }
+                });
+
+            });
+
+        });
+
+    </script>
+</div><div class="component component-accepted" data-id="081e2827-a0d5-11ee-af74-00155d005433" data-is-editable="5" data-name="Bip_PageMetric"><div class="component-bip-metric component-metric-infokiosk item">
+    <div class="component-wrapper">
+        <div class="row component-content bit-expand-area">
+            <div class="col-xs-12">
+                                <p>Data opublikowania: 09.05.2024 12:48</p>
+                                            </div>
+        </div>
+    </div>
+</div>
+</div><div class="component component-accepted" data-id="44527d6f-0b35-41a7-965e-f2b970256cb0" data-is-editable="5" data-name="Cms_PageArchive" style="position: relative; top: 0px; left: 0px;">
+<div class="component-page-archive item">
+	<div class="component-wrapper">
+					<div class="component-head">
+				<p>
+					<a href="#" class="bit-expand-switch" title="Kliknij, aby zobaczyć historię zmian strony." data-bit-title-open="Kliknij, aby zobaczyć historię zmian strony." data-bit-title-close="Kliknij, aby ukryć."><em class="fa fa-caret-square-o-down"> </em> Rejestr zmian</a>				</p>
+			</div>
+				<div class="component-content bit-expand-area" style="display: none;" data-url="/cms/archive/get-page-archive/pgid.80471/type.2/order.DESC">
+					</div>
+	</div>
+</div></div><div class="component component-accepted" data-id="6f0aa08e-3a92-11eb-8c9b-0050568c021d" data-is-editable="3" data-name="Cms_Html" style="position: relative; top: 0px; left: 0px;">
+<div  class="article-warning component-html">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <strong><br />UWAGA<br />Informacje opublikowane przed 1 stycznia 2021 r. dostępne są na stronie<span>&nbsp;</span><a href="https://archiwum.mazovia.pl">archiwum.mazovia.pl</a></strong>
+<p></p>        </div>
+    </div>
+</div>
+
+</div></div><div class="text-center col-12 col-xs-12 col-sm-2 col-md-2 col-lg-2 col-infokiosk" data-is-droppable="true"><div class="component component-accepted" data-id="6edacf78-3a92-11eb-8c9b-0050568c021d" data-is-editable="0" data-name="Cms_AddThis"><div  class="component-addthis">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <script type="text/javascript"
+                    src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5fc6aefd04bef35d"
+                    async="async"></script>
+            <div class="addthis_inline_share_toolbox"></div>
+        </div>
+    </div>
+</div>
+</div><div class="component component-accepted" data-id="6ef2b538-3a92-11eb-8c9b-0050568c021d" data-is-editable="1" data-name="Cms_PageMeta">          <div class="component-page-meta">
+        <div class="component-wrapper">
+            <div class="component-content clearfix">
+                <div class="entry-meta-news">
+                    <div class="page-meta-dates">
+                        <div class="btn-like">
+                                                                                                                                        </div>
+                    </div>
+                    <ul class="nav nav-pills page-meta-tools">
+                        <!--  Link do kanału RSS  -->
+                        
+                        <!--  Link do polecenia strony poprzez wiadomość email  -->
+                                                    
+                                                                            <li>
+                                <a href="javascript:void(0)" title="Wydrukuj stronę" onclick="window.print();" class="btn btn-default" role="button">
+                                    <i class="fa fa-print" aria-hidden="true"></i>
+                                    <span>drukuj</span>
+                                </a>
+                            </li>
+                                                
+                            <li class="btn-group clearfix">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class='fa fa-share-alt-square'></i> Otwarte dane <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                                                                                                        <li><a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/?format=csv">CSV</a></li>
+                                                                                                                                                                <li><a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/?format=xml">XML</a></li>
+                                                                                                                                                                <li><a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/?format=json">JSON</a></li>
+                                                                                                                                                                                                                                                                    </ul>
+                            </li>
+                                                <!--  Link formularzu do kontaktu z redakcją strony  -->
+                                            </ul>
+                </div>
+                                            </div>
+        </div>
+    </div>
+</div></div></div></div>
+<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3 col-menu col-sm-pull-8 col-md-pull-9" data-is-droppable="true">
+<div class="component component-accepted" data-id="150322a3-f8a6-4bee-8e8f-b1a91ca8bdec" data-is-editable="1" data-name="Cms_Menu"><nav aria-label="Menu boczne"  class="component-menu component-menu-vertical">
+	<div class="component-wrapper">
+                            <div class="component-content" id="sidebar-menu-150322a3-f8a6-4bee-8e8f-b1a91ca8bdec">
+			<ul class="menu-links">
+							<li class="component-item active">
+                                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vii-kadencja/" class=" active">VII kadencja									</a>
+								</li>
+							<li class="component-item">
+                                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                                    <a href="/pl/bip/sejmik/interpelacje-i-zapytania-radnych/vi-kadencja/" class="">VI kadencja									</a>
+								</li>
+						</ul>
+		</div>
+			</div>
+</nav>
+<script type="text/javascript">
+    $(function(){
+        var $component = $('#sidebar-menu-150322a3-f8a6-4bee-8e8f-b1a91ca8bdec');
+		//#4639
+		var $menuElements = $component.find('li.active');
+		var $length = $menuElements.length;
+        $menuElements.each(function (index, element) {
+			var $this = $(this);
+			var $a = $this.find('a.active:first');
+            $a.find('i.accordion-toggle').click();
+			if (index !== $length - 1) {
+				$this.removeClass('active');
+				$a.removeClass('active');
+			}
+        });
+
+        $(window).on("load",function(){
+            $(".component-menu-vertical .component-content").mCustomScrollbar({
+                theme:"my-theme"
+            });
+        });
+    });
+</script></div>
+</div>
+</div>
+</div>
+</main><footer class="bip" data-is-droppable="true"><div class="component component-accepted" data-id="9337955e-7109-4e38-a316-dd7e8562ac91" data-is-editable="5" data-name="Cms_TemplateRenderer"><div class="container webpage" id="footer">
+<div class="row">
+<div class="icon-menu col-xs-12 col-sm-2 col-md-2 col-lg-2" data-is-droppable="true"><div class="component component-accepted" data-id="5c5c20e3-38ed-11eb-8c9b-0050568c021d" data-is-editable="1" data-name="Cms_Menu"><nav aria-label="Menu na skróty"  class="component-menu component-menu-vertical">
+	<div class="component-wrapper">
+                            <div class="component-content" id="sidebar-menu-5c5c20e3-38ed-11eb-8c9b-0050568c021d">
+			<ul class="menu-links">
+							<li class="component-item">
+                                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                                    <a href="https://mazovia.pl/" class="fa fa-home" target="_self">Strona główna									</a>
+								</li>
+							<li class="component-item">
+                                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                                    <a href="https://bip.mazovia.pl/" class="icon-bip" target="_self">BIP									</a>
+								</li>
+							<li class="component-item">
+                                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                                    <a href="/pl/bip/mapa-serwisu-bip.html" class="fa fa-sitemap" target="_self">Mapa serwisu									</a>
+								</li>
+							<li class="component-item">
+                                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                                    <a href="/pl/kontakt/kontakt.html" class="fa fa-phone" target="_self">Kontakt									</a>
+								</li>
+						</ul>
+		</div>
+			</div>
+</nav>
+<script type="text/javascript">
+    $(function(){
+        var $component = $('#sidebar-menu-5c5c20e3-38ed-11eb-8c9b-0050568c021d');
+		//#4639
+		var $menuElements = $component.find('li.active');
+		var $length = $menuElements.length;
+        $menuElements.each(function (index, element) {
+			var $this = $(this);
+			var $a = $this.find('a.active:first');
+            $a.find('i.accordion-toggle').click();
+			if (index !== $length - 1) {
+				$this.removeClass('active');
+				$a.removeClass('active');
+			}
+        });
+
+        $(window).on("load",function(){
+            $(".component-menu-vertical .component-content").mCustomScrollbar({
+                theme:"my-theme"
+            });
+        });
+    });
+</script></div></div>
+<div class="hidden-xs col-xs-12 col-sm-7 col-md-7 col-lg-7" data-is-droppable="true">
+<div class="component component-accepted" data-id="2dac6998-5ee9-4e8d-aef1-53d9e72aa3af" data-is-editable="1" data-name="Cms_Menu" style="position: relative; top: 0px; left: 0px;"><nav aria-label="Menu stron z działu Sejmik" class="component-bottom-menu item">
+	<div class="component-wrapper">
+            <div class="component-head">Sejmik:</div>                <div class="component-content">
+			<ul>
+								<li class="component-item">
+					<a href="/pl/bip/sejmik/prezydium-sejmiku" target="_self">Prezydium sejmiku</a>
+				</li>
+						<li class="component-item">
+					<a href="/pl/bip/sejmik/radni-wojewodztwa/vi-kadencja/radni-wojewodztwa.html" target="_self">Radni </a>
+				</li>
+						<li class="component-item">
+					<a href="/pl/bip/sejmik/uchwaly-sejmiku" target="_self">Uchwały sejmiku</a>
+				</li>
+						<li class="component-item">
+					<a href="/pl/bip/sejmik/informacje-ogolne.html" class="more-option" target="_self" title="Przejdź do działu Sejmik">więcej</a>
+				</li>
+					</ul>
+		</div>
+	</div>
+</nav></div><div class="component component-accepted" data-id="3fa05bae-dfa1-43bf-a6c9-901479717852" data-is-editable="1" data-name="Cms_Menu"><nav aria-label="Menu stron z działu Zarząd" class="component-bottom-menu item">
+	<div class="component-wrapper">
+            <div class="component-head">Zarząd:</div>                <div class="component-content">
+			<ul>
+								<li class="component-item">
+					<a href="/pl/bip/zarzad/sklad-zarzadu" target="_self">Skład zarządu</a>
+				</li>
+						<li class="component-item">
+					<a href="/pl/bip/zarzad/rejestr-uchwal-zarzadu" target="_self">Uchwały zarządu</a>
+				</li>
+						<li class="component-item">
+					<a href="/pl/bip/zarzad/z-posiedzen-zarzadu/z-posiedzen-zarzadu.html" target="_self">Z posiedzeń zarządu</a>
+				</li>
+						<li class="component-item">
+					<a href="/pl/bip/zarzad/informacje-ogolne.html" class="more-option" target="_self" title="Przejdź do działu Zarząd">więcej</a>
+				</li>
+					</ul>
+		</div>
+	</div>
+</nav></div><div class="component component-accepted" data-id="4b413251-a036-4c39-9faf-5544938cdc65" data-is-editable="1" data-name="Cms_Menu" style="position: relative; top: 0px; left: 0px;"><nav aria-label="Menu stron z działu Urząd Marszałkowski" class="component-bottom-menu item">
+	<div class="component-wrapper">
+            <div class="component-head">Urząd marszałkowski:</div>                <div class="component-content">
+			<ul>
+								<li class="component-item">
+					<a href="/pl/bip/urzad-marszalkowski/delegatury" target="_self">Delegatury</a>
+				</li>
+						<li class="component-item">
+					<a href="/pl/bip/urzad-marszalkowski/departamenty" target="_self">Departamenty</a>
+				</li>
+						<li class="component-item">
+					<a href="/pl/bip/urzad-marszalkowski/informacje-ogolne.html" target="_self">Informacje ogólne</a>
+				</li>
+						<li class="component-item">
+					<a href="/cms/deklaracja-dostepnosci" target="_self">Deklaracja dostępności</a>
+				</li>
+						<li class="component-item">
+					<a href="/pl/bip/urzad-marszalkowski/informacje-ogolne.html" class="more-option" target="_self" title="Przejdź do działu Urząd Marszałkowski">więcej</a>
+				</li>
+					</ul>
+		</div>
+	</div>
+</nav></div><div class="component component-accepted" data-id="6f852704-2630-425c-bb44-f0d0f419eaf5" data-is-editable="1" data-name="Cms_Menu" style="position: relative; top: 0px; left: 0px;"><nav aria-label="Menu stron z działu UE" class="component-bottom-menu item">
+	<div class="component-wrapper">
+            <div class="component-head">RODO:</div>                <div class="component-content">
+			<ul>
+								<li class="component-item">
+					<a href="/pl/polityka-prywatnosci/polityka-cookies.html" target="_self">Polityka cookies</a>
+				</li>
+						<li class="component-item">
+					<a href="/pl/polityka-prywatnosci/polityka-prywatnosci.html" target="_self">Polityka prywatności</a>
+				</li>
+						<li class="component-item">
+					<a href="#" class="change-cookies" target="_self">Ustawienia cookies</a>
+				</li>
+						<li class="component-item">
+					<a href="/pl/polityka-prywatnosci" class="more-option" target="_self">więcej</a>
+				</li>
+					</ul>
+		</div>
+	</div>
+</nav></div></div>
+<div class="contact-data col-xs-12 col-sm-3 col-md-3 col-lg-3" data-is-droppable="true">
+<div class="component component-accepted highlight" data-id="0aff1425-cff8-46b9-8262-86a70b2c09c1" data-is-editable="1" data-name="Cms_Html" style="position: relative; top: 0px; left: 0px;">
+<div  class="component-html">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <p class="title">Urząd Marszałkowski Wojew&oacute;dztwa<br />Mazowieckiego w Warszawie</p>
+<p>03-719 Warszawa, ul. Jagiellońska 26<br /> tel. <a href="tel:48225979100" title="Numer telefonu">(+48) 22 5979-100</a>&nbsp;<br /> faks <a href="tel:48225979290" title="Numer faxu">(+48) 22 5979-290</a><br /> e-mail: <a href="mailto:urzad_marszalkowski@mazovia.pl" title="Adres e-mail">urzad_marszalkowski@mazovia.pl</a></p>        </div>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="container infokiosk" id="footer">
+    <div class="row"><div class="col-6 col-xs-6 contact-data" data-is-droppable="true"><div class="component component-accepted" data-id="68ed376a-a00d-11ee-a60a-00155d005433" data-is-editable="3" data-name="Cms_Html">
+<div  class="component-html">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <a href="/pl/eto/deklaracja-dostepnosci.html">Deklaracja dostępności</a>
+<p class="title">Urząd Marszałkowski Wojew&oacute;dztwa<br />Mazowieckiego w Warszawie</p>        </div>
+    </div>
+</div>
+
+</div></div><div class="col-6 col-xs-6 contact-data text-right" data-is-droppable="true"><div class="component component-accepted" data-id="68ebcd0a-a00d-11ee-a60a-00155d005433" data-is-editable="3" data-name="Cms_Html">
+<div  class="component-html">
+    <div class="component-wrapper">
+                <div class="component-content">
+            <p>03-719 Warszawa, ul. Jagiellońska 26<br /> tel. <a href="tel:48225979100" title="Numer telefonu">(+48) 22 5979-100</a> (w godz. 8.00-16.00)<br /> faks <a href="tel:48225979290" title="Numer faxu">(+48) 22 5979-290</a></p>        </div>
+    </div>
+</div>
+
+</div></div></div>
+</div>
+</div>
+</footer>
+<link href="https://transmisja.esesja.pl/video-js.css" rel="stylesheet"></link>
+<style>
+#vplayer {max-width:600px;margin-left:auto;margin-right:auto}
+</style>    
+<a id="totopicon" href="#" class="fa-stack fa-2x" aria-label="Powrót na początek strony" title="Powrót na początek strony" data-toggle="tooltip" data-placement="top">
+    <i class="fa fa-circle fa-stack-2x" aria-hidden="true"></i>
+    <i class="fa fa-chevron-up fa-stack-1x fa-inverse" aria-hidden="true"></i>
+    <i class="sr-only">Powrót na początek strony</i>
+</a>
+        <script  src="&#x2F;app&#x2F;js&#x2F;LoadRemoveFile.js"></script>
+<script  src="&#x2F;js&#x2F;cookiePlugin&#x2F;manageCookies.min.js"></script>
+<script  src="&#x2F;system&#x2F;js&#x2F;jquery.gototop.min.js"></script>
+<script >
+    //<!--
+    $('#totopicon').gototop({
+    css: {
+        top: null,
+        left: null,
+        right: null,
+        bottom: null,
+    }
+});
+    //-->
+</script></body>
+</html>

@@ -2,14 +2,16 @@
 """
 Buduje manifest świeżości danych dla apex page Radoskopu.
 
-Skanuje `radoskop/cities/{slug}/docs/` w poszukiwaniu plików JSON
-(kadencja-*.json, interpelacje.json, aktualnosci.json, budget.json,
-profiles.json, data.json), dla każdego pliku ustala znacznik czasu
-z pola `scraped_at` (jeśli istnieje) albo z mtime pliku jako fallback,
-i zapisuje zbiorczy manifest do `radoskop/docs/swiezosc/data.json`.
+Skanuje `radoskop/cities/{slug}/docs/` (samorząd typu miasto) oraz
+`radoskop/sejmiki/{slug}/docs/` (samorząd typu województwo) w poszukiwaniu
+plików JSON: kadencja-*.json, interpelacje.json, aktualnosci.json,
+budget.json, profiles.json, data.json. Dla każdego pliku ustala znacznik
+czasu z pola `scraped_at` (jeśli istnieje) albo z mtime pliku jako
+fallback. Zapisuje zbiorczy manifest do
+`radoskop/docs/swiezosc/data.json`.
 
 Strona /swiezosc/index.html fetchuje ten manifest i renderuje macierz
-miasto × źródło danych.
+miasto/sejmik × źródło danych.
 
 Użycie:
     python3 build_freshness.py
@@ -30,14 +32,13 @@ from pathlib import Path
 from typing import Any
 
 
-# Lista miast z radoskop/data/cities-meta.csv jest źródłem prawdy.
-# Tu definiujemy źródła danych do pokazania w macierzy.
+# Definicje źródeł danych do pokazania w macierzy. Współdzielone przez
+# miasta i sejmiki (te same nazwy plików, ten sam schemat).
 SOURCES: list[dict[str, Any]] = [
     {
         "id": "kadencja",
         "label": "Głosowania",
         "description": "Sesje, głosowania, frekwencja, kadencja {id}",
-        # Bierzemy najnowszy plik kadencja-*.json (kadencja bieżąca).
         "kind": "kadencja_glob",
     },
     {
@@ -67,6 +68,27 @@ SOURCES: list[dict[str, Any]] = [
         "description": "Wydatki, dochody, plan finansowy",
         "kind": "file",
         "file": "budget.json",
+    },
+]
+
+
+# Definicje poziomów samorządu (ich katalogów na dysku i nazwy ekranowej).
+LEVELS: list[dict[str, Any]] = [
+    {
+        "id": "city",
+        "label": "Miasta",
+        "subdir": "cities",
+        "samorzad_type": "miasto",
+        "name_field": "city_name",
+        "meta_csv": "cities-meta.csv",
+    },
+    {
+        "id": "sejmik",
+        "label": "Sejmiki województw",
+        "subdir": "sejmiki",
+        "samorzad_type": "wojewodztwo",
+        "name_field": "rada_name",
+        "meta_csv": "sejmiki-meta.csv",
     },
 ]
 
@@ -121,25 +143,22 @@ def measure_file(path: Path) -> dict[str, Any]:
 
 
 def measure_kadencja(docs_dir: Path) -> dict[str, Any]:
-    """Najnowszy plik kadencja-*.json (najwyższy zakres lat lub najnowszy mtime)."""
+    """Najnowszy plik kadencja-*.json (bieżąca kadencja po mtime)."""
     candidates = sorted(docs_dir.glob("kadencja-*.json"))
     if not candidates:
         return {"available": False}
-    # Wybieramy plik z najnowszym mtime (bieżąca kadencja jest aktywnie
-    # aktualizowana, więc to dobry wybór).
     latest = max(candidates, key=lambda p: p.stat().st_mtime)
     info = measure_file(latest)
     if info.get("available"):
-        # Wyciągnij id kadencji z nazwy pliku, np. kadencja-2024-2029.json -> 2024-2029.
         info["kadencja_id"] = latest.stem.removeprefix("kadencja-")
     return info
 
 
-def load_cities_meta(workspace: Path) -> dict[str, dict[str, Any]]:
-    """Czyta cities-meta.csv. Klucz to slug."""
+def load_meta_csv(workspace: Path, filename: str) -> dict[str, dict[str, Any]]:
+    """Czyta plik meta CSV (cities-meta.csv lub sejmiki-meta.csv). Klucz: slug."""
     candidates = [
-        workspace / "radoskop" / "data" / "cities-meta.csv",
-        Path(__file__).resolve().parent.parent / "data" / "cities-meta.csv",
+        workspace / "radoskop" / "data" / filename,
+        Path(__file__).resolve().parent.parent / "data" / filename,
     ]
     for path in candidates:
         if path.is_file():
@@ -148,9 +167,9 @@ def load_cities_meta(workspace: Path) -> dict[str, dict[str, Any]]:
     return {}
 
 
-def load_city_config(city_dir: Path) -> dict[str, Any]:
-    """Czyta config.json miasta (tytuł, URL, BIP)."""
-    cfg = city_dir / "config.json"
+def load_unit_config(unit_dir: Path) -> dict[str, Any]:
+    """Czyta config.json jednostki samorządu (miasta lub sejmiku)."""
+    cfg = unit_dir / "config.json"
     if not cfg.is_file():
         return {}
     try:
@@ -160,18 +179,26 @@ def load_city_config(city_dir: Path) -> dict[str, Any]:
         return {}
 
 
-def discover_cities(workspace: Path) -> list[Path]:
-    """Lista katalogów miast pod radoskop/cities/."""
-    base = workspace / "radoskop" / "cities"
+def discover_units(workspace: Path, subdir: str) -> list[Path]:
+    """Lista katalogów jednostek pod radoskop/{subdir}/ (cities lub sejmiki)."""
+    base = workspace / "radoskop" / subdir
     if not base.is_dir():
         return []
     return sorted(p for p in base.iterdir() if p.is_dir() and (p / "config.json").is_file())
 
 
-def build_city_entry(city_dir: Path, meta: dict[str, Any]) -> dict[str, Any]:
-    """Zbuduj wpis dla jednego miasta w manifeście."""
-    cfg = load_city_config(city_dir)
-    docs_dir = city_dir / "docs"
+def parse_int(value: str | None) -> int | None:
+    if not value:
+        return None
+    if isinstance(value, str) and value.isdigit():
+        return int(value)
+    return None
+
+
+def build_unit_entry(unit_dir: Path, level: dict[str, Any], meta: dict[str, Any]) -> dict[str, Any]:
+    """Zbuduj wpis dla jednej jednostki (miasta lub sejmiku) w manifeście."""
+    cfg = load_unit_config(unit_dir)
+    docs_dir = unit_dir / "docs"
     sources: dict[str, Any] = {}
     for src in SOURCES:
         if src["kind"] == "kadencja_glob":
@@ -181,32 +208,84 @@ def build_city_entry(city_dir: Path, meta: dict[str, Any]) -> dict[str, Any]:
         else:
             sources[src["id"]] = {"available": False}
 
-    return {
-        "slug": city_dir.name,
-        "name": cfg.get("city_name") or city_dir.name.title(),
-        "url": cfg.get("site_url") or f"https://{city_dir.name}.radoskop.pl",
+    name = cfg.get(level["name_field"]) or meta.get("name") or unit_dir.name.title()
+    default_url = f"https://{unit_dir.name}.radoskop.pl"
+    if level["id"] == "sejmik":
+        default_url = f"https://sejmik.{unit_dir.name}.radoskop.pl"
+
+    entry: dict[str, Any] = {
+        "slug": unit_dir.name,
+        "level": level["id"],
+        "samorzad_type": cfg.get("samorzad_type") or level["samorzad_type"],
+        "name": name,
+        "url": cfg.get("site_url") or default_url,
         "bip_url": cfg.get("bip_url"),
-        "voivodeship": meta.get("voivodeship"),
-        "population": int(meta["population"]) if meta.get("population", "").isdigit() else None,
+        "scrape_status": cfg.get("scrape_status", "active"),
         "sources": sources,
     }
 
+    if level["id"] == "city":
+        entry["voivodeship"] = meta.get("voivodeship")
+        entry["population"] = parse_int(meta.get("population"))
+    else:
+        entry["voivodeship"] = meta.get("name") or unit_dir.name
+        entry["capital"] = meta.get("capital") or cfg.get("capital")
+        entry["population"] = parse_int(meta.get("population"))
+        entry["councilor_count"] = parse_int(meta.get("councilor_count")) or cfg.get("councilor_count")
+
+    return entry
+
+
+def build_planned_sejmiki(workspace: Path, active_slugs: set[str]) -> list[dict[str, Any]]:
+    """Lista 16 województw z meta CSV, oznacza te bez configu jako 'planned'."""
+    meta = load_meta_csv(workspace, "sejmiki-meta.csv")
+    out: list[dict[str, Any]] = []
+    for slug, row in meta.items():
+        if slug in active_slugs:
+            continue
+        out.append({
+            "slug": slug,
+            "level": "sejmik",
+            "samorzad_type": "wojewodztwo",
+            "name": f"Sejmik Województwa {row.get('name_genitive', slug)}".strip(),
+            "url": f"https://sejmik.{slug}.radoskop.pl",
+            "bip_url": None,
+            "scrape_status": row.get("status", "planned"),
+            "voivodeship": row.get("name") or slug,
+            "capital": row.get("capital"),
+            "population": parse_int(row.get("population")),
+            "councilor_count": parse_int(row.get("councilor_count")),
+            "sources": {s["id"]: {"available": False} for s in SOURCES},
+        })
+    return out
+
 
 def build_manifest(workspace: Path) -> dict[str, Any]:
-    cities_meta = load_cities_meta(workspace)
-    cities = []
-    for city_dir in discover_cities(workspace):
-        meta = cities_meta.get(city_dir.name, {})
-        cities.append(build_city_entry(city_dir, meta))
+    units: list[dict[str, Any]] = []
+    sejmik_active_slugs: set[str] = set()
+
+    for level in LEVELS:
+        meta_map = load_meta_csv(workspace, level["meta_csv"])
+        for unit_dir in discover_units(workspace, level["subdir"]):
+            meta = meta_map.get(unit_dir.name, {})
+            entry = build_unit_entry(unit_dir, level, meta)
+            units.append(entry)
+            if level["id"] == "sejmik":
+                sejmik_active_slugs.add(unit_dir.name)
+
+    # Dorzucamy 13 województw, dla których nie ma jeszcze configu, żeby
+    # macierz pokazywała kompletną listę 16 sejmików ze statusem planned.
+    units.extend(build_planned_sejmiki(workspace, sejmik_active_slugs))
 
     return {
         "generated_at": datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "schema_version": 1,
+        "schema_version": 2,
+        "levels": [{"id": l["id"], "label": l["label"]} for l in LEVELS],
         "sources": [
             {"id": s["id"], "label": s["label"], "description": s["description"]}
             for s in SOURCES
         ],
-        "cities": cities,
+        "units": units,
     }
 
 
@@ -236,8 +315,12 @@ def main() -> int:
     with output.open("w", encoding="utf-8") as f:
         json.dump(manifest, f, ensure_ascii=False, indent=2)
 
-    cities = manifest["cities"]
-    print(f"build_freshness: zapisano {output} ({len(cities)} miast, {len(SOURCES)} źródeł)")
+    cities = sum(1 for u in manifest["units"] if u["level"] == "city")
+    sejmiki = sum(1 for u in manifest["units"] if u["level"] == "sejmik")
+    print(
+        f"build_freshness: zapisano {output} "
+        f"({cities} miast, {sejmiki} sejmików, {len(SOURCES)} źródeł)"
+    )
     return 0
 
 

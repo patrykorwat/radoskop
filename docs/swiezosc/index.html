@@ -61,10 +61,14 @@ table.matrix thead th.sorted::after{content:" \25BE";font-size:.7rem;}
 table.matrix thead th.sorted.asc::after{content:" \25B4";}
 table.matrix tbody tr:hover{background:#fafbfc;}
 table.matrix tbody tr:last-child td{border-bottom:none;}
-.city-cell{display:flex;flex-direction:column;gap:2px;}
+.city-cell{display:flex;flex-direction:column;gap:3px;}
 .city-cell a{font-weight:600;color:var(--text);}
 .city-cell a:hover{color:var(--accent);}
-.city-meta{font-size:.74rem;color:var(--muted);}
+.city-meta{font-size:.74rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+.badge{display:inline-block;padding:1px 7px;border-radius:999px;font-size:.66rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;}
+.badge-city{background:rgba(79,70,229,.10);color:var(--accent);}
+.badge-sejmik{background:rgba(202,138,4,.14);color:var(--yellow);}
+.badge-status{background:rgba(107,114,128,.14);color:var(--muted);text-transform:none;letter-spacing:0;font-weight:500;}
 .cell-pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;font-size:.78rem;font-weight:500;white-space:nowrap;}
 .cell-pill.fresh{background:var(--green-bg);color:var(--green);}
 .cell-pill.recent{background:var(--yellow-bg);color:var(--yellow);}
@@ -106,9 +110,10 @@ footer a{color:#93c5fd;}
     <h1><span>Świeżość</span> danych</h1>
     <p class="lead">Kiedy ostatnio odświeżyliśmy dane dla każdego miasta i każdego źródła. Pipeline scrape uruchamia się dwa razy w tygodniu (pon i czw o 03:00 CET). Niektóre źródła aktualizują się rzadziej, np. budżet (rocznie) albo komisje (po zmianach składu).</p>
     <div class="meta-row">
-      <span>Ostatnie odświeżenie manifestu: <strong id="generated-at">—</strong></span>
-      <span>Liczba miast: <strong id="city-count">—</strong></span>
-      <span>Liczba źródeł: <strong id="source-count">—</strong></span>
+      <span>Ostatnie odświeżenie manifestu: <strong id="generated-at">brak</strong></span>
+      <span>Miasta: <strong id="city-count">brak</strong></span>
+      <span>Sejmiki: <strong id="sejmik-count">brak</strong></span>
+      <span>Źródła: <strong id="source-count">brak</strong></span>
     </div>
   </section>
 
@@ -121,7 +126,12 @@ footer a{color:#93c5fd;}
   </div>
 
   <div class="controls">
-    <input type="text" id="filter-input" placeholder="Filtruj po mieście (Gdańsk, Warszawa, ...)" autocomplete="off">
+    <input type="text" id="filter-input" placeholder="Filtruj po nazwie (Gdańsk, mazowieckie, ...)" autocomplete="off">
+    <select id="level-select">
+      <option value="all">Pokaż: wszystko</option>
+      <option value="city">Pokaż: miasta</option>
+      <option value="sejmik">Pokaż: sejmiki</option>
+    </select>
     <select id="sort-select">
       <option value="name">Sortuj: alfabetycznie</option>
       <option value="freshest">Sortuj: od najświeższych</option>
@@ -139,7 +149,8 @@ footer a{color:#93c5fd;}
   <section class="about">
     <h3>Jak to działa?</h3>
     <p>Każdy znacznik czasu pochodzi z pola <code>scraped_at</code> w pliku JSON, jeśli skrypt scrape go zapisuje, albo z czasu modyfikacji pliku jako fallback. Mtime jest wiarygodne w naszym pipeline NAS, bo plik dostaje świeży mtime tylko wtedy, gdy scrape go nadpisał.</p>
-    <p>Pełny manifest w postaci JSON: <a href="data.json">/swiezosc/data.json</a>. Zawiera dla każdego miasta i każdego źródła: znacznik czasu, rozmiar pliku, źródło znacznika (json_field albo mtime), nazwę pliku.</p>
+    <p>Pełny manifest w postaci JSON: <a href="data.json">/swiezosc/data.json</a>. Zawiera dla każdej jednostki samorządu (miasto albo sejmik) i każdego źródła: znacznik czasu, rozmiar pliku, źródło znacznika (json_field albo mtime), nazwę pliku.</p>
+    <p>Sejmiki województw są w fazie pilotażu. Mazowieckie, dolnośląskie i pomorskie mają już scaffolding configów, scrapery są w drodze. Pozostałe 13 województw widać w macierzy ze statusem "planowane".</p>
     <p>Źródła danych:</p>
     <ul>
       <li><strong>Głosowania:</strong> bieżący plik kadencja-{id}.json (sesje, głosowania imienne, frekwencja).</li>
@@ -201,74 +212,115 @@ function formatAbsolute(iso){
   return d.toLocaleDateString('pl-PL',{year:'numeric',month:'short',day:'numeric'});
 }
 
-function citySortKey(city, mode){
-  const ages = Object.values(city.sources).map(s => s.available ? ageDays(s.scraped_at) : null).filter(v => v!=null);
+function unitSortKey(unit, mode){
+  const ages = Object.values(unit.sources).map(s => s.available ? ageDays(s.scraped_at) : null).filter(v => v!=null);
   if(mode==='freshest') return ages.length ? Math.min.apply(null, ages) : 9999;
   if(mode==='stalest') return ages.length ? -Math.max.apply(null, ages) : 9999;
-  return city.name.toLocaleLowerCase('pl');
+  return unit.name.toLocaleLowerCase('pl');
+}
+
+function levelLabel(level){
+  return level === 'sejmik' ? 'Sejmik' : 'Miasto';
+}
+
+function statusLabel(status){
+  if(status === 'planned') return 'planowane';
+  if(status === 'pilot_pending') return 'pilot, scrape w drodze';
+  return null;
 }
 
 let MANIFEST = null;
 let SORT_MODE = 'name';
+let LEVEL_FILTER = 'all';
 let FILTER = '';
+
+function totalsByLevel(){
+  const out = {city: 0, sejmik_active: 0, sejmik_planned: 0};
+  if(!MANIFEST) return out;
+  for(const u of MANIFEST.units){
+    if(u.level === 'city') out.city++;
+    else if(u.scrape_status === 'planned') out.sejmik_planned++;
+    else out.sejmik_active++;
+  }
+  return out;
+}
+
+function filterUnits(){
+  if(!MANIFEST) return [];
+  const filterLower = FILTER.toLocaleLowerCase('pl');
+  return MANIFEST.units.filter(u => {
+    if(LEVEL_FILTER !== 'all' && u.level !== LEVEL_FILTER) return false;
+    if(!filterLower) return true;
+    if(u.name.toLocaleLowerCase('pl').includes(filterLower)) return true;
+    if(u.slug.toLocaleLowerCase('pl').includes(filterLower)) return true;
+    if(u.voivodeship && u.voivodeship.toLocaleLowerCase('pl').includes(filterLower)) return true;
+    return false;
+  });
+}
+
+function renderRow(u, sources){
+  const lvl = levelLabel(u.level);
+  const status = statusLabel(u.scrape_status);
+  let html = '<tr>';
+  html += '<td><div class="city-cell">';
+  html += '<a href="'+esc(u.url)+'">'+esc(u.name)+'</a>';
+  const metaParts = ['<span class="badge badge-'+esc(u.level)+'">'+esc(lvl)+'</span>'];
+  if(u.voivodeship) metaParts.push(esc(u.voivodeship));
+  if(status) metaParts.push('<span class="badge badge-status">'+esc(status)+'</span>');
+  html += '<span class="city-meta">'+metaParts.join(' · ')+'</span>';
+  html += '</div></td>';
+  for(const s of sources){
+    const data = u.sources[s.id] || {available:false};
+    if(!data.available){
+      const placeholder = (u.scrape_status === 'planned') ? 'planowane' : 'brak';
+      html += '<td><span class="cell-pill missing"><span class="dot"></span>'+esc(placeholder)+'</span></td>';
+      continue;
+    }
+    const days = ageDays(data.scraped_at);
+    const cls = classifyAge(days);
+    const rel = formatRelative(days);
+    const abs = formatAbsolute(data.scraped_at);
+    const titleParts = [];
+    if(abs) titleParts.push(abs);
+    if(data.filename) titleParts.push(data.filename);
+    if(data.source) titleParts.push('źródło znacznika: '+data.source);
+    const title = titleParts.join(' · ');
+    html += '<td><span class="cell-pill '+cls+'" title="'+esc(title)+'"><span class="dot"></span>'+esc(rel)+'</span></td>';
+  }
+  html += '</tr>';
+  return html;
+}
 
 function render(){
   const host = document.getElementById('matrix-host');
-  if(!MANIFEST){return;}
+  if(!MANIFEST) return;
   const sources = MANIFEST.sources;
-  const filterLower = FILTER.toLocaleLowerCase('pl');
-  let cities = MANIFEST.cities.filter(c => !filterLower || c.name.toLocaleLowerCase('pl').includes(filterLower) || c.slug.includes(filterLower));
-  cities = cities.slice().sort((a,b)=>{
-    const ka = citySortKey(a, SORT_MODE);
-    const kb = citySortKey(b, SORT_MODE);
-    if(typeof ka === 'string') return ka.localeCompare(kb,'pl');
+  let units = filterUnits();
+  units = units.slice().sort((a, b) => {
+    const ka = unitSortKey(a, SORT_MODE);
+    const kb = unitSortKey(b, SORT_MODE);
+    if(typeof ka === 'string') return ka.localeCompare(kb, 'pl');
     return ka - kb;
   });
 
-  document.getElementById('filter-count').textContent = cities.length === MANIFEST.cities.length
-    ? cities.length + ' miast'
-    : cities.length + ' z ' + MANIFEST.cities.length + ' miast';
+  const total = MANIFEST.units.length;
+  document.getElementById('filter-count').textContent = units.length === total
+    ? units.length + ' jednostek'
+    : units.length + ' z ' + total + ' jednostek';
 
-  if(cities.length===0){
+  if(units.length === 0){
     host.className = 'empty';
-    host.textContent = 'Brak miast pasujących do filtra.';
+    host.textContent = 'Brak jednostek pasujących do filtra.';
     return;
   }
 
   let html = '<table class="matrix"><thead><tr>';
-  html += '<th>Miasto</th>';
+  html += '<th>Jednostka samorządu</th>';
   for(const s of sources){
     html += '<th title="'+esc(s.description)+'">'+esc(s.label)+'</th>';
   }
   html += '</tr></thead><tbody>';
-
-  for(const c of cities){
-    html += '<tr>';
-    html += '<td><div class="city-cell">';
-    html += '<a href="'+esc(c.url)+'">'+esc(c.name)+'</a>';
-    if(c.voivodeship){
-      html += '<span class="city-meta">'+esc(c.voivodeship)+'</span>';
-    }
-    html += '</div></td>';
-    for(const s of sources){
-      const data = c.sources[s.id] || {available:false};
-      if(!data.available){
-        html += '<td><span class="cell-pill missing"><span class="dot"></span>brak</span></td>';
-        continue;
-      }
-      const days = ageDays(data.scraped_at);
-      const cls = classifyAge(days);
-      const rel = formatRelative(days);
-      const abs = formatAbsolute(data.scraped_at);
-      const titleParts = [];
-      if(abs) titleParts.push(abs);
-      if(data.filename) titleParts.push(data.filename);
-      if(data.source) titleParts.push('źródło znacznika: '+data.source);
-      const title = titleParts.join(' · ');
-      html += '<td><span class="cell-pill '+cls+'" title="'+esc(title)+'"><span class="dot"></span>'+esc(rel)+'</span></td>';
-    }
-    html += '</tr>';
-  }
+  for(const u of units) html += renderRow(u, sources);
   html += '</tbody></table>';
   host.className = '';
   host.innerHTML = html;
@@ -277,6 +329,10 @@ function render(){
 function bind(){
   document.getElementById('filter-input').addEventListener('input', e => {
     FILTER = e.target.value.trim();
+    render();
+  });
+  document.getElementById('level-select').addEventListener('change', e => {
+    LEVEL_FILTER = e.target.value;
     render();
   });
   document.getElementById('sort-select').addEventListener('change', e => {
@@ -288,16 +344,18 @@ function bind(){
 async function boot(){
   bind();
   try{
-    const res = await fetch('data.json', {cache:'no-store'});
-    if(!res.ok) throw new Error('HTTP '+res.status);
+    const res = await fetch('data.json', {cache: 'no-store'});
+    if(!res.ok) throw new Error('HTTP ' + res.status);
     MANIFEST = await res.json();
   }catch(err){
     document.getElementById('matrix-host').className = 'error';
-    document.getElementById('matrix-host').textContent = 'Nie udało się wczytać manifestu: '+err.message;
+    document.getElementById('matrix-host').textContent = 'Nie udało się wczytać manifestu: ' + err.message;
     return;
   }
   document.getElementById('generated-at').textContent = formatAbsolute(MANIFEST.generated_at);
-  document.getElementById('city-count').textContent = MANIFEST.cities.length;
+  const totals = totalsByLevel();
+  document.getElementById('city-count').textContent = totals.city;
+  document.getElementById('sejmik-count').textContent = (totals.sejmik_active + totals.sejmik_planned) + ' (' + totals.sejmik_active + ' aktywnych)';
   document.getElementById('source-count').textContent = MANIFEST.sources.length;
   render();
 }
