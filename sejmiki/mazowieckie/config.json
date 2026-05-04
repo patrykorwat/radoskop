@@ -21,5 +21,81 @@
   "kadencja_active": "2024-2029",
   "has_budget": false,
   "scrape_status": "active",
-  "clubs": {}
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#0284c7",
+      "bg": "rgba(14,165,233,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga (PSL/Polska 2050)",
+      "color": "#15803d",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Katarzyna Bornowska": "KO",
+    "Anna Brzezińska": "KO",
+    "Krzysztof Chaberski": "KO",
+    "Alicja Dąbrowska": "KO",
+    "Robert Kempa": "KO",
+    "Tomasz Kucharski": "KO",
+    "Sylwia Lacek": "KO",
+    "Elżbieta Lanc": "KO",
+    "Katarzyna Łęgiewicz": "KO",
+    "Anna Majchrzak": "KO",
+    "Magdalena Nowacka": "KO",
+    "Wioletta Paprocka-Ślusarska": "KO",
+    "Marcin Podsędek": "KO",
+    "Wiesław Raboszuk": "KO",
+    "Rafał Rajkowski": "KO",
+    "Ludwik Rakowski": "KO",
+    "Krzysztof Strzałkowski": "KO",
+    "Igor Sulich": "KO",
+    "Aleksandra Śmietanka": "KO",
+    "Anna Uzdowska-Gacek": "KO",
+    "Grzegorz Benedykciński": "TD",
+    "Rafał Kowalczyk": "TD",
+    "Paweł Obermeyer": "TD",
+    "Janina Ewa Orzełowska": "TD",
+    "Leszek Przybytniak": "TD",
+    "Dorota Stalińska": "TD",
+    "Adam Struzik": "TD",
+    "Konrad Wojnarowski": "TD",
+    "Łukasz Cicholski": "PiS",
+    "Artur Czapliński": "PiS",
+    "Michał Grodzki": "PiS",
+    "Anna Kaszuba": "PiS",
+    "Janusz Kotowski": "PiS",
+    "Jakub Kowalski": "PiS",
+    "Wojciech Kudelski": "PiS",
+    "Paweł Lisiecki": "PiS",
+    "Katarzyna Lubiak": "PiS",
+    "Andrzej Melak": "PiS",
+    "Łukasz Mierzejewski": "PiS",
+    "Magdalena Murawska": "PiS",
+    "Damian Olszewski": "PiS",
+    "Michał Orliński": "PiS",
+    "Robert Perkowski": "PiS",
+    "Błażej Poboży": "PiS",
+    "Zdzisław Sipiera": "PiS",
+    "Teresa Wargocka": "PiS",
+    "Edyta Wietrak": "PiS",
+    "Krzysztof Żochowski": "PiS",
+    "Marek Martynowski": "NZ",
+    "Paulina Piechna-Więckiewicz": "NZ",
+    "Konrad Rytel": "NZ",
+    "Jarosław Krajewski": "NZ",
+    "Piotr Papis": "NZ"
+  }
 }
