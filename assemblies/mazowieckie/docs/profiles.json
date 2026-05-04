@@ -1,0 +1,748 @@
+{
+  "scraped_at": "2026-05-04T12:24:47Z",
+  "profiles": [
+    {
+      "name": "Adam Struzik",
+      "slug": "adam-struzik",
+      "kadencje": {
+        "2024-2029": {
+          "club": "TD",
+          "frekwencja": 87.0,
+          "aktywnosc": 89.1,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Aleksandra Śmietanka",
+      "slug": "aleksandra-smietanka",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 82.6,
+          "aktywnosc": 92.5,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Alicja Dąbrowska",
+      "slug": "alicja-dabrowska",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 78.3,
+          "aktywnosc": 85.5,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Andrzej Melak",
+      "slug": "andrzej-melak",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 82.6,
+          "aktywnosc": 76.3,
+          "zgodnosc_z_klubem": 94.8,
+          "votes_total": 477,
+          "rebellion_count": 19
+        }
+      }
+    },
+    {
+      "name": "Anna Brzezińska",
+      "slug": "anna-brzezinska",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 82.6,
+          "aktywnosc": 85.5,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Anna Kaszuba",
+      "slug": "anna-kaszuba",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 52.2,
+          "aktywnosc": 54.9,
+          "zgodnosc_z_klubem": 96.2,
+          "votes_total": 477,
+          "rebellion_count": 10
+        }
+      }
+    },
+    {
+      "name": "Anna Majchrzak",
+      "slug": "anna-majchrzak",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 78.3,
+          "aktywnosc": 85.5,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Anna Uzdowska-Gacek",
+      "slug": "anna-uzdowska-gacek",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 87.0,
+          "aktywnosc": 96.9,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Artur Czapliński",
+      "slug": "artur-czaplinski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 82.6,
+          "aktywnosc": 83.9,
+          "zgodnosc_z_klubem": 94.0,
+          "votes_total": 477,
+          "rebellion_count": 24
+        }
+      }
+    },
+    {
+      "name": "Błażej Poboży",
+      "slug": "bazej-pobozy",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 82.6,
+          "aktywnosc": 76.5,
+          "zgodnosc_z_klubem": 94.0,
+          "votes_total": 477,
+          "rebellion_count": 22
+        }
+      }
+    },
+    {
+      "name": "Damian Olszewski",
+      "slug": "damian-olszewski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 78.3,
+          "aktywnosc": 88.7,
+          "zgodnosc_z_klubem": 98.1,
+          "votes_total": 477,
+          "rebellion_count": 8
+        }
+      }
+    },
+    {
+      "name": "Dorota Stalińska",
+      "slug": "dorota-stalinska",
+      "kadencje": {
+        "2024-2029": {
+          "club": "TD",
+          "frekwencja": 82.6,
+          "aktywnosc": 92.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Edyta Wietrak",
+      "slug": "edyta-wietrak",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 78.3,
+          "aktywnosc": 85.1,
+          "zgodnosc_z_klubem": 97.5,
+          "votes_total": 477,
+          "rebellion_count": 10
+        }
+      }
+    },
+    {
+      "name": "Elżbieta Lanc",
+      "slug": "elzbieta-lanc",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 87.0,
+          "aktywnosc": 96.9,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Grzegorz Benedykciński",
+      "slug": "grzegorz-benedykcinski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "TD",
+          "frekwencja": 87.0,
+          "aktywnosc": 92.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Igor Sulich",
+      "slug": "igor-sulich",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 73.9,
+          "aktywnosc": 72.7,
+          "zgodnosc_z_klubem": 99.7,
+          "votes_total": 477,
+          "rebellion_count": 1
+        }
+      }
+    },
+    {
+      "name": "Jakub Kowalski",
+      "slug": "jakub-kowalski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 69.6,
+          "aktywnosc": 61.0,
+          "zgodnosc_z_klubem": 96.9,
+          "votes_total": 477,
+          "rebellion_count": 9
+        }
+      }
+    },
+    {
+      "name": "Janina Ewa Orzełowska",
+      "slug": "janina-ewa-orzeowska",
+      "kadencje": {
+        "2024-2029": {
+          "club": "TD",
+          "frekwencja": 87.0,
+          "aktywnosc": 96.4,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Janusz Kotowski",
+      "slug": "janusz-kotowski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 82.6,
+          "aktywnosc": 84.1,
+          "zgodnosc_z_klubem": 93.3,
+          "votes_total": 477,
+          "rebellion_count": 27
+        }
+      }
+    },
+    {
+      "name": "Jarosław Krajewski",
+      "slug": "jarosaw-krajewski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "frekwencja": 8.7,
+          "aktywnosc": 7.3,
+          "zgodnosc_z_klubem": 60.0,
+          "votes_total": 477,
+          "rebellion_count": 14
+        }
+      }
+    },
+    {
+      "name": "Katarzyna Bornowska",
+      "slug": "katarzyna-bornowska",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 87.0,
+          "aktywnosc": 97.3,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Katarzyna Lubiak",
+      "slug": "katarzyna-lubiak",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 87.0,
+          "aktywnosc": 91.4,
+          "zgodnosc_z_klubem": 97.2,
+          "votes_total": 477,
+          "rebellion_count": 12
+        }
+      }
+    },
+    {
+      "name": "Katarzyna Łęgiewicz",
+      "slug": "katarzyna-egiewicz",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 82.6,
+          "aktywnosc": 90.4,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Konrad Rytel",
+      "slug": "konrad-rytel",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "frekwencja": 69.6,
+          "aktywnosc": 64.8,
+          "zgodnosc_z_klubem": 94.2,
+          "votes_total": 477,
+          "rebellion_count": 18
+        }
+      }
+    },
+    {
+      "name": "Konrad Wojnarowski",
+      "slug": "konrad-wojnarowski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "TD",
+          "frekwencja": 60.9,
+          "aktywnosc": 60.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Krzysztof Chaberski",
+      "slug": "krzysztof-chaberski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 87.0,
+          "aktywnosc": 96.6,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Krzysztof Strzałkowski",
+      "slug": "krzysztof-strzakowski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 87.0,
+          "aktywnosc": 97.3,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Krzysztof Żochowski",
+      "slug": "krzysztof-zochowski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 82.6,
+          "aktywnosc": 87.4,
+          "zgodnosc_z_klubem": 92.6,
+          "votes_total": 477,
+          "rebellion_count": 31
+        }
+      }
+    },
+    {
+      "name": "Leszek Przybytniak",
+      "slug": "leszek-przybytniak",
+      "kadencje": {
+        "2024-2029": {
+          "club": "TD",
+          "frekwencja": 8.7,
+          "aktywnosc": 8.8,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Ludwik Rakowski",
+      "slug": "ludwik-rakowski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 87.0,
+          "aktywnosc": 96.6,
+          "zgodnosc_z_klubem": 98.7,
+          "votes_total": 477,
+          "rebellion_count": 6
+        }
+      }
+    },
+    {
+      "name": "Magdalena Murawska",
+      "slug": "magdalena-murawska",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 87.0,
+          "aktywnosc": 92.7,
+          "zgodnosc_z_klubem": 96.6,
+          "votes_total": 477,
+          "rebellion_count": 15
+        }
+      }
+    },
+    {
+      "name": "Magdalena Nowacka",
+      "slug": "magdalena-nowacka",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 82.6,
+          "aktywnosc": 93.5,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Marcin Podsędek",
+      "slug": "marcin-podsedek",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 87.0,
+          "aktywnosc": 97.1,
+          "zgodnosc_z_klubem": 99.8,
+          "votes_total": 477,
+          "rebellion_count": 1
+        }
+      }
+    },
+    {
+      "name": "Marek Martynowski",
+      "slug": "marek-martynowski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "frekwencja": 87.0,
+          "aktywnosc": 94.5,
+          "zgodnosc_z_klubem": 98.7,
+          "votes_total": 477,
+          "rebellion_count": 6
+        }
+      }
+    },
+    {
+      "name": "Michał Grodzki",
+      "slug": "micha-grodzki",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 73.9,
+          "aktywnosc": 70.4,
+          "zgodnosc_z_klubem": 97.0,
+          "votes_total": 477,
+          "rebellion_count": 10
+        }
+      }
+    },
+    {
+      "name": "Michał Orliński",
+      "slug": "micha-orlinski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 87.0,
+          "aktywnosc": 96.6,
+          "zgodnosc_z_klubem": 97.2,
+          "votes_total": 477,
+          "rebellion_count": 13
+        }
+      }
+    },
+    {
+      "name": "Paulina Piechna-Więckiewicz",
+      "slug": "paulina-piechna-wieckiewicz",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "frekwencja": 73.9,
+          "aktywnosc": 65.4,
+          "zgodnosc_z_klubem": 98.1,
+          "votes_total": 477,
+          "rebellion_count": 6
+        }
+      }
+    },
+    {
+      "name": "Paweł Lisiecki",
+      "slug": "pawe-lisiecki",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 82.6,
+          "aktywnosc": 82.4,
+          "zgodnosc_z_klubem": 93.1,
+          "votes_total": 477,
+          "rebellion_count": 27
+        }
+      }
+    },
+    {
+      "name": "Paweł Obermeyer",
+      "slug": "pawe-obermeyer",
+      "kadencje": {
+        "2024-2029": {
+          "club": "TD",
+          "frekwencja": 82.6,
+          "aktywnosc": 93.9,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Piotr Papis",
+      "slug": "piotr-papis",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "frekwencja": 69.6,
+          "aktywnosc": 70.9,
+          "zgodnosc_z_klubem": 99.1,
+          "votes_total": 477,
+          "rebellion_count": 3
+        }
+      }
+    },
+    {
+      "name": "Rafał Kowalczyk",
+      "slug": "rafa-kowalczyk",
+      "kadencje": {
+        "2024-2029": {
+          "club": "TD",
+          "frekwencja": 82.6,
+          "aktywnosc": 88.7,
+          "zgodnosc_z_klubem": 99.8,
+          "votes_total": 477,
+          "rebellion_count": 1
+        }
+      }
+    },
+    {
+      "name": "Rafał Rajkowski",
+      "slug": "rafa-rajkowski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 82.6,
+          "aktywnosc": 92.9,
+          "zgodnosc_z_klubem": 99.8,
+          "votes_total": 477,
+          "rebellion_count": 1
+        }
+      }
+    },
+    {
+      "name": "Robert Kempa",
+      "slug": "robert-kempa",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 78.3,
+          "aktywnosc": 74.6,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Robert Perkowski",
+      "slug": "robert-perkowski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 73.9,
+          "aktywnosc": 76.1,
+          "zgodnosc_z_klubem": 95.9,
+          "votes_total": 477,
+          "rebellion_count": 15
+        }
+      }
+    },
+    {
+      "name": "Sylwia Lacek",
+      "slug": "sylwia-lacek",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 82.6,
+          "aktywnosc": 82.2,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Teresa Wargocka",
+      "slug": "teresa-wargocka",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 78.3,
+          "aktywnosc": 88.3,
+          "zgodnosc_z_klubem": 95.0,
+          "votes_total": 477,
+          "rebellion_count": 21
+        }
+      }
+    },
+    {
+      "name": "Tomasz Kucharski",
+      "slug": "tomasz-kucharski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 87.0,
+          "aktywnosc": 96.4,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Wiesław Raboszuk",
+      "slug": "wiesaw-raboszuk",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 87.0,
+          "aktywnosc": 96.6,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Wioletta Paprocka-Ślusarska",
+      "slug": "wioletta-paprocka-slusarska",
+      "kadencje": {
+        "2024-2029": {
+          "club": "KO",
+          "frekwencja": 78.3,
+          "aktywnosc": 86.2,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_total": 477,
+          "rebellion_count": 0
+        }
+      }
+    },
+    {
+      "name": "Wojciech Kudelski",
+      "slug": "wojciech-kudelski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 82.6,
+          "aktywnosc": 93.9,
+          "zgodnosc_z_klubem": 94.0,
+          "votes_total": 477,
+          "rebellion_count": 27
+        }
+      }
+    },
+    {
+      "name": "Zdzisław Sipiera",
+      "slug": "zdzisaw-sipiera",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 87.0,
+          "aktywnosc": 95.2,
+          "zgodnosc_z_klubem": 96.9,
+          "votes_total": 477,
+          "rebellion_count": 14
+        }
+      }
+    },
+    {
+      "name": "Łukasz Cicholski",
+      "slug": "ukasz-cicholski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 52.2,
+          "aktywnosc": 56.8,
+          "zgodnosc_z_klubem": 97.0,
+          "votes_total": 477,
+          "rebellion_count": 8
+        }
+      }
+    },
+    {
+      "name": "Łukasz Mierzejewski",
+      "slug": "ukasz-mierzejewski",
+      "kadencje": {
+        "2024-2029": {
+          "club": "PiS",
+          "frekwencja": 87.0,
+          "aktywnosc": 92.5,
+          "zgodnosc_z_klubem": 97.3,
+          "votes_total": 477,
+          "rebellion_count": 12
+        }
+      }
+    }
+  ],
+  "total": 53
+}

@@ -27,12 +27,12 @@ Sejmik korzysta z eSesji do streamu sesji (`app.esesja.pl/pomorskie/` istnieje),
 
 **Alternatywa**: kontynuować inżynierię wsteczną API Madkoma. Otworzyć BIP w przeglądarce z DevTools i Network tab, zobaczyć dokładnie które endpointy są wywoływane przy nawigacji do "Sejmik → Sesje → konkretna sesja". Jeśli dany endpoint nie wymaga auth i odpowiada JSON, scraper bez Playwright działa.
 
-Pozostałe 13 województw są w `radoskop/data/sejmiki-meta.csv` ze statusem `planned`. Pojawiają się w manifeście `/swiezosc/data.json` i kafelkach na stronie głównej.
+Pozostałe 13 województw są w `radoskop/data/assemblies-meta.csv` ze statusem `planned`. Pojawiają się w manifeście `/swiezosc/data.json` i kafelkach na stronie głównej.
 
 ## Struktura katalogu
 
 ```
-radoskop/sejmiki/{slug}/
+radoskop/assemblies/{slug}/
   config.json        # samorzad_type=wojewodztwo, rada_name, site_url, bip_url, councilor_count
   scripts/           # scrape_glosowania.py, scrape_interpelacje.py, lokalne pomocniki
   docs/              # kadencja-{id}.json, interpelacje.json, aktualnosci.json, profiles.json, data.json, index.html
@@ -71,25 +71,25 @@ Tworząc:
 
 ### Krok 3: integracja z pipeline
 
-W `radoskop-premium/scrape_all.sh` dodać sekcję dla `sejmik:{slug}` (lub osobny skrypt `scrape_sejmiki.sh`). W `radoskop-premium/nas/run_pipeline.py` driver iteruje po obu katalogach (cities/ i sejmiki/) wywołując ten sam shellowy entrypoint.
+W `radoskop-premium/nas/run_pipeline.py` discover_active_assemblies() automatycznie podchwytuje sejmik mający plik `scripts/scrape_glosowania.py`. Bez ręcznej modyfikacji listy.
 
 ### Krok 4: budowa profili i metryk
 
 Po pierwszym udanym scrape, uruchomić:
 
-- `python3 radoskop/scripts/build_profiles.py --data sejmiki/{slug}/docs/data.json --out sejmiki/{slug}/docs/profiles.json`
-- `python3 radoskop/scripts/build_metrics.py sejmiki/{slug}/data/ --out sejmiki/{slug}/docs/data.json`
+- `python3 radoskop/scripts/build_profiles.py --data assemblies/{slug}/docs/data.json --out assemblies/{slug}/docs/profiles.json`
+- `python3 radoskop/scripts/build_metrics.py assemblies/{slug}/data/ --out assemblies/{slug}/docs/data.json`
 - `python3 radoskop/scripts/generate_feed.py --base radoskop/sejmiki --city {slug}` (uwaga: parametr `--city` zostaje, choć semantycznie to slug jednostki samorządu).
 
 ### Krok 5: deploy i CNAME
 
-- Subdomena `sejmik.{slug}.radoskop.pl` w Cloudflare, CNAME na S3 bucket `radoskop-public` (origin `_sejmik_{slug}/`).
-- Skrypt `radoskop-premium/scripts/deploy_main_s3.py` rozszerzony o ścieżkę `_sejmik_{slug}` (TODO).
+- Subdomena `{slug}.radoskop.pl` w Cloudflare (single-level, pokryta wildcardem `*.radoskop.pl`).
+- Skrypt `radoskop-premium/scripts/deploy_main_s3.py` używa prefixu `{slug}/` (analogicznie do miast, sluga rozłączne).
 - Worker Cloudflare dla apex może zostać bez zmian, sejmiki mają własne subdomeny.
 
 ### Krok 6: aktualizacja apex
 
-- `generate_main_manifest.py` skanuje `radoskop/sejmiki/` i dorzuca do `cities.json` jeszcze `sejmiki.json` (TODO).
+- `generate_main_manifest.py` skanuje `radoskop/assemblies/` i dorzuca do `cities.json` jeszcze `assemblies.json` (TODO).
 - Statyczna sekcja "Sejmiki województw" w `radoskop/docs/index.html` zostaje zastąpiona dynamiczną siatką po ukończeniu pierwszego pilota.
 
 ## Kolejność rekomendowana

@@ -12,9 +12,9 @@ cities/*/pdfs/
 
 # Sejmiki: cache lokalne (PDFy, HTML, snapshoty BIP) zostają na NAS, nie do
 # gita. docs/ zostają w repo do momentu uruchomienia deployu sejmików do S3.
-sejmiki/*/.cache/
-sejmiki/*/data/
-sejmiki/*/pdfs/
+assemblies/*/.cache/
+assemblies/*/data/
+assemblies/*/pdfs/
 
 # Apex docs/ are small and central, but generated manifests churn with every
 # run. They go to s3://radoskop-public/_main/ via deploy_main_s3.py; no need

@@ -3,7 +3,7 @@
 Buduje manifest świeżości danych dla apex page Radoskopu.
 
 Skanuje `radoskop/cities/{slug}/docs/` (samorząd typu miasto) oraz
-`radoskop/sejmiki/{slug}/docs/` (samorząd typu województwo) w poszukiwaniu
+`radoskop/assemblies/{slug}/docs/` (samorząd typu województwo) w poszukiwaniu
 plików JSON: kadencja-*.json, interpelacje.json, aktualnosci.json,
 budget.json, profiles.json, data.json. Dla każdego pliku ustala znacznik
 czasu z pola `scraped_at` (jeśli istnieje) albo z mtime pliku jako
@@ -83,12 +83,12 @@ LEVELS: list[dict[str, Any]] = [
         "meta_csv": "cities-meta.csv",
     },
     {
-        "id": "sejmik",
+        "id": "assembly",
         "label": "Sejmiki województw",
-        "subdir": "sejmiki",
+        "subdir": "assemblies",
         "samorzad_type": "wojewodztwo",
         "name_field": "rada_name",
-        "meta_csv": "sejmiki-meta.csv",
+        "meta_csv": "assemblies-meta.csv",
     },
 ]
 
@@ -190,7 +190,7 @@ def measure_kadencja(docs_dir: Path) -> dict[str, Any]:
 
 
 def load_meta_csv(workspace: Path, filename: str) -> dict[str, dict[str, Any]]:
-    """Czyta plik meta CSV (cities-meta.csv lub sejmiki-meta.csv). Klucz: slug."""
+    """Czyta plik meta CSV (cities-meta.csv lub assemblies-meta.csv). Klucz: slug."""
     candidates = [
         workspace / "radoskop" / "data" / filename,
         Path(__file__).resolve().parent.parent / "data" / filename,
@@ -271,16 +271,16 @@ def build_unit_entry(unit_dir: Path, level: dict[str, Any], meta: dict[str, Any]
     return entry
 
 
-def build_planned_sejmiki(workspace: Path, active_slugs: set[str]) -> list[dict[str, Any]]:
+def build_planned_assemblies(workspace: Path, active_slugs: set[str]) -> list[dict[str, Any]]:
     """Lista 16 województw z meta CSV, oznacza te bez configu jako 'planned'."""
-    meta = load_meta_csv(workspace, "sejmiki-meta.csv")
+    meta = load_meta_csv(workspace, "assemblies-meta.csv")
     out: list[dict[str, Any]] = []
     for slug, row in meta.items():
         if slug in active_slugs:
             continue
         out.append({
             "slug": slug,
-            "level": "sejmik",
+            "level": "assembly",
             "samorzad_type": "wojewodztwo",
             "name": f"Sejmik Województwa {row.get('name_genitive', slug)}".strip(),
             "url": f"https://{slug}.radoskop.pl",
@@ -297,7 +297,7 @@ def build_planned_sejmiki(workspace: Path, active_slugs: set[str]) -> list[dict[
 
 def build_manifest(workspace: Path) -> dict[str, Any]:
     units: list[dict[str, Any]] = []
-    sejmik_active_slugs: set[str] = set()
+    assembly_active_slugs: set[str] = set()
 
     for level in LEVELS:
         meta_map = load_meta_csv(workspace, level["meta_csv"])
@@ -305,12 +305,12 @@ def build_manifest(workspace: Path) -> dict[str, Any]:
             meta = meta_map.get(unit_dir.name, {})
             entry = build_unit_entry(unit_dir, level, meta)
             units.append(entry)
-            if level["id"] == "sejmik":
-                sejmik_active_slugs.add(unit_dir.name)
+            if level["id"] == "assembly":
+                assembly_active_slugs.add(unit_dir.name)
 
     # Dorzucamy 13 województw, dla których nie ma jeszcze configu, żeby
     # macierz pokazywała kompletną listę 16 sejmików ze statusem planned.
-    units.extend(build_planned_sejmiki(workspace, sejmik_active_slugs))
+    units.extend(build_planned_assemblies(workspace, assembly_active_slugs))
 
     return {
         "generated_at": datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -351,10 +351,10 @@ def main() -> int:
         json.dump(manifest, f, ensure_ascii=False, indent=2)
 
     cities = sum(1 for u in manifest["units"] if u["level"] == "city")
-    sejmiki = sum(1 for u in manifest["units"] if u["level"] == "sejmik")
+    assemblies = sum(1 for u in manifest["units"] if u["level"] == "assembly")
     print(
         f"build_freshness: zapisano {output} "
-        f"({cities} miast, {sejmiki} sejmików, {len(SOURCES)} źródeł)"
+        f"({cities} miast, {assemblies} sejmików, {len(SOURCES)} źródeł)"
     )
     return 0
 

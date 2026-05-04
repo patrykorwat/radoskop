@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-04T11:54:02Z",
+  "generated_at": "2026-05-04T12:25:27Z",
   "schema_version": 2,
   "levels": [
     {
@@ -7,7 +7,7 @@
       "label": "Miasta"
     },
     {
-      "id": "sejmik",
+      "id": "assembly",
       "label": "Sejmiki województw"
     }
   ],
@@ -59,18 +59,18 @@
         },
         "interpelacje": {
           "available": true,
-          "scraped_at": "2026-05-03T09:46:59Z",
+          "scraped_at": "2026-05-04T12:05:36Z",
           "source": "mtime",
-          "mtime": "2026-05-03T09:46:59Z",
-          "size_bytes": 391823,
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 392080,
           "filename": "interpelacje.json"
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-04-26T13:06:52Z",
-          "source": "mtime",
-          "mtime": "2026-04-26T13:06:52Z",
-          "size_bytes": 142451,
+          "scraped_at": "2026-05-04T07:32:45Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 142489,
           "filename": "aktualnosci.json"
         },
         "profiles": {
@@ -147,10 +147,10 @@
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-05-03T09:46:59Z",
-          "source": "mtime",
-          "mtime": "2026-05-03T09:46:59Z",
-          "size_bytes": 76722,
+          "scraped_at": "2026-05-04T08:32:49Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 76760,
           "filename": "aktualnosci.json"
         },
         "profiles": {
@@ -180,9 +180,9 @@
       "sources": {
         "kadencja": {
           "available": true,
-          "scraped_at": "2026-05-03T09:46:59Z",
+          "scraped_at": "2026-05-04T12:05:36Z",
           "source": "mtime",
-          "mtime": "2026-05-03T09:46:59Z",
+          "mtime": "2026-05-04T12:05:36Z",
           "size_bytes": 295113,
           "filename": "kadencja-2024-2029.json",
           "kadencja_id": "2024-2029"
@@ -193,10 +193,10 @@
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-05-03T09:46:59Z",
-          "source": "mtime",
-          "mtime": "2026-05-03T09:46:59Z",
-          "size_bytes": 131007,
+          "scraped_at": "2026-05-04T09:05:04Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 131045,
           "filename": "aktualnosci.json"
         },
         "profiles": {
@@ -263,26 +263,26 @@
         },
         "interpelacje": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
+          "scraped_at": "2026-05-04T12:05:36Z",
           "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 3398064,
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 3400045,
           "filename": "interpelacje.json"
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-05-03T11:47:05Z",
-          "source": "mtime",
-          "mtime": "2026-05-03T11:47:05Z",
-          "size_bytes": 137803,
+          "scraped_at": "2026-05-04T09:02:51Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 137855,
           "filename": "aktualnosci.json"
         },
         "profiles": {
           "available": true,
-          "scraped_at": "2026-04-19T17:21:06Z",
-          "source": "mtime",
-          "mtime": "2026-04-19T17:21:06Z",
-          "size_bytes": 190222,
+          "scraped_at": "2026-05-04T09:01:49Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 190262,
           "filename": "profiles.json"
         },
         "budget": {
@@ -317,18 +317,18 @@
         },
         "interpelacje": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
+          "scraped_at": "2026-05-04T12:05:36Z",
           "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 540899,
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 544853,
           "filename": "interpelacje.json"
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
-          "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 141148,
+          "scraped_at": "2026-05-04T09:03:11Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 141363,
           "filename": "aktualnosci.json"
         },
         "profiles": {
@@ -401,18 +401,18 @@
         },
         "interpelacje": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
+          "scraped_at": "2026-05-04T12:05:36Z",
           "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 893834,
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 895924,
           "filename": "interpelacje.json"
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
-          "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 145598,
+          "scraped_at": "2026-05-04T08:19:08Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 145729,
           "filename": "aktualnosci.json"
         },
         "profiles": {
@@ -480,18 +480,18 @@
         },
         "interpelacje": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
+          "scraped_at": "2026-05-04T12:05:36Z",
           "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 1803381,
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 1807176,
           "filename": "interpelacje.json"
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-04-30T09:12:11Z",
-          "source": "mtime",
-          "mtime": "2026-04-30T09:12:11Z",
-          "size_bytes": 146421,
+          "scraped_at": "2026-05-04T08:40:31Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 146455,
           "filename": "aktualnosci.json"
         },
         "profiles": {
@@ -538,10 +538,10 @@
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-04-25T06:43:58Z",
-          "source": "mtime",
-          "mtime": "2026-04-25T06:43:58Z",
-          "size_bytes": 137767,
+          "scraped_at": "2026-05-04T08:57:08Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 137805,
           "filename": "aktualnosci.json"
         },
         "profiles": {
@@ -588,10 +588,10 @@
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
-          "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 134907,
+          "scraped_at": "2026-05-04T07:40:34Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 134945,
           "filename": "aktualnosci.json"
         },
         "profiles": {
@@ -660,18 +660,18 @@
         },
         "interpelacje": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
+          "scraped_at": "2026-05-04T12:05:36Z",
           "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 393045,
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 393555,
           "filename": "interpelacje.json"
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
-          "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 116919,
+          "scraped_at": "2026-05-04T09:03:52Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 116868,
           "filename": "aktualnosci.json"
         },
         "profiles": {
@@ -781,10 +781,10 @@
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
-          "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 132445,
+          "scraped_at": "2026-05-04T08:53:29Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 132483,
           "filename": "aktualnosci.json"
         },
         "profiles": {
@@ -827,18 +827,18 @@
         },
         "interpelacje": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
+          "scraped_at": "2026-05-04T12:05:36Z",
           "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 868882,
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 869732,
           "filename": "interpelacje.json"
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
-          "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 143307,
+          "scraped_at": "2026-05-04T08:03:35Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 143345,
           "filename": "aktualnosci.json"
         },
         "profiles": {
@@ -898,10 +898,10 @@
       "sources": {
         "kadencja": {
           "available": true,
-          "scraped_at": "2026-04-26T13:06:57Z",
+          "scraped_at": "2026-05-04T12:05:36Z",
           "source": "mtime",
-          "mtime": "2026-04-26T13:06:57Z",
-          "size_bytes": 262788,
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 275119,
           "filename": "kadencja-2024-2029.json",
           "kadencja_id": "2024-2029"
         },
@@ -911,17 +911,17 @@
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-04-26T13:06:57Z",
-          "source": "mtime",
-          "mtime": "2026-04-26T13:06:57Z",
-          "size_bytes": 111778,
+          "scraped_at": "2026-05-04T09:04:50Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 117806,
           "filename": "aktualnosci.json"
         },
         "profiles": {
           "available": true,
-          "scraped_at": "2026-04-25T16:09:47Z",
+          "scraped_at": "2026-05-04T12:05:36Z",
           "source": "mtime",
-          "mtime": "2026-04-25T16:09:47Z",
+          "mtime": "2026-05-04T12:05:36Z",
           "size_bytes": 18139,
           "filename": "profiles.json"
         },
@@ -952,18 +952,18 @@
         },
         "interpelacje": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
+          "scraped_at": "2026-05-04T12:05:36Z",
           "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 1238416,
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 1240185,
           "filename": "interpelacje.json"
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
-          "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 140388,
+          "scraped_at": "2026-05-04T07:53:47Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 140485,
           "filename": "aktualnosci.json"
         },
         "profiles": {
@@ -1006,18 +1006,18 @@
         },
         "interpelacje": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
+          "scraped_at": "2026-05-04T12:05:36Z",
           "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 760372,
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 762002,
           "filename": "interpelacje.json"
         },
         "aktualnosci": {
           "available": true,
-          "scraped_at": "2026-05-03T09:47:00Z",
-          "source": "mtime",
-          "mtime": "2026-05-03T09:47:00Z",
-          "size_bytes": 120329,
+          "scraped_at": "2026-05-04T08:48:37Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:05:36Z",
+          "size_bytes": 119575,
           "filename": "aktualnosci.json"
         },
         "profiles": {
@@ -1072,7 +1072,7 @@
     },
     {
       "slug": "dolnoslaskie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Dolnośląskiego",
       "url": "https://dolnoslaskie.radoskop.pl",
@@ -1102,7 +1102,7 @@
     },
     {
       "slug": "mazowieckie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Mazowieckiego",
       "url": "https://mazowieckie.radoskop.pl",
@@ -1111,18 +1111,18 @@
       "sources": {
         "kadencja": {
           "available": true,
-          "scraped_at": "2026-05-03T22:36:54Z",
+          "scraped_at": "2026-05-04T09:14:21Z",
           "source": "json_field",
-          "mtime": "2026-05-03T22:36:54Z",
-          "size_bytes": 819916,
+          "mtime": "2026-05-04T12:24:48Z",
+          "size_bytes": 962786,
           "filename": "kadencja-2024-2029.json",
           "kadencja_id": "2024-2029"
         },
         "interpelacje": {
           "available": true,
-          "scraped_at": "2026-05-04T06:51:20Z",
+          "scraped_at": "2026-05-04T09:15:10Z",
           "source": "json_field",
-          "mtime": "2026-05-04T06:51:20Z",
+          "mtime": "2026-05-04T12:05:36Z",
           "size_bytes": 90622,
           "filename": "interpelacje.json"
         },
@@ -1130,7 +1130,12 @@
           "available": false
         },
         "profiles": {
-          "available": false
+          "available": true,
+          "scraped_at": "2026-05-04T12:24:47Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:24:48Z",
+          "size_bytes": 17295,
+          "filename": "profiles.json"
         },
         "budget": {
           "available": false
@@ -1143,7 +1148,7 @@
     },
     {
       "slug": "pomorskie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Pomorskiego",
       "url": "https://pomorskie.radoskop.pl",
@@ -1154,8 +1159,8 @@
           "available": true,
           "scraped_at": "2026-05-04T11:48:51Z",
           "source": "json_field",
-          "mtime": "2026-05-04T11:48:51Z",
-          "size_bytes": 473242,
+          "mtime": "2026-05-04T12:25:00Z",
+          "size_bytes": 528190,
           "filename": "kadencja-2024-2029.json",
           "kadencja_id": "2024-2029"
         },
@@ -1166,7 +1171,12 @@
           "available": false
         },
         "profiles": {
-          "available": false
+          "available": true,
+          "scraped_at": "2026-05-04T12:25:00Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T12:25:00Z",
+          "size_bytes": 10734,
+          "filename": "profiles.json"
         },
         "budget": {
           "available": false
@@ -1179,7 +1189,7 @@
     },
     {
       "slug": "kujawsko-pomorskie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Kujawsko-Pomorskiego",
       "url": "https://kujawsko-pomorskie.radoskop.pl",
@@ -1209,7 +1219,7 @@
     },
     {
       "slug": "lubelskie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Lubelskiego",
       "url": "https://lubelskie.radoskop.pl",
@@ -1239,7 +1249,7 @@
     },
     {
       "slug": "lubuskie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Lubuskiego",
       "url": "https://lubuskie.radoskop.pl",
@@ -1269,7 +1279,7 @@
     },
     {
       "slug": "lodzkie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Łódzkiego",
       "url": "https://lodzkie.radoskop.pl",
@@ -1299,7 +1309,7 @@
     },
     {
       "slug": "malopolskie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Małopolskiego",
       "url": "https://malopolskie.radoskop.pl",
@@ -1329,7 +1339,7 @@
     },
     {
       "slug": "opolskie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Opolskiego",
       "url": "https://opolskie.radoskop.pl",
@@ -1359,7 +1369,7 @@
     },
     {
       "slug": "podkarpackie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Podkarpackiego",
       "url": "https://podkarpackie.radoskop.pl",
@@ -1389,7 +1399,7 @@
     },
     {
       "slug": "podlaskie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Podlaskiego",
       "url": "https://podlaskie.radoskop.pl",
@@ -1419,7 +1429,7 @@
     },
     {
       "slug": "slaskie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Śląskiego",
       "url": "https://slaskie.radoskop.pl",
@@ -1449,7 +1459,7 @@
     },
     {
       "slug": "swietokrzyskie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Świętokrzyskiego",
       "url": "https://swietokrzyskie.radoskop.pl",
@@ -1479,7 +1489,7 @@
     },
     {
       "slug": "warminsko-mazurskie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Warmińsko-Mazurskiego",
       "url": "https://warminsko-mazurskie.radoskop.pl",
@@ -1509,7 +1519,7 @@
     },
     {
       "slug": "wielkopolskie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Wielkopolskiego",
       "url": "https://wielkopolskie.radoskop.pl",
@@ -1539,7 +1549,7 @@
     },
     {
       "slug": "zachodniopomorskie",
-      "level": "sejmik",
+      "level": "assembly",
       "samorzad_type": "wojewodztwo",
       "name": "Sejmik Województwa Zachodniopomorskiego",
       "url": "https://zachodniopomorskie.radoskop.pl",
