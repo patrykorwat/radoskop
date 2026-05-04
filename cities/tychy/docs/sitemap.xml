@@ -2011,6 +2011,106 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_000_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_001_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_002_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_003_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_004_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_005_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_006_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_007_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_008_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_009_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_010_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_011_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_012_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_013_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_014_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_015_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_016_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_017_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_018_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/glosowanie/2026-04-30_019_000/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://tychy.radoskop.pl/sesja/2024-05-07/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -2087,6 +2187,11 @@
   </url>
   <url>
     <loc>https://tychy.radoskop.pl/sesja/2026-03-26/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://tychy.radoskop.pl/sesja/2026-04-30/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

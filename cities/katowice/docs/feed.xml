@@ -5,7 +5,7 @@
   <link href="https://katowice.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://katowice.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://katowice.radoskop.pl/</id>
-  <updated>2026-04-30T10:08:15Z</updated>
+  <updated>2026-05-04T08:19:08Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
@@ -17,6 +17,15 @@
     <published>2029-07-15T12:00:00+01:00</published>
     <updated>2029-07-15T12:00:00+01:00</updated>
     <summary type="html">Tomasz Maśnica. wzmożonej kontroli Straży Miejskiej i Policji w rejonie Sklepu Nocnego oraz Placu Miast Partnerskich przy ul. Koszalińskiej w Ligocie.</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: realizacji wniosku budżetowego na 2026 r. dotyczącego remontu drogi na ul. Batalionów Chłopskich - o</title>
+    <link href="https://katowice.radoskop.pl/profil/urszula-machowska/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/profil/urszula-machowska/#interpelacja</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Urszula Machowska. realizacji wniosku budżetowego na 2026 r. dotyczącego remontu drogi na ul. Batalionów Chłopskich - odcinek między targowiskiem a pawilonami handlowymi</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -810,15 +819,6 @@ Ewa Sadkowska. śmieci w strefach: Park Wełnowiecki, Bulwary Rawy, Dworcowa/Mar
     <published>2026-03-05T12:00:00+01:00</published>
     <updated>2026-03-05T12:00:00+01:00</updated>
     <summary type="html">Krzysztof Pieczyński. w  sprawie poprawienia bezpieczeństwa na skrzyżowaniu ulic Sandacza i Pstrągowej.</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: dokonania zmian w regulaminie przyznawania ,,Katowickiego Diamentu Edukacyjnego”.</title>
-    <link href="https://katowice.radoskop.pl/profil/urszula-machowska/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/profil/urszula-machowska/#interpelacja</id>
-    <published>2026-02-20T12:00:00+01:00</published>
-    <updated>2026-02-20T12:00:00+01:00</updated>
-    <summary type="html">Urszula Machowska. dokonania zmian w regulaminie przyznawania ,,Katowickiego Diamentu Edukacyjnego”.</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

@@ -9,16 +9,20 @@
     "kadencja": "IX",
     "data_przekazania": "Data przekazania do Prezydenta",
     "tresc_url": "https://www.bip.bialystok.pl/resource/103859/P.+Skowro%25C5%2584ski+24.04.2026.pdf",
+    "odpowiedz_url": "https://www.bip.bialystok.pl/resource/103859/P.+Skowro%25C5%2584ski+30.04.2026.pdf",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja (skan)",
         "url": "https://www.bip.bialystok.pl/resource/103859/P.+Skowro%25C5%2584ski+24.04.2026.pdf"
+      },
+      {
+        "nazwa": "Odpowiedź (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103859/P.+Skowro%25C5%2584ski+30.04.2026.pdf"
       }
     ],
     "kategoria": "sport",
     "data_odpowiedzi": "Data przekazania do Prezydenta",
-    "odpowiedz_url": "",
-    "odpowiedz_status": "",
     "nr_sprawy": "341"
   },
   {

@@ -5,18 +5,36 @@
   <link href="https://gdynia.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://gdynia.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://gdynia.radoskop.pl/</id>
-  <updated>2026-04-30T10:41:29Z</updated>
+  <updated>2026-05-04T09:03:11Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
   <entry>
-    <title>Interpelacja: Interpelacja w sprawie odbioru dokumentacji projektowej dla zadania budowy nowego układu drogowego n</title>
+    <title>Zapytanie: Zapytanie w sprawie transkrypcji zagranicznego aktu małżeństwa osób tej samej płci, zawartego legaln</title>
+    <link href="https://gdynia.radoskop.pl/profil/jakub-zynis/" rel="alternate" type="text/html"/>
+    <id>https://gdynia.radoskop.pl/profil/jakub-zynis/#interpelacja</id>
+    <published>2026-05-04T12:00:00+01:00</published>
+    <updated>2026-05-04T12:00:00+01:00</updated>
+    <summary type="html">Jakub Żynis. Zapytanie w sprawie transkrypcji zagranicznego aktu małżeństwa osób tej samej płci, zawartego legalnie w państwie członkowskim Unii Europejskiej?</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: Interpelacja w sprawie szczegółowego harmonogramu i statusu realizacji zaległych projektów Budżetu O</title>
+    <link href="https://gdynia.radoskop.pl/profil/monika-strzalkowska/" rel="alternate" type="text/html"/>
+    <id>https://gdynia.radoskop.pl/profil/monika-strzalkowska/#interpelacja</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Monika Strzałkowska. Interpelacja w sprawie szczegółowego harmonogramu i statusu realizacji zaległych projektów Budżetu Obywatelskiego w dzielnicy Babie Doły.</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: Interpelacja w sprawie nośników i treści reklamowych na obszarze Gdyni.</title>
     <link href="https://gdynia.radoskop.pl/profil/anna-szpajer/" rel="alternate" type="text/html"/>
     <id>https://gdynia.radoskop.pl/profil/anna-szpajer/#interpelacja</id>
     <published>2026-04-29T12:00:00+01:00</published>
     <updated>2026-04-29T12:00:00+01:00</updated>
-    <summary type="html">Anna Szpajer. Interpelacja w sprawie odbioru dokumentacji projektowej dla zadania budowy nowego układu drogowego na Kaczych Bukach.</summary>
+    <summary type="html">Anna Szpajer. Interpelacja w sprawie nośników i treści reklamowych na obszarze Gdyni.</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -38,21 +56,12 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
-    <title>Interpelacja: Interpelacja w sprawie rozbiórki garaży przy ulicy Zielonej w dzielnicy Babie Doły.</title>
-    <link href="https://gdynia.radoskop.pl/profil/monika-strzalkowska/" rel="alternate" type="text/html"/>
-    <id>https://gdynia.radoskop.pl/profil/monika-strzalkowska/#interpelacja</id>
-    <published>2026-04-22T12:00:00+01:00</published>
-    <updated>2026-04-22T12:00:00+01:00</updated>
-    <summary type="html">Monika Strzałkowska. Interpelacja w sprawie rozbiórki garaży przy ulicy Zielonej w dzielnicy Babie Doły.</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: Interpelacja w sprawie remontów mieszkań komunalnych przygotowywanych do ponownego zamieszkania w 20</title>
+    <title>Interpelacja: Interpelacja w sprawie postępu realizacji zadania inwestycyjnego pn. „Budowa ul. Mosiężnej, Magnezjo</title>
     <link href="https://gdynia.radoskop.pl/profil/jakub-ubych/" rel="alternate" type="text/html"/>
     <id>https://gdynia.radoskop.pl/profil/jakub-ubych/#interpelacja</id>
     <published>2026-04-21T12:00:00+01:00</published>
     <updated>2026-04-21T12:00:00+01:00</updated>
-    <summary type="html">Jakub Ubych. Interpelacja w sprawie remontów mieszkań komunalnych przygotowywanych do ponownego zamieszkania w 2025 roku.</summary>
+    <summary type="html">Jakub Ubych. Interpelacja w sprawie postępu realizacji zadania inwestycyjnego pn. „Budowa ul. Mosiężnej, Magnezjowej i Cynkowej” - aktualizacja od października 202</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -899,15 +908,6 @@
     <published>2025-11-26T12:00:00+01:00</published>
     <updated>2025-11-26T12:00:00+01:00</updated>
     <summary type="html">Wynik: przyjete (za 13, przeciw 12, wstrzym. 2). Sesja XXIV.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>projekt uchwały w sprawie wyrażenia zgody na nabycie na rzecz Gminy Miasta Gdyni własności nieruchom</title>
-    <link href="https://gdynia.radoskop.pl/glosowanie/2025-11-26_027/" rel="alternate" type="text/html"/>
-    <id>https://gdynia.radoskop.pl/glosowanie/2025-11-26_027/#vote</id>
-    <published>2025-11-26T12:00:00+01:00</published>
-    <updated>2025-11-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 0). Sesja XXIV.</summary>
     <category term="vote"/>
   </entry>
 </feed>

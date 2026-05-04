@@ -5,11 +5,29 @@
   <link href="https://szczecin.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://szczecin.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://szczecin.radoskop.pl/</id>
-  <updated>2026-04-30T09:54:37Z</updated>
+  <updated>2026-05-04T08:03:35Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
+  <entry>
+    <title>Interpelacja (Radziwinowicz Andrzej)</title>
+    <link href="https://szczecin.radoskop.pl/profil/radziwinowicz-andrzej/" rel="alternate" type="text/html"/>
+    <id>https://szczecin.radoskop.pl/profil/radziwinowicz-andrzej/#interpelacja</id>
+    <published>2026-05-04T12:00:00+01:00</published>
+    <updated>2026-05-04T12:00:00+01:00</updated>
+    <summary type="html">Radziwinowicz Andrzej</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja (Smoliński Dariusz)</title>
+    <link href="https://szczecin.radoskop.pl/profil/smolinski-dariusz/" rel="alternate" type="text/html"/>
+    <id>https://szczecin.radoskop.pl/profil/smolinski-dariusz/#interpelacja</id>
+    <published>2026-05-04T12:00:00+01:00</published>
+    <updated>2026-05-04T12:00:00+01:00</updated>
+    <summary type="html">Smoliński Dariusz</summary>
+    <category term="interpelacja"/>
+  </entry>
   <entry>
     <title>Zapytanie (Romianowski Krzysztof)</title>
     <link href="https://szczecin.radoskop.pl/profil/romianowski-krzysztof/" rel="alternate" type="text/html"/>
@@ -539,24 +557,6 @@
     <published>2026-04-21T12:00:00+01:00</published>
     <updated>2026-04-21T12:00:00+01:00</updated>
     <summary type="html">Gieryga Mateusz</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja (Smoliński Dariusz)</title>
-    <link href="https://szczecin.radoskop.pl/profil/smolinski-dariusz/" rel="alternate" type="text/html"/>
-    <id>https://szczecin.radoskop.pl/profil/smolinski-dariusz/#interpelacja</id>
-    <published>2026-04-21T12:00:00+01:00</published>
-    <updated>2026-04-21T12:00:00+01:00</updated>
-    <summary type="html">Smoliński Dariusz</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja (Radziwinowicz Andrzej)</title>
-    <link href="https://szczecin.radoskop.pl/profil/radziwinowicz-andrzej/" rel="alternate" type="text/html"/>
-    <id>https://szczecin.radoskop.pl/profil/radziwinowicz-andrzej/#interpelacja</id>
-    <published>2026-04-21T12:00:00+01:00</published>
-    <updated>2026-04-21T12:00:00+01:00</updated>
-    <summary type="html">Radziwinowicz Andrzej</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

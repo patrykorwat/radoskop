@@ -1,5 +1,29 @@
 [
   {
+    "cri": "szczecin-2024-2029-1992",
+    "miasto": "szczecin",
+    "kadencja": "2024-2029",
+    "numer": "1992",
+    "typ": "interpelacja",
+    "tytul": "Dot. procederu wjazdu samochodami na teren Parku Chopina",
+    "radny": "Radziwinowicz Andrzej",
+    "data_wplywu": "2026-05-04",
+    "data_odpowiedzi": null,
+    "url": "https://bip.um.szczecin.pl/chapter_131447.asp?soid=25CE8C6627F14A7495D26E904A783C53"
+  },
+  {
+    "cri": "szczecin-2024-2029-1991",
+    "miasto": "szczecin",
+    "kadencja": "2024-2029",
+    "numer": "1991",
+    "typ": "interpelacja",
+    "tytul": "Dot. placu zabaw przy Szkole Podstawowej nr 44 w Szczecinie (Skolwin)",
+    "radny": "Smoliński Dariusz",
+    "data_wplywu": "2026-05-04",
+    "data_odpowiedzi": null,
+    "url": "https://bip.um.szczecin.pl/chapter_131447.asp?soid=CB395F5A8C3E43569AE8EA4746E24458"
+  },
+  {
     "cri": "szczecin-2024-2029-1990",
     "miasto": "szczecin",
     "kadencja": "2024-2029",
