@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-04T07:21:21Z",
+  "generated_at": "2026-05-04T11:54:02Z",
   "schema_version": 2,
   "levels": [
     {
@@ -82,12 +82,8 @@
           "filename": "profiles.json"
         },
         "budget": {
-          "available": true,
-          "scraped_at": "2026-03-14T08:37:16Z",
-          "source": "mtime",
-          "mtime": "2026-03-14T08:37:16Z",
-          "size_bytes": 2,
-          "filename": "budget.json"
+          "available": false,
+          "reason": "empty"
         }
       },
       "voivodeship": "podlaskie",
@@ -106,23 +102,15 @@
           "available": false
         },
         "interpelacje": {
-          "available": true,
-          "scraped_at": "2026-04-25T16:09:47Z",
-          "source": "mtime",
-          "mtime": "2026-04-25T16:09:47Z",
-          "size_bytes": 2,
-          "filename": "interpelacje.json"
+          "available": false,
+          "reason": "empty"
         },
         "aktualnosci": {
           "available": false
         },
         "profiles": {
-          "available": true,
-          "scraped_at": "2026-04-26T20:28:00Z",
-          "source": "mtime",
-          "mtime": "2026-04-26T20:28:00Z",
-          "size_bytes": 20,
-          "filename": "profiles.json"
+          "available": false,
+          "reason": "empty"
         },
         "budget": {
           "available": false
@@ -174,12 +162,8 @@
           "filename": "profiles.json"
         },
         "budget": {
-          "available": true,
-          "scraped_at": "2026-03-14T08:37:16Z",
-          "source": "mtime",
-          "mtime": "2026-03-14T08:37:16Z",
-          "size_bytes": 2,
-          "filename": "budget.json"
+          "available": false,
+          "reason": "empty"
         }
       },
       "voivodeship": "kujawsko-pomorskie",
@@ -204,12 +188,8 @@
           "kadencja_id": "2024-2029"
         },
         "interpelacje": {
-          "available": true,
-          "scraped_at": "2026-04-25T16:09:47Z",
-          "source": "mtime",
-          "mtime": "2026-04-25T16:09:47Z",
-          "size_bytes": 2,
-          "filename": "interpelacje.json"
+          "available": false,
+          "reason": "empty"
         },
         "aktualnosci": {
           "available": true,
@@ -244,13 +224,8 @@
       "scrape_status": "active",
       "sources": {
         "kadencja": {
-          "available": true,
-          "scraped_at": "2026-04-14T19:07:06Z",
-          "source": "mtime",
-          "mtime": "2026-04-14T19:07:06Z",
-          "size_bytes": 100,
-          "filename": "kadencja-2024-2029.json",
-          "kadencja_id": "2024-2029"
+          "available": false,
+          "reason": "empty"
         },
         "interpelacje": {
           "available": false
@@ -389,23 +364,15 @@
           "available": false
         },
         "interpelacje": {
-          "available": true,
-          "scraped_at": "2026-04-25T16:09:47Z",
-          "source": "mtime",
-          "mtime": "2026-04-25T16:09:47Z",
-          "size_bytes": 2,
-          "filename": "interpelacje.json"
+          "available": false,
+          "reason": "empty"
         },
         "aktualnosci": {
           "available": false
         },
         "profiles": {
-          "available": true,
-          "scraped_at": "2026-04-26T20:28:00Z",
-          "source": "mtime",
-          "mtime": "2026-04-26T20:28:00Z",
-          "size_bytes": 20,
-          "filename": "profiles.json"
+          "available": false,
+          "reason": "empty"
         },
         "budget": {
           "available": false
@@ -457,12 +424,8 @@
           "filename": "profiles.json"
         },
         "budget": {
-          "available": true,
-          "scraped_at": "2026-03-14T08:37:16Z",
-          "source": "mtime",
-          "mtime": "2026-03-14T08:37:16Z",
-          "size_bytes": 2,
-          "filename": "budget.json"
+          "available": false,
+          "reason": "empty"
         }
       },
       "voivodeship": "śląskie",
@@ -481,12 +444,8 @@
           "available": false
         },
         "interpelacje": {
-          "available": true,
-          "scraped_at": "2026-04-25T16:09:47Z",
-          "source": "mtime",
-          "mtime": "2026-04-25T16:09:47Z",
-          "size_bytes": 2,
-          "filename": "interpelacje.json"
+          "available": false,
+          "reason": "empty"
         },
         "aktualnosci": {
           "available": false
@@ -574,12 +533,8 @@
           "kadencja_id": "2024-2029"
         },
         "interpelacje": {
-          "available": true,
-          "scraped_at": "2026-03-22T23:52:38Z",
-          "source": "mtime",
-          "mtime": "2026-03-22T23:52:38Z",
-          "size_bytes": 2,
-          "filename": "interpelacje.json"
+          "available": false,
+          "reason": "empty"
         },
         "aktualnosci": {
           "available": true,
@@ -598,12 +553,8 @@
           "filename": "profiles.json"
         },
         "budget": {
-          "available": true,
-          "scraped_at": "2026-03-14T08:37:16Z",
-          "source": "mtime",
-          "mtime": "2026-03-14T08:37:16Z",
-          "size_bytes": 2,
-          "filename": "budget.json"
+          "available": false,
+          "reason": "empty"
         }
       },
       "voivodeship": "łódzkie",
@@ -652,12 +603,8 @@
           "filename": "profiles.json"
         },
         "budget": {
-          "available": true,
-          "scraped_at": "2026-03-14T08:37:16Z",
-          "source": "mtime",
-          "mtime": "2026-03-14T08:37:16Z",
-          "size_bytes": 2,
-          "filename": "budget.json"
+          "available": false,
+          "reason": "empty"
         }
       },
       "voivodeship": "lubelskie",
@@ -676,23 +623,15 @@
           "available": false
         },
         "interpelacje": {
-          "available": true,
-          "scraped_at": "2026-04-25T16:09:47Z",
-          "source": "mtime",
-          "mtime": "2026-04-25T16:09:47Z",
-          "size_bytes": 2,
-          "filename": "interpelacje.json"
+          "available": false,
+          "reason": "empty"
         },
         "aktualnosci": {
           "available": false
         },
         "profiles": {
-          "available": true,
-          "scraped_at": "2026-04-26T20:28:00Z",
-          "source": "mtime",
-          "mtime": "2026-04-26T20:28:00Z",
-          "size_bytes": 20,
-          "filename": "profiles.json"
+          "available": false,
+          "reason": "empty"
         },
         "budget": {
           "available": false
@@ -768,12 +707,8 @@
           "available": false
         },
         "interpelacje": {
-          "available": true,
-          "scraped_at": "2026-04-25T16:09:47Z",
-          "source": "mtime",
-          "mtime": "2026-04-25T16:09:47Z",
-          "size_bytes": 2,
-          "filename": "interpelacje.json"
+          "available": false,
+          "reason": "empty"
         },
         "aktualnosci": {
           "available": false
@@ -801,23 +736,15 @@
           "available": false
         },
         "interpelacje": {
-          "available": true,
-          "scraped_at": "2026-04-25T16:09:47Z",
-          "source": "mtime",
-          "mtime": "2026-04-25T16:09:47Z",
-          "size_bytes": 2,
-          "filename": "interpelacje.json"
+          "available": false,
+          "reason": "empty"
         },
         "aktualnosci": {
           "available": false
         },
         "profiles": {
-          "available": true,
-          "scraped_at": "2026-04-26T20:28:00Z",
-          "source": "mtime",
-          "mtime": "2026-04-26T20:28:00Z",
-          "size_bytes": 20,
-          "filename": "profiles.json"
+          "available": false,
+          "reason": "empty"
         },
         "budget": {
           "available": false
@@ -923,12 +850,8 @@
           "filename": "profiles.json"
         },
         "budget": {
-          "available": true,
-          "scraped_at": "2026-03-14T08:37:16Z",
-          "source": "mtime",
-          "mtime": "2026-03-14T08:37:16Z",
-          "size_bytes": 2,
-          "filename": "budget.json"
+          "available": false,
+          "reason": "empty"
         }
       },
       "voivodeship": "zachodniopomorskie",
@@ -947,23 +870,15 @@
           "available": false
         },
         "interpelacje": {
-          "available": true,
-          "scraped_at": "2026-04-25T16:09:47Z",
-          "source": "mtime",
-          "mtime": "2026-04-25T16:09:47Z",
-          "size_bytes": 2,
-          "filename": "interpelacje.json"
+          "available": false,
+          "reason": "empty"
         },
         "aktualnosci": {
           "available": false
         },
         "profiles": {
-          "available": true,
-          "scraped_at": "2026-04-26T20:28:00Z",
-          "source": "mtime",
-          "mtime": "2026-04-26T20:28:00Z",
-          "size_bytes": 20,
-          "filename": "profiles.json"
+          "available": false,
+          "reason": "empty"
         },
         "budget": {
           "available": false
@@ -991,12 +906,8 @@
           "kadencja_id": "2024-2029"
         },
         "interpelacje": {
-          "available": true,
-          "scraped_at": "2026-04-25T16:09:47Z",
-          "source": "mtime",
-          "mtime": "2026-04-25T16:09:47Z",
-          "size_bytes": 2,
-          "filename": "interpelacje.json"
+          "available": false,
+          "reason": "empty"
         },
         "aktualnosci": {
           "available": true,
@@ -1142,23 +1053,15 @@
           "available": false
         },
         "interpelacje": {
-          "available": true,
-          "scraped_at": "2026-04-25T16:09:47Z",
-          "source": "mtime",
-          "mtime": "2026-04-25T16:09:47Z",
-          "size_bytes": 2,
-          "filename": "interpelacje.json"
+          "available": false,
+          "reason": "empty"
         },
         "aktualnosci": {
           "available": false
         },
         "profiles": {
-          "available": true,
-          "scraped_at": "2026-04-26T20:28:00Z",
-          "source": "mtime",
-          "mtime": "2026-04-26T20:28:00Z",
-          "size_bytes": 20,
-          "filename": "profiles.json"
+          "available": false,
+          "reason": "empty"
         },
         "budget": {
           "available": false
@@ -1245,10 +1148,16 @@
       "name": "Sejmik Województwa Pomorskiego",
       "url": "https://pomorskie.radoskop.pl",
       "bip_url": "https://bip.pomorskie.eu/",
-      "scrape_status": "pilot_pending",
+      "scrape_status": "active",
       "sources": {
         "kadencja": {
-          "available": false
+          "available": true,
+          "scraped_at": "2026-05-04T11:48:51Z",
+          "source": "json_field",
+          "mtime": "2026-05-04T11:48:51Z",
+          "size_bytes": 473242,
+          "filename": "kadencja-2024-2029.json",
+          "kadencja_id": "2024-2029"
         },
         "interpelacje": {
           "available": false

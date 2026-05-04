@@ -4,13 +4,28 @@ Drugi poziom samorządu pokrywany przez Radoskop, obok rad miejskich. Każdy sej
 
 ## Status pilotażu
 
-Trzy pilotaże mają scaffolding `config.json` ale jeszcze nie mają scrape:
+| Slug | BIP | Stolica | Radnych | Status scrape | Typ BIP |
+|---|---|---|---|---|---|
+| `mazowieckie` | https://www.mazovia.pl/pl/bip/sejmik/ | Warszawa | 51 | DZIAŁA (głosowania + interpelacje) | Mazovia BIP + PDFy eSesji |
+| `dolnoslaskie` | https://bip.umwd.dolnyslask.pl/ | Wrocław | 36 | TBD | TBD (przypuszczalnie BIP statyczny) |
+| `pomorskie` | https://bip.pomorskie.eu/ | Gdańsk | 33 | BLOCKED — wymaga Playwright | React SPA, Madkom CMS |
 
-| Slug | BIP | Stolica | Radnych | Typ BIP do rozpoznania |
-|---|---|---|---|---|
-| `mazowieckie` | https://www.mazovia.pl/pl/bip/sejmik/ | Warszawa | 51 | TBD |
-| `dolnoslaskie` | https://bip.umwd.dolnyslask.pl/ | Wrocław | 36 | TBD |
-| `pomorskie` | https://bip.pomorskie.eu/ | Gdańsk | 33 | TBD |
+### Notatki o pomorskim BIP
+
+`bip.pomorskie.eu` to React SPA z backendem Madkom CMS. Statyczny scrape nie zadziała, bo HTML strony to pusta skorupa, treść ładowana przez JS.
+
+Co znalazłem podczas rozpoznania:
+
+- `/api/menu/{id}` zwraca top-level menu (lista 30 pozycji), niezależnie od `id`. Czyli nie da się przez to nawigować w głąb drzewka.
+- `/api/menu/main` chce ID liczbowy ale nie zwraca dzieci.
+- Sprawdzone i nieobecne (HTTP 404): `/api/articles`, `/api/article/{id}`, `/api/page/{id}`, `/api/content/{id}`, `/api/node/{id}`, `/api/category/{id}/items`, `/api/menu/children/{id}`, `/api/menu/{id}/links`.
+- Bundle JS jest 3 MB minified, ścieżki API budowane jako konkatenacje stringów, więc grep statyczny daje fragmenty bez kontekstu.
+
+Sejmik korzysta z eSesji do streamu sesji (`app.esesja.pl/pomorskie/` istnieje), ale to też SPA. PDFy z imiennymi głosowaniami mogą być wystawione w BIP-ie pomorskim podobnie jak w mazowieckim, ale bez pełnej nawigacji w drzewku menu nie znajdę ich URL-i statycznie.
+
+**Rekomendacja dla scrape**: użyć Playwright (chromium) na pipeline NAS, który już ma chromium w Dockerfile. Skrypt ładuje stronę BIP, czeka na render, ekstrahuje listę sesji z DOM, dla każdej sesji idzie głębiej. Wzorzec analogiczny do mazowieckiego, ale zamiast `urllib.request` używa headless browser. Czas na implementację: 2 do 3 godzin. Cache na dysku jako HTML + DOM snapshots żeby nie odpalać chromium za każdym razem dla tej samej strony.
+
+**Alternatywa**: kontynuować inżynierię wsteczną API Madkoma. Otworzyć BIP w przeglądarce z DevTools i Network tab, zobaczyć dokładnie które endpointy są wywoływane przy nawigacji do "Sejmik → Sesje → konkretna sesja". Jeśli dany endpoint nie wymaga auth i odpowiada JSON, scraper bez Playwright działa.
 
 Pozostałe 13 województw są w `radoskop/data/sejmiki-meta.csv` ze statusem `planned`. Pojawiają się w manifeście `/swiezosc/data.json` i kafelkach na stronie głównej.
 

@@ -20,6 +20,58 @@
   "councilor_count": 33,
   "kadencja_active": "2024-2029",
   "has_budget": false,
-  "scrape_status": "pilot_pending",
-  "clubs": {}
+  "scrape_status": "active",
+  "bip_kind": "madkom_cms_rest",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#0284c7",
+      "bg": "rgba(14,165,233,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#15803d",
+      "bg": "rgba(22,163,74,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Leszek Bonna": "KO",
+    "Adam Bondarenko": "KO",
+    "Kinga Borusewicz": "KO",
+    "Beata Dunajewska": "KO",
+    "Paulina Filipowicz": "KO",
+    "Olga Haase": "KO",
+    "Beata Jankowska": "KO",
+    "Jan Kleinszmidt": "KO",
+    "Beata Koniarska": "KO",
+    "Iwona Mielewczyk": "KO",
+    "Zenon Odya": "KO",
+    "Danuta Rek": "KO",
+    "Przemysław Ryś": "KO",
+    "Józef Sarnowski": "KO",
+    "Marcin Skwierawski": "KO",
+    "Stefan Skonieczny": "KO",
+    "Andrzej Struk": "KO",
+    "Mieczysław Struk": "KO",
+    "Piotr Widz": "KO",
+    "Piotr Wittbrodt": "KO",
+    "Sebastian Dadaczyński": "PiS",
+    "Marta Cymańska": "PiS",
+    "Roman Dambek": "PiS",
+    "Piotr Karczewski": "PiS",
+    "Kazimierz Klawiter": "PiS",
+    "Sylwia Leyk": "PiS",
+    "Marta Müller-Gajek": "PiS",
+    "Natalia Nitek-Płażyńska": "PiS",
+    "Krzysztof Sławski": "PiS",
+    "Arwid Żebrowski": "PiS",
+    "Krzysztof Trawicki": "TD",
+    "Szymon Redlin": "TD",
+    "Jarosław Ścigała": "TD"
+  }
 }

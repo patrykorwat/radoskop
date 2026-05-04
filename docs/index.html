@@ -294,12 +294,11 @@ footer a:hover{text-decoration-color:var(--accent);}
     <div class="sejmiki-meta">
       <span><strong id="sejmik-active-count">3</strong> sejmiki aktywne</span>
       <span><strong id="sejmik-planned-count">13</strong> w kolejce</span>
-      <span><a href="/swiezosc/?level=sejmik">Sprawdź świeżość danych</a></span>
     </div>
     <div class="sejmiki-grid">
-      <div class="sejmik-card sejmik-pilot"><span class="sejmik-name">mazowieckie</span><span class="sejmik-cap">Warszawa</span><span class="sejmik-badge sejmik-badge-pilot">pilot</span></div>
-      <div class="sejmik-card sejmik-pilot"><span class="sejmik-name">dolnośląskie</span><span class="sejmik-cap">Wrocław</span><span class="sejmik-badge sejmik-badge-pilot">pilot</span></div>
-      <div class="sejmik-card sejmik-pilot"><span class="sejmik-name">pomorskie</span><span class="sejmik-cap">Gdańsk</span><span class="sejmik-badge sejmik-badge-pilot">pilot</span></div>
+      <a class="sejmik-card sejmik-pilot" href="https://mazowieckie.radoskop.pl/"><span class="sejmik-name">mazowieckie</span><span class="sejmik-cap">Warszawa</span><span class="sejmik-badge sejmik-badge-pilot">pilot</span></a>
+      <a class="sejmik-card sejmik-pilot" href="https://dolnoslaskie.radoskop.pl/"><span class="sejmik-name">dolnośląskie</span><span class="sejmik-cap">Wrocław</span><span class="sejmik-badge sejmik-badge-pilot">pilot</span></a>
+      <a class="sejmik-card sejmik-pilot" href="https://pomorskie.radoskop.pl/"><span class="sejmik-name">pomorskie</span><span class="sejmik-cap">Gdańsk</span><span class="sejmik-badge sejmik-badge-pilot">pilot</span></a>
       <div class="sejmik-card"><span class="sejmik-name">śląskie</span><span class="sejmik-cap">Katowice</span><span class="sejmik-badge">wkrótce</span></div>
       <div class="sejmik-card"><span class="sejmik-name">wielkopolskie</span><span class="sejmik-cap">Poznań</span><span class="sejmik-badge">wkrótce</span></div>
       <div class="sejmik-card"><span class="sejmik-name">małopolskie</span><span class="sejmik-cap">Kraków</span><span class="sejmik-badge">wkrótce</span></div>
@@ -434,9 +433,11 @@ footer a:hover{text-decoration-color:var(--accent);}
       .sejmiki-meta{display:flex;flex-wrap:wrap;gap:18px;font-size:.86rem;color:var(--muted);margin:6px 0 14px;}
       .sejmiki-meta strong{color:var(--text);font-weight:600;}
       .sejmiki-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;}
-      .sejmik-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:3px;position:relative;}
+      .sejmik-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:3px;position:relative;text-decoration:none;color:inherit;transition:border-color .15s,box-shadow .15s;}
+      a.sejmik-card:hover{border-color:var(--accent);box-shadow:0 4px 18px rgba(79,70,229,.08);text-decoration:none;}
       .sejmik-card.sejmik-pilot{border-color:rgba(202,138,4,.4);background:rgba(202,138,4,.04);}
-      .sejmik-name{font-weight:600;color:var(--text);font-size:.92rem;}
+      a.sejmik-card.sejmik-pilot:hover{border-color:var(--yellow);box-shadow:0 4px 18px rgba(202,138,4,.15);}
+      .sejmik-name{font-weight:600;color:var(--text);font-size:.92rem;padding-right:62px;word-break:break-word;line-height:1.25;}
       .sejmik-cap{font-size:.74rem;color:var(--muted);}
       .sejmik-badge{position:absolute;top:10px;right:10px;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;padding:2px 7px;border-radius:999px;background:rgba(107,114,128,.14);color:var(--muted);}
       .sejmik-badge-pilot{background:rgba(202,138,4,.16);color:var(--yellow);}

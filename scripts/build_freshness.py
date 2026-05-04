@@ -98,13 +98,44 @@ def utc_iso(ts: float) -> str:
     return datetime.fromtimestamp(ts, tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def read_scraped_at_field(path: Path) -> str | None:
-    """Spróbuj wyciągnąć pole `scraped_at` z JSON top-level."""
+def read_json(path: Path) -> Any | None:
+    """Bezpieczne wczytanie JSON, zwraca None na błąd lub pusty."""
     try:
         with path.open("r", encoding="utf-8") as f:
-            data = json.load(f)
+            return json.load(f)
     except (OSError, json.JSONDecodeError):
         return None
+
+
+def is_payload_empty(data: Any) -> bool:
+    """Sprawdź czy JSON faktycznie zawiera dane (poza meta typu scraped_at).
+
+    Plik istnieje ale zawiera `[]`, `{}`, `{"items": []}`, `{"profiles": []}`
+    itp. powinien być traktowany jako brak danych. Inaczej manifest pokazuje
+    puste szablony jako "świeże".
+    """
+    if data is None:
+        return True
+    if isinstance(data, list):
+        return len(data) == 0
+    if isinstance(data, dict):
+        # Pomijamy znane pola meta (scraped_at, generated, schema_version),
+        # potem sprawdzamy czy cokolwiek konkretnego pozostało.
+        meta_keys = {"scraped_at", "generated", "schema_version", "kadencja", "id", "label"}
+        for k, v in data.items():
+            if k in meta_keys:
+                continue
+            if isinstance(v, (list, dict)):
+                if v:
+                    return False
+            elif v not in (None, "", 0, False):
+                return False
+        return True
+    return False
+
+
+def read_scraped_at_field(data: Any) -> str | None:
+    """Spróbuj wyciągnąć pole `scraped_at` z JSON top-level."""
     if isinstance(data, dict):
         v = data.get("scraped_at")
         if isinstance(v, str) and v:
@@ -122,7 +153,11 @@ def measure_file(path: Path) -> dict[str, Any]:
     except OSError:
         return {"available": False}
 
-    scraped_at = read_scraped_at_field(path)
+    data = read_json(path)
+    if data is None or is_payload_empty(data):
+        return {"available": False, "reason": "empty"}
+
+    scraped_at = read_scraped_at_field(data)
     if scraped_at:
         return {
             "available": True,
