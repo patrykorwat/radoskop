@@ -209,9 +209,9 @@ def build_unit_entry(unit_dir: Path, level: dict[str, Any], meta: dict[str, Any]
             sources[src["id"]] = {"available": False}
 
     name = cfg.get(level["name_field"]) or meta.get("name") or unit_dir.name.title()
+    # Single-level subdomain dla obu poziomów (gdansk.radoskop.pl,
+    # mazowieckie.radoskop.pl). Wildcard CNAME *.radoskop.pl pokrywa.
     default_url = f"https://{unit_dir.name}.radoskop.pl"
-    if level["id"] == "sejmik":
-        default_url = f"https://sejmik.{unit_dir.name}.radoskop.pl"
 
     entry: dict[str, Any] = {
         "slug": unit_dir.name,
@@ -248,7 +248,7 @@ def build_planned_sejmiki(workspace: Path, active_slugs: set[str]) -> list[dict[
             "level": "sejmik",
             "samorzad_type": "wojewodztwo",
             "name": f"Sejmik Województwa {row.get('name_genitive', slug)}".strip(),
-            "url": f"https://sejmik.{slug}.radoskop.pl",
+            "url": f"https://{slug}.radoskop.pl",
             "bip_url": None,
             "scrape_status": row.get("status", "planned"),
             "voivodeship": row.get("name") or slug,

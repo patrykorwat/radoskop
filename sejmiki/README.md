@@ -23,7 +23,7 @@ radoskop/sejmiki/{slug}/
   docs/              # kadencja-{id}.json, interpelacje.json, aktualnosci.json, profiles.json, data.json, index.html
 ```
 
-Subdomena: `sejmik.{slug}.radoskop.pl` (np. `sejmik.mazowieckie.radoskop.pl`). Każda dostaje swój CNAME w Cloudflare.
+Subdomena: `{slug}.radoskop.pl` (np. `mazowieckie.radoskop.pl`). Single-level, więc istniejący wildcard `*.radoskop.pl` w Cloudflare DNS i Worker route ją obejmują bez dodatkowych wpisów. Sluga województw są przymiotnikami (mazowieckie, dolnoslaskie...) a sluga miast rzeczownikami (gdansk, krakow...), nie ma kolizji.
 
 ## Identyczny schemat danych jak miasta
 

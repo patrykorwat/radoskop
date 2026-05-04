@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sejmik.mazowieckie.radoskop.pl/sitemap.xml
+Sitemap: https://mazowieckie.radoskop.pl/sitemap.xml
