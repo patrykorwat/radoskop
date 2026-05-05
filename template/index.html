@@ -627,6 +627,16 @@ async function init() {
       navigateTo(path, true);
       return;
     }
+    if (path === '/aktualnosci' || path === '/aktualnosci/') {
+      // /aktualnosci/ to statyczna strona z listą wpisów (SEO content
+      // wstrzyknięty przez generate_feed.py). Nie ładujemy SPA appki —
+      // pokazujemy treść i kończymy init bez przekierowywania.
+      document.getElementById('loading').style.display = 'none';
+      const sc = document.getElementById('seo-content');
+      if (sc) sc.style.display = 'block';
+      navigateTo(path, true);
+      return;
+    }
     if (path === '/budzet' || path === '/budzet/') {
       selectKadencjaQuiet(initialKid);
       activateTab('budget');
@@ -3006,6 +3016,11 @@ window.addEventListener('popstate', async () => {
   document.getElementById('app').style.display = 'block';
   if (path === '/interpelacje' || path === '/interpelacje/') {
     activateTab('interpelacje');
+  } else if (path === '/aktualnosci' || path === '/aktualnosci/') {
+    // Powrót na /aktualnosci/ przez back/forward — SPA nie reloaduje strony,
+    // ale strona aktualnosci to oddzielny dokument. Wymuszamy reload.
+    location.reload();
+    return;
   } else if (path === '/budzet' || path === '/budzet/') {
     activateTab('budget');
   } else if (path.startsWith('/kadencja/')) {
