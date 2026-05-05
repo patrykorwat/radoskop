@@ -86,6 +86,56 @@ UMAMI_WEBSITE_ID = "792c059f-c77e-4b4e-ad9c-31f4a7d5cfe4"
 UMAMI_SCRIPT_URL = "https://stats.radoskop.pl/script.js"
 
 
+def has_activity_data(output_dir: Path) -> bool:
+    """Return True iff the assembly has any scraped activity (votes/sessions/interpelacje).
+
+    Mirror of the city version; assemblies use the same docs/ layout.
+    """
+    data_path = output_dir / "data.json"
+    if not data_path.exists():
+        return False
+    try:
+        data = json.loads(data_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return False
+    if data.get("_status") == "no_data":
+        return False
+
+    for k in data.get("kadencje", []):
+        kid = k.get("id") if isinstance(k, dict) else k
+        if not kid:
+            continue
+        kad_file = output_dir / f"kadencja-{kid}.json"
+        if not kad_file.exists():
+            continue
+        try:
+            kd = json.loads(kad_file.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            continue
+        if kd.get("votes") or kd.get("sessions"):
+            return True
+
+    interp_path = output_dir / "interpelacje.json"
+    if interp_path.exists():
+        try:
+            interp = json.loads(interp_path.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            interp = None
+        if isinstance(interp, list) and interp:
+            return True
+        if isinstance(interp, dict) and (interp.get("interpelacje") or interp.get("items")):
+            return True
+
+    return False
+
+
+def generate_aktualnosci_button(output_dir: Path) -> str:
+    """Render the Aktualności tab link only when the assembly has data."""
+    if not has_activity_data(output_dir):
+        return ""
+    return '        <a href="/aktualnosci/" class="tab" style="text-decoration:none">Aktualności</a>'
+
+
 def generate_ga_snippet(_legacy_ga_id: str = "") -> str:
     """Emit the Umami tracker tag (function name preserved for backwards compat)."""
     return (
@@ -194,6 +244,7 @@ def main() -> int:
         "{{CLUB_CSS}}": generate_club_css(cfg.get("clubs", {})),
         "{{CLUB_JS}}": generate_club_js(cfg.get("clubs", {})),
         "{{BUDGET_NOTE}}": cfg.get("budget_note", ""),
+        "{{AKTUALNOSCI_BUTTON}}": generate_aktualnosci_button(Path(args.output)),
     }
 
     html = template
