@@ -1,5 +1,53 @@
 [
   {
+    "cri": "szczecin-2024-2029-1996",
+    "miasto": "szczecin",
+    "kadencja": "2024-2029",
+    "numer": "1996",
+    "typ": "zapytanie",
+    "tytul": "Dot. słupa energetycznego umiejscowionego pośrodku nowego chodnika – ul. Klonowa",
+    "radny": "Jerzyk Henryk",
+    "data_wplywu": "2026-05-05",
+    "data_odpowiedzi": null,
+    "url": "https://bip.um.szczecin.pl/chapter_131447.asp?soid=D12A4631363C49C99124794F477DE0E5"
+  },
+  {
+    "cri": "szczecin-2024-2029-1995",
+    "miasto": "szczecin",
+    "kadencja": "2024-2029",
+    "numer": "1995",
+    "typ": "interpelacja",
+    "tytul": "Dot. odtworzenia oznakowania poziomego przejścia dla pieszych na skrzyżowaniu ul. Marii Dąbrowskiej i ul. Jarosława Iwaszkiewicza w Szczecinie – kolejna interpelacja",
+    "radny": "Jerzyk Henryk",
+    "data_wplywu": "2026-05-05",
+    "data_odpowiedzi": null,
+    "url": "https://bip.um.szczecin.pl/chapter_131447.asp?soid=E60F104BAD38452797E3DA4E24A5367F"
+  },
+  {
+    "cri": "szczecin-2024-2029-1994",
+    "miasto": "szczecin",
+    "kadencja": "2024-2029",
+    "numer": "1994",
+    "typ": "interpelacja",
+    "tytul": "Dot. prowadzenia prac na terenie inwestycji budowy bazy paliw w Podjuchach",
+    "radny": "Pawlicki Marcin",
+    "data_wplywu": "2026-05-05",
+    "data_odpowiedzi": null,
+    "url": "https://bip.um.szczecin.pl/chapter_131447.asp?soid=862B92E19E7142AD912747EFCE456F02"
+  },
+  {
+    "cri": "szczecin-2024-2029-1993",
+    "miasto": "szczecin",
+    "kadencja": "2024-2029",
+    "numer": "1993",
+    "typ": "interpelacja",
+    "tytul": "Dot. zdewastowanego kiosku przy skrzyżowaniu al. Piastów i ul. Żółkiewskiego",
+    "radny": "Pawlicki Marcin",
+    "data_wplywu": "2026-05-05",
+    "data_odpowiedzi": null,
+    "url": "https://bip.um.szczecin.pl/chapter_131447.asp?soid=87A3CBC982BC40798D615453AB5C4313"
+  },
+  {
     "cri": "szczecin-2024-2029-1992",
     "miasto": "szczecin",
     "kadencja": "2024-2029",
@@ -260,7 +308,7 @@
     "tytul": "Dot. dostępności miejskich obiektów sportowych dla mieszkańców Szczecina",
     "radny": "Pańka Urszula",
     "data_wplywu": "2026-04-20",
-    "data_odpowiedzi": null,
+    "data_odpowiedzi": "2026-05-05",
     "url": "https://bip.um.szczecin.pl/chapter_131447.asp?soid=859DDB0B943D4D14A09F27147A14D338"
   },
   {

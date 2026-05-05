@@ -5,11 +5,20 @@
   <link href="https://wroclaw.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://wroclaw.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://wroclaw.radoskop.pl/</id>
-  <updated>2026-05-05T11:10:35Z</updated>
+  <updated>2026-05-05T20:21:56Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
+  <entry>
+    <title>Zapytanie: remontu chodnika przy ulicy Paulińskiej</title>
+    <link href="https://wroclaw.radoskop.pl/profil/izabela-duchnowska/" rel="alternate" type="text/html"/>
+    <id>https://wroclaw.radoskop.pl/profil/izabela-duchnowska/#interpelacja</id>
+    <published>2026-05-05T12:00:00+01:00</published>
+    <updated>2026-05-05T12:00:00+01:00</updated>
+    <summary type="html">Izabela Duchnowska. remontu chodnika przy ulicy Paulińskiej</summary>
+    <category term="interpelacja"/>
+  </entry>
   <entry>
     <title>Zapytanie: organizacji parkowania oraz bezpieczeństwa pieszych przy budynku "Grafit" przy ul. Namysłowskiej 8</title>
     <link href="https://wroclaw.radoskop.pl/profil/piotr-uhle/" rel="alternate" type="text/html"/>
@@ -53,15 +62,6 @@
     <published>2026-04-27T12:00:00+01:00</published>
     <updated>2026-04-27T12:00:00+01:00</updated>
     <summary type="html">Łukasz Olbert. montażu tablic DIP/elektroniczne tablice komunikacji miejskiej/ na przystanku: Chociebuska (C.K. Nowy Pafawag)</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Zapytanie: zmiany nazwy przystanku pl. Staszica</title>
-    <link href="https://wroclaw.radoskop.pl/profil/izabela-duchnowska/" rel="alternate" type="text/html"/>
-    <id>https://wroclaw.radoskop.pl/profil/izabela-duchnowska/#interpelacja</id>
-    <published>2026-04-24T12:00:00+01:00</published>
-    <updated>2026-04-24T12:00:00+01:00</updated>
-    <summary type="html">Izabela Duchnowska. zmiany nazwy przystanku pl. Staszica</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

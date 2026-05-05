@@ -1,5 +1,27 @@
 [
   {
+    "przedmiot": "remontu chodnika przy ulicy Paulińskiej",
+    "bip_url": "https://bip.um.wroc.pl/interpelacja/89440/zapytanie-w-sprawie-remontu-chodnika-przy-ulicy-paulinskiej",
+    "typ": "zapytanie",
+    "radny": "Izabela Duchnowska",
+    "status": "oczekuje na odpowiedź",
+    "kadencja": "IX",
+    "typ_full": "Zapytanie",
+    "data_wplywu": "2026-05-05",
+    "tresc_url": "https://bip.um.wroc.pl/attachments/download/174116",
+    "zalaczniki": [
+      {
+        "nazwa": "Zapytanie",
+        "url": "https://bip.um.wroc.pl/attachments/download/174116"
+      }
+    ],
+    "kategoria": "transport",
+    "odpowiedz_status": "oczekuje na odpowiedź",
+    "data_odpowiedzi": "",
+    "odpowiedz_url": "",
+    "nr_sprawy": ""
+  },
+  {
     "przedmiot": "organizacji parkowania oraz bezpieczeństwa pieszych przy budynku \"Grafit\" przy ul. Namysłowskiej 8",
     "bip_url": "https://bip.um.wroc.pl/interpelacja/89282/zapytanie-w-sprawie-organizacji-parkowania-oraz-bezpieczenstwa-pieszych-przy-budynku-grafit-przy-ul-namyslowskiej-8",
     "typ": "zapytanie",

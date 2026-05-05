@@ -114,16 +114,24 @@
     "typ_full": "Interpelacja",
     "data_wplywu": "2026-04-20",
     "tresc_url": "https://bip.um.bydgoszcz.pl/attachments/download/31368",
+    "odpowiedz_url": "https://bip.um.bydgoszcz.pl/attachments/download/31517",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja",
         "url": "https://bip.um.bydgoszcz.pl/attachments/download/31368"
+      },
+      {
+        "nazwa": "Odpowiedź",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31516"
+      },
+      {
+        "nazwa": "Odpowiedź",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31517"
       }
     ],
     "kategoria": "budżet",
     "odpowiedz_status": "",
-    "data_odpowiedzi": "",
-    "odpowiedz_url": ""
+    "data_odpowiedzi": ""
   },
   {
     "przedmiot": "postawienia znaków, luster oraz progów zwalniających  na ul. Gersona",

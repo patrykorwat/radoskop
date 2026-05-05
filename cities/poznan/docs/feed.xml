@@ -5,11 +5,20 @@
   <link href="https://poznan.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://poznan.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://poznan.radoskop.pl/</id>
-  <updated>2026-05-05T11:42:52Z</updated>
+  <updated>2026-05-05T20:42:12Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
+  <entry>
+    <title>Interpelacja: Interpelacja ws. wprowadzenia komunikatów w języku angielskim w pojazdach komunikacji miejskiej</title>
+    <link href="https://poznan.radoskop.pl/profil/adam-szabelski/" rel="alternate" type="text/html"/>
+    <id>https://poznan.radoskop.pl/profil/adam-szabelski/#interpelacja</id>
+    <published>2026-05-05T12:00:00+01:00</published>
+    <updated>2026-05-05T12:00:00+01:00</updated>
+    <summary type="html">Adam Szabelski. Interpelacja ws. wprowadzenia komunikatów w języku angielskim w pojazdach komunikacji miejskiej</summary>
+    <category term="interpelacja"/>
+  </entry>
   <entry>
     <title>Interpelacja: Interpelacja ws. naprawy nawierzchni ul. Reknickiej</title>
     <link href="https://poznan.radoskop.pl/profil/lukasz-kapustka/" rel="alternate" type="text/html"/>
@@ -65,15 +74,6 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
-    <title>Interpelacja: Interpelacja ws. funkcjonowania linii 153, 158, 189 oraz 194</title>
-    <link href="https://poznan.radoskop.pl/profil/adam-szabelski/" rel="alternate" type="text/html"/>
-    <id>https://poznan.radoskop.pl/profil/adam-szabelski/#interpelacja</id>
-    <published>2026-04-21T12:00:00+01:00</published>
-    <updated>2026-04-21T12:00:00+01:00</updated>
-    <summary type="html">Adam Szabelski. Interpelacja ws. funkcjonowania linii 153, 158, 189 oraz 194</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
     <title>Interpelacja: Interpelacja ws. wprowadzonych zmian w obsłudze transportem publicznym autobusowym rejonu Starołęki,</title>
     <link href="https://poznan.radoskop.pl/profil/tomasz-wierzbicki/" rel="alternate" type="text/html"/>
     <id>https://poznan.radoskop.pl/profil/tomasz-wierzbicki/#interpelacja</id>
@@ -83,12 +83,12 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
-    <title>Interpelacja: Interpelacja ws. remontu ul. Chłapowskiego</title>
+    <title>Interpelacja: Interpelacja ws. uporządkowania działki przy skrzyżowaniu ul. Sikorskiego i ul. Roboczej</title>
     <link href="https://poznan.radoskop.pl/profil/dorota-bonk-hammermeister/" rel="alternate" type="text/html"/>
     <id>https://poznan.radoskop.pl/profil/dorota-bonk-hammermeister/#interpelacja</id>
     <published>2026-04-14T12:00:00+01:00</published>
     <updated>2026-04-14T12:00:00+01:00</updated>
-    <summary type="html">Dorota Bonk-Hammermeister. Interpelacja ws. remontu ul. Chłapowskiego</summary>
+    <summary type="html">Dorota Bonk-Hammermeister. Interpelacja ws. uporządkowania działki przy skrzyżowaniu ul. Sikorskiego i ul. Roboczej</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -101,21 +101,21 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
+    <title>Interpelacja: Interpelacja ws. zintegrowania węzła przesiadkowego Poznań Naramowice z Osiedlem Umultowo</title>
+    <link href="https://poznan.radoskop.pl/profil/maria-lisiecka-pawelczak/" rel="alternate" type="text/html"/>
+    <id>https://poznan.radoskop.pl/profil/maria-lisiecka-pawelczak/#interpelacja</id>
+    <published>2026-04-14T12:00:00+01:00</published>
+    <updated>2026-04-14T12:00:00+01:00</updated>
+    <summary type="html">Maria Lisiecka-Pawełczak. Interpelacja ws. zintegrowania węzła przesiadkowego Poznań Naramowice z Osiedlem Umultowo</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
     <title>Interpelacja: Interpelacja ws. organizacji ruchu na Górczynie - rejon wiaduktu Kosynierów Górczyńskich</title>
     <link href="https://poznan.radoskop.pl/profil/tomasz-stachowiak/" rel="alternate" type="text/html"/>
     <id>https://poznan.radoskop.pl/profil/tomasz-stachowiak/#interpelacja</id>
     <published>2026-04-14T12:00:00+01:00</published>
     <updated>2026-04-14T12:00:00+01:00</updated>
     <summary type="html">Tomasz Stachowiak. Interpelacja ws. organizacji ruchu na Górczynie - rejon wiaduktu Kosynierów Górczyńskich</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: Interpelacja ws. dostosowania sygnalizacji świetlnej na skrzyżowaniu Aleja Praw Kobiet - ul. Łużycka</title>
-    <link href="https://poznan.radoskop.pl/profil/maria-lisiecka-pawelczak/" rel="alternate" type="text/html"/>
-    <id>https://poznan.radoskop.pl/profil/maria-lisiecka-pawelczak/#interpelacja</id>
-    <published>2026-04-14T12:00:00+01:00</published>
-    <updated>2026-04-14T12:00:00+01:00</updated>
-    <summary type="html">Maria Lisiecka-Pawełczak. Interpelacja ws. dostosowania sygnalizacji świetlnej na skrzyżowaniu Aleja Praw Kobiet - ul. Łużycka w Poznaniu</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -128,12 +128,12 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
-    <title>Interpelacja: Interpelacja ws. postępowań dotyczących schronów U1Va i U2Va oraz działań wobec organizacji społeczn</title>
+    <title>Interpelacja: Interpelacja ws. pozyskiwania i wykorzystania środków zewnętrznych na inwestycje w latach 2020-2023 </title>
     <link href="https://poznan.radoskop.pl/profil/klaudia-strzelecka/" rel="alternate" type="text/html"/>
     <id>https://poznan.radoskop.pl/profil/klaudia-strzelecka/#interpelacja</id>
     <published>2026-03-19T12:00:00+01:00</published>
     <updated>2026-03-19T12:00:00+01:00</updated>
-    <summary type="html">Klaudia Strzelecka. Interpelacja ws. postępowań dotyczących schronów U1Va i U2Va oraz działań wobec organizacji społecznej</summary>
+    <summary type="html">Klaudia Strzelecka. Interpelacja ws. pozyskiwania i wykorzystania środków zewnętrznych na inwestycje w latach 2020-2023 oraz 2024-2026, wraz z rozróżnieniem środków dotac</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -191,21 +191,21 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
-    <title>Interpelacja: Interpelacja ws. remontu przystanku autobusowego Gerberowa</title>
+    <title>Interpelacja: Interpelacja ws. poprawy stanu chodnika przy ul. Marszałkowskiej</title>
     <link href="https://poznan.radoskop.pl/profil/zuzanna-bartel/" rel="alternate" type="text/html"/>
     <id>https://poznan.radoskop.pl/profil/zuzanna-bartel/#interpelacja</id>
     <published>2026-02-13T12:00:00+01:00</published>
     <updated>2026-02-13T12:00:00+01:00</updated>
-    <summary type="html">Zuzanna Bartel. Interpelacja ws. remontu przystanku autobusowego Gerberowa</summary>
+    <summary type="html">Zuzanna Bartel. Interpelacja ws. poprawy stanu chodnika przy ul. Marszałkowskiej</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
-    <title>Interpelacja: Interpelacja ws. opóźnień w procesie modernizacji boiska piłkarskiego ze sztuczną nawierzchnią na Wi</title>
+    <title>Interpelacja: Interpelacja ws. budowy wielorodzinnej przy ul. Winiarskiej</title>
     <link href="https://poznan.radoskop.pl/profil/halina-owsianna/" rel="alternate" type="text/html"/>
     <id>https://poznan.radoskop.pl/profil/halina-owsianna/#interpelacja</id>
     <published>2026-02-11T12:00:00+01:00</published>
     <updated>2026-02-11T12:00:00+01:00</updated>
-    <summary type="html">Halina Owsianna. Interpelacja ws. opóźnień w procesie modernizacji boiska piłkarskiego ze sztuczną nawierzchnią na Winogradach</summary>
+    <summary type="html">Halina Owsianna. Interpelacja ws. budowy wielorodzinnej przy ul. Winiarskiej</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -578,12 +578,12 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
-    <title>Interpelacja: Interpelacja ws. budowy hali do sportów plażowych na ośrodku POSIR Rataje/zmian na &amp;quot;skatepark w</title>
+    <title>Interpelacja: Interpelacja ws. parkingu kubaturowego w okolicy Uniwersyteckiego Szpitala Klinicznego na ul. Przyby</title>
     <link href="https://poznan.radoskop.pl/profil/bartlomiej-ignaszewski/" rel="alternate" type="text/html"/>
     <id>https://poznan.radoskop.pl/profil/bartlomiej-ignaszewski/#interpelacja</id>
     <published>2026-01-26T12:00:00+01:00</published>
     <updated>2026-01-26T12:00:00+01:00</updated>
-    <summary type="html">Bartłomiej Ignaszewski. Interpelacja ws. budowy hali do sportów plażowych na ośrodku POSIR Rataje/zmian na &amp;quot;skatepark wyspa&amp;quot;</summary>
+    <summary type="html">Bartłomiej Ignaszewski. Interpelacja ws. parkingu kubaturowego w okolicy Uniwersyteckiego Szpitala Klinicznego na ul. Przybyszewskiego</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

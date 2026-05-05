@@ -1453,16 +1453,20 @@
     "kadencja": "IX",
     "data_przekazania": "Data przekazania do Prezydenta",
     "tresc_url": "https://www.bip.bialystok.pl/resource/103079/H.+D%25C4%2599bowski+24.02.2026+%25282%2529.pdf",
+    "odpowiedz_url": "https://www.bip.bialystok.pl/resource/103079/H.+D%25C4%2599bowski+10.03.2026.pdf",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja (skan)",
         "url": "https://www.bip.bialystok.pl/resource/103079/H.+D%25C4%2599bowski+24.02.2026+%25282%2529.pdf"
+      },
+      {
+        "nazwa": "Odpowiedź (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103079/H.+D%25C4%2599bowski+10.03.2026.pdf"
       }
     ],
     "kategoria": "inne",
     "data_odpowiedzi": "Data przekazania do Prezydenta",
-    "odpowiedz_url": "",
-    "odpowiedz_status": "",
     "nr_sprawy": "293"
   },
   {

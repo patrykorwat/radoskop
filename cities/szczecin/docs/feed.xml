@@ -5,7 +5,7 @@
   <link href="https://szczecin.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://szczecin.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://szczecin.radoskop.pl/</id>
-  <updated>2026-05-05T10:41:41Z</updated>
+  <updated>2026-05-05T20:01:05Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
@@ -18,6 +18,24 @@
     <updated>2026-05-12T12:00:00+01:00</updated>
     <summary type="html">0 glosowan.</summary>
     <category term="session"/>
+  </entry>
+  <entry>
+    <title>Zapytanie (Jerzyk Henryk)</title>
+    <link href="https://szczecin.radoskop.pl/profil/jerzyk-henryk/" rel="alternate" type="text/html"/>
+    <id>https://szczecin.radoskop.pl/profil/jerzyk-henryk/#interpelacja</id>
+    <published>2026-05-05T12:00:00+01:00</published>
+    <updated>2026-05-05T12:00:00+01:00</updated>
+    <summary type="html">Jerzyk Henryk</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja (Pawlicki Marcin)</title>
+    <link href="https://szczecin.radoskop.pl/profil/pawlicki-marcin/" rel="alternate" type="text/html"/>
+    <id>https://szczecin.radoskop.pl/profil/pawlicki-marcin/#interpelacja</id>
+    <published>2026-05-05T12:00:00+01:00</published>
+    <updated>2026-05-05T12:00:00+01:00</updated>
+    <summary type="html">Pawlicki Marcin</summary>
+    <category term="interpelacja"/>
   </entry>
   <entry>
     <title>Interpelacja (Radziwinowicz Andrzej)</title>
@@ -569,15 +587,6 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
-    <title>Zapytanie (Jerzyk Henryk)</title>
-    <link href="https://szczecin.radoskop.pl/profil/jerzyk-henryk/" rel="alternate" type="text/html"/>
-    <id>https://szczecin.radoskop.pl/profil/jerzyk-henryk/#interpelacja</id>
-    <published>2026-04-20T12:00:00+01:00</published>
-    <updated>2026-04-20T12:00:00+01:00</updated>
-    <summary type="html">Jerzyk Henryk</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
     <title>Interpelacja (Pańka Urszula)</title>
     <link href="https://szczecin.radoskop.pl/profil/panka-urszula/" rel="alternate" type="text/html"/>
     <id>https://szczecin.radoskop.pl/profil/panka-urszula/#interpelacja</id>
@@ -620,15 +629,6 @@
     <published>2026-04-14T12:00:00+01:00</published>
     <updated>2026-04-14T12:00:00+01:00</updated>
     <summary type="html">Kopeć Maciej</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja (Pawlicki Marcin)</title>
-    <link href="https://szczecin.radoskop.pl/profil/pawlicki-marcin/" rel="alternate" type="text/html"/>
-    <id>https://szczecin.radoskop.pl/profil/pawlicki-marcin/#interpelacja</id>
-    <published>2026-04-14T12:00:00+01:00</published>
-    <updated>2026-04-14T12:00:00+01:00</updated>
-    <summary type="html">Pawlicki Marcin</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
