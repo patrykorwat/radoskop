@@ -32,16 +32,24 @@
     "typ_full": "Interpelacja",
     "data_wplywu": "2026-04-23",
     "tresc_url": "https://bip.um.bydgoszcz.pl/attachments/download/31365",
+    "odpowiedz_url": "https://bip.um.bydgoszcz.pl/attachments/download/31510",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja",
         "url": "https://bip.um.bydgoszcz.pl/attachments/download/31365"
+      },
+      {
+        "nazwa": "Odpowiedź",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31509"
+      },
+      {
+        "nazwa": "Odpowiedź",
+        "url": "https://bip.um.bydgoszcz.pl/attachments/download/31510"
       }
     ],
     "kategoria": "transport",
     "odpowiedz_status": "",
-    "data_odpowiedzi": "",
-    "odpowiedz_url": ""
+    "data_odpowiedzi": ""
   },
   {
     "przedmiot": "zabytkowej wieży ciśnień przy ul. Inwalidów w Bydgoszczy",

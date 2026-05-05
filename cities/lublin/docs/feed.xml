@@ -5,7 +5,7 @@
   <link href="https://lublin.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://lublin.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://lublin.radoskop.pl/</id>
-  <updated>2026-05-04T12:45:15Z</updated>
+  <updated>2026-05-05T10:32:06Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
@@ -29,12 +29,507 @@
     <category term="interpelacja"/>
   </entry>
   <entry>
+    <title>wniosek o wprow. do porz. obrad druku nr 805-1</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1029/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1029/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 28, przeciw 1, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wniosek o wprow. do porz. obrad druku nr 806-1</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1030/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1030/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 27, przeciw 0, wstrzym. 2). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wniosek o wprow. do porz. obrad druku nr 736-1 z autopopr.</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1031/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1031/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 2). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wniosek o wprow. do porz. obrad druku nr 793-1</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1032/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1032/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 27, przeciw 1, wstrzym. 1). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wniosek o ograniczenie cz. wypowiedzi radnych do 5 min.</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1033/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1033/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 21, przeciw 5, wstrzym. 3). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wniosek o wprow. pktu Zmiany w składach komisji stałych</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1034/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1034/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 28, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Zatwierdzenie protokołu XVIII sesji Rady Miasta.</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1035/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1035/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 3). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>skargi na działania Dyrektora Szkoły Podstawowej nr 58 w Lublinie (druk nr 798-1) – projekt Komisji </title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1036/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1036/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>skargi na działania Dyrektora Szkoły Podstawowej nr 27 im. Marii Montessori w Lublinie (druk nr 799-</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1037/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1037/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>skargi na działania Prezydenta Miasta Lublin (druk nr 800-1) – projekt Komisji Skarg, Wniosków i Pet</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1038/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1038/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 27, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wniosku o uznanie drzewa gatunku klon srebrzysty za pomnik przyrody (druk nr 801-1) – projekt Komisj</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1039/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1039/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 1, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>petycji odnośnie realizacji inwestycji polegającej na budowie hali sportowej przy Szkole Podstawowej</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1040/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1040/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 17, przeciw 7, wstrzym. 6). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>petycji w sprawie upamiętnienia Romualda Lipko (druk nr 803-1) – projekt Komisji Skarg, Wniosków i P</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1041/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1041/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 5). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>petycji dotyczącej wdrożenia pilotażowego programu opieki okołoporodowej pn.: „Bezpieczna ciąża – do</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1042/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1042/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 22, przeciw 3, wstrzym. 5). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>zmiany uchwały budżetowej Miasta Lublin na 2026 rok (druk nr 766-1)</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1043/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1043/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 17, przeciw 1, wstrzym. 12). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>uchwały zmieniającej uchwałę nr 528/XVI/2025 Rady Miasta Lublin z dnia 18 grudnia 2025 r. w sprawie </title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1044/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1044/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 17, przeciw 1, wstrzym. 11). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>zmiany Statutu Rady Seniorów Miasta Lublin (druk nr 770-1)</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1045/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1045/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 29, przeciw 0, wstrzym. 1). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wyrażenia zgody na zawarcie porozumienia pomiędzy Gminą Lublin – miastem na prawach powiatu a Powiat</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1046/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1046/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 29, przeciw 0, wstrzym. 1). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wyrażenia zgody na zawarcie porozumienia pomiędzy Gminą Lublin – miastem na prawach powiatu a Powiat</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1047/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1047/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 28, przeciw 0, wstrzym. 2). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>przyjęcia Programu osłonowego w zakresie zapewnienia usług opieki na odległość na terenie miasta Lub</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1048/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1048/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 30, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>nadania statutu instytucji kultury pn. Krajowe Centrum Choreograficzne w Lublinie (druk nr 771-1)</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1049/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1049/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 28, przeciw 0, wstrzym. 2). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>nadania statutu instytucji kultury pn. „Europejska Stolica Kultury Lublin 2029” (druk nr 772-1)</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1050/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1050/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 30, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>uchwały zmieniającej uchwałę nr 33/III/2024 Rady Miasta Lublin z dnia 27 czerwca 2024 r. w sprawie w</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1051/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1051/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 4). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>zmiany nazwy Szkoły Podstawowej nr 23 im. Olimpijczyków Polskich w Lublinie na Szkołę Podstawową Mis</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1052/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1052/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 28, przeciw 0, wstrzym. 2). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>Programu „Otwarte Koła Olimpijskie” (druk nr 781- 1) z autopr.</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1053/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1053/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 31, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wniosek o zamknięcie listy mówców</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1054/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1054/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 13, przeciw 10, wstrzym. 4). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wniosek Komisji Zdrowia</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1055/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1055/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: odrzucone (za 13, przeciw 16, wstrzym. 1). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wprowadzenia ograniczeń w godzinach nocnej sprzedaży napojów alkoholowych przeznaczonych do spożycia</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1056/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1056/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 4). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>obwieszczenie w sprawie ogłoszenia jednolitego tekstu uchwały w sprawie opłat za usługi przewozowe o</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1057/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1057/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 1). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>nadania nazwy rondu położonemu w granicach administracyjnych miasta Lublin (druk nr 768-1)</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1058/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1058/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>zmiany uchwały nr X/25/79 Miejskiej Rady Narodowej w Lublinie z dnia 20 kwietnia 1979 r. w sprawie n</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1059/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1059/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>upoważnienia Prezydenta Miasta Lublin do zawierania z Wojewodą Lubelskim porozumień dotyczących utrz</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1060/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1060/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>ustanowienia pomnika przyrody – grupy drzew (druk nr 775-1)</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1061/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1061/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>zniesienia pomnika przyrody (druk nr 806-1)</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1062/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1062/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 3). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wniosek o odesłanie do Kom. Rozw. i Kom. Gosp. (druk nr 777-1)</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1063/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1063/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 20, przeciw 5, wstrzym. 2). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wyrażenia zgody na przystąpienie do sporządzenia zintegrowanego planu inwestycyjnego miasta Lublin w</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1064/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1064/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 27, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wyznaczenia przedstawiciela Rady Miasta Lublin do negocjacji, poprzedzających zawarcie umowy urbanis</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1065/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1065/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 26, przeciw 1, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wyrażenia zgody na przystąpienie do sporządzenia zintegrowanego planu inwestycyjnego miasta Lublin w</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1066/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1066/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 18, przeciw 8, wstrzym. 1). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>kandydatura B, Margula(druk nr 793-1)</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1067/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1067/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 16, przeciw 7, wstrzym. 5). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>kandydatura P, Gawryszczaka (druk nr 793-1)</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1068/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1068/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: odrzucone (za 11, przeciw 15, wstrzym. 2). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wyznaczenia przedstawiciela Rady Miasta Lublin do negocjacji, poprzedzających zawarcie umowy urbanis</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1069/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1069/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 2, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wyrażenia zgody na wniesienie wkładu niepieniężnego (aportu) do Spółki Towarzystwo Budownictwa Społe</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1070/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1070/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wyrażenia zgody na oddanie w najem lokalu użytkowego oraz części wspólnych usytuowanych na nieruchom</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1071/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1071/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 28, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wyrażenia zgody na oddanie w najem nieruchomości stanowiącej własność Gminy Lublin położonej w Lubli</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1072/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1072/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 27, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wyrażenia zgody na oddanie w najem lokalu użytkowego oraz części wspólnych usytuowanych na nieruchom</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1073/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1073/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wyrażenia zgody na oddanie w najem lokalu użytkowego usytuowanego na nieruchomości położonej w Lubli</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1074/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1074/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 27, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>zmiany uchwały nr 157/XI/2011 Rady Miasta Lublin z dnia 30 czerwca 2011 r. w sprawie zmiany załączni</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1075/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1075/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 27, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wyrażenia zgody trwałym zarządcom na oddanie w najem lub użyczenie części nieruchomości stanowiących</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1076/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1076/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>zasad przeznaczania do sprzedaży nieruchomości gruntowych stanowiących własność Gminy Lublin oddanyc</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1077/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1077/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 2). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wydzierżawienia nieruchomości Gminy Lublin (druk nr 784-1)</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1078/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1078/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wyrażenia zgody na przyjęcie przez Gminę Lublin darowizny części nieruchomości stanowiącej własność </title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1079/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1079/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 27, przeciw 0, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wyrażenia zgody na sprzedaż udziałów Gminy Lublin w lokalach stanowiących własność Gminy Lublin poło</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1080/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1080/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 26, przeciw 1, wstrzym. 1). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>wniosek o rozpoczęcie głosowania - druk nr 805-1</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1081/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1081/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 23, przeciw 4, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>zatwierdzenia do realizacji projektu „Strategia rozwoju inteligentnego miasta i opracowanie wstępneg</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1082/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1082/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 28, przeciw 1, wstrzym. 0). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
+    <title>rezygnacja z uczestnictwa w Komisji Zdrowia i Pomocy Społecznej - M. Orzechowska</title>
+    <link href="https://lublin.radoskop.pl/glosowanie/vote_1083/" rel="alternate" type="text/html"/>
+    <id>https://lublin.radoskop.pl/glosowanie/vote_1083/#vote</id>
+    <published>2026-04-30T12:00:00+01:00</published>
+    <updated>2026-04-30T12:00:00+01:00</updated>
+    <summary type="html">Wynik: przyjete (za 25, przeciw 1, wstrzym. 2). Sesja XIX.</summary>
+    <category term="vote"/>
+  </entry>
+  <entry>
     <title>Sesja XIX Rady Miasta Lublin</title>
     <link href="https://lublin.radoskop.pl/sesja/XIX/" rel="alternate" type="text/html"/>
     <id>https://lublin.radoskop.pl/sesja/XIX/#session</id>
     <published>2026-04-30T12:00:00+01:00</published>
     <updated>2026-04-30T12:00:00+01:00</updated>
-    <summary type="html">0 glosowan.</summary>
+    <summary type="html">55 glosowan, 31 obecnych.</summary>
     <category term="session"/>
   </entry>
   <entry>
@@ -413,501 +908,6 @@
     <published>2026-03-26T12:00:00+01:00</published>
     <updated>2026-03-26T12:00:00+01:00</updated>
     <summary type="html">Wynik: odrzucone (za 4, przeciw 23, wstrzym. 1). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wniosek o odesłanie projektu uchwały (druk nr 736- 1) do Komisji Rozwoju i do Komisji Gospodarki Kom</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_1015/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_1015/#vote</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 12, przeciw 10, wstrzym. 5). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>nadania nazwy ulicy położonej w granicach administracyjnych miasta Lublina (druk nr 739-1)</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_1016/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_1016/#vote</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 25, przeciw 1, wstrzym. 2). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>nadania nazwy bulwarowi położonemu w granicach administracyjnych miasta Lublin (druk nr 689-1) – pro</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_1017/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_1017/#vote</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 17, przeciw 12, wstrzym. 0). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>nabycia na rzecz Gminy Lublin prawa własności części nieruchomości położonej w Lublinie przy ul. Dzi</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_1018/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_1018/#vote</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 28, przeciw 0, wstrzym. 0). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wyrażenia zgody na nieodpłatne nabycie na rzecz Gminy Lublin prawa własności części nieruchomości po</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_1019/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_1019/#vote</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 30, przeciw 0, wstrzym. 0). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wyrażenia zgody na nieodpłatne nabycie na rzecz Gminy Lublin prawa własności części nieruchomości po</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_1020/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_1020/#vote</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 27, przeciw 0, wstrzym. 0). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wyrażenia zgody na oddanie w najem lokalu użytkowego usytuowanego na nieruchomości położonej w Lubli</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_1021/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_1021/#vote</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 28, przeciw 0, wstrzym. 0). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wyrażenia zgody na oddanie w najem lokalu użytkowego usytuowanego na nieruchomości położonej w Lubli</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_1022/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_1022/#vote</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 20, przeciw 1, wstrzym. 7). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wydzierżawienia nieruchomości Gminy Lublin będących w zarządzie Zarządu Nieruchomości Komunalnych w </title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_1023/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_1023/#vote</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 28, przeciw 0, wstrzym. 0). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wyrażenia zgody trwałym zarządcom na oddanie w najem lub użyczenie części nieruchomości stanowiących</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_1024/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_1024/#vote</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 28, przeciw 0, wstrzym. 0). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wydzierżawienia nieruchomości Gminy Lublin (druk nr 753-1)</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_1025/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_1025/#vote</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 28, przeciw 0, wstrzym. 0). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wyrażenia zgody na sprzedaż nieruchomości stanowiącej własność Gminy Lublin położonej w Lublinie prz</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_1026/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_1026/#vote</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 21, przeciw 0, wstrzym. 2). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wniosek o zamknięcie dyskusji</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_1027/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_1027/#vote</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 18, przeciw 7, wstrzym. 1). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wyrażenia zgody na sprzedaż nieruchomości zabudowanej stanowiącej własność Gminy Lublin położonej w </title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_1028/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_1028/#vote</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 18, przeciw 9, wstrzym. 1). Sesja XVIII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>Sesja XVIII Rady Miasta Lublin</title>
-    <link href="https://lublin.radoskop.pl/sesja/XVIII/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/sesja/XVIII/#session</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">47 glosowan, 31 obecnych.</summary>
-    <category term="session"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: Interpelacja w sprawie uzupełnienia zieleni (krzewy i nasadzenia roślinności niskiej) na skwerze w D</title>
-    <link href="https://lublin.radoskop.pl/profil/piotr-chodun/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/profil/piotr-chodun/#interpelacja</id>
-    <published>2026-03-26T12:00:00+01:00</published>
-    <updated>2026-03-26T12:00:00+01:00</updated>
-    <summary type="html">Piotr Choduń. Interpelacja w sprawie uzupełnienia zieleni (krzewy i nasadzenia roślinności niskiej) na skwerze w Dzielnicy Dziesiąta na skwerze przy zbiegu ulic Zem</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: Interpelacja w sprawie złożenia wniosku o dofinansowanie przebudowy ul. Romera ze środków rezerwy su</title>
-    <link href="https://lublin.radoskop.pl/profil/tomasz-pitucha/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/profil/tomasz-pitucha/#interpelacja</id>
-    <published>2026-03-23T12:00:00+01:00</published>
-    <updated>2026-03-23T12:00:00+01:00</updated>
-    <summary type="html">Tomasz Pitucha. Interpelacja w sprawie złożenia wniosku o dofinansowanie przebudowy ul. Romera ze środków rezerwy subwencji na 2026 r. i przyspieszenie realizacji zad</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: Interpelacja w sprawie poprawy bezpieczeństwa pieszych w obrębie ulicy Orkana (rejon ul. Szaserów)</title>
-    <link href="https://lublin.radoskop.pl/profil/bartlomiej-balaban/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/profil/bartlomiej-balaban/#interpelacja</id>
-    <published>2026-03-02T12:00:00+01:00</published>
-    <updated>2026-03-02T12:00:00+01:00</updated>
-    <summary type="html">Bartłomiej Bałaban. Interpelacja w sprawie poprawy bezpieczeństwa pieszych w obrębie ulicy Orkana (rejon ul. Szaserów)</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: Interpelacja w sprawie przyszłości pętli autobusowej Paderewskiego (okolice ul. Choiny)</title>
-    <link href="https://lublin.radoskop.pl/profil/marta-gutkowska/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/profil/marta-gutkowska/#interpelacja</id>
-    <published>2026-02-24T12:00:00+01:00</published>
-    <updated>2026-02-24T12:00:00+01:00</updated>
-    <summary type="html">Marta Gutkowska. Interpelacja w sprawie przyszłości pętli autobusowej Paderewskiego (okolice ul. Choiny)</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>wniosek o wprow. do porz.. obrad druku nr 707-1</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_932/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_932/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 1, wstrzym. 1). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wniosek o wprow. do porz. obrad druku nr 708-1</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_933/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_933/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 27, przeciw 0, wstrzym. 1). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wniosek o wprow. do porz.. obrad druku nr 709-1</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_934/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_934/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 1). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wniosek o wprow. do porz.. obrad druku nr 710-1</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_935/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_935/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 1). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wniosek o wprow. do porz.. obrad druku nr 711-1</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_936/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_936/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 27, przeciw 0, wstrzym. 0). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>Wprow. do porz. pktu Sprawozd. z dział. komisji RM</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_937/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_937/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 28, przeciw 0, wstrzym. 0). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>Wprow. do porz. pktu zmiany w składach komisji</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_938/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_938/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 29, przeciw 0, wstrzym. 0). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>wniosek o skróc. czasu wypowiedzi radnych do 5 min.</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_939/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_939/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 20, przeciw 6, wstrzym. 2). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>Zatwierdzenie protokołu XVI sesji Rady Miasta.</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_940/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_940/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 3). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>skargi na działania Dyrektora Miejskiego Urzędu Pracy w Lublinie (druk nr 711-1) - skarga niezasadna</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_941/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_941/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 3). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>zatwierdzenia do realizacji, zabezpieczenia środków finansowych w budżecie Gminy Lublin na lata 2026</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_942/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_942/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 19, przeciw 2, wstrzym. 7). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>zamiaru przekształcenia Szkoły Podstawowej Specjalnej nr 26 im. Janusza Korczaka w Lublinie (druk nr</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_943/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_943/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 1). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>zamiaru przekształcenia VII Liceum Ogólnokształcącego im. Marii Konopnickiej w Lublinie (druk nr 709</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_944/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_944/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 1). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>zamiaru przekształcenia XXVI Liceum Ogólnokształcącego dla Dorosłych w Lublinie, Szkoły Policealnej </title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_945/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_945/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 27, przeciw 0, wstrzym. 1). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przekształcenia Szkoły Podstawowej nr 1 im. ks. Stanisława Konarskiego w Lublinie (druk nr 676-1)</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_946/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_946/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 3). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przekształcenia Szkoły Podstawowej nr 3 im. Juliusza Słowackiego w Lublinie (druk nr 677-1)</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_947/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_947/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 3). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przekształcenia Szkoły Podstawowej nr 7 im. ks. Jana Twardowskiego w Lublinie (druk nr 678-1)</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_948/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_948/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 3). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przekształcenia Szkoły Podstawowej nr 20 im. Jarosława Dąbrowskiego w Lublinie (druk nr 679-1)</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_949/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_949/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 2). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przekształcenia Szkoły Podstawowej nr 21 im. Królowej Jadwigi w Lublinie (druk nr 667-1)</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_950/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_950/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 3). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przekształcenia Szkoły Podstawowej nr 23 im. Olimpijczyków Polskich w Lublinie (druk nr 680-1)</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_951/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_951/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 3). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przekształcenia Szkoły Podstawowej nr 28 z Oddziałami Integracyjnymi im. Synów Pułku Ziemi Lubelskie</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_952/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_952/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 3). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przekształcenia Szkoły Podstawowej nr 32 z Oddziałami Integracyjnymi im. Pamięci Majdanka w Lublinie</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_953/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_953/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 3). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przekształcenia Szkoły Podstawowej nr 34 im. Kornela Makuszyńskiego w Lublinie (druk nr 683-1)</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_954/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_954/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 3). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przekształcenia Szkoły Podstawowej nr 40 im. Lubelskiego Lipca 1980 w Lublinie (druk nr 684-1)</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_955/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_955/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 3). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przekształcenia Szkoły Podstawowej nr 42 im. Konstantego Ildefonsa Gałczyńskiego w Lublinie (druk nr</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_956/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_956/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 1). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przekształcenia Szkoły Podstawowej nr 43 im. Ignacego Jana Paderewskiego w Lublinie wchodzącej w skł</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_957/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_957/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 4). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przekształcenia Szkoły Podstawowej nr 46 im. Króla Jana III Sobieskiego w Lublinie (druk nr 687-1)</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_958/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_958/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 2). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>ustalenia sieci prowadzonych przez Miasto Lublin publicznych przedszkoli i oddziałów przedszkolnych </title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_959/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_959/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 3). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>ustalenia planu sieci publicznych szkół podstawowych prowadzonych przez miasto Lublin oraz określeni</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_960/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_960/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 3). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>uchwały zmieniającej uchwałę w sprawie ustalenia trybu udzielania i rozliczania dotacji z budżetu mi</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_961/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_961/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 2). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>nadania Statutu Miejskiego Zespołu Żłobków w Lublinie (druk nr 691-1)</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_962/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_962/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 27, przeciw 0, wstrzym. 1). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przyjęcia Programu korekcyjno-edukacyjnego dla osób stosujących przemoc domową w Lublinie na lata 20</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_963/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_963/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 25, przeciw 0, wstrzym. 1). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przyjęcia Programu psychologiczno- terapeutycznego dla osób stosujących przemoc domową w Lublinie na</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_964/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_964/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 26, przeciw 0, wstrzym. 0). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>obwieszczenie w sprawie ogłoszenia jednolitego tekstu uchwały w sprawie szczegółowych warunków przyz</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_965/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_965/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 24, przeciw 0, wstrzym. 0). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>uchwały zmieniającej uchwałę nr 33/III/2024 Rady Miasta Lublin z dnia 27 czerwca 2024 r. w sprawie w</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_966/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_966/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 23, przeciw 0, wstrzym. 2). Sesja XVII.</summary>
-    <category term="vote"/>
-  </entry>
-  <entry>
-    <title>przyjęcia Wieloletniego Programu Gospodarowania Mieszkaniowym Zasobem Miasta Lublin na lata 2026-203</title>
-    <link href="https://lublin.radoskop.pl/glosowanie/vote_967/" rel="alternate" type="text/html"/>
-    <id>https://lublin.radoskop.pl/glosowanie/vote_967/#vote</id>
-    <published>2026-02-05T12:00:00+01:00</published>
-    <updated>2026-02-05T12:00:00+01:00</updated>
-    <summary type="html">Wynik: przyjete (za 21, przeciw 0, wstrzym. 3). Sesja XVII.</summary>
     <category term="vote"/>
   </entry>
 </feed>

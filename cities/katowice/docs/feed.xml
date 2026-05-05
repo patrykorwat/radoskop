@@ -5,7 +5,7 @@
   <link href="https://katowice.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://katowice.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://katowice.radoskop.pl/</id>
-  <updated>2026-05-04T13:22:22Z</updated>
+  <updated>2026-05-05T11:10:52Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
@@ -17,6 +17,16 @@
     <published>2029-07-15T12:00:00+01:00</published>
     <updated>2029-07-15T12:00:00+01:00</updated>
     <summary type="html">Tomasz Maśnica. wzmożonej kontroli Straży Miejskiej i Policji w rejonie Sklepu Nocnego oraz Placu Miast Partnerskich przy ul. Koszalińskiej w Ligocie.</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: ograniczeń w dostępie do Szkoly Podstawowej nr 54 oraz hali sportowej przy ul. Wojciecha 9</title>
+    <link href="https://katowice.radoskop.pl/interpelacje/" rel="alternate" type="text/html"/>
+    <id>https://katowice.radoskop.pl/interpelacje/#interpelacja</id>
+    <published>2026-05-04T12:00:00+01:00</published>
+    <updated>2026-05-04T12:00:00+01:00</updated>
+    <summary type="html">Urszula Machowska
+Maria Ryś. ograniczeń w dostępie do Szkoly Podstawowej nr 54 oraz hali sportowej przy ul. Wojciecha 9</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -395,16 +405,6 @@
     <published>2026-04-23T12:00:00+01:00</published>
     <updated>2026-04-23T12:00:00+01:00</updated>
     <summary type="html">Roch Sobula. doświetlenia oraz poprawy bezpieczeństwa przejazdu dla rowerów przy ul. Szarych Szeregów.</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: śmieci w strefach: Park Wełnowiecki, Bulwary Rawy, Dworcowa/Mariacka</title>
-    <link href="https://katowice.radoskop.pl/interpelacje/" rel="alternate" type="text/html"/>
-    <id>https://katowice.radoskop.pl/interpelacje/#interpelacja</id>
-    <published>2026-04-22T12:00:00+01:00</published>
-    <updated>2026-04-22T12:00:00+01:00</updated>
-    <summary type="html">Elżbieta Grodzka-Łopuszyńska
-Ewa Sadkowska. śmieci w strefach: Park Wełnowiecki, Bulwary Rawy, Dworcowa/Mariacka</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

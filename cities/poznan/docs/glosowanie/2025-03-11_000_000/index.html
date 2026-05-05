@@ -42,21 +42,7 @@
   "inLanguage": "pl"
 }
 </script>
-<script>
-window.dataLayer=window.dataLayer||[];
-function gtag(){dataLayer.push(arguments);}
-(function(){
-  var c=document.cookie.match(/(?:^|;\s*)cookie_consent=([^;]*)/);
-  if(c&&c[1]==="rejected"){window["ga-disable-G-1SH24XVXR3"]=true;return;}
-  if(!c||c[1]==="accepted"){
-    var s=document.createElement("script");
-    s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id=G-1SH24XVXR3";
-    document.head.appendChild(s);
-    gtag("js",new Date());gtag("config","G-1SH24XVXR3");
-  }
-})();
-</script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1616606963057752" crossorigin="anonymous"></script>
+<script async defer data-website-id="792c059f-c77e-4b4e-ad9c-31f4a7d5cfe4" src="https://stats.radoskop.pl/script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root, [data-theme="light"] {
@@ -402,17 +388,6 @@ footer a { color:var(--accent); text-decoration:none; }
     <a href="/raporty/" onclick="event.preventDefault();showReports()">Raporty</a> · <a href="/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="/regulamin/" onclick="event.preventDefault();showTerms()">Regulamin</a>
   </footer>
 
-  <!-- Cookie consent banner -->
-  <div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1f2937;color:#e5e7eb;padding:14px 20px;font-size:0.85rem;z-index:9999;box-shadow:0 -2px 10px rgba(0,0,0,0.3)">
-    <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-      <span style="flex:1;min-width:200px">Ta strona używa plików cookies do analizy ruchu (Google Analytics) i wyświetlania reklam (Google AdSense).</span>
-      <span style="display:flex;gap:8px;flex-shrink:0">
-        <button onclick="acceptCookies()" style="background:#4f46e5;color:#fff;border:none;padding:7px 18px;border-radius:6px;cursor:pointer;font-size:0.85rem">Akceptuję</button>
-        <button onclick="rejectCookies()" style="background:transparent;color:#e5e7eb;border:1px solid #4b5563;padding:7px 18px;border-radius:6px;cursor:pointer;font-size:0.85rem">Odrzucam</button>
-        <a href="/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy();document.getElementById('cookie-banner').style.display='none'" style="color:#93c5fd;padding:7px 4px;font-size:0.85rem;text-decoration:underline;white-space:nowrap">Więcej</a>
-      </span>
-    </div>
-  </div>
 </div>
 
 <script>
@@ -686,8 +661,6 @@ async function init() {
     selectKadencja(initialKid);
   } catch(e) {
     document.getElementById('loading').textContent = 'Błąd ładowania danych: ' + e.message;
-  } finally {
-    initCookieBanner();
   }
 }
 
@@ -863,9 +836,11 @@ function profileSlug(name) {
   return p ? p.slug : name.toLowerCase().replace(/\s+/g, '-');
 }
 
-// GA4 event tracking
+// Event tracking via Umami (cookieless, no consent required).
 function trackEvent(eventName, params) {
-  if (typeof gtag === 'function') gtag('event', eventName, params || {});
+  if (typeof umami !== 'undefined' && typeof umami.track === 'function') {
+    umami.track(eventName, params || {});
+  }
 }
 
 // Build link elements via string concatenation so crawlers
@@ -896,59 +871,6 @@ function sessionLinkStop(number, content) {
   return '<a ' + 'href="/sesja/' + enc + '/" onclick="event.preventDefault();event.stopPropagation();showSession(\'' + number + '\')">' + content + '</a>';
 }
 
-// --- Cookie consent (shared across all radoskop.pl subdomains) ---
-function getCookieConsent() {
-  // Use the helper that also reads cross-subdomain cookies.
-  return radoskopGetCookie('cookie_consent');
-}
-function setCookieConsent(val) {
-  // Use the helper that sets Domain=.radoskop.pl so accept/reject persists
-  // when navigating between gdansk.radoskop.pl and bytom.radoskop.pl etc.
-  radoskopSetCookie('cookie_consent', val, 365);
-}
-function acceptCookies() {
-  setCookieConsent('accepted');
-  document.getElementById('cookie-banner').style.display = 'none';
-  // Load GA if not yet loaded
-  if (!document.querySelector('script[src*="googletagmanager"]')) {
-    var s = document.createElement('script');
-    s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=G-1SH24XVXR3';
-    document.head.appendChild(s);
-    gtag('js', new Date()); gtag('config', 'G-1SH24XVXR3');
-  }
-}
-function rejectCookies() {
-  setCookieConsent('rejected');
-  document.getElementById('cookie-banner').style.display = 'none';
-  // Disable GA
-  window['ga-disable-G-1SH24XVXR3'] = true;
-}
-function isGoogleCmpPresent() {
-  // Google Funding Choices registers the IAB TCF API
-  if (typeof window.__tcfapi === 'function') return true;
-  // Also check for Google FC cookie
-  if (document.cookie.indexOf('__gfc_consent_info') !== -1) return true;
-  if (document.cookie.indexOf('FCCDCF') !== -1) return true;
-  return false;
-}
-function initCookieBanner() {
-  // If Google CMP already handles consent, skip our banner entirely
-  if (isGoogleCmpPresent()) return;
-  // Retry once after 1.5s in case Google CMP loads late
-  setTimeout(function() {
-    if (isGoogleCmpPresent()) {
-      document.getElementById('cookie-banner').style.display = 'none';
-      return;
-    }
-  }, 1500);
-  var consent = getCookieConsent();
-  if (!consent) {
-    document.getElementById('cookie-banner').style.display = 'block';
-  } else if (consent === 'rejected') {
-    window['ga-disable-G-1SH24XVXR3'] = true;
-  }
-}
-
 // --- Privacy policy page ---
 function showPrivacy() {
   hideAllViews();
@@ -964,58 +886,29 @@ function showPrivacy() {
     + 'Serwis Radoskop działa pod domenami radoskop.pl oraz subdomenami miast (np. gdansk.radoskop.pl).</p>'
 
     + '<h2 style="font-size:1.1rem;margin:24px 0 8px">2. Jakie dane zbieramy</h2>'
-    + '<p>Serwis nie wymaga rejestracji ani logowania. Zbieramy anonimowe dane analityczne poprzez Google Analytics 4 (GA4):</p>'
+    + '<p>Serwis nie wymaga rejestracji ani logowania. Do analizy ruchu używamy Umami, narzędzia analitycznego hostowanego na własnym serwerze pod adresem stats.radoskop.pl. Zbieramy:</p>'
     + '<ul style="margin:8px 0 8px 24px"><li>Przybliżona lokalizacja (kraj, miasto)</li>'
     + '<li>Typ urządzenia, przeglądarka, system operacyjny</li>'
     + '<li>Odwiedzone podstrony i czas wizyty</li>'
     + '<li>Źródło ruchu (np. wyszukiwarka, link)</li></ul>'
-    + '<p>GA4 nie zbiera adresów IP w pełnej formie.</p>'
+    + '<p>Umami nie używa plików cookies ani trwałych identyfikatorów. Identyfikator wizyty to skrót (hash) adresu IP i nagłówka User Agent, rotowany codziennie i niemożliwy do odwrócenia. Adres IP nie jest zapisywany w pełnej formie.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">3. Reklamy</h2>'
-    + '<p>Serwis może wyświetlać reklamy dostarczane przez Google AdSense i inne sieci reklamowe będące partnerami Google. '
-    + 'Zewnętrzni dostawcy reklam, w tym Google, używają plików cookies do wyświetlania reklam na podstawie poprzednich wizyt użytkownika w Serwisie lub innych witrynach. '
-    + 'Google wykorzystuje pliki cookies (w tym cookie DART) do serwowania reklam na podstawie wizyt użytkownika w Serwisie oraz innych witrynach internetowych. '
-    + 'Użytkownicy mogą zrezygnować z personalizacji reklam w <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">ustawieniach reklam Google</a>. '
-    + 'Więcej informacji o tym, jak Google wykorzystuje dane: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">Polityka Google</a>.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">4. Pliki cookies</h2>'
-    + '<p>Serwis wykorzystuje następujące kategorie plików cookies:</p>'
-    + '<p><strong>Funkcjonalne:</strong></p>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">3. Pliki cookies</h2>'
+    + '<p>Serwis ustawia tylko jeden plik cookie funkcjonalny:</p>'
     + '<ul style="margin:8px 0 8px 24px">'
-    + '<li><strong>cookie_consent</strong> (1 rok) — zapamiętuje Twoją decyzję o cookies</li></ul>'
-    + '<p><strong>Analityczne</strong> (ustawiane po akceptacji):</p>'
-    + '<ul style="margin:8px 0 8px 24px">'
-    + '<li><strong>_ga, _ga_*</strong> (Google, do 2 lat) — identyfikatory sesji Google Analytics</li></ul>'
-    + '<p><strong>Reklamowe</strong> (ustawiane po akceptacji):</p>'
-    + '<ul style="margin:8px 0 8px 24px">'
-    + '<li><strong>__gads, __gpi</strong> (Google AdSense, do 13 miesięcy) — pomiar i personalizacja reklam</li>'
-    + '<li><strong>IDE, DSID</strong> (Google DoubleClick, do 1 roku) — wyświetlanie reklam</li>'
-    + '<li>Inne cookies ustawiane przez partnerów reklamowych Google</li></ul>'
-    + '<p>Możesz zmienić decyzję w dowolnym momencie usuwając cookies w przeglądarce. '
-    + 'Możesz też wyłączyć personalizację reklam na stronie <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">aboutads.info</a> '
-    + 'lub <a href="https://www.youronlinechoices.eu/" target="_blank" rel="noopener">youronlinechoices.eu</a>.</p>'
+    + '<li><strong>radoskop_theme</strong> (1 rok) — zapamiętuje wybór jasnego lub ciemnego motywu strony</li></ul>'
+    + '<p>Nie używamy cookies reklamowych ani analitycznych, dlatego nie wyświetlamy banera zgody. Możesz wyczyścić cookies w ustawieniach przeglądarki w dowolnym momencie.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">5. Zgoda na cookies i IAB TCF</h2>'
-    + '<p>Serwis korzysta z platformy zarządzania zgodą (CMP) kompatybilnej ze standardem IAB Transparency and Consent Framework v2.3 (TCF v2.3). '
-    + 'Przy pierwszej wizycie wyświetlany jest baner zgody, w którym możesz wybrać, które kategorie cookies akceptujesz (analityczne, reklamowe) lub odrzucić wszystkie niewymagane cookies. '
-    + 'Reklamy spersonalizowane są wyświetlane wyłącznie po wyrażeniu zgody. W przypadku braku zgody Serwis może wyświetlać reklamy niespersonalizowane. '
-    + 'Twoja decyzja jest zapisywana i przekazywana dostawcom reklam za pośrednictwem TC String zgodnie ze specyfikacją IAB TCF. '
-    + 'Możesz zmienić lub wycofać zgodę w dowolnym momencie klikając link "Ustawienia prywatności" w stopce strony lub usuwając cookies w przeglądarce.</p>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">4. Reklamy</h2>'
+    + '<p>Serwis Radoskop nie wyświetla reklam ani nie korzysta z sieci reklamowych.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">6. Cel przetwarzania</h2>'
-    + '<p>Dane przetwarzamy w następujących celach:</p>'
-    + '<ul style="margin:8px 0 8px 24px">'
-    + '<li>Analiza ruchu i ulepszanie Serwisu (Google Analytics 4, cel 1 TCF: przechowywanie informacji na urządzeniu)</li>'
-    + '<li>Wyświetlanie reklam finansujących działanie Serwisu (Google AdSense, cele TCF: 2, 3, 4, 7, 9, 10)</li>'
-    + '<li>Pomiar skuteczności reklam (cel TCF: 8)</li></ul>'
-    + '<p>Podstawą prawną jest art. 6 ust. 1 lit. a RODO (zgoda wyrażona przez akceptację w CMP) oraz art. 6 ust. 1 lit. f RODO (uzasadniony interes administratora w zakresie niezbędnych cookies funkcjonalnych).</p>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">5. Cel i podstawa prawna przetwarzania</h2>'
+    + '<p>Dane analityczne służą do oceny popularności podstron, doboru priorytetów rozwoju Serwisu i mierzenia wpływu publikacji. '
+    + 'Podstawą prawną jest art. 6 ust. 1 lit. f RODO (uzasadniony interes administratora w zakresie analizy ruchu) oraz art. 6 ust. 1 lit. a RODO (zgoda na pliki cookies funkcjonalne, wyrażana poprzez korzystanie z Serwisu).</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">7. Udostępnianie danych</h2>'
-    + '<p>Dane mogą być przekazywane do: Google LLC (USA) w ramach usług Google Analytics 4 i Google AdSense, '
-    + 'partnerów reklamowych Google zarejestrowanych w <a href="https://iabeurope.eu/vendor-list/" target="_blank" rel="noopener">IAB Global Vendor List</a> '
-    + '(pełna lista na <a href="https://support.google.com/admanager/answer/9012903" target="_blank" rel="noopener">stronie Google</a>). '
-    + 'Google przetwarza dane zgodnie z własnymi zasadami prywatności. Transfer danych do USA odbywa się na podstawie standardowych klauzul umownych (SCC). '
-    + 'Nie sprzedajemy danych osobowych użytkowników podmiotom trzecim.</p>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">6. Udostępnianie danych</h2>'
+    + '<p>Dane analityczne pozostają na infrastrukturze Administratora i nie są udostępniane podmiotom trzecim. '
+    + 'Nie sprzedajemy danych osobowych użytkowników.</p>'
 
     + '<h2 style="font-size:1.1rem;margin:24px 0 8px">7. Dane publiczne radnych</h2>'
     + '<p>Serwis prezentuje publicznie dostępne dane z Biuletynów Informacji Publicznej (BIP) dotyczące działalności radnych miejskich: '

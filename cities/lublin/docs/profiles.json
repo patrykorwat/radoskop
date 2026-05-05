@@ -8,14 +8,14 @@
           "club": "PiS",
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 84.7,
-          "votes_za": 705,
-          "votes_przeciw": 87,
-          "votes_wstrzymal": 106,
-          "votes_brak": 130,
+          "zgodnosc_z_klubem": 84.5,
+          "votes_za": 747,
+          "votes_przeciw": 90,
+          "votes_wstrzymal": 114,
+          "votes_brak": 132,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
-          "rebellion_count": 137,
+          "votes_total": 1083,
+          "rebellion_count": 147,
           "rebellions": [
             {
               "vote_id": "vote_43",
@@ -975,6 +975,76 @@
               "topic": "wyrażenia zgody na oddanie w najem lokalu użytkowego usytuowanego na nieruchomości położonej w Lublinie przy ul. Weteran",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1030",
+              "session": "2026-04-30",
+              "topic": "wniosek o wprow. do porz. obrad druku nr 806-1",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1033",
+              "session": "2026-04-30",
+              "topic": "wniosek o ograniczenie cz. wypowiedzi radnych do 5 min.",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1039",
+              "session": "2026-04-30",
+              "topic": "wniosku o uznanie drzewa gatunku klon srebrzysty za pomnik przyrody (druk nr 801-1) – projekt Komisji Skarg, Wniosków i ",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1040",
+              "session": "2026-04-30",
+              "topic": "petycji odnośnie realizacji inwestycji polegającej na budowie hali sportowej przy Szkole Podstawowej nr 15 w Lublinie (d",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1041",
+              "session": "2026-04-30",
+              "topic": "petycji w sprawie upamiętnienia Romualda Lipko (druk nr 803-1) – projekt Komisji Skarg, Wniosków i Petycji - petycja nie",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1042",
+              "session": "2026-04-30",
+              "topic": "petycji dotyczącej wdrożenia pilotażowego programu opieki okołoporodowej pn.: „Bezpieczna ciąża – domowe KTG” (druk nr 8",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1046",
+              "session": "2026-04-30",
+              "topic": "wyrażenia zgody na zawarcie porozumienia pomiędzy Gminą Lublin – miastem na prawach powiatu a Powiatem Lubelskim w spraw",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1047",
+              "session": "2026-04-30",
+              "topic": "wyrażenia zgody na zawarcie porozumienia pomiędzy Gminą Lublin – miastem na prawach powiatu a Powiatem Lubelskim w spraw",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1063",
+              "session": "2026-04-30",
+              "topic": "wniosek o odesłanie do Kom. Rozw. i Kom. Gosp. (druk nr 777-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1066",
+              "session": "2026-04-30",
+              "topic": "wyrażenia zgody na przystąpienie do sporządzenia zintegrowanego planu inwestycyjnego miasta Lublin w rejonie ulic: Młyńs",
+              "their_vote": "za",
+              "club_majority": "przeciw"
             }
           ],
           "has_voting_data": true,
@@ -995,13 +1065,13 @@
           "frekwencja": 100.0,
           "aktywnosc": 99.9,
           "zgodnosc_z_klubem": 99.0,
-          "votes_za": 951,
-          "votes_przeciw": 56,
+          "votes_za": 1001,
+          "votes_przeciw": 60,
           "votes_wstrzymal": 4,
-          "votes_brak": 16,
+          "votes_brak": 17,
           "votes_nieobecny": 1,
-          "votes_total": 1028,
-          "rebellion_count": 10,
+          "votes_total": 1083,
+          "rebellion_count": 11,
           "rebellions": [
             {
               "vote_id": "vote_70",
@@ -1072,6 +1142,13 @@
               "topic": "Ustalenie harmonogramu posiedzeń Rady Miasta Lublin w 2026 roku - propozycja Radnego B. Margula - zmiana terminu 30.04 n",
               "their_vote": "przeciw",
               "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1081",
+              "session": "2026-04-30",
+              "topic": "wniosek o rozpoczęcie głosowania - druk nr 805-1;",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -1091,14 +1168,14 @@
           "club": "KO",
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 98.8,
-          "votes_za": 942,
-          "votes_przeciw": 46,
+          "zgodnosc_z_klubem": 98.7,
+          "votes_za": 976,
+          "votes_przeciw": 48,
           "votes_wstrzymal": 8,
-          "votes_brak": 32,
+          "votes_brak": 51,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
-          "rebellion_count": 12,
+          "votes_total": 1083,
+          "rebellion_count": 13,
           "rebellions": [
             {
               "vote_id": "vote_41",
@@ -1183,6 +1260,13 @@
               "topic": "zgodność ze Studium (druk nr 744-1);",
               "their_vote": "za",
               "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1054",
+              "session": "2026-04-30",
+              "topic": "wniosek o zamknięcie listy mówców",
+              "their_vote": "za",
+              "club_majority": "przeciw"
             }
           ],
           "has_voting_data": true,
@@ -1203,13 +1287,13 @@
           "frekwencja": 100.0,
           "aktywnosc": 99.8,
           "zgodnosc_z_klubem": 95.3,
-          "votes_za": 916,
-          "votes_przeciw": 49,
-          "votes_wstrzymal": 47,
+          "votes_za": 966,
+          "votes_przeciw": 53,
+          "votes_wstrzymal": 48,
           "votes_brak": 14,
           "votes_nieobecny": 2,
-          "votes_total": 1028,
-          "rebellion_count": 48,
+          "votes_total": 1083,
+          "rebellion_count": 50,
           "rebellions": [
             {
               "vote_id": "vote_3",
@@ -1546,6 +1630,20 @@
               "topic": "nadania nazwy ulicy położonej w granicach administracyjnych miasta Lublina (druk nr 739-1);",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1056",
+              "session": "2026-04-30",
+              "topic": "wprowadzenia ograniczeń w godzinach nocnej sprzedaży napojów alkoholowych przeznaczonych do spożycia poza miejscem sprze",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1065",
+              "session": "2026-04-30",
+              "topic": "wyznaczenia przedstawiciela Rady Miasta Lublin do negocjacji, poprzedzających zawarcie umowy urbanistycznej, w zakresie ",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -1563,16 +1661,16 @@
       "kadencje": {
         "2024-2029": {
           "club": "PiS",
-          "frekwencja": 94.4,
-          "aktywnosc": 95.4,
+          "frekwencja": 94.7,
+          "aktywnosc": 95.7,
           "zgodnosc_z_klubem": 87.6,
-          "votes_za": 692,
+          "votes_za": 733,
           "votes_przeciw": 74,
-          "votes_wstrzymal": 180,
-          "votes_brak": 35,
+          "votes_wstrzymal": 187,
+          "votes_brak": 42,
           "votes_nieobecny": 47,
-          "votes_total": 1028,
-          "rebellion_count": 117,
+          "votes_total": 1083,
+          "rebellion_count": 123,
           "rebellions": [
             {
               "vote_id": "vote_93",
@@ -2392,6 +2490,48 @@
               "topic": "wyrażenia zgody na sprzedaż części nieruchomości stanowiącej własność Gminy Lublin położonej w Lublinie w pobl. ul. Kasz",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1040",
+              "session": "2026-04-30",
+              "topic": "petycji odnośnie realizacji inwestycji polegającej na budowie hali sportowej przy Szkole Podstawowej nr 15 w Lublinie (d",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1041",
+              "session": "2026-04-30",
+              "topic": "petycji w sprawie upamiętnienia Romualda Lipko (druk nr 803-1) – projekt Komisji Skarg, Wniosków i Petycji - petycja nie",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1042",
+              "session": "2026-04-30",
+              "topic": "petycji dotyczącej wdrożenia pilotażowego programu opieki okołoporodowej pn.: „Bezpieczna ciąża – domowe KTG” (druk nr 8",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1062",
+              "session": "2026-04-30",
+              "topic": "zniesienia pomnika przyrody (druk nr 806-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1066",
+              "session": "2026-04-30",
+              "topic": "wyrażenia zgody na przystąpienie do sporządzenia zintegrowanego planu inwestycyjnego miasta Lublin w rejonie ulic: Młyńs",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1067",
+              "session": "2026-04-30",
+              "topic": "kandydatura B, Margula(druk nr 793-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             }
           ],
           "has_voting_data": true,
@@ -2411,14 +2551,14 @@
           "club": "PiS",
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 87.8,
-          "votes_za": 800,
-          "votes_przeciw": 85,
-          "votes_wstrzymal": 118,
+          "zgodnosc_z_klubem": 88.3,
+          "votes_za": 850,
+          "votes_przeciw": 86,
+          "votes_wstrzymal": 122,
           "votes_brak": 25,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
-          "rebellion_count": 122,
+          "votes_total": 1083,
+          "rebellion_count": 124,
           "rebellions": [
             {
               "vote_id": "vote_34",
@@ -3273,6 +3413,20 @@
               "topic": "uwagi (druk nr 735-1);",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "vote_1040",
+              "session": "2026-04-30",
+              "topic": "petycji odnośnie realizacji inwestycji polegającej na budowie hali sportowej przy Szkole Podstawowej nr 15 w Lublinie (d",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1067",
+              "session": "2026-04-30",
+              "topic": "kandydatura B, Margula(druk nr 793-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             }
           ],
           "has_voting_data": true,
@@ -3290,16 +3444,16 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
-          "frekwencja": 94.4,
-          "aktywnosc": 94.6,
-          "zgodnosc_z_klubem": 97.6,
-          "votes_za": 586,
+          "frekwencja": 94.7,
+          "aktywnosc": 94.9,
+          "zgodnosc_z_klubem": 97.3,
+          "votes_za": 609,
           "votes_przeciw": 41,
-          "votes_wstrzymal": 7,
-          "votes_brak": 339,
+          "votes_wstrzymal": 9,
+          "votes_brak": 369,
           "votes_nieobecny": 55,
-          "votes_total": 1028,
-          "rebellion_count": 15,
+          "votes_total": 1083,
+          "rebellion_count": 18,
           "rebellions": [
             {
               "vote_id": "vote_33",
@@ -3405,6 +3559,27 @@
               "topic": "zgodność ze Studium (druk nr 744-1);",
               "their_vote": "za",
               "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1042",
+              "session": "2026-04-30",
+              "topic": "petycji dotyczącej wdrożenia pilotażowego programu opieki okołoporodowej pn.: „Bezpieczna ciąża – domowe KTG” (druk nr 8",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1054",
+              "session": "2026-04-30",
+              "topic": "wniosek o zamknięcie listy mówców",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1055",
+              "session": "2026-04-30",
+              "topic": "wniosek Komisji Zdrowia",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             }
           ],
           "has_voting_data": true,
@@ -3424,14 +3599,14 @@
           "club": "PiS",
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 84.3,
-          "votes_za": 716,
-          "votes_przeciw": 158,
-          "votes_wstrzymal": 130,
-          "votes_brak": 24,
+          "zgodnosc_z_klubem": 84.8,
+          "votes_za": 762,
+          "votes_przeciw": 161,
+          "votes_wstrzymal": 134,
+          "votes_brak": 26,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
-          "rebellion_count": 158,
+          "votes_total": 1083,
+          "rebellion_count": 161,
           "rebellions": [
             {
               "vote_id": "vote_35",
@@ -4538,6 +4713,27 @@
               "topic": "wyrażenia zgody na sprzedaż nieruchomości zabudowanej stanowiącej własność Gminy Lublin położonej w Lublinie przy ul. St",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1033",
+              "session": "2026-04-30",
+              "topic": "wniosek o ograniczenie cz. wypowiedzi radnych do 5 min.",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1049",
+              "session": "2026-04-30",
+              "topic": "nadania statutu instytucji kultury pn. Krajowe Centrum Choreograficzne w Lublinie (druk nr 771-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1067",
+              "session": "2026-04-30",
+              "topic": "kandydatura B, Margula(druk nr 793-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             }
           ],
           "has_voting_data": true,
@@ -4558,13 +4754,13 @@
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
           "zgodnosc_z_klubem": 96.6,
-          "votes_za": 901,
-          "votes_przeciw": 47,
-          "votes_wstrzymal": 28,
-          "votes_brak": 52,
+          "votes_za": 948,
+          "votes_przeciw": 50,
+          "votes_wstrzymal": 29,
+          "votes_brak": 56,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
-          "rebellion_count": 33,
+          "votes_total": 1083,
+          "rebellion_count": 35,
           "rebellions": [
             {
               "vote_id": "vote_41",
@@ -4796,6 +4992,20 @@
               "topic": "wyrażenia zgody na oddanie w najem lokalu użytkowego usytuowanego na nieruchomości położonej w Lublinie przy ul. Weteran",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1033",
+              "session": "2026-04-30",
+              "topic": "wniosek o ograniczenie cz. wypowiedzi radnych do 5 min.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1067",
+              "session": "2026-04-30",
+              "topic": "kandydatura B, Margula(druk nr 793-1);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -4813,16 +5023,16 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
-          "frekwencja": 94.4,
-          "aktywnosc": 96.5,
+          "frekwencja": 94.7,
+          "aktywnosc": 96.7,
           "zgodnosc_z_klubem": 98.5,
-          "votes_za": 876,
-          "votes_przeciw": 47,
-          "votes_wstrzymal": 12,
+          "votes_za": 928,
+          "votes_przeciw": 49,
+          "votes_wstrzymal": 13,
           "votes_brak": 57,
           "votes_nieobecny": 36,
-          "votes_total": 1028,
-          "rebellion_count": 14,
+          "votes_total": 1083,
+          "rebellion_count": 15,
           "rebellions": [
             {
               "vote_id": "vote_30",
@@ -4921,6 +5131,13 @@
               "topic": "zgodność ze Studium (druk nr 744-1);",
               "their_vote": "za",
               "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1068",
+              "session": "2026-04-30",
+              "topic": "kandydatura P, Gawryszczaka (druk nr 793-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             }
           ],
           "has_voting_data": true,
@@ -4939,15 +5156,15 @@
         "2024-2029": {
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 98.8,
-          "zgodnosc_z_klubem": 79.8,
-          "votes_za": 559,
-          "votes_przeciw": 107,
-          "votes_wstrzymal": 223,
-          "votes_brak": 127,
+          "aktywnosc": 98.9,
+          "zgodnosc_z_klubem": 79.9,
+          "votes_za": 597,
+          "votes_przeciw": 110,
+          "votes_wstrzymal": 233,
+          "votes_brak": 131,
           "votes_nieobecny": 12,
-          "votes_total": 1028,
-          "rebellion_count": 180,
+          "votes_total": 1083,
+          "rebellion_count": 189,
           "rebellions": [
             {
               "vote_id": "vote_45",
@@ -6208,6 +6425,69 @@
               "topic": "wyrażenia zgody na oddanie w najem lokalu użytkowego usytuowanego na nieruchomości położonej w Lublinie przy ul. Weteran",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1035",
+              "session": "2026-04-30",
+              "topic": "Zatwierdzenie protokołu XVIII sesji Rady Miasta.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1040",
+              "session": "2026-04-30",
+              "topic": "petycji odnośnie realizacji inwestycji polegającej na budowie hali sportowej przy Szkole Podstawowej nr 15 w Lublinie (d",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1042",
+              "session": "2026-04-30",
+              "topic": "petycji dotyczącej wdrożenia pilotażowego programu opieki okołoporodowej pn.: „Bezpieczna ciąża – domowe KTG” (druk nr 8",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1045",
+              "session": "2026-04-30",
+              "topic": "zmiany Statutu Rady Seniorów Miasta Lublin (druk nr 770-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1047",
+              "session": "2026-04-30",
+              "topic": "wyrażenia zgody na zawarcie porozumienia pomiędzy Gminą Lublin – miastem na prawach powiatu a Powiatem Lubelskim w spraw",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1051",
+              "session": "2026-04-30",
+              "topic": "uchwały zmieniającej uchwałę nr 33/III/2024 Rady Miasta Lublin z dnia 27 czerwca 2024 r. w sprawie wspólnej obsługi orga",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1052",
+              "session": "2026-04-30",
+              "topic": "zmiany nazwy Szkoły Podstawowej nr 23 im. Olimpijczyków Polskich w Lublinie na Szkołę Podstawową Mistrzostwa Sportowego ",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1056",
+              "session": "2026-04-30",
+              "topic": "wprowadzenia ograniczeń w godzinach nocnej sprzedaży napojów alkoholowych przeznaczonych do spożycia poza miejscem sprze",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1057",
+              "session": "2026-04-30",
+              "topic": "obwieszczenie w sprawie ogłoszenia jednolitego tekstu uchwały w sprawie opłat za usługi przewozowe osób środkami lokalne",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -6228,13 +6508,13 @@
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
           "zgodnosc_z_klubem": 98.9,
-          "votes_za": 954,
-          "votes_przeciw": 56,
-          "votes_wstrzymal": 8,
-          "votes_brak": 10,
+          "votes_za": 1003,
+          "votes_przeciw": 59,
+          "votes_wstrzymal": 9,
+          "votes_brak": 12,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
-          "rebellion_count": 11,
+          "votes_total": 1083,
+          "rebellion_count": 12,
           "rebellions": [
             {
               "vote_id": "vote_260",
@@ -6312,6 +6592,13 @@
               "topic": "wyrażenia zgody na oddanie w najem lokalu użytkowego usytuowanego na nieruchomości położonej w Lublinie przy ul. Weteran",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1083",
+              "session": "2026-04-30",
+              "topic": "rezygnacja z uczestnictwa w Komisji Zdrowia i Pomocy Społecznej - M. Orzechowska",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -6329,16 +6616,16 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
-          "frekwencja": 88.9,
-          "aktywnosc": 89.7,
-          "zgodnosc_z_klubem": 98.6,
-          "votes_za": 853,
-          "votes_przeciw": 54,
+          "frekwencja": 89.5,
+          "aktywnosc": 90.2,
+          "zgodnosc_z_klubem": 98.5,
+          "votes_za": 904,
+          "votes_przeciw": 58,
           "votes_wstrzymal": 3,
           "votes_brak": 12,
           "votes_nieobecny": 106,
-          "votes_total": 1028,
-          "rebellion_count": 13,
+          "votes_total": 1083,
+          "rebellion_count": 14,
           "rebellions": [
             {
               "vote_id": "vote_70",
@@ -6430,6 +6717,13 @@
               "topic": "prop. przedst. - R. Skrzetuski",
               "their_vote": "przeciw",
               "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "vote_1081",
+              "session": "2026-04-30",
+              "topic": "wniosek o rozpoczęcie głosowania - druk nr 805-1;",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -6449,14 +6743,14 @@
           "club": "KO",
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 97.2,
-          "votes_za": 850,
-          "votes_przeciw": 41,
-          "votes_wstrzymal": 27,
-          "votes_brak": 110,
+          "zgodnosc_z_klubem": 96.8,
+          "votes_za": 896,
+          "votes_przeciw": 46,
+          "votes_wstrzymal": 28,
+          "votes_brak": 113,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
-          "rebellion_count": 26,
+          "votes_total": 1083,
+          "rebellion_count": 31,
           "rebellions": [
             {
               "vote_id": "vote_33",
@@ -6639,6 +6933,41 @@
               "topic": "wyrażenia zgody na oddanie w najem lokalu użytkowego usytuowanego na nieruchomości położonej w Lublinie przy ul. Weteran",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1041",
+              "session": "2026-04-30",
+              "topic": "petycji w sprawie upamiętnienia Romualda Lipko (druk nr 803-1) – projekt Komisji Skarg, Wniosków i Petycji - petycja nie",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1054",
+              "session": "2026-04-30",
+              "topic": "wniosek o zamknięcie listy mówców",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1063",
+              "session": "2026-04-30",
+              "topic": "wniosek o odesłanie do Kom. Rozw. i Kom. Gosp. (druk nr 777-1);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1066",
+              "session": "2026-04-30",
+              "topic": "wyrażenia zgody na przystąpienie do sporządzenia zintegrowanego planu inwestycyjnego miasta Lublin w rejonie ulic: Młyńs",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1083",
+              "session": "2026-04-30",
+              "topic": "rezygnacja z uczestnictwa w Komisji Zdrowia i Pomocy Społecznej - M. Orzechowska",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -6658,14 +6987,14 @@
           "club": "KO",
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 99.0,
-          "votes_za": 932,
-          "votes_przeciw": 44,
+          "zgodnosc_z_klubem": 98.9,
+          "votes_za": 985,
+          "votes_przeciw": 46,
           "votes_wstrzymal": 14,
           "votes_brak": 38,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
-          "rebellion_count": 10,
+          "votes_total": 1083,
+          "rebellion_count": 11,
           "rebellions": [
             {
               "vote_id": "vote_49",
@@ -6736,6 +7065,13 @@
               "topic": "wniosek o odesłanie projektu uchwały (druk nr 736- 1) do Komisji Rozwoju i do Komisji Gospodarki Komunalnej;",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1054",
+              "session": "2026-04-30",
+              "topic": "wniosek o zamknięcie listy mówców",
+              "their_vote": "za",
+              "club_majority": "przeciw"
             }
           ],
           "has_voting_data": true,
@@ -6755,13 +7091,13 @@
           "club": "KO",
           "frekwencja": 100.0,
           "aktywnosc": 99.9,
-          "zgodnosc_z_klubem": 98.0,
-          "votes_za": 944,
-          "votes_przeciw": 42,
+          "zgodnosc_z_klubem": 98.1,
+          "votes_za": 996,
+          "votes_przeciw": 45,
           "votes_wstrzymal": 22,
           "votes_brak": 19,
           "votes_nieobecny": 1,
-          "votes_total": 1028,
+          "votes_total": 1083,
           "rebellion_count": 20,
           "rebellions": [
             {
@@ -6922,13 +7258,13 @@
           "club": "KO",
           "frekwencja": 100.0,
           "aktywnosc": 99.9,
-          "zgodnosc_z_klubem": 95.9,
-          "votes_za": 888,
-          "votes_przeciw": 53,
+          "zgodnosc_z_klubem": 96.1,
+          "votes_za": 937,
+          "votes_przeciw": 54,
           "votes_wstrzymal": 30,
-          "votes_brak": 56,
+          "votes_brak": 61,
           "votes_nieobecny": 1,
-          "votes_total": 1028,
+          "votes_total": 1083,
           "rebellion_count": 40,
           "rebellions": [
             {
@@ -7230,13 +7566,13 @@
           "frekwencja": 100.0,
           "aktywnosc": 99.5,
           "zgodnosc_z_klubem": 86.2,
-          "votes_za": 726,
-          "votes_przeciw": 79,
-          "votes_wstrzymal": 163,
-          "votes_brak": 55,
+          "votes_za": 748,
+          "votes_przeciw": 80,
+          "votes_wstrzymal": 168,
+          "votes_brak": 82,
           "votes_nieobecny": 5,
-          "votes_total": 1028,
-          "rebellion_count": 134,
+          "votes_total": 1083,
+          "rebellion_count": 137,
           "rebellions": [
             {
               "vote_id": "vote_34",
@@ -8175,6 +8511,27 @@
               "topic": "zgodność ze Studium (druk nr 734-1);",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "vote_1042",
+              "session": "2026-04-30",
+              "topic": "petycji dotyczącej wdrożenia pilotażowego programu opieki okołoporodowej pn.: „Bezpieczna ciąża – domowe KTG” (druk nr 8",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1051",
+              "session": "2026-04-30",
+              "topic": "uchwały zmieniającej uchwałę nr 33/III/2024 Rady Miasta Lublin z dnia 27 czerwca 2024 r. w sprawie wspólnej obsługi orga",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1056",
+              "session": "2026-04-30",
+              "topic": "wprowadzenia ograniczeń w godzinach nocnej sprzedaży napojów alkoholowych przeznaczonych do spożycia poza miejscem sprze",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -8194,13 +8551,13 @@
           "club": "KO",
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 97.8,
-          "votes_za": 955,
-          "votes_przeciw": 40,
+          "zgodnosc_z_klubem": 98.0,
+          "votes_za": 1007,
+          "votes_przeciw": 42,
           "votes_wstrzymal": 26,
-          "votes_brak": 7,
+          "votes_brak": 8,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
+          "votes_total": 1083,
           "rebellion_count": 22,
           "rebellions": [
             {
@@ -8373,15 +8730,15 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
-          "frekwencja": 94.4,
-          "aktywnosc": 95.0,
+          "frekwencja": 94.7,
+          "aktywnosc": 95.3,
           "zgodnosc_z_klubem": 99.0,
-          "votes_za": 919,
-          "votes_przeciw": 48,
+          "votes_za": 970,
+          "votes_przeciw": 51,
           "votes_wstrzymal": 7,
-          "votes_brak": 3,
+          "votes_brak": 4,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
+          "votes_total": 1083,
           "rebellion_count": 10,
           "rebellions": [
             {
@@ -8470,16 +8827,16 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
-          "frekwencja": 94.4,
-          "aktywnosc": 96.6,
-          "zgodnosc_z_klubem": 97.9,
-          "votes_za": 816,
-          "votes_przeciw": 44,
-          "votes_wstrzymal": 16,
-          "votes_brak": 117,
+          "frekwencja": 94.7,
+          "aktywnosc": 96.8,
+          "zgodnosc_z_klubem": 97.8,
+          "votes_za": 857,
+          "votes_przeciw": 46,
+          "votes_wstrzymal": 17,
+          "votes_brak": 128,
           "votes_nieobecny": 35,
-          "votes_total": 1028,
-          "rebellion_count": 18,
+          "votes_total": 1083,
+          "rebellion_count": 20,
           "rebellions": [
             {
               "vote_id": "vote_39",
@@ -8606,6 +8963,20 @@
               "topic": "zgodność ze Studium (druk nr 744-1);",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1054",
+              "session": "2026-04-30",
+              "topic": "wniosek o zamknięcie listy mówców",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1063",
+              "session": "2026-04-30",
+              "topic": "wniosek o odesłanie do Kom. Rozw. i Kom. Gosp. (druk nr 777-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -8625,14 +8996,14 @@
           "club": "KO",
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 98.8,
-          "votes_za": 921,
-          "votes_przeciw": 53,
-          "votes_wstrzymal": 11,
+          "zgodnosc_z_klubem": 98.6,
+          "votes_za": 973,
+          "votes_przeciw": 54,
+          "votes_wstrzymal": 13,
           "votes_brak": 43,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
-          "rebellion_count": 12,
+          "votes_total": 1083,
+          "rebellion_count": 15,
           "rebellions": [
             {
               "vote_id": "vote_30",
@@ -8717,6 +9088,27 @@
               "topic": "wniosek o skrócenie czasu wypowiedzi radnych do 5 minut",
               "their_vote": "przeciw",
               "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1054",
+              "session": "2026-04-30",
+              "topic": "wniosek o zamknięcie listy mówców",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1062",
+              "session": "2026-04-30",
+              "topic": "zniesienia pomnika przyrody (druk nr 806-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1068",
+              "session": "2026-04-30",
+              "topic": "kandydatura P, Gawryszczaka (druk nr 793-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             }
           ],
           "has_voting_data": true,
@@ -8736,13 +9128,13 @@
           "club": "KO",
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 98.7,
-          "votes_za": 958,
-          "votes_przeciw": 55,
+          "zgodnosc_z_klubem": 98.8,
+          "votes_za": 1010,
+          "votes_przeciw": 58,
           "votes_wstrzymal": 12,
           "votes_brak": 3,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
+          "votes_total": 1083,
           "rebellion_count": 13,
           "rebellions": [
             {
@@ -8854,14 +9246,14 @@
           "club": "PiS",
           "frekwencja": 100.0,
           "aktywnosc": 99.9,
-          "zgodnosc_z_klubem": 78.0,
-          "votes_za": 551,
-          "votes_przeciw": 158,
-          "votes_wstrzymal": 62,
+          "zgodnosc_z_klubem": 78.1,
+          "votes_za": 592,
+          "votes_przeciw": 171,
+          "votes_wstrzymal": 63,
           "votes_brak": 256,
           "votes_nieobecny": 1,
-          "votes_total": 1028,
-          "rebellion_count": 170,
+          "votes_total": 1083,
+          "rebellion_count": 181,
           "rebellions": [
             {
               "vote_id": "vote_34",
@@ -10052,6 +10444,83 @@
               "topic": "uwagi (druk nr 735-1);",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "vote_1029",
+              "session": "2026-04-30",
+              "topic": "wniosek o wprow. do porz. obrad druku nr 805-1",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1032",
+              "session": "2026-04-30",
+              "topic": "wniosek o wprow. do porz. obrad druku nr 793-1",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1033",
+              "session": "2026-04-30",
+              "topic": "wniosek o ograniczenie cz. wypowiedzi radnych do 5 min.",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1043",
+              "session": "2026-04-30",
+              "topic": "zmiany uchwały budżetowej Miasta Lublin na 2026 rok (druk nr 766-1);",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "vote_1044",
+              "session": "2026-04-30",
+              "topic": "uchwały zmieniającej uchwałę nr 528/XVI/2025 Rady Miasta Lublin z dnia 18 grudnia 2025 r. w sprawie wieloletniej prognoz",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "vote_id": "vote_1051",
+              "session": "2026-04-30",
+              "topic": "uchwały zmieniającej uchwałę nr 33/III/2024 Rady Miasta Lublin z dnia 27 czerwca 2024 r. w sprawie wspólnej obsługi orga",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1054",
+              "session": "2026-04-30",
+              "topic": "wniosek o zamknięcie listy mówców",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1063",
+              "session": "2026-04-30",
+              "topic": "wniosek o odesłanie do Kom. Rozw. i Kom. Gosp. (druk nr 777-1);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1069",
+              "session": "2026-04-30",
+              "topic": "wyznaczenia przedstawiciela Rady Miasta Lublin do negocjacji, poprzedzających zawarcie umowy urbanistycznej, w zakresie ",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1081",
+              "session": "2026-04-30",
+              "topic": "wniosek o rozpoczęcie głosowania - druk nr 805-1;",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1082",
+              "session": "2026-04-30",
+              "topic": "zatwierdzenia do realizacji projektu „Strategia rozwoju inteligentnego miasta i opracowanie wstępnego studium wykonalnoś",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -10071,14 +10540,14 @@
           "club": "PiS",
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 81.9,
-          "votes_za": 697,
-          "votes_przeciw": 122,
-          "votes_wstrzymal": 207,
-          "votes_brak": 2,
+          "zgodnosc_z_klubem": 82.0,
+          "votes_za": 739,
+          "votes_przeciw": 126,
+          "votes_wstrzymal": 214,
+          "votes_brak": 4,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
-          "rebellion_count": 186,
+          "votes_total": 1083,
+          "rebellion_count": 194,
           "rebellions": [
             {
               "vote_id": "vote_26",
@@ -11381,6 +11850,62 @@
               "topic": "wyrażenia zgody na sprzedaż nieruchomości stanowiącej własność Gminy Lublin położonej w Lublinie przy ul. Zgodnej 8 (dru",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1031",
+              "session": "2026-04-30",
+              "topic": "wniosek o wprow. do porz. obrad druku nr 736-1 z autopopr.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1033",
+              "session": "2026-04-30",
+              "topic": "wniosek o ograniczenie cz. wypowiedzi radnych do 5 min.",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1063",
+              "session": "2026-04-30",
+              "topic": "wniosek o odesłanie do Kom. Rozw. i Kom. Gosp. (druk nr 777-1);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1066",
+              "session": "2026-04-30",
+              "topic": "wyrażenia zgody na przystąpienie do sporządzenia zintegrowanego planu inwestycyjnego miasta Lublin w rejonie ulic: Młyńs",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1067",
+              "session": "2026-04-30",
+              "topic": "kandydatura B, Margula(druk nr 793-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1077",
+              "session": "2026-04-30",
+              "topic": "zasad przeznaczania do sprzedaży nieruchomości gruntowych stanowiących własność Gminy Lublin oddanych w użytkowanie wiec",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1080",
+              "session": "2026-04-30",
+              "topic": "wyrażenia zgody na sprzedaż udziałów Gminy Lublin w lokalach stanowiących własność Gminy Lublin położonych przy ul. Laur",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1081",
+              "session": "2026-04-30",
+              "topic": "wniosek o rozpoczęcie głosowania - druk nr 805-1;",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -11400,14 +11925,14 @@
           "club": "PiS",
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 88.1,
-          "votes_za": 793,
-          "votes_przeciw": 78,
-          "votes_wstrzymal": 124,
+          "zgodnosc_z_klubem": 88.6,
+          "votes_za": 841,
+          "votes_przeciw": 82,
+          "votes_wstrzymal": 127,
           "votes_brak": 33,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
-          "rebellion_count": 118,
+          "votes_total": 1083,
+          "rebellion_count": 120,
           "rebellions": [
             {
               "vote_id": "vote_34",
@@ -12234,6 +12759,20 @@
               "topic": "zgodność ze Studium (druk nr 735-1);",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1056",
+              "session": "2026-04-30",
+              "topic": "wprowadzenia ograniczeń w godzinach nocnej sprzedaży napojów alkoholowych przeznaczonych do spożycia poza miejscem sprze",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1063",
+              "session": "2026-04-30",
+              "topic": "wniosek o odesłanie do Kom. Rozw. i Kom. Gosp. (druk nr 777-1);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -12253,14 +12792,14 @@
           "club": "PiS",
           "frekwencja": 100.0,
           "aktywnosc": 99.9,
-          "zgodnosc_z_klubem": 72.6,
-          "votes_za": 442,
-          "votes_przeciw": 90,
-          "votes_wstrzymal": 319,
-          "votes_brak": 176,
+          "zgodnosc_z_klubem": 72.4,
+          "votes_za": 458,
+          "votes_przeciw": 91,
+          "votes_wstrzymal": 329,
+          "votes_brak": 204,
           "votes_nieobecny": 1,
-          "votes_total": 1028,
-          "rebellion_count": 233,
+          "votes_total": 1083,
+          "rebellion_count": 242,
           "rebellions": [
             {
               "vote_id": "vote_43",
@@ -13892,6 +14431,69 @@
               "topic": "uchwalenia zmiany miejscowego planu zagospodarowania przestrzennego miasta Lublin – część IVA w rejonie Specjalnej Stref",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1030",
+              "session": "2026-04-30",
+              "topic": "wniosek o wprow. do porz. obrad druku nr 806-1",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1033",
+              "session": "2026-04-30",
+              "topic": "wniosek o ograniczenie cz. wypowiedzi radnych do 5 min.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1035",
+              "session": "2026-04-30",
+              "topic": "Zatwierdzenie protokołu XVIII sesji Rady Miasta.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1040",
+              "session": "2026-04-30",
+              "topic": "petycji odnośnie realizacji inwestycji polegającej na budowie hali sportowej przy Szkole Podstawowej nr 15 w Lublinie (d",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1041",
+              "session": "2026-04-30",
+              "topic": "petycji w sprawie upamiętnienia Romualda Lipko (druk nr 803-1) – projekt Komisji Skarg, Wniosków i Petycji - petycja nie",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1042",
+              "session": "2026-04-30",
+              "topic": "petycji dotyczącej wdrożenia pilotażowego programu opieki okołoporodowej pn.: „Bezpieczna ciąża – domowe KTG” (druk nr 8",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1051",
+              "session": "2026-04-30",
+              "topic": "uchwały zmieniającej uchwałę nr 33/III/2024 Rady Miasta Lublin z dnia 27 czerwca 2024 r. w sprawie wspólnej obsługi orga",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1052",
+              "session": "2026-04-30",
+              "topic": "zmiany nazwy Szkoły Podstawowej nr 23 im. Olimpijczyków Polskich w Lublinie na Szkołę Podstawową Mistrzostwa Sportowego ",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1054",
+              "session": "2026-04-30",
+              "topic": "wniosek o zamknięcie listy mówców",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -13911,14 +14513,14 @@
           "club": "PiS",
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 80.8,
-          "votes_za": 623,
-          "votes_przeciw": 101,
-          "votes_wstrzymal": 272,
-          "votes_brak": 32,
+          "zgodnosc_z_klubem": 81.1,
+          "votes_za": 662,
+          "votes_przeciw": 104,
+          "votes_wstrzymal": 280,
+          "votes_brak": 37,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
-          "rebellion_count": 191,
+          "votes_total": 1083,
+          "rebellion_count": 198,
           "rebellions": [
             {
               "vote_id": "vote_51",
@@ -15256,6 +15858,55 @@
               "topic": "wyrażenia zgody na oddanie w najem lokalu użytkowego usytuowanego na nieruchomości położonej w Lublinie przy ul. Weteran",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1031",
+              "session": "2026-04-30",
+              "topic": "wniosek o wprow. do porz. obrad druku nr 736-1 z autopopr.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1032",
+              "session": "2026-04-30",
+              "topic": "wniosek o wprow. do porz. obrad druku nr 793-1",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1033",
+              "session": "2026-04-30",
+              "topic": "wniosek o ograniczenie cz. wypowiedzi radnych do 5 min.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1040",
+              "session": "2026-04-30",
+              "topic": "petycji odnośnie realizacji inwestycji polegającej na budowie hali sportowej przy Szkole Podstawowej nr 15 w Lublinie (d",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1041",
+              "session": "2026-04-30",
+              "topic": "petycji w sprawie upamiętnienia Romualda Lipko (druk nr 803-1) – projekt Komisji Skarg, Wniosków i Petycji - petycja nie",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1042",
+              "session": "2026-04-30",
+              "topic": "petycji dotyczącej wdrożenia pilotażowego programu opieki okołoporodowej pn.: „Bezpieczna ciąża – domowe KTG” (druk nr 8",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1054",
+              "session": "2026-04-30",
+              "topic": "wniosek o zamknięcie listy mówców",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -15273,16 +15924,16 @@
       "kadencje": {
         "2024-2029": {
           "club": "PiS",
-          "frekwencja": 94.4,
-          "aktywnosc": 92.9,
-          "zgodnosc_z_klubem": 85.4,
-          "votes_za": 559,
-          "votes_przeciw": 90,
-          "votes_wstrzymal": 159,
-          "votes_brak": 147,
-          "votes_nieobecny": 72,
-          "votes_total": 1028,
-          "rebellion_count": 118,
+          "frekwencja": 94.7,
+          "aktywnosc": 92.6,
+          "zgodnosc_z_klubem": 85.5,
+          "votes_za": 587,
+          "votes_przeciw": 94,
+          "votes_wstrzymal": 163,
+          "votes_brak": 159,
+          "votes_nieobecny": 79,
+          "votes_total": 1083,
+          "rebellion_count": 122,
           "rebellions": [
             {
               "vote_id": "vote_3",
@@ -16109,6 +16760,34 @@
               "topic": "wniosek o zamknięcie dyskusji",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1054",
+              "session": "2026-04-30",
+              "topic": "wniosek o zamknięcie listy mówców",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1069",
+              "session": "2026-04-30",
+              "topic": "wyznaczenia przedstawiciela Rady Miasta Lublin do negocjacji, poprzedzających zawarcie umowy urbanistycznej, w zakresie ",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1077",
+              "session": "2026-04-30",
+              "topic": "zasad przeznaczania do sprzedaży nieruchomości gruntowych stanowiących własność Gminy Lublin oddanych w użytkowanie wiec",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1080",
+              "session": "2026-04-30",
+              "topic": "wyrażenia zgody na sprzedaż udziałów Gminy Lublin w lokalach stanowiących własność Gminy Lublin położonych przy ul. Laur",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -16128,14 +16807,14 @@
           "club": "KO",
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 98.7,
-          "votes_za": 953,
-          "votes_przeciw": 58,
-          "votes_wstrzymal": 2,
-          "votes_brak": 15,
+          "zgodnosc_z_klubem": 98.6,
+          "votes_za": 1002,
+          "votes_przeciw": 62,
+          "votes_wstrzymal": 3,
+          "votes_brak": 16,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
-          "rebellion_count": 13,
+          "votes_total": 1083,
+          "rebellion_count": 15,
           "rebellions": [
             {
               "vote_id": "vote_32",
@@ -16227,6 +16906,20 @@
               "topic": "zgodność ze Studium (druk nr 744-1);",
               "their_vote": "za",
               "club_majority": "przeciw"
+            },
+            {
+              "vote_id": "vote_1063",
+              "session": "2026-04-30",
+              "topic": "wniosek o odesłanie do Kom. Rozw. i Kom. Gosp. (druk nr 777-1);",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1083",
+              "session": "2026-04-30",
+              "topic": "rezygnacja z uczestnictwa w Komisji Zdrowia i Pomocy Społecznej - M. Orzechowska",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ],
           "has_voting_data": true,
@@ -16246,14 +16939,14 @@
           "club": "PiS",
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 81.7,
-          "votes_za": 634,
-          "votes_przeciw": 115,
-          "votes_wstrzymal": 217,
-          "votes_brak": 62,
+          "zgodnosc_z_klubem": 81.9,
+          "votes_za": 675,
+          "votes_przeciw": 118,
+          "votes_wstrzymal": 225,
+          "votes_brak": 65,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
-          "rebellion_count": 177,
+          "votes_total": 1083,
+          "rebellion_count": 184,
           "rebellions": [
             {
               "vote_id": "vote_36",
@@ -17493,6 +18186,55 @@
               "topic": "wyrażenia zgody na sprzedaż nieruchomości stanowiącej własność Gminy Lublin położonej w Lublinie przy ul. Zgodnej 8 (dru",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1033",
+              "session": "2026-04-30",
+              "topic": "wniosek o ograniczenie cz. wypowiedzi radnych do 5 min.",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1035",
+              "session": "2026-04-30",
+              "topic": "Zatwierdzenie protokołu XVIII sesji Rady Miasta.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1042",
+              "session": "2026-04-30",
+              "topic": "petycji dotyczącej wdrożenia pilotażowego programu opieki okołoporodowej pn.: „Bezpieczna ciąża – domowe KTG” (druk nr 8",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1049",
+              "session": "2026-04-30",
+              "topic": "nadania statutu instytucji kultury pn. Krajowe Centrum Choreograficzne w Lublinie (druk nr 771-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1054",
+              "session": "2026-04-30",
+              "topic": "wniosek o zamknięcie listy mówców",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1062",
+              "session": "2026-04-30",
+              "topic": "zniesienia pomnika przyrody (druk nr 806-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "vote_id": "vote_1067",
+              "session": "2026-04-30",
+              "topic": "kandydatura B, Margula(druk nr 793-1);",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             }
           ],
           "has_voting_data": true,
@@ -17510,7 +18252,7 @@
       "kadencje": {
         "2024-2029": {
           "club": "?",
-          "frekwencja": 5.6,
+          "frekwencja": 5.3,
           "aktywnosc": 0.1,
           "zgodnosc_z_klubem": 0,
           "votes_za": 1,
@@ -17518,7 +18260,7 @@
           "votes_wstrzymal": 0,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 1028,
+          "votes_total": 1083,
           "rebellion_count": 0,
           "rebellions": [],
           "has_voting_data": true,

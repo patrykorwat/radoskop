@@ -5,11 +5,20 @@
   <link href="https://gdansk.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://gdansk.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://gdansk.radoskop.pl/</id>
-  <updated>2026-05-04T13:54:39Z</updated>
+  <updated>2026-05-05T11:41:23Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
+  <entry>
+    <title>Interpelacja: w sprawie działań Miasta Gdańska na rzecz ograniczenia hałasu kolejowego wzdłuż linii kolejowej na </title>
+    <link href="https://gdansk.radoskop.pl/profil/marcin-mickun/" rel="alternate" type="text/html"/>
+    <id>https://gdansk.radoskop.pl/profil/marcin-mickun/#interpelacja</id>
+    <published>2026-05-05T12:00:00+01:00</published>
+    <updated>2026-05-05T12:00:00+01:00</updated>
+    <summary type="html">Marcin Mickun. w sprawie działań Miasta Gdańska na rzecz ograniczenia hałasu kolejowego wzdłuż linii kolejowej na wysokości dzielnicy Zaspa Młyniec</summary>
+    <category term="interpelacja"/>
+  </entry>
   <entry>
     <title>Interpelacja: w sprawie utworzenia przejścia dla pieszych na ul. Traugutta przy Wydziale Zarządzania i Ekonomii P</title>
     <link href="https://gdansk.radoskop.pl/profil/michal-hajduk/" rel="alternate" type="text/html"/>
@@ -161,15 +170,6 @@
     <published>2026-04-07T12:00:00+01:00</published>
     <updated>2026-04-07T12:00:00+01:00</updated>
     <summary type="html">Żaneta Geryk. Dot. wykonania dwóch ławo stołów,  chodnika o długości około 10 metrów oraz zagospodarowanie terenu rekreacyjnego na Niedźwiedzim Szlaku dla mieszkań</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: w sprawie zapewnienia realizacji inwestycji drogowych towarzyszących planowanej zabudowie w miejscu</title>
-    <link href="https://gdansk.radoskop.pl/profil/marcin-mickun/" rel="alternate" type="text/html"/>
-    <id>https://gdansk.radoskop.pl/profil/marcin-mickun/#interpelacja</id>
-    <published>2026-03-19T12:00:00+01:00</published>
-    <updated>2026-03-19T12:00:00+01:00</updated>
-    <summary type="html">Marcin Mickun. w sprawie zapewnienia realizacji inwestycji drogowych towarzyszących planowanej zabudowie w miejscu Alfa Centrum na Przymorzu Małym</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

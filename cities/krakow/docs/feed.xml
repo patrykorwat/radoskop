@@ -5,11 +5,29 @@
   <link href="https://krakow.radoskop.pl/feed.xml" rel="self" type="application/atom+xml"/>
   <link href="https://krakow.radoskop.pl/" rel="alternate" type="text/html"/>
   <id>https://krakow.radoskop.pl/</id>
-  <updated>2026-05-04T13:43:50Z</updated>
+  <updated>2026-05-05T11:18:38Z</updated>
   <author>
     <name>Radoskop</name>
     <uri>https://radoskop.pl</uri>
   </author>
+  <entry>
+    <title>Interpelacja: hałasu w okolicach ul. Bora-Komorowskiego</title>
+    <link href="https://krakow.radoskop.pl/profil/lukasz-gibala/" rel="alternate" type="text/html"/>
+    <id>https://krakow.radoskop.pl/profil/lukasz-gibala/#interpelacja</id>
+    <published>2026-05-05T12:00:00+01:00</published>
+    <updated>2026-05-05T12:00:00+01:00</updated>
+    <summary type="html">Łukasz Gibała. hałasu w okolicach ul. Bora-Komorowskiego</summary>
+    <category term="interpelacja"/>
+  </entry>
+  <entry>
+    <title>Interpelacja: zmniejszenia liczby oddziałów przedszkolnych w placówkach samorządowych</title>
+    <link href="https://krakow.radoskop.pl/profil/malgorzata-kot/" rel="alternate" type="text/html"/>
+    <id>https://krakow.radoskop.pl/profil/malgorzata-kot/#interpelacja</id>
+    <published>2026-05-05T12:00:00+01:00</published>
+    <updated>2026-05-05T12:00:00+01:00</updated>
+    <summary type="html">Małgorzata Kot. zmniejszenia liczby oddziałów przedszkolnych w placówkach samorządowych</summary>
+    <category term="interpelacja"/>
+  </entry>
   <entry>
     <title>Interpelacja: utworzenia dodatkowego dojazdu, w tym drogi pożarowej, z ul. Łąkowej do budynku mieszkalnego przy ul</title>
     <link href="https://krakow.radoskop.pl/profil/piotr-moskala/" rel="alternate" type="text/html"/>
@@ -35,15 +53,6 @@
     <published>2026-04-30T12:00:00+01:00</published>
     <updated>2026-04-30T12:00:00+01:00</updated>
     <summary type="html">Łukasz Maślona. masterplanu Płaszów - Rybitwy</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: ROD Drożdżownia</title>
-    <link href="https://krakow.radoskop.pl/profil/lukasz-gibala/" rel="alternate" type="text/html"/>
-    <id>https://krakow.radoskop.pl/profil/lukasz-gibala/#interpelacja</id>
-    <published>2026-04-28T12:00:00+01:00</published>
-    <updated>2026-04-28T12:00:00+01:00</updated>
-    <summary type="html">Łukasz Gibała. ROD Drożdżownia</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>
@@ -116,15 +125,6 @@
     <published>2026-04-23T12:00:00+01:00</published>
     <updated>2026-04-23T12:00:00+01:00</updated>
     <summary type="html">Włodzimierz Pietrus. realizacji działan zmierzających do budowy nowego stadionu Hutnika</summary>
-    <category term="interpelacja"/>
-  </entry>
-  <entry>
-    <title>Interpelacja: miejsc parkingowych pozostających w dyspozycji UMK w strefie A</title>
-    <link href="https://krakow.radoskop.pl/profil/malgorzata-kot/" rel="alternate" type="text/html"/>
-    <id>https://krakow.radoskop.pl/profil/malgorzata-kot/#interpelacja</id>
-    <published>2026-04-23T12:00:00+01:00</published>
-    <updated>2026-04-23T12:00:00+01:00</updated>
-    <summary type="html">Małgorzata Kot. miejsc parkingowych pozostających w dyspozycji UMK w strefie A</summary>
     <category term="interpelacja"/>
   </entry>
   <entry>

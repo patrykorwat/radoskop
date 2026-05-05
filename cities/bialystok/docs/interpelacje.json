@@ -1,5 +1,49 @@
 [
   {
+    "nr": "351",
+    "przedmiot": "zakupu paliwa i wykorzystywaniu pojazdów służbowych Urzędu Miejskiego",
+    "radny": "Jacek Krzysztof Chańko",
+    "data_wplywu": "2026-04-30",
+    "bip_url": "https://www.bip.bialystok.pl/wladze/rada_miasta_bialystok/interpelacje-i-zapytania/nr-interpelacji-kadencja-2024-2029-351.html",
+    "typ": "interpelacja",
+    "kadencja": "IX",
+    "data_przekazania": "Data przekazania do Prezydenta",
+    "tresc_url": "https://www.bip.bialystok.pl/resource/103940/J.+Cha%25C5%2584ko+04.05.2026+%25283%2529.pdf",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103940/J.+Cha%25C5%2584ko+04.05.2026+%25283%2529.pdf"
+      }
+    ],
+    "kategoria": "administracja",
+    "data_odpowiedzi": "Data przekazania do Prezydenta",
+    "odpowiedz_url": "",
+    "odpowiedz_status": "",
+    "nr_sprawy": "351"
+  },
+  {
+    "nr": "350",
+    "przedmiot": "procedur kontroli segregacji odpadów komunalnych oraz zasad nakładania kar",
+    "radny": "Jacek Krzysztof Chańko",
+    "data_wplywu": "2026-04-30",
+    "bip_url": "https://www.bip.bialystok.pl/wladze/rada_miasta_bialystok/interpelacje-i-zapytania/nr-interpelacji-kadencja-2024-2029-350.html",
+    "typ": "interpelacja",
+    "kadencja": "IX",
+    "data_przekazania": "Data przekazania do Prezydenta",
+    "tresc_url": "https://www.bip.bialystok.pl/resource/103939/J.+Cha%25C5%2584ko+04.05.2026+%25282%2529.pdf",
+    "zalaczniki": [
+      {
+        "nazwa": "Interpelacja (skan)",
+        "url": "https://www.bip.bialystok.pl/resource/103939/J.+Cha%25C5%2584ko+04.05.2026+%25282%2529.pdf"
+      }
+    ],
+    "kategoria": "administracja",
+    "data_odpowiedzi": "Data przekazania do Prezydenta",
+    "odpowiedz_url": "",
+    "odpowiedz_status": "",
+    "nr_sprawy": "350"
+  },
+  {
     "nr": "349",
     "przedmiot": "stanu procedowania Zintegrowanych Planów Inwestycyjnych",
     "radny": "Jacek Krzysztof Chańko",

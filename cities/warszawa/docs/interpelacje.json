@@ -1200,21 +1200,6 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/luczak-melania-interpelacja-nr-1763"
   },
   {
-    "cri": "1767",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Wertenstein-Żuławski Piotr",
-    "przedmiot": "brakującego połączenia drogą rowerową Saskiej Kępy od ul. Jakubowskiej z ul. Wybrzeże Szczecińskie.",
-    "data_wplywu": "2026-03-26",
-    "klub": "Klub Koalicja Obywatelska",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1767_int_26_03_2026_Wertenstein-Zulawski.pdf/63e6014c-412a-0b99-b4dd-5f949050a836?t=1774859063038",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/wertenstein-zulawski-piotr-interpelacja-nr-1767"
-  },
-  {
     "cri": "1764",
     "typ": "interpelacja",
     "rok": 2026,
@@ -1230,19 +1215,19 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/wertenstein-zulawski-piotr-interpelacja-nr-1764"
   },
   {
-    "cri": "1761",
+    "cri": "1767",
     "typ": "interpelacja",
     "rok": 2026,
     "kadencja": "2024-2029",
-    "radny": "Łuczak Melania",
-    "przedmiot": "zezwolenia na wykonanie nowego przyłącza elektrycznego do szkoły przy ul. Bachmackiej 3 w Warszawie.",
+    "radny": "Wertenstein-Żuławski Piotr",
+    "przedmiot": "brakującego połączenia drogą rowerową Saskiej Kępy od ul. Jakubowskiej z ul. Wybrzeże Szczecińskie.",
     "data_wplywu": "2026-03-26",
-    "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
+    "klub": "Klub Koalicja Obywatelska",
     "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1761_int_26_03_2026_Luczak.pdf/42a02926-ae2a-806b-ef55-d761ee906e51?t=1774606067096",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1767_int_26_03_2026_Wertenstein-Zulawski.pdf/63e6014c-412a-0b99-b4dd-5f949050a836?t=1774859063038",
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/luczak-melania-interpelacja-nr-1761"
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/wertenstein-zulawski-piotr-interpelacja-nr-1767"
   },
   {
     "cri": "1765",
@@ -1290,19 +1275,19 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/wertenstein-zulawski-piotr-interpelacja-nr-1766"
   },
   {
-    "cri": "1757",
+    "cri": "1761",
     "typ": "interpelacja",
     "rok": 2026,
     "kadencja": "2024-2029",
-    "radny": "Budziszewski Mariusz",
-    "przedmiot": "przebudowy ul. Grzybowskiej.",
-    "data_wplywu": "2026-03-25",
-    "klub": "Klub Koalicja Obywatelska",
+    "radny": "Łuczak Melania",
+    "przedmiot": "zezwolenia na wykonanie nowego przyłącza elektrycznego do szkoły przy ul. Bachmackiej 3 w Warszawie.",
+    "data_wplywu": "2026-03-26",
+    "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
     "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1757_int_25_03_2026_Budziszewski.pdf/1575fca3-9508-cff9-7d34-a059732dfff9?t=1774606066017",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1761_int_26_03_2026_Luczak.pdf/42a02926-ae2a-806b-ef55-d761ee906e51?t=1774606067096",
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/budziszewski-mariusz-interpelacja-nr-1757"
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/luczak-melania-interpelacja-nr-1761"
   },
   {
     "cri": "1759",
@@ -1318,6 +1303,21 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/budziszewski-mariusz-interpelacja-nr-1759"
+  },
+  {
+    "cri": "1757",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Budziszewski Mariusz",
+    "przedmiot": "przebudowy ul. Grzybowskiej.",
+    "data_wplywu": "2026-03-25",
+    "klub": "Klub Koalicja Obywatelska",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1757_int_25_03_2026_Budziszewski.pdf/1575fca3-9508-cff9-7d34-a059732dfff9?t=1774606066017",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/budziszewski-mariusz-interpelacja-nr-1757"
   },
   {
     "cri": "1760",
@@ -1380,21 +1380,6 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/zablocki-wojciech-interpelacja-nr-1755"
   },
   {
-    "cri": "1754",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Szczepańska Marta",
-    "przedmiot": "dzikich zwierząt na terenie m.st. Warszawy.",
-    "data_wplywu": "2026-03-24",
-    "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1754_int_24_03_2026_Szczepanska.pdf/0ac6f7cc-1435-e53f-f546-d09f0f2bcf91?t=1774439976446",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/szczepanska-marta-interpelacja-nr-1754"
-  },
-  {
     "cri": "1753",
     "typ": "interpelacja",
     "rok": 2026,
@@ -1410,19 +1395,19 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/szczepanska-marta-interpelacja-nr-1753"
   },
   {
-    "cri": "1746",
+    "cri": "1754",
     "typ": "interpelacja",
     "rok": 2026,
     "kadencja": "2024-2029",
-    "radny": "Kowalczyk Damian",
-    "przedmiot": "sytuacji sekcji bokserskiej Legii Warszawa (Bemowo) oraz braku udziału klubu w rozgrywkach Polskiej Ligi Boksu.",
-    "data_wplywu": "2026-03-20",
-    "klub": "Klub Prawo i Sprawiedliwość",
+    "radny": "Szczepańska Marta",
+    "przedmiot": "dzikich zwierząt na terenie m.st. Warszawy.",
+    "data_wplywu": "2026-03-24",
+    "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
     "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1746_int_20_03_2026_Kowalczyk.pdf/7f098128-ddbd-141f-0968-1a71fd05594a?t=1774262778871",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1754_int_24_03_2026_Szczepanska.pdf/0ac6f7cc-1435-e53f-f546-d09f0f2bcf91?t=1774439976446",
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/kowalczyk-damian-interpelacja-nr-1746"
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/szczepanska-marta-interpelacja-nr-1754"
   },
   {
     "cri": "1750",
@@ -1455,6 +1440,36 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/smelka-leszczynska-zofia-interpelacja-nr-1751"
   },
   {
+    "cri": "1746",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Kowalczyk Damian",
+    "przedmiot": "sytuacji sekcji bokserskiej Legii Warszawa (Bemowo) oraz braku udziału klubu w rozgrywkach Polskiej Ligi Boksu.",
+    "data_wplywu": "2026-03-20",
+    "klub": "Klub Prawo i Sprawiedliwość",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1746_int_20_03_2026_Kowalczyk.pdf/7f098128-ddbd-141f-0968-1a71fd05594a?t=1774262778871",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/kowalczyk-damian-interpelacja-nr-1746"
+  },
+  {
+    "cri": "1752",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Szyszko Piotr",
+    "przedmiot": "opłat za połączenia z numerem 19115",
+    "data_wplywu": "2026-03-20",
+    "klub": "Klub Prawo i Sprawiedliwość",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1752_int_20_03_2026_Szyszko.pdf/7a9add4f-f9c6-392e-c3ce-4c3138a57a1e?t=1774343987251",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/szyszko-piotr-interpelacja-nr-1752"
+  },
+  {
     "cri": "1747",
     "typ": "interpelacja",
     "rok": 2026,
@@ -1483,21 +1498,6 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/kowalczyk-damian-interpelacja-nr-1749"
-  },
-  {
-    "cri": "1752",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Szyszko Piotr",
-    "przedmiot": "opłat za połączenia z numerem 19115",
-    "data_wplywu": "2026-03-20",
-    "klub": "Klub Prawo i Sprawiedliwość",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1752_int_20_03_2026_Szyszko.pdf/7a9add4f-f9c6-392e-c3ce-4c3138a57a1e?t=1774343987251",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/szyszko-piotr-interpelacja-nr-1752"
   },
   {
     "cri": "1748",
@@ -1905,21 +1905,6 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mazurek-piotr-pis-interpelacja-nr-1716"
   },
   {
-    "cri": "1726",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Potapowicz Sławomir",
-    "przedmiot": "informacji w sprawie środków przeznaczonych na inwestycje wodno-kanalizacyjne.",
-    "data_wplywu": "2026-03-12",
-    "klub": "Klub Koalicja Obywatelska",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1726_int_12_03_2026_Potapowicz_Spinkiewicz.pdf/6829ccf8-0cc8-8827-3ab9-417cf30d688e?t=1773401709780",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/grupa-radnych-interpelacja-nr-1726"
-  },
-  {
     "cri": "1720",
     "typ": "interpelacja",
     "rok": 2026,
@@ -1935,19 +1920,19 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mazurek-piotr-pis-interpelacja-nr-1720"
   },
   {
-    "cri": "1732",
+    "cri": "1726",
     "typ": "interpelacja",
     "rok": 2026,
     "kadencja": "2024-2029",
-    "radny": "Wertenstein-Żuławski Piotr",
-    "przedmiot": "ataku wandali na stacji metra Wawrzyszew w dniu 11 marca 2026 r. oraz braku właściwej reakcji służb.",
+    "radny": "Potapowicz Sławomir",
+    "przedmiot": "informacji w sprawie środków przeznaczonych na inwestycje wodno-kanalizacyjne.",
     "data_wplywu": "2026-03-12",
     "klub": "Klub Koalicja Obywatelska",
     "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1732_int_12_03_2026_Wertenstein-Zulawski.pdf/488a847d-a27f-d9c6-ed1a-5bd50feadd9a?t=1773409968453",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1726_int_12_03_2026_Potapowicz_Spinkiewicz.pdf/6829ccf8-0cc8-8827-3ab9-417cf30d688e?t=1773401709780",
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/wertenstein-zulawski-piotr-interpelacja-nr-1732"
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/grupa-radnych-interpelacja-nr-1726"
   },
   {
     "cri": "1727",
@@ -1978,6 +1963,21 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/binkowski-maciej-interpelacja-nr-1725"
+  },
+  {
+    "cri": "1732",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Wertenstein-Żuławski Piotr",
+    "przedmiot": "ataku wandali na stacji metra Wawrzyszew w dniu 11 marca 2026 r. oraz braku właściwej reakcji służb.",
+    "data_wplywu": "2026-03-12",
+    "klub": "Klub Koalicja Obywatelska",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1732_int_12_03_2026_Wertenstein-Zulawski.pdf/488a847d-a27f-d9c6-ed1a-5bd50feadd9a?t=1773409968453",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/wertenstein-zulawski-piotr-interpelacja-nr-1732"
   },
   {
     "cri": "1717",
@@ -2055,36 +2055,6 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mazurek-piotr-pis-interpelacja-nr-1712"
   },
   {
-    "cri": "1705",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Potapowicz Sławomir",
-    "przedmiot": "skrócenia trasy linii 521.",
-    "data_wplywu": "2026-03-10",
-    "klub": "Klub Koalicja Obywatelska",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1705_int_10_03_2026_Potapowicz.pdf/ee50b19a-74ea-2c88-1d20-0d538b777c4d?t=1773217131724",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/potapowicz-slawomir-interpelacja-nr-1705"
-  },
-  {
-    "cri": "1709",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Szymborska Michalina",
-    "przedmiot": "sytuacji mieszkańców budynków przy ul. Górczewskiej.",
-    "data_wplywu": "2026-03-10",
-    "klub": "Klub Prawo i Sprawiedliwość",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1709_int_10_03_2026_Szymborska.pdf/1a9feca6-e733-1c19-0968-8f39b88f3a5a?t=1773303804107",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/szymborska-michalina-interpelacja-nr-1709"
-  },
-  {
     "cri": "Z1706",
     "typ": "zapytanie",
     "rok": 2026,
@@ -2113,6 +2083,36 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/niewitecka-renata-interpelacja-nr-1707"
+  },
+  {
+    "cri": "1709",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Szymborska Michalina",
+    "przedmiot": "sytuacji mieszkańców budynków przy ul. Górczewskiej.",
+    "data_wplywu": "2026-03-10",
+    "klub": "Klub Prawo i Sprawiedliwość",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1709_int_10_03_2026_Szymborska.pdf/1a9feca6-e733-1c19-0968-8f39b88f3a5a?t=1773303804107",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/szymborska-michalina-interpelacja-nr-1709"
+  },
+  {
+    "cri": "1705",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Potapowicz Sławomir",
+    "przedmiot": "skrócenia trasy linii 521.",
+    "data_wplywu": "2026-03-10",
+    "klub": "Klub Koalicja Obywatelska",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1705_int_10_03_2026_Potapowicz.pdf/ee50b19a-74ea-2c88-1d20-0d538b777c4d?t=1773217131724",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/potapowicz-slawomir-interpelacja-nr-1705"
   },
   {
     "cri": "1708",
@@ -2145,21 +2145,6 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/figura-dariusz-interpelacja-nr-1704"
   },
   {
-    "cri": "Z1702",
-    "typ": "zapytanie",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Łuczak Melania",
-    "przedmiot": "informacji Urzędu m.st. Warszawy nt. realizacji programu remontów kamienic wyłączonych z użytkowania.",
-    "data_wplywu": "2026-03-06",
-    "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1702_zap_06_03_2026_Luczak.pdf/12301408-590d-a945-5647-d7936d89e9fa?t=1773143798266",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/luczak-melania-zapytanie-nr-1702"
-  },
-  {
     "cri": "1703",
     "typ": "interpelacja",
     "rok": 2026,
@@ -2188,6 +2173,21 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/mencwel-jan-interpelacja-nr-1701"
+  },
+  {
+    "cri": "Z1702",
+    "typ": "zapytanie",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Łuczak Melania",
+    "przedmiot": "informacji Urzędu m.st. Warszawy nt. realizacji programu remontów kamienic wyłączonych z użytkowania.",
+    "data_wplywu": "2026-03-06",
+    "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1702_zap_06_03_2026_Luczak.pdf/12301408-590d-a945-5647-d7936d89e9fa?t=1773143798266",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/luczak-melania-zapytanie-nr-1702"
   },
   {
     "cri": "1700",
@@ -2265,66 +2265,6 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1690"
   },
   {
-    "cri": "1695",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Borowska Agnieszka",
-    "przedmiot": "budowy biblioteki oraz wzmocnienia infrastruktury społecznej i kultury w rejonie Kobiałka, Brzeziny (Białołęka).",
-    "data_wplywu": "2026-03-05",
-    "klub": "Klub Koalicja Obywatelska",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1695_int_05_03_2026_Borowska.pdf/f727a674-059c-1f6e-8c59-aa9a2ab5fe8a?t=1772792280294",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1695"
-  },
-  {
-    "cri": "1687",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Borowska Agnieszka",
-    "przedmiot": "budowy żłobka przy ul. Kobiałka.",
-    "data_wplywu": "2026-03-05",
-    "klub": "Klub Koalicja Obywatelska",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1687_int_05_03_2026_Borowska.pdf/374ab7ba-4821-47dd-bf99-be0c80cb5565?t=1772792278269",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1687"
-  },
-  {
-    "cri": "1683",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Borowska Agnieszka",
-    "przedmiot": "budowy parkingu tymczasowego przy stacji PKP Płudy.",
-    "data_wplywu": "2026-03-05",
-    "klub": "Klub Koalicja Obywatelska",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1683_int_05_03_2026_Borowska.pdf/8821cc4e-0bb5-996e-e6b2-4e4fea35d91c?t=1772792277275",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1683"
-  },
-  {
-    "cri": "1680",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Zioło-Pużuk Karolina",
-    "przedmiot": "wyposażenia autobusów miejskich w apteczki pierwszej pomocy.",
-    "data_wplywu": "2026-03-05",
-    "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1680_int_05_03_2026_Ziolo-Puzuk.pdf/dd481c55-0c1a-3a10-11b8-91cfa7f88df7?t=1772792276368",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/ziolo-puzuk-karolina-interpelacja-nr-1680"
-  },
-  {
     "cri": "1694",
     "typ": "interpelacja",
     "rok": 2026,
@@ -2353,6 +2293,36 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/grupa-radnych-interpelacja-nr-1679"
+  },
+  {
+    "cri": "1695",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Borowska Agnieszka",
+    "przedmiot": "budowy biblioteki oraz wzmocnienia infrastruktury społecznej i kultury w rejonie Kobiałka, Brzeziny (Białołęka).",
+    "data_wplywu": "2026-03-05",
+    "klub": "Klub Koalicja Obywatelska",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1695_int_05_03_2026_Borowska.pdf/f727a674-059c-1f6e-8c59-aa9a2ab5fe8a?t=1772792280294",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1695"
+  },
+  {
+    "cri": "1687",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Borowska Agnieszka",
+    "przedmiot": "budowy żłobka przy ul. Kobiałka.",
+    "data_wplywu": "2026-03-05",
+    "klub": "Klub Koalicja Obywatelska",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1687_int_05_03_2026_Borowska.pdf/374ab7ba-4821-47dd-bf99-be0c80cb5565?t=1772792278269",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1687"
   },
   {
     "cri": "1693",
@@ -2415,19 +2385,34 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1691"
   },
   {
-    "cri": "1697",
+    "cri": "1683",
     "typ": "interpelacja",
     "rok": 2026,
     "kadencja": "2024-2029",
-    "radny": "Gogol Magdalena",
-    "przedmiot": "remontu nawierzchni ul. Radiowej na odcinku ul. Powstańców Śląskich - rondo płk. Adameckiego.",
+    "radny": "Borowska Agnieszka",
+    "przedmiot": "budowy parkingu tymczasowego przy stacji PKP Płudy.",
     "data_wplywu": "2026-03-05",
     "klub": "Klub Koalicja Obywatelska",
     "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1697_int_05_03_2026_Gogol_J%C3%B3%C5%BAwiak_.pdf/773dc1be-bc1d-28dd-b007-86d65fd790a0?t=1773054201762",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1683_int_05_03_2026_Borowska.pdf/8821cc4e-0bb5-996e-e6b2-4e4fea35d91c?t=1772792277275",
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/grupa-radnych-interpelacja-nr-1697"
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1683"
+  },
+  {
+    "cri": "1680",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Zioło-Pużuk Karolina",
+    "przedmiot": "wyposażenia autobusów miejskich w apteczki pierwszej pomocy.",
+    "data_wplywu": "2026-03-05",
+    "klub": "Klub Lewica - Miasto Jest Nasze - Wspólne Jutro",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1680_int_05_03_2026_Ziolo-Puzuk.pdf/dd481c55-0c1a-3a10-11b8-91cfa7f88df7?t=1772792276368",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/ziolo-puzuk-karolina-interpelacja-nr-1680"
   },
   {
     "cri": "1685",
@@ -2443,6 +2428,36 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1685"
+  },
+  {
+    "cri": "1697",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Gogol Magdalena",
+    "przedmiot": "remontu nawierzchni ul. Radiowej na odcinku ul. Powstańców Śląskich - rondo płk. Adameckiego.",
+    "data_wplywu": "2026-03-05",
+    "klub": "Klub Koalicja Obywatelska",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1697_int_05_03_2026_Gogol_J%C3%B3%C5%BAwiak_.pdf/773dc1be-bc1d-28dd-b007-86d65fd790a0?t=1773054201762",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/grupa-radnych-interpelacja-nr-1697"
+  },
+  {
+    "cri": "1684",
+    "typ": "interpelacja",
+    "rok": 2026,
+    "kadencja": "2024-2029",
+    "radny": "Borowska Agnieszka",
+    "przedmiot": "Warszawskiego Centrum Sportów Wodnych z Portem Żerańskim.",
+    "data_wplywu": "2026-03-05",
+    "klub": "Klub Koalicja Obywatelska",
+    "odpowiedz_status": "Udzielono",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1684_int_05_03_2026_Borowska.pdf/eaa9c81c-ade7-bcd8-6bf9-49e7d96090c4?t=1772792277540",
+    "odpowiedz_url": "",
+    "data_odpowiedzi": "",
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1684"
   },
   {
     "cri": "1682",
@@ -2475,19 +2490,19 @@
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1681"
   },
   {
-    "cri": "1684",
+    "cri": "1696",
     "typ": "interpelacja",
     "rok": 2026,
     "kadencja": "2024-2029",
     "radny": "Borowska Agnieszka",
-    "przedmiot": "Warszawskiego Centrum Sportów Wodnych z Portem Żerańskim.",
+    "przedmiot": "modernizacji obwałowania rzeki Długiej.",
     "data_wplywu": "2026-03-05",
     "klub": "Klub Koalicja Obywatelska",
     "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1684_int_05_03_2026_Borowska.pdf/eaa9c81c-ade7-bcd8-6bf9-49e7d96090c4?t=1772792277540",
+    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1696_int_05_03_2026_Borowska.pdf/ede350e6-47fd-bd81-f173-72f32330227a?t=1772792280528",
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1684"
+    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1696"
   },
   {
     "cri": "1692",
@@ -2503,21 +2518,6 @@
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1692"
-  },
-  {
-    "cri": "1696",
-    "typ": "interpelacja",
-    "rok": 2026,
-    "kadencja": "2024-2029",
-    "radny": "Borowska Agnieszka",
-    "przedmiot": "modernizacji obwałowania rzeki Długiej.",
-    "data_wplywu": "2026-03-05",
-    "klub": "Klub Koalicja Obywatelska",
-    "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1696_int_05_03_2026_Borowska.pdf/ede350e6-47fd-bd81-f173-72f32330227a?t=1772792280528",
-    "odpowiedz_url": "",
-    "data_odpowiedzi": "",
-    "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/borowska-agnieszka-interpelacja-nr-1696"
   },
   {
     "cri": "1678",
@@ -11769,7 +11769,7 @@
     "data_wplywu": "2025-04-16",
     "klub": "Klub Prawo i Sprawiedliwość",
     "odpowiedz_status": "Udzielono",
-    "tresc_url": "https://bip.warszawa.pl/documents/53790/1628178/1064_int_16_04_2025_Cieslikowski.pdf/59921edf-f85c-a2dd-7e88-b0c9a2a5e8a1?t=1744894441317",
+    "tresc_url": "",
     "odpowiedz_url": "",
     "data_odpowiedzi": "",
     "bip_url": "https://bip.warszawa.pl/web/rada-warszawy/-/cieslikowski-jacek-interpelacja-nr-1064"

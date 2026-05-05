@@ -708,21 +708,29 @@
     "bip_url": "https://bip.um.wroc.pl/interpelacja/89070/interpelacja-w-sprawie-naglego-przerwania-i-braku-kontynuacji-programu-bezpieczna-mama",
     "typ": "interpelacja",
     "radny": "Andrzej Kilijanek",
-    "status": "oczekuje na odpowiedź",
+    "status": "udzielono odpowiedzi",
     "kadencja": "IX",
     "typ_full": "Interpelacja",
     "data_wplywu": "2026-04-24",
     "tresc_url": "https://bip.um.wroc.pl/attachments/download/173738",
+    "odpowiedz_url": "https://bip.um.wroc.pl/attachments/download/174104",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja",
         "url": "https://bip.um.wroc.pl/attachments/download/173738"
+      },
+      {
+        "nazwa": "Odpowiedź na interpelację",
+        "url": "https://bip.um.wroc.pl/attachments/download/174103"
+      },
+      {
+        "nazwa": "Odpowiedź na interpelację (wersja tekstowa)",
+        "url": "https://bip.um.wroc.pl/attachments/download/174104"
       }
     ],
     "kategoria": "bezpieczeństwo",
-    "odpowiedz_status": "oczekuje na odpowiedź",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "data_odpowiedzi": "",
-    "odpowiedz_url": "",
     "nr_sprawy": ""
   },
   {
@@ -1152,21 +1160,29 @@
     "bip_url": "https://bip.um.wroc.pl/interpelacja/88770/interpelacja-w-sprawie-planu-mobilnosci-dla-urzedu-miejskiego-wroclawia",
     "typ": "interpelacja",
     "radny": "Jakub Nowotarski",
-    "status": "oczekuje na odpowiedź",
+    "status": "udzielono odpowiedzi",
     "kadencja": "IX",
     "typ_full": "Interpelacja",
     "data_wplywu": "2026-04-09",
     "tresc_url": "https://bip.um.wroc.pl/attachments/download/173072",
+    "odpowiedz_url": "https://bip.um.wroc.pl/attachments/download/174098",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja",
         "url": "https://bip.um.wroc.pl/attachments/download/173072"
+      },
+      {
+        "nazwa": "Odpowiedź na interpelację",
+        "url": "https://bip.um.wroc.pl/attachments/download/174097"
+      },
+      {
+        "nazwa": "Odpowiedź na interpelację (wersja tekstowa)",
+        "url": "https://bip.um.wroc.pl/attachments/download/174098"
       }
     ],
     "kategoria": "administracja",
-    "odpowiedz_status": "oczekuje na odpowiedź",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "data_odpowiedzi": "",
-    "odpowiedz_url": "",
     "nr_sprawy": ""
   },
   {
@@ -1226,21 +1242,29 @@
     "bip_url": "https://bip.um.wroc.pl/interpelacja/88767/interpelacja-w-sprawie-trasy-rowerowej-w-ciagu-ulic-bozego-ciala-widok-i-szewskiej",
     "typ": "interpelacja",
     "radny": "Jakub Nowotarski",
-    "status": "oczekuje na odpowiedź",
+    "status": "udzielono odpowiedzi",
     "kadencja": "IX",
     "typ_full": "Interpelacja",
     "data_wplywu": "2026-04-09",
     "tresc_url": "https://bip.um.wroc.pl/attachments/download/173069",
+    "odpowiedz_url": "https://bip.um.wroc.pl/attachments/download/174102",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja",
         "url": "https://bip.um.wroc.pl/attachments/download/173069"
+      },
+      {
+        "nazwa": "Odpowiedź na interpelację",
+        "url": "https://bip.um.wroc.pl/attachments/download/174101"
+      },
+      {
+        "nazwa": "Odpowiedź na interpelację (wersja tekstowa)",
+        "url": "https://bip.um.wroc.pl/attachments/download/174102"
       }
     ],
     "kategoria": "transport",
-    "odpowiedz_status": "oczekuje na odpowiedź",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "data_odpowiedzi": "",
-    "odpowiedz_url": "",
     "nr_sprawy": ""
   },
   {
@@ -1274,21 +1298,29 @@
     "bip_url": "https://bip.um.wroc.pl/interpelacja/88764/interpelacja-w-sprawie-przebudowy-lub-remontu-ulicy-zaporoskiej-oraz-planowanej-budowy-przystanku-kolejowego-w-rejonie-ulicy-owsianej",
     "typ": "interpelacja",
     "radny": "Jakub Nowotarski",
-    "status": "oczekuje na odpowiedź",
+    "status": "udzielono odpowiedzi",
     "kadencja": "IX",
     "typ_full": "Interpelacja",
     "data_wplywu": "2026-04-09",
     "tresc_url": "https://bip.um.wroc.pl/attachments/download/173066",
+    "odpowiedz_url": "https://bip.um.wroc.pl/attachments/download/174100",
     "zalaczniki": [
       {
         "nazwa": "Interpelacja",
         "url": "https://bip.um.wroc.pl/attachments/download/173066"
+      },
+      {
+        "nazwa": "Odpowiedź na interpelację",
+        "url": "https://bip.um.wroc.pl/attachments/download/174099"
+      },
+      {
+        "nazwa": "Odpowiedź na interpelację (wersja tekstowa)",
+        "url": "https://bip.um.wroc.pl/attachments/download/174100"
       }
     ],
     "kategoria": "transport",
-    "odpowiedz_status": "oczekuje na odpowiedź",
+    "odpowiedz_status": "udzielono odpowiedzi",
     "data_odpowiedzi": "",
-    "odpowiedz_url": "",
     "nr_sprawy": ""
   },
   {
