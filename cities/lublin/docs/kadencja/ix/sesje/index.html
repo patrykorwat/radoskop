@@ -628,6 +628,16 @@ async function init() {
       navigateTo(path, true);
       return;
     }
+    if (path === '/aktualnosci' || path === '/aktualnosci/') {
+      // /aktualnosci/ to statyczna strona z listą wpisów (SEO content
+      // wstrzyknięty przez generate_feed.py). Nie ładujemy SPA appki —
+      // pokazujemy treść i kończymy init bez przekierowywania.
+      document.getElementById('loading').style.display = 'none';
+      const sc = document.getElementById('seo-content');
+      if (sc) sc.style.display = 'block';
+      navigateTo(path, true);
+      return;
+    }
     if (path === '/budzet' || path === '/budzet/') {
       selectKadencjaQuiet(initialKid);
       activateTab('budget');
@@ -641,7 +651,10 @@ async function init() {
       if (kid) {
         selectKadencjaQuiet(kid);
         activateTab(tab);
-        navigateTo(path, true);
+        // Jeśli URL miał "undefined" albo nieznany tab segment, przepisz
+        // na czysty mainPath() zamiast zostawiać brzydki path w pasku.
+        const cleanPath = (!SLUG_TABS[parts[1]]) ? mainPath() : path;
+        navigateTo(cleanPath, true);
         return;
       }
     }
@@ -686,8 +699,12 @@ async function selectKadencja(kid) {
 }
 
 function activateTab(tabName) {
-  trackEvent('view_tab', {tab_name: tabName});
   const allTabs = ['ranking','profiles','sessions','votes','similarity','interpelacje','budget'];
+  // Guard: invalid tabName cofamy do ranking, żeby nie zostawić currentTab jako undefined.
+  if (!tabName || tabName === 'undefined' || tabName === 'null' || !allTabs.includes(tabName)) {
+    tabName = 'ranking';
+  }
+  trackEvent('view_tab', {tab_name: tabName});
   currentTab = tabName;
   document.querySelectorAll('.tab').forEach(t => {
     t.classList.toggle('active', t.dataset.tab === tabName);
@@ -770,11 +787,21 @@ function setOgMeta(opts) {
 function mainPath(tab, kid) {
   tab = tab || currentTab;
   kid = kid || currentKid;
+  // Guard: jeśli tab/kid puste albo literal "undefined"/"null", użyj defaults.
+  // Zapobiega URL-om typu /kadencja/ix/undefined/.
+  const validTabs = ['ranking','profiles','sessions','votes','similarity','interpelacje','budget'];
+  if (!tab || tab === 'undefined' || tab === 'null' || !validTabs.includes(tab)) {
+    tab = 'ranking';
+  }
+  const defaultKid = (RAW && RAW.default_kadencja) || '2024-2029';
+  if (!kid || kid === 'undefined' || kid === 'null') {
+    kid = defaultKid;
+  }
   if (tab === 'budget') return '/budzet/';
   if (tab === 'interpelacje') return '/interpelacje/';
   const kadSlug = KAD_SLUGS[kid] || kid;
   const tabSlug = TAB_SLUGS[tab] || tab;
-  if (tab === 'ranking' && kid === (RAW.default_kadencja || '2024-2029')) return '/';
+  if (tab === 'ranking' && kid === defaultKid) return '/';
   return '/kadencja/' + kadSlug + '/' + tabSlug + '/';
 }
 
@@ -2997,6 +3024,11 @@ window.addEventListener('popstate', async () => {
   document.getElementById('app').style.display = 'block';
   if (path === '/interpelacje' || path === '/interpelacje/') {
     activateTab('interpelacje');
+  } else if (path === '/aktualnosci' || path === '/aktualnosci/') {
+    // Powrót na /aktualnosci/ przez back/forward — SPA nie reloaduje strony,
+    // ale strona aktualnosci to oddzielny dokument. Wymuszamy reload.
+    location.reload();
+    return;
   } else if (path === '/budzet' || path === '/budzet/') {
     activateTab('budget');
   } else if (path.startsWith('/kadencja/')) {
@@ -3007,6 +3039,11 @@ window.addEventListener('popstate', async () => {
       await selectKadencjaQuiet(kid);
     }
     activateTab(tab);
+    // Jeśli oryginalny URL miał "undefined" albo niezrozumiały segment,
+    // przepisz historię na czysty URL żeby user zobaczył sensowną ścieżkę.
+    if (!kid || !SLUG_TABS[parts[1]]) {
+      history.replaceState(null, '', mainPath());
+    }
   } else {
     // Root path — default kadencja + ranking
     const defaultKid = RAW.default_kadencja || RAW.kadencje[RAW.kadencje.length-1].id;

@@ -1965,6 +1965,21 @@
     "odpowiedz_status": "udzielono odpowiedzi"
   },
   {
+    "przedmiot": "Interpelacja w sprawie współpracy Miasta Lublin z miastami partnerskimi",
+    "bip_url": "https://bip.lublin.eu/rada-miasta-lublin/ix-kadencja/interpelacje-i-zapytania-radnych/interpelacja-w-sprawie-wspolpracy-miasta-lublin-z-miastami-partnerskimi,112,28665,2.html",
+    "typ": "interpelacja",
+    "typ_full": "interpelacja",
+    "nr_sprawy": "IR_38_2026",
+    "data_wplywu": "2026-02-11",
+    "data_odpowiedzi": "2026-02-26",
+    "radny": "Robert Derewenda",
+    "tresc_url": "https://bip.lublin.eu/download/gfx/bip/userfiles/_public/import/rada_miasta_lublin/ix_kadencja/interpelacje_i_zapytania/interpelacje/interp_2026/ir_38_2026.pdf",
+    "odpowiedz_url": "https://bip.lublin.eu/download/gfx/bip/userfiles/_public/import/rada_miasta_lublin/ix_kadencja/interpelacje_i_zapytania/interpelacje/interp_2026/ir_38_2026_odp.pdf",
+    "kategoria": "inne",
+    "kadencja": "IX",
+    "odpowiedz_status": "udzielono odpowiedzi"
+  },
+  {
     "przedmiot": "Interpelacja w sprawie udostępnienia energii elektrycznej dla kupców prowadzących działalność przy ul. Szambelańskiej w Lublinie",
     "bip_url": "https://bip.lublin.eu/rada-miasta-lublin/ix-kadencja/interpelacje-i-zapytania-radnych/interpelacja-w-sprawie-udostepnienia-energii-elektrycznej-dla-kupcow-prowadzacych-dzialalnosc-przy-ul-szambelanskiej-w-lublinie,48,28667,2.html",
     "typ": "interpelacja",
@@ -2801,6 +2816,21 @@
     "tresc_url": "https://bip.lublin.eu/download/gfx/bip/userfiles/_public/import/rada_miasta_lublin/ix_kadencja/interpelacje_i_zapytania/interpelacje/interp_2025/ir_348_2025.pdf",
     "odpowiedz_url": "https://bip.lublin.eu/download/gfx/bip/userfiles/_public/import/rada_miasta_lublin/ix_kadencja/interpelacje_i_zapytania/interpelacje/interp_2025/ir_348_2025_odp.pdf",
     "kategoria": "inne",
+    "kadencja": "IX",
+    "odpowiedz_status": "udzielono odpowiedzi"
+  },
+  {
+    "przedmiot": "Interpelacja w sprawie pilnego usunięcia zdegradowanych pozostałości po nieczynnym oświetleniu ciągów pieszych w rejonie przychodni zdrowia przy al. Kompozytorów Polskich 8",
+    "bip_url": "https://bip.lublin.eu/rada-miasta-lublin/ix-kadencja/interpelacje-i-zapytania-radnych/interpelacja-w-sprawie-pilnego-usuniecia-zdegradowanych-pozostalosci-po-nieczynnym-oswietleniu-ciagow-pieszych-w-rejonie-przychodni-zdrowia-przy-al-kompozytorow-polskich-8,207,28651,2.html",
+    "typ": "interpelacja",
+    "typ_full": "interpelacja",
+    "nr_sprawy": "IR_351_2025",
+    "data_wplywu": "2025-12-12",
+    "data_odpowiedzi": "2025-12-22",
+    "radny": "Tomasz Gontarz",
+    "tresc_url": "https://bip.lublin.eu/download/gfx/bip/userfiles/_public/import/rada_miasta_lublin/ix_kadencja/interpelacje_i_zapytania/interpelacje/interp_2025/ir_351_2025.pdf",
+    "odpowiedz_url": "https://bip.lublin.eu/download/gfx/bip/userfiles/_public/import/rada_miasta_lublin/ix_kadencja/interpelacje_i_zapytania/interpelacje/interp_2025/ir_351_2025_odp.pdf",
+    "kategoria": "infrastruktura",
     "kadencja": "IX",
     "odpowiedz_status": "udzielono odpowiedzi"
   },
@@ -12133,33 +12163,5 @@
     "kadencja": "IX",
     "odpowiedz_status": "udzielono odpowiedzi",
     "data_odpowiedzi": ""
-  },
-  {
-    "przedmiot": "Interpelacja w sprawie współpracy Miasta Lublin z miastami partnerskimi",
-    "bip_url": "https://bip.lublin.eu/rada-miasta-lublin/ix-kadencja/interpelacje-i-zapytania-radnych/interpelacja-w-sprawie-wspolpracy-miasta-lublin-z-miastami-partnerskimi,112,28665,2.html",
-    "typ": "interpelacja",
-    "kategoria": "inne",
-    "kadencja": "IX",
-    "odpowiedz_status": "oczekuje na odpowiedź",
-    "radny": "",
-    "data_wplywu": "",
-    "data_odpowiedzi": "",
-    "tresc_url": "",
-    "odpowiedz_url": "",
-    "nr_sprawy": ""
-  },
-  {
-    "przedmiot": "Interpelacja w sprawie pilnego usunięcia zdegradowanych pozostałości po nieczynnym oświetleniu ciągów pieszych w rejonie przychodni zdrowia przy al. Kompozytorów Polskich 8",
-    "bip_url": "https://bip.lublin.eu/rada-miasta-lublin/ix-kadencja/interpelacje-i-zapytania-radnych/interpelacja-w-sprawie-pilnego-usuniecia-zdegradowanych-pozostalosci-po-nieczynnym-oswietleniu-ciagow-pieszych-w-rejonie-przychodni-zdrowia-przy-al-kompozytorow-polskich-8,207,28651,2.html",
-    "typ": "interpelacja",
-    "kategoria": "infrastruktura",
-    "kadencja": "IX",
-    "odpowiedz_status": "oczekuje na odpowiedź",
-    "radny": "",
-    "data_wplywu": "",
-    "data_odpowiedzi": "",
-    "tresc_url": "",
-    "odpowiedz_url": "",
-    "nr_sprawy": ""
   }
 ]
