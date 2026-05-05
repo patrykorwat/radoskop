@@ -12,16 +12,14 @@
   "site_description_short": "Otwarte narzędzie monitoringu Sejmiku Województwa Pomorskiego.",
   "bip_url": "https://bip.pomorskie.eu/",
   "bip_name": "BIP Urząd Marszałkowski Województwa Pomorskiego",
-  "bip_kind": "TBD",
+  "bip_kind": "madkom_cms_rest",
   "github_url": "https://github.com/radoskoppl/radoskop",
-  "ga_id": "G-1SH24XVXR3",
   "author": "Patryk Orwat",
   "cname": "pomorskie.radoskop.pl",
   "councilor_count": 33,
   "kadencja_active": "2024-2029",
   "has_budget": false,
   "scrape_status": "active",
-  "bip_kind": "madkom_cms_rest",
   "clubs": {
     "KO": {
       "name": "Koalicja Obywatelska",

@@ -80,33 +80,18 @@ def generate_club_js(clubs: dict[str, Any]) -> str:
     return f"{club_color}\n{club_bg}\n{club_class}"
 
 
-def generate_adsense_snippet(pub_id: str) -> str:
-    if not pub_id:
-        return "<!-- No AdSense configured -->"
-    return (
-        f'<script async src="https://pagead2.googlesyndication.com/pagead/js/'
-        f'adsbygoogle.js?client={pub_id}" crossorigin="anonymous"></script>'
-    )
+# Self hosted Umami at stats.radoskop.pl. Same website ID as the city sites;
+# assembly pages report into the same entry.
+UMAMI_WEBSITE_ID = "792c059f-c77e-4b4e-ad9c-31f4a7d5cfe4"
+UMAMI_SCRIPT_URL = "https://stats.radoskop.pl/script.js"
 
 
-def generate_ga_snippet(ga_id: str) -> str:
-    if not ga_id:
-        return "<!-- No analytics configured -->"
+def generate_ga_snippet(_legacy_ga_id: str = "") -> str:
+    """Emit the Umami tracker tag (function name preserved for backwards compat)."""
     return (
-        f'<script>\n'
-        f'window.dataLayer=window.dataLayer||[];\n'
-        f'function gtag(){{dataLayer.push(arguments);}}\n'
-        f'(function(){{\n'
-        f'  var c=document.cookie.match(/(?:^|;\\s*)cookie_consent=([^;]*)/);\n'
-        f'  if(c&&c[1]==="rejected"){{window["ga-disable-{ga_id}"]=true;return;}}\n'
-        f'  if(!c||c[1]==="accepted"){{\n'
-        f'    var s=document.createElement("script");\n'
-        f'    s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id={ga_id}";\n'
-        f'    document.head.appendChild(s);\n'
-        f'    gtag("js",new Date());gtag("config","{ga_id}");\n'
-        f'  }}\n'
-        f'}})();\n'
-        f'</script>'
+        f'<script async defer '
+        f'data-website-id="{UMAMI_WEBSITE_ID}" '
+        f'src="{UMAMI_SCRIPT_URL}"></script>'
     )
 
 
@@ -205,9 +190,7 @@ def main() -> int:
         "{{BIP_NAME}}": cfg.get("bip_name", ""),
         "{{GITHUB_URL}}": cfg.get("github_url", "https://github.com/radoskoppl/radoskop"),
         "{{AUTHOR}}": cfg.get("author", ""),
-        "{{GA_ID}}": cfg.get("ga_id", ""),
-        "{{GA_SNIPPET}}": generate_ga_snippet(cfg.get("ga_id", "")),
-        "{{ADSENSE_SNIPPET}}": generate_adsense_snippet(cfg.get("adsense_pub_id", "")),
+        "{{GA_SNIPPET}}": generate_ga_snippet(),
         "{{CLUB_CSS}}": generate_club_css(cfg.get("clubs", {})),
         "{{CLUB_JS}}": generate_club_js(cfg.get("clubs", {})),
         "{{BUDGET_NOTE}}": cfg.get("budget_note", ""),

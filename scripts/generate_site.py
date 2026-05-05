@@ -53,34 +53,24 @@ def generate_club_js(clubs: dict) -> str:
     return f"{club_color}\n{club_bg}\n{club_class}"
 
 
-def generate_adsense_snippet(pub_id: str) -> str:
-    """Generate static Google AdSense tag (must be in HTML for crawler verification)."""
-    if not pub_id:
-        return "<!-- No AdSense configured -->"
-    return (
-        f'<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={pub_id}" crossorigin="anonymous"></script>'
-    )
+# Self hosted Umami at stats.radoskop.pl. One website ID for the whole project,
+# all subdomains (gdansk.radoskop.pl, bytom.radoskop.pl, ...) report into the same
+# website entry. Cookieless, GDPR clean, no consent banner needed for the tracker.
+UMAMI_WEBSITE_ID = "792c059f-c77e-4b4e-ad9c-31f4a7d5cfe4"
+UMAMI_SCRIPT_URL = "https://stats.radoskop.pl/script.js"
 
 
-def generate_ga_snippet(ga_id: str) -> str:
-    """Generate Google Analytics snippet with cookie consent check."""
-    if not ga_id:
-        return "<!-- No analytics configured -->"
+def generate_ga_snippet(_legacy_ga_id: str = "") -> str:
+    """Emit the Umami tracker tag.
+
+    Function name kept for now so existing build callers and the {{GA_SNIPPET}}
+    template placeholder do not need to change. The argument is ignored;
+    kept so callers passing a GA id do not raise.
+    """
     return (
-        f'<script>\n'
-        f'window.dataLayer=window.dataLayer||[];\n'
-        f'function gtag(){{dataLayer.push(arguments);}}\n'
-        f'(function(){{\n'
-        f'  var c=document.cookie.match(/(?:^|;\\s*)cookie_consent=([^;]*)/);\n'
-        f'  if(c&&c[1]==="rejected"){{window["ga-disable-{ga_id}"]=true;return;}}\n'
-        f'  if(!c||c[1]==="accepted"){{\n'
-        f'    var s=document.createElement("script");\n'
-        f'    s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id={ga_id}";\n'
-        f'    document.head.appendChild(s);\n'
-        f'    gtag("js",new Date());gtag("config","{ga_id}");\n'
-        f'  }}\n'
-        f'}})();\n'
-        f'</script>'
+        f'<script async defer '
+        f'data-website-id="{UMAMI_WEBSITE_ID}" '
+        f'src="{UMAMI_SCRIPT_URL}"></script>'
     )
 
 
@@ -154,9 +144,7 @@ def main():
         "{{BIP_NAME}}": config["bip_name"],
         "{{GITHUB_URL}}": config["github_url"],
         "{{AUTHOR}}": config["author"],
-        "{{GA_ID}}": config.get("ga_id", ""),
-        "{{GA_SNIPPET}}": generate_ga_snippet(config.get("ga_id", "")),
-        "{{ADSENSE_SNIPPET}}": generate_adsense_snippet(config.get("adsense_pub_id", "")),
+        "{{GA_SNIPPET}}": generate_ga_snippet(),
         "{{CLUB_CSS}}": generate_club_css(config.get("clubs", {})),
         "{{CLUB_JS}}": generate_club_js(config.get("clubs", {})),
         "{{BUDGET_NOTE}}": config.get("budget_note", ""),
@@ -199,19 +187,11 @@ def main():
         with open(output_dir / "CNAME", "w") as f:
             f.write(config["cname"] + "\n")
 
-    # ads.txt
-    pub_id = config.get("adsense_pub_id", "")
-    if pub_id:
-        with open(output_dir / "ads.txt", "w", encoding="utf-8") as f:
-            f.write(f"google.com, {pub_id}, DIRECT, f08c47fec0942fa0\n")
-
     print(f"Generated site for {config['city_name']}:")
     print(f"  index.html  → {output_dir / 'index.html'}")
     print(f"  404.html    → {output_dir / '404.html'}")
     print(f"  sitemap.xml → {output_dir / 'sitemap.xml'}")
     print(f"  robots.txt  → {output_dir / 'robots.txt'}")
-    if pub_id:
-        print(f"  ads.txt     → {output_dir / 'ads.txt'}")
     if config.get("cname"):
         print(f"  CNAME       → {output_dir / 'CNAME'}")
 

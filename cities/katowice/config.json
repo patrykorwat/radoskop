@@ -8,7 +8,6 @@
   "bip_url": "https://bip.katowice.eu/Rada_Miasta/",
   "bip_name": "BIP Katowice",
   "github_url": "https://github.com/radoskoppl/radoskop",
-  "ga_id": "G-1SH24XVXR3",
   "author": "Patryk Orwat",
   "cname": "katowice.radoskop.pl",
   "clubs": {
@@ -37,7 +36,6 @@
   "has_budget": false,
   "has_komisje": false,
   "budget_note": "",
-  "adsense_pub_id": "ca-pub-1616606963057752",
   "samorzad_type": "miasto",
   "rada_name": "Rada Miasta Katowic",
   "rada_name_genitive": "Rady Miasta Katowic"
