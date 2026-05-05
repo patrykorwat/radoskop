@@ -207,6 +207,25 @@ footer a:hover{text-decoration-color:var(--accent);}
   .ranking-bar-wrap{display:none;}
   .filter-bar input[type=text]{min-width:140px;}
   .sess-row .sess-city-col{min-width:90px;}
+
+  /* Kafelki miast na iPhone i innych wąskich ekranach */
+  .cities-grid{grid-template-columns:repeat(2,1fr);gap:8px;}
+  .city-card{padding:12px 13px;gap:4px;border-radius:10px;}
+  .city-card h2{font-size:.98rem;line-height:1.2;}
+  .city-card .ccard-head{gap:6px;flex-wrap:wrap;}
+  .city-card .ccard-meta{font-size:.62rem;letter-spacing:.02em;}
+  .city-card .ccard-stats{gap:8px;margin-top:4px;flex-wrap:wrap;}
+  .city-card .ccard-stat .n{font-size:.96rem;}
+  .city-card .ccard-stat .l{font-size:.6rem;letter-spacing:.02em;}
+  .city-card .arrow{display:none;}
+}
+@media (max-width:380px){
+  /* iPhone SE i mniejsze, mocno kompaktowo */
+  .cities-grid{gap:6px;}
+  .city-card{padding:10px 11px;}
+  .city-card h2{font-size:.92rem;}
+  .city-card .ccard-stats{gap:6px;}
+  .city-card .ccard-stat .n{font-size:.88rem;}
 }
 </style>
 </head>
