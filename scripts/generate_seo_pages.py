@@ -123,10 +123,20 @@ def write_page(path: Path, content: str):
         f.write(content)
 
 
-def process_city(city_dir: Path):
-    """Generate all SEO pages for one city."""
+def process_city(city_dir: Path, output_dir: Path | None = None):
+    """Generate all SEO pages for one city.
+
+    Reads source data (config.json, index.html, profiles.json, data.json,
+    kadencja-*.json) z `city_dir/docs/`. Pisze prerendered SEO HTML do
+    `output_dir` (jeśli podany) albo do `city_dir/docs/` (default).
+
+    Pipeline NAS używa output_dir do scratch dir żeby nie zaśmiecać
+    monorepo radoskop tysiącami HTML-i — kanonicznie idą one do S3
+    przez deploy_main_s3.py.
+    """
     docs = city_dir / "docs"
     config_path = city_dir / "config.json"
+    out = output_dir if output_dir is not None else docs
 
     if not docs.exists() or not config_path.exists():
         print(f"  Skipping {city_dir.name}: missing docs/ or config.json")
@@ -216,7 +226,7 @@ def process_city(city_dir: Path):
         )
 
         page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body)
-        write_page(docs / "profil" / slug / "index.html", page)
+        write_page(out / "profil" / slug / "index.html", page)
         profile_count += 1
 
         sitemap_entries.append({"loc": canonical, "changefreq": "weekly", "priority": "0.7"})
@@ -279,7 +289,7 @@ def process_city(city_dir: Path):
             )
 
             page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body)
-            write_page(docs / "glosowanie" / vid / "index.html", page)
+            write_page(out / "glosowanie" / vid / "index.html", page)
             vote_count += 1
 
             sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.5"})
@@ -323,7 +333,7 @@ def process_city(city_dir: Path):
             )
 
             page = make_page(main_html, canonical, title, desc, extra_body=body)
-            write_page(docs / "sesja" / snum / "index.html", page)
+            write_page(out / "sesja" / snum / "index.html", page)
             session_count += 1
 
             sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.5"})
@@ -349,7 +359,7 @@ def process_city(city_dir: Path):
         desc = f"Monitoring Rady Miasta {city_gen}, kadencja {kid}. Ranking, sesje, glosowania i aktywnosc radnych."
 
         page = make_page(main_html, canonical, title, desc)
-        write_page(docs / "kadencja" / kslug / "index.html", page)
+        write_page(out / "kadencja" / kslug / "index.html", page)
 
         sitemap_entries.append({"loc": canonical, "changefreq": "weekly", "priority": "0.8"})
 
@@ -359,7 +369,7 @@ def process_city(city_dir: Path):
             tab_desc = f"{tab_name} Rady Miasta {city_gen}, kadencja {kid}."
 
             tab_page = make_page(main_html, tab_canonical, tab_title, tab_desc)
-            write_page(docs / "kadencja" / kslug / tab_slug / "index.html", tab_page)
+            write_page(out / "kadencja" / kslug / tab_slug / "index.html", tab_page)
             kad_count += 1
 
             sitemap_entries.append({"loc": tab_canonical, "changefreq": "weekly", "priority": "0.6"})
@@ -375,7 +385,7 @@ def process_city(city_dir: Path):
         desc = f"Analiza budzetu miasta {city_gen}. Wydatki, dochody i inwestycje miejskie."
 
         page = make_page(main_html, canonical, title, desc)
-        write_page(docs / "budzet" / "index.html", page)
+        write_page(out / "budzet" / "index.html", page)
         sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.8"})
         print(f"  1 budget page")
 
@@ -386,8 +396,8 @@ def process_city(city_dir: Path):
         ("profil", f"Radni {city_gen}", f"Profile radnych {city_gen}. Frekwencja, glosowania i aktywnosc.", "0.9"),
         ("kadencja", f"Kadencje Rady Miasta {city_gen}", f"Kadencje Rady Miasta {city_gen}. Ranking, sesje i glosowania.", "0.9"),
     ]:
-        d = docs / dirname
-        if d.is_dir() or profiles:  # create even if not existing yet
+        d = out / dirname
+        if (out / dirname).is_dir() or (docs / dirname).is_dir() or profiles:
             canonical = f"{site_url}/{dirname}/"
             title = f"{title_part} \u2013 Radoskop {city_name}"
             page = make_page(main_html, canonical, title, desc_part)
@@ -401,14 +411,14 @@ def process_city(city_dir: Path):
     privacy_title = f"Polityka prywatności \u2013 Radoskop {city_name}"
     privacy_desc = f"Polityka prywatności i informacje o plikach cookies serwisu Radoskop {city_name}."
     privacy_page = make_page(main_html, privacy_canonical, privacy_title, privacy_desc)
-    write_page(docs / "polityka-prywatnosci" / "index.html", privacy_page)
+    write_page(out / "polityka-prywatnosci" / "index.html", privacy_page)
     sitemap_entries.append({"loc": privacy_canonical, "changefreq": "yearly", "priority": "0.3"})
 
     terms_canonical = f"{site_url}/regulamin/"
     terms_title = f"Regulamin \u2013 Radoskop {city_name}"
     terms_desc = f"Regulamin serwisu Radoskop {city_name}. Źródła danych, metodologia i zasady korzystania."
     terms_page = make_page(main_html, terms_canonical, terms_title, terms_desc)
-    write_page(docs / "regulamin" / "index.html", terms_page)
+    write_page(out / "regulamin" / "index.html", terms_page)
     sitemap_entries.append({"loc": terms_canonical, "changefreq": "yearly", "priority": "0.3"})
 
     # ════════════════════════════════════════════
@@ -418,7 +428,7 @@ def process_city(city_dir: Path):
     reports_title = f"Raporty PDF \u2013 Radoskop {city_name}"
     reports_desc = f"Szczeg\u00f3\u0142owe raporty PDF z analiz\u0105 pracy radnych, klub\u00f3w i rady miasta {city_gen}. Frekwencja, g\u0142osowania, rebelie."
     reports_page = make_page(main_html, reports_canonical, reports_title, reports_desc)
-    write_page(docs / "raporty" / "index.html", reports_page)
+    write_page(out / "raporty" / "index.html", reports_page)
     sitemap_entries.append({"loc": reports_canonical, "changefreq": "weekly", "priority": "0.6"})
 
     # ════════════════════════════════════════════
@@ -452,7 +462,8 @@ def process_city(city_dir: Path):
         )
     sitemap_lines.append('</urlset>')
 
-    with open(docs / "sitemap.xml", "w", encoding="utf-8") as f:
+    out.mkdir(parents=True, exist_ok=True)
+    with open(out / "sitemap.xml", "w", encoding="utf-8") as f:
         f.write("\n".join(sitemap_lines) + "\n")
 
     total_urls = len(sitemap_entries) + 1
@@ -463,9 +474,17 @@ def main():
     parser = argparse.ArgumentParser(description="Generate SEO pages for Radoskop")
     parser.add_argument("--base", required=True, help="Base directory containing radoskop-* city dirs")
     parser.add_argument("--city", default=None, help="Process only this city (e.g. radoskop-gdansk)")
+    parser.add_argument(
+        "--output-base", default=None,
+        help="Optional separate output base directory. Generated SEO pages "
+             "will go to {output-base}/{slug}/ instead of {base}/{slug}/docs/. "
+             "Use this to keep monorepo working tree free of generated files; "
+             "deploy the output dir to S3 separately.",
+    )
     args = parser.parse_args()
 
     base = Path(args.base)
+    output_base = Path(args.output_base) if args.output_base else None
 
     if args.city:
         slug = args.city[len("radoskop-"):] if args.city.startswith("radoskop-") else args.city
@@ -485,7 +504,9 @@ def main():
             city_dir = base / f"radoskop-{city}"
         if city_dir.exists():
             print(f"\n=== {city} ===")
-            process_city(city_dir)
+            slug = city_dir.name.removeprefix("radoskop-")
+            output_dir = (output_base / slug) if output_base else None
+            process_city(city_dir, output_dir=output_dir)
         else:
             print(f"  Skipping {city}: not found")
 
