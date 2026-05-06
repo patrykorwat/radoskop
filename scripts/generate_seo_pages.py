@@ -313,6 +313,19 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
             snum = s.get("number", "")
             if not snum:
                 continue
+            # Guard: number powinien być krótkim identyfikatorem (rzymski
+            # numer "XXIII", numer arabski "23", albo data ISO "2024-05-07").
+            # Jeśli zawiera spacje, słowo "Sesja", "Rada", "Miast" albo jest
+            # dłuższy niż 30 znaków, scrape miał problem z ekstrakcją —
+            # nie generujemy SEO page, bo brzydki URL utknie w Google index.
+            snum_str = str(snum).strip()
+            if len(snum_str) > 30 or " " in snum_str:
+                print(f"  skipping invalid session number: {snum_str!r}")
+                continue
+            lower = snum_str.lower()
+            if any(bad in lower for bad in ("sesja", "rada", "miast", "rady")):
+                print(f"  skipping suspicious session number: {snum_str!r}")
+                continue
 
             sdate = s.get("date", "")
             vote_cnt = s.get("vote_count", 0)
