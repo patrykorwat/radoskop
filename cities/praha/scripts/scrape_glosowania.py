@@ -22,7 +22,7 @@ Endpointy używane przez ten skrypt:
         Wartości voteText: "Pro", "Proti", "Zdržel se", "Nehlasoval", "Nepřítomen".
 
 Skrypt:
-1. Czyta config.json (praga_period_id, vote_text_map, result_text_map).
+1. Czyta config.json (praha_period_id, vote_text_map, result_text_map).
 2. Pobiera listę zastupitelů → buduje councilor_index oraz mapę memberId → name.
 3. Pobiera listę meetingNumbers → mapa meetingNumber → date (ISO).
 4. Pobiera wszystkie głosowania (paginowane).
@@ -45,7 +45,7 @@ Użycie:
     python3 scrape_glosowania.py
     python3 scrape_glosowania.py --max-votes 50
     python3 scrape_glosowania.py --period-id -33394 --kadencja-id 2018-2022
-    python3 scrape_glosowania.py --output /tmp/k.json --cache-dir /tmp/praga_cache
+    python3 scrape_glosowania.py --output /tmp/k.json --cache-dir /tmp/praha_cache
 """
 
 from __future__ import annotations
@@ -237,7 +237,7 @@ def build_kadencja(
     cache_dir: Path,
     max_votes: int | None,
 ) -> dict[str, Any]:
-    api_base = config.get("praga_api_base", "https://praha.eu")
+    api_base = config.get("praha_api_base", "https://praha.eu")
     vote_map = config.get("vote_text_map", {})
     result_map = config.get("result_text_map", {})
 
@@ -367,7 +367,7 @@ def build_kadencja(
                 sessions_acc[sess_key]["attendees"].add(councilor_index[ci])
 
         votes_out.append({
-            "id": f"praga_{vid}",
+            "id": f"praha_{vid}",
             "session_date": date_iso,
             "session_number": meeting_num,
             "source_url": (
@@ -424,7 +424,7 @@ def main() -> int:
     parser.add_argument("--kadencja-id", default=None,
                         help="Default: kadencja_active z config.json")
     parser.add_argument("--period-id", type=int, default=None,
-                        help="Praga API period id. Default: pobierane z config.kadencje[<id>].praga_period_id")
+                        help="Praha API period id. Default: pobierane z config.kadencje[<id>].praha_period_id")
     parser.add_argument("--output", default=None,
                         help="Plik wyjściowy. Default: docs/kadencja-{id}.json")
     parser.add_argument("--cache-dir", default=str(DEFAULT_CACHE))
@@ -444,7 +444,7 @@ def main() -> int:
         return 1
 
     kadencja_meta = config.get("kadencje", {}).get(kadencja_id, {})
-    period_id = args.period_id or kadencja_meta.get("praga_period_id") or config.get("praga_period_id")
+    period_id = args.period_id or kadencja_meta.get("praha_period_id") or config.get("praha_period_id")
     if not period_id:
         print(f"[scrape] brak period_id dla kadencji {kadencja_id}", file=sys.stderr)
         return 1

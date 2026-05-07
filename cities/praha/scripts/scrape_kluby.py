@@ -11,7 +11,7 @@ API:
         Lista członków klubu: id, fullName, email, klub.
 
 Klucze klubów w config.json (SPOLU, ANO, Pirati, PrahaSobe, STAN, SPD)
-mapujemy po praga_club_id z config.clubs.
+mapujemy po praha_club_id z config.clubs.
 
 Użycie:
     python3 scrape_kluby.py
@@ -74,28 +74,28 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", default=str(DEFAULT_CONFIG))
     parser.add_argument("--period-id", type=int, default=None,
-                        help="Default: praga_period_id z config.json")
+                        help="Default: praha_period_id z config.json")
     parser.add_argument("--dry-run", action="store_true",
                         help="Wypisz mapping ale nie pisz do config.json")
     args = parser.parse_args()
 
     config_path = Path(args.config)
     config = json.loads(config_path.read_text(encoding="utf-8"))
-    api_base = config.get("praga_api_base", "https://praha.eu")
-    period_id = args.period_id or config.get("praga_period_id")
+    api_base = config.get("praha_api_base", "https://praha.eu")
+    period_id = args.period_id or config.get("praha_period_id")
     if not period_id:
         print("[kluby] brak period_id", file=sys.stderr)
         return 1
 
-    # Mapowanie praga_club_id -> klucz w config.clubs
+    # Mapowanie praha_club_id -> klucz w config.clubs
     club_id_to_key: dict[int, str] = {}
     for key, info in config.get("clubs", {}).items():
-        cid = info.get("praga_club_id")
+        cid = info.get("praha_club_id")
         if cid is not None:
             club_id_to_key[int(cid)] = key
 
     if not club_id_to_key:
-        print("[kluby] config.clubs nie ma żadnego praga_club_id", file=sys.stderr)
+        print("[kluby] config.clubs nie ma żadnego praha_club_id", file=sys.stderr)
         return 1
 
     print(f"[kluby] pobieram listę klubów (period={period_id})", file=sys.stderr)

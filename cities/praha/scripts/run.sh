@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Wrapper pipeline scrape per kadencja dla Pragi.
+# Wrapper pipeline scrape per kadencja dla Prahy.
 #
 # Kolejność kroków:
 # 1. scrape_kluby.py     → uzupełnia config.json.club_assignments
@@ -15,10 +15,10 @@ CITY_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
 cd "$CITY_DIR"
 
-echo "[praga] [1/2] scrape_kluby.py"
+echo "[praha] [1/2] scrape_kluby.py"
 python3 scripts/scrape_kluby.py
 
-echo "[praga] [2/2] scrape_glosowania.py"
+echo "[praha] [2/2] scrape_glosowania.py"
 python3 scripts/scrape_glosowania.py "$@"
 
-echo "[praga] OK"
+echo "[praha] OK"

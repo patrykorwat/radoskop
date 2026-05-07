@@ -5,7 +5,7 @@
   "country_name": "Česko",
   "locale": "en",
   "site_title": "Radoskop Prague — how do Prague city councilors vote?",
-  "site_url": "https://praga.radoskop.pl",
+  "site_url": "https://praha.radoskop.pl",
   "site_description": "Radoskop. Open monitoring tool for Prague City Assembly (Pražské zastupitelstvo). Attendance, voting records and activity of councilors.",
   "site_description_short": "Open monitoring tool for Prague City Assembly (Pražské zastupitelstvo).",
   "bip_url": "https://praha.eu/zasedani-zastupitelstva",
@@ -13,7 +13,7 @@
   "bip_kind": "praha_liferay_api",
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
-  "cname": "praga.radoskop.pl",
+  "cname": "praha.radoskop.pl",
   "samorzad_type": "miasto",
   "rada_name": "Pražské zastupitelstvo",
   "rada_name_genitive": "Pražského zastupitelstva",
@@ -23,17 +23,17 @@
     "2022-2026": {
       "label": "Volební období 2022–2026",
       "start": "2022-09-23",
-      "praga_period_id": -36525
+      "praha_period_id": -36525
     },
     "2018-2022": {
       "label": "Volební období 2018–2022",
       "start": "2018-10-06",
-      "praga_period_id": -33394
+      "praha_period_id": -33394
     },
     "2014-2018": {
       "label": "Volební období 2014–2018",
       "start": "2014-10-11",
-      "praga_period_id": -29783
+      "praha_period_id": -29783
     }
   },
   "has_budget": false,
@@ -41,8 +41,8 @@
   "has_interpelacje": false,
   "has_stenogram": false,
   "scrape_status": "active",
-  "praga_api_base": "https://praha.eu",
-  "praga_period_id": -36525,
+  "praha_api_base": "https://praha.eu",
+  "praha_period_id": -36525,
   "vote_text_map": {
     "Pro": "za",
     "Proti": "przeciw",
@@ -60,42 +60,42 @@
       "color": "#0284c7",
       "bg": "rgba(14,165,233,0.12)",
       "avatar_bg": "#0369a1",
-      "praga_club_id": -36527
+      "praha_club_id": -36527
     },
     "ANO": {
       "name": "ANO 2011",
       "color": "#1f4ea0",
       "bg": "rgba(31,78,160,0.12)",
       "avatar_bg": "#1e3a8a",
-      "praga_club_id": -36529
+      "praha_club_id": -36529
     },
     "Pirati": {
       "name": "Piráti",
       "color": "#0c1c2e",
       "bg": "rgba(12,28,46,0.12)",
       "avatar_bg": "#0f172a",
-      "praga_club_id": -36531
+      "praha_club_id": -36531
     },
     "PrahaSobe": {
       "name": "PRAHA SOBĚ",
       "color": "#dc2626",
       "bg": "rgba(220,38,38,0.12)",
       "avatar_bg": "#b91c1c",
-      "praga_club_id": -36533
+      "praha_club_id": -36533
     },
     "STAN": {
       "name": "STAN",
       "color": "#16a34a",
       "bg": "rgba(22,163,74,0.12)",
       "avatar_bg": "#15803d",
-      "praga_club_id": -36535
+      "praha_club_id": -36535
     },
     "SPD": {
       "name": "Zastupitelský klub SPD",
       "color": "#7c3aed",
       "bg": "rgba(124,58,237,0.12)",
       "avatar_bg": "#6d28d9",
-      "praga_club_id": -36537
+      "praha_club_id": -36537
     },
     "NZ": {
       "name": "Nezařazení",
