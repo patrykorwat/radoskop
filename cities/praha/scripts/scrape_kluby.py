@@ -99,10 +99,19 @@ def main() -> int:
         return 1
 
     print(f"[kluby] pobieram listę klubów (period={period_id})", file=sys.stderr)
-    clubs = http_get_json(f"{api_base}/o/prg/clubs/period/{period_id}")
+    try:
+        clubs = http_get_json(f"{api_base}/o/prg/clubs/period/{period_id}")
+    except Exception as exc:
+        existing = len(config.get("club_assignments") or {})
+        print(f"[kluby] WARN: API praha.eu zablokowane WAF-em ({exc}).", file=sys.stderr)
+        print(f"[kluby]      Używam istniejących {existing} mapowań z config.json.", file=sys.stderr)
+        # Exit 0 — pipeline kontynuuje. config.club_assignments jest źródłem
+        # prawdy gdy api.praha.eu nie odpowiada (np. WAF block IP NAS-a).
+        return 0
     print(f"        → {len(clubs)} klubów na API", file=sys.stderr)
 
     assignments: dict[str, str] = {}
+    failed = False
     for club in clubs:
         cid = club.get("id")
         cname = club.get("name", "")
@@ -110,7 +119,12 @@ def main() -> int:
         if not key:
             print(f"  WARN: klub {cid} ({cname}) nie znaleziony w config.clubs", file=sys.stderr)
             continue
-        members = http_get_json(f"{api_base}/o/prg/clubs/{cid}/members/{period_id}")
+        try:
+            members = http_get_json(f"{api_base}/o/prg/clubs/{cid}/members/{period_id}")
+        except Exception as exc:
+            print(f"  WARN: nie udało pobrać członków klubu {cname}: {exc}", file=sys.stderr)
+            failed = True
+            break
         print(f"  {cname:30s} → {key:10s} ({len(members)} czł.)", file=sys.stderr)
         for m in members:
             full = m.get("fullName", "")
@@ -122,6 +136,11 @@ def main() -> int:
         print("\n[kluby] dry-run, mapping:")
         for name, key in sorted(assignments.items()):
             print(f"  {name} → {key}")
+        return 0
+
+    if failed or not assignments:
+        existing = len(config.get("club_assignments") or {})
+        print(f"[kluby] WARN: częściowy fail. Zostawiam istniejące {existing} mapowań w config.json.", file=sys.stderr)
         return 0
 
     config["club_assignments"] = assignments
