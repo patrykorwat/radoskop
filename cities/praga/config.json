@@ -1,0 +1,166 @@
+{
+  "city_name": "Praha",
+  "city_genitive": "Prahy",
+  "country": "cz",
+  "country_name": "Česko",
+  "locale": "cs",
+  "site_title": "Radoskop Praha — jak hlasují zastupitelé hl. m. Prahy?",
+  "site_url": "https://praga.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Pražského zastupitelstva (Rada Miasta Pragi). Frekwencja, głosowania i aktywność zastupitelů.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Pragi (Pražské zastupitelstvo).",
+  "bip_url": "https://praha.eu/zasedani-zastupitelstva",
+  "bip_name": "praha.eu",
+  "bip_kind": "praha_liferay_api",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "praga.radoskop.pl",
+  "samorzad_type": "miasto",
+  "rada_name": "Pražské zastupitelstvo",
+  "rada_name_genitive": "Pražského zastupitelstva",
+  "councilor_count": 65,
+  "kadencja_active": "2022-2026",
+  "kadencje": {
+    "2022-2026": {
+      "label": "Volební období 2022–2026",
+      "start": "2022-09-23",
+      "praga_period_id": -36525
+    },
+    "2018-2022": {
+      "label": "Volební období 2018–2022",
+      "start": "2018-10-06",
+      "praga_period_id": -33394
+    },
+    "2014-2018": {
+      "label": "Volební období 2014–2018",
+      "start": "2014-10-11",
+      "praga_period_id": -29783
+    }
+  },
+  "has_budget": false,
+  "has_komisje": true,
+  "has_interpelacje": false,
+  "has_stenogram": false,
+  "scrape_status": "active",
+  "praga_api_base": "https://praha.eu",
+  "praga_period_id": -36525,
+  "vote_text_map": {
+    "Pro": "za",
+    "Proti": "przeciw",
+    "Zdržel se": "wstrzymal_sie",
+    "Nehlasoval": "brak_glosu",
+    "Nepřítomen": "nieobecni"
+  },
+  "result_text_map": {
+    "PŘIJATO": "PRZYJETE",
+    "NEPŘIJATO": "ODRZUCONE"
+  },
+  "clubs": {
+    "SPOLU": {
+      "name": "SPOLU pro Prahu",
+      "color": "#0284c7",
+      "bg": "rgba(14,165,233,0.12)",
+      "praga_club_id": -36527
+    },
+    "ANO": {
+      "name": "ANO 2011",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "praga_club_id": -36529
+    },
+    "Pirati": {
+      "name": "Piráti",
+      "color": "#0c1c2e",
+      "bg": "rgba(12,28,46,0.12)",
+      "praga_club_id": -36531
+    },
+    "PrahaSobe": {
+      "name": "PRAHA SOBĚ",
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)",
+      "praga_club_id": -36533
+    },
+    "STAN": {
+      "name": "STAN",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "praga_club_id": -36535
+    },
+    "SPD": {
+      "name": "Zastupitelský klub SPD",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "praga_club_id": -36537
+    },
+    "NZ": {
+      "name": "Nezařazení",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Patrik Nacher": "ANO",
+    "Martin Benkovič": "ANO",
+    "Václav Bílek": "ANO",
+    "Marta Gellová": "ANO",
+    "Jan Hušbauer": "ANO",
+    "Tomáš Kaněra": "ANO",
+    "Radmila Kleslová": "ANO",
+    "Jan Kolář": "ANO",
+    "Stanislav Nekolný": "ANO",
+    "Radomír Nepil": "ANO",
+    "Marcela Plesníková": "ANO",
+    "Ondřej Prokop": "ANO",
+    "Barbora Rázga": "ANO",
+    "Lenka Vedralová": "ANO",
+    "Daniel Mazur": "Pirati",
+    "Viktor Mahrik": "Pirati",
+    "Magdalena Valdmanová": "Pirati",
+    "Jaromír Beránek": "Pirati",
+    "David Bodeček": "Pirati",
+    "Jiří Brůžek": "Pirati",
+    "Zuzana Freitas Lopesová": "Pirati",
+    "Zdeněk Hřib": "Pirati",
+    "Jana Komrsková": "Pirati",
+    "Gabriela Lněničková": "Pirati",
+    "Bara Soukup": "Pirati",
+    "Eva Tylová": "Pirati",
+    "Adam Zábranský": "Pirati",
+    "Adam Scheinherr": "PrahaSobe",
+    "Vladan Brož": "PrahaSobe",
+    "Mariana Čapková": "PrahaSobe",
+    "Jan Čižinský": "PrahaSobe",
+    "Kristýna Drápalová": "PrahaSobe",
+    "Jiří Knitl": "PrahaSobe",
+    "Kamila Matějková": "PrahaSobe",
+    "Hana Třeštíková": "PrahaSobe",
+    "Pavel Vyhnánek": "PrahaSobe",
+    "Pavel Zelenka": "PrahaSobe",
+    "Petr Zeman": "PrahaSobe",
+    "Tomáš Portlík": "SPOLU",
+    "Jiří Pospíšil": "SPOLU",
+    "Jan Wolf": "SPOLU",
+    "Michal Hroza": "SPOLU",
+    "Jan Chabr": "SPOLU",
+    "Tomáš Kaštovský": "SPOLU",
+    "Zdeněk Kovářík": "SPOLU",
+    "Lucie Kubesa": "SPOLU",
+    "Jakub Lepš": "SPOLU",
+    "Pavel Mareš": "SPOLU",
+    "Tomáš Pek": "SPOLU",
+    "Jiří Ptáček": "SPOLU",
+    "Martin Sedeke": "SPOLU",
+    "Tomáš Slabihoudek": "SPOLU",
+    "Bohuslav Svoboda": "SPOLU",
+    "Alexandra Udženija": "SPOLU",
+    "David Vodrážka": "SPOLU",
+    "Zdeněk Zajíček": "SPOLU",
+    "Kateřina Arnotová": "STAN",
+    "Michal Biskup": "STAN",
+    "Zuzana Hamanová": "STAN",
+    "Petr Hlaváček": "STAN",
+    "Antonín Klecanda": "STAN",
+    "Milan Urban": "SPD",
+    "Klára Cingrošová": "SPD",
+    "Zdeněk Seidl": "SPD"
+  }
+}
