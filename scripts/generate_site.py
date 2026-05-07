@@ -13,6 +13,10 @@ import shutil
 import sys
 from pathlib import Path
 
+# Lokalny import modułu i18n (ten sam katalog scripts/)
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from i18n import apply_locale  # noqa: E402
+
 
 def generate_club_css(clubs: dict) -> str:
     """Generate CSS classes for clubs."""
@@ -212,6 +216,11 @@ def main():
     html = template
     for placeholder, value in replacements.items():
         html = html.replace(placeholder, value)
+
+    # Lokalizacja UI dla miast spoza Polski (config.locale == "en").
+    # Polskie miasta nie mają tego pola → no-op.
+    locale = config.get("locale", "pl")
+    html = apply_locale(html, locale)
 
     # Check for remaining placeholders
     import re
