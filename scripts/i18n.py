@@ -335,21 +335,148 @@ PL_TO_DE: list[tuple[str, str]] = [
 ]
 
 
+PL_TO_CS: list[tuple[str, str]] = [
+    # ── Nawigacja i taby ─────────────────────────────────────────────
+    ("Rada Miasta {{CITY_GENITIVE}}", "Zastupitelstvo města {{CITY_NAME}}"),
+    ("Najbardziej aktywni radni", "Nejaktivnější zastupitelé"),
+    ("Najczęściej głosują tak samo", "Hlasují nejčastěji stejně"),
+    ("Najrzadziej głosują tak samo", "Hlasují nejméně často stejně"),
+    ("Profile radnych", "Profily zastupitelů"),
+    ("Ranking radnych", "Žebříček zastupitelů"),
+    ("Kto z kim głosuje", "Kdo s kým hlasuje"),
+    ("Wszystkie wyniki", "Všechny výsledky"),
+    ("Lista interpelacji i zapytań", "Interpelace a dotazy"),
+    ("Interpelacje", "Interpelace"),
+    ("interpelacji", "interpelací"),
+    ("Strona główna", "Hlavní stránka"),
+    ("Powrót do listy", "Zpět na seznam"),
+
+    # ── Filtry i sortowania ─────────────────────────────────────────
+    ("Szukaj głosowań po temacie...", "Hledat hlasování podle tématu..."),
+    ("Szukaj w interpelacjach...", "Hledat v interpelacích..."),
+    ("Następna →", "Další →"),
+    ("Następne →", "Další →"),
+    ("← Poprzednia", "← Předchozí"),
+    ("Wszystkie", "Všechny"),
+    ("Budżet", "Rozpočet"),
+    ("Sortuj po", "Řadit podle"),
+    ("Filtruj", "Filtrovat"),
+    ("Pokaż więcej", "Zobrazit více"),
+    ("Pokaż mniej", "Zobrazit méně"),
+    ("Wyczyść", "Vymazat"),
+    ("Pozostałe", "Ostatní"),
+
+    # ── Etykiety w tabelach i kartach ───────────────────────────────
+    ("Aktywność na sesjach", "Aktivita na zasedáních"),
+    ("Aktywność mówców", "Aktivita řečníků"),
+    ("Frekwencja", "Účast"),
+    ("Aktywność", "Aktivita"),
+    ("Zgodność z klubem", "Souhlas s klubem"),
+    ("Podobieństwo", "Podobnost"),
+    ("Buntów", "Vzpour"),
+    ("Sesji z wypowiedzią", "Zasedání s vystoupením"),
+    ("Słów łącznie", "Slov celkem"),
+    ("Mówców", "Řečníků"),
+    ("Słowa", "Slova"),
+    ("Słów", "Slov"),
+    ("Głosy na sesjach", "Hlasy na zasedáních"),
+    ("Głosy wbrew klubowi", "Hlasy proti klubu"),
+    ("Głosy przeciw (%)", "Proti (%)"),
+    ("Głosy za (%)", "Pro (%)"),
+    ("Głosowania budżetowe", "Rozpočtová hlasování"),
+    ("Głosowania, w których się różnili", "Hlasování, kde se lišili"),
+    ("Głosowania", "Hlasování"),
+    ("Głosowanie", "Hlasování"),
+    ("Głosowań", "Hlasování"),
+    ("Głosy", "Hlasy"),
+    ("Sesje", "Zasedání"),
+    ("Sesja", "Zasedání"),
+    ("Ładowanie sesji...", "Načítání zasedání..."),
+    ("Ładowanie głosowań...", "Načítání hlasování..."),
+    ("Porównanie metryk", "Porovnání metrik"),
+    ("Raporty klubów", "Zprávy klubů"),
+    ("Raporty radnych", "Zprávy zastupitelů"),
+    ("Pobierz kartę (PNG)", "Stáhnout kartu (PNG)"),
+    ("Pobierz kartę", "Stáhnout kartu"),
+    ("Protokół głosowania (BIP) ↗", "Záznam hlasování (zdroj) ↗"),
+    ("Struktura wydatków", "Struktura výdajů"),
+    ("Polityce prywatności", "Zásady ochrany osobních údajů"),
+    ("Rok budżetowy:", "Rozpočtový rok:"),
+    ("Komisje", "Výbory"),
+    ("Komisji", "Výborů"),
+    ("Klub", "Klub"),
+    ("Kluby", "Kluby"),
+    ("Kadencje", "Volební období"),
+    ("Kadencja", "Volební období"),
+    ("Radny/a", "Zastupitel/ka"),
+    ("Radnych", "Zastupitelů"),
+    ("Radni", "Zastupitelé"),
+    ("Okręg wyborczy", "Volební obvod"),
+    ("Temat", "Téma"),
+    ("Treść", "Obsah"),
+    ("Odpowiedź", "Odpověď"),
+    ("Data", "Datum"),
+    ("Wyniki", "Výsledky"),
+    ("Wynik", "Výsledek"),
+
+    # ── Wartości głosowań ────────────────────────────────────────────
+    ("Brak głosu", "Nehlasoval"),
+    ("Wstrzymał się", "Zdržel se"),
+    ("Wstrzymała się", "Zdržela se"),
+    ("Nieobecny", "Nepřítomen"),
+    ("Nieobecna", "Nepřítomna"),
+    ("Przyjęte", "Přijato"),
+    ("Przyjętych", "Přijato"),
+    ("Odrzucone", "Zamítnuto"),
+    ("Przeciw", "Proti"),
+    ("Za", "Pro"),
+
+    # ── Stany i błędy ────────────────────────────────────────────────
+    ("Brak danych dla tej kadencji", "Žádná data pro toto volební období"),
+    ("Brak danych o indywidualnych głosowaniach.", "Žádná data o jednotlivých hlasováních."),
+    ("Nie znaleziono głosowania.", "Hlasování nenalezeno."),
+    ("Nie znaleziono sesji.", "Zasedání nenalezeno."),
+    ("Błąd ładowania danych:", "Chyba načítání dat:"),
+    ("Ładowanie...", "Načítání..."),
+
+    # ── Akcje ───────────────────────────────────────────────────────
+    ("Udostępnij na Facebooku", "Sdílet na Facebooku"),
+    ("Udostępnij na X", "Sdílet na X"),
+    ("Udostępnij", "Sdílet"),
+    ("Porównaj radnych", "Porovnat zastupitele"),
+    ("Porównanie radnych", "Porovnání zastupitelů"),
+    ("Porównaj", "Porovnat"),
+    ("Przełącz motyw jasny/ciemny", "Přepnout světlý/tmavý režim"),
+
+    # ── Stopka i prawne ─────────────────────────────────────────────
+    ("Polityka prywatności", "Zásady ochrany osobních údajů"),
+    ("Kontakt", "Kontakt"),
+]
+
+
 def apply_locale(html: str, locale: str) -> str:
     """Zastosuj tłumaczenia dla danego locale.
 
     Locale "pl" (lub brak) → zwróć HTML bez zmian.
     Locale "en" → słownik PL_TO_EN.
     Locale "de" → słownik PL_TO_DE (Berlin, w przyszłości Hamburg, Wien).
-    Sortowanie po długości DESC chroni przed sytuacją gdzie krótka fraza
-    ("Sesja") zjadałaby fragment dłuższej ("Sesja rady").
+
+    Wymiana używa regex z negative lookbehind/lookahead na word characters,
+    żeby pojedyncze słowa nie trafiały w identyfikatory JS lub CSS classes
+    (np. "Interpelacje" wewnątrz `renderInterpelacje` nie zostanie podmienione).
+    Granica word-char to litera/cyfra/_, więc "/interpelacje/" matchuje
+    (slash to nie word char), "renderInterpelacje" nie matchuje.
+
+    Sortowanie po długości DESC chroni przed kolizją krótka/długa fraza.
     Pozostałe locale → nieobsługiwane, zwrot bez zmian.
     """
+    import re
     if not locale or locale.lower() == "pl":
         return html
     dictionaries = {
         "en": PL_TO_EN,
         "de": PL_TO_DE,
+        "cs": PL_TO_CS,
     }
     d = dictionaries.get(locale.lower())
     if d is None:
@@ -357,5 +484,6 @@ def apply_locale(html: str, locale: str) -> str:
     out = html
     ordered = sorted(d, key=lambda pair: -len(pair[0]))
     for pl, target in ordered:
-        out = out.replace(pl, target)
+        pattern = re.compile(rf"(?<!\w){re.escape(pl)}(?!\w)")
+        out = pattern.sub(lambda _m, t=target: t, out)
     return out
