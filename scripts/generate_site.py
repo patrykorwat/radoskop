@@ -240,6 +240,11 @@ def main():
         hide_css.append('[data-tab="interpelacje"]{display:none!important}')
     if not config.get("has_budget", True):
         hide_css.append('[data-tab="budget"]{display:none!important}')
+    if not config.get("has_voting_data", True):
+        # DACH miasta (Berlin, Wien, Hamburg) nie mają imiennych głosowań,
+        # ukrywamy tab "Głosowania/Abstimmungen". Tab "Sesje" zostaje widoczny
+        # bo pokazuje frekwencję i aktywność mówczą.
+        hide_css.append('[data-tab="votes"]{display:none!important}')
     if hide_css:
         injected = "<style>" + "".join(hide_css) + "</style>"
         # Wstrzykuje przed </head>. Jeśli z jakiegoś powodu nie ma

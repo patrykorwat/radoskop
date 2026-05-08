@@ -2,10 +2,10 @@
 Lokalizacja UI Radoskop dla miast spoza Polski.
 
 Domyślny język UI w template/index.html to polski. Dla miast z config.locale
-== "en" (Praga i ewentualne kolejne) stosujemy słownik podstawień PL → EN.
-Robimy to przez prosty string.replace, więc kolejność wpisów ma znaczenie:
-najpierw długie frazy, potem krótkie. Stringi z znakiem placeholder ${...}
-zostają nietknięte (replace jest exact-match na pełnym tekście).
+== "en" / "de" stosujemy odpowiedni słownik podstawień. Robimy to przez prosty
+string.replace, więc kolejność wpisów ma znaczenie: najpierw długie frazy,
+potem krótkie. Stringi z placeholderem ${...} zostają nietknięte (replace
+jest exact-match na pełnym tekście).
 
 Lokalne nazwy własne (radni, kluby, tematy uchwał) zostają w języku miasta —
 te przychodzą z scrapera, nie z template. Tłumaczymy WYŁĄCZNIE etykiety UI.
@@ -237,22 +237,125 @@ PL_TO_EN: list[tuple[str, str]] = [
 ]
 
 
+PL_TO_DE: list[tuple[str, str]] = [
+    # ── Nawigacja i taby ─────────────────────────────────────────────
+    ("Rada Miasta {{CITY_GENITIVE}}", "Abgeordnetenhaus von {{CITY_NAME}}"),
+    ("Najbardziej aktywni radni", "Aktivste Abgeordnete"),
+    ("Najczęściej głosują tak samo", "Stimmen am häufigsten gleich ab"),
+    ("Najrzadziej głosują tak samo", "Stimmen am seltensten gleich ab"),
+    ("Profile radnych", "Profile der Abgeordneten"),
+    ("Ranking radnych", "Ranking der Abgeordneten"),
+    ("Kto z kim głosuje", "Wer stimmt mit wem"),
+    ("Wszystkie wyniki", "Alle Ergebnisse"),
+    ("Lista interpelacji i zapytań", "Anfragen und Anträge"),
+    ("Interpelacje", "Schriftliche Anfragen"),
+    ("interpelacji", "Anfragen"),
+    ("Strona główna", "Startseite"),
+    ("Powrót do listy", "Zurück zur Liste"),
+
+    # ── Filtry i sortowania ─────────────────────────────────────────
+    ("Szukaj głosowań po temacie...", "Abstimmungen nach Thema suchen..."),
+    ("Szukaj w interpelacjach...", "In Anfragen suchen..."),
+    ("Następna →", "Weiter →"),
+    ("Następne →", "Weiter →"),
+    ("Wszystkie", "Alle"),
+    ("Sortuj po", "Sortieren nach"),
+    ("Filtruj", "Filter"),
+    ("Pokaż więcej", "Mehr anzeigen"),
+    ("Pokaż mniej", "Weniger anzeigen"),
+    ("Wyczyść", "Löschen"),
+    ("Pozostałe", "Andere"),
+
+    # ── Etykiety w tabelach i kartach ───────────────────────────────
+    ("Aktywność na sesjach", "Aktivität in den Sitzungen"),
+    ("Aktywność mówców", "Rede-Aktivität"),
+    ("Frekwencja", "Anwesenheit"),
+    ("Aktywność", "Aktivität"),
+    ("Zgodność z klubem", "Fraktionsdisziplin"),
+    ("Podobieństwo", "Ähnlichkeit"),
+    ("Buntów", "Abweichungen"),
+    ("Sesji z wypowiedzią", "Sitzungen mit Redebeitrag"),
+    ("Słów łącznie", "Wörter insgesamt"),
+    ("Mówców", "Redner"),
+    ("Słowa", "Wörter"),
+    ("Słów", "Wörter"),
+    ("Głosowania", "Abstimmungen"),
+    ("Głosowanie", "Abstimmung"),
+    ("Sesje", "Sitzungen"),
+    ("Sesja", "Sitzung"),
+    ("Komisje", "Ausschüsse"),
+    ("Komisji", "Ausschüsse"),
+    ("Klub", "Fraktion"),
+    ("Kluby", "Fraktionen"),
+    ("Kadencje", "Wahlperioden"),
+    ("Kadencja", "Wahlperiode"),
+    ("Radny/a", "Abgeordnete:r"),
+    ("Radnych", "Abgeordnete"),
+    ("Radni", "Abgeordnete"),
+    ("Okręg wyborczy", "Wahlkreis"),
+    ("Temat", "Thema"),
+    ("Treść", "Inhalt"),
+    ("Odpowiedź", "Antwort"),
+    ("Data", "Datum"),
+    ("Wyniki", "Ergebnisse"),
+    ("Wynik", "Ergebnis"),
+
+    # ── Wartości głosowań (gdy są imienne, np. namentliche Abstimmung) ──
+    ("Brak głosu", "Nicht abgestimmt"),
+    ("Wstrzymał się", "Enthalten"),
+    ("Wstrzymała się", "Enthalten"),
+    ("Nieobecny", "Abwesend"),
+    ("Nieobecna", "Abwesend"),
+    ("Przyjęte", "Angenommen"),
+    ("Przyjętych", "Angenommen"),
+    ("Odrzucone", "Abgelehnt"),
+    ("Przeciw", "Dagegen"),
+    ("Za", "Dafür"),
+
+    # ── Stany i błędy ────────────────────────────────────────────────
+    ("Brak danych dla tej kadencji", "Keine Daten für diese Wahlperiode"),
+    ("Brak danych o indywidualnych głosowaniach.", "Keine Daten zu individuellen Abstimmungen."),
+    ("Nie znaleziono głosowania.", "Abstimmung nicht gefunden."),
+    ("Nie znaleziono sesji.", "Sitzung nicht gefunden."),
+    ("Błąd ładowania danych:", "Fehler beim Laden der Daten:"),
+    ("Ładowanie...", "Lädt..."),
+
+    # ── Akcje ───────────────────────────────────────────────────────
+    ("Udostępnij na Facebooku", "Auf Facebook teilen"),
+    ("Udostępnij na X", "Auf X teilen"),
+    ("Udostępnij", "Teilen"),
+    ("Porównaj radnych", "Abgeordnete vergleichen"),
+    ("Porównanie radnych", "Vergleich der Abgeordneten"),
+    ("Porównaj", "Vergleichen"),
+    ("Przełącz motyw jasny/ciemny", "Hell-/Dunkel-Modus"),
+
+    # ── Stopka i prawne ─────────────────────────────────────────────
+    ("Polityka prywatności", "Datenschutz"),
+    ("Kontakt", "Kontakt"),
+]
+
+
 def apply_locale(html: str, locale: str) -> str:
     """Zastosuj tłumaczenia dla danego locale.
 
     Locale "pl" (lub brak) → zwróć HTML bez zmian.
-    Locale "en" → zastosuj słownik PL_TO_EN posortowany po długości
-       polskiej frazy DESC. Sortowanie chroni przed sytuacją gdzie krótka
-       fraza ("głosowania") zjadałaby fragment dłuższej ("Protokół
-       głosowania (BIP)") zanim dłuższa zdąży się zmatchować.
-    Pozostałe locale → na razie nieobsługiwane, zwrot bez zmian.
+    Locale "en" → słownik PL_TO_EN.
+    Locale "de" → słownik PL_TO_DE (Berlin, w przyszłości Hamburg, Wien).
+    Sortowanie po długości DESC chroni przed sytuacją gdzie krótka fraza
+    ("Sesja") zjadałaby fragment dłuższej ("Sesja rady").
+    Pozostałe locale → nieobsługiwane, zwrot bez zmian.
     """
     if not locale or locale.lower() == "pl":
         return html
-    if locale.lower() == "en":
-        out = html
-        ordered = sorted(PL_TO_EN, key=lambda pair: -len(pair[0]))
-        for pl, en in ordered:
-            out = out.replace(pl, en)
-        return out
-    return html
+    dictionaries = {
+        "en": PL_TO_EN,
+        "de": PL_TO_DE,
+    }
+    d = dictionaries.get(locale.lower())
+    if d is None:
+        return html
+    out = html
+    ordered = sorted(d, key=lambda pair: -len(pair[0]))
+    for pl, target in ordered:
+        out = out.replace(pl, target)
+    return out
