@@ -287,10 +287,10 @@ footer a:hover{text-decoration-color:var(--accent);}
     </div>
   </div>
 
-  <!-- Choropleth wojewódzki -->
+  <!-- Choropleth wojewódzki + sąsiednie kraje -->
   <section class="no-border" id="mapa" style="margin-top:8px">
-    <h3>Mapa Polski</h3>
-    <p class="section-subtitle" id="mapa-subtitle">16 województw. Im ciemniejsze, tym więcej rad mamy w monitoringu. Kliknij region, żeby przefiltrować listę miast poniżej. Sejmiki wojewódzkie dostępne tam, gdzie widać żółtą obwódkę.</p>
+    <h3>Mapa Europy Środkowej</h3>
+    <p class="section-subtitle" id="mapa-subtitle">Polska 16 województw. Czechy z Pragą jako pierwsze miasto poza Polską. Niemcy w planach. Im ciemniejsze, tym więcej rad mamy w monitoringu. Kliknij region, żeby przefiltrować listę miast poniżej.</p>
 
     <div class="map-legend" aria-hidden="true">
       <span class="legend-item"><span class="legend-tile l0"></span>0 miast</span>
@@ -298,13 +298,15 @@ footer a:hover{text-decoration-color:var(--accent);}
       <span class="legend-item"><span class="legend-tile l2"></span>2 do 3</span>
       <span class="legend-item"><span class="legend-tile l3"></span>4 do 5</span>
       <span class="legend-item"><span class="legend-tile l4"></span>6+</span>
-      <span class="legend-item legend-sep"><span class="legend-tile pilot"></span>Sejmik dostępny</span>
+      <span class="legend-item legend-sep"><span class="legend-tile pilot"></span>Sejmik / stolica</span>
     </div>
 
     <div class="map-wrap">
-      <svg id="poland-map" viewBox="0 0 658 597" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mapa Polski z monitorowanymi województwami">
+      <svg id="poland-map" viewBox="-380 0 1080 720" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mapa Europy Środkowej z monitorowanymi krajami">
+        <g id="country-shapes"></g>
         <g id="voivo-shapes"></g>
         <g id="voivo-labels"></g>
+        <g id="city-markers"></g>
       </svg>
       <div id="map-tooltip" class="map-tooltip" aria-live="polite"></div>
       <div id="map-empty" class="map-empty" style="display:none">Ładowanie mapy…</div>
@@ -324,8 +326,23 @@ footer a:hover{text-decoration-color:var(--accent);}
       .legend-tile.l3{background:rgba(79,70,229,.50);}
       .legend-tile.l4{background:rgba(79,70,229,.72);}
       .legend-tile.pilot{background:rgba(202,138,4,.18);border:2px solid var(--yellow);}
-      .map-wrap{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px;overflow:hidden;max-width:540px;margin:0 auto;}
+      .map-wrap{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:10px;overflow:hidden;max-width:760px;margin:0 auto;}
       #poland-map{width:100%;height:auto;display:block;touch-action:manipulation;background:#fafbfc;border-radius:8px;}
+      .country-shape{stroke:rgba(120,128,150,.45);stroke-width:1.2;stroke-linejoin:round;stroke-dasharray:4 3;cursor:pointer;transition:filter .15s,stroke-width .15s;}
+      .country-shape.cz{fill:rgba(220,38,38,.10);stroke:rgba(220,38,38,.55);stroke-dasharray:none;}
+      .country-shape.cz:hover{filter:brightness(1.04);stroke-width:2.2;}
+      .country-shape.de{fill:rgba(120,128,150,.12);}
+      .country-shape.de.disabled{cursor:default;}
+      .country-shape.de.disabled:hover{filter:none;stroke-width:1.2;}
+      .country-label{pointer-events:none;user-select:none;text-anchor:middle;}
+      .country-label .cname{font-size:14px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;fill:#4b5563;paint-order:stroke;stroke:#fff;stroke-width:3;stroke-linejoin:round;}
+      .country-label.cz .cname{fill:#b91c1c;}
+      .country-label.de .cname{fill:#9ca3af;}
+      .country-label .csub{font-size:9px;font-weight:600;fill:#9ca3af;paint-order:stroke;stroke:#fff;stroke-width:2.5;stroke-linejoin:round;}
+      .city-marker{cursor:pointer;}
+      .city-marker circle{fill:#dc2626;stroke:#fff;stroke-width:2;transition:r .15s;}
+      .city-marker:hover circle{r:8;}
+      .city-marker text{font-size:11px;font-weight:700;fill:#1a1d27;paint-order:stroke;stroke:#fff;stroke-width:2.5;stroke-linejoin:round;text-anchor:middle;}
       .voivo-shape{stroke:rgba(79,70,229,.55);stroke-width:1;stroke-linejoin:round;cursor:pointer;transition:filter .15s,stroke-width .15s;}
       .voivo-shape.lvl0{fill:#f1f3f7;}
       .voivo-shape.lvl1{fill:rgba(79,70,229,.18);}
@@ -361,6 +378,17 @@ footer a:hover{text-decoration-color:var(--accent);}
     </style>
   </section>
   </div><!-- /.search-map-row -->
+
+  <!-- International cities (poza Polską) -->
+  <section class="no-border" id="international" style="margin-top:24px;display:none">
+    <h3>Miasta poza Polską</h3>
+    <p class="section-subtitle">Pierwsze miasta z innych krajów Europy Środkowej. Dane z lokalnych otwartych źródeł.</p>
+    <div class="cities-grid" id="international-grid"></div>
+    <style>
+      #international .ccard-meta{display:inline-flex;align-items:center;gap:6px;}
+      #international .country-flag{font-size:1.1rem;line-height:1;}
+    </style>
+  </section>
 
   <!-- City directory -->
   <section class="no-border" id="cities">
@@ -661,11 +689,26 @@ function normalize(s){return (s||'').toLowerCase().replace(/ą/g,'a').replace(/�
 function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function hashStr(s){var h=0;for(var i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return Math.abs(h);}
 function cityColor(slug){var h=hashStr(slug||'')%360;return 'hsl('+h+',62%,42%)';}
-function cityBadge(city){return '<span class="city-badge" style="background:'+cityColor(city.slug)+'22;color:'+cityColor(city.slug)+'">'+esc(city.name)+'</span>';}
+function countryEmoji(country){
+  if(!country||country==='pl')return '';
+  if(country==='cz')return '🇨🇿';
+  if(country==='de')return '🇩🇪';
+  if(country==='sk')return '🇸🇰';
+  if(country==='at')return '🇦🇹';
+  if(country==='hu')return '🇭🇺';
+  if(country==='lt')return '🇱🇹';
+  if(country==='ua')return '🇺🇦';
+  return country.toUpperCase();
+}
+function cityBadge(city){
+  var flag=countryEmoji(city.country);
+  var label=(flag?flag+' ':'')+esc(city.name);
+  return '<span class="city-badge" style="background:'+cityColor(city.slug)+'22;color:'+cityColor(city.slug)+'">'+label+'</span>';
+}
 function formatInt(n){return (n||0).toLocaleString('pl-PL');}
 function formatPct(v){return v==null?'—':v.toFixed(1)+'%';}
-function formatMld(v){return v==null?'—':v.toFixed(2)+' mld zł';}
-function formatZl(v){return v==null?'—':formatInt(Math.round(v))+' zł';}
+function formatMld(v,currency){return v==null?'—':v.toFixed(2)+' mld '+(currency||'zł');}
+function formatZl(v,currency){return v==null?'—':formatInt(Math.round(v))+' '+(currency||'zł');}
 function formatDatePL(d){if(!d||d.length<10)return d||'';return d.substring(8,10)+'.'+d.substring(5,7)+'.'+d.substring(0,4);}
 function popBucket(p){if(!p)return 0;if(p<50000)return 1;if(p<200000)return 2;if(p<500000)return 3;return 4;}
 function fekkClass(v){if(v==null)return '';if(v>=90)return 'good';if(v>=70)return 'medium';return 'low';}
@@ -709,9 +752,17 @@ function loadCities(){
 // ── Global stats header ──
 function renderGlobalStats(){
   var totV=0,totC=0;
-  CITIES.forEach(function(c){totV+=(c.votes||0);totC+=(c.councilors||0);});
+  var countries={};
+  CITIES.forEach(function(c){
+    totV+=(c.votes||0);
+    totC+=(c.councilors||0);
+    countries[c.country||'pl']=true;
+  });
+  var ncountries=Object.keys(countries).length;
+  var prefix=CITIES.length+' miast';
+  if(ncountries>1)prefix+=' z '+ncountries+' krajów';
   document.getElementById('global-stats').textContent =
-    CITIES.length + ' miast · ' + formatInt(totV) + ' głosowań · ' + formatInt(totC) + ' radnych · frekwencja · interpelacje · budżety · kadencja 2024–2029';
+    prefix + ' · ' + formatInt(totV) + ' głosowań · ' + formatInt(totC) + ' radnych · frekwencja · interpelacje · budżety · kadencja 2024–2029';
   var sc=document.getElementById('search-count');
   if(sc) sc.textContent = formatInt(totC)+' radnych z '+CITIES.length+' miast';
   var vc=document.getElementById('vote-search-count');
@@ -722,7 +773,12 @@ function renderGlobalStats(){
 
 // ── City directory ──
 function populateVoivoFilter(){
-  var set={};CITIES.forEach(function(c){if(c.voivodeship)set[c.voivodeship]=1;});
+  // Filtr województw obejmuje tylko miasta polskie (international są w
+  // osobnej sekcji #international i nie są kontrolowane tym dropdownem).
+  var set={};CITIES.forEach(function(c){
+    if((c.country||'pl')!=='pl')return;
+    if(c.voivodeship)set[c.voivodeship]=1;
+  });
   var names=Object.keys(set).sort(function(a,b){return a.localeCompare(b,'pl');});
   var sel=document.getElementById('voivo-filter');
   names.forEach(function(n){var o=document.createElement('option');o.value=n;o.textContent=n;sel.appendChild(o);});
@@ -744,7 +800,10 @@ function renderCities(){
   var pop=document.getElementById('pop-filter').value;
   var sortKey=document.getElementById('city-sort').value;
 
+  // Lista miast PL — international (cz, de itd.) renderujemy w osobnej
+  // sekcji #international, więc tutaj filtrujemy po country.
   var filtered=CITIES.filter(function(c){
+    if((c.country||'pl')!=='pl')return false;
     if(q && normalize(c.name).indexOf(q)===-1)return false;
     if(voivo && c.voivodeship!==voivo)return false;
     if(pop && String(popBucket(c.population))!==pop)return false;
@@ -784,6 +843,32 @@ document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('cities-more').addEventListener('click',function(){VIS_SHOWN+=24;renderCities();});
 });
 
+// ── International cities (renderowane w osobnej sekcji nad #cities) ──
+function renderInternationalCities(){
+  var intl=CITIES.filter(function(c){return (c.country||'pl')!=='pl';});
+  var section=document.getElementById('international');
+  if(!intl.length){ section.style.display='none'; return; }
+  section.style.display='block';
+  var html='';
+  for(var i=0;i<intl.length;i++){
+    var c=intl[i];
+    var flag=countryEmoji(c.country);
+    html += '<a class="city-card" href="'+esc(c.url)+'">'
+         +   '<div class="ccard-head">'+cityBadge(c)
+         +     '<span class="ccard-meta"><span class="country-flag">'+flag+'</span> '+esc((c.country||'').toUpperCase())+'</span>'
+         +   '</div>'
+         +   '<h2>'+esc(c.name)+'</h2>'
+         +   '<div class="ccard-stats">'
+         +     '<div class="ccard-stat"><span class="n">'+formatInt(c.councilors)+'</span><span class="l">Radnych</span></div>'
+         +     '<div class="ccard-stat"><span class="n">'+formatInt(c.sessions)+'</span><span class="l">Sesji</span></div>'
+         +     '<div class="ccard-stat"><span class="n">'+formatInt(c.votes)+'</span><span class="l">Głosowań</span></div>'
+         +   '</div>'
+         +   '<span class="arrow">Otwórz →</span>'
+         + '</a>';
+  }
+  document.getElementById('international-grid').innerHTML=html;
+}
+
 // ── Comparison table ──
 var COMP_SORT = { key:'votes', dir:'desc' };
 function renderCompTable(){
@@ -807,7 +892,7 @@ function renderCompTable(){
   for(var i=0;i<max;i++){
     var c=rows[i];
     h += '<tr>'
-       + '<td><a href="'+esc(c.url)+'">'+cityBadge(c)+' '+esc(c.name)+'</a></td>'
+       + '<td><a href="'+esc(c.url)+'">'+cityBadge(c)+'</a></td>'
        + '<td>'+formatInt(c.councilors)+'</td>'
        + '<td>'+formatInt(c.sessions)+'</td>'
        + '<td>'+formatInt(c.votes)+'</td>'
@@ -1074,7 +1159,7 @@ function renderInterpTable(){
   for(var i=0;i<max;i++){
     var c=rows[i],ip=c.interpelacje;var top=ip.top||{};
     h += '<tr>'
-       + '<td><a href="'+esc(c.url)+'/interpelacje">'+cityBadge(c)+' '+esc(c.name)+'</a></td>'
+       + '<td><a href="'+esc(c.url)+'/interpelacje">'+cityBadge(c)+'</a></td>'
        + '<td>'+formatInt(ip.total)+'</td>'
        + '<td>'+(ip.answered==null?'—':formatInt(ip.answered))+'</td>'
        + '<td>'+(top.name?esc(top.name):'—')+'</td>'
@@ -1112,13 +1197,14 @@ function renderBudgetTable(){
   var max=Math.min(rows.length,SHOWN.budget);var h='';
   for(var i=0;i<max;i++){
     var c=rows[i],b=c.budget;var deficit=(b.income||0)-(b.expense||0);
+    var ccy=b.currency||'zł';
     h += '<tr>'
-       + '<td><a href="'+esc(c.url)+'/budzet">'+cityBadge(c)+' '+esc(c.name)+'</a></td>'
-       + '<td>'+formatMld(b.income)+'</td>'
-       + '<td>'+formatMld(b.expense)+'</td>'
-       + '<td>'+(b.income==null||b.expense==null?'—':formatMld(deficit))+'</td>'
-       + '<td>'+formatZl(b.perCapita)+'</td>'
-       + '<td>'+formatMld(b.invest)+'</td>'
+       + '<td><a href="'+esc(c.url)+'/budzet">'+cityBadge(c)+'</a></td>'
+       + '<td>'+formatMld(b.income,ccy)+'</td>'
+       + '<td>'+formatMld(b.expense,ccy)+'</td>'
+       + '<td>'+(b.income==null||b.expense==null?'—':formatMld(deficit,ccy))+'</td>'
+       + '<td>'+formatZl(b.perCapita,ccy)+'</td>'
+       + '<td>'+formatMld(b.invest,ccy)+'</td>'
        + '<td>'+formatPct(b.investShare)+'</td>'
        + '</tr>';
   }
@@ -1168,12 +1254,14 @@ document.addEventListener('DOMContentLoaded',function(){
   loadCities().then(function(){
     renderGlobalStats();
     populateVoivoFilter();
+    renderInternationalCities();
     renderCities();
     renderCompTable();
     renderSessions();
     renderInterpTable();
     renderBudgetTable();
     if(typeof renderPolandMap==='function')renderPolandMap();
+    if(typeof renderNeighborCountries==='function')renderNeighborCountries();
     attachTableSort('comp-table',COMP_SORT,renderCompTable);
     attachTableSort('interp-table',INTERP_SORT,renderInterpTable);
     attachTableSort('budget-table',BUDGET_SORT,renderBudgetTable);
@@ -1236,6 +1324,124 @@ function _wojCountLevel(n){
   if(n<=3)return 2;
   if(n<=5)return 3;
   return 4;
+}
+
+// Sąsiednie kraje. Kontury uproszczone (~12 punktów), w tej samej skali co
+// Polska (viewBox 658×597 → ~63 px / stopień geograficzny). Współrzędne
+// dobrane manualnie tak żeby układ Polska/Czechy/Niemcy odpowiadał faktycznej
+// geografii Europy Środkowej. Praga jako osobny marker w środku kraju.
+var COUNTRIES = [
+  {
+    code: 'cz',
+    name: 'Czechy',
+    nameLocal: 'Česko',
+    // Kontur Czech w ~10 punktach. Bounding ~( -240..200 ) × ( 540..680 ).
+    d: 'M -240 595 L -180 565 L -110 555 L -30 545 L 50 555 L 130 545 L 195 560 L 200 600 L 175 640 L 110 670 L 30 678 L -50 670 L -130 660 L -200 640 L -240 605 Z',
+    cx: -20, cy: 605,
+    capCx: -45, capCy: 600,
+  },
+  {
+    code: 'de',
+    name: 'Niemcy',
+    nameLocal: 'Deutschland',
+    // Kontur Niemiec w ~14 punktach. Bounding ~( -380..-100 ) × ( 70..560 ).
+    d: 'M -270 70 L -180 75 L -120 100 L -100 175 L -130 240 L -110 295 L -160 360 L -140 420 L -160 485 L -210 540 L -260 555 L -300 530 L -340 500 L -370 425 L -380 350 L -355 270 L -370 200 L -340 140 L -300 95 L -270 70 Z',
+    cx: -240, cy: 310,
+    disabled: true,  // Niemcy: planowane, na razie nie ma miast
+  },
+];
+
+function renderNeighborCountries(){
+  var shapes=document.getElementById('country-shapes');
+  var ttip=document.getElementById('map-tooltip');
+  var wrap=document.getElementById('poland-map').parentNode;
+  if(!shapes)return;
+
+  // Liczymy ile miast na kraj poza Polską
+  var citiesPerCountry={};
+  CITIES.forEach(function(c){
+    var cc=c.country||'pl';
+    if(cc==='pl')return;
+    (citiesPerCountry[cc]=citiesPerCountry[cc]||[]).push(c);
+  });
+
+  var html='';
+  COUNTRIES.forEach(function(co){
+    var nCities=(citiesPerCountry[co.code]||[]).length;
+    var disabled=co.disabled || nCities===0;
+    html += '<g>'
+         +   '<path class="country-shape '+co.code+(disabled?' disabled':'')+'" '
+         +     'data-country="'+co.code+'" data-name="'+esc(co.name)+'" '
+         +     'data-cities="'+nCities+'" '
+         +     'd="'+co.d+'"></path>'
+         +   '<g class="country-label '+co.code+'">'
+         +     '<text class="cname" x="'+co.cx+'" y="'+co.cy+'">'+esc(co.name)+'</text>'
+         +     '<text class="csub" x="'+co.cx+'" y="'+(co.cy+14)+'">'+(disabled?'wkrótce':(nCities+(nCities===1?' miasto':(nCities<5?' miasta':' miast'))))+'</text>'
+         +   '</g>'
+         + '</g>';
+  });
+  shapes.innerHTML=html;
+
+  // Markery miast spoza Polski (z kropką + nazwą)
+  var markers=document.getElementById('city-markers');
+  if(markers){
+    var mh='';
+    Object.keys(citiesPerCountry).forEach(function(cc){
+      var co=COUNTRIES.find(function(x){return x.code===cc;});
+      if(!co)return;
+      var px=co.capCx!=null?co.capCx:co.cx;
+      var py=co.capCy!=null?co.capCy:co.cy;
+      citiesPerCountry[cc].forEach(function(city){
+        mh += '<g class="city-marker" data-slug="'+esc(city.slug)+'" data-name="'+esc(city.name)+'" data-url="'+esc(city.url)+'">'
+           +    '<circle cx="'+px+'" cy="'+py+'" r="6"></circle>'
+           +    '<text x="'+(px+10)+'" y="'+(py+4)+'" text-anchor="start" style="text-anchor:start">'+esc(city.name)+'</text>'
+           +  '</g>';
+      });
+    });
+    markers.innerHTML=mh;
+
+    // Click na marker → przejście do strony miasta
+    markers.querySelectorAll('.city-marker').forEach(function(g){
+      g.addEventListener('click',function(){
+        var url=g.getAttribute('data-url');
+        if(url)window.location.href=url;
+      });
+      g.addEventListener('mousemove',function(e){
+        if(!ttip)return;
+        var name=g.getAttribute('data-name');
+        ttip.innerHTML='<strong>'+esc(name)+'</strong><div class="hint">Kliknij, aby otworzyć stronę miasta</div>';
+        var rect=wrap.getBoundingClientRect();
+        ttip.style.left=(e.clientX-rect.left+12)+'px';
+        ttip.style.top=(e.clientY-rect.top+12)+'px';
+        ttip.classList.add('visible');
+      });
+      g.addEventListener('mouseleave',function(){if(ttip)ttip.classList.remove('visible');});
+    });
+  }
+
+  // Click / tooltip na kraj
+  shapes.querySelectorAll('.country-shape').forEach(function(p){
+    p.addEventListener('mousemove',function(e){
+      if(!ttip)return;
+      var cc=p.getAttribute('data-country');
+      var name=p.getAttribute('data-name');
+      var n=parseInt(p.getAttribute('data-cities')||'0',10);
+      var hint = n>0
+        ? n+(n===1?' miasto monitorowane':(n<5?' miasta monitorowane':' miast monitorowanych'))
+        : 'Wkrótce';
+      ttip.innerHTML='<strong>'+esc(name)+'</strong><div class="stats">'+hint+'</div>';
+      var rect=wrap.getBoundingClientRect();
+      ttip.style.left=(e.clientX-rect.left+12)+'px';
+      ttip.style.top=(e.clientY-rect.top+12)+'px';
+      ttip.classList.add('visible');
+    });
+    p.addEventListener('mouseleave',function(){if(ttip)ttip.classList.remove('visible');});
+    p.addEventListener('click',function(){
+      var cc=p.getAttribute('data-country');
+      var first=(citiesPerCountry[cc]||[])[0];
+      if(first)window.location.href=first.url;
+    });
+  });
 }
 
 function renderPolandMap(){
