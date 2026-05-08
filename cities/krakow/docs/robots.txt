@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /*.json$
-Disallow: /*?p=
-
-Sitemap: https://krakow.radoskop.pl/sitemap.xml
