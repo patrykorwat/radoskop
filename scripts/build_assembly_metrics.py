@@ -295,19 +295,42 @@ def build_metrics(assembly_dir: Path) -> dict[str, Path]:
         if default_kid is None:
             default_kid = kid
 
-        # Buduj profile per radny (slug → kadencje[]).
+        # Buduj profile per radny (slug → kadencje[]). SPA template
+        # oczekuje pełnego zestawu pól (club_full, okręg, roles, komisje,
+        # notes, mid_term, former, votes_za/przeciw/wstrzymal/brak/nieobecny,
+        # has_voting_data, has_activity_data). Bez nich profile renderują
+        # się pusto, bo template robi defensywne checks na kd.X.
+        clubs_meta = config.get("clubs", {}) or {}
         for c in councilors:
             slug = c["slug"]
             entry = profiles_by_slug.setdefault(slug, {
                 "name": c["name"], "slug": slug, "kadencje": {},
             })
+            club_key = c.get("club") or ""
+            club_full = clubs_meta.get(club_key, {}).get("name") or club_key
             entry["kadencje"][kid] = {
-                "club": c["club"],
+                "club": club_key,
+                "club_full": club_full,
+                "okręg": None,
+                "okręg_dzielnice": None,
+                "roles": [],
+                "komisje": [],
+                "notes": "",
+                "mid_term": False,
+                "former": False,
                 "frekwencja": c["frekwencja"],
                 "aktywnosc": c["aktywnosc"],
                 "zgodnosc_z_klubem": c["zgodnosc_z_klubem"],
+                "votes_za": c.get("votes_za", 0),
+                "votes_przeciw": c.get("votes_przeciw", 0),
+                "votes_wstrzymal": c.get("votes_wstrzymal", 0),
+                "votes_brak": c.get("votes_brak", 0),
+                "votes_nieobecny": c.get("votes_nieobecny", 0),
                 "votes_total": c["votes_total"],
                 "rebellion_count": c["rebellion_count"],
+                "rebellions": c.get("rebellions", []),
+                "has_voting_data": c["votes_total"] > 0,
+                "has_activity_data": False,
             }
 
     # data.json (top-level): kadencje + default_kadencja + scraped_at.

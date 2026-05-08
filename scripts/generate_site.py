@@ -222,6 +222,33 @@ def main():
     locale = config.get("locale", "pl")
     html = apply_locale(html, locale)
 
+    # Currency: polskie miasta używają zł (default w template), Praga
+    # używa Kč. Zamieniamy konkretnie na końcówce template literal w
+    # tabeli budżetu, żeby nie ruszyć cen raportów (te zostają w zł, bo
+    # płatności są w zł niezależnie od miasta).
+    currency = config.get("currency", "zł")
+    if currency != "zł":
+        html = html.replace("${fmtM(c.amount)} zł", f"${{fmtM(c.amount)}} {currency}")
+
+    # Ukryj taby których miasto nie ma. Domyślnie wszystkie taby są
+    # widoczne w template, więc miasto bez interpelacji (np. Praga,
+    # Czechy nie mają tego mechanizmu prawnego) musi je explicit ukryć.
+    # Robimy to przez wstrzyknięcie style w <head>, dodawanie display:none
+    # przez data-tab atrybut i id przedziału.
+    hide_css = []
+    if not config.get("has_interpelacje", True):
+        hide_css.append('[data-tab="interpelacje"]{display:none!important}')
+    if not config.get("has_budget", True):
+        hide_css.append('[data-tab="budget"]{display:none!important}')
+    if hide_css:
+        injected = "<style>" + "".join(hide_css) + "</style>"
+        # Wstrzykuje przed </head>. Jeśli z jakiegoś powodu nie ma
+        # </head> (template był obcięty), wstaw przed pierwszą sekcją.
+        if "</head>" in html:
+            html = html.replace("</head>", injected + "</head>", 1)
+        else:
+            html = injected + html
+
     # Check for remaining placeholders
     import re
     remaining = re.findall(r'\{\{[A-Z_]+\}\}', html)

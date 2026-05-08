@@ -270,10 +270,28 @@ def build_kadencja(
         else:
             result = ""
 
-        topic = (meta.get("nazevtisku") or meta.get("kbodu") or "").strip()
+        # Topic: większość rekordów Pragi ma puste nazevtisku, kbodu zawiera
+        # tylko "usnesení k Z-XXXXX". Jeśli mamy nazevtisku → użyj. Jeśli nie,
+        # spróbuj wzbogacić: "{predkladatel} → {kbodu}". Predkladatel sam
+        # pomaga kontekstowo (Rada HMP, primátor, konkretny zastupitel).
+        nazev = (meta.get("nazevtisku") or "").strip()
+        kbodu = (meta.get("kbodu") or "").strip().rstrip()
+        predkladatel = (meta.get("predkladatel") or "").strip()
+        if nazev:
+            topic = nazev
+        elif kbodu and predkladatel:
+            topic = f"{predkladatel}: {kbodu}"
+        else:
+            topic = kbodu or predkladatel or ""
+
         druk = (meta.get("cislotisku") or "").strip() or None
         resolution = (meta.get("cislousneseni") or "").strip() or None
         meeting_num = (meta.get("cislojednani") or "").strip()
+
+        # Resolution często ma slash (np. "1/2"), co psuje URL routing
+        # /glosowanie/{id}/. Slash w slug zostanie zinterpretowany jako
+        # separator ścieżki i SPA nie znajdzie głosowania. Zamieniamy na "-".
+        resolution_safe = resolution.replace("/", "-") if resolution else ""
 
         # Sesja: bucketujemy po dacie. Numer sesji to cislojednani.
         sess_key = date_iso
@@ -296,8 +314,9 @@ def build_kadencja(
             for ci in named[cat]:
                 sessions_acc[sess_key]["attendees"].add(councilor_index[ci])
 
+        vote_id_base = f"praha_{druk or ''}_{resolution_safe}".strip("_")
         votes_out.append({
-            "id": f"praha_{druk or ''}_{resolution or ''}".strip("_") or f"praha_{len(votes_out)}",
+            "id": vote_id_base or f"praha_{len(votes_out)}",
             "session_date": date_iso,
             "session_number": meeting_num,
             "source_url": (
