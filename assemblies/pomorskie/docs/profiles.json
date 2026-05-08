@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-05-07T23:38:46Z",
+  "scraped_at": "2026-05-08T15:52:30Z",
   "profiles": [
     {
       "name": "Adam Bondarenko",
@@ -7,11 +7,27 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 84.0,
           "aktywnosc": 86.6,
           "zgodnosc_z_klubem": 100.0,
+          "votes_za": 310,
+          "votes_przeciw": 6,
+          "votes_wstrzymal": 0,
+          "votes_brak": 4,
+          "votes_nieobecny": 59,
           "votes_total": 365,
-          "rebellion_count": 0
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -21,11 +37,34 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 96.0,
           "aktywnosc": 91.8,
           "zgodnosc_z_klubem": 99.7,
+          "votes_za": 326,
+          "votes_przeciw": 9,
+          "votes_wstrzymal": 0,
+          "votes_brak": 28,
+          "votes_nieobecny": 16,
           "votes_total": 365,
-          "rebellion_count": 1
+          "rebellion_count": 1,
+          "rebellions": [
+            {
+              "session": "2024-05-24",
+              "topic": "(brak tematu)",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -35,11 +74,130 @@
       "kadencje": {
         "2024-2029": {
           "club": "PiS",
+          "club_full": "Prawo i Sprawiedliwość",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 100.0,
           "aktywnosc": 81.9,
           "zgodnosc_z_klubem": 94.3,
+          "votes_za": 244,
+          "votes_przeciw": 20,
+          "votes_wstrzymal": 35,
+          "votes_brak": 80,
+          "votes_nieobecny": 0,
           "votes_total": 365,
-          "rebellion_count": 17
+          "rebellion_count": 17,
+          "rebellions": [
+            {
+              "session": "2024-05-24",
+              "topic": "Zatwierdzenie porządku obrad.",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-05-24",
+              "topic": "(brak tematu)",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-06-24",
+              "topic": "DRUK nr 60 - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-06-24",
+              "topic": "DRUK nr 57 - w sprawie oceny sytuacji na rynku pracy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "DRUK nr 71a - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "DRUK nr 72, 72a,b - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2024-11-25",
+              "topic": "DRUK nr 131 - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-11-25",
+              "topic": "DRUK nr 132 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-12-20",
+              "topic": "DRUK nr 147 - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-12-20",
+              "topic": "DRUK nr 148 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-05-23",
+              "topic": "DRUK nr 220 - w sprawie zmian budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-30",
+              "topic": "DRUK nr 226 - Głosowanie uchwały w sprawie udzielenia",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-07-28",
+              "topic": "DRUK nr 242 - w sprawie zmian budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-07-28",
+              "topic": "DRUK nr 243 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-10-27",
+              "topic": "DRUK nr 280 - w sprawie odwołania członka Rady Społecznej",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "przyjęcie uchwały w sprawie Wieloletniej Prognozy Finansowej na",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "przyjęcie uchwały w sprawie uchwalenia budżetu Województwa",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -49,11 +207,88 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 100.0,
           "aktywnosc": 103.6,
           "zgodnosc_z_klubem": 97.4,
+          "votes_za": 362,
+          "votes_przeciw": 7,
+          "votes_wstrzymal": 9,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
           "votes_total": 365,
-          "rebellion_count": 10
+          "rebellion_count": 10,
+          "rebellions": [
+            {
+              "session": "2024-06-24",
+              "topic": "Zatwierdzenie porządku obrad. Zdjęcie druku nr 55 – projekt uchwały w sprawie trudnej sytuacji w rolnictwie i spełnienia postulatów strajkujących rolników",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-31",
+              "topic": "DRUK nr 185 - o zmianie uchwały w sprawie ograniczenia",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad – zdjęcie druku nr 312.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 313.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 314.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 315.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 312 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 313 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 314 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 315,315a - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -63,11 +298,40 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 100.0,
           "aktywnosc": 101.1,
           "zgodnosc_z_klubem": 99.5,
+          "votes_za": 359,
+          "votes_przeciw": 9,
+          "votes_wstrzymal": 1,
+          "votes_brak": 10,
+          "votes_nieobecny": 0,
           "votes_total": 365,
-          "rebellion_count": 2
+          "rebellion_count": 2,
+          "rebellions": [
+            {
+              "session": "2025-03-31",
+              "topic": "DRUK nr 185 - o zmianie uchwały w sprawie ograniczenia",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 313.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -77,11 +341,34 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 92.0,
           "aktywnosc": 94.0,
           "zgodnosc_z_klubem": 99.7,
+          "votes_za": 333,
+          "votes_przeciw": 9,
+          "votes_wstrzymal": 1,
+          "votes_brak": 8,
+          "votes_nieobecny": 28,
           "votes_total": 365,
-          "rebellion_count": 1
+          "rebellion_count": 1,
+          "rebellions": [
+            {
+              "session": "2025-03-31",
+              "topic": "DRUK nr 185 - o zmianie uchwały w sprawie ograniczenia",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -91,11 +378,34 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 96.0,
           "aktywnosc": 98.6,
           "zgodnosc_z_klubem": 99.7,
+          "votes_za": 349,
+          "votes_przeciw": 10,
+          "votes_wstrzymal": 1,
+          "votes_brak": 14,
+          "votes_nieobecny": 5,
           "votes_total": 365,
-          "rebellion_count": 1
+          "rebellion_count": 1,
+          "rebellions": [
+            {
+              "session": "2025-03-31",
+              "topic": "DRUK nr 185 - o zmianie uchwały w sprawie ograniczenia",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -105,11 +415,27 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 100.0,
           "aktywnosc": 103.6,
           "zgodnosc_z_klubem": 100.0,
+          "votes_za": 368,
+          "votes_przeciw": 10,
+          "votes_wstrzymal": 0,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
           "votes_total": 365,
-          "rebellion_count": 0
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -119,11 +445,27 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 100.0,
           "aktywnosc": 103.0,
           "zgodnosc_z_klubem": 100.0,
+          "votes_za": 368,
+          "votes_przeciw": 8,
+          "votes_wstrzymal": 0,
+          "votes_brak": 2,
+          "votes_nieobecny": 1,
           "votes_total": 365,
-          "rebellion_count": 0
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -133,11 +475,34 @@
       "kadencje": {
         "2024-2029": {
           "club": "TD",
+          "club_full": "Trzecia Droga",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 88.0,
           "aktywnosc": 90.7,
           "zgodnosc_z_klubem": 99.7,
+          "votes_za": 319,
+          "votes_przeciw": 10,
+          "votes_wstrzymal": 2,
+          "votes_brak": 11,
+          "votes_nieobecny": 37,
           "votes_total": 365,
-          "rebellion_count": 1
+          "rebellion_count": 1,
+          "rebellions": [
+            {
+              "session": "2026-03-30",
+              "topic": "DRUK nr 357 - w sprawie powierzenia Gminie Szemud budowy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -147,11 +512,27 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 100.0,
           "aktywnosc": 94.0,
           "zgodnosc_z_klubem": 100.0,
+          "votes_za": 333,
+          "votes_przeciw": 10,
+          "votes_wstrzymal": 0,
+          "votes_brak": 36,
+          "votes_nieobecny": 0,
           "votes_total": 365,
-          "rebellion_count": 0
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -161,11 +542,148 @@
       "kadencje": {
         "2024-2029": {
           "club": "PiS",
+          "club_full": "Prawo i Sprawiedliwość",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 100.0,
           "aktywnosc": 89.6,
           "zgodnosc_z_klubem": 93.9,
+          "votes_za": 269,
+          "votes_przeciw": 17,
+          "votes_wstrzymal": 41,
+          "votes_brak": 52,
+          "votes_nieobecny": 0,
           "votes_total": 365,
-          "rebellion_count": 20
+          "rebellion_count": 20,
+          "rebellions": [
+            {
+              "session": "2024-05-24",
+              "topic": "Zatwierdzenie porządku obrad.",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-06-24",
+              "topic": "DRUK nr 60 - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "DRUK nr 71a - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "DRUK nr 88 - Przyjęcie uchwały w sprawie przyjęcia rezygnacji z",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "(brak tematu)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2024-09-30",
+              "topic": "DRUK nr 98 - w sprawie Obszaru Chronionego Krajobrazu",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-10-28",
+              "topic": "DRUK nr 109,109a - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-10-28",
+              "topic": "DRUK nr 110,110a,b - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-11-25",
+              "topic": "DRUK nr 131 - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-11-25",
+              "topic": "DRUK nr 132 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-12-20",
+              "topic": "DRUK nr 147 - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-12-20",
+              "topic": "DRUK nr 148 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-02-24",
+              "topic": "(brak tematu)",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-04-28",
+              "topic": "DRUK nr 198 - w sprawie upamiętnienia 1000 – lecia koronacji",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-05-23",
+              "topic": "DRUK nr 220 - w sprawie zmian budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-30",
+              "topic": "DRUK nr 226 - Głosowanie uchwały w sprawie udzielenia",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-06-30",
+              "topic": "DRUK nr 230 - w sprawie zmian budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-30",
+              "topic": "DRUK nr 231 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-07-28",
+              "topic": "DRUK nr 242 - w sprawie zmian budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-07-28",
+              "topic": "DRUK nr 243 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -175,11 +693,58 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 92.0,
           "aktywnosc": 91.0,
           "zgodnosc_z_klubem": 98.5,
+          "votes_za": 320,
+          "votes_przeciw": 7,
+          "votes_wstrzymal": 5,
+          "votes_brak": 26,
+          "votes_nieobecny": 21,
           "votes_total": 365,
-          "rebellion_count": 5
+          "rebellion_count": 5,
+          "rebellions": [
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 313.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 312 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 313 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 314 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 315,315a - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -189,11 +754,46 @@
       "kadencje": {
         "2024-2029": {
           "club": "PiS",
+          "club_full": "Prawo i Sprawiedliwość",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 80.0,
           "aktywnosc": 76.4,
           "zgodnosc_z_klubem": 98.9,
+          "votes_za": 238,
+          "votes_przeciw": 14,
+          "votes_wstrzymal": 27,
+          "votes_brak": 25,
+          "votes_nieobecny": 75,
           "votes_total": 365,
-          "rebellion_count": 3
+          "rebellion_count": 3,
+          "rebellions": [
+            {
+              "session": "2024-06-24",
+              "topic": "DRUK nr 61 - w sprawie zmiany Wieloletniej Prognozy Finansowej",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-04-28",
+              "topic": "DRUK nr 198 - w sprawie upamiętnienia 1000 – lecia koronacji",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-30",
+              "topic": "Zatwierdzenie porządku obrad.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -203,11 +803,34 @@
       "kadencje": {
         "2024-2029": {
           "club": "TD",
+          "club_full": "Trzecia Droga",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 88.0,
           "aktywnosc": 84.7,
           "zgodnosc_z_klubem": 99.7,
+          "votes_za": 295,
+          "votes_przeciw": 9,
+          "votes_wstrzymal": 5,
+          "votes_brak": 13,
+          "votes_nieobecny": 57,
           "votes_total": 365,
-          "rebellion_count": 1
+          "rebellion_count": 1,
+          "rebellions": [
+            {
+              "session": "2024-10-28",
+              "topic": "Wprowadzenie punktu 5.5 - projekt uchwały z druku nr 127",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -217,11 +840,27 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 92.0,
           "aktywnosc": 83.6,
           "zgodnosc_z_klubem": 100.0,
+          "votes_za": 300,
+          "votes_przeciw": 5,
+          "votes_wstrzymal": 0,
+          "votes_brak": 23,
+          "votes_nieobecny": 51,
           "votes_total": 365,
-          "rebellion_count": 0
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -231,11 +870,27 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 100.0,
           "aktywnosc": 96.4,
           "zgodnosc_z_klubem": 100.0,
+          "votes_za": 342,
+          "votes_przeciw": 10,
+          "votes_wstrzymal": 0,
+          "votes_brak": 13,
+          "votes_nieobecny": 14,
           "votes_total": 365,
-          "rebellion_count": 0
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -245,11 +900,88 @@
       "kadencje": {
         "2024-2029": {
           "club": "PiS",
+          "club_full": "Prawo i Sprawiedliwość",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 92.0,
           "aktywnosc": 94.8,
           "zgodnosc_z_klubem": 97.1,
+          "votes_za": 298,
+          "votes_przeciw": 14,
+          "votes_wstrzymal": 34,
+          "votes_brak": 3,
+          "votes_nieobecny": 30,
           "votes_total": 365,
-          "rebellion_count": 10
+          "rebellion_count": 10,
+          "rebellions": [
+            {
+              "session": "2024-05-24",
+              "topic": "Zatwierdzenie porządku obrad.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-05-24",
+              "topic": "(brak tematu)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2024-06-24",
+              "topic": "DRUK nr 60 - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "DRUK nr 88 - Przyjęcie uchwały w sprawie przyjęcia rezygnacji z",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-02-24",
+              "topic": "DRUK nr 166 - w sprawie zmiany budżetu Województwa",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-02-24",
+              "topic": "DRUK nr 167 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-05-23",
+              "topic": "DRUK nr 221 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-06-30",
+              "topic": "Zatwierdzenie porządku obrad.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-07-28",
+              "topic": "(brak tematu)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-07-28",
+              "topic": "DRUK nr 256 - w sprawie wyboru przedstawiciela Sejmiku",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -259,11 +991,70 @@
       "kadencje": {
         "2024-2029": {
           "club": "PiS",
+          "club_full": "Prawo i Sprawiedliwość",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 96.0,
           "aktywnosc": 95.1,
           "zgodnosc_z_klubem": 98.0,
+          "votes_za": 300,
+          "votes_przeciw": 10,
+          "votes_wstrzymal": 37,
+          "votes_brak": 6,
+          "votes_nieobecny": 26,
           "votes_total": 365,
-          "rebellion_count": 7
+          "rebellion_count": 7,
+          "rebellions": [
+            {
+              "session": "2024-05-15",
+              "topic": "DRUK nr 5 - w sprawie ustalenia wynagrodzenia dla Marszałka",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-05-24",
+              "topic": "DRUK nr 51 - w sprawie wyboru delegatów Województwa",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2024-06-24",
+              "topic": "DRUK nr 61 - w sprawie zmiany Wieloletniej Prognozy Finansowej",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "(brak tematu)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-09-30",
+              "topic": "DRUK nr 98 - w sprawie Obszaru Chronionego Krajobrazu",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-05-23",
+              "topic": "DRUK nr 221 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-05-23",
+              "topic": "DRUK nr 217 - w sprawie przyjęcia Planu Gospodarki Odpadami",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -273,11 +1064,34 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 80.0,
           "aktywnosc": 75.1,
           "zgodnosc_z_klubem": 99.6,
+          "votes_za": 270,
+          "votes_przeciw": 4,
+          "votes_wstrzymal": 0,
+          "votes_brak": 76,
+          "votes_nieobecny": 29,
           "votes_total": 365,
-          "rebellion_count": 1
+          "rebellion_count": 1,
+          "rebellions": [
+            {
+              "session": "2025-12-22",
+              "topic": "głosowanie wniosków radnych nieuwzględnionych przez Komisję",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -287,11 +1101,178 @@
       "kadencje": {
         "2024-2029": {
           "club": "PiS",
+          "club_full": "Prawo i Sprawiedliwość",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 68.0,
           "aktywnosc": 73.7,
           "zgodnosc_z_klubem": 90.7,
+          "votes_za": 220,
+          "votes_przeciw": 17,
+          "votes_wstrzymal": 32,
+          "votes_brak": 16,
+          "votes_nieobecny": 94,
           "votes_total": 365,
-          "rebellion_count": 25
+          "rebellion_count": 25,
+          "rebellions": [
+            {
+              "session": "2024-05-15",
+              "topic": "DRUK nr 5 - w sprawie ustalenia wynagrodzenia dla Marszałka",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "DRUK nr 71a - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "DRUK nr 72, 72a,b - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2024-10-28",
+              "topic": "DRUK nr 109,109a - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-10-28",
+              "topic": "DRUK nr 110,110a,b - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-11-25",
+              "topic": "DRUK nr 131 - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-11-25",
+              "topic": "DRUK nr 132 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-04-28",
+              "topic": "DRUK nr 198 - w sprawie upamiętnienia 1000 – lecia koronacji",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-05-23",
+              "topic": "DRUK nr 220 - w sprawie zmian budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-05-23",
+              "topic": "DRUK nr 217 - w sprawie przyjęcia Planu Gospodarki Odpadami",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-30",
+              "topic": "DRUK nr 226 - Głosowanie uchwały w sprawie udzielenia",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-06-30",
+              "topic": "DRUK nr 228 - Przyjęcie uchwały w sprawie rozpatrzenia i",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-06-30",
+              "topic": "DRUK nr 229 - Przyjęcie uchwały w sprawie udzielenia",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-07-28",
+              "topic": "DRUK nr 242 - w sprawie zmian budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-07-28",
+              "topic": "DRUK nr 243 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad – zdjęcie druku nr 312.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 313.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 314.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 315.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "przyjęcie uchwały w sprawie Wieloletniej Prognozy Finansowej na",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "przyjęcie uchwały w sprawie uchwalenia budżetu Województwa",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 312 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 313 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 314 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 315,315a - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -301,11 +1282,82 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 84.0,
           "aktywnosc": 82.2,
           "zgodnosc_z_klubem": 97.0,
+          "votes_za": 286,
+          "votes_przeciw": 5,
+          "votes_wstrzymal": 9,
+          "votes_brak": 11,
+          "votes_nieobecny": 68,
           "votes_total": 365,
-          "rebellion_count": 9
+          "rebellion_count": 9,
+          "rebellions": [
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad – wprowadzenie druku nr 330",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad – zdjęcie druku nr 312.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 313.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 314.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 315.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 312 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 313 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 314 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 315,315a - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -315,11 +1367,27 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 84.0,
           "aktywnosc": 79.2,
           "zgodnosc_z_klubem": 100.0,
+          "votes_za": 285,
+          "votes_przeciw": 4,
+          "votes_wstrzymal": 0,
+          "votes_brak": 29,
+          "votes_nieobecny": 61,
           "votes_total": 365,
-          "rebellion_count": 0
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -329,11 +1397,112 @@
       "kadencje": {
         "2024-2029": {
           "club": "PiS",
+          "club_full": "Prawo i Sprawiedliwość",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 88.0,
           "aktywnosc": 85.8,
           "zgodnosc_z_klubem": 95.5,
+          "votes_za": 258,
+          "votes_przeciw": 8,
+          "votes_wstrzymal": 47,
+          "votes_brak": 33,
+          "votes_nieobecny": 33,
           "votes_total": 365,
-          "rebellion_count": 14
+          "rebellion_count": 14,
+          "rebellions": [
+            {
+              "session": "2024-06-24",
+              "topic": "DRUK nr 57 - w sprawie oceny sytuacji na rynku pracy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "DRUK nr 71a - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "(brak tematu)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-09-30",
+              "topic": "DRUK nr 98 - w sprawie Obszaru Chronionego Krajobrazu",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-11-25",
+              "topic": "DRUK nr 131 - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-11-25",
+              "topic": "DRUK nr 132 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-04-28",
+              "topic": "DRUK nr 198 - w sprawie upamiętnienia 1000 – lecia koronacji",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-05-23",
+              "topic": "DRUK nr 220 - w sprawie zmian budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-07-28",
+              "topic": "DRUK nr 242 - w sprawie zmian budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-07-28",
+              "topic": "DRUK nr 243 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad – zdjęcie druku nr 312.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 313.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 314.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 315.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -343,11 +1512,27 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 92.0,
           "aktywnosc": 95.1,
           "zgodnosc_z_klubem": 100.0,
+          "votes_za": 338,
+          "votes_przeciw": 9,
+          "votes_wstrzymal": 0,
+          "votes_brak": 7,
+          "votes_nieobecny": 25,
           "votes_total": 365,
-          "rebellion_count": 0
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -357,11 +1542,27 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 100.0,
           "aktywnosc": 99.5,
           "zgodnosc_z_klubem": 100.0,
+          "votes_za": 353,
+          "votes_przeciw": 10,
+          "votes_wstrzymal": 0,
+          "votes_brak": 16,
+          "votes_nieobecny": 0,
           "votes_total": 365,
-          "rebellion_count": 0
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -371,11 +1572,88 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 100.0,
           "aktywnosc": 103.6,
           "zgodnosc_z_klubem": 97.4,
+          "votes_za": 364,
+          "votes_przeciw": 5,
+          "votes_wstrzymal": 9,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
           "votes_total": 365,
-          "rebellion_count": 10
+          "rebellion_count": 10,
+          "rebellions": [
+            {
+              "session": "2025-03-31",
+              "topic": "DRUK nr 185 - o zmianie uchwały w sprawie ograniczenia",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad – zdjęcie druku nr 312.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 313.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 314.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 315.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "głosowanie wniosków radnych nieuwzględnionych przez Komisję",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 312 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 313 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 314 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 315,315a - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -385,11 +1663,130 @@
       "kadencje": {
         "2024-2029": {
           "club": "PiS",
+          "club_full": "Prawo i Sprawiedliwość",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 96.0,
           "aktywnosc": 94.0,
           "zgodnosc_z_klubem": 95.0,
+          "votes_za": 281,
+          "votes_przeciw": 18,
+          "votes_wstrzymal": 44,
+          "votes_brak": 17,
+          "votes_nieobecny": 19,
           "votes_total": 365,
-          "rebellion_count": 17
+          "rebellion_count": 17,
+          "rebellions": [
+            {
+              "session": "2024-06-24",
+              "topic": "DRUK nr 60 - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-06-24",
+              "topic": "DRUK nr 57 - w sprawie oceny sytuacji na rynku pracy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "DRUK nr 71a - w sprawie zmiany budżetu Województwa",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "(brak tematu)",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "(brak tematu)",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "DRUK nr 88 - Przyjęcie uchwały w sprawie przyjęcia rezygnacji z",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2024-11-25",
+              "topic": "DRUK nr 131 - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-11-25",
+              "topic": "DRUK nr 132 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-12-20",
+              "topic": "DRUK nr 147 - w sprawie zmiany budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-12-20",
+              "topic": "DRUK nr 148 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-12-20",
+              "topic": "DRUK nr 146 - w sprawie ustalenia wykazu wydatków budżetu",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-05-23",
+              "topic": "DRUK nr 217 - w sprawie przyjęcia Planu Gospodarki Odpadami",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-30",
+              "topic": "DRUK nr 226 - Głosowanie uchwały w sprawie udzielenia",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-06-30",
+              "topic": "DRUK nr 229 - Przyjęcie uchwały w sprawie udzielenia",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-06-30",
+              "topic": "DRUK nr 230 - w sprawie zmian budżetu Województwa",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-30",
+              "topic": "DRUK nr 231 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-07-28",
+              "topic": "DRUK nr 243 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -399,11 +1796,118 @@
       "kadencje": {
         "2024-2029": {
           "club": "PiS",
+          "club_full": "Prawo i Sprawiedliwość",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 100.0,
           "aktywnosc": 103.0,
           "zgodnosc_z_klubem": 96.0,
+          "votes_za": 325,
+          "votes_przeciw": 11,
+          "votes_wstrzymal": 40,
+          "votes_brak": 3,
+          "votes_nieobecny": 0,
           "votes_total": 365,
-          "rebellion_count": 15
+          "rebellion_count": 15,
+          "rebellions": [
+            {
+              "session": "2024-05-15",
+              "topic": "DRUK nr 5 - w sprawie ustalenia wynagrodzenia dla Marszałka",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-06-24",
+              "topic": "DRUK nr 61 - w sprawie zmiany Wieloletniej Prognozy Finansowej",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "DRUK nr 88 - Przyjęcie uchwały w sprawie przyjęcia rezygnacji z",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-02-24",
+              "topic": "DRUK nr 166 - w sprawie zmiany budżetu Województwa",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-02-24",
+              "topic": "DRUK nr 167 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-03-31",
+              "topic": "DRUK nr 185 - o zmianie uchwały w sprawie ograniczenia",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-05-23",
+              "topic": "DRUK nr 221 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad – zdjęcie druku nr 312.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 313.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 314.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 315.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 312 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 313 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 314 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 315,315a - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -413,11 +1917,27 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 100.0,
           "aktywnosc": 93.7,
           "zgodnosc_z_klubem": 100.0,
+          "votes_za": 332,
+          "votes_przeciw": 10,
+          "votes_wstrzymal": 0,
+          "votes_brak": 37,
+          "votes_nieobecny": 0,
           "votes_total": 365,
-          "rebellion_count": 0
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -427,11 +1947,58 @@
       "kadencje": {
         "2024-2029": {
           "club": "PiS",
+          "club_full": "Prawo i Sprawiedliwość",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 88.0,
           "aktywnosc": 92.9,
           "zgodnosc_z_klubem": 98.5,
+          "votes_za": 298,
+          "votes_przeciw": 9,
+          "votes_wstrzymal": 32,
+          "votes_brak": 5,
+          "votes_nieobecny": 35,
           "votes_total": 365,
-          "rebellion_count": 5
+          "rebellion_count": 5,
+          "rebellions": [
+            {
+              "session": "2024-05-24",
+              "topic": "Zatwierdzenie porządku obrad.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2024-06-24",
+              "topic": "DRUK nr 61 - w sprawie zmiany Wieloletniej Prognozy Finansowej",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2024-07-29",
+              "topic": "(brak tematu)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-05-23",
+              "topic": "DRUK nr 221 - w sprawie zmiany Wieloletniej Prognozy",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 313.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -441,11 +2008,94 @@
       "kadencje": {
         "2024-2029": {
           "club": "TD",
+          "club_full": "Trzecia Droga",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 96.0,
           "aktywnosc": 95.3,
           "zgodnosc_z_klubem": 96.8,
+          "votes_za": 332,
+          "votes_przeciw": 10,
+          "votes_wstrzymal": 6,
+          "votes_brak": 10,
+          "votes_nieobecny": 21,
           "votes_total": 365,
-          "rebellion_count": 11
+          "rebellion_count": 11,
+          "rebellions": [
+            {
+              "session": "2025-07-28",
+              "topic": "Wprowadzenie do porządku obrad jako punkt 8.10 druku nr 255.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-07-28",
+              "topic": "(brak tematu)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad – wprowadzenie druku nr 330",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad – zdjęcie druku nr 312.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 313.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 314.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "Zatwierdzenie porządku obrad - zdjęcie druku nr 315.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 312 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 313 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 314 - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-22",
+              "topic": "DRUK nr 315,315a - w sprawie ograniczenia populacji zwierząt",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            }
+          ],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     },
@@ -455,11 +2105,27 @@
       "kadencje": {
         "2024-2029": {
           "club": "KO",
+          "club_full": "Koalicja Obywatelska",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
           "frekwencja": 96.0,
           "aktywnosc": 93.4,
           "zgodnosc_z_klubem": 100.0,
+          "votes_za": 333,
+          "votes_przeciw": 8,
+          "votes_wstrzymal": 0,
+          "votes_brak": 19,
+          "votes_nieobecny": 19,
           "votes_total": 365,
-          "rebellion_count": 0
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
         }
       }
     }
