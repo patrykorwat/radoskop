@@ -91,15 +91,42 @@ def http_download(url: str, dest: Path, timeout: int = DEFAULT_TIMEOUT) -> bool:
 
 
 def pdftotext(pdf: Path, txt: Path) -> bool:
-    """Konwertuj PDF → TXT przez pdftotext (system tool)."""
+    """Konwertuj PDF → TXT.
+
+    Próbujemy w kolejności:
+    1. pdftotext (system, część poppler-utils) — najlepsza jakość rozpoznania
+       kolumn, fallbackowo używamy gdy zainstalowany.
+    2. pymupdf (Python fitz) — domyślnie dostępny w obrazie NAS, działa bez
+       zewnętrznych zależności systemowych.
+    """
+    # Pierwsza próba: pdftotext system
     try:
         subprocess.run(
             ["pdftotext", str(pdf), str(txt)],
             check=True, timeout=120, capture_output=True,
         )
+        if txt.exists() and txt.stat().st_size > 0:
+            return True
+    except (subprocess.SubprocessError, FileNotFoundError):
+        pass
+
+    # Fallback: pymupdf
+    try:
+        import fitz  # type: ignore
+    except ImportError:
+        print(f"  pdftotext + pymupdf both unavailable", file=sys.stderr)
+        return False
+    try:
+        doc = fitz.open(str(pdf))
+        chunks = []
+        for page in doc:
+            chunks.append(page.get_text("text"))
+        doc.close()
+        text = "\n".join(chunks)
+        txt.write_text(text, encoding="utf-8")
         return txt.exists() and txt.stat().st_size > 0
-    except (subprocess.SubprocessError, FileNotFoundError) as exc:
-        print(f"  pdftotext fail: {exc}", file=sys.stderr)
+    except Exception as exc:
+        print(f"  pymupdf fail: {exc}", file=sys.stderr)
         return False
 
 
