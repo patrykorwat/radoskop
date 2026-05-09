@@ -349,6 +349,15 @@ PL_TO_DE: list[tuple[str, str]] = [
     # ── Stopka i prawne ─────────────────────────────────────────────
     ("Polityka prywatności", "Datenschutz"),
     ("Kontakt", "Kontakt"),
+
+    # ── Skróty i drobne etykiety inline (Rede-Aktivität row) ─────────
+    # Template ma `${statements} wyp. · ${words.toLocaleString('pl')} słów`,
+    # apply_locale podmienia te fragmenty literałem w JS template literal.
+    # Dłuższe frazy najpierw — bo apply_locale sortuje po długości DESC.
+    ("Śr. słów/sesję", "⌀ Wörter/Sitzung"),
+    ("wyp.", "Beitr."),
+    ("słów", "Wörter"),
+    ("toLocaleString('pl')", "toLocaleString('de')"),
 ]
 
 
@@ -485,6 +494,13 @@ PL_TO_CS: list[tuple[str, str]] = [
     # ── Stopka i prawne ─────────────────────────────────────────────
     ("Polityka prywatności", "Zásady ochrany osobních údajů"),
     ("Kontakt", "Kontakt"),
+
+    # ── Skróty i drobne etykiety inline (Aktivita projevů) ──────────
+    # Dłuższe frazy najpierw — bo apply_locale sortuje po długości DESC.
+    ("Śr. słów/sesję", "⌀ slov/zasedání"),
+    ("wyp.", "výst."),
+    ("słów", "slov"),
+    ("toLocaleString('pl')", "toLocaleString('cs')"),
 ]
 
 

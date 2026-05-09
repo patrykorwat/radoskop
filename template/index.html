@@ -2365,7 +2365,7 @@ async function showSession(sessionNumber) {
   // g\u0142osowa\u0144, dla miast typu Berlin (Hammelsprung anonimowy) liczba
   // wypowiedzi z protoko\u0142u.
   const sessStatementCount = sess.statements != null ? sess.statements
-    : (sess.speakers ? sess.speakers.reduce((s, sp) => s + (sp.statements || 0), 0) : 0);
+    : (sess.speakers ? sess.speakers.reduce((s, sp) => s + (sp.statements ?? sp.turns ?? 0), 0) : 0);
   const sessSummaryStat = HAS_VOTING_DATA
     ? ((sess.vote_count || 0) + ' g\u0142osowa\u0144')
     : (sessStatementCount + ' wyst\u0105pie\u0144');
@@ -2442,10 +2442,14 @@ async function showSession(sessionNumber) {
     html += sess.speakers.map(sp => {
       const cl = clubMap[sp.name] || '?';
       const barPct = Math.max((sp.words / maxWords) * 100, 2);
+      // Schema kompatybilność: berlin scraper pisał wcześniej `turns`,
+      // Polish scrapery `statements`. Bezpiecznie czytamy oba; tu
+      // będzie undefined tylko jeśli scrape jeszcze nie przeszedł.
+      const statements = sp.statements ?? sp.turns ?? 0;
       return `<div class="speaker-bar">
         <span class="speaker-name"><span class="club ${clubClass(cl)}">${cl}</span> ${profileLink(sp.name)}</span>
         <div class="speaker-bar-fill" style="width:${barPct}%"></div>
-        <span style="color:var(--muted);font-size:0.8rem;white-space:nowrap">${sp.statements} wyp. · ${sp.words.toLocaleString('pl')} słów</span>
+        <span style="color:var(--muted);font-size:0.8rem;white-space:nowrap">${statements} wyp. · ${sp.words.toLocaleString('pl')} słów</span>
       </div>`;
     }).join('');
     html += `</div>`;
