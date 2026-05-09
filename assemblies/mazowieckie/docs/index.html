@@ -261,7 +261,7 @@ footer a { color:var(--accent); text-decoration:none; }
         <button class="tab" data-tab="similarity">Kto z kim głosuje</button>
         <button class="tab" data-tab="interpelacje">Interpelacje</button>
         <button class="tab tab-budget" data-tab="budget">Budżet</button>
-        <a href="/aktualnosci/" class="tab" style="text-decoration:none">Aktualności</a>
+        <a href="/news/" class="tab" style="text-decoration:none">Aktualności</a>
       </div>
       <div class="kadencja-bar" id="kadencja-bar"></div>
     </div>
@@ -374,7 +374,7 @@ footer a { color:var(--accent); text-decoration:none; }
     </div>
     Dane źródłowe: <a href="https://www.mazovia.pl/pl/bip/sejmik/" target="_blank">BIP Sejmik Mazowiecki</a>.
     Kod: <a href="https://github.com/radoskoppl/radoskop" target="_blank">GitHub</a> (AGPL-3.0).
-    <a href="/raporty/" onclick="event.preventDefault();showReports()">Raporty</a> · <a href="/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="/regulamin/" onclick="event.preventDefault();showTerms()">Regulamin</a>
+    <a href="/reports/" onclick="event.preventDefault();showReports()">Raporty</a> · <a href="/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="/terms/" onclick="event.preventDefault();showTerms()">Regulamin</a>
   </footer>
 
 </div>
@@ -571,8 +571,8 @@ async function init() {
     const defaultKid = RAW.default_kadencja || RAW.kadencje[RAW.kadencje.length-1].id;
     const path = routePath();
     let initialKid = defaultKid;
-    if (path.startsWith('/kadencja/')) {
-      const parts = path.replace('/kadencja/', '').split('/');
+    if (path.startsWith('/term/')) {
+      const parts = path.replace('/term/', '').split('/');
       const kid = SLUG_KADS[parts[0]];
       if (kid) initialKid = kid;
     }
@@ -585,8 +585,8 @@ async function init() {
     renderKadencjaBar();
 
     // Deep links
-    if (path.startsWith('/profil/')) {
-      const slug = path.replace('/profil/', '');
+    if (path.startsWith('/profile/')) {
+      const slug = path.replace('/profile/', '');
       const profile = PROFILES.profiles.find(p => p.slug === slug);
       if (profile) {
         selectKadencjaQuiet(initialKid);
@@ -595,49 +595,49 @@ async function init() {
         return;
       }
     }
-    if (path.startsWith('/glosowanie/')) {
+    if (path.startsWith('/vote/')) {
       selectKadencjaQuiet(initialKid);
-      const vid = path.replace('/glosowanie/', '');
+      const vid = path.replace('/vote/', '');
       showVote(vid);
       navigateTo(path, true);
       return;
     }
-    if (path.startsWith('/sesja/')) {
+    if (path.startsWith('/session/')) {
       selectKadencjaQuiet(initialKid);
-      const snum = decodeURIComponent(path.replace('/sesja/', ''));
+      const snum = decodeURIComponent(path.replace('/session/', ''));
       showSession(snum);
       navigateTo(path, true);
       return;
     }
-    if (path === '/polityka-prywatnosci' || path === '/polityka-prywatnosci/') {
+    if (path === '/privacy' || path === '/privacy/') {
       showPrivacy();
       navigateTo(path, true);
       return;
     }
-    if (path === '/regulamin' || path === '/regulamin/') {
+    if (path === '/terms' || path === '/terms/') {
       showTerms();
       navigateTo(path, true);
       return;
     }
-    if (path === '/raporty' || path === '/raporty/') {
+    if (path === '/reports' || path === '/reports/') {
       showReports();
       navigateTo(path, true);
       return;
     }
-    if (path === '/interpelacje' || path === '/interpelacje/') {
+    if (path === '/interpellations' || path === '/interpellations/') {
       selectKadencjaQuiet(initialKid);
       activateTab('interpelacje');
       navigateTo(path, true);
       return;
     }
-    if (path === '/budzet' || path === '/budzet/') {
+    if (path === '/budget' || path === '/budget/') {
       selectKadencjaQuiet(initialKid);
       activateTab('budget');
       navigateTo(path, true);
       return;
     }
-    if (path.startsWith('/kadencja/')) {
-      const parts = path.replace('/kadencja/', '').split('/');
+    if (path.startsWith('/term/')) {
+      const parts = path.replace('/term/', '').split('/');
       const kid = SLUG_KADS[parts[0]];
       const tab = SLUG_TABS[parts[1]] || 'ranking';
       if (kid) {
@@ -715,7 +715,7 @@ function hideAllViews() {
 }
 
 let currentTab = 'ranking';
-const TAB_SLUGS = {ranking:'ranking',profiles:'radni',sessions:'sesje',votes:'glosowania',similarity:'podobienstwo',interpelacje:'interpelacje',budget:'budzet'};
+const TAB_SLUGS = {ranking:'ranking',profiles:'councillors',sessions:'sessions',votes:'votes',similarity:'similarity',interpelacje:'interpellations',budget:'budget'};
 const SLUG_TABS = Object.fromEntries(Object.entries(TAB_SLUGS).map(([k,v])=>[v,k]));
 const KAD_SLUGS = {'2018-2023':'viii','2024-2029':'ix'};
 const SLUG_KADS = Object.fromEntries(Object.entries(KAD_SLUGS).map(([k,v])=>[v,k]));
@@ -772,12 +772,12 @@ function setOgMeta(opts) {
 function mainPath(tab, kid) {
   tab = tab || currentTab;
   kid = kid || currentKid;
-  if (tab === 'budget') return '/budzet/';
-  if (tab === 'interpelacje') return '/interpelacje/';
+  if (tab === 'budget') return '/budget/';
+  if (tab === 'interpelacje') return '/interpellations/';
   const kadSlug = KAD_SLUGS[kid] || kid;
   const tabSlug = TAB_SLUGS[tab] || tab;
   if (tab === 'ranking' && kid === (RAW.default_kadencja || '2024-2029')) return '/';
-  return '/kadencja/' + kadSlug + '/' + tabSlug + '/';
+  return '/term/' + kadSlug + '/' + tabSlug + '/';
 }
 
 function navigateTo(path, replace) {
@@ -837,27 +837,27 @@ function trackEvent(eventName, params) {
 function profileLink(name, content) {
   var s = profileSlug(name);
   var esc = name.replace(/'/g, "\\'");
-  return '<a class="name-link" ' + 'href="/profil/' + s + '/" onclick="event.preventDefault();showProfile(\'' + esc + '\')">' + (content || name) + '</a>';
+  return '<a class="name-link" ' + 'href="/profile/' + s + '/" onclick="event.preventDefault();showProfile(\'' + esc + '\')">' + (content || name) + '</a>';
 }
 
 function profileLinkStyled(name, style, content) {
   var s = profileSlug(name);
   var esc = name.replace(/'/g, "\\'");
-  return '<a class="name-link" ' + 'href="/profil/' + s + '/" onclick="event.preventDefault();showProfile(\'' + esc + '\')" style="' + style + '">' + (content || name) + '</a>';
+  return '<a class="name-link" ' + 'href="/profile/' + s + '/" onclick="event.preventDefault();showProfile(\'' + esc + '\')" style="' + style + '">' + (content || name) + '</a>';
 }
 
 function voteLink(voteId, content) {
-  return '<a class="name-link" ' + 'href="/glosowanie/' + voteId + '/" onclick="event.preventDefault();showVote(\'' + voteId + '\')">' + content + '</a>';
+  return '<a class="name-link" ' + 'href="/vote/' + voteId + '/" onclick="event.preventDefault();showVote(\'' + voteId + '\')">' + content + '</a>';
 }
 
 function sessionLink(number, content, extraAttrs) {
   var enc = encodeURIComponent(number);
-  return '<a class="name-link" ' + 'href="/sesja/' + enc + '/" onclick="event.preventDefault();showSession(\'' + number + '\')"' + (extraAttrs || '') + '>' + content + '</a>';
+  return '<a class="name-link" ' + 'href="/session/' + enc + '/" onclick="event.preventDefault();showSession(\'' + number + '\')"' + (extraAttrs || '') + '>' + content + '</a>';
 }
 
 function sessionLinkStop(number, content) {
   var enc = encodeURIComponent(number);
-  return '<a ' + 'href="/sesja/' + enc + '/" onclick="event.preventDefault();event.stopPropagation();showSession(\'' + number + '\')">' + content + '</a>';
+  return '<a ' + 'href="/session/' + enc + '/" onclick="event.preventDefault();event.stopPropagation();showSession(\'' + number + '\')">' + content + '</a>';
 }
 
 // --- Privacy policy page ---
@@ -955,7 +955,7 @@ function showTerms() {
     + '<h2 style="font-size:1.1rem;margin:24px 0 8px">5. Reklamy</h2>'
     + '<p>Serwis może wyświetlać reklamy dostarczane przez Google AdSense i partnerów reklamowych Google. '
     + 'Reklamy finansują utrzymanie i rozwój Serwisu. Reklamy spersonalizowane wyświetlane są wyłącznie po wyrażeniu zgody przez użytkownika za pośrednictwem banera cookies. '
-    + 'Szczegóły dotyczące cookies reklamowych i zarządzania zgodą opisane są w <a href="/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityce prywatności</a>.</p>'
+    + 'Szczegóły dotyczące cookies reklamowych i zarządzania zgodą opisane są w <a href="/privacy/" onclick="event.preventDefault();showPrivacy()">Polityce prywatności</a>.</p>'
 
     + '<h2 style="font-size:1.1rem;margin:24px 0 8px">6. Licencja i kod źródłowy</h2>'
     + '<p>Kod źródłowy Serwisu jest udostępniony na licencji AGPL-3.0 na platformie GitHub. '
@@ -966,7 +966,7 @@ function showTerms() {
     + 'decyzje podjęte na podstawie informacji z Serwisu, działanie serwisów zewnętrznych, do których Serwis zawiera odnośniki.</p>'
 
     + '<h2 style="font-size:1.1rem;margin:24px 0 8px">8. Prywatność</h2>'
-    + '<p>Zasady przetwarzania danych osobowych użytkowników opisuje <a href="/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a>.</p>'
+    + '<p>Zasady przetwarzania danych osobowych użytkowników opisuje <a href="/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a>.</p>'
 
     + '<h2 style="font-size:1.1rem;margin:24px 0 8px">9. Zmiany regulaminu</h2>'
     + '<p>Administrator zastrzega sobie prawo do zmiany Regulaminu. Aktualna wersja jest zawsze dostępna pod adresem /regulamin/ w każdej instancji Serwisu.</p>'
@@ -1090,12 +1090,12 @@ function showReports() {
     });
   });
 
-  navigateTo('/raporty/');
+  navigateTo('/reports/');
   setTitle('Raporty');
   setOgMeta({
     title: 'Raporty PDF — Radoskop ' + cityName,
     description: 'Szczegółowe raporty PDF z analizą pracy radnych, klubów i sejmiku województwa ' + cityGen + '.',
-    url: siteUrl + '/raporty/'
+    url: siteUrl + '/reports/'
   });
   window.scrollTo(0, 0);
 }
@@ -1103,10 +1103,16 @@ function showReports() {
 function startReportPurchase(reportPath) {
   // Extract report type and identifier from path
   // Paths: /raporty/radny/{slug}.pdf, /raporty/klub/{slug}.pdf, /raporty/sejmik.pdf
-  var parts = reportPath.replace('/raporty/', '').replace('.pdf', '').split('/');
-  var reportType = parts[0]; // radny, klub, miasto
+  var parts = reportPath.replace('/reports/', '').replace('.pdf', '').split('/');
+  var urlType = parts[0]; // councillor, club, city
   var reportId = parts[1] || '';
-  var citySlug = location.hostname.split('.')[0]; // e.g. "szczecin"
+  var citySlug = location.hostname.split('.')[0];
+
+  // Backend /api/checkout still expects legacy Polish type names
+  // (radny/klub/miasto). Map URL token to legacy type for backwards
+  // compatibility.
+  var typeMap = { councillor: 'radny', club: 'klub', city: 'miasto' };
+  var reportType = typeMap[urlType] || urlType;
 
   // Redirect to Stripe Checkout via your backend
   var checkoutUrl = 'https://radoskop.pl/api/checkout?type=' + encodeURIComponent(reportType)
@@ -1291,7 +1297,7 @@ function showProfile(name) {
   hideAllViews();
   const view = document.getElementById('profile-view');
   view.style.display = 'block';
-  navigateTo('/profil/' + profile.slug + '/');
+  navigateTo('/profile/' + profile.slug + '/');
   setTitle(profile.name);
   var _pk = profile.kadencje[Object.keys(profile.kadencje).pop()] || {};
   setOgMeta({
@@ -2056,7 +2062,7 @@ async function showVote(voteId) {
   const view = document.getElementById('vote-view');
   view.style.display = 'block';
   view.innerHTML = '<p style="padding:40px;color:var(--muted)">Ładowanie głosowania...</p>';
-  navigateTo('/glosowanie/' + voteId + '/');
+  navigateTo('/vote/' + voteId + '/');
 
   // Fetch vote detail from API (try current kadencja first)
   let vote = null;
@@ -2200,7 +2206,7 @@ async function showSession(sessionNumber) {
   const view = document.getElementById('session-view');
   view.style.display = 'block';
   view.innerHTML = '<p style="padding:40px;color:var(--muted)">Ładowanie sesji...</p>';
-  navigateTo('/sesja/' + encodeURIComponent(sessionNumber) + '/');
+  navigateTo('/session/' + encodeURIComponent(sessionNumber) + '/');
 
   // Fetch session detail from API
   let sess = null;
@@ -2962,34 +2968,34 @@ function copyShareLink(encodedUrl, btnId) {
 window.addEventListener('popstate', async () => {
   _popstateActive = true;
   const path = routePath();
-  if (path.startsWith('/profil/')) {
-    const slug = path.replace('/profil/', '');
+  if (path.startsWith('/profile/')) {
+    const slug = path.replace('/profile/', '');
     const profile = PROFILES && PROFILES.profiles.find(p => p.slug === slug);
     if (profile) { showProfile(profile.name); _popstateActive = false; return; }
   }
-  if (path.startsWith('/glosowanie/')) {
-    const vid = path.replace('/glosowanie/', '');
+  if (path.startsWith('/vote/')) {
+    const vid = path.replace('/vote/', '');
     showVote(vid);
     _popstateActive = false;
     return;
   }
-  if (path.startsWith('/sesja/')) {
-    const snum = decodeURIComponent(path.replace('/sesja/', ''));
+  if (path.startsWith('/session/')) {
+    const snum = decodeURIComponent(path.replace('/session/', ''));
     showSession(snum);
     _popstateActive = false;
     return;
   }
-  if (path === '/polityka-prywatnosci' || path === '/polityka-prywatnosci/') {
+  if (path === '/privacy' || path === '/privacy/') {
     showPrivacy();
     _popstateActive = false;
     return;
   }
-  if (path === '/regulamin' || path === '/regulamin/') {
+  if (path === '/terms' || path === '/terms/') {
     showTerms();
     _popstateActive = false;
     return;
   }
-  if (path === '/raporty' || path === '/raporty/') {
+  if (path === '/reports' || path === '/reports/') {
     showReports();
     _popstateActive = false;
     return;
@@ -2997,12 +3003,12 @@ window.addEventListener('popstate', async () => {
   // Main page tab/kadencja paths
   hideAllViews();
   document.getElementById('app').style.display = 'block';
-  if (path === '/interpelacje' || path === '/interpelacje/') {
+  if (path === '/interpellations' || path === '/interpellations/') {
     activateTab('interpelacje');
-  } else if (path === '/budzet' || path === '/budzet/') {
+  } else if (path === '/budget' || path === '/budget/') {
     activateTab('budget');
-  } else if (path.startsWith('/kadencja/')) {
-    const parts = path.replace('/kadencja/', '').split('/');
+  } else if (path.startsWith('/term/')) {
+    const parts = path.replace('/term/', '').split('/');
     const kid = SLUG_KADS[parts[0]];
     const tab = SLUG_TABS[parts[1]] || 'ranking';
     if (kid && kid !== currentKid) {
