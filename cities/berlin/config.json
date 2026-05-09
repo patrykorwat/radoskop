@@ -14,6 +14,14 @@
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "berlin.radoskop.eu",
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
   "samorzad_type": "miasto",
   "rada_name": "Abgeordnetenhaus von Berlin",
   "rada_name_genitive": "des Berliner Abgeordnetenhauses",

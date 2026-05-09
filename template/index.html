@@ -362,6 +362,9 @@ footer a { color:var(--accent); text-decoration:none; }
   <!-- Terms of service view -->
   <div id="terms-view" style="display:none"></div>
 
+  <!-- Impressum / provider identification view (only shown for DE/CS instances) -->
+  <div id="impressum-view" style="display:none"></div>
+
   <!-- Reports catalog view -->
   <div id="reports-view" style="display:none"></div>
 
@@ -371,7 +374,8 @@ footer a { color:var(--accent); text-decoration:none; }
     </div>
     Dane źródłowe: <a href="{{BIP_URL}}" target="_blank">{{BIP_NAME}}</a>.
     Kod: <a href="{{GITHUB_URL}}" target="_blank">GitHub</a> (AGPL-3.0).
-    <a href="/raporty/" onclick="event.preventDefault();showReports()">Raporty</a> · <a href="/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="/regulamin/" onclick="event.preventDefault();showTerms()">Regulamin</a>
+    <a href="/raporty/" onclick="event.preventDefault();showReports()">Raporty</a> · <a href="/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="/regulamin/" onclick="event.preventDefault();showTerms()">Regulamin</a>{{IMPRESSUM_FOOTER_LINK}}
+    {{PRESSEKODEX_NOTICE}}
   </footer>
 
 </div>
@@ -600,6 +604,29 @@ async function init() {
         return;
       }
     }
+    if (path === '/glosowanie' || path === '/glosowanie/') {
+      // /glosowanie/ bez ID → przekierowanie do najnowszego głosowania
+      // z ostatniej sesji aktualnej kadencji. (Wcześniej showVote('')
+      // wywalał stronę "Nie znaleziono głosowania" co Google Ads
+      // oznaczał jako Destination not working.)
+      selectKadencjaQuiet(initialKid);
+      try {
+        const resp = await fetch(API_BASE + '/kadencja/' + initialKid + '/votes?per_page=1');
+        const d = await resp.json();
+        const v = (d.items || [])[0];
+        if (v && v.id) {
+          showVote(v.id);
+          navigateTo('/glosowanie/' + v.id + '/', true);
+        } else {
+          activateTab('votes');
+          navigateTo(path, true);
+        }
+      } catch(e) {
+        activateTab('votes');
+        navigateTo(path, true);
+      }
+      return;
+    }
     if (path.startsWith('/glosowanie/')) {
       selectKadencjaQuiet(initialKid);
       const vid = path.replace('/glosowanie/', '');
@@ -630,6 +657,11 @@ async function init() {
     }
     if (path === '/regulamin' || path === '/regulamin/') {
       showTerms();
+      navigateTo(path, true);
+      return;
+    }
+    if (path === '/impressum' || path === '/impressum/') {
+      showImpressum();
       navigateTo(path, true);
       return;
     }
@@ -910,7 +942,7 @@ function showPrivacy() {
   el.innerHTML = '<div style="max-width:800px;margin:0 auto;padding:20px 0">'
     + '<button class="profile-back" onclick="showMain()">← Strona główna</button>'
     + '<h1 style="font-size:1.5rem;margin:20px 0 10px">Polityka prywatności</h1>'
-    + '<p style="color:var(--muted);margin-bottom:20px">Ostatnia aktualizacja: 1 kwietnia 2026</p>'
+    + '<p style="color:var(--muted);margin-bottom:20px">Ostatnia aktualizacja: 9 maja 2026</p>'
 
     + '<h2 style="font-size:1.1rem;margin:24px 0 8px">1. Administrator danych</h2>'
     + '<p>Administratorem danych osobowych jest {{AUTHOR}} (kontakt: patrykorwat@gmail.com). '
@@ -927,13 +959,14 @@ function showPrivacy() {
     + '<h2 style="font-size:1.1rem;margin:24px 0 8px">3. Pliki cookies</h2>'
     + '<p>Serwis ustawia tylko jeden plik cookie funkcjonalny:</p>'
     + '<ul style="margin:8px 0 8px 24px">'
-    + '<li><strong>radoskop_theme</strong> (1 rok) — zapamiętuje wybór jasnego lub ciemnego motywu strony</li></ul>'
+    + '<li><strong>radoskop_theme</strong> (1 rok) zapamiętuje wybór jasnego lub ciemnego motywu strony</li></ul>'
     + '<p>Nie używamy cookies reklamowych ani analitycznych, dlatego nie wyświetlamy banera zgody. Możesz wyczyścić cookies w ustawieniach przeglądarki w dowolnym momencie.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">4. Reklamy</h2>'
-    + '<p>Serwis Radoskop nie wyświetla reklam ani nie korzysta z sieci reklamowych.</p>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">4. Brak reklam i charakter informacyjny</h2>'
+    + '<p>Serwis Radoskop nie wyświetla reklam, nie korzysta z sieci reklamowych ani nie monetyzuje treści przez reklamę. '
+    + 'Serwis stanowi usługę publicznego informowania (motyw 32 Rozporządzenia (UE) 2024/900) i korzysta z wyłączenia z zakresu definicji reklamy politycznej, przewidzianego w art. 2 ust. 2 lit. c tego rozporządzenia.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">5. Cel i podstawa prawna przetwarzania</h2>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">5. Cel i podstawa prawna przetwarzania danych użytkowników</h2>'
     + '<p>Dane analityczne służą do oceny popularności podstron, doboru priorytetów rozwoju Serwisu i mierzenia wpływu publikacji. '
     + 'Podstawą prawną jest art. 6 ust. 1 lit. f RODO (uzasadniony interes administratora w zakresie analizy ruchu) oraz art. 6 ust. 1 lit. a RODO (zgoda na pliki cookies funkcjonalne, wyrażana poprzez korzystanie z Serwisu).</p>'
 
@@ -941,11 +974,21 @@ function showPrivacy() {
     + '<p>Dane analityczne pozostają na infrastrukturze Administratora i nie są udostępniane podmiotom trzecim. '
     + 'Nie sprzedajemy danych osobowych użytkowników.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">7. Dane publiczne radnych</h2>'
-    + '<p>Serwis prezentuje publicznie dostępne dane z Biuletynów Informacji Publicznej (BIP) dotyczące działalności radnych miejskich: '
-    + 'wyniki głosowań, frekwencję, interpelacje. Są to informacje publiczne udostępniane na podstawie ustawy o dostępie do informacji publicznej.</p>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">7. Dane publiczne radnych. Klauzula informacyjna</h2>'
+    + '<p>Serwis prezentuje publicznie dostępne dane o działalności radnych miejskich i wojewódzkich w zakresie ich funkcji publicznej: imię i nazwisko, klub, wyniki głosowań imiennych, frekwencja, interpelacje, wystąpienia w protokołach sesji. '
+    + 'Źródłem są oficjalne rejestry publiczne: Biuletyny Informacji Publicznej (BIP) miast polskich, opendata Pragi, Plenarprotokolle Berliner Abgeordnetenhaus oraz analogiczne zasoby publiczne.</p>'
+    + '<p><strong>Podstawa prawna przetwarzania:</strong></p>'
+    + '<ul style="margin:8px 0 8px 24px">'
+    + '<li>art. 6 ust. 1 lit. f RODO (uzasadniony interes administratora i interes publiczny w transparentności samorządu),</li>'
+    + '<li>art. 6 ust. 1 lit. e RODO (zadanie realizowane w interesie publicznym),</li>'
+    + '<li>art. 85 RODO (przetwarzanie do celów dziennikarskich),</li>'
+    + '<li>ustawa z dnia 6 września 2001 r. o dostępie do informacji publicznej.</li>'
+    + '</ul>'
+    + '<p><strong>Prawa radnego jako osoby, której dane dotyczą:</strong> dostęp do danych, sprostowanie danych nieprawidłowych, sprzeciw wobec przetwarzania na podstawie szczególnej sytuacji, wniesienie skargi do Prezesa UODO. '
+    + 'Procedura sprostowania danych opisana jest w <a href="/regulamin/" onclick="event.preventDefault();showTerms()">Regulaminie</a>, sekcja 8. '
+    + 'Kontakt w sprawie danych: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a>.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">8. Twoje prawa</h2>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">8. Twoje prawa jako użytkownika</h2>'
     + '<p>Na podstawie RODO przysługuje Ci prawo do: dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, '
     + 'przenoszenia danych, sprzeciwu wobec przetwarzania oraz cofnięcia zgody w dowolnym momencie (przez usunięcie cookies lub kontakt z administratorem). '
     + 'Masz również prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (PUODO).</p>'
@@ -974,49 +1017,74 @@ function showTerms() {
   el.innerHTML = '<div style="max-width:800px;margin:0 auto;padding:20px 0">'
     + '<button class="profile-back" onclick="showMain()">← Strona główna</button>'
     + '<h1 style="font-size:1.5rem;margin:20px 0 10px">Regulamin serwisu Radoskop</h1>'
-    + '<p style="color:var(--muted);margin-bottom:20px">Ostatnia aktualizacja: 1 kwietnia 2026</p>'
+    + '<p style="color:var(--muted);margin-bottom:20px">Ostatnia aktualizacja: 9 maja 2026</p>'
 
     + '<h2 style="font-size:1.1rem;margin:24px 0 8px">1. Postanowienia ogólne</h2>'
     + '<p>Serwis Radoskop (dalej: Serwis) jest prowadzony przez Patryka Orwata (dalej: Administrator). '
     + 'Serwis działa pod domenami radoskop.pl (miasta polskie) i radoskop.eu (miasta zagraniczne, m.in. Praha, Berlin) oraz ich subdomenami miast (np. {{EXAMPLE_SUBDOMAIN}}). '
     + 'Korzystanie z Serwisu oznacza akceptację niniejszego Regulaminu.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">2. Charakter serwisu</h2>'
-    + '<p>Radoskop jest narzędziem do monitoringu pracy rad miejskich w Polsce. '
-    + 'Serwis prezentuje publicznie dostępne dane z Biuletynów Informacji Publicznej (BIP): wyniki głosowań imiennych, frekwencję radnych, interpelacje i inne dane o działalności samorządu. '
-    + 'Serwis ma charakter informacyjny i edukacyjny. Nie jest oficjalnym serwisem żadnego urzędu miasta.</p>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">2. Charakter serwisu i status prawny</h2>'
+    + '<p>Radoskop jest niezależnym serwisem informacyjnym o charakterze obywatelskim i dziennikarskim, służącym monitoringowi pracy rad miejskich i sejmików wojewódzkich. '
+    + 'Serwis stanowi usługę publicznego informowania w rozumieniu motywu 32 Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2024/900 z dnia 13 marca 2024 r. w sprawie przejrzystości i targetowania reklamy politycznej (TTPA) oraz korzysta z wyłączenia przewidzianego w art. 2 ust. 2 lit. c tego rozporządzenia, dotyczącego treści dziennikarskich i redakcyjnych. '
+    + 'Serwis nie jest reklamą polityczną w rozumieniu art. 3 pkt 2 TTPA, nie jest finansowany przez podmioty polityczne ani na ich zlecenie, nie promuje żadnej partii, komitetu wyborczego ani kandydata. '
+    + 'Serwis nie jest oficjalnym serwisem żadnego urzędu miasta, organu samorządu ani partii politycznej.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">3. Źródła danych</h2>'
-    + '<p>Wszystkie dane prezentowane w Serwisie pochodzą z publicznie dostępnych źródeł, przede wszystkim z Biuletynów Informacji Publicznej poszczególnych miast. '
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">3. Brak agitacji wyborczej</h2>'
+    + '<p>Serwis prezentuje wyłącznie historyczne, zarchiwizowane dane publiczne pochodzące z Biuletynów Informacji Publicznej (BIP), opendata oraz innych oficjalnych źródeł rejestrowych. '
+    + 'Serwis nie zawiera treści agitacyjnych, nie nakłania do głosowania na konkretnego kandydata ani przeciwko niemu, nie prowadzi agitacji wyborczej w rozumieniu art. 105 ustawy z dnia 5 stycznia 2011 r. Kodeks wyborczy. '
+    + 'W okresie ciszy wyborczej Serwis pozostaje dostępny z prezentacją historycznych danych publicznych, co nie stanowi agitacji wyborczej.</p>'
+
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">4. Źródła danych</h2>'
+    + '<p>Wszystkie dane prezentowane w Serwisie pochodzą z publicznie dostępnych źródeł, przede wszystkim z Biuletynów Informacji Publicznej poszczególnych miast oraz analogicznych zasobów open data dla miast zagranicznych. '
     + 'Dane są pobierane automatycznie i przetwarzane algorytmicznie. Administrator dokłada starań, aby dane były aktualne i poprawne, '
-    + 'jednak nie gwarantuje ich pełnej dokładności. W przypadku rozbieżności wiążące są dane źródłowe z BIP.</p>'
+    + 'jednak nie gwarantuje ich pełnej dokładności. W przypadku rozbieżności wiążące są dane źródłowe z oficjalnego rejestru.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">4. Wskaźniki i statystyki</h2>'
-    + '<p>Prezentowane wskaźniki (frekwencja, aktywność, zgodność z klubem, liczba rebelii) są obliczane na podstawie danych z BIP według jawnych algorytmów. '
-    + 'Wskaźniki mają charakter informacyjny i nie stanowią oceny wartościującej pracy radnych. '
-    + 'Metodologia obliczeń jest dostępna w kodzie źródłowym Serwisu na platformie GitHub.</p>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">5. Wskaźniki i statystyki</h2>'
+    + '<p>Prezentowane wskaźniki (frekwencja, aktywność, zgodność z klubem, liczba rebelii, liczba wystąpień) są obliczane na podstawie danych źródłowych według jawnych algorytmów. '
+    + 'Wskaźniki mają charakter informacyjny, opierają się na obiektywnych zdarzeniach (oddany głos, obecność na sesji, zabranie głosu) i nie stanowią oceny wartościującej pracy radnego. '
+    + 'Pełna metodologia obliczeń jest dostępna w kodzie źródłowym Serwisu na <a href="https://github.com/radoskoppl/radoskop" target="_blank" rel="noopener">GitHub</a>.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">5. Reklamy</h2>'
-    + '<p>Serwis może wyświetlać reklamy dostarczane przez Google AdSense i partnerów reklamowych Google. '
-    + 'Reklamy finansują utrzymanie i rozwój Serwisu. Reklamy spersonalizowane wyświetlane są wyłącznie po wyrażeniu zgody przez użytkownika za pośrednictwem banera cookies. '
-    + 'Szczegóły dotyczące cookies reklamowych i zarządzania zgodą opisane są w <a href="/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityce prywatności</a>.</p>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">6. Reklamy i finansowanie</h2>'
+    + '<p>Serwis nie wyświetla reklam, nie korzysta z sieci reklamowych ani nie monetyzuje treści przez reklamę. '
+    + 'Administrator może prowadzić działania marketingowe Serwisu w zewnętrznych kanałach (np. Google Ads, social media) w celu zwiększenia świadomości obywatelskiej i zasięgu serwisu informacyjnego. '
+    + 'Takie działania promują wyłącznie sam Serwis jako narzędzie informacyjne i nie zawierają treści politycznych. '
+    + 'Serwis nie przyjmuje finansowania od partii politycznych, komitetów wyborczych, kandydatów ani innych podmiotów politycznych. '
+    + 'Utrzymanie Serwisu finansowane jest ze środków własnych Administratora oraz ze sprzedaży raportów PDF dostępnych w sekcji <a href="/raporty/" onclick="event.preventDefault();showReports()">Raporty</a>.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">6. Licencja i kod źródłowy</h2>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">7. Klauzula informacyjna dla radnych</h2>'
+    + '<p>Administrator przetwarza dane osobowe radnych w zakresie ich działalności publicznej (imię i nazwisko, przynależność klubowa, oddane głosy, frekwencja, interpelacje, wystąpienia w protokołach sesji) na podstawie:</p>'
+    + '<ul style="margin:8px 0 8px 24px">'
+    + '<li>art. 6 ust. 1 lit. f RODO (uzasadniony interes administratora i interes publiczny w transparentności samorządu lokalnego),</li>'
+    + '<li>art. 6 ust. 1 lit. e RODO (zadanie realizowane w interesie publicznym),</li>'
+    + '<li>art. 85 RODO (przetwarzanie do celów dziennikarskich),</li>'
+    + '<li>ustawy z dnia 6 września 2001 r. o dostępie do informacji publicznej.</li>'
+    + '</ul>'
+    + '<p>Źródłem danych są oficjalne rejestry publiczne (BIP, opendata). Dane nie są przekazywane podmiotom trzecim w celach marketingowych ani sprzedawane. '
+    + 'Każdy radny ma prawo: dostępu do swoich danych, żądania sprostowania danych nieprawidłowych, wniesienia sprzeciwu wobec przetwarzania na podstawie szczególnej sytuacji, wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych. '
+    + 'Kontakt w sprawie danych: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a>.</p>'
+
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">8. Procedura sprostowania danych</h2>'
+    + '<p>Każdy radny lub osoba zainteresowana może zgłosić wniosek o sprostowanie danych w Serwisie. Wniosek prosimy kierować na adres <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a> z podaniem: imienia i nazwiska radnego, miasta, opisu zgłaszanego błędu oraz wskazania źródła prawidłowych danych (link do protokołu BIP, oficjalna lista obecności itp.). '
+    + 'Administrator zobowiązuje się do rozpatrzenia zgłoszenia w terminie 7 dni roboczych. Jeśli błąd zostanie potwierdzony przez konfrontację z dokumentem źródłowym, korekta nastąpi niezwłocznie po weryfikacji. '
+    + 'Jeśli rozbieżność wynika z błędu w samym źródle BIP, Administrator pozostawi dane zgodne ze źródłem, jednocześnie informując zgłaszającego o ścieżce sprostowania w urzędzie miasta odpowiedzialnym za publikację BIP.</p>'
+
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">9. Licencja i kod źródłowy</h2>'
     + '<p>Kod źródłowy Serwisu jest udostępniony na licencji AGPL-3.0 na platformie GitHub. '
     + 'Dane prezentowane w Serwisie, jako informacja publiczna, mogą być swobodnie wykorzystywane z podaniem źródła.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">7. Odpowiedzialność</h2>'
-    + '<p>Administrator nie ponosi odpowiedzialności za: czasową niedostępność Serwisu, ewentualne błędy w danych wynikające z błędów w źródłach BIP, '
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">10. Odpowiedzialność</h2>'
+    + '<p>Administrator nie ponosi odpowiedzialności za: czasową niedostępność Serwisu, ewentualne błędy w danych wynikające z błędów w źródłach (BIP, opendata), '
     + 'decyzje podjęte na podstawie informacji z Serwisu, działanie serwisów zewnętrznych, do których Serwis zawiera odnośniki.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">8. Prywatność</h2>'
-    + '<p>Zasady przetwarzania danych osobowych użytkowników opisuje <a href="/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a>.</p>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">11. Prywatność użytkowników</h2>'
+    + '<p>Zasady przetwarzania danych osobowych użytkowników odwiedzających Serwis opisuje <a href="/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a>.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">9. Zmiany regulaminu</h2>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">12. Zmiany regulaminu</h2>'
     + '<p>Administrator zastrzega sobie prawo do zmiany Regulaminu. Aktualna wersja jest zawsze dostępna pod adresem /regulamin/ w każdej instancji Serwisu.</p>'
 
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">10. Kontakt</h2>'
-    + '<p>Pytania i uwagi dotyczące Serwisu: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a></p>'
+    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">13. Kontakt</h2>'
+    + '<p>Pytania i uwagi dotyczące Serwisu, zgłoszenia sprostowania danych, sprawy RODO: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a></p>'
 
     + '</div>';
   navigateTo('/regulamin/');
@@ -1027,6 +1095,29 @@ function showTerms() {
     url: '{{SITE_URL}}/regulamin/'
   });
   /* TERMS_HTML_END */
+  window.scrollTo(0, 0);
+}
+
+// --- Impressum / provider identification page ---
+// Treść jest wstrzykiwana z config.json przez generate_site.py jako
+// IMPRESSUM_HTML placeholder. Dla miast PL block jest pusty (regulamin
+// pokrywa wymóg identyfikacji administratora). Dla DE/CS block zawiera
+// pełne dane wymagane przez par. 5 TMG / par. 18 MStV (Berlin) lub
+// par. 6 zákona č. 480/2004 Sb. (Praha).
+function showImpressum() {
+  hideAllViews();
+  var el = document.getElementById('impressum-view');
+  el.style.display = 'block';
+  /* IMPRESSUM_HTML_BEGIN */
+  el.innerHTML = '{{IMPRESSUM_HTML}}';
+  navigateTo('/impressum/');
+  setTitle('Impressum');
+  setOgMeta({
+    title: 'Impressum — Radoskop {{CITY_NAME}}',
+    description: 'Anbieterkennzeichnung gemäß §5 TMG.',
+    url: '{{SITE_URL}}/impressum/'
+  });
+  /* IMPRESSUM_HTML_END */
   window.scrollTo(0, 0);
 }
 
@@ -3026,6 +3117,23 @@ window.addEventListener('popstate', async () => {
     const profile = PROFILES && PROFILES.profiles.find(p => p.slug === slug);
     if (profile) { showProfile(profile.name); _popstateActive = false; return; }
   }
+  if (path === '/glosowanie' || path === '/glosowanie/') {
+    // /glosowanie/ bez ID → najnowsze głosowanie z aktualnej kadencji.
+    try {
+      const resp = await fetch(API_BASE + '/kadencja/' + currentKid + '/votes?per_page=1');
+      const d = await resp.json();
+      const v = (d.items || [])[0];
+      if (v && v.id) {
+        showVote(v.id);
+      } else {
+        activateTab('votes');
+      }
+    } catch(e) {
+      activateTab('votes');
+    }
+    _popstateActive = false;
+    return;
+  }
   if (path.startsWith('/glosowanie/')) {
     const vid = path.replace('/glosowanie/', '');
     showVote(vid);
@@ -3051,6 +3159,11 @@ window.addEventListener('popstate', async () => {
   }
   if (path === '/regulamin' || path === '/regulamin/') {
     showTerms();
+    _popstateActive = false;
+    return;
+  }
+  if (path === '/impressum' || path === '/impressum/') {
+    showImpressum();
     _popstateActive = false;
     return;
   }

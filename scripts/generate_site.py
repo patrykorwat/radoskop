@@ -29,7 +29,7 @@ PRIVACY_HTML_EN = (
     "el.innerHTML = '<div style=\"max-width:800px;margin:0 auto;padding:20px 0\">'\n"
     "    + '<button class=\"profile-back\" onclick=\"showMain()\">← Home</button>'\n"
     "    + '<h1 style=\"font-size:1.5rem;margin:20px 0 10px\">Privacy policy</h1>'\n"
-    "    + '<p style=\"color:var(--muted);margin-bottom:20px\">Last update: 1 April 2026</p>'\n"
+    "    + '<p style=\"color:var(--muted);margin-bottom:20px\">Last update: 9 May 2026</p>'\n"
     "\n"
     "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">1. Data controller</h2>'\n"
     "    + '<p>The controller of personal data is {{AUTHOR}} (contact: patrykorwat@gmail.com). '\n"
@@ -46,23 +46,35 @@ PRIVACY_HTML_EN = (
     "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">3. Cookies</h2>'\n"
     "    + '<p>The site sets only one functional cookie:</p>'\n"
     "    + '<ul style=\"margin:8px 0 8px 24px\">'\n"
-    "    + '<li><strong>radoskop_theme</strong> (1 year) — remembers your light or dark mode preference</li></ul>'\n"
+    "    + '<li><strong>radoskop_theme</strong> (1 year) remembers your light or dark mode preference</li></ul>'\n"
     "    + '<p>We do not use advertising or analytics cookies, so we do not show a consent banner. You can clear cookies in your browser settings at any time.</p>'\n"
     "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">4. Advertising</h2>'\n"
-    "    + '<p>Radoskop does not display ads and does not use ad networks.</p>'\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">4. No advertising. Public information service</h2>'\n"
+    "    + '<p>Radoskop does not display ads, does not use ad networks and does not monetise content through advertising. '\n"
+    "    + 'Radoskop is a public information service within the meaning of Recital 32 of Regulation (EU) 2024/900 (TTPA) and benefits from the exclusion from the definition of political advertising in Article 2(2)(c) of that Regulation.</p>'\n"
     "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">5. Purpose and legal basis</h2>'\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">5. Purpose and legal basis (user data)</h2>'\n"
     "    + '<p>Analytics data is used to assess page popularity, prioritise development and measure publication impact. '\n"
     "    + 'The legal basis is GDPR Article 6(1)(f) (legitimate interest in traffic analysis) and GDPR Article 6(1)(a) (consent for functional cookies, expressed by using the site).</p>'\n"
     "\n"
     "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">6. Sharing data</h2>'\n"
     "    + '<p>Analytics data stays on the controller infrastructure and is not shared with third parties. We do not sell user personal data.</p>'\n"
     "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">7. Public data on councillors</h2>'\n"
-    "    + '<p>The site presents publicly available data from official records (e.g. Polish BIP, Czech opendata, German Plenarprotokolle) about councillor activity: voting results, attendance, written enquiries. This is public information made available under freedom of information law.</p>'\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">7. Public data on councillors. Information notice</h2>'\n"
+    "    + '<p>Radoskop presents publicly available data on the official activity of city and regional councillors: name, club affiliation, roll call vote results, attendance, written enquiries, statements in session protocols. '\n"
+    "    + 'Sources are official public registers: Biuletyn Informacji Publicznej (BIP) for Polish cities, opendata Praha for Czech cities, Plenarprotokolle of the Berliner Abgeordnetenhaus for Berlin and analogous public resources.</p>'\n"
+    "    + '<p><strong>Legal basis for processing:</strong></p>'\n"
+    "    + '<ul style=\"margin:8px 0 8px 24px\">'\n"
+    "    + '<li>GDPR Article 6(1)(f) (legitimate interest of the controller and public interest in transparency of local government),</li>'\n"
+    "    + '<li>GDPR Article 6(1)(e) (task carried out in the public interest),</li>'\n"
+    "    + '<li>GDPR Article 85 (processing for journalistic purposes),</li>'\n"
+    "    + '<li>Polish Act of 6 September 2001 on Access to Public Information and equivalent freedom of information laws in other jurisdictions.</li>'\n"
+    "    + '</ul>'\n"
+    "    + '<p><strong>Rights of councillors as data subjects:</strong> access, rectification of inaccurate data, objection on grounds relating to particular situation, lodging a complaint with the supervisory authority. '\n"
+    "    + 'The data rectification procedure is described in the <a href=\"/terms/\" onclick=\"event.preventDefault();showTerms()\">Terms of service</a>, section 8. '\n"
+    "    + 'Contact for data matters: <a href=\"mailto:patrykorwat@gmail.com\">patrykorwat@gmail.com</a>.</p>'\n"
     "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">8. Your rights</h2>'\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">8. Your rights as a user</h2>'\n"
     "    + '<p>Under GDPR you have the right to: access your data, correct it, erase it, restrict processing, '\n"
     "    + 'data portability, object to processing and withdraw consent at any time (by clearing cookies or contacting the controller). '\n"
     "    + 'You also have the right to lodge a complaint with the Polish data protection authority (PUODO) or your local supervisory authority.</p>'\n"
@@ -78,47 +90,75 @@ TERMS_HTML_EN = (
     "el.innerHTML = '<div style=\"max-width:800px;margin:0 auto;padding:20px 0\">'\n"
     "    + '<button class=\"profile-back\" onclick=\"showMain()\">← Home</button>'\n"
     "    + '<h1 style=\"font-size:1.5rem;margin:20px 0 10px\">Radoskop terms of service</h1>'\n"
-    "    + '<p style=\"color:var(--muted);margin-bottom:20px\">Last update: 1 April 2026</p>'\n"
+    "    + '<p style=\"color:var(--muted);margin-bottom:20px\">Last update: 9 May 2026</p>'\n"
     "\n"
     "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">1. General</h2>'\n"
     "    + '<p>Radoskop (the Service) is operated by Patryk Orwat (the Operator). '\n"
     "    + 'The Service runs on the domains radoskop.pl (Polish cities) and radoskop.eu (cities outside Poland, including Praha and Berlin) and on city subdomains (e.g. {{EXAMPLE_SUBDOMAIN}}). '\n"
     "    + 'Using the Service means you accept these terms.</p>'\n"
     "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">2. Nature of the service</h2>'\n"
-    "    + '<p>Radoskop is a tool for monitoring the work of city councils. '\n"
-    "    + 'It presents publicly available data from official records: roll call vote results, councillor attendance, written enquiries and other data on local government activity. '\n"
-    "    + 'The Service is informational and educational. It is not an official service of any city government.</p>'\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">2. Nature of the service and legal status</h2>'\n"
+    "    + '<p>Radoskop is an independent civic and journalistic information service for monitoring the work of city councils and regional assemblies. '\n"
+    "    + 'The Service is a public information service within the meaning of Recital 32 of Regulation (EU) 2024/900 of the European Parliament and of the Council of 13 March 2024 on the transparency and targeting of political advertising (TTPA), and benefits from the exclusion for journalistic and editorial content in Article 2(2)(c) of that Regulation. '\n"
+    "    + 'The Service is not political advertising within the meaning of Article 3(2) TTPA. It is not financed by political actors or on their behalf, and does not promote any political party, election committee or candidate. '\n"
+    "    + 'The Service is not an official service of any city government, public authority or political party.</p>'\n"
     "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">3. Data sources</h2>'\n"
-    "    + '<p>All data presented in the Service comes from publicly available sources, primarily the official records of each city. '\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">3. No election agitation</h2>'\n"
+    "    + '<p>The Service presents only historical, archived public data sourced from official public registers. '\n"
+    "    + 'It contains no campaigning content and does not encourage voting for or against any specific candidate. '\n"
+    "    + 'In Poland, the Service does not constitute election agitation within the meaning of Article 105 of the Polish Election Code (Kodeks wyborczy). '\n"
+    "    + 'During electoral silence periods the Service remains available with archived public data, which does not constitute election agitation.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">4. Data sources</h2>'\n"
+    "    + '<p>All data presented in the Service comes from publicly available sources, primarily official records of each city such as Polish BIP, opendata Praha and Berlin Plenarprotokolle. '\n"
     "    + 'Data is fetched automatically and processed algorithmically. The Operator makes reasonable efforts to keep data current and correct '\n"
     "    + 'but does not guarantee full accuracy. In case of discrepancy the original source data is authoritative.</p>'\n"
     "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">4. Indicators and statistics</h2>'\n"
-    "    + '<p>The indicators shown (attendance, activity, club discipline, rebellion count) are computed from official source data using transparent algorithms. '\n"
-    "    + 'They are informational and do not constitute a value judgement on a councillor. '\n"
-    "    + 'The computation methodology is available in the Service source code on GitHub.</p>'\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">5. Indicators and statistics</h2>'\n"
+    "    + '<p>The indicators shown (attendance, activity, club discipline, rebellion count, statement count) are computed from official source data using transparent algorithms. '\n"
+    "    + 'They are informational, based on objective events (vote cast, attendance recorded, statement made) and do not constitute a value judgement on a councillor. '\n"
+    "    + 'The full computation methodology is available in the Service source code on <a href=\"https://github.com/radoskoppl/radoskop\" target=\"_blank\" rel=\"noopener\">GitHub</a>.</p>'\n"
     "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">5. Advertising</h2>'\n"
-    "    + '<p>Radoskop does not display ads and does not use ad networks. The Service is funded by the Operator and by paid reports.</p>'\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">6. Advertising and funding</h2>'\n"
+    "    + '<p>The Service does not display ads, does not use ad networks and does not monetise content through advertising. '\n"
+    "    + 'The Operator may run marketing campaigns for the Service in external channels (e.g. Google Ads, social media) to raise awareness of the Service as a civic information tool. '\n"
+    "    + 'Such campaigns promote only the Service itself as an information tool and do not contain political content. '\n"
+    "    + 'The Service does not accept funding from political parties, election committees, candidates or other political actors. '\n"
+    "    + 'The Service is funded from the Operator own resources and from paid PDF reports available in the <a href=\"/raporty/\" onclick=\"event.preventDefault();showReports()\">Reports</a> section.</p>'\n"
     "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">6. Licence and source code</h2>'\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">7. Information notice for councillors</h2>'\n"
+    "    + '<p>The Operator processes personal data of councillors in the scope of their public functions (name, club affiliation, votes cast, attendance, written enquiries, statements in session protocols) on the basis of:</p>'\n"
+    "    + '<ul style=\"margin:8px 0 8px 24px\">'\n"
+    "    + '<li>GDPR Article 6(1)(f) (legitimate interest of the controller and public interest in transparency of local government),</li>'\n"
+    "    + '<li>GDPR Article 6(1)(e) (task carried out in the public interest),</li>'\n"
+    "    + '<li>GDPR Article 85 (processing for journalistic purposes),</li>'\n"
+    "    + '<li>Polish Act of 6 September 2001 on Access to Public Information and equivalent freedom of information laws in other jurisdictions.</li>'\n"
+    "    + '</ul>'\n"
+    "    + '<p>Source data comes from official public registers (BIP, opendata). Data is not transferred to third parties for marketing purposes and is not sold. '\n"
+    "    + 'Each councillor has the right to: access their data, request rectification of inaccurate data, object to processing on grounds relating to particular situation, and lodge a complaint with the supervisory authority. '\n"
+    "    + 'Contact for data matters: <a href=\"mailto:patrykorwat@gmail.com\">patrykorwat@gmail.com</a>.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">8. Data rectification procedure</h2>'\n"
+    "    + '<p>Any councillor or interested party may request data rectification in the Service. Send the request to <a href=\"mailto:patrykorwat@gmail.com\">patrykorwat@gmail.com</a> with: name of the councillor, city, description of the alleged error and reference to the source of correct data (link to a BIP protocol, official attendance list and similar). '\n"
+    "    + 'The Operator commits to processing the request within 7 working days. If the error is confirmed against the source document, the correction is applied immediately after verification. '\n"
+    "    + 'If the discrepancy stems from an error in the source register itself, the Operator keeps the data consistent with the source and informs the requester about the rectification path with the relevant public authority.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">9. Licence and source code</h2>'\n"
     "    + '<p>The Service source code is published under AGPL-3.0 on GitHub. '\n"
     "    + 'Data presented in the Service, as public information, can be reused freely with attribution.</p>'\n"
     "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">7. Liability</h2>'\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">10. Liability</h2>'\n"
     "    + '<p>The Operator is not liable for: temporary unavailability of the Service, errors in data resulting from errors in the source records, '\n"
     "    + 'decisions taken on the basis of information from the Service, third party services that the Service links to.</p>'\n"
     "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">8. Privacy</h2>'\n"
-    "    + '<p>Personal data processing rules are described in the <a href=\"/privacy/\" onclick=\"event.preventDefault();showPrivacy()\">Privacy policy</a>.</p>'\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">11. User privacy</h2>'\n"
+    "    + '<p>Rules for processing personal data of users visiting the Service are described in the <a href=\"/privacy/\" onclick=\"event.preventDefault();showPrivacy()\">Privacy policy</a>.</p>'\n"
     "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">9. Changes</h2>'\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">12. Changes</h2>'\n"
     "    + '<p>The Operator reserves the right to amend these terms. The current version is always available at /terms/ on every Service instance.</p>'\n"
     "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">10. Contact</h2>'\n"
-    "    + '<p>Questions and comments about the Service: <a href=\"mailto:patrykorwat@gmail.com\">patrykorwat@gmail.com</a></p>'\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">13. Contact</h2>'\n"
+    "    + '<p>Questions and comments about the Service, data rectification requests, GDPR matters: <a href=\"mailto:patrykorwat@gmail.com\">patrykorwat@gmail.com</a></p>'\n"
     "\n"
     "    + '</div>';"
 )
@@ -356,6 +396,144 @@ def generate_sitemap(config: dict) -> str:
     )
 
 
+def _esc_js_string(s: str) -> str:
+    """Escape string żeby działał wewnątrz JS literala '...'.
+
+    Treść trafia do template w postaci:
+        el.innerHTML = '{{IMPRESSUM_HTML}}';
+    czyli musimy uciec apostrofy i nowe linie, oraz zamienić < na bezpieczne.
+    Najprostszy sposób: zwracamy JSON-encoded string bez otaczających
+    cudzysłowów (escape działa też dla apostrofów bo nie używamy ich
+    w JSON), potem trim cudzysłowów. Dodatkowo nowe linie zamieniane są
+    na puste żeby HTML się nie łamał w środku JS.
+    """
+    return (
+        s.replace("\\", "\\\\")
+        .replace("'", "\\'")
+        .replace("\n", " ")
+        .replace("\r", "")
+    )
+
+
+def build_impressum_html(config: dict, country: str) -> tuple[str, str]:
+    """Zwróć krotkę (innerHTML dla Impressum, link w stopce).
+
+    PL miasta: pusty innerHTML, pusty link (Regulamin pokrywa identyfikację).
+    DE/CS miasta: pełny Impressum w odpowiednim języku, link w stopce.
+
+    config.impressum może zawierać:
+        - "name": "Patryk Orwat"
+        - "address_lines": ["ul. Przykładowa 1", "00-001 Warszawa, Polska"]
+        - "email": "patrykorwat@gmail.com"
+        - "phone": "+48 ..." (opcjonalne)
+        - "vat_id": "PL..." (opcjonalne)
+    Jeśli brakuje, dla DE/CS wstawiamy placeholder z ostrzeżeniem żeby
+    uzupełnić przed deployem.
+    """
+    if country == "pl":
+        return "", ""
+
+    imp = config.get("impressum") or {}
+    name = imp.get("name") or "Patryk Orwat"
+    address_lines = imp.get("address_lines") or [
+        "[Adresse zur Vervollständigung in config.impressum.address_lines]"
+    ]
+    email = imp.get("email") or "patrykorwat@gmail.com"
+    phone = imp.get("phone") or ""
+    vat_id = imp.get("vat_id") or ""
+
+    addr_html = "<br>".join(address_lines)
+    phone_line = f"<br>Telefon: {phone}" if phone else ""
+    vat_line = f"<p>USt-IdNr.: {vat_id}</p>" if vat_id else ""
+
+    if country == "de":
+        body = (
+            '<div style="max-width:800px;margin:0 auto;padding:20px 0">'
+            '<button class="profile-back" onclick="showMain()">← Startseite</button>'
+            '<h1 style="font-size:1.5rem;margin:20px 0 10px">Impressum</h1>'
+            '<p style="color:var(--muted);margin-bottom:20px">Anbieterkennzeichnung gemäß §5 TMG und §18 Abs. 2 Medienstaatsvertrag (MStV).</p>'
+
+            '<h2 style="font-size:1.1rem;margin:24px 0 8px">Anbieter</h2>'
+            f'<p>{name}<br>{addr_html}</p>'
+
+            '<h2 style="font-size:1.1rem;margin:24px 0 8px">Kontakt</h2>'
+            f'<p>E-Mail: <a href="mailto:{email}">{email}</a>{phone_line}</p>'
+
+            '<h2 style="font-size:1.1rem;margin:24px 0 8px">Verantwortlich für den Inhalt nach §18 Abs. 2 MStV</h2>'
+            f'<p>{name}<br>{addr_html}</p>'
+
+            f'{vat_line}'
+
+            '<h2 style="font-size:1.1rem;margin:24px 0 8px">Streitschlichtung</h2>'
+            '<p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung bereit: '
+            '<a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>. '
+            'Wir sind nicht bereit oder verpflichtet, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>'
+
+            '<h2 style="font-size:1.1rem;margin:24px 0 8px">Haftung für Inhalte</h2>'
+            '<p>Als Anbieter sind wir gemäß §7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. '
+            'Nach §§8 bis 10 TMG sind wir als Anbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. '
+            'Die dargestellten Daten zu Mandatsträger:innen stammen ausschließlich aus offiziellen öffentlichen Registern (Plenarprotokolle des Berliner Abgeordnetenhauses, PARDOK, Open Data). '
+            'Bei Hinweisen auf Unrichtigkeiten korrigieren wir Daten nach Verifikation gegen die Quelle innerhalb von 7 Werktagen.</p>'
+
+            '<h2 style="font-size:1.1rem;margin:24px 0 8px">Datenschutz</h2>'
+            '<p>Informationen zur Verarbeitung personenbezogener Daten finden Sie in der '
+            '<a href="/privacy/" onclick="event.preventDefault();showPrivacy()">Datenschutzerklärung</a>. '
+            'Informationen zu Mandatsträger:innen werden auf Grundlage von Art. 6 Abs. 1 lit. e und f DSGVO sowie Art. 85 DSGVO in Verbindung mit dem Berliner Pressegesetz und §57 BDSG verarbeitet.</p>'
+
+            '<h2 style="font-size:1.1rem;margin:24px 0 8px">Datenrichtigstellung für Mandatsträger:innen</h2>'
+            f'<p>Anträge auf Datenrichtigstellung bitte an <a href="mailto:{email}">{email}</a> mit Angabe von Name, Stadt, beanstandeter Daten und Quellverweis. Bearbeitung innerhalb von 7 Werktagen.</p>'
+
+            '<h2 style="font-size:1.1rem;margin:24px 0 8px">Redaktionelle Leitlinien und Pressekodex</h2>'
+            '<p>Radoskop folgt den <a href="https://www.presserat.de/pressekodex.html" target="_blank" rel="noopener">Publizistischen Grundsätzen (Pressekodex)</a> des Deutschen Presserats als anerkanntem Standard journalistischer Sorgfalt. '
+            'Für die Tätigkeit von Radoskop relevant sind insbesondere folgende Ziffern:</p>'
+            '<ul style="margin:8px 0 8px 24px">'
+            '<li><strong>Ziffer 1</strong> (Wahrhaftigkeit und Achtung der Menschenwürde): Alle dargestellten Daten stammen aus überprüfbaren offiziellen Quellen.</li>'
+            '<li><strong>Ziffer 2</strong> (Sorgfalt): Die Methodik der Datenverarbeitung ist als Open Source auf <a href="https://github.com/radoskoppl/radoskop" target="_blank" rel="noopener">GitHub</a> dokumentiert und nachvollziehbar.</li>'
+            '<li><strong>Ziffer 3</strong> (Richtigstellung): Korrekturen werden innerhalb von 7 Werktagen nach Verifikation gegen die Quelle vorgenommen.</li>'
+            '<li><strong>Ziffer 7</strong> (Trennung von Werbung und Redaktion): Radoskop zeigt keine Werbung und nimmt keine Werbeeinnahmen an.</li>'
+            '<li><strong>Ziffer 8</strong> (Schutz der Persönlichkeit): Es werden ausschließlich Daten aus dem öffentlichen Mandat verarbeitet.</li>'
+            '<li><strong>Ziffer 12</strong> (Diskriminierungen): Es werden keine wertenden Etiketten verwendet, ausschließlich objektive Metriken aus offiziellen Protokollen.</li>'
+            '</ul>'
+
+            '<h2 style="font-size:1.1rem;margin:24px 0 8px">Beschwerdeverfahren beim Deutschen Presserat</h2>'
+            '<p>Wer der Auffassung ist, dass eine Veröffentlichung auf Radoskop gegen den Pressekodex verstößt, kann eine Beschwerde beim Deutschen Presserat einreichen. Das Verfahren ist kostenlos und kann auf <a href="https://www.presserat.de/beschwerde.html" target="_blank" rel="noopener">presserat.de/beschwerde.html</a> eingereicht werden. '
+            f'Parallel oder alternativ kann jeder Mandatsträger und jede Mandatsträgerin direkt eine Datenrichtigstellung über <a href="mailto:{email}">{email}</a> beantragen, die in der Regel schneller bearbeitet wird.</p>'
+
+            '</div>'
+        )
+        link = ' · <a href="/impressum/" onclick="event.preventDefault();showImpressum()">Impressum</a>'
+        return _esc_js_string(body), link
+
+    # Czech (cs) lub inne kraje na .eu — wersja angielska z czeskim
+    # nagłówkiem i czeskimi referencjami prawnymi.
+    body = (
+        '<div style="max-width:800px;margin:0 auto;padding:20px 0">'
+        '<button class="profile-back" onclick="showMain()">← Domů</button>'
+        '<h1 style="font-size:1.5rem;margin:20px 0 10px">Provozovatel / Imprint</h1>'
+        '<p style="color:var(--muted);margin-bottom:20px">Identifikace provozovatele dle §6 zákona č. 480/2004 Sb. o některých službách informační společnosti.</p>'
+
+        '<h2 style="font-size:1.1rem;margin:24px 0 8px">Provozovatel</h2>'
+        f'<p>{name}<br>{addr_html}</p>'
+
+        '<h2 style="font-size:1.1rem;margin:24px 0 8px">Kontakt</h2>'
+        f'<p>E-mail: <a href="mailto:{email}">{email}</a>{phone_line}</p>'
+
+        f'{vat_line}'
+
+        '<h2 style="font-size:1.1rem;margin:24px 0 8px">Odpovědnost za obsah</h2>'
+        '<p>Data o zastupitelích pochází výhradně z oficiálních veřejných zdrojů (opendata Praha, hlasování Magistrátu hl. m. Prahy). '
+        'Žádosti o opravu údajů vyřizujeme do 7 pracovních dnů od ověření proti zdrojovému dokumentu.</p>'
+
+        '<h2 style="font-size:1.1rem;margin:24px 0 8px">Ochrana osobních údajů</h2>'
+        '<p>Informace o zpracování osobních údajů naleznete v '
+        '<a href="/privacy/" onclick="event.preventDefault();showPrivacy()">Zásadách ochrany osobních údajů</a>.</p>'
+
+        '</div>'
+    )
+    link = ' · <a href="/impressum/" onclick="event.preventDefault();showImpressum()">Provozovatel</a>'
+    return _esc_js_string(body), link
+
+
 def generate_robots(config: dict) -> str:
     """Generate robots.txt."""
     return (
@@ -400,6 +578,30 @@ def main():
     root_url = f"https://{root_host}"
     example_subdomain = config.get("cname") or f"gdansk.{root_host}"
 
+    # Impressum (Anbieterkennzeichnung): obowiązkowe dla DE (§5 TMG +
+    # §18 ust. 2 MStV), zalecane dla CZ (§6 zákona č. 480/2004 Sb.).
+    # Dla PL nie ma osobnego wymogu, identyfikacja administratora
+    # jest w Regulaminie. Pełny tekst budujemy z config.impressum
+    # jeśli istnieje, w przeciwnym razie placeholder że uzupełniony
+    # zostanie przed wdrożeniem.
+    impressum_html, impressum_footer_link = build_impressum_html(config, country)
+
+    # Pressekodex notice: tylko DE. Dobrowolny ale wzmacnia argument
+    # "anerkannter Standard journalistischer Sorgfalt" przed niemieckim
+    # sądem oraz daje miękką ścieżkę reklamacyjną przez Deutscher Presserat.
+    if country == "de":
+        pressekodex_notice = (
+            '<div style="margin-top:8px;color:var(--muted);font-size:0.75rem">'
+            'Wir folgen dem '
+            '<a href="https://www.presserat.de/pressekodex.html" target="_blank" rel="noopener">'
+            'Pressekodex</a> des Deutschen Presserats. '
+            '<a href="https://www.presserat.de/beschwerde.html" target="_blank" rel="noopener">'
+            'Beschwerdeverfahren</a>.'
+            '</div>'
+        )
+    else:
+        pressekodex_notice = ""
+
     # Build replacements
     replacements = {
         "{{CITY_NAME}}": config["city_name"],
@@ -422,6 +624,10 @@ def main():
         # Capability flags do JS template literali — JS boolean
         "{{HAS_VOTING_DATA}}": "true" if config.get("has_voting_data", True) else "false",
         "{{HAS_SPEAKER_ACTIVITY}}": "true" if config.get("has_speaker_activity", False) else "false",
+        # Impressum / Anbieterkennzeichnung
+        "{{IMPRESSUM_HTML}}": impressum_html,
+        "{{IMPRESSUM_FOOTER_LINK}}": impressum_footer_link,
+        "{{PRESSEKODEX_NOTICE}}": pressekodex_notice,
     }
 
     locale = config.get("locale", "pl")
