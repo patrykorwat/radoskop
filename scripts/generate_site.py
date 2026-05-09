@@ -228,22 +228,167 @@ def apply_english_legal(html: str) -> str:
         html,
     )
 
-    # Footer link href: zachowujemy zlokalizowany label, podmieniamy URL
-    # i route w window.history. Regex bo label po apply_locale może być
-    # już "Datenschutz", "AGB", "Zásady ochrany osobních údajů", "Podmínky".
-    html = re.sub(
-        r'<a href="/polityka-prywatnosci/"',
-        '<a href="/privacy/"',
-        html,
+    # /polityka-prywatnosci/ → /privacy/ i /regulamin/ → /terms/ przeniesione
+    # do apply_english_paths(), żeby path mapping był jednolity dla wszystkich
+    # miast (PL też po migracji 2026-05). Tutaj zostaje tylko swap treści.
+    return html
+
+
+def apply_english_paths(html: str) -> str:
+    """Translate Polish URL slug paths to English. Działa dla WSZYSTKICH miast.
+
+    Po migracji 2026-05 wszystkie miasta (PL i non-PL) używają angielskich
+    slugów dla URL paths widzianych w przeglądarce. Cloudflare Worker
+    (radoskop-premium/cloudflare/worker.js) ma synchroniczny PATH_REDIRECTS
+    który robi 301 ze starych polskich URL-i na nowe angielskie, więc
+    Google index zachowuje link equity.
+
+    Affects URL paths visible in the browser only. API endpoints prefixed
+    with API_BASE (np. API_BASE + '/kadencja/...') zostają bez zmian, bo
+    backend FastAPI dalej używa polskich nazw kolekcji. Path map:
+
+        /profil/        → /profile/        (councillor pages, indexed by Google)
+        /aktualnosci/   → /news/           (RSS/news landing)
+        /budzet/        → /budget/         (budget tab)
+        /interpelacje/  → /interpellations/
+        /kadencja/      → /term/           (URL only, NIE API)
+        /glosowanie/    → /vote/
+        /sesja/         → /session/
+        /raporty/       → /reports/        + sub-paths radny/klub/miasto
+                                             → councillor/club/city
+        /moj-radny/     → /my-councillor/  (sitemap entry)
+
+        TAB_SLUGS values: radni→councillors, sesje→sessions,
+                         glosowania→votes, podobienstwo→similarity,
+                         interpelacje→interpellations, budzet→budget.
+        Klucze TAB_SLUGS zostają (są używane w `tab === 'interpelacje'`),
+        zmiana tylko wartości czyli URL slugów.
+
+    Reports checkout backwards compat: backend /api/checkout dalej
+    przyjmuje legacy typy radny/klub/miasto, więc po stronie klienta
+    mapujemy URL token → legacy type przed wysłaniem.
+
+    Strict path-pattern replacements (nie surowe '/profil/'), żeby nie
+    złapać przypadkiem fragmentu nazwy zmiennej albo CSS class.
+    """
+    # /profil/ — w URL contextach
+    html = html.replace("path.startsWith('/profil/')", "path.startsWith('/profile/')")
+    html = html.replace("path.replace('/profil/', '')", "path.replace('/profile/', '')")
+    html = html.replace("'href=\"/profil/'", "'href=\"/profile/'")
+    html = html.replace("navigateTo('/profil/'", "navigateTo('/profile/'")
+    html = html.replace("{{SITE_URL}}/profil/", "{{SITE_URL}}/profile/")
+    html = html.replace("src=\"{{SITE_URL}}/profil/", "src=\"{{SITE_URL}}/profile/")
+
+    # /aktualnosci/
+    html = html.replace(
+        "path === '/aktualnosci' || path === '/aktualnosci/'",
+        "path === '/news' || path === '/news/'",
     )
-    html = re.sub(
-        r'<a href="/regulamin/"',
-        '<a href="/terms/"',
-        html,
+    html = html.replace("href=\"/aktualnosci/\"", "href=\"/news/\"")
+    html = html.replace("// /aktualnosci/", "// /news/")
+
+    # /budzet/
+    html = html.replace(
+        "path === '/budzet' || path === '/budzet/'",
+        "path === '/budget' || path === '/budget/'",
+    )
+    html = html.replace("if (tab === 'budget') return '/budzet/';",
+                        "if (tab === 'budget') return '/budget/';")
+
+    # /interpelacje/ (URL path only — NIE klucz w TAB_SLUGS ani 'interpelacje' w
+    # `tab === 'interpelacje'` checkach, bo to identyfikator JS, nie path)
+    html = html.replace(
+        "path === '/interpelacje' || path === '/interpelacje/'",
+        "path === '/interpellations' || path === '/interpellations/'",
+    )
+    html = html.replace("if (tab === 'interpelacje') return '/interpelacje/';",
+                        "if (tab === 'interpelacje') return '/interpellations/';")
+
+    # /kadencja/ — tylko URL paths, NIE API_BASE+'/kadencja/...'
+    html = html.replace("path.startsWith('/kadencja/')", "path.startsWith('/term/')")
+    html = html.replace("path.replace('/kadencja/', '')", "path.replace('/term/', '')")
+    html = html.replace("return '/kadencja/' + kadSlug", "return '/term/' + kadSlug")
+    # Komentarz w mainPath()
+    html = html.replace("typu /kadencja/ix/undefined", "typu /term/ix/undefined")
+
+    # /glosowanie/
+    html = html.replace(
+        "path === '/glosowanie' || path === '/glosowanie/'",
+        "path === '/vote' || path === '/vote/'",
+    )
+    html = html.replace("path.startsWith('/glosowanie/')", "path.startsWith('/vote/')")
+    html = html.replace("path.replace('/glosowanie/', '')", "path.replace('/vote/', '')")
+    html = html.replace("navigateTo('/glosowanie/'", "navigateTo('/vote/'")
+    html = html.replace("'href=\"/glosowanie/'", "'href=\"/vote/'")
+    html = html.replace("{{SITE_URL}}/glosowanie/", "{{SITE_URL}}/vote/")
+    html = html.replace("// /glosowanie/", "// /vote/")
+
+    # /sesja/
+    html = html.replace(
+        "path === '/sesja' || path === '/sesja/'",
+        "path === '/session' || path === '/session/'",
+    )
+    html = html.replace("path.startsWith('/sesja/')", "path.startsWith('/session/')")
+    html = html.replace("path.replace('/sesja/', '')", "path.replace('/session/', '')")
+    html = html.replace("navigateTo('/sesja/'", "navigateTo('/session/'")
+    html = html.replace("'href=\"/sesja/'", "'href=\"/session/'")
+    html = html.replace("{{SITE_URL}}/sesja/", "{{SITE_URL}}/session/")
+    html = html.replace("// /sesja/", "// /session/")
+
+    # /raporty/ + sub-paths
+    html = html.replace(
+        "path === '/raporty' || path === '/raporty/'",
+        "path === '/reports' || path === '/reports/'",
+    )
+    html = html.replace("href=\"/raporty/\"", "href=\"/reports/\"")
+    html = html.replace("'href=\"/raporty/radny/'", "'href=\"/reports/councillor/'")
+    html = html.replace("'href=\"/raporty/klub/'", "'href=\"/reports/club/'")
+    html = html.replace("'href=\"/raporty/miasto.pdf\"", "'href=\"/reports/city.pdf\"")
+    html = html.replace("navigateTo('/raporty/')", "navigateTo('/reports/')")
+    html = html.replace("siteUrl + '/raporty/'", "siteUrl + '/reports/'")
+    html = html.replace("reportPath.replace('/raporty/', '')",
+                        "reportPath.replace('/reports/', '')")
+    html = html.replace(
+        "// Paths: /raporty/radny/{slug}.pdf, /raporty/klub/{slug}.pdf, /raporty/miasto.pdf",
+        "// Paths: /reports/councillor/{slug}.pdf, /reports/club/{slug}.pdf, /reports/city.pdf",
     )
 
-    # Router (init + popstate): /polityka-prywatnosci/ → /privacy/,
-    # /regulamin/ → /terms/. To URL-e, niezależne od locale.
+    # Reports checkout: backend dalej oczekuje legacy typy radny/klub/miasto.
+    # Wstrzykujemy mapowanie URL token → legacy type żeby nie ruszać API.
+    html = html.replace(
+        "var reportType = parts[0]; // radny, klub, miasto\n"
+        "  var reportId = parts[1] || '';\n"
+        "  var citySlug = location.hostname.split('.')[0]; // e.g. \"szczecin\"",
+        "var urlType = parts[0]; // councillor, club, city\n"
+        "  var reportId = parts[1] || '';\n"
+        "  var citySlug = location.hostname.split('.')[0];\n\n"
+        "  // Backend /api/checkout still expects legacy Polish type names\n"
+        "  // (radny/klub/miasto). Map URL token to legacy type for backwards\n"
+        "  // compatibility.\n"
+        "  var typeMap = { councillor: 'radny', club: 'klub', city: 'miasto' };\n"
+        "  var reportType = typeMap[urlType] || urlType;",
+    )
+
+    # TAB_SLUGS: zmiana tylko wartości (URL slugów), klucze obiektu zostają.
+    html = html.replace(
+        "{ranking:'ranking',profiles:'radni',sessions:'sesje',votes:'glosowania',"
+        "similarity:'podobienstwo',interpelacje:'interpelacje',budget:'budzet'}",
+        "{ranking:'ranking',profiles:'councillors',sessions:'sessions',votes:'votes',"
+        "similarity:'similarity',interpelacje:'interpellations',budget:'budget'}",
+    )
+
+    # /polityka-prywatnosci/ + /regulamin/ → /privacy/ + /terms/. Wcześniej
+    # robiło to apply_english_legal() tylko dla non-PL, ale po migracji
+    # 2026-05 path mapping jest jednolity. Treść strony (Polish vs English
+    # legal text) dalej zależy od locale, ale URL slug zawsze /privacy/ i /terms/.
+    html = html.replace(
+        '<a href="/polityka-prywatnosci/"',
+        '<a href="/privacy/"',
+    )
+    html = html.replace(
+        '<a href="/regulamin/"',
+        '<a href="/terms/"',
+    )
     html = html.replace(
         "path === '/polityka-prywatnosci' || path === '/polityka-prywatnosci/'",
         "path === '/privacy' || path === '/privacy/'",
@@ -348,15 +493,19 @@ def has_activity_data(output_dir: Path) -> bool:
     return False
 
 
-def generate_aktualnosci_button(output_dir: Path) -> str:
-    """Render the Aktualności tab link only when the city has data.
+def generate_aktualnosci_button(output_dir: Path, locale: str = "pl") -> str:
+    """Render the news tab link only when the city has data.
 
     Without scraped activity, generate_feed.py produces nothing under
-    /aktualnosci/, so the link would 404. Hide the button instead.
+    /news/, so the link would 404. Hide the button instead.
+
+    Po migracji 2026-05 URL slug to zawsze /news/, niezależnie od locale.
+    Label przycisku zostaje zlokalizowany ("Aktualności" w PL, lokalny
+    odpowiednik w innych) — apply_locale go podmienia.
     """
     if not has_activity_data(output_dir):
         return ""
-    return '        <a href="/aktualnosci/" class="tab" style="text-decoration:none">Aktualności</a>'
+    return '        <a href="/news/" class="tab" style="text-decoration:none">Aktualności</a>'
 
 
 def generate_ga_snippet(_legacy_ga_id: str = "") -> str:
@@ -374,19 +523,24 @@ def generate_ga_snippet(_legacy_ga_id: str = "") -> str:
 
 
 def generate_sitemap(config: dict) -> str:
-    """Generate sitemap.xml."""
+    """Generate sitemap.xml.
+
+    Po migracji 2026-05 slug paths są zawsze angielskie, niezależnie od
+    locale miasta. Worker (radoskop-premium/cloudflare/worker.js) ma
+    PATH_REDIRECTS robiący 301 ze starych polskich URL-i.
+    """
     url = config["site_url"]
     entries = [
         f'  <url>\n    <loc>{url}/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>',
     ]
     if config.get("has_budget"):
-        entries.append(f'  <url>\n    <loc>{url}/budzet</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>')
+        entries.append(f'  <url>\n    <loc>{url}/budget</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>')
 
-    # Mój radny page
-    entries.append(f'  <url>\n    <loc>{url}/moj-radny/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.9</priority>\n  </url>')
+    # My councillor page
+    entries.append(f'  <url>\n    <loc>{url}/my-councillor/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.9</priority>\n  </url>')
 
-    # Aktualności page
-    entries.append(f'  <url>\n    <loc>{url}/aktualnosci/</loc>\n    <changefreq>daily</changefreq>\n    <priority>0.8</priority>\n  </url>')
+    # News page
+    entries.append(f'  <url>\n    <loc>{url}/news/</loc>\n    <changefreq>daily</changefreq>\n    <priority>0.8</priority>\n  </url>')
 
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -617,7 +771,9 @@ def main():
         "{{CLUB_CSS}}": generate_club_css(config.get("clubs", {})),
         "{{CLUB_JS}}": generate_club_js(config.get("clubs", {})),
         "{{BUDGET_NOTE}}": config.get("budget_note", ""),
-        "{{AKTUALNOSCI_BUTTON}}": generate_aktualnosci_button(Path(args.output)),
+        "{{AKTUALNOSCI_BUTTON}}": generate_aktualnosci_button(
+            Path(args.output), config.get("locale", "pl").lower()
+        ),
         "{{ROOT_HOST}}": root_host,
         "{{ROOT_URL}}": root_url,
         "{{EXAMPLE_SUBDOMAIN}}": example_subdomain,
@@ -642,11 +798,18 @@ def main():
     # Polskie miasta nie mają pola locale → no-op.
     html = apply_locale(template, locale)
 
-    # Po apply_locale podmieniamy Politykę prywatności i Regulamin na
-    # wersję angielską (dla miast spoza PL). Markery są neutralne dla
-    # apply_locale, więc cokolwiek wstrzyknął w setTitle/setOgMeta
-    # (np. 'Datenschutz') zostaje nadpisane EN wersją. Apply_locale
-    # nie tknie EN treści bo już go nie uruchamiamy ponownie.
+    # Migracja 2026-05: wszystkie miasta (PL i non-PL) używają angielskich
+    # URL slugów. Worker (radoskop-premium/cloudflare/worker.js) ma
+    # PATH_REDIRECTS który robi 301 ze starych polskich URL-i, więc
+    # link equity z Google index zostaje zachowane. apply_english_paths()
+    # leci zawsze, niezależnie od locale.
+    html = apply_english_paths(html)
+
+    # Treść Polityki prywatności i Regulaminu: PL miasta zachowują polski
+    # tekst z template, non-PL dostają angielską wersję (nie tłumaczymy
+    # legal contentu na DE/CS żeby uniknąć kosztu utrzymania mnogości
+    # tłumaczeń). Markery są neutralne dla apply_locale, więc cokolwiek
+    # apply_locale wstrzyknął w setTitle/setOgMeta zostaje nadpisane.
     if locale.lower() != "pl":
         html = apply_english_legal(html)
 

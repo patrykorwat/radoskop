@@ -43,7 +43,7 @@ def get_slug(name, profiles_by_name):
 
 # ── Item generators ────────────────────────────────────
 
-def generate_vote_items(kad_data, city_name, site_url):
+def generate_vote_items(kad_data, city_name, site_url, vote_slug="vote"):
     """Generate a feed item for every vote."""
     items = []
     for v in kad_data.get("votes", []):
@@ -73,13 +73,13 @@ def generate_vote_items(kad_data, city_name, site_url):
             "date": sdate,
             "title": title,
             "summary": f"Wynik: {result} (za {za}, przeciw {przeciw}, wstrzym. {wstrzym}). Sesja {snum}.",
-            "url": f"{site_url}/glosowanie/{vid}/",
+            "url": f"{site_url}/{vote_slug}/{vid}/",
         })
 
     return items
 
 
-def generate_session_items(kad_data, city_name, site_url):
+def generate_session_items(kad_data, city_name, site_url, session_slug="session"):
     """Generate a feed item for every session."""
     items = []
     # Build vote counts per session
@@ -106,13 +106,14 @@ def generate_session_items(kad_data, city_name, site_url):
             "date": sdate,
             "title": f"Sesja {snum} Rady Miasta {city_name}",
             "summary": ", ".join(parts) + ".",
-            "url": f"{site_url}/sesja/{snum}/",
+            "url": f"{site_url}/{session_slug}/{snum}/",
         })
 
     return items
 
 
-def generate_interpelacje_items(interpelacje, city_name, site_url, profiles_by_name):
+def generate_interpelacje_items(interpelacje, city_name, site_url, profiles_by_name,
+                                 profile_slug="profile", interpelacje_slug="interpellations"):
     """Generate a feed item for every interpelacja."""
     items = []
     for ip in interpelacje:
@@ -129,9 +130,9 @@ def generate_interpelacje_items(interpelacje, city_name, site_url, profiles_by_n
         slug = get_slug(radny, profiles_by_name) if radny else ""
         # Link to councillor profile if available, otherwise to interpelacje tab
         if slug and radny in profiles_by_name:
-            url = f"{site_url}/profil/{slug}/"
+            url = f"{site_url}/{profile_slug}/{slug}/"
         else:
-            url = f"{site_url}/interpelacje/"
+            url = f"{site_url}/{interpelacje_slug}/"
 
         items.append({
             "type": "interpelacja",
@@ -233,9 +234,10 @@ def polish_month(dt):
     return f"{POLISH_MONTHS.get(dt.month, '')} {dt.year}"
 
 
-def generate_html_page(items, main_html, city_name, city_gen, site_url, max_items=200):
-    """Generate /aktualnosci/index.html with embedded news content."""
-    canonical = f"{site_url}/aktualnosci/"
+def generate_html_page(items, main_html, city_name, city_gen, site_url, max_items=200,
+                        news_slug="news"):
+    """Generate /{news_slug}/index.html with embedded news content."""
+    canonical = f"{site_url}/{news_slug}/"
     title = f"Aktualnosci z Rady Miasta {city_gen}"
     desc = f"Glosowania, interpelacje i sesje Rady Miasta {city_gen}. Automatycznie generowane z danych BIP."
 
@@ -313,6 +315,17 @@ def process_city(city_dir: Path):
     city_gen = config["city_genitive"]
     site_url = config["site_url"].rstrip("/")
 
+    # Po migracji 2026-05 wszystkie miasta używają angielskich URL slugów.
+    # Worker robi 301 ze starych polskich URL-i. Slug map musi zgadzać się
+    # z generate_site.py apply_english_paths i generate_seo_pages.py SLUG.
+    slugs = {
+        "vote": "vote",
+        "session": "session",
+        "profile": "profile",
+        "interpelacje": "interpellations",
+        "news": "news",
+    }
+
     # Load profiles
     profiles_by_name = {}
     profiles_path = docs / "profiles.json"
@@ -339,8 +352,8 @@ def process_city(city_dir: Path):
             continue
         with open(kad_file, "r", encoding="utf-8") as f:
             kad_data = json.load(f)
-        all_items.extend(generate_vote_items(kad_data, city_name, site_url))
-        all_items.extend(generate_session_items(kad_data, city_name, site_url))
+        all_items.extend(generate_vote_items(kad_data, city_name, site_url, slugs["vote"]))
+        all_items.extend(generate_session_items(kad_data, city_name, site_url, slugs["session"]))
 
     # Load and generate interpelacje items
     interp_path = docs / "interpelacje.json"
@@ -352,7 +365,10 @@ def process_city(city_dir: Path):
             interpelacje = interp_raw
         else:
             interpelacje = interp_raw.get("interpelacje", interp_raw.get("items", []))
-        all_items.extend(generate_interpelacje_items(interpelacje, city_name, site_url, profiles_by_name))
+        all_items.extend(generate_interpelacje_items(
+            interpelacje, city_name, site_url, profiles_by_name,
+            slugs["profile"], slugs["interpelacje"],
+        ))
 
     # Deduplicate by URL + type
     seen = set()
@@ -389,8 +405,11 @@ def process_city(city_dir: Path):
     with open(main_html_path, "r", encoding="utf-8") as f:
         main_html = f.read()
 
-    page_html = generate_html_page(unique_items, main_html, city_name, city_gen, site_url)
-    aktualnosci_dir = docs / "aktualnosci"
+    page_html = generate_html_page(
+        unique_items, main_html, city_name, city_gen, site_url,
+        news_slug=slugs["news"],
+    )
+    aktualnosci_dir = docs / slugs["news"]
     aktualnosci_dir.mkdir(parents=True, exist_ok=True)
     with open(aktualnosci_dir / "index.html", "w", encoding="utf-8") as f:
         f.write(page_html)

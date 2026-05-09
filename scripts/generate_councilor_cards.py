@@ -320,8 +320,8 @@ def main():
                 slug = name.lower().replace(" ", "-")
                 slug = "".join(c if c.isalnum() or c == "-" else "" for c in slug)
 
-            # Output path
-            output_path = city_path / "docs" / "profil" / slug / "og.png"
+            # Output path. Po migracji 2026-05 angielski URL slug /profile/.
+            output_path = city_path / "docs" / "profile" / slug / "og.png"
 
             # Generate card
             generate_card(

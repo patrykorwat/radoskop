@@ -366,6 +366,12 @@ def process_city(city_dir: Path, force=False):
     site_url = config["site_url"].rstrip("/")
     clubs = config.get("clubs", {})
 
+    # OG images muszą trafić pod te same ścieżki, których używa SPA i SEO
+    # prerender (apply_english_paths w generate_site.py i SLUG mapa w
+    # generate_seo_pages.py). Po migracji 2026-05 zawsze angielskie slugi.
+    profile_slug = "profile"
+    vote_slug = "vote"
+
     # Load profiles
     profiles_path = docs / "profiles.json"
     profiles = []
@@ -384,7 +390,7 @@ def process_city(city_dir: Path, force=False):
     councillor_count = 0
     for p in profiles:
         slug = p["slug"]
-        out = docs / "profil" / slug / "og.png"
+        out = docs / profile_slug / slug / "og.png"
         if out.exists() and not force:
             councillor_count += 1
             continue
@@ -412,7 +418,7 @@ def process_city(city_dir: Path, force=False):
             vid = vote.get("id", "")
             if not vid:
                 continue
-            out = docs / "glosowanie" / vid / "og.png"
+            out = docs / vote_slug / vid / "og.png"
             if out.exists() and not force:
                 vote_count += 1
                 continue

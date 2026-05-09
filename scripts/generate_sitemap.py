@@ -19,23 +19,26 @@ from datetime import datetime
 from pathlib import Path
 
 
-# Priorytety per typ strony
+# Priorytety per typ strony. Po migracji 2026-05 angielskie URL slugi.
+# Ten skrypt to legacy fallback (scrape_all.sh używa go tylko gdy
+# generate_seo_pages.py nie ma) — kanoniczny sitemap robi
+# generate_seo_pages.py.
 PRIORITIES = {
     "": 1.0,           # strona glowna
-    "budzet": 0.8,
-    "kadencja": 0.7,
-    "profil": 0.6,
-    "sesja": 0.5,
-    "glosowanie": 0.3,
+    "budget": 0.8,
+    "term": 0.7,
+    "profile": 0.6,
+    "session": 0.5,
+    "vote": 0.3,
 }
 
 CHANGEFREQS = {
     "": "weekly",
-    "budzet": "monthly",
-    "kadencja": "weekly",
-    "profil": "weekly",
-    "sesja": "weekly",
-    "glosowanie": "monthly",
+    "budget": "monthly",
+    "term": "weekly",
+    "profile": "weekly",
+    "session": "weekly",
+    "vote": "monthly",
 }
 
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate lightweight static pages for /glosowanie/ and /sesja/ deep links.
+Generate lightweight static pages for /vote/ and /session/ deep links.
 
 These are tiny HTML files (~1KB each) that:
 1. Return HTTP 200 (instead of 404 via GitHub Pages)
@@ -8,6 +8,11 @@ These are tiny HTML files (~1KB each) that:
 3. Load the main SPA app which then renders the correct view
 
 This fixes "Not found (404)" errors in Google Search Console.
+
+UWAGA: skrypt nie jest używany w aktywnym pipeline (scrape_all.sh nie
+referencuje). Pełne SEO prerendering robi generate_seo_pages.py który
+zastąpił ten lightweight approach. Trzymane do potencjalnego restore
+fallbacku. Po migracji 2026-05 ścieżki angielskie.
 """
 
 import json
@@ -72,11 +77,11 @@ def generate_city(city_dir: Path):
             if not vid:
                 continue
             topic = v.get("topic", "")[:80]
-            page_dir = docs / "glosowanie" / vid
+            page_dir = docs / "vote" / vid
             if not page_dir.exists():
                 page_dir.mkdir(parents=True, exist_ok=True)
 
-            canonical = f"{site_url}/glosowanie/{vid}/"
+            canonical = f"{site_url}/vote/{vid}/"
             title = f"Glosowanie {vid} - Radoskop {city_name}"
             desc = topic if topic else f"Glosowanie {vid} Rady Miasta"
 
@@ -94,11 +99,11 @@ def generate_city(city_dir: Path):
             snum = s.get("number", "")
             if not snum:
                 continue
-            page_dir = docs / "sesja" / snum
+            page_dir = docs / "session" / snum
             if not page_dir.exists():
                 page_dir.mkdir(parents=True, exist_ok=True)
 
-            canonical = f"{site_url}/sesja/{snum}/"
+            canonical = f"{site_url}/session/{snum}/"
             title = f"Sesja {snum} - Radoskop {city_name}"
             desc = f"Sesja {snum} Rady Miasta ({s.get('date', '')})"
 
@@ -111,7 +116,7 @@ def generate_city(city_dir: Path):
                 f.write(html)
             session_count += 1
 
-    print(f"  Generated {vote_count} glosowanie + {session_count} sesja pages")
+    print(f"  Generated {vote_count} vote + {session_count} session pages")
 
 
 def main():

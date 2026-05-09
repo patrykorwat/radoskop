@@ -2,12 +2,21 @@
 """
 Generate SEO-optimized static pages for Radoskop city instances.
 
-Creates content-rich HTML pages for search engines to index:
-  - /profil/{slug}/index.html   (councillor profiles)
-  - /glosowanie/{id}/index.html (individual votes)
-  - /sesja/{number}/index.html  (sessions)
-  - /kadencja/{slug}/index.html (kadencja tabs)
-  - /budzet/index.html          (budget page)
+Creates content-rich HTML pages for search engines to index. Po migracji
+2026-05 wszystkie miasta (PL, CZ, DE) używają angielskich URL slugów.
+Cloudflare Worker robi 301 ze starych polskich URL-i (PATH_REDIRECTS
+w radoskop-premium/cloudflare/worker.js), żeby zachować link equity z
+historycznych Google index entries.
+
+Output paths (per city slug w S3):
+  - /profile/{slug}/index.html  (councillor profiles)
+  - /vote/{id}/index.html       (individual votes)
+  - /session/{number}/index.html (sessions)
+  - /term/{slug}/index.html     (term tabs)
+  - /budget/index.html          (budget page)
+  - /reports/index.html         (reports landing)
+  - /privacy/index.html         (privacy policy)
+  - /terms/index.html           (terms of service)
   - sitemap.xml                 (full sitemap)
 
 Each page:
@@ -148,6 +157,26 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
     site_url = config["site_url"].rstrip("/")
     city_name = config["city_name"]
     city_gen = config["city_genitive"]
+    locale = (config.get("locale") or "pl").lower()
+
+    # Path slug map. Po migracji 2026-05 wszystkie miasta używają
+    # angielskich slugów dla URL paths. Mapping musi zgadzać się z
+    # apply_english_paths() w generate_site.py i PATH_REDIRECTS w
+    # radoskop-premium/cloudflare/worker.js. Worker robi 301 ze starych
+    # polskich URL-i, więc Google index zachowuje link equity.
+    SLUG = {
+        "profile": "profile",
+        "vote": "vote",
+        "session": "session",
+        "term": "term",
+        "budget": "budget",
+        "reports": "reports",
+        "tab_profiles": "councillors",
+        "tab_sessions": "sessions",
+        "tab_votes": "votes",
+        "tab_similarity": "similarity",
+        "tab_interpelacje": "interpellations",
+    }
 
     # Read main index.html
     main_html_path = docs / "index.html"
@@ -201,7 +230,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
         votes_przeciw = kad.get("votes_przeciw", 0)
         votes_wstrzymal = kad.get("votes_wstrzymal", 0)
 
-        canonical = f"{site_url}/profil/{slug}/"
+        canonical = f"{site_url}/{SLUG['profile']}/{slug}/"
         title = f"{name}, {club} \u2013 Radoskop {city_name}"
         desc = (
             f"{name}, klub {club_full}. "
@@ -210,10 +239,17 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
             f"Rada Miasta {city_gen}."
         )
 
-        og_img = f"{site_url}/profil/{slug}/og.png"
-        og_img_path = docs / "profil" / slug / "og.png"
+        og_img = f"{site_url}/{SLUG['profile']}/{slug}/og.png"
+        # OG image cache lookup: pierwsze sprawdzamy now\u0105 \u015bcie\u017ck\u0119 (locale-aware),
+        # potem legacy /profil/ \u2014 bo generate_og_images.py m\u00f3g\u0142 jeszcze nie
+        # przej\u015b\u0107 na nowy slug, a chcemy zachowa\u0107 obrazek dop\u00f3ki tam jest.
+        og_img_path = docs / SLUG["profile"] / slug / "og.png"
         if not og_img_path.exists():
-            og_img = None
+            og_img_path_legacy = docs / "profil" / slug / "og.png"
+            if og_img_path_legacy.exists():
+                og_img_path = og_img_path_legacy
+            else:
+                og_img = None
 
         body = (
             f"<h1>{esc(name)}</h1>\n"
@@ -226,7 +262,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
         )
 
         page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body)
-        write_page(out / "profil" / slug / "index.html", page)
+        write_page(out / SLUG["profile"] / slug / "index.html", page)
         profile_count += 1
 
         sitemap_entries.append({"loc": canonical, "changefreq": "weekly", "priority": "0.7"})
@@ -266,7 +302,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
             else:
                 result = "remis"
 
-            canonical = f"{site_url}/glosowanie/{vid}/"
+            canonical = f"{site_url}/{SLUG['vote']}/{vid}/"
             title_text = topic[:80] if topic else f"Glosowanie {vid}"
             title = f"{title_text} \u2013 Radoskop {city_name}"
             desc = (
@@ -275,10 +311,14 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
                 f"Sesja {session_number}, {session_date}."
             )
 
-            og_img = f"{site_url}/glosowanie/{vid}/og.png"
-            og_img_path = docs / "glosowanie" / vid / "og.png"
+            og_img = f"{site_url}/{SLUG['vote']}/{vid}/og.png"
+            og_img_path = docs / SLUG["vote"] / vid / "og.png"
             if not og_img_path.exists():
-                og_img = None
+                og_img_legacy = docs / "glosowanie" / vid / "og.png"
+                if og_img_legacy.exists():
+                    og_img_path = og_img_legacy
+                else:
+                    og_img = None
 
             body = (
                 f"<h1>{esc(topic or f'Glosowanie {vid}')}</h1>\n"
@@ -289,7 +329,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
             )
 
             page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body)
-            write_page(out / "glosowanie" / vid / "index.html", page)
+            write_page(out / SLUG["vote"] / vid / "index.html", page)
             vote_count += 1
 
             sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.5"})
@@ -331,7 +371,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
             vote_cnt = s.get("vote_count", 0)
             attendee_cnt = s.get("attendee_count", 0)
 
-            canonical = f"{site_url}/sesja/{snum}/"
+            canonical = f"{site_url}/{SLUG['session']}/{snum}/"
             title = f"Sesja {snum} ({sdate}) \u2013 Radoskop {city_name}"
             desc = (
                 f"Sesja {snum} Rady Miasta {city_gen}, {sdate}. "
@@ -346,7 +386,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
             )
 
             page = make_page(main_html, canonical, title, desc, extra_body=body)
-            write_page(out / "sesja" / snum / "index.html", page)
+            write_page(out / SLUG["session"] / snum / "index.html", page)
             session_count += 1
 
             sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.5"})
@@ -356,33 +396,38 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
     # ════════════════════════════════════════════
     # 4. Kadencja tab pages
     # ════════════════════════════════════════════
+    # Tab name labels (display) per locale, slugs (URL) per locale.
+    # Display names zostaj\u0105 po polsku w body content, bo PRIVACY/TERMS
+    # ju\u017c s\u0105 po angielsku dla non-PL i Google indeksuje po tre\u015bci, nie
+    # po nazwach tab\u00f3w.
     TAB_NAMES = {
-        "ranking": "Ranking radnych",
-        "radni": "Profile radnych",
-        "sesje": "Sesje",
-        "glosowania": "Glosowania",
-        "podobienstwo": "Podobienstwo glosowan",
-        "interpelacje": "Interpelacje",
+        SLUG["tab_profiles"]: "Profile radnych",
+        SLUG["tab_sessions"]: "Sesje",
+        SLUG["tab_votes"]: "Glosowania",
+        SLUG["tab_similarity"]: "Podobienstwo glosowan",
+        SLUG["tab_interpelacje"]: "Interpelacje",
     }
+    # ranking ma zawsze ten sam slug we wszystkich locale
+    TAB_NAMES["ranking"] = "Ranking radnych"
 
     kad_count = 0
     for kid, kslug in KAD_SLUGS.items():
-        canonical = f"{site_url}/kadencja/{kslug}/"
+        canonical = f"{site_url}/{SLUG['term']}/{kslug}/"
         title = f"Kadencja {kid} \u2013 Radoskop {city_name}"
         desc = f"Monitoring Rady Miasta {city_gen}, kadencja {kid}. Ranking, sesje, glosowania i aktywnosc radnych."
 
         page = make_page(main_html, canonical, title, desc)
-        write_page(out / "kadencja" / kslug / "index.html", page)
+        write_page(out / SLUG["term"] / kslug / "index.html", page)
 
         sitemap_entries.append({"loc": canonical, "changefreq": "weekly", "priority": "0.8"})
 
         for tab_slug, tab_name in TAB_NAMES.items():
-            tab_canonical = f"{site_url}/kadencja/{kslug}/{tab_slug}/"
+            tab_canonical = f"{site_url}/{SLUG['term']}/{kslug}/{tab_slug}/"
             tab_title = f"{tab_name}, kadencja {kid} \u2013 Radoskop {city_name}"
             tab_desc = f"{tab_name} Rady Miasta {city_gen}, kadencja {kid}."
 
             tab_page = make_page(main_html, tab_canonical, tab_title, tab_desc)
-            write_page(out / "kadencja" / kslug / tab_slug / "index.html", tab_page)
+            write_page(out / SLUG["term"] / kslug / tab_slug / "index.html", tab_page)
             kad_count += 1
 
             sitemap_entries.append({"loc": tab_canonical, "changefreq": "weekly", "priority": "0.6"})
@@ -393,12 +438,12 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
     # 5. Budget page
     # ════════════════════════════════════════════
     if config.get("has_budget"):
-        canonical = f"{site_url}/budzet/"
+        canonical = f"{site_url}/{SLUG['budget']}/"
         title = f"Budzet {city_gen} \u2013 Radoskop {city_name}"
         desc = f"Analiza budzetu miasta {city_gen}. Wydatki, dochody i inwestycje miejskie."
 
         page = make_page(main_html, canonical, title, desc)
-        write_page(out / "budzet" / "index.html", page)
+        write_page(out / SLUG["budget"] / "index.html", page)
         sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.8"})
         print(f"  1 budget page")
 
@@ -406,8 +451,8 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
     # 6. Catch-all directory pages
     # ════════════════════════════════════════════
     for dirname, title_part, desc_part, prio in [
-        ("profil", f"Radni {city_gen}", f"Profile radnych {city_gen}. Frekwencja, glosowania i aktywnosc.", "0.9"),
-        ("kadencja", f"Kadencje Rady Miasta {city_gen}", f"Kadencje Rady Miasta {city_gen}. Ranking, sesje i glosowania.", "0.9"),
+        (SLUG["profile"], f"Radni {city_gen}", f"Profile radnych {city_gen}. Frekwencja, glosowania i aktywnosc.", "0.9"),
+        (SLUG["term"], f"Kadencje Rady Miasta {city_gen}", f"Kadencje Rady Miasta {city_gen}. Ranking, sesje i glosowania.", "0.9"),
     ]:
         d = out / dirname
         if (out / dirname).is_dir() or (docs / dirname).is_dir() or profiles:
@@ -420,28 +465,34 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
     # ════════════════════════════════════════════
     # 6b. Privacy policy page
     # ════════════════════════════════════════════
-    privacy_canonical = f"{site_url}/polityka-prywatnosci/"
+    # Privacy/terms slugi: po migracji 2026-05 zawsze angielskie. Treść
+    # strony zostaje zlokalizowana (Polish vs English legal text), ale
+    # URL slug jest zawsze /privacy/ i /terms/.
+    privacy_slug = "privacy"
+    terms_slug = "terms"
+
+    privacy_canonical = f"{site_url}/{privacy_slug}/"
     privacy_title = f"Polityka prywatności \u2013 Radoskop {city_name}"
     privacy_desc = f"Polityka prywatności i informacje o plikach cookies serwisu Radoskop {city_name}."
     privacy_page = make_page(main_html, privacy_canonical, privacy_title, privacy_desc)
-    write_page(out / "polityka-prywatnosci" / "index.html", privacy_page)
+    write_page(out / privacy_slug / "index.html", privacy_page)
     sitemap_entries.append({"loc": privacy_canonical, "changefreq": "yearly", "priority": "0.3"})
 
-    terms_canonical = f"{site_url}/regulamin/"
+    terms_canonical = f"{site_url}/{terms_slug}/"
     terms_title = f"Regulamin \u2013 Radoskop {city_name}"
     terms_desc = f"Regulamin serwisu Radoskop {city_name}. Źródła danych, metodologia i zasady korzystania."
     terms_page = make_page(main_html, terms_canonical, terms_title, terms_desc)
-    write_page(out / "regulamin" / "index.html", terms_page)
+    write_page(out / terms_slug / "index.html", terms_page)
     sitemap_entries.append({"loc": terms_canonical, "changefreq": "yearly", "priority": "0.3"})
 
     # ════════════════════════════════════════════
     # 6c. Reports page
     # ════════════════════════════════════════════
-    reports_canonical = f"{site_url}/raporty/"
+    reports_canonical = f"{site_url}/{SLUG['reports']}/"
     reports_title = f"Raporty PDF \u2013 Radoskop {city_name}"
     reports_desc = f"Szczeg\u00f3\u0142owe raporty PDF z analiz\u0105 pracy radnych, klub\u00f3w i rady miasta {city_gen}. Frekwencja, g\u0142osowania, rebelie."
     reports_page = make_page(main_html, reports_canonical, reports_title, reports_desc)
-    write_page(out / "raporty" / "index.html", reports_page)
+    write_page(out / SLUG["reports"] / "index.html", reports_page)
     sitemap_entries.append({"loc": reports_canonical, "changefreq": "weekly", "priority": "0.6"})
 
     # ════════════════════════════════════════════

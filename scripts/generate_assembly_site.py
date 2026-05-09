@@ -7,8 +7,8 @@ będącego kopią `radoskop/template/index.html` z podmienionymi frazami
 "Rada Miasta" → "Sejmik Województwa"). Wstrzykuje config sejmika w te
 same placeholdery co miasta (CITY_NAME, CITY_GENITIVE, CLUB_CSS,
 CLUB_JS itd.), więc strona dostaje pełen routing SPA z podstronami
-/profil/{slug}, /sesja/{n}, /glosowanie/{id}, /interpelacje, /budzet,
-/kadencja/{id}.
+/profile/{slug}, /session/{n}, /vote/{id}, /interpellations, /budget,
+/term/{id} (po migracji 2026-05 wszystkie URL slugi są angielskie).
 
 Mapowanie config sejmika → placeholdery miasta:
   CITY_NAME       = voivodeship_name z .capitalize()  (np. "Mazowieckie")
@@ -36,6 +36,12 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+# Reużywamy apply_english_paths z generate_site.py — sejmiki używają tej
+# samej template_assembly (kopia template miasta z podmienionymi frazami)
+# i muszą po migracji 2026-05 mieć angielskie URL slugi tak samo jak miasta.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from generate_site import apply_english_paths  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -130,10 +136,14 @@ def has_activity_data(output_dir: Path) -> bool:
 
 
 def generate_aktualnosci_button(output_dir: Path) -> str:
-    """Render the Aktualności tab link only when the assembly has data."""
+    """Render the news tab link only when the assembly has data.
+
+    Po migracji 2026-05 URL slug to /news/, niezależnie od locale (sejmik
+    jest PL ale wszystkie miasta używają już angielskich slugów).
+    """
     if not has_activity_data(output_dir):
         return ""
-    return '        <a href="/aktualnosci/" class="tab" style="text-decoration:none">Aktualności</a>'
+    return '        <a href="/news/" class="tab" style="text-decoration:none">Aktualności</a>'
 
 
 def generate_ga_snippet(_legacy_ga_id: str = "") -> str:
@@ -250,6 +260,11 @@ def main() -> int:
     html = template
     for k, v in replacements.items():
         html = html.replace(k, v)
+
+    # Migracja 2026-05: angielskie URL slugi dla wszystkich subsites,
+    # włączając sejmiki. Worker robi 301 z polskich URL-i. Mapping
+    # spójny z miastami przez wspólny apply_english_paths.
+    html = apply_english_paths(html)
 
     # Dorzuć JS-ową mapę klubowości (template miasta nie ma placeholdera
     # na to, więc wstrzykujemy przed </body>).
