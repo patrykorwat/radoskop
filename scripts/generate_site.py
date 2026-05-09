@@ -9,6 +9,7 @@ Usage:
 
 import argparse
 import json
+import re
 import shutil
 import sys
 from pathlib import Path
@@ -16,6 +17,203 @@ from pathlib import Path
 # Lokalny import modułu i18n (ten sam katalog scripts/)
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from i18n import apply_locale  # noqa: E402
+
+
+# Angielskie wersje Polityki prywatności i Regulaminu — używane dla
+# wszystkich miast spoza Polski (locale != "pl"). PL miasta zachowują
+# polski tekst z template. Treść po angielsku, nie po niemiecku/czesku,
+# bo: (a) realnie obsługujemy max 3-4 miasta zagraniczne i mnożenie
+# tłumaczeń legalnych jest kosztowne; (b) angielski jest lingua franca
+# dla użytkowników zagranicznych, którym i tak DE/CS to drugi język.
+PRIVACY_HTML_EN = (
+    "el.innerHTML = '<div style=\"max-width:800px;margin:0 auto;padding:20px 0\">'\n"
+    "    + '<button class=\"profile-back\" onclick=\"showMain()\">← Home</button>'\n"
+    "    + '<h1 style=\"font-size:1.5rem;margin:20px 0 10px\">Privacy policy</h1>'\n"
+    "    + '<p style=\"color:var(--muted);margin-bottom:20px\">Last update: 1 April 2026</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">1. Data controller</h2>'\n"
+    "    + '<p>The controller of personal data is {{AUTHOR}} (contact: patrykorwat@gmail.com). '\n"
+    "    + 'Radoskop runs on the domains radoskop.pl (Polish cities) and radoskop.eu (cities outside Poland, including Praha and Berlin) and on city subdomains (e.g. {{EXAMPLE_SUBDOMAIN}}).</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">2. Data we collect</h2>'\n"
+    "    + '<p>The site does not require registration or login. For traffic analytics we use Umami, a self hosted analytics tool running at stats.radoskop.pl. We collect:</p>'\n"
+    "    + '<ul style=\"margin:8px 0 8px 24px\"><li>Approximate location (country, city)</li>'\n"
+    "    + '<li>Device type, browser, operating system</li>'\n"
+    "    + '<li>Pages visited and time on page</li>'\n"
+    "    + '<li>Traffic source (e.g. search engine, referral)</li></ul>'\n"
+    "    + '<p>Umami does not use cookies or persistent identifiers. The visitor identifier is a hash of IP address and User Agent header, rotated daily and not reversible. The full IP address is not stored.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">3. Cookies</h2>'\n"
+    "    + '<p>The site sets only one functional cookie:</p>'\n"
+    "    + '<ul style=\"margin:8px 0 8px 24px\">'\n"
+    "    + '<li><strong>radoskop_theme</strong> (1 year) — remembers your light or dark mode preference</li></ul>'\n"
+    "    + '<p>We do not use advertising or analytics cookies, so we do not show a consent banner. You can clear cookies in your browser settings at any time.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">4. Advertising</h2>'\n"
+    "    + '<p>Radoskop does not display ads and does not use ad networks.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">5. Purpose and legal basis</h2>'\n"
+    "    + '<p>Analytics data is used to assess page popularity, prioritise development and measure publication impact. '\n"
+    "    + 'The legal basis is GDPR Article 6(1)(f) (legitimate interest in traffic analysis) and GDPR Article 6(1)(a) (consent for functional cookies, expressed by using the site).</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">6. Sharing data</h2>'\n"
+    "    + '<p>Analytics data stays on the controller infrastructure and is not shared with third parties. We do not sell user personal data.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">7. Public data on councillors</h2>'\n"
+    "    + '<p>The site presents publicly available data from official records (e.g. Polish BIP, Czech opendata, German Plenarprotokolle) about councillor activity: voting results, attendance, written enquiries. This is public information made available under freedom of information law.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">8. Your rights</h2>'\n"
+    "    + '<p>Under GDPR you have the right to: access your data, correct it, erase it, restrict processing, '\n"
+    "    + 'data portability, object to processing and withdraw consent at any time (by clearing cookies or contacting the controller). '\n"
+    "    + 'You also have the right to lodge a complaint with the Polish data protection authority (PUODO) or your local supervisory authority.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">9. Contact</h2>'\n"
+    "    + '<p>For privacy and personal data matters: <a href=\"mailto:patrykorwat@gmail.com\">patrykorwat@gmail.com</a></p>'\n"
+    "\n"
+    "    + '</div>';"
+)
+
+
+TERMS_HTML_EN = (
+    "el.innerHTML = '<div style=\"max-width:800px;margin:0 auto;padding:20px 0\">'\n"
+    "    + '<button class=\"profile-back\" onclick=\"showMain()\">← Home</button>'\n"
+    "    + '<h1 style=\"font-size:1.5rem;margin:20px 0 10px\">Radoskop terms of service</h1>'\n"
+    "    + '<p style=\"color:var(--muted);margin-bottom:20px\">Last update: 1 April 2026</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">1. General</h2>'\n"
+    "    + '<p>Radoskop (the Service) is operated by Patryk Orwat (the Operator). '\n"
+    "    + 'The Service runs on the domains radoskop.pl (Polish cities) and radoskop.eu (cities outside Poland, including Praha and Berlin) and on city subdomains (e.g. {{EXAMPLE_SUBDOMAIN}}). '\n"
+    "    + 'Using the Service means you accept these terms.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">2. Nature of the service</h2>'\n"
+    "    + '<p>Radoskop is a tool for monitoring the work of city councils. '\n"
+    "    + 'It presents publicly available data from official records: roll call vote results, councillor attendance, written enquiries and other data on local government activity. '\n"
+    "    + 'The Service is informational and educational. It is not an official service of any city government.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">3. Data sources</h2>'\n"
+    "    + '<p>All data presented in the Service comes from publicly available sources, primarily the official records of each city. '\n"
+    "    + 'Data is fetched automatically and processed algorithmically. The Operator makes reasonable efforts to keep data current and correct '\n"
+    "    + 'but does not guarantee full accuracy. In case of discrepancy the original source data is authoritative.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">4. Indicators and statistics</h2>'\n"
+    "    + '<p>The indicators shown (attendance, activity, club discipline, rebellion count) are computed from official source data using transparent algorithms. '\n"
+    "    + 'They are informational and do not constitute a value judgement on a councillor. '\n"
+    "    + 'The computation methodology is available in the Service source code on GitHub.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">5. Advertising</h2>'\n"
+    "    + '<p>Radoskop does not display ads and does not use ad networks. The Service is funded by the Operator and by paid reports.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">6. Licence and source code</h2>'\n"
+    "    + '<p>The Service source code is published under AGPL-3.0 on GitHub. '\n"
+    "    + 'Data presented in the Service, as public information, can be reused freely with attribution.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">7. Liability</h2>'\n"
+    "    + '<p>The Operator is not liable for: temporary unavailability of the Service, errors in data resulting from errors in the source records, '\n"
+    "    + 'decisions taken on the basis of information from the Service, third party services that the Service links to.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">8. Privacy</h2>'\n"
+    "    + '<p>Personal data processing rules are described in the <a href=\"/privacy/\" onclick=\"event.preventDefault();showPrivacy()\">Privacy policy</a>.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">9. Changes</h2>'\n"
+    "    + '<p>The Operator reserves the right to amend these terms. The current version is always available at /terms/ on every Service instance.</p>'\n"
+    "\n"
+    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">10. Contact</h2>'\n"
+    "    + '<p>Questions and comments about the Service: <a href=\"mailto:patrykorwat@gmail.com\">patrykorwat@gmail.com</a></p>'\n"
+    "\n"
+    "    + '</div>';"
+)
+
+
+PRIVACY_TAIL_EN = (
+    "navigateTo('/privacy/');\n"
+    "  setTitle('Privacy policy');\n"
+    "  setOgMeta({\n"
+    "    title: 'Privacy policy — Radoskop {{CITY_NAME}}',\n"
+    "    description: 'Privacy policy and cookie information for Radoskop.',\n"
+    "    url: '{{SITE_URL}}/privacy/'\n"
+    "  });"
+)
+
+
+TERMS_TAIL_EN = (
+    "navigateTo('/terms/');\n"
+    "  setTitle('Terms of service');\n"
+    "  setOgMeta({\n"
+    "    title: 'Terms of service — Radoskop {{CITY_NAME}}',\n"
+    "    description: 'Radoskop terms of service. Information on data sources, methodology and usage rules.',\n"
+    "    url: '{{SITE_URL}}/terms/'\n"
+    "  });"
+)
+
+
+def apply_english_legal(html: str) -> str:
+    """Podmień Politykę prywatności i Regulamin na angielską wersję.
+
+    Markery /* PRIVACY_HTML_BEGIN */ ... /* PRIVACY_HTML_END */ obejmują
+    cały blok: innerHTML + navigateTo + setTitle + setOgMeta. Funkcja
+    uruchamia się PO apply_locale, więc cokolwiek apply_locale wstrzyknął
+    do wnętrza markerów (np. "Datenschutz" w setTitle), zostaje
+    nadpisane angielską wersją. Markery to neutralne komentarze JS,
+    nie ruszane przez apply_locale.
+
+    Footer link href + router patterns: nie pod markerami, ale to URL-e
+    bez polskich słów (apply_locale ich nie tłumaczy), więc bezpieczne
+    do podmiany w dowolnej kolejności. Footer label ("Polityka
+    prywatności" → "Datenschutz" / "Zásady...") zachowujemy zlokalizowany,
+    bo treść strony jest po angielsku ale label w UI dopasowuje się do
+    reszty interfejsu.
+    """
+    privacy_re = re.compile(
+        r"/\* PRIVACY_HTML_BEGIN \*/[\s\S]*?/\* PRIVACY_HTML_END \*/"
+    )
+    terms_re = re.compile(
+        r"/\* TERMS_HTML_BEGIN \*/[\s\S]*?/\* TERMS_HTML_END \*/"
+    )
+    html = privacy_re.sub(
+        lambda _m: (
+            "/* PRIVACY_HTML_BEGIN */\n"
+            f"  {PRIVACY_HTML_EN}\n"
+            f"  {PRIVACY_TAIL_EN}\n"
+            "  /* PRIVACY_HTML_END */"
+        ),
+        html,
+    )
+    html = terms_re.sub(
+        lambda _m: (
+            "/* TERMS_HTML_BEGIN */\n"
+            f"  {TERMS_HTML_EN}\n"
+            f"  {TERMS_TAIL_EN}\n"
+            "  /* TERMS_HTML_END */"
+        ),
+        html,
+    )
+
+    # Footer link href: zachowujemy zlokalizowany label, podmieniamy URL
+    # i route w window.history. Regex bo label po apply_locale może być
+    # już "Datenschutz", "AGB", "Zásady ochrany osobních údajů", "Podmínky".
+    html = re.sub(
+        r'<a href="/polityka-prywatnosci/"',
+        '<a href="/privacy/"',
+        html,
+    )
+    html = re.sub(
+        r'<a href="/regulamin/"',
+        '<a href="/terms/"',
+        html,
+    )
+
+    # Router (init + popstate): /polityka-prywatnosci/ → /privacy/,
+    # /regulamin/ → /terms/. To URL-e, niezależne od locale.
+    html = html.replace(
+        "path === '/polityka-prywatnosci' || path === '/polityka-prywatnosci/'",
+        "path === '/privacy' || path === '/privacy/'",
+    )
+    html = html.replace(
+        "path === '/regulamin' || path === '/regulamin/'",
+        "path === '/terms' || path === '/terms/'",
+    )
+
+    return html
 
 
 def generate_club_css(clubs: dict) -> str:
@@ -194,6 +392,14 @@ def main():
     with open(template_path, "r", encoding="utf-8") as f:
         template = f.read()
 
+    # Domena root zależy od kraju: PL miasta na radoskop.pl, reszta na
+    # radoskop.eu. Cname miasta (config.cname) używamy jako example
+    # subdomeny w tekstach prawnych.
+    country = (config.get("country") or "pl").lower()
+    root_host = "radoskop.pl" if country == "pl" else "radoskop.eu"
+    root_url = f"https://{root_host}"
+    example_subdomain = config.get("cname") or f"gdansk.{root_host}"
+
     # Build replacements
     replacements = {
         "{{CITY_NAME}}": config["city_name"],
@@ -210,17 +416,37 @@ def main():
         "{{CLUB_JS}}": generate_club_js(config.get("clubs", {})),
         "{{BUDGET_NOTE}}": config.get("budget_note", ""),
         "{{AKTUALNOSCI_BUTTON}}": generate_aktualnosci_button(Path(args.output)),
+        "{{ROOT_HOST}}": root_host,
+        "{{ROOT_URL}}": root_url,
+        "{{EXAMPLE_SUBDOMAIN}}": example_subdomain,
+        # Capability flags do JS template literali — JS boolean
+        "{{HAS_VOTING_DATA}}": "true" if config.get("has_voting_data", True) else "false",
+        "{{HAS_SPEAKER_ACTIVITY}}": "true" if config.get("has_speaker_activity", False) else "false",
     }
 
+    locale = config.get("locale", "pl")
+
+    # Lokalizacja UI dla miast spoza Polski (config.locale == "de"/"cs"/"en").
+    # WAŻNE: apply_locale uruchamiamy ZANIM podstawimy placeholdery
+    # (CITY_NAME, CITY_GENITIVE), bo część fraz w słownikach matchuje
+    # na frazach z placeholderem, np. "Jak głosują radni Miasta
+    # {{CITY_GENITIVE}}? Dane z protokołów BIP." → DE/CS odpowiednik.
+    # Po apply_locale w niemieckiej/czeskiej wersji placeholdery dalej
+    # są w {{...}} i zostają podmienione w pętli replacements.
+    # Polskie miasta nie mają pola locale → no-op.
+    html = apply_locale(template, locale)
+
+    # Po apply_locale podmieniamy Politykę prywatności i Regulamin na
+    # wersję angielską (dla miast spoza PL). Markery są neutralne dla
+    # apply_locale, więc cokolwiek wstrzyknął w setTitle/setOgMeta
+    # (np. 'Datenschutz') zostaje nadpisane EN wersją. Apply_locale
+    # nie tknie EN treści bo już go nie uruchamiamy ponownie.
+    if locale.lower() != "pl":
+        html = apply_english_legal(html)
+
     # Apply replacements
-    html = template
     for placeholder, value in replacements.items():
         html = html.replace(placeholder, value)
-
-    # Lokalizacja UI dla miast spoza Polski (config.locale == "en").
-    # Polskie miasta nie mają tego pola → no-op.
-    locale = config.get("locale", "pl")
-    html = apply_locale(html, locale)
 
     # Currency: polskie miasta używają zł (default w template), Praga
     # używa Kč. Zamieniamy konkretnie na końcówce template literal w

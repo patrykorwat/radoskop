@@ -330,18 +330,24 @@ def build_kadencja(
         }
 
         attendees = sorted(valid_speakers.keys())
+        # Schema speakers[]: SPA czyta sp.statements (linijka 2315 template),
+        # plus s.statements (suma per sesja, linijka 1908 sets speaker_count
+        # oraz wykres aktywności linijka 1600 czyta s.statements).
+        speakers_arr = [
+            {"name": n, "club": d["fraktion"], "statements": d["turns"], "words": d["words"]}
+            for n, d in sorted(valid_speakers.items(), key=lambda x: -x[1]["words"])
+        ]
         sessions_out.append({
             "date": parsed["date"],
             "number": num.split("/")[-1],
-            "vote_count": 0,  # Berlin: brak imiennych głosowań w schemacie
+            "session": num,
+            "vote_count": 0,
             "attendee_count": len(attendees),
             "attendees": attendees,
             "source_url": url,
-            "speakers": [
-                {"name": n, "fraktion": d["fraktion"], "turns": d["turns"], "words": d["words"]}
-                for n, d in sorted(valid_speakers.items(), key=lambda x: -x[1]["words"])
-            ],
+            "speakers": speakers_arr,
             "drucksachen": parsed["drucksachen"],
+            "statements": sum(sp["statements"] for sp in speakers_arr),
             "total_words": parsed["total_words"],
         })
 
@@ -453,13 +459,52 @@ def main() -> int:
         json.dumps(data_payload, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
+    # Per-radny seria sesji (do wykresu aktywności na profilu): dla każdego
+    # sesji w której zabrał głos zapisujemy {date, session, statements, words}.
+    sessions_by_speaker: dict[str, list[dict[str, Any]]] = {}
+    for sess in sessions_out:
+        for sp in sess.get("speakers", []):
+            sessions_by_speaker.setdefault(sp["name"], []).append({
+                "date": sess["date"],
+                "session": sess.get("session") or sess.get("number"),
+                "statements": sp["statements"],
+                "words": sp["words"],
+            })
+
     clubs_meta = config.get("clubs", {}) or {}
     profiles: list[dict[str, Any]] = []
     for c in out["councilors"]:
         club_full = clubs_meta.get(c["club"], {}).get("name") or c["club"]
+        spk_sessions = sessions_by_speaker.get(c["name"], [])
+        sessions_spoke = c["speaker_sessions"]
+        total_statements = c["speaker_turns"]
+        total_words = c["speaker_words"]
+        # Profile-level activity (linijka 1280 template — preview kafelka).
+        activity_summary = {
+            "total_statements": total_statements,
+            "total_words": total_words,
+            "sessions_spoke": sessions_spoke,
+        }
+        # Per-kadencja activity (linijka 1412+ template — pełen panel).
+        avg_st = round(total_statements / sessions_spoke, 1) if sessions_spoke else 0
+        avg_wd = round(total_words / sessions_spoke) if sessions_spoke else 0
+        kadencja_activity = {
+            "sessions_spoke": sessions_spoke,
+            "total_statements": total_statements,
+            "total_words": total_words,
+            "avg_statements_per_session": avg_st,
+            "avg_words_per_session": avg_wd,
+            "sessions": spk_sessions,
+        }
         profiles.append({
             "name": c["name"],
             "slug": c["slug"],
+            "club": c["club"],
+            "frekwencja": c["frekwencja"],
+            "former": False,
+            "roles": [],
+            "has_activity_data": sessions_spoke > 0,
+            "activity": activity_summary if sessions_spoke > 0 else None,
             "kadencje": {
                 kadencja_id: {
                     "club": c["club"],
@@ -479,11 +524,9 @@ def main() -> int:
                     "votes_total": 0,
                     "rebellion_count": 0,
                     "rebellions": [],
-                    "speaker_turns": c["speaker_turns"],
-                    "speaker_words": c["speaker_words"],
-                    "speaker_sessions": c["speaker_sessions"],
                     "has_voting_data": False,
-                    "has_activity_data": True,
+                    "has_activity_data": sessions_spoke > 0,
+                    "activity": kadencja_activity if sessions_spoke > 0 else None,
                 },
             },
         })

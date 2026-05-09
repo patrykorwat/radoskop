@@ -367,7 +367,7 @@ footer a { color:var(--accent); text-decoration:none; }
 
   <footer>
     <div style="margin-bottom:10px">
-      <a href="https://radoskop.pl">Radoskop</a> · <a href="https://radoskop.pl#cities">wszystkie miasta</a>
+      <a href="{{ROOT_URL}}">Radoskop</a> · <a href="{{ROOT_URL}}#cities">wszystkie miasta</a>
     </div>
     Dane źródłowe: <a href="{{BIP_URL}}" target="_blank">{{BIP_NAME}}</a>.
     Kod: <a href="{{GITHUB_URL}}" target="_blank">GitHub</a> (AGPL-3.0).
@@ -378,12 +378,12 @@ footer a { color:var(--accent); text-decoration:none; }
 
 <script>
 // --- Cross-subdomain cookie helpers ---
-// Theme + cookie consent must persist across {slug}.radoskop.pl AND radoskop.pl,
-// so we set them with Domain=.radoskop.pl. Local fallback (e.g. dev on localhost)
-// drops the Domain attribute since cookies with explicit Domain don't work
-// outside that domain.
+// Theme + cookie consent must persist across {slug}.radoskop.{pl|eu} AND
+// the root, so we set Domain=.radoskop.pl OR .radoskop.eu zależnie od TLD
+// hosta. Local fallback (e.g. dev on localhost) drops Domain attribute.
 function _radoskopCookieDomain() {
-  return /(^|\.)radoskop\.pl$/i.test(location.hostname) ? '; Domain=.radoskop.pl' : '';
+  var m = location.hostname.match(/(?:^|\.)radoskop\.(pl|eu)$/i);
+  return m ? '; Domain=.radoskop.' + m[1] : '';
 }
 function radoskopGetCookie(name) {
   var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)'));
@@ -397,7 +397,7 @@ function radoskopSetCookie(name, value, daysToLive) {
     + _radoskopCookieDomain();
 }
 
-// Theme management (shared across all radoskop.pl subdomains)
+// Theme management (shared across all radoskop.{pl,eu} subdomains)
 function getTheme() {
   // Cookie first (cross-subdomain). LocalStorage second (legacy fallback —
   // pages migrated from old per-origin storage). System pref last.
@@ -431,6 +431,14 @@ applyTheme(getTheme());
 // API configuration
 const CITY_SLUG = location.hostname.split('.')[0] || 'sopot';
 const API_BASE = (window.RADOSKOP_API || 'https://api.radoskop.pl') + '/api/' + CITY_SLUG;
+
+// Capability flags wstrzykiwane z config.json przez generate_site.py.
+// HAS_VOTING_DATA = false dla miast bez imiennych głosowań (np. Berlin —
+// Hammelsprung jest anonimowy). Wtedy zamiast "Głosowań" pokazujemy
+// "Wystąpień" / "Słów" z protokołów. HAS_SPEAKER_ACTIVITY = true dla
+// miast które parsują stenogramy/Plenarprotokolle (Berlin, Gdańsk).
+const HAS_VOTING_DATA = {{HAS_VOTING_DATA}};
+const HAS_SPEAKER_ACTIVITY = {{HAS_SPEAKER_ACTIVITY}};
 
 let RAW = null;
 let PROFILES = null;
@@ -596,6 +604,15 @@ async function init() {
       selectKadencjaQuiet(initialKid);
       const vid = path.replace('/glosowanie/', '');
       showVote(vid);
+      navigateTo(path, true);
+      return;
+    }
+    if (path === '/sesja' || path === '/sesja/') {
+      // /sesja/ bez numeru → lista sesji aktualnej kadencji.
+      // (Wcześniej showSession('') wywalał stronę "Nie znaleziono sesji",
+      // co Google Ads oznaczał jako Destination not working.)
+      selectKadencjaQuiet(initialKid);
+      activateTab('sessions');
       navigateTo(path, true);
       return;
     }
@@ -889,6 +906,7 @@ function showPrivacy() {
   hideAllViews();
   var el = document.getElementById('privacy-view');
   el.style.display = 'block';
+  /* PRIVACY_HTML_BEGIN */
   el.innerHTML = '<div style="max-width:800px;margin:0 auto;padding:20px 0">'
     + '<button class="profile-back" onclick="showMain()">← Strona główna</button>'
     + '<h1 style="font-size:1.5rem;margin:20px 0 10px">Polityka prywatności</h1>'
@@ -896,7 +914,7 @@ function showPrivacy() {
 
     + '<h2 style="font-size:1.1rem;margin:24px 0 8px">1. Administrator danych</h2>'
     + '<p>Administratorem danych osobowych jest {{AUTHOR}} (kontakt: patrykorwat@gmail.com). '
-    + 'Serwis Radoskop działa pod domenami radoskop.pl oraz subdomenami miast (np. gdansk.radoskop.pl).</p>'
+    + 'Serwis Radoskop działa pod domenami radoskop.pl (miasta polskie) i radoskop.eu (miasta zagraniczne, m.in. Praha, Berlin) oraz ich subdomenami miast (np. {{EXAMPLE_SUBDOMAIN}}).</p>'
 
     + '<h2 style="font-size:1.1rem;margin:24px 0 8px">2. Jakie dane zbieramy</h2>'
     + '<p>Serwis nie wymaga rejestracji ani logowania. Do analizy ruchu używamy Umami, narzędzia analitycznego hostowanego na własnym serwerze pod adresem stats.radoskop.pl. Zbieramy:</p>'
@@ -943,6 +961,7 @@ function showPrivacy() {
     description: 'Polityka prywatności i informacje o plikach cookies serwisu Radoskop.',
     url: '{{SITE_URL}}/polityka-prywatnosci/'
   });
+  /* PRIVACY_HTML_END */
   window.scrollTo(0, 0);
 }
 
@@ -951,6 +970,7 @@ function showTerms() {
   hideAllViews();
   var el = document.getElementById('terms-view');
   el.style.display = 'block';
+  /* TERMS_HTML_BEGIN */
   el.innerHTML = '<div style="max-width:800px;margin:0 auto;padding:20px 0">'
     + '<button class="profile-back" onclick="showMain()">← Strona główna</button>'
     + '<h1 style="font-size:1.5rem;margin:20px 0 10px">Regulamin serwisu Radoskop</h1>'
@@ -958,7 +978,7 @@ function showTerms() {
 
     + '<h2 style="font-size:1.1rem;margin:24px 0 8px">1. Postanowienia ogólne</h2>'
     + '<p>Serwis Radoskop (dalej: Serwis) jest prowadzony przez Patryka Orwata (dalej: Administrator). '
-    + 'Serwis działa pod domeną radoskop.pl oraz subdomenami miast (np. gdansk.radoskop.pl). '
+    + 'Serwis działa pod domenami radoskop.pl (miasta polskie) i radoskop.eu (miasta zagraniczne, m.in. Praha, Berlin) oraz ich subdomenami miast (np. {{EXAMPLE_SUBDOMAIN}}). '
     + 'Korzystanie z Serwisu oznacza akceptację niniejszego Regulaminu.</p>'
 
     + '<h2 style="font-size:1.1rem;margin:24px 0 8px">2. Charakter serwisu</h2>'
@@ -1006,6 +1026,7 @@ function showTerms() {
     description: 'Regulamin serwisu Radoskop. Informacje o źródłach danych, metodologii i zasadach korzystania.',
     url: '{{SITE_URL}}/regulamin/'
   });
+  /* TERMS_HTML_END */
   window.scrollTo(0, 0);
 }
 
@@ -1170,12 +1191,22 @@ function renderStats() {
   const grid = document.getElementById('stats-grid');
   const councilors = K.councilors || [];
   const clubs = [...new Set(councilors.map(c=>c.club))].filter(c=>c!=='?');
+  // Drugą kafelkę dobieramy zależnie od capability: dla miast z imiennymi
+  // głosowaniami pokazujemy "Głosowania", dla miast z aktywnością mówców
+  // (np. Berlin) sumę wypowiedzi w sesjach. Dla nietypowych miast bez
+  // żadnego z tych źródeł pomijamy drugą kafelkę.
+  const sessions = K.sessions || [];
+  const totalStatements = sessions.reduce((sum, s) => sum + (s.statements || 0), 0);
   const cards = [
-    { label: 'Sesje', value: K.total_sessions || (K.sessions ? K.sessions.length : 0) },
-    { label: 'Głosowania', value: K.total_votes || (K.vote_stats ? K.vote_stats.total : 0) },
-    { label: 'Radnych', value: K.total_councilors || councilors.length },
-    { label: 'Kluby', value: clubs.length },
+    { label: 'Sesje', value: K.total_sessions || sessions.length },
   ];
+  if (HAS_VOTING_DATA) {
+    cards.push({ label: 'Głosowania', value: K.total_votes || (K.vote_stats ? K.vote_stats.total : 0) });
+  } else if (HAS_SPEAKER_ACTIVITY && totalStatements > 0) {
+    cards.push({ label: 'Wystąpień', value: totalStatements });
+  }
+  cards.push({ label: 'Radnych', value: K.total_councilors || councilors.length });
+  cards.push({ label: 'Kluby', value: clubs.length });
   grid.innerHTML = cards.map(c => `
     <div class="stat-card">
       <div class="label">${c.label}</div>
@@ -2239,9 +2270,17 @@ async function showSession(sessionNumber) {
   if (!sess) { view.innerHTML = '<p style="padding:40px;color:var(--red)">Nie znaleziono sesji.</p>'; return; }
 
   setTitle('Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : ''));
+  // Sumaryczna metryka sesji: dla miast z imiennymi g\u0142osowaniami liczba
+  // g\u0142osowa\u0144, dla miast typu Berlin (Hammelsprung anonimowy) liczba
+  // wypowiedzi z protoko\u0142u.
+  const sessStatementCount = sess.statements != null ? sess.statements
+    : (sess.speakers ? sess.speakers.reduce((s, sp) => s + (sp.statements || 0), 0) : 0);
+  const sessSummaryStat = HAS_VOTING_DATA
+    ? ((sess.vote_count || 0) + ' g\u0142osowa\u0144')
+    : (sessStatementCount + ' wyst\u0105pie\u0144');
   setOgMeta({
     title: 'Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' \u2013 Radoskop {{CITY_NAME}}',
-    description: 'Sesja ' + sessionNumber + ', ' + (sess.date||'') + '. ' + (sess.vote_count||0) + ' glosowan, ' + (sess.attendee_count||0) + ' obecnych.',
+    description: 'Sesja ' + sessionNumber + ', ' + (sess.date||'') + '. ' + sessSummaryStat + ', ' + (sess.attendee_count||0) + ' obecnych.',
     url: '{{SITE_URL}}/sesja/' + encodeURIComponent(sessionNumber) + '/'
   });
 
@@ -2267,11 +2306,11 @@ async function showSession(sessionNumber) {
     <button class="profile-back" onclick="showMain()">← Strona główna</button>
     <div style="margin-bottom:24px">
       <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">Sesja ${sess.number} · ${sess.date}</h2>
-      ${sess.source_url ? `<div style="margin-top:6px"><a href="${sess.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół głosowania (BIP) ↗</a></div>` : ''}
+      ${sess.source_url ? `<div style="margin-top:6px"><a href="${sess.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół (BIP) ↗</a></div>` : ''}
       <div style="margin-top:12px">
         ${shareBar(
           'Sesja ' + sess.number + ' (' + (sess.date||'') + ') \u2013 Radoskop {{CITY_NAME}}',
-          'Sesja ' + sess.number + ': ' + sessVoteCount + ' głosowań, ' + (sess.attendee_count||present.size||0) + ' obecnych radnych.',
+          'Sesja ' + sess.number + ': ' + sessSummaryStat + ', ' + (sess.attendee_count||present.size||0) + ' obecnych radnych.',
           '{{SITE_URL}}/sesja/' + encodeURIComponent(sessionNumber) + '/',
           'session-share'
         )}
@@ -2279,10 +2318,13 @@ async function showSession(sessionNumber) {
     </div>
 
     <div class="profile-metrics" style="margin-bottom:24px">
-      <div class="metric-card">
+      ${HAS_VOTING_DATA ? `<div class="metric-card">
         <div class="metric-value">${sessVoteCount}</div>
         <div class="metric-label">Głosowań</div>
-      </div>
+      </div>` : `<div class="metric-card">
+        <div class="metric-value">${sessStatementCount}</div>
+        <div class="metric-label">Wystąpień</div>
+      </div>`}
       ${hasVoteRecords ? `<div class="metric-card">
         <div class="metric-value" style="color:var(--green)">${passed}</div>
         <div class="metric-label">Przyjętych</div>
@@ -2916,7 +2958,7 @@ function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
   }
   ctx.fillStyle='#2a2d3a'; ctx.fillRect(0,300,600,40);
   ctx.fillStyle='#6366f1'; ctx.font='bold 13px -apple-system,sans-serif'; ctx.textAlign='center';
-  ctx.fillText('Radoskop {{CITY_NAME}}  ·  radoskop.pl',300,315);
+  ctx.fillText('Radoskop {{CITY_NAME}}  ·  {{ROOT_HOST}}',300,315);
   const link=document.createElement('a');
   link.download=`radoskop-${name.toLowerCase().replace(/\s/g,'-')}.png`;
   link.href=canvas.toDataURL('image/png'); link.click();
@@ -2987,6 +3029,12 @@ window.addEventListener('popstate', async () => {
   if (path.startsWith('/glosowanie/')) {
     const vid = path.replace('/glosowanie/', '');
     showVote(vid);
+    _popstateActive = false;
+    return;
+  }
+  if (path === '/sesja' || path === '/sesja/') {
+    // /sesja/ bez numeru → lista sesji aktualnej kadencji.
+    activateTab('sessions');
     _popstateActive = false;
     return;
   }

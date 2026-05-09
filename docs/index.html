@@ -795,6 +795,13 @@ function renderInternationalCities(){
   var html='';
   for(var i=0;i<intl.length;i++){
     var c=intl[i];
+    // Trzecia kafelka zależnie od capability miasta. Berlin nie ma
+    // imiennych głosowań (Hammelsprung anonimowy), więc pokazujemy
+    // sumę wystąpień zamiast "0 Głosowań".
+    var hasVotes = c.has_voting_data !== false;
+    var thirdStat = hasVotes
+      ? '<div class="ccard-stat"><span class="n">'+formatInt(c.votes)+'</span><span class="l">Głosowań</span></div>'
+      : '<div class="ccard-stat"><span class="n">'+formatInt(c.statements)+'</span><span class="l">Wystąpień</span></div>';
     html += '<a class="city-card" href="'+esc(c.url)+'">'
          +   '<div class="ccard-head">'+cityBadge(c)
          +     '<span class="ccard-meta">'+esc((c.country||'').toUpperCase())+'</span>'
@@ -803,7 +810,7 @@ function renderInternationalCities(){
          +   '<div class="ccard-stats">'
          +     '<div class="ccard-stat"><span class="n">'+formatInt(c.councilors)+'</span><span class="l">Radnych</span></div>'
          +     '<div class="ccard-stat"><span class="n">'+formatInt(c.sessions)+'</span><span class="l">Sesji</span></div>'
-         +     '<div class="ccard-stat"><span class="n">'+formatInt(c.votes)+'</span><span class="l">Głosowań</span></div>'
+         +     thirdStat
          +   '</div>'
          +   '<span class="arrow">Otwórz →</span>'
          + '</a>';
@@ -1066,10 +1073,14 @@ function renderSessions(){
   for(var i=0;i<max;i++){
     var r=rows[i],c=r.city,s=r.s;
     var href=s.url||(c.url+'/sesja/'+encodeURIComponent(s.label||''));
+    var hasVotes = c.has_voting_data !== false;
+    var stat = hasVotes
+      ? formatInt(s.votes||0)+' gł.'
+      : (s.statements != null ? formatInt(s.statements)+' wyp.' : '');
     html += '<a class="sess-row" href="'+esc(href)+'">'
           +   '<span class="sess-city-col">'+cityBadge(c)+'</span>'
           +   '<span class="sess-label">Sesja '+esc(s.label||'')+'</span>'
-          +   '<span class="sess-votes">'+formatInt(s.votes||0)+' gł.</span>'
+          +   '<span class="sess-votes">'+stat+'</span>'
           +   '<span class="sess-date">'+formatDatePL(s.date)+'</span>'
           + '</a>';
   }
