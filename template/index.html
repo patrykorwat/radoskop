@@ -2241,10 +2241,15 @@ async function showVote(voteId) {
     }).join('')}</div>`;
   }
 
+  // Fallback dla głosowań bez wyciągniętego numeru sesji rzymskiego (parser
+  // BIP czasem nie złapie z highlight). Używamy session_date jako klucza do
+  // showSession, bo backend API obsługuje też lookup po dacie.
+  const sessKey = vote.session_number || vote.session_date || '';
+  const sessLabel = vote.session_number || vote.session_date || '?';
   let html = `
-    <button class="profile-back" onclick="showSession('${vote.session_number}')">← Sesja ${vote.session_number}</button>
+    ${sessKey ? `<button class="profile-back" onclick="showSession('${sessKey}')">← Sesja ${sessLabel}</button>` : ''}
     <div style="margin-bottom:24px">
-      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessionLink(vote.session_number, 'Sesja ' + vote.session_number + ' · ' + vote.session_date, ' style="color:var(--muted)"')}</div>
+      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessKey ? sessionLink(sessKey, 'Sesja ' + sessLabel + ' · ' + (vote.session_date || ''), ' style="color:var(--muted)"') : (vote.session_date ? 'Sesja · ' + vote.session_date : '')}</div>
       <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
       ${vote.summary ? `<p style="color:var(--text);margin-top:8px;font-size:0.95rem;line-height:1.6;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px">${vote.summary}</p>` : ''}
       ${vote.druk ? `<div style="color:var(--muted);margin-top:4px">Druk: ${vote.druk}</div>` : ''}
@@ -2295,6 +2300,8 @@ async function showVote(voteId) {
       <div style="width:${barW(c.nieobecni||0)}%;background:rgba(75,85,99,0.5)">${c.nieobecni||0}</div>
     </div>
 
+    <div id="commission-timeline"></div>
+
     <div class="section">
       <div class="vote-cat-header" style="color:var(--green)">Za (${(nv.za||[]).length})</div>
       ${renderNameList(nv.za, 'rgba(34,197,94,0.08)')}
@@ -2315,6 +2322,94 @@ async function showVote(voteId) {
 
   view.innerHTML = html;
   window.scrollTo(0, 0);
+
+  // Sekcja "Procedowanie w komisjach" — wzbogacenie z radoskop-premium
+  // (correlations.json → druk_to_commissions.json). Async, bez blokowania
+  // głównego renderu. Brak danych = nic się nie pojawia.
+  renderCommissionTimeline(vote.druk, document.getElementById('commission-timeline'));
+}
+
+// Cache odpowiedzi z druk_to_commissions.json. Plik istnieje tylko dla
+// miast z aktywnym Premium MVP scrape komisji (na razie warszawa).
+let DRUK_INDEX_CACHE = undefined;
+
+async function loadDrukIndex() {
+  if (DRUK_INDEX_CACHE !== undefined) return DRUK_INDEX_CACHE;
+  try {
+    const resp = await fetch('/druk_to_commissions.json', {cache: 'default'});
+    if (resp.ok) {
+      DRUK_INDEX_CACHE = await resp.json();
+    } else {
+      DRUK_INDEX_CACHE = null;
+    }
+  } catch (e) {
+    DRUK_INDEX_CACHE = null;
+  }
+  return DRUK_INDEX_CACHE;
+}
+
+async function renderCommissionTimeline(druk, container) {
+  if (!container) return;
+  container.innerHTML = '';
+  if (!druk) return;
+  const index = await loadDrukIndex();
+  if (!index || !index.drafts) return;
+  // Spróbuj direct match plus rdzeniowy numer (np. '1406A' -> '1406')
+  let entry = index.drafts[druk];
+  if (!entry) {
+    const core = String(druk).match(/^(\d{1,5})/);
+    if (core) entry = index.drafts[core[1]];
+  }
+  if (!entry || !entry.commissions || entry.commissions.length === 0) return;
+
+  // Umami event: ile razy w ogóle pokazujemy sekcję komisji. Pomaga
+  // mierzyć widownię proof of value zanim ktoś kliknie CTA Premium.
+  trackEvent('view_commission_timeline', {
+    druk: String(druk),
+    commissions: entry.commissions.length,
+    lead_time: entry.lead_time_days != null ? entry.lead_time_days : -1,
+    status: entry.status || ''
+  });
+
+  const lt = entry.lead_time_days;
+  const ltBadge = lt != null
+    ? `<span style="font-size:11px;color:var(--accent);background:rgba(99,102,241,0.12);padding:2px 8px;border-radius:999px;margin-left:auto">${lt} ${lt === 1 ? 'dzień' : 'dni'} przed sesją</span>`
+    : '';
+
+  const rows = entry.commissions.map(c => `
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-top:0.5px solid var(--border)">
+      <div style="font-size:11px;color:var(--accent);min-width:78px;padding-top:2px;font-family:var(--font-mono,monospace)">${c.date || ''}</div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:500;color:var(--text)">${c.label || 'Komisja'}</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">Druk procedowany na posiedzeniu komisji</div>
+      </div>
+      ${c.url ? `<a href="${c.url}" target="_blank" rel="noopener" style="font-size:12px;color:var(--accent);text-decoration:none;padding-top:2px">↗ BIP</a>` : ''}
+    </div>
+  `).join('');
+
+  const sessionRow = entry.session && entry.session.date ? `
+    <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-top:0.5px solid var(--border);opacity:0.75">
+      <div style="font-size:11px;color:var(--accent);min-width:78px;font-family:var(--font-mono,monospace)">${entry.session.date}</div>
+      <div style="flex:1;font-size:13px;color:var(--text)">⚑ Sesja${entry.session.number_roman ? ' '+entry.session.number_roman : ''}, głosowanie</div>
+    </div>
+  ` : '';
+
+  container.innerHTML = `
+    <div style="background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);padding:14px 16px;margin:24px 0;border-radius:0">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+        <span style="font-size:14px;font-weight:500;color:var(--text)">Procedowanie w komisjach (${entry.commissions.length})</span>
+        ${ltBadge}
+      </div>
+      ${rows}
+      ${sessionRow}
+      <div style="font-size:12px;color:var(--muted);margin-top:12px;padding-top:12px;border-top:0.5px solid var(--border)">
+        Premium: pełne porządki obrad, protokoły, opinie komisji, alerty na nowe druki w pipeline.
+        <a href="mailto:patrykorwat@gmail.com?subject=Radoskop%20Premium%20%E2%80%94%20zapytanie"
+           onclick="trackEvent('click_premium_cta',{location:'commission_timeline',druk:'${druk}',commissions:${entry.commissions.length}})"
+           style="color:var(--accent);margin-left:4px;text-decoration:none">Dowiedz się więcej ↗</a>
+      </div>
+    </div>
+  `;
 }
 
 function backFromVote() {
@@ -2333,6 +2428,12 @@ function backFromVote() {
 }
 
 async function showSession(sessionNumber) {
+  // Guard: pusty argument prowadziłby do '/sesja//' czyli rozbitej nawigacji.
+  // Wracamy zamiast tego do strony głównej.
+  if (!sessionNumber) {
+    showMain();
+    return;
+  }
   trackEvent('view_session', {session_number: sessionNumber});
 
   hideAllViews();
