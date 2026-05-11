@@ -304,6 +304,28 @@ def apply_english_paths(html: str) -> str:
     html = html.replace("if (tab === 'interpelacje') return '/interpelacje/';",
                         "if (tab === 'interpelacje') return '/interpellations/';")
 
+    # /komisje/ (lista) i /komisja/{slug}/ (detal). PL "komisja" → EN "commission".
+    # Identyfikator JS (klucz 'komisje' w activateTab, allTabs, TAB_SLUGS etc.)
+    # zostaje bez zmian — to nazwa zmiennej, nie path. Zmieniamy WYŁĄCZNIE
+    # URL paths user-facing. API endpointy (API_BASE + '/komisja/...') zostają
+    # po polsku, jak inne API endpointy (/druk/, /kadencja/, /sesja/) — to
+    # konwencja backendu, dotyka tylko data_api.py, nie SEO. Slug url_slug
+    # (np. "komisja-zdrowia") zostaje jak w danych BIP bo to identyfikator
+    # lokalny per kraj — w DE byłby "ausschuss-gesundheit" itd.
+    html = html.replace(
+        "path === '/komisje' || path === '/komisje/'",
+        "path === '/commissions' || path === '/commissions/'",
+    )
+    html = html.replace("if (tab === 'komisje') return '/komisje/';",
+                        "if (tab === 'komisje') return '/commissions/';")
+    html = html.replace("path.startsWith('/komisja/')", "path.startsWith('/commission/')")
+    html = html.replace("path.replace('/komisja/', '')", "path.replace('/commission/', '')")
+    html = html.replace("navigateTo('/komisja/'", "navigateTo('/commission/'")
+    # HTML linki w template literals (komisje grid cards): href="/komisja/${...}/"
+    html = html.replace('href="/komisja/', 'href="/commission/')
+    # OG meta canonical url: '{{SITE_URL}}/komisja/' + slug + '/'
+    html = html.replace("{{SITE_URL}}/komisja/", "{{SITE_URL}}/commission/")
+
     # /kadencja/ — tylko URL paths, NIE API_BASE+'/kadencja/...'
     html = html.replace("path.startsWith('/kadencja/')", "path.startsWith('/term/')")
     html = html.replace("path.replace('/kadencja/', '')", "path.replace('/term/', '')")
