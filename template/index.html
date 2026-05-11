@@ -2329,14 +2329,19 @@ async function showVote(voteId) {
   renderCommissionTimeline(vote.druk, document.getElementById('commission-timeline'));
 }
 
-// Cache odpowiedzi z druk_to_commissions.json. Plik istnieje tylko dla
-// miast z aktywnym Premium MVP scrape komisji (na razie warszawa).
+// Cache odpowiedzi z /api/<city>/druk-index. Indeks istnieje dla miast
+// z aktywnym Premium MVP scrape komisji (na razie warszawa). Endpoint
+// zwraca {available:false, drafts:{}} dla miast bez danych.
+//
+// Fetch przez API a nie statyczny S3 file, bo backend może w przyszłości
+// gatingować odpowiedź per tier (free zobaczy commission_count, premium
+// zobaczy listę komisji z datami).
 let DRUK_INDEX_CACHE = undefined;
 
 async function loadDrukIndex() {
   if (DRUK_INDEX_CACHE !== undefined) return DRUK_INDEX_CACHE;
   try {
-    const resp = await fetch('/druk_to_commissions.json', {cache: 'default'});
+    const resp = await fetch(API_BASE + '/druk-index', {cache: 'default'});
     if (resp.ok) {
       DRUK_INDEX_CACHE = await resp.json();
     } else {
@@ -2353,7 +2358,7 @@ async function renderCommissionTimeline(druk, container) {
   container.innerHTML = '';
   if (!druk) return;
   const index = await loadDrukIndex();
-  if (!index || !index.drafts) return;
+  if (!index || index.available === false || !index.drafts) return;
   // Spróbuj direct match plus rdzeniowy numer (np. '1406A' -> '1406')
   let entry = index.drafts[druk];
   if (!entry) {
