@@ -1195,8 +1195,7 @@ def _default_project_dir():
     """Katalog projektu Katowic, względem lokalizacji skryptu.
 
     Skrypt jest w cities/katowice/scripts/, więc parent.parent = cities/katowice/.
-    Cache'e i output trafiają domyślnie do tego katalogu, niezależnie skąd
-    skrypt jest uruchamiany.
+    Używany jako fallback gdy żaden cache dir nie został podany jawnie.
     """
     return Path(__file__).resolve().parent.parent
 
@@ -1204,9 +1203,8 @@ def _default_project_dir():
 def main():
     parser = argparse.ArgumentParser(
         description="Scraper Rady Miasta Katowice (BIP). Cache PDF, parsed JSON "
-                    "i state listy sesji są domyślnie włączone (w katalogu projektu)."
+                    "i state listy sesji są domyślnie włączone."
     )
-    project_dir = _default_project_dir()
     parser.add_argument(
         "--output", default="docs/data.json",
         help="Plik wyjściowy (domyślnie: docs/data.json)"
@@ -1223,22 +1221,26 @@ def main():
         "--max-sessions", type=int, default=0,
         help="Maks. sesji (0=wszystkie)"
     )
+    # UWAGA: defaults celowo None — chcemy odróżnić "user nie podał flagi"
+    # (i wtedy dobieramy ścieżkę spójnie z pdf-dir lub project-relative)
+    # od "user podał konkretną wartość albo '' żeby wyłączyć". argparse-owy
+    # default settowany na string łamie to rozróżnienie.
     parser.add_argument(
-        "--pdf-dir", default=str(project_dir / "pdfs"),
-        help=f"Katalog cache PDF (pomija ponowne pobieranie). Default: {project_dir / 'pdfs'}. "
-             "Ustaw '' (pusty) aby wyłączyć cache."
+        "--pdf-dir", default=None,
+        help="Katalog cache PDF (pomija ponowne pobieranie). "
+             "Default: {project_dir}/pdfs. Ustaw '' (pusty) aby wyłączyć cache."
     )
     parser.add_argument(
-        "--parsed-dir", default=str(project_dir / "cache" / "parsed"),
-        help=f"Katalog cache sparsowanych glosowan JSON (pomija pdfplumber). "
-             f"Default: {project_dir / 'cache' / 'parsed'}. Ustaw '' aby wyłączyć."
+        "--parsed-dir", default=None,
+        help="Katalog cache sparsowanych glosowan JSON (pomija pdfplumber). "
+             "Default: {pdf-dir}/../cache/parsed. Ustaw '' aby wyłączyć."
     )
     parser.add_argument(
-        "--state-file", default=str(project_dir / "cache" / "state.json"),
+        "--state-file", default=None,
         help="Plik state.json z cache'em listy PDF-ów per sesja. Skipuje GET "
              "sesja.aspx + GET dokument.aspx dla stabilnych sesji starszych "
-             f"niż {STABLE_AGE_DAYS} dni. Default: {project_dir / 'cache' / 'state.json'}. "
-             "Ustaw '' aby wyłączyć."
+             f"niż {STABLE_AGE_DAYS} dni. "
+             "Default: {pdf-dir}/../cache/state.json. Ustaw '' aby wyłączyć."
     )
     parser.add_argument(
         "--force-rediscover", action="store_true",
@@ -1250,16 +1252,40 @@ def main():
     )
     args = parser.parse_args()
 
-    # --no-cache w jednym flagu wycina wszystko, dla testów cold path.
     if args.no_cache:
         pdf_dir = None
         parsed_dir = None
         state_file = None
     else:
-        # Pusty string ('') jako wartość traktujemy jak None (jawne wyłączenie).
-        pdf_dir = args.pdf_dir or None
-        parsed_dir = args.parsed_dir or None
-        state_file = args.state_file or None
+        project_dir = _default_project_dir()
+
+        # pdf-dir: jeśli user nie podał, użyj project-relative jako fallback.
+        # Pusty string ('') = jawne wyłączenie.
+        if args.pdf_dir is None:
+            pdf_dir = str(project_dir / "pdfs")
+        else:
+            pdf_dir = args.pdf_dir or None
+
+        # parsed-dir: jeśli user nie podał, derive z pdf-dir żeby trzymać
+        # wszystkie cache'e razem (krytyczne gdy pdf-dir jest w scratch dir
+        # poza repo — bez tego parsed cache by lądował gdzie indziej i był
+        # tracony przy każdym git reset --hard).
+        if args.parsed_dir is None:
+            if pdf_dir:
+                parsed_dir = str(Path(pdf_dir).parent / "cache" / "parsed")
+            else:
+                parsed_dir = str(project_dir / "cache" / "parsed")
+        else:
+            parsed_dir = args.parsed_dir or None
+
+        # state-file: ta sama logika co parsed-dir, derive z pdf-dir.
+        if args.state_file is None:
+            if pdf_dir:
+                state_file = str(Path(pdf_dir).parent / "cache" / "state.json")
+            else:
+                state_file = str(project_dir / "cache" / "state.json")
+        else:
+            state_file = args.state_file or None
 
     scrape(
         output_path=args.output,
