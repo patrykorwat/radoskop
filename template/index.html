@@ -2363,13 +2363,20 @@ async function renderCommissionTimeline(druk, container) {
   if (!entry) return; // Druk nie istnieje w indeksie (brak korelacji) → nie renderuj
 
   const status = entry.status || '';
-  const cs = entry.commissions || [];
-  const hasCommissions = cs.length > 0;
+  // Free tier: API zwraca commissions_top (do 3) + commissions_total + commissions_hidden.
+  // Backward compat: fallback do commissions[] gdy API jeszcze stara wersja.
+  const csTop = entry.commissions_top || entry.commissions || [];
+  const csTotal = entry.commissions_total != null ? entry.commissions_total : csTop.length;
+  const csHidden = entry.commissions_hidden != null ? entry.commissions_hidden : 0;
+  const cs = csTop;
+  const hasCommissions = csTotal > 0;
 
-  // Umami event: rozróżniamy view per status (voted/in_commission/voted_without_commission)
+  // Umami event: liczba wyświetleń sekcji per status, plus ile było ukrytych
+  // za paywallem (proxy dla intent → conversion CTA).
   trackEvent('view_commission_timeline', {
     druk: String(druk),
-    commissions: cs.length,
+    commissions_total: csTotal,
+    commissions_hidden: csHidden,
     lead_time: entry.lead_time_days != null ? entry.lead_time_days : -1,
     status: status
   });
@@ -2378,24 +2385,22 @@ async function renderCommissionTimeline(druk, container) {
   let title;
   let badge = '';
   if (status === 'voted' && hasCommissions) {
-    title = `Procedowanie w komisjach (${cs.length})`;
+    title = `Procedowanie w komisjach (${csTotal})`;
     const lt = entry.lead_time_days;
     if (lt != null) {
       badge = `<span style="font-size:11px;color:var(--accent);background:rgba(99,102,241,0.12);padding:2px 8px;border-radius:999px;margin-left:auto">${lt} ${lt === 1 ? 'dzień' : 'dni'} przed sesją</span>`;
     }
   } else if (status === 'in_commission' && hasCommissions) {
-    title = `W komisji (${cs.length}) — jeszcze nie głosowane na sesji`;
+    title = `W komisji (${csTotal}) — jeszcze nie głosowane na sesji`;
   } else if (status === 'voted_without_commission') {
     title = `Bez procedowania w komisji`;
   } else if (hasCommissions) {
-    // Inne kombinacje, fallback
-    title = `Procedowanie (${cs.length})`;
+    title = `Procedowanie (${csTotal})`;
   } else {
-    // status nieznany i brak komisji — nie renderuj
     return;
   }
 
-  // Lista komisji (gdy są)
+  // Lista komisji (top 3 w free tier)
   const rows = cs.map(c => `
     <div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-top:0.5px solid var(--border)">
       <div style="font-size:11px;color:var(--accent);min-width:78px;padding-top:2px;font-family:var(--font-mono,monospace)">${c.date || ''}</div>
@@ -2406,6 +2411,19 @@ async function renderCommissionTimeline(druk, container) {
       ${c.url ? `<a href="${c.url}" target="_blank" rel="noopener" style="font-size:12px;color:var(--accent);text-decoration:none;padding-top:2px">↗ BIP</a>` : ''}
     </div>
   `).join('');
+
+  // Teaser dla pozostałych komisji ukrytych za paywallem
+  const hiddenTeaser = csHidden > 0 ? `
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-top:0.5px solid var(--border);background:rgba(99,102,241,0.04)">
+      <div style="font-size:11px;color:var(--muted);min-width:78px;padding-left:0">...</div>
+      <div style="flex:1;font-size:13px;color:var(--text)">
+        Łącznie <strong style="font-weight:500">${csTotal} komisji</strong> w pipeline — pełna lista z opiniami w Premium
+      </div>
+      <a href="mailto:patrykorwat@gmail.com?subject=Radoskop%20Premium%20%E2%80%94%20zapytanie%20o%20pe%C5%82n%C4%85%20analiz%C4%99%20druku%20${druk}"
+         onclick="trackEvent('click_premium_cta',{location:'commission_timeline_hidden',druk:'${druk}',hidden:${csHidden}})"
+         style="font-size:12px;color:var(--accent);text-decoration:none">Zapytaj o pełną analizę ↗</a>
+    </div>
+  ` : '';
 
   // Wiersz sesji (gdy znamy)
   const sessionRow = entry.session && entry.session.date ? `
@@ -2443,12 +2461,13 @@ async function renderCommissionTimeline(druk, container) {
         ${badge}
       </div>
       ${rows}
+      ${hiddenTeaser}
       ${noCommissionRow}
       ${sessionRow}
       <div style="font-size:12px;color:var(--muted);margin-top:12px;padding-top:12px;border-top:0.5px solid var(--border)">
         ${ctaCopy}
         <a href="mailto:patrykorwat@gmail.com?subject=Radoskop%20Premium%20%E2%80%94%20zapytanie"
-           onclick="trackEvent('click_premium_cta',{location:'commission_timeline',druk:'${druk}',status:'${status}',commissions:${cs.length}})"
+           onclick="trackEvent('click_premium_cta',{location:'commission_timeline',druk:'${druk}',status:'${status}',commissions:${csTotal}})"
            style="color:var(--accent);margin-left:4px;text-decoration:none">Dowiedz się więcej ↗</a>
       </div>
     </div>
