@@ -43,7 +43,7 @@
     }
   },
   "has_budget": true,
-  "has_komisje": false,
+  "has_komisje": true,
   "budget_note": "",
   "samorzad_type": "miasto",
   "rada_name": "Rada Miasta Krakowa",
