@@ -2329,42 +2329,37 @@ async function showVote(voteId) {
   renderCommissionTimeline(vote.druk, document.getElementById('commission-timeline'));
 }
 
-// Cache odpowiedzi z /api/<city>/druk-index. Indeks istnieje dla miast
-// z aktywnym Premium MVP scrape komisji (na razie warszawa). Endpoint
-// zwraca {available:false, drafts:{}} dla miast bez danych.
-//
-// Fetch przez API a nie statyczny S3 file, bo backend może w przyszłości
-// gatingować odpowiedź per tier (free zobaczy commission_count, premium
-// zobaczy listę komisji z datami).
-let DRUK_INDEX_CACHE = undefined;
+// Mini-cache per druk żeby przy szybkim klikaniu między głosowaniami
+// nie odpytywać API po raz drugi o ten sam numer. Cache jest browser-side
+// (sesyjny, w pamięci tabletu); API ma własny 10-min cache po stronie
+// serwera, więc oba poziomy razem dają minimalne S3 reads.
+const DRUK_CACHE = new Map();
 
-async function loadDrukIndex() {
-  if (DRUK_INDEX_CACHE !== undefined) return DRUK_INDEX_CACHE;
+async function loadDrukEntry(druk) {
+  if (!druk) return null;
+  const key = String(druk);
+  if (DRUK_CACHE.has(key)) return DRUK_CACHE.get(key);
   try {
-    const resp = await fetch(API_BASE + '/druk-index', {cache: 'default'});
-    if (resp.ok) {
-      DRUK_INDEX_CACHE = await resp.json();
-    } else {
-      DRUK_INDEX_CACHE = null;
+    const resp = await fetch(API_BASE + '/druk/' + encodeURIComponent(key));
+    if (!resp.ok) {
+      DRUK_CACHE.set(key, null);
+      return null;
     }
+    const data = await resp.json();
+    const entry = (data && data.available !== false && data.draft) ? data.draft : null;
+    DRUK_CACHE.set(key, entry);
+    return entry;
   } catch (e) {
-    DRUK_INDEX_CACHE = null;
+    DRUK_CACHE.set(key, null);
+    return null;
   }
-  return DRUK_INDEX_CACHE;
 }
 
 async function renderCommissionTimeline(druk, container) {
   if (!container) return;
   container.innerHTML = '';
   if (!druk) return;
-  const index = await loadDrukIndex();
-  if (!index || index.available === false || !index.drafts) return;
-  // Spróbuj direct match plus rdzeniowy numer (np. '1406A' -> '1406')
-  let entry = index.drafts[druk];
-  if (!entry) {
-    const core = String(druk).match(/^(\d{1,5})/);
-    if (core) entry = index.drafts[core[1]];
-  }
+  const entry = await loadDrukEntry(druk);
   if (!entry || !entry.commissions || entry.commissions.length === 0) return;
 
   // Umami event: ile razy w ogóle pokazujemy sekcję komisji. Pomaga
