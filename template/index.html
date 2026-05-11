@@ -172,6 +172,7 @@ footer a { color:var(--accent); text-decoration:none; }
 .session-attendees { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:6px; margin-top:8px; }
 .session-attendee { padding:5px 10px; border-radius:6px; font-size:0.85rem; display:flex; align-items:center; gap:6px; background:var(--surface); border:1px solid var(--border); }
 .session-absent { opacity:0.5; }
+.speakers-grid { /* single column flow */ }
 .speaker-bar {
   display: grid;
   grid-template-columns: minmax(0, 220px) 1fr auto;
@@ -181,6 +182,21 @@ footer a { color:var(--accent); text-decoration:none; }
   font-size: 0.8rem;
   line-height: 1.3;
 }
+.speaker-bar.hidden { display: none; }
+.show-more-speakers {
+  margin-top: 10px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-family: inherit;
+  border-radius: 6px;
+  width: 100%;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.show-more-speakers:hover { background: rgba(99,102,241,0.06); color: var(--accent); border-color: var(--accent); }
 .speaker-name {
   display: flex;
   align-items: center;
@@ -217,8 +233,8 @@ footer a { color:var(--accent); text-decoration:none; }
   font-variant-numeric: tabular-nums;
   font-size: 0.78rem;
   color: var(--muted);
-  min-width: 110px;
   text-align: right;
+  min-width: 130px;
 }
 .speaker-meta strong { color: var(--text); font-weight: 500; }
 
@@ -2661,13 +2677,16 @@ async function showSession(sessionNumber) {
         <span><strong style="color:var(--text);font-weight:500">${totalStatements.toLocaleString('pl')}</strong> wyp.</span>
         <span><strong style="color:var(--text);font-weight:500">${totalWords.toLocaleString('pl')}</strong> słów</span>
         <span>mediana <strong style="color:var(--text);font-weight:500">${medianWords.toLocaleString('pl')}</strong></span>
-      </div>`;
-    html += speakers.map(sp => {
+      </div>
+      <div class="speakers-grid">`;
+    const SPEAKERS_TOP_VISIBLE = 10;
+    html += speakers.map((sp, idx) => {
       const cl = clubMap[sp.name] || '?';
       const barPct = Math.max((sp.words / maxWords) * 100, 2);
       const statements = sp.statements ?? sp.turns ?? 0;
       const color = (typeof clubColor === 'function') ? clubColor(cl) : 'var(--accent)';
-      return `<div class="speaker-bar">
+      const hiddenCls = idx >= SPEAKERS_TOP_VISIBLE ? ' hidden' : '';
+      return `<div class="speaker-bar${hiddenCls}">
         <span class="speaker-name">
           <span class="club ${clubClass(cl)}">${cl}</span>
           ${profileLink(sp.name)}
@@ -2678,7 +2697,11 @@ async function showSession(sessionNumber) {
         <span class="speaker-meta"><strong>${sp.words.toLocaleString('pl')}</strong> słów · ${statements} wyp.</span>
       </div>`;
     }).join('');
-    html += `</div>`;
+    if (speakers.length > SPEAKERS_TOP_VISIBLE) {
+      const hiddenCount = speakers.length - SPEAKERS_TOP_VISIBLE;
+      html += `<button class="show-more-speakers" onclick="this.parentElement.querySelectorAll('.speaker-bar.hidden').forEach(el=>el.classList.remove('hidden'));trackEvent('speakers_expand',{total:${speakers.length}});this.remove();">Pokaż pozostałych ${hiddenCount} mówców ↓</button>`;
+    }
+    html += `</div></div>`;
   }
 
   // Votes grouped by category
