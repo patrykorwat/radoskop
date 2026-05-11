@@ -163,8 +163,42 @@ def init_session():
     })
 
 
-def fetch(url: str) -> BeautifulSoup:
-    """Fetch a page and return BeautifulSoup."""
+_CACHE_DIR: Path | None = None
+STABLE_AGE_DAYS = 7
+
+
+def init_cache(cache_dir: str | None) -> None:
+    global _CACHE_DIR
+    if cache_dir:
+        _CACHE_DIR = Path(cache_dir)
+        _CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    else:
+        _CACHE_DIR = None
+
+
+def _cache_path(url: str) -> Path | None:
+    if _CACHE_DIR is None:
+        return None
+    import hashlib
+    h = hashlib.md5(url.encode("utf-8")).hexdigest()[:16]
+    return _CACHE_DIR / f"{h}.html"
+
+
+def _is_session_stable(date_str: str) -> bool:
+    try:
+        dt = datetime.strptime(date_str, "%Y-%m-%d")
+    except (ValueError, TypeError):
+        return False
+    return (datetime.now() - dt).days >= STABLE_AGE_DAYS
+
+
+def fetch(url: str, use_cache: bool = True) -> BeautifulSoup:
+    """Fetch a page (with disk cache) and return BeautifulSoup."""
+    cache_file = _cache_path(url) if use_cache else None
+    if cache_file and cache_file.exists() and cache_file.stat().st_size > 100:
+        text = cache_file.read_text(encoding="utf-8")
+        return BeautifulSoup(text, "lxml")
+
     time.sleep(DELAY)
     print(f"  GET {url}")
     resp = _session.get(url, timeout=30)
@@ -172,6 +206,11 @@ def fetch(url: str) -> BeautifulSoup:
     # eSesja pages declare windows-1250 but requests detects ISO-8859-1
     if "esesja" in url:
         resp.encoding = "windows-1250"
+    if cache_file:
+        try:
+            cache_file.write_text(resp.text, encoding="utf-8")
+        except Exception:
+            pass
     return BeautifulSoup(resp.text, "lxml")
 
 
@@ -217,7 +256,8 @@ def scrape_session_list() -> list[dict]:
     Session number is extracted from link text:
       "inauguracyjna sesja" -> I, "II zwyczajna sesja" -> II, "III nadzwyczajna sesja" -> III
     """
-    soup = fetch(SESSIONS_URL)
+    # Lista sesji NIGDY z cache — nowe sesje dochodzą
+    soup = fetch(SESSIONS_URL, use_cache=False)
     sessions = []
 
     # Find session links inside table rows
@@ -301,7 +341,8 @@ def fetch_esesja_session_map() -> dict:
 
     Returns {session_date: esesja_url} so we can match BIP sessions to eSesja.
     """
-    soup = fetch(ESESJA_ARCHIVE)
+    # Archiwum eSesja — top-level index, NIGDY z cache
+    soup = fetch(ESESJA_ARCHIVE, use_cache=False)
     session_map = {}
 
     for a in soup.find_all("a", href=True):
@@ -335,8 +376,11 @@ def scrape_session_votes(session: dict, esesja_url: str) -> list[dict]:
 
     eSesja page at listaglosowan/UUID lists all votes for a session with links
     to individual vote pages at /glosowanie/ID/HASH.
+
+    Stabilne sesje (date > 7 dni temu) używają cache HTML.
     """
-    soup = fetch(esesja_url)
+    is_stable = _is_session_stable(session.get("date", ""))
+    soup = fetch(esesja_url, use_cache=is_stable)
     votes = []
 
     # Collect unique vote links: /glosowanie/ID/HASH
@@ -376,9 +420,12 @@ def scrape_single_vote(url: str, session: dict, vote_idx: int, topic: str) -> di
       </div>
       <div class='wim'><h3>PRZECIW<span class='przeciw'> (0)</span></h3></div>
       ...
+
+    Stabilne sesje (date > 7 dni temu) używają cache HTML.
     """
+    is_stable = _is_session_stable(session.get("date", ""))
     try:
-        soup = fetch(url)
+        soup = fetch(url, use_cache=is_stable)
     except Exception as e:
         print(f"      Błąd pobierania {url}: {e}")
         return None
@@ -802,6 +849,11 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Tylko lista sesji, bez głosowań")
     parser.add_argument("--profiles", default="docs/profiles.json", help="Plik profiles.json")
     parser.add_argument("--explore", action="store_true", help="Pobierz 1 sesję i pokaż strukturę")
+    parser.add_argument("--cache-dir", default=None,
+                        help="Katalog cache HTML. Default: {script_dir}/../.cache/html. "
+                             "Stabilne sesje (>7 dni temu) używają cache. '' aby wyłączyć.")
+    parser.add_argument("--no-cache", action="store_true",
+                        help="Wyłącz cache HTML.")
     args = parser.parse_args()
 
     global DELAY
@@ -812,6 +864,17 @@ def main():
     print()
 
     init_session()
+
+    # Cache HTML — default w cities/szczecin/.cache/html/ (w gitignore)
+    if args.no_cache:
+        cache_dir = None
+    elif args.cache_dir is not None:
+        cache_dir = args.cache_dir or None
+    else:
+        cache_dir = str(Path(__file__).resolve().parent.parent / ".cache" / "html")
+    init_cache(cache_dir)
+    if cache_dir:
+        print(f"Cache HTML: {cache_dir}\n")
 
     # 1. Session list
     print("[1/3] Pobieranie listy sesji...")

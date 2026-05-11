@@ -126,12 +126,60 @@ def init_session():
     })
 
 
-def fetch(url: str) -> BeautifulSoup:
-    """Fetch a page and return BeautifulSoup."""
+_CACHE_DIR: Path | None = None
+
+# Sesje plenarne starsze niż tyle dni traktujemy jako stabilne. BIP nie
+# modyfikuje protokołów/wyników po finalizacji posiedzenia (kilka dni max).
+STABLE_AGE_DAYS = 7
+
+
+def init_cache(cache_dir: str | None) -> None:
+    """Ustawia katalog cache HTML. None = wyłącz cache (legacy behavior)."""
+    global _CACHE_DIR
+    if cache_dir:
+        _CACHE_DIR = Path(cache_dir)
+        _CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    else:
+        _CACHE_DIR = None
+
+
+def _cache_path(url: str) -> Path | None:
+    if _CACHE_DIR is None:
+        return None
+    import hashlib
+    h = hashlib.md5(url.encode("utf-8")).hexdigest()[:16]
+    return _CACHE_DIR / f"{h}.html"
+
+
+def _is_session_stable(date_str: str) -> bool:
+    """True gdy data sesji YYYY-MM-DD jest >= STABLE_AGE_DAYS dni temu."""
+    try:
+        dt = datetime.strptime(date_str, "%Y-%m-%d")
+    except (ValueError, TypeError):
+        return False
+    age = (datetime.now() - dt).days
+    return age >= STABLE_AGE_DAYS
+
+
+def fetch(url: str, use_cache: bool = True) -> BeautifulSoup:
+    """Fetch a page (with disk cache) and return BeautifulSoup.
+
+    use_cache=False wymusza świeży HTTP request (np. dla list sesji lub świeżych
+    sesji których zawartość może się zmienić).
+    """
+    cache_file = _cache_path(url) if use_cache else None
+    if cache_file and cache_file.exists() and cache_file.stat().st_size > 100:
+        return BeautifulSoup(cache_file.read_text(encoding="utf-8"), "lxml")
+
     time.sleep(DELAY)
     print(f"  GET {url}")
     resp = _session.get(url, timeout=30)
     resp.raise_for_status()
+    if cache_file:
+        try:
+            cache_file.write_text(resp.text, encoding="utf-8")
+        except Exception:
+            pass
     return BeautifulSoup(resp.text, "lxml")
 
 
@@ -226,7 +274,8 @@ def _fetch_paginated(base_url: str) -> list[dict]:
     visited = set()
 
     try:
-        soup = fetch(base_url)
+        # Listy sesji i paginacja zawsze świeże — nowe sesje dochodzą
+        soup = fetch(base_url, use_cache=False)
     except Exception as e:
         print(f"  Nie udało się pobrać {base_url}: {e}")
         return sessions
@@ -244,7 +293,7 @@ def _fetch_paginated(base_url: str) -> list[dict]:
             if page_url not in visited:
                 visited.add(page_url)
                 try:
-                    page_soup = fetch(page_url)
+                    page_soup = fetch(page_url, use_cache=False)
                     sessions.extend(_extract_sessions_from_soup(page_soup, base_url))
                 except Exception:
                     pass
@@ -254,7 +303,7 @@ def _fetch_paginated(base_url: str) -> list[dict]:
             if page_url not in visited:
                 visited.add(page_url)
                 try:
-                    page_soup = fetch(page_url)
+                    page_soup = fetch(page_url, use_cache=False)
                     sessions.extend(_extract_sessions_from_soup(page_soup, base_url))
                 except Exception:
                     pass
@@ -317,8 +366,11 @@ def scrape_session_pdf_links(session: dict) -> list[dict]:
       - "Wynik głosowania druk nr XXXX/YY" (vote result — KEEP!)
 
     We only download "Wynik głosowania" attachments.
+
+    Stabilne sesje (date > 7 dni temu) używają cache HTML.
     """
-    soup = fetch(session["url"])
+    is_stable = _is_session_stable(session.get("date", ""))
+    soup = fetch(session["url"], use_cache=is_stable)
     vote_links = []
     total_attachments = 0
 
@@ -1095,6 +1147,12 @@ def main():
     parser.add_argument("--all-kadencje", action="store_true", help="Nie filtruj po kadencji")
     parser.add_argument("--offline", action="store_true",
                         help="Tryb offline: parsuj tylko z cache PDFs (bez sieci)")
+    parser.add_argument("--cache-dir", default=None,
+                        help="Katalog cache HTML stron BIP. Domyślnie {script_dir}/../.cache/html. "
+                             "Stabilne sesje (>7 dni temu) używają cache zamiast HTTP. "
+                             "Ustaw '' aby wyłączyć cache.")
+    parser.add_argument("--no-cache", action="store_true",
+                        help="Wyłącz cache HTML (każdy run = świeże HTTP dla wszystkich sesji).")
     args = parser.parse_args()
 
     global DELAY
@@ -1109,6 +1167,17 @@ def main():
         return
 
     init_session()
+
+    # Cache HTML — default poza repo (cities/wroclaw/.cache/html/, w gitignore)
+    if args.no_cache:
+        cache_dir = None
+    elif args.cache_dir is not None:
+        cache_dir = args.cache_dir or None
+    else:
+        cache_dir = str(Path(__file__).resolve().parent.parent / ".cache" / "html")
+    init_cache(cache_dir)
+    if cache_dir:
+        print(f"Cache HTML: {cache_dir}\n")
 
     total_steps = 3
 
