@@ -113,8 +113,15 @@ tr:hover td { background:rgba(99,102,241,0.05); }
 .tab-budget.active { color:white; }
 .chart-wrap { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; }
 canvas { max-height:760px; }
-.similarity-pair { display:flex; align-items:center; gap:12px; padding:8px 0; border-bottom:1px solid var(--border); font-size:0.85rem; }
-.similarity-score { font-weight:700; min-width:50px; }
+.komisje-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; }
+.komisja-card { display:block; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px; text-decoration:none; color:var(--text); transition:border-color 0.15s, transform 0.15s; cursor:pointer; }
+.komisja-card:hover { border-color:var(--accent); transform:translateY(-1px); }
+.komisja-card-title { display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:0.95rem; font-weight:600; margin-bottom:14px; flex-wrap:wrap; }
+.komisja-card-stats { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:12px; }
+.komisja-card-stats > div { display:flex; flex-direction:column; }
+.komisja-stat-value { font-size:1.1rem; font-weight:700; color:var(--text); }
+.komisja-stat-label { font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; margin-top:2px; }
+.komisja-card-last { font-size:0.75rem; color:var(--muted); padding-top:8px; border-top:1px solid var(--border); }
 .filter-bar { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
 .filter-btn { padding:4px 12px; border-radius:6px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-size:0.8rem; }
 .filter-btn.active { background:var(--accent); color:white; border-color:var(--accent); }
@@ -317,7 +324,7 @@ footer a { color:var(--accent); text-decoration:none; }
         <button class="tab" data-tab="profiles">Profile radnych</button>
         <button class="tab" data-tab="sessions">Sesje</button>
         <button class="tab" data-tab="votes">Głosowania</button>
-        <button class="tab" data-tab="similarity">Kto z kim głosuje</button>
+        <button class="tab" data-tab="komisje">Komisje</button>
         <button class="tab" data-tab="interpelacje">Interpelacje</button>
         <button class="tab tab-budget" data-tab="budget">Budżet</button>
 {{AKTUALNOSCI_BUTTON}}
@@ -389,11 +396,10 @@ footer a { color:var(--accent); text-decoration:none; }
       <div id="votes-grouped"></div>
     </div>
 
-    <div id="tab-similarity" class="section" style="display:none">
-      <h2>Najczęściej głosują tak samo</h2>
-      <div id="sim-top"></div>
-      <h2 style="margin-top:30px">Najrzadziej głosują tak samo</h2>
-      <div id="sim-bottom"></div>
+    <div id="tab-komisje" class="section" style="display:none">
+      <div id="komisje-content">
+        <p style="color:var(--muted);padding:20px 0">Ładowanie komisji...</p>
+      </div>
     </div>
 
     <div id="tab-interpelacje" class="section" style="display:none">
@@ -738,6 +744,18 @@ async function init() {
       navigateTo(path, true);
       return;
     }
+    if (path === '/komisje' || path === '/komisje/') {
+      selectKadencjaQuiet(initialKid);
+      activateTab('komisje');
+      navigateTo(path, true);
+      return;
+    }
+    if (path.startsWith('/komisja/')) {
+      selectKadencjaQuiet(initialKid);
+      const slug = decodeURIComponent(path.replace('/komisja/', '').replace(/\/$/, ''));
+      showKomisja(slug);
+      return;
+    }
     if (path === '/aktualnosci' || path === '/aktualnosci/') {
       // /aktualnosci/ to statyczna strona z listą wpisów (SEO content
       // wstrzyknięty przez generate_feed.py). Nie ładujemy SPA appki —
@@ -809,7 +827,7 @@ async function selectKadencja(kid) {
 }
 
 function activateTab(tabName) {
-  const allTabs = ['ranking','profiles','sessions','votes','similarity','interpelacje','budget'];
+  const allTabs = ['ranking','profiles','sessions','votes','komisje','interpelacje','budget'];
   // Guard: invalid tabName cofamy do ranking, żeby nie zostawić currentTab jako undefined.
   if (!tabName || tabName === 'undefined' || tabName === 'null' || !allTabs.includes(tabName)) {
     tabName = 'ranking';
@@ -823,8 +841,9 @@ function activateTab(tabName) {
     const el = document.getElementById('tab-'+t);
     if (el) el.style.display = (t === tabName) ? 'block' : 'none';
   });
-  document.getElementById('kadencja-bar').style.display = (tabName === 'budget' || tabName === 'interpelacje') ? 'none' : '';
+  document.getElementById('kadencja-bar').style.display = (tabName === 'budget' || tabName === 'interpelacje' || tabName === 'komisje') ? 'none' : '';
   if (tabName === 'interpelacje') renderInterpelacje();
+  if (tabName === 'komisje') renderKomisjeList();
   setTitle(TAB_TITLES[tabName] || '');
 }
 
@@ -840,13 +859,13 @@ function hideAllViews() {
 }
 
 let currentTab = 'ranking';
-const TAB_SLUGS = {ranking:'ranking',profiles:'radni',sessions:'sesje',votes:'glosowania',similarity:'podobienstwo',interpelacje:'interpelacje',budget:'budzet'};
+const TAB_SLUGS = {ranking:'ranking',profiles:'radni',sessions:'sesje',votes:'glosowania',komisje:'komisje',interpelacje:'interpelacje',budget:'budzet'};
 const SLUG_TABS = Object.fromEntries(Object.entries(TAB_SLUGS).map(([k,v])=>[v,k]));
 const KAD_SLUGS = {'2018-2023':'viii','2024-2029':'ix'};
 const SLUG_KADS = Object.fromEntries(Object.entries(KAD_SLUGS).map(([k,v])=>[v,k]));
 
 const BASE_TITLE = '{{SITE_TITLE}}';
-const TAB_TITLES = {ranking:'Ranking radnych',profiles:'Profile radnych',sessions:'Sesje',votes:'Głosowania',similarity:'Podobieństwo',interpelacje:'Interpelacje',budget:'Budżet'};
+const TAB_TITLES = {ranking:'Ranking radnych',profiles:'Profile radnych',sessions:'Sesje',votes:'Głosowania',komisje:'Komisje',interpelacje:'Interpelacje',budget:'Budżet'};
 function setTitle(subtitle) {
   document.title = subtitle ? subtitle + ' \u2013 ' + BASE_TITLE : BASE_TITLE;
 }
@@ -899,7 +918,7 @@ function mainPath(tab, kid) {
   kid = kid || currentKid;
   // Guard: jeśli tab/kid puste albo literal "undefined"/"null", użyj defaults.
   // Zapobiega URL-om typu /kadencja/ix/undefined/.
-  const validTabs = ['ranking','profiles','sessions','votes','similarity','interpelacje','budget'];
+  const validTabs = ['ranking','profiles','sessions','votes','komisje','interpelacje','budget'];
   if (!tab || tab === 'undefined' || tab === 'null' || !validTabs.includes(tab)) {
     tab = 'ranking';
   }
@@ -909,6 +928,7 @@ function mainPath(tab, kid) {
   }
   if (tab === 'budget') return '/budzet/';
   if (tab === 'interpelacje') return '/interpelacje/';
+  if (tab === 'komisje') return '/komisje/';
   const kadSlug = KAD_SLUGS[kid] || kid;
   const tabSlug = TAB_SLUGS[tab] || tab;
   if (tab === 'ranking' && kid === defaultKid) return '/';
@@ -1334,7 +1354,6 @@ function render() {
   renderSessionsTable();
   _votesPage = 1;
   renderVotesTable();
-  renderSimilarity();
   renderBudget();
   bindTabs();
   bindSort();
@@ -2545,7 +2564,7 @@ function backFromVote() {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   const votesTab = document.querySelector('.tab[data-tab="votes"]');
   if (votesTab) votesTab.classList.add('active');
-  ['ranking','profiles','sessions','similarity','interpelacje','budget'].forEach(t => {
+  ['ranking','profiles','sessions','komisje','interpelacje','budget'].forEach(t => {
     document.getElementById('tab-'+t).style.display = 'none';
   });
   document.getElementById('tab-votes').style.display = 'block';
@@ -2792,19 +2811,207 @@ async function showSession(sessionNumber) {
   }
 }
 
-function renderSimilarity() {
-  const renderPairs = (pairs, el) => {
-    el.innerHTML = pairs.map(p => `
-      <div class="similarity-pair">
-        <span class="similarity-score" style="color:${p.score>=90?'var(--green)':p.score>=70?'var(--yellow)':'var(--red)'}">${p.score}%</span>
-        <span>${profileLink(p.a)} <span style="color:var(--muted)">↔</span> ${profileLink(p.b)}</span>
+// --- Komisje tab ---
+// Free tier: lista komisji ze statystykami (meetings, drafts_total, drafts_voted,
+// median_lead_time_days, last_meeting_date). Pełne posiedzenia są dostępne
+// w detalu komisji (showKomisja), gdzie API gateuje top N + hidden teaser.
+let _komisjeListCache = null;
+async function renderKomisjeList() {
+  const container = document.getElementById('komisje-content');
+  if (!container) return;
+  trackEvent('view_komisje_list');
+
+  if (!_komisjeListCache) {
+    container.innerHTML = '<p style="color:var(--muted);padding:20px 0">Ładowanie komisji...</p>';
+    try {
+      const resp = await fetch(API_BASE + '/komisje');
+      if (!resp.ok) {
+        container.innerHTML = '<p style="color:var(--muted);padding:20px 0">Dane o komisjach nie są jeszcze dostępne dla tego miasta.</p>';
+        return;
+      }
+      _komisjeListCache = await resp.json();
+    } catch (e) {
+      container.innerHTML = '<p style="color:var(--red);padding:20px 0">Błąd ładowania komisji: ' + e.message + '</p>';
+      return;
+    }
+  }
+
+  const data = _komisjeListCache;
+  if (data.available === false) {
+    container.innerHTML = '<p style="color:var(--muted);padding:20px 0">Dane o komisjach nie są jeszcze dostępne dla tego miasta. Pracujemy nad tym.</p>';
+    return;
+  }
+  const commissions = data.commissions || [];
+  if (commissions.length === 0) {
+    container.innerHTML = '<p style="color:var(--muted);padding:20px 0">Brak danych o komisjach.</p>';
+    return;
+  }
+
+  // Aggregaty łączne dla całej rady
+  const totalMeetings = commissions.reduce((s, c) => s + ((c.stats || {}).meetings || 0), 0);
+  const totalDrafts = commissions.reduce((s, c) => s + ((c.stats || {}).drafts_total || 0), 0);
+  const totalInCommission = commissions.reduce((s, c) => s + ((c.stats || {}).drafts_in_commission || 0), 0);
+
+  const cards = commissions.map(c => {
+    const s = c.stats || {};
+    const lead = s.median_lead_time_days;
+    const leadDisplay = (lead != null) ? lead + (lead === 1 ? ' dzień' : ' dni') : '—';
+    const last = s.last_meeting_date || '';
+    const inCommission = s.drafts_in_commission || 0;
+    const inCommissionBadge = inCommission > 0
+      ? `<span style="font-size:11px;color:var(--yellow);background:rgba(202,138,4,0.12);padding:2px 8px;border-radius:999px">${inCommission} w toku</span>`
+      : '';
+    const esc = (c.url_slug || '').replace(/'/g, "\\'");
+    return `
+      <a class="komisja-card" href="/komisja/${encodeURIComponent(c.url_slug)}/" onclick="event.preventDefault();showKomisja('${esc}')">
+        <div class="komisja-card-title">
+          <span>${c.label || c.url_slug}</span>
+          ${inCommissionBadge}
+        </div>
+        <div class="komisja-card-stats">
+          <div><span class="komisja-stat-value">${s.meetings || 0}</span><span class="komisja-stat-label">posiedzeń</span></div>
+          <div><span class="komisja-stat-value">${s.drafts_total || 0}</span><span class="komisja-stat-label">druków</span></div>
+          <div><span class="komisja-stat-value">${s.drafts_voted || 0}</span><span class="komisja-stat-label">zwotowanych</span></div>
+          <div><span class="komisja-stat-value">${leadDisplay}</span><span class="komisja-stat-label">mediana lead time</span></div>
+        </div>
+        ${last ? `<div class="komisja-card-last">Ostatnie posiedzenie: ${last}</div>` : ''}
+      </a>
+    `;
+  }).join('');
+
+  container.innerHTML = `
+    <div style="margin-bottom:20px">
+      <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)">Komisje rady</h2>
+      <p style="color:var(--muted);font-size:0.9rem">${commissions.length} komisji, ${totalMeetings} posiedzeń, ${totalDrafts} druków w procedowaniu${totalInCommission > 0 ? `, w tym ${totalInCommission} w toku` : ''}.</p>
+    </div>
+    <div class="komisje-grid">${cards}</div>
+    <div style="margin-top:24px;padding:16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px;color:var(--text)">
+      Pełna lista posiedzeń z porządkami obrad, protokołami i opiniami komisji dostępna w pakiecie Premium.
+      <a href="mailto:patrykorwat@gmail.com?subject=Radoskop%20Premium%20%E2%80%94%20zapytanie%20o%20komisje"
+         onclick="trackEvent('click_premium_komisja_cta',{location:'komisje_list'})"
+         style="color:var(--accent);margin-left:6px;text-decoration:none">Zapytaj o dostęp ↗</a>
+    </div>
+  `;
+}
+
+async function showKomisja(slug) {
+  if (!slug) { showMain(); return; }
+  trackEvent('view_komisja_detail', {slug: slug});
+
+  hideAllViews();
+  const view = document.getElementById('session-view'); // reusing detail container
+  view.style.display = 'block';
+  view.innerHTML = '<p style="padding:40px;color:var(--muted)">Ładowanie komisji...</p>';
+  navigateTo('/komisja/' + encodeURIComponent(slug) + '/');
+
+  let envelope = null;
+  try {
+    const resp = await fetch(API_BASE + '/komisja/' + encodeURIComponent(slug));
+    if (resp.ok) envelope = await resp.json();
+  } catch (e) { /* fallthrough */ }
+
+  const commission = envelope && envelope.commission;
+  if (!envelope || envelope.available === false || !commission) {
+    view.innerHTML = '<button class="profile-back" onclick="backFromKomisja()">← Komisje</button><p style="padding:40px;color:var(--red)">Nie znaleziono komisji.</p>';
+    return;
+  }
+
+  const label = commission.label || slug;
+  const s = commission.stats || {};
+  const meetingsTop = commission.meetings_top || commission.meetings || [];
+  const meetingsTotal = commission.meetings_total != null ? commission.meetings_total : meetingsTop.length;
+  const meetingsHidden = commission.meetings_hidden != null ? commission.meetings_hidden : 0;
+  const lead = s.median_lead_time_days;
+  const leadDisplay = (lead != null) ? lead + (lead === 1 ? ' dzień' : ' dni') : '—';
+
+  setTitle(label);
+  setOgMeta({
+    title: label + ' – Radoskop {{CITY_NAME}}',
+    description: `${s.meetings || 0} posiedzeń, ${s.drafts_total || 0} druków w procedowaniu, mediana lead time ${leadDisplay}.`,
+    url: '{{SITE_URL}}/komisja/' + encodeURIComponent(slug) + '/'
+  });
+
+  // Premium: jeśli API zwraca drafts_votes (mapa druk → {vote_id, ...}),
+  // renderuj druk jako klikalny link do strony głosowania. Free tier dostaje
+  // taki sam JSON bez tego pola, więc druki zostają niewklikalnymi badge'ami.
+  const meetingsHtml = meetingsTop.map(m => {
+    const dv = m.drafts_votes || {};
+    const drafts = (m.drafts || []).map(d => {
+      const dStr = String(d);
+      const info = dv[dStr];
+      const baseStyle = 'color:var(--accent);font-size:12px;background:rgba(99,102,241,0.08);padding:1px 6px;border-radius:4px;margin-right:4px;display:inline-block;margin-bottom:2px';
+      if (info && info.vote_id) {
+        const vid = info.vote_id;
+        const passedIcon = info.passed === true ? ' <span style="color:var(--green)">✓</span>' : info.passed === false ? ' <span style="color:var(--red)">✗</span>' : '';
+        return `<a href="/glosowanie/${encodeURIComponent(vid)}/" onclick="event.preventDefault();showVote('${vid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
+      }
+      return `<span style="${baseStyle}">druk ${dStr}</span>`;
+    }).join('');
+    const links = [];
+    if (m.page_url) links.push(`<a href="${m.page_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none">↗ BIP</a>`);
+    if (m.agenda_url) links.push(`<a href="${m.agenda_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none">↗ Porządek</a>`);
+    if (m.protocol_url) links.push(`<a href="${m.protocol_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none">↗ Protokół</a>`);
+    return `
+      <div style="padding:14px 0;border-top:0.5px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px">
+          <span style="font-weight:500;font-family:var(--font-mono,monospace)">${m.date || ''}</span>
+          ${(m.drafts || []).length > 0 ? `<span style="color:var(--muted);font-size:12px">${(m.drafts || []).length} druków</span>` : ''}
+          <div style="margin-left:auto;display:flex;gap:10px">${links.join('')}</div>
+        </div>
+        ${drafts ? `<div style="margin-top:4px">${drafts}</div>` : ''}
       </div>
-    `).join('');
-  };
-  const simTop = K.similarity_top || (K.similarity && K.similarity.top) || [];
-  const simBottom = K.similarity_bottom || (K.similarity && K.similarity.bottom) || [];
-  renderPairs(simTop, document.getElementById('sim-top'));
-  renderPairs(simBottom, document.getElementById('sim-bottom'));
+    `;
+  }).join('');
+
+  const hiddenTeaser = meetingsHidden > 0 ? `
+    <div style="margin-top:16px;padding:14px 16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px">
+      Łącznie <strong style="font-weight:500">${meetingsTotal} posiedzeń</strong> w archiwum, pokazane ${meetingsTop.length}. Pełne archiwum z porządkami obrad, protokołami i opiniami w pakiecie Premium.
+      <a href="mailto:patrykorwat@gmail.com?subject=Radoskop%20Premium%20%E2%80%94%20zapytanie%20o%20komisj%C4%99%20${encodeURIComponent(label)}"
+         onclick="trackEvent('click_premium_komisja_cta',{location:'komisja_detail',slug:'${slug}',hidden:${meetingsHidden}})"
+         style="color:var(--accent);margin-left:6px;text-decoration:none">Zapytaj o dostęp ↗</a>
+    </div>
+  ` : '';
+
+  view.innerHTML = `
+    <button class="profile-back" onclick="backFromKomisja()">← Komisje</button>
+    <div style="margin-bottom:24px">
+      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${label}</h2>
+    </div>
+    <div class="profile-metrics" style="margin-bottom:24px">
+      <div class="metric-card">
+        <div class="metric-value">${s.meetings || 0}</div>
+        <div class="metric-label">Posiedzeń</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">${s.drafts_total || 0}</div>
+        <div class="metric-label">Druków</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" style="color:var(--green)">${s.drafts_voted || 0}</div>
+        <div class="metric-label">Zwotowanych</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" style="color:var(--yellow)">${s.drafts_in_commission || 0}</div>
+        <div class="metric-label">W toku</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">${leadDisplay}</div>
+        <div class="metric-label">Mediana lead time</div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Posiedzenia ${meetingsTotal > meetingsTop.length ? `(${meetingsTop.length} z ${meetingsTotal})` : `(${meetingsTotal})`}</h2>
+      ${meetingsHtml || '<p style="color:var(--muted);padding:14px 0">Brak posiedzeń w archiwum.</p>'}
+      ${hiddenTeaser}
+    </div>
+  `;
+}
+
+function backFromKomisja() {
+  hideAllViews();
+  document.getElementById('app').style.display = 'block';
+  activateTab('komisje');
+  navigateTo(mainPath('komisje'));
 }
 
 async function renderInterpelacje() {
@@ -3425,10 +3632,18 @@ window.addEventListener('popstate', async () => {
     _popstateActive = false;
     return;
   }
+  if (path.startsWith('/komisja/')) {
+    const slug = decodeURIComponent(path.replace('/komisja/', '').replace(/\/$/, ''));
+    showKomisja(slug);
+    _popstateActive = false;
+    return;
+  }
   // Main page tab/kadencja paths
   hideAllViews();
   document.getElementById('app').style.display = 'block';
-  if (path === '/interpelacje' || path === '/interpelacje/') {
+  if (path === '/komisje' || path === '/komisje/') {
+    activateTab('komisje');
+  } else if (path === '/interpelacje' || path === '/interpelacje/') {
     activateTab('interpelacje');
   } else if (path === '/aktualnosci' || path === '/aktualnosci/') {
     // Powrót na /aktualnosci/ przez back/forward — SPA nie reloaduje strony,
