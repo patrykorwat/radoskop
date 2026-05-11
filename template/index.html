@@ -174,22 +174,26 @@ footer a { color:var(--accent); text-decoration:none; }
 .session-absent { opacity:0.5; }
 .speaker-bar {
   display: grid;
-  grid-template-columns: minmax(0, 240px) 1fr auto;
+  grid-template-columns: minmax(0, 220px) 1fr auto;
   align-items: center;
-  gap: 14px;
-  padding: 6px 0;
-  font-size: 0.85rem;
-  border-bottom: 1px solid var(--border);
+  gap: 10px;
+  padding: 3px 0;
+  font-size: 0.8rem;
+  line-height: 1.3;
 }
-.speaker-bar:last-child { border-bottom: 0; }
 .speaker-name {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.speaker-name .club {
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  flex-shrink: 0;
 }
 .speaker-name .name-link {
   overflow: hidden;
@@ -197,28 +201,26 @@ footer a { color:var(--accent); text-decoration:none; }
 }
 .speaker-bar-track {
   position: relative;
-  height: 6px;
+  height: 4px;
   background: var(--border);
-  border-radius: 3px;
+  border-radius: 2px;
   overflow: hidden;
 }
 .speaker-bar-fill {
   height: 100%;
-  border-radius: 3px;
+  border-radius: 2px;
   background: var(--accent);
   min-width: 2px;
-  transition: width 0.3s ease;
 }
 .speaker-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1px;
   white-space: nowrap;
-  min-width: 90px;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+  color: var(--muted);
+  min-width: 110px;
+  text-align: right;
 }
-.speaker-meta-words { font-weight: 500; color: var(--text); font-size: 0.82rem; font-variant-numeric: tabular-nums; }
-.speaker-meta-statements { font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.speaker-meta strong { color: var(--text); font-weight: 500; }
 
 /* Profile grid for listing all councilors */
 .profiles-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
@@ -2654,11 +2656,11 @@ async function showSession(sessionNumber) {
 
     html += `<div class="section">
       <h2>Aktywność mówców</h2>
-      <div style="display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px;font-size:0.82rem;color:var(--muted)">
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px;font-size:0.78rem;color:var(--muted);font-variant-numeric:tabular-nums">
         <span><strong style="color:var(--text);font-weight:500">${speakers.length}</strong> mówców</span>
-        <span><strong style="color:var(--text);font-weight:500">${totalStatements.toLocaleString('pl')}</strong> wypowiedzi</span>
-        <span><strong style="color:var(--text);font-weight:500">${totalWords.toLocaleString('pl')}</strong> słów łącznie</span>
-        <span>mediana <strong style="color:var(--text);font-weight:500">${medianWords.toLocaleString('pl')}</strong> słów</span>
+        <span><strong style="color:var(--text);font-weight:500">${totalStatements.toLocaleString('pl')}</strong> wyp.</span>
+        <span><strong style="color:var(--text);font-weight:500">${totalWords.toLocaleString('pl')}</strong> słów</span>
+        <span>mediana <strong style="color:var(--text);font-weight:500">${medianWords.toLocaleString('pl')}</strong></span>
       </div>`;
     html += speakers.map(sp => {
       const cl = clubMap[sp.name] || '?';
@@ -2673,10 +2675,7 @@ async function showSession(sessionNumber) {
         <div class="speaker-bar-track">
           <div class="speaker-bar-fill" style="width:${barPct}%;background:${color}"></div>
         </div>
-        <span class="speaker-meta">
-          <span class="speaker-meta-words">${sp.words.toLocaleString('pl')} słów</span>
-          <span class="speaker-meta-statements">${statements} ${statements === 1 ? 'wypowiedź' : 'wypowiedzi'}</span>
-        </span>
+        <span class="speaker-meta"><strong>${sp.words.toLocaleString('pl')}</strong> słów · ${statements} wyp.</span>
       </div>`;
     }).join('');
     html += `</div>`;
