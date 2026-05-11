@@ -70,12 +70,66 @@ def init_session():
     })
 
 
-def fetch(url: str) -> BeautifulSoup:
-    """Fetch a page and return BeautifulSoup."""
+# HTML cache na dysku. Klucz: hash URL. BIP Krakowa nie wystawia ETag-ów
+# ani Cache-Control, ale dla zakończonych głosowań/sesji zawartość jest
+# stała. Stabilność oceniamy na poziomie scrape (sesje > N dni temu — cache,
+# najnowsze N dni — refetch). Cache layer poniżej zapamiętuje WSZYSTKO,
+# decyzja o (re)użyciu zapada w callerze przez `use_cache=...`.
+_CACHE_DIR: Path | None = None
+
+# Sesje plenarne starsze niż tyle dni traktujemy jako stabilne. BIP Krakowa
+# nie modyfikuje stenogramów/wyników po finalizacji sesji (kilka dni max).
+STABLE_AGE_DAYS = 7
+
+
+def _is_session_stable(date_str: str) -> bool:
+    """True gdy data sesji YYYY-MM-DD jest >= STABLE_AGE_DAYS dni temu."""
+    try:
+        dt = datetime.strptime(date_str, "%Y-%m-%d")
+    except (ValueError, TypeError):
+        return False
+    age = (datetime.now() - dt).days
+    return age >= STABLE_AGE_DAYS
+
+
+def init_cache(cache_dir: str | None) -> None:
+    """Ustawia katalog cache HTML. None = wyłącz cache (legacy behavior)."""
+    global _CACHE_DIR
+    if cache_dir:
+        _CACHE_DIR = Path(cache_dir)
+        _CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    else:
+        _CACHE_DIR = None
+
+
+def _cache_path(url: str) -> Path | None:
+    if _CACHE_DIR is None:
+        return None
+    import hashlib
+    h = hashlib.md5(url.encode("utf-8")).hexdigest()[:16]
+    return _CACHE_DIR / f"{h}.html"
+
+
+def fetch(url: str, use_cache: bool = True) -> BeautifulSoup:
+    """Fetch a page (with disk cache) and return BeautifulSoup.
+
+    use_cache=False wymusza HTTP request (np. dla świeżych sesji których
+    zawartość może się zmienić).
+    """
+    cache_file = _cache_path(url) if use_cache else None
+    if cache_file and cache_file.exists() and cache_file.stat().st_size > 100:
+        # Cache hit — bez HTTP, bez sleep
+        return BeautifulSoup(cache_file.read_text(encoding="utf-8"), "lxml")
+
     time.sleep(DELAY)
     print(f"  GET {url}")
     resp = _session.get(url, timeout=30)
     resp.raise_for_status()
+    if cache_file:
+        try:
+            cache_file.write_text(resp.text, encoding="utf-8")
+        except Exception:
+            pass  # cache write failure nie blokuje scrape
     return BeautifulSoup(resp.text, "lxml")
 
 
@@ -115,7 +169,8 @@ def parse_polish_date(text: str) -> str | None:
 
 def scrape_session_list() -> list[dict]:
     """Fetch the session list page and extract all sessions."""
-    soup = fetch(SESSIONS_URL)
+    # Indeks sesji NIGDY z cache — nowe sesje dochodzą na bieżąco
+    soup = fetch(SESSIONS_URL, use_cache=False)
     sessions = []
 
     # Session links look like: "XLVI - (25 Lutego 2026 r.)"
@@ -166,8 +221,11 @@ def scrape_session_votes_links(session: dict) -> list[dict]:
     Session pages have links to 'posiedzenie' pages (agenda).
     We first look for posiedzenie links, then from those pages find vote links.
     If the session URL already points to a posiedzenie, we find vote links directly.
+
+    Stabilne sesje (date > 7 dni temu) używają cache HTML; najnowsze fresh.
     """
-    soup = fetch(session["url"])
+    is_stable = _is_session_stable(session.get("date", ""))
+    soup = fetch(session["url"], use_cache=is_stable)
     vote_links = []
 
     # The session page may directly list agenda items as links,
@@ -204,7 +262,7 @@ def scrape_session_votes_links(session: dict) -> list[dict]:
 
     # Otherwise, follow posiedzenie links to find punkt links
     for pos in posiedzenie_links:
-        pos_soup = fetch(pos["url"])
+        pos_soup = fetch(pos["url"], use_cache=is_stable)
         for a in pos_soup.find_all("a", href=True):
             href = a["href"]
             text = a.get_text(strip=True)
@@ -250,8 +308,11 @@ def scrape_vote_detail(vote_url: str, session: dict, vote_idx: int) -> dict | No
       <b>UCHWAŁA PODJĘTA</b><br>
       Jak głosowali radni:<br>
       Anna Bałdyga - <b>Za<br></b>Iwona Chamielec - <b>Przeciw<br></b>...
+
+    Stabilne głosowania (sesja > 7 dni temu) używają cache HTML.
     """
-    soup = fetch(vote_url)
+    is_stable = _is_session_stable(session.get("date", ""))
+    soup = fetch(vote_url, use_cache=is_stable)
 
     # --- Topic from <h2> ---
     topic = ""
@@ -648,7 +709,8 @@ def scrape_stenogram_links() -> dict[str, str]:
 
     Returns: {session_date: stenogram_doc_id}
     """
-    soup = fetch(MATERIALY_URL)
+    # Materiały sesyjne — top-level indeks, NIGDY z cache (dochodzą stenogramy)
+    soup = fetch(MATERIALY_URL, use_cache=False)
     raw_html = str(soup)
 
     results = {}
@@ -865,6 +927,12 @@ def main():
     parser.add_argument("--transcripts", action="store_true", help="Pobierz i parsuj stenogramy sesji")
     parser.add_argument("--only-transcripts", action="store_true",
                         help="Tylko stenogramy (wymaga istniejącego data.json)")
+    parser.add_argument("--cache-dir", default=None,
+                        help="Katalog cache HTML stron BIP. Domyślnie {script_dir}/../.cache/html. "
+                             "Stabilne sesje (>7 dni temu) używają cache zamiast HTTP. "
+                             "Ustaw '' aby wyłączyć cache.")
+    parser.add_argument("--no-cache", action="store_true",
+                        help="Wyłącz cache HTML (każdy run = świeże HTTP wszystkim sesjom).")
     args = parser.parse_args()
 
     global DELAY
@@ -877,6 +945,20 @@ def main():
     print()
 
     init_session()
+
+    # Cache HTML — default poza repo Radoskop (workdir scriptu/../.cache/html/)
+    # Sandbox cities/krakow/.cache/* jest w .gitignore. Persistent na NAS-ie
+    # bo katalog `cities/*/.cache/` jest untracked.
+    if args.no_cache:
+        cache_dir = None
+    elif args.cache_dir is not None:
+        cache_dir = args.cache_dir or None  # pusty string '' wyłącza
+    else:
+        cache_dir = str(Path(__file__).resolve().parent.parent / ".cache" / "html")
+    init_cache(cache_dir)
+    if cache_dir:
+        print(f"Cache HTML: {cache_dir}")
+    print()
 
     # Handle --only-transcripts: load existing data.json, add transcripts, save
     if args.only_transcripts:
