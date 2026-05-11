@@ -2360,23 +2360,43 @@ async function renderCommissionTimeline(druk, container) {
   container.innerHTML = '';
   if (!druk) return;
   const entry = await loadDrukEntry(druk);
-  if (!entry || !entry.commissions || entry.commissions.length === 0) return;
+  if (!entry) return; // Druk nie istnieje w indeksie (brak korelacji) → nie renderuj
 
-  // Umami event: ile razy w ogóle pokazujemy sekcję komisji. Pomaga
-  // mierzyć widownię proof of value zanim ktoś kliknie CTA Premium.
+  const status = entry.status || '';
+  const cs = entry.commissions || [];
+  const hasCommissions = cs.length > 0;
+
+  // Umami event: rozróżniamy view per status (voted/in_commission/voted_without_commission)
   trackEvent('view_commission_timeline', {
     druk: String(druk),
-    commissions: entry.commissions.length,
+    commissions: cs.length,
     lead_time: entry.lead_time_days != null ? entry.lead_time_days : -1,
-    status: entry.status || ''
+    status: status
   });
 
-  const lt = entry.lead_time_days;
-  const ltBadge = lt != null
-    ? `<span style="font-size:11px;color:var(--accent);background:rgba(99,102,241,0.12);padding:2px 8px;border-radius:999px;margin-left:auto">${lt} ${lt === 1 ? 'dzień' : 'dni'} przed sesją</span>`
-    : '';
+  // Title plus optional badge zależne od statusu
+  let title;
+  let badge = '';
+  if (status === 'voted' && hasCommissions) {
+    title = `Procedowanie w komisjach (${cs.length})`;
+    const lt = entry.lead_time_days;
+    if (lt != null) {
+      badge = `<span style="font-size:11px;color:var(--accent);background:rgba(99,102,241,0.12);padding:2px 8px;border-radius:999px;margin-left:auto">${lt} ${lt === 1 ? 'dzień' : 'dni'} przed sesją</span>`;
+    }
+  } else if (status === 'in_commission' && hasCommissions) {
+    title = `W komisji (${cs.length}) — jeszcze nie głosowane na sesji`;
+  } else if (status === 'voted_without_commission') {
+    title = `Bez procedowania w komisji`;
+  } else if (hasCommissions) {
+    // Inne kombinacje, fallback
+    title = `Procedowanie (${cs.length})`;
+  } else {
+    // status nieznany i brak komisji — nie renderuj
+    return;
+  }
 
-  const rows = entry.commissions.map(c => `
+  // Lista komisji (gdy są)
+  const rows = cs.map(c => `
     <div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-top:0.5px solid var(--border)">
       <div style="font-size:11px;color:var(--accent);min-width:78px;padding-top:2px;font-family:var(--font-mono,monospace)">${c.date || ''}</div>
       <div style="flex:1">
@@ -2387,6 +2407,7 @@ async function renderCommissionTimeline(druk, container) {
     </div>
   `).join('');
 
+  // Wiersz sesji (gdy znamy)
   const sessionRow = entry.session && entry.session.date ? `
     <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-top:0.5px solid var(--border);opacity:0.75">
       <div style="font-size:11px;color:var(--accent);min-width:78px;font-family:var(--font-mono,monospace)">${entry.session.date}</div>
@@ -2394,18 +2415,40 @@ async function renderCommissionTimeline(druk, container) {
     </div>
   ` : '';
 
+  // Komunikat dla statusu bez komisji — informuje że Radoskop sprawdził,
+  // nie tylko "brak danych".
+  const noCommissionRow = status === 'voted_without_commission' ? `
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-top:0.5px solid var(--border)">
+      <div style="flex:1;font-size:13px;color:var(--text)">
+        Ten projekt uchwały nie był procedowany w żadnej z 18 komisji rady miasta przed głosowaniem na sesji plenarnej.
+        <div style="font-size:12px;color:var(--muted);margin-top:4px">Może to oznaczać tryb pilny, lex specialis albo specyfikę proceduralną.</div>
+      </div>
+    </div>
+  ` : '';
+
+  // CTA dostosowane do statusu
+  let ctaCopy;
+  if (status === 'voted_without_commission') {
+    ctaCopy = 'Premium: alerty na druki w trybie pilnym, analiza dlaczego pominęły komisję, monitoring branżowy.';
+  } else if (status === 'in_commission') {
+    ctaCopy = 'Premium: powiadomienie gdy druk trafi na sesję, pełne porządki obrad, opinie komisji.';
+  } else {
+    ctaCopy = 'Premium: pełne porządki obrad, protokoły, opinie komisji, alerty na nowe druki w pipeline.';
+  }
+
   container.innerHTML = `
     <div style="background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);padding:14px 16px;margin:24px 0;border-radius:0">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-        <span style="font-size:14px;font-weight:500;color:var(--text)">Procedowanie w komisjach (${entry.commissions.length})</span>
-        ${ltBadge}
+        <span style="font-size:14px;font-weight:500;color:var(--text)">${title}</span>
+        ${badge}
       </div>
       ${rows}
+      ${noCommissionRow}
       ${sessionRow}
       <div style="font-size:12px;color:var(--muted);margin-top:12px;padding-top:12px;border-top:0.5px solid var(--border)">
-        Premium: pełne porządki obrad, protokoły, opinie komisji, alerty na nowe druki w pipeline.
+        ${ctaCopy}
         <a href="mailto:patrykorwat@gmail.com?subject=Radoskop%20Premium%20%E2%80%94%20zapytanie"
-           onclick="trackEvent('click_premium_cta',{location:'commission_timeline',druk:'${druk}',commissions:${entry.commissions.length}})"
+           onclick="trackEvent('click_premium_cta',{location:'commission_timeline',druk:'${druk}',status:'${status}',commissions:${cs.length}})"
            style="color:var(--accent);margin-left:4px;text-decoration:none">Dowiedz się więcej ↗</a>
       </div>
     </div>
