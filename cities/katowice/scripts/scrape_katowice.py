@@ -118,6 +118,15 @@ HEADERS = {
 
 DELAY = 1.0
 
+# Sesje starsze niż tyle dni traktujemy jako stabilne. BIP nie aktualizuje
+# protokołów po tym czasie. Dla takich sesji pomijamy GET session.aspx + GET
+# dokument.aspx (zaoszczędzone 2 HTTP × 150 sesji = ~300 requestów i ~5 min).
+STABLE_AGE_DAYS = 7
+
+# Wersja schematu state.json. Bump gdy zmieni się shape pdf_links albo
+# pola wymagane do skipu HTTP. Stary cache po bumpie zostanie pominięty.
+STATE_VERSION = 1
+
 # Placeholder for councilors with clubs — fill from profiles.json or manual list
 COUNCILORS = {
     # KO (Koalicja Obywatelska) - 14 members
@@ -313,15 +322,73 @@ def fetch_session_list(http_session, debug=False):
 
 
 # ============================================================================
+# State cache: idt → pdf_links (skip session/doc page GETs for stable sessions)
+# ============================================================================
+
+def load_state(state_path):
+    """Wczytuje state.json z cache'em listy PDF-ów per sesja.
+
+    Plik ma kształt:
+      {"version": 1, "discovered": {"<idt>": {date, pdf_links, ...}}}
+
+    Niezgodna wersja schematu → traktujemy jako pusty cache (rebuilduje się
+    przy pierwszym run-ie). Brak pliku też zwraca pusty słownik.
+    """
+    if not state_path:
+        return {}
+    p = Path(state_path)
+    if not p.exists():
+        return {}
+    try:
+        with open(p, encoding="utf-8") as f:
+            data = json.load(f)
+        if data.get("version") != STATE_VERSION:
+            return {}
+        return data.get("discovered", {})
+    except Exception:
+        return {}
+
+
+def save_state(state_path, discovered):
+    """Zapisuje state.json. Bezpieczne na concurrent writes nie jest (single-writer)."""
+    if not state_path:
+        return
+    p = Path(state_path)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    payload = {"version": STATE_VERSION, "discovered": discovered}
+    tmp = p.with_suffix(p.suffix + ".tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, separators=(",", ":"))
+    tmp.replace(p)
+
+
+def is_session_stable(session_date_str):
+    """True gdy data sesji to co najmniej STABLE_AGE_DAYS dni temu.
+
+    BIP Katowic publikuje finalne PDF-y w ciągu kilku dni od sesji.
+    Po tygodniu zawartość nie zmienia się, więc nie ma sensu ponownie
+    fetchować listy.
+    """
+    try:
+        dt = datetime.strptime(session_date_str, "%Y-%m-%d")
+    except ValueError:
+        return False
+    age = (datetime.now() - dt).days
+    return age >= STABLE_AGE_DAYS
+
+
+# ============================================================================
 # Step 2: For each session, find voting PDFs and parse them
 # ============================================================================
 
-def fetch_session_votes(http_session, session_info, debug=False, pdf_dir=None, parsed_dir=None):
-    """Fetch a session page on BIP, find the IMIENNE WYNIKI GLOSOWAN document
-    link, then fetch that document page and collect all voting PDF links.
-    Download and parse each PDF.
+def discover_pdf_links(http_session, session_url, debug=False):
+    """Hituje BIP żeby zebrać listę PDF-ów dla pojedynczej sesji.
+
+    Robi 2 HTTP requesty: GET sesja.aspx (znajdź IMIENNE WYNIKI) plus GET
+    dokument.aspx (zbierz PDF-y). Zwraca listę pdf_link dictów albo [].
+
+    Caller decyduje czy w ogóle uruchamiać tę funkcję (state cache).
     """
-    session_url = session_info["url"]
     if debug:
         print(f"    [DEBUG] GET {session_url}")
 
@@ -349,7 +416,6 @@ def fetch_session_votes(http_session, session_info, debug=False, pdf_dir=None, p
 
     time.sleep(DELAY * 0.3)
 
-    # Fetch the document page to get PDF links
     if debug:
         print(f"    [DEBUG] GET {doc_url}")
 
@@ -359,7 +425,6 @@ def fetch_session_votes(http_session, session_info, debug=False, pdf_dir=None, p
         print(f"    Blad pobierania dokumentu glosowan: {e}")
         return []
 
-    # Collect PDF links
     pdf_links = []
     for a in doc_soup.find_all("a", href=True):
         href = a["href"]
@@ -367,7 +432,6 @@ def fetch_session_votes(http_session, session_info, debug=False, pdf_dir=None, p
         if not href.lower().endswith(".pdf"):
             continue
         if "glosowanie" not in link_text.lower() and "głosowanie" not in link_text.lower():
-            # Also accept links in the SiteAssets/Uprawnienia path
             if "SiteAssets" not in href and "Uprawnienia" not in href:
                 continue
 
@@ -375,7 +439,6 @@ def fetch_session_votes(http_session, session_info, debug=False, pdf_dir=None, p
         if href.startswith("/"):
             full_url = BIP_BASE + href
 
-        # Extract vote number from filename: "Sesja 25, Glosowanie 5, Data ..."
         vote_num_match = re.search(r'Glosowanie\s+(\d+)', link_text, re.IGNORECASE)
         vote_num = int(vote_num_match.group(1)) if vote_num_match else len(pdf_links) + 1
 
@@ -385,20 +448,64 @@ def fetch_session_votes(http_session, session_info, debug=False, pdf_dir=None, p
             "link_text": link_text,
         })
 
+    pdf_links.sort(key=lambda x: x["vote_num"])
+
     if debug:
         print(f"    [DEBUG] {len(pdf_links)} PDF z glosowaniami")
 
-    # Sort by vote number
-    pdf_links.sort(key=lambda x: x["vote_num"])
+    return pdf_links
 
-    # Download and parse each PDF
+
+def fetch_session_votes(http_session, session_info, debug=False, pdf_dir=None,
+                       parsed_dir=None, state=None, force_rediscover=False):
+    """Pobiera głosowania jednej sesji.
+
+    Optymalizacja: state cache mapuje idt → pdf_links. Dla stabilnych sesji
+    (starszych niż STABLE_AGE_DAYS) z niepustą listą cache'owanych PDF-ów
+    pomijamy 2 HTTP requesty (session page + document page). To skraca warm
+    cache run ze 150 sesji × ~2.3s sleep+HTTP ≈ 6 min do <1 min.
+
+    state: dict {idt: {pdf_links, ...}} albo None (brak cache, zachowanie
+    legacy). Modyfikowany in-place: po discovery dla nowej/recent sesji
+    zapis wraca do caller'a przez referencję.
+    """
+    idt = session_info.get("idt", "")
+    session_url = session_info["url"]
+
+    pdf_links = None
+    used_cache = False
+
+    if state is not None and idt and not force_rediscover:
+        cached = state.get(idt)
+        if (cached
+                and cached.get("pdf_links")
+                and is_session_stable(session_info.get("date", ""))):
+            pdf_links = cached["pdf_links"]
+            used_cache = True
+            if debug:
+                print(f"    [DEBUG] STATE CACHE HIT idt={idt} ({len(pdf_links)} PDF), skip BIP")
+
+    if pdf_links is None:
+        pdf_links = discover_pdf_links(http_session, session_url, debug=debug)
+        # Update state cache nawet dla niestabilnych sesji — następny run
+        # może już złapać je jako stabilne.
+        if state is not None and idt:
+            state[idt] = {
+                "date": session_info.get("date", ""),
+                "number": session_info.get("number", ""),
+                "title": session_info.get("title", ""),
+                "url": session_url,
+                "pdf_links": pdf_links,
+                "discovered_at": datetime.now().isoformat(timespec="seconds"),
+                "stable": is_session_stable(session_info.get("date", "")),
+            }
+
+    # Download and parse each PDF (cache layers obsługują brak network gdy warm)
     votes = []
     for pdf_info in pdf_links:
         vote = fetch_and_parse_vote_pdf(http_session, pdf_info, session_info, debug, pdf_dir=pdf_dir, parsed_dir=parsed_dir)
         if vote:
             votes.append(vote)
-        # Skip network sleep on full cache hit (parsed cache avoids HTTP entirely).
-        # DELAY is only needed when we actually hit BIP.
         parsed_file = _parsed_cache_path(pdf_info["url"], parsed_dir)
         if not (parsed_file and parsed_file.exists()):
             time.sleep(DELAY * 0.3)
@@ -919,11 +1026,25 @@ def build_profiles_json(output: dict, profiles_path: str):
 # Main
 # ============================================================================
 
-def scrape(output_path, profiles_path, debug=False, max_sessions=0, pdf_dir=None, parsed_dir=None):
-    """Glowna funkcja scrapowania."""
+def scrape(output_path, profiles_path, debug=False, max_sessions=0, pdf_dir=None,
+           parsed_dir=None, state_path=None, force_rediscover=False):
+    """Glowna funkcja scrapowania.
+
+    state_path: ścieżka do state.json z cache'em listy PDF-ów per sesja.
+    Bez tego cache każdy run hituje BIP 2× per sesja nawet jeśli zawartość
+    nie zmieniła się od miesięcy (95min → niezmiennie 95min).
+
+    force_rediscover: ignoruj state cache, hituj BIP dla każdej sesji.
+    Użyteczne po zmianach w parserze lub gdy podejrzewamy stale cache.
+    """
     http_session = requests.Session()
 
     print("\n=== Radoskop Katowice  Scraper glosowan (BIP) ===")
+
+    # Step 0: load incremental state (cache listy PDF-ów per idt sesji)
+    state = load_state(state_path) if state_path else None
+    if state is not None:
+        print(f"  State cache: {len(state)} sesji w cache (z {state_path})")
 
     # Step 1: fetch session list from BIP
     print("\n[1/3] Pobieranie listy sesji...")
@@ -942,9 +1063,31 @@ def scrape(output_path, profiles_path, debug=False, max_sessions=0, pdf_dir=None
     print(f"\n[2/3] Pobieranie glosowan z {len(session_list)} sesji...")
     all_votes = []
 
+    cache_hits = 0
+    cache_misses = 0
+
     for i, session_info in enumerate(session_list):
-        print(f"  [{i+1}/{len(session_list)}] {session_info['date']}  {session_info.get('title', '')[:60]}")
-        session_votes = fetch_session_votes(http_session, session_info, debug=debug, pdf_dir=pdf_dir, parsed_dir=parsed_dir)
+        # Czy dla tej sesji skorzystamy ze state cache (krótki status pokaż
+        # już przy nagłówku, żeby było widać scope kosztu w logu)
+        idt = session_info.get("idt", "")
+        will_use_cache = (
+            state is not None and not force_rediscover and idt
+            and state.get(idt, {}).get("pdf_links")
+            and is_session_stable(session_info.get("date", ""))
+        )
+        marker = "(cache)" if will_use_cache else "(BIP)"
+        print(f"  [{i+1}/{len(session_list)}] {session_info['date']}  {session_info.get('title', '')[:55]} {marker}")
+
+        session_votes = fetch_session_votes(
+            http_session, session_info, debug=debug,
+            pdf_dir=pdf_dir, parsed_dir=parsed_dir,
+            state=state, force_rediscover=force_rediscover,
+        )
+
+        if will_use_cache:
+            cache_hits += 1
+        else:
+            cache_misses += 1
 
         for idx, vote_detail in enumerate(session_votes):
             vote_id = f"{session_info['date']}_{idx:03d}_000"
@@ -961,8 +1104,16 @@ def scrape(output_path, profiles_path, debug=False, max_sessions=0, pdf_dir=None
             })
 
         print(f"    {len(session_votes)} glosowan")
-        time.sleep(DELAY)
+        # Sleep only after sesions where we hit BIP. Cache hits zostają natychmiastowe.
+        if not will_use_cache:
+            time.sleep(DELAY)
 
+    # Save state cache po pełnym przejściu (atomic write)
+    if state is not None and state_path:
+        save_state(state_path, state)
+        print(f"  Zapisano state: {len(state)} sesji do {state_path}")
+
+    print(f"  Cache stats: {cache_hits} hits, {cache_misses} misses (BIP requests)")
     print(f"  Pobrano: {len(all_votes)} glosowan z danymi imiennymi")
 
     if not all_votes:
@@ -1040,10 +1191,22 @@ def scrape(output_path, profiles_path, debug=False, max_sessions=0, pdf_dir=None
     build_profiles_json(output, profiles_path)
 
 
+def _default_project_dir():
+    """Katalog projektu Katowic, względem lokalizacji skryptu.
+
+    Skrypt jest w cities/katowice/scripts/, więc parent.parent = cities/katowice/.
+    Cache'e i output trafiają domyślnie do tego katalogu, niezależnie skąd
+    skrypt jest uruchamiany.
+    """
+    return Path(__file__).resolve().parent.parent
+
+
 def main():
     parser = argparse.ArgumentParser(
-        description="Scraper Rady Miasta Katowice (BIP)"
+        description="Scraper Rady Miasta Katowice (BIP). Cache PDF, parsed JSON "
+                    "i state listy sesji są domyślnie włączone (w katalogu projektu)."
     )
+    project_dir = _default_project_dir()
     parser.add_argument(
         "--output", default="docs/data.json",
         help="Plik wyjściowy (domyślnie: docs/data.json)"
@@ -1061,27 +1224,52 @@ def main():
         help="Maks. sesji (0=wszystkie)"
     )
     parser.add_argument(
-        "--pdf-dir", default=None,
-        help="Katalog cache PDF (pomija ponowne pobieranie)"
+        "--pdf-dir", default=str(project_dir / "pdfs"),
+        help=f"Katalog cache PDF (pomija ponowne pobieranie). Default: {project_dir / 'pdfs'}. "
+             "Ustaw '' (pusty) aby wyłączyć cache."
     )
     parser.add_argument(
-        "--parsed-dir", default=None,
-        help="Katalog cache sparsowanych glosowan JSON (pomija pdfplumber). "
-             "Jesli nie podano, a pdf-dir jest ustawiony, domyslnie {pdf-dir}/../cache/parsed."
+        "--parsed-dir", default=str(project_dir / "cache" / "parsed"),
+        help=f"Katalog cache sparsowanych glosowan JSON (pomija pdfplumber). "
+             f"Default: {project_dir / 'cache' / 'parsed'}. Ustaw '' aby wyłączyć."
+    )
+    parser.add_argument(
+        "--state-file", default=str(project_dir / "cache" / "state.json"),
+        help="Plik state.json z cache'em listy PDF-ów per sesja. Skipuje GET "
+             "sesja.aspx + GET dokument.aspx dla stabilnych sesji starszych "
+             f"niż {STABLE_AGE_DAYS} dni. Default: {project_dir / 'cache' / 'state.json'}. "
+             "Ustaw '' aby wyłączyć."
+    )
+    parser.add_argument(
+        "--force-rediscover", action="store_true",
+        help="Ignoruj state cache, hituj BIP dla każdej sesji (jak przed cache'em)."
+    )
+    parser.add_argument(
+        "--no-cache", action="store_true",
+        help="Wyłącz wszystkie cache'e (pdf-dir, parsed-dir, state-file)."
     )
     args = parser.parse_args()
 
-    parsed_dir = args.parsed_dir
-    if parsed_dir is None and args.pdf_dir:
-        parsed_dir = str(Path(args.pdf_dir).parent / "cache" / "parsed")
+    # --no-cache w jednym flagu wycina wszystko, dla testów cold path.
+    if args.no_cache:
+        pdf_dir = None
+        parsed_dir = None
+        state_file = None
+    else:
+        # Pusty string ('') jako wartość traktujemy jak None (jawne wyłączenie).
+        pdf_dir = args.pdf_dir or None
+        parsed_dir = args.parsed_dir or None
+        state_file = args.state_file or None
 
     scrape(
         output_path=args.output,
         profiles_path=args.profiles,
         debug=args.debug,
         max_sessions=args.max_sessions,
-        pdf_dir=args.pdf_dir,
+        pdf_dir=pdf_dir,
         parsed_dir=parsed_dir,
+        state_path=state_file,
+        force_rediscover=args.force_rediscover,
     )
 
 
