@@ -172,9 +172,53 @@ footer a { color:var(--accent); text-decoration:none; }
 .session-attendees { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:6px; margin-top:8px; }
 .session-attendee { padding:5px 10px; border-radius:6px; font-size:0.85rem; display:flex; align-items:center; gap:6px; background:var(--surface); border:1px solid var(--border); }
 .session-absent { opacity:0.5; }
-.speaker-bar { display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:0.85rem; }
-.speaker-bar-fill { height:20px; border-radius:4px; background:var(--accent); opacity:0.7; min-width:2px; }
-.speaker-name { min-width:160px; text-align:right; }
+.speaker-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 240px) 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 0;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+.speaker-bar:last-child { border-bottom: 0; }
+.speaker-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.speaker-name .name-link {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.speaker-bar-track {
+  position: relative;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.speaker-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--accent);
+  min-width: 2px;
+  transition: width 0.3s ease;
+}
+.speaker-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+  white-space: nowrap;
+  min-width: 90px;
+}
+.speaker-meta-words { font-weight: 500; color: var(--text); font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+.speaker-meta-statements { font-size: 0.72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 
 /* Profile grid for listing all councilors */
 .profiles-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
@@ -2599,20 +2643,40 @@ async function showSession(sessionNumber) {
 
   // Speakers
   if (sess.speakers && sess.speakers.length > 0) {
-    const maxWords = sess.speakers[0].words;
+    const speakers = sess.speakers;
+    const maxWords = speakers[0].words;
+    const totalWords = speakers.reduce((s, sp) => s + (sp.words || 0), 0);
+    const sortedWords = speakers.map(sp => sp.words).sort((a, b) => a - b);
+    const medianWords = sortedWords[Math.floor(sortedWords.length / 2)] || 0;
+    // Schema kompatybilność: berlin scraper pisał wcześniej `turns`,
+    // Polish scrapery `statements`. Bezpiecznie czytamy oba.
+    const totalStatements = speakers.reduce((s, sp) => s + (sp.statements ?? sp.turns ?? 0), 0);
+
     html += `<div class="section">
-      <h2>Aktywność mówców</h2>`;
-    html += sess.speakers.map(sp => {
+      <h2>Aktywność mówców</h2>
+      <div style="display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px;font-size:0.82rem;color:var(--muted)">
+        <span><strong style="color:var(--text);font-weight:500">${speakers.length}</strong> mówców</span>
+        <span><strong style="color:var(--text);font-weight:500">${totalStatements.toLocaleString('pl')}</strong> wypowiedzi</span>
+        <span><strong style="color:var(--text);font-weight:500">${totalWords.toLocaleString('pl')}</strong> słów łącznie</span>
+        <span>mediana <strong style="color:var(--text);font-weight:500">${medianWords.toLocaleString('pl')}</strong> słów</span>
+      </div>`;
+    html += speakers.map(sp => {
       const cl = clubMap[sp.name] || '?';
       const barPct = Math.max((sp.words / maxWords) * 100, 2);
-      // Schema kompatybilność: berlin scraper pisał wcześniej `turns`,
-      // Polish scrapery `statements`. Bezpiecznie czytamy oba; tu
-      // będzie undefined tylko jeśli scrape jeszcze nie przeszedł.
       const statements = sp.statements ?? sp.turns ?? 0;
+      const color = (typeof clubColor === 'function') ? clubColor(cl) : 'var(--accent)';
       return `<div class="speaker-bar">
-        <span class="speaker-name"><span class="club ${clubClass(cl)}">${cl}</span> ${profileLink(sp.name)}</span>
-        <div class="speaker-bar-fill" style="width:${barPct}%"></div>
-        <span style="color:var(--muted);font-size:0.8rem;white-space:nowrap">${statements} wyp. · ${sp.words.toLocaleString('pl')} słów</span>
+        <span class="speaker-name">
+          <span class="club ${clubClass(cl)}">${cl}</span>
+          ${profileLink(sp.name)}
+        </span>
+        <div class="speaker-bar-track">
+          <div class="speaker-bar-fill" style="width:${barPct}%;background:${color}"></div>
+        </div>
+        <span class="speaker-meta">
+          <span class="speaker-meta-words">${sp.words.toLocaleString('pl')} słów</span>
+          <span class="speaker-meta-statements">${statements} ${statements === 1 ? 'wypowiedź' : 'wypowiedzi'}</span>
+        </span>
       </div>`;
     }).join('');
     html += `</div>`;
