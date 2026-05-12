@@ -303,9 +303,10 @@ footer a { color:var(--accent); text-decoration:none; }
   }
   .tab-tier--secondary .tab { padding: 6px 10px; font-size: 0.75rem; }
 
-  /* Parent row z kadencja-bar — na mobile pod tab-barem, align right. */
-  #app > div[style*="space-between"] { flex-direction: column; align-items: stretch; gap: 10px; }
-  #app > div[style*="space-between"] .kadencja-bar { align-self: flex-end; }
+  /* Parent row z kadencja-bar — na mobile pod tab-barem, align right.
+   * Belka separatora (border-bottom) zachowana, ale nieco mniej padding. */
+  .tab-row { flex-direction: column; align-items: stretch; gap: 10px; padding-bottom: 10px; margin-bottom: 16px; }
+  .tab-row .kadencja-bar { align-self: flex-end; }
 
   /* Filter bar: też scrollable horizontal */
   .filter-bar { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
@@ -473,7 +474,7 @@ footer a { color:var(--accent); text-decoration:none; }
 
   <!-- Main dashboard view -->
   <div id="app" style="display:none">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:20px">
+    <div class="tab-row" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding-bottom:14px;border-bottom:1px solid var(--border);margin-bottom:22px">
       <div class="tab-bar" id="tab-bar" style="margin-bottom:0">
         <div class="tab-tier tab-tier--primary">
           <button class="tab active" data-tab="ranking">Ranking radnych</button>
