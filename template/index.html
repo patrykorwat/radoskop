@@ -767,8 +767,12 @@ const _kadCache = {};
 
 async function loadKadencja(kid) {
   if (_kadCache[kid]) return _kadCache[kid];
-  // Support legacy single-file format (RAW.kadencje contains full objects)
-  const existing = RAW.kadencje.find(k => k.id === kid && k.councilors);
+  // Support legacy single-file format (RAW.kadencje contains full objects).
+  // Wymagamy też vote_stats — niektóre starsze API responses (np. gdansk)
+  // zwracają councilors ale bez vote_stats, przez co pre-cache traktowałby
+  // niekompletny stub jako pełne dane i renderVotesTable wyświetlał "Brak
+  // danych". Wymuszamy fetch z /kadencja/<kid> żeby dostać pełen vote_stats.
+  const existing = RAW.kadencje.find(k => k.id === kid && k.councilors && k.vote_stats);
   if (existing) { _kadCache[kid] = existing; return existing; }
   const resp = await fetch(API_BASE + '/kadencja/' + kid);
   const kad = await resp.json();
