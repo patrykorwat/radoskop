@@ -42,6 +42,24 @@
 }
 </script>
 {{GA_SNIPPET}}
+<script>
+// Anti-FOUC: ustaw data-theme PRZED render'em CSS, żeby uniknąć migotania
+// light→dark. Inline blocking script w <head>. Ten sam mechanizm cookie
+// cross-subdomain co w toggleTheme() (sekcja niżej) — Domain=.radoskop.{pl,eu}.
+(function(){
+  try {
+    var m = document.cookie.match(/(?:^|;\s*)radoskop_theme=([^;]+)/);
+    var t = m ? decodeURIComponent(m[1]) : null;
+    if (t !== 'dark' && t !== 'light') {
+      try { var s = localStorage.getItem('radoskop_theme'); if (s === 'dark' || s === 'light') t = s; } catch(e) {}
+    }
+    if (t !== 'dark' && t !== 'light') {
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch(e) { /* default: brak data-theme → light z CSS :root */ }
+})();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root, [data-theme="light"] {
@@ -463,9 +481,10 @@ function radoskopGetCookie(name) {
 }
 function radoskopSetCookie(name, value, daysToLive) {
   var d = new Date(); d.setTime(d.getTime() + (daysToLive || 365) * 86400000);
+  var secure = location.protocol === 'https:' ? '; Secure' : '';
   document.cookie = name + '=' + encodeURIComponent(value)
     + '; expires=' + d.toUTCString()
-    + '; path=/; SameSite=Lax'
+    + '; path=/; SameSite=Lax' + secure
     + _radoskopCookieDomain();
 }
 

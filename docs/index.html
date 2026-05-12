@@ -51,10 +51,32 @@ function gtag(){dataLayer.push(arguments);}
 })();
 </script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1616606963057752" crossorigin="anonymous"></script>
+<script>
+// Anti-FOUC: ustaw data-theme PRZED render'em CSS żeby uniknąć migotania.
+// Cookie radoskop_theme z Domain=.radoskop.pl jest shared między apex
+// (radoskop.pl) i wszystkimi subdomenami (warszawa.radoskop.pl etc.).
+(function(){
+  try {
+    var m = document.cookie.match(/(?:^|;\s*)radoskop_theme=([^;]+)/);
+    var t = m ? decodeURIComponent(m[1]) : null;
+    if (t !== 'dark' && t !== 'light') {
+      try { var s = localStorage.getItem('radoskop_theme'); if (s === 'dark' || s === 'light') t = s; } catch(e) {}
+    }
+    if (t !== 'dark' && t !== 'light') {
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch(e) {}
+})();
+</script>
 <style>
-:root {
+:root, [data-theme="light"] {
   --bg:#f8f9fa; --surface:#ffffff; --border:#e2e5e9; --text:#1a1d27; --muted:#6b7280;
   --accent:#4f46e5; --green:#15803d; --red:#dc2626; --yellow:#ca8a04;
+}
+[data-theme="dark"] {
+  --bg:#0f1117; --surface:#1a1d27; --border:#2a2d3a; --text:#e4e4e7; --muted:#8b8d97;
+  --accent:#6366f1; --green:#22c55e; --red:#ef4444; --yellow:#eab308;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh;display:flex;flex-direction:column;}
@@ -249,6 +271,13 @@ footer a:hover{text-decoration-color:var(--accent);}
 <body>
 <main>
 <div class="container">
+
+  <div style="position:absolute;top:16px;right:16px;z-index:10">
+    <button id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny"
+            style="background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--muted);font-size:0.85rem;font-family:inherit;display:inline-flex;align-items:center;gap:4px;transition:border-color .2s,color .2s">
+      <span id="theme-icon">🌙</span><span id="theme-label">Ciemny</span>
+    </button>
+  </div>
 
   <div class="hero">
     <h1>Rado<span>skop</span></h1>
@@ -596,9 +625,34 @@ footer a:hover{text-decoration-color:var(--accent);}
 // ── Cross-subdomain cookie helper (shared with per-city pages) ──
 function _radoskopCookieDomain(){return /(^|\.)radoskop\.pl$/i.test(location.hostname)?'; Domain=.radoskop.pl':'';}
 
+// ── Theme toggle (cookie shared cross-subdomain z per-city pages) ──
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme') || 'light';
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  var d = new Date(); d.setTime(d.getTime() + 365*86400000);
+  var secure = location.protocol === 'https:' ? '; Secure' : '';
+  document.cookie = 'radoskop_theme=' + next + '; expires=' + d.toUTCString()
+    + '; path=/; SameSite=Lax' + secure + _radoskopCookieDomain();
+  try { localStorage.removeItem('radoskop_theme'); } catch(e) {}
+  // Update label
+  var icon = document.getElementById('theme-icon');
+  var label = document.getElementById('theme-label');
+  if (icon) icon.textContent = next === 'light' ? '🌙' : '☀️';
+  if (label) label.textContent = next === 'light' ? 'Ciemny' : 'Jasny';
+}
+// Sync button label do aktualnego data-theme (anti-FOUC w head ustawia go wcześniej)
+(function(){
+  var cur = document.documentElement.getAttribute('data-theme') || 'light';
+  var icon = document.getElementById('theme-icon');
+  var label = document.getElementById('theme-label');
+  if (icon) icon.textContent = cur === 'light' ? '🌙' : '☀️';
+  if (label) label.textContent = cur === 'light' ? 'Ciemny' : 'Jasny';
+})();
+
 // ── Cookie consent ──
 function getCookieConsent(){var m=document.cookie.match(/(?:^|;\s*)cookie_consent=([^;]*)/);return m?decodeURIComponent(m[1]):null;}
-function setCookieConsent(v){var d=new Date();d.setFullYear(d.getFullYear()+1);document.cookie='cookie_consent='+v+'; expires='+d.toUTCString()+'; path=/; SameSite=Lax'+_radoskopCookieDomain();}
+function setCookieConsent(v){var d=new Date();d.setFullYear(d.getFullYear()+1);var sec=location.protocol==='https:'?'; Secure':'';document.cookie='cookie_consent='+v+'; expires='+d.toUTCString()+'; path=/; SameSite=Lax'+sec+_radoskopCookieDomain();}
 function acceptCookies(){
   setCookieConsent('accepted');
   document.getElementById('cookie-banner').style.display='none';
