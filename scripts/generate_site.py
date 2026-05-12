@@ -392,11 +392,13 @@ def apply_english_paths(html: str) -> str:
     )
 
     # TAB_SLUGS: zmiana tylko wartości (URL slugów), klucze obiektu zostają.
+    # 2026-05: tab `profiles` usunięty (duplikat rankingu), `similarity` też
+    # już dawniej usunięty. Aktualny shape: 6 tabsów (5 sekcji + komisje).
     html = html.replace(
-        "{ranking:'ranking',profiles:'radni',sessions:'sesje',votes:'glosowania',"
-        "similarity:'podobienstwo',interpelacje:'interpelacje',budget:'budzet'}",
-        "{ranking:'ranking',profiles:'councillors',sessions:'sessions',votes:'votes',"
-        "similarity:'similarity',interpelacje:'interpellations',budget:'budget'}",
+        "{ranking:'ranking',sessions:'sesje',votes:'glosowania',komisje:'komisje',"
+        "interpelacje:'interpelacje',budget:'budzet'}",
+        "{ranking:'ranking',sessions:'sessions',votes:'votes',komisje:'commissions',"
+        "interpelacje:'interpellations',budget:'budget'}",
     )
 
     # /polityka-prywatnosci/ + /regulamin/ → /privacy/ + /terms/. Wcześniej
@@ -527,7 +529,9 @@ def generate_aktualnosci_button(output_dir: Path, locale: str = "pl") -> str:
     """
     if not has_activity_data(output_dir):
         return ""
-    return '        <a href="/news/" class="tab" style="text-decoration:none">Aktualności</a>'
+    # tab-secondary klasa: na mobile/tablet ukryte do czasu kliknięcia
+    # "Więcej". Na desktop pokazane normalnie obok pozostałych tabów.
+    return '        <a href="/news/" class="tab tab-secondary" style="text-decoration:none">Aktualności</a>'
 
 
 def generate_ga_snippet(_legacy_ga_id: str = "") -> str:
