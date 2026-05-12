@@ -594,6 +594,9 @@ footer a { color:var(--accent); text-decoration:none; }
     <div style="margin-bottom:10px">
       <a href="{{ROOT_URL}}">Radoskop</a> · <a href="{{ROOT_URL}}#cities">wszystkie miasta</a>
     </div>
+    <div style="margin-bottom:10px;color:var(--muted);font-size:0.8rem">
+      Polecane (projekt zewnętrzny): <a href="https://sejmograf.vercel.app/" target="_blank" rel="noopener">Tygodnik Sejmowy</a> — analiza prac Sejmu RP
+    </div>
     Dane źródłowe: <a href="{{BIP_URL}}" target="_blank">{{BIP_NAME}}</a>.
     Kod: <a href="{{GITHUB_URL}}" target="_blank">GitHub</a> (AGPL-3.0).
     <a href="/raporty/" onclick="event.preventDefault();showReports()">Raporty</a> · <a href="/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="/regulamin/" onclick="event.preventDefault();showTerms()">Regulamin</a>{{IMPRESSUM_FOOTER_LINK}}
@@ -3152,16 +3155,58 @@ async function renderInterpelacje() {
     <div class="stat-card"><div class="label">Z odpowiedzią</div><div class="value">${answered} <span style="font-size:0.9rem;color:var(--muted)">(${total ? Math.round(100*answered/total) : 0}%)</span></div></div>
   </div>`;
 
-  // Top radni chart
-  html += `<div class="section"><h2>Najbardziej aktywni radni</h2><div style="overflow-x:auto"><table><thead><tr>
-    <th>Radny/a</th><th>Liczba</th><th></th></tr></thead><tbody>`;
-  const maxCount = topRadni.length ? topRadni[0].count : 1;
-  topRadni.forEach(({name, count}) => {
-    const pct = Math.round(100 * count / maxCount);
-    html += `<tr><td style="font-weight:600">${profileLink(name)}</td><td>${count}</td>
-      <td style="min-width:120px"><div class="bar"><div class="bar-fill" style="width:${pct}%;background:var(--accent)"></div></div></td></tr>`;
-  });
-  html += `</tbody></table></div></div>`;
+  // Najbardziej aktywni radni — speaker-bar layout (analogicznie do
+  // "Aktywność mówców" na stronie sesji): club pill + nazwisko | bar track |
+  // count. Top 10 widocznych, reszta za buttonem "Pokaż pozostałych".
+  if (topRadni.length > 0) {
+    const maxCount = topRadni[0].count;
+    const totalActivity = topRadni.reduce((s, r) => s + (r.count || 0), 0);
+    const sortedCounts = topRadni.map(r => r.count).sort((a, b) => a - b);
+    const medianCount = sortedCounts[Math.floor(sortedCounts.length / 2)] || 0;
+
+    // Klub: bierzemy z K.councilors (per kadencja) albo z PROFILES (cross-kad).
+    const clubLookup = {};
+    (K && K.councilors || []).forEach(co => { clubLookup[co.name] = co.club; });
+    if (PROFILES && PROFILES.profiles) {
+      PROFILES.profiles.forEach(p => {
+        if (!clubLookup[p.name]) {
+          const kad = Object.values(p.kadencje || {}).slice(-1)[0];
+          if (kad && kad.club) clubLookup[p.name] = kad.club;
+        }
+      });
+    }
+
+    html += `<div class="section">
+      <h2>Najbardziej aktywni radni</h2>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px;font-size:0.78rem;color:var(--muted);font-variant-numeric:tabular-nums">
+        <span><strong style="color:var(--text);font-weight:500">${topRadni.length}</strong> radnych w top</span>
+        <span>łącznie <strong style="color:var(--text);font-weight:500">${totalActivity.toLocaleString('pl')}</strong> interp. i zapytań</span>
+        <span>mediana <strong style="color:var(--text);font-weight:500">${medianCount}</strong> na osobę</span>
+      </div>
+      <div class="speakers-grid">`;
+    const TOP_VISIBLE = 10;
+    html += topRadni.map((r, idx) => {
+      const cl = clubLookup[r.name] || '?';
+      const barPct = Math.max((r.count / maxCount) * 100, 2);
+      const color = (typeof clubColor === 'function') ? clubColor(cl) : 'var(--accent)';
+      const hiddenCls = idx >= TOP_VISIBLE ? ' hidden' : '';
+      return `<div class="speaker-bar${hiddenCls}">
+        <span class="speaker-name">
+          <span class="club ${clubClass(cl)}">${cl}</span>
+          ${profileLink(r.name)}
+        </span>
+        <div class="speaker-bar-track">
+          <div class="speaker-bar-fill" style="width:${barPct}%;background:${color}"></div>
+        </div>
+        <span class="speaker-meta"><strong>${r.count}</strong> interp.</span>
+      </div>`;
+    }).join('');
+    if (topRadni.length > TOP_VISIBLE) {
+      const hiddenCount = topRadni.length - TOP_VISIBLE;
+      html += `<button class="show-more-speakers" onclick="this.parentElement.querySelectorAll('.speaker-bar.hidden').forEach(el=>el.classList.remove('hidden'));trackEvent('interp_top_expand',{total:${topRadni.length}});this.remove();">Pokaż pozostałych ${hiddenCount} radnych ↓</button>`;
+    }
+    html += `</div></div>`;
+  }
 
   // List of interpelacje
   const pageItems = result.items || [];
