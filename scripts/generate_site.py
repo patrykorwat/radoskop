@@ -548,25 +548,102 @@ def generate_ga_snippet(_legacy_ga_id: str = "") -> str:
     )
 
 
-def generate_sitemap(config: dict) -> str:
-    """Generate sitemap.xml.
+def generate_sitemap(config: dict, output_dir: Path | None = None) -> str:
+    """Generate full sitemap.xml.
 
     Po migracji 2026-05 slug paths są zawsze angielskie, niezależnie od
     locale miasta. Worker (radoskop-premium/cloudflare/worker.js) ma
     PATH_REDIRECTS robiący 301 ze starych polskich URL-i.
+
+    Zawiera:
+      - / (homepage)
+      - /my-councillor/, /news/, /reports/, /privacy/, /terms/
+      - /budget/ jeśli has_budget
+      - /term/{kid}/ i /term/{kid}/{tab}/ dla każdej kadencji
+      - /profile/{slug}/ dla każdego radnego z profiles.json
+
+    generate_seo_pages.py uruchamia się PO i nadpisuje ten sitemap pełniejszą
+    wersją (z głosowaniami i sesjami) gdy działa. Ta funkcja jest fallbackiem
+    żeby zawsze były wszystkie strony statyczne, nawet gdy SEO step pominięty.
     """
-    url = config["site_url"]
-    entries = [
-        f'  <url>\n    <loc>{url}/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>',
-    ]
+    url = config["site_url"].rstrip("/")
+    entries = []
+
+    def add(loc: str, changefreq: str, priority: str) -> None:
+        entries.append(
+            f'  <url>\n    <loc>{loc}</loc>\n'
+            f'    <changefreq>{changefreq}</changefreq>\n'
+            f'    <priority>{priority}</priority>\n  </url>'
+        )
+
+    # Homepage
+    add(f"{url}/", "weekly", "1.0")
+
+    # Standardowe podstrony static
+    add(f"{url}/my-councillor/", "weekly", "0.9")
+    add(f"{url}/news/", "daily", "0.8")
+    add(f"{url}/reports/", "weekly", "0.6")
+    add(f"{url}/privacy/", "yearly", "0.3")
+    add(f"{url}/terms/", "yearly", "0.3")
+
     if config.get("has_budget"):
-        entries.append(f'  <url>\n    <loc>{url}/budget</loc>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>')
+        add(f"{url}/budget/", "monthly", "0.8")
 
-    # My councillor page
-    entries.append(f'  <url>\n    <loc>{url}/my-councillor/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.9</priority>\n  </url>')
+    # Term / kadencje (per kadencja + per tab)
+    # Tab slugi muszą zgadzać się z generate_seo_pages.py SLUG dict i z
+    # apply_english_paths() niżej w tym pliku.
+    tab_slugs = [
+        "councillors",
+        "sessions",
+        "votes",
+        "similarity",
+        "interpellations",
+        "ranking",
+    ]
+    # Kadencje source: nowsze configi (praha, berlin) mają config.kadencje
+    # jako dict {id: meta}. Starsze (polskie miasta) trzymają listę kadencji
+    # w docs/data.json -> kadencje [{id: ...}, ...].
+    kadencje_ids: list[str] = []
+    config_kadencje = config.get("kadencje")
+    if isinstance(config_kadencje, dict) and config_kadencje:
+        kadencje_ids = list(config_kadencje.keys())
+    elif output_dir is not None:
+        data_path = output_dir / "data.json"
+        if data_path.exists():
+            try:
+                data = json.loads(data_path.read_text(encoding="utf-8"))
+                for k in data.get("kadencje", []):
+                    if isinstance(k, dict):
+                        kid = k.get("id")
+                    else:
+                        kid = k
+                    if kid:
+                        kadencje_ids.append(kid)
+            except (json.JSONDecodeError, OSError):
+                pass
 
-    # News page
-    entries.append(f'  <url>\n    <loc>{url}/news/</loc>\n    <changefreq>daily</changefreq>\n    <priority>0.8</priority>\n  </url>')
+    for kid in kadencje_ids:
+        add(f"{url}/term/{kid}/", "weekly", "0.8")
+        for tab in tab_slugs:
+            add(f"{url}/term/{kid}/{tab}/", "weekly", "0.6")
+
+    # Catch-all directory pages (generate_seo_pages.py też je dodaje)
+    add(f"{url}/profile/", "monthly", "0.9")
+    add(f"{url}/term/", "monthly", "0.9")
+
+    # Per-radny profile pages z profiles.json. Plik jest generowany przez
+    # scrape przed generate_site.py, więc powinien istnieć.
+    if output_dir is not None:
+        profiles_path = output_dir / "profiles.json"
+        if profiles_path.exists():
+            try:
+                profiles_data = json.loads(profiles_path.read_text(encoding="utf-8"))
+                for p in profiles_data.get("profiles", []):
+                    slug = p.get("slug") or p.get("id")
+                    if slug:
+                        add(f"{url}/profile/{slug}/", "weekly", "0.7")
+            except (json.JSONDecodeError, OSError):
+                pass
 
     return (
         '<?xml version="1.0" encoding="UTF-8"?>\n'
@@ -896,7 +973,7 @@ def main():
 
     # sitemap.xml
     with open(output_dir / "sitemap.xml", "w", encoding="utf-8") as f:
-        f.write(generate_sitemap(config))
+        f.write(generate_sitemap(config, output_dir))
 
     # robots.txt
     with open(output_dir / "robots.txt", "w", encoding="utf-8") as f:

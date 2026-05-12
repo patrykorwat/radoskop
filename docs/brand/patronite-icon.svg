@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Radoskop brand icon for Patronite, social media, app stores.
+       Brand color: indigo (#4f46e5 light, #6366f1 dark). Logotyp "Rado-skop"
+       where the accent "skop" half carries the brand color. Icon distills
+       this into the letter R with a stripe motif representing vote bars
+       (civic data monitoring). -->
+
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1d27" />
+      <stop offset="100%" stop-color="#0f1117" />
+    </linearGradient>
+    <linearGradient id="accent-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="100%" stop-color="#4338ca" />
+    </linearGradient>
+  </defs>
+
+  <!-- Square frame with rounded corners — works for both Patronite avatar
+       (circular crop) and square contexts (favicon, social cards). -->
+  <rect width="400" height="400" rx="64" fill="url(#bg-grad)" />
+
+  <!-- Letter R, big and bold, in accent gradient. Custom path so we keep
+       perfect control across rendering platforms (no font dependency). -->
+  <path d="M 95 90
+           L 95 320
+           L 145 320
+           L 145 220
+           L 195 220
+           L 250 320
+           L 305 320
+           L 245 215
+           Q 275 205, 290 180
+           Q 305 155, 305 135
+           Q 305 110, 285 100
+           Q 265 90, 230 90
+           Z
+           M 145 130
+           L 220 130
+           Q 250 130, 255 145
+           Q 260 160, 250 175
+           Q 240 190, 220 190
+           L 145 190
+           Z"
+        fill="url(#accent-grad)" />
+
+  <!-- Three bars below R — vote distribution motif (za / przeciw / wstrzymał).
+       Sized like a sparkline data viz. -->
+  <rect x="115" y="345" width="22" height="32" rx="3" fill="#22c55e" opacity="0.9" />
+  <rect x="145" y="355" width="22" height="22" rx="3" fill="#ef4444" opacity="0.9" />
+  <rect x="175" y="350" width="22" height="27" rx="3" fill="#eab308" opacity="0.9" />
+
+  <!-- Dot indicator (cursor / point of attention) -->
+  <circle cx="280" cy="358" r="6" fill="#6366f1" />
+</svg>
