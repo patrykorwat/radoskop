@@ -50,7 +50,14 @@
   "has_stenogram": false,
   "scrape_status": "active",
   "currency": "Kč",
-  "budget_years": [2021, 2022, 2023, 2024, 2025, 2026],
+  "budget_years": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
   "praha_api_base": "https://praha.eu",
   "praha_period_id": -36525,
   "vote_text_map": {
