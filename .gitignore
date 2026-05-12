@@ -7,6 +7,7 @@
 # config; rebuild is a single NAS run.
 cities/*/docs/
 cities/*/.cache/
+cities/*/cache/
 cities/*/data/
 cities/*/pdfs/
 
