@@ -132,6 +132,22 @@ def write_page(path: Path, content: str):
         f.write(content)
 
 
+# Globalny przełącznik: gdy True, pomija pisanie tysięcy HTML SEO pages
+# i generuje WYŁĄCZNIE sitemap.xml. Cloudflare Worker (radoskop-premium/
+# cloudflare/worker.js) renderuje per-route meta tagi dynamicznie z S3
+# template + JSON, więc statyczny pre-render nie jest potrzebny. Sitemap
+# musi być statyczny żeby Google mógł go pobierać bez kosztu Workera.
+SITEMAP_ONLY = False
+
+
+def _maybe_write_page(path: Path, content: str):
+    """Pisze tylko gdy SITEMAP_ONLY=False. Sitemap entries i tak są
+    aktualizowane (sitemap_entries.append(...) leci niezależnie)."""
+    if SITEMAP_ONLY:
+        return
+    write_page(path, content)
+
+
 def process_city(city_dir: Path, output_dir: Path | None = None):
     """Generate all SEO pages for one city.
 
@@ -262,7 +278,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
         )
 
         page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body)
-        write_page(out / SLUG["profile"] / slug / "index.html", page)
+        _maybe_write_page(out / SLUG["profile"] / slug / "index.html", page)
         profile_count += 1
 
         sitemap_entries.append({"loc": canonical, "changefreq": "weekly", "priority": "0.7"})
@@ -329,7 +345,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
             )
 
             page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body)
-            write_page(out / SLUG["vote"] / vid / "index.html", page)
+            _maybe_write_page(out / SLUG["vote"] / vid / "index.html", page)
             vote_count += 1
 
             sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.5"})
@@ -386,7 +402,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
             )
 
             page = make_page(main_html, canonical, title, desc, extra_body=body)
-            write_page(out / SLUG["session"] / snum / "index.html", page)
+            _maybe_write_page(out / SLUG["session"] / snum / "index.html", page)
             session_count += 1
 
             sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.5"})
@@ -417,7 +433,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
         desc = f"Monitoring Rady Miasta {city_gen}, kadencja {kid}. Ranking, sesje, glosowania i aktywnosc radnych."
 
         page = make_page(main_html, canonical, title, desc)
-        write_page(out / SLUG["term"] / kslug / "index.html", page)
+        _maybe_write_page(out / SLUG["term"] / kslug / "index.html", page)
 
         sitemap_entries.append({"loc": canonical, "changefreq": "weekly", "priority": "0.8"})
 
@@ -427,7 +443,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
             tab_desc = f"{tab_name} Rady Miasta {city_gen}, kadencja {kid}."
 
             tab_page = make_page(main_html, tab_canonical, tab_title, tab_desc)
-            write_page(out / SLUG["term"] / kslug / tab_slug / "index.html", tab_page)
+            _maybe_write_page(out / SLUG["term"] / kslug / tab_slug / "index.html", tab_page)
             kad_count += 1
 
             sitemap_entries.append({"loc": tab_canonical, "changefreq": "weekly", "priority": "0.6"})
@@ -443,7 +459,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
         desc = f"Analiza budzetu miasta {city_gen}. Wydatki, dochody i inwestycje miejskie."
 
         page = make_page(main_html, canonical, title, desc)
-        write_page(out / SLUG["budget"] / "index.html", page)
+        _maybe_write_page(out / SLUG["budget"] / "index.html", page)
         sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.8"})
         print(f"  1 budget page")
 
@@ -459,7 +475,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
             canonical = f"{site_url}/{dirname}/"
             title = f"{title_part} \u2013 Radoskop {city_name}"
             page = make_page(main_html, canonical, title, desc_part)
-            write_page(d / "index.html", page)
+            _maybe_write_page(d / "index.html", page)
             sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": prio})
 
     # ════════════════════════════════════════════
@@ -475,14 +491,14 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
     privacy_title = f"Polityka prywatności \u2013 Radoskop {city_name}"
     privacy_desc = f"Polityka prywatności i informacje o plikach cookies serwisu Radoskop {city_name}."
     privacy_page = make_page(main_html, privacy_canonical, privacy_title, privacy_desc)
-    write_page(out / privacy_slug / "index.html", privacy_page)
+    _maybe_write_page(out / privacy_slug / "index.html", privacy_page)
     sitemap_entries.append({"loc": privacy_canonical, "changefreq": "yearly", "priority": "0.3"})
 
     terms_canonical = f"{site_url}/{terms_slug}/"
     terms_title = f"Regulamin \u2013 Radoskop {city_name}"
     terms_desc = f"Regulamin serwisu Radoskop {city_name}. Źródła danych, metodologia i zasady korzystania."
     terms_page = make_page(main_html, terms_canonical, terms_title, terms_desc)
-    write_page(out / terms_slug / "index.html", terms_page)
+    _maybe_write_page(out / terms_slug / "index.html", terms_page)
     sitemap_entries.append({"loc": terms_canonical, "changefreq": "yearly", "priority": "0.3"})
 
     # ════════════════════════════════════════════
@@ -492,7 +508,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
     reports_title = f"Raporty PDF \u2013 Radoskop {city_name}"
     reports_desc = f"Szczeg\u00f3\u0142owe raporty PDF z analiz\u0105 pracy radnych, klub\u00f3w i rady miasta {city_gen}. Frekwencja, g\u0142osowania, rebelie."
     reports_page = make_page(main_html, reports_canonical, reports_title, reports_desc)
-    write_page(out / SLUG["reports"] / "index.html", reports_page)
+    _maybe_write_page(out / SLUG["reports"] / "index.html", reports_page)
     sitemap_entries.append({"loc": reports_canonical, "changefreq": "weekly", "priority": "0.6"})
 
     # ════════════════════════════════════════════
@@ -545,7 +561,17 @@ def main():
              "Use this to keep monorepo working tree free of generated files; "
              "deploy the output dir to S3 separately.",
     )
+    parser.add_argument(
+        "--sitemap-only", action="store_true",
+        help="Pomija pisanie tysięcy HTML SEO pages — generuje tylko sitemap.xml. "
+             "Używać po migracji na dynamiczny rendering SEO w Cloudflare Worker "
+             "(radoskop-premium/cloudflare/worker.js). Worker robi per-route meta "
+             "tagi z S3 template + JSON live, statyczny pre-render zbędny.",
+    )
     args = parser.parse_args()
+
+    global SITEMAP_ONLY
+    SITEMAP_ONLY = args.sitemap_only
 
     base = Path(args.base)
     output_base = Path(args.output_base) if args.output_base else None

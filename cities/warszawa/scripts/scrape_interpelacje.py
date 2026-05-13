@@ -359,20 +359,22 @@ def scrape_kadencja(session, kad_id, kad_label, cat_id, fetch_details=False, deb
         page += 1
         time.sleep(DELAY)
 
-    # Opcjonalnie pobierz szczegóły (PDF-y, typ, kadencja)
+    # Opcjonalnie pobierz szczegóły (PDF-y, typ, kadencja).
+    # Parallel z ThreadPoolExecutor: 1911 detail × ~1s = 30min sekwencyjnie,
+    # 4 workers ≈ 8min. Cache hits są ms więc kolejne runy szybkie.
     if fetch_details and records:
-        print(f"  Pobieram szczegóły {len(records)} interpelacji...")
-        for i, rec in enumerate(records):
+        from concurrent.futures import ThreadPoolExecutor, as_completed
+        print(f"  Pobieram szczegóły {len(records)} interpelacji (4 workers)...")
+        max_workers = max(1, int(os.environ.get("WARSZAWA_INTERP_WORKERS", "4")))
+
+        def _process_one(rec):
             detail_path = rec.get("detail_path", "")
             if not detail_path:
-                continue
-
+                return rec
             detail_url = f"https://bip.warszawa.pl{detail_path}" if detail_path.startswith("/") else detail_path
-
             try:
                 detail_html = fetch_page(session, detail_url, debug=False)
-                detail = parse_detail_page(detail_html, debug=debug)
-
+                detail = parse_detail_page(detail_html, debug=False)
                 if detail.get("tresc_url"):
                     rec["tresc_url"] = detail["tresc_url"]
                 if detail.get("odpowiedz_url"):
@@ -383,18 +385,20 @@ def scrape_kadencja(session, kad_id, kad_label, cat_id, fetch_details=False, deb
                     rec["kadencja"] = detail["kadencja"]
                 if detail.get("typ_detail"):
                     rec["typ"] = detail["typ_detail"]
-                    # Popraw CRI jeśli typ się zmienił
                     numer = rec["cri"].lstrip("Z")
                     rec["cri"] = f"Z{numer}" if rec["typ"] == "zapytanie" else numer
-
-            except Exception as e:
+            except Exception as exc:
                 if debug:
-                    print(f"  [DEBUG] Błąd szczegółów {detail_path}: {e}")
+                    print(f"  [DEBUG] Błąd szczegółów {detail_path}: {exc}")
+            return rec
 
-            if (i + 1) % 50 == 0:
-                print(f"  Szczegóły: {i+1}/{len(records)}")
-
-            time.sleep(DELAY * 0.5)
+        done = 0
+        with ThreadPoolExecutor(max_workers=max_workers) as ex:
+            futures = [ex.submit(_process_one, rec) for rec in records]
+            for fut in as_completed(futures):
+                done += 1
+                if done % 50 == 0:
+                    print(f"  Szczegóły: {done}/{len(records)}")
 
     return records
 
