@@ -436,6 +436,40 @@ footer a { color:var(--accent); text-decoration:none; }
 .theme-toggle { background:none; border:1px solid var(--border); border-radius:8px; padding:6px 10px; cursor:pointer; color:var(--muted); font-size:0.85rem; font-family:inherit; display:inline-flex; align-items:center; gap:4px; transition:border-color 0.2s, color 0.2s; }
 .theme-toggle:hover { border-color:var(--accent); color:var(--accent); }
 
+/* Auth UI: button + user chip + modal */
+.header-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.auth-btn { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:6px 14px; cursor:pointer; font-size:0.85rem; font-family:inherit; font-weight:500; transition:opacity 0.2s; }
+.auth-btn:hover { opacity:0.9; }
+.user-chip { display:inline-flex; align-items:center; gap:8px; background:var(--card-bg); border:1px solid var(--border); border-radius:8px; padding:4px 10px 4px 4px; font-size:0.85rem; color:var(--fg); }
+.user-chip .user-avatar { width:24px; height:24px; border-radius:50%; background:var(--accent); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:600; }
+.user-chip .user-logout { background:none; border:none; color:var(--muted); cursor:pointer; padding:0 2px; font-size:1rem; line-height:1; font-family:inherit; }
+.user-chip .user-logout:hover { color:var(--accent); }
+
+.modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:1000; padding:20px; }
+.auth-modal { background:var(--card-bg); border:1px solid var(--border); border-radius:12px; padding:28px; width:100%; max-width:380px; position:relative; box-shadow:0 10px 40px rgba(0,0,0,0.2); }
+.modal-close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:1.5rem; line-height:1; color:var(--muted); cursor:pointer; padding:4px 8px; }
+.modal-close:hover { color:var(--accent); }
+.auth-tabs { display:flex; gap:0; margin-bottom:20px; border-bottom:1px solid var(--border); }
+.auth-tab { background:none; border:none; padding:10px 16px; cursor:pointer; color:var(--muted); font-size:0.95rem; font-family:inherit; font-weight:500; border-bottom:2px solid transparent; margin-bottom:-1px; transition:color 0.2s, border-color 0.2s; }
+.auth-tab.active { color:var(--fg); border-bottom-color:var(--accent); }
+.auth-tab:hover:not(.active) { color:var(--fg); }
+.google-btn { width:100%; background:#fff; color:#1f1f1f; border:1px solid #dadce0; border-radius:8px; padding:10px 16px; cursor:pointer; font-size:0.95rem; font-family:inherit; font-weight:500; display:flex; align-items:center; justify-content:center; gap:10px; transition:box-shadow 0.2s; }
+.google-btn:hover { box-shadow:0 1px 3px rgba(60,64,67,0.15); }
+.auth-sep { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:0.8rem; margin:16px 0; }
+.auth-sep::before, .auth-sep::after { content:""; flex:1; height:1px; background:var(--border); }
+.auth-form { display:flex; flex-direction:column; gap:10px; }
+.auth-form input { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px; font-size:0.95rem; color:var(--fg); font-family:inherit; }
+.auth-form input:focus { outline:none; border-color:var(--accent); }
+.auth-form button[type="submit"] { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:11px 16px; cursor:pointer; font-size:0.95rem; font-family:inherit; font-weight:500; margin-top:4px; transition:opacity 0.2s; }
+.auth-form button[type="submit"]:hover { opacity:0.9; }
+.auth-form button[type="submit"]:disabled { opacity:0.5; cursor:wait; }
+.auth-error { background:rgba(220,38,38,0.1); color:#dc2626; border:1px solid rgba(220,38,38,0.3); border-radius:6px; padding:8px 12px; font-size:0.85rem; }
+.auth-success { background:rgba(34,197,94,0.1); color:#16a34a; border:1px solid rgba(34,197,94,0.3); border-radius:6px; padding:8px 12px; font-size:0.85rem; }
+.auth-footer { margin-top:14px; text-align:center; font-size:0.85rem; }
+.auth-footer a { color:var(--muted); text-decoration:none; }
+.auth-footer a:hover { color:var(--accent); text-decoration:underline; }
+.auth-banner { position:fixed; top:16px; left:50%; transform:translateX(-50%); background:#16a34a; color:#fff; padding:10px 20px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.2); z-index:1100; font-size:0.9rem; }
+
 /* Compare */
 .compare-bar { position:fixed; bottom:0; left:0; right:0; background:var(--surface); border-top:2px solid var(--accent); padding:12px 20px; display:flex; align-items:center; justify-content:center; gap:16px; z-index:100; font-size:0.9rem; }
 .compare-bar button { padding:8px 20px; border-radius:8px; border:none; cursor:pointer; font-size:0.85rem; font-weight:600; font-family:inherit; }
@@ -465,9 +499,17 @@ footer a { color:var(--accent); text-decoration:none; }
       <h1>Rado<span>skop</span> {{CITY_NAME}}</h1>
       <p>Jak głosują radni Miasta {{CITY_GENITIVE}}? Dane z protokołów BIP.</p>
     </div>
-    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny">
-      <span id="theme-icon">🌙</span> <span id="theme-label">Ciemny</span>
-    </button>
+    <div class="header-actions">
+      <button class="auth-btn" id="auth-login-btn" onclick="openAuthModal('login')" style="display:none">Zaloguj się</button>
+      <div class="user-chip" id="user-chip" style="display:none">
+        <span class="user-avatar" id="user-avatar"></span>
+        <span id="user-email-display"></span>
+        <button class="user-logout" onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj">×</button>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny">
+        <span id="theme-icon">🌙</span> <span id="theme-label">Ciemny</span>
+      </button>
+    </div>
   </header>
 
   <div id="loading">Ładowanie danych...</div>
@@ -3800,6 +3842,268 @@ window.addEventListener('popstate', async () => {
 });
 
 init();
+</script>
+<!-- Auth modal: login + signup -->
+<div id="auth-modal-backdrop" class="modal-backdrop" style="display:none" onclick="closeAuthModalIfBackdrop(event)">
+  <div class="auth-modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeAuthModal()" aria-label="Zamknij">×</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="auth-tab-login" onclick="setAuthMode('login')">Logowanie</button>
+      <button class="auth-tab" id="auth-tab-signup" onclick="setAuthMode('signup')">Rejestracja</button>
+    </div>
+    <button class="google-btn" onclick="googleLogin()">
+      <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#4285f4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
+        <path fill="#34a853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/>
+        <path fill="#fbbc05" d="M3.964 10.706A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.706V4.962H.957A8.997 8.997 0 0 0 0 9c0 1.452.348 2.827.957 4.038l3.007-2.332z"/>
+        <path fill="#ea4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.962L3.964 7.294C4.672 5.167 6.656 3.58 9 3.58z"/>
+      </svg>
+      Kontynuuj z Google
+    </button>
+    <div class="auth-sep"><span>lub e-mailem</span></div>
+    <form class="auth-form" onsubmit="return submitAuth(event)">
+      <input type="email" id="auth-email" placeholder="E-mail" required autocomplete="email">
+      <input type="password" id="auth-password" placeholder="Hasło (min. 10 znaków)" required autocomplete="current-password" minlength="10">
+      <button type="submit" id="auth-submit">Zaloguj się</button>
+      <div id="auth-error" class="auth-error" style="display:none"></div>
+      <div id="auth-success" class="auth-success" style="display:none"></div>
+    </form>
+    <div class="auth-footer">
+      <a href="#" id="auth-forgot-link" onclick="forgotPassword(); return false;">Zapomniałem hasła</a>
+    </div>
+  </div>
+</div>
+
+<!-- Verification banner (po /verify redirect z ?verified=1) -->
+<div id="auth-banner" class="auth-banner" style="display:none"></div>
+
+<script>
+// ============================================================================
+// Auth: cross-domain login do api.radoskop.eu
+// ============================================================================
+// Cookie sesji jest HttpOnly+Secure+SameSite=None na .radoskop.eu. Z radoskop.pl
+// frontend fetchuje api.radoskop.eu z credentials:include, przeglądarka dokleja
+// cookie automatycznie bo target host kończy się na .radoskop.eu.
+
+const AUTH_API = (window.RADOSKOP_AUTH_API || 'https://api.radoskop.eu') + '/api/auth';
+const AUTH_FRONTEND = window.RADOSKOP_AUTH_FRONTEND || 'https://radoskop.eu';
+
+// Cache user info w sessionStorage żeby przy reload nie czekać na /me przed
+// pokazaniem chipa. Walidacja przez /me dzieje się asynchronicznie i podmienia.
+let _authUser = null;
+try {
+  const cached = sessionStorage.getItem('radoskop_user');
+  if (cached) _authUser = JSON.parse(cached);
+} catch (e) {}
+
+function _setAuthUser(user) {
+  _authUser = user;
+  try {
+    if (user) sessionStorage.setItem('radoskop_user', JSON.stringify(user));
+    else sessionStorage.removeItem('radoskop_user');
+  } catch (e) {}
+  _renderAuthHeader();
+}
+
+function _renderAuthHeader() {
+  const btn = document.getElementById('auth-login-btn');
+  const chip = document.getElementById('user-chip');
+  if (!btn || !chip) return;
+  if (_authUser) {
+    btn.style.display = 'none';
+    chip.style.display = 'inline-flex';
+    document.getElementById('user-email-display').textContent = _authUser.email;
+    document.getElementById('user-avatar').textContent = (_authUser.email || '?')[0].toUpperCase();
+  } else {
+    btn.style.display = '';
+    chip.style.display = 'none';
+  }
+}
+
+// Pull /me przy load, niezależnie od cache (cache może być nieaktualny).
+async function _refreshAuth() {
+  try {
+    const r = await fetch(AUTH_API + '/me', { credentials: 'include' });
+    if (!r.ok) { _setAuthUser(null); return; }
+    const data = await r.json();
+    _setAuthUser(data.user || null);
+  } catch (e) {
+    // Network error: zostaw cache jak był, /me retry przy następnym razie.
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Modal otwieranie/zamykanie + tab switch
+// ----------------------------------------------------------------------------
+
+let _authMode = 'login';
+
+function openAuthModal(mode) {
+  setAuthMode(mode || 'login');
+  document.getElementById('auth-error').style.display = 'none';
+  document.getElementById('auth-success').style.display = 'none';
+  document.getElementById('auth-email').value = '';
+  document.getElementById('auth-password').value = '';
+  document.getElementById('auth-modal-backdrop').style.display = 'flex';
+  setTimeout(() => document.getElementById('auth-email').focus(), 50);
+}
+
+function closeAuthModal() {
+  document.getElementById('auth-modal-backdrop').style.display = 'none';
+}
+
+function closeAuthModalIfBackdrop(ev) {
+  if (ev.target.id === 'auth-modal-backdrop') closeAuthModal();
+}
+
+function setAuthMode(mode) {
+  _authMode = mode;
+  document.getElementById('auth-tab-login').classList.toggle('active', mode === 'login');
+  document.getElementById('auth-tab-signup').classList.toggle('active', mode === 'signup');
+  document.getElementById('auth-submit').textContent = mode === 'signup' ? 'Zarejestruj się' : 'Zaloguj się';
+  document.getElementById('auth-password').setAttribute('autocomplete', mode === 'signup' ? 'new-password' : 'current-password');
+  document.getElementById('auth-forgot-link').style.display = mode === 'login' ? '' : 'none';
+  document.getElementById('auth-error').style.display = 'none';
+  document.getElementById('auth-success').style.display = 'none';
+}
+
+function _showAuthError(msg) {
+  const el = document.getElementById('auth-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+  document.getElementById('auth-success').style.display = 'none';
+}
+
+function _showAuthSuccess(msg) {
+  const el = document.getElementById('auth-success');
+  el.textContent = msg;
+  el.style.display = 'block';
+  document.getElementById('auth-error').style.display = 'none';
+}
+
+// ----------------------------------------------------------------------------
+// Auth actions
+// ----------------------------------------------------------------------------
+
+async function submitAuth(ev) {
+  ev.preventDefault();
+  const email = document.getElementById('auth-email').value.trim().toLowerCase();
+  const password = document.getElementById('auth-password').value;
+  const submitBtn = document.getElementById('auth-submit');
+  const endpoint = _authMode === 'signup' ? '/signup' : '/login';
+
+  submitBtn.disabled = true;
+  document.getElementById('auth-error').style.display = 'none';
+
+  try {
+    const r = await fetch(AUTH_API + endpoint, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await r.json().catch(() => ({}));
+
+    if (!r.ok) {
+      const msg = _authErrorMessage(data, _authMode);
+      _showAuthError(msg);
+      submitBtn.disabled = false;
+      return false;
+    }
+
+    _setAuthUser(data.user);
+    closeAuthModal();
+    if (_authMode === 'signup') {
+      _showBanner('Konto utworzone. Sprawdź skrzynkę, żeby potwierdzić e-mail.');
+    } else {
+      _showBanner('Zalogowano jako ' + data.user.email);
+    }
+  } catch (e) {
+    _showAuthError('Błąd połączenia z serwerem.');
+  } finally {
+    submitBtn.disabled = false;
+  }
+  return false;
+}
+
+function _authErrorMessage(data, mode) {
+  if (!data || !data.error) return 'Coś poszło nie tak. Spróbuj jeszcze raz.';
+  switch (data.error) {
+    case 'invalid_email': return 'Niepoprawny adres e-mail.';
+    case 'invalid_password': return data.message || 'Hasło musi mieć co najmniej 10 znaków.';
+    case 'email_taken': return 'Konto z tym adresem już istnieje. Zaloguj się.';
+    case 'invalid_credentials': return 'Niepoprawny e-mail lub hasło.';
+    case 'missing_fields': return 'Wypełnij wszystkie pola.';
+    case 'csrf_blocked': return 'Błąd bezpieczeństwa. Otwórz stronę bezpośrednio.';
+    default: return data.message || 'Coś poszło nie tak.';
+  }
+}
+
+function googleLogin() {
+  const returnTo = encodeURIComponent(window.location.href);
+  window.location.href = AUTH_API + '/google/start?return_to=' + returnTo;
+}
+
+async function doLogout() {
+  try {
+    await fetch(AUTH_API + '/logout', { method: 'POST', credentials: 'include' });
+  } catch (e) {}
+  _setAuthUser(null);
+  _showBanner('Wylogowano.');
+}
+
+async function forgotPassword() {
+  const email = (document.getElementById('auth-email').value || '').trim().toLowerCase();
+  if (!email) {
+    _showAuthError('Wpisz e-mail i kliknij ponownie "Zapomniałem hasła".');
+    document.getElementById('auth-email').focus();
+    return;
+  }
+  try {
+    await fetch(AUTH_API + '/reset-request', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    _showAuthSuccess('Wysłaliśmy link resetu na ' + email + ' (jeśli konto istnieje).');
+  } catch (e) {
+    _showAuthError('Błąd połączenia z serwerem.');
+  }
+}
+
+function _showBanner(text) {
+  const b = document.getElementById('auth-banner');
+  b.textContent = text;
+  b.style.display = 'block';
+  setTimeout(() => { b.style.display = 'none'; }, 4000);
+}
+
+// ----------------------------------------------------------------------------
+// Init: render header z cache, potem /me, plus query-param hooks
+// ----------------------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', () => {
+  _renderAuthHeader();
+  _refreshAuth();
+
+  // Pokazuj banner po Google callback i email verify redirectach
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('verified') === '1') {
+    _showBanner('E-mail potwierdzony.');
+  }
+  const authError = params.get('auth_error');
+  if (authError) {
+    _showBanner('Błąd logowania: ' + authError.replace(/_/g, ' '));
+  }
+});
+
+// Klawisz Escape zamyka modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && document.getElementById('auth-modal-backdrop').style.display !== 'none') {
+    closeAuthModal();
+  }
+});
 </script>
 </body>
 </html>
