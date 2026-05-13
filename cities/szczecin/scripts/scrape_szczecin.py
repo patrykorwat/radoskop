@@ -876,9 +876,16 @@ def main():
     if cache_dir:
         print(f"Cache HTML: {cache_dir}\n")
 
+    _t0 = time.time()
+    _timings: list[tuple[str, float]] = []
+
+    def _mark(name: str) -> None:
+        _timings.append((name, time.time() - _t0))
+
     # 1. Session list
     print("[1/3] Pobieranie listy sesji...")
     all_sessions = scrape_session_list()
+    _mark("scrape_session_list")
 
     if not all_sessions:
         print("BŁĄD: Nie znaleziono sesji.")
@@ -924,6 +931,7 @@ def main():
             all_votes.append(v)
 
     print(f"  Razem: {len(all_votes)} głosowań z {len(all_sessions)} sesji")
+    _mark("scrape_votes")
 
     if not all_votes:
         print("UWAGA: Nie znaleziono głosowań.")
@@ -969,11 +977,19 @@ def main():
 
     out_path = Path(args.output)
     save_split_output(output, out_path)
+    _mark("build_and_save_output")
 
     print(f"\nGotowe! Zapisano do {out_path}")
     total_v = len(all_votes)
     named_v = sum(1 for v in all_votes if sum(len(nv) for nv in v["named_votes"].values()) > 0)
     print(f"  {len(sessions_data)} sesji, {total_v} głosowań ({named_v} z imiennymi), {len(councilors)} radnych")
+
+    print(f"\n=== Timing ===")
+    prev = 0.0
+    for name, total in _timings:
+        delta = total - prev
+        print(f"  {name:>28}: +{delta:7.1f}s  (cumulative {total:.1f}s)")
+        prev = total
 
     # Merge stats into profiles.json
     build_profiles_json(output, args.profiles)

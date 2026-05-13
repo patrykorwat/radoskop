@@ -464,6 +464,24 @@ def download_pdf(pdf_url: str, cache_dir: Path) -> Path | None:
         return None
 
 
+def _pdf_parse_cache_path(pdf_path: Path) -> Path | None:
+    """Cache path dla sparsowanego output PDF. Klucz = SHA256 zawartości pliku.
+
+    Lokalizacja: {cache_dir_pdf}/parsed/{hash}.json. Jeśli _CACHE_DIR jest
+    ustawiony, cache parsed output żyje obok cache HTML w tym samym scratchu.
+    """
+    if _CACHE_DIR is None:
+        return None
+    try:
+        import hashlib as _h
+        h = _h.sha256(pdf_path.read_bytes()).hexdigest()[:24]
+    except Exception:
+        return None
+    parsed_dir = _CACHE_DIR.parent / "parsed_pdf"
+    parsed_dir.mkdir(parents=True, exist_ok=True)
+    return parsed_dir / f"{h}.json"
+
+
 def parse_vote_from_pdf(pdf_path: Path) -> list[dict]:
     """Parse a single vote PDF from BIP Lublin.
 
@@ -471,7 +489,18 @@ def parse_vote_from_pdf(pdf_path: Path) -> list[dict]:
       N. Głosowanie w sprawie TOPIC - czas głosowania: DATE, godz. TIME,
          wyniki: ZA: N, PRZECIW: N, WSTRZYMUJĘ SIĘ: N, BRAK GŁOSU: N, NIEOBECNI: N
       Wyniki imienne: Name (VOTE), Name (VOTE), ...
+
+    Cache parsed output: PyMuPDF + regex parsing kosztuje ~50-200ms per PDF,
+    przy 500+ PDFs to 25-100s. Hash file → JSON cache na dysku.
     """
+    # Cache hit check
+    cache_file = _pdf_parse_cache_path(pdf_path)
+    if cache_file and cache_file.exists() and cache_file.stat().st_size > 2:
+        try:
+            return json.loads(cache_file.read_text(encoding="utf-8"))
+        except Exception:
+            pass  # corrupted cache, re-parse
+
     votes = []
     try:
         doc = fitz.open(str(pdf_path))
@@ -584,6 +613,12 @@ def parse_vote_from_pdf(pdf_path: Path) -> list[dict]:
                 "named_votes": named_votes,
             })
 
+    # Cache parsed output: file hash → JSON. Drugi run pomija PyMuPDF + regex.
+    if cache_file:
+        try:
+            cache_file.write_text(json.dumps(votes, ensure_ascii=False), encoding="utf-8")
+        except Exception:
+            pass
     return votes
 
 
@@ -879,11 +914,19 @@ def build_profiles_json(output: dict, profiles_path: str):
 
 def scrape(output_path: str, profiles_path: str):
     """Main scraping pipeline."""
+    _t0 = time.time()
+    _timings: list[tuple[str, float]] = []
+
+    def _mark(name: str) -> None:
+        _timings.append((name, time.time() - _t0))
+
     init_session()
+    _mark("init_session")
 
     # Step 1: Scrape session list
     print("\n=== Pobieranie listy sesji ===")
     sessions = scrape_session_list()
+    _mark("scrape_session_list")
     if not sessions:
         print("BŁĄD: Nie znaleziono sesji!")
         return
@@ -938,6 +981,8 @@ def scrape(output_path: str, profiles_path: str):
 
         time.sleep(DELAY)
 
+    _mark("download_and_parse_pdfs")
+
     if not all_votes:
         print("\nBŁĘD: Nie udało się wyodrębnić żadnych głosowań!")
         return
@@ -951,6 +996,7 @@ def scrape(output_path: str, profiles_path: str):
     councilors = build_councilors(all_votes, sessions, profiles)
     sessions_out = build_sessions(sessions, all_votes)
     top_pairs, bottom_pairs = compute_similarity(all_votes, councilors)
+    _mark("build_output")
 
     # Step 5: Build final output
     output = {
@@ -983,10 +1029,20 @@ def scrape(output_path: str, profiles_path: str):
     # Step 7: Merge into profiles
     build_profiles_json(output, profiles_path)
 
+    _mark("save_output")
+
     print(f"\nGotowe!")
     print(f"  Sesji: {len(sessions_out)}")
     print(f"  Radnych: {len(councilors)}")
     print(f"  Głosowań: {len(all_votes)}")
+
+    # Timing breakdown
+    print(f"\n=== Timing ===")
+    prev = 0.0
+    for name, total in _timings:
+        delta = total - prev
+        print(f"  {name:>28}: +{delta:7.1f}s  (cumulative {total:.1f}s)")
+        prev = total
 
 
 def main():

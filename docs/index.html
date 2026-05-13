@@ -274,10 +274,9 @@ footer a:hover{text-decoration-color:var(--accent);}
 
   <div style="position:absolute;top:16px;right:16px;z-index:10;display:flex;gap:8px;align-items:center;">
     <a id="auth-login-btn" href="#" onclick="event.preventDefault();_bridgeLogin();return false;" style="display:none;background:var(--accent,#4f46e5);color:#fff;text-decoration:none;border-radius:8px;padding:6px 14px;font-size:0.85rem;font-weight:500;">Zaloguj się</a>
-    <div id="user-chip" style="display:none;align-items:center;gap:8px;background:var(--bg,#fff);border:1px solid var(--border);border-radius:8px;padding:4px 10px 4px 4px;font-size:0.85rem;">
-      <span id="user-avatar" style="width:24px;height:24px;border-radius:50%;background:var(--accent,#4f46e5);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;"></span>
-      <span id="user-email-display"></span>
-      <button onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:0 2px;font-size:1rem;line-height:1;font-family:inherit;">×</button>
+    <div id="user-chip" style="display:none;align-items:center;gap:6px;background:var(--surface,#fff);border:1px solid var(--border);border-radius:8px;padding:3px 6px 3px 3px;font-size:0.85rem;">
+      <span id="user-avatar" title="" style="width:26px;height:26px;border-radius:50%;background:var(--accent,#4f46e5);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;cursor:default;"></span>
+      <button onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:0 4px;font-size:1.1rem;line-height:1;font-family:inherit;">×</button>
     </div>
     <button id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny"
             style="background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--muted);font-size:0.85rem;font-family:inherit;display:inline-flex;align-items:center;gap:4px;transition:border-color .2s,color .2s">
@@ -322,8 +321,9 @@ footer a:hover{text-decoration-color:var(--accent);}
     if (_user) {
       btn.style.display = 'none';
       chip.style.display = 'inline-flex';
-      document.getElementById('user-email-display').textContent = _user.email;
-      document.getElementById('user-avatar').textContent = (_user.email || '?')[0].toUpperCase();
+      const av = document.getElementById('user-avatar');
+      av.textContent = (_user.email || '?')[0].toUpperCase();
+      av.title = _user.email;
     } else {
       btn.style.display = 'inline-block';
       chip.style.display = 'none';
@@ -331,6 +331,7 @@ footer a:hover{text-decoration-color:var(--accent);}
   }
 
   window.doLogout = async function() {
+    // 1. Local logout na .pl (kasuje sesję .pl + cookie)
     try {
       await fetch(AUTH_API + '/logout', {
         method: 'POST', credentials: 'include',
@@ -338,6 +339,12 @@ footer a:hover{text-decoration-color:var(--accent);}
       });
     } catch (e) {}
     setUser(null);
+    // 2. Cross-TLD logout: redirect na radoskop.eu z ?logout_remote=1
+    // żeby też wyczyścić sesję .eu. Po wylogowaniu .eu odbija z powrotem
+    // na .pl. Cookie .eu nie jest dostępne z .pl frontendu (partycjonowanie),
+    // więc musi to nastąpić w kontekście top-level .eu.
+    const returnTo = encodeURIComponent(window.location.href);
+    window.location.href = 'https://radoskop.eu/?logout_remote=1&return_to=' + returnTo;
   };
 
   document.addEventListener('DOMContentLoaded', async () => {

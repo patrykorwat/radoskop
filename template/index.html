@@ -502,8 +502,7 @@ footer a { color:var(--accent); text-decoration:none; }
     <div class="header-actions">
       <button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
       <div class="user-chip" id="user-chip" style="display:none">
-        <span class="user-avatar" id="user-avatar"></span>
-        <span id="user-email-display"></span>
+        <span class="user-avatar" id="user-avatar" title=""></span>
         <button class="user-logout" onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj">×</button>
       </div>
       <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny">
@@ -3939,8 +3938,9 @@ function _renderAuthHeader() {
   if (_authUser) {
     btn.style.display = 'none';
     chip.style.display = 'inline-flex';
-    document.getElementById('user-email-display').textContent = _authUser.email;
-    document.getElementById('user-avatar').textContent = (_authUser.email || '?')[0].toUpperCase();
+    const av = document.getElementById('user-avatar');
+    av.textContent = (_authUser.email || '?')[0].toUpperCase();
+    av.title = _authUser.email;
   } else {
     btn.style.display = '';
     chip.style.display = 'none';
@@ -4072,11 +4072,16 @@ function googleLogin() {
 }
 
 async function doLogout() {
+  // 1. Local logout na bieżącej TLD (.pl)
   try {
     await fetch(AUTH_API + '/logout', { method: 'POST', credentials: 'include' });
   } catch (e) {}
   _setAuthUser(null);
-  _showBanner('Wylogowano.');
+  // 2. Cross-TLD logout: top-level nav na radoskop.eu z ?logout_remote=1
+  // żeby też wyczyścić sesję .eu (cookie partycjonowane, nie dostępne
+  // z fetch z .pl). Po wylogowaniu .eu odbija z powrotem na current URL.
+  const returnTo = encodeURIComponent(window.location.href);
+  window.location.href = 'https://radoskop.eu/?logout_remote=1&return_to=' + returnTo;
 }
 
 async function forgotPassword() {
