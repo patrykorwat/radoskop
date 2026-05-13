@@ -1006,7 +1006,34 @@ def build_sessions_summary(all_votes: list[dict]) -> list[dict]:
     return result
 
 
-def scrape(output_path: str, profiles_path: str, debug: bool = False):
+def _extract_votes_cached(pdf_path: Path, parse_cache_dir: Path | None, debug: bool = False) -> list[dict]:
+    """Wrapper na extract_votes_from_pdf z disk cache po sha256(pdf).
+
+    1730 głosowań × pdfplumber parse to ~10-14min serial - cache eliminuje
+    reparse dla niezmienionych PDF-ów (a PDF-y BIP nie zmieniają się po
+    publikacji). Klucz: sha256(pdf bytes), wynik: JSON z list[dict].
+    Cache w parse_cache_dir/{sha}.json.
+    """
+    if parse_cache_dir is None:
+        return extract_votes_from_pdf(pdf_path, debug=debug)
+    import hashlib as _h
+    sha = _h.sha256(pdf_path.read_bytes()).hexdigest()
+    cache_file = parse_cache_dir / f"{sha}.json"
+    if cache_file.exists():
+        try:
+            return json.loads(cache_file.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError):
+            pass  # corrupt cache, reparse
+    blocks = extract_votes_from_pdf(pdf_path, debug=debug)
+    parse_cache_dir.mkdir(parents=True, exist_ok=True)
+    try:
+        cache_file.write_text(json.dumps(blocks, ensure_ascii=False), encoding="utf-8")
+    except OSError as exc:
+        print(f"      [warn] nie zapisałem parse cache {sha[:8]}: {exc}")
+    return blocks
+
+
+def scrape(output_path: str, profiles_path: str, pdf_dir: str | None = None, debug: bool = False):
     """Main scraping function."""
     init_session()
 
@@ -1018,8 +1045,14 @@ def scrape(output_path: str, profiles_path: str, debug: bool = False):
 
     all_raw_votes = []
     vote_counter = 0
-    cache_dir = Path("pdfs")
+    # PDF cache: pliki PDF z BIP, persystentne między runami. Jeśli pdf_dir
+    # podany przez pipeline (--pdf-dir scratch_dir/pdfs), używamy go;
+    # inaczej fallback do "pdfs" obok cwd dla local dev.
+    cache_dir = Path(pdf_dir) if pdf_dir else Path("pdfs")
     cache_dir.mkdir(parents=True, exist_ok=True)
+    # Parse cache: parsed JSON-y per sha256(pdf), żeby reparse robił się
+    # tylko dla nowych/zmienionych PDF-ów. Trzymane obok PDF-ów w scratch.
+    parse_cache_dir = cache_dir.parent / "parsed_votes"
 
     print(f"\n=== Pobieranie PDF-ów ({len(sessions)} sesji) ===")
     for i, session in enumerate(sessions):
@@ -1045,7 +1078,7 @@ def scrape(output_path: str, profiles_path: str, debug: bool = False):
                 print(f"      Brak pliku PDF")
                 continue
 
-            vote_blocks = extract_votes_from_pdf(pdf_path, debug=debug)
+            vote_blocks = _extract_votes_cached(pdf_path, parse_cache_dir, debug=debug)
             if not vote_blocks:
                 print(f"      Brak głosów w PDF")
                 continue
@@ -1174,10 +1207,16 @@ def main():
         "--debug", action="store_true",
         help="Tryb debug — drukuje surowy tekst z pierwszego PDF"
     )
+    parser.add_argument(
+        "--pdf-dir", default=None,
+        help="Katalog cache PDF-ów (default: pdfs obok cwd). "
+             "Pipeline przekazuje scratch dir żeby PDF-y i parsed_votes/ "
+             "JSON-y persystowały między runami poza monorepo."
+    )
     args = parser.parse_args()
 
     try:
-        scrape(args.output, args.profiles, debug=args.debug)
+        scrape(args.output, args.profiles, pdf_dir=args.pdf_dir, debug=args.debug)
     except KeyboardInterrupt:
         print("\n\nPrzerwano przez użytkownika.")
         sys.exit(0)

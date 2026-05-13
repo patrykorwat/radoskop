@@ -240,36 +240,41 @@ def article_to_record(article, kadencja_id):
 # ---------------------------------------------------------------------------
 
 def enrich_with_attachments(session, records, download_pdfs=False, pdf_dir=None, debug=False):
-    """Pobiera szczegóły artykułów, uzupełnia URLe załączników i opcjonalnie pobiera PDF-y."""
+    """Pobiera szczegóły artykułów, uzupełnia URLe załączników i opcjonalnie pobiera PDF-y.
+
+    Parallelized z ThreadPoolExecutor (4 workers default, override przez env
+    SOPOT_INTERP_WORKERS). 583 detail × ~2s sekwencyjnie = 20min, z 4 workers
+    ~5min. requests.Session jest thread-safe dla GET requestów (urllib3 connection
+    pool synchronizuje dostęp), więc bez locków.
+
+    Pobieranie PDF-ów (download_pdfs=True) zostaje sequential żeby nie zalewać
+    BIP-u dużymi binarnymi pobraniami z N parallel connections; pipeline domyślnie
+    nie pobiera PDF (download_pdfs=False).
+    """
     if pdf_dir:
         os.makedirs(pdf_dir, exist_ok=True)
 
-    for i, rec in enumerate(records):
+    max_workers = max(1, int(os.environ.get("SOPOT_INTERP_WORKERS", "4")))
+
+    def _process_one(rec):
         article_id = rec.get("article_id")
         if not article_id:
-            continue
-
+            return rec
         try:
-            detail = fetch_article_detail(session, article_id, debug=debug)
+            detail = fetch_article_detail(session, article_id, debug=False)
         except Exception as e:
             print(f"  BŁĄD pobierania artykułu {article_id}: {e}")
-            continue
+            return rec
 
-        attachments = detail.get("attachments", [])
-        for att in attachments:
+        for att in detail.get("attachments", []):
             file_id = att.get("id")
             name = att.get("name", "").lower()
             ext = att.get("extension", "").lower()
-
             url = f"{BIP_API}/files/{file_id}" if file_id else ""
-
-            # Heurystyka: treść vs odpowiedź
             if "odpowied" in name or "answer" in name:
                 rec["odpowiedz_url"] = url
             elif not rec["tresc_url"]:
                 rec["tresc_url"] = url
-
-            # Pobierz PDF
             if download_pdfs and pdf_dir and ext == "pdf" and file_id:
                 pdf_path = os.path.join(pdf_dir, f"{rec['cri'].replace('/', '_')}_{att.get('name', 'file')}.{ext}")
                 if not os.path.exists(pdf_path):
@@ -282,11 +287,16 @@ def enrich_with_attachments(session, records, download_pdfs=False, pdf_dir=None,
                             print(f"  [DEBUG] Pobrano: {pdf_path}")
                     except Exception as e:
                         print(f"  BŁĄD pobierania PDF {file_id}: {e}")
+        return rec
 
-        if (i + 1) % 20 == 0:
-            print(f"  Szczegóły: {i+1}/{len(records)}")
-
-        time.sleep(DELAY)
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    done = 0
+    with ThreadPoolExecutor(max_workers=max_workers) as ex:
+        futures = [ex.submit(_process_one, rec) for rec in records]
+        for fut in as_completed(futures):
+            done += 1
+            if done % 20 == 0:
+                print(f"  Szczegóły: {done}/{len(records)}")
 
 
 # ---------------------------------------------------------------------------

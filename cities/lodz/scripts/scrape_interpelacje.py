@@ -77,10 +77,38 @@ def parse_list_page(html, kadencja_name, debug=False):
       - Przedmiot/Temat: <link> do szczegółów
       - Radny: imię i nazwisko
       - Status: oczekuje / udzielono
+
+    Diagnostic logging: jeśli BIP zmieni format z tabel na cardy/divy,
+    pomoże szybciej namierzyć regresję. Log pokazuje ile <table> znaleziono
+    plus etykietki <th> z pierwszej tabeli, żeby porównać z aktualną
+    strukturą strony.
     """
     soup = BeautifulSoup(html, "html.parser")
     main = soup.find("main") or soup
     tables = main.find_all("table")
+
+    # Diagnostic: liczba tabel i pierwsze etykiety. Aktualny scraper zakłada
+    # że każda interpelacja jest w osobnej <table>; jeśli BIP przeszedł
+    # na inny markup (cardy, listy, divy), tables=0 lub etykietki nie
+    # zawierają "przedmiot/temat/sprawie" → 0 records mimo że strony są.
+    if not tables:
+        # Fallback: spróbuj znaleźć interpelacje w innych strukturach.
+        # Logujemy znaleziska żeby user mógł zaproponować selektor.
+        articles = main.find_all("article")
+        cards = main.find_all("div", class_=re.compile(r"card|item|interpelacj", re.I))
+        list_items = main.find_all("li", class_=re.compile(r"item|entry|interpelacj", re.I))
+        print(f"  [parse] BRAK tabel. Diagnostyka: {len(articles)} <article>, "
+              f"{len(cards)} <div class~=card/item>, {len(list_items)} <li class~=item>")
+        if debug:
+            print(f"  [DEBUG] HTML excerpt main (pierwsze 1500 znakow):")
+            print(str(main)[:1500])
+    elif debug or True:
+        first_labels = []
+        for row in tables[0].find_all("tr")[:5]:
+            th = row.find("th")
+            if th:
+                first_labels.append(th.get_text(strip=True))
+        print(f"  [parse] {len(tables)} <table> znaleziono. Etykiety w pierwszej: {first_labels[:5]}")
 
     records = []
     for table in tables:
