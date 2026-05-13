@@ -503,6 +503,7 @@ footer a { color:var(--accent); text-decoration:none; }
       <button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
       <div class="user-chip" id="user-chip" style="display:none">
         <span class="user-avatar" id="user-avatar" title=""></span>
+        <span id="user-name" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
         <button class="user-logout" onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj">×</button>
       </div>
       <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny">
@@ -3941,6 +3942,12 @@ function _renderAuthHeader() {
     const av = document.getElementById('user-avatar');
     av.textContent = (_authUser.email || '?')[0].toUpperCase();
     av.title = _authUser.email;
+    const nameEl = document.getElementById('user-name');
+    const dn = _authUser.display_name && _authUser.display_name.trim()
+      ? _authUser.display_name.trim()
+      : (_authUser.email || '').split('@')[0];
+    nameEl.textContent = dn;
+    nameEl.title = _authUser.email;
   } else {
     btn.style.display = '';
     chip.style.display = 'none';
