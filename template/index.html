@@ -440,25 +440,25 @@ footer a { color:var(--accent); text-decoration:none; }
 .header-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
 .auth-btn { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:6px 14px; cursor:pointer; font-size:0.85rem; font-family:inherit; font-weight:500; transition:opacity 0.2s; }
 .auth-btn:hover { opacity:0.9; }
-.user-chip { display:inline-flex; align-items:center; gap:8px; background:var(--card-bg); border:1px solid var(--border); border-radius:8px; padding:4px 10px 4px 4px; font-size:0.85rem; color:var(--fg); }
+.user-chip { display:inline-flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:4px 10px 4px 4px; font-size:0.85rem; color:var(--text); }
 .user-chip .user-avatar { width:24px; height:24px; border-radius:50%; background:var(--accent); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:600; }
 .user-chip .user-logout { background:none; border:none; color:var(--muted); cursor:pointer; padding:0 2px; font-size:1rem; line-height:1; font-family:inherit; }
 .user-chip .user-logout:hover { color:var(--accent); }
 
 .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:1000; padding:20px; }
-.auth-modal { background:var(--card-bg); border:1px solid var(--border); border-radius:12px; padding:28px; width:100%; max-width:380px; position:relative; box-shadow:0 10px 40px rgba(0,0,0,0.2); }
+.auth-modal { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:28px; width:100%; max-width:380px; position:relative; box-shadow:0 10px 40px rgba(0,0,0,0.2); }
 .modal-close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:1.5rem; line-height:1; color:var(--muted); cursor:pointer; padding:4px 8px; }
 .modal-close:hover { color:var(--accent); }
 .auth-tabs { display:flex; gap:0; margin-bottom:20px; border-bottom:1px solid var(--border); }
 .auth-tab { background:none; border:none; padding:10px 16px; cursor:pointer; color:var(--muted); font-size:0.95rem; font-family:inherit; font-weight:500; border-bottom:2px solid transparent; margin-bottom:-1px; transition:color 0.2s, border-color 0.2s; }
-.auth-tab.active { color:var(--fg); border-bottom-color:var(--accent); }
-.auth-tab:hover:not(.active) { color:var(--fg); }
+.auth-tab.active { color:var(--text); border-bottom-color:var(--accent); }
+.auth-tab:hover:not(.active) { color:var(--text); }
 .google-btn { width:100%; background:#fff; color:#1f1f1f; border:1px solid #dadce0; border-radius:8px; padding:10px 16px; cursor:pointer; font-size:0.95rem; font-family:inherit; font-weight:500; display:flex; align-items:center; justify-content:center; gap:10px; transition:box-shadow 0.2s; }
 .google-btn:hover { box-shadow:0 1px 3px rgba(60,64,67,0.15); }
 .auth-sep { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:0.8rem; margin:16px 0; }
 .auth-sep::before, .auth-sep::after { content:""; flex:1; height:1px; background:var(--border); }
 .auth-form { display:flex; flex-direction:column; gap:10px; }
-.auth-form input { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px; font-size:0.95rem; color:var(--fg); font-family:inherit; }
+.auth-form input { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px; font-size:0.95rem; color:var(--text); font-family:inherit; }
 .auth-form input:focus { outline:none; border-color:var(--accent); }
 .auth-form button[type="submit"] { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:11px 16px; cursor:pointer; font-size:0.95rem; font-family:inherit; font-weight:500; margin-top:4px; transition:opacity 0.2s; }
 .auth-form button[type="submit"]:hover { opacity:0.9; }
@@ -500,7 +500,7 @@ footer a { color:var(--accent); text-decoration:none; }
       <p>Jak głosują radni Miasta {{CITY_GENITIVE}}? Dane z protokołów BIP.</p>
     </div>
     <div class="header-actions">
-      <button class="auth-btn" id="auth-login-btn" onclick="openAuthModal('login')" style="display:none">Zaloguj się</button>
+      <button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
       <div class="user-chip" id="user-chip" style="display:none">
         <span class="user-avatar" id="user-avatar"></span>
         <span id="user-email-display"></span>
@@ -3900,7 +3900,19 @@ init();
 // frontend fetchuje api.radoskop.eu z credentials:include, przeglądarka dokleja
 // cookie automatycznie bo target host kończy się na .radoskop.eu.
 
-const AUTH_API = (window.RADOSKOP_AUTH_API || 'https://api.radoskop.eu') + '/api/auth';
+// /me lokalny: api.radoskop.pl (cookie .radoskop.pl po bridge / signup .pl).
+// Cross-TLD cookies blokowane przez Firefox Total Cookie Protection, Safari ITP,
+// Chrome Privacy Sandbox, więc pytamy backend o sesję na BIEŻĄCEJ TLD.
+const AUTH_API = (window.RADOSKOP_AUTH_API || 'https://api.radoskop.pl') + '/api/auth';
+
+// Token bridge: gdy user nie ma sesji na .pl, otwieramy radoskop.eu (gdzie
+// może mieć sesję np. po Google login). Apex .eu z parametrem bridge_to
+// minuje HMAC token i odsyła na api.radoskop.pl/bridge-exchange które
+// ustawia cookie .radoskop.pl, po czym 302 z powrotem na docelowy URL.
+function _bridgeLogin() {
+  const bridgeUrl = 'https://radoskop.eu/?bridge_to=' + encodeURIComponent(window.location.href);
+  window.location.href = bridgeUrl;
+}
 const AUTH_FRONTEND = window.RADOSKOP_AUTH_FRONTEND || 'https://radoskop.eu';
 
 // Cache user info w sessionStorage żeby przy reload nie czekać na /me przed

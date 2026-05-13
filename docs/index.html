@@ -272,12 +272,88 @@ footer a:hover{text-decoration-color:var(--accent);}
 <main>
 <div class="container">
 
-  <div style="position:absolute;top:16px;right:16px;z-index:10">
+  <div style="position:absolute;top:16px;right:16px;z-index:10;display:flex;gap:8px;align-items:center;">
+    <a id="auth-login-btn" href="#" onclick="event.preventDefault();_bridgeLogin();return false;" style="display:none;background:var(--accent,#4f46e5);color:#fff;text-decoration:none;border-radius:8px;padding:6px 14px;font-size:0.85rem;font-weight:500;">Zaloguj się</a>
+    <div id="user-chip" style="display:none;align-items:center;gap:8px;background:var(--bg,#fff);border:1px solid var(--border);border-radius:8px;padding:4px 10px 4px 4px;font-size:0.85rem;">
+      <span id="user-avatar" style="width:24px;height:24px;border-radius:50%;background:var(--accent,#4f46e5);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:600;"></span>
+      <span id="user-email-display"></span>
+      <button onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:0 2px;font-size:1rem;line-height:1;font-family:inherit;">×</button>
+    </div>
     <button id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny"
             style="background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--muted);font-size:0.85rem;font-family:inherit;display:inline-flex;align-items:center;gap:4px;transition:border-color .2s,color .2s">
       <span id="theme-icon">🌙</span><span id="theme-label">Ciemny</span>
     </button>
   </div>
+
+<script>
+// Auth state check (cross-domain z api.radoskop.eu). Cookie sesji jest na
+// .radoskop.eu, ale frontend na .pl może go odpytać przez CORS+credentials.
+(function() {
+  // /me lokalny: api.radoskop.pl (cookie .radoskop.pl po bridge / signup .pl).
+  // Cross-TLD cookies blokowane przez Firefox/Safari/Chrome, więc pytamy
+  // backend o sesję na BIEŻĄCEJ TLD, nie na .eu.
+  const AUTH_API = 'https://api.radoskop.pl/api/auth';
+  let _user = null;
+  try {
+    const c = sessionStorage.getItem('radoskop_user');
+    if (c) _user = JSON.parse(c);
+  } catch (e) {}
+
+  // Token bridge: gdy user nie ma sesji na .pl, otwieramy radoskop.eu
+  // (gdzie może mieć sesję), które zminuje token i odeśle nas tu z cookie.
+  window._bridgeLogin = function() {
+    const bridgeUrl = 'https://radoskop.eu/?bridge_to=' + encodeURIComponent(window.location.href);
+    window.location.href = bridgeUrl;
+  };
+
+  function setUser(u) {
+    _user = u;
+    try {
+      if (u) sessionStorage.setItem('radoskop_user', JSON.stringify(u));
+      else sessionStorage.removeItem('radoskop_user');
+    } catch (e) {}
+    render();
+  }
+
+  function render() {
+    const btn = document.getElementById('auth-login-btn');
+    const chip = document.getElementById('user-chip');
+    if (!btn || !chip) return;
+    if (_user) {
+      btn.style.display = 'none';
+      chip.style.display = 'inline-flex';
+      document.getElementById('user-email-display').textContent = _user.email;
+      document.getElementById('user-avatar').textContent = (_user.email || '?')[0].toUpperCase();
+    } else {
+      btn.style.display = 'inline-block';
+      chip.style.display = 'none';
+    }
+  }
+
+  window.doLogout = async function() {
+    try {
+      await fetch(AUTH_API + '/logout', {
+        method: 'POST', credentials: 'include',
+        headers: { 'Origin': window.location.origin }
+      });
+    } catch (e) {}
+    setUser(null);
+  };
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    render();
+    try {
+      const r = await fetch(AUTH_API + '/me', { credentials: 'include' });
+      if (r.ok) {
+        const d = await r.json();
+        setUser(d.user || null);
+      } else {
+        setUser(null);
+      }
+    } catch (e) {}
+  });
+})();
+</script>
 
   <div class="hero">
     <h1>Rado<span>skop</span></h1>
