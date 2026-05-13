@@ -892,13 +892,45 @@ def main():
     print(f"Backend: Playwright (headless={'nie' if args.headed else 'tak'})")
     print()
 
+    # Timing log: warszawa to bottleneck pipeline'u, breakdown po fazach pomaga
+    # zlokalizować gdzie idą sekundy (Playwright init / lista sesji / per-sesja
+    # / parsing / build output).
+    _t0 = time.time()
+    _timings: list[tuple[str, float]] = []
+    def _mark(name: str) -> None:
+        _timings.append((name, time.time() - _t0))
+
     init_browser(headless=not args.headed)
+    _mark("init_browser")
 
     try:
         # 1. Lista sesji — pobierz wszystkie strony, potem filtruj po kadencji
         print("[1/4] Pobieranie listy sesji...")
         # Tymczasowo ustaw najstarszą kadencję żeby pobrać wszystkie sesje
         all_sessions = scrape_session_list_all(oldest_start, max_pages=args.max_pages)
+        _mark("scrape_session_list")
+
+        # Skip-if-unchanged: jeśli signature listy sesji nie różni się od
+        # poprzedniego runu I istnieje docs/data.json - exit early. Zaoszczędza
+        # ~95% czasu warszawy gdy nic się nie zmieniło między runami.
+        if all_sessions and _CACHE_DIR is not None and not args.only_transcripts:
+            sig_path = _CACHE_DIR.parent / "session_signature.json"
+            import hashlib as _h
+            sig_input = "|".join(
+                sorted(f"{s.get('number','')}:{s.get('date','')}" for s in all_sessions)
+            )
+            current_sig = _h.sha256(sig_input.encode("utf-8")).hexdigest()
+            out_path_pre = Path(args.output)
+            try:
+                if sig_path.exists() and out_path_pre.exists():
+                    stored = json.loads(sig_path.read_text(encoding="utf-8"))
+                    if stored.get("sig") == current_sig and stored.get("kadencje") == target_kadencje:
+                        elapsed = time.time() - _t0
+                        print(f"\n[skip] Lista sesji identyczna z poprzednim runem ({len(all_sessions)} sesji, signature matched). data.json zachowane.")
+                        print(f"=== Timing ===\n  scrape_session_list: {elapsed:.1f}s (cumulative, skipped reszta)")
+                        return
+            except Exception as exc:
+                print(f"  [skip-check] błąd: {exc}, kontynuuję pełen scrape")
         if not all_sessions:
             print("BŁĄD: Nie znaleziono sesji. Strona mogła zmienić format.")
             print(f"Sprawdź ręcznie: {SESSIONS_URL}")
@@ -946,10 +978,12 @@ def main():
             docx_dir.mkdir(parents=True, exist_ok=True)
 
             print(f"\n[2/4] Pobieranie i parsowanie wyników głosowań...")
+            _mark("setup_docx_dir")
             all_votes = []
             for session in all_sessions:
                 votes = process_session_docx(session, docx_dir)
                 all_votes.extend(votes)
+            _mark("fetch_and_parse_votes")
 
             print(f"  Razem: {len(all_votes)} głosowań z {len(all_sessions)} sesji")
 
@@ -1029,6 +1063,25 @@ def main():
 
         out_path = Path(args.output)
         save_split_output(output, out_path)
+        _mark("save_output")
+
+        # Zapisz signature listy sesji żeby następny run mógł skipnąć fetche
+        # jeśli nic się nie zmieniło.
+        if _CACHE_DIR is not None and all_sessions:
+            sig_path = _CACHE_DIR.parent / "session_signature.json"
+            try:
+                import hashlib as _h
+                sig_input = "|".join(
+                    sorted(f"{s.get('number','')}:{s.get('date','')}" for s in all_sessions)
+                )
+                sig = _h.sha256(sig_input.encode("utf-8")).hexdigest()
+                sig_path.parent.mkdir(parents=True, exist_ok=True)
+                sig_path.write_text(
+                    json.dumps({"sig": sig, "kadencje": target_kadencje, "count": len(all_sessions)}),
+                    encoding="utf-8",
+                )
+            except Exception:
+                pass
 
         print(f"\nGotowe! Zapisano do {out_path}")
         for kad in output["kadencje"]:
@@ -1038,6 +1091,15 @@ def main():
 
         # Merge voting + activity stats into profiles.json
         merge_stats_to_profiles(args.profiles, output)
+        _mark("merge_profiles")
+
+        # Timing breakdown
+        print(f"\n=== Timing ===")
+        prev = 0.0
+        for name, total in _timings:
+            delta = total - prev
+            print(f"  {name:>28}: +{delta:7.1f}s  (cumulative {total:.1f}s)")
+            prev = total
 
     finally:
         close_browser()

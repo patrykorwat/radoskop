@@ -230,10 +230,46 @@ def normalize_name(name: str) -> str:
 # Step 1: Fetch session list from BIP Katowice
 # ============================================================================
 
-def fetch_soup(http_session, url):
-    """GET a page and return BeautifulSoup."""
+# HTML disk cache - aktywowany przez --cache-dir w argparse. Pipeline przekazuje
+# scratch_dir/.cache/html. Cache hituje per-URL; lista sesji ZAWSZE fresh
+# (use_cache=False), per-session i per-document strony cache'ują się gdy
+# session jest stable (>2 dni).
+_CACHE_DIR: Path | None = None
+
+
+def init_cache(cache_dir: str | None) -> None:
+    global _CACHE_DIR
+    if cache_dir:
+        _CACHE_DIR = Path(cache_dir)
+        _CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    else:
+        _CACHE_DIR = None
+
+
+def _cache_path(url: str) -> Path | None:
+    if _CACHE_DIR is None:
+        return None
+    import hashlib
+    h = hashlib.md5(url.encode("utf-8")).hexdigest()[:16]
+    return _CACHE_DIR / f"{h}.html"
+
+
+def fetch_soup(http_session, url, use_cache: bool = True):
+    """GET a page and return BeautifulSoup. Z disk cache gdy --cache-dir aktywny.
+
+    use_cache=False wymusza świeży HTTP (lista sesji, świeże sesje <2 dni).
+    """
+    cache_file = _cache_path(url) if use_cache else None
+    if cache_file and cache_file.exists() and cache_file.stat().st_size > 100:
+        return BeautifulSoup(cache_file.read_text(encoding="utf-8"), "html.parser")
+
     resp = http_session.get(url, headers=HEADERS, timeout=30)
     resp.raise_for_status()
+    if cache_file:
+        try:
+            cache_file.write_text(resp.text, encoding="utf-8")
+        except Exception:
+            pass
     return BeautifulSoup(resp.text, "html.parser")
 
 
@@ -245,10 +281,11 @@ def fetch_session_list(http_session, debug=False):
     We only take sessions from the current kadencja (2024-2029).
     """
     if debug:
-        print(f"[DEBUG] GET {BIP_SESSIONS}")
+        print(f"[DEBUG] GET {BIP_SESSIONS} (no cache)")
 
     try:
-        soup = fetch_soup(http_session, BIP_SESSIONS)
+        # Lista sesji ZAWSZE fresh - musimy wykrywać nowe sesje.
+        soup = fetch_soup(http_session, BIP_SESSIONS, use_cache=False)
     except Exception as e:
         print(f"  Blad pobierania listy sesji: {e}")
         return []
@@ -381,19 +418,22 @@ def is_session_stable(session_date_str):
 # Step 2: For each session, find voting PDFs and parse them
 # ============================================================================
 
-def discover_pdf_links(http_session, session_url, debug=False):
+def discover_pdf_links(http_session, session_url, debug=False, use_cache=False):
     """Hituje BIP żeby zebrać listę PDF-ów dla pojedynczej sesji.
 
     Robi 2 HTTP requesty: GET sesja.aspx (znajdź IMIENNE WYNIKI) plus GET
     dokument.aspx (zbierz PDF-y). Zwraca listę pdf_link dictów albo [].
 
     Caller decyduje czy w ogóle uruchamiać tę funkcję (state cache).
+    use_cache=True dla sesji stabilnych - HTML się nie zmienia, można hit
+    dysk zamiast BIP (~2s/request DELAY zaoszczędzone). State cache zostaje
+    nadrzędny: stabilne sesje z pdf_links w state w ogóle tu nie trafiają.
     """
     if debug:
         print(f"    [DEBUG] GET {session_url}")
 
     try:
-        soup = fetch_soup(http_session, session_url)
+        soup = fetch_soup(http_session, session_url, use_cache=use_cache)
     except Exception as e:
         print(f"    Blad pobierania sesji: {e}")
         return []
@@ -420,7 +460,7 @@ def discover_pdf_links(http_session, session_url, debug=False):
         print(f"    [DEBUG] GET {doc_url}")
 
     try:
-        doc_soup = fetch_soup(http_session, doc_url)
+        doc_soup = fetch_soup(http_session, doc_url, use_cache=use_cache)
     except Exception as e:
         print(f"    Blad pobierania dokumentu glosowan: {e}")
         return []
@@ -486,7 +526,10 @@ def fetch_session_votes(http_session, session_info, debug=False, pdf_dir=None,
                 print(f"    [DEBUG] STATE CACHE HIT idt={idt} ({len(pdf_links)} PDF), skip BIP")
 
     if pdf_links is None:
-        pdf_links = discover_pdf_links(http_session, session_url, debug=debug)
+        # Stabilne sesje hitują disk cache HTML (treść strony nie zmienia się
+        # po session.date + 2 dni). Świeższe sesje wymuszają fresh fetch.
+        sess_stable = is_session_stable(session_info.get("date", ""))
+        pdf_links = discover_pdf_links(http_session, session_url, debug=debug, use_cache=sess_stable)
         # Update state cache nawet dla niestabilnych sesji — następny run
         # może już złapać je jako stabilne.
         if state is not None and idt:
@@ -1247,10 +1290,24 @@ def main():
         help="Ignoruj state cache, hituj BIP dla każdej sesji (jak przed cache'em)."
     )
     parser.add_argument(
+        "--cache-dir", default=None,
+        help="Katalog cache HTML dla strony sesji + dokumentu IMIENNE WYNIKI. "
+             "Cache hituje dla stabilnych sesji (>2 dni), świeże zawsze fresh."
+    )
+    parser.add_argument(
         "--no-cache", action="store_true",
         help="Wyłącz wszystkie cache'e (pdf-dir, parsed-dir, state-file)."
     )
     args = parser.parse_args()
+
+    # HTML cache (oddzielny od PDF + state cache). Pipeline scrape_all.sh
+    # przekazuje scratch_dir/.cache/html. --no-cache wyłącza też ten cache.
+    if args.no_cache:
+        init_cache(None)
+    else:
+        init_cache(args.cache_dir)
+    if args.cache_dir and not args.no_cache:
+        print(f"Cache HTML: {args.cache_dir}")
 
     if args.no_cache:
         pdf_dir = None
