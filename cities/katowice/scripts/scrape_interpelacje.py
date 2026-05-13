@@ -424,11 +424,45 @@ def fetch_responses_browser(records, debug=False):
 # Main
 # ============================================================================
 
+def _load_previous_responses(output_path):
+    """Wczytuje doc_id \u2192 {odpowiedz_url, data_odpowiedzi, odpowiedz_status}
+    z poprzedniego interpelacje.json, je\u015bli istnieje. U\u017cywane do skipowania
+    Phase [4/4] dla doc_id kt\u00f3re ju\u017c maj\u0105 znan\u0105 odpowied\u017a.
+
+    Bez tego cache'a phase 4 robi 1028 sekwencyjnych Playwright fetchy =
+    ~50min na ka\u017cdym runie. Z cachem nowy run sprawdza tylko \u015bwie\u017ce doc_id.
+    """
+    if not output_path or not os.path.exists(output_path):
+        return {}
+    try:
+        with open(output_path, "r", encoding="utf-8") as f:
+            previous = json.load(f)
+    except (json.JSONDecodeError, OSError):
+        return {}
+    out = {}
+    for r in previous if isinstance(previous, list) else []:
+        doc_id = r.get("doc_id")
+        url = r.get("odpowiedz_url")
+        if doc_id and url:
+            out[doc_id] = {
+                "odpowiedz_url": url,
+                "data_odpowiedzi": r.get("data_odpowiedzi", ""),
+                "odpowiedz_status": r.get("odpowiedz_status", "udzielono odpowiedzi"),
+            }
+    return out
+
+
 def scrape(output_path, debug=False):
     """Glowna funkcja scrapowania."""
     http_session = requests.Session()
 
     print("\n=== Radoskop Katowice \u2014 Scraper interpelacji ===")
+
+    # Za\u0142aduj cache odpowiedzi z poprzedniego runu (key: doc_id).
+    # Phase 4 u\u017cyje tego do skipowania znanych odpowiedzi.
+    previous_responses = _load_previous_responses(output_path)
+    if previous_responses:
+        print(f"  Cache odpowiedzi: {len(previous_responses)} doc_id z poprzedniego runu")
 
     kad_name = "IX"
     print(f"\n=== {KADENCJE[kad_name]['label']} ===")
@@ -507,6 +541,20 @@ def scrape(output_path, debug=False):
             print(f"  Pobrano: {i+1}/{len(sorted_doc_ids)} ({len(all_records)} z danymi)")
 
         time.sleep(DELAY)
+
+    # Pre-fill odpowiedz_url z cache'a poprzedniego runu. fetch_responses_browser
+    # ma już skip dla records z odpowiedz_url, więc to wystarczy żeby phase 4
+    # iterowała tylko po nowych/niesprawdzonych doc_id.
+    cached_count = 0
+    for r in all_records:
+        prev = previous_responses.get(r.get("doc_id"))
+        if prev and not r.get("odpowiedz_url"):
+            r["odpowiedz_url"] = prev["odpowiedz_url"]
+            r["data_odpowiedzi"] = prev.get("data_odpowiedzi", "")
+            r["odpowiedz_status"] = prev.get("odpowiedz_status", "udzielono odpowiedzi")
+            cached_count += 1
+    if cached_count:
+        print(f"  Z cache'a: {cached_count} odpowiedzi pominiętych w phase 4")
 
     # Step 4: Fetch response links via headless browser (SOAP API requires NTLM)
     print(f"\n[4/4] Pobieranie odpowiedzi (headless browser)...")
