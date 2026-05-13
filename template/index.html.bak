@@ -941,15 +941,12 @@ async function init() {
       navigateTo(path, true);
       return;
     }
-    if (path === '/business' || path === '/business/' || path === '/premium' || path === '/premium/') {
-      // Business offer hostowany jest jako jedna kanoniczna strona na apex
-      // międzynarodowym radoskop.eu/business/. Per-city subdomena nie ma
-      // własnej oferty, przekierowujemy z zachowaniem ?from/druk/komisja
-      // w query string. Stary slug /premium/ też tutaj wpada (rebrand
-      // 2026-05-13). Worker robi 301 na poziomie edge, ten SPA fallback
-      // łapie tylko gdy worker by minął.
+    if (path === '/premium' || path === '/premium/') {
+      // Premium offer hostowany jest jako jedna kanoniczna strona na apex
+      // radoskop.pl/premium/. Per-city subdomena nie ma własnej oferty -
+      // przekierowujemy z zachowaniem ?from/druk/komisja w query string.
       var search = location.search || '';
-      location.replace('https://radoskop.eu/business/' + search);
+      location.replace('https://radoskop.pl/premium/' + search);
       return;
     }
     if (path === '/interpelacje' || path === '/interpelacje/') {
@@ -1318,25 +1315,114 @@ function showPrivacy() {
   window.scrollTo(0, 0);
 }
 
-// --- Business landing page ---
-// Single canonical URL: https://radoskop.eu/business/. Per-city subdomeny
-// (i radoskop.pl apex) NIE mają własnej oferty. Wszystko leci na .eu, gdzie
-// też siedzi auth/account/paywall infrastructure. Funkcja zostawiona jako
-// alias, linki z CTA wołają showBusiness({...}) i dostają redirect na apex
-// .eu z zachowanym query string. Worker robi 301 na poziomie edge dla
-// Googlebota, ten SPA fallback łapie gdy user kliknie CTA bez full page reload.
-function showBusiness(opts) {
+// --- Premium landing page ---
+// Single canonical URL: https://radoskop.pl/premium/. Per-city subdomeny NIE
+// mają własnej oferty (B2B Premium jest jeden per kraj). Funkcja zostawiona
+// jako alias - linki z CTA mogą wołać showPremium({...}) i dostaną redirect
+// na apex z zachowanym query string. Per-city router też przekierowuje
+// /premium/ na apex (location.replace), więc nawet bookmark / SEO bot trafi
+// na właściwą stronę.
+function showPremium(opts) {
   opts = opts || {};
-  trackEvent('click_business_redirect_to_apex', { from: opts.from || '', druk: opts.druk || '', komisja: opts.komisja || '' });
+  trackEvent('click_premium_redirect_to_apex', { from: opts.from || '', druk: opts.druk || '', komisja: opts.komisja || '' });
   var qs = [];
   if (opts.from) qs.push('from=' + encodeURIComponent(opts.from));
   if (opts.druk) qs.push('druk=' + encodeURIComponent(opts.druk));
   if (opts.komisja) qs.push('komisja=' + encodeURIComponent(opts.komisja));
   var search = qs.length ? '?' + qs.join('&') : '';
-  location.assign('https://radoskop.eu/business/' + search);
+  location.assign('https://radoskop.pl/premium/' + search);
 }
-// Backward-compat alias (jeśli stary kod jeszcze gdzieś zostawił showPremium)
-var showPremium = showBusiness;
+
+// --- DEPRECATED stub (zachowane dla kompatybilności jeśli ktoś jeszcze
+// odwoła się do tej funkcji - cały content przeniesiony na apex). Bezpiecznie
+// usunąć po jednym pełnym deployu. ---
+function _showPremiumLocal_DEPRECATED(opts) {
+  opts = opts || {};
+  hideAllViews();
+  var el = document.getElementById('premium-view');
+  el.style.display = 'block';
+  trackEvent('view_premium_page', { from: opts.from || '', druk: opts.druk || '', komisja: opts.komisja || '' });
+
+  // Subject mailto z kontekstem żeby było wiadomo co usera zainteresowało.
+  var subjectParts = ['Radoskop Premium — zapytanie'];
+  if (opts.druk) subjectParts.push('druk ' + opts.druk);
+  if (opts.komisja) subjectParts.push('komisja ' + opts.komisja);
+  if (opts.from && !opts.druk && !opts.komisja) subjectParts.push('(' + opts.from + ')');
+  var subject = encodeURIComponent(subjectParts.join(' — '));
+
+  // Body mailto: nadawca może zostawić puste, ale dajemy szkic
+  var body = encodeURIComponent(
+    'Cześć,\n\nInteresuje mnie Radoskop Premium dla {{CITY_NAME}}.\n\n'
+    + 'Krótko o mnie / firmie:\n\n\n'
+    + 'Co chciałbym monitorować (branża, druki, komisje, radni):\n\n\n'
+    + 'Pozdrawiam,\n'
+  );
+
+  var mailHref = 'mailto:patrykorwat@gmail.com?subject=' + subject + '&body=' + body;
+
+  /* PREMIUM_HTML_BEGIN */
+  el.innerHTML = '<div style="max-width:800px;margin:0 auto;padding:20px 0">'
+    + '<button class="profile-back" onclick="showMain()">← Strona główna</button>'
+    + '<div style="background:linear-gradient(135deg,rgba(99,102,241,0.08),rgba(99,102,241,0.02));border-left:3px solid var(--accent);padding:24px;margin:20px 0;border-radius:0">'
+    + '<div style="font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">Premium</div>'
+    + '<h1 style="font-size:1.6rem;margin:0 0 12px;font-weight:600">Monitoring procesu legislacyjnego w Radzie Miasta {{CITY_GENITIVE}}</h1>'
+    + '<p style="color:var(--muted);margin:0;font-size:0.95rem;line-height:1.5">Pełna ścieżka druku przed głosowaniem: które komisje, kiedy, opinie, protokoły. Plus alerty w czasie rzeczywistym.</p>'
+    + '</div>'
+
+    + '<h2 style="font-size:1.15rem;margin:28px 0 12px;font-weight:600">Co dostajesz</h2>'
+    + '<div style="display:grid;grid-template-columns:1fr;gap:16px">'
+    + '<div style="border:0.5px solid var(--border);padding:14px 16px;border-radius:0">'
+    + '<div style="font-weight:600;font-size:0.95rem;margin-bottom:4px">Pełna procedura komisyjna druku</div>'
+    + '<div style="color:var(--muted);font-size:0.88rem;line-height:1.5">Dla każdego druku: które komisje go procedowały, daty posiedzeń, lead time od skierowania do uchwały, treść opinii, link do BIP. Wersja darmowa pokazuje top 3 komisji bez opinii i protokołów.</div>'
+    + '</div>'
+    + '<div style="border:0.5px solid var(--border);padding:14px 16px;border-radius:0">'
+    + '<div style="font-weight:600;font-size:0.95rem;margin-bottom:4px">Alerty na nowe druki w pipeline</div>'
+    + '<div style="color:var(--muted);font-size:0.88rem;line-height:1.5">Powiadomienie email gdy nowy druk pojawia się w komisji, której pilnujesz. Filtr po słowach kluczowych, branży, radnym.</div>'
+    + '</div>'
+    + '<div style="border:0.5px solid var(--border);padding:14px 16px;border-radius:0">'
+    + '<div style="font-weight:600;font-size:0.95rem;margin-bottom:4px">Tryb pilny i lex specialis</div>'
+    + '<div style="color:var(--muted);font-size:0.88rem;line-height:1.5">Druki głosowane bez procedowania w komisjach (tryb pilny, sesje nadzwyczajne). Analiza dlaczego pominięte, kontekst polityczny.</div>'
+    + '</div>'
+    + '<div style="border:0.5px solid var(--border);padding:14px 16px;border-radius:0">'
+    + '<div style="font-weight:600;font-size:0.95rem;margin-bottom:4px">Eksport i API</div>'
+    + '<div style="color:var(--muted);font-size:0.88rem;line-height:1.5">Dostęp do API z autentykacją, eksport CSV/JSON dla raportów wewnętrznych i analiz w narzędziach typu Tableau, Looker, Excel.</div>'
+    + '</div>'
+    + '</div>'
+
+    + '<h2 style="font-size:1.15rem;margin:32px 0 12px;font-weight:600">Dla kogo</h2>'
+    + '<ul style="margin:0;padding-left:20px;color:var(--muted);font-size:0.92rem;line-height:1.7">'
+    + '<li><strong style="color:var(--text);font-weight:600">Deweloperzy i biura projektowe</strong> — śledzenie planów zagospodarowania, MPZP, decyzji o warunkach zabudowy</li>'
+    + '<li><strong style="color:var(--text);font-weight:600">Branżowi liderzy</strong> (transport, ochrona środowiska, edukacja, zdrowie) — monitoring decyzji wpływających na sektor</li>'
+    + '<li><strong style="color:var(--text);font-weight:600">Lobbysta, kancelarie prawne, doradcy</strong> — pełna procedura legislacyjna druku, dokumentacja dla klientów</li>'
+    + '<li><strong style="color:var(--text);font-weight:600">Dziennikarze i organizacje pozarządowe</strong> — szybkie wyłapywanie kontrowersyjnych druków przed głosowaniem</li>'
+    + '</ul>'
+
+    + '<h2 style="font-size:1.15rem;margin:32px 0 12px;font-weight:600">Dostępność</h2>'
+    + '<p style="color:var(--muted);font-size:0.92rem;line-height:1.6">Aktualnie Premium dostępny dla: <strong style="color:var(--text)">Warszawa, Gdańsk, Kraków</strong>. Kolejne miasta dodajemy na podstawie zainteresowania, napisz jeśli interesuje Cię konkretny samorząd.</p>'
+
+    + '<h2 style="font-size:1.15rem;margin:32px 0 12px;font-weight:600">Cena</h2>'
+    + '<p style="color:var(--muted);font-size:0.92rem;line-height:1.6">Wycena indywidualna na podstawie zakresu (jedno miasto vs wiele, liczba użytkowników, API access, branżowe alerty). Faktura VAT, B2B przez KSeF.</p>'
+
+    + '<div style="background:rgba(99,102,241,0.06);padding:20px;margin:32px 0;border-radius:0;border:0.5px solid var(--border)">'
+    + '<div style="font-weight:600;font-size:1rem;margin-bottom:8px">Napisz, opowiem o szczegółach</div>'
+    + '<div style="color:var(--muted);font-size:0.88rem;line-height:1.5;margin-bottom:14px">Krótka rozmowa albo email zwrotny w 24h. Bez automatów, bez landing page generycznych.</div>'
+    + '<a href="' + mailHref + '" '
+    + 'onclick="trackEvent(\'click_premium_mail\',{from:\'' + (opts.from || '') + '\',druk:\'' + (opts.druk || '') + '\',komisja:\'' + (opts.komisja || '') + '\'})" '
+    + 'style="display:inline-block;background:var(--accent);color:#fff;padding:10px 18px;text-decoration:none;font-size:0.9rem;font-weight:500;border-radius:0">Napisz email</a>'
+    + '<div style="margin-top:12px;font-size:0.82rem;color:var(--muted)">Lub bezpośrednio: <a href="mailto:patrykorwat@gmail.com" style="color:var(--accent);text-decoration:none">patrykorwat@gmail.com</a></div>'
+    + '</div>'
+
+    + '</div>';
+  /* PREMIUM_HTML_END */
+
+  setTitle('Premium');
+  setOgMeta({
+    title: 'Radoskop Premium — monitoring komisji i druków dla {{CITY_GENITIVE}}',
+    description: 'Pełna procedura komisyjna druku, alerty na nowe druki w pipeline, eksport CSV/JSON. Dla deweloperów, branżowych liderów, kancelarii.',
+    url: '{{SITE_URL}}/premium/'
+  });
+  window.scrollTo(0, 0);
+}
 
 // --- Terms of service page ---
 function showTerms() {
@@ -2670,8 +2756,8 @@ async function renderCommissionTimeline(druk, container) {
       <div style="flex:1;font-size:13px;color:var(--text)">
         Łącznie <strong style="font-weight:500">${csTotal} komisji</strong> w pipeline — pełna lista z opiniami w Premium
       </div>
-      <a href="https://radoskop.eu/business/?from=commission_timeline_hidden&druk=${encodeURIComponent(druk)}"
-         onclick="event.preventDefault();trackEvent('click_business_cta',{location:'commission_timeline_hidden',druk:'${druk}',hidden:${csHidden}});showBusiness({from:'commission_timeline_hidden',druk:'${druk}'})"
+      <a href="/premium/?from=commission_timeline_hidden&druk=${encodeURIComponent(druk)}"
+         onclick="event.preventDefault();trackEvent('click_premium_cta',{location:'commission_timeline_hidden',druk:'${druk}',hidden:${csHidden}});showPremium({from:'commission_timeline_hidden',druk:'${druk}'})"
          style="font-size:12px;color:var(--accent);text-decoration:none">Zapytaj o pełną analizę ↗</a>
     </div>
   ` : '';
@@ -2717,8 +2803,8 @@ async function renderCommissionTimeline(druk, container) {
       ${sessionRow}
       <div style="font-size:12px;color:var(--muted);margin-top:12px;padding-top:12px;border-top:0.5px solid var(--border)">
         ${ctaCopy}
-        <a href="https://radoskop.eu/business/?from=commission_timeline&druk=${encodeURIComponent(druk)}"
-           onclick="event.preventDefault();trackEvent('click_business_cta',{location:'commission_timeline',druk:'${druk}',status:'${status}',commissions:${csTotal}});showBusiness({from:'commission_timeline',druk:'${druk}'})"
+        <a href="/premium/?from=commission_timeline&druk=${encodeURIComponent(druk)}"
+           onclick="event.preventDefault();trackEvent('click_premium_cta',{location:'commission_timeline',druk:'${druk}',status:'${status}',commissions:${csTotal}});showPremium({from:'commission_timeline',druk:'${druk}'})"
            style="color:var(--accent);margin-left:4px;text-decoration:none">Dowiedz się więcej ↗</a>
       </div>
     </div>
@@ -3057,8 +3143,8 @@ async function renderKomisjeList() {
     <div class="komisje-grid">${cards}</div>
     <div style="margin-top:24px;padding:16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px;color:var(--text)">
       Pełna lista posiedzeń z porządkami obrad, protokołami i opiniami komisji dostępna w pakiecie Premium.
-      <a href="https://radoskop.eu/business/?from=komisje_list"
-         onclick="event.preventDefault();trackEvent('click_business_komisja_cta',{location:'komisje_list'});showBusiness({from:'komisje_list'})"
+      <a href="/premium/?from=komisje_list"
+         onclick="event.preventDefault();trackEvent('click_premium_komisja_cta',{location:'komisje_list'});showPremium({from:'komisje_list'})"
          style="color:var(--accent);margin-left:6px;text-decoration:none">Zapytaj o dostęp ↗</a>
     </div>
   `;
@@ -3136,8 +3222,8 @@ async function showKomisja(slug) {
   const hiddenTeaser = meetingsHidden > 0 ? `
     <div style="margin-top:16px;padding:14px 16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px">
       Łącznie <strong style="font-weight:500">${meetingsTotal} posiedzeń</strong> w archiwum, pokazane ${meetingsTop.length}. Pełne archiwum z porządkami obrad, protokołami i opiniami w pakiecie Premium.
-      <a href="https://radoskop.eu/business/?from=komisja_detail&komisja=${encodeURIComponent(slug)}"
-         onclick="event.preventDefault();trackEvent('click_business_komisja_cta',{location:'komisja_detail',slug:'${slug}',hidden:${meetingsHidden}});showBusiness({from:'komisja_detail',komisja:'${slug}'})"
+      <a href="/premium/?from=komisja_detail&komisja=${encodeURIComponent(slug)}"
+         onclick="event.preventDefault();trackEvent('click_premium_komisja_cta',{location:'komisja_detail',slug:'${slug}',hidden:${meetingsHidden}});showPremium({from:'komisja_detail',komisja:'${slug}'})"
          style="color:var(--accent);margin-left:6px;text-decoration:none">Zapytaj o dostęp ↗</a>
     </div>
   ` : '';

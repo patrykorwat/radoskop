@@ -114,11 +114,25 @@ def load_profiles(city_dir: Path) -> Dict[str, Dict[str, Any]]:
 def build_cross_city_json(base_path: Path, output_path: Path):
     """Main function to aggregate all city data and build cross-city JSON."""
 
-    # Find all radoskop-* directories (excluding 'radoskop' itself)
-    city_dirs = sorted([
-        d for d in base_path.iterdir()
-        if d.is_dir() and d.name.startswith('radoskop-')
-    ])
+    # Discover cities. Po migracji do monorepo szukamy w radoskop/cities/{slug}/.
+    # Fallback do legacy radoskop-{slug}/ dla repo które jeszcze nie przeszły
+    # migracji. Bez tego nowe miasta dodane do cities/ (np. czestochowa, radom)
+    # nie wchodziły do cross-city.json bo nie było odpowiadającego sibling
+    # `radoskop-{slug}/` dir w workspace root.
+    city_dirs: list[Path] = []
+    monorepo_cities = base_path / 'radoskop' / 'cities'
+    if monorepo_cities.is_dir():
+        for d in sorted(monorepo_cities.iterdir()):
+            if d.is_dir() and (d / 'config.json').exists():
+                city_dirs.append(d)
+    # Legacy sibling radoskop-{slug}/ (po migracji większość pusta, ale jeśli
+    # ktoś jeszcze trzyma stary layout z config.json+docs/data.json to też wpadnie).
+    for d in sorted(base_path.iterdir()):
+        if d.is_dir() and d.name.startswith('radoskop-') and d.name != 'radoskop-premium':
+            slug = d.name[len('radoskop-'):]
+            already_in = any(p.name == slug for p in city_dirs)
+            if not already_in and (d / 'config.json').exists():
+                city_dirs.append(d)
 
     cities_data = []
     all_councilors = []

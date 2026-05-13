@@ -511,6 +511,11 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
     _maybe_write_page(out / SLUG["reports"] / "index.html", reports_page)
     sitemap_entries.append({"loc": reports_canonical, "changefreq": "weekly", "priority": "0.6"})
 
+    # NB: /premium/ NIE wchodzi do per-city sitemap - oferta Premium jest
+    # jedna per kraj (B2B), kanonicznie na https://radoskop.pl/premium/.
+    # Per-city /premium/ robi 301 redirect na apex (router w SPA).
+    # Sitemap apex (build_main_sitemap.py) ma /premium/.
+
     # ════════════════════════════════════════════
     # 7. Fix main index.html canonical
     # ════════════════════════════════════════════

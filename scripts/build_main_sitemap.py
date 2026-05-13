@@ -74,6 +74,10 @@ def write_apex_sitemap(out_path: Path, today: str) -> None:
         ("https://radoskop.pl/#councilors", "0.7", "weekly"),
         ("https://radoskop.pl/#votes", "0.6", "weekly"),
         ("https://radoskop.pl/#interpelacje", "0.6", "weekly"),
+        # NB: /business/ NIE wchodzi do sitemap radoskop.pl. Strona Business
+        # jest hostowana kanonicznie pod https://radoskop.eu/business/, a
+        # radoskop.pl/business/ oraz radoskop.pl/premium/ tylko 301 redirect
+        # przez worker. Sitemap dla .eu lista /business/ osobno.
     ]:
         parts.append("  <url>")
         parts.append(f"    <loc>{loc}</loc>")
