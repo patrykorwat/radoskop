@@ -187,6 +187,24 @@ def _decompact_named_votes(named: dict, councilor_index: list) -> dict:
     return out
 
 
+def _is_session_older_than(date_str: str | None, days: int = 2) -> bool:
+    """True gdy data sesji YYYY-MM-DD jest co najmniej N dni wstecz.
+
+    Używane przez fetch() do decyzji czy hit'ować disk cache. eSesja może
+    dorzucać głosowania post-factum przez pierwszy dzień-dwa, potem treść
+    jest stabilna.
+    """
+    if not date_str:
+        return False
+    try:
+        from datetime import datetime as _dt
+        dt = _dt.strptime(date_str, "%Y-%m-%d")
+    except (ValueError, TypeError):
+        return False
+    from datetime import datetime as _dt2
+    return (_dt2.now() - dt).days >= days
+
+
 def load_previous_votes_by_date(kadencja_file: Path) -> dict[str, list[dict]]:
     """Read the previously-saved kadencja JSON and index its votes by session date.
 
@@ -346,6 +364,10 @@ class EsesjaScraper:
         else:
             self.default_kadencja = next(iter(self.kadencje.keys()))
         self._session: requests.Session | None = None
+        # HTML disk cache - wire'owane przez --cache-dir w run_cli(). Domyślnie
+        # wyłączone żeby zachować backward compat. Pipeline scrape_all.sh
+        # przekaże dir dla każdego esesja-based miasta.
+        self._cache_dir: Path | None = None
 
     # -- HTTP layer --------------------------------------------------------
 
@@ -357,9 +379,33 @@ class EsesjaScraper:
         })
         self._session = s
 
-    def fetch(self, url: str) -> BeautifulSoup:
+    def init_cache(self, cache_dir: str | None) -> None:
+        """Aktywuje disk cache dla HTML responses. Idempotentny."""
+        if cache_dir:
+            self._cache_dir = Path(cache_dir)
+            self._cache_dir.mkdir(parents=True, exist_ok=True)
+        else:
+            self._cache_dir = None
+
+    def _cache_path(self, url: str) -> Path | None:
+        if self._cache_dir is None:
+            return None
+        import hashlib
+        h = hashlib.md5(url.encode("utf-8")).hexdigest()[:16]
+        return self._cache_dir / f"{h}.html"
+
+    def fetch(self, url: str, use_cache: bool = True) -> BeautifulSoup:
+        """Pobiera URL z dyskowym cachem.
+
+        use_cache=False wymusza świeży HTTP (lista sesji, świeże sesje itp).
+        Cache key: md5(url)[:16]. Pliki HTML zapisywane do _cache_dir.
+        """
         if self._session is None:
             self._init_session()
+        cache_file = self._cache_path(url) if use_cache else None
+        if cache_file and cache_file.exists() and cache_file.stat().st_size > 100:
+            text = cache_file.read_text(encoding="utf-8")
+            return BeautifulSoup(text, "lxml")
         time.sleep(self.delay)
         print(f"  GET {url}")
         resp = self._session.get(url, timeout=30)  # type: ignore[union-attr]
@@ -368,6 +414,11 @@ class EsesjaScraper:
         # otherwise falls back to ISO-8859-1 and mangles Polish characters.
         if "esesja" in url:
             resp.encoding = "windows-1250"
+        if cache_file:
+            try:
+                cache_file.write_text(resp.text, encoding="utf-8")
+            except Exception:
+                pass
         return BeautifulSoup(resp.text, "lxml")
 
     # -- Club resolution ---------------------------------------------------
@@ -391,7 +442,8 @@ class EsesjaScraper:
         while True:
             url = self.sessions_url if page == 1 else f"{self.sessions_url}/{page}"
             try:
-                soup = self.fetch(url)
+                # Lista sesji ZAWSZE fresh - musimy wykryć nowe sesje na BIP.
+                soup = self.fetch(url, use_cache=False)
             except Exception as e:
                 print(f"  Nie udalo sie pobrac {url}: {e}")
                 break
@@ -453,8 +505,12 @@ class EsesjaScraper:
 
     def scrape_votes_from_session(self, session: dict) -> list[dict]:
         votes: list[dict] = []
+        # Cache HTML sesji tylko jeśli starsza niż 2 dni (głosowania finalne).
+        # Świeższe sesje (do 2 dni) wymuszają fresh HTTP bo eSesja może
+        # dorzucać głosowania post-factum.
+        is_stable = _is_session_older_than(session.get("date"), days=2)
         try:
-            soup = self.fetch(session["url"])
+            soup = self.fetch(session["url"], use_cache=is_stable)
         except Exception as e:
             print(f"    Blad pobierania sesji: {e}")
             return votes
@@ -483,8 +539,10 @@ class EsesjaScraper:
         return votes
 
     def _scrape_single_vote(self, url: str, session: dict, vote_idx: int) -> dict | None:
+        # Per-głosowanie page: cache jeśli sesja jest stabilna (>2 dni).
+        is_stable = _is_session_older_than(session.get("date"), days=2)
         try:
-            soup = self.fetch(url)
+            soup = self.fetch(url, use_cache=is_stable)
         except Exception as e:
             print(f"      Blad pobierania {url}: {e}")
             return None
@@ -757,8 +815,9 @@ class EsesjaScraper:
         parser.add_argument("--max-sessions", type=int, default=0)
         parser.add_argument("--delay", type=float, default=1.0)
         parser.add_argument("--dry-run", action="store_true")
-        # `--cache-dir` accepted but ignored, kept for compatibility with
-        # scrape_all.sh's per-city CLI conventions.
+        # HTML disk cache: lista sesji zawsze fresh (bez cache), strony sesji
+        # i głosowań starszych niż 2 dni hitują cache (eSesja nie zmienia
+        # historycznych protokołów). Pipeline przekazuje scratch_dir/.cache/html.
         parser.add_argument("--cache-dir", default=None)
         parser.add_argument(
             "--incremental-window", type=int, default=30,
@@ -771,6 +830,7 @@ class EsesjaScraper:
         args = parser.parse_args()
         if args.delay != 1.0:
             self.delay = args.delay
+        self.init_cache(args.cache_dir)
         return self.run(
             incremental_window_days=args.incremental_window,
             force_full=args.full,

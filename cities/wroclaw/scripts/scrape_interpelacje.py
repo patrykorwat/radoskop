@@ -177,6 +177,13 @@ def parse_list_page(html, kadencja_name, debug=False):
 # Scraping — detail page
 # ---------------------------------------------------------------------------
 
+# Import shared HTTP cache (sys.path bo scraper pod cities/).
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "scripts"))
+from http_cache import cached_fetch_text, init_cache  # noqa: E402
+
+
 def fetch_detail(session, bip_url, debug=False):
     """Pobiera szczegóły interpelacji z jej strony."""
     if not bip_url:
@@ -186,9 +193,8 @@ def fetch_detail(session, bip_url, debug=False):
         print(f"  [DEBUG] GET {bip_url}")
 
     try:
-        resp = session.get(bip_url, headers=HEADERS, timeout=30)
-        resp.raise_for_status()
-        soup = BeautifulSoup(resp.text, "html.parser")
+        text = cached_fetch_text(bip_url, session=session, headers=HEADERS, delay=0.1)
+        soup = BeautifulSoup(text, "html.parser")
 
         detail = {}
         # Parse table rows (th + td pairs)
@@ -423,7 +429,15 @@ def main():
         "--debug", action="store_true",
         help="Włącz szczegółowe logowanie"
     )
+    parser.add_argument(
+        "--cache-dir", default=None,
+        help="Katalog cache HTML dla detail pages."
+    )
     args = parser.parse_args()
+
+    init_cache(args.cache_dir)
+    if args.cache_dir:
+        print(f"Cache HTML interpelacji: {args.cache_dir}")
 
     if args.kadencja.lower() == "all":
         kadencje = list(KADENCJE.keys())

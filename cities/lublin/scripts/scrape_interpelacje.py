@@ -71,13 +71,21 @@ DELAY = 0.4
 # Scraping helpers
 # ---------------------------------------------------------------------------
 
-def fetch_page(session, url, debug=False):
-    """Pobiera stronę HTML."""
+# Import shared HTTP cache (sys.path bo scraper pod cities/).
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "scripts"))
+from http_cache import cached_fetch_text, init_cache  # noqa: E402
+
+
+def fetch_page(session, url, debug=False, force: bool = False):
+    """Pobiera stronę HTML. Cache aktywny gdy --cache-dir przekazany.
+
+    force=True dla listy stron (paginacja może mieć nowe interpelacje).
+    """
     if debug:
         print(f"  [DEBUG] GET {url}")
-    resp = session.get(url, headers=HEADERS, timeout=30)
-    resp.raise_for_status()
-    return resp.text
+    return cached_fetch_text(url, session=session, headers=HEADERS, delay=0.1, force=force)
 
 
 def discover_page_count(soup):
@@ -271,9 +279,9 @@ def scrape(kadencje, output_path, fetch_details=True, debug=False):
         print(f"\n=== {kad['label']} ===")
         print(f"  URL: {list_url}")
 
-        # Page 1
+        # Page 1 - lista zawsze fresh żeby wykryć nowe interpelacje.
         try:
-            html = fetch_page(session, list_url, debug=debug)
+            html = fetch_page(session, list_url, debug=debug, force=True)
         except Exception as e:
             print(f"  BŁĄD pobierania strony listy: {e}")
             continue
@@ -286,11 +294,11 @@ def scrape(kadencje, output_path, fetch_details=True, debug=False):
         print(f"  Strona 1: {len(records)} rekordów")
         all_records.extend(records)
 
-        # Remaining pages
+        # Remaining pages - też fresh
         for page in range(2, max_page + 1):
             page_url = f"{list_url}{page},strona.html"
             try:
-                html = fetch_page(session, page_url, debug=debug)
+                html = fetch_page(session, page_url, debug=debug, force=True)
                 soup = BeautifulSoup(html, "html.parser")
                 page_records = parse_list_page(soup, BASE_URL)
                 print(f"  Strona {page}: {len(page_records)} rekordów")
@@ -384,7 +392,15 @@ def main():
         "--debug", action="store_true",
         help="Włącz szczegółowe logowanie"
     )
+    parser.add_argument(
+        "--cache-dir", default=None,
+        help="Katalog cache HTML dla detail pages."
+    )
     args = parser.parse_args()
+
+    init_cache(args.cache_dir)
+    if args.cache_dir:
+        print(f"Cache HTML interpelacji: {args.cache_dir}")
 
     if args.kadencja.lower() == "all":
         kadencje = list(KADENCJE.keys())

@@ -59,14 +59,25 @@ PAGE_SIZE = 50
 # API helpers
 # ---------------------------------------------------------------------------
 
-def api_get(session, path, params=None, debug=False):
-    """GET z BIP API, zwraca JSON."""
+# Import shared HTTP cache (sys.path bo scraper pod cities/).
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "scripts"))
+from http_cache import cached_fetch_json, init_cache  # noqa: E402
+
+
+def api_get(session, path, params=None, debug=False, force: bool = False):
+    """GET z BIP API, zwraca JSON. Z disk cache gdy --cache-dir aktywny.
+
+    force=True dla list paginacji artykułów (musi wykrywać nowe).
+    Detail endpointy /articles/{id} cache'ują się (immutable po publikacji).
+    """
     url = f"{BIP_API}{path}"
     if debug:
         print(f"  [DEBUG] GET {url} params={params}")
-    resp = session.get(url, headers=HEADERS, params=params, timeout=30)
-    resp.raise_for_status()
-    return resp.json()
+    return cached_fetch_json(
+        url, session=session, params=params, headers=HEADERS, delay=0.0, force=force,
+    )
 
 
 def fetch_articles(session, menu_id, debug=False):
@@ -76,7 +87,8 @@ def fetch_articles(session, menu_id, debug=False):
 
     while True:
         params = {"limit": PAGE_SIZE, "offset": offset, "archived": 0}
-        data = api_get(session, f"/menu/{menu_id}/articles", params, debug=debug)
+        # Lista paginacji ZAWSZE fresh - musimy wykryć nowe interpelacje.
+        data = api_get(session, f"/menu/{menu_id}/articles", params, debug=debug, force=True)
 
         batch = data.get("articles", [])
         if not batch:
@@ -98,7 +110,7 @@ def fetch_articles(session, menu_id, debug=False):
 
 
 def fetch_article_detail(session, article_id, debug=False):
-    """Pobiera szczegóły artykułu (z załącznikami)."""
+    """Pobiera szczegóły artykułu (z załącznikami). Cache aktywny dla detail."""
     return api_get(session, f"/articles/{article_id}", debug=debug)
 
 
@@ -373,7 +385,15 @@ def main():
         "--debug", action="store_true",
         help="Włącz szczegółowe logowanie"
     )
+    parser.add_argument(
+        "--cache-dir", default=None,
+        help="Katalog cache JSON dla /articles/{id} detail endpointów."
+    )
     args = parser.parse_args()
+
+    init_cache(args.cache_dir)
+    if args.cache_dir:
+        print(f"Cache JSON interpelacji: {args.cache_dir}")
 
     if args.kadencja == "all":
         kadencje = list(KADENCJE.keys())

@@ -121,7 +121,7 @@ DELAY = 1.0
 # Sesje starsze niż tyle dni traktujemy jako stabilne. BIP nie aktualizuje
 # protokołów po tym czasie. Dla takich sesji pomijamy GET session.aspx + GET
 # dokument.aspx (zaoszczędzone 2 HTTP × 150 sesji = ~300 requestów i ~5 min).
-STABLE_AGE_DAYS = 7
+STABLE_AGE_DAYS = 2  # sesje >=2 dni cache, bo vote data zwykle publikowany w 24h
 
 # Wersja schematu state.json. Bump gdy zmieni się shape pdf_links albo
 # pola wymagane do skipu HTTP. Stary cache po bumpie zostanie pominięty.

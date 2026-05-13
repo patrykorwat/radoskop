@@ -300,13 +300,22 @@ def parse_detail_page(html, debug=False):
 # Scraping
 # ---------------------------------------------------------------------------
 
-def fetch_page(session, url, debug=False):
-    """Pobiera stronę HTML."""
+# Import shared HTTP cache (sys.path bo scraper pod cities/).
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "scripts"))
+from http_cache import cached_fetch_text, init_cache  # noqa: E402
+
+
+def fetch_page(session, url, debug=False, force: bool = False):
+    """Pobiera stronę HTML. Cache aktywny gdy --cache-dir przekazany.
+
+    force=True dla list paginacji (musi wykrywać nowe interpelacje).
+    Detail pages cache'ują się domyślnie (treść interpelacji finalna).
+    """
     if debug:
         print(f"  [DEBUG] GET {url[:120]}...")
-    resp = session.get(url, headers=HEADERS, timeout=60)
-    resp.raise_for_status()
-    return resp.text
+    return cached_fetch_text(url, session=session, headers=HEADERS, delay=0.0, timeout=60, force=force)
 
 
 def scrape_kadencja(session, kad_id, kad_label, cat_id, fetch_details=False, debug=False):
@@ -320,7 +329,8 @@ def scrape_kadencja(session, kad_id, kad_label, cat_id, fetch_details=False, deb
     while True:
         url = build_url(cat_id, page=page)
         try:
-            html = fetch_page(session, url, debug=debug)
+            # Lista zawsze fresh: chcemy wykryć nowe interpelacje.
+            html = fetch_page(session, url, debug=debug, force=True)
         except Exception as e:
             print(f"  BŁĄD strony {page}: {e}")
             break
@@ -474,7 +484,15 @@ def main():
         "--debug", action="store_true",
         help="Włącz szczegółowe logowanie"
     )
+    parser.add_argument(
+        "--cache-dir", default=None,
+        help="Katalog cache HTML dla detail pages."
+    )
     args = parser.parse_args()
+
+    init_cache(args.cache_dir)
+    if args.cache_dir:
+        print(f"Cache HTML interpelacji: {args.cache_dir}")
 
     if args.kadencja == "all":
         kadencje = list(KADENCJE.keys())

@@ -140,10 +140,46 @@ COUNCILOR_LOOKUP = _build_name_lookup(COUNCILORS)
 # HTTP helpers
 # ---------------------------------------------------------------------------
 
-def fetch(url: str) -> BeautifulSoup:
-    """Pobiera stronę i zwraca BeautifulSoup."""
+# HTML disk cache - aktywowany przez --cache-dir. Pipeline scrape_all.sh
+# przekazuje scratch_dir/.cache/html (persystentny między runami).
+_CACHE_DIR: Path | None = None
+
+
+def init_cache(cache_dir: str | None) -> None:
+    global _CACHE_DIR
+    if cache_dir:
+        _CACHE_DIR = Path(cache_dir)
+        _CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    else:
+        _CACHE_DIR = None
+
+
+def _cache_path(url: str) -> Path | None:
+    if _CACHE_DIR is None:
+        return None
+    import hashlib
+    h = hashlib.md5(url.encode("utf-8")).hexdigest()[:16]
+    return _CACHE_DIR / f"{h}.html"
+
+
+def fetch(url: str, use_cache: bool = True) -> BeautifulSoup:
+    """Pobiera stronę i zwraca BeautifulSoup.
+
+    Disk cache aktywny gdy --cache-dir przekazany. Lista artykułów BIP
+    zmienia się rzadko (nowe sesje co 2 tygodnie), więc cache jest bezpieczny.
+    BIP Bydgoszcz nie zmienia historycznych URL-i.
+    """
+    cache_file = _cache_path(url) if use_cache else None
+    if cache_file and cache_file.exists() and cache_file.stat().st_size > 100:
+        text = cache_file.read_text(encoding="utf-8")
+        return BeautifulSoup(text, "html.parser")
     resp = requests.get(url, headers=HEADERS, timeout=30)
     resp.raise_for_status()
+    if cache_file:
+        try:
+            cache_file.write_text(resp.text, encoding="utf-8")
+        except Exception:
+            pass
     return BeautifulSoup(resp.text, "html.parser")
 
 
@@ -861,7 +897,15 @@ def main():
         "--profiles", default="docs/profiles.json",
         help="Ścieżka do pliku profiles.json (domyślnie: docs/profiles.json)"
     )
+    parser.add_argument(
+        "--cache-dir", default=None,
+        help="Katalog cache HTML. Listy BIP i strony sesji cache'owane. '' albo brak = wyłączony."
+    )
     args = parser.parse_args()
+
+    init_cache(args.cache_dir)
+    if args.cache_dir:
+        print(f"Cache HTML: {args.cache_dir}")
 
     scrape(
         output_data_path=args.output,

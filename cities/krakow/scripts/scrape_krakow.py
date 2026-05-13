@@ -79,7 +79,7 @@ _CACHE_DIR: Path | None = None
 
 # Sesje plenarne starsze niż tyle dni traktujemy jako stabilne. BIP Krakowa
 # nie modyfikuje stenogramów/wyników po finalizacji sesji (kilka dni max).
-STABLE_AGE_DAYS = 7
+STABLE_AGE_DAYS = 2  # sesje >=2 dni cache, bo vote data zwykle publikowany w 24h
 
 
 def _is_session_stable(date_str: str) -> bool:

@@ -610,18 +610,6 @@ footer a:hover{text-decoration-color:var(--accent);}
   </div>
 </footer>
 
-<!-- Cookie banner -->
-<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1f2937;color:#e5e7eb;padding:14px 20px;font-size:.85rem;z-index:9999;box-shadow:0 -2px 10px rgba(0,0,0,.3)">
-  <div style="max-width:900px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-    <span style="flex:1;min-width:200px">Ta strona używa plików cookies do analizy ruchu (Google Analytics) i wyświetlania reklam (Google AdSense).</span>
-    <span style="display:flex;gap:8px;flex-shrink:0">
-      <button onclick="acceptCookies()" style="background:#4f46e5;color:#fff;border:none;padding:7px 18px;border-radius:6px;cursor:pointer;font-size:.85rem">Akceptuję</button>
-      <button onclick="rejectCookies()" style="background:transparent;color:#e5e7eb;border:1px solid #4b5563;padding:7px 18px;border-radius:6px;cursor:pointer;font-size:.85rem">Odrzucam</button>
-      <a href="/polityka-prywatnosci/" style="color:#93c5fd;padding:7px 4px;font-size:.85rem;text-decoration:underline;white-space:nowrap">Więcej</a>
-    </span>
-  </div>
-</div>
-
 <script>
 // ── Cross-subdomain cookie helper (shared with per-city pages) ──
 function _radoskopCookieDomain(){return /(^|\.)radoskop\.pl$/i.test(location.hostname)?'; Domain=.radoskop.pl':'';}
@@ -651,38 +639,10 @@ function toggleTheme(){
   if (label) label.textContent = cur === 'light' ? 'Ciemny' : 'Jasny';
 })();
 
-// ── Cookie consent ──
-function getCookieConsent(){var m=document.cookie.match(/(?:^|;\s*)cookie_consent=([^;]*)/);return m?decodeURIComponent(m[1]):null;}
-function setCookieConsent(v){var d=new Date();d.setFullYear(d.getFullYear()+1);var sec=location.protocol==='https:'?'; Secure':'';document.cookie='cookie_consent='+v+'; expires='+d.toUTCString()+'; path=/; SameSite=Lax'+sec+_radoskopCookieDomain();}
-function acceptCookies(){
-  setCookieConsent('accepted');
-  document.getElementById('cookie-banner').style.display='none';
-  if(!document.querySelector('script[src*="googletagmanager"]')){
-    var s=document.createElement('script');s.async=true;
-    s.src='https://www.googletagmanager.com/gtag/js?id=G-1SH24XVXR3';
-    document.head.appendChild(s);
-    gtag('js',new Date());gtag('config','G-1SH24XVXR3');
-  }
-  if(!document.querySelector('script[src*="adsbygoogle"]')){
-    var a=document.createElement('script');a.async=true;a.crossOrigin='anonymous';
-    a.src='https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1616606963057752';
-    document.head.appendChild(a);
-  }
-}
-function rejectCookies(){setCookieConsent('rejected');document.getElementById('cookie-banner').style.display='none';window['ga-disable-G-1SH24XVXR3']=true;}
-function isGoogleCmpPresent(){
-  if(typeof window.__tcfapi==='function')return true;
-  if(document.cookie.indexOf('__gfc_consent_info')!==-1)return true;
-  if(document.cookie.indexOf('FCCDCF')!==-1)return true;
-  return false;
-}
-(function(){
-  if(isGoogleCmpPresent())return;
-  setTimeout(function(){if(isGoogleCmpPresent()){document.getElementById('cookie-banner').style.display='none';return;}},1500);
-  var c=getCookieConsent();
-  if(!c)document.getElementById('cookie-banner').style.display='block';
-  else if(c==='rejected')window['ga-disable-G-1SH24XVXR3']=true;
-})();
+// Cookie banner usunięty 2026-05. Radoskop nie używa GA/AdSense ani cookies
+// reklamowych. Sesja auth (radoskop_sid) to "strictly necessary" cookie nie
+// wymagające zgody zgodnie z ePrivacy. Umami analytics jest cookieless.
+// Polityka prywatności dokumentuje wszystkie zbierane dane.
 
 // ── Shared utilities ──
 function normalize(s){return (s||'').toLowerCase().replace(/ą/g,'a').replace(/ć/g,'c').replace(/ę/g,'e').replace(/ł/g,'l').replace(/ń/g,'n').replace(/ó/g,'o').replace(/ś/g,'s').replace(/ź/g,'z').replace(/ż/g,'z');}

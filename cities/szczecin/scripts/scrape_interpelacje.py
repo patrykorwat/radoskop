@@ -75,17 +75,20 @@ MONTHS_PL = {
 
 
 # ---------------------------------------------------------------------------
-# HTTP helpers
+# HTTP helpers (z disk cache - patrz scripts/http_cache.py)
 # ---------------------------------------------------------------------------
 
-def fetch_page(url: str) -> BeautifulSoup | None:
-    """Fetch and parse a page."""
-    time.sleep(DELAY)
+# Import shared cache helper z monorepo. sys.path manipulacja bo scrapery
+# żyją w cities/*/scripts/ a util w scripts/.
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from http_cache import cached_fetch_text, init_cache  # noqa: E402
+
+
+def fetch_page(url: str, force: bool = False) -> BeautifulSoup | None:
+    """Fetch and parse a page. Cache aktywny gdy --cache-dir przekazany."""
     try:
-        print(f"  GET {url}")
-        resp = requests.get(url, headers=HEADERS, timeout=30)
-        resp.raise_for_status()
-        return BeautifulSoup(resp.text, "lxml")
+        text = cached_fetch_text(url, headers=HEADERS, delay=DELAY, force=force)
+        return BeautifulSoup(text, "lxml")
     except Exception as e:
         print(f"  BŁĄD: {e}")
         return None
@@ -411,7 +414,15 @@ def main():
         "--debug", action="store_true",
         help="Włącz szczegółowe logowanie"
     )
+    parser.add_argument(
+        "--cache-dir", default=None,
+        help="Katalog cache HTML. Pipeline scrape_all.sh przekazuje scratch_dir/.cache/html."
+    )
     args = parser.parse_args()
+
+    init_cache(args.cache_dir)
+    if args.cache_dir:
+        print(f"Cache HTML: {args.cache_dir}")
 
     print("=== Radoskop Szczecin — Scraper Interpelacji ===")
     print(f"Backend: requests + BeautifulSoup\n")
