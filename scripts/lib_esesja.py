@@ -813,7 +813,7 @@ class EsesjaScraper:
         parser.add_argument("--output", default="docs/data.json")
         parser.add_argument("--profiles", default="docs/profiles.json")
         parser.add_argument("--max-sessions", type=int, default=0)
-        parser.add_argument("--delay", type=float, default=1.0)
+        parser.add_argument("--delay", type=float, default=0.3)
         parser.add_argument("--dry-run", action="store_true")
         # HTML disk cache: lista sesji zawsze fresh (bez cache), strony sesji
         # i głosowań starszych niż 2 dni hitują cache (eSesja nie zmienia
@@ -828,7 +828,7 @@ class EsesjaScraper:
             help="Force full re-scrape, ignoring previous kadencja JSON",
         )
         args = parser.parse_args()
-        if args.delay != 1.0:
+        if args.delay != 0.3:
             self.delay = args.delay
         self.init_cache(args.cache_dir)
         return self.run(

@@ -62,7 +62,7 @@ KADENCJE = {
     "2024-2029": {"label": "IX kadencja (2024–2029)", "start": "2024-05-07"},
 }
 
-DELAY = 1.0
+DELAY = 0.3  # politeness sleep przed HTTP, cache hits pomijają
 
 # Radni Wrocławia IX kadencja (2024-2029)
 # Nazwy muszą dokładnie pasować do formy w PDF (Imię Nazwisko).

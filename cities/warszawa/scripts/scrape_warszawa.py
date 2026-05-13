@@ -50,7 +50,41 @@ KADENCJE = {
     "2018-2024": {"label": "Kadencja 2018–2024", "start": "2018-11-22"},
 }
 
-DELAY = 1.0
+DELAY = 0.3
+STABLE_AGE_DAYS = 2
+
+# HTML disk cache - kluczowy speedup dla warszawa, bo każdy fetch przez
+# Playwright kosztuje 3-30s (browser navigate + wait_for_networkidle + wait_for_selector).
+# Cache hit zwraca BeautifulSoup z dysku BEZ ruszania Playwright.
+_CACHE_DIR: Path | None = None
+
+
+def init_cache(cache_dir: str | None) -> None:
+    global _CACHE_DIR
+    if cache_dir:
+        _CACHE_DIR = Path(cache_dir)
+        _CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    else:
+        _CACHE_DIR = None
+
+
+def _cache_path(url: str) -> Path | None:
+    if _CACHE_DIR is None:
+        return None
+    import hashlib
+    h = hashlib.md5(url.encode("utf-8")).hexdigest()[:16]
+    return _CACHE_DIR / f"{h}.html"
+
+
+def _is_session_stable(date_str: str | None) -> bool:
+    """True gdy data sesji YYYY-MM-DD jest >= STABLE_AGE_DAYS dni temu."""
+    if not date_str:
+        return False
+    try:
+        dt = datetime.strptime(date_str, "%Y-%m-%d")
+    except (ValueError, TypeError):
+        return False
+    return (datetime.now() - dt).days >= STABLE_AGE_DAYS
 
 # Globalny kontekst Playwright
 _browser = None
@@ -96,8 +130,18 @@ def ensure_bip_session():
     _initialized = True
 
 
-def fetch(url: str, wait_for: str = "li.search-entry-list-item", save_as: str = None) -> BeautifulSoup:
-    """Pobierz stronę przez Playwright i zwróć BeautifulSoup."""
+def fetch(url: str, wait_for: str = "li.search-entry-list-item", save_as: str = None, use_cache: bool = True) -> BeautifulSoup:
+    """Pobierz stronę przez Playwright i zwróć BeautifulSoup.
+
+    use_cache=False wymusza świeży Playwright fetch (listy sesji, świeże sesje).
+    Stabilne sesje (>2 dni) i statyczne strony używają disk cache,
+    pomijając całkowicie Playwright (kluczowy speedup - browser navigate
+    kosztuje 3-30s per page).
+    """
+    cache_file = _cache_path(url) if use_cache else None
+    if cache_file and cache_file.exists() and cache_file.stat().st_size > 100:
+        return BeautifulSoup(cache_file.read_text(encoding="utf-8"), "lxml")
+
     ensure_bip_session()
     time.sleep(DELAY)
     print(f"  GET {url}")
@@ -123,6 +167,11 @@ def fetch(url: str, wait_for: str = "li.search-entry-list-item", save_as: str = 
     if save_as:
         Path(save_as).write_text(html, encoding="utf-8")
         print(f"  Zapisano HTML → {save_as}")
+    if cache_file:
+        try:
+            cache_file.write_text(html, encoding="utf-8")
+        except Exception:
+            pass
     return BeautifulSoup(html, "lxml")
 
 
@@ -139,7 +188,8 @@ def scrape_session_list_all(oldest_start: str, max_pages: int = 0) -> list[dict]
             url = f"{SESSIONS_URL}?p_p_id={PORTLET_ID}&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_{PORTLET_ID}_mvcPath=%2Fview.jsp&{PAGE_PARAM}={page}"
 
         save = f"debug_sessions_page{page}.html" if page <= 3 else None
-        soup = fetch(url, save_as=save)
+        # Lista sesji ZAWSZE fresh - musimy wykryć nowe sesje.
+        soup = fetch(url, save_as=save, use_cache=False)
         items = soup.select("li.search-entry-list-item")
 
         if not items:
@@ -206,10 +256,15 @@ _session_soup_cache: dict[str, "BeautifulSoup"] = {}
 
 
 def _get_session_soup(session: dict):
-    """Pobierz i zcachuj stronę sesji (unikamy podwójnego fetcha)."""
+    """Pobierz i zcachuj stronę sesji (unikamy podwójnego fetcha w obrębie runu).
+
+    Plus disk cache: sesje z datą >= STABLE_AGE_DAYS hitują cache na dysku,
+    pomijając całkowicie Playwright. Świeże sesje (< 2 dni) zawsze fresh.
+    """
     url = session["url"]
     if url not in _session_soup_cache:
-        _session_soup_cache[url] = fetch(url, wait_for="article, .portlet-body")
+        is_stable = _is_session_stable(session.get("date"))
+        _session_soup_cache[url] = fetch(url, wait_for="article, .portlet-body", use_cache=is_stable)
     return _session_soup_cache[url]
 
 
@@ -803,7 +858,7 @@ def main():
     parser.add_argument("--kadencja", default="2024-2029",
                         help="ID kadencji (2024-2029, 2018-2024) lub 'all' dla wszystkich")
     parser.add_argument("--output", default="docs/data.json", help="Plik wyjściowy")
-    parser.add_argument("--delay", type=float, default=1.0, help="Opóźnienie między requestami (s)")
+    parser.add_argument("--delay", type=float, default=0.3, help="Opóźnienie między requestami (s)")
     parser.add_argument("--max-sessions", type=int, default=0, help="Maks. sesji do pobrania (0=wszystkie)")
     parser.add_argument("--max-pages", type=int, default=0, help="Maks. stron paginacji (0=wszystkie)")
     parser.add_argument("--dry-run", action="store_true", help="Tylko lista sesji, bez głosowań")
@@ -812,10 +867,17 @@ def main():
     parser.add_argument("--headed", action="store_true", help="Pokaż okno przeglądarki (debug)")
     parser.add_argument("--only-transcripts", action="store_true",
                         help="Tylko transkrypcje — pomiń głosowania, użyj istniejącego data.json")
+    parser.add_argument("--cache-dir", default=None,
+                        help="Katalog HTML cache. Sesje >2 dni hitują dysk pomijając Playwright. "
+                             "Pipeline scrape_all.sh przekazuje scratch_dir/.cache/html.")
     args = parser.parse_args()
 
     global DELAY
     DELAY = args.delay
+
+    init_cache(args.cache_dir)
+    if args.cache_dir:
+        print(f"Cache HTML: {args.cache_dir}")
 
     # Ustal które kadencje scrapować
     if args.kadencja == "all":
