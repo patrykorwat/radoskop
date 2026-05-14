@@ -21,6 +21,19 @@ PL_TO_EN: list[tuple[str, str]] = [
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Mapa dostępności z monitorowanymi miastami", "Coverage map with monitored cities"),
     ("Mapa dostępności", "Coverage map"),
+    # Auth / theme toggle
+    ("Zaloguj się", "Sign in"),
+    ("Wyloguj", "Sign out"),
+    ("Ciemny", "Dark"),
+    ("Jasny", "Light"),
+    # Vote topic categories
+    ("Zdrowie/Społeczne", "Health/Social"),
+    ("Inwestycje", "Investments"),
+    ("Środowisko", "Environment"),
+    ("Proceduralne", "Procedural"),
+    ("Kultura", "Culture"),
+    ("Transport", "Transport"),
+    ("Inne", "Other"),
     ("Rada Miasta {{CITY_GENITIVE}}", "{{CITY_NAME}} City Assembly"),
     ("Najbardziej aktywni radni", "Most active councilors"),
     ("Najczęściej głosują tak samo", "Most often vote the same"),
@@ -242,6 +255,19 @@ PL_TO_EN: list[tuple[str, str]] = [
 PL_TO_DE: list[tuple[str, str]] = [
     ("Mapa dostępności z monitorowanymi miastami", "Verfügbarkeitskarte mit überwachten Städten"),
     ("Mapa dostępności", "Verfügbarkeitskarte"),
+    # Auth / theme toggle
+    ("Zaloguj się", "Anmelden"),
+    ("Wyloguj", "Abmelden"),
+    ("Ciemny", "Dunkel"),
+    ("Jasny", "Hell"),
+    # Vote topic categories
+    ("Zdrowie/Społeczne", "Gesundheit/Soziales"),
+    ("Inwestycje", "Investitionen"),
+    ("Środowisko", "Umwelt"),
+    ("Proceduralne", "Verfahrensfragen"),
+    ("Kultura", "Kultur"),
+    ("Transport", "Verkehr"),
+    ("Inne", "Sonstiges"),
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Jak głosują radni Miasta {{CITY_GENITIVE}}? Dane z protokołów BIP.",
      "Wie stimmen die Abgeordneten in {{CITY_NAME}} ab? Daten aus offiziellen Protokollen."),
@@ -369,6 +395,19 @@ PL_TO_CS: list[tuple[str, str]] = [
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Mapa dostępności z monitorowanymi miastami", "Mapa pokrytí se sledovanými městy"),
     ("Mapa dostępności", "Mapa pokrytí"),
+    # Auth / theme toggle
+    ("Zaloguj się", "Přihlásit se"),
+    ("Wyloguj", "Odhlásit"),
+    ("Ciemny", "Tmavý"),
+    ("Jasny", "Světlý"),
+    # Vote topic categories
+    ("Zdrowie/Społeczne", "Zdraví/Sociální"),
+    ("Inwestycje", "Investice"),
+    ("Środowisko", "Životní prostředí"),
+    ("Proceduralne", "Procedurální"),
+    ("Kultura", "Kultura"),
+    ("Transport", "Doprava"),
+    ("Inne", "Ostatní"),
     ("Jak głosują radni Miasta {{CITY_GENITIVE}}? Dane z protokołów BIP.",
      "Jak hlasují zastupitelé hl. m. {{CITY_NAME}}? Data z oficiálních zdrojů."),
     ("Jak głosują radni?", "Jak hlasují zastupitelé?"),
@@ -524,6 +563,19 @@ PL_TO_LT: list[tuple[str, str]] = [
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Mapa dostępności z monitorowanymi miastami", "Aprėpties žemėlapis su stebimais miestais"),
     ("Mapa dostępności", "Aprėpties žemėlapis"),
+    # Auth / theme toggle
+    ("Zaloguj się", "Prisijungti"),
+    ("Wyloguj", "Atsijungti"),
+    ("Ciemny", "Tamsus"),
+    ("Jasny", "Šviesus"),
+    # Vote topic categories - tagi tematyczne uchwał
+    ("Zdrowie/Społeczne", "Sveikata/Socialinė"),
+    ("Inwestycje", "Investicijos"),
+    ("Środowisko", "Aplinka"),
+    ("Proceduralne", "Procedūriniai"),
+    ("Kultura", "Kultūra"),
+    ("Transport", "Transportas"),
+    ("Inne", "Kiti"),
     # Filtry per klub + skróty kolumn rankingu
     ("Wszyscy", "Visi"),
     ("Wbrew klubowi", "Prieš frakciją"),
