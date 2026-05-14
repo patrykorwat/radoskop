@@ -70,12 +70,28 @@ FRAKCIJA_PATTERNS = [
 
 
 def http_get(url: str, timeout: int = DEFAULT_TIMEOUT) -> str:
-    """Pobiera HTML z prostym retry."""
+    """Pobiera HTML z prostym retry.
+
+    Vilnius.lt zwraca 403 dla minimalistycznych headerów (zaobserwowane
+    2026-05-14 na NAS). Dodajemy pełen zestaw browser-like headers żeby
+    przejść przez bot protection. Jeśli dalej 403, to wymagałby cookies
+    z prawdziwej sesji albo zmiana endpointa (np. api.vilnius.lt).
+    """
     print(f"  GET {url}", file=sys.stderr)
     req = Request(url, headers={
         "User-Agent": USER_AGENT,
-        "Accept": "text/html,*/*",
-        "Accept-Language": "lt-LT,lt;q=0.9,en;q=0.8",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "lt-LT,lt;q=0.9,en-US;q=0.8,en;q=0.7",
+        "Cache-Control": "no-cache",
+        "Pragma": "no-cache",
+        "Sec-Ch-Ua": '"Chromium";v="120", "Not_A Brand";v="24"',
+        "Sec-Ch-Ua-Mobile": "?0",
+        "Sec-Ch-Ua-Platform": '"macOS"',
+        "Sec-Fetch-Dest": "document",
+        "Sec-Fetch-Mode": "navigate",
+        "Sec-Fetch-Site": "none",
+        "Sec-Fetch-User": "?1",
+        "Upgrade-Insecure-Requests": "1",
     })
     last_err: Exception | None = None
     for attempt in range(3):
@@ -161,7 +177,21 @@ def main() -> int:
     with open(args.config, "r", encoding="utf-8") as f:
         config = json.load(f)
 
-    html = http_get(LISTING_URL)
+    # vilnius.lt blokuje boty na warstwie WAF (403 nawet z prawdziwymi headerami
+    # Chrome). Jeśli scrape padnie, zwracamy 0 - run.sh leci dalej, a
+    # club_assignments zostaje pusty. Frakcje da się dorobić ręcznie w config.json
+    # albo z innego źródła (Wikipedia, api.vilnius.lt).
+    try:
+        html = http_get(LISTING_URL)
+    except RuntimeError as exc:
+        print(
+            f"[vilnius] kluby scrape pominięty: {exc}. "
+            "config.club_assignments zostaje bez zmian. "
+            "Dorób ręcznie z https://vilnius.lt lub Wikipedii.",
+            file=sys.stderr,
+        )
+        return 0
+
     radni = extract_radni(html)
 
     print(f"[vilnius] znaleziono {len(radni)} radnych", file=sys.stderr)

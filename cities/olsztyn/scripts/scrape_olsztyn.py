@@ -622,6 +622,16 @@ def build_outputs(sessions: list[SessionMeta], votes: list[dict],
             for key, names in v.get("named_votes", {}).items():
                 if key in ("za", "przeciw", "wstrzymal_sie", "brak_glosu"):
                     attendees.update(names)
+
+        # BIP Olsztyna publikuje "Wykaz głosowań" PDF z opóźnieniem 3-6 miesięcy
+        # od dnia sesji. Świeże sesje mają tylko porządek obrad, bez wyników.
+        # POMIJAMY je w sessions[] żeby uniknąć fałszywego "24 nieobecnych"
+        # generowanego przez frontend (len(COUNCILORS) - 0 attendees). Sesja
+        # pojawi się na stronie dopiero gdy BIP opublikuje PDF z głosowaniami,
+        # następny pipeline run ją wciągnie.
+        if not s_votes:
+            print(f"      pomijam w sessions_out (brak PDF wyników)")
+            continue
         sessions_out.append({
             "number": s.number,
             "date": s.date,

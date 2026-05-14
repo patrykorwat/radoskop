@@ -198,6 +198,26 @@ def session_date(prasidejo: str | None) -> str | None:
     return prasidejo[:10]
 
 
+def extract_session_number(posedis: str, date: str = "") -> str:
+    """Identyfikator sesji dla session_number w schemacie Radoskop.
+
+    Numery "NR. X" w polu posedis NIE są globalnie unikalne:
+    - resetują się per kadencja (NR. 74 w 2019-2023 vs NR. 74 w 2023-2027)
+    - są sesje testowe (NR. TESTAS, NR. TESTUKAS, NR. (TESTINIS!!!!!!!))
+    - bywają duplikaty po renumeracji
+
+    Data sesji (YYYY-MM-DD) jest:
+    - zawsze unikalna w obrębie Tarybos (jedna plenarka per dzień)
+    - 10 znaków, mieści się w limicie generatora (<=30)
+    - bez spacji, validates per generate_seo_pages.py
+    - sortowalna leksykograficznie
+    - czytelna w URL'u (vilnius.radoskop.eu/sesja/2024-09-25/)
+
+    Pełny string `posedis` zachowujemy osobno jako `title`.
+    """
+    return date or ""
+
+
 def is_taryba(posedis: str) -> bool:
     """True jeśli to posiedzenie Tarybos (rada miejska), False jeśli komitet."""
     if not posedis:
@@ -309,7 +329,7 @@ def build_kadencja(
         votes_flat.append({
             "id": f"vilnius_{balsavimo_id}",
             "session_date": date,
-            "session_number": "",
+            "session_number": extract_session_number(k.get("posedis", ""), date),
             "source_url": "",
             "topic": k.get("klausimas_lt", ""),
             "druk": k.get("klausimo_id", ""),
@@ -321,13 +341,14 @@ def build_kadencja(
             "voted_at": "",
         })
 
-    # Buduj listę sesji.
+    # Buduj listę sesji. Numer sesji to krótki token (np. "74") wyciągnięty
+    # z pola posedis, fallback data sesji. Pełny string posedis idzie do title.
     sessions: list[dict[str, Any]] = []
     for (date, posedis), sess in sessions_meta.items():
         attendees_list = sorted(sess["attendees"])
         sessions.append({
             "date": date,
-            "number": posedis,
+            "number": extract_session_number(posedis, date),
             "title": posedis,
             "chair": sess["chair"],
             "secretary": sess["secretary"],
@@ -423,9 +444,33 @@ def main() -> int:
 
     scraped_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
+    # Najpierw posprzątaj stare pliki kadencja-*.json których już nie ma w
+    # config (np. usunięte kadencje historyczne bez danych Balsas).
+    valid_ids = set(config.get("kadencje", {}).keys())
+    for old_file in args.docs.glob("kadencja-*.json"):
+        kid_from_name = old_file.stem.replace("kadencja-", "")
+        if kid_from_name not in valid_ids:
+            try:
+                old_file.unlink()
+                print(f"[vilnius] removed stale {old_file.name}", file=sys.stderr)
+            except OSError as exc:
+                print(f"[vilnius] WARN: cannot remove {old_file.name}: {exc}", file=sys.stderr)
+
     for kid in kadencje_to_generate:
         kadencja_def = config["kadencje"][kid]
         built = build_kadencja(taryba_klausimai, balsas_by_vote, config, kid)
+
+        # Pomijamy kadencje bez balsavimai - data.gov.lt ma Klausimas dla
+        # historii sięgającej 2011, ale Balsas (indywidualne głosy) tylko
+        # dla aktualnej kadencji 2023-2027. Pusta kadencja → pusta zakładka
+        # na stronie z "0 radnych, 0 balsavimów" co myli użytkownika.
+        if not built["votes"]:
+            print(
+                f"[vilnius] skip kadencja-{kid}: 0 balsavimów "
+                f"(data.gov.lt nie ma indywidualnych głosów dla tej kadencji)",
+                file=sys.stderr,
+            )
+            continue
 
         out = {
             "id": kid,

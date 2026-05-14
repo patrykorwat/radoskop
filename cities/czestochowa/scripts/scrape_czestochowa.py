@@ -256,20 +256,21 @@ def fetch_session_list(http_session: requests.Session, debug: bool = False, max_
             number = m.group(1).upper()
             nadzwyczajna = m.group(2).lower().startswith("nadzw")
 
-            sibling = h2.find_next_sibling()
+            # Data sesji jest w <article><div><p>...</p></div></article>, gdzie
+            # h2 leży w <header>. Sibling search z poziomu h2 nie zadziała bo
+            # header nie ma rodzeństwa - trzeba przeszukać cały article.
+            # Format strony BIP zmienił się ok. 2026-04 (przed: data w sibling).
             date_str = ""
-            for _ in range(3):
-                if sibling is None:
-                    break
-                text = sibling.get_text(" ", strip=True)
-                dm = DATE_RE.search(text)
+            article = h2.find_parent("article")
+            if article is not None:
+                article_text = article.get_text(" ", strip=True)
+                dm = DATE_RE.search(article_text)
                 if dm:
                     day = int(dm.group(1))
                     month = MONTHS_PL[dm.group(2).lower()]
                     year = int(dm.group(3))
                     date_str = f"{year:04d}-{month:02d}-{day:02d}"
-                    break
-                sibling = sibling.find_next_sibling()
+            # Fallback: szukamy daty w tytule (sesje nadzwyczajne czasem mają ją tam).
             if not date_str:
                 dm = DATE_RE.search(title)
                 if dm:
@@ -697,20 +698,31 @@ def scrape(output_path: Path, profiles_path: Path, pdf_dir: Path, parsed_dir: Pa
 
         sha = hashlib.sha256(pdf_path.read_bytes()).hexdigest()
         parsed_cache_file = parsed_dir / f"{sha}.json"
+        votes: list[dict] = []
+        cache_hit = False
         if parsed_cache_file.exists():
             try:
                 votes = json.loads(parsed_cache_file.read_text(encoding="utf-8"))
+                cache_hit = True
                 if debug:
                     print(f"      [cache] {len(votes)} głosowań z parsed_votes")
             except (json.JSONDecodeError, OSError):
-                votes = parse_voting_pdf(pdf_path, session, debug=debug)
-                parsed_cache_file.write_text(json.dumps(votes, ensure_ascii=False), encoding="utf-8")
-        else:
+                votes = []
+
+        # Pusty cache = nieudany parse z poprzedniego runu (zwykle format zmienił
+        # się i parser zwracał []). Nie ufamy - re-parsujemy, może nowsza wersja
+        # scrapera sobie poradzi.
+        if not votes:
             votes = parse_voting_pdf(pdf_path, session, debug=debug)
-            try:
-                parsed_cache_file.write_text(json.dumps(votes, ensure_ascii=False), encoding="utf-8")
-            except OSError as exc:
-                print(f"      [warn] nie zapisałem parse cache {sha[:8]}: {exc}")
+            # Zapisujemy cache TYLKO jeśli parse coś zwrócił. Pusty wynik
+            # zostaje bez cache'a żeby następny run mógł próbować ponownie.
+            if votes:
+                try:
+                    parsed_cache_file.write_text(json.dumps(votes, ensure_ascii=False), encoding="utf-8")
+                except OSError as exc:
+                    print(f"      [warn] nie zapisałem parse cache {sha[:8]}: {exc}")
+            elif not cache_hit:
+                print(f"      WARN: parser zwrócił 0 głosowań z {pdf_path.name} ({pdf_path.stat().st_size}B)")
 
         print(f"      {len(votes)} głosowań")
         all_votes.extend(votes)

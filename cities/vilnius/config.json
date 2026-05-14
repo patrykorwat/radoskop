@@ -5,7 +5,7 @@
   "country_name": "Lietuva",
   "locale": "lt",
   "site_title": "Radoskop Vilnius. Kaip balsuoja Vilniaus tarybos nariai?",
-  "site_url": "https://vilnius.eu",
+  "site_url": "https://vilnius.radoskop.eu",
   "site_description": "Radoskop. Atviras Vilniaus miesto savivaldybės tarybos veiklos stebėjimas. Tarybos narių dalyvavimas ir balsavimai.",
   "site_description_short": "Atviras Vilniaus tarybos veiklos stebėjimas. Dalyvavimas ir balsavimai.",
   "bip_url": "https://vilnius.lt/savivaldybe/posedziai",
@@ -13,7 +13,7 @@
   "bip_kind": "vilnius_datagovlt_api",
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
-  "cname": "vilnius.eu",
+  "cname": "vilnius.radoskop.eu",
   "impressum": {
     "name": "Patryk Orwat",
     "address_lines": [
@@ -31,18 +31,6 @@
     "2023-2027": {
       "label": "2023–2027 m. kadencija",
       "start": "2023-04-17"
-    },
-    "2019-2023": {
-      "label": "2019–2023 m. kadencija",
-      "start": "2019-04-15"
-    },
-    "2015-2019": {
-      "label": "2015–2019 m. kadencija",
-      "start": "2015-04-15"
-    },
-    "2011-2015": {
-      "label": "2011–2015 m. kadencija",
-      "start": "2011-04-15"
     }
   },
   "has_budget": false,
@@ -128,8 +116,8 @@
       "bg": "rgba(124,58,237,0.12)",
       "avatar_bg": "#6d28d9"
     },
-    "DemokratuVardan": {
-      "name": "Demokratų sąjunga „Vardan Lietuvos“",
+    "CDS": {
+      "name": "Centro dešinės sąjunga",
       "color": "#0284c7",
       "bg": "rgba(2,132,199,0.12)",
       "avatar_bg": "#075985"
@@ -147,11 +135,63 @@
       "avatar_bg": "#713f12"
     },
     "NZ": {
-      "name": "Mišri frakcija",
+      "name": "Nepriklausantis / Mišri frakcija",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)",
       "avatar_bg": "#4b5563"
     }
   },
-  "club_assignments": {}
+  "club_assignments": {
+    "Gaudentas Aukštikalnis": "NS",
+    "Gintautas Babravičius": "CDS",
+    "Rasa Baškienė": "TS-LKD",
+    "Mantas Benkunskas": "TS-LKD",
+    "Tomas Bernotas": "TS-LKD",
+    "Laura Bliujienė": "Laisve",
+    "Vytautas Budreika": "TS-LKD",
+    "Eglė Čaplikienė": "CDS",
+    "Vytautas Čepas": "TS-LKD",
+    "Remigijus Černius": "TS-LKD",
+    "Regimantas Čiupaila": "CDS",
+    "Ieva Dauskurtė": "TS-LKD",
+    "Vita Degutienė": "TS-LKD",
+    "Vygintas Gasparavičius": "TS-LKD",
+    "Kamilė Gogelienė": "TS-LKD",
+    "Tomas Gulbinas": "Laisve",
+    "Nijolė Jagelavičienė": "NZ",
+    "Algirdas Eugenijus Jovaiša": "TS-LKD",
+    "Mantas Jurgelaitis": "TS-LKD",
+    "Viktor Jusel": "LLRA",
+    "Jaroslav Kaminski": "LLRA",
+    "Justina Kašėtaitė": "CDS",
+    "Lina Kavoliukienė": "LSDP",
+    "Jonas Kazlauskas": "TS-LKD",
+    "Raminta Keršytė": "TS-LKD",
+    "Vanda Kravčionok": "LLRA",
+    "Erika Kuročkina": "Laisve",
+    "Linas Kvedaravičius": "Laisve",
+    "Neringa Laurinavičiūtė": "TS-LKD",
+    "Aleksandras Nemunaitis": "NZ",
+    "Juozas Olekas": "LSDP",
+    "Povilas Pinelis": "LSDP",
+    "Violeta Podolskaitė": "TS-LKD",
+    "Rasa Račienė": "Laisve",
+    "Deimantė Rimkutė": "Laisve",
+    "Vydūnas Sadauskas": "CDS",
+    "Grzegorz Sakson": "LLRA",
+    "Audrius Skaistys": "TS-LKD",
+    "Dovydas Skarolskis": "TS-LKD",
+    "Almantas Stankūnas": "NS",
+    "Nerija Stasiulienė": "LSDP",
+    "Diana Stomienė": "CDS",
+    "Remigijus Šimašius": "Laisve",
+    "Kęstutis Štaras": "CDS",
+    "Edita Tamošiūnaitė": "LLRA",
+    "Edward Trusewicz": "LLRA",
+    "Skirmantas Tumelis": "Laisve",
+    "Agnė Vaiciukevičiūtė": "Laisve",
+    "Vytautas Vaitiekūnas": "TS-LKD",
+    "Antanas Juozas Zabulis": "CDS",
+    "Kristina Ziminska": "LLRA"
+  }
 }

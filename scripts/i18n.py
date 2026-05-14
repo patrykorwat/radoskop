@@ -510,7 +510,7 @@ PL_TO_CS: list[tuple[str, str]] = [
 ]
 
 
-# Tłumaczenia polski → litewski. Wilno (vilnius.eu, locale=lt).
+# Tłumaczenia polski → litewski. Wilno (vilnius.radoskop.eu, locale=lt).
 # Struktura sprasowana z PL_TO_CS - te same klucze PL, ale tłumaczenie LT.
 # Specyfika LT:
 #   - Brak rozróżnienia rodzaju w czasie przeszłym 3. osoby (Susilaikė
@@ -524,6 +524,16 @@ PL_TO_LT: list[tuple[str, str]] = [
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Mapa dostępności z monitorowanymi miastami", "Aprėpties žemėlapis su stebimais miestais"),
     ("Mapa dostępności", "Aprėpties žemėlapis"),
+    # Filtry per klub + skróty kolumn rankingu
+    ("Wszyscy", "Visi"),
+    ("Wbrew klubowi", "Prieš frakciją"),
+    ("Wstrzym.", "Susilaikė"),
+    ("Brak gł.", "Nebalsavo"),
+    ("Radny/a", "Tarybos narys/ė"),
+    # Tłumaczenia banera Polecane (cross promo Sejm)
+    ("Polecane (projekt zewnętrzny):", "Rekomenduojama (išorinis projektas):"),
+    ("Tygodnik Sejmowy — analiza prac Sejmu RP", "Tygodnik Sejmowy — Lenkijos Seimo darbo analizė"),
+    ("Szukaj radnego...", "Ieškoti tarybos nario..."),
     ("Jak głosują radni Miasta {{CITY_GENITIVE}}? Dane z protokołów BIP.",
      "Kaip balsuoja {{CITY_GENITIVE}} tarybos nariai? Duomenys iš oficialių šaltinių."),
     ("Jak głosują radni?", "Kaip balsuoja tarybos nariai?"),
