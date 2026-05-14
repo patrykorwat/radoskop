@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raporty — Radoskop</title>
+<meta name="description" content="Otwarte raporty Radoskop: budżety miast, analizy polityki miejskiej, badania śledcze. Wszystko PDF do pobrania.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://radoskop.pl/raporty/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Raporty — Radoskop">
+<meta property="og:description" content="Otwarte raporty: budżety miast, polityki, badania.">
+<meta property="og:url" content="https://radoskop.pl/raporty/">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="Radoskop">
+<style>
+:root {
+  --bg:#f8f9fa; --surface:#ffffff; --border:#e2e5e9; --text:#1a1d27; --muted:#6b7280;
+  --accent:#4f46e5; --accent-dark:#3730a3; --green:#16a34a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;min-height:100vh;display:flex;flex-direction:column;}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+.container{max-width:1100px;margin:0 auto;padding:24px 20px;width:100%;flex:1;}
+
+.crumbs{font-size:.82rem;color:var(--muted);margin-bottom:16px;}
+.crumbs a{color:var(--muted);}
+.crumbs a:hover{color:var(--accent);text-decoration:underline;}
+
+.hero{padding:14px 0 28px;border-bottom:1px solid var(--border);margin-bottom:28px;}
+.hero h1{font-size:2.2rem;font-weight:700;margin-bottom:10px;}
+.hero h1 span{color:var(--accent);}
+.hero p.lead{color:var(--muted);font-size:1.05rem;max-width:760px;}
+
+.reports{display:grid;grid-template-columns:1fr;gap:24px;}
+@media(min-width:760px){.reports{grid-template-columns:repeat(2,1fr);}}
+
+.report-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform .15s,box-shadow .15s;display:flex;flex-direction:column;}
+.report-card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.06);text-decoration:none;}
+.report-card a{color:inherit;text-decoration:none;}
+
+.report-thumb{aspect-ratio:1/1.41;background:linear-gradient(135deg,#eef2ff,#e0e7ff);position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
+.report-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.report-thumb .badge{position:absolute;top:12px;right:12px;background:var(--accent);color:#fff;padding:4px 10px;border-radius:6px;font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.04em;}
+.report-thumb .badge.draft{background:var(--muted);}
+.report-thumb .badge.new{background:var(--green);}
+
+.report-body{padding:18px 20px 20px;flex:1;display:flex;flex-direction:column;}
+.report-body h2{font-size:1.15rem;font-weight:700;margin-bottom:6px;color:var(--text);}
+.report-body .subtitle{color:var(--muted);font-size:.92rem;margin-bottom:12px;}
+.report-body p{font-size:.9rem;color:var(--text);margin-bottom:14px;line-height:1.55;}
+.report-meta{margin-top:auto;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:var(--muted);padding-top:12px;border-top:1px solid var(--border);}
+.report-meta strong{color:var(--text);font-weight:600;}
+
+.cta{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:#fff;padding:8px 14px;border-radius:8px;font-size:.85rem;font-weight:600;transition:background .15s;}
+.cta:hover{background:var(--accent-dark);text-decoration:none;color:#fff;}
+.cta svg{width:14px;height:14px;}
+
+.intro{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin-bottom:28px;font-size:.92rem;color:var(--text);}
+.intro h3{font-size:.95rem;font-weight:700;margin-bottom:6px;}
+.intro p{color:var(--muted);}
+
+footer{margin-top:48px;padding:20px;background:#f1f3f5;border-top:1px solid var(--border);color:var(--muted);font-size:.85rem;text-align:center;}
+footer a{color:var(--muted);}
+footer a:hover{color:var(--accent);}
+</style>
+</head>
+<body>
+<div class="container">
+  <nav class="crumbs">
+    <a href="/">Radoskop</a> · Raporty
+  </nav>
+
+  <header class="hero">
+    <h1>Rado<span>skop</span> · Raporty</h1>
+    <p class="lead">Otwarte analizy finansów i polityki miejskiej. Dane z BIP-ów, uchwał budżetowych, Wieloletnich Prognoz Finansowych. Wszystkie raporty PDF do pobrania, dane źródłowe na licencji otwartej.</p>
+  </header>
+
+  <div class="intro">
+    <h3>Po co te raporty</h3>
+    <p>Radoskop monitoruje rady miast od 2024 roku. Bazą są dane z głosowań i interpelacji, za nimi stoją liczby budżetowe i mechanizmy polityki publicznej. Raporty łączą jedno z drugim. Cykl otwierają porównawcze analizy finansów miast, kolejne pojawią się regularnie.</p>
+  </div>
+
+  <div class="reports">
+
+    <article class="report-card">
+      <a href="files/budzety-miast-2026.pdf">
+        <div class="report-thumb">
+          <img src="_thumbs/budzety-miast-2026.png" alt="Okładka raportu Budżety miast 2026" loading="lazy">
+          <span class="badge new">Nowy</span>
+        </div>
+        <div class="report-body">
+          <h2>Budżety miast 2026</h2>
+          <p class="subtitle">Porównanie 9 stolic i metropolii Europy Środkowej</p>
+          <p>Analiza wydatków, wpływów, struktury i deficytu dla 7 polskich miast plus Praga i Berlin. Per kategoria deep dive (edukacja, transport, pomoc społeczna, kultura), trend 2020-2027, inwestycje. Berlin trzy razy więcej na mieszkańca niż Sopot, Praga jako jedyne miasto z nadwyżką.</p>
+          <div class="report-meta">
+            <span><strong>13 stron</strong> · 9 miast · maj 2026</span>
+            <span class="cta">
+              <svg fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16"/></svg>
+              PDF 876 KB
+            </span>
+          </div>
+        </div>
+      </a>
+    </article>
+
+  </div>
+
+  <div class="intro" style="margin-top:32px">
+    <h3>Raporty dla biznesu i NGO</h3>
+    <p>Raporty pogłębione na zamówienie (analizy polityk miejskich, audyty wydatków, badania porównawcze) realizujemy w pakiecie <a href="/business/">Radoskop Business</a>. Indywidualna metodologia, dostęp do wewnętrznych baz danych Radoskop, dane z 9 miast Europy Środkowej, dedykowany kontakt.</p>
+  </div>
+
+</div>
+
+<footer>
+  Radoskop · Otwarte narzędzie monitoringu rad miast w Polsce, Czechach, Niemczech i Litwie<br>
+  <a href="/">radoskop.pl</a> · <a href="https://github.com/radoskoppl">GitHub</a> · <a href="/swiezosc/">Świeżość danych</a>
+</footer>
+</body>
+</html>
