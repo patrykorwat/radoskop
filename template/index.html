@@ -1235,86 +1235,8 @@ function showPrivacy() {
   var el = document.getElementById('privacy-view');
   el.style.display = 'block';
   /* PRIVACY_HTML_BEGIN */
-  el.innerHTML = '<div style="max-width:800px;margin:0 auto;padding:20px 0">'
-    + '<button class="profile-back" onclick="showMain()">← Strona główna</button>'
-    + '<h1 style="font-size:1.5rem;margin:20px 0 10px">Polityka prywatności</h1>'
-    + '<p style="color:var(--muted);margin-bottom:20px">Ostatnia aktualizacja: 13 maja 2026</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">1. Administrator danych</h2>'
-    + '<p>Administratorem danych osobowych jest {{AUTHOR}} (kontakt: patrykorwat@gmail.com). '
-    + 'Serwis Radoskop działa pod domenami radoskop.pl (miasta polskie) i radoskop.eu (miasta zagraniczne oraz funkcje konta) oraz ich subdomenami miast (np. {{EXAMPLE_SUBDOMAIN}}). '
-    + 'Backend (API i baza danych użytkowników) hostowany jest na AWS Lightsail w regionie Frankfurt (eu-central-1).</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">2. Jakie dane zbieramy</h2>'
-    + '<p><strong>Odwiedzający (bez rejestracji):</strong> używamy Umami, narzędzia analitycznego hostowanego na własnym serwerze pod adresem stats.radoskop.pl. Zbieramy:</p>'
-    + '<ul style="margin:8px 0 8px 24px"><li>Przybliżona lokalizacja (kraj, miasto)</li>'
-    + '<li>Typ urządzenia, przeglądarka, system operacyjny</li>'
-    + '<li>Odwiedzone podstrony i czas wizyty</li>'
-    + '<li>Źródło ruchu (np. wyszukiwarka, link)</li></ul>'
-    + '<p>Umami nie używa plików cookies ani trwałych identyfikatorów. Identyfikator wizyty to skrót (hash) adresu IP i nagłówka User Agent, rotowany codziennie i niemożliwy do odwrócenia. Adres IP nie jest zapisywany w pełnej formie.</p>'
-    + '<p><strong>Zarejestrowani użytkownicy (konto):</strong> rejestracja jest opcjonalna i służy dostępowi do funkcji premium. Zbieramy adres e-mail, opcjonalnie imię oraz hashowane hasło (algorytm bcrypt, cost 12). Logując się przez Google zapisujemy też identyfikator Google (sub) i status weryfikacji e-maila zwracane przez Google OAuth. Dane konta przechowywane są w bazie Postgres na AWS Lightsail w Frankfurcie.</p>'
-    + '<p><strong>Płatności:</strong> jeśli wykupisz subskrypcję premium, operator płatności Tpay przekazuje nam tylko status transakcji, kwotę i wskazane przez Ciebie dane do faktury (przy żądaniu faktury). Numer karty i dane bankowe pozostają wyłącznie po stronie Tpay. Faktury wystawiamy przez Saldeo, B2B trafia automatycznie do KSeF (Krajowy System e-Faktur).</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">3. Pliki cookies</h2>'
-    + '<p>Serwis ustawia następujące pliki cookies:</p>'
-    + '<ul style="margin:8px 0 8px 24px">'
-    + '<li><strong>radoskop_theme</strong> (1 rok, funkcjonalny) zapamiętuje wybór jasnego lub ciemnego motywu strony.</li>'
-    + '<li><strong>radoskop_sid</strong> (30 dni, ściśle konieczny, ustawiany tylko dla zalogowanych użytkowników) utrzymuje sesję zalogowanego konta. HttpOnly, Secure, SameSite=None, Domain=.radoskop.eu. Token wpisu jest zhashowany (SHA-256) w bazie danych, ciasteczko zawiera tylko losowy identyfikator.</li>'
-    + '</ul>'
-    + '<p>Nie używamy cookies reklamowych ani analitycznych. Cookie sesji jest "ściśle konieczne" w rozumieniu ePrivacy Directive i nie wymaga zgody. Cookie motywu jest funkcjonalne i wynika z Twojego wyboru w panelu. Możesz wyczyścić cookies w ustawieniach przeglądarki w dowolnym momencie. Po wylogowaniu cookie sesji jest natychmiast usuwane.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">4. Brak reklam i charakter informacyjny</h2>'
-    + '<p>Serwis Radoskop nie wyświetla reklam, nie korzysta z sieci reklamowych ani nie monetyzuje treści przez reklamę. '
-    + 'Serwis stanowi usługę publicznego informowania (motyw 32 Rozporządzenia (UE) 2024/900) i korzysta z wyłączenia z zakresu definicji reklamy politycznej, przewidzianego w art. 2 ust. 2 lit. c tego rozporządzenia.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">5. Cel i podstawa prawna przetwarzania danych użytkowników</h2>'
-    + '<p><strong>Dane analityczne</strong> służą do oceny popularności podstron, doboru priorytetów rozwoju Serwisu i mierzenia wpływu publikacji. Podstawa prawna: art. 6 ust. 1 lit. f RODO (uzasadniony interes administratora w zakresie analizy ruchu).</p>'
-    + '<p><strong>Dane konta i logowania</strong> przetwarzane są w celu umożliwienia logowania i dostępu do funkcji premium (Twojego konta i subskrypcji). Podstawa prawna: art. 6 ust. 1 lit. b RODO (wykonanie umowy o świadczenie usług drogą elektroniczną).</p>'
-    + '<p><strong>Dane do faktury</strong> przetwarzane są w celu wystawienia faktury VAT i przekazania jej do KSeF zgodnie z polskim prawem podatkowym. Podstawa prawna: art. 6 ust. 1 lit. c RODO (obowiązek prawny administratora - przepisy podatkowe).</p>'
-    + '<p><strong>Okres przechowywania:</strong> konto użytkownika do momentu usunięcia konta przez użytkownika (kontakt z administratorem). Dane do faktur przechowywane przez 5 lat zgodnie z ustawą o VAT. Dane analityczne anonimowo przez 12 miesięcy.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">6. Udostępnianie danych. Podprocesorzy</h2>'
-    + '<p>Dane analityczne pozostają na infrastrukturze Administratora i nie są udostępniane podmiotom trzecim. Nie sprzedajemy danych osobowych użytkowników.</p>'
-    + '<p>Korzystamy z następujących podmiotów przetwarzających (procesorów) w zakresie niezbędnym do świadczenia usługi:</p>'
-    + '<ul style="margin:8px 0 8px 24px">'
-    + '<li><strong>Amazon Web Services EMEA SARL</strong> (Lightsail Frankfurt, eu-central-1) - hosting backendu i bazy danych konta.</li>'
-    + '<li><strong>Amazon Web Services EMEA SARL</strong> (SES Frankfurt, eu-central-1) - wysyłka maili weryfikacyjnych i resetu hasła.</li>'
-    + '<li><strong>Google Ireland Limited</strong> (Google OAuth) - opcjonalne logowanie przez konto Google. Tylko jeśli wybierzesz "Kontynuuj z Google".</li>'
-    + '<li><strong>Krajowy Integrator Płatności S.A.</strong> (Tpay) - obsługa płatności za subskrypcję premium. Tylko jeśli wykupisz subskrypcję.</li>'
-    + '<li><strong>BR-IT Sp. z o.o.</strong> (Saldeo) - wystawianie faktur i ich przekazywanie do KSeF. Tylko jeśli wystąpiłeś o fakturę.</li>'
-    + '</ul>'
-    + '<p>Wszystkie wymienione podmioty są zlokalizowane w UE/EOG i podlegają RODO.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">7. Dane publiczne radnych. Klauzula informacyjna</h2>'
-    + '<p>Serwis prezentuje publicznie dostępne dane o działalności radnych miejskich i wojewódzkich w zakresie ich funkcji publicznej: imię i nazwisko, klub, wyniki głosowań imiennych, frekwencja, interpelacje, wystąpienia w protokołach sesji. '
-    + 'Źródłem są oficjalne rejestry publiczne: Biuletyny Informacji Publicznej (BIP) miast polskich, opendata Pragi, Plenarprotokolle Berliner Abgeordnetenhaus oraz analogiczne zasoby publiczne.</p>'
-    + '<p><strong>Podstawa prawna przetwarzania:</strong></p>'
-    + '<ul style="margin:8px 0 8px 24px">'
-    + '<li>art. 6 ust. 1 lit. f RODO (uzasadniony interes administratora i interes publiczny w transparentności samorządu),</li>'
-    + '<li>art. 6 ust. 1 lit. e RODO (zadanie realizowane w interesie publicznym),</li>'
-    + '<li>art. 85 RODO (przetwarzanie do celów dziennikarskich),</li>'
-    + '<li>ustawa z dnia 6 września 2001 r. o dostępie do informacji publicznej.</li>'
-    + '</ul>'
-    + '<p><strong>Prawa radnego jako osoby, której dane dotyczą:</strong> dostęp do danych, sprostowanie danych nieprawidłowych, sprzeciw wobec przetwarzania na podstawie szczególnej sytuacji, wniesienie skargi do Prezesa UODO. '
-    + 'Procedura sprostowania danych opisana jest w <a href="/regulamin/" onclick="event.preventDefault();showTerms()">Regulaminie</a>, sekcja 8. '
-    + 'Kontakt w sprawie danych: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a>.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">8. Twoje prawa jako użytkownika</h2>'
-    + '<p>Na podstawie RODO przysługuje Ci prawo do: dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, '
-    + 'przenoszenia danych, sprzeciwu wobec przetwarzania oraz cofnięcia zgody w dowolnym momencie (przez usunięcie cookies lub kontakt z administratorem). '
-    + 'Masz również prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (PUODO).</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">9. Kontakt</h2>'
-    + '<p>W sprawach dotyczących prywatności i danych osobowych: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a></p>'
-
-    + '</div>';
-  navigateTo('/polityka-prywatnosci/');
-  setTitle('Polityka prywatności');
-  setOgMeta({
-    title: 'Polityka prywatności — Radoskop {{CITY_NAME}}',
-    description: 'Polityka prywatności i informacje o plikach cookies serwisu Radoskop.',
-    url: '{{SITE_URL}}/polityka-prywatnosci/'
-  });
+  el.innerHTML = '<h1 style="font-size:1.5rem;margin:20px 0 10px">Polityka prywatności</h1><p style="color:var(--muted);margin-bottom:20px">Ostatnia aktualizacja: 13 maja 2026</p><h2 style="font-size:1.1rem;margin:24px 0 8px">1. Administrator danych</h2><p>Administratorem danych osobowych jest Patryk Orwat (kontakt: patrykorwat@gmail.com). Serwis Radoskop działa pod domenami radoskop.pl (miasta polskie) i radoskop.eu (miasta zagraniczne oraz funkcje konta) oraz ich subdomenami miast (np. warszawa.radoskop.pl). Backend (API i baza danych użytkowników) hostowany jest na AWS Lightsail w regionie Frankfurt (eu-central-1).</p><h2 style="font-size:1.1rem;margin:24px 0 8px">2. Jakie dane zbieramy</h2><p><strong>Odwiedzający (bez rejestracji):</strong> używamy Umami, narzędzia analitycznego hostowanego na własnym serwerze pod adresem stats.radoskop.pl. Zbieramy:</p><ul style="margin:8px 0 8px 24px"><li>Przybliżona lokalizacja (kraj, miasto)</li><li>Typ urządzenia, przeglądarka, system operacyjny</li><li>Odwiedzone podstrony i czas wizyty</li><li>Źródło ruchu (np. wyszukiwarka, link)</li></ul><p>Umami nie używa plików cookies ani trwałych identyfikatorów. Identyfikator wizyty to skrót (hash) adresu IP i nagłówka User Agent, rotowany codziennie i niemożliwy do odwrócenia. Adres IP nie jest zapisywany w pełnej formie.</p><p><strong>Zarejestrowani użytkownicy (konto):</strong> rejestracja jest opcjonalna i służy dostępowi do funkcji premium. Zbieramy adres e-mail, opcjonalnie imię oraz hashowane hasło (algorytm bcrypt, cost 12). Logując się przez Google zapisujemy też identyfikator Google (sub) i status weryfikacji e-maila zwracane przez Google OAuth. Dane konta przechowywane są w bazie Postgres na AWS Lightsail w Frankfurcie.</p><p><strong>Płatności:</strong> jeśli wykupisz subskrypcję premium, operator płatności Tpay przekazuje nam tylko status transakcji, kwotę i wskazane przez Ciebie dane do faktury (przy żądaniu faktury). Numer karty i dane bankowe pozostają wyłącznie po stronie Tpay. Faktury wystawiamy przez Saldeo, B2B trafia automatycznie do KSeF (Krajowy System e-Faktur).</p><h2 style="font-size:1.1rem;margin:24px 0 8px">3. Pliki cookies</h2><p>Serwis ustawia następujące pliki cookies:</p><ul style="margin:8px 0 8px 24px"><li><strong>radoskop_theme</strong> (1 rok, funkcjonalny) zapamiętuje wybór jasnego lub ciemnego motywu strony.</li><li><strong>radoskop_sid</strong> (30 dni, ściśle konieczny, ustawiany tylko dla zalogowanych użytkowników) utrzymuje sesję zalogowanego konta. HttpOnly, Secure, SameSite=None, Domain=.radoskop.eu. Token wpisu jest zhashowany (SHA-256) w bazie danych, ciasteczko zawiera tylko losowy identyfikator.</li></ul><p>Nie używamy cookies reklamowych ani analitycznych. Cookie sesji jest "ściśle konieczne" w rozumieniu ePrivacy Directive i nie wymaga zgody. Cookie motywu jest funkcjonalne i wynika z Twojego wyboru w panelu. Możesz wyczyścić cookies w ustawieniach przeglądarki w dowolnym momencie. Po wylogowaniu cookie sesji jest natychmiast usuwane.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">4. Brak reklam i charakter informacyjny</h2><p>Serwis Radoskop nie wyświetla reklam, nie korzysta z sieci reklamowych ani nie monetyzuje treści przez reklamę. Serwis stanowi usługę publicznego informowania (motyw 32 Rozporządzenia (UE) 2024/900) i korzysta z wyłączenia z zakresu definicji reklamy politycznej, przewidzianego w art. 2 ust. 2 lit. c tego rozporządzenia.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">5. Cel i podstawa prawna przetwarzania danych użytkowników</h2><p><strong>Dane analityczne</strong> służą do oceny popularności podstron, doboru priorytetów rozwoju Serwisu i mierzenia wpływu publikacji. Podstawa prawna: art. 6 ust. 1 lit. f RODO (uzasadniony interes administratora w zakresie analizy ruchu).</p><p><strong>Dane konta i logowania</strong> przetwarzane są w celu umożliwienia logowania i dostępu do funkcji premium (Twojego konta i subskrypcji). Podstawa prawna: art. 6 ust. 1 lit. b RODO (wykonanie umowy o świadczenie usług drogą elektroniczną).</p><p><strong>Dane do faktury</strong> przetwarzane są w celu wystawienia faktury VAT i przekazania jej do KSeF zgodnie z polskim prawem podatkowym. Podstawa prawna: art. 6 ust. 1 lit. c RODO (obowiązek prawny administratora - przepisy podatkowe).</p><p><strong>Okres przechowywania:</strong> konto użytkownika do momentu usunięcia konta przez użytkownika (kontakt z administratorem). Dane do faktur przechowywane przez 5 lat zgodnie z ustawą o VAT. Dane analityczne anonimowo przez 12 miesięcy.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">6. Udostępnianie danych. Podprocesorzy</h2><p>Dane analityczne pozostają na infrastrukturze Administratora i nie są udostępniane podmiotom trzecim. Nie sprzedajemy danych osobowych użytkowników.</p><p>Korzystamy z następujących podmiotów przetwarzających (procesorów) w zakresie niezbędnym do świadczenia usługi:</p><ul style="margin:8px 0 8px 24px"><li><strong>Amazon Web Services EMEA SARL</strong> (Lightsail Frankfurt, eu-central-1) - hosting backendu i bazy danych konta.</li><li><strong>Amazon Web Services EMEA SARL</strong> (SES Frankfurt, eu-central-1) - wysyłka maili weryfikacyjnych i resetu hasła.</li><li><strong>Google Ireland Limited</strong> (Google OAuth) - opcjonalne logowanie przez konto Google. Tylko jeśli wybierzesz "Kontynuuj z Google".</li><li><strong>Krajowy Integrator Płatności S.A.</strong> (Tpay) - obsługa płatności za subskrypcję premium. Tylko jeśli wykupisz subskrypcję.</li><li><strong>BR-IT Sp. z o.o.</strong> (Saldeo) - wystawianie faktur i ich przekazywanie do KSeF. Tylko jeśli wystąpiłeś o fakturę.</li></ul><p>Wszystkie wymienione podmioty są zlokalizowane w UE/EOG i podlegają RODO.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">7. Dane publiczne radnych. Klauzula informacyjna</h2><p>Serwis prezentuje publicznie dostępne dane o działalności radnych miejskich i wojewódzkich w zakresie ich funkcji publicznej: imię i nazwisko, klub, wyniki głosowań imiennych, frekwencja, interpelacje, wystąpienia w protokołach sesji. Źródłem są oficjalne rejestry publiczne: Biuletyny Informacji Publicznej (BIP) miast polskich, opendata Pragi, Plenarprotokolle Berliner Abgeordnetenhaus oraz analogiczne zasoby publiczne.</p><p><strong>Podstawa prawna przetwarzania:</strong></p><ul style="margin:8px 0 8px 24px"><li>art. 6 ust. 1 lit. f RODO (uzasadniony interes administratora i interes publiczny w transparentności samorządu),</li><li>art. 6 ust. 1 lit. e RODO (zadanie realizowane w interesie publicznym),</li><li>art. 85 RODO (przetwarzanie do celów dziennikarskich),</li><li>ustawa z dnia 6 września 2001 r. o dostępie do informacji publicznej.</li></ul><p><strong>Prawa radnego jako osoby, której dane dotyczą:</strong> dostęp do danych, sprostowanie danych nieprawidłowych, sprzeciw wobec przetwarzania na podstawie szczególnej sytuacji, wniesienie skargi do Prezesa UODO. Procedura sprostowania danych opisana jest w <a href="/regulamin/" onclick="event.preventDefault();showTerms()">Regulaminie</a>, sekcja 8. Kontakt w sprawie danych: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a>.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">8. Twoje prawa jako użytkownika</h2><p>Na podstawie RODO przysługuje Ci prawo do: dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, przenoszenia danych, sprzeciwu wobec przetwarzania oraz cofnięcia zgody w dowolnym momencie (przez usunięcie cookies lub kontakt z administratorem). Masz również prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (PUODO).</p><h2 style="font-size:1.1rem;margin:24px 0 8px">9. Kontakt</h2><p>W sprawach dotyczących prywatności i danych osobowych: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a></p>'
+;
   /* PRIVACY_HTML_END */
   window.scrollTo(0, 0);
 }
@@ -1345,86 +1267,8 @@ function showTerms() {
   var el = document.getElementById('terms-view');
   el.style.display = 'block';
   /* TERMS_HTML_BEGIN */
-  el.innerHTML = '<div style="max-width:800px;margin:0 auto;padding:20px 0">'
-    + '<button class="profile-back" onclick="showMain()">← Strona główna</button>'
-    + '<h1 style="font-size:1.5rem;margin:20px 0 10px">Regulamin serwisu Radoskop</h1>'
-    + '<p style="color:var(--muted);margin-bottom:20px">Ostatnia aktualizacja: 9 maja 2026</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">1. Postanowienia ogólne</h2>'
-    + '<p>Serwis Radoskop (dalej: Serwis) jest prowadzony przez Patryka Orwata (dalej: Administrator). '
-    + 'Serwis działa pod domenami radoskop.pl (miasta polskie) i radoskop.eu (miasta zagraniczne, m.in. Praha, Berlin) oraz ich subdomenami miast (np. {{EXAMPLE_SUBDOMAIN}}). '
-    + 'Korzystanie z Serwisu oznacza akceptację niniejszego Regulaminu.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">2. Charakter serwisu i status prawny</h2>'
-    + '<p>Radoskop jest niezależnym serwisem informacyjnym o charakterze obywatelskim i dziennikarskim, służącym monitoringowi pracy rad miejskich i sejmików wojewódzkich. '
-    + 'Serwis stanowi usługę publicznego informowania w rozumieniu motywu 32 Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2024/900 z dnia 13 marca 2024 r. w sprawie przejrzystości i targetowania reklamy politycznej (TTPA) oraz korzysta z wyłączenia przewidzianego w art. 2 ust. 2 lit. c tego rozporządzenia, dotyczącego treści dziennikarskich i redakcyjnych. '
-    + 'Serwis nie jest reklamą polityczną w rozumieniu art. 3 pkt 2 TTPA, nie jest finansowany przez podmioty polityczne ani na ich zlecenie, nie promuje żadnej partii, komitetu wyborczego ani kandydata. '
-    + 'Serwis nie jest oficjalnym serwisem żadnego urzędu miasta, organu samorządu ani partii politycznej.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">3. Brak agitacji wyborczej</h2>'
-    + '<p>Serwis prezentuje wyłącznie historyczne, zarchiwizowane dane publiczne pochodzące z Biuletynów Informacji Publicznej (BIP), opendata oraz innych oficjalnych źródeł rejestrowych. '
-    + 'Serwis nie zawiera treści agitacyjnych, nie nakłania do głosowania na konkretnego kandydata ani przeciwko niemu, nie prowadzi agitacji wyborczej w rozumieniu art. 105 ustawy z dnia 5 stycznia 2011 r. Kodeks wyborczy. '
-    + 'W okresie ciszy wyborczej Serwis pozostaje dostępny z prezentacją historycznych danych publicznych, co nie stanowi agitacji wyborczej.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">4. Źródła danych</h2>'
-    + '<p>Wszystkie dane prezentowane w Serwisie pochodzą z publicznie dostępnych źródeł, przede wszystkim z Biuletynów Informacji Publicznej poszczególnych miast oraz analogicznych zasobów open data dla miast zagranicznych. '
-    + 'Dane są pobierane automatycznie i przetwarzane algorytmicznie. Administrator dokłada starań, aby dane były aktualne i poprawne, '
-    + 'jednak nie gwarantuje ich pełnej dokładności. W przypadku rozbieżności wiążące są dane źródłowe z oficjalnego rejestru.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">5. Wskaźniki i statystyki</h2>'
-    + '<p>Prezentowane wskaźniki (frekwencja, aktywność, zgodność z klubem, liczba rebelii, liczba wystąpień) są obliczane na podstawie danych źródłowych według jawnych algorytmów. '
-    + 'Wskaźniki mają charakter informacyjny, opierają się na obiektywnych zdarzeniach (oddany głos, obecność na sesji, zabranie głosu) i nie stanowią oceny wartościującej pracy radnego. '
-    + 'Pełna metodologia obliczeń jest dostępna w kodzie źródłowym Serwisu na <a href="https://github.com/radoskoppl/radoskop" target="_blank" rel="noopener">GitHub</a>.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">6. Reklamy i finansowanie</h2>'
-    + '<p>Serwis nie wyświetla reklam, nie korzysta z sieci reklamowych ani nie monetyzuje treści przez reklamę. '
-    + 'Administrator może prowadzić działania marketingowe Serwisu w zewnętrznych kanałach (np. Google Ads, social media) w celu zwiększenia świadomości obywatelskiej i zasięgu serwisu informacyjnego. '
-    + 'Takie działania promują wyłącznie sam Serwis jako narzędzie informacyjne i nie zawierają treści politycznych. '
-    + 'Serwis nie przyjmuje finansowania od partii politycznych, komitetów wyborczych, kandydatów ani innych podmiotów politycznych. '
-    + 'Utrzymanie Serwisu finansowane jest ze środków własnych Administratora oraz ze sprzedaży raportów PDF dostępnych w sekcji <a href="/raporty/" onclick="event.preventDefault();showReports()">Raporty</a>.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">7. Klauzula informacyjna dla radnych</h2>'
-    + '<p>Administrator przetwarza dane osobowe radnych w zakresie ich działalności publicznej (imię i nazwisko, przynależność klubowa, oddane głosy, frekwencja, interpelacje, wystąpienia w protokołach sesji) na podstawie:</p>'
-    + '<ul style="margin:8px 0 8px 24px">'
-    + '<li>art. 6 ust. 1 lit. f RODO (uzasadniony interes administratora i interes publiczny w transparentności samorządu lokalnego),</li>'
-    + '<li>art. 6 ust. 1 lit. e RODO (zadanie realizowane w interesie publicznym),</li>'
-    + '<li>art. 85 RODO (przetwarzanie do celów dziennikarskich),</li>'
-    + '<li>ustawy z dnia 6 września 2001 r. o dostępie do informacji publicznej.</li>'
-    + '</ul>'
-    + '<p>Źródłem danych są oficjalne rejestry publiczne (BIP, opendata). Dane nie są przekazywane podmiotom trzecim w celach marketingowych ani sprzedawane. '
-    + 'Każdy radny ma prawo: dostępu do swoich danych, żądania sprostowania danych nieprawidłowych, wniesienia sprzeciwu wobec przetwarzania na podstawie szczególnej sytuacji, wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych. '
-    + 'Kontakt w sprawie danych: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a>.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">8. Procedura sprostowania danych</h2>'
-    + '<p>Każdy radny lub osoba zainteresowana może zgłosić wniosek o sprostowanie danych w Serwisie. Wniosek prosimy kierować na adres <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a> z podaniem: imienia i nazwiska radnego, miasta, opisu zgłaszanego błędu oraz wskazania źródła prawidłowych danych (link do protokołu BIP, oficjalna lista obecności itp.). '
-    + 'Administrator zobowiązuje się do rozpatrzenia zgłoszenia w terminie 7 dni roboczych. Jeśli błąd zostanie potwierdzony przez konfrontację z dokumentem źródłowym, korekta nastąpi niezwłocznie po weryfikacji. '
-    + 'Jeśli rozbieżność wynika z błędu w samym źródle BIP, Administrator pozostawi dane zgodne ze źródłem, jednocześnie informując zgłaszającego o ścieżce sprostowania w urzędzie miasta odpowiedzialnym za publikację BIP.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">9. Licencja i kod źródłowy</h2>'
-    + '<p>Kod źródłowy Serwisu jest udostępniony na licencji AGPL-3.0 na platformie GitHub. '
-    + 'Dane prezentowane w Serwisie, jako informacja publiczna, mogą być swobodnie wykorzystywane z podaniem źródła.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">10. Odpowiedzialność</h2>'
-    + '<p>Administrator nie ponosi odpowiedzialności za: czasową niedostępność Serwisu, ewentualne błędy w danych wynikające z błędów w źródłach (BIP, opendata), '
-    + 'decyzje podjęte na podstawie informacji z Serwisu, działanie serwisów zewnętrznych, do których Serwis zawiera odnośniki.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">11. Prywatność użytkowników</h2>'
-    + '<p>Zasady przetwarzania danych osobowych użytkowników odwiedzających Serwis opisuje <a href="/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a>.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">12. Zmiany regulaminu</h2>'
-    + '<p>Administrator zastrzega sobie prawo do zmiany Regulaminu. Aktualna wersja jest zawsze dostępna pod adresem /regulamin/ w każdej instancji Serwisu.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">13. Kontakt</h2>'
-    + '<p>Pytania i uwagi dotyczące Serwisu, zgłoszenia sprostowania danych, sprawy RODO: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a></p>'
-
-    + '</div>';
-  navigateTo('/regulamin/');
-  setTitle('Regulamin');
-  setOgMeta({
-    title: 'Regulamin — Radoskop {{CITY_NAME}}',
-    description: 'Regulamin serwisu Radoskop. Informacje o źródłach danych, metodologii i zasadach korzystania.',
-    url: '{{SITE_URL}}/regulamin/'
-  });
+  el.innerHTML = '<h1 style="font-size:1.5rem;margin:20px 0 10px">Regulamin serwisu Radoskop</h1><p style="color:var(--muted);margin-bottom:20px">Ostatnia aktualizacja: 9 maja 2026</p><h2 style="font-size:1.1rem;margin:24px 0 8px">1. Postanowienia ogólne</h2><p>Serwis Radoskop (dalej: Serwis) jest prowadzony przez Patryka Orwata (dalej: Administrator). Serwis działa pod domenami radoskop.pl (miasta polskie) i radoskop.eu (miasta zagraniczne, m.in. Praha, Berlin) oraz ich subdomenami miast (np. warszawa.radoskop.pl). Korzystanie z Serwisu oznacza akceptację niniejszego Regulaminu.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">2. Charakter serwisu i status prawny</h2><p>Radoskop jest niezależnym serwisem informacyjnym o charakterze obywatelskim i dziennikarskim, służącym monitoringowi pracy rad miejskich i sejmików wojewódzkich. Serwis stanowi usługę publicznego informowania w rozumieniu motywu 32 Rozporządzenia Parlamentu Europejskiego i Rady (UE) 2024/900 z dnia 13 marca 2024 r. w sprawie przejrzystości i targetowania reklamy politycznej (TTPA) oraz korzysta z wyłączenia przewidzianego w art. 2 ust. 2 lit. c tego rozporządzenia, dotyczącego treści dziennikarskich i redakcyjnych. Serwis nie jest reklamą polityczną w rozumieniu art. 3 pkt 2 TTPA, nie jest finansowany przez podmioty polityczne ani na ich zlecenie, nie promuje żadnej partii, komitetu wyborczego ani kandydata. Serwis nie jest oficjalnym serwisem żadnego urzędu miasta, organu samorządu ani partii politycznej.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">3. Brak agitacji wyborczej</h2><p>Serwis prezentuje wyłącznie historyczne, zarchiwizowane dane publiczne pochodzące z Biuletynów Informacji Publicznej (BIP), opendata oraz innych oficjalnych źródeł rejestrowych. Serwis nie zawiera treści agitacyjnych, nie nakłania do głosowania na konkretnego kandydata ani przeciwko niemu, nie prowadzi agitacji wyborczej w rozumieniu art. 105 ustawy z dnia 5 stycznia 2011 r. Kodeks wyborczy. W okresie ciszy wyborczej Serwis pozostaje dostępny z prezentacją historycznych danych publicznych, co nie stanowi agitacji wyborczej.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">4. Źródła danych</h2><p>Wszystkie dane prezentowane w Serwisie pochodzą z publicznie dostępnych źródeł, przede wszystkim z Biuletynów Informacji Publicznej poszczególnych miast oraz analogicznych zasobów open data dla miast zagranicznych. Dane są pobierane automatycznie i przetwarzane algorytmicznie. Administrator dokłada starań, aby dane były aktualne i poprawne, jednak nie gwarantuje ich pełnej dokładności. W przypadku rozbieżności wiążące są dane źródłowe z oficjalnego rejestru.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">5. Wskaźniki i statystyki</h2><p>Prezentowane wskaźniki (frekwencja, aktywność, zgodność z klubem, liczba rebelii, liczba wystąpień) są obliczane na podstawie danych źródłowych według jawnych algorytmów. Wskaźniki mają charakter informacyjny, opierają się na obiektywnych zdarzeniach (oddany głos, obecność na sesji, zabranie głosu) i nie stanowią oceny wartościującej pracy radnego. Pełna metodologia obliczeń jest dostępna w kodzie źródłowym Serwisu na <a href="https://github.com/radoskoppl/radoskop" target="_blank" rel="noopener">GitHub</a>.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">6. Reklamy i finansowanie</h2><p>Serwis nie wyświetla reklam, nie korzysta z sieci reklamowych ani nie monetyzuje treści przez reklamę. Administrator może prowadzić działania marketingowe Serwisu w zewnętrznych kanałach (np. Google Ads, social media) w celu zwiększenia świadomości obywatelskiej i zasięgu serwisu informacyjnego. Takie działania promują wyłącznie sam Serwis jako narzędzie informacyjne i nie zawierają treści politycznych. Serwis nie przyjmuje finansowania od partii politycznych, komitetów wyborczych, kandydatów ani innych podmiotów politycznych. Utrzymanie Serwisu finansowane jest ze środków własnych Administratora oraz ze sprzedaży raportów PDF dostępnych w sekcji <a href="/raporty/" onclick="event.preventDefault();showReports()">Raporty</a>.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">7. Klauzula informacyjna dla radnych</h2><p>Administrator przetwarza dane osobowe radnych w zakresie ich działalności publicznej (imię i nazwisko, przynależność klubowa, oddane głosy, frekwencja, interpelacje, wystąpienia w protokołach sesji) na podstawie:</p><ul style="margin:8px 0 8px 24px"><li>art. 6 ust. 1 lit. f RODO (uzasadniony interes administratora i interes publiczny w transparentności samorządu lokalnego),</li><li>art. 6 ust. 1 lit. e RODO (zadanie realizowane w interesie publicznym),</li><li>art. 85 RODO (przetwarzanie do celów dziennikarskich),</li><li>ustawy z dnia 6 września 2001 r. o dostępie do informacji publicznej.</li></ul><p>Źródłem danych są oficjalne rejestry publiczne (BIP, opendata). Dane nie są przekazywane podmiotom trzecim w celach marketingowych ani sprzedawane. Każdy radny ma prawo: dostępu do swoich danych, żądania sprostowania danych nieprawidłowych, wniesienia sprzeciwu wobec przetwarzania na podstawie szczególnej sytuacji, wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych. Kontakt w sprawie danych: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a>.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">8. Procedura sprostowania danych</h2><p>Każdy radny lub osoba zainteresowana może zgłosić wniosek o sprostowanie danych w Serwisie. Wniosek prosimy kierować na adres <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a> z podaniem: imienia i nazwiska radnego, miasta, opisu zgłaszanego błędu oraz wskazania źródła prawidłowych danych (link do protokołu BIP, oficjalna lista obecności itp.). Administrator zobowiązuje się do rozpatrzenia zgłoszenia w terminie 7 dni roboczych. Jeśli błąd zostanie potwierdzony przez konfrontację z dokumentem źródłowym, korekta nastąpi niezwłocznie po weryfikacji. Jeśli rozbieżność wynika z błędu w samym źródle BIP, Administrator pozostawi dane zgodne ze źródłem, jednocześnie informując zgłaszającego o ścieżce sprostowania w urzędzie miasta odpowiedzialnym za publikację BIP.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">9. Licencja i kod źródłowy</h2><p>Kod źródłowy Serwisu jest udostępniony na licencji AGPL-3.0 na platformie GitHub. Dane prezentowane w Serwisie, jako informacja publiczna, mogą być swobodnie wykorzystywane z podaniem źródła.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">10. Odpowiedzialność</h2><p>Administrator nie ponosi odpowiedzialności za: czasową niedostępność Serwisu, ewentualne błędy w danych wynikające z błędów w źródłach (BIP, opendata), decyzje podjęte na podstawie informacji z Serwisu, działanie serwisów zewnętrznych, do których Serwis zawiera odnośniki.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">11. Prywatność użytkowników</h2><p>Zasady przetwarzania danych osobowych użytkowników odwiedzających Serwis opisuje <a href="/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a>.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">12. Zmiany regulaminu</h2><p>Administrator zastrzega sobie prawo do zmiany Regulaminu. Aktualna wersja jest zawsze dostępna pod adresem /regulamin/ w każdej instancji Serwisu.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">13. Kontakt</h2><p>Pytania i uwagi dotyczące Serwisu, zgłoszenia sprostowania danych, sprawy RODO: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a></p>'
+;
   /* TERMS_HTML_END */
   window.scrollTo(0, 0);
 }
