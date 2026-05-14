@@ -504,12 +504,166 @@ PL_TO_CS: list[tuple[str, str]] = [
 ]
 
 
+# Tłumaczenia polski → litewski. Wilno (vilnius.eu, locale=lt).
+# Struktura sprasowana z PL_TO_CS - te same klucze PL, ale tłumaczenie LT.
+# Specyfika LT:
+#   - Brak rozróżnienia rodzaju w czasie przeszłym 3. osoby (Susilaikė
+#     działa i dla niego, i dla niej). Dwa polskie warianty mapują na
+#     jeden litewski.
+#   - "Rada miasta" w LT to "miesto savivaldybės taryba". W lemma-kompresji
+#     używamy "tarybos nariai" (council members) zamiast literalnie.
+#   - Liczebność: większość rzeczowników odmienia się przez przypadki, my
+#     trzymamy się mianownika i dopełniacza zgodnie z polskim oryginałem.
+PL_TO_LT: list[tuple[str, str]] = [
+    # ── Nawigacja i taby ─────────────────────────────────────────────
+    ("Jak głosują radni Miasta {{CITY_GENITIVE}}? Dane z protokołów BIP.",
+     "Kaip balsuoja {{CITY_GENITIVE}} tarybos nariai? Duomenys iš oficialių šaltinių."),
+    ("Jak głosują radni?", "Kaip balsuoja tarybos nariai?"),
+    ("Rada Miasta {{CITY_GENITIVE}}", "{{CITY_NAME}} miesto savivaldybės taryba"),
+    ("wszystkie miasta", "visi miestai"),
+    ("Dane źródłowe:", "Šaltinio duomenys:"),
+    ("Raporty", "Ataskaitos"),
+    ("Polityka prywatności", "Privatumo politika"),
+    ("Regulamin", "Taisyklės"),
+    ("Najbardziej aktywni radni", "Aktyviausi tarybos nariai"),
+    ("Najczęściej głosują tak samo", "Dažniausiai balsuoja vienodai"),
+    ("Najrzadziej głosują tak samo", "Rečiausiai balsuoja vienodai"),
+    ("Profile radnych", "Tarybos narių profiliai"),
+    ("Ranking radnych", "Tarybos narių reitingas"),
+    ("Kto z kim głosuje", "Kas su kuo balsuoja"),
+    ("Wszystkie wyniki", "Visi rezultatai"),
+    ("Lista interpelacji i zapytań", "Interpeliacijų ir paklausimų sąrašas"),
+    ("Interpelacje", "Interpeliacijos"),
+    ("interpelacji", "interpeliacijų"),
+    ("Strona główna", "Pagrindinis"),
+    ("Powrót do listy", "Atgal į sąrašą"),
+
+    # ── Filtry i sortowania ─────────────────────────────────────────
+    ("Szukaj głosowań po temacie...", "Ieškoti balsavimų pagal temą..."),
+    ("Szukaj w interpelacjach...", "Ieškoti interpeliacijose..."),
+    ("Następna →", "Kita →"),
+    ("Następne →", "Kitas →"),
+    ("← Poprzednia", "← Ankstesnė"),
+    ("Wszystkie", "Visi"),
+    ("Budżet", "Biudžetas"),
+    ("Sortuj po", "Rikiuoti pagal"),
+    ("Filtruj", "Filtruoti"),
+    ("Pokaż więcej", "Rodyti daugiau"),
+    ("Pokaż mniej", "Rodyti mažiau"),
+    ("Wyczyść", "Išvalyti"),
+    ("Pozostałe", "Kiti"),
+
+    # ── Etykiety w tabelach i kartach ───────────────────────────────
+    ("Aktywność na sesjach", "Aktyvumas posėdžiuose"),
+    ("Aktywność mówców", "Kalbėtojų aktyvumas"),
+    ("Frekwencja", "Dalyvavimas"),
+    ("Aktywność", "Aktyvumas"),
+    ("Zgodność z klubem", "Sutapimas su frakcija"),
+    ("Podobieństwo", "Panašumas"),
+    ("Buntów", "Maištų"),
+    ("Sesji z wypowiedzią", "Posėdžių su pasisakymu"),
+    ("Słów łącznie", "Žodžių iš viso"),
+    ("Mówców", "Kalbėtojų"),
+    ("Słowa", "Žodžiai"),
+    ("Słów", "Žodžių"),
+    ("Wystąpień", "Pasisakymų"),
+    ("wystąpień", "pasisakymų"),
+    ("Obecnych", "Dalyvavo"),
+    ("Obecni", "Dalyvavę"),
+    ("obecnych radnych", "dalyvavusių tarybos narių"),
+    ("obecnych", "dalyvavusių"),
+    ("Nieobecnych", "Nedalyvavo"),
+    ("Nieobecni", "Nedalyvavę"),
+    ("głosowań", "balsavimų"),
+    ("Głosy na sesjach", "Balsai posėdžiuose"),
+    ("Głosy wbrew klubowi", "Balsai prieš frakciją"),
+    ("Głosy przeciw (%)", "Prieš (%)"),
+    ("Głosy za (%)", "Už (%)"),
+    ("Głosowania budżetowe", "Biudžeto balsavimai"),
+    ("Głosowania, w których się różnili", "Balsavimai, kuriuose skyrėsi"),
+    ("Głosowania", "Balsavimai"),
+    ("Głosowanie", "Balsavimas"),
+    ("Głosowań", "Balsavimų"),
+    ("Głosy", "Balsai"),
+    ("Sesje", "Posėdžiai"),
+    ("Sesja", "Posėdis"),
+    ("Ładowanie sesji...", "Kraunami posėdžiai..."),
+    ("Ładowanie głosowań...", "Kraunami balsavimai..."),
+    ("Porównanie metryk", "Metrikų palyginimas"),
+    ("Raporty klubów", "Frakcijų ataskaitos"),
+    ("Raporty radnych", "Tarybos narių ataskaitos"),
+    ("Pobierz kartę (PNG)", "Atsisiųsti kortelę (PNG)"),
+    ("Pobierz kartę", "Atsisiųsti kortelę"),
+    ("Protokół głosowania (BIP) ↗", "Balsavimo protokolas (šaltinis) ↗"),
+    ("Struktura wydatków", "Išlaidų struktūra"),
+    ("Polityce prywatności", "Privatumo politikoje"),
+    ("Rok budżetowy:", "Biudžetiniai metai:"),
+    ("Komisje", "Komitetai"),
+    ("Komisji", "Komitetų"),
+    ("Klub", "Frakcija"),
+    ("Kluby", "Frakcijos"),
+    ("Kadencje", "Kadencijos"),
+    ("Kadencja", "Kadencija"),
+    ("Radny/a", "Tarybos narys/ė"),
+    ("Radnych", "Tarybos narių"),
+    ("Radni", "Tarybos nariai"),
+    ("Okręg wyborczy", "Rinkimų apygarda"),
+    ("Temat", "Tema"),
+    ("Treść", "Turinys"),
+    ("Odpowiedź", "Atsakymas"),
+    ("Data", "Data"),
+    ("Wyniki", "Rezultatai"),
+    ("Wynik", "Rezultatas"),
+
+    # ── Wartości głosowań ────────────────────────────────────────────
+    ("Brak głosu", "Nebalsavo"),
+    ("Wstrzymał się", "Susilaikė"),
+    ("Wstrzymała się", "Susilaikė"),
+    ("Nieobecny", "Nedalyvavo"),
+    ("Nieobecna", "Nedalyvavo"),
+    ("Przyjęte", "Priimta"),
+    ("Przyjętych", "Priimtų"),
+    ("Odrzucone", "Atmesta"),
+    ("Przeciw", "Prieš"),
+    ("Za", "Už"),
+
+    # ── Stany i błędy ────────────────────────────────────────────────
+    ("Brak danych dla tej kadencji", "Nėra duomenų šiai kadencijai"),
+    ("Brak danych o indywidualnych głosowaniach.", "Nėra duomenų apie individualius balsavimus."),
+    ("Nie znaleziono głosowania.", "Balsavimas nerastas."),
+    ("Nie znaleziono sesji.", "Posėdis nerastas."),
+    ("Błąd ładowania danych:", "Klaida kraunant duomenis:"),
+    ("Ładowanie...", "Kraunama..."),
+
+    # ── Akcje ───────────────────────────────────────────────────────
+    ("Udostępnij na Facebooku", "Dalintis Facebook"),
+    ("Udostępnij na X", "Dalintis X"),
+    ("Udostępnij", "Dalintis"),
+    ("Porównaj radnych", "Palyginti tarybos narius"),
+    ("Porównanie radnych", "Tarybos narių palyginimas"),
+    ("Porównaj", "Palyginti"),
+    ("Przełącz motyw jasny/ciemny", "Perjungti šviesų/tamsų režimą"),
+
+    # ── Stopka i prawne ─────────────────────────────────────────────
+    ("Kontakt", "Kontaktai"),
+
+    # ── Skróty i drobne etykiety inline ─────────────────────────────
+    # Dłuższe frazy najpierw, bo apply_locale sortuje po długości DESC.
+    ("Śr. słów/sesję", "Vid. žodžių/posėdyje"),
+    ("wyp.", "pasisak."),
+    ("słów", "žodžių"),
+    ("toLocaleString('pl')", "toLocaleString('lt')"),
+]
+
+
 def apply_locale(html: str, locale: str) -> str:
     """Zastosuj tłumaczenia dla danego locale.
 
     Locale "pl" (lub brak) → zwróć HTML bez zmian.
     Locale "en" → słownik PL_TO_EN.
     Locale "de" → słownik PL_TO_DE (Berlin, w przyszłości Hamburg, Wien).
+    Locale "cs" → słownik PL_TO_CS (Praha).
+    Locale "lt" → słownik PL_TO_LT (Vilnius).
 
     Wymiana używa regex z negative lookbehind/lookahead na word characters,
     żeby pojedyncze słowa nie trafiały w identyfikatory JS lub CSS classes
@@ -527,6 +681,7 @@ def apply_locale(html: str, locale: str) -> str:
         "en": PL_TO_EN,
         "de": PL_TO_DE,
         "cs": PL_TO_CS,
+        "lt": PL_TO_LT,
     }
     d = dictionaries.get(locale.lower())
     if d is None:
