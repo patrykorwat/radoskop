@@ -981,12 +981,27 @@ def compute_similarity(all_votes: list[dict], councilors_list: list[dict]) -> tu
     return top, bottom
 
 
-def build_sessions(all_votes: list[dict]) -> list[dict]:
-    """Zbuduj dane sesji z liczby głosowań."""
+def build_sessions(all_votes: list[dict], session_list: list[dict] | None = None) -> list[dict]:
+    """Zbuduj dane sesji z liczby głosowań.
+
+    `session_list` to wynik fetch_session_list() z metadanymi (number, idt,
+    url) zaindeksowanymi po dacie. Bez tego argumentu (legacy) sesje wracają
+    bez numeru, co psuje routing UI (linki /session/{number}/ → 404 i lista
+    sesji renderuje pusty/?-string zamiast "Sesja XXIII"). 2026-05-13: bug
+    z dawnej eSesja-only ery, fix przekazujący session_list z scrape().
+    """
     votes_by_date = defaultdict(list)
     for v in all_votes:
         date = v.get("session_date", "unknown")
         votes_by_date[date].append(v)
+
+    # date → number lookup z session_list (pierwsza wygrywa gdy duplikat dat)
+    date_to_meta: dict[str, dict] = {}
+    if session_list:
+        for s in session_list:
+            d = s.get("date", "")
+            if d and d not in date_to_meta:
+                date_to_meta[d] = s
 
     result = []
     for date in sorted(votes_by_date.keys()):
@@ -997,9 +1012,11 @@ def build_sessions(all_votes: list[dict]) -> list[dict]:
             for cat in ["za", "przeciw", "wstrzymal_sie", "brak_glosu"]:
                 attendees.update(v["named_votes"].get(cat, []))
 
+        meta = date_to_meta.get(date, {})
         result.append({
             "date": date,
-            "number": "",  # Brak numeru sesji w eSesja
+            "number": meta.get("number", ""),
+            "url": meta.get("url", ""),
             "vote_count": len(session_votes),
             "attendee_count": len(attendees),
             "attendees": sorted(attendees),
@@ -1193,7 +1210,7 @@ def scrape(output_path, profiles_path, debug=False, max_sessions=0, pdf_dir=None
     # Zbuduj struktury
     kid = "2024-2029"
     councilors = build_councilors(all_votes, profiles)
-    sessions_data = build_sessions(all_votes)
+    sessions_data = build_sessions(all_votes, session_list=session_list)
     sim_top, sim_bottom = compute_similarity(all_votes, councilors)
 
     club_counts = defaultdict(int)
