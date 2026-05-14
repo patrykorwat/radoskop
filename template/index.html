@@ -92,6 +92,20 @@
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+.topbar { position:sticky; top:0; z-index:100; background:var(--surface); border-bottom:1px solid var(--border); padding:10px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.topbar-logo { font-size:1.05rem; font-weight:700; color:var(--text); text-decoration:none; }
+.topbar-logo span { color:var(--accent); }
+.topbar-nav { display:flex; gap:20px; flex-wrap:wrap; }
+.topbar-nav a { font-size:.88rem; color:var(--muted); text-decoration:none; transition:color .15s; }
+.topbar-nav a:hover { color:var(--accent); }
+.topbar-nav a.active { color:var(--accent); font-weight:500; }
+.topbar-actions { display:flex; gap:6px; align-items:center; }
+@media (max-width:768px) {
+  .topbar { padding:8px 12px; gap:10px; }
+  .topbar-nav { display:none; }
+  .topbar .auth-btn { padding:5px 10px; font-size:.78rem; }
+  .topbar .theme-toggle { padding:4px 8px; font-size:0.78rem; }
+}
 .container { max-width:1200px; margin:0 auto; padding:20px; }
 header { padding:40px 0 20px; border-bottom:1px solid var(--border); margin-bottom:30px; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; }
 header > div:first-child { flex:1; min-width:200px; }
@@ -258,10 +272,12 @@ footer a { color:var(--accent); text-decoration:none; }
 @media (max-width: 480px) {
   .container { padding: 12px; }
 
-  /* Header: kompaktowy, h1 mniejszy. Kadencja-bar inline pill style. */
-  header { padding: 14px 0 10px; margin-bottom: 16px; gap: 8px; }
-  header h1 { font-size: 1.45rem; }
-  header p { font-size: 0.82rem; line-height: 1.35; }
+  /* Header: kompaktowy, h1 mniejszy. Kadencja-bar inline pill style.
+   * Auth + theme buttons są przeniesione do topbara, więc header w mobile
+   * to tylko tytuł + subtitle (jeden div, full width). */
+  header { padding: 12px 0 8px; margin-bottom: 14px; gap: 6px; }
+  header h1 { font-size: 1.35rem; line-height: 1.2; }
+  header p { font-size: 0.78rem; line-height: 1.35; }
   .kadencja-bar { padding: 2px; }
   .kadencja-btn { padding: 5px 10px; font-size: 0.75rem; }
 
@@ -354,8 +370,12 @@ footer a { color:var(--accent); text-decoration:none; }
   .chart-wrap { padding: 12px; }
   canvas { max-height: 480px !important; }
 
-  /* Theme toggle nieco mniejszy */
+  /* Theme toggle: ikona only na mobile, ukryj label "Ciemny/Jasny" */
   .theme-toggle { padding: 5px 8px; font-size: 0.78rem; }
+  .theme-toggle #theme-label { display: none; }
+
+  /* Auth button kompaktowy na mobile */
+  .auth-btn { padding: 5px 10px; font-size: 0.78rem; }
 }
 
 /* Tablet (481-768px): 2-3 column grids zamiast 1 */
@@ -494,22 +514,31 @@ footer a { color:var(--accent); text-decoration:none; }
 </style>
 </head>
 <body>
+<nav class="topbar" aria-label="Główna nawigacja">
+  <a class="topbar-logo" href="https://radoskop.pl/">Rado<span>skop</span></a>
+  <div class="topbar-nav">
+    <a href="https://radoskop.eu/reports/">Raporty</a>
+    <a href="https://radoskop.eu/cennik/">Cennik</a>
+    <a href="https://radoskop.eu/business/">Business</a>
+    <a href="https://radoskop.pl/swiezosc/">Świeżość danych</a>
+  </div>
+  <div class="topbar-actions">
+    <button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
+    <div class="user-chip" id="user-chip" style="display:none">
+      <span class="user-avatar" id="user-avatar" title=""></span>
+      <span id="user-name" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+      <button class="user-logout" onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj">×</button>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny">
+      <span id="theme-icon">🌙</span> <span id="theme-label">Ciemny</span>
+    </button>
+  </div>
+</nav>
 <div class="container">
   <header>
     <div onclick="showMain()" style="cursor:pointer">
       <h1>Rado<span>skop</span> {{CITY_NAME}}</h1>
       <p>Jak głosują radni Miasta {{CITY_GENITIVE}}? Dane z protokołów BIP.</p>
-    </div>
-    <div class="header-actions">
-      <button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
-      <div class="user-chip" id="user-chip" style="display:none">
-        <span class="user-avatar" id="user-avatar" title=""></span>
-        <span id="user-name" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
-        <button class="user-logout" onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj">×</button>
-      </div>
-      <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny">
-        <span id="theme-icon">🌙</span> <span id="theme-label">Ciemny</span>
-      </button>
     </div>
   </header>
 
@@ -642,7 +671,7 @@ footer a { color:var(--accent); text-decoration:none; }
     </div>
     Dane źródłowe: <a href="{{BIP_URL}}" target="_blank">{{BIP_NAME}}</a>.
     Kod: <a href="{{GITHUB_URL}}" target="_blank">GitHub</a> (AGPL-3.0).
-    <a href="/raporty/" onclick="event.preventDefault();showReports()">Raporty</a> · <a href="/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="/regulamin/" onclick="event.preventDefault();showTerms()">Regulamin</a>{{IMPRESSUM_FOOTER_LINK}}
+    <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/regulamin/" onclick="event.preventDefault();showTerms()">Regulamin</a>{{IMPRESSUM_FOOTER_LINK}}
     {{PRESSEKODEX_NOTICE}}
   </footer>
 
@@ -1296,135 +1325,12 @@ function showImpressum() {
   window.scrollTo(0, 0);
 }
 
-// --- Reports catalog page ---
+// --- Reports catalog ---
+// Wszystkie raporty katalogowane są na radoskop.eu/reports/ (jedna kanoniczna
+// strona dla całej platformy). Subdomena miasta tu tylko przekierowuje,
+// żeby uniknąć duplikatu treści i SEO konfliktów.
 function showReports() {
-  hideAllViews();
-  var el = document.getElementById('reports-view');
-  el.style.display = 'block';
-
-  var cityName = '{{CITY_NAME}}';
-  var cityGen = '{{CITY_GENITIVE}}';
-  var siteUrl = '{{SITE_URL}}';
-
-  // Build councillor cards from PROFILES
-  var councillorCards = '';
-  if (window.PROFILES && PROFILES.profiles) {
-    var currentKad = (window.RAW && RAW.default_kadencja) || '2024-2029';
-    var active = PROFILES.profiles.filter(function(p) {
-      var kd = p.kadencje[currentKad];
-      return kd && !kd.former;
-    });
-    active.sort(function(a, b) { return a.name.localeCompare(b.name, 'pl'); });
-    active.forEach(function(p) {
-      var kd = p.kadencje[currentKad];
-      var club = kd.club || '';
-      var clubStyle = typeof clubBg === 'function' ? 'background:' + clubBg(club) + ';' : '';
-      councillorCards += '<div class="report-card" style="border:1px solid var(--border);border-radius:8px;padding:16px;' + clubStyle + '">'
-        + '<div style="font-weight:600;margin-bottom:4px">' + p.name + '</div>'
-        + '<div style="color:var(--muted);font-size:0.85rem;margin-bottom:8px">' + club + ' · Frekwencja: ' + (kd.frekwencja != null ? kd.frekwencja.toFixed(1) + '%' : 'b/d') + '</div>'
-        + '<div style="display:flex;gap:8px;flex-wrap:wrap">'
-        + '<a href="/raporty/radny/' + p.slug + '.pdf" class="report-btn" style="display:inline-block;padding:6px 14px;background:var(--accent, #2563eb);color:#fff;border-radius:6px;font-size:0.8rem;text-decoration:none">Pobierz raport PDF</a>'
-        + '<span style="color:var(--muted);font-size:0.8rem;align-self:center">9,99 zł</span>'
-        + '</div>'
-        + '</div>';
-    });
-  }
-
-  // Build club cards from K (current kadencja data)
-  var clubCards = '';
-  if (window.K && K.clubs) {
-    Object.keys(K.clubs).sort().forEach(function(clubName) {
-      var count = K.clubs[clubName];
-      var clubStyle = typeof clubBg === 'function' ? 'background:' + clubBg(clubName) + ';' : '';
-      var clubSlug = clubName.toLowerCase().replace(/[^a-z0-9]/g, '-');
-      clubCards += '<div class="report-card" style="border:1px solid var(--border);border-radius:8px;padding:16px;' + clubStyle + '">'
-        + '<div style="font-weight:600;margin-bottom:4px">Klub: ' + clubName + '</div>'
-        + '<div style="color:var(--muted);font-size:0.85rem;margin-bottom:8px">' + count + ' radnych</div>'
-        + '<div style="display:flex;gap:8px;flex-wrap:wrap">'
-        + '<a href="/raporty/klub/' + clubSlug + '.pdf" class="report-btn" style="display:inline-block;padding:6px 14px;background:var(--accent, #2563eb);color:#fff;border-radius:6px;font-size:0.8rem;text-decoration:none">Pobierz raport PDF</a>'
-        + '<span style="color:var(--muted);font-size:0.8rem;align-self:center">14,99 zł</span>'
-        + '</div>'
-        + '</div>';
-    });
-  }
-
-  el.innerHTML = '<div style="max-width:900px;margin:0 auto;padding:20px 0">'
-    + '<button class="profile-back" onclick="showMain()">← Strona główna</button>'
-    + '<h1 style="font-size:1.5rem;margin:20px 0 10px">Raporty Radoskop ' + cityName + '</h1>'
-    + '<p style="color:var(--muted);margin-bottom:24px">Szczegółowe raporty PDF z analizą pracy radnych, klubów i rady miasta ' + cityGen + '. '
-    + 'Każdy raport zawiera wykresy, statystyki i porównania na podstawie oficjalnych danych z BIP.</p>'
-
-    // City report
-    + '<h2 style="font-size:1.15rem;margin:28px 0 12px">Raport miasta</h2>'
-    + '<div style="border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:24px">'
-    + '<div style="font-weight:600;margin-bottom:4px">Pełny raport: Rada Miasta ' + cityGen + '</div>'
-    + '<div style="color:var(--muted);font-size:0.85rem;margin-bottom:8px">Ranking radnych, analiza klubów, frekwencja, najbardziej kontrowersyjne głosowania, porównanie z innymi miastami.</div>'
-    + '<div style="display:flex;gap:8px;flex-wrap:wrap">'
-    + '<a href="/raporty/miasto.pdf" class="report-btn" style="display:inline-block;padding:6px 14px;background:var(--accent, #2563eb);color:#fff;border-radius:6px;font-size:0.8rem;text-decoration:none">Pobierz raport PDF</a>'
-    + '<span style="color:var(--muted);font-size:0.8rem;align-self:center">29,99 zł</span>'
-    + '</div>'
-    + '</div>'
-
-    // Club reports
-    + '<h2 style="font-size:1.15rem;margin:28px 0 12px">Raporty klubów</h2>'
-    + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:24px">'
-    + clubCards
-    + '</div>'
-
-    // Councillor reports
-    + '<h2 style="font-size:1.15rem;margin:28px 0 12px">Raporty radnych</h2>'
-    + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:24px">'
-    + councillorCards
-    + '</div>'
-
-    // Info
-    + '<div style="border-top:1px solid var(--border);margin-top:32px;padding-top:16px;color:var(--muted);font-size:0.85rem">'
-    + '<p><strong>Co zawiera raport radnego?</strong> Frekwencja na sesjach z rozbiciem na miesiące, rozkład głosów (za/przeciw/wstrzymał się), '
-    + 'lista rebelii (głosowania wbrew klubowi), porównanie z innymi radnymi z tego samego klubu, '
-    + 'najważniejsze głosowania i statystyki aktywności.</p>'
-    + '<p style="margin-top:8px"><strong>Co zawiera raport klubu?</strong> Lista członków z rankingiem frekwencji i aktywności, '
-    + 'spójność głosowań klubu, najczęściej głosujący wbrew klubowi, porównanie z innymi klubami w radzie.</p>'
-    + '<p style="margin-top:8px"><strong>Co zawiera raport miasta?</strong> Kompletny przegląd rady: ranking radnych, analiza klubów, '
-    + 'statystyki sesji, najbardziej kontrowersyjne głosowania, porównanie wskaźników z innymi miastami Radoskop.</p>'
-    + '<p style="margin-top:12px">Płatność obsługiwana przez Stripe. Po zakupie raport zostanie pobrany automatycznie. '
-    + 'Faktura VAT wysyłana na podany adres e-mail.</p>'
-    + '<p style="margin-top:8px">Pytania: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a></p>'
-    + '</div>'
-    + '</div>';
-
-  // Attach click handlers for payment
-  el.querySelectorAll('.report-btn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      var reportPath = btn.getAttribute('href');
-      startReportPurchase(reportPath);
-    });
-  });
-
-  navigateTo('/raporty/');
-  setTitle('Raporty');
-  setOgMeta({
-    title: 'Raporty PDF — Radoskop ' + cityName,
-    description: 'Szczegółowe raporty PDF z analizą pracy radnych, klubów i rady miasta ' + cityGen + '.',
-    url: siteUrl + '/raporty/'
-  });
-  window.scrollTo(0, 0);
-}
-
-function startReportPurchase(reportPath) {
-  // Extract report type and identifier from path
-  // Paths: /raporty/radny/{slug}.pdf, /raporty/klub/{slug}.pdf, /raporty/miasto.pdf
-  var parts = reportPath.replace('/raporty/', '').replace('.pdf', '').split('/');
-  var reportType = parts[0]; // radny, klub, miasto
-  var reportId = parts[1] || '';
-  var citySlug = location.hostname.split('.')[0]; // e.g. "szczecin"
-
-  // Redirect to Stripe Checkout via your backend
-  var checkoutUrl = 'https://radoskop.pl/api/checkout?type=' + encodeURIComponent(reportType)
-    + '&id=' + encodeURIComponent(reportId)
-    + '&city=' + encodeURIComponent(citySlug);
-
-  window.location.href = checkoutUrl;
+  window.location.href = 'https://radoskop.eu/reports/';
 }
 
 function showMain() {
