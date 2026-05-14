@@ -412,12 +412,12 @@ footer a:hover{text-decoration-color:var(--accent);}
     </div>
   </div>
 
-  <!-- Mapa Europy Środkowej z OSM tiles -->
+  <!-- Mapa dostępności z OSM tiles -->
   <section class="no-border" id="mapa" style="margin-top:8px">
-    <h3>Mapa Europy Środkowej</h3>
+    <h3>Mapa dostępności</h3>
 
     <div class="map-wrap">
-      <div id="leaflet-map" role="img" aria-label="Mapa Europy Środkowej z monitorowanymi miastami"></div>
+      <div id="leaflet-map" role="img" aria-label="Mapa dostępności z monitorowanymi miastami"></div>
     </div>
 
     <div class="map-summary" id="map-summary"></div>
@@ -430,6 +430,7 @@ footer a:hover{text-decoration-color:var(--accent);}
       #leaflet-map .city-pin.pl{background:#4f46e5;}
       #leaflet-map .city-pin.cz{background:#dc2626;}
       #leaflet-map .city-pin.de{background:#facc15;border-color:#a16207;}
+      #leaflet-map .city-pin.lt{background:#166534;}
       .leaflet-popup-content{margin:8px 12px;font:13px/1.4 system-ui,-apple-system,sans-serif;}
       .leaflet-popup-content h4{margin:0 0 4px;font-size:14px;font-weight:700;color:var(--text);}
       .leaflet-popup-content .stats{font-size:11px;color:var(--muted);margin-top:4px;}
@@ -1341,7 +1342,7 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 });
 
-// ── Mapa Europy Środkowej z Leaflet + OSM ──
+// ── Mapa dostępności (Leaflet + OSM) ──
 function renderLeafletMap(){
   if(typeof L==='undefined'){ console.warn('Leaflet not loaded'); return; }
   if(typeof CITIES==='undefined'||!CITIES.length){ return; }

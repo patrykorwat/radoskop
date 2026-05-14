@@ -19,6 +19,8 @@ from __future__ import annotations
 # słowo, a potem frazę).
 PL_TO_EN: list[tuple[str, str]] = [
     # ── Nawigacja i taby ─────────────────────────────────────────────
+    ("Mapa dostępności z monitorowanymi miastami", "Coverage map with monitored cities"),
+    ("Mapa dostępności", "Coverage map"),
     ("Rada Miasta {{CITY_GENITIVE}}", "{{CITY_NAME}} City Assembly"),
     ("Najbardziej aktywni radni", "Most active councilors"),
     ("Najczęściej głosują tak samo", "Most often vote the same"),
@@ -238,6 +240,8 @@ PL_TO_EN: list[tuple[str, str]] = [
 
 
 PL_TO_DE: list[tuple[str, str]] = [
+    ("Mapa dostępności z monitorowanymi miastami", "Verfügbarkeitskarte mit überwachten Städten"),
+    ("Mapa dostępności", "Verfügbarkeitskarte"),
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Jak głosują radni Miasta {{CITY_GENITIVE}}? Dane z protokołów BIP.",
      "Wie stimmen die Abgeordneten in {{CITY_NAME}} ab? Daten aus offiziellen Protokollen."),
@@ -363,6 +367,8 @@ PL_TO_DE: list[tuple[str, str]] = [
 
 PL_TO_CS: list[tuple[str, str]] = [
     # ── Nawigacja i taby ─────────────────────────────────────────────
+    ("Mapa dostępności z monitorowanymi miastami", "Mapa pokrytí se sledovanými městy"),
+    ("Mapa dostępności", "Mapa pokrytí"),
     ("Jak głosują radni Miasta {{CITY_GENITIVE}}? Dane z protokołów BIP.",
      "Jak hlasují zastupitelé hl. m. {{CITY_NAME}}? Data z oficiálních zdrojů."),
     ("Jak głosują radni?", "Jak hlasují zastupitelé?"),
@@ -516,6 +522,8 @@ PL_TO_CS: list[tuple[str, str]] = [
 #     trzymamy się mianownika i dopełniacza zgodnie z polskim oryginałem.
 PL_TO_LT: list[tuple[str, str]] = [
     # ── Nawigacja i taby ─────────────────────────────────────────────
+    ("Mapa dostępności z monitorowanymi miastami", "Aprėpties žemėlapis su stebimais miestais"),
+    ("Mapa dostępności", "Aprėpties žemėlapis"),
     ("Jak głosują radni Miasta {{CITY_GENITIVE}}? Dane z protokołów BIP.",
      "Kaip balsuoja {{CITY_GENITIVE}} tarybos nariai? Duomenys iš oficialių šaltinių."),
     ("Jak głosują radni?", "Kaip balsuoja tarybos nariai?"),

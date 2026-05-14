@@ -33,6 +33,14 @@ import argparse
 import hashlib
 import json
 import re
+
+# bip.olsztyn.eu zwraca CERTIFICATE_VERIFY_FAILED na NAS runtime (CA bundle
+# nie ma ich pośredniego intermediate cert). 2026-05-14: wyłączamy verify
+# tylko dla tego scrapera i suppressujemy ostrzeżenie - reszta miast ma OK
+# cert chain. Trzeba okresowo sprawdzać czy cert chain BIP-u się poprawił.
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+_VERIFY_TLS = False
 import sys
 import time
 from dataclasses import dataclass
@@ -142,7 +150,7 @@ def fetch_html(http_session: requests.Session, url: str, use_cache: bool = True,
         return cache_p.read_text(encoding="utf-8")
     if debug:
         print(f"  GET {url}")
-    resp = http_session.get(url, headers=HEADERS, timeout=TIMEOUT)
+    resp = http_session.get(url, headers=HEADERS, timeout=TIMEOUT, verify=_VERIFY_TLS)
     resp.raise_for_status()
     text = resp.text
     if cache_p:
@@ -162,7 +170,7 @@ def fetch_pdf(http_session: requests.Session, url: str, pdf_dir: Path, debug: bo
     if debug:
         print(f"      GET PDF {url}")
     try:
-        resp = http_session.get(url, headers=HEADERS, timeout=TIMEOUT, stream=True)
+        resp = http_session.get(url, headers=HEADERS, timeout=TIMEOUT, stream=True, verify=_VERIFY_TLS)
         resp.raise_for_status()
         with out.open("wb") as f:
             for chunk in resp.iter_content(chunk_size=8192):

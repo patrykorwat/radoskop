@@ -222,104 +222,129 @@ def kadencja_for_date(date_str: str | None, kadencje: dict[str, dict]) -> str | 
     return None
 
 
-def build_glosowanie(
-    klausimas_row: dict[str, str],
-    balsas_rows: list[dict[str, str]],
-    config: dict[str, Any],
-) -> dict[str, Any]:
-    """Buduje pojedyncze głosowanie w schemacie Radoskop."""
-    glos: dict[str, Any] = {
-        "id": klausimas_row.get("balsavimo_id") or klausimas_row.get("klausimo_id"),
-        "klausimo_id": klausimas_row.get("klausimo_id"),
-        "balsavimo_id": klausimas_row.get("balsavimo_id"),
-        "tytul": klausimas_row.get("klausimas_lt", ""),
-        "wynik_native": klausimas_row.get("sprendimas", ""),
-        "wynik": normalize_sprendimas(klausimas_row.get("sprendimas", "")),
-        "reikia_daugumai": klausimas_row.get("reikia_daugumai", ""),
-    }
-
-    counts: dict[str, int] = {c: 0 for c in CATEGORIES}
-    named_votes: dict[str, list[str]] = {c: [] for c in CATEGORIES}
-
-    for b in balsas_rows:
-        narys = (b.get("narys") or "").strip()
-        if not narys:
-            continue
-        cat = VOTE_TEXT_TO_CATEGORY.get(b.get("balsas", ""))
-        if not cat:
-            continue
-        counts[cat] += 1
-        named_votes[cat].append(narys)
-
-    glos["counts"] = counts
-    glos["named_votes"] = named_votes
-    return glos
-
-
-def build_sessions(
+def build_kadencja(
     klausimas_rows: list[dict[str, str]],
     balsas_by_vote: dict[str, list[dict[str, str]]],
     config: dict[str, Any],
     kadencja_id: str,
-) -> list[dict[str, Any]]:
-    """Grupuje pytania w sesje po (data, posedis)."""
+) -> dict[str, Any]:
+    """Buduje pełną strukturę kadencji w schemacie Radoskop.
+
+    Output zgodny z Pragą i innymi assembly-style kadencja-*.json:
+    - `councilor_index`: sorted unique list of narys names
+    - `sessions[]`: meta sesji (date, number, attendees as names list)
+    - `votes[]`: TOP-LEVEL flat list of votes with INDICES into councilor_index
+      (named_votes.za = [3, 5, 12, ...], NOT names)
+
+    To pozwala build_assembly_metrics.py czytać i wyliczyć profile, frekwencję,
+    zgodność z klubem itd. używając tych samych skryptów co dla Pragi/Berlinu.
+    """
     kadencje = config.get("kadencje", {})
-    sessions_map: dict[tuple[str, str], dict[str, Any]] = {}
+
+    # Pierwszy przelot: zbierz wszystkich radnych w tej kadencji.
+    all_narys: set[str] = set()
+    sessions_meta: dict[tuple[str, str], dict[str, Any]] = {}
 
     for k in klausimas_rows:
         posedis = k.get("posedis", "")
         date = session_date(k.get("prasidejo"))
         if not date or not posedis:
             continue
-        # Filtruj tylko sesje pasujące do tej kadencji
         if kadencja_for_date(date, kadencje) != kadencja_id:
             continue
 
+        balsavimo_id = k.get("balsavimo_id")
+        balsas_rows = balsas_by_vote.get(balsavimo_id, []) if balsavimo_id else []
+        for b in balsas_rows:
+            n = (b.get("narys") or "").strip()
+            if n:
+                all_narys.add(n)
+
         key = (date, posedis)
-        if key not in sessions_map:
-            sessions_map[key] = {
+        if key not in sessions_meta:
+            sessions_meta[key] = {
                 "date": date,
                 "title": posedis,
-                "status": k.get("posedzio_statusas", ""),
                 "chair": k.get("pirmininkas", ""),
                 "secretary": k.get("sekretorius", ""),
                 "start": k.get("prasidejo"),
                 "end": k.get("baigesi"),
-                "votes": [],
+                "vote_ids": [],
                 "attendees": set(),
             }
-        balsavimo_id = k.get("balsavimo_id")
-        if not balsavimo_id:
-            # Pytanie bez głosowania (np. omówienie). Nadal liczy się jako punkt.
-            continue
-        balsas_rows = balsas_by_vote.get(balsavimo_id, [])
-        glos = build_glosowanie(k, balsas_rows, config)
-        sessions_map[key]["votes"].append(glos)
+        if balsavimo_id:
+            sessions_meta[key]["vote_ids"].append(balsavimo_id)
         for b in balsas_rows:
             n = (b.get("narys") or "").strip()
             if n:
-                sessions_map[key]["attendees"].add(n)
+                sessions_meta[key]["attendees"].add(n)
 
-    # Konwersja set → sorted list, dodanie count fields.
+    councilor_index: list[str] = sorted(all_narys)
+    name_to_idx: dict[str, int] = {n: i for i, n in enumerate(councilor_index)}
+
+    # Drugi przelot: buduj flat votes z indeksami.
+    votes_flat: list[dict[str, Any]] = []
+    for k in klausimas_rows:
+        balsavimo_id = k.get("balsavimo_id")
+        if not balsavimo_id:
+            continue
+        date = session_date(k.get("prasidejo"))
+        if not date or kadencja_for_date(date, kadencje) != kadencja_id:
+            continue
+
+        balsas_rows = balsas_by_vote.get(balsavimo_id, [])
+        counts: dict[str, int] = {c: 0 for c in CATEGORIES}
+        named_votes_idx: dict[str, list[int]] = {c: [] for c in CATEGORIES}
+
+        for b in balsas_rows:
+            narys = (b.get("narys") or "").strip()
+            if not narys or narys not in name_to_idx:
+                continue
+            cat = VOTE_TEXT_TO_CATEGORY.get(b.get("balsas", ""))
+            if not cat:
+                continue
+            counts[cat] += 1
+            named_votes_idx[cat].append(name_to_idx[narys])
+
+        votes_flat.append({
+            "id": f"vilnius_{balsavimo_id}",
+            "session_date": date,
+            "session_number": "",
+            "source_url": "",
+            "topic": k.get("klausimas_lt", ""),
+            "druk": k.get("klausimo_id", ""),
+            "resolution": "",
+            "result": normalize_sprendimas(k.get("sprendimas", "")),
+            "result_native": k.get("sprendimas", ""),
+            "counts": counts,
+            "named_votes": named_votes_idx,
+            "voted_at": "",
+        })
+
+    # Buduj listę sesji.
     sessions: list[dict[str, Any]] = []
-    for sess in sessions_map.values():
+    for (date, posedis), sess in sessions_meta.items():
         attendees_list = sorted(sess["attendees"])
         sessions.append({
-            "date": sess["date"],
-            "title": sess["title"],
-            "status": sess["status"],
+            "date": date,
+            "number": posedis,
+            "title": posedis,
             "chair": sess["chair"],
             "secretary": sess["secretary"],
             "start": sess["start"],
             "end": sess["end"],
-            "vote_count": len(sess["votes"]),
+            "vote_count": len(sess["vote_ids"]),
             "attendee_count": len(attendees_list),
             "attendees": attendees_list,
-            "votes": sess["votes"],
+            "source_url": "",
         })
-
     sessions.sort(key=lambda s: (s["date"], s["title"]))
-    return sessions
+
+    return {
+        "sessions": sessions,
+        "votes": votes_flat,
+        "councilor_index": councilor_index,
+    }
 
 
 def main() -> int:
@@ -400,19 +425,24 @@ def main() -> int:
 
     for kid in kadencje_to_generate:
         kadencja_def = config["kadencje"][kid]
-        sessions = build_sessions(taryba_klausimai, balsas_by_vote, config, kid)
+        built = build_kadencja(taryba_klausimai, balsas_by_vote, config, kid)
 
         out = {
             "id": kid,
             "label": kadencja_def.get("label", kid),
             "scraped_at": scraped_at,
-            "sessions": sessions,
+            "sessions": built["sessions"],
+            "votes": built["votes"],
+            "councilor_index": built["councilor_index"],
         }
         out_path = args.docs / f"kadencja-{kid}.json"
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, ensure_ascii=False, indent=2)
         print(
-            f"[vilnius] wrote {out_path.name}: {len(sessions)} sesji",
+            f"[vilnius] wrote {out_path.name}: "
+            f"{len(built['sessions'])} sesji, "
+            f"{len(built['votes'])} balsavimų, "
+            f"{len(built['councilor_index'])} narių",
             file=sys.stderr,
         )
 
