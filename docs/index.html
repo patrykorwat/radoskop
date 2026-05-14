@@ -92,8 +92,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .topbar-nav a.active{color:var(--accent);font-weight:500;}
 .topbar-actions{display:flex;gap:6px;align-items:center;}
 @media (max-width:768px){
-  .topbar{padding:8px 12px;gap:10px;}
-  .topbar-nav{display:none;}
+  .topbar{padding:8px 12px;gap:8px;flex-wrap:wrap;}
+  .topbar-nav{gap:14px;order:3;flex-basis:100%;justify-content:center;}
+  .topbar-nav a{font-size:.82rem;}
   .topbar #theme-toggle{padding:4px 8px;font-size:0.78rem;}
   .topbar #theme-toggle #theme-label{display:none;}
   .topbar #auth-login-btn{padding:5px 10px !important;font-size:0.78rem !important;}
@@ -293,9 +294,7 @@ footer a:hover{text-decoration-color:var(--accent);}
   <a class="topbar-logo" href="/">Rado<span>skop</span></a>
   <div class="topbar-nav">
     <a href="https://radoskop.eu/reports/">Raporty</a>
-    <a href="https://radoskop.eu/cennik/">Cennik</a>
     <a href="https://radoskop.eu/business/">Business</a>
-    <a href="/swiezosc/">Świeżość danych</a>
   </div>
   <div class="topbar-actions">
     <a id="auth-login-btn" href="#" onclick="event.preventDefault();_bridgeLogin();return false;" style="display:none;background:var(--accent,#4f46e5);color:#fff;text-decoration:none;border-radius:8px;padding:6px 14px;font-size:0.85rem;font-weight:500;">Zaloguj się</a>
@@ -724,7 +723,7 @@ footer a:hover{text-decoration-color:var(--accent);}
 
 <footer>
   <div class="container">
-    <p>Radoskop &middot; <a href="https://github.com/radoskoppl/radoskop">GitHub</a> &middot; <a href="https://radoskop.eu/reports/">Raporty</a> &middot; <a href="https://radoskop.eu/cennik/">Cennik</a> &middot; <a href="/swiezosc/">Świeżość danych</a> &middot; <a href="/sitemap.xml">Sitemap</a> &middot; <a href="https://radoskop.eu/polityka-prywatnosci/">Polityka prywatności</a> &middot; <a href="https://radoskop.eu/regulamin/">Regulamin</a> &middot; AGPL-3.0</p>
+    <p>Radoskop &middot; <a href="https://github.com/radoskoppl/radoskop">GitHub</a> &middot; <a href="https://radoskop.eu/reports/">Raporty</a> &middot; <a href="https://radoskop.eu/cennik/">Cennik</a> &middot; <a href="https://radoskop.eu/business/">Business</a> &middot; <a href="/swiezosc/">Świeżość danych</a> &middot; <a href="/sitemap.xml">Sitemap</a> &middot; <a href="https://radoskop.eu/polityka-prywatnosci/">Polityka prywatności</a> &middot; <a href="https://radoskop.eu/regulamin/">Regulamin</a> &middot; AGPL-3.0</p>
     <p style="margin-top:8px;color:var(--muted)">Polecane (projekt zewnętrzny): <a href="https://www.tygodniksejmowy.pl/" target="_blank" rel="noopener">Tygodnik Sejmowy</a> — analiza prac Sejmu RP</p>
   </div>
 </footer>

@@ -101,8 +101,9 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 .topbar-nav a.active { color:var(--accent); font-weight:500; }
 .topbar-actions { display:flex; gap:6px; align-items:center; }
 @media (max-width:768px) {
-  .topbar { padding:8px 12px; gap:10px; }
-  .topbar-nav { display:none; }
+  .topbar { padding:8px 12px; gap:8px; flex-wrap:wrap; }
+  .topbar-nav { gap:14px; order:3; flex-basis:100%; justify-content:center; }
+  .topbar-nav a { font-size:.82rem; }
   .topbar .auth-btn { padding:5px 10px; font-size:.78rem; }
   .topbar .theme-toggle { padding:4px 8px; font-size:0.78rem; }
 }
@@ -292,23 +293,26 @@ footer a { color:var(--accent); text-decoration:none; }
   .section h2 { font-size: 1.05rem; margin-bottom: 12px; }
 
   /* Tab bar: dwa tiery wizualnie wyraźnie odróżnione.
-   * Primary tier: grid 2×2 (4 buttony pełnoszerokie, touch-friendly).
-   * Secondary tier: flex-wrap z mniejszymi pill buttonami w jednej-dwóch linijkach.
+   * Primary tier: 4 tabs w jednym wierszu (grid 4-col), kompaktowe.
+   * Tekst może się zawijać na 2 linie ("Ranking radnych" = 2 wiersze).
+   * Secondary tier: flex-wrap z mniejszymi pill buttonami.
    * Subtle border separator między tierami. */
   .tab-bar { gap: 10px; margin-bottom: 14px; }
   .tab-tier--primary {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
+    display: flex;
+    gap: 5px;
   }
   .tab-tier--primary .tab {
-    white-space: nowrap;
-    padding: 10px 8px;
-    font-size: 0.85rem;
+    flex: 1;
+    white-space: normal;
+    padding: 8px 4px;
+    font-size: 0.75rem;
+    line-height: 1.15;
     min-height: 42px;
     text-align: center;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .tab-tier--secondary {
     display: flex;
@@ -376,6 +380,11 @@ footer a { color:var(--accent); text-decoration:none; }
 
   /* Auth button kompaktowy na mobile */
   .auth-btn { padding: 5px 10px; font-size: 0.78rem; }
+
+  /* User chip kompaktowy na mobile: imię się skraca */
+  .user-chip { font-size: 0.78rem; padding: 3px 8px 3px 3px; gap: 6px; }
+  .user-chip .user-avatar { width: 22px; height: 22px; font-size: 0.7rem; }
+  .user-chip #user-name { max-width: 100px; }
 }
 
 /* Tablet (481-768px): 2-3 column grids zamiast 1 */
@@ -518,9 +527,7 @@ footer a { color:var(--accent); text-decoration:none; }
   <a class="topbar-logo" href="https://radoskop.pl/">Rado<span>skop</span></a>
   <div class="topbar-nav">
     <a href="https://radoskop.eu/reports/">Raporty</a>
-    <a href="https://radoskop.eu/cennik/">Cennik</a>
     <a href="https://radoskop.eu/business/">Business</a>
-    <a href="https://radoskop.pl/swiezosc/">Świeżość danych</a>
   </div>
   <div class="topbar-actions">
     <button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
@@ -671,7 +678,7 @@ footer a { color:var(--accent); text-decoration:none; }
     </div>
     Dane źródłowe: <a href="{{BIP_URL}}" target="_blank">{{BIP_NAME}}</a>.
     Kod: <a href="{{GITHUB_URL}}" target="_blank">GitHub</a> (AGPL-3.0).
-    <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/regulamin/" onclick="event.preventDefault();showTerms()">Regulamin</a>{{IMPRESSUM_FOOTER_LINK}}
+    <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/cennik/">Cennik</a> · <a href="https://radoskop.eu/business/">Business</a> · <a href="https://radoskop.eu/polityka-prywatnosci/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/regulamin/" onclick="event.preventDefault();showTerms()">Regulamin</a>{{IMPRESSUM_FOOTER_LINK}}
     {{PRESSEKODEX_NOTICE}}
   </footer>
 
