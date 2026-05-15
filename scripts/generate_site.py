@@ -19,219 +19,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from i18n import apply_locale  # noqa: E402
 
 
-# Angielskie wersje Polityki prywatności i Regulaminu — używane dla
-# wszystkich miast spoza Polski (locale != "pl"). PL miasta zachowują
-# polski tekst z template. Treść po angielsku, nie po niemiecku/czesku,
-# bo: (a) realnie obsługujemy max 3-4 miasta zagraniczne i mnożenie
-# tłumaczeń legalnych jest kosztowne; (b) angielski jest lingua franca
-# dla użytkowników zagranicznych, którym i tak DE/CS to drugi język.
-PRIVACY_HTML_EN = (
-    "el.innerHTML = '<div style=\"max-width:800px;margin:0 auto;padding:20px 0\">'\n"
-    "    + '<button class=\"profile-back\" onclick=\"showMain()\">← Home</button>'\n"
-    "    + '<h1 style=\"font-size:1.5rem;margin:20px 0 10px\">Privacy policy</h1>'\n"
-    "    + '<p style=\"color:var(--muted);margin-bottom:20px\">Last update: 9 May 2026</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">1. Data controller</h2>'\n"
-    "    + '<p>The controller of personal data is {{AUTHOR}} (contact: patrykorwat@gmail.com). '\n"
-    "    + 'Radoskop runs on the domains radoskop.pl (Polish cities) and radoskop.eu (cities outside Poland, including Praha and Berlin) and on city subdomains (e.g. {{EXAMPLE_SUBDOMAIN}}).</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">2. Data we collect</h2>'\n"
-    "    + '<p>The site does not require registration or login. For traffic analytics we use Umami, a self hosted analytics tool running at stats.radoskop.pl. We collect:</p>'\n"
-    "    + '<ul style=\"margin:8px 0 8px 24px\"><li>Approximate location (country, city)</li>'\n"
-    "    + '<li>Device type, browser, operating system</li>'\n"
-    "    + '<li>Pages visited and time on page</li>'\n"
-    "    + '<li>Traffic source (e.g. search engine, referral)</li></ul>'\n"
-    "    + '<p>Umami does not use cookies or persistent identifiers. The visitor identifier is a hash of IP address and User Agent header, rotated daily and not reversible. The full IP address is not stored.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">3. Cookies</h2>'\n"
-    "    + '<p>The site sets only one functional cookie:</p>'\n"
-    "    + '<ul style=\"margin:8px 0 8px 24px\">'\n"
-    "    + '<li><strong>radoskop_theme</strong> (1 year) remembers your light or dark mode preference</li></ul>'\n"
-    "    + '<p>We do not use advertising or analytics cookies, so we do not show a consent banner. You can clear cookies in your browser settings at any time.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">4. No advertising. Public information service</h2>'\n"
-    "    + '<p>Radoskop does not display ads, does not use ad networks and does not monetise content through advertising. '\n"
-    "    + 'Radoskop is a public information service within the meaning of Recital 32 of Regulation (EU) 2024/900 (TTPA) and benefits from the exclusion from the definition of political advertising in Article 2(2)(c) of that Regulation.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">5. Purpose and legal basis (user data)</h2>'\n"
-    "    + '<p>Analytics data is used to assess page popularity, prioritise development and measure publication impact. '\n"
-    "    + 'The legal basis is GDPR Article 6(1)(f) (legitimate interest in traffic analysis) and GDPR Article 6(1)(a) (consent for functional cookies, expressed by using the site).</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">6. Sharing data</h2>'\n"
-    "    + '<p>Analytics data stays on the controller infrastructure and is not shared with third parties. We do not sell user personal data.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">7. Public data on councillors. Information notice</h2>'\n"
-    "    + '<p>Radoskop presents publicly available data on the official activity of city and regional councillors: name, club affiliation, roll call vote results, attendance, written enquiries, statements in session protocols. '\n"
-    "    + 'Sources are official public registers: Biuletyn Informacji Publicznej (BIP) for Polish cities, opendata Praha for Czech cities, Plenarprotokolle of the Berliner Abgeordnetenhaus for Berlin and analogous public resources.</p>'\n"
-    "    + '<p><strong>Legal basis for processing:</strong></p>'\n"
-    "    + '<ul style=\"margin:8px 0 8px 24px\">'\n"
-    "    + '<li>GDPR Article 6(1)(f) (legitimate interest of the controller and public interest in transparency of local government),</li>'\n"
-    "    + '<li>GDPR Article 6(1)(e) (task carried out in the public interest),</li>'\n"
-    "    + '<li>GDPR Article 85 (processing for journalistic purposes),</li>'\n"
-    "    + '<li>Polish Act of 6 September 2001 on Access to Public Information and equivalent freedom of information laws in other jurisdictions.</li>'\n"
-    "    + '</ul>'\n"
-    "    + '<p><strong>Rights of councillors as data subjects:</strong> access, rectification of inaccurate data, objection on grounds relating to particular situation, lodging a complaint with the supervisory authority. '\n"
-    "    + 'The data rectification procedure is described in the <a href=\"/terms/\" onclick=\"event.preventDefault();showTerms()\">Terms of service</a>, section 8. '\n"
-    "    + 'Contact for data matters: <a href=\"mailto:patrykorwat@gmail.com\">patrykorwat@gmail.com</a>.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">8. Your rights as a user</h2>'\n"
-    "    + '<p>Under GDPR you have the right to: access your data, correct it, erase it, restrict processing, '\n"
-    "    + 'data portability, object to processing and withdraw consent at any time (by clearing cookies or contacting the controller). '\n"
-    "    + 'You also have the right to lodge a complaint with the Polish data protection authority (PUODO) or your local supervisory authority.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">9. Contact</h2>'\n"
-    "    + '<p>For privacy and personal data matters: <a href=\"mailto:patrykorwat@gmail.com\">patrykorwat@gmail.com</a></p>'\n"
-    "\n"
-    "    + '</div>';"
-)
-
-
-TERMS_HTML_EN = (
-    "el.innerHTML = '<div style=\"max-width:800px;margin:0 auto;padding:20px 0\">'\n"
-    "    + '<button class=\"profile-back\" onclick=\"showMain()\">← Home</button>'\n"
-    "    + '<h1 style=\"font-size:1.5rem;margin:20px 0 10px\">Radoskop terms of service</h1>'\n"
-    "    + '<p style=\"color:var(--muted);margin-bottom:20px\">Last update: 9 May 2026</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">1. General</h2>'\n"
-    "    + '<p>Radoskop (the Service) is operated by Patryk Orwat (the Operator). '\n"
-    "    + 'The Service runs on the domains radoskop.pl (Polish cities) and radoskop.eu (cities outside Poland, including Praha and Berlin) and on city subdomains (e.g. {{EXAMPLE_SUBDOMAIN}}). '\n"
-    "    + 'Using the Service means you accept these terms.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">2. Nature of the service and legal status</h2>'\n"
-    "    + '<p>Radoskop is an independent civic and journalistic information service for monitoring the work of city councils and regional assemblies. '\n"
-    "    + 'The Service is a public information service within the meaning of Recital 32 of Regulation (EU) 2024/900 of the European Parliament and of the Council of 13 March 2024 on the transparency and targeting of political advertising (TTPA), and benefits from the exclusion for journalistic and editorial content in Article 2(2)(c) of that Regulation. '\n"
-    "    + 'The Service is not political advertising within the meaning of Article 3(2) TTPA. It is not financed by political actors or on their behalf, and does not promote any political party, election committee or candidate. '\n"
-    "    + 'The Service is not an official service of any city government, public authority or political party.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">3. No election agitation</h2>'\n"
-    "    + '<p>The Service presents only historical, archived public data sourced from official public registers. '\n"
-    "    + 'It contains no campaigning content and does not encourage voting for or against any specific candidate. '\n"
-    "    + 'In Poland, the Service does not constitute election agitation within the meaning of Article 105 of the Polish Election Code (Kodeks wyborczy). '\n"
-    "    + 'During electoral silence periods the Service remains available with archived public data, which does not constitute election agitation.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">4. Data sources</h2>'\n"
-    "    + '<p>All data presented in the Service comes from publicly available sources, primarily official records of each city such as Polish BIP, opendata Praha and Berlin Plenarprotokolle. '\n"
-    "    + 'Data is fetched automatically and processed algorithmically. The Operator makes reasonable efforts to keep data current and correct '\n"
-    "    + 'but does not guarantee full accuracy. In case of discrepancy the original source data is authoritative.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">5. Indicators and statistics</h2>'\n"
-    "    + '<p>The indicators shown (attendance, activity, club discipline, rebellion count, statement count) are computed from official source data using transparent algorithms. '\n"
-    "    + 'They are informational, based on objective events (vote cast, attendance recorded, statement made) and do not constitute a value judgement on a councillor. '\n"
-    "    + 'The full computation methodology is available in the Service source code on <a href=\"https://github.com/radoskoppl/radoskop\" target=\"_blank\" rel=\"noopener\">GitHub</a>.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">6. Advertising and funding</h2>'\n"
-    "    + '<p>The Service does not display ads, does not use ad networks and does not monetise content through advertising. '\n"
-    "    + 'The Operator may run marketing campaigns for the Service in external channels (e.g. Google Ads, social media) to raise awareness of the Service as a civic information tool. '\n"
-    "    + 'Such campaigns promote only the Service itself as an information tool and do not contain political content. '\n"
-    "    + 'The Service does not accept funding from political parties, election committees, candidates or other political actors. '\n"
-    "    + 'The Service is funded from the Operator own resources and from paid PDF reports available in the <a href=\"/raporty/\" onclick=\"event.preventDefault();showReports()\">Reports</a> section.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">7. Information notice for councillors</h2>'\n"
-    "    + '<p>The Operator processes personal data of councillors in the scope of their public functions (name, club affiliation, votes cast, attendance, written enquiries, statements in session protocols) on the basis of:</p>'\n"
-    "    + '<ul style=\"margin:8px 0 8px 24px\">'\n"
-    "    + '<li>GDPR Article 6(1)(f) (legitimate interest of the controller and public interest in transparency of local government),</li>'\n"
-    "    + '<li>GDPR Article 6(1)(e) (task carried out in the public interest),</li>'\n"
-    "    + '<li>GDPR Article 85 (processing for journalistic purposes),</li>'\n"
-    "    + '<li>Polish Act of 6 September 2001 on Access to Public Information and equivalent freedom of information laws in other jurisdictions.</li>'\n"
-    "    + '</ul>'\n"
-    "    + '<p>Source data comes from official public registers (BIP, opendata). Data is not transferred to third parties for marketing purposes and is not sold. '\n"
-    "    + 'Each councillor has the right to: access their data, request rectification of inaccurate data, object to processing on grounds relating to particular situation, and lodge a complaint with the supervisory authority. '\n"
-    "    + 'Contact for data matters: <a href=\"mailto:patrykorwat@gmail.com\">patrykorwat@gmail.com</a>.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">8. Data rectification procedure</h2>'\n"
-    "    + '<p>Any councillor or interested party may request data rectification in the Service. Send the request to <a href=\"mailto:patrykorwat@gmail.com\">patrykorwat@gmail.com</a> with: name of the councillor, city, description of the alleged error and reference to the source of correct data (link to a BIP protocol, official attendance list and similar). '\n"
-    "    + 'The Operator commits to processing the request within 7 working days. If the error is confirmed against the source document, the correction is applied immediately after verification. '\n"
-    "    + 'If the discrepancy stems from an error in the source register itself, the Operator keeps the data consistent with the source and informs the requester about the rectification path with the relevant public authority.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">9. Licence and source code</h2>'\n"
-    "    + '<p>The Service source code is published under AGPL-3.0 on GitHub. '\n"
-    "    + 'Data presented in the Service, as public information, can be reused freely with attribution.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">10. Liability</h2>'\n"
-    "    + '<p>The Operator is not liable for: temporary unavailability of the Service, errors in data resulting from errors in the source records, '\n"
-    "    + 'decisions taken on the basis of information from the Service, third party services that the Service links to.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">11. User privacy</h2>'\n"
-    "    + '<p>Rules for processing personal data of users visiting the Service are described in the <a href=\"/privacy/\" onclick=\"event.preventDefault();showPrivacy()\">Privacy policy</a>.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">12. Changes</h2>'\n"
-    "    + '<p>The Operator reserves the right to amend these terms. The current version is always available at /terms/ on every Service instance.</p>'\n"
-    "\n"
-    "    + '<h2 style=\"font-size:1.1rem;margin:24px 0 8px\">13. Contact</h2>'\n"
-    "    + '<p>Questions and comments about the Service, data rectification requests, GDPR matters: <a href=\"mailto:patrykorwat@gmail.com\">patrykorwat@gmail.com</a></p>'\n"
-    "\n"
-    "    + '</div>';"
-)
-
-
-PRIVACY_TAIL_EN = (
-    "navigateTo('/privacy/');\n"
-    "  setTitle('Privacy policy');\n"
-    "  setOgMeta({\n"
-    "    title: 'Privacy policy — Radoskop {{CITY_NAME}}',\n"
-    "    description: 'Privacy policy and cookie information for Radoskop.',\n"
-    "    url: '{{SITE_URL}}/privacy/'\n"
-    "  });"
-)
-
-
-TERMS_TAIL_EN = (
-    "navigateTo('/terms/');\n"
-    "  setTitle('Terms of service');\n"
-    "  setOgMeta({\n"
-    "    title: 'Terms of service — Radoskop {{CITY_NAME}}',\n"
-    "    description: 'Radoskop terms of service. Information on data sources, methodology and usage rules.',\n"
-    "    url: '{{SITE_URL}}/terms/'\n"
-    "  });"
-)
-
-
-def apply_english_legal(html: str) -> str:
-    """Podmień Politykę prywatności i Regulamin na angielską wersję.
-
-    Markery /* PRIVACY_HTML_BEGIN */ ... /* PRIVACY_HTML_END */ obejmują
-    cały blok: innerHTML + navigateTo + setTitle + setOgMeta. Funkcja
-    uruchamia się PO apply_locale, więc cokolwiek apply_locale wstrzyknął
-    do wnętrza markerów (np. "Datenschutz" w setTitle), zostaje
-    nadpisane angielską wersją. Markery to neutralne komentarze JS,
-    nie ruszane przez apply_locale.
-
-    Footer link href + router patterns: nie pod markerami, ale to URL-e
-    bez polskich słów (apply_locale ich nie tłumaczy), więc bezpieczne
-    do podmiany w dowolnej kolejności. Footer label ("Polityka
-    prywatności" → "Datenschutz" / "Zásady...") zachowujemy zlokalizowany,
-    bo treść strony jest po angielsku ale label w UI dopasowuje się do
-    reszty interfejsu.
-    """
-    privacy_re = re.compile(
-        r"/\* PRIVACY_HTML_BEGIN \*/[\s\S]*?/\* PRIVACY_HTML_END \*/"
-    )
-    terms_re = re.compile(
-        r"/\* TERMS_HTML_BEGIN \*/[\s\S]*?/\* TERMS_HTML_END \*/"
-    )
-    html = privacy_re.sub(
-        lambda _m: (
-            "/* PRIVACY_HTML_BEGIN */\n"
-            f"  {PRIVACY_HTML_EN}\n"
-            f"  {PRIVACY_TAIL_EN}\n"
-            "  /* PRIVACY_HTML_END */"
-        ),
-        html,
-    )
-    html = terms_re.sub(
-        lambda _m: (
-            "/* TERMS_HTML_BEGIN */\n"
-            f"  {TERMS_HTML_EN}\n"
-            f"  {TERMS_TAIL_EN}\n"
-            "  /* TERMS_HTML_END */"
-        ),
-        html,
-    )
-
-    # /polityka-prywatnosci/ → /privacy/ i /regulamin/ → /terms/ przeniesione
-    # do apply_english_paths(), żeby path mapping był jednolity dla wszystkich
-    # miast (PL też po migracji 2026-05). Tutaj zostaje tylko swap treści.
-    return html
+# Treść Polityki prywatności i Regulaminu nie jest już inline'owana
+# w SPA. Funkcje showPrivacy() / showTerms() w template/index.html
+# robią redirect na apex radoskop.eu/privacy/ i /terms/, gdzie żyje
+# bilingual content (PL + EN, toggle przez ?lang=en). Źródło treści:
+# radoskop-premium/templates/legal/{regulamin,polityka-prywatnosci}{,-en}.html.
+# AGPL repo (ten plik) nie zawiera business content (cen, klauzul SaaS).
 
 
 def apply_english_paths(html: str) -> str:
@@ -401,10 +194,10 @@ def apply_english_paths(html: str) -> str:
         "interpelacje:'interpellations',budget:'budget'}",
     )
 
-    # /polityka-prywatnosci/ + /regulamin/ → /privacy/ + /terms/. Wcześniej
-    # robiło to apply_english_legal() tylko dla non-PL, ale po migracji
-    # 2026-05 path mapping jest jednolity. Treść strony (Polish vs English
-    # legal text) dalej zależy od locale, ale URL slug zawsze /privacy/ i /terms/.
+    # /polityka-prywatnosci/ + /regulamin/ → /privacy/ + /terms/. Po migracji
+    # 2026-05 path mapping jest jednolity. Treść strony żyje na apex
+    # radoskop.eu/privacy/ i /terms/ (bilingual przez ?lang=en), SPA tylko
+    # redirektuje. URL slug zawsze /privacy/ i /terms/ niezależnie od locale.
     html = html.replace(
         '<a href="/polityka-prywatnosci/"',
         '<a href="/privacy/"',
@@ -908,13 +701,23 @@ def main():
     # leci zawsze, niezależnie od locale.
     html = apply_english_paths(html)
 
-    # Treść Polityki prywatności i Regulaminu: PL miasta zachowują polski
-    # tekst z template, non-PL dostają angielską wersję (nie tłumaczymy
-    # legal contentu na DE/CS żeby uniknąć kosztu utrzymania mnogości
-    # tłumaczeń). Markery są neutralne dla apply_locale, więc cokolwiek
-    # apply_locale wstrzyknął w setTitle/setOgMeta zostaje nadpisane.
-    if locale.lower() != "pl":
-        html = apply_english_legal(html)
+    # Treść Polityki prywatności i Regulaminu nie żyje już w SPA. Funkcje
+    # showPrivacy() i showTerms() w template robią redirect na apex
+    # radoskop.eu/privacy/ i /terms/, gdzie obsługiwany jest bilingual
+    # toggle (?lang=en). Locale jest czytany w runtime z <html lang>,
+    # więc dla miast non-PL musimy zaktualizować <html lang> i og:locale,
+    # czego apply_locale nie robi (operuje tylko na tekście widocznym dla
+    # użytkownika, nie na atrybutach HTML).
+    locale_lower = locale.lower()
+    if locale_lower != "pl":
+        og_locale_map = {"de": "de_DE", "cs": "cs_CZ", "en": "en_US"}
+        og_locale = og_locale_map.get(locale_lower, locale_lower)
+        html = html.replace('<html lang="pl">', f'<html lang="{locale_lower}">', 1)
+        html = html.replace(
+            '<meta property="og:locale" content="pl_PL">',
+            f'<meta property="og:locale" content="{og_locale}">',
+            1,
+        )
 
     # Apply replacements
     for placeholder, value in replacements.items():
