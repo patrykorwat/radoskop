@@ -2743,7 +2743,27 @@ async function showSession(sessionNumber) {
 // Free tier: lista komisji ze statystykami (meetings, drafts_total, drafts_voted,
 // median_lead_time_days, last_meeting_date). Pełne posiedzenia są dostępne
 // w detalu komisji (showKomisja), gdzie API gateuje top N + hidden teaser.
+// Premium (Business sub): pełna procedura komisyjna druku, bez teasera,
+// plus przycisk eksportu JSON. Flag BUSINESS_ACTIVE setowany przez
+// refreshSubscriptionStatus() przy starcie i po login/logout.
 let _komisjeListCache = null;
+let BUSINESS_ACTIVE = false;
+
+async function refreshSubscriptionStatus() {
+  // Auth API żyje na radoskop.eu (cross-origin), więc credentials: include
+  // i CORS allow-credentials musi być po stronie backendu. Brak sesji =
+  // 401, traktujemy jako free tier.
+  try {
+    const r = await fetch(AUTH_API + '/subscription-status', { credentials: 'include' });
+    if (!r.ok) { BUSINESS_ACTIVE = false; return; }
+    const d = await r.json();
+    BUSINESS_ACTIVE = !!d.business_active;
+  } catch (e) {
+    BUSINESS_ACTIVE = false;
+  }
+  // Drop cache, żeby render Komisji wyciągnął świeże dane z nowym tier.
+  _komisjeListCache = null;
+}
 async function renderKomisjeList() {
   const container = document.getElementById('komisje-content');
   if (!container) return;
@@ -2807,18 +2827,25 @@ async function renderKomisjeList() {
     `;
   }).join('');
 
+  const businessBanner = BUSINESS_ACTIVE
+    ? `<div style="margin-top:24px;padding:14px 16px;background:rgba(34,197,94,0.08);border-left:3px solid var(--green);font-size:13px;color:var(--text);display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+         <span style="font-weight:600;color:var(--green)">✓ Business aktywny.</span>
+         <span>Wszystkie komisje pokazują pełne archiwum posiedzeń z porządkami, protokołami i głosowaniami druków.</span>
+       </div>`
+    : `<div style="margin-top:24px;padding:16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px;color:var(--text)">
+         Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport JSON) dostępna w pakiecie Business.
+         <a href="https://radoskop.eu/pricing/"
+            onclick="trackEvent('click_business_komisja_cta',{location:'komisje_list'})"
+            style="color:var(--accent);margin-left:6px;text-decoration:none">Zobacz cennik ↗</a>
+       </div>`;
+
   container.innerHTML = `
     <div style="margin-bottom:20px">
       <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)">Komisje rady</h2>
       <p style="color:var(--muted);font-size:0.9rem">${commissions.length} komisji, ${totalMeetings} posiedzeń, ${totalDrafts} druków w procedowaniu${totalInCommission > 0 ? `, w tym ${totalInCommission} w toku` : ''}.</p>
     </div>
     <div class="komisje-grid">${cards}</div>
-    <div style="margin-top:24px;padding:16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px;color:var(--text)">
-      Pełna lista posiedzeń z porządkami obrad, protokołami i opiniami komisji dostępna w pakiecie Premium.
-      <a href="https://radoskop.eu/business/?from=komisje_list"
-         onclick="event.preventDefault();trackEvent('click_business_komisja_cta',{location:'komisje_list'});showBusiness({from:'komisje_list'})"
-         style="color:var(--accent);margin-left:6px;text-decoration:none">Zapytaj o dostęp ↗</a>
-    </div>
+    ${businessBanner}
   `;
 }
 
@@ -2891,14 +2918,30 @@ async function showKomisja(slug) {
     `;
   }).join('');
 
-  const hiddenTeaser = meetingsHidden > 0 ? `
-    <div style="margin-top:16px;padding:14px 16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px">
-      Łącznie <strong style="font-weight:500">${meetingsTotal} posiedzeń</strong> w archiwum, pokazane ${meetingsTop.length}. Pełne archiwum z porządkami obrad, protokołami i opiniami w pakiecie Premium.
-      <a href="https://radoskop.eu/business/?from=komisja_detail&komisja=${encodeURIComponent(slug)}"
-         onclick="event.preventDefault();trackEvent('click_business_komisja_cta',{location:'komisja_detail',slug:'${slug}',hidden:${meetingsHidden}});showBusiness({from:'komisja_detail',komisja:'${slug}'})"
-         style="color:var(--accent);margin-left:6px;text-decoration:none">Zapytaj o dostęp ↗</a>
-    </div>
-  ` : '';
+  // Banner pod posiedzeniami: subskrybenci dostają export JSON, free tier
+  // dostają teaser (tylko gdy są ukryte posiedzenia, inaczej brak).
+  let bannerHtml = '';
+  if (BUSINESS_ACTIVE) {
+    const exportUrl = API_BASE + '/komisja/' + encodeURIComponent(slug) + '/export.json';
+    bannerHtml = `
+      <div style="margin-top:16px;padding:14px 16px;background:rgba(34,197,94,0.08);border-left:3px solid var(--green);font-size:13px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span style="color:var(--green);font-weight:600">✓ Business aktywny.</span>
+        <span>Pełne archiwum ${meetingsTotal} posiedzeń z porządkami i głosowaniami druków.</span>
+        <a href="${exportUrl}" download
+           onclick="trackEvent('click_export_json',{slug:'${slug}'})"
+           style="margin-left:auto;background:var(--accent);color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;text-decoration:none">Eksportuj JSON ↓</a>
+      </div>
+    `;
+  } else if (meetingsHidden > 0) {
+    bannerHtml = `
+      <div style="margin-top:16px;padding:14px 16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px">
+        Łącznie <strong style="font-weight:500">${meetingsTotal} posiedzeń</strong> w archiwum, pokazane ${meetingsTop.length}. Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport JSON) w pakiecie Business.
+        <a href="https://radoskop.eu/pricing/"
+           onclick="trackEvent('click_business_komisja_cta',{location:'komisja_detail',slug:'${slug}',hidden:${meetingsHidden}})"
+           style="color:var(--accent);margin-left:6px;text-decoration:none">Zobacz cennik ↗</a>
+      </div>
+    `;
+  }
 
   view.innerHTML = `
     <button class="profile-back" onclick="backFromKomisja()">← Komisje</button>
@@ -2930,7 +2973,7 @@ async function showKomisja(slug) {
     <div class="section">
       <h2>Posiedzenia ${meetingsTotal > meetingsTop.length ? `(${meetingsTop.length} z ${meetingsTotal})` : `(${meetingsTotal})`}</h2>
       ${meetingsHtml || '<p style="color:var(--muted);padding:14px 0">Brak posiedzeń w archiwum.</p>'}
-      ${hiddenTeaser}
+      ${bannerHtml}
     </div>
   `;
 }
@@ -3744,14 +3787,19 @@ function _renderAuthHeader() {
 }
 
 // Pull /me przy load, niezależnie od cache (cache może być nieaktualny).
+// Razem refreshujemy też subscription status, żeby gating Business był
+// spójny po login/logout/initial load.
 async function _refreshAuth() {
   try {
     const r = await fetch(AUTH_API + '/me', { credentials: 'include' });
-    if (!r.ok) { _setAuthUser(null); return; }
+    if (!r.ok) { _setAuthUser(null); BUSINESS_ACTIVE = false; _komisjeListCache = null; return; }
     const data = await r.json();
     _setAuthUser(data.user || null);
   } catch (e) {
     // Network error: zostaw cache jak był, /me retry przy następnym razie.
+  }
+  if (typeof refreshSubscriptionStatus === 'function') {
+    await refreshSubscriptionStatus();
   }
 }
 
