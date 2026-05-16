@@ -3,7 +3,7 @@
   "city_genitive": "Torunia",
   "site_title": "Radoskop Toruń — Jak głosują radni?",
   "site_url": "https://torun.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Torunia. Sprawdź frekwencję, głosowania i aktywność radnych.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Torunia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
   "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Torunia.",
   "bip_url": "https://www.bip.torun.pl/",
   "bip_name": "BIP Toruń",
@@ -11,13 +11,66 @@
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "torun.radoskop.pl",
-  "clubs": {},
+  "clubs": {
+    "KO": {
+      "name": "Klub Radnych Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Klub Radnych Prawa i Sprawiedliwości",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "WT": {
+      "name": "Klub Radnych Wspólny Toruń",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#075985"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Magdalena Cynk-Mikołajewska": "KO",
+    "Piotr Drążek": "KO",
+    "Jakub Hartwich": "KO",
+    "Bartłomiej Jóźwiak": "KO",
+    "Karolina Krajewska": "KO",
+    "Marek Krupecki": "KO",
+    "Piotr Lenkiewicz": "KO",
+    "Edyta Macieja-Morzuch": "KO",
+    "Michał Rzymyszkiewicz": "KO",
+    "Anna Szytniewska": "KO",
+    "Dominika Walichniewicz": "KO",
+    "Łukasz Walkusz": "KO",
+    "Agnieszka Wasita": "KO",
+    "Aneta Wierzbowska": "KO",
+    "Michał Wojtczak": "KO",
+    "Katarzyna Chłopecka": "PiS",
+    "Michał Gazda": "PiS",
+    "Michał Jakubaszek": "PiS",
+    "Wojciech Klabun": "PiS",
+    "Maciej Koziołocki": "PiS",
+    "Adrian Mól": "PiS",
+    "Marcin Czyżniewski": "WT",
+    "Zbigniew Fiderewicz": "WT",
+    "Michał Zaleski": "WT",
+    "Jan Ząbik": "WT"
+  },
   "kadencje": {
     "2024-2029": {
       "label": "IX kadencja (2024–2029)",
       "start": "2024-05-07"
     }
   },
+  "kadencja_active": "2024-2029",
   "has_budget": false,
   "has_komisje": false,
   "budget_note": "",
