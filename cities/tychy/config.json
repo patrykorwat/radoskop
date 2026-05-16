@@ -11,7 +11,65 @@
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "tychy.radoskop.pl",
-  "clubs": {},
+  "clubs": {
+    "IT": {
+      "name": "Stowarzyszenie Inicjatywa Tyska",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "TNMO": {
+      "name": "Tychy Naszą Małą Ojczyzną",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#713f12"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Lidia Gajdas": "IT",
+    "Barbara Konieczna": "IT",
+    "Krzysztof Król": "IT",
+    "Michał Kasperczyk": "IT",
+    "Patrycja Kosowska-Pawłowicz": "IT",
+    "Urszula Paździorek-Pawlik": "IT",
+    "Marek Gołosz": "PiS",
+    "Jarosław Hajduk": "PiS",
+    "Grzegorz Kołodziejczyk": "PiS",
+    "Andrzej Kściuczyk": "PiS",
+    "Iwona Oleksiak": "PiS",
+    "Anita Skapczyk": "PiS",
+    "Sławomir Wróbel": "PiS",
+    "Aleksandra Wysocka-Siembiga": "PiS",
+    "Wojciech Czarnota": "KO",
+    "Grzegorz Gwóźdź": "KO",
+    "Józef Twardzik": "KO",
+    "Edyta Danielczyk": "TNMO",
+    "Dariusz Wencepel": "TNMO",
+    "Karolina Chemicz-Pałys": "NZ",
+    "Maciej Jędrzejko": "NZ",
+    "Anna Krzystyniak": "NZ",
+    "Ali Nurbagandow": "NZ",
+    "Aleksandra Pabian": "NZ",
+    "Sławomir Sobociński": "NZ"
+  },
   "kadencje": {
     "2024-2029": {
       "label": "IX kadencja (2024–2029)",

@@ -3,25 +3,78 @@
   "city_genitive": "Bielska-Białej",
   "site_title": "Radoskop Bielsko-Biała — Jak głosują radni?",
   "site_url": "https://bielsko-biala.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska Bielska-Białej. Sprawdź frekwencję, głosowania i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska Bielska-Białej.",
-  "bip_url": "https://bip.bielsko-biala.pl/",
-  "bip_name": "BIP Bielsko-Biała",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Bielsku-Białej. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Bielsku-Białej.",
+  "bip_url": "https://rm.bielsko-biala.pl/",
+  "bip_name": "Rada Miejska Bielska-Białej",
   "esesja_url": null,
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "bielsko-biala.radoskop.pl",
-  "clubs": {},
+  "clubs": {
+    "KO": {
+      "name": "Klub Radnych Platformy Obywatelskiej RP",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "KKW": {
+      "name": "Klub Radnych Jarosława Klimaszewskiego",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#075985"
+    },
+    "PiS": {
+      "name": "Klub Radnych Prawa i Sprawiedliwości",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Nikodem Ankudowicz": "KO",
+    "Renata Gruszka": "KO",
+    "Krzysztof Jazowy": "KO",
+    "Klaudiusz Komor": "KO",
+    "Dariusz Michasiów": "KO",
+    "Paweł Pajor": "KO",
+    "Dorota Piegzik-Izydorczyk": "KO",
+    "Robert Pysz": "KO",
+    "Urszula Szabla": "KO",
+    "Katarzyna Balicka": "KKW",
+    "Piotr Kochowski": "KKW",
+    "Karol Markowski": "KKW",
+    "Roman Matyja": "KKW",
+    "Maksymilian Pryga": "KKW",
+    "Anita Szymańska": "KKW",
+    "Józefa Wawak": "KKW",
+    "Janusz Buzek": "PiS",
+    "Małgorzata Chrząszcz": "PiS",
+    "Michał Guzdek": "PiS",
+    "Paweł Korzondkowski": "PiS",
+    "Rafał Leśków": "PiS",
+    "Karolina Lewkowicz": "PiS",
+    "Konrad Łoś": "PiS",
+    "Jerzy Sawiński": "PiS",
+    "Aleksandra Woźniak": "PiS"
+  },
   "kadencje": {
     "2024-2029": {
       "label": "IX kadencja (2024–2029)",
       "start": "2024-05-07"
     }
   },
+  "kadencja_active": "2024-2029",
   "has_budget": false,
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miejska Bielska-Białej",
-  "rada_name_genitive": "Rady Miejska Bielska-Białej"
+  "rada_name": "Rada Miejska w Bielsku-Białej",
+  "rada_name_genitive": "Rady Miejskiej w Bielsku-Białej"
 }
