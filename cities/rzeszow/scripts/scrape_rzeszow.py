@@ -141,6 +141,39 @@ class RzeszowScraper(BipScraper):
         """
         return []
 
+    def build_councilors(self, all_votes, sessions, existing_profiles):
+        """Override: seedujemy radnych z config.json nawet bez głosowań.
+
+        Domyślny `BipScraper.build_councilors` agreguje statystyki z
+        `all_votes`. Dla Rzeszowa głosowania nie są publikowane jako
+        struktura per-uchwała, więc `all_votes` jest puste i bez tego
+        override frontend dostaje pustą listę councilors → strona pokazuje
+        "Ładowanie danych..." bez końca.
+
+        Tu wstrzykujemy wszystkich radnych z `self.councilors` (config) jako
+        seed, potem normalna agregacja po votes (jeśli kiedyś będą) dodaje
+        statystyki. Klub wyciągamy z `self.club_lookup` (build_name_lookup
+        z config).
+        """
+        result = super().build_councilors(all_votes, sessions, existing_profiles)
+        present = {c["name"] for c in result}
+        for name in self.councilors.keys():
+            if name in present:
+                continue
+            result.append({
+                "name": name,
+                "club": self.resolve_club(name),
+                "district": None,
+                "votes_za": 0, "votes_przeciw": 0, "votes_wstrzymal": 0,
+                "votes_brak": 0, "votes_nieobecny": 0, "votes_total": 0,
+                "frekwencja": 0, "aktywnosc": 0, "zgodnosc_z_klubem": 0,
+                "rebellion_count": 0, "rebellions": [],
+                "has_voting_data": False, "has_activity_data": False,
+            })
+        # Posortuj po nazwisku żeby zachować deterministyczny output
+        result.sort(key=lambda c: c["name"])
+        return result
+
 
 def load_councilors(config_path: Path) -> dict:
     if not config_path.is_file():

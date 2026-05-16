@@ -3,21 +3,68 @@
   "city_genitive": "Kielc",
   "site_title": "Radoskop Kielce — Jak głosują radni?",
   "site_url": "https://kielce.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Kielce. Sprawdź frekwencję, głosowania i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kielce.",
-  "bip_url": "https://www.bip.kielce.eu/",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kielce. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Kielce.",
+  "bip_url": "https://bipum.kielce.eu/",
   "bip_name": "BIP Kielce",
-  "esesja_url": "https://kielce.esesja.pl",
+  "esesja_url": null,
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "kielce.radoskop.pl",
-  "clubs": {},
+  "clubs": {
+    "KO": {
+      "name": "Klub Radnych Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Klub Radnych Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Michał Piasecki": "KO",
+    "Marcin Chłodnicki": "KO",
+    "Katarzyna Czech-Dominguez": "KO",
+    "Katarzyna Kaleta": "KO",
+    "Jarosław Machnicki": "KO",
+    "Wiktor Pytlak": "KO",
+    "Karol Wilczyński": "KO",
+    "Kamila Wojda-Misiuda": "KO",
+    "Katarzyna Zapała": "KO",
+    "Kamil Żurek": "KO",
+    "Marcin Stępniewski": "PiS",
+    "Elżbieta Hermanowska": "PiS",
+    "Anna Jaworska-Dąbrowska": "PiS",
+    "Jarosław Karyś": "PiS",
+    "Piotr Kisiel": "PiS",
+    "Wiesław Koza": "PiS",
+    "Dariusz Kozak": "PiS",
+    "Michał Płatek": "PiS",
+    "Arkadiusz Ślipikowski": "PiS",
+    "Maciej Bursztein": "NZ",
+    "Dariusz Gacek": "NZ",
+    "Maciej Jakubczyk": "NZ",
+    "Anna Mazur-Kałuża": "NZ",
+    "Monika Kowalczyk": "NZ",
+    "Natalia Rajtar": "NZ"
+  },
   "kadencje": {
     "2024-2029": {
       "label": "IX kadencja (2024–2029)",
       "start": "2024-05-07"
     }
   },
+  "kadencja_active": "2024-2029",
   "has_budget": false,
   "has_komisje": false,
   "budget_note": "",

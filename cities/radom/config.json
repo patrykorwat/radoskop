@@ -3,25 +3,75 @@
   "city_genitive": "Radomia",
   "site_title": "Radoskop Radom — Jak głosują radni?",
   "site_url": "https://radom.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Radomiu. Sprawdź frekwencję, głosowania i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Radomiu.",
-  "bip_url": "https://www.bip.radom.pl/",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Radomiu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Radomiu.",
+  "bip_url": "https://bip.radom.pl/",
   "bip_name": "BIP Radom",
-  "esesja_url": "https://radom.esesja.pl",
+  "esesja_url": null,
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "radom.radoskop.pl",
-  "clubs": {},
+  "clubs": {
+    "RPS": {
+      "name": "Klub Radnych Radomski Pakt Samorządowy",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#075985"
+    },
+    "PiS": {
+      "name": "Klub Radnych Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Mateusz Tyczyński": "RPS",
+    "Wioletta Kotkowska": "RPS",
+    "Magdalena Lasota": "RPS",
+    "Agnieszka Stolarczyk": "RPS",
+    "Robert Chrobotowicz": "RPS",
+    "Adam Duszyk": "RPS",
+    "Jarosław Kosior": "RPS",
+    "Anna Kotkowska": "RPS",
+    "Ilona Lipińska": "RPS",
+    "Dawid Ruszczyk": "RPS",
+    "Piotr Szprendałowicz": "RPS",
+    "Robert Utkowski": "RPS",
+    "Kazimierz Woźniak": "RPS",
+    "Jan Pszczoła": "RPS",
+    "Katarzyna Kalinowska": "NZ",
+    "Marta Michalska-Wilk": "NZ",
+    "Adam Bocheński": "PiS",
+    "Marcin Kaca": "PiS",
+    "Mateusz Kuźmiuk": "PiS",
+    "Marcin Majewski": "PiS",
+    "Paulina Markiewicz": "PiS",
+    "Aurelia Michałowska": "PiS",
+    "Katarzyna Pastuszka-Chrobotowicz": "PiS",
+    "Łukasz Podlewski": "PiS",
+    "Marek Sołśnia": "PiS",
+    "Artur Standowicz": "PiS",
+    "Kazimierz Staszewski": "PiS",
+    "Dariusz Wójcik": "PiS"
+  },
   "kadencje": {
     "2024-2029": {
       "label": "IX kadencja (2024–2029)",
       "start": "2024-05-07"
     }
   },
+  "kadencja_active": "2024-2029",
   "has_budget": false,
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
   "rada_name": "Rada Miejska w Radomiu",
-  "rada_name_genitive": "Rady Miejska w Radomiu"
+  "rada_name_genitive": "Rady Miejskiej w Radomiu"
 }
