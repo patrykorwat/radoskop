@@ -1,0 +1,77 @@
+{
+  "city_name": "Nowy Sącz",
+  "city_genitive": "Nowego Sącza",
+  "site_title": "Radoskop Nowy Sącz — Jak głosują radni?",
+  "site_url": "https://nowy-sacz.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Nowego Sącza. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Nowego Sącza.",
+  "bip_url": "https://bip.nowysacz.pl/",
+  "bip_name": "BIP Nowy Sącz",
+  "esesja_url": "https://nowysacz.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "nowy-sacz.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "KNLH": {
+      "name": "KWW Koalicja Nowosądecka Ludomira Handzla",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#075985"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Iwona Mularczyk": "PiS",
+    "Wojciech Piech": "PiS",
+    "Ilona Orzeł": "PiS",
+    "Antoni Rączkowski": "PiS",
+    "Kamil Olesiak": "PiS",
+    "Ewa Stasiak-Kubacka": "PiS",
+    "Miłosz Drożdż": "PiS",
+    "Michał Kądziołka": "PiS",
+    "Błażej Targosz": "PiS",
+    "Krzysztof Dyrek": "PiS",
+    "Artur Bochenek": "KNLH",
+    "Krzysztof Ziaja": "KNLH",
+    "Grzegorz Ledziński": "KNLH",
+    "Artur Czernecki": "KNLH",
+    "Leszek Gieniec": "KNLH",
+    "Dawid Dumana": "KNLH",
+    "Jakub Prokopowicz": "KNLH",
+    "Maciej Rogóż": "KNLH",
+    "Grzegorz Fecko": "KO",
+    "Krzysztof Głuc": "KO",
+    "Tadeusz Gajdosz": "KO",
+    "Mieczysław Kaczwiński": "KO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Nowego Sącza",
+  "rada_name_genitive": "Rady Miasta Nowego Sącza"
+}

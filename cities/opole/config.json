@@ -1,0 +1,80 @@
+{
+  "city_name": "Opole",
+  "city_genitive": "Opola",
+  "site_title": "Radoskop Opole — Jak głosują radni?",
+  "site_url": "https://opole.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Opola. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Opola.",
+  "bip_url": "https://bip.um.opole.pl/",
+  "bip_name": "BIP Opole",
+  "esesja_url": "https://opole.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "opole.radoskop.pl",
+  "clubs": {
+    "KAW": {
+      "name": "KWW Arkadiusza Wiśniewskiego — Razem dla Opola",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#075985"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Jacek Kasprzyk": "KAW",
+    "Edward Odelga": "KAW",
+    "Izabela Król": "KAW",
+    "Piotr Mielec": "KAW",
+    "Dariusz Chwist": "KAW",
+    "Małgorzata Jarosz-Basztabin": "KAW",
+    "Tomasz Wróbel": "KAW",
+    "Marek Kinder": "KAW",
+    "Anna Tabisz": "KAW",
+    "Tomasz Kaliszan": "KO",
+    "Elżbieta Bień": "KO",
+    "Jan Damboń": "KO",
+    "Barbara Kamińska": "KO",
+    "Tobiasz Gajda": "KO",
+    "Przemysław Pospieszyński": "KO",
+    "Lilianna Łuczkiewicz": "KO",
+    "Agnieszka Kamińska": "KO",
+    "Anna Łęgowik": "KO",
+    "Justyna Kowol": "KO",
+    "Marek Kawa": "PiS",
+    "Michał Nowak": "PiS",
+    "Małgorzata Wilkos": "PiS",
+    "Sławomir Batko": "PiS",
+    "Dariusz Nawarecki": "NZ",
+    "Samanta Stachowicz": "NZ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Opola",
+  "rada_name_genitive": "Rady Miasta Opola"
+}

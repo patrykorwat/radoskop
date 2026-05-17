@@ -1,0 +1,83 @@
+{
+  "city_name": "Jelenia Góra",
+  "city_genitive": "Jeleniej Góry",
+  "site_title": "Radoskop Jelenia Góra — Jak głosują radni?",
+  "site_url": "https://jelenia-gora.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej Jeleniej Góry. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska Jeleniej Góry.",
+  "bip_url": "https://bip.jeleniagora.pl/",
+  "bip_name": "BIP Jelenia Góra",
+  "esesja_url": "https://jeleniagora.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "jelenia-gora.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "KdJG": {
+      "name": "Koalicja dla Jeleniej Góry",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#713f12"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Danuta Wójcik": "KO",
+    "Beata Wójtowicz": "KO",
+    "Lucyna Kornobys": "KO",
+    "Bożena Wachowicz-Makieła": "KO",
+    "Grażyna Pawlukiewicz-Rehlis": "KO",
+    "Andrzej Marchowski": "KO",
+    "Wojciech Chadży": "KO",
+    "Aneta Kolendo": "KO",
+    "Damian Strączek": "KO",
+    "Justyn Bilski": "KO",
+    "Gabriela Zawiła": "KO",
+    "Anna Bałkowska": "KO",
+    "Bogusław Chrzan": "PiS",
+    "Józef Rypiński": "PiS",
+    "Ireneusz Łojek": "PiS",
+    "Paweł Piotrowicz": "PiS",
+    "Mariusz Gierus": "PiS",
+    "Anna Korneć-Bartkiewicz": "PiS",
+    "Jarosław Tarnowski": "PiS",
+    "Hubert Papaj": "KdJG",
+    "Zbigniew Ładziński": "KdJG",
+    "Kamil Chromik": "TD"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska Jeleniej Góry",
+  "rada_name_genitive": "Rady Miejskiej Jeleniej Góry"
+}

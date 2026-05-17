@@ -1,0 +1,80 @@
+{
+  "city_name": "Płock",
+  "city_genitive": "Płocka",
+  "site_title": "Radoskop Płock — Jak głosują radni?",
+  "site_url": "https://plock.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Płocka. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Płocka.",
+  "bip_url": "https://nowybip.plock.eu/",
+  "bip_name": "BIP Płock",
+  "esesja_url": "https://plock.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "plock.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "TD": {
+      "name": "Trzecia Droga (PSL-PL2050)",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Artur Jaroszewski": "KO",
+    "Łukasz Pietrzak": "KO",
+    "Mariusz Pogonowski": "KO",
+    "Emil Brzeszcz": "KO",
+    "Tomasz Maliszewski": "KO",
+    "Marta Krasuska": "KO",
+    "Łukasz Chrobot": "KO",
+    "Roman Siemiątkowski": "KO",
+    "Małgorzata Ogrodnik": "KO",
+    "Litosława Koper": "KO",
+    "Daria Domosławska": "KO",
+    "Jacek Jasion": "KO",
+    "Mirosław Milewski": "PiS",
+    "Szymon Stachowiak": "PiS",
+    "Wioletta Kulpa": "PiS",
+    "Leszek Brzeski": "PiS",
+    "Edward Bogdan": "PiS",
+    "Andrzej Aleksandrowicz": "PiS",
+    "Teresa Kijek": "PiS",
+    "Tomasz Korga": "PiS",
+    "Małgorzata Struzik": "TD",
+    "Paweł Jasion": "TD",
+    "Tomasz Kominek": "TD",
+    "Anna Derlukiewicz": "TD",
+    "Krzysztof Laskowski": "TD"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Płocka",
+  "rada_name_genitive": "Rady Miasta Płocka"
+}

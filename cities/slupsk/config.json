@@ -1,0 +1,83 @@
+{
+  "city_name": "Słupsk",
+  "city_genitive": "Słupska",
+  "site_title": "Radoskop Słupsk — Jak głosują radni?",
+  "site_url": "https://slupsk.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Słupsku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Słupsku.",
+  "bip_url": "https://bip.um.slupsk.pl/",
+  "bip_name": "BIP Słupsk",
+  "esesja_url": "https://slupsk.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "slupsk.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "LNS": {
+      "name": "KWW Krystyny Danileckiej-Wojewódzkiej — Łączy nas Słupsk",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#075985"
+    },
+    "SW": {
+      "name": "Słupsk Wspólnie",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Beata Chrzanowska": "KO",
+    "Bogusław Dobkowski": "KO",
+    "Tomasz Czubak": "KO",
+    "Paweł Szewczyk": "KO",
+    "Mieczysław Jaroszewicz": "KO",
+    "Wojciech Homenda": "KO",
+    "Renata Stec": "KO",
+    "Jan Lange": "KO",
+    "Anna Rożek": "KO",
+    "Adam Treder": "PiS",
+    "Kacper Moroz": "PiS",
+    "Tadeusz Bobrowski": "PiS",
+    "Wojciech Lewenstam": "PiS",
+    "Marzena Gmińska": "PiS",
+    "Jacek Zabiegły": "PiS",
+    "Piotr Skowroński": "LNS",
+    "Jolanta Karska": "LNS",
+    "Artur Wiszniewski": "LNS",
+    "Małgorzata Lenart": "LNS",
+    "Bożena Hołowienko": "LNS",
+    "Beata Kątnik": "SW",
+    "Adam Sędziński": "SW"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Słupsku",
+  "rada_name_genitive": "Rady Miejskiej w Słupsku"
+}

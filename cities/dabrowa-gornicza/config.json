@@ -1,0 +1,92 @@
+{
+  "city_name": "Dąbrowa Górnicza",
+  "city_genitive": "Dąbrowy Górniczej",
+  "site_title": "Radoskop Dąbrowa Górnicza — Jak głosują radni?",
+  "site_url": "https://dabrowa-gornicza.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Dąbrowie Górniczej. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Dąbrowie Górniczej.",
+  "bip_url": "https://www.bip.dabrowa-gornicza.pl/",
+  "bip_name": "BIP Dąbrowa Górnicza",
+  "esesja_url": "https://dabrowagornicza.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "dabrowa-gornicza.radoskop.pl",
+  "clubs": {
+    "DR": {
+      "name": "KWW Marcina Bazylaka — Dąbrowianie Razem",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#075985"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "TPDG": {
+      "name": "Towarzystwo Przyjaciół Dąbrowy Górniczej",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "DIS": {
+      "name": "Dąbrowskie Inicjatywy Społeczne",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#713f12"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Bożena Borowiec": "DR",
+    "Kamil Dybich": "DR",
+    "Krystyna Stępień": "DR",
+    "Robert Kazimirski": "DR",
+    "Marta Bobrowska-Juroff": "DR",
+    "Szymon Widera": "DR",
+    "Grzegorz Przewieźlik": "DR",
+    "Renata Solipiwko": "DR",
+    "Magdalena Szubert-Sikorska": "DR",
+    "Robert Witecki": "KO",
+    "Martyna Głowacka": "KO",
+    "Magdalena Miczko": "KO",
+    "Artur Borowicz": "KO",
+    "Piotr Zieliński": "KO",
+    "Piotr Bobrowski": "KO",
+    "Bożena Wojdas": "KO",
+    "Piotr Ślusarczyk": "PiS",
+    "Jarosław Węsierski": "PiS",
+    "Mateusz Stępień": "PiS",
+    "Dariusz Zaczyński": "PiS",
+    "Włodzimierz Szycowski": "PiS",
+    "Edward Bober": "TPDG",
+    "Piotr Chałuda": "TPDG",
+    "Marek Oźlański": "TPDG",
+    "Tatiana Duraj-Fert": "DIS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Dąbrowie Górniczej",
+  "rada_name_genitive": "Rady Miejskiej w Dąbrowie Górniczej"
+}

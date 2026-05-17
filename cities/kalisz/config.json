@@ -1,0 +1,83 @@
+{
+  "city_name": "Kalisz",
+  "city_genitive": "Kalisza",
+  "site_title": "Radoskop Kalisz — Jak głosują radni?",
+  "site_url": "https://kalisz.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kalisza. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kalisza.",
+  "bip_url": "https://bip.kalisz.pl/",
+  "bip_name": "BIP Kalisz",
+  "esesja_url": "https://kalisz.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kalisz.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "KK": {
+      "name": "KWW Krystiana Kinastowskiego — Koalicja Kaliska",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#075985"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "TD": {
+      "name": "Trzecia Droga (PSL-PL2050)",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Piotr Łuszczykiewicz": "KO",
+    "Sławomir Matczak": "KO",
+    "Sławomir Chrzanowski": "KO",
+    "Anita Kaczorowska": "KO",
+    "Radosław Kołaciński": "KO",
+    "Magdalena Sekura-Nowicka": "KO",
+    "Dariusz Grodziński": "KO",
+    "Marcin Małecki": "KO",
+    "Mirosław Gabrysiak": "KK",
+    "Marta Walczykiewicz": "KK",
+    "Mateusz Podsadny": "KK",
+    "Grzegorz Kulawinek": "KK",
+    "Karolina Sadowska": "KK",
+    "Maciej Antczak": "KK",
+    "Marcin Strzelec": "PiS",
+    "Sławomir Lasiecki": "PiS",
+    "Artur Kijewski": "PiS",
+    "Małgorzata Mosińska-Busz": "PiS",
+    "Andrzej Plichta": "PiS",
+    "Tadeusz Skarżyński": "PiS",
+    "Eskan Darwich": "TD",
+    "Tomasz Grochowski": "TD"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Kalisza",
+  "rada_name_genitive": "Rady Miasta Kalisza"
+}

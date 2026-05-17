@@ -1,0 +1,84 @@
+{
+  "city_name": "Tarnów",
+  "city_genitive": "Tarnowa",
+  "site_title": "Radoskop Tarnów — Jak głosują radni?",
+  "site_url": "https://tarnow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Tarnowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Tarnowie.",
+  "bip_url": "https://bip.tarnow.pl/",
+  "bip_name": "BIP Tarnów",
+  "esesja_url": "https://tarnow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "tarnow.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "NMT": {
+      "name": "Nasze Miasto Tarnów",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "TdT": {
+      "name": "Tak dla Tarnowa",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#713f12"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Zbigniew Kajpus": "KO",
+    "Agnieszka Danielewicz": "KO",
+    "Ewa Jasiak": "KO",
+    "Edyta Kowalska": "KO",
+    "Małgorzata Mękal": "KO",
+    "Sebastian Stepek": "KO",
+    "Grzegorz Światłowski": "KO",
+    "Piotr Wadzała": "KO",
+    "Henryk Łabędź": "PiS",
+    "Maciej Aleksander": "PiS",
+    "Mirosław Biedroń": "PiS",
+    "Józef Gancarz": "PiS",
+    "Stanisław Klimek": "PiS",
+    "Sebastian Mucha": "PiS",
+    "Sebastian Partyński": "PiS",
+    "Adam Sajdak": "PiS",
+    "Tomasz Żmuda": "NMT",
+    "Grażyna Barwacz": "NMT",
+    "Dominik Gondek": "NMT",
+    "Zbigniew Kolak": "NMT",
+    "Tadeusz Żak": "NMT",
+    "Krzysztof Rodak": "TdT",
+    "Ryszard Żądło": "TdT"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Tarnowie",
+  "rada_name_genitive": "Rady Miejskiej w Tarnowie"
+}

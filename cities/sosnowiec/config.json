@@ -1,0 +1,86 @@
+{
+  "city_name": "Sosnowiec",
+  "city_genitive": "Sosnowca",
+  "site_title": "Radoskop Sosnowiec — Jak głosują radni?",
+  "site_url": "https://sosnowiec.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Sosnowcu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Sosnowcu.",
+  "bip_url": "https://bip.um.sosnowiec.pl/",
+  "bip_name": "BIP Sosnowiec",
+  "esesja_url": "https://sosnowiec.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sosnowiec.radoskop.pl",
+  "clubs": {
+    "KPL": {
+      "name": "Koalicja Platformy i Lewicy dla Sosnowca",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "DzS": {
+      "name": "Dumni z Sosnowca",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#713f12"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Ewa Szota": "KPL",
+    "Wojciech Nitwinko": "KPL",
+    "Wiktor Radziejewski": "KPL",
+    "Jakub Ćmachowski": "KPL",
+    "Anna Jedynak-Rykała": "KPL",
+    "Michał Wcisło": "KPL",
+    "Michał Kaźmierczak": "KPL",
+    "Arkadiusz Chęciński": "KPL",
+    "Grzegorz Mentel": "KPL",
+    "Jakub Mermel": "KPL",
+    "Damian Żurawski": "KPL",
+    "Beata Jankowska": "KPL",
+    "Halina Sobańska": "KPL",
+    "Jacek Kazimierczak": "KPL",
+    "Tomasz Niedziela": "KPL",
+    "Małgorzata Pogoda-Mendakiewicz": "KPL",
+    "Ewa Dzieża-Sowa": "KPL",
+    "Renata Zmarzlińska-Kulik": "PiS",
+    "Grażyna Welon": "PiS",
+    "Zdzisław Kempny": "PiS",
+    "Tadeusz Sokołowski": "PiS",
+    "Jacek Dudek": "PiS",
+    "Jan Bosak": "PiS",
+    "Karina Wojtusiak": "TD",
+    "Maciej Szafraniec": "DzS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Sosnowcu",
+  "rada_name_genitive": "Rady Miejskiej w Sosnowcu"
+}

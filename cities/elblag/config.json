@@ -1,0 +1,73 @@
+{
+  "city_name": "Elbląg",
+  "city_genitive": "Elbląga",
+  "site_title": "Radoskop Elbląg — Jak głosują radni?",
+  "site_url": "https://elblag.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Elblągu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Elblągu.",
+  "bip_url": "https://bip.elblag.eu/",
+  "bip_name": "BIP Elbląg",
+  "esesja_url": "https://elblag.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "elblag.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Grażyna Kluge": "KO",
+    "Paweł Gołębiewski": "KO",
+    "Ewa Horbaczewska": "KO",
+    "Małgorzata Adamowicz": "KO",
+    "Karolina Śluz": "KO",
+    "Marta Kubacka-Ignaciuk": "KO",
+    "Irena Sokołowska": "KO",
+    "Wojciech Karpiński": "KO",
+    "Jolanta Pękała": "KO",
+    "Antoni Czyżyk": "KO",
+    "Karol Bidziński": "KO",
+    "Iwona Łuczak": "KO",
+    "Wiesława Włodarczyk": "KO",
+    "Tomasz Budziński": "KO",
+    "Rafał Traks": "PiS",
+    "Sebastian Czyżyk-Skoczyk": "PiS",
+    "Piotr Opaczewski": "PiS",
+    "Jolanta Janowska": "PiS",
+    "Paweł Kowszyński": "PiS",
+    "Elżbieta Banasiewicz": "PiS",
+    "Jolanta Lisewska": "PiS",
+    "Michał Rutkowski": "PiS",
+    "Marek Pruszak": "PiS",
+    "Kamil Zdziech": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Elblągu",
+  "rada_name_genitive": "Rady Miejskiej w Elblągu"
+}

@@ -1,0 +1,77 @@
+{
+  "city_name": "Siedlce",
+  "city_genitive": "Siedlec",
+  "site_title": "Radoskop Siedlce — Jak głosują radni?",
+  "site_url": "https://siedlce.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Siedlce. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Siedlce.",
+  "bip_url": "https://bip.siedlce.pl/",
+  "bip_name": "BIP Siedlce",
+  "esesja_url": "https://siedlce.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "siedlce.radoskop.pl",
+  "clubs": {
+    "BSKO": {
+      "name": "Bezpartyjne Siedlce — Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "ZiR": {
+      "name": "KWW Tomasza Hapunowicza — Zgoda i Rozwój",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#075985"
+    },
+    "KS": {
+      "name": "KWW Grzegorza Orzełowskiego — Kocham Siedlce",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Ewa Grzegrzółka": "BSKO",
+    "Roman Ignaciuk": "BSKO",
+    "Andrzej Sitnik": "BSKO",
+    "Waldemar Kamiński": "BSKO",
+    "Hanna Skup": "BSKO",
+    "Tomasz Araszkiewicz": "BSKO",
+    "Robert Szczepanik": "BSKO",
+    "Monika Polak": "BSKO",
+    "Arletta Borkowska": "BSKO",
+    "Robert Chojecki": "ZiR",
+    "Małgorzata Mańkowska": "ZiR",
+    "Marlena Puzia": "ZiR",
+    "Janusz Cabaj": "ZiR",
+    "Jadwiga Skup": "ZiR",
+    "Henryk Niedziółka": "ZiR",
+    "Angelika Ambroziewicz": "ZiR",
+    "Maciej Nowak": "ZiR",
+    "Adam Tomczuk": "ZiR",
+    "Marta Sosnowska": "ZiR",
+    "Maciej Drabio": "KS",
+    "Grzegorz Staręga": "KS",
+    "Piotr Karaś": "KS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Siedlce",
+  "rada_name_genitive": "Rady Miasta Siedlce"
+}

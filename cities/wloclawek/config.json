@@ -1,0 +1,78 @@
+{
+  "city_name": "Włocławek",
+  "city_genitive": "Włocławka",
+  "site_title": "Radoskop Włocławek — Jak głosują radni?",
+  "site_url": "https://wloclawek.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Włocławek. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Włocławek.",
+  "bip_url": "https://bip.um.wlocl.pl/",
+  "bip_name": "BIP Włocławek",
+  "esesja_url": "https://wloclawek.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wloclawek.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "Lewica": {
+      "name": "Lewica",
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)",
+      "avatar_bg": "#991b1b"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Daniel Tobjasz": "KO",
+    "Ewelina Brodzińska": "KO",
+    "Ewa Szczepańska": "KO",
+    "Janusz Ziółkowski": "KO",
+    "Katarzyna Zarębska": "KO",
+    "Arkadiusz Piasecki": "KO",
+    "Marek Wasielewski": "KO",
+    "Domicela Kopaczewska": "KO",
+    "Ewa Hupało": "KO",
+    "Szymon Szewczyk": "Lewica",
+    "Wanda Muszalik": "Lewica",
+    "Joanna Hofman-Kupisz": "Lewica",
+    "Krzysztof Grządziel": "Lewica",
+    "Piotr Kowal": "Lewica",
+    "Marlena Korpalska": "Lewica",
+    "Igor Griszczuk": "Lewica",
+    "Elżbieta Rutkowska": "Lewica",
+    "Irena Vuković-Kwiatkowska": "PiS",
+    "Andrzej Gołębieski": "PiS",
+    "Rafał Sobolewski": "PiS",
+    "Janusz Dębczyński": "PiS",
+    "Józef Mazierski": "PiS",
+    "Jarosław Chmielewski": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Włocławek",
+  "rada_name_genitive": "Rady Miasta Włocławek"
+}

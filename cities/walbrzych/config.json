@@ -1,0 +1,71 @@
+{
+  "city_name": "Wałbrzych",
+  "city_genitive": "Wałbrzycha",
+  "site_title": "Radoskop Wałbrzych — Jak głosują radni?",
+  "site_url": "https://walbrzych.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej Wałbrzycha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska Wałbrzycha.",
+  "bip_url": "https://bip.um.walbrzych.pl/",
+  "bip_name": "BIP Wałbrzych",
+  "esesja_url": "https://walbrzych.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "walbrzych.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Małgorzata Langner-Torbus": "KO",
+    "Rafał Glapiński": "KO",
+    "Małgorzata Wiłkomirska": "KO",
+    "Marcin Urych": "KO",
+    "Mariusz Kalinowski": "KO",
+    "Anatol Szpur": "KO",
+    "Agnieszka Sznajder": "KO",
+    "Mateusz Rosiak": "KO",
+    "Ryszard Nowak": "KO",
+    "Krystyna Olanin": "KO",
+    "Piotr Kwiatkowski": "KO",
+    "Mariusz Kotarba": "KO",
+    "Alicja Rosiak": "KO",
+    "Krzysztof Kalinowski": "KO",
+    "Wiesław Bielawski": "KO",
+    "Grzegorz Górowski": "KO",
+    "Tomasz Maciejowski": "PiS",
+    "Renata Wierzbicka": "PiS",
+    "Rafał Kiercz": "PiS",
+    "Piotr Sosiński": "PiS",
+    "Anna Adamkiewicz": "PiS",
+    "Beata Mucha": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska Wałbrzycha",
+  "rada_name_genitive": "Rady Miejskiej Wałbrzycha"
+}

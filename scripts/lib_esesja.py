@@ -438,6 +438,7 @@ class EsesjaScraper:
 
     def scrape_session_list(self) -> list[dict]:
         sessions: list[dict] = []
+        seen_urls: set[str] = set()
         page = 1
         while True:
             url = self.sessions_url if page == 1 else f"{self.sessions_url}/{page}"
@@ -448,7 +449,8 @@ class EsesjaScraper:
                 print(f"  Nie udalo sie pobrac {url}: {e}")
                 break
 
-            found_on_page = 0
+            new_on_page = 0
+            page_had_links = False
             for a in soup.find_all("a", href=True):
                 href = a["href"]
                 if "/listaglosowan/" not in href:
@@ -464,6 +466,10 @@ class EsesjaScraper:
                     continue
                 date_str = f"{year}-{month:02d}-{day:02d}"
                 full_url = href if href.startswith("http") else self.base_url + href
+                page_had_links = True
+                if full_url in seen_urls:
+                    continue
+                seen_urls.add(full_url)
                 nr_match = re.search(r"nr\s+([IVXLCDM]+)", text)
                 session_number = nr_match.group(1) if nr_match else ""
                 sessions.append({
@@ -473,12 +479,20 @@ class EsesjaScraper:
                     "url": full_url,
                     "title": text,
                 })
-                found_on_page += 1
+                new_on_page += 1
 
-            if found_on_page == 0:
+            # Stop conditions (in order):
+            #  1. strona w ogóle nie miała /listaglosowan/ → koniec paginacji
+            #     (np. eSesja renderuje pustą stronę dla pageN gdzie N > max).
+            #  2. wszystkie /listaglosowan/ na stronie to DUPLIKATY już
+            #     zebranych — wcześniejszy bug: dla tarnow/walbrzych/elblag
+            #     paginacja /glosowania/N+1 redirectuje do tej samej zawartości
+            #     co poprzednie strony zamiast 404, więc scraper musiał liczyć
+            #     unikalne URL żeby się zatrzymać.
+            #  3. twarda granica 50 stron żeby uciec od edge cases.
+            if not page_had_links or new_on_page == 0:
                 break
-            next_link = soup.find("a", href=re.compile(rf"/glosowania/{page + 1}\b"))
-            if not next_link:
+            if page >= 50:
                 break
             page += 1
 
