@@ -652,6 +652,47 @@ def write_city_files(slug: str, config: dict, scraper_code: str,
     return [config_path, scraper_path]
 
 
+def geocode_city(city_name: str, country: str = "pl") -> Optional[tuple[float, float]]:
+    """Geocode via Photon (komoot) — szybki, public, bez API key.
+
+    Filtruje po kraju i preferuje osm_key=place (city/town/village). Wszystkie
+    miasta w cities-meta.csv muszą mieć współrzędne żeby renderować się na
+    Leaflet mapie strony głównej. Wynik np. (52.2297, 21.0122) dla Warszawy.
+
+    Country fallback to Polska. Dla zagranicznych miast w batch (Vilnius, Berlin,
+    Praga) trzeba podać country='lt' / 'de' / 'cz'.
+    """
+    import urllib.parse, urllib.request, json as _json
+    country_names = {"pl": "Polska", "cz": "Česko", "de": "Deutschland", "lt": "Lietuva"}
+    country_full = country_names.get(country, "Polska")
+    q = urllib.parse.quote(f"{city_name}, {country_full}")
+    url = f"https://photon.komoot.io/api/?q={q}&limit=10"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "Radoskop/1.0"})
+        with urllib.request.urlopen(req, timeout=10) as r:
+            data = _json.loads(r.read())
+    except Exception as exc:
+        print(f"    geocode err: {exc}")
+        return None
+    feats = data.get("features", [])
+    same_country = [f for f in feats if f.get("properties", {}).get("country") == country_full]
+    GOOD = {"city", "town", "municipality", "village"}
+    for f in same_country:
+        p = f.get("properties", {})
+        if p.get("osm_key") == "place" and p.get("osm_value") in GOOD:
+            lon, lat = f["geometry"]["coordinates"]
+            return (lat, lon)
+    for f in same_country:
+        p = f.get("properties", {})
+        if p.get("osm_key") == "boundary" and p.get("osm_value") == "administrative":
+            lon, lat = f["geometry"]["coordinates"]
+            return (lat, lon)
+    if same_country:
+        lon, lat = same_country[0]["geometry"]["coordinates"]
+        return (lat, lon)
+    return None
+
+
 def append_to_cities_meta(slug: str, voivodeship: str, population: Optional[int],
                           lat: Optional[float], lon: Optional[float],
                           country: str = "pl",
@@ -785,9 +826,15 @@ def process_slug(slug: str, *, register: bool = False, dry_write: bool = False,
     paths = write_city_files(slug, config, scraper_code, dry_write=dry_write)
     rep.files_written = [str(p) for p in paths]
 
-    # cities-meta.csv
+    # cities-meta.csv — geocode via Photon, bo bez lat/lon mapa pomija pin
+    coords = geocode_city(rep.city_name, country="pl") if not dry_write else None
+    lat, lon = coords if coords else (None, None)
+    if coords:
+        print(f"    geocode: {lat:.4f}, {lon:.4f}")
+    else:
+        print(f"    geocode: brak — uzupełnij ręcznie w cities-meta.csv")
     added_meta = append_to_cities_meta(
-        slug, comp.voivodeship, comp.population, None, None,
+        slug, comp.voivodeship, comp.population, lat, lon,
         dry_write=dry_write,
     )
     if added_meta:
