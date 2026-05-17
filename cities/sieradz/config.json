@@ -1,10 +1,10 @@
 {
-  "city_name": "Sieradzu",
-  "city_genitive": "Sieradzua",
-  "site_title": "Radoskop Sieradzu — Jak głosują radni?",
+  "city_name": "Sieradz",
+  "city_genitive": "Sieradza",
+  "site_title": "Radoskop Sieradz — Jak głosują radni?",
   "site_url": "https://sieradz.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sieradzua. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sieradzua.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sieradza. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sieradza.",
   "bip_url": "https://bip.sieradz.pl/",
   "bip_name": "BIP Sieradzu",
   "esesja_url": "https://sieradz.esesja.pl",
@@ -76,6 +76,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Sieradzua",
-  "rada_name_genitive": "Rady Miasta Sieradzua"
+  "rada_name": "Rada Miasta Sieradza",
+  "rada_name_genitive": "Rady Miasta Sieradza"
 }

@@ -1,10 +1,10 @@
 {
-  "city_name": "Myszkowie",
-  "city_genitive": "Myszkowia",
-  "site_title": "Radoskop Myszkowie — Jak głosują radni?",
+  "city_name": "Myszków",
+  "city_genitive": "Myszkowa",
+  "site_title": "Radoskop Myszków — Jak głosują radni?",
   "site_url": "https://myszkow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Myszkowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Myszkowia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Myszkowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Myszkowa.",
   "bip_url": "https://bip.myszkow.pl/",
   "bip_name": "BIP Myszkowie",
   "esesja_url": "https://myszkow.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Myszkowia",
-  "rada_name_genitive": "Rady Miasta Myszkowia"
+  "rada_name": "Rada Miasta Myszkowa",
+  "rada_name_genitive": "Rady Miasta Myszkowa"
 }

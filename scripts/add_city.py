@@ -347,13 +347,12 @@ def fetch_composition_pkw(slug: str) -> CouncilComposition:
         return comp
     radni = data[terc]
     comp.teryt = terc
-    rada_name = radni[0].get("rada", "")
-    # 'Rada Miasta Bolesławiec' → 'Bolesławiec'
-    m = re.search(r"Rada\s+(?:Miasta|Miejska|Gminy|Miejska\s+w)\s+(?:w\s+)?(.+)$", rada_name)
-    if m:
-        comp.city_name = m.group(1).strip()
-    else:
-        comp.city_name = radni[0].get("gmina", "").replace("m. ", "").strip()
+    # PKW pole "Gmina" to ZAWSZE nominative z prefiksem "m. " (np. "m. Bolesławiec").
+    # Wcześniej brałem z pola "Rada" przez regex, ale PKW wpisuje czasem
+    # nominative ("Rada Miasta Bolesławiec") a czasem locative
+    # ("Rada Miejska w Bolesławcu") — locative regex łapał "Bolesławcu" jako
+    # nazwę miasta. Strip "m. " z Gmina jest bezpieczniejszy.
+    comp.city_name = radni[0].get("gmina", "").replace("m. ", "", 1).strip()
     comp.total_seats = len(radni)
     for r in radni:
         # 'NOWAK Jan Adam' → 'Jan Nowak' (Imię Nazwisko, kapitalizacja)

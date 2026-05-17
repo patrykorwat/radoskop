@@ -1,10 +1,10 @@
 {
-  "city_name": "Bukownie",
-  "city_genitive": "Bukownia",
-  "site_title": "Radoskop Bukownie — Jak głosują radni?",
+  "city_name": "Bukowno",
+  "city_genitive": "Bukowna",
+  "site_title": "Radoskop Bukowno — Jak głosują radni?",
   "site_url": "https://bukowno.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bukownia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bukownia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bukowna. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bukowna.",
   "bip_url": "https://bip.bukowno.pl/",
   "bip_name": "BIP Bukownie",
   "esesja_url": "https://bukowno.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Bukownia",
-  "rada_name_genitive": "Rady Miasta Bukownia"
+  "rada_name": "Rada Miasta Bukowna",
+  "rada_name_genitive": "Rady Miasta Bukowna"
 }

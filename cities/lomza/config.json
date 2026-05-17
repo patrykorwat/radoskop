@@ -1,10 +1,10 @@
 {
-  "city_name": "Łomży",
-  "city_genitive": "Łomżya",
-  "site_title": "Radoskop Łomży — Jak głosują radni?",
+  "city_name": "Łomża",
+  "city_genitive": "Łomży",
+  "site_title": "Radoskop Łomża — Jak głosują radni?",
   "site_url": "https://lomza.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Łomżya. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Łomżya.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Łomży. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Łomży.",
   "bip_url": "https://bip.lomza.pl/",
   "bip_name": "BIP Łomży",
   "esesja_url": "https://lomza.esesja.pl",
@@ -79,6 +79,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Łomżya",
-  "rada_name_genitive": "Rady Miasta Łomżya"
+  "rada_name": "Rada Miasta Łomży",
+  "rada_name_genitive": "Rady Miasta Łomży"
 }

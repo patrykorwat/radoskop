@@ -1,10 +1,10 @@
 {
   "city_name": "Marki",
-  "city_genitive": "Markia",
+  "city_genitive": "Marek",
   "site_title": "Radoskop Marki — Jak głosują radni?",
   "site_url": "https://marki.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Markia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Markia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Marek. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Marek.",
   "bip_url": "https://bip.marki.pl/",
   "bip_name": "BIP Marki",
   "esesja_url": "https://marki.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Markia",
-  "rada_name_genitive": "Rady Miasta Markia"
+  "rada_name": "Rada Miasta Marek",
+  "rada_name_genitive": "Rady Miasta Marek"
 }

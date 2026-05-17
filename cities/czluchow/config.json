@@ -1,10 +1,10 @@
 {
-  "city_name": "Człuchowie",
-  "city_genitive": "Człuchowia",
-  "site_title": "Radoskop Człuchowie — Jak głosują radni?",
+  "city_name": "Człuchów",
+  "city_genitive": "Człuchowa",
+  "site_title": "Radoskop Człuchów — Jak głosują radni?",
   "site_url": "https://czluchow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Człuchowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Człuchowia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Człuchowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Człuchowa.",
   "bip_url": "https://bip.czluchow.pl/",
   "bip_name": "BIP Człuchowie",
   "esesja_url": "https://czluchow.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Człuchowia",
-  "rada_name_genitive": "Rady Miasta Człuchowia"
+  "rada_name": "Rada Miasta Człuchowa",
+  "rada_name_genitive": "Rady Miasta Człuchowa"
 }

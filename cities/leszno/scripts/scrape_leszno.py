@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Radoskop Leszna — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
+Radoskop Leszno — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
 
 Skład rady + przypisania klubowe są wczytywane z config.json (sekcja
 club_assignments). Format: {"Imię Nazwisko": "kod_klubu"}.
@@ -42,4 +42,4 @@ if __name__ == "__main__":
         base_url="https://leszno.esesja.pl",
         kadencje=KADENCJE,
         councilors=COUNCILORS,
-    ).run_cli(prog_name="Radoskop Leszna (https://leszno.esesja.pl)"))
+    ).run_cli(prog_name="Radoskop Leszno (https://leszno.esesja.pl)"))

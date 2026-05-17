@@ -1,10 +1,10 @@
 {
-  "city_name": "Ostródzie",
-  "city_genitive": "Ostródzia",
-  "site_title": "Radoskop Ostródzie — Jak głosują radni?",
+  "city_name": "Ostróda",
+  "city_genitive": "Ostródy",
+  "site_title": "Radoskop Ostróda — Jak głosują radni?",
   "site_url": "https://ostroda.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ostródzia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ostródzia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ostródy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ostródy.",
   "bip_url": "https://bip.ostroda.pl/",
   "bip_name": "BIP Ostródzie",
   "esesja_url": "https://ostroda.esesja.pl",
@@ -83,6 +83,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Ostródzia",
-  "rada_name_genitive": "Rady Miasta Ostródzia"
+  "rada_name": "Rada Miasta Ostródy",
+  "rada_name_genitive": "Rady Miasta Ostródy"
 }

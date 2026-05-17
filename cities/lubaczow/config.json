@@ -1,10 +1,10 @@
 {
-  "city_name": "Lubaczowie",
-  "city_genitive": "Lubaczowia",
-  "site_title": "Radoskop Lubaczowie — Jak głosują radni?",
+  "city_name": "Lubaczów",
+  "city_genitive": "Lubaczowa",
+  "site_title": "Radoskop Lubaczów — Jak głosują radni?",
   "site_url": "https://lubaczow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lubaczowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lubaczowia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lubaczowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lubaczowa.",
   "bip_url": "https://bip.lubaczow.pl/",
   "bip_name": "BIP Lubaczowie",
   "esesja_url": "https://lubaczow.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Lubaczowia",
-  "rada_name_genitive": "Rady Miasta Lubaczowia"
+  "rada_name": "Rada Miasta Lubaczowa",
+  "rada_name_genitive": "Rady Miasta Lubaczowa"
 }

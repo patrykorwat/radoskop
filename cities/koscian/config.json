@@ -1,10 +1,10 @@
 {
-  "city_name": "Kościana",
-  "city_genitive": "Kościanaa",
-  "site_title": "Radoskop Kościana — Jak głosują radni?",
+  "city_name": "Kościan",
+  "city_genitive": "Kościana",
+  "site_title": "Radoskop Kościan — Jak głosują radni?",
   "site_url": "https://koscian.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kościanaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kościanaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kościana. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kościana.",
   "bip_url": "https://bip.koscian.pl/",
   "bip_name": "BIP Kościana",
   "esesja_url": "https://koscian.esesja.pl",
@@ -83,6 +83,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Kościanaa",
-  "rada_name_genitive": "Rady Miasta Kościanaa"
+  "rada_name": "Rada Miasta Kościana",
+  "rada_name_genitive": "Rady Miasta Kościana"
 }

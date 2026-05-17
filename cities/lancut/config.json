@@ -1,10 +1,10 @@
 {
-  "city_name": "Łańcuta",
-  "city_genitive": "Łańcutaa",
-  "site_title": "Radoskop Łańcuta — Jak głosują radni?",
+  "city_name": "Łańcut",
+  "city_genitive": "Łańcuta",
+  "site_title": "Radoskop Łańcut — Jak głosują radni?",
   "site_url": "https://lancut.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Łańcutaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Łańcutaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Łańcuta. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Łańcuta.",
   "bip_url": "https://bip.lancut.pl/",
   "bip_name": "BIP Łańcuta",
   "esesja_url": "https://lancut.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Łańcutaa",
-  "rada_name_genitive": "Rady Miasta Łańcutaa"
+  "rada_name": "Rada Miasta Łańcuta",
+  "rada_name_genitive": "Rady Miasta Łańcuta"
 }

@@ -1,10 +1,10 @@
 {
-  "city_name": "Milanówka",
-  "city_genitive": "Milanówkaa",
-  "site_title": "Radoskop Milanówka — Jak głosują radni?",
+  "city_name": "Milanówek",
+  "city_genitive": "Milanówka",
+  "site_title": "Radoskop Milanówek — Jak głosują radni?",
   "site_url": "https://milanowek.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Milanówkaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Milanówkaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Milanówka. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Milanówka.",
   "bip_url": "https://bip.milanowek.pl/",
   "bip_name": "BIP Milanówka",
   "esesja_url": "https://milanowek.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Milanówkaa",
-  "rada_name_genitive": "Rady Miasta Milanówkaa"
+  "rada_name": "Rada Miasta Milanówka",
+  "rada_name_genitive": "Rady Miasta Milanówka"
 }

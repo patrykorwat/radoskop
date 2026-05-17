@@ -1,10 +1,10 @@
 {
-  "city_name": "Szczyrku",
-  "city_genitive": "Szczyrkua",
-  "site_title": "Radoskop Szczyrku — Jak głosują radni?",
+  "city_name": "Szczyrk",
+  "city_genitive": "Szczyrku",
+  "site_title": "Radoskop Szczyrk — Jak głosują radni?",
   "site_url": "https://szczyrk.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Szczyrkua. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Szczyrkua.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Szczyrku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Szczyrku.",
   "bip_url": "https://bip.szczyrk.pl/",
   "bip_name": "BIP Szczyrku",
   "esesja_url": "https://szczyrk.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Szczyrkua",
-  "rada_name_genitive": "Rady Miasta Szczyrkua"
+  "rada_name": "Rada Miasta Szczyrku",
+  "rada_name_genitive": "Rady Miasta Szczyrku"
 }

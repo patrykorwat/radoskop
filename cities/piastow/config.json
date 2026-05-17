@@ -1,10 +1,10 @@
 {
-  "city_name": "Piastowie",
-  "city_genitive": "Piastowia",
-  "site_title": "Radoskop Piastowie — Jak głosują radni?",
+  "city_name": "Piastów",
+  "city_genitive": "Piastowa",
+  "site_title": "Radoskop Piastów — Jak głosują radni?",
   "site_url": "https://piastow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Piastowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Piastowia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Piastowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Piastowa.",
   "bip_url": "https://bip.piastow.pl/",
   "bip_name": "BIP Piastowie",
   "esesja_url": "https://piastow.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Piastowia",
-  "rada_name_genitive": "Rady Miasta Piastowia"
+  "rada_name": "Rada Miasta Piastowa",
+  "rada_name_genitive": "Rady Miasta Piastowa"
 }

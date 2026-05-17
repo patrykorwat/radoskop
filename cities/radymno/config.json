@@ -1,10 +1,10 @@
 {
-  "city_name": "Radymna",
-  "city_genitive": "Radymnaa",
-  "site_title": "Radoskop Radymna — Jak głosują radni?",
+  "city_name": "Radymno",
+  "city_genitive": "Radymna",
+  "site_title": "Radoskop Radymno — Jak głosują radni?",
   "site_url": "https://radymno.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Radymnaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Radymnaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Radymna. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Radymna.",
   "bip_url": "https://bip.radymno.pl/",
   "bip_name": "BIP Radymna",
   "esesja_url": "https://radymno.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Radymnaa",
-  "rada_name_genitive": "Rady Miasta Radymnaa"
+  "rada_name": "Rada Miasta Radymna",
+  "rada_name_genitive": "Rady Miasta Radymna"
 }

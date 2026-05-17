@@ -1,10 +1,10 @@
 {
-  "city_name": "Braniewie",
-  "city_genitive": "Braniewia",
-  "site_title": "Radoskop Braniewie — Jak głosują radni?",
+  "city_name": "Braniewo",
+  "city_genitive": "Braniewa",
+  "site_title": "Radoskop Braniewo — Jak głosują radni?",
   "site_url": "https://braniewo.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Braniewia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Braniewia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Braniewa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Braniewa.",
   "bip_url": "https://bip.braniewo.pl/",
   "bip_name": "BIP Braniewie",
   "esesja_url": "https://braniewo.esesja.pl",
@@ -59,6 +59,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Braniewia",
-  "rada_name_genitive": "Rady Miasta Braniewia"
+  "rada_name": "Rada Miasta Braniewa",
+  "rada_name_genitive": "Rady Miasta Braniewa"
 }

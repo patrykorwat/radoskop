@@ -1,10 +1,10 @@
 {
-  "city_name": "Złotoryi",
-  "city_genitive": "Złotoryia",
-  "site_title": "Radoskop Złotoryi — Jak głosują radni?",
+  "city_name": "Złotoryja",
+  "city_genitive": "Złotoryi",
+  "site_title": "Radoskop Złotoryja — Jak głosują radni?",
   "site_url": "https://zlotoryja.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Złotoryia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Złotoryia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Złotoryi. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Złotoryi.",
   "bip_url": "https://bip.zlotoryja.pl/",
   "bip_name": "BIP Złotoryi",
   "esesja_url": "https://zlotoryja.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Złotoryia",
-  "rada_name_genitive": "Rady Miasta Złotoryia"
+  "rada_name": "Rada Miasta Złotoryi",
+  "rada_name_genitive": "Rady Miasta Złotoryi"
 }

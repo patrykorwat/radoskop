@@ -1,10 +1,10 @@
 {
-  "city_name": "Bielawy",
-  "city_genitive": "Bielawya",
-  "site_title": "Radoskop Bielawy — Jak głosują radni?",
+  "city_name": "Bielawa",
+  "city_genitive": "Bielawy",
+  "site_title": "Radoskop Bielawa — Jak głosują radni?",
   "site_url": "https://bielawa.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bielawya. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bielawya.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bielawy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bielawy.",
   "bip_url": "https://bip.bielawa.pl/",
   "bip_name": "BIP Bielawy",
   "esesja_url": "https://bielawa.esesja.pl",
@@ -89,6 +89,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Bielawya",
-  "rada_name_genitive": "Rady Miasta Bielawya"
+  "rada_name": "Rada Miasta Bielawy",
+  "rada_name_genitive": "Rady Miasta Bielawy"
 }

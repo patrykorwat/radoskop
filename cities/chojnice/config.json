@@ -1,10 +1,10 @@
 {
-  "city_name": "Chojnicach",
-  "city_genitive": "Chojnicacha",
-  "site_title": "Radoskop Chojnicach — Jak głosują radni?",
+  "city_name": "Chojnice",
+  "city_genitive": "Chojnic",
+  "site_title": "Radoskop Chojnice — Jak głosują radni?",
   "site_url": "https://chojnice.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Chojnicacha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Chojnicacha.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Chojnic. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Chojnic.",
   "bip_url": "https://bip.chojnice.pl/",
   "bip_name": "BIP Chojnicach",
   "esesja_url": "https://chojnice.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Chojnicacha",
-  "rada_name_genitive": "Rady Miasta Chojnicacha"
+  "rada_name": "Rada Miasta Chojnic",
+  "rada_name_genitive": "Rady Miasta Chojnic"
 }

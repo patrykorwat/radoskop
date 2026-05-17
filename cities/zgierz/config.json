@@ -1,10 +1,10 @@
 {
-  "city_name": "Zgierza",
-  "city_genitive": "Zgierzaa",
-  "site_title": "Radoskop Zgierza — Jak głosują radni?",
+  "city_name": "Zgierz",
+  "city_genitive": "Zgierza",
+  "site_title": "Radoskop Zgierz — Jak głosują radni?",
   "site_url": "https://zgierz.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Zgierzaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Zgierzaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Zgierza. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Zgierza.",
   "bip_url": "https://bip.zgierz.pl/",
   "bip_name": "BIP Zgierza",
   "esesja_url": "https://zgierz.esesja.pl",
@@ -79,6 +79,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Zgierzaa",
-  "rada_name_genitive": "Rady Miasta Zgierzaa"
+  "rada_name": "Rada Miasta Zgierza",
+  "rada_name_genitive": "Rady Miasta Zgierza"
 }

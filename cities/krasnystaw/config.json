@@ -1,10 +1,10 @@
 {
   "city_name": "Krasnystaw",
-  "city_genitive": "Krasnystawa",
+  "city_genitive": "Krasnegostawu",
   "site_title": "Radoskop Krasnystaw — Jak głosują radni?",
   "site_url": "https://krasnystaw.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Krasnystawa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Krasnystawa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Krasnegostawu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Krasnegostawu.",
   "bip_url": "https://bip.krasnystaw.pl/",
   "bip_name": "BIP Krasnystaw",
   "esesja_url": "https://krasnystaw.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Krasnystawa",
-  "rada_name_genitive": "Rady Miasta Krasnystawa"
+  "rada_name": "Rada Miasta Krasnegostawu",
+  "rada_name_genitive": "Rady Miasta Krasnegostawu"
 }

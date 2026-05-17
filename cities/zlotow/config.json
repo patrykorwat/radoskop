@@ -1,10 +1,10 @@
 {
-  "city_name": "Złotowie",
-  "city_genitive": "Złotowia",
-  "site_title": "Radoskop Złotowie — Jak głosują radni?",
+  "city_name": "Złotów",
+  "city_genitive": "Złotowa",
+  "site_title": "Radoskop Złotów — Jak głosują radni?",
   "site_url": "https://zlotow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Złotowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Złotowia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Złotowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Złotowa.",
   "bip_url": "https://bip.zlotow.pl/",
   "bip_name": "BIP Złotowie",
   "esesja_url": "https://zlotow.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Złotowia",
-  "rada_name_genitive": "Rady Miasta Złotowia"
+  "rada_name": "Rada Miasta Złotowa",
+  "rada_name_genitive": "Rady Miasta Złotowa"
 }

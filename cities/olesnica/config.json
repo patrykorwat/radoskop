@@ -1,10 +1,10 @@
 {
-  "city_name": "Oleśnicy",
-  "city_genitive": "Oleśnicya",
-  "site_title": "Radoskop Oleśnicy — Jak głosują radni?",
+  "city_name": "Oleśnica",
+  "city_genitive": "Oleśnicy",
+  "site_title": "Radoskop Oleśnica — Jak głosują radni?",
   "site_url": "https://olesnica.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Oleśnicya. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Oleśnicya.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Oleśnicy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Oleśnicy.",
   "bip_url": "https://bip.olesnica.pl/",
   "bip_name": "BIP Oleśnicy",
   "esesja_url": "https://olesnica.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Oleśnicya",
-  "rada_name_genitive": "Rady Miasta Oleśnicya"
+  "rada_name": "Rada Miasta Oleśnicy",
+  "rada_name_genitive": "Rady Miasta Oleśnicy"
 }

@@ -1,10 +1,10 @@
 {
-  "city_name": "Dzierżoniowa",
-  "city_genitive": "Dzierżoniowaa",
-  "site_title": "Radoskop Dzierżoniowa — Jak głosują radni?",
+  "city_name": "Dzierżoniów",
+  "city_genitive": "Dzierżoniowa",
+  "site_title": "Radoskop Dzierżoniów — Jak głosują radni?",
   "site_url": "https://dzierzoniow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Dzierżoniowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Dzierżoniowaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Dzierżoniowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Dzierżoniowa.",
   "bip_url": "https://bip.dzierzoniow.pl/",
   "bip_name": "BIP Dzierżoniowa",
   "esesja_url": "https://dzierzoniow.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Dzierżoniowaa",
-  "rada_name_genitive": "Rady Miasta Dzierżoniowaa"
+  "rada_name": "Rada Miasta Dzierżoniowa",
+  "rada_name_genitive": "Rady Miasta Dzierżoniowa"
 }

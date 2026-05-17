@@ -1,10 +1,10 @@
 {
-  "city_name": "Wągrowcu",
-  "city_genitive": "Wągrowcua",
-  "site_title": "Radoskop Wągrowcu — Jak głosują radni?",
+  "city_name": "Wągrowiec",
+  "city_genitive": "Wągrowca",
+  "site_title": "Radoskop Wągrowiec — Jak głosują radni?",
   "site_url": "https://wagrowiec.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Wągrowcua. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Wągrowcua.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Wągrowca. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Wągrowca.",
   "bip_url": "https://bip.wagrowiec.pl/",
   "bip_name": "BIP Wągrowcu",
   "esesja_url": "https://wagrowiec.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Wągrowcua",
-  "rada_name_genitive": "Rady Miasta Wągrowcua"
+  "rada_name": "Rada Miasta Wągrowca",
+  "rada_name_genitive": "Rady Miasta Wągrowca"
 }

@@ -1,10 +1,10 @@
 {
-  "city_name": "Wejherowa",
-  "city_genitive": "Wejherowaa",
-  "site_title": "Radoskop Wejherowa — Jak głosują radni?",
+  "city_name": "Wejherowo",
+  "city_genitive": "Wejherowa",
+  "site_title": "Radoskop Wejherowo — Jak głosują radni?",
   "site_url": "https://wejherowo.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Wejherowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Wejherowaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Wejherowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Wejherowa.",
   "bip_url": "https://bip.wejherowo.pl/",
   "bip_name": "BIP Wejherowa",
   "esesja_url": "https://wejherowo.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Wejherowaa",
-  "rada_name_genitive": "Rady Miasta Wejherowaa"
+  "rada_name": "Rada Miasta Wejherowa",
+  "rada_name_genitive": "Rady Miasta Wejherowa"
 }

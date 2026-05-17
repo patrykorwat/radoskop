@@ -1,10 +1,10 @@
 {
   "city_name": "Pionki",
-  "city_genitive": "Pionkia",
+  "city_genitive": "Pionek",
   "site_title": "Radoskop Pionki — Jak głosują radni?",
   "site_url": "https://pionki.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Pionkia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Pionkia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Pionek. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Pionek.",
   "bip_url": "https://bip.pionki.pl/",
   "bip_name": "BIP Pionki",
   "esesja_url": "https://pionki.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Pionkia",
-  "rada_name_genitive": "Rady Miasta Pionkia"
+  "rada_name": "Rada Miasta Pionek",
+  "rada_name_genitive": "Rady Miasta Pionek"
 }

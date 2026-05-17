@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Radoskop Chojnicach — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
+Radoskop Chojnice — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
 
 Skład rady + przypisania klubowe są wczytywane z config.json (sekcja
 club_assignments). Format: {"Imię Nazwisko": "kod_klubu"}.
@@ -42,4 +42,4 @@ if __name__ == "__main__":
         base_url="https://chojnice.esesja.pl",
         kadencje=KADENCJE,
         councilors=COUNCILORS,
-    ).run_cli(prog_name="Radoskop Chojnicach (https://chojnice.esesja.pl)"))
+    ).run_cli(prog_name="Radoskop Chojnice (https://chojnice.esesja.pl)"))

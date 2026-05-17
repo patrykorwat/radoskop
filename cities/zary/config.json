@@ -1,10 +1,10 @@
 {
-  "city_name": "Żarach",
-  "city_genitive": "Żaracha",
-  "site_title": "Radoskop Żarach — Jak głosują radni?",
+  "city_name": "Żary",
+  "city_genitive": "Żar",
+  "site_title": "Radoskop Żary — Jak głosują radni?",
   "site_url": "https://zary.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Żaracha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Żaracha.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Żar. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Żar.",
   "bip_url": "https://bip.zary.pl/",
   "bip_name": "BIP Żarach",
   "esesja_url": "https://zary.esesja.pl",
@@ -95,6 +95,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Żaracha",
-  "rada_name_genitive": "Rady Miasta Żaracha"
+  "rada_name": "Rada Miasta Żar",
+  "rada_name_genitive": "Rady Miasta Żar"
 }

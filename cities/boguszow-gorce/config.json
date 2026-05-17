@@ -1,10 +1,10 @@
 {
-  "city_name": "Boguszowie-Gorcach",
-  "city_genitive": "Boguszowie-Gorcacha",
-  "site_title": "Radoskop Boguszowie-Gorcach — Jak głosują radni?",
+  "city_name": "Boguszów-Gorce",
+  "city_genitive": "Boguszowa-Gorc",
+  "site_title": "Radoskop Boguszów-Gorce — Jak głosują radni?",
   "site_url": "https://boguszow-gorce.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Boguszowie-Gorcacha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Boguszowie-Gorcacha.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Boguszowa-Gorc. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Boguszowa-Gorc.",
   "bip_url": "https://bip.boguszow-gorce.pl/",
   "bip_name": "BIP Boguszowie-Gorcach",
   "esesja_url": "https://boguszow-gorce.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Boguszowie-Gorcacha",
-  "rada_name_genitive": "Rady Miasta Boguszowie-Gorcacha"
+  "rada_name": "Rada Miasta Boguszowa-Gorc",
+  "rada_name_genitive": "Rady Miasta Boguszowa-Gorc"
 }

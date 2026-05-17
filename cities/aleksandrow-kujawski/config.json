@@ -1,10 +1,10 @@
 {
-  "city_name": "Aleksandrowa Kujawskiego",
-  "city_genitive": "Aleksandrowa Kujawskiega",
-  "site_title": "Radoskop Aleksandrowa Kujawskiego — Jak głosują radni?",
+  "city_name": "Aleksandrów Kujawski",
+  "city_genitive": "Aleksandrowa Kujawskiego",
+  "site_title": "Radoskop Aleksandrów Kujawski — Jak głosują radni?",
   "site_url": "https://aleksandrow-kujawski.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Aleksandrowa Kujawskiega. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Aleksandrowa Kujawskiega.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Aleksandrowa Kujawskiego. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Aleksandrowa Kujawskiego.",
   "bip_url": "https://bip.aleksandrow-kujawski.pl/",
   "bip_name": "BIP Aleksandrowa Kujawskiego",
   "esesja_url": "https://aleksandrow-kujawski.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Aleksandrowa Kujawskiega",
-  "rada_name_genitive": "Rady Miasta Aleksandrowa Kujawskiega"
+  "rada_name": "Rada Miasta Aleksandrowa Kujawskiego",
+  "rada_name_genitive": "Rady Miasta Aleksandrowa Kujawskiego"
 }

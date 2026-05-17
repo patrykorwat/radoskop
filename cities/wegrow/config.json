@@ -1,10 +1,10 @@
 {
-  "city_name": "Węgrowa",
-  "city_genitive": "Węgrowaa",
-  "site_title": "Radoskop Węgrowa — Jak głosują radni?",
+  "city_name": "Węgrów",
+  "city_genitive": "Węgrowa",
+  "site_title": "Radoskop Węgrów — Jak głosują radni?",
   "site_url": "https://wegrow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Węgrowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Węgrowaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Węgrowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Węgrowa.",
   "bip_url": "https://bip.wegrow.pl/",
   "bip_name": "BIP Węgrowa",
   "esesja_url": "https://wegrow.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Węgrowaa",
-  "rada_name_genitive": "Rady Miasta Węgrowaa"
+  "rada_name": "Rada Miasta Węgrowa",
+  "rada_name_genitive": "Rady Miasta Węgrowa"
 }

@@ -1,10 +1,10 @@
 {
-  "city_name": "Puszczykowa",
-  "city_genitive": "Puszczykowaa",
-  "site_title": "Radoskop Puszczykowa — Jak głosują radni?",
+  "city_name": "Puszczykowo",
+  "city_genitive": "Puszczykowa",
+  "site_title": "Radoskop Puszczykowo — Jak głosują radni?",
   "site_url": "https://puszczykowo.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Puszczykowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Puszczykowaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Puszczykowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Puszczykowa.",
   "bip_url": "https://bip.puszczykowo.pl/",
   "bip_name": "BIP Puszczykowa",
   "esesja_url": "https://puszczykowo.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Puszczykowaa",
-  "rada_name_genitive": "Rady Miasta Puszczykowaa"
+  "rada_name": "Rada Miasta Puszczykowa",
+  "rada_name_genitive": "Rady Miasta Puszczykowa"
 }

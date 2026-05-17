@@ -1,10 +1,10 @@
 {
-  "city_name": "Józefowa",
-  "city_genitive": "Józefowaa",
-  "site_title": "Radoskop Józefowa — Jak głosują radni?",
+  "city_name": "Józefów",
+  "city_genitive": "Józefowa",
+  "site_title": "Radoskop Józefów — Jak głosują radni?",
   "site_url": "https://jozefow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Józefowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Józefowaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Józefowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Józefowa.",
   "bip_url": "https://bip.jozefow.pl/",
   "bip_name": "BIP Józefowa",
   "esesja_url": "https://jozefow.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Józefowaa",
-  "rada_name_genitive": "Rady Miasta Józefowaa"
+  "rada_name": "Rada Miasta Józefowa",
+  "rada_name_genitive": "Rady Miasta Józefowa"
 }

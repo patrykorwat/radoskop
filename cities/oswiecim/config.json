@@ -1,10 +1,10 @@
 {
   "city_name": "Oświęcim",
-  "city_genitive": "Oświęcima",
+  "city_genitive": "Oświęcimia",
   "site_title": "Radoskop Oświęcim — Jak głosują radni?",
   "site_url": "https://oswiecim.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Oświęcima. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Oświęcima.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Oświęcimia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Oświęcimia.",
   "bip_url": "https://bip.oswiecim.pl/",
   "bip_name": "BIP Oświęcim",
   "esesja_url": "https://oswiecim.esesja.pl",
@@ -83,6 +83,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Oświęcima",
-  "rada_name_genitive": "Rady Miasta Oświęcima"
+  "rada_name": "Rada Miasta Oświęcimia",
+  "rada_name_genitive": "Rady Miasta Oświęcimia"
 }

@@ -1,10 +1,10 @@
 {
-  "city_name": "Lipnie",
-  "city_genitive": "Lipnia",
-  "site_title": "Radoskop Lipnie — Jak głosują radni?",
+  "city_name": "Lipno",
+  "city_genitive": "Lipna",
+  "site_title": "Radoskop Lipno — Jak głosują radni?",
   "site_url": "https://lipno.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lipnia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lipnia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lipna. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lipna.",
   "bip_url": "https://bip.lipno.pl/",
   "bip_name": "BIP Lipnie",
   "esesja_url": "https://lipno.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Lipnia",
-  "rada_name_genitive": "Rady Miasta Lipnia"
+  "rada_name": "Rada Miasta Lipna",
+  "rada_name_genitive": "Rady Miasta Lipna"
 }

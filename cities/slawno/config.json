@@ -1,10 +1,10 @@
 {
-  "city_name": "Sławnie",
-  "city_genitive": "Sławnia",
-  "site_title": "Radoskop Sławnie — Jak głosują radni?",
+  "city_name": "Sławno",
+  "city_genitive": "Sławna",
+  "site_title": "Radoskop Sławno — Jak głosują radni?",
   "site_url": "https://slawno.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sławnia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sławnia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sławna. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sławna.",
   "bip_url": "https://bip.slawno.pl/",
   "bip_name": "BIP Sławnie",
   "esesja_url": "https://slawno.esesja.pl",
@@ -59,6 +59,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Sławnia",
-  "rada_name_genitive": "Rady Miasta Sławnia"
+  "rada_name": "Rada Miasta Sławna",
+  "rada_name_genitive": "Rady Miasta Sławna"
 }

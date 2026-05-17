@@ -1,10 +1,10 @@
 {
-  "city_name": "Augustowie",
-  "city_genitive": "Augustowia",
-  "site_title": "Radoskop Augustowie — Jak głosują radni?",
+  "city_name": "Augustów",
+  "city_genitive": "Augustowa",
+  "site_title": "Radoskop Augustów — Jak głosują radni?",
   "site_url": "https://augustow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Augustowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Augustowia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Augustowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Augustowa.",
   "bip_url": "https://bip.augustow.pl/",
   "bip_name": "BIP Augustowie",
   "esesja_url": "https://augustow.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Augustowia",
-  "rada_name_genitive": "Rady Miasta Augustowia"
+  "rada_name": "Rada Miasta Augustowa",
+  "rada_name_genitive": "Rady Miasta Augustowa"
 }

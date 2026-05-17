@@ -1,10 +1,10 @@
 {
   "city_name": "Poręba",
-  "city_genitive": "Porębaa",
+  "city_genitive": "Poręby",
   "site_title": "Radoskop Poręba — Jak głosują radni?",
   "site_url": "https://poreba.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Porębaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Porębaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Poręby. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Poręby.",
   "bip_url": "https://bip.poreba.pl/",
   "bip_name": "BIP Poręba",
   "esesja_url": "https://poreba.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Porębaa",
-  "rada_name_genitive": "Rady Miasta Porębaa"
+  "rada_name": "Rada Miasta Poręby",
+  "rada_name_genitive": "Rady Miasta Poręby"
 }

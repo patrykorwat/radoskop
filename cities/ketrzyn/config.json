@@ -1,10 +1,10 @@
 {
-  "city_name": "Kętrzynie",
-  "city_genitive": "Kętrzynia",
-  "site_title": "Radoskop Kętrzynie — Jak głosują radni?",
+  "city_name": "Kętrzyn",
+  "city_genitive": "Kętrzyna",
+  "site_title": "Radoskop Kętrzyn — Jak głosują radni?",
   "site_url": "https://ketrzyn.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kętrzynia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kętrzynia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kętrzyna. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kętrzyna.",
   "bip_url": "https://bip.ketrzyn.pl/",
   "bip_name": "BIP Kętrzynie",
   "esesja_url": "https://ketrzyn.esesja.pl",
@@ -83,6 +83,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Kętrzynia",
-  "rada_name_genitive": "Rady Miasta Kętrzynia"
+  "rada_name": "Rada Miasta Kętrzyna",
+  "rada_name_genitive": "Rady Miasta Kętrzyna"
 }

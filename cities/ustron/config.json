@@ -1,10 +1,10 @@
 {
   "city_name": "Ustroń",
-  "city_genitive": "Ustrońa",
+  "city_genitive": "Ustronia",
   "site_title": "Radoskop Ustroń — Jak głosują radni?",
   "site_url": "https://ustron.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ustrońa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ustrońa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ustronia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ustronia.",
   "bip_url": "https://bip.ustron.pl/",
   "bip_name": "BIP Ustroń",
   "esesja_url": "https://ustron.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Ustrońa",
-  "rada_name_genitive": "Rady Miasta Ustrońa"
+  "rada_name": "Rada Miasta Ustronia",
+  "rada_name_genitive": "Rady Miasta Ustronia"
 }

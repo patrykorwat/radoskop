@@ -1,10 +1,10 @@
 {
-  "city_name": "Leszna",
-  "city_genitive": "Lesznaa",
-  "site_title": "Radoskop Leszna — Jak głosują radni?",
+  "city_name": "Leszno",
+  "city_genitive": "Leszna",
+  "site_title": "Radoskop Leszno — Jak głosują radni?",
   "site_url": "https://leszno.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lesznaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lesznaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Leszna. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Leszna.",
   "bip_url": "https://bip.leszno.pl/",
   "bip_name": "BIP Leszna",
   "esesja_url": "https://leszno.esesja.pl",
@@ -79,6 +79,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Lesznaa",
-  "rada_name_genitive": "Rady Miasta Lesznaa"
+  "rada_name": "Rada Miasta Leszna",
+  "rada_name_genitive": "Rady Miasta Leszna"
 }

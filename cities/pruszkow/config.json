@@ -1,10 +1,10 @@
 {
-  "city_name": "Pruszkowa",
-  "city_genitive": "Pruszkowaa",
-  "site_title": "Radoskop Pruszkowa — Jak głosują radni?",
+  "city_name": "Pruszków",
+  "city_genitive": "Pruszkowa",
+  "site_title": "Radoskop Pruszków — Jak głosują radni?",
   "site_url": "https://pruszkow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Pruszkowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Pruszkowaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Pruszkowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Pruszkowa.",
   "bip_url": "https://bip.pruszkow.pl/",
   "bip_name": "BIP Pruszkowa",
   "esesja_url": "https://pruszkow.esesja.pl",
@@ -91,6 +91,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Pruszkowaa",
-  "rada_name_genitive": "Rady Miasta Pruszkowaa"
+  "rada_name": "Rada Miasta Pruszkowa",
+  "rada_name_genitive": "Rady Miasta Pruszkowa"
 }

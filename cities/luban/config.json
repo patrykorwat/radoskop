@@ -1,10 +1,10 @@
 {
   "city_name": "Lubań",
-  "city_genitive": "Lubańa",
+  "city_genitive": "Lubania",
   "site_title": "Radoskop Lubań — Jak głosują radni?",
   "site_url": "https://luban.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lubańa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lubańa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lubania. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lubania.",
   "bip_url": "https://bip.luban.pl/",
   "bip_name": "BIP Lubań",
   "esesja_url": "https://luban.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Lubańa",
-  "rada_name_genitive": "Rady Miasta Lubańa"
+  "rada_name": "Rada Miasta Lubania",
+  "rada_name_genitive": "Rady Miasta Lubania"
 }

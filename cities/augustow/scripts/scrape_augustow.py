@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Radoskop Augustowie — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
+Radoskop Augustów — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
 
 Skład rady + przypisania klubowe są wczytywane z config.json (sekcja
 club_assignments). Format: {"Imię Nazwisko": "kod_klubu"}.
@@ -42,4 +42,4 @@ if __name__ == "__main__":
         base_url="https://augustow.esesja.pl",
         kadencje=KADENCJE,
         councilors=COUNCILORS,
-    ).run_cli(prog_name="Radoskop Augustowie (https://augustow.esesja.pl)"))
+    ).run_cli(prog_name="Radoskop Augustów (https://augustow.esesja.pl)"))

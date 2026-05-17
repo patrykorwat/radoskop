@@ -1,10 +1,10 @@
 {
-  "city_name": "Jaworze",
-  "city_genitive": "Jaworza",
-  "site_title": "Radoskop Jaworze — Jak głosują radni?",
+  "city_name": "Jawor",
+  "city_genitive": "Jawora",
+  "site_title": "Radoskop Jawor — Jak głosują radni?",
   "site_url": "https://jawor.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Jaworza. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Jaworza.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Jawora. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Jawora.",
   "bip_url": "https://bip.jawor.pl/",
   "bip_name": "BIP Jaworze",
   "esesja_url": "https://jawor.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Jaworza",
-  "rada_name_genitive": "Rady Miasta Jaworza"
+  "rada_name": "Rada Miasta Jawora",
+  "rada_name_genitive": "Rady Miasta Jawora"
 }

@@ -1,10 +1,10 @@
 {
-  "city_name": "Mrągowie",
-  "city_genitive": "Mrągowia",
-  "site_title": "Radoskop Mrągowie — Jak głosują radni?",
+  "city_name": "Mrągowo",
+  "city_genitive": "Mrągowa",
+  "site_title": "Radoskop Mrągowo — Jak głosują radni?",
   "site_url": "https://mragowo.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Mrągowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Mrągowia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Mrągowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Mrągowa.",
   "bip_url": "https://bip.mragowo.pl/",
   "bip_name": "BIP Mrągowie",
   "esesja_url": "https://mragowo.esesja.pl",
@@ -53,6 +53,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Mrągowia",
-  "rada_name_genitive": "Rady Miasta Mrągowia"
+  "rada_name": "Rada Miasta Mrągowa",
+  "rada_name_genitive": "Rady Miasta Mrągowa"
 }

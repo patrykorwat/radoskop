@@ -1,10 +1,10 @@
 {
-  "city_name": "Ostrołęki",
-  "city_genitive": "Ostrołękia",
-  "site_title": "Radoskop Ostrołęki — Jak głosują radni?",
+  "city_name": "Ostrołęka",
+  "city_genitive": "Ostrołęki",
+  "site_title": "Radoskop Ostrołęka — Jak głosują radni?",
   "site_url": "https://ostroleka.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ostrołękia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ostrołękia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ostrołęki. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ostrołęki.",
   "bip_url": "https://bip.ostroleka.pl/",
   "bip_name": "BIP Ostrołęki",
   "esesja_url": "https://ostroleka.esesja.pl",
@@ -83,6 +83,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Ostrołękia",
-  "rada_name_genitive": "Rady Miasta Ostrołękia"
+  "rada_name": "Rada Miasta Ostrołęki",
+  "rada_name_genitive": "Rady Miasta Ostrołęki"
 }

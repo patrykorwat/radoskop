@@ -1,10 +1,10 @@
 {
-  "city_name": "Ciechocinka",
-  "city_genitive": "Ciechocinkaa",
-  "site_title": "Radoskop Ciechocinka — Jak głosują radni?",
+  "city_name": "Ciechocinek",
+  "city_genitive": "Ciechocinka",
+  "site_title": "Radoskop Ciechocinek — Jak głosują radni?",
   "site_url": "https://ciechocinek.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ciechocinkaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ciechocinkaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ciechocinka. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ciechocinka.",
   "bip_url": "https://bip.ciechocinek.pl/",
   "bip_name": "BIP Ciechocinka",
   "esesja_url": "https://ciechocinek.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Ciechocinkaa",
-  "rada_name_genitive": "Rady Miasta Ciechocinkaa"
+  "rada_name": "Rada Miasta Ciechocinka",
+  "rada_name_genitive": "Rady Miasta Ciechocinka"
 }

@@ -1,10 +1,10 @@
 {
-  "city_name": "Brodnicy",
-  "city_genitive": "Brodnicya",
-  "site_title": "Radoskop Brodnicy — Jak głosują radni?",
+  "city_name": "Brodnica",
+  "city_genitive": "Brodnicy",
+  "site_title": "Radoskop Brodnica — Jak głosują radni?",
   "site_url": "https://brodnica.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Brodnicya. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Brodnicya.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Brodnicy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Brodnicy.",
   "bip_url": "https://bip.brodnica.pl/",
   "bip_name": "BIP Brodnicy",
   "esesja_url": "https://brodnica.esesja.pl",
@@ -83,6 +83,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Brodnicya",
-  "rada_name_genitive": "Rady Miasta Brodnicya"
+  "rada_name": "Rada Miasta Brodnicy",
+  "rada_name_genitive": "Rady Miasta Brodnicy"
 }

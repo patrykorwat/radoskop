@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Radoskop Boguszowie-Gorcach — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
+Radoskop Boguszów-Gorce — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
 
 Skład rady + przypisania klubowe są wczytywane z config.json (sekcja
 club_assignments). Format: {"Imię Nazwisko": "kod_klubu"}.
@@ -42,4 +42,4 @@ if __name__ == "__main__":
         base_url="https://boguszow-gorce.esesja.pl",
         kadencje=KADENCJE,
         councilors=COUNCILORS,
-    ).run_cli(prog_name="Radoskop Boguszowie-Gorcach (https://boguszow-gorce.esesja.pl)"))
+    ).run_cli(prog_name="Radoskop Boguszów-Gorce (https://boguszow-gorce.esesja.pl)"))

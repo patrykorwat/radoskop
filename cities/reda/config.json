@@ -1,10 +1,10 @@
 {
-  "city_name": "Redzie",
-  "city_genitive": "Redzia",
-  "site_title": "Radoskop Redzie — Jak głosują radni?",
+  "city_name": "Reda",
+  "city_genitive": "Redy",
+  "site_title": "Radoskop Reda — Jak głosują radni?",
   "site_url": "https://reda.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Redzia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Redzia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Redy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Redy.",
   "bip_url": "https://bip.reda.pl/",
   "bip_name": "BIP Redzie",
   "esesja_url": "https://reda.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Redzia",
-  "rada_name_genitive": "Rady Miasta Redzia"
+  "rada_name": "Rada Miasta Redy",
+  "rada_name_genitive": "Rady Miasta Redy"
 }

@@ -1,10 +1,10 @@
 {
-  "city_name": "Sierpca",
-  "city_genitive": "Sierpcaa",
-  "site_title": "Radoskop Sierpca — Jak głosują radni?",
+  "city_name": "Sierpc",
+  "city_genitive": "Sierpca",
+  "site_title": "Radoskop Sierpc — Jak głosują radni?",
   "site_url": "https://sierpc.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sierpcaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sierpcaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sierpca. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sierpca.",
   "bip_url": "https://bip.sierpc.pl/",
   "bip_name": "BIP Sierpca",
   "esesja_url": "https://sierpc.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Sierpcaa",
-  "rada_name_genitive": "Rady Miasta Sierpcaa"
+  "rada_name": "Rada Miasta Sierpca",
+  "rada_name_genitive": "Rady Miasta Sierpca"
 }

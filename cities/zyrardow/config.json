@@ -1,10 +1,10 @@
 {
-  "city_name": "Żyrardowa",
-  "city_genitive": "Żyrardowaa",
-  "site_title": "Radoskop Żyrardowa — Jak głosują radni?",
+  "city_name": "Żyrardów",
+  "city_genitive": "Żyrardowa",
+  "site_title": "Radoskop Żyrardów — Jak głosują radni?",
   "site_url": "https://zyrardow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Żyrardowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Żyrardowaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Żyrardowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Żyrardowa.",
   "bip_url": "https://bip.zyrardow.pl/",
   "bip_name": "BIP Żyrardowa",
   "esesja_url": "https://zyrardow.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Żyrardowaa",
-  "rada_name_genitive": "Rady Miasta Żyrardowaa"
+  "rada_name": "Rada Miasta Żyrardowa",
+  "rada_name_genitive": "Rady Miasta Żyrardowa"
 }

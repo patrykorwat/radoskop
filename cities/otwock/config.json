@@ -1,10 +1,10 @@
 {
-  "city_name": "Otwocka",
-  "city_genitive": "Otwockaa",
-  "site_title": "Radoskop Otwocka — Jak głosują radni?",
+  "city_name": "Otwock",
+  "city_genitive": "Otwocka",
+  "site_title": "Radoskop Otwock — Jak głosują radni?",
   "site_url": "https://otwock.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Otwockaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Otwockaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Otwocka. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Otwocka.",
   "bip_url": "https://bip.otwock.pl/",
   "bip_name": "BIP Otwocka",
   "esesja_url": "https://otwock.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Otwockaa",
-  "rada_name_genitive": "Rady Miasta Otwockaa"
+  "rada_name": "Rada Miasta Otwocka",
+  "rada_name_genitive": "Rady Miasta Otwocka"
 }

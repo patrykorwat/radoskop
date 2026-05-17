@@ -1,10 +1,10 @@
 {
-  "city_name": "Leżajsku",
-  "city_genitive": "Leżajskua",
-  "site_title": "Radoskop Leżajsku — Jak głosują radni?",
+  "city_name": "Leżajsk",
+  "city_genitive": "Leżajska",
+  "site_title": "Radoskop Leżajsk — Jak głosują radni?",
   "site_url": "https://lezajsk.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Leżajskua. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Leżajskua.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Leżajska. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Leżajska.",
   "bip_url": "https://bip.lezajsk.pl/",
   "bip_name": "BIP Leżajsku",
   "esesja_url": "https://lezajsk.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Leżajskua",
-  "rada_name_genitive": "Rady Miasta Leżajskua"
+  "rada_name": "Rada Miasta Leżajska",
+  "rada_name_genitive": "Rady Miasta Leżajska"
 }

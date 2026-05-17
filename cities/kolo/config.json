@@ -1,10 +1,10 @@
 {
-  "city_name": "Koła",
-  "city_genitive": "Kołaa",
-  "site_title": "Radoskop Koła — Jak głosują radni?",
+  "city_name": "Koło",
+  "city_genitive": "Koła",
+  "site_title": "Radoskop Koło — Jak głosują radni?",
   "site_url": "https://kolo.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kołaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kołaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Koła. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Koła.",
   "bip_url": "https://bip.kolo.pl/",
   "bip_name": "BIP Koła",
   "esesja_url": "https://kolo.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Kołaa",
-  "rada_name_genitive": "Rady Miasta Kołaa"
+  "rada_name": "Rada Miasta Koła",
+  "rada_name_genitive": "Rady Miasta Koła"
 }

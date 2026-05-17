@@ -1,10 +1,10 @@
 {
-  "city_name": "Tarnobrzega",
-  "city_genitive": "Tarnobrzegaa",
-  "site_title": "Radoskop Tarnobrzega — Jak głosują radni?",
+  "city_name": "Tarnobrzeg",
+  "city_genitive": "Tarnobrzega",
+  "site_title": "Radoskop Tarnobrzeg — Jak głosują radni?",
   "site_url": "https://tarnobrzeg.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Tarnobrzegaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Tarnobrzegaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Tarnobrzega. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Tarnobrzega.",
   "bip_url": "https://bip.tarnobrzeg.pl/",
   "bip_name": "BIP Tarnobrzega",
   "esesja_url": "https://tarnobrzeg.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Tarnobrzegaa",
-  "rada_name_genitive": "Rady Miasta Tarnobrzegaa"
+  "rada_name": "Rada Miasta Tarnobrzega",
+  "rada_name_genitive": "Rady Miasta Tarnobrzega"
 }

@@ -1,10 +1,10 @@
 {
-  "city_name": "Bieruniu",
-  "city_genitive": "Bieruniua",
-  "site_title": "Radoskop Bieruniu — Jak głosują radni?",
+  "city_name": "Bieruń",
+  "city_genitive": "Bierunia",
+  "site_title": "Radoskop Bieruń — Jak głosują radni?",
   "site_url": "https://bierun.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bieruniua. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bieruniua.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bierunia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bierunia.",
   "bip_url": "https://bip.bierun.pl/",
   "bip_name": "BIP Bieruniu",
   "esesja_url": "https://bierun.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Bieruniua",
-  "rada_name_genitive": "Rady Miasta Bieruniua"
+  "rada_name": "Rada Miasta Bierunia",
+  "rada_name_genitive": "Rady Miasta Bierunia"
 }

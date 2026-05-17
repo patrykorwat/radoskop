@@ -1,10 +1,10 @@
 {
-  "city_name": "Przemyślu",
-  "city_genitive": "Przemyślua",
-  "site_title": "Radoskop Przemyślu — Jak głosują radni?",
+  "city_name": "Przemyśl",
+  "city_genitive": "Przemyśla",
+  "site_title": "Radoskop Przemyśl — Jak głosują radni?",
   "site_url": "https://przemysl.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Przemyślua. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Przemyślua.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Przemyśla. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Przemyśla.",
   "bip_url": "https://bip.przemysl.pl/",
   "bip_name": "BIP Przemyślu",
   "esesja_url": "https://przemysl.esesja.pl",
@@ -85,6 +85,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Przemyślua",
-  "rada_name_genitive": "Rady Miasta Przemyślua"
+  "rada_name": "Rada Miasta Przemyśla",
+  "rada_name_genitive": "Rady Miasta Przemyśla"
 }

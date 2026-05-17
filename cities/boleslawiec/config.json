@@ -1,10 +1,10 @@
 {
   "city_name": "Bolesławiec",
-  "city_genitive": "Bolesławieca",
+  "city_genitive": "Bolesławca",
   "site_title": "Radoskop Bolesławiec — Jak głosują radni?",
   "site_url": "https://boleslawiec.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bolesławieca. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bolesławieca.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bolesławca. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bolesławca.",
   "bip_url": "https://bip.boleslawiec.pl/",
   "bip_name": "BIP Bolesławiec",
   "esesja_url": "https://boleslawiec.esesja.pl",
@@ -89,6 +89,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Bolesławieca",
-  "rada_name_genitive": "Rady Miasta Bolesławieca"
+  "rada_name": "Rada Miasta Bolesławca",
+  "rada_name_genitive": "Rady Miasta Bolesławca"
 }

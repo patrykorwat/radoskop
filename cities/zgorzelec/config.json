@@ -1,10 +1,10 @@
 {
   "city_name": "Zgorzelec",
-  "city_genitive": "Zgorzeleca",
+  "city_genitive": "Zgorzelca",
   "site_title": "Radoskop Zgorzelec — Jak głosują radni?",
   "site_url": "https://zgorzelec.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Zgorzeleca. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Zgorzeleca.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Zgorzelca. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Zgorzelca.",
   "bip_url": "https://bip.zgorzelec.pl/",
   "bip_name": "BIP Zgorzelec",
   "esesja_url": "https://zgorzelec.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Zgorzeleca",
-  "rada_name_genitive": "Rady Miasta Zgorzeleca"
+  "rada_name": "Rada Miasta Zgorzelca",
+  "rada_name_genitive": "Rady Miasta Zgorzelca"
 }

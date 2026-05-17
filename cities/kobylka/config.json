@@ -1,10 +1,10 @@
 {
   "city_name": "Kobyłka",
-  "city_genitive": "Kobyłkaa",
+  "city_genitive": "Kobyłki",
   "site_title": "Radoskop Kobyłka — Jak głosują radni?",
   "site_url": "https://kobylka.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kobyłkaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kobyłkaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kobyłki. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kobyłki.",
   "bip_url": "https://bip.kobylka.pl/",
   "bip_name": "BIP Kobyłka",
   "esesja_url": "https://kobylka.esesja.pl",
@@ -83,6 +83,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Kobyłkaa",
-  "rada_name_genitive": "Rady Miasta Kobyłkaa"
+  "rada_name": "Rada Miasta Kobyłki",
+  "rada_name_genitive": "Rady Miasta Kobyłki"
 }

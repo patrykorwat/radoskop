@@ -1,10 +1,10 @@
 {
   "city_name": "Sulejówek",
-  "city_genitive": "Sulejóweka",
+  "city_genitive": "Sulejówka",
   "site_title": "Radoskop Sulejówek — Jak głosują radni?",
   "site_url": "https://sulejowek.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sulejóweka. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sulejóweka.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sulejówka. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sulejówka.",
   "bip_url": "https://bip.sulejowek.pl/",
   "bip_name": "BIP Sulejówek",
   "esesja_url": "https://sulejowek.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Sulejóweka",
-  "rada_name_genitive": "Rady Miasta Sulejóweka"
+  "rada_name": "Rada Miasta Sulejówka",
+  "rada_name_genitive": "Rady Miasta Sulejówka"
 }

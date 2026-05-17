@@ -1,10 +1,10 @@
 {
-  "city_name": "Łebie",
-  "city_genitive": "Łebia",
-  "site_title": "Radoskop Łebie — Jak głosują radni?",
+  "city_name": "Łeba",
+  "city_genitive": "Łeby",
+  "site_title": "Radoskop Łeba — Jak głosują radni?",
   "site_url": "https://leba.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Łebia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Łebia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Łeby. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Łeby.",
   "bip_url": "https://bip.leba.pl/",
   "bip_name": "BIP Łebie",
   "esesja_url": "https://leba.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Łebia",
-  "rada_name_genitive": "Rady Miasta Łebia"
+  "rada_name": "Rada Miasta Łeby",
+  "rada_name_genitive": "Rady Miasta Łeby"
 }

@@ -1,10 +1,10 @@
 {
-  "city_name": "Radlinie",
-  "city_genitive": "Radlinia",
-  "site_title": "Radoskop Radlinie — Jak głosują radni?",
+  "city_name": "Radlin",
+  "city_genitive": "Radlina",
+  "site_title": "Radoskop Radlin — Jak głosują radni?",
   "site_url": "https://radlin.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Radlinia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Radlinia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Radlina. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Radlina.",
   "bip_url": "https://bip.radlin.pl/",
   "bip_name": "BIP Radlinie",
   "esesja_url": "https://radlin.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Radlinia",
-  "rada_name_genitive": "Rady Miasta Radlinia"
+  "rada_name": "Rada Miasta Radlina",
+  "rada_name_genitive": "Rady Miasta Radlina"
 }

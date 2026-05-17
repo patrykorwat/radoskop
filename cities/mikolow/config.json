@@ -1,10 +1,10 @@
 {
-  "city_name": "Mikołowa",
-  "city_genitive": "Mikołowaa",
-  "site_title": "Radoskop Mikołowa — Jak głosują radni?",
+  "city_name": "Mikołów",
+  "city_genitive": "Mikołowa",
+  "site_title": "Radoskop Mikołów — Jak głosują radni?",
   "site_url": "https://mikolow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Mikołowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Mikołowaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Mikołowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Mikołowa.",
   "bip_url": "https://bip.mikolow.pl/",
   "bip_name": "BIP Mikołowa",
   "esesja_url": "https://mikolow.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Mikołowaa",
-  "rada_name_genitive": "Rady Miasta Mikołowaa"
+  "rada_name": "Rada Miasta Mikołowa",
+  "rada_name_genitive": "Rady Miasta Mikołowa"
 }

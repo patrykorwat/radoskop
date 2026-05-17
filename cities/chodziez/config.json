@@ -1,10 +1,10 @@
 {
-  "city_name": "Chodzieży",
-  "city_genitive": "Chodzieżya",
-  "site_title": "Radoskop Chodzieży — Jak głosują radni?",
+  "city_name": "Chodzież",
+  "city_genitive": "Chodzieży",
+  "site_title": "Radoskop Chodzież — Jak głosują radni?",
   "site_url": "https://chodziez.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Chodzieżya. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Chodzieżya.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Chodzieży. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Chodzieży.",
   "bip_url": "https://bip.chodziez.pl/",
   "bip_name": "BIP Chodzieży",
   "esesja_url": "https://chodziez.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Chodzieżya",
-  "rada_name_genitive": "Rady Miasta Chodzieżya"
+  "rada_name": "Rada Miasta Chodzieży",
+  "rada_name_genitive": "Rady Miasta Chodzieży"
 }

@@ -1,10 +1,10 @@
 {
   "city_name": "Piechowice",
-  "city_genitive": "Piechowica",
+  "city_genitive": "Piechowic",
   "site_title": "Radoskop Piechowice — Jak głosują radni?",
   "site_url": "https://piechowice.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Piechowica. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Piechowica.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Piechowic. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Piechowic.",
   "bip_url": "https://bip.piechowice.pl/",
   "bip_name": "BIP Piechowice",
   "esesja_url": "https://piechowice.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Piechowica",
-  "rada_name_genitive": "Rady Miasta Piechowica"
+  "rada_name": "Rada Miasta Piechowic",
+  "rada_name_genitive": "Rady Miasta Piechowic"
 }

@@ -1,10 +1,10 @@
 {
   "city_name": "Żagań",
-  "city_genitive": "Żagańa",
+  "city_genitive": "Żagania",
   "site_title": "Radoskop Żagań — Jak głosują radni?",
   "site_url": "https://zagan.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Żagańa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Żagańa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Żagania. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Żagania.",
   "bip_url": "https://bip.zagan.pl/",
   "bip_name": "BIP Żagań",
   "esesja_url": "https://zagan.esesja.pl",
@@ -83,6 +83,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Żagańa",
-  "rada_name_genitive": "Rady Miasta Żagańa"
+  "rada_name": "Rada Miasta Żagania",
+  "rada_name_genitive": "Rady Miasta Żagania"
 }

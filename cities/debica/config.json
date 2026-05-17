@@ -1,10 +1,10 @@
 {
-  "city_name": "Dębicy",
-  "city_genitive": "Dębicya",
-  "site_title": "Radoskop Dębicy — Jak głosują radni?",
+  "city_name": "Dębica",
+  "city_genitive": "Dębicy",
+  "site_title": "Radoskop Dębica — Jak głosują radni?",
   "site_url": "https://debica.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Dębicya. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Dębicya.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Dębicy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Dębicy.",
   "bip_url": "https://bip.debica.pl/",
   "bip_name": "BIP Dębicy",
   "esesja_url": "https://debica.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Dębicya",
-  "rada_name_genitive": "Rady Miasta Dębicya"
+  "rada_name": "Rada Miasta Dębicy",
+  "rada_name_genitive": "Rady Miasta Dębicy"
 }

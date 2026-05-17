@@ -1,10 +1,10 @@
 {
-  "city_name": "Sulmierzycach",
-  "city_genitive": "Sulmierzycacha",
-  "site_title": "Radoskop Sulmierzycach — Jak głosują radni?",
+  "city_name": "Sulmierzyce",
+  "city_genitive": "Sulmierzyc",
+  "site_title": "Radoskop Sulmierzyce — Jak głosują radni?",
   "site_url": "https://sulmierzyce.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sulmierzycacha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sulmierzycacha.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sulmierzyc. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sulmierzyc.",
   "bip_url": "https://bip.sulmierzyce.pl/",
   "bip_name": "BIP Sulmierzycach",
   "esesja_url": "https://sulmierzyce.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Sulmierzycacha",
-  "rada_name_genitive": "Rady Miasta Sulmierzycacha"
+  "rada_name": "Rada Miasta Sulmierzyc",
+  "rada_name_genitive": "Rady Miasta Sulmierzyc"
 }

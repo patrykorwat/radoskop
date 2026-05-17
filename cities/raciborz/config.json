@@ -1,10 +1,10 @@
 {
   "city_name": "Racibórz",
-  "city_genitive": "Racibórza",
+  "city_genitive": "Raciborza",
   "site_title": "Radoskop Racibórz — Jak głosują radni?",
   "site_url": "https://raciborz.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Racibórza. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Racibórza.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Raciborza. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Raciborza.",
   "bip_url": "https://bip.raciborz.pl/",
   "bip_name": "BIP Racibórz",
   "esesja_url": "https://raciborz.esesja.pl",
@@ -83,6 +83,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Racibórza",
-  "rada_name_genitive": "Rady Miasta Racibórza"
+  "rada_name": "Rada Miasta Raciborza",
+  "rada_name_genitive": "Rady Miasta Raciborza"
 }

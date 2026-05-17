@@ -1,10 +1,10 @@
 {
-  "city_name": "Polanicy-Zdroju",
-  "city_genitive": "Polanicy-Zdrojua",
-  "site_title": "Radoskop Polanicy-Zdroju — Jak głosują radni?",
+  "city_name": "Polanica-Zdrój",
+  "city_genitive": "Polanicy-Zdroju",
+  "site_title": "Radoskop Polanica-Zdrój — Jak głosują radni?",
   "site_url": "https://polanica-zdroj.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Polanicy-Zdrojua. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Polanicy-Zdrojua.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Polanicy-Zdroju. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Polanicy-Zdroju.",
   "bip_url": "https://bip.polanica-zdroj.pl/",
   "bip_name": "BIP Polanicy-Zdroju",
   "esesja_url": "https://polanica-zdroj.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Polanicy-Zdrojua",
-  "rada_name_genitive": "Rady Miasta Polanicy-Zdrojua"
+  "rada_name": "Rada Miasta Polanicy-Zdroju",
+  "rada_name_genitive": "Rady Miasta Polanicy-Zdroju"
 }

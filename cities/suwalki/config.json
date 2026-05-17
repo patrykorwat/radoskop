@@ -1,10 +1,10 @@
 {
-  "city_name": "Suwałkach",
-  "city_genitive": "Suwałkacha",
-  "site_title": "Radoskop Suwałkach — Jak głosują radni?",
+  "city_name": "Suwałki",
+  "city_genitive": "Suwałk",
+  "site_title": "Radoskop Suwałki — Jak głosują radni?",
   "site_url": "https://suwalki.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Suwałkacha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Suwałkacha.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Suwałk. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Suwałk.",
   "bip_url": "https://bip.suwalki.pl/",
   "bip_name": "BIP Suwałkach",
   "esesja_url": "https://suwalki.esesja.pl",
@@ -73,6 +73,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Suwałkacha",
-  "rada_name_genitive": "Rady Miasta Suwałkacha"
+  "rada_name": "Rada Miasta Suwałk",
+  "rada_name_genitive": "Rady Miasta Suwałk"
 }

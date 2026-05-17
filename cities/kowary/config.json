@@ -1,10 +1,10 @@
 {
-  "city_name": "Kowarach",
-  "city_genitive": "Kowaracha",
-  "site_title": "Radoskop Kowarach — Jak głosują radni?",
+  "city_name": "Kowary",
+  "city_genitive": "Kowar",
+  "site_title": "Radoskop Kowary — Jak głosują radni?",
   "site_url": "https://kowary.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kowaracha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kowaracha.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kowar. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kowar.",
   "bip_url": "https://bip.kowary.pl/",
   "bip_name": "BIP Kowarach",
   "esesja_url": "https://kowary.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Kowaracha",
-  "rada_name_genitive": "Rady Miasta Kowaracha"
+  "rada_name": "Rada Miasta Kowar",
+  "rada_name_genitive": "Rady Miasta Kowar"
 }

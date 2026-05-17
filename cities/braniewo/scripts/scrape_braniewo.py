@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Radoskop Braniewie — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
+Radoskop Braniewo — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
 
 Skład rady + przypisania klubowe są wczytywane z config.json (sekcja
 club_assignments). Format: {"Imię Nazwisko": "kod_klubu"}.
@@ -42,4 +42,4 @@ if __name__ == "__main__":
         base_url="https://braniewo.esesja.pl",
         kadencje=KADENCJE,
         councilors=COUNCILORS,
-    ).run_cli(prog_name="Radoskop Braniewie (https://braniewo.esesja.pl)"))
+    ).run_cli(prog_name="Radoskop Braniewo (https://braniewo.esesja.pl)"))

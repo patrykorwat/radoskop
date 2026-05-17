@@ -1,10 +1,10 @@
 {
   "city_name": "Zakopane",
-  "city_genitive": "Zakopana",
+  "city_genitive": "Zakopanego",
   "site_title": "Radoskop Zakopane — Jak głosują radni?",
   "site_url": "https://zakopane.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Zakopana. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Zakopana.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Zakopanego. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Zakopanego.",
   "bip_url": "https://bip.zakopane.pl/",
   "bip_name": "BIP Zakopane",
   "esesja_url": "https://zakopane.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Zakopana",
-  "rada_name_genitive": "Rady Miasta Zakopana"
+  "rada_name": "Rada Miasta Zakopanego",
+  "rada_name_genitive": "Rady Miasta Zakopanego"
 }

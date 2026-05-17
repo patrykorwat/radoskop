@@ -1,10 +1,10 @@
 {
-  "city_name": "Sanoka",
-  "city_genitive": "Sanokaa",
-  "site_title": "Radoskop Sanoka — Jak głosują radni?",
+  "city_name": "Sanok",
+  "city_genitive": "Sanoka",
+  "site_title": "Radoskop Sanok — Jak głosują radni?",
   "site_url": "https://sanok.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sanokaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sanokaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sanoka. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sanoka.",
   "bip_url": "https://bip.sanok.pl/",
   "bip_name": "BIP Sanoka",
   "esesja_url": "https://sanok.esesja.pl",
@@ -89,6 +89,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Sanokaa",
-  "rada_name_genitive": "Rady Miasta Sanokaa"
+  "rada_name": "Rada Miasta Sanoka",
+  "rada_name_genitive": "Rady Miasta Sanoka"
 }

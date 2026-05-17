@@ -1,10 +1,10 @@
 {
   "city_name": "Ustka",
-  "city_genitive": "Ustkaa",
+  "city_genitive": "Ustki",
   "site_title": "Radoskop Ustka — Jak głosują radni?",
   "site_url": "https://ustka.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ustkaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ustkaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ustki. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ustki.",
   "bip_url": "https://bip.ustka.pl/",
   "bip_name": "BIP Ustka",
   "esesja_url": "https://ustka.esesja.pl",
@@ -59,6 +59,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Ustkaa",
-  "rada_name_genitive": "Rady Miasta Ustkaa"
+  "rada_name": "Rada Miasta Ustki",
+  "rada_name_genitive": "Rady Miasta Ustki"
 }

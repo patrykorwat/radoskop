@@ -1,10 +1,10 @@
 {
-  "city_name": "Będzina",
-  "city_genitive": "Będzinaa",
-  "site_title": "Radoskop Będzina — Jak głosują radni?",
+  "city_name": "Będzin",
+  "city_genitive": "Będzina",
+  "site_title": "Radoskop Będzin — Jak głosują radni?",
   "site_url": "https://bedzin.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Będzinaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Będzinaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Będzina. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Będzina.",
   "bip_url": "https://bip.bedzin.pl/",
   "bip_name": "BIP Będzina",
   "esesja_url": "https://bedzin.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Będzinaa",
-  "rada_name_genitive": "Rady Miasta Będzinaa"
+  "rada_name": "Rada Miasta Będzina",
+  "rada_name_genitive": "Rady Miasta Będzina"
 }

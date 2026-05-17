@@ -1,10 +1,10 @@
 {
-  "city_name": "Czeladzi",
-  "city_genitive": "Czeladzia",
-  "site_title": "Radoskop Czeladzi — Jak głosują radni?",
+  "city_name": "Czeladź",
+  "city_genitive": "Czeladzi",
+  "site_title": "Radoskop Czeladź — Jak głosują radni?",
   "site_url": "https://czeladz.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Czeladzia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Czeladzia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Czeladzi. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Czeladzi.",
   "bip_url": "https://bip.czeladz.pl/",
   "bip_name": "BIP Czeladzi",
   "esesja_url": "https://czeladz.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Czeladzia",
-  "rada_name_genitive": "Rady Miasta Czeladzia"
+  "rada_name": "Rada Miasta Czeladzi",
+  "rada_name_genitive": "Rady Miasta Czeladzi"
 }

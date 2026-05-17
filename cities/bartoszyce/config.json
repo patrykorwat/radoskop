@@ -1,10 +1,10 @@
 {
   "city_name": "Bartoszyce",
-  "city_genitive": "Bartoszyca",
+  "city_genitive": "Bartoszyc",
   "site_title": "Radoskop Bartoszyce — Jak głosują radni?",
   "site_url": "https://bartoszyce.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bartoszyca. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bartoszyca.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bartoszyc. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bartoszyc.",
   "bip_url": "https://bip.bartoszyce.pl/",
   "bip_name": "BIP Bartoszyce",
   "esesja_url": "https://bartoszyce.esesja.pl",
@@ -77,6 +77,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Bartoszyca",
-  "rada_name_genitive": "Rady Miasta Bartoszyca"
+  "rada_name": "Rada Miasta Bartoszyc",
+  "rada_name_genitive": "Rady Miasta Bartoszyc"
 }

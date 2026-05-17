@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Radoskop Piastowie — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
+Radoskop Piastów — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
 
 Skład rady + przypisania klubowe są wczytywane z config.json (sekcja
 club_assignments). Format: {"Imię Nazwisko": "kod_klubu"}.
@@ -42,4 +42,4 @@ if __name__ == "__main__":
         base_url="https://piastow.esesja.pl",
         kadencje=KADENCJE,
         councilors=COUNCILORS,
-    ).run_cli(prog_name="Radoskop Piastowie (https://piastow.esesja.pl)"))
+    ).run_cli(prog_name="Radoskop Piastów (https://piastow.esesja.pl)"))

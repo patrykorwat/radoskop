@@ -1,10 +1,10 @@
 {
   "city_name": "Bochnia",
-  "city_genitive": "Bochniaa",
+  "city_genitive": "Bochni",
   "site_title": "Radoskop Bochnia — Jak głosują radni?",
   "site_url": "https://bochnia.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bochniaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bochniaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bochni. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bochni.",
   "bip_url": "https://bip.bochnia.pl/",
   "bip_name": "BIP Bochnia",
   "esesja_url": "https://bochnia.esesja.pl",
@@ -83,6 +83,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Bochniaa",
-  "rada_name_genitive": "Rady Miasta Bochniaa"
+  "rada_name": "Rada Miasta Bochni",
+  "rada_name_genitive": "Rady Miasta Bochni"
 }

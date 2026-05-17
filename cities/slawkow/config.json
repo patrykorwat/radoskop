@@ -1,10 +1,10 @@
 {
-  "city_name": "Sławkowie",
-  "city_genitive": "Sławkowia",
-  "site_title": "Radoskop Sławkowie — Jak głosują radni?",
+  "city_name": "Sławków",
+  "city_genitive": "Sławkowa",
+  "site_title": "Radoskop Sławków — Jak głosują radni?",
   "site_url": "https://slawkow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sławkowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sławkowia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sławkowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sławkowa.",
   "bip_url": "https://bip.slawkow.pl/",
   "bip_name": "BIP Sławkowie",
   "esesja_url": "https://slawkow.esesja.pl",
@@ -59,6 +59,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Sławkowia",
-  "rada_name_genitive": "Rady Miasta Sławkowia"
+  "rada_name": "Rada Miasta Sławkowa",
+  "rada_name_genitive": "Rady Miasta Sławkowa"
 }

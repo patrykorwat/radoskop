@@ -1,10 +1,10 @@
 {
-  "city_name": "Iławie",
-  "city_genitive": "Iławia",
-  "site_title": "Radoskop Iławie — Jak głosują radni?",
+  "city_name": "Iława",
+  "city_genitive": "Iławy",
+  "site_title": "Radoskop Iława — Jak głosują radni?",
   "site_url": "https://ilawa.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Iławia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Iławia.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Iławy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Iławy.",
   "bip_url": "https://bip.ilawa.pl/",
   "bip_name": "BIP Iławie",
   "esesja_url": "https://ilawa.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Iławia",
-  "rada_name_genitive": "Rady Miasta Iławia"
+  "rada_name": "Rada Miasta Iławy",
+  "rada_name_genitive": "Rady Miasta Iławy"
 }

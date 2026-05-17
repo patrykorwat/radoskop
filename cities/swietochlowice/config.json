@@ -1,10 +1,10 @@
 {
-  "city_name": "Świętochłowicach",
-  "city_genitive": "Świętochłowicacha",
-  "site_title": "Radoskop Świętochłowicach — Jak głosują radni?",
+  "city_name": "Świętochłowice",
+  "city_genitive": "Świętochłowic",
+  "site_title": "Radoskop Świętochłowice — Jak głosują radni?",
   "site_url": "https://swietochlowice.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Świętochłowicacha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Świętochłowicacha.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Świętochłowic. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Świętochłowic.",
   "bip_url": "https://bip.swietochlowice.pl/",
   "bip_name": "BIP Świętochłowicach",
   "esesja_url": "https://swietochlowice.esesja.pl",
@@ -89,6 +89,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Świętochłowicacha",
-  "rada_name_genitive": "Rady Miasta Świętochłowicacha"
+  "rada_name": "Rada Miasta Świętochłowic",
+  "rada_name_genitive": "Rady Miasta Świętochłowic"
 }

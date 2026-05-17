@@ -1,10 +1,10 @@
 {
   "city_name": "Gozdnica",
-  "city_genitive": "Gozdnicaa",
+  "city_genitive": "Gozdnicy",
   "site_title": "Radoskop Gozdnica — Jak głosują radni?",
   "site_url": "https://gozdnica.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Gozdnicaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Gozdnicaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Gozdnicy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Gozdnicy.",
   "bip_url": "https://bip.gozdnica.pl/",
   "bip_name": "BIP Gozdnica",
   "esesja_url": "https://gozdnica.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Gozdnicaa",
-  "rada_name_genitive": "Rady Miasta Gozdnicaa"
+  "rada_name": "Rada Miasta Gozdnicy",
+  "rada_name_genitive": "Rady Miasta Gozdnicy"
 }

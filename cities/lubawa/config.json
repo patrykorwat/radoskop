@@ -1,10 +1,10 @@
 {
   "city_name": "Lubawa",
-  "city_genitive": "Lubawaa",
+  "city_genitive": "Lubawy",
   "site_title": "Radoskop Lubawa — Jak głosują radni?",
   "site_url": "https://lubawa.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lubawaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lubawaa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lubawy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lubawy.",
   "bip_url": "https://bip.lubawa.pl/",
   "bip_name": "BIP Lubawa",
   "esesja_url": "https://lubawa.esesja.pl",
@@ -59,6 +59,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Lubawaa",
-  "rada_name_genitive": "Rady Miasta Lubawaa"
+  "rada_name": "Rada Miasta Lubawy",
+  "rada_name_genitive": "Rady Miasta Lubawy"
 }

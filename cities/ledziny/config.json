@@ -1,10 +1,10 @@
 {
   "city_name": "Lędziny",
-  "city_genitive": "Lędzinya",
+  "city_genitive": "Lędzin",
   "site_title": "Radoskop Lędziny — Jak głosują radni?",
   "site_url": "https://ledziny.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lędzinya. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lędzinya.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lędzin. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lędzin.",
   "bip_url": "https://bip.ledziny.pl/",
   "bip_name": "BIP Lędziny",
   "esesja_url": "https://ledziny.esesja.pl",
@@ -65,6 +65,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Lędzinya",
-  "rada_name_genitive": "Rady Miasta Lędzinya"
+  "rada_name": "Rada Miasta Lędzin",
+  "rada_name_genitive": "Rady Miasta Lędzin"
 }

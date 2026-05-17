@@ -1,10 +1,10 @@
 {
   "city_name": "Luboń",
-  "city_genitive": "Lubońa",
+  "city_genitive": "Lubonia",
   "site_title": "Radoskop Luboń — Jak głosują radni?",
   "site_url": "https://lubon.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lubońa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lubońa.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lubonia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lubonia.",
   "bip_url": "https://bip.lubon.pl/",
   "bip_name": "BIP Luboń",
   "esesja_url": "https://lubon.esesja.pl",
@@ -71,6 +71,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Lubońa",
-  "rada_name_genitive": "Rady Miasta Lubońa"
+  "rada_name": "Rada Miasta Lubonia",
+  "rada_name_genitive": "Rady Miasta Lubonia"
 }

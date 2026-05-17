@@ -1,10 +1,10 @@
 {
-  "city_name": "Pyskowicach",
-  "city_genitive": "Pyskowicacha",
-  "site_title": "Radoskop Pyskowicach — Jak głosują radni?",
+  "city_name": "Pyskowice",
+  "city_genitive": "Pyskowic",
+  "site_title": "Radoskop Pyskowice — Jak głosują radni?",
   "site_url": "https://pyskowice.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Pyskowicacha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Pyskowicacha.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Pyskowic. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Pyskowic.",
   "bip_url": "https://bip.pyskowice.pl/",
   "bip_name": "BIP Pyskowicach",
   "esesja_url": "https://pyskowice.esesja.pl",
@@ -53,6 +53,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Pyskowicacha",
-  "rada_name_genitive": "Rady Miasta Pyskowicacha"
+  "rada_name": "Rada Miasta Pyskowic",
+  "rada_name_genitive": "Rady Miasta Pyskowic"
 }

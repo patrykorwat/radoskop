@@ -1,10 +1,10 @@
 {
   "city_name": "Zamość",
-  "city_genitive": "Zamośća",
+  "city_genitive": "Zamościa",
   "site_title": "Radoskop Zamość — Jak głosują radni?",
   "site_url": "https://zamosc.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Zamośća. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Zamośća.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Zamościa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Zamościa.",
   "bip_url": "https://bip.zamosc.pl/",
   "bip_name": "BIP Zamość",
   "esesja_url": "https://zamosc.esesja.pl",
@@ -79,6 +79,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Zamośća",
-  "rada_name_genitive": "Rady Miasta Zamośća"
+  "rada_name": "Rada Miasta Zamościa",
+  "rada_name_genitive": "Rady Miasta Zamościa"
 }

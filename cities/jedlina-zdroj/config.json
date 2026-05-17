@@ -1,10 +1,10 @@
 {
   "city_name": "Jedlina-Zdrój",
-  "city_genitive": "Jedlina-Zdrója",
+  "city_genitive": "Jedliny-Zdroju",
   "site_title": "Radoskop Jedlina-Zdrój — Jak głosują radni?",
   "site_url": "https://jedlina-zdroj.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Jedlina-Zdrója. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Jedlina-Zdrója.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Jedliny-Zdroju. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Jedliny-Zdroju.",
   "bip_url": "https://bip.jedlina-zdroj.pl/",
   "bip_name": "BIP Jedlina-Zdrój",
   "esesja_url": "https://jedlina-zdroj.esesja.pl",
@@ -59,6 +59,6 @@
   "has_komisje": false,
   "budget_note": "",
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Jedlina-Zdrója",
-  "rada_name_genitive": "Rady Miasta Jedlina-Zdrója"
+  "rada_name": "Rada Miasta Jedliny-Zdroju",
+  "rada_name_genitive": "Rady Miasta Jedliny-Zdroju"
 }

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Radoskop Koła — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
+Radoskop Koło — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
 
 Skład rady + przypisania klubowe są wczytywane z config.json (sekcja
 club_assignments). Format: {"Imię Nazwisko": "kod_klubu"}.
@@ -42,4 +42,4 @@ if __name__ == "__main__":
         base_url="https://kolo.esesja.pl",
         kadencje=KADENCJE,
         councilors=COUNCILORS,
-    ).run_cli(prog_name="Radoskop Koła (https://kolo.esesja.pl)"))
+    ).run_cli(prog_name="Radoskop Koło (https://kolo.esesja.pl)"))
