@@ -59,6 +59,14 @@ except ImportError:
     print("Zainstaluj: pip install requests beautifulsoup4 lxml", file=sys.stderr)
     raise
 
+# Slownik genitive — OVERRIDES dla ~500 miast plus heurystyka morfologiczna.
+# Wczesniej był wbudowany _polish_genitive w tym pliku, ale po batchu 112 miast
+# 2026-05-17 okazało się że zbyt wąski słownik daje błędne formy
+# (Bełchatów → Bełchatowa OK, ale rzadsze miasta jak Pieniężno → Pieniężna FAIL).
+# Wyodrebniony do pl_genitive.py żeby można było rozszerzać/poprawiać bez
+# dotykania logiki add_city.py.
+from pl_genitive import genitive as _polish_genitive
+
 
 USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -519,54 +527,6 @@ def build_config(slug: str, comp: CouncilComposition, esesja_url: Optional[str])
         "rada_name": f"Rada Miasta {genitive}",
         "rada_name_genitive": f"Rady Miasta {genitive}",
     }
-
-
-def _polish_genitive(name: str) -> str:
-    """Najprostszy genitive — case'y dla typowych końcówek nazwy miasta.
-
-    Tylko dla auto-fill, użytkownik może ręcznie poprawić w config.json.
-    """
-    name = name.strip()
-    # Najczęstsze końcowki — handluj per case
-    overrides = {
-        "Warszawa": "Warszawy",
-        "Kraków": "Krakowa",
-        "Wrocław": "Wrocławia",
-        "Łódź": "Łodzi",
-        "Poznań": "Poznania",
-        "Gdańsk": "Gdańska",
-        "Szczecin": "Szczecina",
-        "Lublin": "Lublina",
-        "Bydgoszcz": "Bydgoszczy",
-        "Katowice": "Katowic",
-        "Białystok": "Białegostoku",
-        "Częstochowa": "Częstochowy",
-        "Toruń": "Torunia",
-        "Opole": "Opola",
-        "Tarnów": "Tarnowa",
-        "Płock": "Płocka",
-        "Kalisz": "Kalisza",
-        "Włocławek": "Włocławka",
-        "Słupsk": "Słupska",
-        "Elbląg": "Elbląga",
-        "Wałbrzych": "Wałbrzycha",
-        "Jelenia Góra": "Jeleniej Góry",
-        "Nowy Sącz": "Nowego Sącza",
-        "Sosnowiec": "Sosnowca",
-        "Siedlce": "Siedlec",
-        "Mysłowice": "Mysłowic",
-        "Chorzów": "Chorzowa",
-        "Zielona Góra": "Zielonej Góry",
-        "Gorzów Wielkopolski": "Gorzowa Wielkopolskiego",
-    }
-    if name in overrides:
-        return overrides[name]
-    # Domyślnie spróbuj dorzucić -a (Opole → Opola)
-    if name.endswith("o") or name.endswith("e"):
-        return name[:-1] + "a"
-    if name.endswith("ów"):
-        return name[:-2] + "owa"
-    return name + "a"
 
 
 SCRAPER_TEMPLATE = '''#!/usr/bin/env python3
