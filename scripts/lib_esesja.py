@@ -449,15 +449,37 @@ class EsesjaScraper:
                 print(f"  Nie udalo sie pobrac {url}: {e}")
                 break
 
-            new_on_page = 0
+            new_unique_on_page = 0  # zliczamy wszystkie unikalne /listaglosowan/
             page_had_links = False
             for a in soup.find_all("a", href=True):
                 href = a["href"]
                 if "/listaglosowan/" not in href:
                     continue
+                page_had_links = True
                 text = a.get_text(strip=True)
                 m = re.search(r"w\s+dniu\s+(\d{1,2})\s+(\w+)\s+(\d{4})", text)
                 if not m:
+                    continue
+                full_url = href if href.startswith("http") else self.base_url + href
+                # Dedup wszystkie posiedzenia (sesje + komisje), żeby paginacja
+                # wykrywała stop point (eSesja repeatuje stronę dla page > max).
+                if full_url in seen_urls:
+                    continue
+                seen_urls.add(full_url)
+                new_unique_on_page += 1
+                # Filtr typu posiedzenia: w listingu /glosowania eSesja zwraca
+                # WSZYSTKIE posiedzenia (sesje rady + posiedzenia komisji +
+                # wspólne posiedzenia). Sesje rady ZAWSZE zaczynają się od
+                # "Sesja" (np. "Sesja Rady Miasta Bytomia", "Sesja nr XIV",
+                # "Sesja Nadzwyczajna"). Posiedzenia komisji zaczynają się od
+                # "Komisja X", "Posiedzenie Komisji", "Wspólne posiedzenie".
+                # Bez tego filtra Radoskop pokazywał komisje jako sesje rady,
+                # zaniżając frekwencję (komisja ma 4 obecnych zamiast 21).
+                # Dedup ZAWSZE wcześniej, paginacja musi widzieć komisje jako
+                # zobaczone, inaczej zatrzyma się na pierwszej stronie samych
+                # komisji (np. Katowice — pierwsza strona ma 0 sesji).
+                first_word = text.strip().split()[:1]
+                if first_word and first_word[0].lower() != "sesja":
                     continue
                 day = int(m.group(1))
                 month = MONTHS_PL.get(m.group(2).lower())
@@ -465,11 +487,6 @@ class EsesjaScraper:
                 if not month:
                     continue
                 date_str = f"{year}-{month:02d}-{day:02d}"
-                full_url = href if href.startswith("http") else self.base_url + href
-                page_had_links = True
-                if full_url in seen_urls:
-                    continue
-                seen_urls.add(full_url)
                 nr_match = re.search(r"nr\s+([IVXLCDM]+)", text)
                 session_number = nr_match.group(1) if nr_match else ""
                 sessions.append({
@@ -479,7 +496,6 @@ class EsesjaScraper:
                     "url": full_url,
                     "title": text,
                 })
-                new_on_page += 1
 
             # Stop conditions (in order):
             #  1. strona w ogóle nie miała /listaglosowan/ → koniec paginacji
@@ -490,7 +506,7 @@ class EsesjaScraper:
             #     co poprzednie strony zamiast 404, więc scraper musiał liczyć
             #     unikalne URL żeby się zatrzymać.
             #  3. twarda granica 50 stron żeby uciec od edge cases.
-            if not page_had_links or new_on_page == 0:
+            if not page_had_links or new_unique_on_page == 0:
                 break
             if page >= 50:
                 break
