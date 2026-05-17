@@ -405,10 +405,14 @@ def fetch_composition_esesja(slug: str) -> CouncilComposition:
         comp.error = f"fetch: {exc}"
         return comp
     soup = BeautifulSoup(resp.content, "lxml")
-    # Tytuł strony zawiera "Rada Miasta {Nazwa}" lub "Rada Miejska w {Nazwa}"
+    # Tytuł strony zawiera "Rada Miasta {Nazwa}" (nominative) lub
+    # "Rada Miejska w {Nazwa}" (locative — "w" wymaga w polskim locative).
+    # Aby uniknąć złapania odmienionej formy ("w Bolesławcu" → "Bolesławcu"),
+    # akceptujemy tylko nominative pattern bez "w ". Dla locative przypadku
+    # nazwa miasta zostaje pusta i fallbackuje do slug.title() w build_config.
     title = soup.find("title")
     if title:
-        m = re.search(r"Rada\s+(?:Miasta|Miejska|Gminy)\s+(?:w\s+)?([A-ZŁŚĄĘĆŃÓŻŹ][\w\s\-]+?)\s+na\s+platformie",
+        m = re.search(r"Rada\s+(?:Miasta|Miejska|Gminy)\s+([A-ZŁŚĄĘĆŃÓŻŹ][\w\-]+(?:\s+[A-ZŁŚĄĘĆŃÓŻŹ][\w\-]+)?)\s+na\s+platformie",
                       title.get_text(strip=True))
         if m:
             comp.city_name = m.group(1).strip()
