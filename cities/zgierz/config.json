@@ -1,0 +1,84 @@
+{
+  "city_name": "Zgierza",
+  "city_genitive": "Zgierzaa",
+  "site_title": "Radoskop Zgierza — Jak głosują radni?",
+  "site_url": "https://zgierz.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Zgierzaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Zgierzaa.",
+  "bip_url": "https://bip.zgierz.pl/",
+  "bip_name": "BIP Zgierza",
+  "esesja_url": "https://zgierz.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zgierz.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "SPS": {
+      "name": "KW STOWARZYSZENIA PRZEMYSŁAWA STANISZEWSKIEGO",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agata Grzelak-Makowczyńska": "PiS",
+    "Alina Łęcka-Andrzejewska": "KO",
+    "Andrzej Piłacik": "SPS",
+    "Anna Boś": "KO",
+    "Artur Linkowski": "PiS",
+    "Elżbieta Gaca": "KO",
+    "Elżbieta Krzewina": "SPS",
+    "Jakub Filipowicz": "SPS",
+    "Jakub Kwiatkowski": "KO",
+    "Krzysztof Karasiński": "KO",
+    "Marek Hiliński": "KO",
+    "Michał Jaborski": "PiS",
+    "Nadja Wojtera": "KO",
+    "Paulina Krysztofiak": "KO",
+    "Paweł Czekalski": "KO",
+    "Piotr Matuszewski": "PiS",
+    "Przemysław Jagielski": "TD",
+    "Przemysław Staniszewski": "SPS",
+    "Sebastian Szulc": "KO",
+    "Tomasz Dziedzic": "PiS",
+    "Zbigniew Antczak": "PiS",
+    "Łukasz Frątczak": "TD",
+    "Łukasz Wróblewski": "KO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Zgierzaa",
+  "rada_name_genitive": "Rady Miasta Zgierzaa"
+}

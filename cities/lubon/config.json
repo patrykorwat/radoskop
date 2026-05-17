@@ -1,0 +1,76 @@
+{
+  "city_name": "Luboń",
+  "city_genitive": "Lubońa",
+  "site_title": "Radoskop Luboń — Jak głosują radni?",
+  "site_url": "https://lubon.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lubońa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lubońa.",
+  "bip_url": "https://bip.lubon.pl/",
+  "bip_name": "BIP Luboń",
+  "esesja_url": "https://lubon.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lubon.radoskop.pl",
+  "clubs": {
+    "FOL": {
+      "name": "KWW FORUM OBYWATELSKIE LUBOŃ",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "KML": {
+      "name": "KWW KOALICJA MIESZKAŃCÓW LUBONIA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Okupniak": "FOL",
+    "Anna Bernaciak": "FOL",
+    "Dorota Franek": "FOL",
+    "Dorota Traczyk": "PiS",
+    "Elżbieta Zapłata-Szwedziak": "KML",
+    "Hieronim Gawelski": "FOL",
+    "Jakub Jelinski": "FOL",
+    "Karolina Wilczyńska-Kąkol": "FOL",
+    "Katarzyna Ekwińska": "FOL",
+    "Konrad Dominiak": "FOL",
+    "Maciej Różański": "KML",
+    "Manuela Michalak": "KML",
+    "Marek Samulczyk": "KML",
+    "Małgorzata Nyćkowiak": "KML",
+    "Michał Szwacki": "FOL",
+    "Monika Nawrot": "KML",
+    "Paweł Wolniewicz": "FOL",
+    "Piotr Izydorski": "FOL",
+    "Rafał Błaszczak": "PiS",
+    "Teresa Zygmanowska": "FOL",
+    "Łukasz Budzyński": "FOL"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Lubońa",
+  "rada_name_genitive": "Rady Miasta Lubońa"
+}

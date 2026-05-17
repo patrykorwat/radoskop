@@ -1,0 +1,70 @@
+{
+  "city_name": "Węgrowa",
+  "city_genitive": "Węgrowaa",
+  "site_title": "Radoskop Węgrowa — Jak głosują radni?",
+  "site_url": "https://wegrow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Węgrowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Węgrowaa.",
+  "bip_url": "https://bip.wegrow.pl/",
+  "bip_name": "BIP Węgrowa",
+  "esesja_url": "https://wegrow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wegrow.radoskop.pl",
+  "clubs": {
+    "WDW": {
+      "name": "KWW WSPÓLNA DROGA WWE",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "LR": {
+      "name": "KWW LESZKA REDOSZA",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "WNP": {
+      "name": "KWW WĘGRÓW NASZA PRZYSZŁOŚĆ",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agata Adamczuk": "WDW",
+    "Barbara Szymańska": "WDW",
+    "Beata Gashi": "LR",
+    "Iwona Rejmuza": "WDW",
+    "Jadwiga Snopkiewicz": "LR",
+    "Janusz Kosiorek": "WDW",
+    "Jerzy Szczęśniak": "WDW",
+    "Maciej Robak": "LR",
+    "Mariusz Witkowski": "WNP",
+    "Mateusz Majewski": "LR",
+    "Rafał Brzezik": "LR",
+    "Roman Postek": "LR",
+    "Tomasz Rowicki": "WDW",
+    "Wioleta Ojdana": "LR",
+    "Zbigniew Ługowski": "WDW"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Węgrowaa",
+  "rada_name_genitive": "Rady Miasta Węgrowaa"
+}

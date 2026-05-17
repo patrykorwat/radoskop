@@ -6,7 +6,7 @@ Council members + club assignments są wczytywane z config.json.
 
 Backend: https://kalisz.esesja.pl/ (Rada Miasta Kalisza, IX kadencja
 2024-2029, 23 radnych). Rozkład: KO 8, KK 6, PiS 6, TD 2, 1 nieznany (TBD).
-Skład z portalsamorzadowy.pl/miasto/kalisz,434.html.
+Skład z PKW (wybory samorządowe 2024).
 """
 
 import json

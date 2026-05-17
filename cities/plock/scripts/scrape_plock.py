@@ -6,7 +6,7 @@ Council members + club assignments są wczytywane z config.json.
 
 Backend: https://plock.esesja.pl/ (Rada Miasta Płocka, IX kadencja
 2024-2029, 25 radnych). Rozkład: KO 12, PiS 8, TD 5.
-Skład z portalsamorzadowy.pl/miasto/plock,426.html.
+Skład z PKW (wybory samorządowe 2024).
 """
 
 import json

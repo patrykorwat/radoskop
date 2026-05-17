@@ -1,0 +1,76 @@
+{
+  "city_name": "Kołobrzeg",
+  "city_genitive": "Kołobrzega",
+  "site_title": "Radoskop Kołobrzeg — Jak głosują radni?",
+  "site_url": "https://kolobrzeg.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kołobrzega. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kołobrzega.",
+  "bip_url": "https://bip.kolobrzeg.pl/",
+  "bip_name": "BIP Kołobrzeg",
+  "esesja_url": "https://kolobrzeg.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kolobrzeg.radoskop.pl",
+  "clubs": {
+    "C": {
+      "name": "KWW CENTROPRAWICA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "AMTD": {
+      "name": "KWW ANNY MIECZKOWSKIEJ TAK DLA KOŁOBRZEGU",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "JWKS": {
+      "name": "KWW JACKA WOŹNIAKA KOALICJA SAMORZĄDOWA",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adrian Tomicki": "C",
+    "Andrzej Haraj": "AMTD",
+    "Aneta Cieślicka": "AMTD",
+    "Anna Mieczkowska": "AMTD",
+    "Barbara Drążek": "AMTD",
+    "Bartosz Bieńkowski": "C",
+    "Bogdan Błaszczyk": "AMTD",
+    "Claudia Rubanowicz": "AMTD",
+    "Dariusz Zawadzki": "JWKS",
+    "Dawid Krzysztofiak": "AMTD",
+    "Ewa Pełechata": "AMTD",
+    "Izabela Zielińska": "AMTD",
+    "Jacek Kalinowski": "C",
+    "Jacek Woźniak": "JWKS",
+    "Kamil Barwinek": "AMTD",
+    "Krzysztof Plewko": "JWKS",
+    "Piotr Buda": "C",
+    "Przemysław Kiełkowski": "AMTD",
+    "Ryszard Szufel": "AMTD",
+    "Sandra Kielnik-Kałużna": "AMTD",
+    "Zuzanna Hazubska": "AMTD"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Kołobrzega",
+  "rada_name_genitive": "Rady Miasta Kołobrzega"
+}

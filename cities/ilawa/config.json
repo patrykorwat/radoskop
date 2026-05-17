@@ -1,0 +1,76 @@
+{
+  "city_name": "Iławie",
+  "city_genitive": "Iławia",
+  "site_title": "Radoskop Iławie — Jak głosują radni?",
+  "site_url": "https://ilawa.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Iławia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Iławia.",
+  "bip_url": "https://bip.ilawa.pl/",
+  "bip_name": "BIP Iławie",
+  "esesja_url": "https://ilawa.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ilawa.radoskop.pl",
+  "clubs": {
+    "MMRD": {
+      "name": "KWW MICHAŁA MŁOTKA „RAZEM DLA IŁAWY”",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "BDK": {
+      "name": "KWW BURMISTRZA DAWIDA KOPACZEWSKIEGO",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Żyliński": "MMRD",
+    "Agata Wacławska": "BDK",
+    "Andrzej Rykaczewski": "PiS",
+    "Aneta Rychlik": "MMRD",
+    "Anna Pogodowska": "BDK",
+    "Dariusz Paczkowski": "MMRD",
+    "Dariusz Rozborski": "PiS",
+    "Dawid Kopaczewski": "BDK",
+    "Dorota Kamińska": "BDK",
+    "Elżbieta Rudnicka": "PiS",
+    "Ewa Jackowska": "MMRD",
+    "Hubert Rólkiewicz": "MMRD",
+    "Jolanta Michalewska": "MMRD",
+    "Martyna Wyżlic": "MMRD",
+    "Michał Kamiński": "BDK",
+    "Michał Młotek": "MMRD",
+    "Piotr Rykaczewski": "PiS",
+    "Roman Brzozowski": "PiS",
+    "Tomasz Klepacki": "BDK",
+    "Tomasz Woźniak": "MMRD",
+    "Zbigniew Miecznikowski": "BDK"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Iławia",
+  "rada_name_genitive": "Rady Miasta Iławia"
+}

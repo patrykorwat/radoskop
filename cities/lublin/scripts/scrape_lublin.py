@@ -106,7 +106,7 @@ DELAY = 0.3  # politeness sleep przed HTTP, cache hits pomijają
 
 # Radni Lublina IX kadencja (2024-2029)
 # Based on research from BIP Lublin and election results (31 total councillors)
-# Sources: bip.lublin.eu, portalsamorzadowy.pl, radio.lublin.pl
+# Sources: bip.lublin.eu, radio.lublin.pl
 COUNCILORS = {
     # PiS - Prawo i Sprawiedliwość (13 mandates)
     "Bartłomiej Bałaban": "PiS",

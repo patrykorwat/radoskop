@@ -1,0 +1,58 @@
+{
+  "city_name": "Wisła",
+  "city_genitive": "Wisłaa",
+  "site_title": "Radoskop Wisła — Jak głosują radni?",
+  "site_url": "https://wisla.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Wisłaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Wisłaa.",
+  "bip_url": "https://bip.wisla.pl/",
+  "bip_name": "BIP Wisła",
+  "esesja_url": "https://wisla.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wisla.radoskop.pl",
+  "clubs": {
+    "W": {
+      "name": "KWW WIŚLANIE",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Alicja Pilch": "W",
+    "Andrzej Szalbót": "W",
+    "Barbara Kędzior": "W",
+    "Bronisław Szalbót": "W",
+    "Henryk Podżorski": "W",
+    "Janusz Podżorski": "W",
+    "Mirosław Wójcik": "W",
+    "Piotr Madzia": "W",
+    "Piotr Pinkas": "W",
+    "Piotr Polok": "W",
+    "Roman Cieślar": "W",
+    "Stanisław Cieślar": "W",
+    "Sławomir Wantulok": "W",
+    "Tadeusz Pilch": "W",
+    "Zdzisław Pilch": "W"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Wisłaa",
+  "rada_name_genitive": "Rady Miasta Wisłaa"
+}

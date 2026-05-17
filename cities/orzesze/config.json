@@ -1,0 +1,88 @@
+{
+  "city_name": "Orzesze",
+  "city_genitive": "Orzesza",
+  "site_title": "Radoskop Orzesze — Jak głosują radni?",
+  "site_url": "https://orzesze.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Orzesza. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Orzesza.",
+  "bip_url": "https://bip.orzesze.pl/",
+  "bip_name": "BIP Orzesze",
+  "esesja_url": "https://orzesze.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "orzesze.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "FS": {
+      "name": "KWW FORUM SAMORZĄDOWE",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "RDO": {
+      "name": "KWW RAZEM DLA ORZESZA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "OND": {
+      "name": "KWW ORZESZE NASZ DOM",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Ratka": "PiS",
+    "Anna Szymik": "PiS",
+    "Bożena Jankowiak": "FS",
+    "Daniel Spendel": "RDO",
+    "Eugeniusz Buchalik": "OND",
+    "Grażyna Bortlik": "FS",
+    "Grzegorz Kaczmarczyk": "PiS",
+    "Jan Mach": "FS",
+    "Krzysztof Dziekan": "OND",
+    "Krzysztof Giel": "KO",
+    "Lechosław Łukasik": "RDO",
+    "Mariusz Kaczmarczyk": "RDO",
+    "Mariusz Oleś": "RDO",
+    "Mariusz Wojtanowicz": "FS",
+    "Marzena Styrczula-Maturska": "FS",
+    "Mateusz Szweda": "OND",
+    "Michał Macioszek": "KO",
+    "Rajmund Gazda": "FS",
+    "Sonia Gazda": "KO",
+    "Urszula Zienc": "KO",
+    "Łukasz Kalita": "FS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Orzesza",
+  "rada_name_genitive": "Rady Miasta Orzesza"
+}

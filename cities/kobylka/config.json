@@ -1,0 +1,88 @@
+{
+  "city_name": "Kobyłka",
+  "city_genitive": "Kobyłkaa",
+  "site_title": "Radoskop Kobyłka — Jak głosują radni?",
+  "site_url": "https://kobylka.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kobyłkaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kobyłkaa.",
+  "bip_url": "https://bip.kobylka.pl/",
+  "bip_name": "BIP Kobyłka",
+  "esesja_url": "https://kobylka.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kobylka.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "PMK": {
+      "name": "KWW PRZYJACIÓŁ MIASTA KOBYŁKA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "EZ": {
+      "name": "KWW EDYTY ZBIEĆ",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "KKPK": {
+      "name": "KWW KONRADA KOSTRZEWY - POŁĄCZMY KOBYŁKĘ",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Kibart": "PiS",
+    "Aleksandra Korzeniewska": "KO",
+    "Andrzej Michalik": "PiS",
+    "Andrzej Zbyszyński": "PMK",
+    "Artur Rola": "KO",
+    "Barbara Filipczak": "EZ",
+    "Edyta Zbieć": "EZ",
+    "Jacek Lis": "KKPK",
+    "Katarzyna Chmiel": "KKPK",
+    "Klaudia Żebrowska": "PiS",
+    "Konrad Kostrzewa": "KKPK",
+    "Magdalena Dybka": "KKPK",
+    "Marcin Zdunek": "EZ",
+    "Mateusz Walicki": "KO",
+    "Monika Janczara": "PiS",
+    "Paweł Kostrzewa": "KO",
+    "Rafał Mianowicz": "EZ",
+    "Sylwia Jaźwińska": "KO",
+    "Wojciech Reutt": "KKPK",
+    "Zbigniew Turek": "EZ",
+    "Łukasz Błoński": "KKPK"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Kobyłkaa",
+  "rada_name_genitive": "Rady Miasta Kobyłkaa"
+}

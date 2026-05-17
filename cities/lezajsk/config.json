@@ -1,0 +1,70 @@
+{
+  "city_name": "Leżajsku",
+  "city_genitive": "Leżajskua",
+  "site_title": "Radoskop Leżajsku — Jak głosują radni?",
+  "site_url": "https://lezajsk.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Leżajskua. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Leżajskua.",
+  "bip_url": "https://bip.lezajsk.pl/",
+  "bip_name": "BIP Leżajsku",
+  "esesja_url": "https://lezajsk.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lezajsk.radoskop.pl",
+  "clubs": {
+    "PM": {
+      "name": "KWW PRZYJAZNE MIASTO",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "FSP": {
+      "name": "KWW FORUM SAMORZĄDOWE PRAWICY",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adrian Szumilas": "PM",
+    "Agnieszka Augustyn": "PM",
+    "Andrzej Mazurkiewicz": "PM",
+    "Andrzej Siusta": "PM",
+    "Edmund Mroczkowski": "PM",
+    "Ewa Gdula": "PM",
+    "Krzysztof Trębacz": "PM",
+    "Maciej Karakuła": "PM",
+    "Marcin Czubat": "PM",
+    "Mieczysław Sztaba": "PiS",
+    "Mirosław Marczak": "FSP",
+    "Paweł Nowak": "PM",
+    "Stanisław Sroka": "PiS",
+    "Stanisława Bobowska": "PM",
+    "Tomasz Polit": "PM"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Leżajskua",
+  "rada_name_genitive": "Rady Miasta Leżajskua"
+}

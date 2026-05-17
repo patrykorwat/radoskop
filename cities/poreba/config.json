@@ -1,0 +1,76 @@
+{
+  "city_name": "Poręba",
+  "city_genitive": "Porębaa",
+  "site_title": "Radoskop Poręba — Jak głosują radni?",
+  "site_url": "https://poreba.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Porębaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Porębaa.",
+  "bip_url": "https://bip.poreba.pl/",
+  "bip_name": "BIP Poręba",
+  "esesja_url": "https://poreba.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "poreba.radoskop.pl",
+  "clubs": {
+    "RSJP": {
+      "name": "KWW RYSZARDA SPYRY JEDNOŚĆ I PRZYSZŁOŚĆ",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NP": {
+      "name": "KWW NIEZALEŻNI PORĘBIANIE",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "TKWD": {
+      "name": "KWW TOMASZA KWAPISZA WSZYSTKO DLA PORĘBY",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "PI": {
+      "name": "KWW POZYTYWNA INICJATYWA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Ajchenlaub": "RSJP",
+    "Aleksandra Sadowska": "NP",
+    "Elżbieta Kołodziej": "RSJP",
+    "Jarosław Machura": "TKWD",
+    "Jolanta Łakomska": "TKWD",
+    "Kamil Janikowski": "RSJP",
+    "Krzysztof Hamerlik": "PI",
+    "Lucyna Dziechciarz": "PI",
+    "Marek Wystrychowski": "PI",
+    "Mariola Pałasz": "RSJP",
+    "Mariusz Kołton": "RSJP",
+    "Paweł Mazur": "PI",
+    "Robert Bijak": "RSJP",
+    "Tomasz Stefan": "TKWD",
+    "Wioletta Drabek": "TKWD"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Porębaa",
+  "rada_name_genitive": "Rady Miasta Porębaa"
+}

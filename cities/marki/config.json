@@ -1,0 +1,82 @@
+{
+  "city_name": "Marki",
+  "city_genitive": "Markia",
+  "site_title": "Radoskop Marki — Jak głosują radni?",
+  "site_url": "https://marki.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Markia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Markia.",
+  "bip_url": "https://bip.marki.pl/",
+  "bip_name": "BIP Marki",
+  "esesja_url": "https://marki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "marki.radoskop.pl",
+  "clubs": {
+    "BJO": {
+      "name": "KWW BURMISTRZA JACKA ORYCHA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "TP": {
+      "name": "KWW TOMASZA PACIORKA",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Lużyńska": "BJO",
+    "Andrzej Nadolski": "BJO",
+    "Andrzej Rostek": "PiS",
+    "Anna Chojecka": "BJO",
+    "Anna Woźniak": "PiS",
+    "Daniel Kurek": "PiS",
+    "Dariusz Czepurko": "KO",
+    "Dariusz Pietrucha": "BJO",
+    "Grzegorz Chwiłoc-Fiłoc": "BJO",
+    "Jacek Domaszczyński": "TP",
+    "Jacek Orych": "BJO",
+    "Jacek Łukasiak": "KO",
+    "Janusz Jaworski": "PiS",
+    "Jarosław Jaździk": "BJO",
+    "Jarosław Ratajczyk": "KO",
+    "Karol Banaś": "TP",
+    "Magdalena Leszczyńska": "KO",
+    "Marzena Wieczorek-Starczewska": "KO",
+    "Mikołaj Szczepanowski": "TP",
+    "Paweł Pniewski": "BJO",
+    "Tomasz Paciorek": "TP"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Markia",
+  "rada_name_genitive": "Rady Miasta Markia"
+}

@@ -1,0 +1,70 @@
+{
+  "city_name": "Chodzieży",
+  "city_genitive": "Chodzieżya",
+  "site_title": "Radoskop Chodzieży — Jak głosują radni?",
+  "site_url": "https://chodziez.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Chodzieżya. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Chodzieżya.",
+  "bip_url": "https://bip.chodziez.pl/",
+  "bip_name": "BIP Chodzieży",
+  "esesja_url": "https://chodziez.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "chodziez.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "KS": {
+      "name": "KWW KAMILA SOBKOWIAKA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Kowalska": "KO",
+    "Alicja Szymkowiak": "KS",
+    "Artur Koźlarek": "KO",
+    "Dariusz Boberski": "KO",
+    "Ewa Piotrowska": "KO",
+    "Ewa Siodła": "KO",
+    "Joanna Drzewinska": "KO",
+    "Krzysztof Nowak": "KO",
+    "Małgorzata Jeśko-Doręgowska": "KO",
+    "Michał Kozioł": "KO",
+    "Mirosława Kutnik": "KO",
+    "Piotr Przybyłowski": "KO",
+    "Remigiusz Skibiński": "TD",
+    "Wojciech Redziak": "KO",
+    "Łukasz Kreskowiak": "KO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Chodzieżya",
+  "rada_name_genitive": "Rady Miasta Chodzieżya"
+}

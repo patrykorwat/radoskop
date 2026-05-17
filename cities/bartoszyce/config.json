@@ -1,0 +1,82 @@
+{
+  "city_name": "Bartoszyce",
+  "city_genitive": "Bartoszyca",
+  "site_title": "Radoskop Bartoszyce — Jak głosują radni?",
+  "site_url": "https://bartoszyce.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bartoszyca. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bartoszyca.",
+  "bip_url": "https://bip.bartoszyce.pl/",
+  "bip_name": "BIP Bartoszyce",
+  "esesja_url": "https://bartoszyce.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "bartoszyce.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "SP": {
+      "name": "KWW SAMORZĄDNOŚĆ PLUS",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "WS": {
+      "name": "KWW WSPÓLNOTA SAMORZĄDOWA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Anna Binięda": "KO",
+    "Beata Arodź": "SP",
+    "Gabriela Bogusławska": "WS",
+    "Jarosław Puszko": "KO",
+    "Karol Kapuściński": "SP",
+    "Katarzyna Basak": "SP",
+    "Katarzyna Zagajewska-Sycz": "KO",
+    "Krystyna Duda": "KO",
+    "Krzysztof Kowalski": "KO",
+    "Lucyna Jędryczka": "PiS",
+    "Marek Lidziński": "KO",
+    "Martyna Szpura": "PiS",
+    "Mateusz Gołombiewski": "KO",
+    "Paweł Wołoch": "SP",
+    "Piotr Petrykowski": "SP",
+    "Ryszard Andruszkiewicz": "PiS",
+    "Ryszard Ostapowicz": "KO",
+    "Stanisław Dubicki": "PiS",
+    "Tomasz Kubat": "PiS",
+    "Wiesław Kurach": "KO",
+    "Witold Darski": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Bartoszyca",
+  "rada_name_genitive": "Rady Miasta Bartoszyca"
+}

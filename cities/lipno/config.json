@@ -1,0 +1,82 @@
+{
+  "city_name": "Lipnie",
+  "city_genitive": "Lipnia",
+  "site_title": "Radoskop Lipnie — Jak głosują radni?",
+  "site_url": "https://lipno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lipnia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lipnia.",
+  "bip_url": "https://bip.lipno.pl/",
+  "bip_name": "BIP Lipnie",
+  "esesja_url": "https://lipno.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lipno.radoskop.pl",
+  "clubs": {
+    "LPIS": {
+      "name": "KW LIPNOWSKA POWIATOWA INICJATYWA SAMORZĄDOWA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "PB": {
+      "name": "KWW PAWŁA BANASIKA",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "KWWK": {
+      "name": "KOMITET WYBORCZY WYBORCÓW KOALICJA DLA LIPNA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "L": {
+      "name": "KWW LIPNOWIANIE",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "JZPM": {
+      "name": "KWW JOLANTY ZIELIŃSKIEJ PRZYJAZNE MIASTO",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Anna Domeradzka": "LPIS",
+    "Edward Krzemieniecki": "PB",
+    "Grzegorz Koszczka": "PB",
+    "Jerzy Ożdżyński": "KWWK",
+    "Kamil Komorowski": "PB",
+    "Marcin Rykowski": "PB",
+    "Małgorzata Bonowicz": "PB",
+    "Małgorzata Kacprowicz": "L",
+    "Małgorzata Spisz": "PB",
+    "Sebastian Lewandowski": "PB",
+    "Wiesława Tyfczyńska": "KWWK",
+    "Wojciech Maciejewski": "KWWK",
+    "Zbigniew Janiszewski": "KWWK",
+    "Zbigniew Napiórski": "JZPM",
+    "Łukasz Żochowski": "PB"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Lipnia",
+  "rada_name_genitive": "Rady Miasta Lipnia"
+}

@@ -1,0 +1,82 @@
+{
+  "city_name": "Zambrów",
+  "city_genitive": "Zambrowa",
+  "site_title": "Radoskop Zambrów — Jak głosują radni?",
+  "site_url": "https://zambrow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Zambrowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Zambrowa.",
+  "bip_url": "https://bip.zambrow.pl/",
+  "bip_name": "BIP Zambrów",
+  "esesja_url": "https://zambrow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zambrow.radoskop.pl",
+  "clubs": {
+    "ZR": {
+      "name": "KWW ZAMBRÓW RAZEM",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NR": {
+      "name": "KWW NOWOCZESNOŚĆ I ROZWÓJ",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Ogórkowska": "ZR",
+    "Andrzej Truchel": "PiS",
+    "Barbara Laszuk": "TD",
+    "Cezary Witkowski": "ZR",
+    "Dariusz Matynka": "ZR",
+    "Dariusz Śledziewski": "TD",
+    "Dorota Gosk": "PiS",
+    "Henryk Rykaczewski": "PiS",
+    "Jacek Olszewski": "ZR",
+    "Kamil Kowalczyk": "NR",
+    "Kazimierz Dąbrowski": "ZR",
+    "Leszek Chodkiewicz": "TD",
+    "Mariusz Dąbrowski": "TD",
+    "Michał Klimowicz": "ZR",
+    "Piotr Kołomyjski": "NR",
+    "Ryszard Kaźmierczak": "NR",
+    "Tomasz Kosek": "ZR",
+    "Wojciech Mianowski": "PiS",
+    "Zbigniew Korzeniowski": "ZR",
+    "Zbigniew Kulesza": "ZR",
+    "Zbigniew Średnicki": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Zambrowa",
+  "rada_name_genitive": "Rady Miasta Zambrowa"
+}

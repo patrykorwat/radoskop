@@ -1,0 +1,70 @@
+{
+  "city_name": "Milanówka",
+  "city_genitive": "Milanówkaa",
+  "site_title": "Radoskop Milanówka — Jak głosują radni?",
+  "site_url": "https://milanowek.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Milanówkaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Milanówkaa.",
+  "bip_url": "https://bip.milanowek.pl/",
+  "bip_name": "BIP Milanówka",
+  "esesja_url": "https://milanowek.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "milanowek.radoskop.pl",
+  "clubs": {
+    "ANMO": {
+      "name": "KWW ARTURA NIEDZIŃSKIEGO MILANÓWEK ODNOWA",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "PNZM": {
+      "name": "KWW PIOTRA NAPŁOSZKA - ZADBAJMY O MILANÓWEK",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "MD": {
+      "name": "KWW MARCIN DUDZIŃSKI",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Bartłomiej Grzegorski": "ANMO",
+    "Dariusz Kopeć": "ANMO",
+    "Edyta Kempa": "ANMO",
+    "Justyna Chmielewska": "ANMO",
+    "Karolina Werczyńska": "PNZM",
+    "Malwina Łazicka": "ANMO",
+    "Marcin Dudziński": "MD",
+    "Maria Matuszkiewicz": "PNZM",
+    "Marta Narbutt": "PNZM",
+    "Mateusz Pitas": "ANMO",
+    "Michalina Niedziela": "ANMO",
+    "Sylwia Chodyniecka": "ANMO",
+    "Tomasz Styliński": "PNZM",
+    "Łukasz Kunz": "ANMO",
+    "Łukasz Łumiński": "ANMO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Milanówkaa",
+  "rada_name_genitive": "Rady Miasta Milanówkaa"
+}

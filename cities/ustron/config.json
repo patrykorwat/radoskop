@@ -1,0 +1,70 @@
+{
+  "city_name": "Ustroń",
+  "city_genitive": "Ustrońa",
+  "site_title": "Radoskop Ustroń — Jak głosują radni?",
+  "site_url": "https://ustron.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ustrońa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ustrońa.",
+  "bip_url": "https://bip.ustron.pl/",
+  "bip_name": "BIP Ustroń",
+  "esesja_url": "https://ustron.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ustron.radoskop.pl",
+  "clubs": {
+    "PSUN": {
+      "name": "KWW PAWŁA SZTEFKA USTROŃ NASZDOM NASZEMIASTO",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "RU": {
+      "name": "KWW ROZWIJAJMY USTROŃ",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "PU": {
+      "name": "KWW PROJEKT USTROŃ",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adriana Kwapisz-Pietrzyk": "PSUN",
+    "Artur Kluz": "RU",
+    "Artur Steczkiewicz": "PSUN",
+    "Beata Niewiadomska": "PSUN",
+    "Bożena Piwowar": "PU",
+    "Damian Ryszawy": "PSUN",
+    "Karina Wowry": "PU",
+    "Krzysztof Pokorny": "PSUN",
+    "Małgorzata Madzia": "RU",
+    "Michał Kubok": "RU",
+    "Paweł Sztefek": "PSUN",
+    "Paweł Waszek": "RU",
+    "Szymon Górniok": "PSUN",
+    "Sławomir Haratyk": "RU",
+    "Wiktoria Herczyk": "PSUN"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Ustrońa",
+  "rada_name_genitive": "Rady Miasta Ustrońa"
+}

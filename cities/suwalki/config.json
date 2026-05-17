@@ -1,0 +1,78 @@
+{
+  "city_name": "Suwałkach",
+  "city_genitive": "Suwałkacha",
+  "site_title": "Radoskop Suwałkach — Jak głosują radni?",
+  "site_url": "https://suwalki.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Suwałkacha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Suwałkacha.",
+  "bip_url": "https://bip.suwalki.pl/",
+  "bip_name": "BIP Suwałkach",
+  "esesja_url": "https://suwalki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "suwalki.radoskop.pl",
+  "clubs": {
+    "WS": {
+      "name": "KWW WSPÓLNE SUWAŁKI",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "RDSC": {
+      "name": "KWW „RAZEM DLA SUWAŁK - CZESŁAW RENKIEWICZ”",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Ołowniuk": "WS",
+    "Andrzej Łuczaj": "PiS",
+    "Anna Ruszewska": "RDSC",
+    "Bogdan Bezdziecki": "PiS",
+    "Czesław Renkiewicz": "RDSC",
+    "Filip Olszewski": "WS",
+    "Grzegorz Izbicki": "PiS",
+    "Jacek Juszkiewicz": "PiS",
+    "Jarosław Kowalewski": "PiS",
+    "Jarosław Schabieński": "PiS",
+    "Kamil Klimek": "RDSC",
+    "Kamil Lauryn": "RDSC",
+    "Karol Korneluk": "WS",
+    "Marek Zborowski-Weychman": "RDSC",
+    "Mariola Karpińska": "RDSC",
+    "Piotr Rydzewski": "PiS",
+    "Przemysław Turowski": "RDSC",
+    "Roman Rynkowski": "RDSC",
+    "Tadeusz Czerwiecki": "PiS",
+    "Wioletta Wawrukiewicz": "RDSC",
+    "Wojciech Fałtynowicz": "RDSC",
+    "Zbigniew De-Mezer": "RDSC",
+    "Zdzisław Przełomiec": "RDSC"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Suwałkacha",
+  "rada_name_genitive": "Rady Miasta Suwałkacha"
+}

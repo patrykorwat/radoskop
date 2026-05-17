@@ -1,0 +1,64 @@
+{
+  "city_name": "Braniewie",
+  "city_genitive": "Braniewia",
+  "site_title": "Radoskop Braniewie — Jak głosują radni?",
+  "site_url": "https://braniewo.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Braniewia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Braniewia.",
+  "bip_url": "https://bip.braniewo.pl/",
+  "bip_name": "BIP Braniewie",
+  "esesja_url": "https://braniewo.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "braniewo.radoskop.pl",
+  "clubs": {
+    "FO": {
+      "name": "KWW FORUM OBYWATELSKIE",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "PSN": {
+      "name": "KWW POROZUMIENIE SAMORZĄDOWE - NBR",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Leśniak": "FO",
+    "Dariusz Frąckiewicz": "PSN",
+    "Grzegorz Cygan": "PSN",
+    "Jacek Gawryś": "PSN",
+    "Janusz Nogal": "FO",
+    "Joanna Smoliniec-Januszczyk": "FO",
+    "Kalina Jakimczuk": "PSN",
+    "Kamil Rant": "FO",
+    "Leszek Sadowski": "PSN",
+    "Maciej Mroziński": "PSN",
+    "Piotr Gnatek": "FO",
+    "Piotr Śliwiak": "PSN",
+    "Renata Pisarska-Giecewicz": "PSN",
+    "Tomasz Klimczak": "PSN",
+    "Władysław Szczepanowicz": "PSN"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Braniewia",
+  "rada_name_genitive": "Rady Miasta Braniewia"
+}

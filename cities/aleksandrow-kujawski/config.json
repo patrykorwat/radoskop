@@ -1,0 +1,76 @@
+{
+  "city_name": "Aleksandrowa Kujawskiego",
+  "city_genitive": "Aleksandrowa Kujawskiega",
+  "site_title": "Radoskop Aleksandrowa Kujawskiego — Jak głosują radni?",
+  "site_url": "https://aleksandrow-kujawski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Aleksandrowa Kujawskiega. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Aleksandrowa Kujawskiega.",
+  "bip_url": "https://bip.aleksandrow-kujawski.pl/",
+  "bip_name": "BIP Aleksandrowa Kujawskiego",
+  "esesja_url": "https://aleksandrow-kujawski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "aleksandrow-kujawski.radoskop.pl",
+  "clubs": {
+    "WRNM": {
+      "name": "KWW WYBIERAM ROZWÓJ NASZEGO MIASTA",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "CCAL": {
+      "name": "KWW „CAL” CZAS AKTYWNYCH LUDZI",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "PPM": {
+      "name": "KWW POSTAW NA PRZYSZŁOŚĆ MIASTA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "AKMM": {
+      "name": "KWW ALEKSANDRÓW KUJAWSKI – MOJE MIASTO",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Polanowska": "WRNM",
+    "Andrzej Sobieszczyk": "CCAL",
+    "Artur Nisterenko": "CCAL",
+    "Elżbieta Cichocka": "WRNM",
+    "Helena Biernacka": "WRNM",
+    "Jacek Zwierzchowski": "CCAL",
+    "Kacper Kościelecki": "WRNM",
+    "Kacper Wieczorkowski": "WRNM",
+    "Lidia Kulpa": "WRNM",
+    "Marcel Kijewski": "WRNM",
+    "Marcin Mić": "WRNM",
+    "Marta Betlej-Zajączkowska": "CCAL",
+    "Michał Zajączkowski": "CCAL",
+    "Tomasz Śmigielski": "PPM",
+    "Urszula Paprocka": "AKMM"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Aleksandrowa Kujawskiega",
+  "rada_name_genitive": "Rady Miasta Aleksandrowa Kujawskiega"
+}

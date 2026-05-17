@@ -1,0 +1,76 @@
+{
+  "city_name": "Wejherowa",
+  "city_genitive": "Wejherowaa",
+  "site_title": "Radoskop Wejherowa — Jak głosują radni?",
+  "site_url": "https://wejherowo.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Wejherowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Wejherowaa.",
+  "bip_url": "https://bip.wejherowo.pl/",
+  "bip_name": "BIP Wejherowa",
+  "esesja_url": "https://wejherowo.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wejherowo.radoskop.pl",
+  "clubs": {
+    "WWKH": {
+      "name": "KWW „WOLĘ WEJHEROWO KRZYSZTOFA HILDEBRANDTA”",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "SDW": {
+      "name": "KWW SPRAWIEDLIWOŚĆ DLA WEJHEROWIAN",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Arkadiusz Kraszkiewicz": "WWKH",
+    "Arkadiusz Szczygieł": "KO",
+    "Bartosz Skwarło": "KO",
+    "Bartłomiej Szreder": "WWKH",
+    "Borys Szymański": "KO",
+    "Czesław Kukowski": "KO",
+    "Honorata Baranowska": "KO",
+    "Jacek Gafka": "WWKH",
+    "Justyna Mazur-Dziadkiewicz": "KO",
+    "Justyna Ostrowska": "WWKH",
+    "Krzysztof Hildebrandt": "WWKH",
+    "Leszek Szczypior": "WWKH",
+    "Marcin Bulczak": "KO",
+    "Mariusz Łupina": "WWKH",
+    "Mateusz Makurat": "WWKH",
+    "Paweł Formela": "WWKH",
+    "Radosław Kamiński": "KO",
+    "Rafał Szlas": "WWKH",
+    "Ryszard Kandzora": "KO",
+    "Teresa Skowrońska": "SDW",
+    "Wojciech Wasiakowski": "SDW"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Wejherowaa",
+  "rada_name_genitive": "Rady Miasta Wejherowaa"
+}

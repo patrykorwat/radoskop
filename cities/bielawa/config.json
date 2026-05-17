@@ -1,0 +1,94 @@
+{
+  "city_name": "Bielawy",
+  "city_genitive": "Bielawya",
+  "site_title": "Radoskop Bielawy — Jak głosują radni?",
+  "site_url": "https://bielawa.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bielawya. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bielawya.",
+  "bip_url": "https://bip.bielawa.pl/",
+  "bip_name": "BIP Bielawy",
+  "esesja_url": "https://bielawa.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "bielawa.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "AH": {
+      "name": "KWW ANDRZEJA HORDYJA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "PBMR": {
+      "name": "KWW PROJEKT BIELAWA MARCINA RAKA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "BJN": {
+      "name": "KWW BIELAWA JEST NAJWAŻNIEJSZA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "PODB": {
+      "name": "KWW POROZUMIENIE OBYWATELSKIE DLA BIELAWY",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adrian Darasz": "PiS",
+    "Aleksandra Hordyj": "AH",
+    "Andrzej Hordyj": "AH",
+    "Beata Saj": "AH",
+    "Izabela Szygudzińska": "KO",
+    "Jędrzej Świerczyński": "KO",
+    "Katarzyna Bulanda": "KO",
+    "Krystian Bajrakowski": "KO",
+    "Krzysztof Możejko": "PBMR",
+    "Magdalena Czapla": "AH",
+    "Marek Kuśnierz": "PiS",
+    "Małgorzata Hordyj": "AH",
+    "Rafał Kuśmierek": "KO",
+    "Roksana Szachniewicz": "PiS",
+    "Ryszard Dźwiniel": "BJN",
+    "Ryszard Tomaszewski": "PiS",
+    "Tomasz Jazowski": "AH",
+    "Tomasz Zarzycki": "PiS",
+    "Władysław Kroczak": "PODB",
+    "Zbigniew Glanowski": "KO",
+    "Łukasz Masyk": "KO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Bielawya",
+  "rada_name_genitive": "Rady Miasta Bielawya"
+}

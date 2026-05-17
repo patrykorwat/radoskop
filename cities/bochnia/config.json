@@ -1,0 +1,88 @@
+{
+  "city_name": "Bochnia",
+  "city_genitive": "Bochniaa",
+  "site_title": "Radoskop Bochnia — Jak głosują radni?",
+  "site_url": "https://bochnia.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bochniaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bochniaa.",
+  "bip_url": "https://bip.bochnia.pl/",
+  "bip_name": "BIP Bochnia",
+  "esesja_url": "https://bochnia.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "bochnia.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "FPBW": {
+      "name": "KWW FILIP PACH I BOCHEŃSKA WSPÓLNOTA SAMORZĄD",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "RIZ": {
+      "name": "KWW REAKTOR B7 INSPIRUJEMY ZMIANY",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "BDB": {
+      "name": "KWW BOCHNIACY DLA BOCHNI",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Dygutowicz": "PiS",
+    "Barbara Kucharska": "PiS",
+    "Barbara Szczygieł": "PiS",
+    "Bogdan Kosturkiewicz": "PiS",
+    "Filip Pach": "FPBW",
+    "Grzegorz Pałkowski": "PiS",
+    "Ireneusz Sobas": "PiS",
+    "Jan Balicki": "PiS",
+    "Jolanta Michałowska": "KO",
+    "Katarzyna Korta-Wójcik": "KO",
+    "Luiza Sawicka-Hofstede": "RIZ",
+    "Maciej Buszko": "FPBW",
+    "Maciej Gawęda": "RIZ",
+    "Marcin Imiołek": "BDB",
+    "Marek Bryg": "PiS",
+    "Marek Rudnik": "BDB",
+    "Rafał Sroka": "PiS",
+    "Roman Mocię": "KO",
+    "Sylwia Pachota-Rura": "RIZ",
+    "Urszula Golińska": "KO",
+    "Wojciech Woźniczka": "RIZ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Bochniaa",
+  "rada_name_genitive": "Rady Miasta Bochniaa"
+}

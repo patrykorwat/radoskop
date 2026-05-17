@@ -1,0 +1,64 @@
+{
+  "city_name": "Brańsk",
+  "city_genitive": "Brańska",
+  "site_title": "Radoskop Brańsk — Jak głosują radni?",
+  "site_url": "https://bransk.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Brańska. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Brańska.",
+  "bip_url": "https://bip.bransk.pl/",
+  "bip_name": "BIP Brańsk",
+  "esesja_url": "https://bransk.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "bransk.radoskop.pl",
+  "clubs": {
+    "DB": {
+      "name": "KWW DLA BRAŃSKA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "ZB": {
+      "name": "KWW ZIEMI BRAŃSKIEJ",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agata Puchalska": "DB",
+    "Andrzej Krzemień": "DB",
+    "Anna Klinicka": "ZB",
+    "Anna Wojtkowska": "ZB",
+    "Danuta Prześniak": "DB",
+    "Jan Kryński": "ZB",
+    "Karol Kozłowski": "DB",
+    "Karolina Gregorczuk": "DB",
+    "Katarzyna Sokołowska": "DB",
+    "Krzysztof Prześniak": "DB",
+    "Małgorzata Zaremba": "ZB",
+    "Sylwia Krasucka": "DB",
+    "Walenty Kołoszko": "DB",
+    "Wojciech Ostrowski": "DB",
+    "Zbigniew Romaniuk": "DB"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Brańska",
+  "rada_name_genitive": "Rady Miasta Brańska"
+}

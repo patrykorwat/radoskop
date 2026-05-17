@@ -1,0 +1,76 @@
+{
+  "city_name": "Czarnków",
+  "city_genitive": "Czarnkowa",
+  "site_title": "Radoskop Czarnków — Jak głosują radni?",
+  "site_url": "https://czarnkow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Czarnkowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Czarnkowa.",
+  "bip_url": "https://bip.czarnkow.pl/",
+  "bip_name": "BIP Czarnków",
+  "esesja_url": "https://czarnkow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "czarnkow.radoskop.pl",
+  "clubs": {
+    "JKJC": {
+      "name": "KWW JACEK KLIMASZEWSKI-JEDEN CZARNKÓW",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "KBPC": {
+      "name": "KWW KATARZYNA BARYCZKOWSKA PRZYJAZNY CZARNKÓW",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "JDC": {
+      "name": "KWW JUTRO DLA CZARNKOWA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Barbara Ławińska": "JKJC",
+    "Jacek Barnaś": "JKJC",
+    "Jacek Klimaszewski": "JKJC",
+    "Katarzyna Baryczkowska": "KBPC",
+    "Magdalena Bonk": "JKJC",
+    "Magdalena Domagała": "JKJC",
+    "Magdalena Pepke": "JKJC",
+    "Marcin Pryszczewski": "TD",
+    "Martyna Chwarścianek-Bednarek": "JKJC",
+    "Monika Filoda": "KBPC",
+    "Paweł Siemiński": "JKJC",
+    "Piotr Szkudlarek": "TD",
+    "Renata Wujec": "JKJC",
+    "Stanisław Michalski": "JKJC",
+    "Tadeusz Mendyk": "JDC"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Czarnkowa",
+  "rada_name_genitive": "Rady Miasta Czarnkowa"
+}

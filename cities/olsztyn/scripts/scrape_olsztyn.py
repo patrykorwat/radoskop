@@ -84,7 +84,7 @@ MONTHS_PL = {
 }
 
 # Skład Rady Miasta Olsztyna IX kadencji (25 radnych).
-# Source: portalsamorzadowy.pl/miasto/olsztyn,417.html (stan 2026-05-14).
+# Source: PKW wybory samorządowe 2024.
 # Format: "Imię Nazwisko" → kod klubu. PDF z BIP może podawać też w formie
 # "NAZWISKO Imię" (caps), normalizujemy w build_name_lookup().
 COUNCILORS: dict[str, str] = {

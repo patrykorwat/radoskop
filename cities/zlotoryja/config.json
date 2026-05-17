@@ -1,0 +1,82 @@
+{
+  "city_name": "Złotoryi",
+  "city_genitive": "Złotoryia",
+  "site_title": "Radoskop Złotoryi — Jak głosują radni?",
+  "site_url": "https://zlotoryja.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Złotoryia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Złotoryia.",
+  "bip_url": "https://bip.zlotoryja.pl/",
+  "bip_name": "BIP Złotoryi",
+  "esesja_url": "https://zlotoryja.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zlotoryja.radoskop.pl",
+  "clubs": {
+    "PKIP": {
+      "name": "KWW PAWEŁ KULIG INWESTUJMY W PRZYSZŁOŚĆ",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "PM": {
+      "name": "KWW PAWEŁ MACIEJEWSKI",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "BZDR": {
+      "name": "KWW BARBARA ZWIERZYŃSKA DZIAŁAJMY RAZEM",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "Lewica": {
+      "name": "Lewica",
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)",
+      "avatar_bg": "#a51c1c"
+    },
+    "SD": {
+      "name": "KWW STANISŁAW DECHNIK",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Bartnicki": "PKIP",
+    "Agnieszka Djorić": "PM",
+    "Agnieszka Zawiślak": "BZDR",
+    "Alicja Szapował": "PKIP",
+    "Artur Baranowski": "PM",
+    "Beata Manowiec": "PKIP",
+    "Iwona Miras": "BZDR",
+    "Lilia Wolańska": "BZDR",
+    "Mariusz Stalski": "Lewica",
+    "Paweł Maciejewski": "PM",
+    "Przemysław Markiewicz": "PM",
+    "Rafał Tokarz": "PKIP",
+    "Stanisław Dechnik": "SD",
+    "Stanisław Pazera": "BZDR",
+    "Waldemar Wilczyński": "Lewica"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Złotoryia",
+  "rada_name_genitive": "Rady Miasta Złotoryia"
+}

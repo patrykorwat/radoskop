@@ -1,0 +1,76 @@
+{
+  "city_name": "Lubań",
+  "city_genitive": "Lubańa",
+  "site_title": "Radoskop Lubań — Jak głosują radni?",
+  "site_url": "https://luban.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lubańa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lubańa.",
+  "bip_url": "https://bip.luban.pl/",
+  "bip_name": "BIP Lubań",
+  "esesja_url": "https://luban.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "luban.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "BK": {
+      "name": "KWW BARTOSZA KUŚWIKA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "NL": {
+      "name": "KWW NOWY LUBAŃ",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "LR": {
+      "name": "KWW LUBAŃ RAZEM",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Jędraszyk": "KO",
+    "Bartosz Kuświk": "BK",
+    "Grzegorz Wieczorek": "KO",
+    "Janusz Szalewski": "NL",
+    "Jolanta Stanasiuk": "LR",
+    "Justyna Ral": "KO",
+    "Kazimierz Kiljan": "KO",
+    "Marek Kardela": "KO",
+    "Marlena Adler": "KO",
+    "Ryszard Piekarski": "LR",
+    "Stanisław Jastrzębski": "LR",
+    "Teresa Kraska": "LR",
+    "Tomasz Otton": "LR",
+    "Wiesław Wydra": "KO",
+    "Witold Chojnacki": "KO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Lubańa",
+  "rada_name_genitive": "Rady Miasta Lubańa"
+}

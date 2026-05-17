@@ -1,0 +1,70 @@
+{
+  "city_name": "Polanicy-Zdroju",
+  "city_genitive": "Polanicy-Zdrojua",
+  "site_title": "Radoskop Polanicy-Zdroju — Jak głosują radni?",
+  "site_url": "https://polanica-zdroj.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Polanicy-Zdrojua. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Polanicy-Zdrojua.",
+  "bip_url": "https://bip.polanica-zdroj.pl/",
+  "bip_name": "BIP Polanicy-Zdroju",
+  "esesja_url": "https://polanica-zdroj.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "polanica-zdroj.radoskop.pl",
+  "clubs": {
+    "SBS": {
+      "name": "KW STOWARZYSZENIE „BEZPARTYJNI SAMORZĄDOWCY”",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "MJ": {
+      "name": "KWW MATEUSZA JELLINA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "MG": {
+      "name": "KWW MARKA GRZYBKA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Alina Kłonowska": "SBS",
+    "Anna Gutral-Szewelańczyk": "MJ",
+    "Anna Walczuk": "MJ",
+    "Barbara Zimna": "MJ",
+    "Cyprian Ćwikła": "MJ",
+    "Dariusz Domagała": "MJ",
+    "Janusz Marnik": "MJ",
+    "Katarzyna Czaja-Doroszuk": "MJ",
+    "Lilianna Babińska": "MJ",
+    "Maciej Cieciuch": "MJ",
+    "Marcin Fibich": "MJ",
+    "Marlena Runiewicz-Wac": "MJ",
+    "Nikola Banović": "MG",
+    "Robert Serafin": "MJ",
+    "Zbigniew Bilan": "MJ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Polanicy-Zdrojua",
+  "rada_name_genitive": "Rady Miasta Polanicy-Zdrojua"
+}

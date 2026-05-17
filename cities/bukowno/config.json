@@ -1,0 +1,76 @@
+{
+  "city_name": "Bukownie",
+  "city_genitive": "Bukownia",
+  "site_title": "Radoskop Bukownie — Jak głosują radni?",
+  "site_url": "https://bukowno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bukownia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bukownia.",
+  "bip_url": "https://bip.bukowno.pl/",
+  "bip_name": "BIP Bukownie",
+  "esesja_url": "https://bukowno.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "bukowno.radoskop.pl",
+  "clubs": {
+    "NB": {
+      "name": "KWW NIEZALEŻNI BUKOWNO",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "RDLB": {
+      "name": "KWW RAZEM DLA LEPSZEGO BUKOWNA",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "MC": {
+      "name": "KWW MARCINA COCKIEWICZA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "MK": {
+      "name": "KWW MAGDALENY KUBAŃSKIEJ",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Bąchór": "NB",
+    "Anna Kałwa-Rojczyk": "RDLB",
+    "Anna Piętka": "RDLB",
+    "Barbara Kowalska": "RDLB",
+    "Bogusław Lubaszka": "RDLB",
+    "Dorota Skubis": "MC",
+    "Grażyna Kowina-Świderek": "MK",
+    "Jarosław Tomczyk": "RDLB",
+    "Katarzyna Szewczyk": "MC",
+    "Lena Lubaszka": "RDLB",
+    "Marek Curyło": "RDLB",
+    "Mariusz Siemieński": "MC",
+    "Ola Michalik": "MC",
+    "Piotr Maćkowski": "MC",
+    "Zofia Skałka": "RDLB"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Bukownia",
+  "rada_name_genitive": "Rady Miasta Bukownia"
+}

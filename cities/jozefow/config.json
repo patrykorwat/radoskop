@@ -1,0 +1,70 @@
+{
+  "city_name": "Józefowa",
+  "city_genitive": "Józefowaa",
+  "site_title": "Radoskop Józefowa — Jak głosują radni?",
+  "site_url": "https://jozefow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Józefowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Józefowaa.",
+  "bip_url": "https://bip.jozefow.pl/",
+  "bip_name": "BIP Józefowa",
+  "esesja_url": "https://jozefow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "jozefow.radoskop.pl",
+  "clubs": {
+    "MDJ": {
+      "name": "KWW MIESZKAŃCY DLA JÓZEFOWA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "KDJ": {
+      "name": "KWW KOALICJA DLA JÓZEFOWA",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "DM": {
+      "name": "KW DLA MIASTA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adrian Jaworski": "MDJ",
+    "Aleksander Horbik": "KDJ",
+    "Anna Masik": "DM",
+    "Barbara Kaczorek": "DM",
+    "Damian Podolski": "KDJ",
+    "Edyta Orzechowska": "DM",
+    "Grzegorz Kruk": "DM",
+    "Izabela Szczeblewska": "DM",
+    "Jakub Bajtler": "DM",
+    "Mariusz Batorski": "DM",
+    "Michał Madejak": "KDJ",
+    "Mirosław Sierpiński": "KDJ",
+    "Paweł Kołodziej": "KDJ",
+    "Paweł Sędek": "MDJ",
+    "Urszula Zielińska": "DM"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Józefowaa",
+  "rada_name_genitive": "Rady Miasta Józefowaa"
+}

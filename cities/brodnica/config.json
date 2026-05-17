@@ -1,0 +1,88 @@
+{
+  "city_name": "Brodnicy",
+  "city_genitive": "Brodnicya",
+  "site_title": "Radoskop Brodnicy — Jak głosują radni?",
+  "site_url": "https://brodnica.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Brodnicya. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Brodnicya.",
+  "bip_url": "https://bip.brodnica.pl/",
+  "bip_name": "BIP Brodnicy",
+  "esesja_url": "https://brodnica.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "brodnica.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "JRKM": {
+      "name": "KWW JOANNA RUMIŃSKA KOCHAM TO MIASTO",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "PB": {
+      "name": "KWW PRZYSZŁOŚĆ BRODNICY",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NMB": {
+      "name": "KWW NASZE MIASTO BRODNICA",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Twarogowski": "PiS",
+    "Agnieszka Gibas": "JRKM",
+    "Arkadiusz Budka": "JRKM",
+    "Artur Dombrowski": "PB",
+    "Dariusz Kaliszer": "NMB",
+    "Jacek Tyburski": "PiS",
+    "Jadwiga Zakrzewska": "NMB",
+    "Jakub Pawłowski": "JRKM",
+    "Jan Kowalski": "PiS",
+    "Jarosław Radacz": "PB",
+    "Joanna Rumińska": "JRKM",
+    "Justyna Bartoszewska": "TD",
+    "Maciej Betlejewski": "TD",
+    "Marcin Pawlak": "PB",
+    "Marek Tuptyński": "NMB",
+    "Mateusz Szafrański": "PB",
+    "Paweł Kędzia": "JRKM",
+    "Paweł Zabłotny": "PB",
+    "Renata Bielawa": "TD",
+    "Wojciech Wiśniewski": "PiS",
+    "Zbigniew Gutowski": "NMB"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Brodnicya",
+  "rada_name_genitive": "Rady Miasta Brodnicya"
+}

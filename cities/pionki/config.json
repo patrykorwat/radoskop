@@ -1,0 +1,82 @@
+{
+  "city_name": "Pionki",
+  "city_genitive": "Pionkia",
+  "site_title": "Radoskop Pionki — Jak głosują radni?",
+  "site_url": "https://pionki.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Pionkia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Pionkia.",
+  "bip_url": "https://bip.pionki.pl/",
+  "bip_name": "BIP Pionki",
+  "esesja_url": "https://pionki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pionki.radoskop.pl",
+  "clubs": {
+    "RKSP": {
+      "name": "KWW ROBERTA KOWALCZYKA STAWIAMY NA PIONKI",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "N": {
+      "name": "KWW NIEZALEŻNY",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "PNE": {
+      "name": "KWW PIONKI Z NOWĄ ENERGIĄ",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "TWMP": {
+      "name": "KWW TOMASZA WYROŚLAKA - Z MIŁOŚCI DO PIONEK",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Dawid Jaroszek": "RKSP",
+    "Dominik Cybulski": "N",
+    "Ewa Janczykowska": "PNE",
+    "Iwona Gola": "RKSP",
+    "Iwona Wydmuch": "N",
+    "Jarosław Szczypiór": "TWMP",
+    "Jerzy Szymański": "PiS",
+    "Kamil Panufnik": "RKSP",
+    "Kazimierz Myśliwiec": "RKSP",
+    "Krzysztof Bińkowski": "N",
+    "Krzysztof Miśkiewicz": "PNE",
+    "Marcin Sadowski": "RKSP",
+    "Paweł Kobylas": "PiS",
+    "Piotr Guza": "RKSP",
+    "Włodzimierz Szałabaj": "RKSP"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Pionkia",
+  "rada_name_genitive": "Rady Miasta Pionkia"
+}

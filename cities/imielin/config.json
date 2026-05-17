@@ -1,0 +1,88 @@
+{
+  "city_name": "Imielin",
+  "city_genitive": "Imielina",
+  "site_title": "Radoskop Imielin — Jak głosują radni?",
+  "site_url": "https://imielin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Imielina. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Imielina.",
+  "bip_url": "https://bip.imielin.pl/",
+  "bip_name": "BIP Imielin",
+  "esesja_url": "https://imielin.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "imielin.radoskop.pl",
+  "clubs": {
+    "KH": {
+      "name": "KWW KRZYSZTOFA HAJDUCZKA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "PI": {
+      "name": "KWW PRZYJAZNY IMIELIN",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "ZK": {
+      "name": "KWW ZENONA KUBICY",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "DK": {
+      "name": "KWW DARIUSZA KASPERCZYKA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "MB": {
+      "name": "KWW MARIA BISKUPSKA",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "P": {
+      "name": "KW PWS",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Anna Piwecka": "KH",
+    "Artur Oleś": "PI",
+    "Barbara Synowiec": "ZK",
+    "Dariusz Kasperczyk": "DK",
+    "Dariusz Staszewski": "MB",
+    "Ewa Szymańska-Sułkowska": "P",
+    "Ireneusz Kotela": "KH",
+    "Józef Pacwa": "DK",
+    "Krzysztof Hajduczek": "KH",
+    "Krzysztof Pudełko": "KH",
+    "Maciej Łukaszczyk": "P",
+    "Maria Biskupska": "MB",
+    "Mariusz Śliwka": "KH",
+    "Michał Lewiński": "KH",
+    "Tomasz Kaiser": "ZK"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Imielina",
+  "rada_name_genitive": "Rady Miasta Imielina"
+}

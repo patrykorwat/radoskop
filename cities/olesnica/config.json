@@ -1,0 +1,82 @@
+{
+  "city_name": "Oleśnicy",
+  "city_genitive": "Oleśnicya",
+  "site_title": "Radoskop Oleśnicy — Jak głosują radni?",
+  "site_url": "https://olesnica.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Oleśnicya. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Oleśnicya.",
+  "bip_url": "https://bip.olesnica.pl/",
+  "bip_name": "BIP Oleśnicy",
+  "esesja_url": "https://olesnica.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "olesnica.radoskop.pl",
+  "clubs": {
+    "KWAH": {
+      "name": "KWW KOMITET WYBORCZY ADAMA HORBACZA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "MKOR": {
+      "name": "KWW MICHAŁA KOŁACIŃSKIEGO OLEŚNICA RAZEM",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Horbacz": "KWAH",
+    "Aleksander Chrzanowski": "KWAH",
+    "Beata Krzesińska": "MKOR",
+    "Dawid Galik": "TD",
+    "Dawid Jankowski": "PiS",
+    "Edyta Małys-Niczypor": "KWAH",
+    "Ewa Bieniek": "KWAH",
+    "Grzegorz Żyła": "KWAH",
+    "Ireneusz Ruszel": "PiS",
+    "Jacek Malczewski": "KWAH",
+    "Jan Mandat": "KWAH",
+    "Jarosław Woźniak": "PiS",
+    "Marek Kamaszyło": "KWAH",
+    "Michał Kasprzyszak": "KWAH",
+    "Michał Kołaciński": "MKOR",
+    "Mirosław Płaczkowski": "TD",
+    "Paweł Bielański": "MKOR",
+    "Piotr Pawłowski": "KWAH",
+    "Rafał Zahorski": "TD",
+    "Sylwia Wawrzyńska": "KWAH",
+    "Wojciech Bartnik": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Oleśnicya",
+  "rada_name_genitive": "Rady Miasta Oleśnicya"
+}

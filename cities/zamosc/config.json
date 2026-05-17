@@ -1,0 +1,84 @@
+{
+  "city_name": "Zamość",
+  "city_genitive": "Zamośća",
+  "site_title": "Radoskop Zamość — Jak głosują radni?",
+  "site_url": "https://zamosc.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Zamośća. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Zamośća.",
+  "bip_url": "https://bip.zamosc.pl/",
+  "bip_name": "BIP Zamość",
+  "esesja_url": "https://zamosc.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zamosc.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "RZ": {
+      "name": "KWW RAFAŁA ZWOLAKA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "AW": {
+      "name": "KWW ANDRZEJA WNUKA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Pawlik": "PiS",
+    "Agata Rzeźnik": "RZ",
+    "Agnieszka Jaczyńska": "KO",
+    "Agnieszka Klimczuk": "KO",
+    "Andrzej Szpatuśko": "PiS",
+    "Anna Przytuła": "KO",
+    "Dariusz Kierzek": "RZ",
+    "Jan Matwiejczuk": "AW",
+    "Janusz Kupczyk": "KO",
+    "Katarzyna Ważna": "PiS",
+    "Klaudia Bratkowska": "KO",
+    "Krzysztof Krupa": "KO",
+    "Krzysztof Sowa": "AW",
+    "Marek Kudela": "RZ",
+    "Marek Walewander": "PiS",
+    "Marta Pfeifer": "RZ",
+    "Martyna Martyniuk": "PiS",
+    "Piotr Błażewicz": "PiS",
+    "Rafał Zwolak": "RZ",
+    "Szczepan Kitka": "PiS",
+    "Tadeusz Lizut": "PiS",
+    "Wiesław Nowakowski": "RZ",
+    "Zdzisław Wojtak": "AW"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Zamośća",
+  "rada_name_genitive": "Rady Miasta Zamośća"
+}

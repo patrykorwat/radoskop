@@ -1,0 +1,82 @@
+{
+  "city_name": "Otwocka",
+  "city_genitive": "Otwockaa",
+  "site_title": "Radoskop Otwocka — Jak głosują radni?",
+  "site_url": "https://otwock.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Otwockaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Otwockaa.",
+  "bip_url": "https://bip.otwock.pl/",
+  "bip_name": "BIP Otwocka",
+  "esesja_url": "https://otwock.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "otwock.radoskop.pl",
+  "clubs": {
+    "JM": {
+      "name": "KWW JAROSŁAWA MARGIELSKIEGO",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Czajkowska": "JM",
+    "Andrzej Gurdziel": "KO",
+    "Andrzej Kobus": "KO",
+    "Anna Szostak": "KO",
+    "Arkadiusz Krzyżanowski": "KO",
+    "Barbara Dylejko-Menin": "KO",
+    "Ewa Jedynak": "JM",
+    "Izabela Tyszka-Kowalska": "JM",
+    "Jakub Kosiński": "PiS",
+    "Jarosław Margielski": "JM",
+    "Jarosław Łakomski": "PiS",
+    "Joanna Chmielewska": "JM",
+    "Krystian Kiełtyka": "KO",
+    "Magdalena Nowak": "JM",
+    "Magdalena Piskorz": "JM",
+    "Marcin Kraśniewski": "PiS",
+    "Marcin Michalczyk": "TD",
+    "Mariusz Konowrocki": "JM",
+    "Michał Słupski": "JM",
+    "Monika Kwiek": "PiS",
+    "Radosław Kałowski": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Otwockaa",
+  "rada_name_genitive": "Rady Miasta Otwockaa"
+}

@@ -1,0 +1,100 @@
+{
+  "city_name": "Żarach",
+  "city_genitive": "Żaracha",
+  "site_title": "Radoskop Żarach — Jak głosują radni?",
+  "site_url": "https://zary.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Żaracha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Żaracha.",
+  "bip_url": "https://bip.zary.pl/",
+  "bip_name": "BIP Żarach",
+  "esesja_url": "https://zary.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zary.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "FSPŻ": {
+      "name": "KW FORUM SAMORZĄDOWE POW. ŻARSKIEGO",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "DMLP": {
+      "name": "KWW DOBRE MIASTO-LEPSZY POWIAT",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "WŻ": {
+      "name": "KWW WSPÓLNE ŻARY",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "Lewica": {
+      "name": "Lewica",
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)",
+      "avatar_bg": "#a51c1c"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adrian Jaworski": "PiS",
+    "Aleksander Słowikowski": "FSPŻ",
+    "Dawid Polok": "DMLP",
+    "Edyta Gajda": "WŻ",
+    "Georgios Candekidis": "KO",
+    "Grzegorz Chmielewski": "KO",
+    "Halina Majeryk": "FSPŻ",
+    "Jacek Stroynowski": "PiS",
+    "Jan Basztabin": "KO",
+    "Joanna Werstler-Wojtaszek": "PiS",
+    "Józef Szczotka": "KO",
+    "Lucyna Grzybowicz": "Lewica",
+    "Magdalena Lenczyk": "DMLP",
+    "Marcin Grubizna": "WŻ",
+    "Marian Popławski": "FSPŻ",
+    "Małgorzata Merk": "KO",
+    "Piotr Czerwiński": "Lewica",
+    "Robert Dziadul": "DMLP",
+    "Robert Kaszubski": "KO",
+    "Tadeusz Płóciennik": "PiS",
+    "Tomasz Chmielewski": "TD"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Żaracha",
+  "rada_name_genitive": "Rady Miasta Żaracha"
+}

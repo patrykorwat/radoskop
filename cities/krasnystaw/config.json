@@ -1,0 +1,70 @@
+{
+  "city_name": "Krasnystaw",
+  "city_genitive": "Krasnystawa",
+  "site_title": "Radoskop Krasnystaw — Jak głosują radni?",
+  "site_url": "https://krasnystaw.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Krasnystawa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Krasnystawa.",
+  "bip_url": "https://bip.krasnystaw.pl/",
+  "bip_name": "BIP Krasnystaw",
+  "esesja_url": "https://krasnystaw.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "krasnystaw.radoskop.pl",
+  "clubs": {
+    "K": {
+      "name": "KWW KRASNOSTAWIANIE 2024",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "PZK": {
+      "name": "KWW POROZUMIENIE ZIEMI KRASNOSTAWSKIEJ 2024",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "RK": {
+      "name": "KWW ROBERTA KOŚCIUKA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Pocińska-Bartnik": "K",
+    "Agnieszka Wolanin": "K",
+    "Andrzej Smorga": "K",
+    "Anna Kawęcka": "K",
+    "Dariusz Turzyniecki": "PZK",
+    "Emil Witkowski": "PZK",
+    "Emilia Wiśniewska": "PZK",
+    "Kamil Hukiewicz": "K",
+    "Karolina Gołębiowska": "K",
+    "Lech Berezowski": "RK",
+    "Lucjan Wąsiura": "K",
+    "Magdalena Pizoń": "K",
+    "Marcin Ciechan": "K",
+    "Marcin Wilkołazki": "K",
+    "Marcin Worotyński": "K"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Krasnystawa",
+  "rada_name_genitive": "Rady Miasta Krasnystawa"
+}

@@ -1,0 +1,94 @@
+{
+  "city_name": "Sanoka",
+  "city_genitive": "Sanokaa",
+  "site_title": "Radoskop Sanoka — Jak głosują radni?",
+  "site_url": "https://sanok.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sanokaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sanokaa.",
+  "bip_url": "https://bip.sanok.pl/",
+  "bip_name": "BIP Sanoka",
+  "esesja_url": "https://sanok.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sanok.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "NS": {
+      "name": "KWW NIEZALEŻNI SANOK",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "SŁNS": {
+      "name": "KW STOWARZYSZENIE ŁĄCZY NAS SANOK",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "DZS": {
+      "name": "KWW DEMOKRACI ZIEMI SANOCKIEJ",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NMS": {
+      "name": "KWW NASZE MIASTO SANOK",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "IS": {
+      "name": "KW INICJATYWA SANOCKA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Kornecki": "PiS",
+    "Agnieszka Kornecka-Mitadis": "NS",
+    "Andrzej Romaniak": "SŁNS",
+    "Anna Szpiech": "DZS",
+    "Bogusław Kmieć": "DZS",
+    "Dawid Lewandowski": "PiS",
+    "Ewa Sieradzka": "NMS",
+    "Grzegorz Kozak": "PiS",
+    "Grzegorz Nogaj": "PiS",
+    "Grzegorz Pasztyła": "DZS",
+    "Henryka Tymoczko": "PiS",
+    "Jerzy Domaradzki": "IS",
+    "Konrad Kawa": "DZS",
+    "Krzysztof Wronkowicz": "DZS",
+    "Maciej Drwięga": "NS",
+    "Robert Płaziak": "DZS",
+    "Sławomir Miklicz": "DZS",
+    "Tomasz Matuszewski": "SŁNS",
+    "Wanda Kot": "PiS",
+    "Łukasz Radożycki": "PiS",
+    "Łukasz Łagożny": "SŁNS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Sanokaa",
+  "rada_name_genitive": "Rady Miasta Sanokaa"
+}

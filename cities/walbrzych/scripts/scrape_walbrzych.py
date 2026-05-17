@@ -7,7 +7,7 @@ club_assignments). Format: {"Imię Nazwisko": "kod_klubu"}.
 
 Backend: https://walbrzych.esesja.pl/ (Rada Miejska Wałbrzycha, IX kadencja
 2024-2029, 25 radnych). Rozkład: KO 16, PiS 6, 3 nieznane (TBD po pierwszym
-scrapie). Skład z portalsamorzadowy.pl/miasto/walbrzych,429.html.
+scrapie). Skład z PKW (wybory samorządowe 2024).
 """
 
 import json

@@ -6,7 +6,7 @@ Council members + club assignments są wczytywane z config.json.
 
 Backend: https://wloclawek.esesja.pl/ (Rada Miasta Włocławek, IX kadencja
 2024-2029, 23 radnych). Rozkład: KO 9, Lewica 8, PiS 6.
-Skład z portalsamorzadowy.pl/miasto/wloclawek,430.html.
+Skład z PKW (wybory samorządowe 2024).
 """
 
 import json

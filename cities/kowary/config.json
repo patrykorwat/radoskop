@@ -1,0 +1,70 @@
+{
+  "city_name": "Kowarach",
+  "city_genitive": "Kowaracha",
+  "site_title": "Radoskop Kowarach — Jak głosują radni?",
+  "site_url": "https://kowary.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kowaracha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kowaracha.",
+  "bip_url": "https://bip.kowary.pl/",
+  "bip_name": "BIP Kowarach",
+  "esesja_url": "https://kowary.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kowary.radoskop.pl",
+  "clubs": {
+    "EZ": {
+      "name": "KWW ELŻBIETY ZAKRZEWSKIEJ",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "ES": {
+      "name": "KWW EWY SOLARZ",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Machnica": "EZ",
+    "Anna Klepacz": "EZ",
+    "Anna Zagrobelna": "EZ",
+    "Beata Espenschied": "EZ",
+    "Dagmara Rodowicz": "EZ",
+    "Ewa Pędziwiatr": "EZ",
+    "Honorata Jończak-Cesarz": "TD",
+    "Kamila Pietraszek": "EZ",
+    "Karol Przybylak": "EZ",
+    "Mariusz Kubiak": "EZ",
+    "Małgorzata Staręga": "EZ",
+    "Monika Wojterek": "ES",
+    "Radosław Adamowicz": "EZ",
+    "Stanisław Schmidt": "EZ",
+    "Tadeusz Cwynar": "EZ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Kowaracha",
+  "rada_name_genitive": "Rady Miasta Kowaracha"
+}

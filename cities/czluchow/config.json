@@ -1,0 +1,82 @@
+{
+  "city_name": "Człuchowie",
+  "city_genitive": "Człuchowia",
+  "site_title": "Radoskop Człuchowie — Jak głosują radni?",
+  "site_url": "https://czluchow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Człuchowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Człuchowia.",
+  "bip_url": "https://bip.czluchow.pl/",
+  "bip_name": "BIP Człuchowie",
+  "esesja_url": "https://czluchow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "czluchow.radoskop.pl",
+  "clubs": {
+    "RS": {
+      "name": "KWW RYSZARD SZYBAJŁO",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "P": {
+      "name": "KWW PRZYSZLAK",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "GM": {
+      "name": "KWW GRAŻYNA MISZTAL",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "HK": {
+      "name": "KWW HENRYK KRUSIŃSKI",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "JD": {
+      "name": "KWW JANINY DUDEK",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Alicja Dowksza": "RS",
+    "Andrzej Suchański": "P",
+    "Aurelia Taizari": "P",
+    "Czesław Drozd": "P",
+    "Grażyna Misztal": "GM",
+    "Henryk Krusiński": "HK",
+    "Janina Dudek": "JD",
+    "Jerzy Wołoszyn": "P",
+    "Kacper Ochendal": "P",
+    "Katarzyna Muszyńska": "P",
+    "Mariusz Przyszlak": "P",
+    "Małgorzata Kucharska-Zemke": "P",
+    "Michał Koziełko": "P",
+    "Robert Lewicki": "P",
+    "Urszula Trzebiatowska": "RS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Człuchowia",
+  "rada_name_genitive": "Rady Miasta Człuchowia"
+}

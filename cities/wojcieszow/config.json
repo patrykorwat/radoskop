@@ -1,0 +1,64 @@
+{
+  "city_name": "Wojcieszów",
+  "city_genitive": "Wojcieszowa",
+  "site_title": "Radoskop Wojcieszów — Jak głosują radni?",
+  "site_url": "https://wojcieszow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Wojcieszowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Wojcieszowa.",
+  "bip_url": "https://bip.wojcieszow.pl/",
+  "bip_name": "BIP Wojcieszów",
+  "esesja_url": "https://wojcieszow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wojcieszow.radoskop.pl",
+  "clubs": {
+    "ILW": {
+      "name": "KWW INICJATYWA LOKALNA WOJCIESZÓW",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "ZN": {
+      "name": "KWW ZBIGNIEWA NOWAKA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Aleksander Staszkiewicz": "ILW",
+    "Anna Pawlak": "ZN",
+    "Anna Rak-Kędzierska": "ZN",
+    "Anna Łuka": "ILW",
+    "Elżbieta Kowalczyk": "ZN",
+    "Jolanta Sałek": "ILW",
+    "Karolina Lewicka": "ZN",
+    "Maciej Widajewicz": "ZN",
+    "Michał Dumicz": "ZN",
+    "Monika Mazurek": "ZN",
+    "Paulina Bujak-Bomok": "ILW",
+    "Piotr Dajcz": "ZN",
+    "Piotr Mejer": "ILW",
+    "Sabina Żak": "ILW",
+    "Łukasz Daniszewski": "ILW"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Wojcieszowa",
+  "rada_name_genitive": "Rady Miasta Wojcieszowa"
+}

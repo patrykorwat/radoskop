@@ -1,0 +1,88 @@
+{
+  "city_name": "Kętrzynie",
+  "city_genitive": "Kętrzynia",
+  "site_title": "Radoskop Kętrzynie — Jak głosują radni?",
+  "site_url": "https://ketrzyn.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kętrzynia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kętrzynia.",
+  "bip_url": "https://bip.ketrzyn.pl/",
+  "bip_name": "BIP Kętrzynie",
+  "esesja_url": "https://ketrzyn.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ketrzyn.radoskop.pl",
+  "clubs": {
+    "KL": {
+      "name": "KWW KAROLA LIZUREJA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "BL": {
+      "name": "KWW BLISKO LUDZI",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "KHNM": {
+      "name": "KWW KRZYSZTOFA HEĆMANA NASZE MIASTO KĘTRZYN",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "RMWK": {
+      "name": "KWW RAZEM MOŻEMY WIĘCEJ-KOALICJA SAMORZĄDOWA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Anna Wyrozębska": "KL",
+    "Bogusława Kłaczko": "KL",
+    "Czesław Ćwik": "PiS",
+    "Dariusz Duczek": "KL",
+    "Jan Mickiewicz": "PiS",
+    "Jerzy Baranowski": "KL",
+    "Jerzy Koniuszewski": "BL",
+    "Karol Lizurej": "KL",
+    "Krzysztof Bućko": "KHNM",
+    "Krzysztof Hećman": "KHNM",
+    "Marian Toruński": "KL",
+    "Mariola Matyjasek": "KL",
+    "Marzena Gajek": "PiS",
+    "Mateusz Lachowski": "RMWK",
+    "Małgorzata Bylicka": "KHNM",
+    "Robert Puczel": "RMWK",
+    "Ryszard Szymański": "KL",
+    "Sylwia Przybyła": "RMWK",
+    "Wioletta Czech": "PiS",
+    "Zbigniew Nowak": "KHNM",
+    "Zenon Buraczek": "KL"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Kętrzynia",
+  "rada_name_genitive": "Rady Miasta Kętrzynia"
+}

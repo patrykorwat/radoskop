@@ -1,0 +1,70 @@
+{
+  "city_name": "Łebie",
+  "city_genitive": "Łebia",
+  "site_title": "Radoskop Łebie — Jak głosują radni?",
+  "site_url": "https://leba.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Łebia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Łebia.",
+  "bip_url": "https://bip.leba.pl/",
+  "bip_name": "BIP Łebie",
+  "esesja_url": "https://leba.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "leba.radoskop.pl",
+  "clubs": {
+    "AD": {
+      "name": "KWW AGNIESZKA DERBA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "AS": {
+      "name": "KWW ANDRZEJ STRZECHMIŃSKI",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "HK": {
+      "name": "KWW HALINY KLIŃSKIEJ",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Boguń": "AD",
+    "Agnieszka Bednarek": "AD",
+    "Agnieszka Derba": "AD",
+    "Anna Sobótka": "AD",
+    "Bogusław Biskot": "AD",
+    "Daniel Gierszewski": "AD",
+    "Hanna Kisielewska": "AD",
+    "Jakub Krawczyk": "AS",
+    "Jolanta Waszkiewicz": "AS",
+    "Krzysztof Budaszewski": "AD",
+    "Lucyna Ulewicz Karaś": "AD",
+    "Magdalena Nastały": "AD",
+    "Magdalena Wójcicka": "AS",
+    "Marcin Lenart": "HK",
+    "Przemysław Pietruszewski": "AD"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Łebia",
+  "rada_name_genitive": "Rady Miasta Łebia"
+}

@@ -1,0 +1,94 @@
+{
+  "city_name": "Wałcz",
+  "city_genitive": "Wałcza",
+  "site_title": "Radoskop Wałcz — Jak głosują radni?",
+  "site_url": "https://walcz.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Wałcza. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Wałcza.",
+  "bip_url": "https://bip.walcz.pl/",
+  "bip_name": "BIP Wałcz",
+  "esesja_url": "https://walcz.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "walcz.radoskop.pl",
+  "clubs": {
+    "RSOP": {
+      "name": "KWW RUCH SAMORZĄDOWY ORS „PRZYSZŁOŚĆ”",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "WW": {
+      "name": "KWW WSPÓLNY WAŁCZ",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "N": {
+      "name": "KWW „NIEZALEŻNI”",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "MW": {
+      "name": "KWW MŁODZI WAŁCZA 2050",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Ksepko": "RSOP",
+    "Andrzej Subocz": "PiS",
+    "Bogusława Towalewska": "WW",
+    "Dariusz Szalla": "KO",
+    "Ewa Franaszek": "KO",
+    "Halina Kuch": "WW",
+    "Krzysztof Piotrowski": "N",
+    "Maciej Goszczyński": "PiS",
+    "Maciej Żebrowski": "KO",
+    "Magdalena Terefenko": "MW",
+    "Magdalena Świątkowska": "KO",
+    "Maria Minkowska": "PiS",
+    "Mateusz Bąk": "MW",
+    "Małgorzata Piesiak": "KO",
+    "Małgorzata Zielonka-Rucińska": "RSOP",
+    "Monika Biesiada": "MW",
+    "Paweł Łakomy": "KO",
+    "Piotr Filipiak": "KO",
+    "Sebastian Kwiatkowski": "KO",
+    "Wiktor Kwaśniewski": "N",
+    "Zdzisław Ryder": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Wałcza",
+  "rada_name_genitive": "Rady Miasta Wałcza"
+}

@@ -1,0 +1,76 @@
+{
+  "city_name": "Piastowie",
+  "city_genitive": "Piastowia",
+  "site_title": "Radoskop Piastowie — Jak głosują radni?",
+  "site_url": "https://piastow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Piastowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Piastowia.",
+  "bip_url": "https://bip.piastow.pl/",
+  "bip_name": "BIP Piastowie",
+  "esesja_url": "https://piastow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "piastow.radoskop.pl",
+  "clubs": {
+    "NPWS": {
+      "name": "KWW NASZ PIASTÓW-WSPÓLNOTA SAMORZĄDOWA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Bordziłowska": "NPWS",
+    "Aneta Czyż-Pachołek": "NPWS",
+    "Anna Kruszewska": "KO",
+    "Beata Brzezińska-Kołodziejska": "KO",
+    "Bożenna Kalinowska": "KO",
+    "Ewa Stokowska": "KO",
+    "Grzegorz Szuplewski": "NPWS",
+    "Krzysztof Smolaga": "PiS",
+    "Magdalena Wdowińska-Schabek": "KO",
+    "Marek Kubicki": "KO",
+    "Maria Ziółek": "PiS",
+    "Marta Ogórek-Popiel": "KO",
+    "Marzena Woźniak": "PiS",
+    "Małgorzata Ogórek": "KO",
+    "Mirosław Ganiec": "KO",
+    "Monika Kwatek": "NPWS",
+    "Rafał Nowakowski": "KO",
+    "Tadeusz Wojewódzki": "PiS",
+    "Tomasz Jankowski": "KO",
+    "Tomasz Sarnacki": "NPWS",
+    "Zofia Czekaj": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Piastowia",
+  "rada_name_genitive": "Rady Miasta Piastowia"
+}

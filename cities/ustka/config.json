@@ -1,0 +1,64 @@
+{
+  "city_name": "Ustka",
+  "city_genitive": "Ustkaa",
+  "site_title": "Radoskop Ustka — Jak głosują radni?",
+  "site_url": "https://ustka.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ustkaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ustkaa.",
+  "bip_url": "https://bip.ustka.pl/",
+  "bip_name": "BIP Ustka",
+  "esesja_url": "https://ustka.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ustka.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "JM": {
+      "name": "KWW JACKA MANISZEWSKIEGO",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Aneta Lickiewicz-Pawlęty": "KO",
+    "Aurelia Majchrzak": "KO",
+    "Daniel Król": "JM",
+    "Edyta Żebrowska": "KO",
+    "Kamila Robak": "JM",
+    "Krzysztof Korniluk": "KO",
+    "Lena Iwan-Kucia": "JM",
+    "Magdalena Buksakowska": "KO",
+    "Magdalena Szlagowska": "JM",
+    "Maria Czaplińska": "KO",
+    "Marta Czternastek": "KO",
+    "Paweł Basiński": "JM",
+    "Przemysław Nycz": "JM",
+    "Tomasz Motylak": "KO",
+    "Zbigniew Margol": "JM"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Ustkaa",
+  "rada_name_genitive": "Rady Miasta Ustkaa"
+}

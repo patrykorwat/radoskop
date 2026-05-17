@@ -1,0 +1,76 @@
+{
+  "city_name": "Jaworze",
+  "city_genitive": "Jaworza",
+  "site_title": "Radoskop Jaworze — Jak głosują radni?",
+  "site_url": "https://jawor.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Jaworza. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Jaworza.",
+  "bip_url": "https://bip.jawor.pl/",
+  "bip_name": "BIP Jaworze",
+  "esesja_url": "https://jawor.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "jawor.radoskop.pl",
+  "clubs": {
+    "EBR": {
+      "name": "KWW EMILIANA BERY RAZEM",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "BM": {
+      "name": "KWW BLIŻEJ MIESZKAŃCÓW",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adrian Kowalski": "EBR",
+    "Alicja Kalinowska": "BM",
+    "Andrzej Madej": "BM",
+    "Anna Kozak": "BM",
+    "Artur Bujak": "PiS",
+    "Bożena Nowak": "PiS",
+    "Damian Kuć": "BM",
+    "Daniel Iwański": "EBR",
+    "Emilian Bera": "EBR",
+    "Ewelina Szynkler": "BM",
+    "Grzegorz Olszewski": "BM",
+    "Jadwiga Wojda-Elbrah": "EBR",
+    "Krystyna Ostapiuk": "EBR",
+    "Krzysztof Kowalczyk": "BM",
+    "Marcin Jankowski": "EBR",
+    "Michał Bander": "EBR",
+    "Monika Kopeć": "EBR",
+    "Roman Zawada": "PiS",
+    "Szymon Pawlinow": "EBR",
+    "Wiesława Kasprzycka": "PiS",
+    "Zygmunt Czepiel": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Jaworza",
+  "rada_name_genitive": "Rady Miasta Jaworza"
+}

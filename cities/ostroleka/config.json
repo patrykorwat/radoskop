@@ -1,0 +1,88 @@
+{
+  "city_name": "Ostrołęki",
+  "city_genitive": "Ostrołękia",
+  "site_title": "Radoskop Ostrołęki — Jak głosują radni?",
+  "site_url": "https://ostroleka.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ostrołękia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ostrołękia.",
+  "bip_url": "https://bip.ostroleka.pl/",
+  "bip_name": "BIP Ostrołęki",
+  "esesja_url": "https://ostroleka.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ostroleka.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "ODW": {
+      "name": "KWW OSTROŁĘKA DLA WSZYSTKICH",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NO": {
+      "name": "KWW „NASZA OSTROŁĘKA 2024”",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "KDO": {
+      "name": "KWW KOALICJA DLA OSTROŁĘKI",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Kurpiewski": "KO",
+    "Anna Gocłowska": "ODW",
+    "Bartosz Śnieciński": "NO",
+    "Ewa Krupka": "NO",
+    "Ewa Żebrowska-Rosak": "KDO",
+    "Grzegorz Gołaś": "NO",
+    "Henryk Gut": "PiS",
+    "Jarosław Łuba": "PiS",
+    "Magdalena Jaworowska": "PiS",
+    "Mariusz Popielarz": "KO",
+    "Mariusz Łuba": "ODW",
+    "Michał Skowroński": "PiS",
+    "Paweł Niewiadomski": "NO",
+    "Piotr Wierzba": "NO",
+    "Radosław Żebrowski": "NO",
+    "Ryszard Żukowski": "PiS",
+    "Stanisław Szatanek": "ODW",
+    "Waldemar Popielarz": "KO",
+    "Wojciech Dobkowski": "PiS",
+    "Wojciech Zarzycki": "NO",
+    "Łukasz Kulik": "ODW"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Ostrołękia",
+  "rada_name_genitive": "Rady Miasta Ostrołękia"
+}

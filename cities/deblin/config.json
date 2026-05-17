@@ -1,0 +1,70 @@
+{
+  "city_name": "Dęblin",
+  "city_genitive": "Dęblina",
+  "site_title": "Radoskop Dęblin — Jak głosują radni?",
+  "site_url": "https://deblin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Dęblina. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Dęblina.",
+  "bip_url": "https://bip.deblin.pl/",
+  "bip_name": "BIP Dęblin",
+  "esesja_url": "https://deblin.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "deblin.radoskop.pl",
+  "clubs": {
+    "RDB": {
+      "name": "KWW ROMANA DARIUSZA BYTNIEWSKIEGO",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "DPBS": {
+      "name": "KWW DĘBLIN NA PLUS BEATY SIEDLECKIEJ",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "EZ": {
+      "name": "KWW ENERGIA ZMIAN",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Bazyluk": "RDB",
+    "Aneta Piwońska": "DPBS",
+    "Cezary Adamski": "EZ",
+    "Edyta Jaroszyk": "RDB",
+    "Ewelina Kopeć": "RDB",
+    "Grażyna Szczepańska": "RDB",
+    "Grzegorz Janaszek": "RDB",
+    "Jarosław Czynszak": "RDB",
+    "Jerzy Sobiech": "RDB",
+    "Kamil Kopeć": "RDB",
+    "Paulina Wojtaś": "RDB",
+    "Renata Grążka": "RDB",
+    "Renata Mikusek": "RDB",
+    "Ryszard Gruszczyński": "RDB",
+    "Tomasz Mikusek": "RDB"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Dęblina",
+  "rada_name_genitive": "Rady Miasta Dęblina"
+}

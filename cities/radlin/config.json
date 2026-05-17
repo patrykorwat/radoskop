@@ -1,0 +1,70 @@
+{
+  "city_name": "Radlinie",
+  "city_genitive": "Radlinia",
+  "site_title": "Radoskop Radlinie — Jak głosują radni?",
+  "site_url": "https://radlin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Radlinia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Radlinia.",
+  "bip_url": "https://bip.radlin.pl/",
+  "bip_name": "BIP Radlinie",
+  "esesja_url": "https://radlin.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "radlin.radoskop.pl",
+  "clubs": {
+    "RND": {
+      "name": "KWW RADLIN NASZYM DOMEM",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "RDR": {
+      "name": "KWW RAZEM DLA RADLINA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "MJ": {
+      "name": "KWW MARIA JACKSON",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Cyran": "RND",
+    "Agata Strójwąs": "RND",
+    "Barbara Surma": "RND",
+    "Beata Klima": "RDR",
+    "Ewa Kubica": "RND",
+    "Ewa Szulik": "RND",
+    "Ewa Trzeciok": "RND",
+    "Grażyna Brachman": "RND",
+    "Krzysztof Kąsik": "RDR",
+    "Marcin Podleśny": "RND",
+    "Maria Jackson": "MJ",
+    "Mirosław Hink": "RND",
+    "Piotr Hetman": "RND",
+    "Szymon Gołdyn": "RND",
+    "Wiesław Polnik": "RND"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Radlinia",
+  "rada_name_genitive": "Rady Miasta Radlinia"
+}

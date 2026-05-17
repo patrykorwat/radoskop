@@ -1,0 +1,76 @@
+{
+  "city_name": "Kraśnik",
+  "city_genitive": "Kraśnika",
+  "site_title": "Radoskop Kraśnik — Jak głosują radni?",
+  "site_url": "https://krasnik.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kraśnika. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kraśnika.",
+  "bip_url": "https://bip.krasnik.pl/",
+  "bip_name": "BIP Kraśnik",
+  "esesja_url": "https://krasnik.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "krasnik.radoskop.pl",
+  "clubs": {
+    "WWPK": {
+      "name": "KWW WOJCIECH WILK PRZYJAZNY KRAŚNIK",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "WK": {
+      "name": "KWW WSPÓLNY KRAŚNIK",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "KS": {
+      "name": "KWW KRZYSZTOFA STARUCHA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Angelika Marcinkowska": "WWPK",
+    "Dorota Posyniak": "WWPK",
+    "Iwona Włodarczyk": "WK",
+    "Jacek Michalczyk": "WWPK",
+    "Jan Albiniak": "KS",
+    "Jarosław Jamróz": "KS",
+    "Kamila Szuba": "KS",
+    "Krzysztof Grzegorczyk": "KS",
+    "Krzysztof Staruch": "KS",
+    "Maciej Suszek": "WWPK",
+    "Magdalena Kępa": "KS",
+    "Marek Kowalski": "KS",
+    "Mariusz Kwietniewski": "WK",
+    "Marzena Pomykalska": "WK",
+    "Michał Wojcieszkiewicz": "WWPK",
+    "Paweł Cieliczko": "WWPK",
+    "Piotr Iwan": "KS",
+    "Piotr Janczarek": "WWPK",
+    "Wojciech Wilk": "WWPK",
+    "Zbigniew Bartysiak": "KS",
+    "Zbigniew Marcinkowski": "WWPK"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Kraśnika",
+  "rada_name_genitive": "Rady Miasta Kraśnika"
+}

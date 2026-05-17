@@ -1,0 +1,81 @@
+{
+  "city_name": "Sieradzu",
+  "city_genitive": "Sieradzua",
+  "site_title": "Radoskop Sieradzu — Jak głosują radni?",
+  "site_url": "https://sieradz.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sieradzua. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sieradzua.",
+  "bip_url": "https://bip.sieradz.pl/",
+  "bip_name": "BIP Sieradzu",
+  "esesja_url": "https://sieradz.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sieradz.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "SMS": {
+      "name": "KWW SOLIDARNE MIASTO SIERADZ",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Czapnik": "PiS",
+    "Beata Jacyszyn": "TD",
+    "Iwona Siercha": "PiS",
+    "Jacek Walczak": "KO",
+    "Jakub Rozmarynowski": "TD",
+    "Joanna Elerowska": "KO",
+    "Juliusz Góraj": "KO",
+    "Krzysztof Chlebicz": "SMS",
+    "Krzysztof Pawłowski": "KO",
+    "Magdalena Słupińska": "PiS",
+    "Magdalena Ulas": "KO",
+    "Mariusz Góra": "SMS",
+    "Michał Pabich": "KO",
+    "Mirosław Owczarek": "SMS",
+    "Paweł Osiewała": "SMS",
+    "Piotr Pipia": "KO",
+    "Sara Szustak": "TD",
+    "Stanisław Kosatka": "SMS",
+    "Sylwia Dęga-Frątczak": "PiS",
+    "Witold Kiełbasa": "KO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Sieradzua",
+  "rada_name_genitive": "Rady Miasta Sieradzua"
+}

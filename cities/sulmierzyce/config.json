@@ -1,0 +1,82 @@
+{
+  "city_name": "Sulmierzycach",
+  "city_genitive": "Sulmierzycacha",
+  "site_title": "Radoskop Sulmierzycach — Jak głosują radni?",
+  "site_url": "https://sulmierzyce.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sulmierzycacha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sulmierzycacha.",
+  "bip_url": "https://bip.sulmierzyce.pl/",
+  "bip_name": "BIP Sulmierzycach",
+  "esesja_url": "https://sulmierzyce.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sulmierzyce.radoskop.pl",
+  "clubs": {
+    "S": {
+      "name": "KWW SPL",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "WRU": {
+      "name": "KWW A.WOSZCZYŃSKIEJ-RZETELNIE I UCZCIWIE",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "RDS": {
+      "name": "KWW RAZEM DLA SULMIERZYC",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "RO": {
+      "name": "KWW RAFAŁA OZGI",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NS": {
+      "name": "KWW NOWE SULMIERZYCE",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Kierakowicz": "S",
+    "Agnieszka Woszczyńska": "WRU",
+    "Bartosz Kokot": "S",
+    "Dariusz Szczęch": "RDS",
+    "Jan Januszkiewicz": "RDS",
+    "Justyna Maciejewska": "RO",
+    "Krystyna Ignaszewska": "S",
+    "Krzysztof Pauliński": "RDS",
+    "Marcin Gruszczyński": "RDS",
+    "Marek Matyba": "NS",
+    "Michał Adamski": "RDS",
+    "Michał Bochniak": "RDS",
+    "Mikołaj Paryas": "RDS",
+    "Natalia Kubiak": "RDS",
+    "Roman Szczesnowski": "RDS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Sulmierzycacha",
+  "rada_name_genitive": "Rady Miasta Sulmierzycacha"
+}

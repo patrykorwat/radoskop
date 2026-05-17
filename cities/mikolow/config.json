@@ -1,0 +1,82 @@
+{
+  "city_name": "Mikołowa",
+  "city_genitive": "Mikołowaa",
+  "site_title": "Radoskop Mikołowa — Jak głosują radni?",
+  "site_url": "https://mikolow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Mikołowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Mikołowaa.",
+  "bip_url": "https://bip.mikolow.pl/",
+  "bip_name": "BIP Mikołowa",
+  "esesja_url": "https://mikolow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "mikolow.radoskop.pl",
+  "clubs": {
+    "O": {
+      "name": "KWW OKS",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "MMW": {
+      "name": "KWW MIKOŁÓW - MÓJ WYBÓR",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "RDMS": {
+      "name": "KWW RAZEM DLA MIKOŁOWA STANISŁAWA PIECHULI",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Fiola": "O",
+    "Andrzej Ruśkowski": "MMW",
+    "Aneta Esnekier": "TD",
+    "Aneta Stelmach": "TD",
+    "Anna Chrapek-Budacz": "MMW",
+    "Barbara Wilkoszyńska": "RDMS",
+    "Dorota Pytel": "MMW",
+    "Józef Kurtycz": "RDMS",
+    "Katarzyna Głośna": "RDMS",
+    "Katarzyna Syryjczyk-Słomska": "O",
+    "Kazimierz Pruszydło": "TD",
+    "Krzysztof Jakubiec": "TD",
+    "Martyna Centkowska-Strzelczyk": "O",
+    "Mateusz Bies": "O",
+    "Remigiusz Kuś": "RDMS",
+    "Stanisław Gryzło": "O",
+    "Stanisław Piechula": "RDMS",
+    "Stanisława Hajduk-Bies": "MMW",
+    "Urszula Sanocka": "RDMS",
+    "Łukasz Hirsa": "O",
+    "Łukasz Ryguła": "TD"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Mikołowaa",
+  "rada_name_genitive": "Rady Miasta Mikołowaa"
+}

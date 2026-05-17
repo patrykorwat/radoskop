@@ -1,0 +1,64 @@
+{
+  "city_name": "Sławkowie",
+  "city_genitive": "Sławkowia",
+  "site_title": "Radoskop Sławkowie — Jak głosują radni?",
+  "site_url": "https://slawkow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sławkowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sławkowia.",
+  "bip_url": "https://bip.slawkow.pl/",
+  "bip_name": "BIP Sławkowie",
+  "esesja_url": "https://slawkow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "slawkow.radoskop.pl",
+  "clubs": {
+    "WDS": {
+      "name": "KWW „WSPÓLNIE DLA SŁAWKOWA”",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "RALP": {
+      "name": "KWW RAFAŁA ADAMCZYKA „LUDZIE Z PASJĄ”",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Skubis": "WDS",
+    "Arkadiusz Mutrynowski": "WDS",
+    "Barbara Herej": "RALP",
+    "Grzegorz Maciążek": "RALP",
+    "Ilona Pijaj": "RALP",
+    "Joanna Ogonowska": "WDS",
+    "Kamil Podsiadło": "WDS",
+    "Katarzyna Przybyła": "RALP",
+    "Konrad Siutka": "RALP",
+    "Mariola Tomczyk": "RALP",
+    "Patryk Wójcik": "WDS",
+    "Piotr Grzebyk": "WDS",
+    "Waldemar Raczyński": "WDS",
+    "Łukasz Dziedzic": "WDS",
+    "Łukasz Hofler": "RALP"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Sławkowia",
+  "rada_name_genitive": "Rady Miasta Sławkowia"
+}

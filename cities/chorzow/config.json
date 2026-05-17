@@ -1,0 +1,78 @@
+{
+  "city_name": "Chorzów",
+  "city_genitive": "Chorzowa",
+  "site_title": "Radoskop Chorzów — Jak głosują radni?",
+  "site_url": "https://chorzow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Chorzowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Chorzowa.",
+  "bip_url": "https://bip.chorzow.pl/",
+  "bip_name": "BIP Chorzów",
+  "esesja_url": "https://chorzow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "chorzow.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "SM": {
+      "name": "KWW SZYMONA MICHAŁKA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Aleksandra Zimnik": "KO",
+    "Andrzej Kotala": "KO",
+    "Barbara Tabin": "KO",
+    "Bartłomiej Czaja": "KO",
+    "Bernadeta Biskup": "PiS",
+    "Ewa Przybylska": "SM",
+    "Grzegorz Krzak": "PiS",
+    "Halina Hiltawska": "KO",
+    "Izabela Nowak": "SM",
+    "Jacek Nowak": "PiS",
+    "Karolina Strzelczyk": "SM",
+    "Katarzyna Sudoł": "SM",
+    "Krzysztof Łazikiewicz": "KO",
+    "Marcin Michalik": "KO",
+    "Marcin Weindich": "KO",
+    "Marek Otte": "KO",
+    "Mateusz Michałek": "SM",
+    "Michał Pricel": "PiS",
+    "Roman Herman": "SM",
+    "Szymon Michałek": "SM",
+    "Sławomir Kordela": "SM",
+    "Wiesław Ciężkowski": "KO",
+    "Wojciech Ahnert": "SM"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Chorzowa",
+  "rada_name_genitive": "Rady Miasta Chorzowa"
+}

@@ -1,0 +1,90 @@
+{
+  "city_name": "Bełchatowie",
+  "city_genitive": "Bełchatowia",
+  "site_title": "Radoskop Bełchatowie — Jak głosują radni?",
+  "site_url": "https://belchatow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bełchatowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bełchatowia.",
+  "bip_url": "https://bip.belchatow.pl/",
+  "bip_name": "BIP Bełchatowie",
+  "esesja_url": "https://belchatow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "belchatow.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "B": {
+      "name": "KWW BEŁCHATOWIANIE",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "P": {
+      "name": "KWW PLUS",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "MC": {
+      "name": "KWW MARIOLI CZECHOWSKIEJ",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Arkadiusz Rożniatowski": "KO",
+    "Bartłomiej Pieles": "B",
+    "Beata Żuraw": "KO",
+    "Dariusz Kubiak": "PiS",
+    "Dariusz Matyśkiewicz": "P",
+    "Ewa Kępa": "PiS",
+    "Izabela Wrzosek": "KO",
+    "Joanna Zalejska": "KO",
+    "Joanna Zochniak": "KO",
+    "Karol Kowalski": "PiS",
+    "Katarzyna Sidorczuk": "B",
+    "Krzysztof Zochniak": "KO",
+    "Marcin Rzepecki": "KO",
+    "Marcin Trojan": "B",
+    "Mariusz Półbrat": "B",
+    "Michał Wyczachowski": "PiS",
+    "Mirosław Mielus": "KO",
+    "Monika Selerowicz": "KO",
+    "Patryk Marjan": "B",
+    "Paweł Warzyński": "PiS",
+    "Sebastian Brózda": "PiS",
+    "Łukasz Cieślak": "PiS",
+    "Łukasz Politański": "MC"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Bełchatowia",
+  "rada_name_genitive": "Rady Miasta Bełchatowia"
+}

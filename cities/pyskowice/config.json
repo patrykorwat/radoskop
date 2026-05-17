@@ -1,0 +1,58 @@
+{
+  "city_name": "Pyskowicach",
+  "city_genitive": "Pyskowicacha",
+  "site_title": "Radoskop Pyskowicach — Jak głosują radni?",
+  "site_url": "https://pyskowice.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Pyskowicacha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Pyskowicacha.",
+  "bip_url": "https://bip.pyskowice.pl/",
+  "bip_name": "BIP Pyskowicach",
+  "esesja_url": "https://pyskowice.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pyskowice.radoskop.pl",
+  "clubs": {
+    "AWSD": {
+      "name": "KWW ADAMA WÓJCIKA „SKUTECZNIE DLA PYSKOWIC”",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Bąk": "AWSD",
+    "Barbara Witowska": "AWSD",
+    "Bogusław Domagała": "AWSD",
+    "Błażej Kupski": "AWSD",
+    "Iwona Slodczyk": "AWSD",
+    "Jacek Sygidus": "AWSD",
+    "Jolanta Drozd": "AWSD",
+    "Justyna Berda": "AWSD",
+    "Krzysztof Łapucha": "AWSD",
+    "Marek Witek": "AWSD",
+    "Małgorzata Genderka": "AWSD",
+    "Piotr Grabowski": "AWSD",
+    "Sylwia Lenek": "AWSD",
+    "Tadeusz Szafrański": "AWSD",
+    "Tomasz Matuszewski": "AWSD"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Pyskowicacha",
+  "rada_name_genitive": "Rady Miasta Pyskowicacha"
+}

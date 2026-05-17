@@ -1,0 +1,76 @@
+{
+  "city_name": "Radymna",
+  "city_genitive": "Radymnaa",
+  "site_title": "Radoskop Radymna — Jak głosują radni?",
+  "site_url": "https://radymno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Radymnaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Radymnaa.",
+  "bip_url": "https://bip.radymno.pl/",
+  "bip_name": "BIP Radymna",
+  "esesja_url": "https://radymno.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "radymno.radoskop.pl",
+  "clubs": {
+    "WDR": {
+      "name": "KWW WSPÓLNIE DLA RADYMNA",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "GF": {
+      "name": "KWW GRZEGORZA FIGIELI",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "RDR": {
+      "name": "KWW RAZEM DLA RADYMNA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Pacek": "WDR",
+    "Anna Trojnar": "WDR",
+    "Barbara Krzyżanowska": "WDR",
+    "Edward Piliszko": "WDR",
+    "Ewa Broda": "WDR",
+    "Grzegorz Figiela": "GF",
+    "Jan Broda": "WDR",
+    "Janusz Sobejko": "WDR",
+    "Justyna Żelak": "PiS",
+    "Marek Jackowski": "RDR",
+    "Mateusz Kokot": "PiS",
+    "Małgorzata Nietrzeba": "WDR",
+    "Paweł Suchodolski": "WDR",
+    "Tomasz Andrejko": "PiS",
+    "Tomasz Zieliński": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Radymnaa",
+  "rada_name_genitive": "Rady Miasta Radymnaa"
+}

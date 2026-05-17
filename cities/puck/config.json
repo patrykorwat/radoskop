@@ -1,0 +1,64 @@
+{
+  "city_name": "Puck",
+  "city_genitive": "Pucka",
+  "site_title": "Radoskop Puck — Jak głosują radni?",
+  "site_url": "https://puck.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Pucka. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Pucka.",
+  "bip_url": "https://bip.puck.pl/",
+  "bip_name": "BIP Puck",
+  "esesja_url": "https://puck.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "puck.radoskop.pl",
+  "clubs": {
+    "AOZB": {
+      "name": "KWW ADAMA OTROMPKA ZGODA BUDUJE",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "HPPT": {
+      "name": "KWW HANNA PRUCHNIEWSKA PUCK NA TAK!",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Otrompka": "AOZB",
+    "Agata Bączkowska": "HPPT",
+    "Aleksander Gutta": "HPPT",
+    "Emilia Lesner": "HPPT",
+    "Ewa Włudzik": "HPPT",
+    "Izabela Grzejdziak": "HPPT",
+    "Jacek Wilandt": "HPPT",
+    "Jakub Groenwald": "HPPT",
+    "Justyna Thiel": "HPPT",
+    "Kinga Szczypiorowska": "AOZB",
+    "Leszek Podlaszewski": "HPPT",
+    "Mirosław Blaszke": "HPPT",
+    "Piotr Kozakiewicz": "HPPT",
+    "Sławomir Gojka": "HPPT",
+    "Tomasz Nowak": "HPPT"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Pucka",
+  "rada_name_genitive": "Rady Miasta Pucka"
+}

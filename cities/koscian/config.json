@@ -1,0 +1,88 @@
+{
+  "city_name": "Kościana",
+  "city_genitive": "Kościanaa",
+  "site_title": "Radoskop Kościana — Jak głosują radni?",
+  "site_url": "https://koscian.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kościanaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kościanaa.",
+  "bip_url": "https://bip.koscian.pl/",
+  "bip_name": "BIP Kościana",
+  "esesja_url": "https://koscian.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "koscian.radoskop.pl",
+  "clubs": {
+    "JANK": {
+      "name": "KWW JOANNY ALBIŃSKIEJ „NASZ KOŚCIAN”",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "PZK": {
+      "name": "KW „POROZUMIENIE ZIEMIA KOŚCIAŃSKA”",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NŁ": {
+      "name": "KWW NAGLIK ŁUKASZ",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agata Majorek": "JANK",
+    "Arleta Lewandowska": "PiS",
+    "Arleta Linke": "KO",
+    "Dawid Olejniczak": "PZK",
+    "Joanna Albińska": "JANK",
+    "Magdalena Tomaszewska-Kubiak": "PZK",
+    "Marcin Betlej": "PiS",
+    "Marek Wyrzykiewicz": "KO",
+    "Mirosław Starosta": "PZK",
+    "Mirosław Wilk": "PiS",
+    "Patryk Piasecki": "KO",
+    "Paweł Grodziski": "KO",
+    "Piotr Rapacz": "JANK",
+    "Piotr Ruszkiewicz": "PZK",
+    "Rafał Landzwojczak": "KO",
+    "Robert Sekuła": "KO",
+    "Sławomir Kaczmarek": "KO",
+    "Sławomira Pawlak": "JANK",
+    "Tamara Turek": "KO",
+    "Łukasz Naglik": "NŁ",
+    "Żaneta Prysiażna": "KO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Kościanaa",
+  "rada_name_genitive": "Rady Miasta Kościanaa"
+}

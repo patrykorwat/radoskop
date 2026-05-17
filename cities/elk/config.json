@@ -1,0 +1,84 @@
+{
+  "city_name": "Ełku",
+  "city_genitive": "Ełkua",
+  "site_title": "Radoskop Ełku — Jak głosują radni?",
+  "site_url": "https://elk.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ełkua. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ełkua.",
+  "bip_url": "https://bip.elk.pl/",
+  "bip_name": "BIP Ełku",
+  "esesja_url": "https://elk.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "elk.radoskop.pl",
+  "clubs": {
+    "ŁNE": {
+      "name": "KWW ,,ŁĄCZY NAS EŁK\"",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "DW": {
+      "name": "KWW DOBRO WSPÓLNE 2024",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Wszeborowska": "ŁNE",
+    "Aleksandra Gałązka-Szejda": "DW",
+    "Aleksandra Szejda": "DW",
+    "Andrzej Hasulak": "KO",
+    "Andrzej Orzechowski": "KO",
+    "Andrzej Surynt": "DW",
+    "Aneta Wolna": "DW",
+    "Artur Urbański": "DW",
+    "Dariusz Dracewicz": "ŁNE",
+    "Dariusz Wasilewski": "PiS",
+    "Ireneusz Dzienisiewicz": "ŁNE",
+    "Jolanta Banasiuk-Gierasimiuk": "KO",
+    "Krzysztof Bania": "PiS",
+    "Krzysztof Wiloch": "ŁNE",
+    "Michał Tyszkiewicz": "DW",
+    "Nikodem Kemicer": "DW",
+    "Paweł Sobolewski": "KO",
+    "Rafał Karaś": "PiS",
+    "Robert Klimowicz": "ŁNE",
+    "Stanisław Kopiczko": "PiS",
+    "Tomasz Andrukiewicz": "DW",
+    "Włodzimierz Szelążek": "KO",
+    "Łukasz Cegiełka": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Ełkua",
+  "rada_name_genitive": "Rady Miasta Ełkua"
+}

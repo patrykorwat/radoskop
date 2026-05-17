@@ -1,0 +1,82 @@
+{
+  "city_name": "Myszkowie",
+  "city_genitive": "Myszkowia",
+  "site_title": "Radoskop Myszkowie — Jak głosują radni?",
+  "site_url": "https://myszkow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Myszkowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Myszkowia.",
+  "bip_url": "https://bip.myszkow.pl/",
+  "bip_name": "BIP Myszkowie",
+  "esesja_url": "https://myszkow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "myszkow.radoskop.pl",
+  "clubs": {
+    "NMTB": {
+      "name": "KWW NOWY MYSZKÓW TADEUSZ BARTNIK",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "KDMŻ": {
+      "name": "KWW KOALICJA DLA MYSZKOWA W. ŻAKA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "PS": {
+      "name": "KWW PAKT SAMORZĄDOWY",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Giewon": "NMTB",
+    "Beata Pochodnia": "KDMŻ",
+    "Dominik Lech": "KDMŻ",
+    "Ewa Ziajska-Łazaj": "KDMŻ",
+    "Grażyna Łękarska": "KDMŻ",
+    "Halina Skorek-Kawka": "NMTB",
+    "Iwona Skotniczna": "PiS",
+    "Jerzy Woszczyk": "NMTB",
+    "Marek Ferdynand": "KDMŻ",
+    "Marian Tylkowski": "KDMŻ",
+    "Marta Bednarska-Gil": "PiS",
+    "Marta Muszczak": "PS",
+    "Małgorzata Skinder": "PiS",
+    "Norbert Jęczalik": "PS",
+    "Robert Czerwik": "KDMŻ",
+    "Sławomir Jałowiec": "PiS",
+    "Tadeusz Bartnik": "NMTB",
+    "Tomasz Szlenk": "PS",
+    "Tomasz Wójcik": "KDMŻ",
+    "Zbigniew Bartos": "PS",
+    "Zofia Jastrzębska": "PS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Myszkowia",
+  "rada_name_genitive": "Rady Miasta Myszkowia"
+}

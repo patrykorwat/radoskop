@@ -1,0 +1,70 @@
+{
+  "city_name": "Koła",
+  "city_genitive": "Kołaa",
+  "site_title": "Radoskop Koła — Jak głosują radni?",
+  "site_url": "https://kolo.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kołaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kołaa.",
+  "bip_url": "https://bip.kolo.pl/",
+  "bip_name": "BIP Koła",
+  "esesja_url": "https://kolo.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kolo.radoskop.pl",
+  "clubs": {
+    "KWDR": {
+      "name": "KWW KRZYSZTOF WITKOWSKI DALSZY ROZWÓJ KOŁA",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "GGRD": {
+      "name": "KWW GRZEGORZA GIBASZKA RAZEM DLA KOŁA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "JK": {
+      "name": "KWW JAROSŁAWA KAWKI",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Maliński": "KWDR",
+    "Adrian Król": "KWDR",
+    "Ewa Baryła": "KWDR",
+    "Grażyna Trocińska": "KWDR",
+    "Izabela Michalak": "KWDR",
+    "Jacek Król": "KWDR",
+    "Jarosław Graczyk": "KWDR",
+    "Krzysztof Radwański": "KWDR",
+    "Krzysztof Witkowski": "KWDR",
+    "Marcin Korzeniewski": "GGRD",
+    "Marek Kaftan": "KWDR",
+    "Mariusz Hanefeld": "KWDR",
+    "Michał Perzyński": "JK",
+    "Robert Cesarz": "JK",
+    "Sławomir Brzeg": "KWDR"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Kołaa",
+  "rada_name_genitive": "Rady Miasta Kołaa"
+}

@@ -1,0 +1,58 @@
+{
+  "city_name": "Mrągowie",
+  "city_genitive": "Mrągowia",
+  "site_title": "Radoskop Mrągowie — Jak głosują radni?",
+  "site_url": "https://mragowo.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Mrągowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Mrągowia.",
+  "bip_url": "https://bip.mragowo.pl/",
+  "bip_name": "BIP Mrągowie",
+  "esesja_url": "https://mragowo.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "mragowo.radoskop.pl",
+  "clubs": {
+    "JDWS": {
+      "name": "KWW JAKUBA DORACZYŃSKIEGO-WSPÓLNA SPRAWA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Pytel": "JDWS",
+    "Andrzej Parzych": "JDWS",
+    "Artur Mazurek": "JDWS",
+    "Jakub Doraczyński": "JDWS",
+    "Lubomir Melnicki": "JDWS",
+    "Maciej Dzimidowicz": "JDWS",
+    "Magdalena Szlońska": "JDWS",
+    "Marian Miksza": "JDWS",
+    "Mirosław Moczydłowski": "JDWS",
+    "Paweł Kowalewski": "JDWS",
+    "Rafał Markowski": "JDWS",
+    "Robert Wróbel": "JDWS",
+    "Stanisław Zapadka": "JDWS",
+    "Tadeusz Orzoł": "JDWS",
+    "Wiesław Grala": "JDWS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Mrągowia",
+  "rada_name_genitive": "Rady Miasta Mrągowia"
+}

@@ -6,7 +6,7 @@ Council members + club assignments są wczytywane z config.json.
 
 Backend: https://nowysacz.esesja.pl/ (Rada Miasta Nowego Sącza, IX kadencja
 2024-2029, 23 radnych). Rozkład: PiS 10, KNLH 8, KO 4, 1 TBD.
-Skład z portalsamorzadowy.pl/miasto/nowy-sacz,440.html.
+Skład z PKW (wybory samorządowe 2024).
 """
 
 import json

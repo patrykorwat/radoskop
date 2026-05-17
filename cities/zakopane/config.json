@@ -1,0 +1,76 @@
+{
+  "city_name": "Zakopane",
+  "city_genitive": "Zakopana",
+  "site_title": "Radoskop Zakopane — Jak głosują radni?",
+  "site_url": "https://zakopane.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Zakopana. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Zakopana.",
+  "bip_url": "https://bip.zakopane.pl/",
+  "bip_name": "BIP Zakopane",
+  "esesja_url": "https://zakopane.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zakopane.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "PZ": {
+      "name": "KWW PRZYJAZNE ZAKOPANE",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "DP": {
+      "name": "KWW DLA PODHALA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Nowak-Gąsienica": "PiS",
+    "Bartłomiej Bryjak": "PZ",
+    "Grzegorz Jóźkiewicz": "PZ",
+    "Izabela Szlachetka-Lelek": "PZ",
+    "Jakub Kot": "DP",
+    "Jan Gluc": "PiS",
+    "Jerzy Jędrysiak": "DP",
+    "Józef Figiel": "PiS",
+    "Kazimierz Konarski": "PiS",
+    "Marek Donatowicz": "DP",
+    "Maria Łukaszczyk": "PiS",
+    "Mateusz Łękawski": "PiS",
+    "Michał Nikliński": "PZ",
+    "Paweł Strączek": "PiS",
+    "Stanisław Karp": "PZ",
+    "Szczepan Karpiel-Bułecka": "PZ",
+    "Tymoteusz Mróz": "DP",
+    "Wojciech Solik": "DP",
+    "Wojciech Tatar": "PiS",
+    "Zbigniew Szczerba": "DP",
+    "Łukasz Filipowicz": "PZ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Zakopana",
+  "rada_name_genitive": "Rady Miasta Zakopana"
+}

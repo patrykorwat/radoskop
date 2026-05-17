@@ -1,0 +1,64 @@
+{
+  "city_name": "Nieszawa",
+  "city_genitive": "Nieszawaa",
+  "site_title": "Radoskop Nieszawa — Jak głosują radni?",
+  "site_url": "https://nieszawa.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Nieszawaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Nieszawaa.",
+  "bip_url": "https://bip.nieszawa.pl/",
+  "bip_name": "BIP Nieszawa",
+  "esesja_url": "https://nieszawa.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "nieszawa.radoskop.pl",
+  "clubs": {
+    "NWS": {
+      "name": "KWW NIESZAWA WSPÓLNA SPRAWA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NDN": {
+      "name": "KWW „NASZ DOM NIESZAWA”",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Aneta Komorowska-Dudek": "NWS",
+    "Jadwiga Szczepańska": "NWS",
+    "Jakub Szczepański": "NWS",
+    "Jolanta Lipigórska": "NWS",
+    "Jolanta Piernikowska": "NWS",
+    "Kamil Sieciński": "NDN",
+    "Katarzyna Mierzwicka": "NDN",
+    "Kazimierz Kowalczyk": "NDN",
+    "Krzysztof Leszczyński": "NDN",
+    "Magdalena Kułakowska-Chlewicka": "NWS",
+    "Marcin Ziemecki": "NDN",
+    "Marek Wiśniewski": "NDN",
+    "Marta Wiśniewska": "NDN",
+    "Paweł Zaręba": "NWS",
+    "Sylwia Oramus": "NDN"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Nieszawaa",
+  "rada_name_genitive": "Rady Miasta Nieszawaa"
+}

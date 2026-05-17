@@ -6,7 +6,7 @@ Council members + club assignments są wczytywane z config.json.
 
 Backend: https://slupsk.esesja.pl/ (Rada Miejska w Słupsku, IX kadencja
 2024-2029, 23 radnych). Rozkład: KO 9, PiS 6, LNS 5, SW 2, 1 TBD.
-Skład z portalsamorzadowy.pl/miasto/slupsk,438.html.
+Skład z PKW (wybory samorządowe 2024).
 """
 
 import json

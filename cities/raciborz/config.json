@@ -1,0 +1,88 @@
+{
+  "city_name": "Racibórz",
+  "city_genitive": "Racibórza",
+  "site_title": "Radoskop Racibórz — Jak głosują radni?",
+  "site_url": "https://raciborz.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Racibórza. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Racibórza.",
+  "bip_url": "https://bip.raciborz.pl/",
+  "bip_name": "BIP Racibórz",
+  "esesja_url": "https://raciborz.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "raciborz.radoskop.pl",
+  "clubs": {
+    "KP": {
+      "name": "KWW KOALICJA 15 PAŹDZIERNIKA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "DPSR": {
+      "name": "KWW DARIUSZ POLOWY – SILNY RACIBÓRZ",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "RDR": {
+      "name": "KWW RAZEM DLA RACIBORZA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "MFDR": {
+      "name": "KWW MICHAŁA FITY DLA RACIBORZA",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "OZDR": {
+      "name": "KWW OBLICZA - ZJEDNOCZENI DLA RACIBORZA",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Witecki": "KP",
+    "Alan Wolny": "KP",
+    "Dariusz Polowy": "DPSR",
+    "Dawid Wacławczyk": "DPSR",
+    "Dominik Konieczny": "DPSR",
+    "Henryk Mainusz": "RDR",
+    "Julia Parzonka": "KP",
+    "Justyna Henek-Wypior": "RDR",
+    "Justyna Poznakowska": "MFDR",
+    "Justyna Święty-Ersetic": "RDR",
+    "Katarzyna Dutkiewicz": "DPSR",
+    "Ludmiła Nowacka": "KP",
+    "Magdalena Kusy": "DPSR",
+    "Marcin Fica": "RDR",
+    "Marian Czerner": "MFDR",
+    "Michał Fita": "MFDR",
+    "Michał Kuliga": "RDR",
+    "Mirosław Lenk": "RDR",
+    "Paweł Rycka": "RDR",
+    "Piotr Żurawik": "RDR",
+    "Roman Wałach": "OZDR"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Racibórza",
+  "rada_name_genitive": "Rady Miasta Racibórza"
+}

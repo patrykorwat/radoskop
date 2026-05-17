@@ -1,0 +1,76 @@
+{
+  "city_name": "Lubartów",
+  "city_genitive": "Lubartowa",
+  "site_title": "Radoskop Lubartów — Jak głosują radni?",
+  "site_url": "https://lubartow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lubartowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lubartowa.",
+  "bip_url": "https://bip.lubartow.pl/",
+  "bip_name": "BIP Lubartów",
+  "esesja_url": "https://lubartow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lubartow.radoskop.pl",
+  "clubs": {
+    "IDL": {
+      "name": "KWW INICJATYWA DLA LUBARTOWA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "LKS": {
+      "name": "KWW LUBARTOWSKA KOALICJA SAMORZĄDOWA",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "WL": {
+      "name": "KWW WSPÓLNOTA LUBARTOWSKA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Aleksandra Berger": "IDL",
+    "Andrzej Zieliński": "LKS",
+    "Anna Furtak-Filip": "WL",
+    "Anna Kuszner": "LKS",
+    "Artur Kuśmierzak": "WL",
+    "Beata Pasikowska": "IDL",
+    "Edyta Lewtak": "LKS",
+    "Elżbieta Mizio": "IDL",
+    "Ewa Grabek": "IDL",
+    "Grzegorz Jaworski": "WL",
+    "Krystyna Bajda": "WL",
+    "Krystyna Jeziorska": "WL",
+    "Krzysztof Sroka": "IDL",
+    "Paweł Sokół": "IDL",
+    "Piotr Kusyk": "IDL",
+    "Przemysław Kural": "WL",
+    "Radosław Szumiec": "WL",
+    "Robert Błaszczak": "WL",
+    "Ryszard Gierach": "LKS",
+    "Tomasz Krówczyński": "WL",
+    "Zygmunt Osiak": "IDL"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Lubartowa",
+  "rada_name_genitive": "Rady Miasta Lubartowa"
+}

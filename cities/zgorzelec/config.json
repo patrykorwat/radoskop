@@ -1,0 +1,82 @@
+{
+  "city_name": "Zgorzelec",
+  "city_genitive": "Zgorzeleca",
+  "site_title": "Radoskop Zgorzelec — Jak głosują radni?",
+  "site_url": "https://zgorzelec.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Zgorzeleca. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Zgorzeleca.",
+  "bip_url": "https://bip.zgorzelec.pl/",
+  "bip_name": "BIP Zgorzelec",
+  "esesja_url": "https://zgorzelec.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zgorzelec.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "AMSJ": {
+      "name": "KWW ANETY MAZUR SIŁA JEDNOŚCI",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "RG": {
+      "name": "KWW RAFAŁA GRONICZA",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "ZMD": {
+      "name": "KWW ZGORZELEC MIASTO DIALOGU",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Witkowski": "PiS",
+    "Aneta Mazur": "AMSJ",
+    "Anna Tomczyk": "RG",
+    "Dorota Baranowska": "RG",
+    "Dorota Chitruń": "PiS",
+    "Edyta Krajniak-Burba": "ZMD",
+    "Jakub Bystrowski": "PiS",
+    "Jerzy Cyburt": "RG",
+    "Katarzyna Murmyło": "RG",
+    "Kazimierz Walotka": "RG",
+    "Marcin Filozof": "RG",
+    "Marek Łubniewski": "PiS",
+    "Marta Dziedzic-Wójcik": "RG",
+    "Marta Jaworska": "RG",
+    "Mateusz Szczerbaty": "PiS",
+    "Nikolaos Rusketos": "RG",
+    "Rafał Gronicz": "RG",
+    "Ryszard Droszcz": "RG",
+    "Teresa Szpak": "PiS",
+    "Tomasz Śnieżyk": "PiS",
+    "Waldemar Woźniak": "RG"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Zgorzeleca",
+  "rada_name_genitive": "Rady Miasta Zgorzeleca"
+}

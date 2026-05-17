@@ -1,0 +1,82 @@
+{
+  "city_name": "Łuków",
+  "city_genitive": "Łukowa",
+  "site_title": "Radoskop Łuków — Jak głosują radni?",
+  "site_url": "https://lukow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Łukowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Łukowa.",
+  "bip_url": "https://bip.lukow.pl/",
+  "bip_name": "BIP Łuków",
+  "esesja_url": "https://lukow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lukow.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "APP": {
+      "name": "KWW ALTERNATYWA PIOTRA PŁUDOWSKIEGO",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "RPP": {
+      "name": "KWW RAZEM PONAD PODZIAŁAMI",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "PDZŁ": {
+      "name": "KW PRZYMIERZE DLA ZIEMI ŁUKOWSKIEJ",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Skwarek": "PiS",
+    "Arkadiusz Pogonowski": "APP",
+    "Artur Czubaszek": "RPP",
+    "Artur Gałach": "PiS",
+    "Bartłomiej Bryk": "PiS",
+    "Emilia Chruściel": "PiS",
+    "Grzegorz Gomoła": "RPP",
+    "Jerzy Siwiec": "PiS",
+    "Krzysztof Jodełko": "PiS",
+    "Krzysztof Okliński": "PDZŁ",
+    "Maciej Kazana": "APP",
+    "Marcin Mościcki": "PiS",
+    "Mateusz Popławski": "RPP",
+    "Monika Jędrzejkowska": "APP",
+    "Paweł Stoga": "RPP",
+    "Piotr Płudowski": "APP",
+    "Przemysław Wereszczyński": "PDZŁ",
+    "Sławomir Smolak": "APP",
+    "Tomasz Świniarski": "APP",
+    "Zygmunt Celiński": "PiS",
+    "Łukasz Bober": "APP"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Łukowa",
+  "rada_name_genitive": "Rady Miasta Łukowa"
+}

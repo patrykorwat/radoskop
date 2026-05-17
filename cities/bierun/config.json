@@ -1,0 +1,76 @@
+{
+  "city_name": "Bieruniu",
+  "city_genitive": "Bieruniua",
+  "site_title": "Radoskop Bieruniu — Jak głosują radni?",
+  "site_url": "https://bierun.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bieruniua. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bieruniua.",
+  "bip_url": "https://bip.bierun.pl/",
+  "bip_name": "BIP Bieruniu",
+  "esesja_url": "https://bierun.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "bierun.radoskop.pl",
+  "clubs": {
+    "AWD": {
+      "name": "KWW AGNIESZKI WYDERKI-DYJECIŃSKIEJ",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "KG": {
+      "name": "KWW KRYSTIANA GRZESICY",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "TN": {
+      "name": "KWW TOMASZA NYGI",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "SP": {
+      "name": "KW STOWARZYSZENIA „PORĄBEK”",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Wyderka-Dyjecińska": "AWD",
+    "Aleksandra Wagstyl": "KG",
+    "Artur Pytel": "KG",
+    "Beata Berger-Styga": "TN",
+    "Damian Gerycki": "SP",
+    "Dariusz Czapiewski": "KG",
+    "Jacek Goraus": "SP",
+    "Jarosław Mokry": "SP",
+    "Jolanta Niesyto": "SP",
+    "Michał Barzycki": "SP",
+    "Piotr Świerkosz": "KG",
+    "Sebastian Macioł": "SP",
+    "Stanisław Jurecki": "SP",
+    "Sławomir Rosowski": "KG",
+    "Zdzisław Kantor": "SP"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Bieruniua",
+  "rada_name_genitive": "Rady Miasta Bieruniua"
+}

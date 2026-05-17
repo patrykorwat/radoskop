@@ -1,0 +1,82 @@
+{
+  "city_name": "Wągrowcu",
+  "city_genitive": "Wągrowcua",
+  "site_title": "Radoskop Wągrowcu — Jak głosują radni?",
+  "site_url": "https://wagrowiec.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Wągrowcua. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Wągrowcua.",
+  "bip_url": "https://bip.wagrowiec.pl/",
+  "bip_name": "BIP Wągrowcu",
+  "esesja_url": "https://wagrowiec.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wagrowiec.radoskop.pl",
+  "clubs": {
+    "AT": {
+      "name": "KWW ALICJI TRYTT",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "JZ": {
+      "name": "KWW JAKUBA ZADROGI",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "KP": {
+      "name": "KWW KRZYSZTOFA POSZWY",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "BJB": {
+      "name": "KWW BURMISTRZA JAROSŁAWA BERENDTA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Alicja Trytt": "AT",
+    "Andrzej Reis": "JZ",
+    "Anna Grzewińska": "AT",
+    "Arkadiusz Piekutowski": "AT",
+    "Bartosz Piotrowski": "AT",
+    "Dariusz Bąk": "KP",
+    "Ewa Ciężka": "JZ",
+    "Iwona Matuszak-Łosińska": "JZ",
+    "Jakub Zadroga": "JZ",
+    "Jarosław Gąsiorek": "AT",
+    "Joanna Kramer-Neumann": "JZ",
+    "Krzysztof Poszwa": "KP",
+    "Maciej Patelski": "AT",
+    "Mariusz Dębski": "BJB",
+    "Paweł Warzybok": "AT",
+    "Piotr Plewa": "KP",
+    "Rafał Pietruszka": "AT",
+    "Robert Kotecki": "AT",
+    "Szymon Jasiński": "KP",
+    "Wojciech Girus": "BJB",
+    "Władysław Smolej": "KP"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Wągrowcua",
+  "rada_name_genitive": "Rady Miasta Wągrowcua"
+}

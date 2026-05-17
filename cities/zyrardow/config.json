@@ -1,0 +1,76 @@
+{
+  "city_name": "Żyrardowa",
+  "city_genitive": "Żyrardowaa",
+  "site_title": "Radoskop Żyrardowa — Jak głosują radni?",
+  "site_url": "https://zyrardow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Żyrardowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Żyrardowaa.",
+  "bip_url": "https://bip.zyrardow.pl/",
+  "bip_name": "BIP Żyrardowa",
+  "esesja_url": "https://zyrardow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zyrardow.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "LKC": {
+      "name": "KWW LUCJANA KRZYSZTOFA CHRZANOWSKIEGO",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Sondka": "PiS",
+    "Arkadiusz Kościerski": "PiS",
+    "Arkadiusz Sowa": "PiS",
+    "Artur Pietrus": "LKC",
+    "Beata Stępniewska": "PiS",
+    "Beata Wójcik": "LKC",
+    "Bożena Piotrowska": "KO",
+    "Genowefa Milczarek": "KO",
+    "Grażyna Stefańska": "PiS",
+    "Grzegorz Obłękowski": "KO",
+    "Krzysztof Skrobisz": "KO",
+    "Krzysztof Waśkowski": "LKC",
+    "Lucjan Chrzanowski": "LKC",
+    "Marcin Fibich": "KO",
+    "Marzena Jankowska": "KO",
+    "Monika Gwiaździńska-Wrzesień": "LKC",
+    "Monika Plak": "KO",
+    "Monika Rogowiecka-Lasota": "KO",
+    "Rafał Karpiński": "PiS",
+    "Robert Latek": "LKC",
+    "Ryszard Mirgos": "LKC"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Żyrardowaa",
+  "rada_name_genitive": "Rady Miasta Żyrardowaa"
+}

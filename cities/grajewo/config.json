@@ -1,0 +1,76 @@
+{
+  "city_name": "Grajewo",
+  "city_genitive": "Grajewa",
+  "site_title": "Radoskop Grajewo — Jak głosują radni?",
+  "site_url": "https://grajewo.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Grajewa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Grajewa.",
+  "bip_url": "https://bip.grajewo.pl/",
+  "bip_name": "BIP Grajewo",
+  "esesja_url": "https://grajewo.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "grajewo.radoskop.pl",
+  "clubs": {
+    "GPS": {
+      "name": "KWW GRAJEWSKIE POROZUMIENIE SAMORZĄDOWE",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "MPB": {
+      "name": "KWW MACIEJA PAWŁA BEDNARKO",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "SNPG": {
+      "name": "KW STOWARZYSZENIE „NASZA PRZYSZŁOŚĆ GRAJEWO”",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Niewiarowski": "GPS",
+    "Anna Kalinowska": "PiS",
+    "Barbara Ginka": "PiS",
+    "Edward Boć": "GPS",
+    "Ewa Godlewska": "PiS",
+    "Katarzyna Bobrowska": "MPB",
+    "Katarzyna Świderska": "PiS",
+    "Krzysztof Gutowski": "PiS",
+    "Mariusz Szymkiewicz": "PiS",
+    "Mariusz Wielgat": "MPB",
+    "Marzena Rogowska": "PiS",
+    "Małgorzata Łynka": "SNPG",
+    "Monika Stefańska": "PiS",
+    "Tomasz Siejda": "GPS",
+    "Wojciech Kowzon": "MPB"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Grajewa",
+  "rada_name_genitive": "Rady Miasta Grajewa"
+}

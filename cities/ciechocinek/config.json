@@ -1,0 +1,76 @@
+{
+  "city_name": "Ciechocinka",
+  "city_genitive": "Ciechocinkaa",
+  "site_title": "Radoskop Ciechocinka — Jak głosują radni?",
+  "site_url": "https://ciechocinek.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ciechocinkaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ciechocinkaa.",
+  "bip_url": "https://bip.ciechocinek.pl/",
+  "bip_name": "BIP Ciechocinka",
+  "esesja_url": "https://ciechocinek.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ciechocinek.radoskop.pl",
+  "clubs": {
+    "ŁNC": {
+      "name": "KWW ŁĄCZY NAS CIECHOCINEK",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "AM": {
+      "name": "KWW ALICJI MURAWIEC",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "MCWS": {
+      "name": "KWW W. MARJAŃSKI CIECHOCINEK WSPÓLNA SPRAWA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "CNM": {
+      "name": "KWW CIECHOCINEK NASZE MIASTO",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Rybczyńska": "ŁNC",
+    "Aldona Nocna": "ŁNC",
+    "Alicja Murawiec": "AM",
+    "Daniel Skibiński": "MCWS",
+    "Dariusz Jaworski": "MCWS",
+    "Dariusz Szadłowski": "MCWS",
+    "Karolina Rytter": "ŁNC",
+    "Krzysztof Zakrzewski": "CNM",
+    "Marcin Majchrzak": "ŁNC",
+    "Marcin Strych": "ŁNC",
+    "Piotr Zakrzewski": "CNM",
+    "Robert Marzec": "CNM",
+    "Sebastian Sobieraj": "ŁNC",
+    "Tomasz Dziarski": "CNM",
+    "Zbigniew Stawiszyński": "MCWS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Ciechocinkaa",
+  "rada_name_genitive": "Rady Miasta Ciechocinkaa"
+}

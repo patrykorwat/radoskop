@@ -1,0 +1,88 @@
+{
+  "city_name": "Ostródzie",
+  "city_genitive": "Ostródzia",
+  "site_title": "Radoskop Ostródzie — Jak głosują radni?",
+  "site_url": "https://ostroda.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ostródzia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ostródzia.",
+  "bip_url": "https://bip.ostroda.pl/",
+  "bip_name": "BIP Ostródzie",
+  "esesja_url": "https://ostroda.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ostroda.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "DWPO": {
+      "name": "KWW DOBRO WSPÓLNE POWIAT OSTRÓDZKI",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "RDO": {
+      "name": "KWW RAFAŁA DĄBROWSKIEGO OSTRÓDAODNOWA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "RJKW": {
+      "name": "KWW RZECZ JASNA KINGA WIŚNIEWSKA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adrian Godlewski": "KO",
+    "Anna Monist": "DWPO",
+    "Anna Rutkiewicz": "RDO",
+    "Cezary Wawrzyński": "RDO",
+    "Czesław Najmowicz": "DWPO",
+    "Dariusz Bujak": "KO",
+    "Dariusz Struk": "PiS",
+    "Grzegorz Wróbel": "DWPO",
+    "Jarosław Borzuchowski": "KO",
+    "Julian Pawłowski": "RDO",
+    "Kamil Krzyżanowski": "RDO",
+    "Leszek Potorski": "PiS",
+    "Marek Gołębiewski": "PiS",
+    "Mariusz Bojarowski": "DWPO",
+    "Mirosław Godlewski": "KO",
+    "Paweł Tadejewski": "KO",
+    "Rafał Dąbrowski": "RDO",
+    "Ryszard Kowalski": "KO",
+    "Sebastian Radzimiński": "RJKW",
+    "Stanisław Orzechowski": "PiS",
+    "Wojciech Legucki": "KO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Ostródzia",
+  "rada_name_genitive": "Rady Miasta Ostródzia"
+}

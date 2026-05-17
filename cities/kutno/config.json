@@ -1,0 +1,76 @@
+{
+  "city_name": "Kutno",
+  "city_genitive": "Kutna",
+  "site_title": "Radoskop Kutno — Jak głosują radni?",
+  "site_url": "https://kutno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kutna. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kutna.",
+  "bip_url": "https://bip.kutno.pl/",
+  "bip_name": "BIP Kutno",
+  "esesja_url": "https://kutno.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kutno.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "ZBMS": {
+      "name": "KWW ZBIGNIEWA BURZYŃSKIEGO I MARIUSZA SIKORY",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Michałkiewicz": "KO",
+    "Arkadiusz Olesiński": "PiS",
+    "Artur Ciurlej": "ZBMS",
+    "Bartosz Czechowski": "PiS",
+    "Beata Włodarczyk": "ZBMS",
+    "Ewa Rzymkowska": "PiS",
+    "Jacek Boczkaja": "ZBMS",
+    "Janusz Kołodziejski": "PiS",
+    "Mariusz Sikora": "ZBMS",
+    "Małgorzata Żurada": "ZBMS",
+    "Michał Łucki": "PiS",
+    "Paweł Markiewicz": "ZBMS",
+    "Przemysław Tobolczyk": "KO",
+    "Rafał Jóźwiak": "PiS",
+    "Robert Feliniak": "ZBMS",
+    "Robert Małachowski": "ZBMS",
+    "Robert Stępniewski": "PiS",
+    "Tomasz Rędzikowski": "ZBMS",
+    "Zbigniew Burzyński": "ZBMS",
+    "Zbigniew Wdowiak": "ZBMS",
+    "Łukasz Walczak": "ZBMS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Kutna",
+  "rada_name_genitive": "Rady Miasta Kutna"
+}

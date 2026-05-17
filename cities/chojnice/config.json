@@ -1,0 +1,82 @@
+{
+  "city_name": "Chojnicach",
+  "city_genitive": "Chojnicacha",
+  "site_title": "Radoskop Chojnicach — Jak głosują radni?",
+  "site_url": "https://chojnice.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Chojnicacha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Chojnicacha.",
+  "bip_url": "https://bip.chojnice.pl/",
+  "bip_name": "BIP Chojnicach",
+  "esesja_url": "https://chojnice.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "chojnice.radoskop.pl",
+  "clubs": {
+    "AF": {
+      "name": "KWW ARSENIUSZA FINSTERA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "SGC": {
+      "name": "KW STOWARZYSZENIA GŁOS CHOJNICZAN",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Kopczyński": "AF",
+    "Andrzej Plata": "KO",
+    "Antoni Szlanga": "AF",
+    "Bogdan Kuffel": "AF",
+    "Iwona Skocka": "AF",
+    "Jan Koperski": "KO",
+    "Kamil Kaczmarek": "PiS",
+    "Kazimierz Jaruszewski": "AF",
+    "Krzysztof Pestka": "PiS",
+    "Maciej Bonna": "KO",
+    "Maciej Polasik": "KO",
+    "Magdalena Kamińska": "PiS",
+    "Marcin Gruchała": "SGC",
+    "Marek Szank": "KO",
+    "Marzenna Osowicka": "SGC",
+    "Mateusz Wróblewski": "PiS",
+    "Patryk Tobolski": "PiS",
+    "Radosław Kołak": "KO",
+    "Renata Dąbrowska": "AF",
+    "Sebastian Matthes": "AF",
+    "Zdzisław Januszewski": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Chojnicacha",
+  "rada_name_genitive": "Rady Miasta Chojnicacha"
+}

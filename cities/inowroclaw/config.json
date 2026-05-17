@@ -1,0 +1,90 @@
+{
+  "city_name": "Inowrocławia",
+  "city_genitive": "Inowrocławiaa",
+  "site_title": "Radoskop Inowrocławia — Jak głosują radni?",
+  "site_url": "https://inowroclaw.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Inowrocławiaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Inowrocławiaa.",
+  "bip_url": "https://bip.inowroclaw.pl/",
+  "bip_name": "BIP Inowrocławia",
+  "esesja_url": "https://inowroclaw.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "inowroclaw.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "AFŁN": {
+      "name": "KWW ARKADIUSZA FAJOKA ŁĄCZY NAS INOWROCŁAW",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "PSDI": {
+      "name": "KWW POROZUMIENIE SAMORZĄDOWE DLA INOWROCŁAWIA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Mochalska": "KO",
+    "Agnieszka Urbańska": "KO",
+    "Arkadiusz Fajok": "AFŁN",
+    "Bartłomiej Stanisz": "AFŁN",
+    "Damian Polak": "PiS",
+    "Danuta Jaskulska": "KO",
+    "Ewa Koman": "PSDI",
+    "Ewa Podogrodzka": "KO",
+    "Grzegorz Kaczmarek": "PSDI",
+    "Grzegorz Olszewski": "PiS",
+    "Jacek Bętkowski": "KO",
+    "Jacek Tarczewski": "PiS",
+    "Jan Gaj": "PiS",
+    "Jarosław Kopeć": "KO",
+    "Julia Ratajczak": "KO",
+    "Maria Żukowska": "KO",
+    "Patryk Kaźmierczak": "KO",
+    "Rafał Lewandowski": "AFŁN",
+    "Renata Napierkowska": "PiS",
+    "Robert Rychwicki": "TD",
+    "Tomasz Marcinkowski": "PSDI",
+    "Wojciech Piniewski": "KO",
+    "Łukasz Oliwkowski": "KO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Inowrocławiaa",
+  "rada_name_genitive": "Rady Miasta Inowrocławiaa"
+}

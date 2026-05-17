@@ -1,0 +1,70 @@
+{
+  "city_name": "Puszczykowa",
+  "city_genitive": "Puszczykowaa",
+  "site_title": "Radoskop Puszczykowa — Jak głosują radni?",
+  "site_url": "https://puszczykowo.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Puszczykowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Puszczykowaa.",
+  "bip_url": "https://bip.puszczykowo.pl/",
+  "bip_name": "BIP Puszczykowa",
+  "esesja_url": "https://puszczykowo.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "puszczykowo.radoskop.pl",
+  "clubs": {
+    "RDP": {
+      "name": "KWW RAZEM DLA PUSZCZYKOWA",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "ZP": {
+      "name": "KWW ZIELONE PUSZCZYKOWO",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "DP": {
+      "name": "KWW DEMOKRATYCZNE PUSZCZYKOWO",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Alfreda Brączkowska": "RDP",
+    "Barbara Kamińska-Piwosz": "RDP",
+    "Dariusz Retinger": "RDP",
+    "Elżbieta Bijaczewska": "RDP",
+    "Filip Ryglewicz": "RDP",
+    "Hanna Janton": "RDP",
+    "Hanna Sokół": "RDP",
+    "Jan Łagoda": "RDP",
+    "Krzysztof Paszkowski": "ZP",
+    "Maciej Krzyżański": "RDP",
+    "Maria Michałowska": "RDP",
+    "Mariusz Frąckowiak": "RDP",
+    "Małgorzata Heydel-Pobojewska": "DP",
+    "Ryszard Teuschner": "RDP",
+    "Tomasz Potocki": "RDP"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Puszczykowaa",
+  "rada_name_genitive": "Rady Miasta Puszczykowaa"
+}

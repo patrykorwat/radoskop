@@ -1,0 +1,64 @@
+{
+  "city_name": "Sławnie",
+  "city_genitive": "Sławnia",
+  "site_title": "Radoskop Sławnie — Jak głosują radni?",
+  "site_url": "https://slawno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sławnia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sławnia.",
+  "bip_url": "https://bip.slawno.pl/",
+  "bip_name": "BIP Sławnie",
+  "esesja_url": "https://slawno.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "slawno.radoskop.pl",
+  "clubs": {
+    "PDS": {
+      "name": "KWW POROZUMIENIE DLA SŁAWNA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "CM": {
+      "name": "KWW CZAS MIESZKAŃCÓW",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Poprawski": "PDS",
+    "Bartosz Bukowski": "CM",
+    "Dominik Margielewski": "PDS",
+    "Ewa Wojciechowska": "PDS",
+    "Jarosław Stark": "PDS",
+    "Joanna Iwko": "PDS",
+    "Karolina Stępień": "PDS",
+    "Laurence Cherni": "PDS",
+    "Maciej Motyl": "PDS",
+    "Marcin Bojaryn": "PDS",
+    "Marcin Podolski": "PDS",
+    "Marta Stępień": "PDS",
+    "Marzena Łużyńska": "PDS",
+    "Paweł Kopczyński": "PDS",
+    "Tomasz Choroś": "CM"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Sławnia",
+  "rada_name_genitive": "Rady Miasta Sławnia"
+}

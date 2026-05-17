@@ -6,7 +6,7 @@ Council members + club assignments są wczytywane z config.json.
 
 Backend: https://myslowice.esesja.pl/ (Rada Miasta Mysłowice, IX kadencja
 2024-2029, 23 radnych). Rozkład: KO 10, WDM 6, PiS 5, RDM 1, 1 TBD.
-Skład z portalsamorzadowy.pl/miasto/myslowice,446.html.
+Skład z PKW (wybory samorządowe 2024).
 """
 
 import json

@@ -1,0 +1,70 @@
+{
+  "city_name": "Lędziny",
+  "city_genitive": "Lędzinya",
+  "site_title": "Radoskop Lędziny — Jak głosują radni?",
+  "site_url": "https://ledziny.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lędzinya. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lędzinya.",
+  "bip_url": "https://bip.ledziny.pl/",
+  "bip_name": "BIP Lędziny",
+  "esesja_url": "https://ledziny.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ledziny.radoskop.pl",
+  "clubs": {
+    "LN": {
+      "name": "KW LĘDZINY OD NOWA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "TKŁN": {
+      "name": "KWW TOMASZ KOSTYRA ŁĄCZĄ NAS LĘDZINY",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "PP": {
+      "name": "KWW PONAD PODZIAŁAMI",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Czerniak": "LN",
+    "Anna Adamczyk": "LN",
+    "Bogdan Kupczyk": "TKŁN",
+    "Bogdan Radoń": "LN",
+    "Bogusław Noras": "TKŁN",
+    "Edward Urbańczyk": "LN",
+    "Grzegorz Berger": "TKŁN",
+    "Grzegorz Kiełtyka": "LN",
+    "Ireneusz Kokosiński": "LN",
+    "Jerzy Trojnar": "TKŁN",
+    "Maria Głos": "LN",
+    "Mariusz Prasak": "LN",
+    "Monika Mazgaj": "LN",
+    "Paweł Wanot": "TKŁN",
+    "Rafał Czarnuch": "PP"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Lędzinya",
+  "rada_name_genitive": "Rady Miasta Lędzinya"
+}

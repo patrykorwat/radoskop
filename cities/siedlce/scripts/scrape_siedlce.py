@@ -6,7 +6,7 @@ Council members + club assignments są wczytywane z config.json.
 
 Backend: https://siedlce.esesja.pl/ (Rada Miasta Siedlce, IX kadencja
 2024-2029, 23 radnych). Rozkład: BSKO 9, ZiR 10, KS 3, 1 TBD.
-Skład z portalsamorzadowy.pl/miasto/siedlce,443.html.
+Skład z PKW (wybory samorządowe 2024).
 """
 
 import json

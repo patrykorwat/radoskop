@@ -6,7 +6,7 @@ Council members + club assignments są wczytywane z config.json.
 
 Backend: https://dabrowagornicza.esesja.pl/ (Rada Miejska w Dąbrowie Górniczej,
 IX kadencja 2024-2029, 25 radnych). Rozkład: DR 9, KO 7, PiS 5, TPDG 3, DIS 1.
-Skład z portalsamorzadowy.pl/miasto/dabrowa-gornicza,425.html.
+Skład z PKW (wybory samorządowe 2024).
 """
 
 import json

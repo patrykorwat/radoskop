@@ -1,0 +1,76 @@
+{
+  "city_name": "Sierpca",
+  "city_genitive": "Sierpcaa",
+  "site_title": "Radoskop Sierpca — Jak głosują radni?",
+  "site_url": "https://sierpc.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sierpcaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sierpcaa.",
+  "bip_url": "https://bip.sierpc.pl/",
+  "bip_name": "BIP Sierpca",
+  "esesja_url": "https://sierpc.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sierpc.radoskop.pl",
+  "clubs": {
+    "PPSP": {
+      "name": "KWW J. PERZYŃSKI PRZYSZŁOŚĆ SIERPCA I POWIATU",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "GBN": {
+      "name": "KWW GIL BARBARA NIEZALEŻNA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "MR": {
+      "name": "KWW MICHAŁA ROZNOCHA",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "PBND": {
+      "name": "KWW PRZEMYSŁAWA BUKOWSKIEGO NOWA DROGA",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Artur Balcerowski": "PPSP",
+    "Barbara Gil": "GBN",
+    "Dariusz Malanowski": "PPSP",
+    "Dariusz Sieciński": "PPSP",
+    "Joanna Frej": "PPSP",
+    "Joanna Szewczykowska": "PPSP",
+    "Justyna Babecka": "PPSP",
+    "Krzysztof Kacperski": "PPSP",
+    "Krzysztof Rudowski": "PPSP",
+    "Krzysztof Skrzyński": "PPSP",
+    "Michał Roznoch": "MR",
+    "Przemysław Bukowski": "PBND",
+    "Waldemar Frydrychowicz": "PPSP",
+    "Wojciech Skorłutowski": "PPSP",
+    "Zbigniew Długokęcki": "PPSP"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Sierpcaa",
+  "rada_name_genitive": "Rady Miasta Sierpcaa"
+}

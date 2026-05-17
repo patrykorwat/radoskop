@@ -1,0 +1,94 @@
+{
+  "city_name": "Bolesławiec",
+  "city_genitive": "Bolesławieca",
+  "site_title": "Radoskop Bolesławiec — Jak głosują radni?",
+  "site_url": "https://boleslawiec.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Bolesławieca. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bolesławieca.",
+  "bip_url": "https://bip.boleslawiec.pl/",
+  "bip_name": "BIP Bolesławiec",
+  "esesja_url": "https://boleslawiec.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "boleslawiec.radoskop.pl",
+  "clubs": {
+    "PRFM": {
+      "name": "KWW PIOTRA ROMANA FORUM MIASTA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "ZB": {
+      "name": "KWW ZIEMI BOLESŁAWIECKIEJ",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "IL": {
+      "name": "KWW IMPULS LOKALNY",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Żuk": "PRFM",
+    "Damian Sawczak": "PRFM",
+    "Dawid Sarbak": "PiS",
+    "Grzegorz Przybylski": "KO",
+    "Joanna Strzelecka": "KO",
+    "Karolina Hałka": "PiS",
+    "Katarzyna Rola": "KO",
+    "Leszek Chudzik": "PRFM",
+    "Magdalena Mucha": "KO",
+    "Mariusz Potyszka": "TD",
+    "Piotr Klasa": "KO",
+    "Piotr Roman": "PRFM",
+    "Rafał Więcewicz": "PiS",
+    "Renata Fredyk": "PRFM",
+    "Stanisław Wiącek": "ZB",
+    "Teresa Szyjkowska": "PiS",
+    "Tomasz Ogrodnik": "PiS",
+    "Urszula Magryś": "KO",
+    "Violetta Kurcio": "KO",
+    "Łukasz Jaźwiec": "PRFM",
+    "Łukasz Molak": "IL"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Bolesławieca",
+  "rada_name_genitive": "Rady Miasta Bolesławieca"
+}

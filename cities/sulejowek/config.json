@@ -1,0 +1,76 @@
+{
+  "city_name": "Sulejówek",
+  "city_genitive": "Sulejóweka",
+  "site_title": "Radoskop Sulejówek — Jak głosują radni?",
+  "site_url": "https://sulejowek.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sulejóweka. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Sulejóweka.",
+  "bip_url": "https://bip.sulejowek.pl/",
+  "bip_name": "BIP Sulejówek",
+  "esesja_url": "https://sulejowek.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sulejowek.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "RMDS": {
+      "name": "KWW „RAZEM Z MIESZKAŃCAMI DLA SULEJÓWKA”",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "AŚ": {
+      "name": "KWW ARKADIUSZA ŚLIWY",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "NO": {
+      "name": "KWW NASZE OSIEDLE",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Jeż-Kaflik": "KO",
+    "Andrzej Lipka": "RMDS",
+    "Anna Szarejko": "AŚ",
+    "Daniel Dąbrowski": "AŚ",
+    "Hubert Krasnodębski": "AŚ",
+    "Iwona Królak": "AŚ",
+    "Jacek Zieliński": "KO",
+    "Jan Wanke": "AŚ",
+    "Katarzyna Stożek": "NO",
+    "Krzysztof Korzempa": "AŚ",
+    "Marzena Nowogródzka": "KO",
+    "Mateusz Eliasz": "AŚ",
+    "Patrycja Musiatowicz": "AŚ",
+    "Sebastian Bodzenta": "AŚ",
+    "Tomasz Szczygielski": "AŚ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Sulejóweka",
+  "rada_name_genitive": "Rady Miasta Sulejóweka"
+}

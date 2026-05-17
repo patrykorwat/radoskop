@@ -1,0 +1,64 @@
+{
+  "city_name": "Lubawa",
+  "city_genitive": "Lubawaa",
+  "site_title": "Radoskop Lubawa — Jak głosują radni?",
+  "site_url": "https://lubawa.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lubawaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lubawaa.",
+  "bip_url": "https://bip.lubawa.pl/",
+  "bip_name": "BIP Lubawa",
+  "esesja_url": "https://lubawa.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lubawa.radoskop.pl",
+  "clubs": {
+    "MR": {
+      "name": "KWW MACIEJA RADTKE",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "MB": {
+      "name": "KWW MARKA BORKOWSKIEGO",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Dariusz Kowalczyk": "MR",
+    "Dawid Mederski": "MB",
+    "Grzegorz Rolka": "MR",
+    "Iwona Pruchniewska": "MR",
+    "Janusz Sobiechowski": "MR",
+    "Jerzy Brodowski": "MR",
+    "Jolanta Skórzewska": "MB",
+    "Marcin Banacki": "MR",
+    "Marcin Grubalski": "MB",
+    "Marek Licznerski": "MR",
+    "Marek Mazurowski": "MR",
+    "Marek Wielgomas": "MR",
+    "Marian Kasprowicz": "MR",
+    "Mariusz Kuczyński": "MB",
+    "Patryk Łowin": "MR"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Lubawaa",
+  "rada_name_genitive": "Rady Miasta Lubawaa"
+}

@@ -1,0 +1,96 @@
+{
+  "city_name": "Pruszkowa",
+  "city_genitive": "Pruszkowaa",
+  "site_title": "Radoskop Pruszkowa — Jak głosują radni?",
+  "site_url": "https://pruszkow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Pruszkowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Pruszkowaa.",
+  "bip_url": "https://bip.pruszkow.pl/",
+  "bip_name": "BIP Pruszkowa",
+  "esesja_url": "https://pruszkow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pruszkow.radoskop.pl",
+  "clubs": {
+    "MGIM": {
+      "name": "KWW MAKSYMA GOŁOSIA - INICJATYWA MIESZKAŃCÓW",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "MWS": {
+      "name": "KW MAZOWIECKA WSPÓLNOTA SAMORZĄDOWA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "PDW": {
+      "name": "KWW PRUSZKÓW - DOBRO WSPÓLNE",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "PPM": {
+      "name": "KWW PREZYDENTA PAWŁA MAKUCHA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Wróblewski": "MGIM",
+    "Agnieszka Kostera": "MWS",
+    "Bartosz Brzeziński": "PDW",
+    "Dariusz Krupa": "PiS",
+    "Dorota Kossakowska": "KO",
+    "Dorota Smak": "KO",
+    "Jacek Rybczyński": "KO",
+    "Julia Kossakowska": "KO",
+    "Kamil Augustyniak": "PiS",
+    "Karol Chlebiński": "MWS",
+    "Katarzyna Włodarczyk": "KO",
+    "Magdalena Bąk": "KO",
+    "Magdalena Sawicka": "KO",
+    "Maria Biernacka": "KO",
+    "Marzena Wieteska": "MWS",
+    "Małgorzata Widera": "KO",
+    "Michał Landowski": "MWS",
+    "Paweł Makuch": "PPM",
+    "Paweł Zagrajek": "PiS",
+    "Piotr Bąk": "KO",
+    "Radosław Majewski": "MWS",
+    "Robert Jancik": "PiS",
+    "Łukasz Ruszczyk": "KO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Pruszkowaa",
+  "rada_name_genitive": "Rady Miasta Pruszkowaa"
+}

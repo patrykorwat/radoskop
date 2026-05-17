@@ -6,7 +6,7 @@ Council members + club assignments są wczytywane z config.json.
 
 Backend: https://elblag.esesja.pl/ (Rada Miejska w Elblągu, IX kadencja
 2024-2029, 25 radnych). Rozkład: KO 14, PiS 10, 1 nieznany (TBD).
-Skład z portalsamorzadowy.pl/miasto/elblag,427.html.
+Skład z PKW (wybory samorządowe 2024).
 """
 
 import json

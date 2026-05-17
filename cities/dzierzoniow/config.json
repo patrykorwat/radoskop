@@ -1,0 +1,82 @@
+{
+  "city_name": "Dzierżoniowa",
+  "city_genitive": "Dzierżoniowaa",
+  "site_title": "Radoskop Dzierżoniowa — Jak głosują radni?",
+  "site_url": "https://dzierzoniow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Dzierżoniowaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Dzierżoniowaa.",
+  "bip_url": "https://bip.dzierzoniow.pl/",
+  "bip_name": "BIP Dzierżoniowa",
+  "esesja_url": "https://dzierzoniow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "dzierzoniow.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "NDK": {
+      "name": "KW NDZ DARIUSZA KUCHARSKIEGO",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "DJR": {
+      "name": "KWW DZIERŻONIÓW 2023 JAROSŁAWA RUDNICKIEGO",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Bagiński": "KO",
+    "Agnieszka Denysiak": "NDK",
+    "Andrzej Wiczkowski": "NDK",
+    "Aneta Białek": "PiS",
+    "Aneta Przybyła": "PiS",
+    "Anna Kwaśny": "KO",
+    "Dariusz Kucharski": "NDK",
+    "Diana Kaczyńska": "KO",
+    "Dorota Pieszczuch": "NDK",
+    "Grażyna Juraszek": "NDK",
+    "Ireneusz Żygadło": "KO",
+    "Jarosław Kresa": "PiS",
+    "Jarosław Perlak": "DJR",
+    "Jarosław Rudnicki": "DJR",
+    "Maciej Woźniak": "NDK",
+    "Maria Adamus": "PiS",
+    "Małgorzata Prewandowska": "NDK",
+    "Paweł Kowalski": "DJR",
+    "Radosław Drabczyk": "NDK",
+    "Romuald Adamus": "PiS",
+    "Łukasz Bienias": "DJR"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Dzierżoniowaa",
+  "rada_name_genitive": "Rady Miasta Dzierżoniowaa"
+}

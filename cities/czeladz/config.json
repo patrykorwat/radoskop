@@ -1,0 +1,76 @@
+{
+  "city_name": "Czeladzi",
+  "city_genitive": "Czeladzia",
+  "site_title": "Radoskop Czeladzi — Jak głosują radni?",
+  "site_url": "https://czeladz.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Czeladzia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Czeladzia.",
+  "bip_url": "https://bip.czeladz.pl/",
+  "bip_name": "BIP Czeladzi",
+  "esesja_url": "https://czeladz.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "czeladz.radoskop.pl",
+  "clubs": {
+    "KWWZ": {
+      "name": "KOMITET WYBORCZY WYBORCÓW ZBIGNIEWA SZALEŃCA",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "ŁS": {
+      "name": "KWW ŁUKASZA STROJNIAKA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Mentel": "KWWZ",
+    "Barbara Wszołek": "KWWZ",
+    "Beata Marcinkowska": "KWWZ",
+    "Beata Zawiła": "KWWZ",
+    "Dominik Penar": "KWWZ",
+    "Ewa Fronczek": "KWWZ",
+    "Ilona Wichnera-Sikorska": "ŁS",
+    "Irena Owczarz": "KWWZ",
+    "Jarosław Deleska": "PiS",
+    "Marta Góralczyk": "ŁS",
+    "Monika Pawlik": "KWWZ",
+    "Patrycja Juszczyk": "KWWZ",
+    "Patryk Trybulec": "KWWZ",
+    "Teresa Kosmala": "PiS",
+    "Tomasz Kalinowski": "ŁS",
+    "Waldemar Żak": "KWWZ",
+    "Wojciech Maćkowski": "KWWZ",
+    "Zbigniew Panek": "PiS",
+    "Zbigniew Szaleniec": "KWWZ",
+    "Łukasz Strojniak": "ŁS",
+    "Łukasz Wesołowski": "KWWZ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Czeladzia",
+  "rada_name_genitive": "Rady Miasta Czeladzia"
+}

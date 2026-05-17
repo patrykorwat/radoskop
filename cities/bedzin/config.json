@@ -1,0 +1,82 @@
+{
+  "city_name": "Będzina",
+  "city_genitive": "Będzinaa",
+  "site_title": "Radoskop Będzina — Jak głosują radni?",
+  "site_url": "https://bedzin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Będzinaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Będzinaa.",
+  "bip_url": "https://bip.bedzin.pl/",
+  "bip_name": "BIP Będzina",
+  "esesja_url": "https://bedzin.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "bedzin.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "ŁK": {
+      "name": "KWW ŁUKASZA KOMONIEWSKIEGO",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "WDB": {
+      "name": "KWW WSPÓLNIE DLA BĘDZINA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Anna Piotrowska": "KO",
+    "Artur Gwóźdź": "KO",
+    "Grzegorz Pawlak": "ŁK",
+    "Halina Czapla": "KO",
+    "Igor Mroziński": "KO",
+    "Jarosław Burzawa": "PiS",
+    "Józef Pilch": "PiS",
+    "Katarzyna Kozak": "KO",
+    "Klaudia Pokora": "KO",
+    "Konrad Dziuba": "KO",
+    "Marcin Piwowarczyk": "PiS",
+    "Mariusz Słowik": "ŁK",
+    "Michał Fiuk": "WDB",
+    "Paweł Szewczyk": "PiS",
+    "Piotr Graca": "KO",
+    "Piotr Podsiadło": "WDB",
+    "Rafał Pietrzyk": "ŁK",
+    "Szczepan Gryma": "ŁK",
+    "Tomasz Wacławczyk": "WDB",
+    "Łukasz Frańczak": "WDB",
+    "Łukasz Komoniewski": "ŁK"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Będzinaa",
+  "rada_name_genitive": "Rady Miasta Będzinaa"
+}

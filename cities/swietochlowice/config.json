@@ -1,0 +1,94 @@
+{
+  "city_name": "Świętochłowicach",
+  "city_genitive": "Świętochłowicacha",
+  "site_title": "Radoskop Świętochłowicach — Jak głosują radni?",
+  "site_url": "https://swietochlowice.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Świętochłowicacha. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Świętochłowicacha.",
+  "bip_url": "https://bip.swietochlowice.pl/",
+  "bip_name": "BIP Świętochłowicach",
+  "esesja_url": "https://swietochlowice.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "swietochlowice.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "PŚ": {
+      "name": "KW PRZYJAZNE ŚWIĘTOCHŁOWICE",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "DB": {
+      "name": "KWW DANIELA BEGERA",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "SRDŚ": {
+      "name": "KW STOWARZYSZENIE RAZEM DLA ŚWIĘTOCHŁOWIC",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    },
+    "RŚŚ": {
+      "name": "KW RUCH ŚLĄZAKÓW - ŚWIĘTOCHŁOWICE",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Jankowiak": "PiS",
+    "Alicja Kiołbasa": "KO",
+    "Alina Bodynek": "PŚ",
+    "Arkadiusz Chorób": "KO",
+    "Bartosz Karcz": "KO",
+    "Damian Malujda": "PŚ",
+    "Daniel Beger": "DB",
+    "Daniel Roczniok": "SRDŚ",
+    "Dominik Nędza": "DB",
+    "Dorota Wichura": "KO",
+    "Grażyna Sosna": "KO",
+    "Helena Kubica": "PiS",
+    "Janina Zięba": "PiS",
+    "Krzysztof Bas": "DB",
+    "Marcin Bawej": "KO",
+    "Marcin Sznapka": "DB",
+    "Mariusz Kubas": "RŚŚ",
+    "Rafał Świerk": "RŚŚ",
+    "Zbigniew Nowak": "DB",
+    "Łukasz Dusza": "PŚ",
+    "Łukasz Respondek": "KO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Świętochłowicacha",
+  "rada_name_genitive": "Rady Miasta Świętochłowicacha"
+}

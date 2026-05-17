@@ -1,0 +1,82 @@
+{
+  "city_name": "Legionowo",
+  "city_genitive": "Legionowa",
+  "site_title": "Radoskop Legionowo — Jak głosują radni?",
+  "site_url": "https://legionowo.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Legionowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Legionowa.",
+  "bip_url": "https://bip.legionowo.pl/",
+  "bip_name": "BIP Legionowo",
+  "esesja_url": "https://legionowo.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "legionowo.radoskop.pl",
+  "clubs": {
+    "PS": {
+      "name": "KW POROZUMIENIE SAMORZĄDOWE",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Agata Zaklika": "PS",
+    "Agnieszka Kobylińska": "PiS",
+    "Agnieszka Żychalak": "KO",
+    "Andrzej Grabiec": "KO",
+    "Andrzej Kalinowski": "PiS",
+    "Andrzej Piętka": "KO",
+    "Anna Łaniewska": "PS",
+    "Artur Pawłowski": "PiS",
+    "Dariusz Ejdys": "PS",
+    "Joanna Laskowska-Łaba": "KO",
+    "Katarzyna Skierkowska-Pacocha": "PiS",
+    "Marcin Miałkowski": "PiS",
+    "Marta Budzyńska": "KO",
+    "Michał Kalman": "PiS",
+    "Mirosław Grabowski": "TD",
+    "Mirosław Pachulski": "KO",
+    "Piotr Zadrożny": "KO",
+    "Roman Smogorzewski": "PS",
+    "Ryszard Brański": "KO",
+    "Sławomir Traczyk": "TD",
+    "Zdzisław Koryś": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Legionowa",
+  "rada_name_genitive": "Rady Miasta Legionowa"
+}

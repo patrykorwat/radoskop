@@ -1,0 +1,70 @@
+{
+  "city_name": "Łańcuta",
+  "city_genitive": "Łańcutaa",
+  "site_title": "Radoskop Łańcuta — Jak głosują radni?",
+  "site_url": "https://lancut.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Łańcutaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Łańcutaa.",
+  "bip_url": "https://bip.lancut.pl/",
+  "bip_name": "BIP Łańcuta",
+  "esesja_url": "https://lancut.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lancut.radoskop.pl",
+  "clubs": {
+    "SRRD": {
+      "name": "KWW SŁAWOMIRA REJMANA RAZEM DLA ŁAŃCUTA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "TŁ": {
+      "name": "KWW W TROSCE O ŁAŃCUT",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "ŁŁ": {
+      "name": "KWW ŁAŃCUT ŁĄCZY",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Nazimek": "SRRD",
+    "Agnieszka Cieślicka": "SRRD",
+    "Andrzej Barnat": "SRRD",
+    "Andrzej Bem": "TŁ",
+    "Anna Ryznar-Sicińska": "ŁŁ",
+    "Dorota Chudzik": "TŁ",
+    "Grażyna Szybiak": "TŁ",
+    "Jacek Bartman": "SRRD",
+    "Krzysztof Jasiński": "ŁŁ",
+    "Monika Litwin": "ŁŁ",
+    "Paweł Cisek": "ŁŁ",
+    "Paweł Kuźniar": "SRRD",
+    "Piotr Grabowski": "TŁ",
+    "Sławomir Rejman": "SRRD",
+    "Wojciech Wałczyk": "ŁŁ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Łańcutaa",
+  "rada_name_genitive": "Rady Miasta Łańcutaa"
+}

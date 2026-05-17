@@ -1,0 +1,88 @@
+{
+  "city_name": "Żagań",
+  "city_genitive": "Żagańa",
+  "site_title": "Radoskop Żagań — Jak głosują radni?",
+  "site_url": "https://zagan.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Żagańa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Żagańa.",
+  "bip_url": "https://bip.zagan.pl/",
+  "bip_name": "BIP Żagań",
+  "esesja_url": "https://zagan.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zagan.radoskop.pl",
+  "clubs": {
+    "SK": {
+      "name": "KWW SŁAWOMIRA KOWALA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "RMNM": {
+      "name": "KW RUCH MIESZKAŃCÓW-NASZE MIASTO NASZ POWIAT",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "NŻDM": {
+      "name": "KWW NOWY ŻAGAŃ DANIEL MARCHEWKA",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adriana Kowal": "SK",
+    "Andrzej Chodań": "RMNM",
+    "Jakub Witek": "SK",
+    "Janusz Żarski": "KO",
+    "Katarzyna Kara": "SK",
+    "Katarzyna Kazarnowicz": "SK",
+    "Krzysztof Blajer": "KO",
+    "Krzysztof Omieljańczyk": "RMNM",
+    "Krzysztof Sieńko": "NŻDM",
+    "Krzysztof Świerzko": "PiS",
+    "Mariusz Linkiewicz": "KO",
+    "Marta Nadrzycka-Soczek": "SK",
+    "Małgorzata Klorek": "PiS",
+    "Piotr Węglik": "SK",
+    "Piotr Łoś": "SK",
+    "Przemysław Bochenek": "PiS",
+    "Sebastian Kulesza": "SK",
+    "Sławomir Kowal": "SK",
+    "Tomasz Kwarciński": "RMNM",
+    "Tomasz Nowak": "PiS",
+    "Tomasz Szewczyk": "KO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Żagańa",
+  "rada_name_genitive": "Rady Miasta Żagańa"
+}

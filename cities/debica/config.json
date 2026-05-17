@@ -1,0 +1,70 @@
+{
+  "city_name": "Dębicy",
+  "city_genitive": "Dębicya",
+  "site_title": "Radoskop Dębicy — Jak głosują radni?",
+  "site_url": "https://debica.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Dębicya. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Dębicya.",
+  "bip_url": "https://bip.debica.pl/",
+  "bip_name": "BIP Dębicy",
+  "esesja_url": "https://debica.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "debica.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Alina Rzewuska": "KO",
+    "Andrzej Bal": "PiS",
+    "Barbara Brzostowska": "KO",
+    "Ewa Janeczko": "KO",
+    "Grażyna Tomaszewska": "KO",
+    "Grzegorz Krycki": "KO",
+    "Grzegorz Rusinowski": "KO",
+    "Iwona Przydzielska": "PiS",
+    "Jerzy Polniaszek": "PiS",
+    "Katarzyna Rostowska-Machnik": "PiS",
+    "Ludmiła Stelmach-Kołodziej": "PiS",
+    "Mariusz Blezień": "PiS",
+    "Mateusz Cebula": "PiS",
+    "Mateusz Kamiński": "PiS",
+    "Mateusz Kutrzeba": "PiS",
+    "Monika Garduła": "KO",
+    "Paweł Hayn": "PiS",
+    "Piotr Michoń": "KO",
+    "Stanisław Ciszek": "PiS",
+    "Sławomir Gleń": "PiS",
+    "Zenon Trojan": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Dębicya",
+  "rada_name_genitive": "Rady Miasta Dębicya"
+}

@@ -1,0 +1,90 @@
+{
+  "city_name": "Przemyślu",
+  "city_genitive": "Przemyślua",
+  "site_title": "Radoskop Przemyślu — Jak głosują radni?",
+  "site_url": "https://przemysl.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Przemyślua. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Przemyślua.",
+  "bip_url": "https://bip.przemysl.pl/",
+  "bip_name": "BIP Przemyślu",
+  "esesja_url": "https://przemysl.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "przemysl.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "WBWD": {
+      "name": "KWW WOJCIECHA BAKUNA WSPÓLNIE DLA PRZEMYŚLA",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "RBP": {
+      "name": "KWW ROBERTA BALA - PRZEMYŚL TO MY",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NP": {
+      "name": "KWW NASZ PRZEMYŚL",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "MK": {
+      "name": "KWW MACIEJA KAMIŃSKIEGO",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Anna Grad-Mizgała": "KO",
+    "Anna Sienkiewicz": "WBWD",
+    "Bartłomiej Barczak": "RBP",
+    "Bartłomiej Barszczak": "WBWD",
+    "Dariusz Tkacz": "WBWD",
+    "Ewa Sawicka": "KO",
+    "Greta Ostrowska": "WBWD",
+    "Janusz Zapotocki": "NP",
+    "Jerzy Krużel": "KO",
+    "Jolanta Sawicka": "MK",
+    "Krzysztof Majcher": "MK",
+    "Liliana Kalinowska": "KO",
+    "Maciej Kamiński": "MK",
+    "Marcin Kowalski": "WBWD",
+    "Marcin Maciołek": "WBWD",
+    "Paweł Rząsa": "KO",
+    "Piotr Krzeszowski": "MK",
+    "Przemysław Bukowski": "WBWD",
+    "Rafał Kijanka": "MK",
+    "Robert Bal": "RBP",
+    "Ryszard Kulej": "KO",
+    "Tomasz Dziumak": "KO",
+    "Wojciech Bakun": "WBWD"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Przemyślua",
+  "rada_name_genitive": "Rady Miasta Przemyślua"
+}

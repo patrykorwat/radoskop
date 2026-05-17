@@ -7,7 +7,7 @@ club_assignments). Format: {"Imię Nazwisko": "kod_klubu"}.
 
 Backend: https://opole.esesja.pl/ (Rada Miasta Opola, IX kadencja 2024-2029,
 25 radnych, 8 komisji). Skład rady z eSesja, przypisania klubowe z radio.opole.pl
-+ portalsamorzadowy.pl (Wybory 2024). Stachowicz i Nawarecki bez przypisania
++ PKW (wybory samorządowe 2024). Stachowicz i Nawarecki bez przypisania
 klubowego (oznaczeni NZ) — do weryfikacji po pierwszym scrape.
 """
 

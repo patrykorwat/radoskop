@@ -1,0 +1,76 @@
+{
+  "city_name": "Dynów",
+  "city_genitive": "Dynowa",
+  "site_title": "Radoskop Dynów — Jak głosują radni?",
+  "site_url": "https://dynow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Dynowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Dynowa.",
+  "bip_url": "https://bip.dynow.pl/",
+  "bip_name": "BIP Dynów",
+  "esesja_url": "https://dynow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "dynow.radoskop.pl",
+  "clubs": {
+    "RD": {
+      "name": "KWW ROZWÓJ DYNOWA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)",
+      "avatar_bg": "#784905"
+    },
+    "NMD": {
+      "name": "KWW NASZE MIEJSCE-DYNÓW",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#016395"
+    },
+    "ŁND": {
+      "name": "KWW ŁĄCZY NAS DYNÓW",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "PD": {
+      "name": "KWW POSTAW NA DYNÓW",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Teplicki": "RD",
+    "Anna Marszałek": "NMD",
+    "Jan Wolański": "NMD",
+    "Józef Mikoś": "NMD",
+    "Krzysztof Rogut": "ŁND",
+    "Maciej Grześków": "NMD",
+    "Marek Siry": "NMD",
+    "Marian Bechta": "NMD",
+    "Michał Zięzio": "PD",
+    "Paweł Pawłowski": "NMD",
+    "Paweł Radosz": "NMD",
+    "Piotr Krupa": "ŁND",
+    "Roman Mryczko": "NMD",
+    "Tomasz Juras": "NMD",
+    "Zygmunt Frańczak": "NMD"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Dynowa",
+  "rada_name_genitive": "Rady Miasta Dynowa"
+}

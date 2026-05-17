@@ -1,0 +1,84 @@
+{
+  "city_name": "Leszna",
+  "city_genitive": "Lesznaa",
+  "site_title": "Radoskop Leszna — Jak głosują radni?",
+  "site_url": "https://leszno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Lesznaa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Lesznaa.",
+  "bip_url": "https://bip.leszno.pl/",
+  "bip_name": "BIP Leszna",
+  "esesja_url": "https://leszno.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "leszno.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "JZKD": {
+      "name": "KWW JAROSŁAWA ZIELONKI KOALICJA DLA LESZNA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "ŁB": {
+      "name": "KWW PL 18 ŁUKASZA BOROWIAKA",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Kośmider": "PiS",
+    "Adriana Machowiak": "KO",
+    "Andrzej Stężały": "KO",
+    "Andrzej Szpilakowski": "KO",
+    "Andżelika Szkudlarek-Kuźniak": "JZKD",
+    "Ewa Rosik": "PiS",
+    "Ireneusz Matłoka": "ŁB",
+    "Jacek Adamczak": "KO",
+    "Jacek Matecki": "KO",
+    "Joanna Przyłucka-Jurga": "KO",
+    "Justyna Podworska": "KO",
+    "Marek Wein": "KO",
+    "Mariusz Nowacki": "PiS",
+    "Patryk Józefowicz": "KO",
+    "Przemysław Górzny": "KO",
+    "Sylwia Sadowska": "KO",
+    "Sławomir Mocek": "ŁB",
+    "Tomasz Chodorowski": "KO",
+    "Tomasz Malepszy": "ŁB",
+    "Tomasz Mikołajczak": "KO",
+    "Zenon Jóźwiak": "PiS",
+    "Łukasz Borowiak": "ŁB",
+    "Łukasz Woźniak": "KO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Lesznaa",
+  "rada_name_genitive": "Rady Miasta Lesznaa"
+}

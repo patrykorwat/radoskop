@@ -1,0 +1,82 @@
+{
+  "city_name": "Augustowie",
+  "city_genitive": "Augustowia",
+  "site_title": "Radoskop Augustowie — Jak głosują radni?",
+  "site_url": "https://augustow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Augustowia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Augustowia.",
+  "bip_url": "https://bip.augustow.pl/",
+  "bip_name": "BIP Augustowie",
+  "esesja_url": "https://augustow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "augustow.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "NMA": {
+      "name": "KWW NASZE MIASTO AUGUSTÓW",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "B": {
+      "name": "KWW BAU 2024",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#107a37"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adam Chmielewski": "PiS",
+    "Adam Wysocki": "NMA",
+    "Andrzej Zarzecki": "KO",
+    "Dariusz Ostapowicz": "PiS",
+    "Emilian Al-Khameri": "NMA",
+    "Filip Chodkiewicz": "NMA",
+    "Izabela Piasecka": "KO",
+    "Jacek Truszkowski": "NMA",
+    "Jarosław Kwiecień": "KO",
+    "Jolanta Roszkowska": "PiS",
+    "Leszek Cieślik": "KO",
+    "Mirosław Chudecki": "PiS",
+    "Mirosław Karolczuk": "NMA",
+    "Monika Krupińska": "PiS",
+    "Rafał Harasim": "KO",
+    "Wiesław Jeruć": "KO",
+    "Wiesława Drejer-Przekop": "KO",
+    "Wioletta Mursztyn": "KO",
+    "Wojciech Skowroński": "B",
+    "Wojciech Szczudło": "PiS",
+    "Zbigniew Gąsiewski": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Augustowia",
+  "rada_name_genitive": "Rady Miasta Augustowia"
+}

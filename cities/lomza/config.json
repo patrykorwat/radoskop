@@ -1,0 +1,84 @@
+{
+  "city_name": "Łomży",
+  "city_genitive": "Łomżya",
+  "site_title": "Radoskop Łomży — Jak głosują radni?",
+  "site_url": "https://lomza.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Łomżya. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Łomżya.",
+  "bip_url": "https://bip.lomza.pl/",
+  "bip_name": "BIP Łomży",
+  "esesja_url": "https://lomza.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lomza.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "MC": {
+      "name": "KWW MARIUSZA CHRZANOWSKIEGO",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)",
+      "avatar_bg": "#a41d59"
+    },
+    "PŁDD": {
+      "name": "KWW PRZYJAZNA ŁOMŻA DARIUSZA DOMASIEWICZA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#5d2bb1"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#af4209"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Adrian Gołaszewski": "PiS",
+    "Andrzej Grzymała": "MC",
+    "Andrzej Wojtkowski": "MC",
+    "Anna Najda": "PiS",
+    "Dariusz Domasiewicz": "PŁDD",
+    "Edyta Śledziewska": "KO",
+    "Ewa Chludzińska": "PŁDD",
+    "Ireneusz Cieślik": "MC",
+    "Karol Sztejno": "KO",
+    "Krzysztof Sychowicz": "PiS",
+    "Krzysztof Wykowski": "PiS",
+    "Leszek Konopka": "MC",
+    "Marcin Mieczkowski": "PŁDD",
+    "Marek Kisiel": "KO",
+    "Marek Szynkiewicz": "KO",
+    "Mariusz Chrzanowski": "MC",
+    "Mariusz Tarka": "PiS",
+    "Milena Siok": "PŁDD",
+    "Piotr Chmielewski": "PiS",
+    "Piotr Modzelewski": "PiS",
+    "Piotr Serdyński": "KO",
+    "Wiesław Grzymała": "PiS",
+    "Wojciech Michalak": "PŁDD"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Łomżya",
+  "rada_name_genitive": "Rady Miasta Łomżya"
+}
