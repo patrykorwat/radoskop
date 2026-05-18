@@ -60,5 +60,8 @@
   "budget_note": "",
   "samorzad_type": "miasto",
   "rada_name": "Rada Miasta Pucka",
-  "rada_name_genitive": "Rady Miasta Pucka"
+  "rada_name_genitive": "Rady Miasta Pucka",
+  "disabled": true,
+  "disabled_reason": "0 sesji rady w deployed kadencji — eSesja nie publikuje sesji aktualnej kadencji",
+  "disabled_date": "2026-05-18"
 }

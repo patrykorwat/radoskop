@@ -1,0 +1,93 @@
+{
+  "samorzad_type": "wojewodztwo",
+  "voivodeship_slug": "lodzkie",
+  "voivodeship_name": "łódzkie",
+  "voivodeship_genitive": "łódzkiego",
+  "capital": "Łódź",
+  "rada_name": "Sejmik Województwa Łódzkiego",
+  "rada_name_genitive": "Sejmiku Województwa Łódzkiego",
+  "site_title": "Radoskop Sejmik Łódzkie — Jak głosują radni?",
+  "site_url": "https://lodzkie.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Łódzkiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.",
+  "site_description_short": "Otwarte narzędzie monitoringu Sejmiku Województwa Łódzkiego.",
+  "bip_url": "https://bip.lodzkie.pl/",
+  "bip_name": "BIP Sejmik Łódzki",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://lodzkie.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lodzkie.radoskop.pl",
+  "councilor_count": 33,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "active",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga (PSL/Polska 2050)",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "Lewica": {
+      "name": "Lewica",
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Adam Nowak": "TD",
+    "Agnieszka Ryś": "TD",
+    "Aneta Niedźwiecka": "PiS",
+    "Artur Bagieński": "TD",
+    "Beata Dróżdż": "PiS",
+    "Beata Ozga-Flejszer": "PiS",
+    "Dariusz Rogut": "PiS",
+    "Dorota Więckowska": "PiS",
+    "Edward Kiedos": "PiS",
+    "Ewa Wendrowska": "PiS",
+    "Grzegorz Schreiber": "PiS",
+    "Hanna Gill-Piątek": "KO",
+    "Jacek Sokalski": "KO",
+    "Janusz Ciesielski": "PiS",
+    "Joanna Skrzydlewska": "KO",
+    "Justyna Kulig": "KO",
+    "Konrad Zyberyng": "PiS",
+    "Maciej Riemer": "KO",
+    "Maciej Sulgan": "KO",
+    "Maciej Łuczak": "PiS",
+    "Magdalena Spólnicka": "KO",
+    "Magdalena Werstak": "KO",
+    "Marlena Sagan": "PiS",
+    "Małgorzata Grabarczyk": "KO",
+    "Michał Król": "PiS",
+    "Monika Malinowska-Olszowy": "KO",
+    "Piotr Adamczyk": "PiS",
+    "Piotr Bors": "Lewica",
+    "Piotr Wojtysiak": "TD",
+    "Tomasz Karauda": "KO",
+    "Waldemar Wojciechowski": "PiS",
+    "Wojciech Ziółkowski": "KO",
+    "Zbigniew Linkowski": "PiS"
+  }
+}

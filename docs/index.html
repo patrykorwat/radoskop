@@ -521,10 +521,10 @@ footer a:hover{text-decoration-color:var(--accent);}
   <!-- Sejmiki województw (osobna sekcja, równoległa do miast) -->
   <section id="sejmiki" style="margin-top:36px">
     <h3>Sejmiki województw</h3>
-    <p class="section-subtitle">Drugi poziom samorządu: 16 sejmików wojewódzkich, kadencja 2024 do 2029. Marszałek i zarząd województwa odpowiadają za drogi wojewódzkie, regionalne szpitale, fundusze unijne (RPO), transport regionalny. Pilotujemy 3 sejmiki (mazowiecki, dolnośląski, pomorski), pozostałe w kolejce.</p>
+    <p class="section-subtitle">Drugi poziom samorządu: 16 sejmików wojewódzkich, kadencja 2024 do 2029. Marszałek i zarząd województwa odpowiadają za drogi wojewódzkie, regionalne szpitale, fundusze unijne (RPO), transport regionalny. Pilotujemy 4 sejmiki (mazowiecki, dolnośląski, pomorski, łódzki), pozostałe w kolejce.</p>
     <div class="sejmiki-meta">
-      <span><strong id="sejmik-active-count">3</strong> sejmiki aktywne</span>
-      <span><strong id="sejmik-planned-count">13</strong> w kolejce</span>
+      <span><strong id="sejmik-active-count">4</strong> sejmiki aktywne</span>
+      <span><strong id="sejmik-planned-count">12</strong> w kolejce</span>
     </div>
     <div class="sejmiki-grid">
       <a class="sejmik-card sejmik-pilot" href="https://mazowieckie.radoskop.pl/"><span class="sejmik-name">mazowieckie</span><span class="sejmik-cap">Warszawa</span><span class="sejmik-badge sejmik-badge-pilot">pilot</span></a>
@@ -533,7 +533,7 @@ footer a:hover{text-decoration-color:var(--accent);}
       <div class="sejmik-card"><span class="sejmik-name">śląskie</span><span class="sejmik-cap">Katowice</span><span class="sejmik-badge">wkrótce</span></div>
       <div class="sejmik-card"><span class="sejmik-name">wielkopolskie</span><span class="sejmik-cap">Poznań</span><span class="sejmik-badge">wkrótce</span></div>
       <div class="sejmik-card"><span class="sejmik-name">małopolskie</span><span class="sejmik-cap">Kraków</span><span class="sejmik-badge">wkrótce</span></div>
-      <div class="sejmik-card"><span class="sejmik-name">łódzkie</span><span class="sejmik-cap">Łódź</span><span class="sejmik-badge">wkrótce</span></div>
+      <a class="sejmik-card sejmik-pilot" href="https://lodzkie.radoskop.pl/"><span class="sejmik-name">łódzkie</span><span class="sejmik-cap">Łódź</span><span class="sejmik-badge sejmik-badge-pilot">pilot</span></a>
       <div class="sejmik-card"><span class="sejmik-name">lubelskie</span><span class="sejmik-cap">Lublin</span><span class="sejmik-badge">wkrótce</span></div>
       <div class="sejmik-card"><span class="sejmik-name">podkarpackie</span><span class="sejmik-cap">Rzeszów</span><span class="sejmik-badge">wkrótce</span></div>
       <div class="sejmik-card"><span class="sejmik-name">kujawsko-pomorskie</span><span class="sejmik-cap">Toruń</span><span class="sejmik-badge">wkrótce</span></div>
@@ -1399,12 +1399,15 @@ function renderLeafletMap(){
     maxZoom: 11,
   }).addTo(map);
 
-  // Aktywne sejmiki wojewódzkie (status=pilot). Mapa pokazuje TYLKO obrysy
-  // tych województw, reszta GeoJSON jest filtrowana. Klik → strona sejmiku.
+  // Aktywne sejmiki wojewódzkie (status=pilot lub active). Mapa pokazuje
+  // TYLKO obrysy tych województw, reszta GeoJSON jest filtrowana. Klik →
+  // strona sejmiku. Nazwa musi być dokładnie taka jak w voivodeships.geojson
+  // (properties.nazwa).
   var ACTIVE_ASSEMBLIES = {
     'mazowieckie': { url: 'https://mazowieckie.radoskop.pl/', capital: 'Warszawa' },
     'dolnośląskie': { url: 'https://dolnoslaskie.radoskop.pl/', capital: 'Wrocław' },
     'pomorskie': { url: 'https://pomorskie.radoskop.pl/', capital: 'Gdańsk' },
+    'łódzkie': { url: 'https://lodzkie.radoskop.pl/', capital: 'Łódź' },
   };
 
   function assemblyStyle(){

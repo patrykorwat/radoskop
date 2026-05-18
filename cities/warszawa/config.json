@@ -37,5 +37,8 @@
   "budget_note": "",
   "samorzad_type": "miasto",
   "rada_name": "Rada Miasta Warszawy",
-  "rada_name_genitive": "Rady Miasta Warszawy"
+  "rada_name_genitive": "Rady Miasta Warszawy",
+  "disabled": true,
+  "disabled_reason": "0 sesji rady w deployed kadencji — eSesja nie publikuje sesji aktualnej kadencji",
+  "disabled_date": "2026-05-18"
 }

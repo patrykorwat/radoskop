@@ -2,13 +2,18 @@
 """
 Generator strony Radoskop dla pojedynczego sejmiku województwa.
 
-Reuse pełnego template miasta (`radoskop/template_assembly/index.html`,
-będącego kopią `radoskop/template/index.html` z podmienionymi frazami
-"Rada Miasta" → "Sejmik Województwa"). Wstrzykuje config sejmika w te
-same placeholdery co miasta (CITY_NAME, CITY_GENITIVE, CLUB_CSS,
-CLUB_JS itd.), więc strona dostaje pełen routing SPA z podstronami
-/profile/{slug}, /session/{n}, /vote/{id}, /interpellations, /budget,
-/term/{id} (po migracji 2026-05 wszystkie URL slugi są angielskie).
+Reuse kanonicznego template miasta (`radoskop/template/index.html`) plus
+in-place transformacja "Rada Miasta" → "Sejmik Województwa" przez
+`transform_template_for_assembly()`. Wstrzykuje config sejmika w te same
+placeholdery co miasta (CITY_NAME, CITY_GENITIVE, CLUB_CSS, CLUB_JS itd.),
+więc strona dostaje pełen routing SPA z podstronami /profile/{slug},
+/session/{n}, /vote/{id}, /interpellations, /budget, /term/{id} (po migracji
+2026-05 wszystkie URL slugi są angielskie).
+
+Stary `radoskop/template_assembly/` był osobną kopią template które drifowała
+sprzed aktualizacji miast (brak anti-FOUC theme switch, brak topbar nav,
+stary kadencja-bar). Usunięty 2026-05-18, teraz jeden źródłowy template
+dla wszystkich poziomów samorządu.
 
 Mapowanie config sejmika → placeholdery miasta:
   CITY_NAME       = voivodeship_name z .capitalize()  (np. "Mazowieckie")
@@ -37,11 +42,56 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-# Reużywamy apply_english_paths z generate_site.py — sejmiki używają tej
-# samej template_assembly (kopia template miasta z podmienionymi frazami)
-# i muszą po migracji 2026-05 mieć angielskie URL slugi tak samo jak miasta.
+# Reużywamy apply_english_paths z generate_site.py — sejmiki używają tego
+# samego kanonicznego template/index.html co miasta i muszą po migracji
+# 2026-05 mieć angielskie URL slugi tak samo jak miasta.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from generate_site import apply_english_paths  # noqa: E402
+
+
+# ---------------------------------------------------------------------------
+# Transformacja template miasta → template sejmiku
+# ---------------------------------------------------------------------------
+
+def transform_template_for_assembly(html: str) -> str:
+    """Zamień frazy "Rada Miasta" → "Sejmik Województwa" w template miasta.
+
+    Generuje template sejmiku in-place z kanonicznego radoskop/template/
+    index.html, eliminuje potrzebę utrzymywania osobnej kopii
+    radoskop/template_assembly/ (która drifowała sprzed aktualizacji
+    miast — anti-FOUC, topbar, kadencja-bar pill style, etc.).
+
+    Zachowuje wszystkie placeholdery {{CITY_NAME}}, {{CITY_GENITIVE}},
+    {{CLUB_CSS}} itd. — tylko substytuuje statyczne frazy.
+
+    Pokrywa wszystkie odmiany:
+      Rada Miasta → Sejmik Województwa
+      rada miasta → sejmik województwa
+      Rady Miasta → Sejmiku Województwa
+      Radzie Miasta → Sejmikowi Województwa
+      Radę Miasta → Sejmik Województwa
+      Radą Miasta → Sejmikiem Województwa
+    Plus warianty bez {{CITY_GENITIVE}} (np. w komentarzach, ARIA labels).
+    """
+    replacements = [
+        # Mianownik
+        ("Rada Miasta", "Sejmik Województwa"),
+        ("rada miasta", "sejmik województwa"),
+        # Dopełniacz (najczęstszy — meta description, og:description)
+        ("Rady Miasta", "Sejmiku Województwa"),
+        ("rady miasta", "sejmiku województwa"),
+        # Celownik
+        ("Radzie Miasta", "Sejmikowi Województwa"),
+        # Biernik
+        ("Radę Miasta", "Sejmik Województwa"),
+        # Narzędnik
+        ("Radą Miasta", "Sejmikiem Województwa"),
+        # Miejscownik (w Radzie Miasta — pokryte przez Celownik wzorzec)
+        # Plus warianty z innymi przyimkami
+    ]
+    for old, new in replacements:
+        html = html.replace(old, new)
+    return html
 
 
 # ---------------------------------------------------------------------------
@@ -199,7 +249,10 @@ def main() -> int:
     parser.add_argument("--config", required=True)
     parser.add_argument(
         "--template", default=None,
-        help="Domyślnie radoskop/template_assembly/index.html (kopia template miasta z podmienionymi frazami).",
+        help="Domyślnie radoskop/template/index.html (kanoniczny template miast). "
+             "Frazy 'Rada Miasta' są dynamicznie transformowane na 'Sejmik Województwa' "
+             "w transform_template_for_assembly(). Stary radoskop/template_assembly/ "
+             "był usunięty 2026-05-18 bo nie nadążał za zmianami w template/index.html.",
     )
     parser.add_argument("--output", required=True)
     args = parser.parse_args()
@@ -222,12 +275,16 @@ def main() -> int:
     template_path = (
         Path(args.template).resolve()
         if args.template
-        else repo_root / "template_assembly" / "index.html"
+        else repo_root / "template" / "index.html"
     )
     if not template_path.is_file():
         print(f"ERROR: brak templatu: {template_path}", file=sys.stderr)
         return 1
     template = template_path.read_text(encoding="utf-8")
+    # Transform "Rada Miasta" → "Sejmik Województwa" w wszystkich miejscach
+    # (meta tagi, copy strony, schema.org GovernmentOrganization). Eliminuje
+    # potrzebę utrzymywania osobnej kopii template_assembly/.
+    template = transform_template_for_assembly(template)
 
     voiv_name = (cfg.get("voivodeship_name") or cfg.get("voivodeship_slug") or "").strip()
     voiv_gen = cfg.get("voivodeship_genitive", "").strip()

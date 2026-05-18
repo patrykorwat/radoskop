@@ -88,5 +88,8 @@
   "budget_note": "",
   "samorzad_type": "miasto",
   "rada_name": "Rada Miejska w Dąbrowie Górniczej",
-  "rada_name_genitive": "Rady Miejskiej w Dąbrowie Górniczej"
+  "rada_name_genitive": "Rady Miejskiej w Dąbrowie Górniczej",
+  "disabled": true,
+  "disabled_reason": "0 sesji rady w deployed kadencji — eSesja nie publikuje sesji aktualnej kadencji",
+  "disabled_date": "2026-05-18"
 }

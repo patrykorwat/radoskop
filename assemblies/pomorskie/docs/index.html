@@ -42,6 +42,24 @@
 }
 </script>
 <script async defer data-website-id="792c059f-c77e-4b4e-ad9c-31f4a7d5cfe4" src="https://stats.radoskop.pl/script.js"></script>
+<script>
+// Anti-FOUC: ustaw data-theme PRZED render'em CSS, żeby uniknąć migotania
+// light→dark. Inline blocking script w <head>. Ten sam mechanizm cookie
+// cross-subdomain co w toggleTheme() (sekcja niżej) — Domain=.radoskop.{pl,eu}.
+(function(){
+  try {
+    var m = document.cookie.match(/(?:^|;\s*)radoskop_theme=([^;]+)/);
+    var t = m ? decodeURIComponent(m[1]) : null;
+    if (t !== 'dark' && t !== 'light') {
+      try { var s = localStorage.getItem('radoskop_theme'); if (s === 'dark' || s === 'light') t = s; } catch(e) {}
+    }
+    if (t !== 'dark' && t !== 'light') {
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch(e) { /* default: brak data-theme → light z CSS :root */ }
+})();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root, [data-theme="light"] {
@@ -74,19 +92,40 @@
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+.topbar { position:sticky; top:0; z-index:100; background:var(--surface); border-bottom:1px solid var(--border); padding:10px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.topbar-logo { font-size:1.05rem; font-weight:700; color:var(--text); text-decoration:none; }
+.topbar-logo span { color:var(--accent); }
+.topbar-nav { display:flex; gap:20px; flex-wrap:wrap; }
+.topbar-nav a { font-size:.88rem; color:var(--muted); text-decoration:none; transition:color .15s; }
+.topbar-nav a:hover { color:var(--accent); }
+.topbar-nav a.active { color:var(--accent); font-weight:500; }
+.topbar-actions { display:flex; gap:6px; align-items:center; }
+@media (max-width:768px) {
+  .topbar { padding:8px 12px; gap:8px; flex-wrap:wrap; }
+  .topbar-nav { gap:14px; order:3; flex-basis:100%; justify-content:center; }
+  .topbar-nav a { font-size:.82rem; }
+  .topbar .auth-btn { padding:5px 10px; font-size:.78rem; }
+  .topbar .theme-toggle { padding:4px 8px; font-size:0.78rem; }
+}
 .container { max-width:1200px; margin:0 auto; padding:20px; }
 header { padding:40px 0 20px; border-bottom:1px solid var(--border); margin-bottom:30px; display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:16px; }
-header div { flex:1; min-width:200px; }
+header > div:first-child { flex:1; min-width:200px; }
+header > .header-actions { flex:0 0 auto; margin-left:auto; }
 header h1 { font-size:2rem; font-weight:700; cursor:pointer; }
 header h1 span { color:var(--accent); }
 header p { color:var(--muted); margin-top:4px; }
-.kadencja-bar { display:flex; gap:4px; }
-.kadencja-btn { padding:8px 16px; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-size:0.85rem; font-weight:500; white-space:nowrap; }
-.kadencja-btn.active { background:var(--accent); color:white; border-color:var(--accent); }
-.stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; margin-bottom:30px; }
-.stat-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; }
-.stat-card .label { font-size:0.8rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em; }
-.stat-card .value { font-size:2rem; font-weight:700; margin-top:4px; }
+/* Kadencja bar — wyraźnie inny visual od tab-bar żeby się nie zlewały.
+ * Pill-style z subtle background, mniejszy padding, group dotted by tło. */
+.kadencja-bar { display:inline-flex; gap:2px; background:var(--bg); border:1px solid var(--border); border-radius:999px; padding:3px; }
+.kadencja-btn { padding:5px 12px; border-radius:999px; border:none; background:transparent; color:var(--muted); cursor:pointer; font-size:0.78rem; font-weight:500; white-space:nowrap; transition:background 0.15s, color 0.15s; }
+.kadencja-btn:hover { color:var(--text); }
+.kadencja-btn.active { background:var(--surface); color:var(--accent); box-shadow:0 1px 3px rgba(0,0,0,0.08); }
+[data-theme="dark"] .kadencja-btn.active { box-shadow:0 1px 3px rgba(0,0,0,0.4); }
+
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; margin-bottom:28px; }
+.stat-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px 16px; display:flex; flex-direction:column; gap:2px; }
+.stat-card .label { font-size:0.78rem; color:var(--muted); font-weight:500; letter-spacing:0; text-transform:none; }
+.stat-card .value { font-size:1.75rem; font-weight:700; line-height:1.1; font-variant-numeric:tabular-nums; }
 .section { margin-bottom:40px; }
 .section h2 { font-size:1.3rem; font-weight:600; margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid var(--border); }
 table { width:100%; border-collapse:collapse; font-size:0.9rem; }
@@ -108,15 +147,44 @@ tr:hover td { background:rgba(99,102,241,0.05); }
 .pill-za { background:rgba(34,197,94,0.15); color:var(--green); }
 .pill-przeciw { background:rgba(239,68,68,0.15); color:var(--red); }
 .pill-wstrzymal { background:rgba(234,179,8,0.15); color:var(--yellow); }
-.tab-bar { display:flex; gap:4px; margin-bottom:20px; flex-wrap:wrap; }
-.tab { padding:8px 16px; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-size:0.85rem; }
+/* Tab bar: dwa tiery hierarchiczne.
+ *   Primary (4): Ranking, Sesje, Głosowania, Komisje — mocniejsze visualy,
+ *     border, pełny padding, font 0.85rem.
+ *   Secondary (4): Profile, Interpelacje, Budżet, Aktualności — subtle,
+ *     bez ramki, mniejszy padding, muted color, hover background.
+ * Razem 2 wiersze (primary nad secondary), na desktop oba inline. */
+.tab-bar { display:flex; flex-direction:column; gap:8px; margin-bottom:20px; }
+.tab-tier { display:flex; gap:6px; flex-wrap:wrap; align-items:center; }
+.tab-tier--secondary { gap: 4px; }
+.tab { padding:8px 16px; border-radius:8px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-size:0.85rem; font-family:inherit; }
 .tab.active { background:var(--accent); color:white; border-color:var(--accent); }
-.tab-budget { border-color:var(--accent); color:var(--accent); }
-.tab-budget.active { color:white; }
+.tab.tab-secondary {
+  padding: 5px 11px;
+  border: none;
+  font-size: 0.78rem;
+  color: var(--muted);
+  background: transparent;
+  border-radius: 6px;
+  opacity: 0.85;
+  transition: background 0.15s, color 0.15s, opacity 0.15s;
+}
+.tab.tab-secondary:hover { background: rgba(99,102,241,0.08); color: var(--text); opacity: 1; }
+.tab.tab-secondary.active {
+  background: var(--accent);
+  color: white;
+  opacity: 1;
+}
 .chart-wrap { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:20px; }
 canvas { max-height:760px; }
-.similarity-pair { display:flex; align-items:center; gap:12px; padding:8px 0; border-bottom:1px solid var(--border); font-size:0.85rem; }
-.similarity-score { font-weight:700; min-width:50px; }
+.komisje-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; }
+.komisja-card { display:block; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px; text-decoration:none; color:var(--text); transition:border-color 0.15s, transform 0.15s; cursor:pointer; }
+.komisja-card:hover { border-color:var(--accent); transform:translateY(-1px); }
+.komisja-card-title { display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:0.95rem; font-weight:600; margin-bottom:14px; flex-wrap:wrap; }
+.komisja-card-stats { display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-bottom:12px; }
+.komisja-card-stats > div { display:flex; flex-direction:column; }
+.komisja-stat-value { font-size:1.1rem; font-weight:700; color:var(--text); }
+.komisja-stat-label { font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; margin-top:2px; }
+.komisja-card-last { font-size:0.75rem; color:var(--muted); padding-top:8px; border-top:1px solid var(--border); }
 .filter-bar { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
 .filter-btn { padding:4px 12px; border-radius:6px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-size:0.8rem; }
 .filter-btn.active { background:var(--accent); color:white; border-color:var(--accent); }
@@ -174,18 +242,206 @@ footer a { color:var(--accent); text-decoration:none; }
 .session-attendees { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:6px; margin-top:8px; }
 .session-attendee { padding:5px 10px; border-radius:6px; font-size:0.85rem; display:flex; align-items:center; gap:6px; background:var(--surface); border:1px solid var(--border); }
 .session-absent { opacity:0.5; }
-.speaker-bar { display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:0.85rem; }
-.speaker-bar-fill { height:20px; border-radius:4px; background:var(--accent); opacity:0.7; min-width:2px; }
-.speaker-name { min-width:160px; text-align:right; }
+.speakers-grid { /* single column flow */ }
+.speaker-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 3px 0;
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+.speaker-bar.hidden { display: none; }
+.show-more-speakers {
+  margin-top: 10px;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-family: inherit;
+  border-radius: 6px;
+  width: 100%;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.show-more-speakers:hover { background: rgba(99,102,241,0.06); color: var(--accent); border-color: var(--accent); }
+
+/* === Mobile UI optimizations === */
+/* Połowa userów na Androidzie (typowo 360-414px viewport). Default desktop
+ * layout zostaje, mobile dostaje compact wersję. Tab-bar horizontal scroll,
+ * grid layouts schodzą do 1-2 columns, padding zmniejszony, fonty ~80%. */
+@media (max-width: 480px) {
+  .container { padding: 12px; }
+
+  /* Header: kompaktowy, h1 mniejszy. Kadencja-bar inline pill style.
+   * Auth + theme buttons są przeniesione do topbara, więc header w mobile
+   * to tylko tytuł + subtitle (jeden div, full width). */
+  header { padding: 12px 0 8px; margin-bottom: 14px; gap: 6px; }
+  header h1 { font-size: 1.35rem; line-height: 1.2; }
+  header p { font-size: 0.78rem; line-height: 1.35; }
+  .kadencja-bar { padding: 2px; }
+  .kadencja-btn { padding: 5px 10px; font-size: 0.75rem; }
+
+  /* Stats grid: 2 columns × 2 wiersze, kompaktowe */
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 18px; }
+  .stat-card { padding: 12px 13px; }
+  .stat-card .value { font-size: 1.5rem; }
+  .stat-card .label { font-size: 0.72rem; }
+
+  /* Section spacing */
+  .section { margin-bottom: 22px; }
+  .section h2 { font-size: 1.05rem; margin-bottom: 12px; }
+
+  /* Tab bar: dwa tiery wizualnie wyraźnie odróżnione.
+   * Primary tier: 4 tabs w jednym wierszu (grid 4-col), kompaktowe.
+   * Tekst może się zawijać na 2 linie ("Ranking radnych" = 2 wiersze).
+   * Secondary tier: flex-wrap z mniejszymi pill buttonami.
+   * Subtle border separator między tierami. */
+  .tab-bar { gap: 10px; margin-bottom: 14px; }
+  .tab-tier--primary {
+    display: flex;
+    gap: 5px;
+  }
+  .tab-tier--primary .tab {
+    flex: 1;
+    white-space: normal;
+    padding: 8px 4px;
+    font-size: 0.75rem;
+    line-height: 1.15;
+    min-height: 42px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tab-tier--secondary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: center;
+    padding-top: 6px;
+    border-top: 1px solid var(--border);
+  }
+  .tab-tier--secondary .tab { padding: 6px 10px; font-size: 0.75rem; }
+
+  /* Parent row z kadencja-bar — na mobile pod tab-barem, align right.
+   * Belka separatora (border-bottom) zachowana, ale nieco mniej padding. */
+  .tab-row { flex-direction: column; align-items: stretch; gap: 10px; padding-bottom: 10px; margin-bottom: 16px; }
+  .tab-row .kadencja-bar { align-self: flex-end; }
+
+  /* Filter bar: też scrollable horizontal */
+  .filter-bar { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px; }
+  .filter-bar::-webkit-scrollbar { display: none; }
+  .filter-btn { white-space: nowrap; flex-shrink: 0; }
+
+  /* Tabele: mniejszy font, mniejszy padding, scroll horizontal w wrapperze */
+  table { font-size: 0.8rem; }
+  th, td { padding: 7px 8px; }
+  th { font-size: 0.7rem; letter-spacing: 0.03em; }
+
+  /* Profile page */
+  .profile-back { padding: 6px 0; min-height: 36px; }
+  .profile-header { gap: 12px; margin-bottom: 18px; }
+  .profile-avatar { width: 56px; height: 56px; font-size: 1.4rem; }
+  .profile-info h2 { font-size: 1.2rem; }
+  .profile-info .subtitle { font-size: 0.82rem; }
+  .profile-meta { grid-template-columns: 1fr; gap: 10px; margin-bottom: 18px; }
+  .profile-meta-card { padding: 12px; }
+  .profile-metrics { grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 18px; }
+  .metric-card { padding: 10px; }
+  .metric-card .metric-value { font-size: 1.3rem; }
+  .metric-card .metric-label { font-size: 0.65rem; }
+
+  /* Komisje: jedna kolumna (300px minmax > 320px content) */
+  .komisje-grid { grid-template-columns: 1fr; gap: 10px; }
+  .komisja-card { padding: 14px; }
+  .komisja-card-title { font-size: 0.9rem; margin-bottom: 10px; }
+  .komisja-stat-value { font-size: 1rem; }
+
+  /* Vote detail: imienne głosowania 2 col zamiast 1, mniejszy padding */
+  .vote-names-grid { grid-template-columns: repeat(2, 1fr); gap: 5px; }
+  .vote-name-item { font-size: 0.75rem; padding: 4px 6px; gap: 4px; }
+  .vote-result-bar { height: 24px; }
+
+  /* Session detail: attendees 2 col, speaker bar węższy */
+  .session-attendees { grid-template-columns: repeat(2, 1fr); gap: 5px; }
+  .session-attendee { font-size: 0.78rem; padding: 4px 7px; }
+  .speaker-bar { grid-template-columns: minmax(0, 120px) 1fr auto; font-size: 0.72rem; gap: 6px; }
+
+  /* Profile cards grid: 1 col */
+
+  /* Chart wrap padding mniejszy */
+  .chart-wrap { padding: 12px; }
+  canvas { max-height: 480px !important; }
+
+  /* Theme toggle: ikona only na mobile, ukryj label "Ciemny/Jasny" */
+  .theme-toggle { padding: 5px 8px; font-size: 0.78rem; }
+  .theme-toggle #theme-label { display: none; }
+
+  /* Auth button kompaktowy na mobile */
+  .auth-btn { padding: 5px 10px; font-size: 0.78rem; }
+
+  /* User chip kompaktowy na mobile: imię się skraca */
+  .user-chip { font-size: 0.78rem; padding: 3px 8px 3px 3px; gap: 6px; }
+  .user-chip .user-avatar { width: 22px; height: 22px; font-size: 0.7rem; }
+  .user-chip #user-name { max-width: 100px; }
+}
+
+/* Tablet (481-768px): 2-3 column grids zamiast 1 */
+@media (min-width: 481px) and (max-width: 768px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .profile-metrics { grid-template-columns: repeat(3, 1fr); }
+  .komisje-grid { grid-template-columns: 1fr; }
+  /* Primary tier: 4 buttony w jednym wierszu, każdy flex 1/4 width */
+  .tab-tier--primary { gap: 6px; }
+  .tab-tier--primary .tab { flex: 1; min-width: 110px; padding: 9px 12px; text-align: center; }
+  /* Secondary tier: mniejsze, w drugim wierszu pod primary, subtle border */
+  .tab-tier--secondary { padding-top: 8px; border-top: 1px solid var(--border); gap: 4px; }
+}
+.speaker-name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.speaker-name .club {
+  font-size: 0.65rem;
+  padding: 1px 5px;
+  flex-shrink: 0;
+}
+.speaker-name .name-link {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.speaker-bar-track {
+  position: relative;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.speaker-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+  min-width: 2px;
+}
+.speaker-meta {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+  color: var(--muted);
+  text-align: right;
+  min-width: 130px;
+}
+.speaker-meta strong { color: var(--text); font-weight: 500; }
 
 /* Profile grid for listing all councilors */
-.profiles-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:12px; }
-.profile-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px; cursor:pointer; transition:border-color 0.2s; display:flex; gap:12px; align-items:center; }
-.profile-card:hover { border-color:var(--accent); }
-.profile-card-avatar { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.1rem; font-weight:700; color:white; flex-shrink:0; }
-.profile-card-info { flex:1; min-width:0; }
-.profile-card-name { font-weight:600; font-size:0.95rem; }
-.profile-card-detail { color:var(--muted); font-size:0.8rem; }
 
 /* Vote categories */
 .cat-pill { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:500; white-space:nowrap; letter-spacing:0.02em; }
@@ -212,6 +468,40 @@ footer a { color:var(--accent); text-decoration:none; }
 .theme-toggle { background:none; border:1px solid var(--border); border-radius:8px; padding:6px 10px; cursor:pointer; color:var(--muted); font-size:0.85rem; font-family:inherit; display:inline-flex; align-items:center; gap:4px; transition:border-color 0.2s, color 0.2s; }
 .theme-toggle:hover { border-color:var(--accent); color:var(--accent); }
 
+/* Auth UI: button + user chip + modal */
+.header-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.auth-btn { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:6px 14px; cursor:pointer; font-size:0.85rem; font-family:inherit; font-weight:500; transition:opacity 0.2s; }
+.auth-btn:hover { opacity:0.9; }
+.user-chip { display:inline-flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:4px 10px 4px 4px; font-size:0.85rem; color:var(--text); }
+.user-chip .user-avatar { width:24px; height:24px; border-radius:50%; background:var(--accent); color:#fff; display:inline-flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:600; }
+.user-chip .user-logout { background:none; border:none; color:var(--muted); cursor:pointer; padding:0 2px; font-size:1rem; line-height:1; font-family:inherit; }
+.user-chip .user-logout:hover { color:var(--accent); }
+
+.modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:1000; padding:20px; }
+.auth-modal { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:28px; width:100%; max-width:380px; position:relative; box-shadow:0 10px 40px rgba(0,0,0,0.2); }
+.modal-close { position:absolute; top:12px; right:12px; background:none; border:none; font-size:1.5rem; line-height:1; color:var(--muted); cursor:pointer; padding:4px 8px; }
+.modal-close:hover { color:var(--accent); }
+.auth-tabs { display:flex; gap:0; margin-bottom:20px; border-bottom:1px solid var(--border); }
+.auth-tab { background:none; border:none; padding:10px 16px; cursor:pointer; color:var(--muted); font-size:0.95rem; font-family:inherit; font-weight:500; border-bottom:2px solid transparent; margin-bottom:-1px; transition:color 0.2s, border-color 0.2s; }
+.auth-tab.active { color:var(--text); border-bottom-color:var(--accent); }
+.auth-tab:hover:not(.active) { color:var(--text); }
+.google-btn { width:100%; background:#fff; color:#1f1f1f; border:1px solid #dadce0; border-radius:8px; padding:10px 16px; cursor:pointer; font-size:0.95rem; font-family:inherit; font-weight:500; display:flex; align-items:center; justify-content:center; gap:10px; transition:box-shadow 0.2s; }
+.google-btn:hover { box-shadow:0 1px 3px rgba(60,64,67,0.15); }
+.auth-sep { display:flex; align-items:center; gap:10px; color:var(--muted); font-size:0.8rem; margin:16px 0; }
+.auth-sep::before, .auth-sep::after { content:""; flex:1; height:1px; background:var(--border); }
+.auth-form { display:flex; flex-direction:column; gap:10px; }
+.auth-form input { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:10px 12px; font-size:0.95rem; color:var(--text); font-family:inherit; }
+.auth-form input:focus { outline:none; border-color:var(--accent); }
+.auth-form button[type="submit"] { background:var(--accent); color:#fff; border:none; border-radius:8px; padding:11px 16px; cursor:pointer; font-size:0.95rem; font-family:inherit; font-weight:500; margin-top:4px; transition:opacity 0.2s; }
+.auth-form button[type="submit"]:hover { opacity:0.9; }
+.auth-form button[type="submit"]:disabled { opacity:0.5; cursor:wait; }
+.auth-error { background:rgba(220,38,38,0.1); color:#dc2626; border:1px solid rgba(220,38,38,0.3); border-radius:6px; padding:8px 12px; font-size:0.85rem; }
+.auth-success { background:rgba(34,197,94,0.1); color:#16a34a; border:1px solid rgba(34,197,94,0.3); border-radius:6px; padding:8px 12px; font-size:0.85rem; }
+.auth-footer { margin-top:14px; text-align:center; font-size:0.85rem; }
+.auth-footer a { color:var(--muted); text-decoration:none; }
+.auth-footer a:hover { color:var(--accent); text-decoration:underline; }
+.auth-banner { position:fixed; top:16px; left:50%; transform:translateX(-50%); background:#16a34a; color:#fff; padding:10px 20px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.2); z-index:1100; font-size:0.9rem; }
+
 /* Compare */
 .compare-bar { position:fixed; bottom:0; left:0; right:0; background:var(--surface); border-top:2px solid var(--accent); padding:12px 20px; display:flex; align-items:center; justify-content:center; gap:16px; z-index:100; font-size:0.9rem; }
 .compare-bar button { padding:8px 20px; border-radius:8px; border:none; cursor:pointer; font-size:0.85rem; font-weight:600; font-family:inherit; }
@@ -235,32 +525,49 @@ footer a { color:var(--accent); text-decoration:none; }
 </style>
 </head>
 <body>
+<nav class="topbar" aria-label="Główna nawigacja">
+  <a class="topbar-logo" href="https://radoskop.pl/">Rado<span>skop</span></a>
+  <div class="topbar-nav">
+    <a href="https://radoskop.eu/reports/">Raporty</a>
+    <a href="https://radoskop.eu/business/">Business</a>
+  </div>
+  <div class="topbar-actions">
+    <button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
+    <div class="user-chip" id="user-chip" style="display:none">
+      <span class="user-avatar" id="user-avatar" title=""></span>
+      <span id="user-name" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+      <button class="user-logout" onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj">×</button>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny">
+      <span id="theme-icon">🌙</span> <span id="theme-label">Ciemny</span>
+    </button>
+  </div>
+</nav>
 <div class="container">
   <header>
     <div onclick="showMain()" style="cursor:pointer">
       <h1>Rado<span>skop</span> Pomorskie</h1>
       <p>Jak głosują radni Miasta Pomorskiego? Dane z protokołów BIP.</p>
     </div>
-    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny">
-      <span id="theme-icon">🌙</span> <span id="theme-label">Ciemny</span>
-    </button>
   </header>
 
   <div id="loading">Ładowanie danych...</div>
 
   <!-- Main dashboard view -->
   <div id="app" style="display:none">
-    <div class="stats-grid" id="stats-grid"></div>
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:20px">
+    <div class="tab-row" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding-bottom:14px;border-bottom:1px solid var(--border);margin-bottom:22px">
       <div class="tab-bar" id="tab-bar" style="margin-bottom:0">
-        <button class="tab active" data-tab="ranking">Ranking radnych</button>
-        <button class="tab" data-tab="profiles">Profile radnych</button>
-        <button class="tab" data-tab="sessions">Sesje</button>
-        <button class="tab" data-tab="votes">Głosowania</button>
-        <button class="tab" data-tab="similarity">Kto z kim głosuje</button>
-        <button class="tab" data-tab="interpelacje">Interpelacje</button>
-        <button class="tab tab-budget" data-tab="budget">Budżet</button>
+        <div class="tab-tier tab-tier--primary">
+          <button class="tab active" data-tab="ranking">Ranking radnych</button>
+          <button class="tab" data-tab="budget">Budżet</button>
+          <button class="tab" data-tab="votes">Głosowania</button>
+          <button class="tab" data-tab="komisje">Komisje</button>
+        </div>
+        <div class="tab-tier tab-tier--secondary">
+          <button class="tab tab-secondary" data-tab="interpelacje">Interpelacje</button>
+          <button class="tab tab-secondary" data-tab="sessions">Sesje</button>
         <a href="/news/" class="tab" style="text-decoration:none">Aktualności</a>
+        </div>
       </div>
       <div class="kadencja-bar" id="kadencja-bar"></div>
     </div>
@@ -287,11 +594,6 @@ footer a { color:var(--accent); text-decoration:none; }
           <tbody></tbody>
         </table>
       </div>
-    </div>
-
-    <div id="tab-profiles" class="section" style="display:none">
-      <div class="filter-bar" id="profiles-club-filter"></div>
-      <div class="profiles-grid" id="profiles-grid"></div>
     </div>
 
     <div id="tab-sessions" class="section" style="display:none">
@@ -329,11 +631,10 @@ footer a { color:var(--accent); text-decoration:none; }
       <div id="votes-grouped"></div>
     </div>
 
-    <div id="tab-similarity" class="section" style="display:none">
-      <h2>Najczęściej głosują tak samo</h2>
-      <div id="sim-top"></div>
-      <h2 style="margin-top:30px">Najrzadziej głosują tak samo</h2>
-      <div id="sim-bottom"></div>
+    <div id="tab-komisje" class="section" style="display:none">
+      <div id="komisje-content">
+        <p style="color:var(--muted);padding:20px 0">Ładowanie komisji...</p>
+      </div>
     </div>
 
     <div id="tab-interpelacje" class="section" style="display:none">
@@ -358,34 +659,35 @@ footer a { color:var(--accent); text-decoration:none; }
   <!-- Session detail view -->
   <div id="session-view" style="display:none"></div>
 
-  <!-- Privacy policy view -->
-  <div id="privacy-view" style="display:none"></div>
-
-  <!-- Terms of service view -->
-  <div id="terms-view" style="display:none"></div>
+  <!-- Impressum / provider identification view (only shown for DE/CS instances) -->
+  <div id="impressum-view" style="display:none"></div>
 
   <!-- Reports catalog view -->
   <div id="reports-view" style="display:none"></div>
 
   <footer>
     <div style="margin-bottom:10px">
-      <a href="https://radoskop.pl">Radoskop</a> · <a href="https://radoskop.pl#cities">wszystkie sejmiki i miasta</a>
+      <a href="{{ROOT_URL}}">Radoskop</a> · <a href="{{ROOT_URL}}#cities">wszystkie miasta</a>
+    </div>
+    <div style="margin-bottom:10px;color:var(--muted);font-size:0.8rem">
+      Polecane (projekt zewnętrzny): <a href="https://www.tygodniksejmowy.pl/" target="_blank" rel="noopener">Tygodnik Sejmowy</a> — analiza prac Sejmu RP
     </div>
     Dane źródłowe: <a href="https://bip.pomorskie.eu/" target="_blank">BIP Urząd Marszałkowski Województwa Pomorskiego</a>.
     Kod: <a href="https://github.com/radoskoppl/radoskop" target="_blank">GitHub</a> (AGPL-3.0).
-    <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/pricing/">Cennik</a> · <a href="https://radoskop.eu/business/">Business</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">Regulamin</a>
+    <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/pricing/">Cennik</a> · <a href="https://radoskop.eu/business/">Business</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">Regulamin</a>{{IMPRESSUM_FOOTER_LINK}}
+    {{PRESSEKODEX_NOTICE}}
   </footer>
 
 </div>
 
 <script>
 // --- Cross-subdomain cookie helpers ---
-// Theme + cookie consent must persist across {slug}.radoskop.pl AND radoskop.pl,
-// so we set them with Domain=.radoskop.pl. Local fallback (e.g. dev on localhost)
-// drops the Domain attribute since cookies with explicit Domain don't work
-// outside that domain.
+// Theme + cookie consent must persist across {slug}.radoskop.{pl|eu} AND
+// the root, so we set Domain=.radoskop.pl OR .radoskop.eu zależnie od TLD
+// hosta. Local fallback (e.g. dev on localhost) drops Domain attribute.
 function _radoskopCookieDomain() {
-  return /(^|\.)radoskop\.pl$/i.test(location.hostname) ? '; Domain=.radoskop.pl' : '';
+  var m = location.hostname.match(/(?:^|\.)radoskop\.(pl|eu)$/i);
+  return m ? '; Domain=.radoskop.' + m[1] : '';
 }
 function radoskopGetCookie(name) {
   var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)'));
@@ -393,13 +695,14 @@ function radoskopGetCookie(name) {
 }
 function radoskopSetCookie(name, value, daysToLive) {
   var d = new Date(); d.setTime(d.getTime() + (daysToLive || 365) * 86400000);
+  var secure = location.protocol === 'https:' ? '; Secure' : '';
   document.cookie = name + '=' + encodeURIComponent(value)
     + '; expires=' + d.toUTCString()
-    + '; path=/; SameSite=Lax'
+    + '; path=/; SameSite=Lax' + secure
     + _radoskopCookieDomain();
 }
 
-// Theme management (shared across all radoskop.pl subdomains)
+// Theme management (shared across all radoskop.{pl,eu} subdomains)
 function getTheme() {
   // Cookie first (cross-subdomain). LocalStorage second (legacy fallback —
   // pages migrated from old per-origin storage). System pref last.
@@ -434,13 +737,20 @@ applyTheme(getTheme());
 const CITY_SLUG = location.hostname.split('.')[0] || 'sopot';
 const API_BASE = (window.RADOSKOP_API || 'https://api.radoskop.pl') + '/api/' + CITY_SLUG;
 
+// Capability flags wstrzykiwane z config.json przez generate_site.py.
+// HAS_VOTING_DATA = false dla miast bez imiennych głosowań (np. Berlin —
+// Hammelsprung jest anonimowy). Wtedy zamiast "Głosowań" pokazujemy
+// "Wystąpień" / "Słów" z protokołów. HAS_SPEAKER_ACTIVITY = true dla
+// miast które parsują stenogramy/Plenarprotokolle (Berlin, Gdańsk).
+const HAS_VOTING_DATA = {{HAS_VOTING_DATA}};
+const HAS_SPEAKER_ACTIVITY = {{HAS_SPEAKER_ACTIVITY}};
+
 let RAW = null;
 let PROFILES = null;
 let K = null;
 let currentKid = null;
 let currentSort = { key: 'frekwencja', asc: false };
 let clubFilter = 'all';
-let profileClubFilter = 'all';
 let currentSession = 'all';
 let currentCatFilter = 'all';
 let voteSearchQuery = '';
@@ -535,8 +845,12 @@ const _kadCache = {};
 
 async function loadKadencja(kid) {
   if (_kadCache[kid]) return _kadCache[kid];
-  // Support legacy single-file format (RAW.kadencje contains full objects)
-  const existing = RAW.kadencje.find(k => k.id === kid && k.councilors);
+  // Support legacy single-file format (RAW.kadencje contains full objects).
+  // Wymagamy też vote_stats — niektóre starsze API responses (np. gdansk)
+  // zwracają councilors ale bez vote_stats, przez co pre-cache traktowałby
+  // niekompletny stub jako pełne dane i renderVotesTable wyświetlał "Brak
+  // danych". Wymuszamy fetch z /kadencja/<kid> żeby dostać pełen vote_stats.
+  const existing = RAW.kadencje.find(k => k.id === kid && k.councilors && k.vote_stats);
   if (existing) { _kadCache[kid] = existing; return existing; }
   const resp = await fetch(API_BASE + '/kadencja/' + kid);
   const kad = await resp.json();
@@ -594,10 +908,42 @@ async function init() {
         return;
       }
     }
+    if (path === '/vote' || path === '/vote/') {
+      // /vote/ bez ID → przekierowanie do najnowszego głosowania
+      // z ostatniej sesji aktualnej kadencji. (Wcześniej showVote('')
+      // wywalał stronę "Nie znaleziono głosowania" co Google Ads
+      // oznaczał jako Destination not working.)
+      selectKadencjaQuiet(initialKid);
+      try {
+        const resp = await fetch(API_BASE + '/kadencja/' + initialKid + '/votes?per_page=1');
+        const d = await resp.json();
+        const v = (d.items || [])[0];
+        if (v && v.id) {
+          showVote(v.id);
+          navigateTo('/vote/' + v.id + '/', true);
+        } else {
+          activateTab('votes');
+          navigateTo(path, true);
+        }
+      } catch(e) {
+        activateTab('votes');
+        navigateTo(path, true);
+      }
+      return;
+    }
     if (path.startsWith('/vote/')) {
       selectKadencjaQuiet(initialKid);
       const vid = path.replace('/vote/', '');
       showVote(vid);
+      navigateTo(path, true);
+      return;
+    }
+    if (path === '/session' || path === '/session/') {
+      // /session/ bez numeru → lista sesji aktualnej kadencji.
+      // (Wcześniej showSession('') wywalał stronę "Nie znaleziono sesji",
+      // co Google Ads oznaczał jako Destination not working.)
+      selectKadencjaQuiet(initialKid);
+      activateTab('sessions');
       navigateTo(path, true);
       return;
     }
@@ -618,14 +964,52 @@ async function init() {
       navigateTo(path, true);
       return;
     }
+    if (path === '/impressum' || path === '/impressum/') {
+      showImpressum();
+      navigateTo(path, true);
+      return;
+    }
     if (path === '/reports' || path === '/reports/') {
       showReports();
       navigateTo(path, true);
       return;
     }
+    if (path === '/business' || path === '/business/' || path === '/premium' || path === '/premium/') {
+      // Business offer hostowany jest jako jedna kanoniczna strona na apex
+      // międzynarodowym radoskop.eu/business/. Per-city subdomena nie ma
+      // własnej oferty, przekierowujemy z zachowaniem ?from/druk/komisja
+      // w query string. Stary slug /premium/ też tutaj wpada (rebrand
+      // 2026-05-13). Worker robi 301 na poziomie edge, ten SPA fallback
+      // łapie tylko gdy worker by minął.
+      var search = location.search || '';
+      location.replace('https://radoskop.eu/business/' + search);
+      return;
+    }
     if (path === '/interpellations' || path === '/interpellations/') {
       selectKadencjaQuiet(initialKid);
       activateTab('interpelacje');
+      navigateTo(path, true);
+      return;
+    }
+    if (path === '/commissions' || path === '/commissions/') {
+      selectKadencjaQuiet(initialKid);
+      activateTab('komisje');
+      navigateTo(path, true);
+      return;
+    }
+    if (path.startsWith('/commission/')) {
+      selectKadencjaQuiet(initialKid);
+      const slug = decodeURIComponent(path.replace('/commission/', '').replace(/\/$/, ''));
+      showKomisja(slug);
+      return;
+    }
+    if (path === '/news' || path === '/news/') {
+      // /news/ to statyczna strona z listą wpisów (SEO content
+      // wstrzyknięty przez generate_feed.py). Nie ładujemy SPA appki —
+      // pokazujemy treść i kończymy init bez przekierowywania.
+      document.getElementById('loading').style.display = 'none';
+      const sc = document.getElementById('seo-content');
+      if (sc) sc.style.display = 'block';
       navigateTo(path, true);
       return;
     }
@@ -642,7 +1026,10 @@ async function init() {
       if (kid) {
         selectKadencjaQuiet(kid);
         activateTab(tab);
-        navigateTo(path, true);
+        // Jeśli URL miał "undefined" albo nieznany tab segment, przepisz
+        // na czysty mainPath() zamiast zostawiać brzydki path w pasku.
+        const cleanPath = (!SLUG_TABS[parts[1]]) ? mainPath() : path;
+        navigateTo(cleanPath, true);
         return;
       }
     }
@@ -670,7 +1057,6 @@ function _applyKadencja(kid) {
     b.classList.toggle('active', b.dataset.kid === kid);
   });
   clubFilter = 'all';
-  profileClubFilter = 'all';
   currentSession = 'all';
   currentCatFilter = 'all';
   render();
@@ -687,8 +1073,12 @@ async function selectKadencja(kid) {
 }
 
 function activateTab(tabName) {
+  const allTabs = ['ranking','sessions','votes','komisje','interpelacje','budget'];
+  // Guard: invalid tabName cofamy do ranking, żeby nie zostawić currentTab jako undefined.
+  if (!tabName || tabName === 'undefined' || tabName === 'null' || !allTabs.includes(tabName)) {
+    tabName = 'ranking';
+  }
   trackEvent('view_tab', {tab_name: tabName});
-  const allTabs = ['ranking','profiles','sessions','votes','similarity','interpelacje','budget'];
   currentTab = tabName;
   document.querySelectorAll('.tab').forEach(t => {
     t.classList.toggle('active', t.dataset.tab === tabName);
@@ -697,8 +1087,9 @@ function activateTab(tabName) {
     const el = document.getElementById('tab-'+t);
     if (el) el.style.display = (t === tabName) ? 'block' : 'none';
   });
-  document.getElementById('kadencja-bar').style.display = (tabName === 'budget' || tabName === 'interpelacje') ? 'none' : '';
+  document.getElementById('kadencja-bar').style.display = (tabName === 'budget' || tabName === 'interpelacje' || tabName === 'komisje') ? 'none' : '';
   if (tabName === 'interpelacje') renderInterpelacje();
+  if (tabName === 'komisje') renderKomisjeList();
   setTitle(TAB_TITLES[tabName] || '');
 }
 
@@ -708,19 +1099,17 @@ function hideAllViews() {
   document.getElementById('compare-view').style.display = 'none';
   document.getElementById('vote-view').style.display = 'none';
   document.getElementById('session-view').style.display = 'none';
-  document.getElementById('privacy-view').style.display = 'none';
-  document.getElementById('terms-view').style.display = 'none';
   document.getElementById('reports-view').style.display = 'none';
 }
 
 let currentTab = 'ranking';
-const TAB_SLUGS = {ranking:'ranking',profiles:'radni',sessions:'sesje',votes:'glosowania',similarity:'podobienstwo',interpelacje:'interpelacje',budget:'budzet'};
+const TAB_SLUGS = {ranking:'ranking',sessions:'sessions',votes:'votes',komisje:'commissions',interpelacje:'interpellations',budget:'budget'};
 const SLUG_TABS = Object.fromEntries(Object.entries(TAB_SLUGS).map(([k,v])=>[v,k]));
 const KAD_SLUGS = {'2018-2023':'viii','2024-2029':'ix'};
 const SLUG_KADS = Object.fromEntries(Object.entries(KAD_SLUGS).map(([k,v])=>[v,k]));
 
 const BASE_TITLE = 'Radoskop Sejmik Pomorskie. Jak głosują radni?';
-const TAB_TITLES = {ranking:'Ranking radnych',profiles:'Profile radnych',sessions:'Sesje',votes:'Głosowania',similarity:'Podobieństwo',interpelacje:'Interpelacje',budget:'Budżet'};
+const TAB_TITLES = {ranking:'Ranking radnych',sessions:'Sesje',votes:'Głosowania',komisje:'Komisje',interpelacje:'Interpelacje',budget:'Budżet'};
 function setTitle(subtitle) {
   document.title = subtitle ? subtitle + ' \u2013 ' + BASE_TITLE : BASE_TITLE;
 }
@@ -771,11 +1160,22 @@ function setOgMeta(opts) {
 function mainPath(tab, kid) {
   tab = tab || currentTab;
   kid = kid || currentKid;
+  // Guard: jeśli tab/kid puste albo literal "undefined"/"null", użyj defaults.
+  // Zapobiega URL-om typu /term/ix/undefined/.
+  const validTabs = ['ranking','sessions','votes','komisje','interpelacje','budget'];
+  if (!tab || tab === 'undefined' || tab === 'null' || !validTabs.includes(tab)) {
+    tab = 'ranking';
+  }
+  const defaultKid = (RAW && RAW.default_kadencja) || '2024-2029';
+  if (!kid || kid === 'undefined' || kid === 'null') {
+    kid = defaultKid;
+  }
   if (tab === 'budget') return '/budget/';
   if (tab === 'interpelacje') return '/interpellations/';
+  if (tab === 'komisje') return '/commissions/';
   const kadSlug = KAD_SLUGS[kid] || kid;
   const tabSlug = TAB_SLUGS[tab] || tab;
-  if (tab === 'ranking' && kid === (RAW.default_kadencja || '2024-2029')) return '/';
+  if (tab === 'ranking' && kid === defaultKid) return '/';
   return '/term/' + kadSlug + '/' + tabSlug + '/';
 }
 
@@ -860,265 +1260,82 @@ function sessionLinkStop(number, content) {
 }
 
 // --- Privacy policy page ---
+// Single canonical URL: https://radoskop.eu/privacy/. Subdomeny miast (PL i
+// zagraniczne) NIE renderują własnej polityki w SPA. Funkcja jest cienkim
+// redirectem na apex .eu, treść żyje wyłącznie w radoskop-premium/templates/
+// legal/. Bilingual toggle (?lang=en) obsługiwany przez stronę apex.
 function showPrivacy() {
-  hideAllViews();
-  var el = document.getElementById('privacy-view');
-  el.style.display = 'block';
-  el.innerHTML = '<div style="max-width:800px;margin:0 auto;padding:20px 0">'
-    + '<button class="profile-back" onclick="showMain()">← Strona główna</button>'
-    + '<h1 style="font-size:1.5rem;margin:20px 0 10px">Polityka prywatności</h1>'
-    + '<p style="color:var(--muted);margin-bottom:20px">Ostatnia aktualizacja: 1 kwietnia 2026</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">1. Administrator danych</h2>'
-    + '<p>Administratorem danych osobowych jest Patryk Orwat (kontakt: patrykorwat@gmail.com). '
-    + 'Serwis Radoskop działa pod domenami radoskop.pl oraz subdomenami miast (np. gdansk.radoskop.pl).</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">2. Jakie dane zbieramy</h2>'
-    + '<p>Serwis nie wymaga rejestracji ani logowania. Do analizy ruchu używamy Umami, narzędzia analitycznego hostowanego na własnym serwerze pod adresem stats.radoskop.pl. Zbieramy:</p>'
-    + '<ul style="margin:8px 0 8px 24px"><li>Przybliżona lokalizacja (kraj, miasto)</li>'
-    + '<li>Typ urządzenia, przeglądarka, system operacyjny</li>'
-    + '<li>Odwiedzone podstrony i czas wizyty</li>'
-    + '<li>Źródło ruchu (np. wyszukiwarka, link)</li></ul>'
-    + '<p>Umami nie używa plików cookies ani trwałych identyfikatorów. Identyfikator wizyty to skrót (hash) adresu IP i nagłówka User Agent, rotowany codziennie i niemożliwy do odwrócenia. Adres IP nie jest zapisywany w pełnej formie.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">3. Pliki cookies</h2>'
-    + '<p>Serwis ustawia tylko jeden plik cookie funkcjonalny:</p>'
-    + '<ul style="margin:8px 0 8px 24px">'
-    + '<li><strong>radoskop_theme</strong> (1 rok) — zapamiętuje wybór jasnego lub ciemnego motywu strony</li></ul>'
-    + '<p>Nie używamy cookies reklamowych ani analitycznych, dlatego nie wyświetlamy banera zgody. Możesz wyczyścić cookies w ustawieniach przeglądarki w dowolnym momencie.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">4. Reklamy</h2>'
-    + '<p>Serwis Radoskop nie wyświetla reklam ani nie korzysta z sieci reklamowych.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">5. Cel i podstawa prawna przetwarzania</h2>'
-    + '<p>Dane analityczne służą do oceny popularności podstron, doboru priorytetów rozwoju Serwisu i mierzenia wpływu publikacji. '
-    + 'Podstawą prawną jest art. 6 ust. 1 lit. f RODO (uzasadniony interes administratora w zakresie analizy ruchu) oraz art. 6 ust. 1 lit. a RODO (zgoda na pliki cookies funkcjonalne, wyrażana poprzez korzystanie z Serwisu).</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">6. Udostępnianie danych</h2>'
-    + '<p>Dane analityczne pozostają na infrastrukturze Administratora i nie są udostępniane podmiotom trzecim. '
-    + 'Nie sprzedajemy danych osobowych użytkowników.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">7. Dane publiczne radnych</h2>'
-    + '<p>Serwis prezentuje publicznie dostępne dane z Biuletynów Informacji Publicznej (BIP) dotyczące działalności radnych miejskich: '
-    + 'wyniki głosowań, frekwencję, interpelacje. Są to informacje publiczne udostępniane na podstawie ustawy o dostępie do informacji publicznej.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">8. Twoje prawa</h2>'
-    + '<p>Na podstawie RODO przysługuje Ci prawo do: dostępu do swoich danych, ich sprostowania, usunięcia, ograniczenia przetwarzania, '
-    + 'przenoszenia danych, sprzeciwu wobec przetwarzania oraz cofnięcia zgody w dowolnym momencie (przez usunięcie cookies lub kontakt z administratorem). '
-    + 'Masz również prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (PUODO).</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">9. Kontakt</h2>'
-    + '<p>W sprawach dotyczących prywatności i danych osobowych: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a></p>'
-
-    + '</div>';
-  navigateTo('/polityka-prywatnosci/');
-  setTitle('Polityka prywatności');
-  setOgMeta({
-    title: 'Polityka prywatności — Radoskop Pomorskie',
-    description: 'Polityka prywatności i informacje o plikach cookies serwisu Radoskop.',
-    url: 'https://pomorskie.radoskop.pl/polityka-prywatnosci/'
-  });
-  window.scrollTo(0, 0);
+  trackEvent('click_privacy_redirect_to_apex', {});
+  // Locale czytamy z <html lang> (apply_locale w generate_site.py podmienia
+  // go na "de"/"cs"/"en" dla miast non-PL). Tylko "pl" zostaje bez query.
+  var lang = (document.documentElement.lang || 'pl').toLowerCase();
+  var suffix = lang === 'pl' ? '' : '?lang=en';
+  location.assign('https://radoskop.eu/privacy/' + suffix);
 }
+
+// --- Business landing page ---
+// Single canonical URL: https://radoskop.eu/business/. Per-city subdomeny
+// (i radoskop.pl apex) NIE mają własnej oferty. Wszystko leci na .eu, gdzie
+// też siedzi auth/account/paywall infrastructure. Funkcja zostawiona jako
+// alias, linki z CTA wołają showBusiness({...}) i dostają redirect na apex
+// .eu z zachowanym query string. Worker robi 301 na poziomie edge dla
+// Googlebota, ten SPA fallback łapie gdy user kliknie CTA bez full page reload.
+function showBusiness(opts) {
+  opts = opts || {};
+  trackEvent('click_business_redirect_to_apex', { from: opts.from || '', druk: opts.druk || '', komisja: opts.komisja || '' });
+  var qs = [];
+  if (opts.from) qs.push('from=' + encodeURIComponent(opts.from));
+  if (opts.druk) qs.push('druk=' + encodeURIComponent(opts.druk));
+  if (opts.komisja) qs.push('komisja=' + encodeURIComponent(opts.komisja));
+  var search = qs.length ? '?' + qs.join('&') : '';
+  location.assign('https://radoskop.eu/business/' + search);
+}
+// Backward-compat alias (jeśli stary kod jeszcze gdzieś zostawił showPremium)
+var showPremium = showBusiness;
 
 // --- Terms of service page ---
+// Single canonical URL: https://radoskop.eu/terms/. Cała treść regulaminu
+// żyje w radoskop-premium/templates/legal/, bilingual toggle (?lang=en)
+// obsługiwany na apex. AGPL repo nie zawiera business content (cen,
+// klauzul subskrypcyjnych), tylko cienki redirect.
 function showTerms() {
+  trackEvent('click_terms_redirect_to_apex', {});
+  // Locale czytamy z <html lang> (apply_locale w generate_site.py podmienia
+  // go na "de"/"cs"/"en" dla miast non-PL). Tylko "pl" zostaje bez query.
+  var lang = (document.documentElement.lang || 'pl').toLowerCase();
+  var suffix = lang === 'pl' ? '' : '?lang=en';
+  location.assign('https://radoskop.eu/terms/' + suffix);
+}
+
+// --- Impressum / provider identification page ---
+// Treść jest wstrzykiwana z config.json przez generate_site.py jako
+// IMPRESSUM_HTML placeholder. Dla miast PL block jest pusty (regulamin
+// pokrywa wymóg identyfikacji administratora). Dla DE/CS block zawiera
+// pełne dane wymagane przez par. 5 TMG / par. 18 MStV (Berlin) lub
+// par. 6 zákona č. 480/2004 Sb. (Praha).
+function showImpressum() {
   hideAllViews();
-  var el = document.getElementById('terms-view');
+  var el = document.getElementById('impressum-view');
   el.style.display = 'block';
-  el.innerHTML = '<div style="max-width:800px;margin:0 auto;padding:20px 0">'
-    + '<button class="profile-back" onclick="showMain()">← Strona główna</button>'
-    + '<h1 style="font-size:1.5rem;margin:20px 0 10px">Regulamin serwisu Radoskop</h1>'
-    + '<p style="color:var(--muted);margin-bottom:20px">Ostatnia aktualizacja: 1 kwietnia 2026</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">1. Postanowienia ogólne</h2>'
-    + '<p>Serwis Radoskop (dalej: Serwis) jest prowadzony przez Patryka Orwata (dalej: Administrator). '
-    + 'Serwis działa pod domeną radoskop.pl oraz subdomenami miast (np. gdansk.radoskop.pl). '
-    + 'Korzystanie z Serwisu oznacza akceptację niniejszego Regulaminu.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">2. Charakter serwisu</h2>'
-    + '<p>Radoskop jest narzędziem do monitoringu pracy rad miejskich w Polsce. '
-    + 'Serwis prezentuje publicznie dostępne dane z Biuletynów Informacji Publicznej (BIP): wyniki głosowań imiennych, frekwencję radnych, interpelacje i inne dane o działalności samorządu. '
-    + 'Serwis ma charakter informacyjny i edukacyjny. Nie jest oficjalnym serwisem żadnego urzędu marszałkowskiego.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">3. Źródła danych</h2>'
-    + '<p>Wszystkie dane prezentowane w Serwisie pochodzą z publicznie dostępnych źródeł, przede wszystkim z Biuletynów Informacji Publicznej poszczególnych miast. '
-    + 'Dane są pobierane automatycznie i przetwarzane algorytmicznie. Administrator dokłada starań, aby dane były aktualne i poprawne, '
-    + 'jednak nie gwarantuje ich pełnej dokładności. W przypadku rozbieżności wiążące są dane źródłowe z BIP.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">4. Wskaźniki i statystyki</h2>'
-    + '<p>Prezentowane wskaźniki (frekwencja, aktywność, zgodność z klubem, liczba rebelii) są obliczane na podstawie danych z BIP według jawnych algorytmów. '
-    + 'Wskaźniki mają charakter informacyjny i nie stanowią oceny wartościującej pracy radnych. '
-    + 'Metodologia obliczeń jest dostępna w kodzie źródłowym Serwisu na platformie GitHub.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">5. Reklamy</h2>'
-    + '<p>Serwis może wyświetlać reklamy dostarczane przez Google AdSense i partnerów reklamowych Google. '
-    + 'Reklamy finansują utrzymanie i rozwój Serwisu. Reklamy spersonalizowane wyświetlane są wyłącznie po wyrażeniu zgody przez użytkownika za pośrednictwem banera cookies. '
-    + 'Szczegóły dotyczące cookies reklamowych i zarządzania zgodą opisane są w <a href="/privacy/" onclick="event.preventDefault();showPrivacy()">Polityce prywatności</a>.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">6. Licencja i kod źródłowy</h2>'
-    + '<p>Kod źródłowy Serwisu jest udostępniony na licencji AGPL-3.0 na platformie GitHub. '
-    + 'Dane prezentowane w Serwisie, jako informacja publiczna, mogą być swobodnie wykorzystywane z podaniem źródła.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">7. Odpowiedzialność</h2>'
-    + '<p>Administrator nie ponosi odpowiedzialności za: czasową niedostępność Serwisu, ewentualne błędy w danych wynikające z błędów w źródłach BIP, '
-    + 'decyzje podjęte na podstawie informacji z Serwisu, działanie serwisów zewnętrznych, do których Serwis zawiera odnośniki.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">8. Prywatność</h2>'
-    + '<p>Zasady przetwarzania danych osobowych użytkowników opisuje <a href="/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a>.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">9. Zmiany regulaminu</h2>'
-    + '<p>Administrator zastrzega sobie prawo do zmiany Regulaminu. Aktualna wersja jest zawsze dostępna pod adresem /regulamin/ w każdej instancji Serwisu.</p>'
-
-    + '<h2 style="font-size:1.1rem;margin:24px 0 8px">10. Kontakt</h2>'
-    + '<p>Pytania i uwagi dotyczące Serwisu: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a></p>'
-
-    + '</div>';
-  navigateTo('/regulamin/');
-  setTitle('Regulamin');
+  /* IMPRESSUM_HTML_BEGIN */
+  el.innerHTML = '{{IMPRESSUM_HTML}}';
+  navigateTo('/impressum/');
+  setTitle('Impressum');
   setOgMeta({
-    title: 'Regulamin — Radoskop Pomorskie',
-    description: 'Regulamin serwisu Radoskop. Informacje o źródłach danych, metodologii i zasadach korzystania.',
-    url: 'https://pomorskie.radoskop.pl/regulamin/'
+    title: 'Impressum — Radoskop Pomorskie',
+    description: 'Anbieterkennzeichnung gemäß §5 TMG.',
+    url: 'https://pomorskie.radoskop.pl/impressum/'
   });
+  /* IMPRESSUM_HTML_END */
   window.scrollTo(0, 0);
 }
 
-// --- Reports catalog page ---
+// --- Reports catalog ---
+// Wszystkie raporty katalogowane są na radoskop.eu/reports/ (jedna kanoniczna
+// strona dla całej platformy). Subdomena miasta tu tylko przekierowuje,
+// żeby uniknąć duplikatu treści i SEO konfliktów.
 function showReports() {
-  hideAllViews();
-  var el = document.getElementById('reports-view');
-  el.style.display = 'block';
-
-  var cityName = 'Pomorskie';
-  var cityGen = 'Pomorskiego';
-  var siteUrl = 'https://pomorskie.radoskop.pl';
-
-  // Build councillor cards from PROFILES
-  var councillorCards = '';
-  if (window.PROFILES && PROFILES.profiles) {
-    var currentKad = (window.RAW && RAW.default_kadencja) || '2024-2029';
-    var active = PROFILES.profiles.filter(function(p) {
-      var kd = p.kadencje[currentKad];
-      return kd && !kd.former;
-    });
-    active.sort(function(a, b) { return a.name.localeCompare(b.name, 'pl'); });
-    active.forEach(function(p) {
-      var kd = p.kadencje[currentKad];
-      var club = kd.club || '';
-      var clubStyle = typeof clubBg === 'function' ? 'background:' + clubBg(club) + ';' : '';
-      councillorCards += '<div class="report-card" style="border:1px solid var(--border);border-radius:8px;padding:16px;' + clubStyle + '">'
-        + '<div style="font-weight:600;margin-bottom:4px">' + p.name + '</div>'
-        + '<div style="color:var(--muted);font-size:0.85rem;margin-bottom:8px">' + club + ' · Frekwencja: ' + (kd.frekwencja != null ? kd.frekwencja.toFixed(1) + '%' : 'b/d') + '</div>'
-        + '<div style="display:flex;gap:8px;flex-wrap:wrap">'
-        + '<a href="/raporty/radny/' + p.slug + '.pdf" class="report-btn" style="display:inline-block;padding:6px 14px;background:var(--accent, #2563eb);color:#fff;border-radius:6px;font-size:0.8rem;text-decoration:none">Pobierz raport PDF</a>'
-        + '<span style="color:var(--muted);font-size:0.8rem;align-self:center">9,99 zł</span>'
-        + '</div>'
-        + '</div>';
-    });
-  }
-
-  // Build club cards from K (current kadencja data)
-  var clubCards = '';
-  if (window.K && K.clubs) {
-    Object.keys(K.clubs).sort().forEach(function(clubName) {
-      var count = K.clubs[clubName];
-      var clubStyle = typeof clubBg === 'function' ? 'background:' + clubBg(clubName) + ';' : '';
-      var clubSlug = clubName.toLowerCase().replace(/[^a-z0-9]/g, '-');
-      clubCards += '<div class="report-card" style="border:1px solid var(--border);border-radius:8px;padding:16px;' + clubStyle + '">'
-        + '<div style="font-weight:600;margin-bottom:4px">Klub: ' + clubName + '</div>'
-        + '<div style="color:var(--muted);font-size:0.85rem;margin-bottom:8px">' + count + ' radnych</div>'
-        + '<div style="display:flex;gap:8px;flex-wrap:wrap">'
-        + '<a href="/raporty/klub/' + clubSlug + '.pdf" class="report-btn" style="display:inline-block;padding:6px 14px;background:var(--accent, #2563eb);color:#fff;border-radius:6px;font-size:0.8rem;text-decoration:none">Pobierz raport PDF</a>'
-        + '<span style="color:var(--muted);font-size:0.8rem;align-self:center">14,99 zł</span>'
-        + '</div>'
-        + '</div>';
-    });
-  }
-
-  el.innerHTML = '<div style="max-width:900px;margin:0 auto;padding:20px 0">'
-    + '<button class="profile-back" onclick="showMain()">← Strona główna</button>'
-    + '<h1 style="font-size:1.5rem;margin:20px 0 10px">Raporty Radoskop ' + cityName + '</h1>'
-    + '<p style="color:var(--muted);margin-bottom:24px">Szczegółowe raporty PDF z analizą pracy radnych, klubów i sejmiku województwa ' + cityGen + '. '
-    + 'Każdy raport zawiera wykresy, statystyki i porównania na podstawie oficjalnych danych z BIP.</p>'
-
-    // City report
-    + '<h2 style="font-size:1.15rem;margin:28px 0 12px">Raport sejmiku</h2>'
-    + '<div style="border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:24px">'
-    + '<div style="font-weight:600;margin-bottom:4px">Pełny raport: Sejmik Województwa ' + cityGen + '</div>'
-    + '<div style="color:var(--muted);font-size:0.85rem;margin-bottom:8px">Ranking radnych, analiza klubów, frekwencja, najbardziej kontrowersyjne głosowania, porównanie z innymi sejmikami.</div>'
-    + '<div style="display:flex;gap:8px;flex-wrap:wrap">'
-    + '<a href="/raporty/sejmik.pdf" class="report-btn" style="display:inline-block;padding:6px 14px;background:var(--accent, #2563eb);color:#fff;border-radius:6px;font-size:0.8rem;text-decoration:none">Pobierz raport PDF</a>'
-    + '<span style="color:var(--muted);font-size:0.8rem;align-self:center">29,99 zł</span>'
-    + '</div>'
-    + '</div>'
-
-    // Club reports
-    + '<h2 style="font-size:1.15rem;margin:28px 0 12px">Raporty klubów</h2>'
-    + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:24px">'
-    + clubCards
-    + '</div>'
-
-    // Councillor reports
-    + '<h2 style="font-size:1.15rem;margin:28px 0 12px">Raporty radnych</h2>'
-    + '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-bottom:24px">'
-    + councillorCards
-    + '</div>'
-
-    // Info
-    + '<div style="border-top:1px solid var(--border);margin-top:32px;padding-top:16px;color:var(--muted);font-size:0.85rem">'
-    + '<p><strong>Co zawiera raport radnego?</strong> Frekwencja na sesjach z rozbiciem na miesiące, rozkład głosów (za/przeciw/wstrzymał się), '
-    + 'lista rebelii (głosowania wbrew klubowi), porównanie z innymi radnymi z tego samego klubu, '
-    + 'najważniejsze głosowania i statystyki aktywności.</p>'
-    + '<p style="margin-top:8px"><strong>Co zawiera raport klubu?</strong> Lista członków z rankingiem frekwencji i aktywności, '
-    + 'spójność głosowań klubu, najczęściej głosujący wbrew klubowi, porównanie z innymi klubami w radzie.</p>'
-    + '<p style="margin-top:8px"><strong>Co zawiera raport sejmiku?</strong> Kompletny przegląd rady: ranking radnych, analiza klubów, '
-    + 'statystyki sesji, najbardziej kontrowersyjne głosowania, porównanie wskaźników z innymi sejmikami Radoskop.</p>'
-    + '<p style="margin-top:12px">Płatność obsługiwana przez Stripe. Po zakupie raport zostanie pobrany automatycznie. '
-    + 'Faktura VAT wysyłana na podany adres e-mail.</p>'
-    + '<p style="margin-top:8px">Pytania: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a></p>'
-    + '</div>'
-    + '</div>';
-
-  // Attach click handlers for payment
-  el.querySelectorAll('.report-btn').forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-      e.preventDefault();
-      var reportPath = btn.getAttribute('href');
-      startReportPurchase(reportPath);
-    });
-  });
-
-  navigateTo('/reports/');
-  setTitle('Raporty');
-  setOgMeta({
-    title: 'Raporty PDF — Radoskop ' + cityName,
-    description: 'Szczegółowe raporty PDF z analizą pracy radnych, klubów i sejmiku województwa ' + cityGen + '.',
-    url: siteUrl + '/reports/'
-  });
-  window.scrollTo(0, 0);
-}
-
-function startReportPurchase(reportPath) {
-  // Extract report type and identifier from path
-  // Paths: /raporty/radny/{slug}.pdf, /raporty/klub/{slug}.pdf, /raporty/sejmik.pdf
-  var parts = reportPath.replace('/reports/', '').replace('.pdf', '').split('/');
-  var urlType = parts[0]; // councillor, club, city
-  var reportId = parts[1] || '';
-  var citySlug = location.hostname.split('.')[0];
-
-  // Backend /api/checkout still expects legacy Polish type names
-  // (radny/klub/miasto). Map URL token to legacy type for backwards
-  // compatibility.
-  var typeMap = { councillor: 'radny', club: 'klub', city: 'miasto' };
-  var reportType = typeMap[urlType] || urlType;
-
-  // Redirect to Stripe Checkout via your backend
-  var checkoutUrl = 'https://radoskop.pl/api/checkout?type=' + encodeURIComponent(reportType)
-    + '&id=' + encodeURIComponent(reportId)
-    + '&city=' + encodeURIComponent(citySlug);
-
-  window.location.href = checkoutUrl;
+  window.location.href = 'https://radoskop.eu/reports/';
 }
 
 function showMain() {
@@ -1134,35 +1351,14 @@ function showMain() {
 }
 
 function render() {
-  renderStats();
   renderClubFilter();
   renderCouncilorTable();
-  renderProfilesGrid();
   renderSessionsTable();
   _votesPage = 1;
   renderVotesTable();
-  renderSimilarity();
   renderBudget();
   bindTabs();
   bindSort();
-}
-
-function renderStats() {
-  const grid = document.getElementById('stats-grid');
-  const councilors = K.councilors || [];
-  const clubs = [...new Set(councilors.map(c=>c.club))].filter(c=>c!=='?');
-  const cards = [
-    { label: 'Sesje', value: K.total_sessions || (K.sessions ? K.sessions.length : 0) },
-    { label: 'Głosowania', value: K.total_votes || (K.vote_stats ? K.vote_stats.total : 0) },
-    { label: 'Radnych', value: K.total_councilors || councilors.length },
-    { label: 'Kluby', value: clubs.length },
-  ];
-  grid.innerHTML = cards.map(c => `
-    <div class="stat-card">
-      <div class="label">${c.label}</div>
-      <div class="value">${c.value}</div>
-    </div>
-  `).join('');
 }
 
 function renderClubFilter() {
@@ -1239,54 +1435,6 @@ function renderCouncilorTable() {
   });
 }
 
-function renderProfilesGrid() {
-  // Club filter for profiles tab
-  const allProfiles = getProfilesForKadencja(currentKid);
-  const clubs = [...new Set(allProfiles.map(p => p.club))].sort();
-  const filterBar = document.getElementById('profiles-club-filter');
-  filterBar.innerHTML = `<button class="filter-btn ${profileClubFilter==='all'?'active':''}" data-pclub="all">Wszyscy</button>` +
-    clubs.map(c => `<button class="filter-btn ${profileClubFilter===c?'active':''}" data-pclub="${c}">${c}</button>`).join('');
-  filterBar.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.onclick = () => {
-      profileClubFilter = btn.dataset.pclub;
-      renderProfilesGrid();
-    };
-  });
-
-  let filtered = profileClubFilter === 'all' ? allProfiles : allProfiles.filter(p => p.club === profileClubFilter);
-  filtered.sort((a,b) => {
-    const pa = a.name.split(' '), pb = b.name.split(' ');
-    const lastA = pa[pa.length - 1], lastB = pb[pb.length - 1];
-    const cmp = lastA.localeCompare(lastB, 'pl');
-    return cmp !== 0 ? cmp : a.name.localeCompare(b.name, 'pl');
-  });
-
-  const grid = document.getElementById('profiles-grid');
-  grid.innerHTML = filtered.map(p => {
-    const frek = p.frekwencja !== undefined ? `${p.frekwencja}% frekwencja` : (p.former ? 'Zakończony mandat' : '');
-    const roles = p.roles && p.roles.length > 0 ? p.roles[0] : '';
-    const actInfo = p.has_activity_data && p.activity ? `${p.activity.total_statements} wypowiedzi` : '';
-    const mandateEnd = p.mandate_end ? `<span style="color:var(--yellow);font-size:0.75rem">mandat wygaszony ${p.mandate_end}</span>` : '';
-    return `<div class="profile-card" onclick="showProfile('${p.name.replace(/'/g, "\\'")}')">
-      <div class="profile-card-avatar" style="background:${clubBg(p.club)};${p.mandate_end ? 'opacity:0.5' : ''}">${initials(p.name)}</div>
-      <div class="profile-card-info">
-        <div class="profile-card-name">${p.name}</div>
-        <div class="profile-card-detail"><span class="club ${clubClass(p.club)}">${p.club}</span>${roles ? ` · ${roles}` : ''}${mandateEnd ? ` · ${mandateEnd}` : ''}</div>
-        <div class="profile-card-detail">${frek}${actInfo ? ` · ${actInfo}` : ''}</div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-function getProfilesForKadencja(kid) {
-  if (!PROFILES) return [];
-  return PROFILES.profiles
-    .filter(p => p.kadencje[kid])
-    .map(p => {
-      const kd = p.kadencje[kid];
-      return { name: p.name, slug: p.slug, ...kd };
-    });
-}
 
 function showProfile(name) {
   const profile = findProfile(name);
@@ -2107,10 +2255,15 @@ async function showVote(voteId) {
     }).join('')}</div>`;
   }
 
+  // Fallback dla głosowań bez wyciągniętego numeru sesji rzymskiego (parser
+  // BIP czasem nie złapie z highlight). Używamy session_date jako klucza do
+  // showSession, bo backend API obsługuje też lookup po dacie.
+  const sessKey = vote.session_number || vote.session_date || '';
+  const sessLabel = vote.session_number || vote.session_date || '?';
   let html = `
-    <button class="profile-back" onclick="showSession('${vote.session_number}')">← Sesja ${vote.session_number}</button>
+    ${sessKey ? `<button class="profile-back" onclick="showSession('${sessKey}')">← Sesja ${sessLabel}</button>` : ''}
     <div style="margin-bottom:24px">
-      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessionLink(vote.session_number, 'Sesja ' + vote.session_number + ' · ' + vote.session_date, ' style="color:var(--muted)"')}</div>
+      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessKey ? sessionLink(sessKey, 'Sesja ' + sessLabel + ' · ' + (vote.session_date || ''), ' style="color:var(--muted)"') : (vote.session_date ? 'Sesja · ' + vote.session_date : '')}</div>
       <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
       ${vote.summary ? `<p style="color:var(--text);margin-top:8px;font-size:0.95rem;line-height:1.6;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px">${vote.summary}</p>` : ''}
       ${vote.druk ? `<div style="color:var(--muted);margin-top:4px">Druk: ${vote.druk}</div>` : ''}
@@ -2161,6 +2314,8 @@ async function showVote(voteId) {
       <div style="width:${barW(c.nieobecni||0)}%;background:rgba(75,85,99,0.5)">${c.nieobecni||0}</div>
     </div>
 
+    <div id="commission-timeline"></div>
+
     <div class="section">
       <div class="vote-cat-header" style="color:var(--green)">Za (${(nv.za||[]).length})</div>
       ${renderNameList(nv.za, 'rgba(34,197,94,0.08)')}
@@ -2181,6 +2336,156 @@ async function showVote(voteId) {
 
   view.innerHTML = html;
   window.scrollTo(0, 0);
+
+  // Sekcja "Procedowanie w komisjach" — wzbogacenie z radoskop-premium
+  // (correlations.json → druk_to_commissions.json). Async, bez blokowania
+  // głównego renderu. Brak danych = nic się nie pojawia.
+  renderCommissionTimeline(vote.druk, document.getElementById('commission-timeline'));
+}
+
+// Mini-cache per druk żeby przy szybkim klikaniu między głosowaniami
+// nie odpytywać API po raz drugi o ten sam numer. Cache jest browser-side
+// (sesyjny, w pamięci tabletu); API ma własny 10-min cache po stronie
+// serwera, więc oba poziomy razem dają minimalne S3 reads.
+const DRUK_CACHE = new Map();
+
+async function loadDrukEntry(druk) {
+  if (!druk) return null;
+  const key = String(druk);
+  if (DRUK_CACHE.has(key)) return DRUK_CACHE.get(key);
+  try {
+    const resp = await fetch(API_BASE + '/druk/' + encodeURIComponent(key));
+    if (!resp.ok) {
+      DRUK_CACHE.set(key, null);
+      return null;
+    }
+    const data = await resp.json();
+    const entry = (data && data.available !== false && data.draft) ? data.draft : null;
+    DRUK_CACHE.set(key, entry);
+    return entry;
+  } catch (e) {
+    DRUK_CACHE.set(key, null);
+    return null;
+  }
+}
+
+async function renderCommissionTimeline(druk, container) {
+  if (!container) return;
+  container.innerHTML = '';
+  if (!druk) return;
+  const entry = await loadDrukEntry(druk);
+  if (!entry) return; // Druk nie istnieje w indeksie (brak korelacji) → nie renderuj
+
+  const status = entry.status || '';
+  // Free tier: API zwraca commissions_top (do 3) + commissions_total + commissions_hidden.
+  // Backward compat: fallback do commissions[] gdy API jeszcze stara wersja.
+  const csTop = entry.commissions_top || entry.commissions || [];
+  const csTotal = entry.commissions_total != null ? entry.commissions_total : csTop.length;
+  const csHidden = entry.commissions_hidden != null ? entry.commissions_hidden : 0;
+  const cs = csTop;
+  const hasCommissions = csTotal > 0;
+
+  // Umami event: liczba wyświetleń sekcji per status, plus ile było ukrytych
+  // za paywallem (proxy dla intent → conversion CTA).
+  trackEvent('view_commission_timeline', {
+    druk: String(druk),
+    commissions_total: csTotal,
+    commissions_hidden: csHidden,
+    lead_time: entry.lead_time_days != null ? entry.lead_time_days : -1,
+    status: status
+  });
+
+  // Title plus optional badge zależne od statusu
+  let title;
+  let badge = '';
+  if (status === 'voted' && hasCommissions) {
+    title = `Procedowanie w komisjach (${csTotal})`;
+    const lt = entry.lead_time_days;
+    if (lt != null) {
+      badge = `<span style="font-size:11px;color:var(--accent);background:rgba(99,102,241,0.12);padding:2px 8px;border-radius:999px;margin-left:auto">${lt} ${lt === 1 ? 'dzień' : 'dni'} przed sesją</span>`;
+    }
+  } else if (status === 'in_commission' && hasCommissions) {
+    title = `W komisji (${csTotal}) — jeszcze nie głosowane na sesji`;
+  } else if (status === 'voted_without_commission') {
+    title = `Bez procedowania w komisji`;
+  } else if (hasCommissions) {
+    title = `Procedowanie (${csTotal})`;
+  } else {
+    return;
+  }
+
+  // Lista komisji (top 3 w free tier)
+  const rows = cs.map(c => `
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-top:0.5px solid var(--border)">
+      <div style="font-size:11px;color:var(--accent);min-width:78px;padding-top:2px;font-family:var(--font-mono,monospace)">${c.date || ''}</div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:500;color:var(--text)">${c.label || 'Komisja'}</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">Druk procedowany na posiedzeniu komisji</div>
+      </div>
+      ${c.url ? `<a href="${c.url}" target="_blank" rel="noopener" style="font-size:12px;color:var(--accent);text-decoration:none;padding-top:2px">↗ BIP</a>` : ''}
+    </div>
+  `).join('');
+
+  // Teaser dla pozostałych komisji ukrytych za paywallem
+  const hiddenTeaser = csHidden > 0 ? `
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-top:0.5px solid var(--border);background:rgba(99,102,241,0.04)">
+      <div style="font-size:11px;color:var(--muted);min-width:78px;padding-left:0">...</div>
+      <div style="flex:1;font-size:13px;color:var(--text)">
+        Łącznie <strong style="font-weight:500">${csTotal} komisji</strong> w pipeline — pełna lista z opiniami w Premium
+      </div>
+      <a href="https://radoskop.eu/business/?from=commission_timeline_hidden&druk=${encodeURIComponent(druk)}"
+         onclick="event.preventDefault();trackEvent('click_business_cta',{location:'commission_timeline_hidden',druk:'${druk}',hidden:${csHidden}});showBusiness({from:'commission_timeline_hidden',druk:'${druk}'})"
+         style="font-size:12px;color:var(--accent);text-decoration:none">Zapytaj o pełną analizę ↗</a>
+    </div>
+  ` : '';
+
+  // Wiersz sesji (gdy znamy)
+  const sessionRow = entry.session && entry.session.date ? `
+    <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-top:0.5px solid var(--border);opacity:0.75">
+      <div style="font-size:11px;color:var(--accent);min-width:78px;font-family:var(--font-mono,monospace)">${entry.session.date}</div>
+      <div style="flex:1;font-size:13px;color:var(--text)">⚑ Sesja${entry.session.number_roman ? ' '+entry.session.number_roman : ''}, głosowanie</div>
+    </div>
+  ` : '';
+
+  // Komunikat dla statusu bez komisji — informuje że Radoskop sprawdził,
+  // nie tylko "brak danych".
+  const noCommissionRow = status === 'voted_without_commission' ? `
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-top:0.5px solid var(--border)">
+      <div style="flex:1;font-size:13px;color:var(--text)">
+        Ten projekt uchwały nie był procedowany w żadnej z 18 komisji sejmiku województwa przed głosowaniem na sesji plenarnej.
+        <div style="font-size:12px;color:var(--muted);margin-top:4px">Może to oznaczać tryb pilny, lex specialis albo specyfikę proceduralną.</div>
+      </div>
+    </div>
+  ` : '';
+
+  // CTA dostosowane do statusu
+  let ctaCopy;
+  if (status === 'voted_without_commission') {
+    ctaCopy = 'Premium: alerty na druki w trybie pilnym, analiza dlaczego pominęły komisję, monitoring branżowy.';
+  } else if (status === 'in_commission') {
+    ctaCopy = 'Premium: powiadomienie gdy druk trafi na sesję, pełne porządki obrad, opinie komisji.';
+  } else {
+    ctaCopy = 'Premium: pełne porządki obrad, protokoły, opinie komisji, alerty na nowe druki w pipeline.';
+  }
+
+  container.innerHTML = `
+    <div style="background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);padding:14px 16px;margin:24px 0;border-radius:0">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+        <span style="font-size:14px;font-weight:500;color:var(--text)">${title}</span>
+        ${badge}
+      </div>
+      ${rows}
+      ${hiddenTeaser}
+      ${noCommissionRow}
+      ${sessionRow}
+      <div style="font-size:12px;color:var(--muted);margin-top:12px;padding-top:12px;border-top:0.5px solid var(--border)">
+        ${ctaCopy}
+        <a href="https://radoskop.eu/business/?from=commission_timeline&druk=${encodeURIComponent(druk)}"
+           onclick="event.preventDefault();trackEvent('click_business_cta',{location:'commission_timeline',druk:'${druk}',status:'${status}',commissions:${csTotal}});showBusiness({from:'commission_timeline',druk:'${druk}'})"
+           style="color:var(--accent);margin-left:4px;text-decoration:none">Dowiedz się więcej ↗</a>
+      </div>
+    </div>
+  `;
 }
 
 function backFromVote() {
@@ -2192,13 +2497,19 @@ function backFromVote() {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   const votesTab = document.querySelector('.tab[data-tab="votes"]');
   if (votesTab) votesTab.classList.add('active');
-  ['ranking','profiles','sessions','similarity','interpelacje','budget'].forEach(t => {
+  ['ranking','sessions','komisje','interpelacje','budget'].forEach(t => {
     document.getElementById('tab-'+t).style.display = 'none';
   });
   document.getElementById('tab-votes').style.display = 'block';
 }
 
 async function showSession(sessionNumber) {
+  // Guard: pusty argument prowadziłby do '/sesja//' czyli rozbitej nawigacji.
+  // Wracamy zamiast tego do strony głównej.
+  if (!sessionNumber) {
+    showMain();
+    return;
+  }
   trackEvent('view_session', {session_number: sessionNumber});
 
   hideAllViews();
@@ -2227,9 +2538,17 @@ async function showSession(sessionNumber) {
   if (!sess) { view.innerHTML = '<p style="padding:40px;color:var(--red)">Nie znaleziono sesji.</p>'; return; }
 
   setTitle('Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : ''));
+  // Sumaryczna metryka sesji: dla miast z imiennymi g\u0142osowaniami liczba
+  // g\u0142osowa\u0144, dla miast typu Berlin (Hammelsprung anonimowy) liczba
+  // wypowiedzi z protoko\u0142u.
+  const sessStatementCount = sess.statements != null ? sess.statements
+    : (sess.speakers ? sess.speakers.reduce((s, sp) => s + (sp.statements ?? sp.turns ?? 0), 0) : 0);
+  const sessSummaryStat = HAS_VOTING_DATA
+    ? ((sess.vote_count || 0) + ' g\u0142osowa\u0144')
+    : (sessStatementCount + ' wyst\u0105pie\u0144');
   setOgMeta({
     title: 'Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' \u2013 Radoskop Pomorskie',
-    description: 'Sesja ' + sessionNumber + ', ' + (sess.date||'') + '. ' + (sess.vote_count||0) + ' glosowan, ' + (sess.attendee_count||0) + ' obecnych.',
+    description: 'Sesja ' + sessionNumber + ', ' + (sess.date||'') + '. ' + sessSummaryStat + ', ' + (sess.attendee_count||0) + ' obecnych.',
     url: 'https://pomorskie.radoskop.pl/sesja/' + encodeURIComponent(sessionNumber) + '/'
   });
 
@@ -2255,11 +2574,11 @@ async function showSession(sessionNumber) {
     <button class="profile-back" onclick="showMain()">← Strona główna</button>
     <div style="margin-bottom:24px">
       <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">Sesja ${sess.number} · ${sess.date}</h2>
-      ${sess.source_url ? `<div style="margin-top:6px"><a href="${sess.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół głosowania (BIP) ↗</a></div>` : ''}
+      ${sess.source_url ? `<div style="margin-top:6px"><a href="${sess.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół (BIP) ↗</a></div>` : ''}
       <div style="margin-top:12px">
         ${shareBar(
           'Sesja ' + sess.number + ' (' + (sess.date||'') + ') \u2013 Radoskop Pomorskie',
-          'Sesja ' + sess.number + ': ' + sessVoteCount + ' głosowań, ' + (sess.attendee_count||present.size||0) + ' obecnych radnych.',
+          'Sesja ' + sess.number + ': ' + sessSummaryStat + ', ' + (sess.attendee_count||present.size||0) + ' obecnych radnych.',
           'https://pomorskie.radoskop.pl/sesja/' + encodeURIComponent(sessionNumber) + '/',
           'session-share'
         )}
@@ -2267,10 +2586,13 @@ async function showSession(sessionNumber) {
     </div>
 
     <div class="profile-metrics" style="margin-bottom:24px">
-      <div class="metric-card">
+      ${HAS_VOTING_DATA ? `<div class="metric-card">
         <div class="metric-value">${sessVoteCount}</div>
         <div class="metric-label">Głosowań</div>
-      </div>
+      </div>` : `<div class="metric-card">
+        <div class="metric-value">${sessStatementCount}</div>
+        <div class="metric-label">Wystąpień</div>
+      </div>`}
       ${hasVoteRecords ? `<div class="metric-card">
         <div class="metric-value" style="color:var(--green)">${passed}</div>
         <div class="metric-label">Przyjętych</div>
@@ -2291,19 +2613,47 @@ async function showSession(sessionNumber) {
 
   // Speakers
   if (sess.speakers && sess.speakers.length > 0) {
-    const maxWords = sess.speakers[0].words;
+    const speakers = sess.speakers;
+    const maxWords = speakers[0].words;
+    const totalWords = speakers.reduce((s, sp) => s + (sp.words || 0), 0);
+    const sortedWords = speakers.map(sp => sp.words).sort((a, b) => a - b);
+    const medianWords = sortedWords[Math.floor(sortedWords.length / 2)] || 0;
+    // Schema kompatybilność: berlin scraper pisał wcześniej `turns`,
+    // Polish scrapery `statements`. Bezpiecznie czytamy oba.
+    const totalStatements = speakers.reduce((s, sp) => s + (sp.statements ?? sp.turns ?? 0), 0);
+
     html += `<div class="section">
-      <h2>Aktywność mówców</h2>`;
-    html += sess.speakers.map(sp => {
+      <h2>Aktywność mówców</h2>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px;font-size:0.78rem;color:var(--muted);font-variant-numeric:tabular-nums">
+        <span><strong style="color:var(--text);font-weight:500">${speakers.length}</strong> mówców</span>
+        <span><strong style="color:var(--text);font-weight:500">${totalStatements.toLocaleString('pl')}</strong> wyp.</span>
+        <span><strong style="color:var(--text);font-weight:500">${totalWords.toLocaleString('pl')}</strong> słów</span>
+        <span>mediana <strong style="color:var(--text);font-weight:500">${medianWords.toLocaleString('pl')}</strong></span>
+      </div>
+      <div class="speakers-grid">`;
+    const SPEAKERS_TOP_VISIBLE = 10;
+    html += speakers.map((sp, idx) => {
       const cl = clubMap[sp.name] || '?';
       const barPct = Math.max((sp.words / maxWords) * 100, 2);
-      return `<div class="speaker-bar">
-        <span class="speaker-name"><span class="club ${clubClass(cl)}">${cl}</span> ${profileLink(sp.name)}</span>
-        <div class="speaker-bar-fill" style="width:${barPct}%"></div>
-        <span style="color:var(--muted);font-size:0.8rem;white-space:nowrap">${sp.statements} wyp. · ${sp.words.toLocaleString('pl')} słów</span>
+      const statements = sp.statements ?? sp.turns ?? 0;
+      const color = (typeof clubColor === 'function') ? clubColor(cl) : 'var(--accent)';
+      const hiddenCls = idx >= SPEAKERS_TOP_VISIBLE ? ' hidden' : '';
+      return `<div class="speaker-bar${hiddenCls}">
+        <span class="speaker-name">
+          <span class="club ${clubClass(cl)}">${cl}</span>
+          ${profileLink(sp.name)}
+        </span>
+        <div class="speaker-bar-track">
+          <div class="speaker-bar-fill" style="width:${barPct}%;background:${color}"></div>
+        </div>
+        <span class="speaker-meta"><strong>${sp.words.toLocaleString('pl')}</strong> słów · ${statements} wyp.</span>
       </div>`;
     }).join('');
-    html += `</div>`;
+    if (speakers.length > SPEAKERS_TOP_VISIBLE) {
+      const hiddenCount = speakers.length - SPEAKERS_TOP_VISIBLE;
+      html += `<button class="show-more-speakers" onclick="this.parentElement.querySelectorAll('.speaker-bar.hidden').forEach(el=>el.classList.remove('hidden'));trackEvent('speakers_expand',{total:${speakers.length}});this.remove();">Pokaż pozostałych ${hiddenCount} mówców ↓</button>`;
+    }
+    html += `</div></div>`;
   }
 
   // Votes grouped by category
@@ -2394,19 +2744,250 @@ async function showSession(sessionNumber) {
   }
 }
 
-function renderSimilarity() {
-  const renderPairs = (pairs, el) => {
-    el.innerHTML = pairs.map(p => `
-      <div class="similarity-pair">
-        <span class="similarity-score" style="color:${p.score>=90?'var(--green)':p.score>=70?'var(--yellow)':'var(--red)'}">${p.score}%</span>
-        <span>${profileLink(p.a)} <span style="color:var(--muted)">↔</span> ${profileLink(p.b)}</span>
+// --- Komisje tab ---
+// Free tier: lista komisji ze statystykami (meetings, drafts_total, drafts_voted,
+// median_lead_time_days, last_meeting_date). Pełne posiedzenia są dostępne
+// w detalu komisji (showKomisja), gdzie API gateuje top N + hidden teaser.
+// Premium (Business sub): pełna procedura komisyjna druku, bez teasera,
+// plus przycisk eksportu JSON. Flag BUSINESS_ACTIVE setowany przez
+// refreshSubscriptionStatus() przy starcie i po login/logout.
+let _komisjeListCache = null;
+let BUSINESS_ACTIVE = false;
+
+async function refreshSubscriptionStatus() {
+  // Auth API żyje na radoskop.eu (cross-origin), więc credentials: include
+  // i CORS allow-credentials musi być po stronie backendu. Brak sesji =
+  // 401, traktujemy jako free tier.
+  try {
+    const r = await fetch(AUTH_API + '/subscription-status', { credentials: 'include' });
+    if (!r.ok) { BUSINESS_ACTIVE = false; return; }
+    const d = await r.json();
+    BUSINESS_ACTIVE = !!d.business_active;
+  } catch (e) {
+    BUSINESS_ACTIVE = false;
+  }
+  // Drop cache, żeby render Komisji wyciągnął świeże dane z nowym tier.
+  _komisjeListCache = null;
+}
+async function renderKomisjeList() {
+  const container = document.getElementById('komisje-content');
+  if (!container) return;
+  trackEvent('view_komisje_list');
+
+  if (!_komisjeListCache) {
+    container.innerHTML = '<p style="color:var(--muted);padding:20px 0">Ładowanie komisji...</p>';
+    try {
+      const resp = await fetch(API_BASE + '/komisje');
+      if (!resp.ok) {
+        container.innerHTML = '<p style="color:var(--muted);padding:20px 0">Dane o komisjach nie są jeszcze dostępne dla tego miasta.</p>';
+        return;
+      }
+      _komisjeListCache = await resp.json();
+    } catch (e) {
+      container.innerHTML = '<p style="color:var(--red);padding:20px 0">Błąd ładowania komisji: ' + e.message + '</p>';
+      return;
+    }
+  }
+
+  const data = _komisjeListCache;
+  if (data.available === false) {
+    container.innerHTML = '<p style="color:var(--muted);padding:20px 0">Dane o komisjach nie są jeszcze dostępne dla tego miasta. Pracujemy nad tym.</p>';
+    return;
+  }
+  const commissions = data.commissions || [];
+  if (commissions.length === 0) {
+    container.innerHTML = '<p style="color:var(--muted);padding:20px 0">Brak danych o komisjach.</p>';
+    return;
+  }
+
+  // Aggregaty łączne dla całej rady
+  const totalMeetings = commissions.reduce((s, c) => s + ((c.stats || {}).meetings || 0), 0);
+  const totalDrafts = commissions.reduce((s, c) => s + ((c.stats || {}).drafts_total || 0), 0);
+  const totalInCommission = commissions.reduce((s, c) => s + ((c.stats || {}).drafts_in_commission || 0), 0);
+
+  const cards = commissions.map(c => {
+    const s = c.stats || {};
+    const lead = s.median_lead_time_days;
+    const leadDisplay = (lead != null) ? lead + (lead === 1 ? ' dzień' : ' dni') : '—';
+    const last = s.last_meeting_date || '';
+    const inCommission = s.drafts_in_commission || 0;
+    const inCommissionBadge = inCommission > 0
+      ? `<span style="font-size:11px;color:var(--yellow);background:rgba(202,138,4,0.12);padding:2px 8px;border-radius:999px">${inCommission} w toku</span>`
+      : '';
+    const esc = (c.url_slug || '').replace(/'/g, "\\'");
+    return `
+      <a class="komisja-card" href="/commission/${encodeURIComponent(c.url_slug)}/" onclick="event.preventDefault();showKomisja('${esc}')">
+        <div class="komisja-card-title">
+          <span>${c.label || c.url_slug}</span>
+          ${inCommissionBadge}
+        </div>
+        <div class="komisja-card-stats">
+          <div><span class="komisja-stat-value">${s.meetings || 0}</span><span class="komisja-stat-label">posiedzeń</span></div>
+          <div><span class="komisja-stat-value">${s.drafts_total || 0}</span><span class="komisja-stat-label">druków</span></div>
+          <div><span class="komisja-stat-value">${s.drafts_voted || 0}</span><span class="komisja-stat-label">zwotowanych</span></div>
+          <div><span class="komisja-stat-value">${leadDisplay}</span><span class="komisja-stat-label">mediana lead time</span></div>
+        </div>
+        ${last ? `<div class="komisja-card-last">Ostatnie posiedzenie: ${last}</div>` : ''}
+      </a>
+    `;
+  }).join('');
+
+  const businessBanner = BUSINESS_ACTIVE
+    ? `<div style="margin-top:24px;padding:14px 16px;background:rgba(34,197,94,0.08);border-left:3px solid var(--green);font-size:13px;color:var(--text);display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+         <span style="font-weight:600;color:var(--green)">✓ Business aktywny.</span>
+         <span>Wszystkie komisje pokazują pełne archiwum posiedzeń z porządkami, protokołami i głosowaniami druków.</span>
+       </div>`
+    : `<div style="margin-top:24px;padding:16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px;color:var(--text)">
+         Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport JSON) dostępna w pakiecie Business.
+         <a href="https://radoskop.eu/pricing/"
+            onclick="trackEvent('click_business_komisja_cta',{location:'komisje_list'})"
+            style="color:var(--accent);margin-left:6px;text-decoration:none">Zobacz cennik ↗</a>
+       </div>`;
+
+  container.innerHTML = `
+    <div style="margin-bottom:20px">
+      <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)">Komisje rady</h2>
+      <p style="color:var(--muted);font-size:0.9rem">${commissions.length} komisji, ${totalMeetings} posiedzeń, ${totalDrafts} druków w procedowaniu${totalInCommission > 0 ? `, w tym ${totalInCommission} w toku` : ''}.</p>
+    </div>
+    <div class="komisje-grid">${cards}</div>
+    ${businessBanner}
+  `;
+}
+
+async function showKomisja(slug) {
+  if (!slug) { showMain(); return; }
+  trackEvent('view_komisja_detail', {slug: slug});
+
+  hideAllViews();
+  const view = document.getElementById('session-view'); // reusing detail container
+  view.style.display = 'block';
+  view.innerHTML = '<p style="padding:40px;color:var(--muted)">Ładowanie komisji...</p>';
+  navigateTo('/commission/' + encodeURIComponent(slug) + '/');
+
+  let envelope = null;
+  try {
+    const resp = await fetch(API_BASE + '/komisja/' + encodeURIComponent(slug));
+    if (resp.ok) envelope = await resp.json();
+  } catch (e) { /* fallthrough */ }
+
+  const commission = envelope && envelope.commission;
+  if (!envelope || envelope.available === false || !commission) {
+    view.innerHTML = '<button class="profile-back" onclick="backFromKomisja()">← Komisje</button><p style="padding:40px;color:var(--red)">Nie znaleziono komisji.</p>';
+    return;
+  }
+
+  const label = commission.label || slug;
+  const s = commission.stats || {};
+  const meetingsTop = commission.meetings_top || commission.meetings || [];
+  const meetingsTotal = commission.meetings_total != null ? commission.meetings_total : meetingsTop.length;
+  const meetingsHidden = commission.meetings_hidden != null ? commission.meetings_hidden : 0;
+  const lead = s.median_lead_time_days;
+  const leadDisplay = (lead != null) ? lead + (lead === 1 ? ' dzień' : ' dni') : '—';
+
+  setTitle(label);
+  setOgMeta({
+    title: label + ' – Radoskop Pomorskie',
+    description: `${s.meetings || 0} posiedzeń, ${s.drafts_total || 0} druków w procedowaniu, mediana lead time ${leadDisplay}.`,
+    url: 'https://pomorskie.radoskop.pl/komisja/' + encodeURIComponent(slug) + '/'
+  });
+
+  // Premium: jeśli API zwraca drafts_votes (mapa druk → {vote_id, ...}),
+  // renderuj druk jako klikalny link do strony głosowania. Free tier dostaje
+  // taki sam JSON bez tego pola, więc druki zostają niewklikalnymi badge'ami.
+  const meetingsHtml = meetingsTop.map(m => {
+    const dv = m.drafts_votes || {};
+    const drafts = (m.drafts || []).map(d => {
+      const dStr = String(d);
+      const info = dv[dStr];
+      const baseStyle = 'color:var(--accent);font-size:12px;background:rgba(99,102,241,0.08);padding:1px 6px;border-radius:4px;margin-right:4px;display:inline-block;margin-bottom:2px';
+      if (info && info.vote_id) {
+        const vid = info.vote_id;
+        const passedIcon = info.passed === true ? ' <span style="color:var(--green)">✓</span>' : info.passed === false ? ' <span style="color:var(--red)">✗</span>' : '';
+        return `<a href="/glosowanie/${encodeURIComponent(vid)}/" onclick="event.preventDefault();showVote('${vid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
+      }
+      return `<span style="${baseStyle}">druk ${dStr}</span>`;
+    }).join('');
+    const links = [];
+    if (m.page_url) links.push(`<a href="${m.page_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none">↗ BIP</a>`);
+    if (m.agenda_url) links.push(`<a href="${m.agenda_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none">↗ Porządek</a>`);
+    if (m.protocol_url) links.push(`<a href="${m.protocol_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none">↗ Protokół</a>`);
+    return `
+      <div style="padding:14px 0;border-top:0.5px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px">
+          <span style="font-weight:500;font-family:var(--font-mono,monospace)">${m.date || ''}</span>
+          ${(m.drafts || []).length > 0 ? `<span style="color:var(--muted);font-size:12px">${(m.drafts || []).length} druków</span>` : ''}
+          <div style="margin-left:auto;display:flex;gap:10px">${links.join('')}</div>
+        </div>
+        ${drafts ? `<div style="margin-top:4px">${drafts}</div>` : ''}
       </div>
-    `).join('');
-  };
-  const simTop = K.similarity_top || (K.similarity && K.similarity.top) || [];
-  const simBottom = K.similarity_bottom || (K.similarity && K.similarity.bottom) || [];
-  renderPairs(simTop, document.getElementById('sim-top'));
-  renderPairs(simBottom, document.getElementById('sim-bottom'));
+    `;
+  }).join('');
+
+  // Banner pod posiedzeniami: subskrybenci dostają export JSON, free tier
+  // dostają teaser (tylko gdy są ukryte posiedzenia, inaczej brak).
+  let bannerHtml = '';
+  if (BUSINESS_ACTIVE) {
+    const exportUrl = API_BASE + '/komisja/' + encodeURIComponent(slug) + '/export.json';
+    bannerHtml = `
+      <div style="margin-top:16px;padding:14px 16px;background:rgba(34,197,94,0.08);border-left:3px solid var(--green);font-size:13px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span style="color:var(--green);font-weight:600">✓ Business aktywny.</span>
+        <span>Pełne archiwum ${meetingsTotal} posiedzeń z porządkami i głosowaniami druków.</span>
+        <a href="${exportUrl}" download
+           onclick="trackEvent('click_export_json',{slug:'${slug}'})"
+           style="margin-left:auto;background:var(--accent);color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;text-decoration:none">Eksportuj JSON ↓</a>
+      </div>
+    `;
+  } else if (meetingsHidden > 0) {
+    bannerHtml = `
+      <div style="margin-top:16px;padding:14px 16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px">
+        Łącznie <strong style="font-weight:500">${meetingsTotal} posiedzeń</strong> w archiwum, pokazane ${meetingsTop.length}. Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport JSON) w pakiecie Business.
+        <a href="https://radoskop.eu/pricing/"
+           onclick="trackEvent('click_business_komisja_cta',{location:'komisja_detail',slug:'${slug}',hidden:${meetingsHidden}})"
+           style="color:var(--accent);margin-left:6px;text-decoration:none">Zobacz cennik ↗</a>
+      </div>
+    `;
+  }
+
+  view.innerHTML = `
+    <button class="profile-back" onclick="backFromKomisja()">← Komisje</button>
+    <div style="margin-bottom:24px">
+      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${label}</h2>
+    </div>
+    <div class="profile-metrics" style="margin-bottom:24px">
+      <div class="metric-card">
+        <div class="metric-value">${s.meetings || 0}</div>
+        <div class="metric-label">Posiedzeń</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">${s.drafts_total || 0}</div>
+        <div class="metric-label">Druków</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" style="color:var(--green)">${s.drafts_voted || 0}</div>
+        <div class="metric-label">Zwotowanych</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" style="color:var(--yellow)">${s.drafts_in_commission || 0}</div>
+        <div class="metric-label">W toku</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">${leadDisplay}</div>
+        <div class="metric-label">Mediana lead time</div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Posiedzenia ${meetingsTotal > meetingsTop.length ? `(${meetingsTop.length} z ${meetingsTotal})` : `(${meetingsTotal})`}</h2>
+      ${meetingsHtml || '<p style="color:var(--muted);padding:14px 0">Brak posiedzeń w archiwum.</p>'}
+      ${bannerHtml}
+    </div>
+  `;
+}
+
+function backFromKomisja() {
+  hideAllViews();
+  document.getElementById('app').style.display = 'block';
+  activateTab('komisje');
+  navigateTo(mainPath('komisje'));
 }
 
 async function renderInterpelacje() {
@@ -2468,16 +3049,58 @@ async function renderInterpelacje() {
     <div class="stat-card"><div class="label">Z odpowiedzią</div><div class="value">${answered} <span style="font-size:0.9rem;color:var(--muted)">(${total ? Math.round(100*answered/total) : 0}%)</span></div></div>
   </div>`;
 
-  // Top radni chart
-  html += `<div class="section"><h2>Najbardziej aktywni radni</h2><div style="overflow-x:auto"><table><thead><tr>
-    <th>Radny/a</th><th>Liczba</th><th></th></tr></thead><tbody>`;
-  const maxCount = topRadni.length ? topRadni[0].count : 1;
-  topRadni.forEach(({name, count}) => {
-    const pct = Math.round(100 * count / maxCount);
-    html += `<tr><td style="font-weight:600">${profileLink(name)}</td><td>${count}</td>
-      <td style="min-width:120px"><div class="bar"><div class="bar-fill" style="width:${pct}%;background:var(--accent)"></div></div></td></tr>`;
-  });
-  html += `</tbody></table></div></div>`;
+  // Najbardziej aktywni radni — speaker-bar layout (analogicznie do
+  // "Aktywność mówców" na stronie sesji): club pill + nazwisko | bar track |
+  // count. Top 10 widocznych, reszta za buttonem "Pokaż pozostałych".
+  if (topRadni.length > 0) {
+    const maxCount = topRadni[0].count;
+    const totalActivity = topRadni.reduce((s, r) => s + (r.count || 0), 0);
+    const sortedCounts = topRadni.map(r => r.count).sort((a, b) => a - b);
+    const medianCount = sortedCounts[Math.floor(sortedCounts.length / 2)] || 0;
+
+    // Klub: bierzemy z K.councilors (per kadencja) albo z PROFILES (cross-kad).
+    const clubLookup = {};
+    (K && K.councilors || []).forEach(co => { clubLookup[co.name] = co.club; });
+    if (PROFILES && PROFILES.profiles) {
+      PROFILES.profiles.forEach(p => {
+        if (!clubLookup[p.name]) {
+          const kad = Object.values(p.kadencje || {}).slice(-1)[0];
+          if (kad && kad.club) clubLookup[p.name] = kad.club;
+        }
+      });
+    }
+
+    html += `<div class="section">
+      <h2>Najbardziej aktywni radni</h2>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px;font-size:0.78rem;color:var(--muted);font-variant-numeric:tabular-nums">
+        <span><strong style="color:var(--text);font-weight:500">${topRadni.length}</strong> radnych w top</span>
+        <span>łącznie <strong style="color:var(--text);font-weight:500">${totalActivity.toLocaleString('pl')}</strong> interp. i zapytań</span>
+        <span>mediana <strong style="color:var(--text);font-weight:500">${medianCount}</strong> na osobę</span>
+      </div>
+      <div class="speakers-grid">`;
+    const TOP_VISIBLE = 10;
+    html += topRadni.map((r, idx) => {
+      const cl = clubLookup[r.name] || '?';
+      const barPct = Math.max((r.count / maxCount) * 100, 2);
+      const color = (typeof clubColor === 'function') ? clubColor(cl) : 'var(--accent)';
+      const hiddenCls = idx >= TOP_VISIBLE ? ' hidden' : '';
+      return `<div class="speaker-bar${hiddenCls}">
+        <span class="speaker-name">
+          <span class="club ${clubClass(cl)}">${cl}</span>
+          ${profileLink(r.name)}
+        </span>
+        <div class="speaker-bar-track">
+          <div class="speaker-bar-fill" style="width:${barPct}%;background:${color}"></div>
+        </div>
+        <span class="speaker-meta"><strong>${r.count}</strong> interp.</span>
+      </div>`;
+    }).join('');
+    if (topRadni.length > TOP_VISIBLE) {
+      const hiddenCount = topRadni.length - TOP_VISIBLE;
+      html += `<button class="show-more-speakers" onclick="this.parentElement.querySelectorAll('.speaker-bar.hidden').forEach(el=>el.classList.remove('hidden'));trackEvent('interp_top_expand',{total:${topRadni.length}});this.remove();">Pokaż pozostałych ${hiddenCount} radnych ↓</button>`;
+    }
+    html += `</div></div>`;
+  }
 
   // List of interpelacje
   const pageItems = result.items || [];
@@ -2735,6 +3358,7 @@ function renderBudget() {
 
 function bindTabs() {
   document.querySelectorAll('.tab').forEach(tab => {
+    if (!tab.dataset.tab) return;  // Aktualności jest <a> z href, nie data-tab
     tab.onclick = () => {
       activateTab(tab.dataset.tab);
       navigateTo(mainPath());
@@ -2904,7 +3528,7 @@ function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
   }
   ctx.fillStyle='#2a2d3a'; ctx.fillRect(0,300,600,40);
   ctx.fillStyle='#6366f1'; ctx.font='bold 13px -apple-system,sans-serif'; ctx.textAlign='center';
-  ctx.fillText('Radoskop Pomorskie  ·  radoskop.pl',300,315);
+  ctx.fillText('Radoskop Pomorskie  ·  {{ROOT_HOST}}',300,315);
   const link=document.createElement('a');
   link.download=`radoskop-${name.toLowerCase().replace(/\s/g,'-')}.png`;
   link.href=canvas.toDataURL('image/png'); link.click();
@@ -2972,9 +3596,32 @@ window.addEventListener('popstate', async () => {
     const profile = PROFILES && PROFILES.profiles.find(p => p.slug === slug);
     if (profile) { showProfile(profile.name); _popstateActive = false; return; }
   }
+  if (path === '/vote' || path === '/vote/') {
+    // /vote/ bez ID → najnowsze głosowanie z aktualnej kadencji.
+    try {
+      const resp = await fetch(API_BASE + '/kadencja/' + currentKid + '/votes?per_page=1');
+      const d = await resp.json();
+      const v = (d.items || [])[0];
+      if (v && v.id) {
+        showVote(v.id);
+      } else {
+        activateTab('votes');
+      }
+    } catch(e) {
+      activateTab('votes');
+    }
+    _popstateActive = false;
+    return;
+  }
   if (path.startsWith('/vote/')) {
     const vid = path.replace('/vote/', '');
     showVote(vid);
+    _popstateActive = false;
+    return;
+  }
+  if (path === '/session' || path === '/session/') {
+    // /session/ bez numeru → lista sesji aktualnej kadencji.
+    activateTab('sessions');
     _popstateActive = false;
     return;
   }
@@ -2994,16 +3641,34 @@ window.addEventListener('popstate', async () => {
     _popstateActive = false;
     return;
   }
+  if (path === '/impressum' || path === '/impressum/') {
+    showImpressum();
+    _popstateActive = false;
+    return;
+  }
   if (path === '/reports' || path === '/reports/') {
     showReports();
+    _popstateActive = false;
+    return;
+  }
+  if (path.startsWith('/commission/')) {
+    const slug = decodeURIComponent(path.replace('/commission/', '').replace(/\/$/, ''));
+    showKomisja(slug);
     _popstateActive = false;
     return;
   }
   // Main page tab/kadencja paths
   hideAllViews();
   document.getElementById('app').style.display = 'block';
-  if (path === '/interpellations' || path === '/interpellations/') {
+  if (path === '/commissions' || path === '/commissions/') {
+    activateTab('komisje');
+  } else if (path === '/interpellations' || path === '/interpellations/') {
     activateTab('interpelacje');
+  } else if (path === '/news' || path === '/news/') {
+    // Powrót na /aktualnosci/ przez back/forward — SPA nie reloaduje strony,
+    // ale strona aktualnosci to oddzielny dokument. Wymuszamy reload.
+    location.reload();
+    return;
   } else if (path === '/budget' || path === '/budget/') {
     activateTab('budget');
   } else if (path.startsWith('/term/')) {
@@ -3014,6 +3679,11 @@ window.addEventListener('popstate', async () => {
       await selectKadencjaQuiet(kid);
     }
     activateTab(tab);
+    // Jeśli oryginalny URL miał "undefined" albo niezrozumiały segment,
+    // przepisz historię na czysty URL żeby user zobaczył sensowną ścieżkę.
+    if (!kid || !SLUG_TABS[parts[1]]) {
+      history.replaceState(null, '', mainPath());
+    }
   } else {
     // Root path — default kadencja + ranking
     const defaultKid = RAW.default_kadencja || RAW.kadencje[RAW.kadencje.length-1].id;
@@ -3024,6 +3694,297 @@ window.addEventListener('popstate', async () => {
 });
 
 init();
+</script>
+<!-- Auth modal: login + signup -->
+<div id="auth-modal-backdrop" class="modal-backdrop" style="display:none" onclick="closeAuthModalIfBackdrop(event)">
+  <div class="auth-modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeAuthModal()" aria-label="Zamknij">×</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="auth-tab-login" onclick="setAuthMode('login')">Logowanie</button>
+      <button class="auth-tab" id="auth-tab-signup" onclick="setAuthMode('signup')">Rejestracja</button>
+    </div>
+    <button class="google-btn" onclick="googleLogin()">
+      <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#4285f4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
+        <path fill="#34a853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/>
+        <path fill="#fbbc05" d="M3.964 10.706A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.706V4.962H.957A8.997 8.997 0 0 0 0 9c0 1.452.348 2.827.957 4.038l3.007-2.332z"/>
+        <path fill="#ea4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.962L3.964 7.294C4.672 5.167 6.656 3.58 9 3.58z"/>
+      </svg>
+      Kontynuuj z Google
+    </button>
+    <div class="auth-sep"><span>lub e-mailem</span></div>
+    <form class="auth-form" onsubmit="return submitAuth(event)">
+      <input type="email" id="auth-email" placeholder="E-mail" required autocomplete="email">
+      <input type="password" id="auth-password" placeholder="Hasło (min. 10 znaków)" required autocomplete="current-password" minlength="10">
+      <button type="submit" id="auth-submit">Zaloguj się</button>
+      <div id="auth-error" class="auth-error" style="display:none"></div>
+      <div id="auth-success" class="auth-success" style="display:none"></div>
+    </form>
+    <div class="auth-footer">
+      <a href="#" id="auth-forgot-link" onclick="forgotPassword(); return false;">Zapomniałem hasła</a>
+    </div>
+  </div>
+</div>
+
+<!-- Verification banner (po /verify redirect z ?verified=1) -->
+<div id="auth-banner" class="auth-banner" style="display:none"></div>
+
+<script>
+// ============================================================================
+// Auth: cross-domain login do api.radoskop.eu
+// ============================================================================
+// Cookie sesji jest HttpOnly+Secure+SameSite=None na .radoskop.eu. Z radoskop.pl
+// frontend fetchuje api.radoskop.eu z credentials:include, przeglądarka dokleja
+// cookie automatycznie bo target host kończy się na .radoskop.eu.
+
+// /me lokalny: api.radoskop.pl (cookie .radoskop.pl po bridge / signup .pl).
+// Cross-TLD cookies blokowane przez Firefox Total Cookie Protection, Safari ITP,
+// Chrome Privacy Sandbox, więc pytamy backend o sesję na BIEŻĄCEJ TLD.
+const AUTH_API = (window.RADOSKOP_AUTH_API || 'https://api.radoskop.pl') + '/api/auth';
+
+// Token bridge: gdy user nie ma sesji na .pl, otwieramy radoskop.eu (gdzie
+// może mieć sesję np. po Google login). Apex .eu z parametrem bridge_to
+// minuje HMAC token i odsyła na api.radoskop.pl/bridge-exchange które
+// ustawia cookie .radoskop.pl, po czym 302 z powrotem na docelowy URL.
+function _bridgeLogin() {
+  const bridgeUrl = 'https://radoskop.eu/?bridge_to=' + encodeURIComponent(window.location.href);
+  window.location.href = bridgeUrl;
+}
+const AUTH_FRONTEND = window.RADOSKOP_AUTH_FRONTEND || 'https://radoskop.eu';
+
+// Cache user info w sessionStorage żeby przy reload nie czekać na /me przed
+// pokazaniem chipa. Walidacja przez /me dzieje się asynchronicznie i podmienia.
+let _authUser = null;
+try {
+  const cached = sessionStorage.getItem('radoskop_user');
+  if (cached) _authUser = JSON.parse(cached);
+} catch (e) {}
+
+function _setAuthUser(user) {
+  _authUser = user;
+  try {
+    if (user) sessionStorage.setItem('radoskop_user', JSON.stringify(user));
+    else sessionStorage.removeItem('radoskop_user');
+  } catch (e) {}
+  _renderAuthHeader();
+}
+
+function _renderAuthHeader() {
+  const btn = document.getElementById('auth-login-btn');
+  const chip = document.getElementById('user-chip');
+  if (!btn || !chip) return;
+  if (_authUser) {
+    btn.style.display = 'none';
+    chip.style.display = 'inline-flex';
+    const av = document.getElementById('user-avatar');
+    av.textContent = (_authUser.email || '?')[0].toUpperCase();
+    av.title = _authUser.email;
+    const nameEl = document.getElementById('user-name');
+    const dn = _authUser.display_name && _authUser.display_name.trim()
+      ? _authUser.display_name.trim()
+      : (_authUser.email || '').split('@')[0];
+    nameEl.textContent = dn;
+    nameEl.title = _authUser.email;
+  } else {
+    btn.style.display = '';
+    chip.style.display = 'none';
+  }
+}
+
+// Pull /me przy load, niezależnie od cache (cache może być nieaktualny).
+// Razem refreshujemy też subscription status, żeby gating Business był
+// spójny po login/logout/initial load.
+async function _refreshAuth() {
+  try {
+    const r = await fetch(AUTH_API + '/me', { credentials: 'include' });
+    if (!r.ok) { _setAuthUser(null); BUSINESS_ACTIVE = false; _komisjeListCache = null; return; }
+    const data = await r.json();
+    _setAuthUser(data.user || null);
+  } catch (e) {
+    // Network error: zostaw cache jak był, /me retry przy następnym razie.
+  }
+  if (typeof refreshSubscriptionStatus === 'function') {
+    await refreshSubscriptionStatus();
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Modal otwieranie/zamykanie + tab switch
+// ----------------------------------------------------------------------------
+
+let _authMode = 'login';
+
+function openAuthModal(mode) {
+  setAuthMode(mode || 'login');
+  document.getElementById('auth-error').style.display = 'none';
+  document.getElementById('auth-success').style.display = 'none';
+  document.getElementById('auth-email').value = '';
+  document.getElementById('auth-password').value = '';
+  document.getElementById('auth-modal-backdrop').style.display = 'flex';
+  setTimeout(() => document.getElementById('auth-email').focus(), 50);
+}
+
+function closeAuthModal() {
+  document.getElementById('auth-modal-backdrop').style.display = 'none';
+}
+
+function closeAuthModalIfBackdrop(ev) {
+  if (ev.target.id === 'auth-modal-backdrop') closeAuthModal();
+}
+
+function setAuthMode(mode) {
+  _authMode = mode;
+  document.getElementById('auth-tab-login').classList.toggle('active', mode === 'login');
+  document.getElementById('auth-tab-signup').classList.toggle('active', mode === 'signup');
+  document.getElementById('auth-submit').textContent = mode === 'signup' ? 'Zarejestruj się' : 'Zaloguj się';
+  document.getElementById('auth-password').setAttribute('autocomplete', mode === 'signup' ? 'new-password' : 'current-password');
+  document.getElementById('auth-forgot-link').style.display = mode === 'login' ? '' : 'none';
+  document.getElementById('auth-error').style.display = 'none';
+  document.getElementById('auth-success').style.display = 'none';
+}
+
+function _showAuthError(msg) {
+  const el = document.getElementById('auth-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+  document.getElementById('auth-success').style.display = 'none';
+}
+
+function _showAuthSuccess(msg) {
+  const el = document.getElementById('auth-success');
+  el.textContent = msg;
+  el.style.display = 'block';
+  document.getElementById('auth-error').style.display = 'none';
+}
+
+// ----------------------------------------------------------------------------
+// Auth actions
+// ----------------------------------------------------------------------------
+
+async function submitAuth(ev) {
+  ev.preventDefault();
+  const email = document.getElementById('auth-email').value.trim().toLowerCase();
+  const password = document.getElementById('auth-password').value;
+  const submitBtn = document.getElementById('auth-submit');
+  const endpoint = _authMode === 'signup' ? '/signup' : '/login';
+
+  submitBtn.disabled = true;
+  document.getElementById('auth-error').style.display = 'none';
+
+  try {
+    const r = await fetch(AUTH_API + endpoint, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await r.json().catch(() => ({}));
+
+    if (!r.ok) {
+      const msg = _authErrorMessage(data, _authMode);
+      _showAuthError(msg);
+      submitBtn.disabled = false;
+      return false;
+    }
+
+    _setAuthUser(data.user);
+    closeAuthModal();
+    if (_authMode === 'signup') {
+      _showBanner('Konto utworzone. Sprawdź skrzynkę, żeby potwierdzić e-mail.');
+    } else {
+      _showBanner('Zalogowano jako ' + data.user.email);
+    }
+  } catch (e) {
+    _showAuthError('Błąd połączenia z serwerem.');
+  } finally {
+    submitBtn.disabled = false;
+  }
+  return false;
+}
+
+function _authErrorMessage(data, mode) {
+  if (!data || !data.error) return 'Coś poszło nie tak. Spróbuj jeszcze raz.';
+  switch (data.error) {
+    case 'invalid_email': return 'Niepoprawny adres e-mail.';
+    case 'invalid_password': return data.message || 'Hasło musi mieć co najmniej 10 znaków.';
+    case 'email_taken': return 'Konto z tym adresem już istnieje. Zaloguj się.';
+    case 'invalid_credentials': return 'Niepoprawny e-mail lub hasło.';
+    case 'missing_fields': return 'Wypełnij wszystkie pola.';
+    case 'csrf_blocked': return 'Błąd bezpieczeństwa. Otwórz stronę bezpośrednio.';
+    default: return data.message || 'Coś poszło nie tak.';
+  }
+}
+
+function googleLogin() {
+  const returnTo = encodeURIComponent(window.location.href);
+  window.location.href = AUTH_API + '/google/start?return_to=' + returnTo;
+}
+
+async function doLogout() {
+  // 1. Local logout na bieżącej TLD (.pl)
+  try {
+    await fetch(AUTH_API + '/logout', { method: 'POST', credentials: 'include' });
+  } catch (e) {}
+  _setAuthUser(null);
+  // 2. Cross-TLD logout: top-level nav na radoskop.eu z ?logout_remote=1
+  // żeby też wyczyścić sesję .eu (cookie partycjonowane, nie dostępne
+  // z fetch z .pl). Po wylogowaniu .eu odbija z powrotem na current URL.
+  const returnTo = encodeURIComponent(window.location.href);
+  window.location.href = 'https://radoskop.eu/?logout_remote=1&return_to=' + returnTo;
+}
+
+async function forgotPassword() {
+  const email = (document.getElementById('auth-email').value || '').trim().toLowerCase();
+  if (!email) {
+    _showAuthError('Wpisz e-mail i kliknij ponownie "Zapomniałem hasła".');
+    document.getElementById('auth-email').focus();
+    return;
+  }
+  try {
+    await fetch(AUTH_API + '/reset-request', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    _showAuthSuccess('Wysłaliśmy link resetu na ' + email + ' (jeśli konto istnieje).');
+  } catch (e) {
+    _showAuthError('Błąd połączenia z serwerem.');
+  }
+}
+
+function _showBanner(text) {
+  const b = document.getElementById('auth-banner');
+  b.textContent = text;
+  b.style.display = 'block';
+  setTimeout(() => { b.style.display = 'none'; }, 4000);
+}
+
+// ----------------------------------------------------------------------------
+// Init: render header z cache, potem /me, plus query-param hooks
+// ----------------------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', () => {
+  _renderAuthHeader();
+  _refreshAuth();
+
+  // Pokazuj banner po Google callback i email verify redirectach
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('verified') === '1') {
+    _showBanner('E-mail potwierdzony.');
+  }
+  const authError = params.get('auth_error');
+  if (authError) {
+    _showBanner('Błąd logowania: ' + authError.replace(/_/g, ' '));
+  }
+});
+
+// Klawisz Escape zamyka modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && document.getElementById('auth-modal-backdrop').style.display !== 'none') {
+    closeAuthModal();
+  }
+});
 </script>
 <script>
 // Sejmik: definicje klubów i mapowanie radny -> klub.
