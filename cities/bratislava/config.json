@@ -1,0 +1,172 @@
+{
+  "city_name": "Bratislava",
+  "city_genitive": "Bratislavy",
+  "country": "sk",
+  "country_name": "Slovensko",
+  "locale": "sk",
+  "site_title": "Radoskop Bratislava. Ako hlasujú poslanci MsZ?",
+  "site_url": "https://bratislava.radoskop.eu",
+  "site_description": "Radoskop. Otvorené nástroje na sledovanie činnosti Mestského zastupiteľstva hlavného mesta SR Bratislavy. Účasť a hlasovania poslancov.",
+  "site_description_short": "Otvorené sledovanie činnosti MsZ Bratislavy. Účasť a hlasovania.",
+  "bip_url": "https://zastupitelstvo.bratislava.sk/",
+  "bip_name": "zastupitelstvo.bratislava.sk",
+  "bip_kind": "bratislava_digitalne_zastupitelstvo",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "bratislava.radoskop.eu",
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "samorzad_type": "miasto",
+  "rada_name": "Mestské zastupiteľstvo hlavného mesta SR Bratislavy",
+  "rada_name_genitive": "Mestského zastupiteľstva hlavného mesta SR Bratislavy",
+  "councilor_count": 45,
+  "kadencja_active": "2022-2026",
+  "kadencje": {
+    "2022-2026": {
+      "label": "Volebné obdobie 2022–2026",
+      "start": "2022-11-15",
+      "vol_obd": "297313",
+      "session_list_url": "https://zastupitelstvo.bratislava.sk/zasadnutia/?volObd=297313"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "komisje_public": false,
+  "komisje_premium": false,
+  "has_interpelacje": false,
+  "has_stenogram": false,
+  "has_voting_data": true,
+  "has_activity_data": false,
+  "scrape_status": "active",
+  "currency": "€",
+  "session_list_url": "https://zastupitelstvo.bratislava.sk/mestske-zastupitelstvo-hlavneho-mesta-sr-bratislavy-2022-2026/?tabOrgan=3",
+  "session_list_base": "https://zastupitelstvo.bratislava.sk/",
+  "vote_text_map": {
+    "Hlasovali za": "za",
+    "Hlasovali proti": "przeciw",
+    "Zdržali sa hlasovania": "wstrzymal_sie",
+    "Nehlasovali": "brak_glosu",
+    "Neprítomní": "nieobecni"
+  },
+  "ui_strings_sk": {
+    "rada": "Zastupiteľstvo",
+    "radni": "Poslanci",
+    "radny": "Poslanec",
+    "frekwencja": "Účasť",
+    "glosowania": "Hlasovania",
+    "klub": "Klub",
+    "kluby": "Kluby",
+    "sesja": "Zasadnutie",
+    "sesje": "Zasadnutia",
+    "kadencja": "Volebné obdobie",
+    "za": "Za",
+    "przeciw": "Proti",
+    "wstrzymal_sie": "Zdržal sa",
+    "brak_glosu": "Nehlasoval",
+    "nieobecni": "Neprítomný",
+    "przyjete": "Prijaté",
+    "odrzucone": "Neprijaté",
+    "odroczone": "Odložené",
+    "search": "Hľadať",
+    "details": "Detail",
+    "about": "O projekte"
+  },
+  "clubs": {
+    "TB-PS-SaS": {
+      "name": "Team Bratislava, Progresívne Slovensko, Sloboda a Solidarita",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "SOM": {
+      "name": "Strana obcí a miest – SOM SLOVENSKO",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "STAROSTOVIA": {
+      "name": "STAROSTOVIA A NEZAVISLÍ KANDIDÁTI",
+      "color": "#ca8a04",
+      "bg": "rgba(202,138,4,0.12)",
+      "avatar_bg": "#854d0e"
+    },
+    "TIM_RUZINOV": {
+      "name": "TÍM RUŽINOV",
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)",
+      "avatar_bg": "#991b1b"
+    },
+    "SME_RODINA_KDH": {
+      "name": "SME RODINA, KDH, ZA ĽUDÍ, DOBRÁ VOĽBA, Aliancia",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#6d28d9"
+    },
+    "NOVA_OLANO": {
+      "name": "NOVA, OKS, Zmena zdola, DÚ, OĽANO, KÚ",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#075985"
+    },
+    "NEZAVISLI": {
+      "name": "Nezávislí kandidáti",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Antalová Plavuchová Lenka": "TB-PS-SaS",
+    "Augustinič Katarína": "TB-PS-SaS",
+    "Berka Adam": "TB-PS-SaS",
+    "Bodnár Kamil": "TB-PS-SaS",
+    "Čahojová Dana": "STAROSTOVIA",
+    "Chren Martin": "TIM_RUZINOV",
+    "Čupka Matúš": "TB-PS-SaS",
+    "Dej Dávid": "TB-PS-SaS",
+    "Ďurajková Monika": "TB-PS-SaS",
+    "Dvořák Oskar": "TB-PS-SaS",
+    "Ferenčáková Gabriela": "SOM",
+    "Hrčka Ján": "NEZAVISLI",
+    "Hudáková Petra": "TB-PS-SaS",
+    "Jakubčová Lenka": "TB-PS-SaS",
+    "Jakubkovič Jana": "NEZAVISLI",
+    "Jenčík Radovan": "NEZAVISLI",
+    "Káčer Juraj": "SOM",
+    "Karman Ján": "TB-PS-SaS",
+    "Kleinert Dana": "TB-PS-SaS",
+    "Klimovský Daniel": "TB-PS-SaS",
+    "Krajčír Dárius": "SOM",
+    "Kratochvílová Tatiana": "TB-PS-SaS",
+    "Krúpa Jozef": "SOM",
+    "Kuruc Martin": "TB-PS-SaS",
+    "Lamoš Roman": "TB-PS-SaS",
+    "Machata Marek": "TB-PS-SaS",
+    "Macko Miroslav": "TB-PS-SaS",
+    "Mrva Jakub": "TB-PS-SaS",
+    "Ožvaldová Alžbeta": "STAROSTOVIA",
+    "Pajdlhauser Róbert": "SME_RODINA_KDH",
+    "Pätoprstá Smatana Elena": "NOVA_OLANO",
+    "Patoprstý Martin": "TIM_RUZINOV",
+    "Plaváková Lucia": "TB-PS-SaS",
+    "Polakovič Igor": "TB-PS-SaS",
+    "Sarlós Adam": "TB-PS-SaS",
+    "Škápik Pavol": "TB-PS-SaS",
+    "Štasselová Lucia": "TB-PS-SaS",
+    "Uhler Jozef": "NEZAVISLI",
+    "Vagač Matej": "TB-PS-SaS",
+    "Vallo Jakub": "TB-PS-SaS",
+    "Vallo Matúš": "TB-PS-SaS",
+    "Vlačiky Martin": "TB-PS-SaS",
+    "Vlček Michal": "NEZAVISLI",
+    "Winkler Martin": "TB-PS-SaS",
+    "Záhradník Branislav": "STAROSTOVIA",
+    "Zaťovičová Zdenka": "SOM"
+  }
+}

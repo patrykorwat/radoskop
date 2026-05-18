@@ -273,6 +273,7 @@ class BipScraper(ABC):
             "votes_za": 0, "votes_przeciw": 0, "votes_wstrzymal": 0,
             "votes_brak": 0, "votes_nieobecny": 0, "votes_total": 0,
             "frekwencja": 0, "aktywnosc": 0, "zgodnosc_z_klubem": 0,
+            "votes_with_club_majority": 0, "votes_against_club_majority": 0,
             "rebellion_count": 0, "rebellions": [],
             "has_voting_data": True, "has_activity_data": False,
         })
@@ -292,6 +293,56 @@ class BipScraper(ABC):
                     elif cat == "brak_glosu":
                         stats[name]["votes_brak"] += 1
 
+        # Zgodność z klubem: per głosowanie ustal majority per klub (max z
+        # za/przeciw/wstrzymal_sie), potem porównaj głos każdego radnego.
+        # Klub "?" (niezrzeszeni, nieznani) pomijamy. Liczymy tylko aktywne
+        # głosy (za/przeciw/wstrzymal_sie), nie absencje.
+        ACTIVE_CATS = ("za", "przeciw", "wstrzymal_sie")
+        for vote in all_votes:
+            # Mapa: name → cat (tylko aktywne)
+            councilor_vote: dict[str, str] = {}
+            for cat in ACTIVE_CATS:
+                for name in vote["named_votes"].get(cat, []):
+                    councilor_vote[name] = cat
+
+            # Per klub policz głosy w 3 kategoriach.
+            club_tally: dict[str, dict[str, int]] = defaultdict(
+                lambda: {"za": 0, "przeciw": 0, "wstrzymal_sie": 0}
+            )
+            for name, cat in councilor_vote.items():
+                club = stats[name].get("club") or self.resolve_club(name)
+                if not club or club == "?":
+                    continue
+                club_tally[club][cat] += 1
+
+            # Wyłoń majority per klub. Tie → bierzemy max() default order
+            # (za > przeciw > wstrzymal_sie). Klub z 0 głosów aktywnych
+            # pomijamy.
+            club_majority: dict[str, str] = {}
+            for club, tally in club_tally.items():
+                if sum(tally.values()) == 0:
+                    continue
+                club_majority[club] = max(tally, key=tally.get)
+
+            # Per radny: zgodność z majority swojego klubu.
+            for name, their_cat in councilor_vote.items():
+                club = stats[name].get("club") or self.resolve_club(name)
+                if not club or club == "?":
+                    continue
+                majority = club_majority.get(club)
+                if not majority:
+                    continue
+                if their_cat == majority:
+                    stats[name]["votes_with_club_majority"] += 1
+                else:
+                    stats[name]["votes_against_club_majority"] += 1
+                    stats[name]["rebellions"].append({
+                        "session": vote.get("session_date", ""),
+                        "topic": (vote.get("topic") or "")[:100],
+                        "their_vote": their_cat,
+                        "club_majority": majority,
+                    })
+
         for s in stats.values():
             if s["votes_total"] > 0:
                 s["frekwencja"] = round(
@@ -301,6 +352,12 @@ class BipScraper(ABC):
                     (s["votes_za"] + s["votes_przeciw"] + s["votes_wstrzymal"])
                     / s["votes_total"] * 100, 1
                 )
+            alignment_total = s["votes_with_club_majority"] + s["votes_against_club_majority"]
+            if alignment_total > 0:
+                s["zgodnosc_z_klubem"] = round(
+                    s["votes_with_club_majority"] / alignment_total * 100, 1
+                )
+            s["rebellion_count"] = len(s["rebellions"])
 
         result = []
         for name, s in sorted(stats.items()):

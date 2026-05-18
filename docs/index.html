@@ -304,8 +304,10 @@ footer a:hover{text-decoration-color:var(--accent);}
   <div class="topbar-actions">
     <a id="auth-login-btn" href="#" onclick="event.preventDefault();_bridgeLogin();return false;" style="display:none;background:var(--accent,#4f46e5);color:#fff;text-decoration:none;border-radius:8px;padding:6px 14px;font-size:0.85rem;font-weight:500;">Zaloguj się</a>
     <div id="user-chip" style="display:none;align-items:center;gap:8px;background:var(--surface,#fff);border:1px solid var(--border);border-radius:8px;padding:3px 6px 3px 3px;font-size:0.85rem;">
-      <span id="user-avatar" title="" style="width:26px;height:26px;border-radius:50%;background:var(--accent,#4f46e5);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;cursor:default;"></span>
-      <span id="user-name" title="" style="color:var(--text);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+      <button id="user-chip-link" onclick="goToProfile()" aria-label="Moje konto" title="Moje konto" style="background:none;border:none;padding:0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:inherit;font:inherit;">
+        <span id="user-avatar" title="" style="width:26px;height:26px;border-radius:50%;background:var(--accent,#4f46e5);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600;"></span>
+        <span id="user-name" title="" style="color:var(--text);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+      </button>
       <button onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj" style="background:none;border:none;color:var(--muted);cursor:pointer;padding:0 4px;font-size:1.1rem;line-height:1;font-family:inherit;">×</button>
     </div>
     <button id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny"
@@ -384,6 +386,38 @@ footer a:hover{text-decoration-color:var(--accent);}
     // więc musi to nastąpić w kontekście top-level .eu.
     const returnTo = encodeURIComponent(window.location.href);
     window.location.href = 'https://radoskop.eu/?logout_remote=1&return_to=' + returnTo;
+  };
+
+  // Przejście do strony "Moje konto" zalogowanego usera.
+  // Profile page żyje na radoskop.eu/profile/. Cookie sesji jest
+  // partycjonowane per TLD, więc proste window.location na .eu zgubiłoby
+  // login. Mintujemy bridge token na .pl, exchange tworzy sesję .eu i
+  // redirektuje na /profile/.
+  window.goToProfile = async function() {
+    const profileUrl = 'https://radoskop.eu/profile/';
+    if (window.location.hostname.endsWith('.radoskop.eu') || window.location.hostname === 'radoskop.eu') {
+      window.location.href = profileUrl;
+      return;
+    }
+    try {
+      const r = await fetch(AUTH_API + '/bridge-token', { credentials: 'include' });
+      if (!r.ok) {
+        window.location.href = profileUrl;
+        return;
+      }
+      const data = await r.json();
+      const token = data.token;
+      if (!token) {
+        window.location.href = profileUrl;
+        return;
+      }
+      const exchangeUrl = 'https://api.radoskop.eu/api/auth/bridge-exchange'
+        + '?token=' + encodeURIComponent(token)
+        + '&return_to=' + encodeURIComponent(profileUrl);
+      window.location.href = exchangeUrl;
+    } catch (e) {
+      window.location.href = profileUrl;
+    }
   };
 
   document.addEventListener('DOMContentLoaded', async () => {
