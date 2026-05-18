@@ -1,0 +1,105 @@
+{
+  "samorzad_type": "wojewodztwo",
+  "voivodeship_slug": "slaskie",
+  "voivodeship_name": "śląskie",
+  "voivodeship_genitive": "śląskiego",
+  "capital": "Katowice",
+  "rada_name": "Sejmik Województwa Śląskiego",
+  "rada_name_genitive": "Sejmiku Województwa Śląskiego",
+  "site_title": "Radoskop Sejmik Śląskie — Jak głosują radni?",
+  "site_url": "https://slaskie.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Śląskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.",
+  "site_description_short": "Otwarte narzędzie monitoringu Sejmiku Województwa Śląskiego.",
+  "bip_url": "https://bip.slaskie.pl/",
+  "bip_name": "BIP Samorząd Województwa Śląskiego",
+  "bip_kind": "slaskie_bip_json_pdf",
+  "bip_glosowania_root": "https://bip.slaskie.pl/sejmik_wojewodztwa/sesje_sejmiku/glosowania_radnych/",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "slaskie.radoskop.pl",
+  "councilor_count": 45,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "active",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga (PSL/Polska 2050)",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "Lewica": {
+      "name": "Lewica",
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Jan Chrząszcz": "PiS",
+    "Jan Kawulok": "PiS",
+    "Stanisław Baczyński": "PiS",
+    "Jacek Jarco": "TD",
+    "Rafał Ryplewicz": "KO",
+    "Marcin Szarek": "KO",
+    "Katarzyna Twardzik": "KO",
+    "Beata Białowąs": "PiS",
+    "Tomasz Papaj": "PiS",
+    "Piotr Czarnynoga": "PiS",
+    "Maciej Kolon": "KO",
+    "Alina Bednarz": "KO",
+    "Aleksandra Targosz-Bernaciak": "KO",
+    "Maciej Gruchlik": "KO",
+    "Wojciech Kałuża": "PiS",
+    "Łukasz Dwornik": "PiS",
+    "Julia Kloc-Kondracka": "PiS",
+    "Bronisław Karasek": "TD",
+    "Grzegorz Wolnik": "KO",
+    "Barbara Gadowska": "KO",
+    "Ewa Chmielorz": "KO",
+    "Bartłomiej Kowalski": "PiS",
+    "Józef Kubica": "PiS",
+    "Małgorzata Mańka": "PiS",
+    "Marek Bieniek": "TD",
+    "Paweł Kobyliński": "KO",
+    "Lucyna Ekkert": "KO",
+    "Jacek Brzezinka": "KO",
+    "Dorota Tobiszowska": "PiS",
+    "Maria Nowak": "PiS",
+    "Aleksandra Poloczek": "TD",
+    "Adam Koczyk": "KO",
+    "Urszula Koszutska": "KO",
+    "Mariusz Trepka": "PiS",
+    "Beata Kocik": "PiS",
+    "Stanisław Gmitruk": "TD",
+    "Ewelina Balt": "Lewica",
+    "Bartłomiej Sabat": "KO",
+    "Dariusz Starzycki": "PiS",
+    "Jadwiga Baczyńska": "PiS",
+    "Rafał Adamczyk": "Lewica",
+    "Katarzyna Stachowicz": "KO",
+    "Mirosław Mazur": "KO",
+    "Paweł Bańkowski": "KO",
+    "Aldona Węgrzynowicz": "KO"
+  }
+}

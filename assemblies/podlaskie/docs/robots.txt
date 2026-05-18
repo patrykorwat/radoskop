@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://podlaskie.radoskop.pl/sitemap.xml

@@ -3,28 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Radoskop Sejmik Pomorskie. Jak głosują radni?</title>
-<meta name="description" content="Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Pomorskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.">
-<meta name="keywords" content="Pomorskie, sejmik województwa, radni, głosowania, frekwencja, samorząd, monitoring, transparentność">
+<title>Radoskop Sejmik Wielkopolskie — Jak głosują radni?</title>
+<meta name="description" content="Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Wielkopolskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.">
+<meta name="keywords" content="Wielkopolskie, sejmik województwa, radni, głosowania, frekwencja, samorząd, monitoring, transparentność">
 <meta name="author" content="Patryk Orwat">
-<link rel="canonical" href="https://pomorskie.radoskop.pl/">
+<link rel="canonical" href="https://wielkopolskie.radoskop.pl/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Radoskop Pomorskie — Jak głosują radni?">
-<meta property="og:description" content="Otwarte narzędzie monitoringu Sejmiku Województwa Pomorskiego. Frekwencja, głosowania i aktywność radnych.">
-<meta property="og:url" content="https://pomorskie.radoskop.pl/">
+<meta property="og:title" content="Radoskop Wielkopolskie — Jak głosują radni?">
+<meta property="og:description" content="Otwarte narzędzie monitoringu Sejmiku Województwa Wielkopolskiego. Frekwencja, głosowania i aktywność radnych.">
+<meta property="og:url" content="https://wielkopolskie.radoskop.pl/">
 <meta property="og:locale" content="pl_PL">
-<meta property="og:site_name" content="Radoskop Pomorskie">
+<meta property="og:site_name" content="Radoskop Wielkopolskie">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Radoskop Pomorskie — Jak głosują radni?">
-<meta name="twitter:description" content="Otwarte narzędzie monitoringu Sejmiku Województwa Pomorskiego. Frekwencja, głosowania i aktywność radnych.">
-<link rel="alternate" type="application/atom+xml" title="Radoskop Pomorskie" href="https://pomorskie.radoskop.pl/feed.xml">
+<meta name="twitter:title" content="Radoskop Wielkopolskie — Jak głosują radni?">
+<meta name="twitter:description" content="Otwarte narzędzie monitoringu Sejmiku Województwa Wielkopolskiego. Frekwencja, głosowania i aktywność radnych.">
+<link rel="alternate" type="application/atom+xml" title="Radoskop Wielkopolskie" href="https://wielkopolskie.radoskop.pl/feed.xml">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Radoskop Pomorskie",
-  "description": "Otwarte narzędzie monitoringu Sejmiku Województwa Pomorskiego. Sprawdź frekwencję, głosowania i aktywność radnych na sesjach.",
-  "url": "https://pomorskie.radoskop.pl/",
+  "name": "Radoskop Wielkopolskie",
+  "description": "Otwarte narzędzie monitoringu Sejmiku Województwa Wielkopolskiego. Sprawdź frekwencję, głosowania i aktywność radnych na sesjach.",
+  "url": "https://wielkopolskie.radoskop.pl/",
   "applicationCategory": "GovernmentApplication",
   "operatingSystem": "Web",
   "author": {
@@ -33,8 +33,8 @@
   },
   "about": {
     "@type": "GovernmentOrganization",
-    "name": "Sejmik Województwa Pomorskiego",
-    "url": "https://bip.pomorskie.eu/"
+    "name": "Sejmik Województwa Wielkopolskiego",
+    "url": "https://bip.umww.pl/"
   },
   "license": "https://www.gnu.org/licenses/agpl-3.0.html",
   "isAccessibleForFree": true,
@@ -137,9 +137,11 @@ th.sorted { color:var(--text); }
 td { padding:10px 12px; border-bottom:1px solid var(--border); }
 tr:hover td { background:rgba(99,102,241,0.05); }
 .club { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; }
-.club-KO { background:rgba(14,165,233,0.12); color:#0284c7; }
-.club-PiS { background:rgba(124,58,237,0.12); color:#7c3aed; }
-.club-TD { background:rgba(22,163,74,0.12); color:#15803d; }
+.club-KO { background:rgba(234,88,12,0.12); color:#ea580c; }
+.club-PiS { background:rgba(31,78,160,0.12); color:#1f4ea0; }
+.club-TD { background:rgba(22,163,74,0.12); color:#16a34a; }
+.club-Lewica { background:rgba(220,38,38,0.12); color:#dc2626; }
+.club-NZ { background:rgba(107,114,128,0.12); color:#6b7280; }
 .club-unknown { background:rgba(139,141,151,0.15); color:var(--muted); }
 .bar { height:6px; border-radius:3px; background:var(--border); position:relative; min-width:60px; }
 .bar-fill { height:100%; border-radius:3px; position:absolute; left:0; top:0; }
@@ -546,8 +548,8 @@ footer a { color:var(--accent); text-decoration:none; }
 <div class="container">
   <header>
     <div onclick="showMain()" style="cursor:pointer">
-      <h1>Rado<span>skop</span> Pomorskie</h1>
-      <p>Jak głosują radni Miasta Pomorskiego? Dane z protokołów BIP.</p>
+      <h1>Rado<span>skop</span> Wielkopolskie</h1>
+      <p>Jak głosują radni Miasta Wielkopolskiego? Dane z protokołów BIP.</p>
     </div>
   </header>
 
@@ -566,7 +568,7 @@ footer a { color:var(--accent); text-decoration:none; }
         <div class="tab-tier tab-tier--secondary">
           <button class="tab tab-secondary" data-tab="interpelacje">Interpelacje</button>
           <button class="tab tab-secondary" data-tab="sessions">Sesje</button>
-        <a href="/news/" class="tab" style="text-decoration:none">Aktualności</a>
+
         </div>
       </div>
       <div class="kadencja-bar" id="kadencja-bar"></div>
@@ -672,7 +674,7 @@ footer a { color:var(--accent); text-decoration:none; }
     <div style="margin-bottom:10px;color:var(--muted);font-size:0.8rem">
       Polecane (projekt zewnętrzny): <a href="https://www.tygodniksejmowy.pl/" target="_blank" rel="noopener">Tygodnik Sejmowy</a> — analiza prac Sejmu RP
     </div>
-    Dane źródłowe: <a href="https://bip.pomorskie.eu/" target="_blank">BIP Urząd Marszałkowski Województwa Pomorskiego</a>.
+    Dane źródłowe: <a href="https://bip.umww.pl/" target="_blank">BIP Urząd Marszałkowski Województwa Wielkopolskiego</a>.
     Kod: <a href="https://github.com/radoskoppl/radoskop" target="_blank">GitHub</a> (AGPL-3.0).
     <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/pricing/">Cennik</a> · <a href="https://radoskop.eu/business/">Business</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">Regulamin</a>
     
@@ -1108,7 +1110,7 @@ const SLUG_TABS = Object.fromEntries(Object.entries(TAB_SLUGS).map(([k,v])=>[v,k
 const KAD_SLUGS = {'2018-2023':'viii','2024-2029':'ix'};
 const SLUG_KADS = Object.fromEntries(Object.entries(KAD_SLUGS).map(([k,v])=>[v,k]));
 
-const BASE_TITLE = 'Radoskop Sejmik Pomorskie. Jak głosują radni?';
+const BASE_TITLE = 'Radoskop Sejmik Wielkopolskie — Jak głosują radni?';
 const TAB_TITLES = {ranking:'Ranking radnych',sessions:'Sesje',votes:'Głosowania',komisje:'Komisje',interpelacje:'Interpelacje',budget:'Budżet'};
 function setTitle(subtitle) {
   document.title = subtitle ? subtitle + ' \u2013 ' + BASE_TITLE : BASE_TITLE;
@@ -1322,9 +1324,9 @@ function showImpressum() {
   navigateTo('/impressum/');
   setTitle('Impressum');
   setOgMeta({
-    title: 'Impressum — Radoskop Pomorskie',
+    title: 'Impressum — Radoskop Wielkopolskie',
     description: 'Anbieterkennzeichnung gemäß §5 TMG.',
-    url: 'https://pomorskie.radoskop.pl/impressum/'
+    url: 'https://wielkopolskie.radoskop.pl/impressum/'
   });
   /* IMPRESSUM_HTML_END */
   window.scrollTo(0, 0);
@@ -1345,8 +1347,8 @@ function showMain() {
   setTitle(TAB_TITLES[currentTab] || '');
   setOgMeta({
     title: BASE_TITLE,
-    description: 'Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Pomorskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.',
-    url: 'https://pomorskie.radoskop.pl' + mainPath()
+    description: 'Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Wielkopolskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.',
+    url: 'https://wielkopolskie.radoskop.pl' + mainPath()
   });
 }
 
@@ -1377,13 +1379,13 @@ function renderClubFilter() {
 }
 
 function clubColor(club) {
-  return club === 'KO' ? '#0284c7' : club === 'PiS' ? '#7c3aed' : club === 'TD' ? '#15803d' : 'var(--muted)';
+  return club === 'KO' ? '#ea580c' : club === 'PiS' ? '#1f4ea0' : club === 'TD' ? '#16a34a' : club === 'Lewica' ? '#dc2626' : club === 'NZ' ? '#6b7280' : 'var(--muted)';
 }
 function clubBg(club) {
-  return club === 'KO' ? '#0284c7' : club === 'PiS' ? '#7c3aed' : club === 'TD' ? '#15803d' : '#374151';
+  return club === 'KO' ? '#ea580c' : club === 'PiS' ? '#1f4ea0' : club === 'TD' ? '#16a34a' : club === 'Lewica' ? '#dc2626' : club === 'NZ' ? '#6b7280' : '#374151';
 }
 function clubClass(club) {
-  return ['KO','PiS','TD'].includes(club) ? `club-${club}` : 'club-unknown';
+  return ['KO','PiS','TD','Lewica','NZ'].includes(club) ? `club-${club}` : 'club-unknown';
 }
 function initials(name) {
   return name.split(' ').map(w => w[0]).join('').substring(0,2);
@@ -1448,10 +1450,10 @@ function showProfile(name) {
   setTitle(profile.name);
   var _pk = profile.kadencje[Object.keys(profile.kadencje).pop()] || {};
   setOgMeta({
-    title: profile.name + ' \u2013 Radoskop Pomorskie',
+    title: profile.name + ' \u2013 Radoskop Wielkopolskie',
     description: profile.name + ', ' + (_pk.club_full || _pk.club || '') + '. Frekwencja ' + (_pk.frekwencja||0).toFixed(0) + '%, aktywnosc ' + (_pk.aktywnosc||0).toFixed(0) + '%.',
-    url: 'https://pomorskie.radoskop.pl/profil/' + profile.slug + '/',
-    image: 'https://pomorskie.radoskop.pl/profil/' + profile.slug + '/og.png'
+    url: 'https://wielkopolskie.radoskop.pl/profil/' + profile.slug + '/',
+    image: 'https://wielkopolskie.radoskop.pl/profil/' + profile.slug + '/og.png'
   });
 
   // Find which kadencje this person has data for
@@ -1614,8 +1616,8 @@ function showProfile(name) {
 
     // Share section with social buttons + card download + embed
     if (hasVotes) {
-      const profileShareUrl = 'https://pomorskie.radoskop.pl/profil/' + profile.slug + '/';
-      const profileShareTitle = profile.name + ' \u2013 Radoskop Pomorskie';
+      const profileShareUrl = 'https://wielkopolskie.radoskop.pl/profil/' + profile.slug + '/';
+      const profileShareTitle = profile.name + ' \u2013 Radoskop Wielkopolskie';
       const profileShareText = profile.name + ' (' + club + '): frekwencja ' + Math.round(kd.frekwencja) + '%, zgodność z klubem ' + Math.round(kd.zgodnosc_z_klubem) + '%. Sprawdź na Radoskopie!';
       html += `<div class="section">
         <h2>Udostępnij</h2>
@@ -2225,10 +2227,10 @@ async function showVote(voteId) {
   setTitle('Głosowanie: ' + (vote.topic || voteId).substring(0, 60));
   var _vc = vote.counts || {};
   setOgMeta({
-    title: (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Pomorskie',
+    title: (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Wielkopolskie',
     description: 'Za ' + (_vc.za||0) + ', przeciw ' + (_vc.przeciw||0) + ', wstrzym. ' + (_vc.wstrzymal_sie||0) + '. Sesja ' + (vote.session_number||'') + ', ' + (vote.session_date||'') + '.',
-    url: 'https://pomorskie.radoskop.pl/glosowanie/' + voteId + '/',
-    image: 'https://pomorskie.radoskop.pl/glosowanie/' + voteId + '/og.png'
+    url: 'https://wielkopolskie.radoskop.pl/glosowanie/' + voteId + '/',
+    image: 'https://wielkopolskie.radoskop.pl/glosowanie/' + voteId + '/og.png'
   });
 
   const c = vote.counts || {};
@@ -2271,9 +2273,9 @@ async function showVote(voteId) {
       ${vote.source_url ? `<div style="margin-top:6px"><a href="${vote.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół głosowania (BIP) ↗</a></div>` : ''}
       <div style="margin-top:12px">
         ${shareBar(
-          (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Pomorskie',
+          (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Wielkopolskie',
           (passed ? 'Przyjęte' : 'Odrzucone') + ': za ' + (c.za||0) + ', przeciw ' + (c.przeciw||0) + ', wstrzym. ' + (c.wstrzymal_sie||0) + '. ' + (vote.topic || '').substring(0, 100),
-          'https://pomorskie.radoskop.pl/glosowanie/' + voteId + '/',
+          'https://wielkopolskie.radoskop.pl/glosowanie/' + voteId + '/',
           'vote-share'
         )}
       </div>
@@ -2547,9 +2549,9 @@ async function showSession(sessionNumber) {
     ? ((sess.vote_count || 0) + ' g\u0142osowa\u0144')
     : (sessStatementCount + ' wyst\u0105pie\u0144');
   setOgMeta({
-    title: 'Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' \u2013 Radoskop Pomorskie',
+    title: 'Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' \u2013 Radoskop Wielkopolskie',
     description: 'Sesja ' + sessionNumber + ', ' + (sess.date||'') + '. ' + sessSummaryStat + ', ' + (sess.attendee_count||0) + ' obecnych.',
-    url: 'https://pomorskie.radoskop.pl/sesja/' + encodeURIComponent(sessionNumber) + '/'
+    url: 'https://wielkopolskie.radoskop.pl/sesja/' + encodeURIComponent(sessionNumber) + '/'
   });
 
   // Club lookup from current kadencja
@@ -2577,9 +2579,9 @@ async function showSession(sessionNumber) {
       ${sess.source_url ? `<div style="margin-top:6px"><a href="${sess.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół (BIP) ↗</a></div>` : ''}
       <div style="margin-top:12px">
         ${shareBar(
-          'Sesja ' + sess.number + ' (' + (sess.date||'') + ') \u2013 Radoskop Pomorskie',
+          'Sesja ' + sess.number + ' (' + (sess.date||'') + ') \u2013 Radoskop Wielkopolskie',
           'Sesja ' + sess.number + ': ' + sessSummaryStat + ', ' + (sess.attendee_count||present.size||0) + ' obecnych radnych.',
-          'https://pomorskie.radoskop.pl/sesja/' + encodeURIComponent(sessionNumber) + '/',
+          'https://wielkopolskie.radoskop.pl/sesja/' + encodeURIComponent(sessionNumber) + '/',
           'session-share'
         )}
       </div>
@@ -2886,9 +2888,9 @@ async function showKomisja(slug) {
 
   setTitle(label);
   setOgMeta({
-    title: label + ' – Radoskop Pomorskie',
+    title: label + ' – Radoskop Wielkopolskie',
     description: `${s.meetings || 0} posiedzeń, ${s.drafts_total || 0} druków w procedowaniu, mediana lead time ${leadDisplay}.`,
-    url: 'https://pomorskie.radoskop.pl/komisja/' + encodeURIComponent(slug) + '/'
+    url: 'https://wielkopolskie.radoskop.pl/komisja/' + encodeURIComponent(slug) + '/'
   });
 
   // Premium: jeśli API zwraca drafts_votes (mapa druk → {vote_id, ...}),
@@ -3173,7 +3175,7 @@ function renderBudget() {
       <canvas id="budget-trend-chart"></canvas>
     </div>
     <div style="color:var(--muted);font-size:0.8rem;margin-top:16px">
-      Źródło: BIP Urząd Marszałkowski Województwa Pomorskiego, dokumenty budżetowe. Dane 2015–2021 mają charakter szacunkowy (pokrycie ~60–83%).
+      Źródło: BIP Urząd Marszałkowski Województwa Wielkopolskiego, dokumenty budżetowe. Dane 2015–2021 mają charakter szacunkowy (pokrycie ~60–83%).
       Dane 2022–${latestYear} na podstawie uchwalonych budżetów.
     </div>`;
   container.innerHTML = html;
@@ -3503,7 +3505,7 @@ function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
   ctx.fillText(name.split(' ').map(w=>w[0]).join('').substring(0,2),50,60);
   ctx.textAlign='left'; ctx.textBaseline='top';
   ctx.fillStyle='#e4e4e7'; ctx.font='bold 22px -apple-system,sans-serif'; ctx.fillText(name,90,40);
-  ctx.fillStyle='#8b8d97'; ctx.font='14px -apple-system,sans-serif'; ctx.fillText('Klub '+club+'  ·  Sejmik Województwa Pomorskiego',90,68);
+  ctx.fillStyle='#8b8d97'; ctx.font='14px -apple-system,sans-serif'; ctx.fillText('Klub '+club+'  ·  Sejmik Województwa Wielkopolskiego',90,68);
   const metrics = [
     {label:'Frekwencja',value:frek+'%',color:frek>=90?'#22c55e':frek>=70?'#eab308':'#ef4444'},
     {label:'Aktywność',value:akt+'%',color:akt>=90?'#22c55e':akt>=70?'#eab308':'#ef4444'},
@@ -3528,7 +3530,7 @@ function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
   }
   ctx.fillStyle='#2a2d3a'; ctx.fillRect(0,300,600,40);
   ctx.fillStyle='#6366f1'; ctx.font='bold 13px -apple-system,sans-serif'; ctx.textAlign='center';
-  ctx.fillText('Radoskop Pomorskie  ·  radoskop.pl',300,315);
+  ctx.fillText('Radoskop Wielkopolskie  ·  radoskop.pl',300,315);
   const link=document.createElement('a');
   link.download=`radoskop-${name.toLowerCase().replace(/\s/g,'-')}.png`;
   link.href=canvas.toDataURL('image/png'); link.click();
@@ -3537,7 +3539,7 @@ function showEmbedCode(slug) {
   const modal=document.getElementById('embed-modal'), code=document.getElementById('embed-code');
   if(modal.style.display==='none'){
     modal.style.display='block';
-    code.value=`<iframe src="https://pomorskie.radoskop.pl/profil/${slug}/" width="400" height="500" frameborder="0" style="border:1px solid #e2e5e9;border-radius:12px" title="Radoskop Pomorskie"></iframe>`;
+    code.value=`<iframe src="https://wielkopolskie.radoskop.pl/profil/${slug}/" width="400" height="500" frameborder="0" style="border:1px solid #e2e5e9;border-radius:12px" title="Radoskop Wielkopolskie"></iframe>`;
   } else { modal.style.display='none'; }
 }
 
@@ -3988,8 +3990,8 @@ document.addEventListener('keydown', (e) => {
 </script>
 <script>
 // Sejmik: definicje klubów i mapowanie radny -> klub.
-const SEJMIK_CLUBS = {"KO": {"name": "Koalicja Obywatelska", "color": "#0284c7", "bg": "rgba(14,165,233,0.12)"}, "PiS": {"name": "Prawo i Sprawiedliwość", "color": "#7c3aed", "bg": "rgba(124,58,237,0.12)"}, "TD": {"name": "Trzecia Droga", "color": "#15803d", "bg": "rgba(22,163,74,0.12)"}};
-const SEJMIK_CLUB_OF = {"Leszek Bonna": "KO", "Adam Bondarenko": "KO", "Kinga Borusewicz": "KO", "Beata Dunajewska": "KO", "Paulina Filipowicz": "KO", "Olga Haase": "KO", "Beata Jankowska": "KO", "Jan Kleinszmidt": "KO", "Beata Koniarska": "KO", "Iwona Mielewczyk": "KO", "Zenon Odya": "KO", "Danuta Rek": "KO", "Przemysław Ryś": "KO", "Józef Sarnowski": "KO", "Marcin Skwierawski": "KO", "Stefan Skonieczny": "KO", "Andrzej Struk": "KO", "Mieczysław Struk": "KO", "Piotr Widz": "KO", "Piotr Wittbrodt": "KO", "Sebastian Dadaczyński": "PiS", "Marta Cymańska": "PiS", "Roman Dambek": "PiS", "Piotr Karczewski": "PiS", "Kazimierz Klawiter": "PiS", "Sylwia Leyk": "PiS", "Marta Müller-Gajek": "PiS", "Natalia Nitek-Płażyńska": "PiS", "Krzysztof Sławski": "PiS", "Arwid Żebrowski": "PiS", "Krzysztof Trawicki": "TD", "Szymon Redlin": "TD", "Jarosław Ścigała": "TD"};
+const SEJMIK_CLUBS = {"KO": {"name": "Koalicja Obywatelska", "color": "#ea580c", "bg": "rgba(234,88,12,0.12)"}, "PiS": {"name": "Prawo i Sprawiedliwość", "color": "#1f4ea0", "bg": "rgba(31,78,160,0.12)"}, "TD": {"name": "Trzecia Droga (PSL/Polska 2050)", "color": "#16a34a", "bg": "rgba(22,163,74,0.12)"}, "Lewica": {"name": "Lewica", "color": "#dc2626", "bg": "rgba(220,38,38,0.12)"}, "NZ": {"name": "Niezrzeszeni", "color": "#6b7280", "bg": "rgba(107,114,128,0.12)"}};
+const SEJMIK_CLUB_OF = {"Filip Żelazny": "PiS", "Dawid Murawa": "Lewica", "Marek Woźniak": "KO", "Tatiana Sokołowska": "KO", "Violetta Ratajczak": "KO", "Michał Zieliński": "PiS", "Adam Bogrycewicz": "PiS", "Wiesław Ratajczak": "PiS", "Tomasz Wojtiuk": "TD", "Jacek Bogusławski": "KO", "Paweł Owsianny": "KO", "Marta Magda": "KO", "Joanna Szczechowska": "PiS", "Łukasz Grabowski": "PiS", "Wojciech Jankowiak": "TD", "Agnieszka Wiśniewska": "TD", "Katarzyna Kretkowska": "Lewica", "Paulina Stochniałek": "KO", "Marta Dzikowska": "KO", "Patrycja Przybylska": "KO", "Dominik Szopa": "PiS", "Grzegorz Fiałkowski": "PiS", "Katarzyna Rzepecka-Andrzejak": "PiS", "Anna Majda": "TD", "Henryk Drzewiecki": "KO", "Tomasz Ławniczak": "PiS", "Piotr Trybek": "PiS", "Leszek Bierła": "PiS", "Krzysztof Grabowski": "TD", "Jan Grzesiek": "TD", "Alicja Łuczak": "KO", "Marzena Wodzińska": "KO", "Marek Sowa": "PiS", "Romuald Ruszkowski": "PiS", "Małgorzata Nowak": "PiS", "Wojciech Firlej": "TD", "Barbara Mroczkowska": "KO", "Marian Poślednik": "KO", "Henryk Szymański": "KO"};
 // Globalna mapa nazwisko -> klub (template miasta używa, jeśli
 // councilors[].club nie jest ustawione w data.json).
 window.clubAssignments = SEJMIK_CLUB_OF;

@@ -1,0 +1,93 @@
+{
+  "samorzad_type": "wojewodztwo",
+  "voivodeship_slug": "podkarpackie",
+  "voivodeship_name": "podkarpackie",
+  "voivodeship_genitive": "podkarpackiego",
+  "capital": "Rzeszów",
+  "rada_name": "Sejmik Województwa Podkarpackiego",
+  "rada_name_genitive": "Sejmiku Województwa Podkarpackiego",
+  "site_title": "Radoskop Sejmik Podkarpackie — Jak głosują radni?",
+  "site_url": "https://podkarpackie.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Podkarpackiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.",
+  "site_description_short": "Otwarte narzędzie monitoringu Sejmiku Województwa Podkarpackiego.",
+  "bip_url": "https://bip.podkarpackie.pl/",
+  "bip_name": "BIP Urząd Marszałkowski Województwa Podkarpackiego",
+  "bip_kind": "podkarpackie_html_pdf",
+  "bip_imienne_root": "https://bip.podkarpackie.pl/sejmik-2/imienne-wykazy-glosowan",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "podkarpackie.radoskop.pl",
+  "councilor_count": 33,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "active",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga (PSL/Polska 2050)",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "Lewica": {
+      "name": "Lewica",
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Adam Berkowicz": "Konf",
+    "Adam Śnieżek": "PiS",
+    "Anna Huk": "PiS",
+    "Bogdan Romaniuk": "PiS",
+    "Bronisław Baran": "KO",
+    "Czesław Łączak": "PiS",
+    "Dariusz Sobieraj": "TD",
+    "Ewa Draus": "PiS",
+    "Jacek Magdoń": "PiS",
+    "Jan Tarapata": "TD",
+    "Jerzy Borcz": "PiS",
+    "Jerzy Cypryś": "PiS",
+    "Jerzy Paul": "PiS",
+    "Joanna Bril": "PiS",
+    "Jolanta Kaźmierczak": "KO",
+    "Kamila Piech": "PiS",
+    "Karol Ożóg": "PiS",
+    "Krzysztof Ignaczak": "TD",
+    "Krzysztof Kłak": "KO",
+    "Marcin Fijołek": "PiS",
+    "Marek Ordyczyński": "KO",
+    "Mateusz Lechwar": "PiS",
+    "Mirosław Majkowski": "Konf",
+    "Monika Brewczak": "PiS",
+    "Paweł Pazdan": "KO",
+    "Piotr Pilch": "PiS",
+    "Renata Butryn": "KO",
+    "Renata Knap": "PiS",
+    "Sabina Południak": "PiS",
+    "Stanisław Kruczek": "PiS",
+    "Stefan Bieszczad": "PiS",
+    "Wiktor Koba": "TD",
+    "Władysław Ortyl": "PiS"
+  }
+}

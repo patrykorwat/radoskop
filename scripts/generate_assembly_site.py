@@ -297,6 +297,9 @@ def main() -> int:
     city_name = voiv_name.capitalize() if voiv_name else ""
     city_gen = voiv_gen.capitalize() if voiv_gen else ""
 
+    # Sejmiki to PL only — root_host=radoskop.pl, brak Impressum/Pressekodex
+    # (te są DE-only obowiązkowe). HAS_VOTING_DATA=true bo każdy sejmik
+    # zbiera imienne głosowania (inaczej nie ma sensu w pipeline).
     replacements = {
         "{{CITY_NAME}}": city_name,
         "{{CITY_GENITIVE}}": city_gen,
@@ -312,6 +315,17 @@ def main() -> int:
         "{{CLUB_JS}}": generate_club_js(cfg.get("clubs", {})),
         "{{BUDGET_NOTE}}": cfg.get("budget_note", ""),
         "{{AKTUALNOSCI_BUTTON}}": generate_aktualnosci_button(Path(args.output)),
+        # Apex domain — sejmiki to PL only, radoskop.pl
+        "{{ROOT_HOST}}": "radoskop.pl",
+        "{{ROOT_URL}}": "https://radoskop.pl",
+        "{{EXAMPLE_SUBDOMAIN}}": cfg.get("cname") or f"{cfg.get('voivodeship_slug','')}.radoskop.pl",
+        # Capability flags — sejmik zawsze ma imienne głosowania
+        "{{HAS_VOTING_DATA}}": "true" if cfg.get("has_voting_data", True) else "false",
+        "{{HAS_SPEAKER_ACTIVITY}}": "true" if cfg.get("has_speaker_activity", False) else "false",
+        # Impressum/Pressekodex — DE-only, dla PL puste
+        "{{IMPRESSUM_HTML}}": "",
+        "{{IMPRESSUM_FOOTER_LINK}}": "",
+        "{{PRESSEKODEX_NOTICE}}": "",
     }
 
     html = template

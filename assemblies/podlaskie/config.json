@@ -1,0 +1,89 @@
+{
+  "samorzad_type": "wojewodztwo",
+  "voivodeship_slug": "podlaskie",
+  "voivodeship_name": "podlaskie",
+  "voivodeship_genitive": "podlaskiego",
+  "capital": "Białystok",
+  "rada_name": "Sejmik Województwa Podlaskiego",
+  "rada_name_genitive": "Sejmiku Województwa Podlaskiego",
+  "site_title": "Radoskop Sejmik Podlaskie — Jak głosują radni?",
+  "site_url": "https://podlaskie.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Podlaskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.",
+  "site_description_short": "Otwarte narzędzie monitoringu Sejmiku Województwa Podlaskiego.",
+  "bip_url": "https://bip.podlaskie.eu/",
+  "bip_name": "BIP Białystok",
+  "bip_kind": "podlaskie_esesja_pdf",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "podlaskie.radoskop.pl",
+  "councilor_count": 30,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "active",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga (PSL/Polska 2050)",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "Lewica": {
+      "name": "Lewica",
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Adam Sekściński": "PiS",
+    "Anna Augustyn": "KO",
+    "Anna Naszkiewicz": "KO",
+    "Artur Kosicki": "PiS",
+    "Bernadeta Krynicka": "PiS",
+    "Bogdan Dyjuk": "TD",
+    "Bogusław Dębski": "PiS",
+    "Cezary Cieślukowski": "TD",
+    "Igor Łukaszuk": "KO",
+    "Jacek Piorunek": "KO",
+    "Jarosław Dworzański": "KO",
+    "Jerzy Leszczyński": "TD",
+    "Karol Pilecki": "KO",
+    "Leszek Dec": "PiS",
+    "Marek Malinowski": "PiS",
+    "Marek Olbryś": "PiS",
+    "Mariusz Gromko": "PiS",
+    "Mikołaj Janowski": "TD",
+    "Paweł Wnukowski": "PiS",
+    "Rafał Supiński": "PiS",
+    "Robert Jabłoński": "PiS",
+    "Stanisław Derehajło": "Konf",
+    "Tomasz Madras": "PiS",
+    "Waldemar Kwaterski": "KO",
+    "Wanda Mieczkowska": "PiS",
+    "Wiesława Burnos": "PiS",
+    "Wojciech Grochowski": "TD",
+    "Łukasz Nazarko": "TD",
+    "Łukasz Prokorym": "KO",
+    "Łukasz Siekierko": "PiS"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "samorzad_type": "wojewodztwo",
+  "voivodeship_slug": "warminsko-mazurskie",
+  "voivodeship_name": "warmińsko-mazurskie",
+  "voivodeship_genitive": "warmińsko-mazurskiego",
+  "capital": "Olsztyn",
+  "rada_name": "Sejmik Województwa Warmińsko-mazurskiego",
+  "rada_name_genitive": "Sejmiku Województwa Warmińsko-mazurskiego",
+  "site_title": "Radoskop Sejmik Warmińsko-mazurskie — Jak głosują radni?",
+  "site_url": "https://warminsko-mazurskie.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Warmińsko-mazurskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.",
+  "site_description_short": "Otwarte narzędzie monitoringu Sejmiku Województwa Warmińsko-mazurskiego.",
+  "bip_url": "https://bip.warmia.mazury.pl/",
+  "bip_name": "BIP Olsztyn",
+  "bip_kind": "warmia_attachment_pdf",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "warminsko-mazurskie.radoskop.pl",
+  "councilor_count": 30,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "active",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga (PSL/Polska 2050)",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "Lewica": {
+      "name": "Lewica",
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Anna Piątek": "PiS",
+    "Bernadeta Hordejuk": "KO",
+    "Bogdan Bartnicki": "TD",
+    "Bogusław Wisowaty": "TD",
+    "Bogusława Orzechowska": "PiS",
+    "Bożenna Ulewicz": "PiS",
+    "Elżbieta Ruda": "KO",
+    "Ewa Wiśniewska": "PiS",
+    "Jan Bobek": "TD",
+    "Jarosław Słoma": "KO",
+    "Katarzyna Królak": "KO",
+    "Katarzyna Sobiech": "KO",
+    "Magdalena Lewkowicz": "KO",
+    "Marcin Kazimierczuk": "PiS",
+    "Marcin Kuchciński": "KO",
+    "Marek Chyl": "KO",
+    "Maria Bąkowska": "TD",
+    "Małgorzata Kopiczko": "PiS",
+    "Patryk Kozłowski": "PiS",
+    "Paweł Warot": "PiS",
+    "Piotr Andruszkiewicz": "PiS",
+    "Piotr Soćko": "PiS",
+    "Rafał Wilczek": "TD",
+    "Robert Turlej": "KO",
+    "Sylwia Jaskulska": "TD",
+    "Tadeusz Politewicz": "KO",
+    "Tadeusz Sobierajski": "KO",
+    "Teresa Astramowicz-Leyk": "KO",
+    "Zbigniew Homza": "KO",
+    "Łukasz Kochan": "PiS"
+  }
+}

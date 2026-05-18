@@ -669,15 +669,15 @@ footer a { color:var(--accent); text-decoration:none; }
 
   <footer>
     <div style="margin-bottom:10px">
-      <a href="{{ROOT_URL}}">Radoskop</a> · <a href="{{ROOT_URL}}#cities">wszystkie miasta</a>
+      <a href="https://radoskop.pl">Radoskop</a> · <a href="https://radoskop.pl#cities">wszystkie miasta</a>
     </div>
     <div style="margin-bottom:10px;color:var(--muted);font-size:0.8rem">
       Polecane (projekt zewnętrzny): <a href="https://www.tygodniksejmowy.pl/" target="_blank" rel="noopener">Tygodnik Sejmowy</a> — analiza prac Sejmu RP
     </div>
     Dane źródłowe: <a href="https://bip.lodzkie.pl/" target="_blank">BIP Sejmik Łódzki</a>.
     Kod: <a href="https://github.com/radoskoppl/radoskop" target="_blank">GitHub</a> (AGPL-3.0).
-    <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/pricing/">Cennik</a> · <a href="https://radoskop.eu/business/">Business</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">Regulamin</a>{{IMPRESSUM_FOOTER_LINK}}
-    {{PRESSEKODEX_NOTICE}}
+    <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/pricing/">Cennik</a> · <a href="https://radoskop.eu/business/">Business</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">Regulamin</a>
+    
   </footer>
 
 </div>
@@ -744,8 +744,8 @@ const API_BASE = (window.RADOSKOP_API || 'https://api.radoskop.pl') + '/api/' + 
 // Hammelsprung jest anonimowy). Wtedy zamiast "Głosowań" pokazujemy
 // "Wystąpień" / "Słów" z protokołów. HAS_SPEAKER_ACTIVITY = true dla
 // miast które parsują stenogramy/Plenarprotokolle (Berlin, Gdańsk).
-const HAS_VOTING_DATA = {{HAS_VOTING_DATA}};
-const HAS_SPEAKER_ACTIVITY = {{HAS_SPEAKER_ACTIVITY}};
+const HAS_VOTING_DATA = true;
+const HAS_SPEAKER_ACTIVITY = false;
 
 let RAW = null;
 let PROFILES = null;
@@ -1320,7 +1320,7 @@ function showImpressum() {
   var el = document.getElementById('impressum-view');
   el.style.display = 'block';
   /* IMPRESSUM_HTML_BEGIN */
-  el.innerHTML = '{{IMPRESSUM_HTML}}';
+  el.innerHTML = '';
   navigateTo('/impressum/');
   setTitle('Impressum');
   setOgMeta({
@@ -3530,7 +3530,7 @@ function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
   }
   ctx.fillStyle='#2a2d3a'; ctx.fillRect(0,300,600,40);
   ctx.fillStyle='#6366f1'; ctx.font='bold 13px -apple-system,sans-serif'; ctx.textAlign='center';
-  ctx.fillText('Radoskop Łódzkie  ·  {{ROOT_HOST}}',300,315);
+  ctx.fillText('Radoskop Łódzkie  ·  radoskop.pl',300,315);
   const link=document.createElement('a');
   link.download=`radoskop-${name.toLowerCase().replace(/\s/g,'-')}.png`;
   link.href=canvas.toDataURL('image/png'); link.click();
