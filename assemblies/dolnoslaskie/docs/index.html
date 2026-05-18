@@ -537,8 +537,10 @@ footer a { color:var(--accent); text-decoration:none; }
   <div class="topbar-actions">
     <button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
     <div class="user-chip" id="user-chip" style="display:none">
-      <span class="user-avatar" id="user-avatar" title=""></span>
-      <span id="user-name" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+      <button id="user-chip-link" onclick="goToProfile()" aria-label="Moje konto" title="Moje konto" style="background:none;border:none;padding:0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:inherit;font:inherit;">
+        <span class="user-avatar" id="user-avatar" title=""></span>
+        <span id="user-name" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+      </button>
       <button class="user-logout" onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj">×</button>
     </div>
     <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny">
@@ -3934,6 +3936,44 @@ async function doLogout() {
   // z fetch z .pl). Po wylogowaniu .eu odbija z powrotem na current URL.
   const returnTo = encodeURIComponent(window.location.href);
   window.location.href = 'https://radoskop.eu/?logout_remote=1&return_to=' + returnTo;
+}
+
+// Przejście do strony "Moje konto" zalogowanego usera.
+//
+// Profile page żyje na radoskop.eu/profile/. Z subdomeny miasta .pl
+// user ma sesję na .radoskop.pl (cookie partycjonowane per TLD), więc
+// proste window.location na .eu zgubiłoby login. Mintujemy bridge token
+// na bieżącej domenie, redirektujemy na api.radoskop.eu/bridge-exchange
+// który tworzy sesję .eu i odsyła na /profile/.
+async function goToProfile() {
+  const profileUrl = 'https://radoskop.eu/profile/';
+  // Jeśli już jesteśmy na .eu, nie trzeba bridge'ować
+  if (window.location.hostname.endsWith('.radoskop.eu') || window.location.hostname === 'radoskop.eu') {
+    window.location.href = profileUrl;
+    return;
+  }
+  try {
+    const r = await fetch(AUTH_API + '/bridge-token', { credentials: 'include' });
+    if (!r.ok) {
+      // Brak sesji albo bridge wyłączony — fallback: zwykły redirect
+      // (user dostanie modal logowania na .eu jeśli nie ma cookie)
+      window.location.href = profileUrl;
+      return;
+    }
+    const data = await r.json();
+    const token = data.token;
+    if (!token) {
+      window.location.href = profileUrl;
+      return;
+    }
+    // Exchange na .eu, return_to to /profile/
+    const exchangeUrl = 'https://api.radoskop.eu/api/auth/bridge-exchange'
+      + '?token=' + encodeURIComponent(token)
+      + '&return_to=' + encodeURIComponent(profileUrl);
+    window.location.href = exchangeUrl;
+  } catch (e) {
+    window.location.href = profileUrl;
+  }
 }
 
 async function forgotPassword() {
