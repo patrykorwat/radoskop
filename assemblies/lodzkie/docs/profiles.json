@@ -1,0 +1,996 @@
+{
+  "scraped_at": "2026-05-18T10:52:33Z",
+  "profiles": [
+    {
+      "name": "Adamczyk Piotr",
+      "slug": "adamczyk-piotr",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 90.1,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 256,
+          "votes_przeciw": 112,
+          "votes_wstrzymal": 40,
+          "votes_brak": 31,
+          "votes_nieobecny": 14,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Bagieński Artur",
+      "slug": "bagienski-artur",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 95.0,
+          "aktywnosc": 90.3,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 365,
+          "votes_przeciw": 41,
+          "votes_wstrzymal": 3,
+          "votes_brak": 5,
+          "votes_nieobecny": 39,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Bors Piotr",
+      "slug": "bors-piotr",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 99.3,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 398,
+          "votes_przeciw": 50,
+          "votes_wstrzymal": 2,
+          "votes_brak": 3,
+          "votes_nieobecny": 0,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Ciesielski Janusz",
+      "slug": "ciesielski-janusz",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 86.8,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 243,
+          "votes_przeciw": 114,
+          "votes_wstrzymal": 36,
+          "votes_brak": 46,
+          "votes_nieobecny": 14,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Dróżdż Beata",
+      "slug": "drozdz-beata",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 90.0,
+          "aktywnosc": 78.1,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 218,
+          "votes_przeciw": 96,
+          "votes_wstrzymal": 40,
+          "votes_brak": 55,
+          "votes_nieobecny": 44,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Gill-Piątek Hanna",
+      "slug": "gill-piatek-hanna",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 98.5,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 395,
+          "votes_przeciw": 51,
+          "votes_wstrzymal": 0,
+          "votes_brak": 7,
+          "votes_nieobecny": 0,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Grabarczyk Małgorzata",
+      "slug": "grabarczyk-magorzata",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 97.6,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 392,
+          "votes_przeciw": 48,
+          "votes_wstrzymal": 2,
+          "votes_brak": 1,
+          "votes_nieobecny": 10,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Karauda Tomasz",
+      "slug": "karauda-tomasz",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 99.8,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 400,
+          "votes_przeciw": 51,
+          "votes_wstrzymal": 1,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Kiedos Edward",
+      "slug": "kiedos-edward",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 75.0,
+          "aktywnosc": 68.9,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 213,
+          "votes_przeciw": 49,
+          "votes_wstrzymal": 50,
+          "votes_brak": 38,
+          "votes_nieobecny": 103,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Król Michał",
+      "slug": "krol-micha",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 95.0,
+          "aktywnosc": 75.9,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 234,
+          "votes_przeciw": 73,
+          "votes_wstrzymal": 37,
+          "votes_brak": 77,
+          "votes_nieobecny": 32,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Kulig Justyna",
+      "slug": "kulig-justyna",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 99.6,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 399,
+          "votes_przeciw": 50,
+          "votes_wstrzymal": 2,
+          "votes_brak": 2,
+          "votes_nieobecny": 0,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Linkowski Zbigniew",
+      "slug": "linkowski-zbigniew",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 95.0,
+          "aktywnosc": 84.5,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 233,
+          "votes_przeciw": 105,
+          "votes_wstrzymal": 45,
+          "votes_brak": 36,
+          "votes_nieobecny": 34,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Malinowska-Olszowy Monika",
+      "slug": "malinowska-olszowy-monika",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 99.6,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 399,
+          "votes_przeciw": 50,
+          "votes_wstrzymal": 2,
+          "votes_brak": 2,
+          "votes_nieobecny": 0,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Niedźwiecka Aneta",
+      "slug": "niedzwiecka-aneta",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 88.5,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 262,
+          "votes_przeciw": 100,
+          "votes_wstrzymal": 39,
+          "votes_brak": 38,
+          "votes_nieobecny": 14,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Nowak Adam",
+      "slug": "nowak-adam",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 99.6,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 398,
+          "votes_przeciw": 49,
+          "votes_wstrzymal": 4,
+          "votes_brak": 2,
+          "votes_nieobecny": 0,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Ozga-Flejszer Beata",
+      "slug": "ozga-flejszer-beata",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 90.0,
+          "aktywnosc": 82.1,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 285,
+          "votes_przeciw": 48,
+          "votes_wstrzymal": 39,
+          "votes_brak": 38,
+          "votes_nieobecny": 43,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Riemer Maciej",
+      "slug": "riemer-maciej",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 98.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 393,
+          "votes_przeciw": 49,
+          "votes_wstrzymal": 2,
+          "votes_brak": 9,
+          "votes_nieobecny": 0,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Rogut Dariusz",
+      "slug": "rogut-dariusz",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 81.9,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 237,
+          "votes_przeciw": 101,
+          "votes_wstrzymal": 33,
+          "votes_brak": 68,
+          "votes_nieobecny": 14,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Ryś Agnieszka",
+      "slug": "rys-agnieszka",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 95.0,
+          "aktywnosc": 95.6,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 381,
+          "votes_przeciw": 50,
+          "votes_wstrzymal": 2,
+          "votes_brak": 1,
+          "votes_nieobecny": 19,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Sagan Marlena",
+      "slug": "sagan-marlena",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 95.0,
+          "aktywnosc": 88.3,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 256,
+          "votes_przeciw": 95,
+          "votes_wstrzymal": 49,
+          "votes_brak": 35,
+          "votes_nieobecny": 18,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Schreiber Grzegorz",
+      "slug": "schreiber-grzegorz",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 85.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 221,
+          "votes_przeciw": 118,
+          "votes_wstrzymal": 46,
+          "votes_brak": 52,
+          "votes_nieobecny": 16,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Skrzydlewska Joanna",
+      "slug": "skrzydlewska-joanna",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 99.8,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 400,
+          "votes_przeciw": 50,
+          "votes_wstrzymal": 2,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Sokalski Jacek",
+      "slug": "sokalski-jacek",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 98.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 391,
+          "votes_przeciw": 51,
+          "votes_wstrzymal": 2,
+          "votes_brak": 9,
+          "votes_nieobecny": 0,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Spólnicka Magdalena",
+      "slug": "spolnicka-magdalena",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 99.1,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 397,
+          "votes_przeciw": 50,
+          "votes_wstrzymal": 2,
+          "votes_brak": 4,
+          "votes_nieobecny": 0,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Sulgan Maciej",
+      "slug": "sulgan-maciej",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 99.8,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 397,
+          "votes_przeciw": 52,
+          "votes_wstrzymal": 3,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Wendrowska Ewa",
+      "slug": "wendrowska-ewa",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 95.0,
+          "aktywnosc": 76.2,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 199,
+          "votes_przeciw": 105,
+          "votes_wstrzymal": 41,
+          "votes_brak": 79,
+          "votes_nieobecny": 29,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Werstak Magdalena",
+      "slug": "werstak-magdalena",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 99.6,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 400,
+          "votes_przeciw": 49,
+          "votes_wstrzymal": 2,
+          "votes_brak": 2,
+          "votes_nieobecny": 0,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Więckowska Dorota",
+      "slug": "wieckowska-dorota",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 89.4,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 267,
+          "votes_przeciw": 102,
+          "votes_wstrzymal": 36,
+          "votes_brak": 34,
+          "votes_nieobecny": 14,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Wojciechowski Waldemar",
+      "slug": "wojciechowski-waldemar",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 95.0,
+          "aktywnosc": 79.7,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 237,
+          "votes_przeciw": 92,
+          "votes_wstrzymal": 32,
+          "votes_brak": 70,
+          "votes_nieobecny": 22,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Wojtysiak Piotr",
+      "slug": "wojtysiak-piotr",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 99.8,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 401,
+          "votes_przeciw": 49,
+          "votes_wstrzymal": 2,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Ziółkowski Wojciech",
+      "slug": "ziokowski-wojciech",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 70.0,
+          "aktywnosc": 70.6,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 274,
+          "votes_przeciw": 43,
+          "votes_wstrzymal": 3,
+          "votes_brak": 20,
+          "votes_nieobecny": 113,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Zyberyng Konrad",
+      "slug": "zyberyng-konrad",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 84.8,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 259,
+          "votes_przeciw": 74,
+          "votes_wstrzymal": 51,
+          "votes_brak": 53,
+          "votes_nieobecny": 16,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Łuczak Maciej",
+      "slug": "uczak-maciej",
+      "kadencje": {
+        "2024-2029": {
+          "club": "NZ",
+          "club_full": "Niezrzeszeni",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 100.0,
+          "aktywnosc": 89.2,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 258,
+          "votes_przeciw": 104,
+          "votes_wstrzymal": 42,
+          "votes_brak": 35,
+          "votes_nieobecny": 14,
+          "votes_total": 453,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    }
+  ],
+  "total": 33
+}

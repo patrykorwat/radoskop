@@ -879,7 +879,3772 @@
   "total_sessions": 21,
   "total_votes": 976,
   "total_councilors": 39,
-  "councilors": [],
+  "councilors": [
+    {
+      "name": "Adam Jaśnikowski",
+      "slug": "adam-jasnikowski",
+      "club": "KO",
+      "frekwencja": 90.5,
+      "aktywnosc": 86.9,
+      "zgodnosc_z_klubem": 99.1,
+      "votes_za": 833,
+      "votes_przeciw": 12,
+      "votes_wstrzymal": 3,
+      "votes_brak": 26,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 8,
+      "rebellions": [
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Pogotowiu Ratunkowym w Legnicy",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym im. J. Gromkowskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 3. Wprowadzenie projektu uchwały w sprawie przyznania Landl Leda Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 4. Wprowadzenie projektu uchwały w sprawie przyznania Przychodni Specjalistycznej Regina i Walenty Śliwa Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnoś",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie apelu do Rządu Rzeczypospolitej Polskiej w sprawie umowy Unii Europejskiej z państwami Mercosuru",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XXV/468/2000 Sejmiku Województwa Dolnośląskiego z dnia 29 września 2000 roku w sprawie utworzenia Dolnośląskiego Wojewódzkiego Urzędu Pracy w Wałbrzychu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 13.Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. dra Alfreda Sokołowskiego w Wałbrzychu",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6. Radnej Ewy Kocemby do wysłanie projektu uchwały o Audycie do prac komisji",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        }
+      ]
+    },
+    {
+      "name": "Alina Szełemej",
+      "slug": "alina-szeemej",
+      "club": "KO",
+      "frekwencja": 90.5,
+      "aktywnosc": 84.6,
+      "zgodnosc_z_klubem": 98.7,
+      "votes_za": 807,
+      "votes_przeciw": 9,
+      "votes_wstrzymal": 10,
+      "votes_brak": 52,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 11,
+      "rebellions": [
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Psychiatrycznym w Złotoryi",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Dolnośląskim Centrum Onkologii, Pulmonologii i Hematologii we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Centrum Szpitalnym Kotliny Jeleniogórskiej",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Pogotowiu Ratunkowym w Legnicy",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym im. J. Gromkowskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-07-18",
+          "topic": "Głosowanie 4 Autopoprawka Pani Anna Brok - Radny Marcin Krzyżanowski - Uchwała w sprawie powołania Rady Społecznej w Dolnośląskim Szpitalu Specjalistycznym im. T. Marciniaka - Centrum Medycyny Ratunko",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie wyrażenia zgody na zmianę warunków umowy darowizny zawartej przez Województwo Dolnośląskie z Gminą Miejską Bolesławiec, w tym na zmianę celu na który została darowana nieruchomość za",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. dra Alfreda Sokołowskiego w Wałbrzychu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Wniosek formalny 1.Resumpcja Druk XIII/28",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6. Radnej Ewy Kocemby do wysłanie projektu uchwały o Audycie do prac komisji",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        }
+      ]
+    },
+    {
+      "name": "Andrzej Kredkowski",
+      "slug": "andrzej-kredkowski",
+      "club": "PiS",
+      "frekwencja": 100.0,
+      "aktywnosc": 89.7,
+      "zgodnosc_z_klubem": 98.5,
+      "votes_za": 737,
+      "votes_przeciw": 52,
+      "votes_wstrzymal": 86,
+      "votes_brak": 86,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 13,
+      "rebellions": [
+        {
+          "session": "2024-11-07",
+          "topic": "Uchwała w sprawie zmiany uchwały nr VIII/169/19 Sejmiku Województwa Dolnośląskiego z dnia 23 maja 2019 r. w sprawie zasad udzielania i rozmiaru obniżek tygodniowego obowiązkowego wymiaru zajęć dydakty",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-11-07",
+          "topic": "Uchwała w sprawie przyznania Jarosławowi Wawszczykowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Orkiestrze Komendy Wojewódzkiej Policji we Wrocławiu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-07-18",
+          "topic": "Uchwała w sprawie przyznania Rotary Club Jelenia Góra Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie wyznaczenia Magdaleny Piaseckiej na przedstawiciela Województwa Dolnośląskiego do władz Stowarzyszenia „Dolnośląska Organizacja Turystyczna”",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Wniosek formalny 2. zamkniecie listy mówców",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Głosowanie 5. Na Panią Katarzynę Jędrzejczyk-Kuliniak.na przedstawiciela Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie powołania Rady Społecznej w Wojewódzkim Szpitalu Psychiatrycznym w Złotoryi",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-05-15",
+          "topic": "Głosowanie 3. Nad kandydaturą Pani Katarzyny Jędrzejczyk-Kuliniak jako przedstawiciela Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrow",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-05-15",
+          "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacji celowej gminom wyłonionym w ramach konkursu pn. „Dolnośląski Fundusz Pomocy Rozwojowej 2025”",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie wyznaczenia przedstawiciela Sejmiku Województwa Dolnośląskiego do Rady Kuratorów fundacji - Zakład Narodowy im. Ossolińskich (Monika Włodarczyk)",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XXIII/582/25 Sejmiku Województwa Dolnośląskiego z dnia 18 grudnia 2025 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2026",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        }
+      ]
+    },
+    {
+      "name": "Cezary Przybylski",
+      "slug": "cezary-przybylski",
+      "club": "BS",
+      "frekwencja": 95.2,
+      "aktywnosc": 80.8,
+      "zgodnosc_z_klubem": 99.1,
+      "votes_za": 766,
+      "votes_przeciw": 13,
+      "votes_wstrzymal": 10,
+      "votes_brak": 117,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 7,
+      "rebellions": [
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie udzielenia Powiatowi Trzebnickiemu pomocy finansowej w formie dotacji celowej z budżetu Województwa Dolnośląskiego w roku 2024 na realizację programu polityki zdrowotnej pn. „Program",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Luizie Nowak Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Teresie Kępowicz Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Orkiestrze Komendy Wojewódzkiej Policji we Wrocławiu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-07-18",
+          "topic": "Głosowanie 5 Autopoprawka Pani Justyna Szydło - Pani Anna Brok - Uchwała w sprawie powołania Rady Społecznej w Dolnośląskim Szpitalu Specjalistycznym im. T. Marciniaka - Centrum Medycyny Ratunkowej we",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-05-15",
+          "topic": "Głosowanie 3. Nad kandydaturą Pani Katarzyny Jędrzejczyk-Kuliniak jako przedstawiciela Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrow",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie wyrażenia zgody na zmianę warunków umowy darowizny zawartej przez Województwo Dolnośląskie z Gminą Miejską Bolesławiec, w tym na zmianę celu na który została darowana nieruchomość za",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Damian Mrozek",
+      "slug": "damian-mrozek",
+      "club": "PiS",
+      "frekwencja": 100.0,
+      "aktywnosc": 96.3,
+      "zgodnosc_z_klubem": 96.9,
+      "votes_za": 801,
+      "votes_przeciw": 42,
+      "votes_wstrzymal": 97,
+      "votes_brak": 23,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 29,
+      "rebellions": [
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zatwierdzenia wyboru przewodniczącego Komisji doraźnej do spraw transportu i komunikacji",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie nadania statutu Wojewódzkiemu Zespołowi Specjalistycznej Opieki Zdrowotnej",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Zespole Specjalistycznej Opieki Zdrowotnej we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Dolnośląskim Wojewódzkim Ośrodku Medycyny Pracy",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Centrum Szpitalnym Kotliny Jeleniogórskiej",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Psychiatrycznym w Złotoryi",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu dla Nerwowo i Psychicznie Chorych w Lubiążu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Dolnośląskim Centrum Onkologii, Pulmonologii i Hematologii we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym w Legnicy",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-11-07",
+          "topic": "Uchwała w sprawie zmiany uchwały nr VIII/169/19 Sejmiku Województwa Dolnośląskiego z dnia 23 maja 2019 r. w sprawie zasad udzielania i rozmiaru obniżek tygodniowego obowiązkowego wymiaru zajęć dydakty",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania tytułu Honorowego Obywatela Dolnego Śląska CIVI HONORARIO doktorowi Kazimierzowi Pichlakowi",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Orkiestrze Komendy Wojewódzkiej Policji we Wrocławiu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie powołania komisji doraźnej Sejmiku Województwa Dolnośląskiego do spraw równego traktowania kobiet i mężczyzn",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie wyznaczenia przedstawiciela Sejmiku Województwa Dolnośląskiego do składu Regionalnej Rady Ochrony Przyrody",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Wniosek formalny 2. zamkniecie listy mówców",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 3. Wprowadzenie projektu uchwały w sprawie przyznania Landl Leda Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 4. Wprowadzenie projektu uchwały w sprawie przyznania Przychodni Specjalistycznej Regina i Walenty Śliwa Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnoś",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Drugie czytanie uchwały w sprawie przyjęcia „Priorytetów współpracy zagranicznej Województwa Dolnośląskiego na lata 2025-2030”",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Bankowi Spółdzielczemu w Jaworze Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego – XXI/40",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym we Wrocławiu",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-05-15",
+          "topic": "Głosowanie 2. Nad kandydaturą Pana Łukasza Laskowskiego jako przedstawiciela Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia.",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-05-15",
+          "topic": "Głosowanie 3. Nad kandydaturą Pani Katarzyny Jędrzejczyk-Kuliniak jako przedstawiciela Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrow",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-05-15",
+          "topic": "Głosowanie 4. Nad kandydaturą Pana Pawła Antczaka jako przedstawiciela Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia.",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. dra Alfreda Sokołowskiego w Wałbrzychu",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Wniosek formalny 2. Wniosek o zamknięcie dyskusji",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-01-30",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Dolnośląskim Centrum Onkologii, Pulmonologii i Hematologii we Wrocławiu",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-01-30",
+          "topic": "Zmiana porządku obrad 9 Zdjęcie z porządku obrad uchwały w sprawie ustalenia wysokości diet Radnych Sejmiku Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie przyznania Mateuszowi Stępniakowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie wyznaczenia przedstawiciela Sejmiku Województwa Dolnośląskiego do Rady Kuratorów fundacji - Zakład Narodowy im. Ossolińskich (Monika Włodarczyk)",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        }
+      ]
+    },
+    {
+      "name": "Dorota Galant",
+      "slug": "dorota-galant",
+      "club": "KO",
+      "frekwencja": 100.0,
+      "aktywnosc": 93.3,
+      "zgodnosc_z_klubem": 99.5,
+      "votes_za": 894,
+      "votes_przeciw": 12,
+      "votes_wstrzymal": 5,
+      "votes_brak": 54,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 5,
+      "rebellions": [
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Centrum Szpitalnym Kotliny Jeleniogórskiej",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie apelu Sejmiku Województwa Dolnośląskiego do Sejmu RP i Senatu RP w sprawie poparcia inicjatywy ustawodawczej zmierzającej do zniesienia ograniczenia liczby kadencji Wójtów, Burmistrz",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-07-10",
+          "topic": "Wniosek formalny 1 Reasumpcja",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-05-15",
+          "topic": "Uchwała w sprawie apelu do Rządu Rzeczypospolitej Polskiej w sprawie zapłaty za nadwykonania, wykonane na rzecz pacjentów przez podmioty medyczne",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        }
+      ]
+    },
+    {
+      "name": "Ewa Kocemba",
+      "slug": "ewa-kocemba",
+      "club": "KO",
+      "frekwencja": 90.5,
+      "aktywnosc": 84.2,
+      "zgodnosc_z_klubem": 96.0,
+      "votes_za": 780,
+      "votes_przeciw": 24,
+      "votes_wstrzymal": 18,
+      "votes_brak": 58,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 33,
+      "rebellions": [
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie zmiany uchwały nr LVIII/1029/10 Sejmiku Województwa Dolnośląskiego z dnia 8 lipca 2010 r. w sprawie utworzenia jednostki budżetowej pod nazwą Biuro Obsługi Urzędu Marszałkowskiego Wo",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie pozbawienia odcinków dróg kategorii dróg wojewódzkich",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwały w sprawie zaliczenia odcinków dróg do kategorii dróg wojewódzkich",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Psychiatrycznym w Złotoryi",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Dolnośląskim Centrum Onkologii, Pulmonologii i Hematologii we Wrocławiu",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Centrum Szpitalnym Kotliny Jeleniogórskiej",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Pogotowiu Ratunkowym w Legnicy",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym im. J. Gromkowskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie pozbawienia drogi wojewódzkiej (dawny nr 362) w granicach powiatu wrocławskiego kategorii dróg wojewódzkich",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie pozbawienia odcinka drogi wojewódzkiej nr 369 w granicach powiatu kamiennogórskiego kategorii dróg wojewódzkich",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-07-18",
+          "topic": "Głosowanie 4 Autopoprawka Pani Anna Brok - Radny Marcin Krzyżanowski - Uchwała w sprawie powołania Rady Społecznej w Dolnośląskim Szpitalu Specjalistycznym im. T. Marciniaka - Centrum Medycyny Ratunko",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie Programu Ochrony Środowiska przed hałasem dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Zmiana porządku obrad 1 Uchwała w sprawie przyznania Polskiemu Bractwu Kopaczy Złota Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Zmiana porządku obrad 2 Uchwała w sprawie przyznania Antoniemu Okniańskiemu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Bankowi Spółdzielczemu w Jaworze Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego – XXI/40",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie apelu Sejmiku Województwa Dolnośląskiego do Komisji Europejskiej o zmianę aktualnego stanowiska wobec planów podpisania umowy o wolnym handlu z państwami Ameryki Łacińskiej (MERCOSUR",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie apelu do Rządu Rzeczypospolitej Polskiej w sprawie umowy Unii Europejskiej z państwami Mercosuru",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Wniosek formalny 1. zdjęcie uchwały",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Wniosek formalny 2. reasumpcja",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 13.Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. dra Alfreda Sokołowskiego w Wałbrzychu",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie wyrażenia zgody na zmianę warunków umowy darowizny zawartej przez Województwo Dolnośląskie z Gminą Miejską Bolesławiec, w tym na zmianę celu na który została darowana nieruchomość za",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Wniosek formalny 1.Resumpcja Druk XIII/28",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XXIII/591/25 Sejmiku Województwa Dolnośląskiego z dnia 18 grudnia 2025 r. w sprawie połączenia Wojewódzkiego Szpitala Psychiatrycznego w Złotoryi z Wojewódzkim Szpi",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6.Radnego Łukasza Lacha w sprawie drugiego czytania",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6. Radnej Ewy Kocemby do wysłanie projektu uchwały o Audycie do prac komisji",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie przyznania Mirosławowi Marciszowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie przyznania Andrzejowi Marii Turkiewiczowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie przyznania Stefanowi Olejnikowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie przyznania Orkiestrze Dętej przy Ochotniczej Straży Pożarnej w Domaniowie Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie przyznania Wandzie Kiałce Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie przyznania Zdzisławowi Nicponiowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie przyznania Arkadiuszowi Drajczykowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Ewelina Szydłowska-Kędziera",
+      "slug": "ewelina-szydowska-kedziera",
+      "club": "PiS",
+      "frekwencja": 71.4,
+      "aktywnosc": 53.9,
+      "zgodnosc_z_klubem": 97.3,
+      "votes_za": 429,
+      "votes_przeciw": 35,
+      "votes_wstrzymal": 62,
+      "votes_brak": 94,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 14,
+      "rebellions": [
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zatwierdzenia wyboru przewodniczącego Komisji doraźnej do spraw transportu i komunikacji",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zmiany uchwały nr LXIII/1352/23 SWD z dnia 27 grudnia 2023 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym w Legnicy",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-11-07",
+          "topic": "Zmiana porządku obrad 5 Wprowadzenie uchwały Sejmiku Województwa Dolnośląskiego w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacji celowej gminom z terenu woj",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Tobiaszowi Feliksowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. A. Falkiewicza we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie powołania komisji doraźnej Sejmiku Województwa Dolnośląskiego do spraw równego traktowania kobiet i mężczyzn",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-07-10",
+          "topic": "Uchwała w sprawie zmiany uchwały nr X/236/24 Sejmiku Województwa Dolnośląskiego z dnia 12 grudnia 2024 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-07-10",
+          "topic": "Uchwała w sprawie powołania Rady Społecznej w Pogotowiu Ratunkowym w Jeleniej Górze",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-07-10",
+          "topic": "Zmiana porządku obrad 5 Wprowadzenie projektu uchwały w sprawie wyrażenia stanowiska popierającego utworzenie Dolnośląskiego Centrum Kultury Polskiej w realizowanym przez Dolnośląski ośrodek Polityki ",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Centrum Psychiatrii Długoterminowej w Stroniu Śląskim",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie zmiany uchwały nr X/235/24 Sejmiku Województwa Dolnośląskiego z dnia 12 grudnia 2024 r. w sprawie budżetu Województwa Dolnośląskiego na rok 2025",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie rozpatrzenia petycji Stowarzyszenia Karkonoska Lokalna Organizacja Turystyczna z dnia 14 stycznia 2025 r. o wsparcie Mieszkańców powiatu karkonoskiego i kamiennogórskiego, gmin Szkla",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        }
+      ]
+    },
+    {
+      "name": "Grzegorz Macko",
+      "slug": "grzegorz-macko",
+      "club": "PiS",
+      "frekwencja": 14.3,
+      "aktywnosc": 6.1,
+      "zgodnosc_z_klubem": 100.0,
+      "votes_za": 60,
+      "votes_przeciw": 0,
+      "votes_wstrzymal": 0,
+      "votes_brak": 8,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 0,
+      "rebellions": []
+    },
+    {
+      "name": "Jarosław Rabczenko",
+      "slug": "jarosaw-rabczenko",
+      "club": "KO",
+      "frekwencja": 100.0,
+      "aktywnosc": 88.0,
+      "zgodnosc_z_klubem": 99.8,
+      "votes_za": 843,
+      "votes_przeciw": 14,
+      "votes_wstrzymal": 2,
+      "votes_brak": 99,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 2,
+      "rebellions": [
+        {
+          "session": "2024-06-27",
+          "topic": "Głosowanie 2 Tytus Czartoryski na przedstawiciela Sejmiku Województwa Dolnośląskiego do Rady Kuratorów fundacji - Zakład Narodowy im. Ossolińskich",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Wniosek formalny 2. reasumpcja",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Jerzy Pokój",
+      "slug": "jerzy-pokoj",
+      "club": "KO",
+      "frekwencja": 100.0,
+      "aktywnosc": 91.8,
+      "zgodnosc_z_klubem": 99.6,
+      "votes_za": 881,
+      "votes_przeciw": 13,
+      "votes_wstrzymal": 2,
+      "votes_brak": 69,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 4,
+      "rebellions": [
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie przyznania Leszkowi Lochowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 3. Wprowadzenie projektu uchwały w sprawie przyznania Landl Leda Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 4. Wprowadzenie projektu uchwały w sprawie przyznania Przychodni Specjalistycznej Regina i Walenty Śliwa Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnoś",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie apelu do Rządu Rzeczypospolitej Polskiej w sprawie umowy Unii Europejskiej z państwami Mercosuru",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        }
+      ]
+    },
+    {
+      "name": "Kamil Barczyk",
+      "slug": "kamil-barczyk",
+      "club": "TD",
+      "frekwencja": 95.2,
+      "aktywnosc": 85.5,
+      "zgodnosc_z_klubem": 99.4,
+      "votes_za": 818,
+      "votes_przeciw": 10,
+      "votes_wstrzymal": 6,
+      "votes_brak": 73,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 5,
+      "rebellions": [
+        {
+          "session": "2024-11-07",
+          "topic": "Wniosek formalny 1",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Przeniesienie na pkt. 3 obrad Informacja o sytuacji związanej z powodzią na Dolnym Śląsku.",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Głosowanie 2 Tytus Czartoryski na przedstawiciela Sejmiku Województwa Dolnośląskiego do Rady Kuratorów fundacji - Zakład Narodowy im. Ossolińskich",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Wniosek formalny 1. zdjęcie uchwały",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-07-10",
+          "topic": "Uchwała w sprawie apelu do Rządu Rzeczypospolitej Polskiej w sprawie opóźnień w realizacji zadania inwestycyjnego pn.: „Rewitalizacja linii kolejowej nr 284 Legnica – Złotoryja – Jerzmanice Zdrój”.",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        }
+      ]
+    },
+    {
+      "name": "Karolina Hołownia-Twardowska",
+      "slug": "karolina-hoownia-twardowska",
+      "club": "TD",
+      "frekwencja": 100.0,
+      "aktywnosc": 90.3,
+      "zgodnosc_z_klubem": 97.7,
+      "votes_za": 854,
+      "votes_przeciw": 14,
+      "votes_wstrzymal": 13,
+      "votes_brak": 83,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 20,
+      "rebellions": [
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Dolnośląskim Centrum Onkologii, Pulmonologii i Hematologii we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym im. J. Gromkowskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego dotacji dla Diecezji Świdnickiej na prace konserwatorskie, restauratorskie lub roboty budowlane przy zabytku wpisanym do wojewódzkiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego dotacji dla Parafii Rzymskokatolickiej pw. św. Jana Chrzciciela we Wrocławiu na prace konserwatorskie, restauratorskie lub roboty budo",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 3. Wprowadzenie projektu uchwały w sprawie przyznania Landl Leda Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 4. Wprowadzenie projektu uchwały w sprawie przyznania Przychodni Specjalistycznej Regina i Walenty Śliwa Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnoś",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie apelu do Rządu Rzeczypospolitej Polskiej w sprawie zapłaty środków należnych dolnośląskim placówkom ochrony zdrowia od NFZ",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Bankowi Spółdzielczemu w Jaworze Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego – XXI/40",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie przyznania tytułu Honorowego Obywatela Dolnego Śląska CIVI HONORARIO Stanisławowi Srokowskiemu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie przyznania Teatrowi Polskiemu w Podziemiu Dolnośląskiej Nagrody Kulturalnej SILESIA Sejmiku Województwa Dolnośląskiego za rok 2025",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie apelu Sejmiku Województwa Dolnośląskiego do Komisji Europejskiej o zmianę aktualnego stanowiska wobec planów podpisania umowy o wolnym handlu z państwami Ameryki Łacińskiej (MERCOSUR",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie apelu do Rządu Rzeczypospolitej Polskiej w sprawie umowy Unii Europejskiej z państwami Mercosuru",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Wniosek formalny 1. zdjęcie uchwały",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XXV/468/2000 Sejmiku Województwa Dolnośląskiego z dnia 29 września 2000 roku w sprawie utworzenia Dolnośląskiego Wojewódzkiego Urzędu Pracy w Wałbrzychu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XXV/468/2000 Sejmiku Województwa Dolnośląskiego z dnia 29 września 2000 roku w sprawie utworzenia Dolnośląskiego Wojewódzkiego Urzędu Pracy w Wałbrzychu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie wyrażenia zgody na zmianę warunków umowy darowizny zawartej przez Województwo Dolnośląskie z Gminą Miejską Bolesławiec, w tym na zmianę celu na który została darowana nieruchomość za",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. dra Alfreda Sokołowskiego w Wałbrzychu",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Wniosek formalny 1.Resumpcja Druk XIII/28",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6. Radnej Ewy Kocemby do wysłanie projektu uchwały o Audycie do prac komisji",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        }
+      ]
+    },
+    {
+      "name": "Katarzyna Lubiniecka-Różyło",
+      "slug": "katarzyna-lubiniecka-rozyo",
+      "club": "NZ",
+      "frekwencja": 85.7,
+      "aktywnosc": 90.1,
+      "zgodnosc_z_klubem": 100.0,
+      "votes_za": 832,
+      "votes_przeciw": 17,
+      "votes_wstrzymal": 30,
+      "votes_brak": 13,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 0,
+      "rebellions": []
+    },
+    {
+      "name": "Krzysztof Mróz",
+      "slug": "krzysztof-mroz",
+      "club": "PiS",
+      "frekwencja": 95.2,
+      "aktywnosc": 84.3,
+      "zgodnosc_z_klubem": 87.7,
+      "votes_za": 609,
+      "votes_przeciw": 67,
+      "votes_wstrzymal": 147,
+      "votes_brak": 85,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 101,
+      "rebellions": [
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym w Legnicy",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zatwierdzenia wyboru przewodniczącego Komisji doraźnej do spraw równego traktowania kobiet i mężczyzn",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-11-07",
+          "topic": "Uchwała w sprawie określenia wysokości opłat za przeprowadzenie egzaminu państwowego na terenie Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Tobiaszowi Feliksowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Dorocie Mokrosińskiej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Edwardowi Bieleńko Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Alinie Chrzanowskiej-Buczek Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Elżbiecie Krefcie Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Andrzejowi Kotowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Mieczysławowi Modlińskiemu Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Luizie Nowak Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania dr Dorocie Dobek Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Ryszardowi Dzięciołowskiemu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Joannie Broniarczyk Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Edwardowi Ostrowskiemu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Aleksandrze Kaczmarek Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Teresie Kępowicz Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Janinie Peikert Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Zbigniewowi Stępniowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Wojciechowi Łabunowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania dr Magdalenie Makieli-Wychocie Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Zygfrydowi Szyguli Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Zofii Tule Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania tytułu Honorowego Obywatela Dolnego Śląska CIVI HONORARIO doktorowi Kazimierzowi Pichlakowi",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-07-18",
+          "topic": "Głosowanie 1 nad kandydaturą Łukasz Laskowski jako kandydata Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-07-18",
+          "topic": "Uchwała w sprawie przyznania Rotary Club Jelenia Góra Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Głosowanie 1 Monika Włodarczyk na przedstawiciela Sejmiku Województwa Dolnośląskiego do Rady Kuratorów fundacji - Zakład Narodowy im. Ossolińskich",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Głosowanie 3",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie wyznaczenia Magdaleny Piaseckiej na przedstawiciela Województwa Dolnośląskiego do władz Stowarzyszenia „Dolnośląska Organizacja Turystyczna”",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. A. Falkiewicza we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-05-28",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu dla Nerwowo i Psychicznie Chorych w Bolesławcu",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-12-15",
+          "topic": "Uchwała w sprawie połączenia Wojewódzkiego Szpitala Psychiatrycznego w Złotoryi z Wojewódzkim Szpitalem Specjalistycznym w Legnicy",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-12-15",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie przyznania Leszkowi Lochowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwały w sprawie skargi Wojewody Dolnośląskiego na uchwałę nr XIX/449/25 Sejmiku Województwa Dolnośląskiego z dnia 25 września 2025 r. w sprawie pozbawienia dróg i odcinków dróg kategorii dróg wojewó",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 2. Wprowadzenie projektu uchwały w sprawie przyznania Tadeuszowi Choczajowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 3. Wprowadzenie projektu uchwały w sprawie przyznania Landl Leda Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 5. Wprowadzenie projektu uchwały w sprawie skargi Wojewody Dolnośląskiego na uchwałę nr XIX/449/25 Sejmiku Województwa Dolnośląskiego z dnia 25 września 2025 r. w sprawie pozbawi",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Federacji Uniwersytetów Trzeciego Wieku Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/21",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Teresie Ziegler Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/22",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Albinowi Nicponiowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/23",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Kamilli Jasińskiej Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/24",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Zespołowi Śpiewaczemu „Wąsoszanki” Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/25",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Józefowi Białkowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/26",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Antoniemu Larczyńskiemu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/27",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Krystynie Rynkiewicz Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/28",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Zakładom Przemysłu Cukierniczego ŚNIEŻKA Spółka Akcyjna w Świebodzicach Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/29",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Dolnośląskiemu Zespołowi Szkół w Jaworze Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/30",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Dolnośląskiemu Zespołowi Szkół w Karpaczu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/31",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Bogusławie Kozłowskiej Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/32",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Halinie Wieczorek Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/33",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Annie Wilczyńskiej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego – XXI/34",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Markowi Żubrydowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego – XXI/35",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Marii Zachary Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego – XXI/36",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Marcinowi Cedro Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego – XXI/37",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Pawłowi Kalinowskiemu Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego – XXI/38",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Piotrowi Modrasowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego – XXI/39",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Bankowi Spółdzielczemu w Jaworze Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego – XXI/40",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XIII/313/25 SWD z dnia 27 marca 2025 r. w sprawie udzielenia z budżetu Województwa Dolnośląskiego w roku 2025 dotacji na prace konserwatorskie, restauratorskie lub ",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Lucynie Pagacz Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Krystynie Chojnowskiej Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XIII/313/25 Sejmiku Województwa Dolnośląskiego z dnia 27 marca 2025 r. w sprawie udzielenia z budżetu Województwa Dolnośląskiego w roku 2025 dotacji na prace konser",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie przyjęcia rezolucji ustanawiającej rok 2026 w Województwie Dolnośląskim Rokiem Polskiego Towarzystwa Turystyczno-Krajoznawczego na Dolnym Śląsku",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Głosowanie 5. Na Panią Katarzynę Jędrzejczyk-Kuliniak.na przedstawiciela Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie wskazania kandydata Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie przyznania International Theatre William-Es Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie przyznania Takisowi Makandasisowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie przyznania Andrzejowi Kozikowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie przyznania Piotrowi Marcinowowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie przyznania Zbigniewowi Kuśmierkowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie przyznania Wandzie Abram Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie przyznania Zbigniewowi Demkowiczowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie nadania statutu Wojewódzkiemu Urzędowi Pracy we Wrocławiu",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 11. Wprowadzenie do porządku obrad uchwały w sprawie powołania Rady Społecznej w Pogotowiu Ratunkowym we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 12.Wprowadzenie do porządku obrad uchwały w sprawie powołania Rady Społecznej w Wojewódzkim Szpitalu Psychiatrycznym w Złotoryi",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 1. Wprowadzenie projektu uchwały w sprawie uchwalenia Wojewódzkiego Planu Gospodarki Odpadami dla Województwa Dolnośląskiego na lata 2023- 2028 z perspektywą do 2032 r.",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 4. Wprowadzenie do porządku obrad uchwały w sprawie przyznania Andrzejowi Kozikowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 5. Wprowadzenie do porządku obrad uchwały w sprawie przyznania Piotrowi Marcinowowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 6. Wprowadzenie do porządku obrad uchwały w sprawie przyznania Zbigniewowi Kuśmierkowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 7. Wprowadzenie do porządku obrad uchwały w sprawie przyznania Wandzie Abram Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 8. Wprowadzenie do porządku obrad uchwały w sprawie przyznania Zbigniewowi Popławskiemu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 9. Wprowadzenie do porządku obrad uchwały w sprawie przyznania Zbigniewowi Demkowiczowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 10. Wprowadzenie do porządku obrad uchwały w sprawie powołania Rady Społecznej w Pogotowiu Ratunkowym w Wałbrzychu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. dra Alfreda Sokołowskiego w Wałbrzychu",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie zatwierdzenia zatwierdzenia wyboru przewodniczącego Komisji Ochrony Środowiska",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Wniosek formalny 2. Wniosek o zamknięcie dyskusji",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-01-30",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Dolnośląskim Centrum Onkologii, Pulmonologii i Hematologii we Wrocławiu",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-01-30",
+          "topic": "Zmiana porządku obrad 9 Zdjęcie z porządku obrad uchwały w sprawie ustalenia wysokości diet Radnych Sejmiku Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla energii otrzymywanej z biogazu rolniczego i biometanu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla energii geotermalnej",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XXIII/591/25 Sejmiku Województwa Dolnośląskiego z dnia 18 grudnia 2025 r. w sprawie połączenia Wojewódzkiego Szpitala Psychiatrycznego w Złotoryi z Wojewódzkim Szpi",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie nadania statutu Wojewódzkiemu Szpitalowi Specjalistycznemu w Legnicy",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XXIII/582/25 Sejmiku Województwa Dolnośląskiego z dnia 18 grudnia 2025 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2026",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla hydroenergii",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 3.",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 4. O Reasumpcję",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacji celowej Gminie Wrocław na realizację wydarzenia artystycznego pn. Przegląd Piosenki Aktorskiej, któ",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XXIII/582/25 Sejmiku Województwa Dolnośląskiego z dnia 18 grudnia 2025 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2026",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Zmiana porządku obrad 3. Wprowadzenie uchwały w sprawie przyjęcia rocznego planu kontroli Komisji Rewizyjnej Sejmiku Województwa Dolnośląskiego na rok 2026. druk nr. XXIV/27",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Magdalena Brodowska",
+      "slug": "magdalena-brodowska",
+      "club": "PiS",
+      "frekwencja": 85.7,
+      "aktywnosc": 80.2,
+      "zgodnosc_z_klubem": 92.0,
+      "votes_za": 616,
+      "votes_przeciw": 50,
+      "votes_wstrzymal": 117,
+      "votes_brak": 21,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 63,
+      "rebellions": [
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zmiany uchwały nr VI/130/19 Sejmiku Województwa Dolnośląskiego z dnia 28 marca 2019 r. w sprawie powierzenia w latach 2019-2020 jednostkom samorządu terytorialnego realizacji zadań d",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2024",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zatwierdzenia wyboru przewodniczącego Komisji doraźnej do spraw równego traktowania kobiet i mężczyzn",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Wniosek formalny 4 Reasumpcja",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Tobiaszowi Feliksowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Dorocie Mokrosińskiej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Elżbiecie Krefcie Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Andrzejowi Kotowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Mieczysławowi Modlińskiemu Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Luizie Nowak Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania dr Dorocie Dobek Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Ryszardowi Dzięciołowskiemu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Joannie Broniarczyk Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Edwardowi Ostrowskiemu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Aleksandrze Kaczmarek Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Teresie Kępowicz Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Janinie Peikert Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Zbigniewowi Stępniowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Wojciechowi Łabunowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania dr Katarzynie Woźniak Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania dr Magdalenie Makieli-Wychocie Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Muzycznemu Radiu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Zygfrydowi Szyguli Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Zofii Tule Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Tobiaszowi Feliksowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-07-18",
+          "topic": "Głosowanie 1 nad kandydaturą Łukasz Laskowski jako kandydata Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-07-18",
+          "topic": "Uchwała w sprawie przyznania Karolinie Dobrowolskiej - Martini Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-07-18",
+          "topic": "Uchwała w sprawie przyznania Rotary Club Jelenia Góra Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Głosowanie 1 Monika Włodarczyk na przedstawiciela Sejmiku Województwa Dolnośląskiego do Rady Kuratorów fundacji - Zakład Narodowy im. Ossolińskich",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Głosowanie 3",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie zmiany uchwały nr LXVIII/1471/24 Sejmiku Województwa Dolnośląskiego z dnia 21 marca 2024 r. w sprawie udzielenia z budżetu Województwa Dolnośląskiego w roku 2024 dotacji na prace kon",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie wyznaczenia Magdaleny Piaseckiej na przedstawiciela Województwa Dolnośląskiego do władz Stowarzyszenia „Dolnośląska Organizacja Turystyczna”",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. A. Falkiewicza we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie wyznaczenia przedstawiciela Moniki Włodarczyk Sejmiku Województwa Dolnośląskiego do Rady Kuratorów fundacji - Zakład Narodowy im. Ossolińskich",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Zmiana porządku obrad 4 Uchwała w sprawie przyznania Beacie Sosulskiej - Baran Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Zmiana porządku obrad 6 Uchwała w sprawie przyznania Rafałowi Guli Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-05-28",
+          "topic": "Uchwała w sprawie zatwierdzenia wyboru Radnego Mirosława Lubińskiego na przewodniczącego Komisji Polityki Rozwoju Regionalnego i Gospodarki Sejmiku Województwa Dolnośląskiego druki nr III/14",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-05-28",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu dla Nerwowo i Psychicznie Chorych w Bolesławcu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-12-15",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-12-15",
+          "topic": "Uchwała w sprawie zmiany uchwały nr VII/125/24 Sejmiku Województwa Dolnośląskiego z dnia 26 września 2024 r. w sprawie powierzenia w latach 2024-2026 jednostkom samorządu terytorialnego realizacji zad",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie powołania Rady Społecznej w Pogotowiu Ratunkowym w Legnicy",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie przyznania Leszkowi Lochowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2025",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwały w sprawie skargi Wojewody Dolnośląskiego na uchwałę nr XIX/449/25 Sejmiku Województwa Dolnośląskiego z dnia 25 września 2025 r. w sprawie pozbawienia dróg i odcinków dróg kategorii dróg wojewó",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie określenia zasad udzielania dotacji na prace konserwatorskie, restauratorskie lub roboty budowlane przy zabytkach wpisanych do rejestru zabytków, znajdujących się na obszarze wojewód",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Wniosek formalny 2. zamkniecie listy mówców",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Bankowi Spółdzielczemu w Jaworze Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego – XXI/40",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XIII/313/25 Sejmiku Województwa Dolnośląskiego z dnia 27 marca 2025 r. w sprawie udzielenia z budżetu Województwa Dolnośląskiego w roku 2025 dotacji na prace konser",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XV/352/25 Sejmiku Województwa Dolnośląskiego z dnia 15 maja 2025 r. w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej, w formie dotacji ce",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2025",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-07-10",
+          "topic": "Uchwała w sprawie zmiany uchwały nr L/1023/22 Sejmiku Województwa Dolnośląskiego z dnia 27 października 2022 r. w sprawie określenia terminów zakończenia zbiorów poszczególnych gatunków roślin rolnicz",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. dra Alfreda Sokołowskiego w Wałbrzychu",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie zatwierdzenia zatwierdzenia wyboru przewodniczącego Komisji Ochrony Środowiska",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie zmiany uchwały nr X/236/24 Sejmiku Województwa Dolnośląskiego z dnia 12 grudnia 2024 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-01-30",
+          "topic": "Uchwała w sprawie powierzenia Gminie Wądroże Wielkie realizacji w 2025 roku zadania własnego Województwa Dolnośląskiego pn. „Dożynki wojewódzkie”",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-01-30",
+          "topic": "Uchwała w sprawie zmiany uchwały nr LII/1073/23 Sejmiku Województwa Dolnośląskiego z dnia 2 lutego 2023 r. w sprawie powierzenia w latach 2023 - 2024 jednostkom samorządu terytorialnego realizacji zad",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie nadania statutu Wojewódzkiemu Szpitalowi Specjalistycznemu w Legnicy",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie udzielenia jednostkom samorządu terytorialnego pomocy finansowej na realizację zadań na drogach gminnych i powiatowych",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XXIII/582/25 Sejmiku Województwa Dolnośląskiego z dnia 18 grudnia 2025 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2026",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla hydroenergii",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-02-27",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla energii promieniowania słonecznego DRUK NR XXV/16",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacji celowej Gminie Wrocław na realizację wydarzenia artystycznego pn. Przegląd Piosenki Aktorskiej, któ",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        }
+      ]
+    },
+    {
+      "name": "Magdalena Piasecka",
+      "slug": "magdalena-piasecka",
+      "club": "KO",
+      "frekwencja": 100.0,
+      "aktywnosc": 93.5,
+      "zgodnosc_z_klubem": 99.7,
+      "votes_za": 898,
+      "votes_przeciw": 12,
+      "votes_wstrzymal": 3,
+      "votes_brak": 53,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 3,
+      "rebellions": [
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Dolnośląskim Centrum Onkologii, Pulmonologii i Hematologii we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-07-10",
+          "topic": "Wniosek formalny 1 Reasumpcja",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6. Radnej Ewy Kocemby do wysłanie projektu uchwały o Audycie do prac komisji",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        }
+      ]
+    },
+    {
+      "name": "Marcin Borys",
+      "slug": "marcin-borys",
+      "club": "KO",
+      "frekwencja": 81.0,
+      "aktywnosc": 74.9,
+      "zgodnosc_z_klubem": 97.0,
+      "votes_za": 701,
+      "votes_przeciw": 18,
+      "votes_wstrzymal": 12,
+      "votes_brak": 35,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 22,
+      "rebellions": [
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego dotacji dla Diecezji Świdnickiej na prace konserwatorskie, restauratorskie lub roboty budowlane przy zabytku wpisanym do wojewódzkiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-12-15",
+          "topic": "Głosowanie 1. Nad zamknięciem listy mówców",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie apelu Sejmiku Województwa Dolnośląskiego do Sejmu RP i Senatu RP w sprawie poparcia inicjatywy ustawodawczej zmierzającej do zniesienia ograniczenia liczby kadencji Wójtów, Burmistrz",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 1. Wprowadzenie projektu uchwały w sprawie przyznania Adriannie Gęborys Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 2. Wprowadzenie projektu uchwały w sprawie przyznania Tadeuszowi Choczajowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 3. Wprowadzenie projektu uchwały w sprawie przyznania Landl Leda Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 4. Wprowadzenie projektu uchwały w sprawie przyznania Przychodni Specjalistycznej Regina i Walenty Śliwa Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnoś",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Zespołowi Śpiewaczemu „Wąsoszanki” Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/25",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Bogusławie Kozłowskiej Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/32",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Bankowi Spółdzielczemu w Jaworze Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego – XXI/40",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie zmiany uchwały nr LXVI/1374/24 Sejmiku Województwa Dolnośląskiego z dnia 29 lutego 2024 r. w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacj",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie wyrażenia zgody na zmianę warunków umowy darowizny zawartej przez Województwo Dolnośląskie z Gminą Miejską Bolesławiec, w tym na zmianę celu na który została darowana nieruchomość za",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie rozpatrzenia wniosku z dnia 3 marca 2025 r. o podjęcie uchwały w 80. rocznicę deportacji tysięcy mieszkańców Więcborka i obecnego województwa kujawsko – pomorskiego i śląskiego do so",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Wniosek formalny 1.Resumpcja Druk XIII/28",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacji celowej gminom wyłonionym w ramach konkursu pn. „Dolnośląski Fundusz Pomocy Rozwojowej 2026”",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie określenia zadań, na które przeznacza się środki Państwowego Funduszu Rehabilitacji Osób Niepełnosprawnych w 2026 r.",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6.Radnego Łukasza Lacha w sprawie drugiego czytania",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6. Wiceprzewodniczącego Marka Łapińskiego w sprawie czytania Audytu",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6. Radnej Ewy Kocemby do wysłanie projektu uchwały o Audycie do prac komisji",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-02-27",
+          "topic": "Uchwała sprawie udzielenia jednostkom samorządu terytorialnego pomocy finansowej w formie dotacji celowych z budżetu Województwa Dolnośląskiego w roku 2026 na realizację programów polityki zdrowotnej ",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XXIII/582/25 Sejmiku Województwa Dolnośląskiego z dnia 18 grudnia 2025 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2026",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Marcin Krzyżanowski",
+      "slug": "marcin-krzyzanowski",
+      "club": "PiS",
+      "frekwencja": 95.2,
+      "aktywnosc": 90.0,
+      "zgodnosc_z_klubem": 97.3,
+      "votes_za": 736,
+      "votes_przeciw": 50,
+      "votes_wstrzymal": 92,
+      "votes_brak": 22,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 24,
+      "rebellions": [
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zatwierdzenia wyboru przewodniczącego Komisji doraźnej do spraw transportu i komunikacji",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zmiany uchwały nr LXIII/1352/23 SWD z dnia 27 grudnia 2023 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Joannie Broniarczyk Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania tytułu Honorowego Obywatela Dolnego Śląska CIVI HONORARIO doktorowi Kazimierzowi Pichlakowi",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Alinie Chrzanowskiej-Buczek Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania Orkiestrze Komendy Wojewódzkiej Policji we Wrocławiu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-12-15",
+          "topic": "Uchwała w sprawie połączenia Wojewódzkiego Szpitala Psychiatrycznego w Złotoryi z Wojewódzkim Szpitalem Specjalistycznym w Legnicy",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie określenia zasad udzielania dotacji na prace konserwatorskie, restauratorskie lub roboty budowlane przy zabytkach wpisanych do rejestru zabytków, znajdujących się na obszarze wojewód",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 6. Zdjęcie z porządku obrad Uchwały w sprawie uchwalenia Audytu krajobrazowego województwa dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie przyznania Agnieszce Radziejewskiej i Bartłomiejowi Drakowi Dolnośląskiej Nagrody Kulturalnej SILESIA Sejmiku Województwa Dolnośląskiego za rok 2025",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Głosowanie 5. Na Panią Katarzynę Jędrzejczyk-Kuliniak.na przedstawiciela Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie nadania statutu Wojewódzkiemu Urzędowi Pracy we Wrocławiu",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-05-15",
+          "topic": "Głosowanie 3. Nad kandydaturą Pani Katarzyny Jędrzejczyk-Kuliniak jako przedstawiciela Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrow",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Zmiana porządku obrad 10. Zdjęcie punktu w sprawie apelu o Polskim Funduszu Inwestycji Obronnych",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla energii otrzymywanej z biogazu rolniczego i biometanu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla energii geotermalnej",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XXIII/582/25 Sejmiku Województwa Dolnośląskiego z dnia 18 grudnia 2025 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2026",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla hydroenergii",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6. Wiceprzewodniczącego Marka Łapińskiego w sprawie czytania Audytu",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2026-02-27",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla energii promieniowania słonecznego DRUK NR XXV/16",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-02-27",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla energii wiatru na lądzie DRUK NR XXV/17",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie wyznaczenia przedstawiciela Sejmiku Województwa Dolnośląskiego do Rady Kuratorów fundacji - Zakład Narodowy im. Ossolińskich (Monika Włodarczyk)",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacji celowej Gminie Wrocław na realizację wydarzenia artystycznego pn. Przegląd Piosenki Aktorskiej, któ",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        }
+      ]
+    },
+    {
+      "name": "Marek Łapiński",
+      "slug": "marek-apinski",
+      "club": "KO",
+      "frekwencja": 100.0,
+      "aktywnosc": 95.6,
+      "zgodnosc_z_klubem": 99.1,
+      "votes_za": 908,
+      "votes_przeciw": 23,
+      "votes_wstrzymal": 2,
+      "votes_brak": 31,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 8,
+      "rebellions": [
+        {
+          "session": "2025-12-15",
+          "topic": "Głosowanie 1. Nad zamknięciem listy mówców",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Wniosek formalny 2. reasumpcja",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 12.Wprowadzenie do porządku obrad uchwały w sprawie powołania Rady Społecznej w Wojewódzkim Szpitalu Psychiatrycznym w Złotoryi",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 13.Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. dra Alfreda Sokołowskiego w Wałbrzychu",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla energii otrzymywanej z biogazu rolniczego i biometanu",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla energii geotermalnej",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla hydroenergii",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-02-27",
+          "topic": "Uchwała w sprawie wyrażenia zgody na dokonanie na rzecz Gminy Ciepłowody darowizny nieruchomości gruntowej położonej w Ciepłowodach DRUK NR XXV/18",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Mateusz Jędrachowich",
+      "slug": "mateusz-jedrachowich",
+      "club": "NZ",
+      "frekwencja": 4.8,
+      "aktywnosc": 1.2,
+      "zgodnosc_z_klubem": 100.0,
+      "votes_za": 12,
+      "votes_przeciw": 0,
+      "votes_wstrzymal": 0,
+      "votes_brak": 0,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 0,
+      "rebellions": []
+    },
+    {
+      "name": "Mateusz Jędrachowicz",
+      "slug": "mateusz-jedrachowicz",
+      "club": "NZ",
+      "frekwencja": 85.7,
+      "aktywnosc": 84.0,
+      "zgodnosc_z_klubem": 100.0,
+      "votes_za": 789,
+      "votes_przeciw": 16,
+      "votes_wstrzymal": 15,
+      "votes_brak": 56,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 0,
+      "rebellions": []
+    },
+    {
+      "name": "Małgorzata Calińska-Mayer",
+      "slug": "magorzata-calinska-mayer",
+      "club": "PiS",
+      "frekwencja": 100.0,
+      "aktywnosc": 95.5,
+      "zgodnosc_z_klubem": 98.4,
+      "votes_za": 772,
+      "votes_przeciw": 62,
+      "votes_wstrzymal": 98,
+      "votes_brak": 32,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 15,
+      "rebellions": [
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zatwierdzenia wyboru przewodniczącego Komisji doraźnej do spraw równego traktowania kobiet i mężczyzn",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-11-07",
+          "topic": "Uchwała w sprawie określenia wysokości opłat za przeprowadzenie egzaminu państwowego na terenie Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-07-18",
+          "topic": "Uchwała w sprawie przyznania Rotary Club Jelenia Góra Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Głosowanie 1 Monika Włodarczyk na przedstawiciela Sejmiku Województwa Dolnośląskiego do Rady Kuratorów fundacji - Zakład Narodowy im. Ossolińskich",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie wyznaczenia Magdaleny Piaseckiej na przedstawiciela Województwa Dolnośląskiego do władz Stowarzyszenia „Dolnośląska Organizacja Turystyczna”",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie powołania Rady Społecznej w Pogotowiu Ratunkowym w Legnicy",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie zawarcia porozumienia z Województwem Lubuskim w sprawie przyjęcia powierzanego zadania organizacji publicznego transportu zbiorowego ze względu na planowany przebieg linii komunikacy",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie zawarcia porozumienia z Województwem Wielkopolskim w sprawie organizowania publicznego transportu zbiorowego ze względu na planowany przebieg linii komunikacyjnych w wojewódzkich prz",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Wniosek formalny 2. zamkniecie listy mówców",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie przyznania Agnieszce Radziejewskiej i Bartłomiejowi Drakowi Dolnośląskiej Nagrody Kulturalnej SILESIA Sejmiku Województwa Dolnośląskiego za rok 2025",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie wskazania kandydata Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie nadania statutu Wojewódzkiemu Urzędowi Pracy we Wrocławiu",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 12.Wprowadzenie do porządku obrad uchwały w sprawie powołania Rady Społecznej w Wojewódzkim Szpitalu Psychiatrycznym w Złotoryi",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie zatwierdzenia zatwierdzenia wyboru przewodniczącego Komisji Ochrony Środowiska",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6. Wiceprzewodniczącego Marka Łapińskiego w sprawie czytania Audytu",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        }
+      ]
+    },
+    {
+      "name": "Michał Rado",
+      "slug": "micha-rado",
+      "club": "BS",
+      "frekwencja": 100.0,
+      "aktywnosc": 75.1,
+      "zgodnosc_z_klubem": 98.8,
+      "votes_za": 716,
+      "votes_przeciw": 7,
+      "votes_wstrzymal": 10,
+      "votes_brak": 163,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 9,
+      "rebellions": [
+        {
+          "session": "2024-12-12",
+          "topic": "Wniosek formalny 2",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Przeniesienie na pkt. 3 obrad Informacja o sytuacji związanej z powodzią na Dolnym Śląsku.",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 3. Wprowadzenie projektu uchwały w sprawie przyznania Landl Leda Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 4. Wprowadzenie projektu uchwały w sprawie przyznania Przychodni Specjalistycznej Regina i Walenty Śliwa Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnoś",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Głosowanie 1. Trzecia przerwa w imiemiu Klubu Prawa i Sprawiedliwości",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. dra Alfreda Sokołowskiego w Wałbrzychu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-01-30",
+          "topic": "Zmiana porządku obrad 10 Przsunięcie punktu porządku obrad uchwała w sprawie wyznaczenia wiceprzewodniczącego Rady Nadzorczej Wojewódzkiego Funduszu Ochrony Środowiska i Gospodarki Wodnej we Wrocławiu",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6. Radnej Ewy Kocemby do wysłanie projektu uchwały o Audycie do prac komisji",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-02-27",
+          "topic": "Uchwała w sprawie powierzenia Gminie Oława realizacji w 2026 roku zadania własnego Województwa Dolnośląskiego pn. „Dożynki wojewódzkie” DRUK NR XXV/21",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Mirosław Lubiński",
+      "slug": "mirosaw-lubinski",
+      "club": "KO",
+      "frekwencja": 71.4,
+      "aktywnosc": 64.8,
+      "zgodnosc_z_klubem": 98.7,
+      "votes_za": 617,
+      "votes_przeciw": 9,
+      "votes_wstrzymal": 6,
+      "votes_brak": 59,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 8,
+      "rebellions": [
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Psychiatrycznym w Złotoryi",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Dolnośląskim Centrum Onkologii, Pulmonologii i Hematologii we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Centrum Szpitalnym Kotliny Jeleniogórskiej",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Pogotowiu Ratunkowym w Legnicy",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym im. J. Gromkowskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Bankowi Spółdzielczemu w Jaworze Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego – XXI/40",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 13.Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. dra Alfreda Sokołowskiego w Wałbrzychu",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Monika Włodarczyk",
+      "slug": "monika-wodarczyk",
+      "club": "KO",
+      "frekwencja": 95.2,
+      "aktywnosc": 84.1,
+      "zgodnosc_z_klubem": 99.3,
+      "votes_za": 803,
+      "votes_przeciw": 12,
+      "votes_wstrzymal": 6,
+      "votes_brak": 94,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 6,
+      "rebellions": [
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Dolnośląskim Centrum Onkologii, Pulmonologii i Hematologii we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym im. J. Gromkowskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-12-15",
+          "topic": "Uchwała w sprawie przyznania Alinie Głowackiej-Szłapie Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Wniosek formalny 2. reasumpcja",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie wyrażenia zgody na zmianę warunków umowy darowizny zawartej przez Województwo Dolnośląskie z Gminą Miejską Bolesławiec, w tym na zmianę celu na który została darowana nieruchomość za",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Wniosek formalny 2. Wniosek o zamknięcie dyskusji",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Natalia Gołąb",
+      "slug": "natalia-goab",
+      "club": "TD",
+      "frekwencja": 100.0,
+      "aktywnosc": 88.8,
+      "zgodnosc_z_klubem": 99.3,
+      "votes_za": 848,
+      "votes_przeciw": 13,
+      "votes_wstrzymal": 6,
+      "votes_brak": 93,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 6,
+      "rebellions": [
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 3. Wprowadzenie projektu uchwały w sprawie przyznania Landl Leda Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 4. Wprowadzenie projektu uchwały w sprawie przyznania Przychodni Specjalistycznej Regina i Walenty Śliwa Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnoś",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Zmiana porządku obrad 6. Wprowadzenie projektu uchwały w sprawie przyznania Albinowi Nicponiowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego – XXI/23",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie przyznania Agnieszce Radziejewskiej i Bartłomiejowi Drakowi Dolnośląskiej Nagrody Kulturalnej SILESIA Sejmiku Województwa Dolnośląskiego za rok 2025",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. dra Alfreda Sokołowskiego w Wałbrzychu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-01-29",
+          "topic": "Zmiana porządku obrad 2. Wprowadzenie projektu uchwały w sprawie zatwierdzenia wyboru przewodniczącego Komisji Ochrony Środowiska i Gospodarki Wodnej Sejmiku Województwa Dolnośląskiego druk nr. XXIV/2",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Paweł Gancarz",
+      "slug": "pawe-gancarz",
+      "club": "TD",
+      "frekwencja": 100.0,
+      "aktywnosc": 86.7,
+      "zgodnosc_z_klubem": 99.8,
+      "votes_za": 830,
+      "votes_przeciw": 14,
+      "votes_wstrzymal": 2,
+      "votes_brak": 113,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 2,
+      "rebellions": [
+        {
+          "session": "2025-09-25",
+          "topic": "Uchwała w sprawie przyznania Agnieszce Radziejewskiej i Bartłomiejowi Drakowi Dolnośląskiej Nagrody Kulturalnej SILESIA Sejmiku Województwa Dolnośląskiego za rok 2025",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-07-10",
+          "topic": "Wniosek formalny 1 Reasumpcja",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Paweł Grabek",
+      "slug": "pawe-grabek",
+      "club": "PiS",
+      "frekwencja": 85.7,
+      "aktywnosc": 83.3,
+      "zgodnosc_z_klubem": 98.5,
+      "votes_za": 679,
+      "votes_przeciw": 49,
+      "votes_wstrzymal": 85,
+      "votes_brak": 17,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 12,
+      "rebellions": [
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zatwierdzenia wyboru przewodniczącego Komisji doraźnej do spraw równego traktowania kobiet i mężczyzn",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-11-07",
+          "topic": "Uchwała w sprawie określenia wysokości opłat za przeprowadzenie egzaminu państwowego na terenie Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-11-07",
+          "topic": "Uchwała w sprawie zmiany uchwały nr VIII/169/19 Sejmiku Województwa Dolnośląskiego z dnia 23 maja 2019 r. w sprawie zasad udzielania i rozmiaru obniżek tygodniowego obowiązkowego wymiaru zajęć dydakty",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania tytułu Honorowego Obywatela Dolnego Śląska CIVI HONORARIO doktorowi Kazimierzowi Pichlakowi",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym we Wrocławiu",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-05-28",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu dla Nerwowo i Psychicznie Chorych w Bolesławcu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Wniosek formalny 2. zamkniecie listy mówców",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-01-30",
+          "topic": "Zmiana porządku obrad 9 Zdjęcie z porządku obrad uchwały w sprawie ustalenia wysokości diet Radnych Sejmiku Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie przyznania Mateuszowi Stępniakowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6. Wiceprzewodniczącego Marka Łapińskiego w sprawie czytania Audytu",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 3.",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 4. O Reasumpcję",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Paweł Kura",
+      "slug": "pawe-kura",
+      "club": "PiS",
+      "frekwencja": 71.4,
+      "aktywnosc": 70.1,
+      "zgodnosc_z_klubem": 98.2,
+      "votes_za": 569,
+      "votes_przeciw": 39,
+      "votes_wstrzymal": 76,
+      "votes_brak": 36,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 12,
+      "rebellions": [
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zatwierdzenia wyboru przewodniczącego Komisji doraźnej do spraw transportu i komunikacji",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym w Legnicy",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-11-07",
+          "topic": "Uchwała w sprawie zmiany uchwały nr VIII/169/19 Sejmiku Województwa Dolnośląskiego z dnia 23 maja 2019 r. w sprawie zasad udzielania i rozmiaru obniżek tygodniowego obowiązkowego wymiaru zajęć dydakty",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym we Wrocławiu",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. A. Falkiewicza we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie powołania komisji doraźnej Sejmiku Województwa Dolnośląskiego do spraw równego traktowania kobiet i mężczyzn",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-07-10",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XIII/318/25 Sejmiku Województwa Dolnośląskiego z dnia 27 marca 2025 r. w sprawie udzielenia z budżetu Województwa Dolnośląskiego w 2025 roku pomocy finansowej w for",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Centrum Psychiatrii Długoterminowej w Stroniu Śląskim",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie wskazania kandydata Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie powołania Rady Społecznej w Wojewódzkim Szpitalu Psychiatrycznym w Złotoryi",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-01-30",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Dolnośląskim Centrum Onkologii, Pulmonologii i Hematologii we Wrocławiu",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-01-30",
+          "topic": "Zmiana porządku obrad 9 Zdjęcie z porządku obrad uchwały w sprawie ustalenia wysokości diet Radnych Sejmiku Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Piotr Karwan",
+      "slug": "piotr-karwan",
+      "club": "PiS",
+      "frekwencja": 90.5,
+      "aktywnosc": 83.4,
+      "zgodnosc_z_klubem": 98.8,
+      "votes_za": 679,
+      "votes_przeciw": 44,
+      "votes_wstrzymal": 91,
+      "votes_brak": 64,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 10,
+      "rebellions": [
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zatwierdzenia wyboru przewodniczącego Komisji doraźnej do spraw transportu i komunikacji",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-11-07",
+          "topic": "Uchwała w sprawie zmiany uchwały nr VIII/169/19 Sejmiku Województwa Dolnośląskiego z dnia 23 maja 2019 r. w sprawie zasad udzielania i rozmiaru obniżek tygodniowego obowiązkowego wymiaru zajęć dydakty",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania tytułu Honorowego Obywatela Dolnego Śląska CIVI HONORARIO doktorowi Kazimierzowi Pichlakowi",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie wyznaczenia Magdaleny Piaseckiej na przedstawiciela Województwa Dolnośląskiego do władz Stowarzyszenia „Dolnośląska Organizacja Turystyczna”",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. A. Falkiewicza we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie powołania komisji doraźnej Sejmiku Województwa Dolnośląskiego do spraw równego traktowania kobiet i mężczyzn",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie wyznaczenia przedstawiciela Sejmiku Województwa Dolnośląskiego do składu Regionalnej Rady Ochrony Przyrody",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 3. Wprowadzenie projektu uchwały w sprawie przyznania Landl Leda Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacji celowej jednostkom samorządu terytorialnego województwa dolnośląskiego na dofinansowanie realizacji",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Piotr Kraczkowski",
+      "slug": "piotr-kraczkowski",
+      "club": "NZ",
+      "frekwencja": 66.7,
+      "aktywnosc": 58.7,
+      "zgodnosc_z_klubem": 100.0,
+      "votes_za": 555,
+      "votes_przeciw": 15,
+      "votes_wstrzymal": 3,
+      "votes_brak": 73,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 0,
+      "rebellions": []
+    },
+    {
+      "name": "Renata Granowska",
+      "slug": "renata-granowska",
+      "club": "KO",
+      "frekwencja": 14.3,
+      "aktywnosc": 3.2,
+      "zgodnosc_z_klubem": 100.0,
+      "votes_za": 31,
+      "votes_przeciw": 0,
+      "votes_wstrzymal": 0,
+      "votes_brak": 37,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 0,
+      "rebellions": []
+    },
+    {
+      "name": "Robert Jagła",
+      "slug": "robert-jaga",
+      "club": "KO",
+      "frekwencja": 9.5,
+      "aktywnosc": 3.0,
+      "zgodnosc_z_klubem": 100.0,
+      "votes_za": 29,
+      "votes_przeciw": 0,
+      "votes_wstrzymal": 0,
+      "votes_brak": 0,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 0,
+      "rebellions": []
+    },
+    {
+      "name": "Sławomir Piechota",
+      "slug": "sawomir-piechota",
+      "club": "KO",
+      "frekwencja": 81.0,
+      "aktywnosc": 74.4,
+      "zgodnosc_z_klubem": 99.7,
+      "votes_za": 712,
+      "votes_przeciw": 13,
+      "votes_wstrzymal": 1,
+      "votes_brak": 88,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 2,
+      "rebellions": [
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Wniosek formalny 1. Reasumpcja",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Tymoteusz Myrda",
+      "slug": "tymoteusz-myrda",
+      "club": "BS",
+      "frekwencja": 100.0,
+      "aktywnosc": 87.6,
+      "zgodnosc_z_klubem": 99.2,
+      "votes_za": 831,
+      "votes_przeciw": 11,
+      "votes_wstrzymal": 13,
+      "votes_brak": 44,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 7,
+      "rebellions": [
+        {
+          "session": "2024-12-12",
+          "topic": "Głosowanie 1 Wybór składu doraźnej Komisji do opracowania zmian Statutu Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wniosek formalny 1 Zdjęcie z porządku obrad VII/30",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wniosek formalny 2 Zdjęcie z porządku obrad VII/34",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-09-25",
+          "topic": "Wniosek formalny 1. zdjęcie uchwały",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-05-15",
+          "topic": "Uchwała w sprawie apelu do Rządu Rzeczypospolitej Polskiej w sprawie zapłaty za nadwykonania, wykonane na rzecz pacjentów przez podmioty medyczne",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie rozpatrzenia petycji Stowarzyszenia Karkonoska Lokalna Organizacja Turystyczna z dnia 14 stycznia 2025 r. o wsparcie Mieszkańców powiatu karkonoskiego i kamiennogórskiego, gmin Szkla",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-01-30",
+          "topic": "Zmiana porządku obrad 9 Zdjęcie z porządku obrad uchwały w sprawie ustalenia wysokości diet Radnych Sejmiku Województwa Dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        }
+      ]
+    },
+    {
+      "name": "Tytus Czartoryski",
+      "slug": "tytus-czartoryski",
+      "club": "PiS",
+      "frekwencja": 95.2,
+      "aktywnosc": 83.4,
+      "zgodnosc_z_klubem": 97.7,
+      "votes_za": 680,
+      "votes_przeciw": 54,
+      "votes_wstrzymal": 80,
+      "votes_brak": 70,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 19,
+      "rebellions": [
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu dla Nerwowo i Psychicznie Chorych w Lubiążu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym w Legnicy",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Uchwała w sprawie zatwierdzenia wyboru przewodniczącego Komisji doraźnej do spraw równego traktowania kobiet i mężczyzn",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Wniosek formalny 3 Skierowanie uchwały w sprawie apelu Sejmiku Województwa Dolnośląskiego do Rządu Rzeczypospolitej Polskiej w sprawie rażącej zwłoki w podpisaniu umów na finansowanie inwestycji, któr",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-12-12",
+          "topic": "Zmiana porządku obrad 9 Wprowadzenie projektu uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu dla Nerwowo i Psychicznie Chorych w Lubiążu",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2024-11-07",
+          "topic": "Uchwała w sprawie zmiany uchwały nr VIII/169/19 Sejmiku Województwa Dolnośląskiego z dnia 23 maja 2019 r. w sprawie zasad udzielania i rozmiaru obniżek tygodniowego obowiązkowego wymiaru zajęć dydakty",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania tytułu Honorowego Obywatela Dolnego Śląska CIVI HONORARIO doktorowi Kazimierzowi Pichlakowi",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Głosowanie 1 Monika Włodarczyk na przedstawiciela Sejmiku Województwa Dolnośląskiego do Rady Kuratorów fundacji - Zakład Narodowy im. Ossolińskich",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie przyjęcia „Programu współpracy Samorządu Województwa Dolnośląskiego z organizacjami pozarządowymi oraz innymi podmiotami prowadzącymi działalność pożytku publicznego na Dolnym Śląsku",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwały w sprawie skargi Wojewody Dolnośląskiego na uchwałę nr XIX/449/25 Sejmiku Województwa Dolnośląskiego z dnia 25 września 2025 r. w sprawie pozbawienia dróg i odcinków dróg kategorii dróg wojewó",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 1. Wprowadzenie projektu uchwały w sprawie przyznania Adriannie Gęborys Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 3. Wprowadzenie projektu uchwały w sprawie przyznania Landl Leda Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-07-10",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XIII/318/25 Sejmiku Województwa Dolnośląskiego z dnia 27 marca 2025 r. w sprawie udzielenia z budżetu Województwa Dolnośląskiego w 2025 roku pomocy finansowej w for",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Dolnośląskim Centrum Leczenia Uzależnień w Czarnym Borze",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie wskazania kandydata Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie nadania statutu Wojewódzkiemu Urzędowi Pracy we Wrocławiu",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-05-15",
+          "topic": "Uchwała w sprawie zatwierdzenia sprawozdania finansowego Województwa Dolnośląskiego za rok 2024 wraz ze sprawozdaniem z wykonania budżetu Województwa Dolnośląskiego w roku 2024",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie wyrażenia zgody na zmianę warunków umowy darowizny zawartej przez Województwo Dolnośląskie z Gminą Miejską Bolesławiec, w tym na zmianę celu na który została darowana nieruchomość za",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6. Wiceprzewodniczącego Marka Łapińskiego w sprawie czytania Audytu",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        }
+      ]
+    },
+    {
+      "name": "Wojciech Bochnak",
+      "slug": "wojciech-bochnak",
+      "club": "KO",
+      "frekwencja": 95.2,
+      "aktywnosc": 82.0,
+      "zgodnosc_z_klubem": 99.8,
+      "votes_za": 787,
+      "votes_przeciw": 13,
+      "votes_wstrzymal": 0,
+      "votes_brak": 111,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 2,
+      "rebellions": [
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 3. Wprowadzenie projektu uchwały w sprawie przyznania Landl Leda Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 4. Wprowadzenie projektu uchwały w sprawie przyznania Przychodni Specjalistycznej Regina i Walenty Śliwa Spółce Jawnej Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnoś",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        }
+      ]
+    },
+    {
+      "name": "Łukasz Lach",
+      "slug": "ukasz-lach",
+      "club": "PiS",
+      "frekwencja": 95.2,
+      "aktywnosc": 83.7,
+      "zgodnosc_z_klubem": 95.6,
+      "votes_za": 695,
+      "votes_przeciw": 41,
+      "votes_wstrzymal": 81,
+      "votes_brak": 60,
+      "votes_nieobecny": 0,
+      "votes_total": 976,
+      "rebellion_count": 36,
+      "rebellions": [
+        {
+          "session": "2024-11-07",
+          "topic": "Uchwała w sprawie zmiany uchwały nr VIII/169/19 Sejmiku Województwa Dolnośląskiego z dnia 23 maja 2019 r. w sprawie zasad udzielania i rozmiaru obniżek tygodniowego obowiązkowego wymiaru zajęć dydakty",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-11-07",
+          "topic": "Zmiana porządku obrad 5 Wprowadzenie uchwały Sejmiku Województwa Dolnośląskiego w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacji celowej gminom z terenu woj",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie zmiany uchwały nr LVIII/1029/10 Sejmiku Województwa Dolnośląskiego z dnia 8 lipca 2010 r. w sprawie utworzenia jednostki budżetowej pod nazwą Biuro Obsługi Urzędu Marszałkowskiego Wo",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Uchwała w sprawie przyznania tytułu Honorowego Obywatela Dolnego Śląska CIVI HONORARIO doktorowi Kazimierzowi Pichlakowi",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-09-26",
+          "topic": "Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Wojewódzkim Szpitalu Specjalistycznym we Wrocławiu",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-07-18",
+          "topic": "Uchwała w sprawie przyznania Dariuszowi Kusiowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-07-18",
+          "topic": "Uchwała w sprawie przyznania Rotary Club Jelenia Góra Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2024-06-27",
+          "topic": "Uchwała w sprawie powołania komisji doraźnej Sejmiku Województwa Dolnośląskiego do spraw równego traktowania kobiet i mężczyzn",
+          "their_vote": "za",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2025-12-15",
+          "topic": "Uchwała w sprawie połączenia Wojewódzkiego Szpitala Psychiatrycznego w Złotoryi z Wojewódzkim Szpitalem Specjalistycznym w Legnicy",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie zmiany uchwały nr X/236/24 Sejmiku Województwa Dolnośląskiego z dnia 12 grudnia 2024 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Uchwała w sprawie określenia zasad udzielania dotacji na prace konserwatorskie, restauratorskie lub roboty budowlane przy zabytkach wpisanych do rejestru zabytków, znajdujących się na obszarze wojewód",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 2. Wprowadzenie projektu uchwały w sprawie przyznania Tadeuszowi Choczajowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 5. Wprowadzenie projektu uchwały w sprawie skargi Wojewody Dolnośląskiego na uchwałę nr XIX/449/25 Sejmiku Województwa Dolnośląskiego z dnia 25 września 2025 r. w sprawie pozbawi",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-11-27",
+          "topic": "Zmiana porządku obrad 6. Zdjęcie z porządku obrad Uchwały w sprawie uchwalenia Audytu krajobrazowego województwa dolnośląskiego",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-10-31",
+          "topic": "Uchwała w sprawie przyznania Bankowi Spółdzielczemu w Jaworze Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego – XXI/40",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-07-10",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XVII/397/25 Sejmiku Województwa Dolnośląskiego w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu Ginekologiczno- Położniczym im. E. Biernackiego w",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-07-10",
+          "topic": "Uchwała w sprawie zmiany uchwały nr L/1023/22 Sejmiku Województwa Dolnośląskiego z dnia 27 października 2022 r. w sprawie określenia terminów zakończenia zbiorów poszczególnych gatunków roślin rolnicz",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Głosowanie 5. Na Panią Katarzynę Jędrzejczyk-Kuliniak.na przedstawiciela Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Wojewódzkim Centrum Psychiatrii Długoterminowej w Stroniu Śląskim",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Uchwała w sprawie wskazania kandydata Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 2. Wprowadzenie do porządku obrad uchwały w sprawie przyznania International Theatre William-Es Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 11. Wprowadzenie do porządku obrad uchwały w sprawie powołania Rady Społecznej w Pogotowiu Ratunkowym we Wrocławiu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 12.Wprowadzenie do porządku obrad uchwały w sprawie powołania Rady Społecznej w Wojewódzkim Szpitalu Psychiatrycznym w Złotoryi",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 6. Wprowadzenie do porządku obrad uchwały w sprawie przyznania Zbigniewowi Kuśmierkowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-06-12",
+          "topic": "Zmiana porządku obrad 10. Wprowadzenie do porządku obrad uchwały w sprawie powołania Rady Społecznej w Pogotowiu Ratunkowym w Wałbrzychu",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-05-15",
+          "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego w 2025 roku pomocy finansowej, w formie dotacji celowej, wybranym gminom i powiatom na bieżące utrzymanie urządzeń melioracji wodnych ",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. dra Alfreda Sokołowskiego w Wałbrzychu",
+          "their_vote": "przeciw",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2025-03-27",
+          "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacji celowej jednostkom samorządu terytorialnego województwa dolnośląskiego na dofinansowanie realizacji",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2025-01-30",
+          "topic": "Zmiana porządku obrad 9 Zdjęcie z porządku obrad uchwały w sprawie ustalenia wysokości diet Radnych Sejmiku Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Zmiana porządku obrad 10. Zdjęcie punktu w sprawie apelu o Polskim Funduszu Inwestycji Obronnych",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla energii geotermalnej",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie zmiany uchwały nr XXIII/582/25 Sejmiku Województwa Dolnośląskiego z dnia 18 grudnia 2025 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2026",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 6. Wiceprzewodniczącego Marka Łapińskiego w sprawie czytania Audytu",
+          "their_vote": "za",
+          "club_majority": "wstrzymal_sie"
+        },
+        {
+          "session": "2026-03-26",
+          "topic": "Wniosek formalny 3.",
+          "their_vote": "przeciw",
+          "club_majority": "za"
+        },
+        {
+          "session": "2026-02-27",
+          "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla energii wiatru na lądzie DRUK NR XXV/17",
+          "their_vote": "wstrzymal_sie",
+          "club_majority": "przeciw"
+        }
+      ]
+    }
+  ],
   "votes": [
     {
       "id": "2024-12-12_DRUK X/11",
@@ -56432,8 +60197,210 @@
       "voted_at": "2026-01-29T01:02:00"
     }
   ],
-  "similarity_top": [],
-  "similarity_bottom": [],
+  "similarity_top": [
+    {
+      "a": "Robert Jagła",
+      "b": "Łukasz Lach",
+      "score": 100.0
+    },
+    {
+      "a": "Robert Jagła",
+      "b": "Wojciech Bochnak",
+      "score": 100.0
+    },
+    {
+      "a": "Robert Jagła",
+      "b": "Tytus Czartoryski",
+      "score": 100.0
+    },
+    {
+      "a": "Robert Jagła",
+      "b": "Tymoteusz Myrda",
+      "score": 100.0
+    },
+    {
+      "a": "Robert Jagła",
+      "b": "Sławomir Piechota",
+      "score": 100.0
+    },
+    {
+      "a": "Renata Granowska",
+      "b": "Łukasz Lach",
+      "score": 100.0
+    },
+    {
+      "a": "Renata Granowska",
+      "b": "Wojciech Bochnak",
+      "score": 100.0
+    },
+    {
+      "a": "Renata Granowska",
+      "b": "Tytus Czartoryski",
+      "score": 100.0
+    },
+    {
+      "a": "Renata Granowska",
+      "b": "Tymoteusz Myrda",
+      "score": 100.0
+    },
+    {
+      "a": "Renata Granowska",
+      "b": "Sławomir Piechota",
+      "score": 100.0
+    },
+    {
+      "a": "Renata Granowska",
+      "b": "Robert Jagła",
+      "score": 100.0
+    },
+    {
+      "a": "Piotr Karwan",
+      "b": "Robert Jagła",
+      "score": 100.0
+    },
+    {
+      "a": "Piotr Karwan",
+      "b": "Renata Granowska",
+      "score": 100.0
+    },
+    {
+      "a": "Paweł Kura",
+      "b": "Robert Jagła",
+      "score": 100.0
+    },
+    {
+      "a": "Paweł Kura",
+      "b": "Renata Granowska",
+      "score": 100.0
+    },
+    {
+      "a": "Paweł Grabek",
+      "b": "Robert Jagła",
+      "score": 100.0
+    },
+    {
+      "a": "Paweł Grabek",
+      "b": "Renata Granowska",
+      "score": 100.0
+    },
+    {
+      "a": "Paweł Gancarz",
+      "b": "Robert Jagła",
+      "score": 100.0
+    },
+    {
+      "a": "Paweł Gancarz",
+      "b": "Renata Granowska",
+      "score": 100.0
+    },
+    {
+      "a": "Natalia Gołąb",
+      "b": "Robert Jagła",
+      "score": 100.0
+    }
+  ],
+  "similarity_bottom": [
+    {
+      "a": "Katarzyna Lubiniecka-Różyło",
+      "b": "Magdalena Brodowska",
+      "score": 73.2
+    },
+    {
+      "a": "Jerzy Pokój",
+      "b": "Krzysztof Mróz",
+      "score": 73.1
+    },
+    {
+      "a": "Krzysztof Mróz",
+      "b": "Mirosław Lubiński",
+      "score": 73.0
+    },
+    {
+      "a": "Ewa Kocemba",
+      "b": "Magdalena Brodowska",
+      "score": 73.0
+    },
+    {
+      "a": "Krzysztof Mróz",
+      "b": "Tymoteusz Myrda",
+      "score": 72.9
+    },
+    {
+      "a": "Krzysztof Mróz",
+      "b": "Marek Łapiński",
+      "score": 72.9
+    },
+    {
+      "a": "Krzysztof Mróz",
+      "b": "Paweł Gancarz",
+      "score": 72.5
+    },
+    {
+      "a": "Karolina Hołownia-Twardowska",
+      "b": "Krzysztof Mróz",
+      "score": 72.2
+    },
+    {
+      "a": "Krzysztof Mróz",
+      "b": "Magdalena Piasecka",
+      "score": 72.1
+    },
+    {
+      "a": "Ewelina Szydłowska-Kędziera",
+      "b": "Piotr Kraczkowski",
+      "score": 72.1
+    },
+    {
+      "a": "Krzysztof Mróz",
+      "b": "Michał Rado",
+      "score": 71.9
+    },
+    {
+      "a": "Krzysztof Mróz",
+      "b": "Marcin Borys",
+      "score": 71.6
+    },
+    {
+      "a": "Adam Jaśnikowski",
+      "b": "Krzysztof Mróz",
+      "score": 71.6
+    },
+    {
+      "a": "Krzysztof Mróz",
+      "b": "Piotr Kraczkowski",
+      "score": 71.4
+    },
+    {
+      "a": "Krzysztof Mróz",
+      "b": "Mateusz Jędrachowicz",
+      "score": 71.0
+    },
+    {
+      "a": "Jarosław Rabczenko",
+      "b": "Krzysztof Mróz",
+      "score": 70.9
+    },
+    {
+      "a": "Krzysztof Mróz",
+      "b": "Natalia Gołąb",
+      "score": 70.8
+    },
+    {
+      "a": "Katarzyna Lubiniecka-Różyło",
+      "b": "Krzysztof Mróz",
+      "score": 68.4
+    },
+    {
+      "a": "Ewa Kocemba",
+      "b": "Krzysztof Mróz",
+      "score": 68.3
+    },
+    {
+      "a": "Krzysztof Mróz",
+      "b": "Sławomir Piechota",
+      "score": 67.9
+    }
+  ],
   "councilor_index": [
     "Adam Jaśnikowski",
     "Alina Szełemej",
