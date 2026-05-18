@@ -39,6 +39,7 @@ import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urljoin
 from urllib.request import Request, urlopen
 
 
@@ -99,9 +100,12 @@ def list_session_urls(cache_dir: Path | None) -> list[str]:
         year_url = f"{GLOSOWANIA_ROOT}?p={year}"
         text = fetch_text(year_url, cache_dir)
         # Linki do miesięcy z pattern ?p=YYYY%5E<month>
+        # Uwaga: hrefy są często względne (np. "?p=2024%5Emaj") — trzeba je
+        # rozwiązać względem year_url (z prefiksem .../glosowania_radnych/),
+        # nie BASE, bo inaczej wpadamy na stronę główną BIP bez listy sesji.
         months = re.findall(r'href="([^"]*\?p=' + str(year) + r'%5E[^"]+)"', text)
         for month_href in set(months):
-            month_url = month_href if month_href.startswith("http") else f"{BASE}{month_href}"
+            month_url = urljoin(year_url, month_href)
             month_text = fetch_text(month_url, cache_dir)
             # Linki do sesji
             session_paths = re.findall(
@@ -109,7 +113,7 @@ def list_session_urls(cache_dir: Path | None) -> list[str]:
                 month_text,
             )
             for path in set(session_paths):
-                full = path if path.startswith("http") else f"{BASE}{path}"
+                full = urljoin(BASE, path)
                 if full not in out:
                     out.append(full)
     return out
@@ -332,8 +336,16 @@ def main() -> int:
         try:
             pdf_bytes = fetch_bytes(pdf_url, cache)
             votes = parse_pdf(pdf_bytes, pdf_url)
+            # Filtr na kadencję VII (od 2024-05-07). BIP zwraca też sesje
+            # poprzedniej kadencji jeśli mieszczą się w przeglądanych latach.
+            before = len(votes)
+            votes = [v for v in votes if v.get("session_date", "") >= KADENCJA_START_DATE]
+            skipped = before - len(votes)
             all_votes.extend(votes)
-            print(f"    {len(votes)} głosowań")
+            msg = f"    {len(votes)} głosowań"
+            if skipped:
+                msg += f" (pominięto {skipped} z poprzedniej kadencji)"
+            print(msg)
         except Exception as exc:
             print(f"    PDF fetch/parse: {exc}")
 
