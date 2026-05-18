@@ -1,0 +1,118 @@
+{
+  "city_name": "Tallinn",
+  "city_genitive": "Tallinna",
+  "country": "ee",
+  "country_name": "Eesti",
+  "locale": "et",
+  "site_title": "Radoskop Tallinn. Kuidas hääletavad Tallinna linnavolikogu liikmed?",
+  "site_url": "https://tallinn.radoskop.eu",
+  "site_description": "Radoskop. Avatud Tallinna Linnavolikogu töö jälgimine. Volinike osavõtt, hääletused ja aktiivsus.",
+  "site_description_short": "Avatud Tallinna Linnavolikogu töö jälgimine. Osavõtt ja hääletused.",
+  "bip_url": "https://teele.tallinn.ee/meetings/council/sessions",
+  "bip_name": "teele.tallinn.ee",
+  "bip_kind": "tallinn_teele_api",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "tallinn.radoskop.eu",
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "samorzad_type": "miasto",
+  "rada_name": "Tallinna Linnavolikogu",
+  "rada_name_genitive": "Tallinna Linnavolikogu",
+  "councilor_count": 79,
+  "kadencja_active": "2025-2029",
+  "kadencje": {
+    "2025-2029": {
+      "label": "XI koosseis (2025–2029)",
+      "start": "2025-11-26"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": true,
+  "komisje_public": false,
+  "komisje_premium": true,
+  "has_interpelacje": false,
+  "has_stenogram": false,
+  "has_voting_data": true,
+  "has_speaker_activity": false,
+  "scrape_status": "active",
+  "currency": "€",
+  "teele_api_base": "https://teele.tallinn.ee/api",
+  "teele_unit_id": 2336,
+  "teele_factions_parent_unit_id": 2337,
+  "vote_text_map": {
+    "INFAVOR": "za",
+    "AGAINST": "przeciw",
+    "NEUTRAL": "wstrzymal_sie",
+    "ABSENT": "nieobecni",
+    "NOTPARTICIPATED": "brak_glosu"
+  },
+  "ui_strings_et": {
+    "rada": "Linnavolikogu",
+    "radni": "Linnavolinikud",
+    "radny": "Linnavolinik",
+    "frekwencja": "Osavõtt",
+    "glosowania": "Hääletused",
+    "klub": "Fraktsioon",
+    "kluby": "Fraktsioonid",
+    "sesja": "Istung",
+    "sesje": "Istungid",
+    "kadencja": "Koosseis",
+    "za": "Poolt",
+    "przeciw": "Vastu",
+    "wstrzymal_sie": "Erapooletu",
+    "brak_glosu": "Ei osalenud hääletusel",
+    "nieobecni": "Puudus",
+    "przyjete": "Vastu võetud",
+    "odrzucone": "Tagasi lükatud",
+    "odroczone": "Edasi lükatud",
+    "search": "Otsi",
+    "details": "Vaata lähemalt",
+    "about": "Projektist"
+  },
+  "clubs": {
+    "Kesk": {
+      "name": "Eesti Keskerakonna fraktsioon",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "SDE": {
+      "name": "Sotsiaaldemokraatliku Erakonna fraktsioon",
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)",
+      "avatar_bg": "#991b1b"
+    },
+    "Isamaa": {
+      "name": "Isamaa Erakonna fraktsioon",
+      "color": "#1d4ed8",
+      "bg": "rgba(29,78,216,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "Reform": {
+      "name": "Eesti Reformierakonna fraktsioon",
+      "color": "#facc15",
+      "bg": "rgba(250,204,21,0.18)",
+      "avatar_bg": "#a16207"
+    },
+    "Parempoolsed": {
+      "name": "Erakond Parempoolsed",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#6d28d9"
+    },
+    "NZ": {
+      "name": "Fraktsioonivaba",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {}
+}

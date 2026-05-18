@@ -506,8 +506,11 @@ def _parse_vote_table(table: list[list], session: SessionMeta, vote_idx: int) ->
                     counts[key] = len(named_votes[key])
     if not any(named_votes.values()):
         return None
+    # Session number in vote_id prevents collisions when two sessions share
+    # a date. Same bug pattern as Radom 2025-03-31.
+    num_part = f"_{session.number}" if getattr(session, "number", "") else ""
     return {
-        "id": f"{session.date}_{vote_idx:03d}",
+        "id": f"{session.date}{num_part}_{vote_idx:03d}",
         "session_number": session.number,
         "session_date": session.date,
         "topic": topic or f"Głosowanie nr {vote_idx}",

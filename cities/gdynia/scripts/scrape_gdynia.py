@@ -473,7 +473,11 @@ def _parse_vote_section(section_text: str, session: dict, vote_idx: int) -> dict
     if ratio_m:
         resolution = "przyjęta"
 
-    vote_id = f"{session['date']}_{vote_idx:03d}"
+    # Session number in vote_id prevents collisions when two sessions share
+    # a date (Gdynia 2024-10-02 case).
+    session_num = session.get("number") or ""
+    num_part = f"_{session_num}" if session_num else ""
+    vote_id = f"{session['date']}{num_part}_{vote_idx:03d}"
 
     return {
         "id": vote_id,
@@ -590,7 +594,11 @@ def _parse_vote_section_format_c(section_text: str, pre_text: str,
     elif re.search(r'Uchwała\s+nie\s+została\s+podjęta', section_text, re.IGNORECASE):
         resolution = "odrzucona"
 
-    vote_id = f"{session['date']}_{vote_idx:03d}"
+    # Session number in vote_id prevents collisions when two sessions share
+    # a date (Gdynia 2024-10-02 case).
+    session_num = session.get("number") or ""
+    num_part = f"_{session_num}" if session_num else ""
+    vote_id = f"{session['date']}{num_part}_{vote_idx:03d}"
 
     return {
         "id": vote_id,

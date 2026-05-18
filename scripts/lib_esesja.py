@@ -205,13 +205,18 @@ def _is_session_older_than(date_str: str | None, days: int = 2) -> bool:
     return (_dt2.now() - dt).days >= days
 
 
-def load_previous_votes_by_date(kadencja_file: Path) -> dict[str, list[dict]]:
-    """Read the previously-saved kadencja JSON and index its votes by session date.
+def load_previous_votes_by_date(kadencja_file: Path) -> dict[tuple[str, str], list[dict]]:
+    """Read the previously-saved kadencja JSON and index votes by (date, session_number).
 
     Returned dict can be indexed in `EsesjaScraper.run()` /
     `BipScraper.run()` to skip re-scraping sessions whose votes are already
     known. Empty dict when file is missing or unreadable, so callers fall
     back to a full scrape.
+
+    Key is the tuple (session_date, session_number). Indexing only by date
+    collapsed two sessions on the same date into one bucket and each scrape
+    run doubled the votes for that date (Radom 2025-03-31 grew to 36*1024
+    over 10 runs). Callers must look up with the matching tuple.
     """
     p = Path(kadencja_file)
     if not p.exists():
@@ -222,18 +227,28 @@ def load_previous_votes_by_date(kadencja_file: Path) -> dict[str, list[dict]]:
     except Exception:
         return {}
     index = kad.get("councilor_index") or []
-    by_date: dict[str, list[dict]] = {}
+    by_session: dict[tuple[str, str], list[dict]] = {}
+    seen_ids: set[tuple[str, str, str]] = set()
     for v in kad.get("votes") or []:
         date = v.get("session_date") or ""
         if not date:
             continue
+        number = v.get("session_number") or ""
+        vote_id = v.get("id") or ""
+        # Defensive dedup: historical data may contain the exact same
+        # (date, number, id) record duplicated 2^N times because of the
+        # legacy by-date cache key. Keep first, skip rest.
+        dedup_key = (date, number, vote_id)
+        if dedup_key in seen_ids:
+            continue
+        seen_ids.add(dedup_key)
         nv = v.get("named_votes") or {}
         # Older runs stored full names, newer runs store compact int indexes;
         # decompact transparently so callers always see name strings.
         v_copy = dict(v)
         v_copy["named_votes"] = _decompact_named_votes(nv, index)
-        by_date.setdefault(date, []).append(v_copy)
-    return by_date
+        by_session.setdefault((date, number), []).append(v_copy)
+    return by_session
 
 
 def _write_empty_outputs(
@@ -616,8 +631,13 @@ class EsesjaScraper:
             return None
 
         counts = {cat: len(named_votes[cat]) for cat in named_votes}
+        # Include session number in vote_id so two sessions on the same date
+        # do not collide on the same key (Radom XXI vs XXII both on
+        # 2025-03-31 case).
+        session_num = session.get("number", "") or ""
+        num_part = f"_{session_num}" if session_num else ""
         return {
-            "id": f"{session['date']}_{vote_idx:03d}_000",
+            "id": f"{session['date']}{num_part}_{vote_idx:03d}_000",
             "source_url": url,
             "session_date": session["date"],
             "session_number": session.get("number", ""),
@@ -762,9 +782,9 @@ class EsesjaScraper:
 
         # Load previously-saved votes and re-scrape only sessions newer than
         # the safety window (defaults to 30d). Older sessions are immutable
-        # in practice — votes get registered minutes after the session ends
-        # and corrections, when they happen, land within the first weeks.
-        prev_votes_by_date: dict[str, list[dict]] = {}
+        # in practice. Votes register minutes after a session ends and
+        # corrections, when they happen, land within the first weeks.
+        prev_votes_by_date: dict[tuple[str, str], list[dict]] = {}
         if not force_full:
             kad_file = Path(output_path).parent / f"kadencja-{self.default_kadencja}.json"
             prev_votes_by_date = load_previous_votes_by_date(kad_file)
@@ -783,7 +803,10 @@ class EsesjaScraper:
         fresh_count = 0
         cached_count = 0
         for i, session in enumerate(sessions):
-            cached = prev_votes_by_date.get(session["date"])
+            # Cache key matches load_previous_votes_by_date: (date, session_number).
+            # Two sessions same date with by-date-only key doubled votes each run.
+            cache_key = (session["date"], session.get("number", "") or "")
+            cached = prev_votes_by_date.get(cache_key)
             if cached and session["date"] < cutoff:
                 print(f"  [{i+1}/{len(sessions)}] CACHED Sesja {session['date']} ({len(cached)} głosowań)")
                 all_votes.extend(cached)
@@ -793,6 +816,24 @@ class EsesjaScraper:
                 fresh = self.scrape_votes_from_session(session)
                 all_votes.extend(fresh)
                 fresh_count += len(fresh)
+        # Defensive dedup by (date, number, id). Cleans historical duplicates
+        # from the legacy by-date cache bug on first run after the fix.
+        seen_keys: set[tuple[str, str, str]] = set()
+        deduped: list[dict] = []
+        for v in all_votes:
+            key = (
+                v.get("session_date") or "",
+                v.get("session_number") or "",
+                v.get("id") or "",
+            )
+            if key in seen_keys:
+                continue
+            seen_keys.add(key)
+            deduped.append(v)
+        dropped = len(all_votes) - len(deduped)
+        if dropped:
+            print(f"  Dedup: usunieto {dropped} duplikatow (legacy by-date cache bug)")
+        all_votes = deduped
         print(f"  Pobrano {fresh_count} fresh + {cached_count} cached = {len(all_votes)} głosowań\n")
 
         print("[3/4] Budowanie danych...")

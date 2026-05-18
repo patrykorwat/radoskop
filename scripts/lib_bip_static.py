@@ -244,8 +244,14 @@ class BipScraper(ABC):
         for cat in ("za", "przeciw", "wstrzymal_sie", "brak_glosu", "nieobecni"):
             named.setdefault(cat, [])
         counts = {cat: len(named[cat]) for cat in named}
+        # Include session number in fallback vote_id so two sessions on the
+        # same date do not produce identical IDs (Radom XXI vs XXII both on
+        # 2025-03-31 collapsed to 2025-03-31_001_000 for both, hiding
+        # duplicates from manual JSON inspection).
+        session_num = session.get("number", "") or ""
+        num_part = f"_{session_num}" if session_num else ""
         return {
-            "id": vote.get("id") or f"{session['date']}_{vote_idx:03d}_000",
+            "id": vote.get("id") or f"{session['date']}{num_part}_{vote_idx:03d}_000",
             "source_url": vote.get("source_url") or session.get("url", ""),
             "session_date": session["date"],
             "session_number": session.get("number", "") or session["date"],
@@ -389,7 +395,7 @@ class BipScraper(ABC):
         # Incremental: skip parsing closed sessions whose votes are already cached.
         # Stale safety window protects against late corrections / retroactive
         # vote registrations.
-        prev_votes_by_date: dict[str, list[dict]] = {}
+        prev_votes_by_date: dict[tuple[str, str], list[dict]] = {}
         if not force_full:
             kad_file = Path(output_path).parent / f"kadencja-{self.default_kadencja}.json"
             prev_votes_by_date = load_previous_votes_by_date(kad_file)
@@ -408,7 +414,11 @@ class BipScraper(ABC):
         fresh_count = 0
         cached_count = 0
         for i, session in enumerate(sessions):
-            cached = prev_votes_by_date.get(session["date"])
+            # Cache key matches load_previous_votes_by_date: (date, session_number).
+            # Indexing by date only collapsed two sessions on the same date into
+            # one bucket and each scrape run doubled the votes for that date.
+            cache_key = (session["date"], session.get("number", "") or "")
+            cached = prev_votes_by_date.get(cache_key)
             if cached and session["date"] < cutoff:
                 print(f"  [{i+1}/{len(sessions)}] CACHED Sesja {session['date']} ({len(cached)} głosowań)")
                 all_votes.extend(cached)
@@ -425,6 +435,25 @@ class BipScraper(ABC):
                 if sum(normalized["counts"].values()) > 0:
                     all_votes.append(normalized)
                     fresh_count += 1
+        # Defensive dedup: historical data may already contain duplicates from
+        # the legacy by-date cache key. Dedup by (date, number, id) keeps the
+        # first occurrence. Belt and suspenders alongside the cache key fix.
+        seen_keys: set[tuple[str, str, str]] = set()
+        deduped: list[dict] = []
+        for v in all_votes:
+            key = (
+                v.get("session_date") or "",
+                v.get("session_number") or "",
+                v.get("id") or "",
+            )
+            if key in seen_keys:
+                continue
+            seen_keys.add(key)
+            deduped.append(v)
+        dropped = len(all_votes) - len(deduped)
+        if dropped:
+            print(f"  Dedup: usunieto {dropped} duplikatow (legacy by-date cache bug)")
+        all_votes = deduped
         print(f"  Pobrano {fresh_count} fresh + {cached_count} cached = {len(all_votes)} głosowań\n")
 
         print("[3/4] Budowanie danych...")

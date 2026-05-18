@@ -541,7 +541,11 @@ def scrape_single_vote(url: str, session: dict, vote_idx: int, topic: str) -> di
         if counts[cat] == 0 and named_votes[cat]:
             counts[cat] = len(named_votes[cat])
 
-    vote_id = f"{session['date']}_{vote_idx:03d}"
+    # Session number in vote_id avoids collisions when two sessions share
+    # a date. Same bug pattern as Radom 2025-03-31.
+    session_num = session.get("number") or ""
+    num_part = f"_{session_num}" if session_num else ""
+    vote_id = f"{session['date']}{num_part}_{vote_idx:03d}"
 
     return {
         "id": vote_id,

@@ -462,7 +462,11 @@ def scrape_vote_detail(vote_url: str, session: dict, vote_idx: int) -> dict | No
         print(f"    UWAGA: Brak głosów imiennych na {vote_url}")
         return None
 
-    vote_id = f"{session['date']}_{vote_idx:03d}"
+    # Session number in vote_id avoids collisions when two sessions share a
+    # date (Krakow has 2025-06-11 and 2024-06-19 with multiple sessions).
+    session_num = session.get("number") or ""
+    num_part = f"_{session_num}" if session_num else ""
+    vote_id = f"{session['date']}{num_part}_{vote_idx:03d}"
 
     return {
         "id": vote_id,

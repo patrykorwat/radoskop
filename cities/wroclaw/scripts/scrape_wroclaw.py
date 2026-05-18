@@ -1040,7 +1040,11 @@ def _run_offline(args):
         if votes_from_pdf:
             vote_data = votes_from_pdf[0]
             vote_idx = len(session_votes[session_key])
-            vote_id = f"{info['date']}_{vote_idx:03d}_000"
+            # Session number in vote_id prevents collisions when two
+            # sessions share a date. Same bug pattern as Radom 2025-03-31.
+            session_num = info.get("number") or ""
+            num_part = f"_{session_num}" if session_num else ""
+            vote_id = f"{info['date']}{num_part}_{vote_idx:03d}_000"
             vote = {
                 "id": vote_id,
                 "source_url": f"file://{pdf_path}",
