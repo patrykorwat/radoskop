@@ -1,7 +1,7 @@
 {
   "id": "2024-2029",
   "label": "VII kadencja (2024-2029)",
-  "scraped_at": "2026-05-18T09:20:33.118619+00:00",
+  "scraped_at": "2026-05-18T13:32:55.703547+00:00",
   "sessions": [
     {
       "date": "2026-03-26",
@@ -4892,7 +4892,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-12-12T01:00:00"
+      "voted_at": "2024-12-12T11:00:00"
     },
     {
       "id": "2024-12-12_DRUK X/13",
@@ -5453,7 +5453,7 @@
           25
         ]
       },
-      "voted_at": "2024-12-12T01:00:00"
+      "voted_at": "2024-12-12T17:11:00"
     },
     {
       "id": "2024-12-12_DRUK X/22",
@@ -5849,12 +5849,12 @@
       "voted_at": "2024-12-12T17:01:00"
     },
     {
-      "id": "2024-12-12_DRUK \nX/29",
+      "id": "2024-12-12_DRUK X/29",
       "session_date": "2024-12-12",
       "session_number": "X",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=229853#SESJA X/Uchwaêa nr X_29.pdf",
       "topic": "Uchwała w sprawie zmiany składu Rady Społecznej w Pogotowiu Ratunkowym w Legnicy",
-      "druk": "DRUK \nX/29",
+      "druk": "DRUK X/29",
       "resolution": "Przyjęto",
       "counts": {
         "za": 20,
@@ -5958,7 +5958,7 @@
           25
         ]
       },
-      "voted_at": "2024-12-12T01:00:00"
+      "voted_at": "2024-12-12T17:11:00"
     },
     {
       "id": "2024-12-12_DRUK X/31",
@@ -6415,7 +6415,7 @@
           36
         ]
       },
-      "voted_at": "2024-12-12T01:00:00"
+      "voted_at": "2024-12-12T17:11:00"
     },
     {
       "id": "2024-12-12_DRUK X/40",
@@ -7030,7 +7030,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-12-12T01:25:00"
+      "voted_at": "2024-12-12T11:25:00"
     },
     {
       "id": "2024-12-12_DRUK \nX/38",
@@ -7084,7 +7084,7 @@
         ],
         "brak_glosu": []
       },
-      "voted_at": "2024-12-12T01:28:00"
+      "voted_at": "2024-12-12T11:28:00"
     },
     {
       "id": "2024-12-12_DRUK \nX/40",
@@ -7139,7 +7139,7 @@
         ],
         "brak_glosu": []
       },
-      "voted_at": "2024-12-12T01:28:00"
+      "voted_at": "2024-12-12T11:28:00"
     },
     {
       "id": "2024-12-12_DRUK X/28",
@@ -7193,7 +7193,7 @@
         ],
         "brak_glosu": []
       },
-      "voted_at": "2024-12-12T01:26:00"
+      "voted_at": "2024-12-12T11:26:00"
     },
     {
       "id": "2024-12-12_DRUK X/29",
@@ -7247,7 +7247,7 @@
         ],
         "brak_glosu": []
       },
-      "voted_at": "2024-12-12T01:26:00"
+      "voted_at": "2024-12-12T11:26:00"
     },
     {
       "id": "2024-12-12_DRUK \nX/31",
@@ -7301,7 +7301,7 @@
         ],
         "brak_glosu": []
       },
-      "voted_at": "2024-12-12T01:26:00"
+      "voted_at": "2024-12-12T11:26:00"
     },
     {
       "id": "2024-12-12_DRUK X/33",
@@ -7355,7 +7355,7 @@
         ],
         "brak_glosu": []
       },
-      "voted_at": "2024-12-12T01:27:00"
+      "voted_at": "2024-12-12T11:27:00"
     },
     {
       "id": "2024-12-12_DRUK X/34",
@@ -7409,7 +7409,7 @@
         ],
         "brak_glosu": []
       },
-      "voted_at": "2024-12-12T01:27:00"
+      "voted_at": "2024-12-12T11:27:00"
     },
     {
       "id": "2024-12-12_DRUK X/35",
@@ -7464,7 +7464,7 @@
           36
         ]
       },
-      "voted_at": "2024-12-12T01:27:00"
+      "voted_at": "2024-12-12T11:27:00"
     },
     {
       "id": "2024-12-12_DRUK X/36",
@@ -7519,7 +7519,7 @@
           36
         ]
       },
-      "voted_at": "2024-12-12T01:27:00"
+      "voted_at": "2024-12-12T11:27:00"
     },
     {
       "id": "2024-12-12_DRUK X/37",
@@ -7573,7 +7573,7 @@
         ],
         "brak_glosu": []
       },
-      "voted_at": "2024-12-12T01:28:00"
+      "voted_at": "2024-12-12T11:28:00"
     },
     {
       "id": "2024-11-07_DRUK IX/23",
@@ -9090,7 +9090,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-11-07T01:00:00"
+      "voted_at": "2024-11-07T11:00:00"
     },
     {
       "id": "2024-11-07_DRUK IX/5",
@@ -9209,12 +9209,12 @@
       "voted_at": "2024-11-07T12:15:00"
     },
     {
-      "id": "2024-11-07_DRUK \nNR IX/51",
+      "id": "2024-11-07_DRUK IX/51",
       "session_date": "2024-11-07",
       "session_number": "IX",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=229171#SESJA IX/Uchwała nr IX_51.pdf",
       "topic": "Uchwały w sprawie zmiany uchwały Sejmiku Województwa Dolnośląskiego nr VII/115/34 w sprawie udzielenia z budżetu Województwa Dolnośląskiego w 2024 roku pomocy finansowej w formie dotacji celowej dla jednostek samorządu terytorialnego na usuwanie skutków powodzi",
-      "druk": "DRUK \nNR IX/51",
+      "druk": "DRUK IX/51",
       "resolution": "Przyjęto jednomyślnie",
       "counts": {
         "za": 31,
@@ -9727,7 +9727,7 @@
           38
         ]
       },
-      "voted_at": "2024-11-07T01:23:00"
+      "voted_at": "2024-11-07T11:23:00"
     },
     {
       "id": "2024-11-07_DRUK IX/50",
@@ -9784,7 +9784,7 @@
           31
         ]
       },
-      "voted_at": "2024-11-07T01:24:00"
+      "voted_at": "2024-11-07T11:24:00"
     },
     {
       "id": "2024-11-07_DRUK IX/47",
@@ -9840,7 +9840,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-11-07T01:24:00"
+      "voted_at": "2024-11-07T11:24:00"
     },
     {
       "id": "2024-11-07_DRUK IX/51",
@@ -9898,7 +9898,7 @@
           5
         ]
       },
-      "voted_at": "2024-11-07T01:25:00"
+      "voted_at": "2024-11-07T11:25:00"
     },
     {
       "id": "2024-11-07_DRUK \nNR IX/52",
@@ -12361,7 +12361,7 @@
           26
         ]
       },
-      "voted_at": "2024-09-26T10:00:00"
+      "voted_at": "2024-09-26T16:11:00"
     },
     {
       "id": "2024-09-26_DRUK VII/26",
@@ -18384,7 +18384,7 @@
       "voted_at": "2024-09-26T17:10:00"
     },
     {
-      "id": "2024-09-26_10:00:00",
+      "id": "2024-09-26_17:11:00",
       "session_date": "2024-09-26",
       "session_number": "VII",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=228494#SESJA VII Protokoêy gêosowaΣ/Zmiana porzÑdku obrad 59. Wprowadzenie uchwaêy nr VII_109.pdf",
@@ -18439,7 +18439,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-09-26T10:00:00"
+      "voted_at": "2024-09-26T17:11:00"
     },
     {
       "id": "2024-09-26_DRUK VII/33",
@@ -18502,7 +18502,7 @@
       "voted_at": "2024-09-26T12:32:00"
     },
     {
-      "id": "2024-09-26_10:00:00",
+      "id": "2024-09-26_17:11:00",
       "session_date": "2024-09-26",
       "session_number": "VII",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=228494#SESJA VII Protokoêy gêosowaΣ/Zmiana porzÑdku obrad 60. Wprowadzenie uchwaêy nr VII_110.pdf",
@@ -18558,10 +18558,10 @@
           37
         ]
       },
-      "voted_at": "2024-09-26T10:00:00"
+      "voted_at": "2024-09-26T17:11:00"
     },
     {
-      "id": "2024-09-26_10:00:00",
+      "id": "2024-09-26_17:11:00",
       "session_date": "2024-09-26",
       "session_number": "VII",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=228494#SESJA VII Protokoêy gêosowaΣ/Zmiana porzÑdku obrad 61. Wprowadzenie uchwaêy nr VII_111.pdf",
@@ -18617,7 +18617,7 @@
           26
         ]
       },
-      "voted_at": "2024-09-26T10:00:00"
+      "voted_at": "2024-09-26T17:11:00"
     },
     {
       "id": "2024-09-26_17:12:00",
@@ -19434,7 +19434,7 @@
           7
         ]
       },
-      "voted_at": "2024-07-18T01:59:00"
+      "voted_at": "2024-07-18T11:59:00"
     },
     {
       "id": "2024-07-18_DRUK V/13",
@@ -19492,15 +19492,15 @@
           30
         ]
       },
-      "voted_at": "2024-07-18T01:52:00"
+      "voted_at": "2024-07-18T11:52:00"
     },
     {
-      "id": "2024-07-18_DRUK \nV/14",
+      "id": "2024-07-18_DRUK V/14",
       "session_date": "2024-07-18",
       "session_number": "V",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=227536#SESJA V/Uchwaêa nr V_14.pdf",
       "topic": "Uchwała w sprawie zmiany uchwały nr LXVIII/1471/24 Sejmiku Województwa Dolnośląskiego z dnia 21 marca 2024 r. w sprawie udzielenia z budżetu Województwa Dolnośląskiego w roku 2024 dotacji na prace konserwatorskie, restauratorskie lub roboty budowlane przy zabytkach",
-      "druk": "DRUK \nV/14",
+      "druk": "DRUK V/14",
       "resolution": "Przyjęto jednomyślnie",
       "counts": {
         "za": 32,
@@ -19548,7 +19548,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-07-18T01:49:00"
+      "voted_at": "2024-07-18T11:49:00"
     },
     {
       "id": "2024-07-18_DRUK V/15",
@@ -20478,7 +20478,7 @@
           26
         ]
       },
-      "voted_at": "2024-07-18T01:44:00"
+      "voted_at": "2024-07-18T11:44:00"
     },
     {
       "id": "2024-07-18_DRUK V/30",
@@ -20824,7 +20824,7 @@
           22
         ]
       },
-      "voted_at": "2024-07-18T01:44:00"
+      "voted_at": "2024-07-18T11:44:00"
     },
     {
       "id": "2024-07-18_DRUK V/5",
@@ -20882,7 +20882,7 @@
           37
         ]
       },
-      "voted_at": "2024-07-18T01:45:00"
+      "voted_at": "2024-07-18T11:45:00"
     },
     {
       "id": "2024-07-18_DRUK V/6",
@@ -20940,7 +20940,7 @@
           23
         ]
       },
-      "voted_at": "2024-07-18T01:47:00"
+      "voted_at": "2024-07-18T11:47:00"
     },
     {
       "id": "2024-07-18_DRUK V/7",
@@ -20998,7 +20998,7 @@
           30
         ]
       },
-      "voted_at": "2024-07-18T01:52:00"
+      "voted_at": "2024-07-18T11:52:00"
     },
     {
       "id": "2024-07-18_DRUK V/8",
@@ -21056,7 +21056,7 @@
           30
         ]
       },
-      "voted_at": "2024-07-18T01:54:00"
+      "voted_at": "2024-07-18T11:54:00"
     },
     {
       "id": "2024-07-18_DRUK V/9",
@@ -21114,7 +21114,7 @@
           37
         ]
       },
-      "voted_at": "2024-07-18T01:56:00"
+      "voted_at": "2024-07-18T11:56:00"
     },
     {
       "id": "2024-07-18_DRUK V/15",
@@ -21163,7 +21163,7 @@
           36
         ]
       },
-      "voted_at": "2024-07-18T01:14:00"
+      "voted_at": "2024-07-18T11:14:00"
     },
     {
       "id": "2024-07-18_DRUK V/24",
@@ -21221,7 +21221,7 @@
           36
         ]
       },
-      "voted_at": "2024-07-18T01:17:00"
+      "voted_at": "2024-07-18T11:17:00"
     },
     {
       "id": "2024-07-18_DRUK V/25",
@@ -21277,7 +21277,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-07-18T01:17:00"
+      "voted_at": "2024-07-18T11:17:00"
     },
     {
       "id": "2024-07-18_DRUK V/26",
@@ -21334,7 +21334,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-07-18T01:17:00"
+      "voted_at": "2024-07-18T11:17:00"
     },
     {
       "id": "2024-07-18_DRUK V/27",
@@ -21391,7 +21391,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-07-18T01:18:00"
+      "voted_at": "2024-07-18T11:18:00"
     },
     {
       "id": "2024-07-18_DRUK V/28",
@@ -21449,7 +21449,7 @@
           30
         ]
       },
-      "voted_at": "2024-07-18T01:18:00"
+      "voted_at": "2024-07-18T11:18:00"
     },
     {
       "id": "2024-07-18_DRUK V/29",
@@ -21506,7 +21506,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-07-18T01:18:00"
+      "voted_at": "2024-07-18T11:18:00"
     },
     {
       "id": "2024-07-18_DRUK V/30",
@@ -21564,7 +21564,7 @@
           37
         ]
       },
-      "voted_at": "2024-07-18T01:19:00"
+      "voted_at": "2024-07-18T11:19:00"
     },
     {
       "id": "2024-07-18_DRUK V/31",
@@ -21622,7 +21622,7 @@
           28
         ]
       },
-      "voted_at": "2024-07-18T01:19:00"
+      "voted_at": "2024-07-18T11:19:00"
     },
     {
       "id": "2024-07-18_DRUK V/32",
@@ -21680,7 +21680,7 @@
           26
         ]
       },
-      "voted_at": "2024-07-18T01:19:00"
+      "voted_at": "2024-07-18T11:19:00"
     },
     {
       "id": "2024-07-18_DRUK V/33",
@@ -21793,10 +21793,10 @@
           36
         ]
       },
-      "voted_at": "2024-07-18T01:15:00"
+      "voted_at": "2024-07-18T11:15:00"
     },
     {
-      "id": "2024-07-18_01:20:00",
+      "id": "2024-07-18_11:20:00",
       "session_date": "2024-07-18",
       "session_number": "V",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=227536#SESJA V/Zmiana porzÑdku obrad 20 Uchwaêa nr V_34.pdf",
@@ -21851,7 +21851,7 @@
           23
         ]
       },
-      "voted_at": "2024-07-18T01:20:00"
+      "voted_at": "2024-07-18T11:20:00"
     },
     {
       "id": "2024-07-18_DRUK V/17",
@@ -21909,7 +21909,7 @@
           36
         ]
       },
-      "voted_at": "2024-07-18T01:15:00"
+      "voted_at": "2024-07-18T11:15:00"
     },
     {
       "id": "2024-07-18_DRUK V/18",
@@ -21967,7 +21967,7 @@
           36
         ]
       },
-      "voted_at": "2024-07-18T01:15:00"
+      "voted_at": "2024-07-18T11:15:00"
     },
     {
       "id": "2024-07-18_DRUK V/19",
@@ -22025,7 +22025,7 @@
           36
         ]
       },
-      "voted_at": "2024-07-18T01:16:00"
+      "voted_at": "2024-07-18T11:16:00"
     },
     {
       "id": "2024-07-18_DRUK V/20",
@@ -22083,7 +22083,7 @@
           36
         ]
       },
-      "voted_at": "2024-07-18T01:16:00"
+      "voted_at": "2024-07-18T11:16:00"
     },
     {
       "id": "2024-07-18_DRUK V/21",
@@ -22139,7 +22139,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-07-18T01:20:00"
+      "voted_at": "2024-07-18T11:20:00"
     },
     {
       "id": "2024-07-18_DRUK V/22",
@@ -22197,7 +22197,7 @@
           37
         ]
       },
-      "voted_at": "2024-07-18T01:16:00"
+      "voted_at": "2024-07-18T11:16:00"
     },
     {
       "id": "2024-07-18_DRUK V/23",
@@ -22254,7 +22254,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-07-18T01:16:00"
+      "voted_at": "2024-07-18T11:16:00"
     },
     {
       "id": "2024-06-27_16:12:00",
@@ -22714,12 +22714,12 @@
       "voted_at": "2024-06-27T15:24:00"
     },
     {
-      "id": "2024-06-27_DRUK \nIV/14",
+      "id": "2024-06-27_DRUK IV/14",
       "session_date": "2024-06-27",
       "session_number": "IV",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=227534#SESJA IV/Uchwaêa nr IV_14.pdf",
       "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego dotacji dla Parafii Rzymskokatolickiej p.w. św. Apostołów Piotra i Pawła w Legnicy na realizację inwestycji: „Konserwacja elewacji wieży gotyckiej katedry pw. Św. Ap. Piotra i Pawła w Legnicy”",
-      "druk": "DRUK \nIV/14",
+      "druk": "DRUK IV/14",
       "resolution": "Przyjęto",
       "counts": {
         "za": 28,
@@ -23232,12 +23232,12 @@
       "voted_at": "2024-06-27T15:29:00"
     },
     {
-      "id": "2024-06-27_DRUK \nIV/22",
+      "id": "2024-06-27_DRUK IV/22",
       "session_date": "2024-06-27",
       "session_number": "IV",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=227534#SESJA IV/Uchwaêa nr IV_22.pdf",
       "topic": "Uchwała w sprawie zmiany uchwały nr LXVIII/1471/24 Sejmiku Województwa Dolnośląskiego z dnia 21 marca 2024 r. w sprawie udzielenia z budżetu Województwa Dolnośląskiego w roku 2024 dotacji na prace konserwatorskie, restauratorskie lub roboty budowlane przy zabytkach",
-      "druk": "DRUK \nIV/22",
+      "druk": "DRUK IV/22",
       "resolution": "Przyjęto",
       "counts": {
         "za": 29,
@@ -24610,12 +24610,12 @@
       "voted_at": "2024-06-27T17:23:00"
     },
     {
-      "id": "2024-06-27_DRUK \nNR IV/5",
+      "id": "2024-06-27_DRUK IV/5",
       "session_date": "2024-06-27",
       "session_number": "IV",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=227534#SESJA IV/Uchwaêa nr IV_5.pdf",
       "topic": "Uchwała w sprawie rozpatrzenia skargi na rozpatrzenie przez Marszałka Województwa Dolnośląskiego wniosku o przeprowadzenie kontroli wykorzystania przez Gminę i Miasto Międzylesie dotacji do zadania pod nazwą „Roztoki droga dojazdowa do gruntów rolnych”",
-      "druk": "DRUK \nNR IV/5",
+      "druk": "DRUK IV/5",
       "resolution": "Przyjęto jednomyślnie",
       "counts": {
         "za": 25,
@@ -24837,7 +24837,7 @@
       "voted_at": "2024-06-27T14:27:00"
     },
     {
-      "id": "2024-06-27_01:00:00",
+      "id": "2024-06-27_11:00:00",
       "session_date": "2024-06-27",
       "session_number": "IV",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=227534#SESJA IV/Wniosek formalny 1 Skierowanie do dalszych prac w Komisji projektu uchwaêy druk nr IV_6.pdf",
@@ -24888,7 +24888,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-06-27T01:00:00"
+      "voted_at": "2024-06-27T11:00:00"
     },
     {
       "id": "2024-06-27_DRUK IV/35",
@@ -24943,7 +24943,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-06-27T01:12:00"
+      "voted_at": "2024-06-27T11:12:00"
     },
     {
       "id": "2024-06-27_DRUK IV/36",
@@ -24999,7 +24999,7 @@
           36
         ]
       },
-      "voted_at": "2024-06-27T01:12:00"
+      "voted_at": "2024-06-27T11:12:00"
     },
     {
       "id": "2024-06-27_DRUK IV/37",
@@ -25054,7 +25054,7 @@
           29
         ]
       },
-      "voted_at": "2024-06-27T01:13:00"
+      "voted_at": "2024-06-27T11:13:00"
     },
     {
       "id": "2024-06-27_DRUK IV/38",
@@ -25110,7 +25110,7 @@
           2
         ]
       },
-      "voted_at": "2024-06-27T01:13:00"
+      "voted_at": "2024-06-27T11:13:00"
     },
     {
       "id": "2024-06-27_DRUK IV/39",
@@ -25165,7 +25165,7 @@
           3
         ]
       },
-      "voted_at": "2024-06-27T01:13:00"
+      "voted_at": "2024-06-27T11:13:00"
     },
     {
       "id": "2024-06-27_DRUK IV/40",
@@ -25221,7 +25221,7 @@
           12
         ]
       },
-      "voted_at": "2024-06-27T01:14:00"
+      "voted_at": "2024-06-27T11:14:00"
     },
     {
       "id": "2024-06-27_DRUK IV/43",
@@ -25275,7 +25275,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-06-27T01:14:00"
+      "voted_at": "2024-06-27T11:14:00"
     },
     {
       "id": "2024-06-27_DRUK IV/41",
@@ -25329,7 +25329,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-06-27T01:14:00"
+      "voted_at": "2024-06-27T11:14:00"
     },
     {
       "id": "2024-05-28_14:03:00",
@@ -27606,12 +27606,12 @@
       "voted_at": "2024-05-21T14:21:00"
     },
     {
-      "id": "2024-05-21_DRUK \nII/10",
+      "id": "2024-05-21_DRUK II/10",
       "session_date": "2024-05-21",
       "session_number": "II",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=227530#SESJA II/Uchwaêa nr II_10.pdf",
       "topic": "Uchwała w sprawie ustalenia wynagrodzenia Marszałka Województwa Dolnośląskiego",
-      "druk": "DRUK \nII/10",
+      "druk": "DRUK II/10",
       "resolution": "Przyjęto jednomyślnie",
       "counts": {
         "za": 32,
@@ -27724,7 +27724,7 @@
       "voted_at": "2024-05-21T14:07:00"
     },
     {
-      "id": "2024-05-21_01:00:00",
+      "id": "2024-05-21_14:11:00",
       "session_date": "2024-05-21",
       "session_number": "II",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=227530#SESJA II/Zmiana porzÑdku obrad 10 Wycofanie uchwaêy druk nr II20.pdf",
@@ -27780,10 +27780,10 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-05-21T01:00:00"
+      "voted_at": "2024-05-21T14:11:00"
     },
     {
-      "id": "2024-05-21_01:00:00",
+      "id": "2024-05-21_14:11:00",
       "session_date": "2024-05-21",
       "session_number": "II",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=227530#SESJA II/Zmiana porzÑdku obrad 11 Wycofanie uchwaêy druk nr II21.pdf",
@@ -27840,10 +27840,10 @@
           3
         ]
       },
-      "voted_at": "2024-05-21T01:00:00"
+      "voted_at": "2024-05-21T14:11:00"
     },
     {
-      "id": "2024-05-21_01:00:00",
+      "id": "2024-05-21_14:11:00",
       "session_date": "2024-05-21",
       "session_number": "II",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=227530#SESJA II/Zmiana porzÑdku obrad 12 Wycofanie uchwaêy druk nr II22.pdf",
@@ -27899,7 +27899,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-05-21T01:00:00"
+      "voted_at": "2024-05-21T14:11:00"
     },
     {
       "id": "2024-05-21_DRUK II/23",
@@ -27958,7 +27958,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2024-05-21T01:00:00"
+      "voted_at": "2024-05-21T14:11:00"
     },
     {
       "id": "2024-05-21_DRUK II/24",
@@ -29968,12 +29968,12 @@
       "voted_at": "2025-12-15T18:43:00"
     },
     {
-      "id": "2025-12-15_DRUK \nXXIII/2",
+      "id": "2025-12-15_DRUK XXIII/2",
       "session_date": "2025-12-15",
       "session_number": "XXIII",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=237188#SESJA XXIII/Uchwała nr XXIII_2.pdf",
       "topic": "Uchwała w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego",
-      "druk": "DRUK \nXXIII/2",
+      "druk": "DRUK XXIII/2",
       "resolution": "Przyjęto",
       "counts": {
         "za": 23,
@@ -30888,12 +30888,12 @@
       "voted_at": "2025-11-27T14:39:00"
     },
     {
-      "id": "2025-11-27_DRUK \nXXII/10",
+      "id": "2025-11-27_DRUK XXII/10",
       "session_date": "2025-11-27",
       "session_number": "XXII",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=237184#SESJA XXII/Uchwała nr XXII_10.pdf",
       "topic": "Uchwała w sprawie powołania Rady Społecznej w Pogotowiu Ratunkowym w Legnicy",
-      "druk": "DRUK \nXXII/10",
+      "druk": "DRUK XXII/10",
       "resolution": "Przyjęto",
       "counts": {
         "za": 26,
@@ -32594,7 +32594,7 @@
           23
         ]
       },
-      "voted_at": "2025-11-27T01:02:00"
+      "voted_at": "2025-11-27T11:02:00"
     },
     {
       "id": "2025-11-27_DRUK \nXXII/30",
@@ -32647,7 +32647,7 @@
           36
         ]
       },
-      "voted_at": "2025-11-27T01:03:00"
+      "voted_at": "2025-11-27T11:03:00"
     },
     {
       "id": "2025-11-27_DRUK \nXXII/31",
@@ -32700,7 +32700,7 @@
         ],
         "brak_glosu": []
       },
-      "voted_at": "2025-11-27T01:03:00"
+      "voted_at": "2025-11-27T11:03:00"
     },
     {
       "id": "2025-11-27_DRUK XXII/32",
@@ -32754,10 +32754,10 @@
           36
         ]
       },
-      "voted_at": "2025-11-27T01:04:00"
+      "voted_at": "2025-11-27T11:04:00"
     },
     {
-      "id": "2025-11-27_01:05:00",
+      "id": "2025-11-27_11:05:00",
       "session_date": "2025-11-27",
       "session_number": "XXII",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=237184#SESJA XXII/Zmiana porządku obrad 5. Wprowadzenie projektu uchwały druk nr XXII_33.pdf",
@@ -32806,7 +32806,7 @@
         ],
         "brak_glosu": []
       },
-      "voted_at": "2025-11-27T01:05:00"
+      "voted_at": "2025-11-27T11:05:00"
     },
     {
       "id": "2025-11-27_DRUK XXII/5",
@@ -32859,7 +32859,7 @@
           19
         ]
       },
-      "voted_at": "2025-11-27T01:07:00"
+      "voted_at": "2025-11-27T11:07:00"
     },
     {
       "id": "2025-11-27_DRUK XXII/21",
@@ -32882,7 +32882,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-11-27T01:06:00"
+      "voted_at": "2025-11-27T11:06:00"
     },
     {
       "id": "2025-10-31_DRUK XIX/60",
@@ -33575,7 +33575,7 @@
           37
         ]
       },
-      "voted_at": "2025-10-31T10:00:00"
+      "voted_at": "2025-10-31T15:11:00"
     },
     {
       "id": "2025-10-31_DRUK XXI/2",
@@ -33633,7 +33633,7 @@
           37
         ]
       },
-      "voted_at": "2025-10-31T10:00:00"
+      "voted_at": "2025-10-31T17:11:00"
     },
     {
       "id": "2025-10-31_17:27:00",
@@ -35528,10 +35528,10 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-10-31T01:30:00"
+      "voted_at": "2025-10-31T11:30:00"
     },
     {
-      "id": "2025-10-31_01:35:00",
+      "id": "2025-10-31_11:35:00",
       "session_date": "2025-10-31",
       "session_number": "XXI",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=237186#SESJA XXI/Zmiana porządku obrad 10. Wprowadzenie projektu uchwały nr XXI_27.pdf",
@@ -35585,10 +35585,10 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-10-31T01:35:00"
+      "voted_at": "2025-10-31T11:35:00"
     },
     {
-      "id": "2025-10-31_01:36:00",
+      "id": "2025-10-31_11:36:00",
       "session_date": "2025-10-31",
       "session_number": "XXI",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=237186#SESJA XXI/Zmiana porządku obrad 11. Wprowadzenie projektu uchwały nr XXI_28.pdf",
@@ -35642,7 +35642,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-10-31T01:36:00"
+      "voted_at": "2025-10-31T11:36:00"
     },
     {
       "id": "2025-10-31_DRUK XXI/44",
@@ -35699,7 +35699,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-10-31T01:41:00"
+      "voted_at": "2025-10-31T11:41:00"
     },
     {
       "id": "2025-10-31_DRUK XXI/45",
@@ -35756,10 +35756,10 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-10-31T01:41:00"
+      "voted_at": "2025-10-31T11:41:00"
     },
     {
-      "id": "2025-10-31_01:31:00",
+      "id": "2025-10-31_11:31:00",
       "session_date": "2025-10-31",
       "session_number": "XXI",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=237186#SESJA XXI/Zmiana porządku obrad 4. Wprowadzenie projektu uchwały nr XXI_21.pdf",
@@ -35813,10 +35813,10 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-10-31T01:31:00"
+      "voted_at": "2025-10-31T11:31:00"
     },
     {
-      "id": "2025-10-31_01:32:00",
+      "id": "2025-10-31_11:32:00",
       "session_date": "2025-10-31",
       "session_number": "XXI",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=237186#SESJA XXI/Zmiana porządku obrad 5. Wprowadzenie projektu uchwały nr XXI_22.pdf",
@@ -35870,10 +35870,10 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-10-31T01:32:00"
+      "voted_at": "2025-10-31T11:32:00"
     },
     {
-      "id": "2025-10-31_01:33:00",
+      "id": "2025-10-31_11:33:00",
       "session_date": "2025-10-31",
       "session_number": "XXI",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=237186#SESJA XXI/Zmiana porządku obrad 6. Wprowadzenie projektu uchwały nr XXI_23.pdf",
@@ -35928,10 +35928,10 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-10-31T01:33:00"
+      "voted_at": "2025-10-31T11:33:00"
     },
     {
-      "id": "2025-10-31_01:34:00",
+      "id": "2025-10-31_11:34:00",
       "session_date": "2025-10-31",
       "session_number": "XXI",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=237186#SESJA XXI/Zmiana porządku obrad 7. Wprowadzenie projektu uchwały nr XXI_24.pdf",
@@ -35985,10 +35985,10 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-10-31T01:34:00"
+      "voted_at": "2025-10-31T11:34:00"
     },
     {
-      "id": "2025-10-31_01:35:00",
+      "id": "2025-10-31_11:35:00",
       "session_date": "2025-10-31",
       "session_number": "XXI",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=237186#SESJA XXI/Zmiana porządku obrad 8. Wprowadzenie projektu uchwały nr XXI_25.pdf",
@@ -36043,10 +36043,10 @@
           11
         ]
       },
-      "voted_at": "2025-10-31T01:35:00"
+      "voted_at": "2025-10-31T11:35:00"
     },
     {
-      "id": "2025-10-31_01:35:00",
+      "id": "2025-10-31_11:35:00",
       "session_date": "2025-10-31",
       "session_number": "XXI",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=237186#SESJA XXI/Zmiana porządku obrad 9. Wprowadzenie projektu uchwały nr XXI_26.pdf",
@@ -36100,7 +36100,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-10-31T01:35:00"
+      "voted_at": "2025-10-31T11:35:00"
     },
     {
       "id": "2025-09-25_13:22:00",
@@ -36180,7 +36180,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-09-25T01:00:00"
+      "voted_at": "2025-09-25T11:00:00"
     },
     {
       "id": "2025-09-25_DRUK XIX/10",
@@ -36773,7 +36773,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-09-25T01:00:00"
+      "voted_at": "2025-09-25T11:00:00"
     },
     {
       "id": "2025-09-25_DRUK XIX/20",
@@ -40129,10 +40129,10 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-09-25T01:30:00"
+      "voted_at": "2025-09-25T11:30:00"
     },
     {
-      "id": "2025-09-25_01:43:00",
+      "id": "2025-09-25_11:43:00",
       "session_date": "2025-09-25",
       "session_number": "XIX",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=236224#SESJA XIX/Zmiana porządku obrad 2. Wprowadzenie projektu uchwały nr XIX_68.pdf",
@@ -40179,10 +40179,10 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-09-25T01:43:00"
+      "voted_at": "2025-09-25T11:43:00"
     },
     {
-      "id": "2025-09-25_01:49:00",
+      "id": "2025-09-25_11:49:00",
       "session_date": "2025-09-25",
       "session_number": "XIX",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=236224#SESJA XIX/Zmiana porządku obrad 3. Wprowadzenie projektu uchwały nr XIX_67.pdf",
@@ -40236,7 +40236,7 @@
           14
         ]
       },
-      "voted_at": "2025-09-25T01:49:00"
+      "voted_at": "2025-09-25T11:49:00"
     },
     {
       "id": "2025-07-10_DRUK XVIII/1",
@@ -41252,12 +41252,12 @@
       "voted_at": "2025-07-10T17:41:00"
     },
     {
-      "id": "2025-07-10_DRUK \nNR XVIII/26",
+      "id": "2025-07-10_DRUK XVIII/26",
       "session_date": "2025-07-10",
       "session_number": "XVIII",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=236222#SESJA XVIII/Uchwała nr XVIII_26.pdf",
       "topic": "Uchwała w sprawie powołania Rady Społecznej w Pogotowiu Ratunkowym w Jeleniej Górze",
-      "druk": "DRUK \nNR XVIII/26",
+      "druk": "DRUK XVIII/26",
       "resolution": "Przyjęto",
       "counts": {
         "za": 20,
@@ -43622,12 +43622,12 @@
       "voted_at": "2025-06-12T16:16:00"
     },
     {
-      "id": "2025-06-12_DRUK \nXVII/42",
+      "id": "2025-06-12_DRUK XVII/42",
       "session_date": "2025-06-12",
       "session_number": "XVII",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=233373#SESJA XVII/Uchwała nr XVII_42.pdf",
       "topic": "Uchwała w sprawie powołania Rady Społecznej w Pogotowiu Ratunkowym w Wałbrzychu",
-      "druk": "DRUK \nXVII/42",
+      "druk": "DRUK XVII/42",
       "resolution": "Przyjęto jednomyślnie",
       "counts": {
         "za": 17,
@@ -43677,12 +43677,12 @@
       "voted_at": "2025-06-12T17:07:00"
     },
     {
-      "id": "2025-06-12_DRUK \nXVII/43",
+      "id": "2025-06-12_DRUK XVII/43",
       "session_date": "2025-06-12",
       "session_number": "XVII",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=233373#SESJA XVII/Uchwała nr XVII_43.pdf",
       "topic": "Uchwała w sprawie powołania Rady Społecznej w Pogotowiu Ratunkowym we Wrocławiu",
-      "druk": "DRUK \nXVII/43",
+      "druk": "DRUK XVII/43",
       "resolution": "Przyjęto jednomyślnie",
       "counts": {
         "za": 25,
@@ -44836,7 +44836,7 @@
       "voted_at": "2025-06-12T12:08:00"
     },
     {
-      "id": "2025-05-15_01:00:00",
+      "id": "2025-05-15_11:00:00",
       "session_date": "2025-05-15",
       "session_number": "XV",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=232858#SESJA XV/Głosowanie 1. Nad kandydaturą Pani Małgorzaty Czerwińskiej jako przedstawiciela Sejmiku Województwa Dolnośląskiego do składu Rady Dolnośląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia.pdf",
@@ -44891,7 +44891,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2025-05-15T01:00:00"
+      "voted_at": "2025-05-15T11:00:00"
     },
     {
       "id": "2025-05-15_18:46:00",
@@ -45069,7 +45069,7 @@
       "voted_at": "2025-05-15T18:46:00"
     },
     {
-      "id": "2025-05-15_01:25:00",
+      "id": "2025-05-15_11:25:00",
       "session_date": "2025-05-15",
       "session_number": "XV",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=232858#SESJA XV/Głosowanie nad wnioskiem o zabranie głosu na sesji 1. Dariusz Duńczyk.pdf",
@@ -45122,10 +45122,10 @@
           36
         ]
       },
-      "voted_at": "2025-05-15T01:25:00"
+      "voted_at": "2025-05-15T11:25:00"
     },
     {
-      "id": "2025-05-15_01:26:00",
+      "id": "2025-05-15_11:26:00",
       "session_date": "2025-05-15",
       "session_number": "XV",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=232858#SESJA XV/Głosowanie nad wnioskiem o zabranie głosu na sesji 2. Pan Krzysztofowi Lepce.pdf",
@@ -45178,7 +45178,7 @@
           35
         ]
       },
-      "voted_at": "2025-05-15T01:26:00"
+      "voted_at": "2025-05-15T11:26:00"
     },
     {
       "id": "2025-05-15_DRUK IX/49",
@@ -50018,12 +50018,12 @@
       "voted_at": "2025-03-27T20:33:00"
     },
     {
-      "id": "2025-03-27_DRUK \nXIII/40",
+      "id": "2025-03-27_DRUK XIII/40",
       "session_date": "2025-03-27",
       "session_number": "XIII",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=232149#SESJA XIII/Uchwaêa nr XIII_40.pdf",
       "topic": "Uchwała Sejmiku Województwa Dolnośląskiego w sprawie udzielenia z budżetu Województwa Dolnośląskiego w 2025 roku pomocy finansowej w formie dotacji celowej jednostkom samorządu terytorialnego na finansowanie ochrony, rekultywacji i poprawy jakości gruntów rolnych",
-      "druk": "DRUK \nXIII/40",
+      "druk": "DRUK XIII/40",
       "resolution": "Przyjęto jednomyślnie",
       "counts": {
         "za": 35,
@@ -52526,7 +52526,7 @@
           11
         ]
       },
-      "voted_at": "2025-01-30T01:54:00"
+      "voted_at": "2025-01-30T11:54:00"
     },
     {
       "id": "2025-01-30_DRUK XI/20",
@@ -52643,7 +52643,7 @@
           37
         ]
       },
-      "voted_at": "2025-01-30T01:55:00"
+      "voted_at": "2025-01-30T11:55:00"
     },
     {
       "id": "2025-01-30_DRUK XI/23",
@@ -52759,7 +52759,7 @@
           38
         ]
       },
-      "voted_at": "2025-01-30T01:55:00"
+      "voted_at": "2025-01-30T11:55:00"
     },
     {
       "id": "2025-01-30_DRUK XI/24",
@@ -52875,7 +52875,7 @@
           35
         ]
       },
-      "voted_at": "2025-01-30T10:00:00"
+      "voted_at": "2025-01-30T12:11:00"
     },
     {
       "id": "2025-01-30_DRUK \nXI/26",
@@ -52933,14 +52933,14 @@
           27
         ]
       },
-      "voted_at": "2025-01-30T10:00:00"
+      "voted_at": "2025-01-30T12:11:00"
     },
     {
       "id": "2025-01-30_DRUK XI/27",
       "session_date": "2025-01-30",
       "session_number": "XI",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=231281#SESJA XI/Zmiana porzÑdku obrad 7 Wprowadzenie projektu uchwaêy nr XI_27.pdf",
-      "topic": "Zmiana porządku obrad 7 Wprowadzenie uchwały w sprawie przyznania Teresie Szkaradek- Roman Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
+      "topic": "Zmiana porządku obrad 7 Wprowadzenie uchwały w sprawie przyznania Teresie Szkaradek-Roman Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego",
       "druk": "DRUK XI/27",
       "resolution": "Przyjęto",
       "counts": {
@@ -52991,7 +52991,7 @@
           27
         ]
       },
-      "voted_at": "2025-01-30T10:00:00"
+      "voted_at": "2025-01-30T12:11:00"
     },
     {
       "id": "2025-01-30_12:12:00",
@@ -53164,10 +53164,10 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2026-03-26T01:19:00"
+      "voted_at": "2026-03-26T11:19:00"
     },
     {
-      "id": "2026-03-26_01:29:00",
+      "id": "2026-03-26_11:29:00",
       "session_date": "2026-03-26",
       "session_number": "XXVI",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=239270#SESJA XXVI/10. Zmiana porządku obrad Zdjęcie punktu w sprawie apelu o Polskim Funduszu Inwestycji Obronnych.pdf",
@@ -53222,7 +53222,7 @@
         ],
         "brak_glosu": []
       },
-      "voted_at": "2026-03-26T01:29:00"
+      "voted_at": "2026-03-26T11:29:00"
     },
     {
       "id": "2026-03-26_DRUK \nXXVI/44",
@@ -53279,7 +53279,7 @@
           37
         ]
       },
-      "voted_at": "2026-03-26T01:19:00"
+      "voted_at": "2026-03-26T11:19:00"
     },
     {
       "id": "2026-03-26_DRUK \nXXVI/45",
@@ -53336,7 +53336,7 @@
           30
         ]
       },
-      "voted_at": "2026-03-26T01:20:00"
+      "voted_at": "2026-03-26T11:20:00"
     },
     {
       "id": "2026-03-26_DRUK XXVI/46",
@@ -53392,7 +53392,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2026-03-26T01:20:00"
+      "voted_at": "2026-03-26T11:20:00"
     },
     {
       "id": "2026-03-26_DRUK \nXXVI/47",
@@ -53449,7 +53449,7 @@
           27
         ]
       },
-      "voted_at": "2026-03-26T01:20:00"
+      "voted_at": "2026-03-26T11:20:00"
     },
     {
       "id": "2026-03-26_DRUK XXVI/48",
@@ -53505,7 +53505,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2026-03-26T01:21:00"
+      "voted_at": "2026-03-26T11:21:00"
     },
     {
       "id": "2026-03-26_DRUK XXVI/49",
@@ -53562,7 +53562,7 @@
           17
         ]
       },
-      "voted_at": "2026-03-26T01:21:00"
+      "voted_at": "2026-03-26T11:21:00"
     },
     {
       "id": "2026-03-26_DRUK \nXXVI/50",
@@ -53618,7 +53618,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2026-03-26T01:22:00"
+      "voted_at": "2026-03-26T11:22:00"
     },
     {
       "id": "2026-03-26_DRUK \nXXVI/51",
@@ -53675,7 +53675,7 @@
         "wstrzymal_sie": [],
         "brak_glosu": []
       },
-      "voted_at": "2026-03-26T01:24:00"
+      "voted_at": "2026-03-26T11:24:00"
     },
     {
       "id": "2026-03-26_DRUK XXVI/10",
@@ -56784,7 +56784,7 @@
       "voted_at": "2026-03-26T15:20:00"
     },
     {
-      "id": "2026-03-26_01:25:00",
+      "id": "2026-03-26_11:25:00",
       "session_date": "2026-03-26",
       "session_number": "XXVI",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=239270#SESJA XXVI/Wniosek o reasumpcję nr 1.pdf",
@@ -56840,10 +56840,10 @@
           36
         ]
       },
-      "voted_at": "2026-03-26T01:25:00"
+      "voted_at": "2026-03-26T11:25:00"
     },
     {
-      "id": "2026-03-26_01:28:00",
+      "id": "2026-03-26_11:28:00",
       "session_date": "2026-03-26",
       "session_number": "XXVI",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=239270#SESJA XXVI/Wniosek o reasumpcję nr 2 (Monika Włodarczyk).pdf",
@@ -56898,7 +56898,7 @@
           36
         ]
       },
-      "voted_at": "2026-03-26T01:28:00"
+      "voted_at": "2026-03-26T11:28:00"
     },
     {
       "id": "2026-02-27_15:44:00",
@@ -57479,7 +57479,7 @@
       "session_date": "2026-02-27",
       "session_number": "XXV",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=238329#SESJA XXV/Uchwała XXV_19.pdf",
-      "topic": "Uchwała w sprawie powołania Rady Społecznej w Specjalistycznym Szpitalu Ginekologiczno- Położniczym im. E. Biernackiego w Wałbrzychu DRUK NR XXV/19",
+      "topic": "Uchwała w sprawie powołania Rady Społecznej w Specjalistycznym Szpitalu Ginekologiczno-Położniczym im. E. Biernackiego w Wałbrzychu DRUK NR XXV/19",
       "druk": null,
       "resolution": "Przyjęto",
       "counts": {
@@ -58505,7 +58505,7 @@
       "voted_at": "2026-02-27T15:47:00"
     },
     {
-      "id": "2026-02-27_01:29:00",
+      "id": "2026-02-27_11:29:00",
       "session_date": "2026-02-27",
       "session_number": "XXV",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=238329#SESJA XXV/Zmiana prządku obrad wprowadzenie uchwały XXV_26.pdf",
@@ -58552,10 +58552,10 @@
           31
         ]
       },
-      "voted_at": "2026-02-27T01:29:00"
+      "voted_at": "2026-02-27T11:29:00"
     },
     {
-      "id": "2026-02-27_01:30:00",
+      "id": "2026-02-27_11:30:00",
       "session_date": "2026-02-27",
       "session_number": "XXV",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=238329#SESJA XXV/Zmiana prządku obrad wprowadzenie uchwały XXV_27.pdf",
@@ -58604,10 +58604,10 @@
           37
         ]
       },
-      "voted_at": "2026-02-27T01:30:00"
+      "voted_at": "2026-02-27T11:30:00"
     },
     {
-      "id": "2026-02-27_01:30:00",
+      "id": "2026-02-27_11:30:00",
       "session_date": "2026-02-27",
       "session_number": "XXV",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=238329#SESJA XXV/Zmiana prządku obrad wprowadzenie uchwały XXV_28.pdf",
@@ -58656,7 +58656,7 @@
           31
         ]
       },
-      "voted_at": "2026-02-27T01:30:00"
+      "voted_at": "2026-02-27T11:30:00"
     },
     {
       "id": "2026-01-29_DRUK XXIV/1",
@@ -58821,7 +58821,7 @@
           25
         ]
       },
-      "voted_at": "2026-01-29T10:00:00"
+      "voted_at": "2026-01-29T12:11:00"
     },
     {
       "id": "2026-01-29_DRUK XXIV/12",
@@ -59485,12 +59485,12 @@
       "voted_at": "2026-01-29T15:32:00"
     },
     {
-      "id": "2026-01-29_DRUK \nXXIV/24",
+      "id": "2026-01-29_DRUK XXIV/24",
       "session_date": "2026-01-29",
       "session_number": "XXIV",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=238328#SESJA XXIV/Uchwała nr XXIV_24.pdf",
       "topic": "Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2026",
-      "druk": "DRUK \nXXIV/24",
+      "druk": "DRUK XXIV/24",
       "resolution": "Przyjęto",
       "counts": {
         "za": 22,
@@ -60103,7 +60103,7 @@
       "voted_at": "2026-01-29T16:34:00"
     },
     {
-      "id": "2026-01-29_01:02:00",
+      "id": "2026-01-29_11:02:00",
       "session_date": "2026-01-29",
       "session_number": "XXIV",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=238328#SESJA XXIV/Zmiana porządku obrad 2. druk nr. XXIV_26.pdf",
@@ -60145,10 +60145,10 @@
         ],
         "brak_glosu": []
       },
-      "voted_at": "2026-01-29T01:02:00"
+      "voted_at": "2026-01-29T11:02:00"
     },
     {
-      "id": "2026-01-29_01:02:00",
+      "id": "2026-01-29_11:02:00",
       "session_date": "2026-01-29",
       "session_number": "XXIV",
       "source_url": "https://bip.dolnyslask.pl/e,pobierz,get.html?id=238328#SESJA XXIV/Zmiana porządku obrad 3. druk nr. XXIV_27.pdf",
@@ -60194,7 +60194,7 @@
           35
         ]
       },
-      "voted_at": "2026-01-29T01:02:00"
+      "voted_at": "2026-01-29T11:02:00"
     }
   ],
   "similarity_top": [

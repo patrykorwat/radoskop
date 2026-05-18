@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://slaskie.radoskop.pl/sitemap.xml
