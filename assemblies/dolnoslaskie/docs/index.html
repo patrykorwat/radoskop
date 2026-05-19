@@ -2225,7 +2225,26 @@ async function showVote(voteId) {
       if (resp.ok) { vote = await resp.json(); break; }
     } catch(e) { /* try next */ }
   }
-  if (!vote) { view.innerHTML = '<p style="padding:40px;color:var(--red)">Nie znaleziono głosowania.</p>'; return; }
+  if (!vote) {
+    // Vote nie znalezione w żadnej z aktywnych kadencji w RAW.kadencje.
+    // Typowy scenariusz: stary URL z VIII/VII kadencji (np. 2019-09-26_016)
+    // ze starego deploya albo z indeksu Google. Po przejściu na nową
+    // kadencję dane historyczne nie są publikowane.
+    // UX: zamiast suchego "Nie znaleziono" pokazujemy info + linki do
+    // aktualnych głosowań, żeby user nie utknął i Google Ads nie oznaczał
+    // strony jako "Destination not working".
+    view.innerHTML = '<div style="padding:40px;max-width:560px;margin:0 auto">'
+      + '<h2 style="margin:0 0 12px">Głosowanie niedostępne</h2>'
+      + '<p style="color:var(--muted);margin:0 0 16px">'
+      + 'To głosowanie nie zostało znalezione w aktualnej kadencji. '
+      + 'Możliwe że pochodzi z archiwum poprzedniej kadencji albo link jest błędny.'
+      + '</p>'
+      + '<p style="margin:20px 0"><a href="/" style="color:var(--text);font-weight:600">Wróć na stronę główną →</a></p>'
+      + '<p style="margin:0"><a href="/glosowanie/" style="color:var(--text)">Zobacz aktualne głosowania →</a></p>'
+      + '</div>';
+    setTitle('Głosowanie niedostępne');
+    return;
+  }
 
   setTitle('Głosowanie: ' + (vote.topic || voteId).substring(0, 60));
   var _vc = vote.counts || {};
@@ -2540,7 +2559,22 @@ async function showSession(sessionNumber) {
       } catch(e) { /* try next */ }
     }
   }
-  if (!sess) { view.innerHTML = '<p style="padding:40px;color:var(--red)">Nie znaleziono sesji.</p>'; return; }
+  if (!sess) {
+    // Sesja nie znaleziona, prawdopodobnie stary URL z archiwum kadencji.
+    // Friendly fallback z linkami zamiast suchego błędu (Google Ads
+    // oznacza "Nie znaleziono" jako Destination not working).
+    view.innerHTML = '<div style="padding:40px;max-width:560px;margin:0 auto">'
+      + '<h2 style="margin:0 0 12px">Sesja niedostępna</h2>'
+      + '<p style="color:var(--muted);margin:0 0 16px">'
+      + 'Ta sesja nie została znaleziona w aktualnej kadencji. '
+      + 'Możliwe że pochodzi z archiwum poprzedniej kadencji albo link jest błędny.'
+      + '</p>'
+      + '<p style="margin:20px 0"><a href="/" style="color:var(--text);font-weight:600">Wróć na stronę główną →</a></p>'
+      + '<p style="margin:0"><a href="/sesja/" style="color:var(--text)">Zobacz aktualne sesje →</a></p>'
+      + '</div>';
+    setTitle('Sesja niedostępna');
+    return;
+  }
 
   setTitle('Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : ''));
   // Sumaryczna metryka sesji: dla miast z imiennymi g\u0142osowaniami liczba
@@ -2877,7 +2911,15 @@ async function showKomisja(slug) {
 
   const commission = envelope && envelope.commission;
   if (!envelope || envelope.available === false || !commission) {
-    view.innerHTML = '<button class="profile-back" onclick="backFromKomisja()">← Komisje</button><p style="padding:40px;color:var(--red)">Nie znaleziono komisji.</p>';
+    view.innerHTML = '<button class="profile-back" onclick="backFromKomisja()">← Komisje</button>'
+      + '<div style="padding:40px;max-width:560px;margin:0 auto">'
+      + '<h2 style="margin:0 0 12px">Komisja niedostępna</h2>'
+      + '<p style="color:var(--muted);margin:0 0 16px">'
+      + 'Ta komisja nie została znaleziona w aktualnej kadencji. '
+      + 'Możliwe że link jest błędny albo komisja została zlikwidowana.'
+      + '</p>'
+      + '<p style="margin:20px 0"><a href="/" style="color:var(--text);font-weight:600">Wróć na stronę główną →</a></p>'
+      + '</div>';
     return;
   }
 

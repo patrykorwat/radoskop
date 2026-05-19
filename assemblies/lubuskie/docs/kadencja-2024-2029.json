@@ -6,7 +6,7 @@
   "sessions": [],
   "total_sessions": 0,
   "total_votes": 0,
-  "scraped_at": "2026-05-19 12:52:06",
+  "scraped_at": "2026-05-19 14:08:25",
   "source": "https://bip.lubuskie.pl/958/VII_kadencja__282024-2029_29/",
   "ocr_warning": "Skanowane PDF ~18MB/sesja. Wymaga `tesseract-ocr-pol` na NAS. Pełny scrape 20 sesji = ~3-5h, cache absolutnie konieczny.",
   "id": "2024-2029",
