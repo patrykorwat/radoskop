@@ -142,7 +142,17 @@ def compact_named_votes(output: dict) -> dict:
 
 
 def save_split_output(output: dict, out_path: Path) -> None:
-    """Save data.json (slim index) + kadencja-{id}.json files alongside it."""
+    """Save data.json (slim index) + kadencja-{id}.json files alongside it.
+
+    `output["kadencje"]` może mieć dwa typy wpisów:
+      - **Pełna kadencja** z polem `sessions` (aktualnie scrape'owana) -
+        zapisujemy plik `kadencja-{id}.json` + stub w data.json index.
+      - **Stub historycznej kadencji** (tylko `id` + `label`, brak `sessions`) -
+        idzie tylko do data.json index. Plik `kadencja-{id}.json` NIE jest
+        zapisywany (żeby nie nadpisać istniejącego archiwum z poprzednich
+        scrape'ów). Stara kadencja pozostaje na S3 nietknięta i SPA fetchuje
+        ją normalnie.
+    """
     compact_named_votes(output)
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -150,6 +160,10 @@ def save_split_output(output: dict, out_path: Path) -> None:
     for kad in output.get("kadencje", []):
         kid = kad["id"]
         stubs.append({"id": kid, "label": kad.get("label", f"Kadencja {kid}")})
+        # Tylko pełne kadencje (z sessions) zapisujemy do pliku. Historyczne
+        # stub-y zostawiają stary plik nietknięty.
+        if kad.get("sessions") is None:
+            continue
         kad_path = out_path.parent / f"kadencja-{kid}.json"
         with kad_path.open("w", encoding="utf-8") as f:
             json.dump(kad, f, ensure_ascii=False, separators=(",", ":"))
@@ -863,10 +877,25 @@ class EsesjaScraper:
             "similarity_top": sim_top,
             "similarity_bottom": sim_bottom,
         }
+        # Stub'y dla historycznych kadencji znanych z config, ale których
+        # nie scrape'ujemy w bieżącym runie. Idą tylko do data.json index
+        # (save_split_output nie zapisze pliku kadencja-{id}.json bo brak
+        # `sessions`). Archiwum na S3 z poprzednich scrape'ów pozostaje
+        # nietknięte. Dzięki temu SPA wie że stara kadencja istnieje i
+        # fetchuje ją po wyborze z menu kadencji.
+        historical_stubs = []
+        for hist_kid, hist_meta in self.kadencje.items():
+            if hist_kid == kid:
+                continue
+            historical_stubs.append({
+                "id": hist_kid,
+                "label": hist_meta.get("label", f"Kadencja {hist_kid}"),
+            })
+
         output = {
             "generated": datetime.now().isoformat(),
             "default_kadencja": kid,
-            "kadencje": [kad_output],
+            "kadencje": [kad_output] + historical_stubs,
         }
 
         print("[4/4] Zapisywanie danych...")

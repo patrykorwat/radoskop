@@ -7,6 +7,17 @@
   "site_description_short": "Otwarte narzędzie monitoringu Rady m.st. Warszawy. Frekwencja, głosowania i aktywność radnych.",
   "bip_url": "https://bip.warszawa.pl/sesje-rady-m.st.-warszawy",
   "bip_name": "BIP Warszawa",
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    },
+    "2018-2024": {
+      "label": "VIII kadencja (2018–2024)",
+      "start": "2018-11-22"
+    }
+  },
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "warszawa.radoskop.pl",
