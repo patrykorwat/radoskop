@@ -214,6 +214,14 @@ def main() -> int:
 
     kadencja = build_kadencja(cache_dir=args.cache, limit_sessions=args.limit)
 
+    # Guard: jeśli OCR/parse zwrócił 0 sesji (typowo brak tesseract-ocr-pol
+    # albo pdf2image w image), nie nadpisuj istniejącego pliku zerowymi
+    # danymi. Lepiej zostawić stary dobry kadencja-2024-2029.json.
+    if kadencja["total_sessions"] == 0 and args.output.exists():
+        print(f"\n✗ Zero sesji — pomijam zapis {args.output} (zostaje poprzednia wersja)", file=sys.stderr)
+        print("  Sprawdź czy NAS ma tesseract-ocr-pol + pdf2image + pytesseract.", file=sys.stderr)
+        return 1
+
     with args.output.open("w", encoding="utf-8") as f:
         json.dump(kadencja, f, ensure_ascii=False, indent=2)
 

@@ -46,8 +46,8 @@ PORTLET_ID = "web_content_search_portlet_INSTANCE_fkqx"
 PAGE_PARAM = f"_{PORTLET_ID}_cur"
 
 KADENCJE = {
-    "2024-2029": {"label": "Kadencja 2024–2029", "start": "2024-05-07"},
-    "2018-2024": {"label": "Kadencja 2018–2024", "start": "2018-11-22"},
+    "2024-2029": {"label": "IX kadencja (2024–2029)", "start": "2024-05-07"},
+    "2018-2024": {"label": "VIII kadencja (2018–2024)", "start": "2018-11-22"},
 }
 
 DELAY = 0.3
@@ -684,7 +684,15 @@ def compact_named_votes(output):
 
 
 def save_split_output(output, out_path):
-    """Save output as split files: data.json (index) + kadencja-{id}.json per kadencja."""
+    """Save output as split files: data.json (index) + kadencja-{id}.json per kadencja.
+
+    output["kadencje"] może mieć dwa typy wpisów:
+      * Pełna kadencja z polem `sessions` (aktualnie scrape'owana) — zapisujemy
+        plik `kadencja-{id}.json` + stub w data.json index.
+      * Stub historycznej kadencji (tylko `id` i `label`, brak `sessions`) idzie
+        tylko do data.json index. Plik `kadencja-{id}.json` NIE jest zapisywany,
+        żeby nie nadpisać istniejącego archiwum z poprzednich scrape'ów.
+    """
     import json as _json
     from pathlib import Path as _Path
     compact_named_votes(output)
@@ -694,6 +702,8 @@ def save_split_output(output, out_path):
     for kad in output.get("kadencje", []):
         kid = kad["id"]
         stubs.append({"id": kid, "label": kad.get("label", f"Kadencja {kid}")})
+        if kad.get("sessions") is None:
+            continue
         kad_path = out_path.parent / f"kadencja-{kid}.json"
         with open(kad_path, "w", encoding="utf-8") as f:
             _json.dump(kad, f, ensure_ascii=False, separators=(",", ":"))
@@ -924,7 +934,14 @@ def main():
             try:
                 if sig_path.exists() and out_path_pre.exists():
                     stored = json.loads(sig_path.read_text(encoding="utf-8"))
-                    if stored.get("sig") == current_sig and stored.get("kadencje") == target_kadencje:
+                    # sig_v2 wymusza pełny scrape po dodaniu historical_stubs do
+                    # data.json (stare runy bez stub'ów miały tylko aktywną
+                    # kadencję, SPA nie znajdowało starych głosowań).
+                    if (
+                        stored.get("sig_v2") == current_sig
+                        and stored.get("kadencje") == target_kadencje
+                        and stored.get("kadencje_known") == sorted(KADENCJE.keys())
+                    ):
                         elapsed = time.time() - _t0
                         print(f"\n[skip] Lista sesji identyczna z poprzednim runem ({len(all_sessions)} sesji, signature matched). data.json zachowane.")
                         print(f"=== Timing ===\n  scrape_session_list: {elapsed:.1f}s (cumulative, skipped reszta)")
@@ -1055,6 +1072,22 @@ def main():
             kadencje_output.append(kad_out)
 
         default_kid = target_kadencje[0]
+
+        # Stub'y dla historycznych kadencji znanych z KADENCJE, ale których
+        # aktualnie nie scrape'ujemy (np. domyślny run --kadencja 2024-2029
+        # nie tyka 2018-2024). Stub idzie tylko do data.json index, a save
+        # _split_output nie nadpisuje archiwalnego kadencja-{id}.json bo
+        # brak `sessions`. Dzięki temu SPA widzi historyczną kadencję w
+        # RAW.kadencje i fetchuje ją po wejściu na stary URL głosowania.
+        scraped_ids = {kad["id"] for kad in kadencje_output}
+        for hist_kid, hist_meta in KADENCJE.items():
+            if hist_kid in scraped_ids:
+                continue
+            kadencje_output.append({
+                "id": hist_kid,
+                "label": hist_meta.get("label", f"Kadencja {hist_kid}"),
+            })
+
         output = {
             "generated": datetime.now().isoformat(),
             "default_kadencja": default_kid,
@@ -1077,7 +1110,12 @@ def main():
                 sig = _h.sha256(sig_input.encode("utf-8")).hexdigest()
                 sig_path.parent.mkdir(parents=True, exist_ok=True)
                 sig_path.write_text(
-                    json.dumps({"sig": sig, "kadencje": target_kadencje, "count": len(all_sessions)}),
+                    json.dumps({
+                        "sig_v2": sig,
+                        "kadencje": target_kadencje,
+                        "kadencje_known": sorted(KADENCJE.keys()),
+                        "count": len(all_sessions),
+                    }),
                     encoding="utf-8",
                 )
             except Exception:
