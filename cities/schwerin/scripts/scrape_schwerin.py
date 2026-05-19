@@ -164,7 +164,14 @@ def fetch_bytes(url: str, timeout: int = 60) -> bytes:
 
 
 def list_sessions() -> list[dict]:
-    """Pobierz listę sesji Stadtvertretung. Zwraca [{ksinr, date, title}]."""
+    """Pobierz listę sesji Stadtvertretung. Zwraca [{ksinr, date, title}].
+
+    SessionNet (Somacos) struktura listy: każda sesja to <tr> z komórkami
+    [data, tytuł, ?, dokumenty]. Link `si0057.asp?__ksinr=N` jest w komórce
+    tytułu (drugiej), data w pierwszej w formacie "Mo 11.05.2026" (z
+    prefiksem dnia tygodnia po niemiecku). Szukamy daty w całym TR, nie
+    w tekście linku.
+    """
     html = fetch(SESSIONS_URL)
     soup = BeautifulSoup(html, "lxml")
     out: list[dict] = []
@@ -178,8 +185,12 @@ def list_sessions() -> list[dict]:
         if ksinr in seen:
             continue
         seen.add(ksinr)
-        text = a.get_text(" ", strip=True)
-        date_m = DATE_RE.search(text)
+        title = a.get_text(" ", strip=True)
+        # Data jest w sąsiedniej komórce TR, nie w samym <a>. Szukamy w całym
+        # rodzicu wiersza.
+        tr = a.find_parent("tr")
+        scope_text = tr.get_text(" ", strip=True) if tr else title
+        date_m = DATE_RE.search(scope_text)
         if not date_m:
             continue
         dd, mm, yyyy = date_m.groups()
@@ -189,7 +200,7 @@ def list_sessions() -> list[dict]:
         out.append({
             "ksinr": ksinr,
             "date": d,
-            "title": text,
+            "title": title,
         })
     return sorted(out, key=lambda s: s["date"])
 
