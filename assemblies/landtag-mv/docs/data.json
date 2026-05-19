@@ -1,0 +1,52 @@
+{
+  "scraped_at": "2026-05-19T20:38:03Z",
+  "generated": true,
+  "default_kadencja": "2021-2026",
+  "kadencje": [
+    {
+      "id": "2021-2026",
+      "label": "8. Wahlperiode (2021–2026)",
+      "sessions": [
+        {
+          "date": "2025-01-31",
+          "number": "98",
+          "vote_count": 1,
+          "attendee_count": 0,
+          "attendees": []
+        },
+        {
+          "date": "2025-04-11",
+          "number": "104",
+          "vote_count": 1,
+          "attendee_count": 0,
+          "attendees": []
+        },
+        {
+          "date": "2025-06-25",
+          "number": "108",
+          "vote_count": 1,
+          "attendee_count": 0,
+          "attendees": []
+        },
+        {
+          "date": "2025-06-26",
+          "number": "109",
+          "vote_count": 1,
+          "attendee_count": 0,
+          "attendees": []
+        },
+        {
+          "date": "2025-10-10",
+          "number": "117",
+          "vote_count": 1,
+          "attendee_count": 0,
+          "attendees": []
+        }
+      ],
+      "total_sessions": 5,
+      "total_votes": 5,
+      "total_councilors": 0,
+      "councilors": []
+    }
+  ]
+}

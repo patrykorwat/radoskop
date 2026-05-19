@@ -1,0 +1,172 @@
+{
+  "id": "2021-2026",
+  "label": "8. Wahlperiode (2021–2026)",
+  "clubs": {},
+  "sessions": [
+    {
+      "date": "2025-01-31",
+      "number": "98",
+      "vote_count": 1,
+      "attendee_count": 0,
+      "attendees": []
+    },
+    {
+      "date": "2025-04-11",
+      "number": "104",
+      "vote_count": 1,
+      "attendee_count": 0,
+      "attendees": []
+    },
+    {
+      "date": "2025-06-25",
+      "number": "108",
+      "vote_count": 1,
+      "attendee_count": 0,
+      "attendees": []
+    },
+    {
+      "date": "2025-06-26",
+      "number": "109",
+      "vote_count": 1,
+      "attendee_count": 0,
+      "attendees": []
+    },
+    {
+      "date": "2025-10-10",
+      "number": "117",
+      "vote_count": 1,
+      "attendee_count": 0,
+      "attendees": []
+    }
+  ],
+  "total_sessions": 5,
+  "total_votes": 5,
+  "total_councilors": 0,
+  "councilors": [],
+  "votes": [
+    {
+      "id": "2025-01-31_TOP32",
+      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-01-31_98._Sitzung_Namentliche_Abstimmung_zu_TOP_32.pdf",
+      "session_date": "2025-01-31",
+      "session_number": "98",
+      "topic": "Abstimmung Drs. 8/4505",
+      "druk": "8/4505",
+      "resolution": "Abgelehnt",
+      "counts": {
+        "za": 0,
+        "przeciw": 0,
+        "wstrzymal_sie": 0,
+        "brak_glosu": 0,
+        "nieobecni": 0
+      },
+      "named_votes": {
+        "za": [],
+        "przeciw": [],
+        "wstrzymal_sie": [],
+        "brak_glosu": [],
+        "nieobecni": []
+      },
+      "passed": false
+    },
+    {
+      "id": "2025-04-11_TOP1",
+      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-04-11_104._Sitzung_Namentliche_Abstimmung_zu_Zusatz-TOP_1.pdf",
+      "session_date": "2025-04-11",
+      "session_number": "104",
+      "topic": "Abstimmung Drs. 8/4793",
+      "druk": "8/4793",
+      "resolution": "Abgelehnt",
+      "counts": {
+        "za": 0,
+        "przeciw": 0,
+        "wstrzymal_sie": 0,
+        "brak_glosu": 0,
+        "nieobecni": 0
+      },
+      "named_votes": {
+        "za": [],
+        "przeciw": [],
+        "wstrzymal_sie": [],
+        "brak_glosu": [],
+        "nieobecni": []
+      },
+      "passed": false
+    },
+    {
+      "id": "2025-06-25_TOP8",
+      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-06-25_108.Sitzung_Namentliche_Abstimmung_zu_TOP_8.pdf",
+      "session_date": "2025-06-25",
+      "session_number": "108",
+      "topic": "Abstimmung Drs. 8/5014",
+      "druk": "8/5014",
+      "resolution": "Angenommen",
+      "counts": {
+        "za": 0,
+        "przeciw": 0,
+        "wstrzymal_sie": 0,
+        "brak_glosu": 0,
+        "nieobecni": 0
+      },
+      "named_votes": {
+        "za": [],
+        "przeciw": [],
+        "wstrzymal_sie": [],
+        "brak_glosu": [],
+        "nieobecni": []
+      },
+      "passed": true
+    },
+    {
+      "id": "2025-06-26_TOP22",
+      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-06-26_109.Sitzung_Namentliche_Abstimmung_zu_TOP_22.pdf",
+      "session_date": "2025-06-26",
+      "session_number": "109",
+      "topic": "Abstimmung Drs. 8/5019",
+      "druk": "8/5019",
+      "resolution": "Abgelehnt",
+      "counts": {
+        "za": 0,
+        "przeciw": 0,
+        "wstrzymal_sie": 0,
+        "brak_glosu": 0,
+        "nieobecni": 0
+      },
+      "named_votes": {
+        "za": [],
+        "przeciw": [],
+        "wstrzymal_sie": [],
+        "brak_glosu": [],
+        "nieobecni": []
+      },
+      "passed": false
+    },
+    {
+      "id": "2025-10-10_TOP35",
+      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-10-10-117._Sitzung_Namentliche_Abstimmung_zu_TOP_35.pdf",
+      "session_date": "2025-10-10",
+      "session_number": "117",
+      "topic": "Abstimmung Drs. 8/5297",
+      "druk": "8/5297",
+      "resolution": "Abgelehnt",
+      "counts": {
+        "za": 0,
+        "przeciw": 0,
+        "wstrzymal_sie": 0,
+        "brak_glosu": 0,
+        "nieobecni": 0
+      },
+      "named_votes": {
+        "za": [],
+        "przeciw": [],
+        "wstrzymal_sie": [],
+        "brak_glosu": [],
+        "nieobecni": []
+      },
+      "passed": false
+    }
+  ],
+  "similarity_top": [],
+  "similarity_bottom": [],
+  "scraped_at": "2026-05-19 22:38:02",
+  "source": "https://www.landtag-mv.de"
+}
