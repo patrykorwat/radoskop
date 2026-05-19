@@ -1,0 +1,16 @@
+{
+  "kadencja": "2024-2029",
+  "kadencja_label": "VII kadencja (2024–2029)",
+  "councilors": [],
+  "total_councilors": 0,
+  "sessions": [],
+  "total_sessions": 0,
+  "total_votes": 0,
+  "scraped_at": "2026-05-19 12:50:13",
+  "source": "https://bip.kujawsko-pomorskie.pl/13254/1098/wydruki-glosowan-sejmiku-vii-kadencji.html",
+  "ocr_warning": "Skanowane PDF, accuracy zależy od polish tesseract pack. Zainstaluj `tesseract-ocr-pol` (apt) na NAS dla ~90% accuracy.",
+  "id": "2024-2029",
+  "label": "Kadencja 2024-2029",
+  "similarity_top": [],
+  "similarity_bottom": []
+}
