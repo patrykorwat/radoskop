@@ -53,10 +53,10 @@ from generate_site import apply_english_paths  # noqa: E402
 # Transformacja template miasta → template sejmiku
 # ---------------------------------------------------------------------------
 
-def transform_template_for_assembly(html: str) -> str:
-    """Zamień frazy "Rada Miasta" → "Sejmik Województwa" w template miasta.
+def transform_template_for_assembly(html: str, kind: str = "wojewodztwo") -> str:
+    """Zamień frazy "Rada Miasta" → "Sejmik Województwa" lub "Landtag".
 
-    Generuje template sejmiku in-place z kanonicznego radoskop/template/
+    Generuje template sejmiku/landu in-place z kanonicznego radoskop/template/
     index.html, eliminuje potrzebę utrzymywania osobnej kopii
     radoskop/template_assembly/ (która drifowała sprzed aktualizacji
     miast — anti-FOUC, topbar, kadencja-bar pill style, etc.).
@@ -64,31 +64,41 @@ def transform_template_for_assembly(html: str) -> str:
     Zachowuje wszystkie placeholdery {{CITY_NAME}}, {{CITY_GENITIVE}},
     {{CLUB_CSS}} itd. — tylko substytuuje statyczne frazy.
 
-    Pokrywa wszystkie odmiany:
-      Rada Miasta → Sejmik Województwa
-      rada miasta → sejmik województwa
-      Rady Miasta → Sejmiku Województwa
-      Radzie Miasta → Sejmikowi Województwa
-      Radę Miasta → Sejmik Województwa
-      Radą Miasta → Sejmikiem Województwa
-    Plus warianty bez {{CITY_GENITIVE}} (np. w komentarzach, ARIA labels).
+    kind='wojewodztwo' (default): polski sejmik wojewódzki, odmiany przez
+        przypadki: Rada Miasta → Sejmik Województwa.
+    kind='land': niemiecki Landtag (jednolicie "Landtag" we wszystkich
+        przypadkach po polsku, bo w niemieckim brak odmiany do uzbrojenia).
     """
-    replacements = [
-        # Mianownik
-        ("Rada Miasta", "Sejmik Województwa"),
-        ("rada miasta", "sejmik województwa"),
-        # Dopełniacz (najczęstszy — meta description, og:description)
-        ("Rady Miasta", "Sejmiku Województwa"),
-        ("rady miasta", "sejmiku województwa"),
-        # Celownik
-        ("Radzie Miasta", "Sejmikowi Województwa"),
-        # Biernik
-        ("Radę Miasta", "Sejmik Województwa"),
-        # Narzędnik
-        ("Radą Miasta", "Sejmikiem Województwa"),
-        # Miejscownik (w Radzie Miasta — pokryte przez Celownik wzorzec)
-        # Plus warianty z innymi przyimkami
-    ]
+    if kind == "land":
+        # Wszystkie polskie odmiany "Rada Miasta" idą na "Landtag", bez
+        # odmieniania (Landtag w niemieckim się nie odmienia). Plus odmiana
+        # CITY_NAME na CITY_GENITIVE jest robiona przez placeholdery niżej.
+        replacements = [
+            ("Rada Miasta", "Landtag"),
+            ("rada miasta", "landtag"),
+            ("Rady Miasta", "Landtagu"),
+            ("rady miasta", "landtagu"),
+            ("Radzie Miasta", "Landtagowi"),
+            ("Radę Miasta", "Landtag"),
+            ("Radą Miasta", "Landtagiem"),
+        ]
+    else:
+        replacements = [
+            # Mianownik
+            ("Rada Miasta", "Sejmik Województwa"),
+            ("rada miasta", "sejmik województwa"),
+            # Dopełniacz (najczęstszy — meta description, og:description)
+            ("Rady Miasta", "Sejmiku Województwa"),
+            ("rady miasta", "sejmiku województwa"),
+            # Celownik
+            ("Radzie Miasta", "Sejmikowi Województwa"),
+            # Biernik
+            ("Radę Miasta", "Sejmik Województwa"),
+            # Narzędnik
+            ("Radą Miasta", "Sejmikiem Województwa"),
+            # Miejscownik (w Radzie Miasta — pokryte przez Celownik wzorzec)
+            # Plus warianty z innymi przyimkami
+        ]
     for old, new in replacements:
         html = html.replace(old, new)
     return html
@@ -263,10 +273,14 @@ def main() -> int:
         return 1
     cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
 
-    if cfg.get("samorzad_type") != "wojewodztwo":
+    # Sejmik wojewódzki (PL) plus Landtag niemiecki (DE) używają tego samego
+    # renderera SPA. Land to też assembly poziomu regionalnego, schemat
+    # kadencja/sesje/głosowania jest identyczny. Dla miast użyj generate_site.py.
+    accepted = {"wojewodztwo", "land"}
+    if cfg.get("samorzad_type") not in accepted:
         print(
             f"ERROR: samorzad_type='{cfg.get('samorzad_type')}', "
-            "oczekuję 'wojewodztwo'. Dla miast użyj generate_site.py.",
+            f"oczekuję jednego z {sorted(accepted)}. Dla miast użyj generate_site.py.",
             file=sys.stderr,
         )
         return 1
@@ -281,25 +295,45 @@ def main() -> int:
         print(f"ERROR: brak templatu: {template_path}", file=sys.stderr)
         return 1
     template = template_path.read_text(encoding="utf-8")
-    # Transform "Rada Miasta" → "Sejmik Województwa" w wszystkich miejscach
-    # (meta tagi, copy strony, schema.org GovernmentOrganization). Eliminuje
-    # potrzebę utrzymywania osobnej kopii template_assembly/.
-    template = transform_template_for_assembly(template)
+    samorzad_kind = cfg.get("samorzad_type", "wojewodztwo")
+    # Transform "Rada Miasta" → "Sejmik Województwa" (PL) lub "Landtag" (DE)
+    # w wszystkich miejscach (meta tagi, copy strony, schema.org
+    # GovernmentOrganization). Eliminuje potrzebę utrzymywania osobnej kopii
+    # template_assembly/.
+    template = transform_template_for_assembly(template, kind=samorzad_kind)
 
     voiv_name = (cfg.get("voivodeship_name") or cfg.get("voivodeship_slug") or "").strip()
     voiv_gen = cfg.get("voivodeship_genitive", "").strip()
 
-    # Template miasta oczekuje CITY_NAME i CITY_GENITIVE w formie nazwy
-    # własnej (capitalized: "Gdańsk", "Gdańska"). W naszym configu sejmika
-    # voivodeship_name/genitive są lowercase ("mazowieckie", "mazowieckiego"),
-    # bo to przymiotniki. Capitalizujemy żeby fraza "Sejmik Województwa
-    # Mazowieckiego" wyszła poprawnie.
-    city_name = voiv_name.capitalize() if voiv_name else ""
-    city_gen = voiv_gen.capitalize() if voiv_gen else ""
+    if samorzad_kind == "land":
+        # Niemiecki land: voivodeship_name jest już własną nazwą
+        # ("Mecklenburg-Vorpommern"), nie polskim przymiotnikiem. Nie
+        # capitalize() bo zepsułby dash-łączone słowa (Mecklenburg-Vorpommern
+        # → Mecklenburg-vorpommern). Genitive z DE config już wyrażony
+        # poprawnie (Mecklenburg-Vorpommerns).
+        city_name = voiv_name
+        city_gen = voiv_gen or voiv_name
+    else:
+        # Template miasta oczekuje CITY_NAME i CITY_GENITIVE w formie nazwy
+        # własnej (capitalized: "Gdańsk", "Gdańska"). W naszym configu sejmika
+        # voivodeship_name/genitive są lowercase ("mazowieckie",
+        # "mazowieckiego"), bo to przymiotniki. Capitalizujemy żeby fraza
+        # "Sejmik Województwa Mazowieckiego" wyszła poprawnie.
+        city_name = voiv_name.capitalize() if voiv_name else ""
+        city_gen = voiv_gen.capitalize() if voiv_gen else ""
 
-    # Sejmiki to PL only — root_host=radoskop.pl, brak Impressum/Pressekodex
-    # (te są DE-only obowiązkowe). HAS_VOTING_DATA=true bo każdy sejmik
-    # zbiera imienne głosowania (inaczej nie ma sensu w pipeline).
+    # Apex domain zależy od country: PL sejmiki → radoskop.pl, niemieckie
+    # landy → radoskop.eu (sister apex dla zagranicznych jednostek).
+    is_foreign = (cfg.get("country") or "pl").lower() != "pl"
+    if is_foreign:
+        root_host = "radoskop.eu"
+        root_url = "https://radoskop.eu"
+        default_sub_apex = "radoskop.eu"
+    else:
+        root_host = "radoskop.pl"
+        root_url = "https://radoskop.pl"
+        default_sub_apex = "radoskop.pl"
+
     replacements = {
         "{{CITY_NAME}}": city_name,
         "{{CITY_GENITIVE}}": city_gen,
@@ -315,14 +349,15 @@ def main() -> int:
         "{{CLUB_JS}}": generate_club_js(cfg.get("clubs", {})),
         "{{BUDGET_NOTE}}": cfg.get("budget_note", ""),
         "{{AKTUALNOSCI_BUTTON}}": generate_aktualnosci_button(Path(args.output)),
-        # Apex domain — sejmiki to PL only, radoskop.pl
-        "{{ROOT_HOST}}": "radoskop.pl",
-        "{{ROOT_URL}}": "https://radoskop.pl",
-        "{{EXAMPLE_SUBDOMAIN}}": cfg.get("cname") or f"{cfg.get('voivodeship_slug','')}.radoskop.pl",
+        # Apex domain — PL na .pl, DE na .eu (sister TLD)
+        "{{ROOT_HOST}}": root_host,
+        "{{ROOT_URL}}": root_url,
+        "{{EXAMPLE_SUBDOMAIN}}": cfg.get("cname") or f"{cfg.get('voivodeship_slug','')}.{default_sub_apex}",
         # Capability flags — sejmik zawsze ma imienne głosowania
         "{{HAS_VOTING_DATA}}": "true" if cfg.get("has_voting_data", True) else "false",
         "{{HAS_SPEAKER_ACTIVITY}}": "true" if cfg.get("has_speaker_activity", False) else "false",
-        # Impressum/Pressekodex — DE-only, dla PL puste
+        # Impressum/Pressekodex — DE-only, dla PL puste. Tu też puste, ale
+        # docelowo dla landtagu MV potrzebne (Telemediengesetz §5).
         "{{IMPRESSUM_HTML}}": "",
         "{{IMPRESSUM_FOOTER_LINK}}": "",
         "{{PRESSEKODEX_NOTICE}}": "",

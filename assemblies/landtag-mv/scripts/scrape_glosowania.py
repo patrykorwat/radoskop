@@ -173,12 +173,25 @@ def fetch_month_pdfs(slug: str, cache_dir: Path | None = None) -> list[str]:
 def parse_pdf_filename(url: str) -> dict | None:
     """Wyciąg date/session_number/top z URL PDF.
 
-    Wzorzec: 2025-10-10-117._Sitzung_Namentliche_Abstimmung_zu_TOP_35.pdf
+    Realne warianty w archiwum landtag-mv.de:
+      * `2025-10-10-117._Sitzung_Namentliche_Abstimmung_zu_TOP_35.pdf`
+        (dash + kropka + underscore przed Sitzung — pierwotne założenie)
+      * `2025-06-26_109.Sitzung_Namentliche_Abstimmung_zu_TOP_22.pdf`
+        (underscore + kropka bez underscore przed Sitzung)
+      * `2025-04-11_104._Sitzung_Namentliche_Abstimmung_zu_Zusatz-TOP_1.pdf`
+        (Zusatz-TOP zamiast TOP)
+      * `2025-01-31_98._Sitzung_Namentliche_Abstimmung_zu_TOP_32.pdf`
+        (krótszy numer sesji 98)
+
+    Regex tolerujący wszystkie 3 warianty: separator data/numer może być
+    `-` albo `_`, po numerze 1-2 znaków `.` / `._`, opcjonalny `Zusatz-`
+    przed TOP, TOP może mieć sufiks literowy (TOP_22a).
     """
     fname = url.rsplit("/", 1)[-1]
     m = re.match(
-        r"(\d{4})-(\d{2})-(\d{2})-(\d+)\._Sitzung_Namentliche_Abstimmung_zu_TOP_(\d+(?:[a-z]\d*)?)\.pdf",
+        r"(\d{4})-(\d{2})-(\d{2})[-_](\d+)[._]+Sitzung_Namentliche_Abstimmung_zu_(?:Zusatz[-_])?TOP_(\d+[a-z]*\d*)\.pdf",
         fname,
+        re.IGNORECASE,
     )
     if not m:
         return None
@@ -187,6 +200,7 @@ def parse_pdf_filename(url: str) -> dict | None:
         "session_number": m.group(4),
         "top": m.group(5),
         "filename": fname,
+        "is_zusatz": "Zusatz" in fname,
     }
 
 
