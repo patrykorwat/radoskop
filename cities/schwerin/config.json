@@ -39,11 +39,12 @@
   "scrape_status": "active",
   "currency": "€",
   "scrape": {
-    "sessions_index": "https://bis.schwerin.de/si0042.asp?__kgrnr=1",
+    "sessions_index": "https://bis.schwerin.de/si0042.asp?__cwpnr=5&__cselect=0&__kgrnr=1",
     "session_url_template": "https://bis.schwerin.de/si0057.asp?__ksinr={ksinr}",
     "file_url_template": "https://bis.schwerin.de/getfile.asp?id={file_id}&type=do",
     "members_url": "https://bis.schwerin.de/kp0040.asp?__kgrnr=1",
-    "note": "Schwerin BIS używa SessionNet (Somacos) v5.5.4. Niederschriften są summary-only. Namentliche Abstimmungen są w osobnych załącznikach 'Anlage zur Niederschrift - namentliche Abstimmung zu TOP NN'. KLUCZOWE: Anlage PDFy są skanami obróconymi o 90° (lub 270°), 300dpi JPEG, ZERO text layer. Wymaga OCR z tesseract-ocr-deu + rotacja. OParl endpoint /oparl/1.0/system zwraca 500."
+    "wahlperiode_num": 5,
+    "note": "Schwerin BIS używa SessionNet (Somacos) v5.5.4. Lista sesji wymaga parametru __cwpnr (Wahlperiode numer, aktualnie 5 = 2024-2029) plus __kgrnr (Gremium ID, 1 = Stadtvertretung). Bez __cwpnr widok pusty. Niederschriften są summary-only. Namentliche Abstimmungen są w osobnych załącznikach 'Anlage zur Niederschrift - namentliche Abstimmung zu TOP NN'. KLUCZOWE: Anlage PDFy są skanami obróconymi o 90° (lub 270°), 300dpi JPEG, ZERO text layer. Wymaga OCR z tesseract-ocr-deu + rotacja. OParl endpoint /oparl/1.0/system zwraca 500."
   },
   "clubs": {
     "SPD": {

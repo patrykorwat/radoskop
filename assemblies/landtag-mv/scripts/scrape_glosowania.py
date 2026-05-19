@@ -71,6 +71,26 @@ def log(msg: str) -> None:
     """Print z natychmiastowym flushem do stderr."""
     print(msg, file=sys.stderr, flush=True)
 
+
+def setup_watchdog(timeout_seconds: int = 600) -> None:
+    """SIGALRM jeśli scraper przekroczy timeout. Hard kill cały proces.
+
+    Bez tego pdfplumber/requests potrafią wisieć w nieskończoność na
+    pojedynczym PDF i NAS pipeline blokuje resztę miast/sejmików.
+    """
+    import signal
+
+    def _handler(signum, frame):
+        log(f"\n✗ WATCHDOG: scraper przekroczył {timeout_seconds}s. ABORT.")
+        sys.exit(124)
+
+    try:
+        signal.signal(signal.SIGALRM, _handler)
+        signal.alarm(timeout_seconds)
+    except (AttributeError, ValueError):
+        # Brak SIGALRM (Windows) — bez watchdoga
+        pass
+
 # Niemieckie miesiące w slug formie używanej przez landtag-mv.de
 MONTH_SLUGS = [
     "januar", "februar", "maerz", "april", "mai", "juni",
@@ -204,6 +224,31 @@ def parse_pdf_filename(url: str) -> dict | None:
     }
 
 
+def _extract_pdf_text_safe(pdf_path: Path) -> str:
+    """Wyciąg tekstu z PDF, najpierw pdfplumber, fallback pypdf.
+
+    pdfplumber czasami wisi na konkretnych PDF (Votebox MV miał case'y
+    gdzie pdfplumber.open() blokował proces). Fallback na pypdf (prostszy,
+    szybszy, bardziej tolerancyjny) jeśli pdfplumber rzuci wyjątek.
+    """
+    try:
+        text_lines = []
+        with pdfplumber.open(pdf_path) as pdf:
+            for page in pdf.pages:
+                t = page.extract_text() or ""
+                text_lines.append(t)
+        return "\n".join(text_lines)
+    except Exception as e:
+        log(f"    pdfplumber padł ({e}), fallback do pypdf")
+        try:
+            from pypdf import PdfReader
+            reader = PdfReader(str(pdf_path))
+            return "\n".join((p.extract_text() or "") for p in reader.pages)
+        except Exception as e2:
+            log(f"    pypdf też padł ({e2}), zwracam pusty tekst")
+            return ""
+
+
 def parse_pdf_text(pdf_path: Path) -> dict:
     """Wyciąg metadata i listy imienne z PDF Votebox.
 
@@ -217,12 +262,7 @@ def parse_pdf_text(pdf_path: Path) -> dict:
             "councilor_clubs": {nazwisko_imie: fraktion}  # do zbierania clubów
         }
     """
-    text_lines = []
-    with pdfplumber.open(pdf_path) as pdf:
-        for page in pdf.pages:
-            t = page.extract_text() or ""
-            text_lines.append(t)
-    text = "\n".join(text_lines)
+    text = _extract_pdf_text_safe(pdf_path)
 
     # Header
     drucksache_m = HEADER_DRUCKSACHE_RE.search(text)
@@ -401,28 +441,39 @@ def build_kadencja(
         if cache_dir:
             url_hash = md5(pdf_url.encode("utf-8")).hexdigest()[:12]
             pdf_local = cache_dir / f"pdf_{url_hash}_{meta['filename']}"
-            if not pdf_local.exists() or pdf_local.stat().st_size < 1000:
+            if pdf_local.exists() and pdf_local.stat().st_size >= 1000:
+                log(f"    cache hit ({pdf_local.stat().st_size} B)")
+            else:
+                log(f"    fetch...")
+                t0 = time.time()
                 try:
                     pdf_local.write_bytes(fetch_bytes(pdf_url))
                 except Exception as e:
                     log(f"  ERR pobierania {meta['filename']}: {e}")
                     continue
+                log(f"    fetched {pdf_local.stat().st_size} B in {time.time()-t0:.1f}s")
                 time.sleep(0.2)
         else:
+            log(f"    fetch (no cache)...")
+            t0 = time.time()
             try:
                 content = fetch_bytes(pdf_url)
             except Exception as e:
                 log(f"  ERR pobierania {meta['filename']}: {e}")
                 continue
+            log(f"    fetched {len(content)} B in {time.time()-t0:.1f}s")
             import tempfile
             pdf_local = Path(tempfile.mktemp(suffix=".pdf"))
             pdf_local.write_bytes(content)
 
+        log(f"    parse...")
+        t0 = time.time()
         try:
             parsed = parse_pdf_text(pdf_local)
         except Exception as e:
             log(f"  ERR parsowania {meta['filename']}: {e}")
             continue
+        log(f"    parsed in {time.time()-t0:.1f}s, {sum(len(v) for v in parsed['named_votes'].values())} głosów imiennych")
 
         counts = {cat: len(parsed["named_votes"][cat]) for cat in parsed["named_votes"]}
         # Vote ID: data_TOP-numer (np. 2025-10-10_TOP35)
@@ -594,6 +645,10 @@ def main() -> int:
     log("=== Radoskop scraper: Landtag Mecklenburg-Vorpommern ===")
     log(f"  cache: {args.cache}")
     log(f"  output: {args.output}")
+
+    # 5-minutowy watchdog. Bez tego pdfplumber albo requests potrafią
+    # zawiesić proces w nieskończoność na pojedynczym PDF.
+    setup_watchdog(timeout_seconds=300)
 
     kadencja = build_kadencja(cache_dir=args.cache, limit_sessions=args.limit)
 

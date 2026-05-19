@@ -38,6 +38,37 @@ import requests
 from bs4 import BeautifulSoup
 
 
+# Unbuffered output - bez tego NAS subprocess może bufferować i user widzi
+# half-time silence na pipeline log.
+try:
+    sys.stdout.reconfigure(line_buffering=True)
+    sys.stderr.reconfigure(line_buffering=True)
+except AttributeError:
+    pass
+
+
+def log(msg: str) -> None:
+    """Print z natychmiastowym flushem do stderr."""
+    print(msg, file=sys.stderr, flush=True)
+
+
+def setup_watchdog(timeout_seconds: int = 300) -> None:
+    """SIGALRM po N sekundach. OCR Schwerina jest kosztowny (~30s per PDF
+    skanu × 4 anlagi × 16 sesji = potencjalnie 30 min cap). 5 min watchdog
+    pozwala max ~10 PDFów per run i wraca do reszty w następnym runie."""
+    import signal
+
+    def _handler(signum, frame):
+        log(f"\n✗ WATCHDOG: scraper przekroczył {timeout_seconds}s. ABORT.")
+        sys.exit(124)
+
+    try:
+        signal.signal(signal.SIGALRM, _handler)
+        signal.alarm(timeout_seconds)
+    except (AttributeError, ValueError):
+        pass
+
+
 def _ensure_ocr_deps() -> None:
     """Lazy-install pdf2image + pytesseract jeśli brak.
 
@@ -72,7 +103,12 @@ _ensure_ocr_deps()
 
 
 BASE = "https://bis.schwerin.de"
-SESSIONS_URL = f"{BASE}/si0042.asp?__kgrnr=1"
+# si0042.asp = lista sesji per Wahlperiode/Gremium. Wymaga __cwpnr (numer
+# Wahlperiode, aktualnie 5 = 2024-2029) plus __kgrnr (Gremium ID, 1 =
+# Stadtvertretung). Bez __cwpnr lista wraca pusta. __cselect=0 = bez filtru
+# konkretnej sesji.
+WAHLPERIODE_NUM = 5
+SESSIONS_URL = f"{BASE}/si0042.asp?__cwpnr={WAHLPERIODE_NUM}&__cselect=0&__kgrnr=1"
 SESSION_TPL = f"{BASE}/si0057.asp?__ksinr={{ksinr}}"
 FILE_TPL = f"{BASE}/getfile.asp?id={{file_id}}&type=do"
 MEMBERS_URL = f"{BASE}/kp0040.asp?__kgrnr=1"
@@ -322,9 +358,16 @@ def build_kadencja(cache_dir: Path | None, limit_sessions: int | None = None) ->
     if cache_dir:
         cache_dir.mkdir(parents=True, exist_ok=True)
 
-    print("Pobieram listę sesji Stadtvertretung...", file=sys.stderr)
+    log("Pobieram listę sesji Stadtvertretung...")
+    log(f"  URL: {SESSIONS_URL}")
     sessions = list_sessions()
-    print(f"  {len(sessions)} sesji od {KADENCJA_START.isoformat()}", file=sys.stderr)
+    log(f"  {len(sessions)} sesji od {KADENCJA_START.isoformat()}")
+    if len(sessions) == 0:
+        log("  ✗ Zero sesji. Możliwe przyczyny:")
+        log("    1. __cwpnr=5 zwraca pustą listę (zmień na inną Wahlperiode)")
+        log("    2. SessionNet zmienił strukturę HTML (regex KSINR_RE/DATE_RE nie pasuje)")
+        log("    3. NAS firewall blokuje bis.schwerin.de")
+        log("    4. KADENCJA_START='2024-07-08' filtruje wszystko (sesje są wcześniejsze?)")
     if limit_sessions:
         sessions = sessions[:limit_sessions]
 
@@ -509,7 +552,13 @@ def main() -> int:
     parser.add_argument("--limit", type=int, default=None)
     args = parser.parse_args()
 
-    print("=== Radoskop scraper: Stadtvertretung Schwerin (SessionNet + OCR) ===", file=sys.stderr)
+    log("=== Radoskop scraper: Stadtvertretung Schwerin (SessionNet + OCR) ===")
+    log(f"  cache: {args.cache}")
+    log(f"  output: {args.output}")
+    log(f"  Wahlperiode: {WAHLPERIODE_NUM}")
+
+    # 5-minutowy watchdog. OCR Schwerina jest kosztowny i potrafi zawiesić.
+    setup_watchdog(timeout_seconds=300)
 
     kadencja = build_kadencja(cache_dir=args.cache, limit_sessions=args.limit)
 
