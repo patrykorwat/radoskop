@@ -1,0 +1,84 @@
+{
+  "samorzad_type": "land",
+  "country": "de",
+  "country_name": "Deutschland",
+  "locale": "de",
+  "voivodeship_slug": "landtag-mv",
+  "voivodeship_name": "Mecklenburg-Vorpommern",
+  "voivodeship_genitive": "Mecklenburg-Vorpommerns",
+  "capital": "Schwerin",
+  "rada_name": "Landtag Mecklenburg-Vorpommern",
+  "rada_name_genitive": "des Landtags Mecklenburg-Vorpommern",
+  "site_title": "Radoskop Landtag MV. Wie stimmen die Abgeordneten ab?",
+  "site_url": "https://mv.radoskop.eu",
+  "site_description": "Radoskop. Offenes Monitoring des Landtags Mecklenburg-Vorpommern. Namentliche Abstimmungen, Fraktionsdisziplin, Anwesenheit der Abgeordneten.",
+  "site_description_short": "Offenes Monitoring des Landtags Mecklenburg-Vorpommern. Namentliche Abstimmungen.",
+  "bip_url": "https://www.landtag-mv.de/",
+  "bip_name": "landtag-mv.de",
+  "bip_kind": "landtag_mv_votebox_pdf",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "mv.radoskop.eu",
+  "councilor_count": 79,
+  "kadencja_active": "2021-2026",
+  "has_budget": false,
+  "scrape_status": "active",
+  "kadencje": {
+    "2021-2026": {
+      "label": "8. Wahlperiode (2021–2026)",
+      "start": "2021-10-26",
+      "wp": 8
+    }
+  },
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "scrape": {
+    "monthly_index_base": "https://www.landtag-mv.de/plenum-und-ausschuesse/plenum/vergangene-plenarsitzungen/",
+    "abgeordnete_url": "https://www.landtag-mv.de/abgeordnete-und-fraktionen/abgeordnete",
+    "pdf_namentliche_prefix": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/",
+    "note": "Landtag MV ma dedykowaną stronę miesięczną z linkami do Plenarsitzungen, a w każdej sekcję 'Namentliche Abstimmungen' z PDF-ami Votebox (single-page Abstimmungsprotokoll). Format tekstowy, NIE skan. Sekcje Ja/Nein/Enthaltung/Nicht abgestimmt z 'Fraktion Nachname, Vorname' rozdzielonymi średnikami."
+  },
+  "clubs": {
+    "SPD": {
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)",
+      "avatar_bg": "#b91c1c"
+    },
+    "CDU": {
+      "color": "#0f172a",
+      "bg": "rgba(15,23,42,0.12)",
+      "avatar_bg": "#1e293b"
+    },
+    "AfD": {
+      "color": "#0ea5e9",
+      "bg": "rgba(14,165,233,0.12)",
+      "avatar_bg": "#0369a1"
+    },
+    "Die Linke": {
+      "color": "#7c2d92",
+      "bg": "rgba(124,45,146,0.12)",
+      "avatar_bg": "#6b21a8"
+    },
+    "BÜNDNIS 90/DIE GRÜNEN": {
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "Gruppe der FDP": {
+      "color": "#facc15",
+      "bg": "rgba(250,204,21,0.18)",
+      "avatar_bg": "#ca8a04"
+    },
+    "fraktionslos": {
+      "color": "#64748b",
+      "bg": "rgba(100,116,139,0.12)",
+      "avatar_bg": "#475569"
+    }
+  }
+}

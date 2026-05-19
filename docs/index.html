@@ -1497,6 +1497,53 @@ function renderLeafletMap(){
     })
     .catch(function(){ /* GeoJSON optional, mapa działa bez niego */ });
 
+  // Niemieckie Bundesländer obecne w Radoskop. Analogiczny mechanizm
+  // do polskich sejmików, ale osobny dict ACTIVE_LANDS_DE i drugi
+  // GeoJSON (radoskop/docs/lander-de.geojson). Klik na polygon → strona
+  // parlamentu landu. Nazwa property `nazwa` musi pasować do klucza tu.
+  var ACTIVE_LANDS_DE = {
+    'Mecklenburg-Vorpommern': {
+      url: 'https://mv.radoskop.eu/',
+      capital: 'Schwerin',
+      label_pl: 'Meklemburgia-Pomorze Przednie',
+    },
+  };
+
+  fetch(DATA_BASE + '/lander-de.geojson')
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(geo){
+      if(!geo) return;
+      var filtered = {
+        type: 'FeatureCollection',
+        features: (geo.features || []).filter(function(f){
+          var name = (f.properties && f.properties.nazwa) || '';
+          return ACTIVE_LANDS_DE.hasOwnProperty(name);
+        }),
+      };
+      L.geoJSON(filtered, {
+        style: assemblyStyle,
+        onEachFeature: function(feature, layer){
+          var name = (feature.properties && feature.properties.nazwa) || '';
+          var meta = ACTIVE_LANDS_DE[name] || {};
+          var pl = meta.label_pl ? ' ('+esc(meta.label_pl)+')' : '';
+          var label = '<strong>Landtag '+esc(name)+'</strong>'+pl+'<br>'
+                    + (meta.capital ? 'Hauptstadt: '+esc(meta.capital)+'<br>' : '')
+                    + 'Kliknij, aby otworzyć stronę landtagu';
+          layer.bindTooltip(label, { sticky: true });
+          layer.on('mouseover', function(e){
+            e.target.setStyle({ weight: 3, fillOpacity: 0.32 });
+          });
+          layer.on('mouseout', function(e){
+            e.target.setStyle(assemblyStyle());
+          });
+          layer.on('click', function(){
+            if(meta.url) window.location.href = meta.url;
+          });
+        },
+      }).addTo(map);
+    })
+    .catch(function(){ /* GeoJSON optional, mapa działa bez niego */ });
+
   // Markery dla każdego miasta z lat/lon. Czyste kropki bez tekstu;
   // statystyki są w popupie po kliknięciu. Stałe rozmiary per kraj.
   // Klastrowanie przez Leaflet.markercluster — przy 150+ miast wiele leży

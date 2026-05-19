@@ -1,0 +1,85 @@
+{
+  "city_name": "Schwerin",
+  "city_genitive": "Schwerins",
+  "country": "de",
+  "country_name": "Deutschland",
+  "locale": "de",
+  "site_title": "Radoskop Schwerin. Wie stimmen die Stadtvertreter ab?",
+  "site_url": "https://schwerin.radoskop.eu",
+  "site_description": "Radoskop. Offenes Monitoring der Stadtvertretung Schwerin. Namentliche Abstimmungen, Anwesenheit, Fraktionsdisziplin.",
+  "site_description_short": "Offenes Monitoring der Stadtvertretung Schwerin. Namentliche Abstimmungen.",
+  "bip_url": "https://bis.schwerin.de/",
+  "bip_name": "bis.schwerin.de",
+  "bip_kind": "sessionnet_somacos_ocr",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "schwerin.radoskop.eu",
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "samorzad_type": "miasto",
+  "rada_name": "Stadtvertretung Schwerin",
+  "rada_name_genitive": "der Stadtvertretung Schwerin",
+  "councilor_count": 45,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "Wahlperiode 2024–2029",
+      "start": "2024-07-08"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "scrape_status": "active",
+  "currency": "€",
+  "scrape": {
+    "sessions_index": "https://bis.schwerin.de/si0042.asp?__kgrnr=1",
+    "session_url_template": "https://bis.schwerin.de/si0057.asp?__ksinr={ksinr}",
+    "file_url_template": "https://bis.schwerin.de/getfile.asp?id={file_id}&type=do",
+    "members_url": "https://bis.schwerin.de/kp0040.asp?__kgrnr=1",
+    "note": "Schwerin BIS używa SessionNet (Somacos) v5.5.4. Niederschriften są summary-only. Namentliche Abstimmungen są w osobnych załącznikach 'Anlage zur Niederschrift - namentliche Abstimmung zu TOP NN'. KLUCZOWE: Anlage PDFy są skanami obróconymi o 90° (lub 270°), 300dpi JPEG, ZERO text layer. Wymaga OCR z tesseract-ocr-deu + rotacja. OParl endpoint /oparl/1.0/system zwraca 500."
+  },
+  "clubs": {
+    "SPD": {
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)",
+      "avatar_bg": "#b91c1c"
+    },
+    "CDU": {
+      "color": "#0f172a",
+      "bg": "rgba(15,23,42,0.12)",
+      "avatar_bg": "#1e293b"
+    },
+    "AfD": {
+      "color": "#0ea5e9",
+      "bg": "rgba(14,165,233,0.12)",
+      "avatar_bg": "#0369a1"
+    },
+    "Die Linke": {
+      "color": "#7c2d92",
+      "bg": "rgba(124,45,146,0.12)",
+      "avatar_bg": "#6b21a8"
+    },
+    "Grüne": {
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "FDP": {
+      "color": "#facc15",
+      "bg": "rgba(250,204,21,0.18)",
+      "avatar_bg": "#ca8a04"
+    },
+    "Unabhängige Bürger": {
+      "color": "#64748b",
+      "bg": "rgba(100,116,139,0.12)",
+      "avatar_bg": "#475569"
+    }
+  }
+}

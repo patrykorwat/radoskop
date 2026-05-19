@@ -1,0 +1,50 @@
+{
+  "city_name": "Rostock",
+  "city_genitive": "Rostocks",
+  "country": "de",
+  "country_name": "Deutschland",
+  "locale": "de",
+  "site_title": "Radoskop Rostock. Wie stimmen die Bürgerschaftsmitglieder ab?",
+  "site_url": "https://rostock.radoskop.eu",
+  "site_description": "Radoskop. Offenes Monitoring der Bürgerschaft der Hanse- und Universitätsstadt Rostock.",
+  "site_description_short": "Offenes Monitoring der Bürgerschaft Rostock.",
+  "bip_url": "https://ksd.rostock.de/bi/",
+  "bip_name": "ksd.rostock.de",
+  "bip_kind": "allris_wicket_playwright",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "rostock.radoskop.eu",
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "samorzad_type": "miasto",
+  "rada_name": "Bürgerschaft Rostock",
+  "rada_name_genitive": "der Bürgerschaft Rostock",
+  "councilor_count": 53,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "Wahlperiode 2024–2029",
+      "start": "2024-07-08"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "disabled": true,
+  "disabled_reason": "ALLRIS net (Lange Software) używa Wicket SPA - listy sesji nie renderują się bez session-state-id token. Bez Playwright nie da się scrape'ować. Phase 2 implementacji. Vorlage 2019/IV/4432 świadomie wyłączyła OParl mimo że ALLRIS to wspiera.",
+  "scrape_status": "blocked_playwright",
+  "currency": "€",
+  "scrape": {
+    "sessions_index": "https://ksd.rostock.de/bi/si018?GRLFDNR=1",
+    "oparl_endpoint": "https://ksd.rostock.de/oparl/1.0/system",
+    "oparl_status": "disabled_by_city_vorlage_2019_IV_4432",
+    "note": "ALLRIS net 4.1.6, Wicket SPA. HTML bez session zwraca pusty kalendarz. Wymaga Playwright + reverse-engineering Ajax handshake (page-version-id state) ALBO odkrycie endpoint AJAX. Faza 2 po pilocie Landtag MV + Schwerin."
+  },
+  "clubs": {}
+}

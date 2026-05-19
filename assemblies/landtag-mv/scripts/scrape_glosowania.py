@@ -1,0 +1,540 @@
+#!/usr/bin/env python3
+"""Scraper namentliche Abstimmungen Landtag Mecklenburg-Vorpommern.
+
+Źródło danych: landtag-mv.de. Landtag MV publikuje per Plenarsitzung
+pojedyncze pliki Abstimmungsprotokoll z systemu Votebox jako PDF tekstowy.
+PDFy są linkowane z miesięcznych stron archiwum pod
+`/plenum-und-ausschuesse/plenum/vergangene-plenarsitzungen/{miesiac-rok}/`
+(np. `oktober-2025`, `juli-2025`).
+
+Każdy PDF Votebox to single-page protokół jednej namentliche Abstimmung,
+z header (data, czas, drucksache, wynik), wynikami summary (Ja/Nein/
+Enthaltung/Nicht abgestimmt) i sekcjami imiennymi posłów. Każdy poseł
+zapisany jako `(Fraktion) Nachname, Vorname`, kolejne pozycje rozdzielone
+średnikami.
+
+Lista posłów 8. WP: landtag-mv.de/abgeordnete-und-fraktionen/abgeordnete.
+
+Output: kadencja-2021-2026.json zgodne ze schemą innych sejmików Radoskop.
+
+Wymaga: requests, beautifulsoup4, pdfplumber.
+
+UWAGA: skrypt fetchuje strony archiwum miesięcznego strict text/html,
+więc landtag-mv.de musi zwracać pełen HTML bez JS. Probe agent
+potwierdził że tak (statyczne TYPO3-rendered).
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+import time
+from collections import defaultdict
+from datetime import date, datetime
+from hashlib import md5
+from pathlib import Path
+from typing import Any
+
+import requests
+from bs4 import BeautifulSoup
+import pdfplumber
+
+
+BASE = "https://www.landtag-mv.de"
+ARCHIVE_BASE = f"{BASE}/plenum-und-ausschuesse/plenum/vergangene-plenarsitzungen/"
+ABGEORDNETE_URL = f"{BASE}/abgeordnete-und-fraktionen/abgeordnete"
+KADENCJA_ID = "2021-2026"
+KADENCJA_LABEL = "8. Wahlperiode (2021–2026)"
+KADENCJA_START = date(2021, 10, 26)
+KADENCJA_END = date(2026, 10, 25)
+WP_NUMBER = 8
+
+USER_AGENT = (
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+    "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+)
+
+# Niemieckie miesiące w slug formie używanej przez landtag-mv.de
+MONTH_SLUGS = [
+    "januar", "februar", "maerz", "april", "mai", "juni",
+    "juli", "august", "september", "oktober", "november", "dezember",
+]
+MONTH_NUM_FROM_SLUG = {slug: i + 1 for i, slug in enumerate(MONTH_SLUGS)}
+
+# Header w PDF Votebox: "Sitzung: 117 (am 10.10.2025 um 09:01 Uhr)"
+HEADER_DATE_RE = re.compile(
+    r"Sitzung:\s*(\d+).*?am\s+(\d{1,2}\.\d{1,2}\.\d{4})", re.DOTALL
+)
+HEADER_DRUCKSACHE_RE = re.compile(r"Drucksache[:\s]+([\w/\-\.]+)")
+HEADER_TOP_RE = re.compile(r"TOP\s+(\d+)")
+HEADER_RESULT_RE = re.compile(
+    r"(Abgelehnt|Beschlossen|Mehrheitlich angenommen|Angenommen)"
+)
+HEADER_TITLE_RE = re.compile(
+    r"Gegenstand der Abstimmung[:\s]*(.+?)(?=\n\n|\nJa\b|\nNein\b)", re.DOTALL
+)
+
+# Sekcje listy imiennej: "Ja", "Nein", "Enthaltung", "Nicht abgestimmt"
+SECTION_NAMES = {
+    "Ja": "za",
+    "Nein": "przeciw",
+    "Enthaltung": "wstrzymal_sie",
+    "Nicht abgestimmt": "brak_glosu",
+}
+
+# Wpis na liście: "(AfD) Mustermann, Max" lub "(BÜNDNIS 90/DIE GRÜNEN) Schmidt, Anna"
+NAME_RE = re.compile(r"\(([^)]+)\)\s*([\wÄÖÜäöüß\-\.\s]+?,\s*[\wÄÖÜäöüß\-\.\s]+)")
+
+
+def fetch(url: str, timeout: int = 30) -> str:
+    """GET HTML/PDF, throw on non-2xx."""
+    r = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=timeout)
+    r.raise_for_status()
+    r.encoding = "utf-8"
+    return r.text
+
+
+def fetch_bytes(url: str, timeout: int = 60) -> bytes:
+    r = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=timeout)
+    r.raise_for_status()
+    return r.content
+
+
+def list_archive_months(start: date, end: date) -> list[str]:
+    """Wygeneruj listę slugów miesiąca dla pełnego zakresu kadencji.
+
+    Landtag MV używa formatu `{miesiac-slug}-{rok}` np. `oktober-2025`.
+    """
+    out = []
+    cur = date(start.year, start.month, 1)
+    today = date.today()
+    last = min(end, today)
+    while cur <= last:
+        slug = f"{MONTH_SLUGS[cur.month - 1]}-{cur.year}"
+        out.append(slug)
+        if cur.month == 12:
+            cur = date(cur.year + 1, 1, 1)
+        else:
+            cur = date(cur.year, cur.month + 1, 1)
+    return out
+
+
+def fetch_month_pdfs(slug: str, cache_dir: Path | None = None) -> list[str]:
+    """Pobierz stronę archiwum miesiąca, wyciągnij linki PDF namentliche.
+
+    Strona ma sekcję `<h4>Namentliche Abstimmungen</h4>` z listą `<a>`
+    do plików `/fileadmin/.../Namentliche_Abstimmungen/YYYY-MM-DD-NNN._
+    Sitzung_Namentliche_Abstimmung_zu_TOP_NN.pdf`. Sekcja może być
+    pusta, wtedy [].
+    """
+    url = ARCHIVE_BASE + slug
+    cache_file = None
+    if cache_dir is not None:
+        cache_file = cache_dir / f"month_{slug}.html"
+        if cache_file.exists() and cache_file.stat().st_size > 100:
+            html = cache_file.read_text(encoding="utf-8")
+        else:
+            html = fetch(url)
+            cache_file.write_text(html, encoding="utf-8")
+    else:
+        html = fetch(url)
+
+    soup = BeautifulSoup(html, "lxml")
+    out: list[str] = []
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        if "Namentliche_Abstimmungen" not in href:
+            continue
+        if not href.lower().endswith(".pdf"):
+            continue
+        full = href if href.startswith("http") else BASE + href
+        if full not in out:
+            out.append(full)
+    return out
+
+
+def parse_pdf_filename(url: str) -> dict | None:
+    """Wyciąg date/session_number/top z URL PDF.
+
+    Wzorzec: 2025-10-10-117._Sitzung_Namentliche_Abstimmung_zu_TOP_35.pdf
+    """
+    fname = url.rsplit("/", 1)[-1]
+    m = re.match(
+        r"(\d{4})-(\d{2})-(\d{2})-(\d+)\._Sitzung_Namentliche_Abstimmung_zu_TOP_(\d+(?:[a-z]\d*)?)\.pdf",
+        fname,
+    )
+    if not m:
+        return None
+    return {
+        "session_date": f"{m.group(1)}-{m.group(2)}-{m.group(3)}",
+        "session_number": m.group(4),
+        "top": m.group(5),
+        "filename": fname,
+    }
+
+
+def parse_pdf_text(pdf_path: Path) -> dict:
+    """Wyciąg metadata i listy imienne z PDF Votebox.
+
+    Zwraca:
+        {
+            "topic": str,
+            "drucksache": str | None,
+            "result": str | None,
+            "session_time": str | None,
+            "named_votes": {"za": [...], "przeciw": [...], ...},
+            "councilor_clubs": {nazwisko_imie: fraktion}  # do zbierania clubów
+        }
+    """
+    text_lines = []
+    with pdfplumber.open(pdf_path) as pdf:
+        for page in pdf.pages:
+            t = page.extract_text() or ""
+            text_lines.append(t)
+    text = "\n".join(text_lines)
+
+    # Header
+    drucksache_m = HEADER_DRUCKSACHE_RE.search(text)
+    drucksache = drucksache_m.group(1).strip() if drucksache_m else None
+    result_m = HEADER_RESULT_RE.search(text)
+    result = result_m.group(1).strip() if result_m else None
+    title_m = HEADER_TITLE_RE.search(text)
+    topic = title_m.group(1).strip().replace("\n", " ") if title_m else ""
+    topic = re.sub(r"\s+", " ", topic)[:300]
+
+    # Sekcje imienne
+    named_votes: dict[str, list[str]] = {
+        "za": [], "przeciw": [], "wstrzymal_sie": [], "brak_glosu": [], "nieobecni": []
+    }
+    councilor_clubs: dict[str, str] = {}
+
+    # Podziel tekst na sekcje. Każda sekcja zaczyna się od nazwy
+    # ("Ja", "Nein", "Enthaltung", "Nicht abgestimmt") na początku linii.
+    # Format Votebox jest płaski: po summary linijka z nazwą sekcji,
+    # potem treść jak "(SPD) Nachname, Vorname; (AfD) Nachname, Vorname; ..."
+    section_pattern = re.compile(
+        r"^(Ja|Nein|Enthaltung|Nicht abgestimmt)\s*(?:\(\d+\))?\s*:?\s*$",
+        re.MULTILINE,
+    )
+    matches = list(section_pattern.finditer(text))
+    for i, m in enumerate(matches):
+        section_label = m.group(1)
+        target_cat = SECTION_NAMES.get(section_label)
+        if not target_cat:
+            continue
+        start = m.end()
+        end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
+        chunk = text[start:end]
+        for nm in NAME_RE.finditer(chunk):
+            fraktion = nm.group(1).strip()
+            name_raw = nm.group(2).strip()
+            # "Nachname, Vorname" -> "Vorname Nachname" (Radoskop convention)
+            if "," in name_raw:
+                nach, vor = [s.strip() for s in name_raw.split(",", 1)]
+                name = f"{vor} {nach}"
+            else:
+                name = name_raw
+            named_votes[target_cat].append(name)
+            councilor_clubs[name] = fraktion
+
+    return {
+        "topic": topic or f"Abstimmung Drs. {drucksache}" if drucksache else "Namentliche Abstimmung",
+        "drucksache": drucksache,
+        "result": result,
+        "named_votes": named_votes,
+        "councilor_clubs": councilor_clubs,
+    }
+
+
+def passed_from_counts(counts: dict, result_str: str | None) -> bool | None:
+    """Determine pass/fail from counts and PDF header text."""
+    if result_str:
+        if result_str.startswith("Abgelehnt"):
+            return False
+        if result_str.startswith("Beschloss") or "angenommen" in result_str.lower():
+            return True
+    za = counts.get("za", 0)
+    przeciw = counts.get("przeciw", 0)
+    if za + przeciw == 0:
+        return None
+    return za > przeciw
+
+
+def build_kadencja(
+    cache_dir: Path | None,
+    limit_sessions: int | None = None,
+) -> dict:
+    """Top-level scrape: enumerate months, fetch each PDF, build kadencja struct."""
+    if cache_dir:
+        cache_dir.mkdir(parents=True, exist_ok=True)
+
+    months = list_archive_months(KADENCJA_START, KADENCJA_END)
+    print(f"Skanuję {len(months)} miesięcy archiwum...", file=sys.stderr)
+
+    all_pdf_urls: list[str] = []
+    for slug in months:
+        try:
+            urls = fetch_month_pdfs(slug, cache_dir)
+        except requests.HTTPError as e:
+            if e.response.status_code == 404:
+                continue
+            print(f"  WARN: {slug}: {e}", file=sys.stderr)
+            continue
+        except Exception as e:
+            print(f"  WARN: {slug}: {e}", file=sys.stderr)
+            continue
+        if urls:
+            print(f"  {slug}: {len(urls)} PDFów", file=sys.stderr)
+            all_pdf_urls.extend(urls)
+        time.sleep(0.2)
+
+    # Dedup
+    seen = set()
+    pdf_urls_unique = []
+    for u in all_pdf_urls:
+        if u not in seen:
+            seen.add(u)
+            pdf_urls_unique.append(u)
+
+    print(f"Razem {len(pdf_urls_unique)} unikalnych PDFów namentliche", file=sys.stderr)
+
+    if limit_sessions:
+        pdf_urls_unique = pdf_urls_unique[:limit_sessions]
+
+    votes: list[dict] = []
+    sessions: dict[tuple[str, str], dict] = {}
+    all_councilors: dict[str, str] = {}  # name -> fraktion (last seen wins)
+
+    for pdf_url in pdf_urls_unique:
+        meta = parse_pdf_filename(pdf_url)
+        if not meta:
+            print(f"  WARN: nie parsuję nazwy {pdf_url}", file=sys.stderr)
+            continue
+
+        sess_key = (meta["session_date"], meta["session_number"])
+        if sess_key not in sessions:
+            sessions[sess_key] = {
+                "date": meta["session_date"],
+                "number": meta["session_number"],
+                "vote_count": 0,
+                "attendees": set(),
+            }
+
+        # Pobierz PDF i cache na dysku
+        pdf_local = None
+        if cache_dir:
+            url_hash = md5(pdf_url.encode("utf-8")).hexdigest()[:12]
+            pdf_local = cache_dir / f"pdf_{url_hash}_{meta['filename']}"
+            if not pdf_local.exists() or pdf_local.stat().st_size < 1000:
+                try:
+                    pdf_local.write_bytes(fetch_bytes(pdf_url))
+                except Exception as e:
+                    print(f"  ERR pobierania {meta['filename']}: {e}", file=sys.stderr)
+                    continue
+                time.sleep(0.2)
+        else:
+            try:
+                content = fetch_bytes(pdf_url)
+            except Exception as e:
+                print(f"  ERR pobierania {meta['filename']}: {e}", file=sys.stderr)
+                continue
+            import tempfile
+            pdf_local = Path(tempfile.mktemp(suffix=".pdf"))
+            pdf_local.write_bytes(content)
+
+        try:
+            parsed = parse_pdf_text(pdf_local)
+        except Exception as e:
+            print(f"  ERR parsowania {meta['filename']}: {e}", file=sys.stderr)
+            continue
+
+        counts = {cat: len(parsed["named_votes"][cat]) for cat in parsed["named_votes"]}
+        # Vote ID: data_TOP-numer (np. 2025-10-10_TOP35)
+        vote_id = f"{meta['session_date']}_TOP{meta['top']}"
+
+        # Topic: jeśli PDF parser nie wyłapał, użyj drucksache lub fallback
+        topic = parsed["topic"]
+        if not topic or topic == "Namentliche Abstimmung":
+            topic = f"TOP {meta['top']}"
+            if parsed["drucksache"]:
+                topic += f" Drs. {parsed['drucksache']}"
+
+        votes.append({
+            "id": vote_id,
+            "source_url": pdf_url,
+            "session_date": meta["session_date"],
+            "session_number": meta["session_number"],
+            "topic": topic,
+            "druk": parsed.get("drucksache"),
+            "resolution": parsed.get("result"),
+            "counts": counts,
+            "named_votes": parsed["named_votes"],
+            "passed": passed_from_counts(counts, parsed.get("result")),
+        })
+
+        # Track frekwencja per session
+        for cat in ["za", "przeciw", "wstrzymal_sie", "brak_glosu"]:
+            sessions[sess_key]["attendees"].update(parsed["named_votes"][cat])
+        sessions[sess_key]["vote_count"] += 1
+
+        # Update club lookup
+        for name, fraktion in parsed["councilor_clubs"].items():
+            all_councilors[name] = fraktion
+
+    print(f"Sparsowano {len(votes)} głosowań z {len(sessions)} sesji, {len(all_councilors)} posłów", file=sys.stderr)
+
+    # Build councilors list with stats
+    councilors = _build_councilors(votes, all_councilors)
+
+    # Build sessions list (sorted)
+    sessions_list = []
+    for (sdate, snum), s in sorted(sessions.items(), key=lambda x: x[0]):
+        sessions_list.append({
+            "date": sdate,
+            "number": snum,
+            "vote_count": s["vote_count"],
+            "attendee_count": len(s["attendees"]),
+            "attendees": sorted(s["attendees"]),
+        })
+
+    # Club counts
+    club_counts: dict[str, int] = defaultdict(int)
+    for c in councilors:
+        club_counts[c["club"]] += 1
+
+    return {
+        "id": KADENCJA_ID,
+        "label": KADENCJA_LABEL,
+        "clubs": {club: cnt for club, cnt in sorted(club_counts.items())},
+        "sessions": sessions_list,
+        "total_sessions": len(sessions_list),
+        "total_votes": len(votes),
+        "total_councilors": len(councilors),
+        "councilors": councilors,
+        "votes": votes,
+        "similarity_top": [],
+        "similarity_bottom": [],
+        "scraped_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "source": BASE,
+    }
+
+
+def _build_councilors(votes: list[dict], club_map: dict[str, str]) -> list[dict]:
+    """Zbuduj listę posłów z statystykami frekwencji/aktywności."""
+    all_names = set()
+    for v in votes:
+        for cat_names in v["named_votes"].values():
+            all_names.update(cat_names)
+
+    sessions_with_votes = set(v["session_date"] for v in votes)
+    total_sessions = len(sessions_with_votes)
+    total_votes = len(votes)
+
+    councilor_data: dict[str, dict] = {}
+    for name in all_names:
+        councilor_data[name] = {
+            "name": name,
+            "club": club_map.get(name, "?"),
+            "votes_za": 0,
+            "votes_przeciw": 0,
+            "votes_wstrzymal": 0,
+            "votes_brak": 0,
+            "votes_nieobecny": 0,
+            "sessions_present": set(),
+        }
+
+    for v in votes:
+        for name in v["named_votes"].get("za", []):
+            if name in councilor_data:
+                councilor_data[name]["votes_za"] += 1
+                councilor_data[name]["sessions_present"].add(v["session_date"])
+        for name in v["named_votes"].get("przeciw", []):
+            if name in councilor_data:
+                councilor_data[name]["votes_przeciw"] += 1
+                councilor_data[name]["sessions_present"].add(v["session_date"])
+        for name in v["named_votes"].get("wstrzymal_sie", []):
+            if name in councilor_data:
+                councilor_data[name]["votes_wstrzymal"] += 1
+                councilor_data[name]["sessions_present"].add(v["session_date"])
+        for name in v["named_votes"].get("brak_glosu", []):
+            if name in councilor_data:
+                councilor_data[name]["votes_brak"] += 1
+                councilor_data[name]["sessions_present"].add(v["session_date"])
+        for name in v["named_votes"].get("nieobecni", []):
+            if name in councilor_data:
+                councilor_data[name]["votes_nieobecny"] += 1
+
+    result = []
+    for c in councilor_data.values():
+        present = c["votes_za"] + c["votes_przeciw"] + c["votes_wstrzymal"] + c["votes_brak"]
+        frekwencja = (len(c["sessions_present"]) / total_sessions * 100) if total_sessions else 0
+        aktywnosc = (present / total_votes * 100) if total_votes else 0
+        result.append({
+            "name": c["name"],
+            "club": c["club"],
+            "frekwencja": round(frekwencja, 1),
+            "aktywnosc": round(aktywnosc, 1),
+            "zgodnosc_z_klubem": 0,
+            "votes_za": c["votes_za"],
+            "votes_przeciw": c["votes_przeciw"],
+            "votes_wstrzymal": c["votes_wstrzymal"],
+            "votes_brak": c["votes_brak"],
+            "votes_nieobecny": c["votes_nieobecny"],
+            "votes_total": total_votes,
+            "rebellion_count": 0,
+            "rebellions": [],
+            "has_activity_data": False,
+            "activity": None,
+        })
+
+    return sorted(result, key=lambda c: c["name"])
+
+
+def save_split_output(kadencja: dict, out_path: Path) -> None:
+    """Zapisz data.json (index) + kadencja-{id}.json zgodnie ze schematem Radoskop."""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    kid = kadencja["id"]
+    kad_path = out_path.parent / f"kadencja-{kid}.json"
+    with kad_path.open("w", encoding="utf-8") as f:
+        json.dump(kadencja, f, ensure_ascii=False, separators=(",", ":"))
+    index = {
+        "generated": datetime.now().isoformat(),
+        "default_kadencja": kid,
+        "kadencje": [{"id": kid, "label": kadencja["label"]}],
+    }
+    with out_path.open("w", encoding="utf-8") as f:
+        json.dump(index, f, ensure_ascii=False, separators=(",", ":"))
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Scrape Landtag Mecklenburg-Vorpommern")
+    parser.add_argument("--cache", type=Path, default=Path(".cache/landtag-mv"))
+    parser.add_argument("--output", "-o", type=Path,
+                        default=Path("docs/data.json"))
+    parser.add_argument("--limit", type=int, default=None,
+                        help="Limit PDFów (debug)")
+    args = parser.parse_args()
+
+    print("=== Radoskop scraper: Landtag Mecklenburg-Vorpommern ===", file=sys.stderr)
+
+    kadencja = build_kadencja(cache_dir=args.cache, limit_sessions=args.limit)
+
+    # Guard: jeśli żadnych głosowań, nie nadpisuj istniejących
+    if kadencja["total_votes"] == 0 and (args.output.parent / f"kadencja-{KADENCJA_ID}.json").exists():
+        print(f"\n✗ Zero głosowań, nie nadpisuję {args.output}", file=sys.stderr)
+        return 1
+
+    save_split_output(kadencja, args.output)
+
+    print(f"\n✓ Zapisano {args.output}", file=sys.stderr)
+    print(f"  Sesji: {kadencja['total_sessions']}", file=sys.stderr)
+    print(f"  Głosowań: {kadencja['total_votes']}", file=sys.stderr)
+    print(f"  Posłów: {kadencja['total_councilors']}", file=sys.stderr)
+    print(f"  Frakcje: {dict(kadencja['clubs'])}", file=sys.stderr)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
