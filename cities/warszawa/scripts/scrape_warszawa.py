@@ -255,15 +255,41 @@ def scrape_session_list_all(oldest_start: str, max_pages: int = 0) -> list[dict]
 _session_soup_cache: dict[str, "BeautifulSoup"] = {}
 
 
+def _cached_html_has_docx(url: str) -> bool:
+    """Sprawdź czy cached HTML strony sesji zawiera link do docxa głosowań.
+
+    Pattern: `wyniki_glosowania` w href + `.docx`. Używane do invalidacji
+    disk cache. BIP dorzuca docx parametrycznie 3-7 dni po sesji, czyli
+    pierwszy scrape pewno tylko strony sesji bez wynikow. Bez tego sprawdz
+    enia kolejne runy hitowały by stary cache na zawsze.
+    """
+    cache_file = _cache_path(url)
+    if not cache_file or not cache_file.exists():
+        return False
+    try:
+        cached = cache_file.read_text(encoding="utf-8")
+    except Exception:
+        return False
+    return ("wyniki_glosowania" in cached) and (".docx" in cached.lower())
+
+
 def _get_session_soup(session: dict):
     """Pobierz i zcachuj stronę sesji (unikamy podwójnego fetcha w obrębie runu).
 
     Plus disk cache: sesje z datą >= STABLE_AGE_DAYS hitują cache na dysku,
     pomijając całkowicie Playwright. Świeże sesje (< 2 dni) zawsze fresh.
+
+    Cache invalidation: jeśli sesja jest stable (>= 2 dni) ale cached HTML
+    nie zawiera linku `wyniki_glosowania*.docx`, force fresh fetch. BIP
+    Warszawy publikuje strony sesji szybko, ale plik docx z wynikami
+    dodaje 3-7 dni później. Bez tego pierwszy cache (bez docxa) zostawał
+    permanentny i sesja na zawsze nie miała głosowań.
     """
     url = session["url"]
     if url not in _session_soup_cache:
         is_stable = _is_session_stable(session.get("date"))
+        if is_stable and not _cached_html_has_docx(url):
+            is_stable = False
         _session_soup_cache[url] = fetch(url, wait_for="article, .portlet-body", use_cache=is_stable)
     return _session_soup_cache[url]
 
