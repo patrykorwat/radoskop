@@ -1,0 +1,43 @@
+{
+  "samorzad_type": "wojewodztwo",
+  "voivodeship_slug": "swietokrzyskie",
+  "voivodeship_name": "świętokrzyskie",
+  "voivodeship_genitive": "świętokrzyskiego",
+  "capital": "Kielce",
+  "rada_name": "Sejmik Województwa Świętokrzyskiego",
+  "rada_name_genitive": "Sejmiku Województwa Świętokrzyskiego",
+  "site_title": "Radoskop Sejmik Świętokrzyskie. Jak głosują radni?",
+  "site_url": "https://swietokrzyskie.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Świętokrzyskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.",
+  "site_description_short": "Otwarte narzędzie monitoringu Sejmiku Województwa Świętokrzyskiego.",
+  "bip_url": "https://bip.sejmik.kielce.pl/",
+  "bip_name": "BIP Sejmiku Województwa Świętokrzyskiego",
+  "bip_kind": "swietokrzyskie_html_pdf",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "swietokrzyskie.radoskop.pl",
+  "councilor_count": 30,
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "scrape_status": "active",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "scrape": {
+    "index_url": "https://bip.sejmik.kielce.pl/1269-imienne-wykazy-glosowan-radnych-sejmiku-wojewodztwa-swietokrzyskiego-vii-kadencji-lata-2024-2029.html",
+    "ssl_verify": false,
+    "note": "Cert SSL na bip.sejmik.kielce.pl jest broken (CERTIFICATE_VERIFY_FAILED), trzeba bypass na poziomie scrapera"
+  },
+  "clubs": {}
+}

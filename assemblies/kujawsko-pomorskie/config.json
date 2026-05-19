@@ -1,0 +1,46 @@
+{
+  "samorzad_type": "wojewodztwo",
+  "voivodeship_slug": "kujawsko-pomorskie",
+  "voivodeship_name": "kujawsko-pomorskie",
+  "voivodeship_genitive": "kujawsko-pomorskiego",
+  "capital": "Toruń",
+  "rada_name": "Sejmik Województwa Kujawsko-Pomorskiego",
+  "rada_name_genitive": "Sejmiku Województwa Kujawsko-Pomorskiego",
+  "site_title": "Radoskop Sejmik Kujawsko-Pomorskie. Jak głosują radni?",
+  "site_url": "https://kujawsko-pomorskie.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Kujawsko-Pomorskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.",
+  "site_description_short": "Otwarte narzędzie monitoringu Sejmiku Województwa Kujawsko-Pomorskiego.",
+  "bip_url": "https://bip.kujawsko-pomorskie.pl/",
+  "bip_name": "BIP Urząd Marszałkowski Województwa Kujawsko-Pomorskiego",
+  "bip_kind": "kujawsko-pomorskie_bip_scan_per_page",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kujawsko-pomorskie.radoskop.pl",
+  "councilor_count": 30,
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "scrape_status": "active",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "scrape": {
+    "index_url": "https://bip.kujawsko-pomorskie.pl/13254/1098/wydruki-glosowan-sejmiku-vii-kadencji.html",
+    "subpage_pattern": "wydruki-glosowan-(\\w+)-sesji-sejmiku",
+    "format": "scanned_pdf_per_page",
+    "ocr_required": true,
+    "ocr_lang_preferred": "pol",
+    "note": "Skanowane PDFy, 1 strona = 1 głosowanie. Format Lp/Nazwisko/Decyzja w 2-kolumnowej tabeli. Wymaga tesseract-ocr-pol dla 90%+ accuracy (eng pack daje ~25%)."
+  },
+  "clubs": {}
+}

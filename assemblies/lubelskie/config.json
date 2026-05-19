@@ -1,0 +1,43 @@
+{
+  "samorzad_type": "wojewodztwo",
+  "voivodeship_slug": "lubelskie",
+  "voivodeship_name": "lubelskie",
+  "voivodeship_genitive": "lubelskiego",
+  "capital": "Lublin",
+  "rada_name": "Sejmik Województwa Lubelskiego",
+  "rada_name_genitive": "Sejmiku Województwa Lubelskiego",
+  "site_title": "Radoskop Sejmik Lubelskie. Jak głosują radni?",
+  "site_url": "https://lubelskie.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Lubelskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.",
+  "site_description_short": "Otwarte narzędzie monitoringu Sejmiku Województwa Lubelskiego.",
+  "bip_url": "https://umwl.bip.lubelskie.pl/",
+  "bip_name": "BIP Urząd Marszałkowski Województwa Lubelskiego",
+  "bip_kind": "lubelskie_url_pattern_pdf",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lubelskie.radoskop.pl",
+  "councilor_count": 33,
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "scrape_status": "active",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "scrape": {
+    "pdf_url_template": "https://umwl.bip.lubelskie.pl/upload/pliki/raport_z_glosowan_-_{roman_lower}_sesja_sejmiku_wojewodztwa_lubelskiego.pdf",
+    "max_session_number": 30,
+    "note": "Lubelskie BIP nie publikuje indeksu sesji VII kadencji. Pattern URL PDF wykryto z document_id=2295475 (XXI sesja). Enumerujemy rzymskimi I-XXX i sprawdzamy first bytes (%PDF-) żeby odsiać 404 (HTTP 200 z error page)."
+  },
+  "clubs": {}
+}

@@ -1,0 +1,45 @@
+{
+  "samorzad_type": "wojewodztwo",
+  "voivodeship_slug": "lubuskie",
+  "voivodeship_name": "lubuskie",
+  "voivodeship_genitive": "lubuskiego",
+  "capital": "Zielona Góra",
+  "rada_name": "Sejmik Województwa Lubuskiego",
+  "rada_name_genitive": "Sejmiku Województwa Lubuskiego",
+  "site_title": "Radoskop Sejmik Lubuskie. Jak głosują radni?",
+  "site_url": "https://lubuskie.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Lubuskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.",
+  "site_description_short": "Otwarte narzędzie monitoringu Sejmiku Województwa Lubuskiego.",
+  "bip_url": "https://bip.lubuskie.pl/",
+  "bip_name": "BIP Urząd Marszałkowski Województwa Lubuskiego",
+  "bip_kind": "lubuskie_bip_scan_per_page",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lubuskie.radoskop.pl",
+  "councilor_count": 30,
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "scrape_status": "active",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "scrape": {
+    "index_url": "https://bip.lubuskie.pl/958/VII_kadencja__282024-2029_29/",
+    "format": "scanned_pdf_per_page",
+    "ocr_required": true,
+    "ocr_lang_preferred": "pol",
+    "note": "PDF imiennych wykazów ~18MB skanu per sesja. /958/ to 'Imienne wykazy głosowań', /962/ to 'Protokoły sesji' (narracyjne, nie używamy)."
+  },
+  "clubs": {}
+}

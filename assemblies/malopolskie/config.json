@@ -1,0 +1,44 @@
+{
+  "samorzad_type": "wojewodztwo",
+  "voivodeship_slug": "malopolskie",
+  "voivodeship_name": "małopolskie",
+  "voivodeship_genitive": "małopolskiego",
+  "capital": "Kraków",
+  "rada_name": "Sejmik Województwa Małopolskiego",
+  "rada_name_genitive": "Sejmiku Województwa Małopolskiego",
+  "site_title": "Radoskop Sejmik Małopolskie. Jak głosują radni?",
+  "site_url": "https://malopolskie.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Małopolskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.",
+  "site_description_short": "Otwarte narzędzie monitoringu Sejmiku Województwa Małopolskiego.",
+  "bip_url": "https://bip.malopolska.pl/",
+  "bip_name": "BIP Urząd Marszałkowski Województwa Małopolskiego",
+  "bip_kind": "madkom_cms_docx",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "malopolskie.radoskop.pl",
+  "councilor_count": 39,
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "scrape_status": "active",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "scrape": {
+    "madkom_base_url": "https://bip.malopolska.pl",
+    "wyniki_glosowan_menu_id": 433528,
+    "protokoly_menu_id": 433527,
+    "attachment_download_template": "{base}/e,pobierz,get.html?id={attachment_id}"
+  },
+  "clubs": {}
+}

@@ -1,0 +1,1424 @@
+{
+  "kadencja": "2024-2029",
+  "kadencja_label": "VII kadencja (2024–2029)",
+  "councilors": [
+    "Andrzej Bętkowski",
+    "Andrzej Mochoń",
+    "Andrzej Pruś",
+    "Andrzej Swajda",
+    "Anita Koniusz",
+    "Arkadiusz Bąk",
+    "Gerard Pedrycz",
+    "Grzegorz Cepil",
+    "Grzegorz Socha",
+    "Henryk Milcarz",
+    "Jan Maćkowiak",
+    "Jerzy Materek",
+    "Jolanta Madioury",
+    "Jolanta Tyjas",
+    "Katarzyna Suchańska",
+    "Kazimierz Mądzik",
+    "Krystian Jarubas",
+    "Magdalena Zieleń",
+    "Marcin Piętak",
+    "Marek Bogusławski",
+    "Marek Strzała",
+    "Małgorzata Krzywda",
+    "Mieczysław Gębski",
+    "Paweł Krakowiak",
+    "Piotr Żołądek",
+    "Renata Janik",
+    "Sławomir Gierada",
+    "Waldemar Wrona",
+    "Wojciech Zwierzchowski",
+    "Łukasz Jabłoński"
+  ],
+  "total_councilors": 30,
+  "sessions": [
+    {
+      "session_number": "XXVII",
+      "date": "2026-04-27",
+      "votes": [
+        {
+          "vote_index": 0,
+          "vote_type": "uchwala",
+          "topic": "wyboru sekretarzy obrad - radnego Henryka Milcarza oraz radnego Andrzeja Mochonia.",
+          "counts": {
+            "za": 25,
+            "przeciw": 0,
+            "wstrzymal_sie": 1,
+            "brak_glosu": 0,
+            "nieobecni": 4
+          },
+          "voted_at": "2026-04-27 10:17:07",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Krystian Jarubas",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [
+              "Andrzej Mochoń"
+            ],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Jolanta Madioury",
+              "Katarzyna Suchańska",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 1,
+          "vote_type": "uchwala",
+          "topic": "wniosku o wprowadzenie do porządku obrad punktu - rozpatrzenie projektu uchwały w sprawie skargi na Zarząd Województwa Świętokrzyskiego.",
+          "counts": {
+            "za": 26,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 4
+          },
+          "voted_at": "2026-04-27 10:20:45",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Krystian Jarubas",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Jolanta Madioury",
+              "Katarzyna Suchańska",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 2,
+          "vote_type": "uchwala",
+          "topic": "sytuacji na rynku pracy województwa świętokrzyskiego.",
+          "counts": {
+            "za": 19,
+            "przeciw": 0,
+            "wstrzymal_sie": 4,
+            "brak_glosu": 1,
+            "nieobecni": 6
+          },
+          "voted_at": "2026-04-27 10:32:25",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Renata Janik",
+              "Krystian Jarubas",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [
+              "Jan Maćkowiak",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Waldemar Wrona"
+            ],
+            "brak_glosu": [
+              "Henryk Milcarz"
+            ],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Łukasz Jabłoński",
+              "Małgorzata Krzywda",
+              "Jolanta Madioury",
+              "Katarzyna Suchańska",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 3,
+          "vote_type": "uchwala",
+          "topic": "przyjęcia \"Raportu z realizacji Wojewódzkiego Programu Profilaktyki i Rozwiązywania Problemów Alkoholowych oraz Przeciwdziałania Narkomanii za 2025 rok\".",
+          "counts": {
+            "za": 26,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 4
+          },
+          "voted_at": "2026-04-27 10:36:51",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Renata Janik",
+              "Krystian Jarubas",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Łukasz Jabłoński",
+              "Jolanta Madioury",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 4,
+          "vote_type": "uchwala",
+          "topic": "przejęcia przez Województwo Świętokrzyskie prowadzenia zadania publicznego Powiatu Kieleckiego, polegającego na zarządzaniu drogą powiatową Nr 1430T – dł. 1,096 km w zakresie zimowego utrzymania drogi powiatowej na lata 2026-2028.",
+          "counts": {
+            "za": 26,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 4
+          },
+          "voted_at": "2026-04-27 10:41:45",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Renata Janik",
+              "Krystian Jarubas",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Łukasz Jabłoński",
+              "Jolanta Madioury",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 5,
+          "vote_type": "uchwala",
+          "topic": "powierzenia Gminie Strawczyn prowadzenia zadania publicznego, polegającego na zarządzaniu odcinkiem drogi wojewódzkiej nr 786 w związku z budową ciągu pieszo-rowerowego zlokalizowanego w południowej części Gminy Strawczyn w kierunku miasta Piekoszów od km 104+290 do km 104+640 (strona prawa) oraz od km 105+100 do km 105+537 (strona lewa za ekranami).",
+          "counts": {
+            "za": 26,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 4
+          },
+          "voted_at": "2026-04-27 10:46:06",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Renata Janik",
+              "Krystian Jarubas",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Łukasz Jabłoński",
+              "Jolanta Madioury",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 6,
+          "vote_type": "uchwala",
+          "topic": "pozbawienia kategorii drogi wojewódzkiej przejętego odcinka starodroża drogi krajowej Nr 42 od km 259+200 wraz z łącznikiem (od km lokalnego 0+000 do 0+245 – granica utrzymania) do km 262+255 (łącznie 3,3 km).",
+          "counts": {
+            "za": 27,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 3
+          },
+          "voted_at": "2026-04-27 10:58:22",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Krystian Jarubas",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Jolanta Madioury",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 7,
+          "vote_type": "uchwala",
+          "topic": "pozbawienia kategorii drogi wojewódzkiej przejętego odcinka starodroża drogi krajowej Nr 74 oraz Nr 9 o dł. 4,715 km oraz odcinka drogi wojewódzkiej Nr 757 od km 0+000 do km 1+912 o dł. 1,912 km wraz z odcinkiem od km 2+135 do km 2+388 długości 0,253 km.",
+          "counts": {
+            "za": 27,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 3
+          },
+          "voted_at": "2026-04-27 10:59:12",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Krystian Jarubas",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Jolanta Madioury",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 8,
+          "vote_type": "uchwala",
+          "topic": "określenia wysokości opłat lotniskowych na lotnisku EPKA w Masłowie k/Kielc.",
+          "counts": {
+            "za": 27,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 3
+          },
+          "voted_at": "2026-04-27 11:03:19",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Krystian Jarubas",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Jolanta Madioury",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 9,
+          "vote_type": "uchwala",
+          "topic": "zmiany Wieloletniej Prognozy Finansowej Województwa Świętokrzyskiego na lata 2026 – 2048.",
+          "counts": {
+            "za": 27,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 3
+          },
+          "voted_at": "2026-04-27 11:23:52",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Krystian Jarubas",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Jolanta Madioury",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 10,
+          "vote_type": "uchwala",
+          "topic": "zmian w budżecie województwa na 2026 rok.",
+          "counts": {
+            "za": 23,
+            "przeciw": 0,
+            "wstrzymal_sie": 4,
+            "brak_glosu": 0,
+            "nieobecni": 3
+          },
+          "voted_at": "2026-04-27 11:24:31",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Krystian Jarubas",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [
+              "Jan Maćkowiak",
+              "Jerzy Materek",
+              "Gerard Pedrycz",
+              "Waldemar Wrona"
+            ],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Jolanta Madioury",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 11,
+          "vote_type": "uchwala",
+          "topic": "skargi na Zarząd Województwa Świętokrzyskiego.",
+          "counts": {
+            "za": 18,
+            "przeciw": 0,
+            "wstrzymal_sie": 6,
+            "brak_glosu": 0,
+            "nieobecni": 6
+          },
+          "voted_at": "2026-04-27 11:29:17",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Kazimierz Mądzik",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona"
+            ],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Krystian Jarubas",
+              "Jan Maćkowiak",
+              "Jolanta Madioury",
+              "Jerzy Materek",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        }
+      ],
+      "vote_count": 12,
+      "source_url": "https://bip.sejmik.kielce.pl/download/112584-wyniki-glosowan/1269-imienne-wykazy-glosowan-radnych-sejmiku-wojewodztwa-swietokrzyskiego-vii-kadencji-lata-2024-2029/15910-imienny-wykaz-glosowan-radnych-na-xxvii-sesji-sejmiku-wojewodztwa-swietokrzyskiego.html"
+    },
+    {
+      "session_number": "XXVI",
+      "date": "2026-03-23",
+      "votes": [
+        {
+          "vote_index": 0,
+          "vote_type": "uchwala",
+          "topic": "wniosku formalnego o zamknięcie dyskusji:",
+          "counts": {
+            "za": 21,
+            "przeciw": 1,
+            "wstrzymal_sie": 4,
+            "brak_glosu": 1,
+            "nieobecni": 3
+          },
+          "voted_at": "2026-03-23 10:46:19",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jolanta Madioury",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Wojciech Zwierzchowski",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [
+              "Sławomir Gierada"
+            ],
+            "wstrzymal_sie": [
+              "Mieczysław Gębski",
+              "Paweł Krakowiak",
+              "Marek Strzała",
+              "Andrzej Swajda"
+            ],
+            "brak_glosu": [
+              "Katarzyna Suchańska"
+            ],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Krystian Jarubas",
+              "Grzegorz Socha"
+            ]
+          }
+        },
+        {
+          "vote_index": 1,
+          "vote_type": "uchwala",
+          "topic": "wyboru sekretarzy obrad: radnej Jolanty Madioury i radnego Kazimierza Mądzika:",
+          "counts": {
+            "za": 28,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 2
+          },
+          "voted_at": "2026-03-23 10:49:18",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jolanta Madioury",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Wojciech Zwierzchowski",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Krystian Jarubas"
+            ]
+          }
+        },
+        {
+          "vote_index": 2,
+          "vote_type": "uchwala",
+          "topic": "wniosku o wprowadzenie do porządku obrad punktu - rozpatrzenie projektu uchwały w sprawie skargi na Wojewódzki Ośrodek Ruchu Drogowego w Kielcach:",
+          "counts": {
+            "za": 28,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 2
+          },
+          "voted_at": "2026-03-23 10:52:30",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jolanta Madioury",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Wojciech Zwierzchowski",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Krystian Jarubas"
+            ]
+          }
+        },
+        {
+          "vote_index": 3,
+          "vote_type": "uchwala",
+          "topic": "wniosku o wprowadzenie do porządku obrad punktu - rozpatrzenie projektu uchwały w sprawie apelu dotyczącego działań Narodowego Funduszu Zdrowia i Ministerstwa Zdrowia w zakresie finansowania świadczeń opieki zdrowotnej:",
+          "counts": {
+            "za": 22,
+            "przeciw": 0,
+            "wstrzymal_sie": 6,
+            "brak_glosu": 0,
+            "nieobecni": 2
+          },
+          "voted_at": "2026-03-23 10:53:11",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [
+              "Jan Maćkowiak",
+              "Jolanta Madioury",
+              "Jerzy Materek",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Wojciech Zwierzchowski"
+            ],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Krystian Jarubas"
+            ]
+          }
+        },
+        {
+          "vote_index": 4,
+          "vote_type": "uchwala",
+          "topic": "określenia zadań Samorządu Województwa Świętokrzyskiego, które mogą być dofinansowane w 2026 r. ze środków Państwowego Funduszu Rehabilitacji Osób Niepełnosprawnych wraz z autopoprawką Zarządu Województwa:",
+          "counts": {
+            "za": 27,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 3
+          },
+          "voted_at": "2026-03-23 10:58:18",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jolanta Madioury",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Wojciech Zwierzchowski",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Krystian Jarubas",
+              "Marek Strzała"
+            ]
+          }
+        },
+        {
+          "vote_index": 5,
+          "vote_type": "uchwala",
+          "topic": "likwidacji Świętokrzyskiego Biura Rozwoju Regionalnego w Kielcach wraz z autopoprawką Zarządu Województwa:",
+          "counts": {
+            "za": 16,
+            "przeciw": 7,
+            "wstrzymal_sie": 4,
+            "brak_glosu": 0,
+            "nieobecni": 3
+          },
+          "voted_at": "2026-03-23 12:05:31",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Kazimierz Mądzik",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Magdalena Zieleń"
+            ],
+            "przeciw": [
+              "Jan Maćkowiak",
+              "Jolanta Madioury",
+              "Gerard Pedrycz",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Wojciech Zwierzchowski"
+            ],
+            "wstrzymal_sie": [
+              "Jerzy Materek",
+              "Henryk Milcarz",
+              "Katarzyna Suchańska",
+              "Piotr Żołądek"
+            ],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Krystian Jarubas",
+              "Andrzej Mochoń"
+            ]
+          }
+        },
+        {
+          "vote_index": 6,
+          "vote_type": "uchwala",
+          "topic": "przyjęcia „Regulaminu przyznawania stypendiów dla studentów pierwszego roku publicznych uczelni technicznych w województwie świętokrzyskim w roku akademickim 2026/27”:",
+          "counts": {
+            "za": 25,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 5
+          },
+          "voted_at": "2026-03-23 12:17:43",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Krystian Jarubas",
+              "Jolanta Madioury",
+              "Henryk Milcarz",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 7,
+          "vote_type": "uchwala",
+          "topic": "przyjęcia „Regulaminu przyznawania stypendiów dla studentów pierwszego roku publicznych uczelni akademickich w województwie świętokrzyskim w roku akademickim 2026/27”:",
+          "counts": {
+            "za": 25,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 5
+          },
+          "voted_at": "2026-03-23 12:18:19",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Krystian Jarubas",
+              "Jolanta Madioury",
+              "Henryk Milcarz",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 8,
+          "vote_type": "uchwala",
+          "topic": "powierzenia Gminie Daleszyce prowadzenia zadania publicznego, polegającego na budowie ścieżki rowerowej w pasie drogowym drogi wojewódzkiej DW 764:",
+          "counts": {
+            "za": 24,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 6
+          },
+          "voted_at": "2026-03-23 12:24:47",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Andrzej Mochoń",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Krystian Jarubas",
+              "Jan Maćkowiak",
+              "Jolanta Madioury",
+              "Andrzej Swajda",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 9,
+          "vote_type": "uchwala",
+          "topic": "wyrażenia zgody na zbycie, w drodze darowizny, przez Województwo Świętokrzyskie na rzecz Gminy Chęciny nieruchomości położonej w obrębie Tokarnia, gmina Chęciny:",
+          "counts": {
+            "za": 25,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 5
+          },
+          "voted_at": "2026-03-23 12:30:22",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jerzy Materek",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Krystian Jarubas",
+              "Jolanta Madioury",
+              "Andrzej Mochoń",
+              "Wojciech Zwierzchowski"
+            ]
+          }
+        },
+        {
+          "vote_index": 10,
+          "vote_type": "uchwala",
+          "topic": "zmiany Wieloletniej Prognozy Finansowej Województwa Świętokrzyskiego na lata 2026 – 2048:",
+          "counts": {
+            "za": 25,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 5
+          },
+          "voted_at": "2026-03-23 12:41:22",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jolanta Madioury",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Wojciech Zwierzchowski",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Krystian Jarubas",
+              "Jerzy Materek",
+              "Andrzej Mochoń",
+              "Marek Strzała"
+            ]
+          }
+        },
+        {
+          "vote_index": 11,
+          "vote_type": "uchwala",
+          "topic": "zmian w budżecie województwa na 2026 rok:",
+          "counts": {
+            "za": 16,
+            "przeciw": 0,
+            "wstrzymal_sie": 9,
+            "brak_glosu": 0,
+            "nieobecni": 5
+          },
+          "voted_at": "2026-03-23 12:41:55",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Kazimierz Mądzik",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Katarzyna Suchańska",
+              "Magdalena Zieleń"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [
+              "Jan Maćkowiak",
+              "Jolanta Madioury",
+              "Henryk Milcarz",
+              "Gerard Pedrycz",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Wojciech Zwierzchowski",
+              "Piotr Żołądek"
+            ],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Krystian Jarubas",
+              "Jerzy Materek",
+              "Andrzej Mochoń",
+              "Marek Strzała"
+            ]
+          }
+        },
+        {
+          "vote_index": 12,
+          "vote_type": "uchwala",
+          "topic": "skargi na Wojewódzki Ośrodek Ruchu Drogowego w Kielcach:",
+          "counts": {
+            "za": 18,
+            "przeciw": 0,
+            "wstrzymal_sie": 8,
+            "brak_glosu": 0,
+            "nieobecni": 4
+          },
+          "voted_at": "2026-03-23 12:45:43",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Łukasz Jabłoński",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Kazimierz Mądzik",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Magdalena Zieleń"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [
+              "Jolanta Madioury",
+              "Henryk Milcarz",
+              "Gerard Pedrycz",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Wojciech Zwierzchowski",
+              "Piotr Żołądek"
+            ],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Krystian Jarubas",
+              "Jerzy Materek",
+              "Andrzej Mochoń"
+            ]
+          }
+        },
+        {
+          "vote_index": 13,
+          "vote_type": "uchwala",
+          "topic": "apelu dotyczącego działań Narodowego Funduszu Zdrowia i Ministerstwa Zdrowia w zakresie finansowania świadczeń opieki zdrowotnej:",
+          "counts": {
+            "za": 25,
+            "przeciw": 0,
+            "wstrzymal_sie": 0,
+            "brak_glosu": 0,
+            "nieobecni": 5
+          },
+          "voted_at": "2026-03-23 13:57:20",
+          "named_votes": {
+            "za": [
+              "Andrzej Bętkowski",
+              "Marek Bogusławski",
+              "Grzegorz Cepil",
+              "Mieczysław Gębski",
+              "Sławomir Gierada",
+              "Renata Janik",
+              "Anita Koniusz",
+              "Paweł Krakowiak",
+              "Małgorzata Krzywda",
+              "Jan Maćkowiak",
+              "Jolanta Madioury",
+              "Kazimierz Mądzik",
+              "Henryk Milcarz",
+              "Gerard Pedrycz",
+              "Marcin Piętak",
+              "Andrzej Pruś",
+              "Grzegorz Socha",
+              "Marek Strzała",
+              "Katarzyna Suchańska",
+              "Andrzej Swajda",
+              "Jolanta Tyjas",
+              "Waldemar Wrona",
+              "Magdalena Zieleń",
+              "Wojciech Zwierzchowski",
+              "Piotr Żołądek"
+            ],
+            "przeciw": [],
+            "wstrzymal_sie": [],
+            "brak_glosu": [],
+            "nieobecni": [
+              "Arkadiusz Bąk",
+              "Łukasz Jabłoński",
+              "Krystian Jarubas",
+              "Jerzy Materek",
+              "Andrzej Mochoń"
+            ]
+          }
+        }
+      ],
+      "vote_count": 14,
+      "source_url": "https://bip.sejmik.kielce.pl/download/111976-wyniki-glosowan/1269-imienne-wykazy-glosowan-radnych-sejmiku-wojewodztwa-swietokrzyskiego-vii-kadencji-lata-2024-2029/15783-imienny-wykaz-glosowan-radnych-na-xxvi-sesji-sejmiku-wojewodztwa-swietokrzyskiego.html"
+    }
+  ],
+  "total_sessions": 2,
+  "total_votes": 26,
+  "scraped_at": "2026-05-19 10:04:50",
+  "source": "https://bip.sejmik.kielce.pl/1269-imienne-wykazy-glosowan-radnych-sejmiku-wojewodztwa-swietokrzyskiego-vii-kadencji-lata-2024-2029.html"
+}

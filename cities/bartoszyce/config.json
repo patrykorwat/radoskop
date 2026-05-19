@@ -80,6 +80,7 @@
   "rada_name": "Rada Miasta Bartoszyc",
   "rada_name_genitive": "Rady Miasta Bartoszyc",
   "disabled": true,
-  "disabled_reason": "0 sesji rady w deployed kadencji — eSesja nie publikuje sesji aktualnej kadencji",
-  "disabled_date": "2026-05-18"
+  "disabled_reason": "eSesja https://bartoszyce.esesja.pl/glosowania zwraca 0 sesji (audit 2026-05-19). Miasto prawdopodobnie nie używa eSesja do publikacji imiennych głosowań albo używa innej platformy.",
+  "disabled_date": "2026-05-19",
+  "disabled_audit_category": "empty_no_data"
 }
