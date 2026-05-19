@@ -56,6 +56,21 @@ USER_AGENT = (
     "(KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
 )
 
+# Force unbuffered output. NAS subprocess captures stdout/stderr i czasami
+# bufferuje mimo PYTHONUNBUFFERED=1 w Dockerfile (zależy od subprocess.run
+# kwargs). Bez tego print po headerze nigdy nie dociera do logu pipeline'u
+# póki proces nie skończy, więc user widzi półgodzinną ciszę.
+try:
+    sys.stdout.reconfigure(line_buffering=True)
+    sys.stderr.reconfigure(line_buffering=True)
+except AttributeError:
+    pass
+
+
+def log(msg: str) -> None:
+    """Print z natychmiastowym flushem do stderr."""
+    print(msg, file=sys.stderr, flush=True)
+
 # Niemieckie miesiące w slug formie używanej przez landtag-mv.de
 MONTH_SLUGS = [
     "januar", "februar", "maerz", "april", "mai", "juni",
@@ -88,15 +103,15 @@ SECTION_NAMES = {
 NAME_RE = re.compile(r"\(([^)]+)\)\s*([\wÄÖÜäöüß\-\.\s]+?,\s*[\wÄÖÜäöüß\-\.\s]+)")
 
 
-def fetch(url: str, timeout: int = 30) -> str:
-    """GET HTML/PDF, throw on non-2xx."""
+def fetch(url: str, timeout: int = 15) -> str:
+    """GET HTML, throw on non-2xx. Timeout 15s żeby nie wisieć 30s × 56 mcy."""
     r = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=timeout)
     r.raise_for_status()
     r.encoding = "utf-8"
     return r.text
 
 
-def fetch_bytes(url: str, timeout: int = 60) -> bytes:
+def fetch_bytes(url: str, timeout: int = 30) -> bytes:
     r = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=timeout)
     r.raise_for_status()
     return r.content
@@ -270,25 +285,68 @@ def build_kadencja(
     if cache_dir:
         cache_dir.mkdir(parents=True, exist_ok=True)
 
+    # Preflight: sprawdź konektywność do landtag-mv.de zanim wszystkie 56
+    # miesięcy będą timeout'ować po 15s każdy.
+    log("Preflight: sprawdzam landtag-mv.de...")
+    try:
+        r = requests.get(BASE + "/", headers={"User-Agent": USER_AGENT}, timeout=10)
+        log(f"  landtag-mv.de odpowiada HTTP {r.status_code}")
+    except requests.Timeout:
+        log("  ✗ landtag-mv.de timeout 10s. NAS prawdopodobnie nie ma dostępu.")
+        return {
+            "id": KADENCJA_ID, "label": KADENCJA_LABEL, "clubs": {},
+            "sessions": [], "total_sessions": 0, "total_votes": 0,
+            "total_councilors": 0, "councilors": [], "votes": [],
+            "similarity_top": [], "similarity_bottom": [],
+            "scraped_at": time.strftime("%Y-%m-%d %H:%M:%S"), "source": BASE,
+        }
+    except Exception as e:
+        log(f"  ✗ landtag-mv.de error: {type(e).__name__}: {e}")
+        return {
+            "id": KADENCJA_ID, "label": KADENCJA_LABEL, "clubs": {},
+            "sessions": [], "total_sessions": 0, "total_votes": 0,
+            "total_councilors": 0, "councilors": [], "votes": [],
+            "similarity_top": [], "similarity_bottom": [],
+            "scraped_at": time.strftime("%Y-%m-%d %H:%M:%S"), "source": BASE,
+        }
+
     months = list_archive_months(KADENCJA_START, KADENCJA_END)
-    print(f"Skanuję {len(months)} miesięcy archiwum...", file=sys.stderr)
+    log(f"Skanuję {len(months)} miesięcy archiwum landtag-mv.de...")
 
     all_pdf_urls: list[str] = []
-    for slug in months:
+    consecutive_failures = 0
+    for idx, slug in enumerate(months, start=1):
+        prefix = f"[{idx}/{len(months)}] {slug}"
         try:
             urls = fetch_month_pdfs(slug, cache_dir)
+            consecutive_failures = 0
         except requests.HTTPError as e:
             if e.response.status_code == 404:
+                log(f"  {prefix}: 404 (brak strony)")
                 continue
-            print(f"  WARN: {slug}: {e}", file=sys.stderr)
+            log(f"  {prefix}: HTTP {e}")
+            consecutive_failures += 1
+        except requests.Timeout:
+            log(f"  {prefix}: timeout 15s")
+            consecutive_failures += 1
+            if consecutive_failures >= 3:
+                log(
+                    "  ABORT: 3 kolejne timeouty na landtag-mv.de. "
+                    "Sprawdź konektywność z NAS-a. Zostaw cache na dysku, "
+                    "kolejny run podejmie tam gdzie się skończył."
+                )
+                break
             continue
         except Exception as e:
-            print(f"  WARN: {slug}: {e}", file=sys.stderr)
+            log(f"  {prefix}: {type(e).__name__}: {e}")
+            consecutive_failures += 1
             continue
         if urls:
-            print(f"  {slug}: {len(urls)} PDFów", file=sys.stderr)
+            log(f"  {prefix}: {len(urls)} PDFów namentliche")
             all_pdf_urls.extend(urls)
-        time.sleep(0.2)
+        else:
+            log(f"  {prefix}: brak namentliche")
+        time.sleep(0.15)
 
     # Dedup
     seen = set()
@@ -298,20 +356,22 @@ def build_kadencja(
             seen.add(u)
             pdf_urls_unique.append(u)
 
-    print(f"Razem {len(pdf_urls_unique)} unikalnych PDFów namentliche", file=sys.stderr)
+    log(f"Razem {len(pdf_urls_unique)} unikalnych PDFów namentliche")
 
     if limit_sessions:
         pdf_urls_unique = pdf_urls_unique[:limit_sessions]
+        log(f"  ograniczono do {len(pdf_urls_unique)} (--limit)")
 
     votes: list[dict] = []
     sessions: dict[tuple[str, str], dict] = {}
     all_councilors: dict[str, str] = {}  # name -> fraktion (last seen wins)
 
-    for pdf_url in pdf_urls_unique:
+    for pdf_idx, pdf_url in enumerate(pdf_urls_unique, start=1):
         meta = parse_pdf_filename(pdf_url)
         if not meta:
-            print(f"  WARN: nie parsuję nazwy {pdf_url}", file=sys.stderr)
+            log(f"  [{pdf_idx}/{len(pdf_urls_unique)}] WARN: nie parsuję nazwy {pdf_url}")
             continue
+        log(f"  [{pdf_idx}/{len(pdf_urls_unique)}] {meta['filename']}")
 
         sess_key = (meta["session_date"], meta["session_number"])
         if sess_key not in sessions:
@@ -331,14 +391,14 @@ def build_kadencja(
                 try:
                     pdf_local.write_bytes(fetch_bytes(pdf_url))
                 except Exception as e:
-                    print(f"  ERR pobierania {meta['filename']}: {e}", file=sys.stderr)
+                    log(f"  ERR pobierania {meta['filename']}: {e}")
                     continue
                 time.sleep(0.2)
         else:
             try:
                 content = fetch_bytes(pdf_url)
             except Exception as e:
-                print(f"  ERR pobierania {meta['filename']}: {e}", file=sys.stderr)
+                log(f"  ERR pobierania {meta['filename']}: {e}")
                 continue
             import tempfile
             pdf_local = Path(tempfile.mktemp(suffix=".pdf"))
@@ -347,7 +407,7 @@ def build_kadencja(
         try:
             parsed = parse_pdf_text(pdf_local)
         except Exception as e:
-            print(f"  ERR parsowania {meta['filename']}: {e}", file=sys.stderr)
+            log(f"  ERR parsowania {meta['filename']}: {e}")
             continue
 
         counts = {cat: len(parsed["named_votes"][cat]) for cat in parsed["named_votes"]}
@@ -383,7 +443,7 @@ def build_kadencja(
         for name, fraktion in parsed["councilor_clubs"].items():
             all_councilors[name] = fraktion
 
-    print(f"Sparsowano {len(votes)} głosowań z {len(sessions)} sesji, {len(all_councilors)} posłów", file=sys.stderr)
+    log(f"Sparsowano {len(votes)} głosowań z {len(sessions)} sesji, {len(all_councilors)} posłów")
 
     # Build councilors list with stats
     councilors = _build_councilors(votes, all_councilors)
@@ -517,22 +577,24 @@ def main() -> int:
                         help="Limit PDFów (debug)")
     args = parser.parse_args()
 
-    print("=== Radoskop scraper: Landtag Mecklenburg-Vorpommern ===", file=sys.stderr)
+    log("=== Radoskop scraper: Landtag Mecklenburg-Vorpommern ===")
+    log(f"  cache: {args.cache}")
+    log(f"  output: {args.output}")
 
     kadencja = build_kadencja(cache_dir=args.cache, limit_sessions=args.limit)
 
     # Guard: jeśli żadnych głosowań, nie nadpisuj istniejących
     if kadencja["total_votes"] == 0 and (args.output.parent / f"kadencja-{KADENCJA_ID}.json").exists():
-        print(f"\n✗ Zero głosowań, nie nadpisuję {args.output}", file=sys.stderr)
+        log(f"\n✗ Zero głosowań, nie nadpisuję {args.output}")
         return 1
 
     save_split_output(kadencja, args.output)
 
-    print(f"\n✓ Zapisano {args.output}", file=sys.stderr)
-    print(f"  Sesji: {kadencja['total_sessions']}", file=sys.stderr)
-    print(f"  Głosowań: {kadencja['total_votes']}", file=sys.stderr)
-    print(f"  Posłów: {kadencja['total_councilors']}", file=sys.stderr)
-    print(f"  Frakcje: {dict(kadencja['clubs'])}", file=sys.stderr)
+    log(f"\n✓ Zapisano {args.output}")
+    log(f"  Sesji: {kadencja['total_sessions']}")
+    log(f"  Głosowań: {kadencja['total_votes']}")
+    log(f"  Posłów: {kadencja['total_councilors']}")
+    log(f"  Frakcje: {dict(kadencja['clubs'])}")
     return 0
 
 
