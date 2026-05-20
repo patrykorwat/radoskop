@@ -883,6 +883,180 @@ PL_TO_SK: list[tuple[str, str]] = [
 ]
 
 
+PL_TO_ET: list[tuple[str, str]] = [
+    # ── Nawigacja i taby ─────────────────────────────────────────────
+    ("Mapa dostępności z monitorowanymi miastami", "Jälgitavate linnade katvuskaart"),
+    ("Mapa dostępności", "Katvuskaart"),
+    # Auth / theme toggle
+    ("Zaloguj się", "Logi sisse"),
+    ("Wyloguj", "Logi välja"),
+    ("Ciemny", "Tume"),
+    ("Jasny", "Hele"),
+    # Vote topic categories
+    ("Zdrowie/Społeczne", "Tervishoid/Sotsiaalne"),
+    ("Inwestycje", "Investeeringud"),
+    ("Środowisko", "Keskkond"),
+    ("Proceduralne", "Protseduurilised"),
+    ("Kultura", "Kultuur"),
+    ("Transport", "Transport"),
+    ("Inne", "Muud"),
+    # Filtry per klub + skróty kolumn rankingu
+    ("Wszyscy", "Kõik"),
+    ("Wbrew klubowi", "Fraktsiooni vastu"),
+    ("Wstrzym.", "Erap."),
+    ("Brak gł.", "Ei hääl."),
+    ("Radny/a", "Volikogu liige"),
+    # Cross-promo baner
+    ("Polecane (projekt zewnętrzny):", "Soovitatav (väline projekt):"),
+    ("Tygodnik Sejmowy — analiza prac Sejmu RP", "Tygodnik Sejmowy — Poola parlamendi töö analüüs"),
+    ("Szukaj radnego...", "Otsi volikogu liiget..."),
+    ("Jak głosują radni Miasta {{CITY_GENITIVE}}? Dane z protokołów BIP.",
+     "Kuidas hääletavad {{CITY_GENITIVE}} linnavolikogu liikmed? Andmed ametlikest protokollidest."),
+    ("Jak głosują radni?", "Kuidas volikogu liikmed hääletavad?"),
+    ("Rada Miasta {{CITY_GENITIVE}}", "{{CITY_NAME}} linnavolikogu"),
+    ("wszystkie miasta", "kõik linnad"),
+    ("Dane źródłowe:", "Allikandmed:"),
+    ("Raporty", "Aruanded"),
+    ("Polityka prywatności", "Privaatsuspoliitika"),
+    ("Regulamin", "Kasutustingimused"),
+    ("Najbardziej aktywni radni", "Kõige aktiivsemad volikogu liikmed"),
+    ("Najczęściej głosują tak samo", "Hääletavad kõige sagedamini ühtemoodi"),
+    ("Najrzadziej głosują tak samo", "Hääletavad kõige harvemini ühtemoodi"),
+    ("Profile radnych", "Volikogu liikmete profiilid"),
+    ("Ranking radnych", "Volikogu liikmete edetabel"),
+    ("Kto z kim głosuje", "Kes kellega hääletab"),
+    ("Wszystkie wyniki", "Kõik tulemused"),
+    ("Lista interpelacji i zapytań", "Arupärimiste ja küsimuste nimekiri"),
+    ("Interpelacje", "Arupärimised"),
+    ("interpelacji", "arupärimiste"),
+    ("Strona główna", "Avaleht"),
+    ("Powrót do listy", "Tagasi nimekirja"),
+
+    # ── Filtry i sortowania ─────────────────────────────────────────
+    ("Szukaj głosowań po temacie...", "Otsi hääletusi teema järgi..."),
+    ("Szukaj w interpelacjach...", "Otsi arupärimistest..."),
+    ("Następna →", "Järgmine →"),
+    ("Następne →", "Järgmised →"),
+    ("← Poprzednia", "← Eelmine"),
+    ("Wszystkie", "Kõik"),
+    ("Budżet", "Eelarve"),
+    ("Sortuj po", "Sorteeri"),
+    ("Filtruj", "Filtreeri"),
+    ("Pokaż więcej", "Näita rohkem"),
+    ("Pokaż mniej", "Näita vähem"),
+    ("Wyczyść", "Tühjenda"),
+    ("Pozostałe", "Muud"),
+
+    # ── Etykiety w tabelach i kartach ───────────────────────────────
+    ("Aktywność na sesjach", "Aktiivsus istungitel"),
+    ("Aktywność mówców", "Sõnavõtjate aktiivsus"),
+    ("Frekwencja", "Osalus"),
+    ("Aktywność", "Aktiivsus"),
+    ("Zgodność z klubem", "Fraktsiooni ühtsus"),
+    ("Podobieństwo", "Sarnasus"),
+    ("Buntów", "Eriarvamusi"),
+    ("Sesji z wypowiedzią", "Istungit sõnavõtuga"),
+    ("Słów łącznie", "Sõnu kokku"),
+    ("Mówców", "Sõnavõtjaid"),
+    ("Słowa", "Sõnad"),
+    ("Słów", "Sõnade"),
+    ("Wystąpień", "Sõnavõtte"),
+    ("wystąpień", "sõnavõtte"),
+    ("Obecnych", "Kohal"),
+    ("Obecni", "Kohal olevad"),
+    ("obecnych radnych", "kohal olevat volikogu liiget"),
+    ("obecnych", "kohal olevat"),
+    ("Nieobecnych", "Puudub"),
+    ("Nieobecni", "Puuduvad"),
+    ("głosowań", "hääletust"),
+    ("Głosy na sesjach", "Hääled istungitel"),
+    ("Głosy wbrew klubowi", "Hääled fraktsiooni vastu"),
+    ("Głosy przeciw (%)", "Vastu (%)"),
+    ("Głosy za (%)", "Poolt (%)"),
+    ("Głosowania budżetowe", "Eelarve hääletused"),
+    ("Głosowania, w których się różnili", "Hääletused, milles arvamused erinesid"),
+    ("Głosowania", "Hääletused"),
+    ("Głosowanie", "Hääletus"),
+    ("Głosowań", "Hääletuste"),
+    ("Głosy", "Hääled"),
+    ("Sesje", "Istungid"),
+    ("Sesja", "Istung"),
+    ("Ładowanie sesji...", "Istungite laadimine..."),
+    ("Ładowanie głosowań...", "Hääletuste laadimine..."),
+    ("Porównanie metryk", "Näitajate võrdlus"),
+    ("Raporty klubów", "Fraktsioonide aruanded"),
+    ("Raporty radnych", "Volikogu liikmete aruanded"),
+    ("Pobierz kartę (PNG)", "Laadi kaart alla (PNG)"),
+    ("Pobierz kartę", "Laadi kaart alla"),
+    ("Protokół głosowania (BIP) ↗", "Hääletusprotokoll (allikas) ↗"),
+    ("Struktura wydatków", "Kulude struktuur"),
+    ("Polityce prywatności", "privaatsuspoliitikas"),
+    ("Rok budżetowy:", "Eelarveaasta:"),
+    ("Komisje", "Komisjonid"),
+    ("Komisji", "Komisjonide"),
+    ("Klub", "Fraktsioon"),
+    ("Kluby", "Fraktsioonid"),
+    ("Kadencje", "Ametiajad"),
+    ("Kadencja", "Ametiaeg"),
+    ("Radny/a", "Volikogu liige"),
+    ("Radnych", "Volikogu liikmete"),
+    ("Radni", "Volikogu liikmed"),
+    ("Okręg wyborczy", "Valimisringkond"),
+    ("Temat", "Teema"),
+    ("Treść", "Sisu"),
+    ("Odpowiedź", "Vastus"),
+    ("Data", "Kuupäev"),
+    ("Wyniki", "Tulemused"),
+    ("Wynik", "Tulemus"),
+
+    # ── Wartości głosowań ────────────────────────────────────────────
+    ("Brak głosu", "Ei hääletanud"),
+    ("Wstrzymał się", "Erapooletu"),
+    ("Wstrzymała się", "Erapooletu"),
+    ("Nieobecny", "Puudus"),
+    ("Nieobecna", "Puudus"),
+    ("Przyjęte", "Vastu võetud"),
+    ("Przyjętych", "Vastu võetud"),
+    ("Odrzucone", "Tagasi lükatud"),
+    ("Przeciw", "Vastu"),
+    ("Za", "Poolt"),
+
+    # ── Stany i błędy ────────────────────────────────────────────────
+    ("Brak danych dla tej kadencji", "Selle ametiaja kohta andmed puuduvad"),
+    ("Brak danych o indywidualnych głosowaniach.", "Individuaalsete hääletuste andmed puuduvad."),
+    ("Nie znaleziono głosowania.", "Hääletust ei leitud."),
+    ("Nie znaleziono sesji.", "Istungit ei leitud."),
+    ("Błąd ładowania danych:", "Andmete laadimisviga:"),
+    ("Ładowanie...", "Laadimine..."),
+
+    # ── Akcje ───────────────────────────────────────────────────────
+    ("Udostępnij na Facebooku", "Jaga Facebookis"),
+    ("Udostępnij na X", "Jaga X-is"),
+    ("Udostępnij", "Jaga"),
+    ("Porównaj radnych", "Võrdle volikogu liikmeid"),
+    ("Porównanie radnych", "Volikogu liikmete võrdlus"),
+    ("Porównaj", "Võrdle"),
+    ("Przełącz motyw jasny/ciemny", "Vaheta hele/tume režiim"),
+    ("Sprawdź frekwencję", "Kontrolli osalust"),
+    ("Sprawdź na Radoskopie", "Vaata Radoskopis"),
+
+    # ── Stopka i prawne ─────────────────────────────────────────────
+    ("Są to informacje publiczne", "See on avalik teave"),
+    ("dotyczące działalności", "mis käsitleb tegevust"),
+    ("Dane niepełne", "Mittetäielikud andmed"),
+    ("Dane z protokołów BIP", "Andmed ametlikest protokollidest"),
+    ("Informacje o źródłach danych", "Teave andmeallikate kohta"),
+    ("Jak głosują radni", "Kuidas volikogu liikmed hääletavad"),
+    ("Kontakt", "Kontakt"),
+
+    # ── Skróty i drobne etykiety inline ─────────────────────────────
+    ("Śr. słów/sesję", "Kesk. sõnu/istung"),
+    ("wyp.", "sõnavõtt"),
+    ("słów", "sõna"),
+    ("toLocaleString('pl')", "toLocaleString('et')"),
+]
+
+
 def apply_locale(html: str, locale: str) -> str:
     """Zastosuj tłumaczenia dla danego locale.
 
@@ -891,6 +1065,7 @@ def apply_locale(html: str, locale: str) -> str:
     Locale "de" → słownik PL_TO_DE (Berlin, w przyszłości Hamburg, Wien).
     Locale "cs" → słownik PL_TO_CS (Praha).
     Locale "lt" → słownik PL_TO_LT (Vilnius).
+    Locale "et" → słownik PL_TO_ET (Tallinn).
 
     Wymiana używa regex z negative lookbehind/lookahead na word characters,
     żeby pojedyncze słowa nie trafiały w identyfikatory JS lub CSS classes
@@ -910,6 +1085,7 @@ def apply_locale(html: str, locale: str) -> str:
         "cs": PL_TO_CS,
         "lt": PL_TO_LT,
         "sk": PL_TO_SK,
+        "et": PL_TO_ET,
     }
     d = dictionaries.get(locale.lower())
     if d is None:

@@ -1,5 +1,2346 @@
 {
-  "scraped_at": "2026-05-20T18:00:01Z",
-  "profiles": [],
-  "total": 0
+  "scraped_at": "2026-05-20T21:47:29Z",
+  "profiles": [
+    {
+      "name": "Andreas Butzki",
+      "slug": "andreas-butzki",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 0.0,
+          "zgodnosc_z_klubem": 0.0,
+          "votes_za": 0,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Ann Christin von Allwörden",
+      "slug": "ann-christin-von-allworden",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Anna-Konstanze Schröder",
+      "slug": "anna-konstanze-schroder",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Anne Shepley",
+      "slug": "anne-shepley",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 0.0,
+          "zgodnosc_z_klubem": 0.0,
+          "votes_za": 0,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Barbara Becker-Hornickel",
+      "slug": "barbara-becker-hornickel",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Beate Schlupp",
+      "slug": "beate-schlupp",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Beatrix Hegenkötter",
+      "slug": "beatrix-hegenkotter",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Bettina Martin",
+      "slug": "bettina-martin",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Birgit Hesse",
+      "slug": "birgit-hesse",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Christian Albrecht",
+      "slug": "christian-albrecht",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Christian Brade",
+      "slug": "christian-brade",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Christian Pegel",
+      "slug": "christian-pegel",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Christian Winter",
+      "slug": "christian-winter",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Christiane Berg",
+      "slug": "christiane-berg",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 0.0,
+          "zgodnosc_z_klubem": 0.0,
+          "votes_za": 0,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Christine Klingohr",
+      "slug": "christine-klingohr",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Constanze Oehlrich",
+      "slug": "constanze-oehlrich",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Dagmar Kaselitz",
+      "slug": "dagmar-kaselitz",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Daniel Peters",
+      "slug": "daniel-peters",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Daniel Trepsdorf",
+      "slug": "daniel-trepsdorf",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "David Wulff",
+      "slug": "david-wulff",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Dirk Bruhn",
+      "slug": "dirk-bruhn",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Dirk Stamer",
+      "slug": "dirk-stamer",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Elke-Annette Schmidt",
+      "slug": "elke-annette-schmidt",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 0.0,
+          "zgodnosc_z_klubem": 0.0,
+          "votes_za": 0,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Enrico Schult",
+      "slug": "enrico-schult",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 0.0,
+          "zgodnosc_z_klubem": 0.0,
+          "votes_za": 0,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Eva Maria Schneider-Gärtner",
+      "slug": "eva-maria-schneider-gartner",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 0.0,
+          "zgodnosc_z_klubem": 0.0,
+          "votes_za": 0,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Falko Beitz",
+      "slug": "falko-beitz",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Franz-Robert Liskow",
+      "slug": "franz-robert-liskow",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Grit Schmelzer",
+      "slug": "grit-schmelzer",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Hannes Damm",
+      "slug": "hannes-damm",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Harald Terpe",
+      "slug": "harald-terpe",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Harry Glawe",
+      "slug": "harry-glawe",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 0.0,
+          "zgodnosc_z_klubem": 0.0,
+          "votes_za": 0,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Heiko Miraß",
+      "slug": "heiko-mira",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Henning Foerster",
+      "slug": "henning-foerster",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 0.0,
+          "zgodnosc_z_klubem": 0.0,
+          "votes_za": 0,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Horst Förster",
+      "slug": "horst-forster",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Jan-Phillip Tadsen",
+      "slug": "jan-phillip-tadsen",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Jeannine Rösler",
+      "slug": "jeannine-rosler",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Jens Schulze-Wiehenbrauk",
+      "slug": "jens-schulze-wiehenbrauk",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 0.0,
+          "zgodnosc_z_klubem": 0.0,
+          "votes_za": 0,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Jens-Holger Schneider",
+      "slug": "jens-holger-schneider",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Julian Barlen",
+      "slug": "julian-barlen",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Jutta Wegner",
+      "slug": "jutta-wegner",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Katy Hoffmeister",
+      "slug": "katy-hoffmeister",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Mandy Pfeifer",
+      "slug": "mandy-pfeifer",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Manuela Schwesig",
+      "slug": "manuela-schwesig",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 0.0,
+          "zgodnosc_z_klubem": 0.0,
+          "votes_za": 0,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Marc Reinhardt",
+      "slug": "marc-reinhardt",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 0.0,
+          "zgodnosc_z_klubem": 0.0,
+          "votes_za": 0,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Marcel Falk",
+      "slug": "marcel-falk",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Martin Schmidt",
+      "slug": "martin-schmidt",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Michael Meister",
+      "slug": "michael-meister",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Michael Noetzel",
+      "slug": "michael-noetzel",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Michel-Friedrich Schiefler",
+      "slug": "michel-friedrich-schiefler",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Monique Wölk",
+      "slug": "monique-wolk",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Nadine Julitz",
+      "slug": "nadine-julitz",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Nikolaus Kramer",
+      "slug": "nikolaus-kramer",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Nils Saemann",
+      "slug": "nils-saemann",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 0.0,
+          "zgodnosc_z_klubem": 0.0,
+          "votes_za": 0,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Patrick Dahlemann",
+      "slug": "patrick-dahlemann",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Paul-Joachim Timm",
+      "slug": "paul-joachim-timm",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Petra Federau",
+      "slug": "petra-federau",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Philipp da Cunha",
+      "slug": "philipp-da-cunha",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Rainer Albrecht",
+      "slug": "rainer-albrecht",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Ralf Mucha",
+      "slug": "ralf-mucha",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "René Domke",
+      "slug": "rene-domke",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Robert Northoff",
+      "slug": "robert-northoff",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Sabine Enseleit",
+      "slug": "sabine-enseleit",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Sandy van Baal",
+      "slug": "sandy-van-baal",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Sebastian Ehlers",
+      "slug": "sebastian-ehlers",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Stefanie Drese",
+      "slug": "stefanie-drese",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Steffi Pulz-Debler",
+      "slug": "steffi-pulz-debler",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Stephan J. Reuken",
+      "slug": "stephan-j-reuken",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Sylva Rahm-Präger",
+      "slug": "sylva-rahm-prager",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Thomas de Jesus-Fernandes",
+      "slug": "thomas-de-jesus-fernandes",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Thomas Diener",
+      "slug": "thomas-diener",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 0.0,
+          "zgodnosc_z_klubem": 0.0,
+          "votes_za": 0,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 1,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Thomas Krüger",
+      "slug": "thomas-kruger",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Thomas Würdisch",
+      "slug": "thomas-wurdisch",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Thore Stein",
+      "slug": "thore-stein",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Till Backhaus",
+      "slug": "till-backhaus",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Tilo Gundlack",
+      "slug": "tilo-gundlack",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Torsten Koplin",
+      "slug": "torsten-koplin",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 0,
+          "votes_przeciw": 1,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Torsten Renz",
+      "slug": "torsten-renz",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    },
+    {
+      "name": "Wolfgang Waldmüller",
+      "slug": "wolfgang-waldmuller",
+      "kadencje": {
+        "2021-2026": {
+          "club": "NZ",
+          "club_full": "NZ",
+          "okręg": null,
+          "okręg_dzielnice": null,
+          "roles": [],
+          "komisje": [],
+          "notes": "",
+          "mid_term": false,
+          "former": false,
+          "frekwencja": 20.0,
+          "aktywnosc": 20.0,
+          "zgodnosc_z_klubem": 100.0,
+          "votes_za": 1,
+          "votes_przeciw": 0,
+          "votes_wstrzymal": 0,
+          "votes_brak": 0,
+          "votes_nieobecny": 0,
+          "votes_total": 5,
+          "rebellion_count": 0,
+          "rebellions": [],
+          "has_voting_data": true,
+          "has_activity_data": false
+        }
+      }
+    }
+  ],
+  "total": 78
 }

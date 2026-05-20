@@ -546,8 +546,26 @@ def build_kadencja(
 
     log(f"Sparsowano {len(votes)} głosowań z {len(sessions)} sesji, {len(all_councilors)} posłów")
 
-    # Build councilors list with stats
-    councilors = _build_councilors(votes, all_councilors)
+    # councilor_index: posortowana lista unikalnych nazwisk z poprawnie
+    # sparsowanych głosowań (tylko te które mają przypisaną Fraktion).
+    # build_assembly_metrics.py oczekuje tej listy i indeksów całkowitoliczbowych
+    # w named_votes — analogicznie do sejmików województw.
+    councilor_index: list[str] = sorted(all_councilors.keys())
+    name_to_idx: dict[str, int] = {n: i for i, n in enumerate(councilor_index)}
+
+    # Konwertuj named_votes z list stringów na listy indeksów.
+    # Nazwy nieznane (np. niepoprawnie sparsowane garbage strings z format PDF
+    # bez (Fraktion) prefix) są pomijane — nie trafiają do indeksu.
+    for v in votes:
+        nv_indexed: dict[str, list[int]] = {}
+        for cat, names in v["named_votes"].items():
+            indices = []
+            for n in names:
+                idx = name_to_idx.get(n)
+                if idx is not None:
+                    indices.append(idx)
+            nv_indexed[cat] = indices
+        v["named_votes"] = nv_indexed
 
     # Build sessions list (sorted)
     sessions_list = []
@@ -560,10 +578,10 @@ def build_kadencja(
             "attendees": sorted(s["attendees"]),
         })
 
-    # Club counts
+    # Club counts (z councilor_index + all_councilors)
     club_counts: dict[str, int] = defaultdict(int)
-    for c in councilors:
-        club_counts[c["club"]] += 1
+    for name in councilor_index:
+        club_counts[all_councilors.get(name, "?")] += 1
 
     return {
         "id": KADENCJA_ID,
@@ -572,13 +590,17 @@ def build_kadencja(
         "sessions": sessions_list,
         "total_sessions": len(sessions_list),
         "total_votes": len(votes),
-        "total_councilors": len(councilors),
-        "councilors": councilors,
+        "total_councilors": len(councilor_index),
+        "councilors": [],
+        "councilor_index": councilor_index,
         "votes": votes,
         "similarity_top": [],
         "similarity_bottom": [],
         "scraped_at": time.strftime("%Y-%m-%d %H:%M:%S"),
         "source": BASE,
+        # Klucz prywatny (prefiks _) — nie trafia do kadencja JSON.
+        # Używany przez main() do aktualizacji config.json["club_assignments"].
+        "_club_assignments": dict(all_councilors),
     }
 
 
@@ -658,8 +680,10 @@ def save_split_output(kadencja: dict, out_path: Path) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     kid = kadencja["id"]
     kad_path = out_path.parent / f"kadencja-{kid}.json"
+    # Usuń klucze prywatne (prefiks _) przed zapisem do JSON.
+    kad_to_save = {k: v for k, v in kadencja.items() if not k.startswith("_")}
     with kad_path.open("w", encoding="utf-8") as f:
-        json.dump(kadencja, f, ensure_ascii=False, separators=(",", ":"))
+        json.dump(kad_to_save, f, ensure_ascii=False, separators=(",", ":"))
     index = {
         "generated": datetime.now().isoformat(),
         "default_kadencja": kid,
@@ -692,6 +716,26 @@ def main() -> int:
     if kadencja["total_votes"] == 0 and (args.output.parent / f"kadencja-{KADENCJA_ID}.json").exists():
         log(f"\n✗ Zero głosowań, nie nadpisuję {args.output}")
         return 1
+
+    # Zaktualizuj club_assignments w config.json na podstawie zebranych frakcji.
+    # build_assembly_metrics.py czyta frakcje właśnie z config["club_assignments"],
+    # więc bez tego wszyscy posłowie mają klub "?".
+    config_path = args.output.parent.parent / "config.json"
+    if config_path.is_file() and kadencja.get("councilor_index"):
+        try:
+            with config_path.open(encoding="utf-8") as f:
+                cfg = json.load(f)
+            # Poszerzaj istniejące przypisania (nie kasuj ręcznych poprawek).
+            existing = cfg.get("club_assignments", {})
+            new_assignments = kadencja.get("_club_assignments", {})
+            if new_assignments:
+                merged = {**new_assignments, **existing}  # existing wygrywa
+                cfg["club_assignments"] = merged
+                with config_path.open("w", encoding="utf-8") as f:
+                    json.dump(cfg, f, ensure_ascii=False, indent=2)
+                log(f"  Zaktualizowano club_assignments ({len(merged)} posłów) w config.json")
+        except Exception as e:
+            log(f"  WARN: nie można zaktualizować config.json: {e}")
 
     save_split_output(kadencja, args.output)
 

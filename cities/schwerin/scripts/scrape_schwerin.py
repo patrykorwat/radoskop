@@ -573,10 +573,18 @@ def main() -> int:
 
     kadencja = build_kadencja(cache_dir=args.cache, limit_sessions=args.limit)
 
-    if kadencja["total_votes"] == 0 and (args.output.parent / f"kadencja-{KADENCJA_ID}.json").exists():
-        print(f"\n✗ Zero głosowań, nie nadpisuję {args.output}", file=sys.stderr)
-        return 1
+    kad_file = args.output.parent / f"kadencja-{KADENCJA_ID}.json"
+    if kadencja["total_votes"] == 0 and kad_file.exists():
+        # Mamy poprzednie dane z niepustym scrape. Nie nadpisuj zerami.
+        # return 0 (NIE 1) żeby scrape_all.sh nie traktował jako fatal BLAD
+        # i pipeline kontynuował deploy istniejącego data.json.
+        log(f"\n⚠ Zero głosowań w tym runie, zachowuję poprzednie {args.output}")
+        return 0
 
+    # Pierwszy run (brak kadencja file) albo niepuste dane: zapisz.
+    # Nawet przy 0 votes zapisujemy poprawny pusty data.json z kadencje
+    # array, żeby SPA pokazało "brak głosowań" zamiast RAW.kadencje
+    # undefined / 404. Bez tego strona Schwerina crashuje na starcie.
     save_split_output(kadencja, args.output)
 
     print(f"\n✓ Zapisano {args.output}", file=sys.stderr)
