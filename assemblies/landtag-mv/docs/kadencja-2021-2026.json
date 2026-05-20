@@ -137,12 +137,12 @@
   ],
   "total_sessions": 5,
   "total_votes": 5,
-  "total_councilors": 78,
+  "total_councilors": 83,
   "councilors": [
     {
       "name": "Andreas Butzki",
       "slug": "andreas-butzki",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
@@ -158,7 +158,7 @@
     {
       "name": "Ann Christin von Allwörden",
       "slug": "ann-christin-von-allworden",
-      "club": "NZ",
+      "club": "CDU",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -174,7 +174,7 @@
     {
       "name": "Anna-Konstanze Schröder",
       "slug": "anna-konstanze-schroder",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -190,7 +190,7 @@
     {
       "name": "Anne Shepley",
       "slug": "anne-shepley",
-      "club": "NZ",
+      "club": "BÜNDNIS 90/DIE GRÜNEN",
       "frekwencja": 20.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
@@ -206,7 +206,7 @@
     {
       "name": "Barbara Becker-Hornickel",
       "slug": "barbara-becker-hornickel",
-      "club": "NZ",
+      "club": "Gruppe der FDP",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -222,7 +222,7 @@
     {
       "name": "Beate Schlupp",
       "slug": "beate-schlupp",
-      "club": "NZ",
+      "club": "CDU",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -238,7 +238,7 @@
     {
       "name": "Beatrix Hegenkötter",
       "slug": "beatrix-hegenkotter",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -254,7 +254,7 @@
     {
       "name": "Bettina Martin",
       "slug": "bettina-martin",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -270,7 +270,7 @@
     {
       "name": "Birgit Hesse",
       "slug": "birgit-hesse",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -286,7 +286,7 @@
     {
       "name": "Christian Albrecht",
       "slug": "christian-albrecht",
-      "club": "NZ",
+      "club": "Die Linke",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -302,7 +302,7 @@
     {
       "name": "Christian Brade",
       "slug": "christian-brade",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -318,7 +318,7 @@
     {
       "name": "Christian Pegel",
       "slug": "christian-pegel",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -334,7 +334,7 @@
     {
       "name": "Christian Winter",
       "slug": "christian-winter",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -350,7 +350,7 @@
     {
       "name": "Christiane Berg",
       "slug": "christiane-berg",
-      "club": "NZ",
+      "club": "CDU",
       "frekwencja": 20.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
@@ -366,7 +366,7 @@
     {
       "name": "Christine Klingohr",
       "slug": "christine-klingohr",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -382,7 +382,7 @@
     {
       "name": "Constanze Oehlrich",
       "slug": "constanze-oehlrich",
-      "club": "NZ",
+      "club": "BÜNDNIS 90/DIE GRÜNEN",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -398,7 +398,7 @@
     {
       "name": "Dagmar Kaselitz",
       "slug": "dagmar-kaselitz",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -414,7 +414,7 @@
     {
       "name": "Daniel Peters",
       "slug": "daniel-peters",
-      "club": "NZ",
+      "club": "CDU",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -430,7 +430,7 @@
     {
       "name": "Daniel Trepsdorf",
       "slug": "daniel-trepsdorf",
-      "club": "NZ",
+      "club": "Die Linke",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -446,7 +446,7 @@
     {
       "name": "David Wulff",
       "slug": "david-wulff",
-      "club": "NZ",
+      "club": "Gruppe der FDP",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -462,7 +462,7 @@
     {
       "name": "Dirk Bruhn",
       "slug": "dirk-bruhn",
-      "club": "NZ",
+      "club": "Die Linke",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -478,7 +478,7 @@
     {
       "name": "Dirk Stamer",
       "slug": "dirk-stamer",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -494,7 +494,7 @@
     {
       "name": "Elke-Annette Schmidt",
       "slug": "elke-annette-schmidt",
-      "club": "NZ",
+      "club": "Die Linke",
       "frekwencja": 20.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
@@ -510,7 +510,7 @@
     {
       "name": "Enrico Schult",
       "slug": "enrico-schult",
-      "club": "NZ",
+      "club": "AfD",
       "frekwencja": 20.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
@@ -526,7 +526,7 @@
     {
       "name": "Eva Maria Schneider-Gärtner",
       "slug": "eva-maria-schneider-gartner",
-      "club": "NZ",
+      "club": "fraktionslos",
       "frekwencja": 20.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
@@ -542,7 +542,7 @@
     {
       "name": "Falko Beitz",
       "slug": "falko-beitz",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -558,7 +558,7 @@
     {
       "name": "Franz-Robert Liskow",
       "slug": "franz-robert-liskow",
-      "club": "NZ",
+      "club": "CDU",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -574,7 +574,7 @@
     {
       "name": "Grit Schmelzer",
       "slug": "grit-schmelzer",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -590,7 +590,7 @@
     {
       "name": "Hannes Damm",
       "slug": "hannes-damm",
-      "club": "NZ",
+      "club": "BÜNDNIS 90/DIE GRÜNEN",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -606,7 +606,7 @@
     {
       "name": "Harald Terpe",
       "slug": "harald-terpe",
-      "club": "NZ",
+      "club": "BÜNDNIS 90/DIE GRÜNEN",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -622,7 +622,7 @@
     {
       "name": "Harry Glawe",
       "slug": "harry-glawe",
-      "club": "NZ",
+      "club": "CDU",
       "frekwencja": 20.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
@@ -638,7 +638,7 @@
     {
       "name": "Heiko Miraß",
       "slug": "heiko-mira",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -654,7 +654,7 @@
     {
       "name": "Henning Foerster",
       "slug": "henning-foerster",
-      "club": "NZ",
+      "club": "Die Linke",
       "frekwencja": 20.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
@@ -670,7 +670,7 @@
     {
       "name": "Horst Förster",
       "slug": "horst-forster",
-      "club": "NZ",
+      "club": "AfD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -686,7 +686,7 @@
     {
       "name": "Jan-Phillip Tadsen",
       "slug": "jan-phillip-tadsen",
-      "club": "NZ",
+      "club": "AfD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -702,7 +702,7 @@
     {
       "name": "Jeannine Rösler",
       "slug": "jeannine-rosler",
-      "club": "NZ",
+      "club": "Die Linke",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -718,7 +718,7 @@
     {
       "name": "Jens Schulze-Wiehenbrauk",
       "slug": "jens-schulze-wiehenbrauk",
-      "club": "NZ",
+      "club": "AfD",
       "frekwencja": 20.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
@@ -734,7 +734,7 @@
     {
       "name": "Jens-Holger Schneider",
       "slug": "jens-holger-schneider",
-      "club": "NZ",
+      "club": "AfD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -750,7 +750,7 @@
     {
       "name": "Julian Barlen",
       "slug": "julian-barlen",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -766,7 +766,7 @@
     {
       "name": "Jutta Wegner",
       "slug": "jutta-wegner",
-      "club": "NZ",
+      "club": "BÜNDNIS 90/DIE GRÜNEN",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -782,7 +782,7 @@
     {
       "name": "Katy Hoffmeister",
       "slug": "katy-hoffmeister",
-      "club": "NZ",
+      "club": "CDU",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -798,7 +798,7 @@
     {
       "name": "Mandy Pfeifer",
       "slug": "mandy-pfeifer",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -814,7 +814,7 @@
     {
       "name": "Manuela Schwesig",
       "slug": "manuela-schwesig",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
@@ -830,7 +830,7 @@
     {
       "name": "Marc Reinhardt",
       "slug": "marc-reinhardt",
-      "club": "NZ",
+      "club": "CDU",
       "frekwencja": 20.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
@@ -846,7 +846,7 @@
     {
       "name": "Marcel Falk",
       "slug": "marcel-falk",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -862,7 +862,7 @@
     {
       "name": "Martin Schmidt",
       "slug": "martin-schmidt",
-      "club": "NZ",
+      "club": "AfD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -876,9 +876,25 @@
       "rebellions": []
     },
     {
+      "name": "Martina\nElektronische Abstimmung über Votebox. Infos über Verfahren Tegtmeier",
+      "slug": "martina-elektronische-abstimmung-uber-votebox-infos-uber-verfahren-tegtmeier",
+      "club": "SPD",
+      "frekwencja": 20.0,
+      "aktywnosc": 0.0,
+      "zgodnosc_z_klubem": 0.0,
+      "votes_za": 0,
+      "votes_przeciw": 0,
+      "votes_wstrzymal": 0,
+      "votes_brak": 1,
+      "votes_nieobecny": 0,
+      "votes_total": 5,
+      "rebellion_count": 0,
+      "rebellions": []
+    },
+    {
       "name": "Michael Meister",
       "slug": "michael-meister",
-      "club": "NZ",
+      "club": "AfD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -894,7 +910,7 @@
     {
       "name": "Michael Noetzel",
       "slug": "michael-noetzel",
-      "club": "NZ",
+      "club": "Die Linke",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -910,7 +926,7 @@
     {
       "name": "Michel-Friedrich Schiefler",
       "slug": "michel-friedrich-schiefler",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -926,7 +942,7 @@
     {
       "name": "Monique Wölk",
       "slug": "monique-wolk",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -942,7 +958,7 @@
     {
       "name": "Nadine Julitz",
       "slug": "nadine-julitz",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -958,7 +974,7 @@
     {
       "name": "Nikolaus Kramer",
       "slug": "nikolaus-kramer",
-      "club": "NZ",
+      "club": "AfD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -974,7 +990,7 @@
     {
       "name": "Nils Saemann",
       "slug": "nils-saemann",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
@@ -990,7 +1006,7 @@
     {
       "name": "Patrick Dahlemann",
       "slug": "patrick-dahlemann",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1006,7 +1022,7 @@
     {
       "name": "Paul-Joachim Timm",
       "slug": "paul-joachim-timm",
-      "club": "NZ",
+      "club": "AfD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1022,7 +1038,7 @@
     {
       "name": "Petra Federau",
       "slug": "petra-federau",
-      "club": "NZ",
+      "club": "AfD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1038,7 +1054,7 @@
     {
       "name": "Philipp da Cunha",
       "slug": "philipp-da-cunha",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1054,7 +1070,7 @@
     {
       "name": "Rainer Albrecht",
       "slug": "rainer-albrecht",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1070,7 +1086,7 @@
     {
       "name": "Ralf Mucha",
       "slug": "ralf-mucha",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1086,7 +1102,7 @@
     {
       "name": "René Domke",
       "slug": "rene-domke",
-      "club": "NZ",
+      "club": "Gruppe der FDP",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1102,7 +1118,7 @@
     {
       "name": "Robert Northoff",
       "slug": "robert-northoff",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1118,7 +1134,7 @@
     {
       "name": "Sabine Enseleit",
       "slug": "sabine-enseleit",
-      "club": "NZ",
+      "club": "CDU",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1134,7 +1150,7 @@
     {
       "name": "Sandy van Baal",
       "slug": "sandy-van-baal",
-      "club": "NZ",
+      "club": "fraktionslos",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1150,7 +1166,7 @@
     {
       "name": "Sebastian Ehlers",
       "slug": "sebastian-ehlers",
-      "club": "NZ",
+      "club": "CDU",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1164,9 +1180,73 @@
       "rebellions": []
     },
     {
+      "name": "Sicherheit und Datenschutz Berg Christiane 1 StimmeGlawe Harry 1 StimmeFoerster Henning 1 StimmeNoetzel Michael 1 StimmeSchneider-GärtnerEva Maria 1 StimmeDomke René 1 StimmeBarlen Julian 1 StimmeGundlack Tilo 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
+      "slug": "sicherheit-und-datenschutz-berg-christiane-1-stimmeglawe-harry-1-stimmefoerster-henning-1-stimmenoetzel-michael-1-stimmeschneider-gartnereva-maria-1-stimmedomke-rene-1-stimmebarlen-julian-1-stimmegundlack-tilo-1-stimmemartin-bettina-1-stimmemira-heiko-1-stimmesaemann-nils-1-stimmeschwesig-manuela-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
+      "club": "CDU",
+      "frekwencja": 20.0,
+      "aktywnosc": 0.0,
+      "zgodnosc_z_klubem": 0.0,
+      "votes_za": 0,
+      "votes_przeciw": 0,
+      "votes_wstrzymal": 0,
+      "votes_brak": 1,
+      "votes_nieobecny": 0,
+      "votes_total": 5,
+      "rebellion_count": 0,
+      "rebellions": []
+    },
+    {
+      "name": "Sicherheit und Datenschutz Shepley Anne 1 StimmeGlawe Harry 1 Stimmevon Allwörden Ann Christin 1 StimmeSchneider-GärtnerEva Maria 1 StimmeButzki Andreas 1 StimmeHesse Birgit 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
+      "slug": "sicherheit-und-datenschutz-shepley-anne-1-stimmeglawe-harry-1-stimmevon-allworden-ann-christin-1-stimmeschneider-gartnereva-maria-1-stimmebutzki-andreas-1-stimmehesse-birgit-1-stimmemartin-bettina-1-stimmemira-heiko-1-stimmepfeifer-mandy-1-stimmesaemann-nils-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
+      "club": "BÜNDNIS 90/DIE GRÜNEN",
+      "frekwencja": 20.0,
+      "aktywnosc": 0.0,
+      "zgodnosc_z_klubem": 0.0,
+      "votes_za": 0,
+      "votes_przeciw": 0,
+      "votes_wstrzymal": 0,
+      "votes_brak": 1,
+      "votes_nieobecny": 0,
+      "votes_total": 5,
+      "rebellion_count": 0,
+      "rebellions": []
+    },
+    {
+      "name": "Sicherheit und Datenschutz Stein Thore 1 StimmePulz-Debler Steffi 1 StimmeRösler Jeannine 1 StimmeSchneider-GärtnerEva Maria 1 StimmeFalk Marcel 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
+      "slug": "sicherheit-und-datenschutz-stein-thore-1-stimmepulz-debler-steffi-1-stimmerosler-jeannine-1-stimmeschneider-gartnereva-maria-1-stimmefalk-marcel-1-stimmemira-heiko-1-stimmepfeifer-mandy-1-stimmesaemann-nils-1-stimmeschwesig-manuela-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
+      "club": "AfD",
+      "frekwencja": 20.0,
+      "aktywnosc": 0.0,
+      "zgodnosc_z_klubem": 0.0,
+      "votes_za": 0,
+      "votes_przeciw": 0,
+      "votes_wstrzymal": 0,
+      "votes_brak": 1,
+      "votes_nieobecny": 0,
+      "votes_total": 5,
+      "rebellion_count": 0,
+      "rebellions": []
+    },
+    {
+      "name": "Sicherheit und Datenschutz Wegner Jutta 1 StimmeBerg Christiane 1 StimmeGlawe Harry 1 StimmeAlbrecht Christian 1 StimmeFoerster Henning 1 StimmeSchneider-GärtnerEva Maria 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
+      "slug": "sicherheit-und-datenschutz-wegner-jutta-1-stimmeberg-christiane-1-stimmeglawe-harry-1-stimmealbrecht-christian-1-stimmefoerster-henning-1-stimmeschneider-gartnereva-maria-1-stimmesaemann-nils-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
+      "club": "BÜNDNIS 90/DIE GRÜNEN",
+      "frekwencja": 20.0,
+      "aktywnosc": 0.0,
+      "zgodnosc_z_klubem": 0.0,
+      "votes_za": 0,
+      "votes_przeciw": 0,
+      "votes_wstrzymal": 0,
+      "votes_brak": 1,
+      "votes_nieobecny": 0,
+      "votes_total": 5,
+      "rebellion_count": 0,
+      "rebellions": []
+    },
+    {
       "name": "Stefanie Drese",
       "slug": "stefanie-drese",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1182,7 +1262,7 @@
     {
       "name": "Steffi Pulz-Debler",
       "slug": "steffi-pulz-debler",
-      "club": "NZ",
+      "club": "Die Linke",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1198,7 +1278,7 @@
     {
       "name": "Stephan J. Reuken",
       "slug": "stephan-j-reuken",
-      "club": "NZ",
+      "club": "AfD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1214,7 +1294,7 @@
     {
       "name": "Sylva Rahm-Präger",
       "slug": "sylva-rahm-prager",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1230,7 +1310,7 @@
     {
       "name": "Thomas Diener",
       "slug": "thomas-diener",
-      "club": "NZ",
+      "club": "CDU",
       "frekwencja": 20.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
@@ -1246,7 +1326,7 @@
     {
       "name": "Thomas Krüger",
       "slug": "thomas-kruger",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1262,7 +1342,7 @@
     {
       "name": "Thomas Würdisch",
       "slug": "thomas-wurdisch",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1278,7 +1358,7 @@
     {
       "name": "Thomas de Jesus-Fernandes",
       "slug": "thomas-de-jesus-fernandes",
-      "club": "NZ",
+      "club": "AfD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1294,7 +1374,7 @@
     {
       "name": "Thore Stein",
       "slug": "thore-stein",
-      "club": "NZ",
+      "club": "AfD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1310,7 +1390,7 @@
     {
       "name": "Till Backhaus",
       "slug": "till-backhaus",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1326,7 +1406,7 @@
     {
       "name": "Tilo Gundlack",
       "slug": "tilo-gundlack",
-      "club": "NZ",
+      "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1342,7 +1422,7 @@
     {
       "name": "Torsten Koplin",
       "slug": "torsten-koplin",
-      "club": "NZ",
+      "club": "Die Linke",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1358,7 +1438,7 @@
     {
       "name": "Torsten Renz",
       "slug": "torsten-renz",
-      "club": "NZ",
+      "club": "CDU",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1374,7 +1454,7 @@
     {
       "name": "Wolfgang Waldmüller",
       "slug": "wolfgang-waldmuller",
-      "club": "NZ",
+      "club": "CDU",
       "frekwencja": 20.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
@@ -1388,213 +1468,6 @@
       "rebellions": []
     }
   ],
-  "votes": [
-    {
-      "id": "2025-01-31_TOP32",
-      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-01-31_98._Sitzung_Namentliche_Abstimmung_zu_TOP_32.pdf",
-      "session_date": "2025-01-31",
-      "session_number": "98",
-      "topic": "Abstimmung Drs. 8/4505",
-      "druk": "8/4505",
-      "resolution": "Abgelehnt",
-      "counts": {
-        "za": 0,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 1,
-        "nieobecni": 0
-      },
-      "named_votes": {
-        "za": [],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": []
-      },
-      "passed": false
-    },
-    {
-      "id": "2025-04-11_TOP1",
-      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-04-11_104._Sitzung_Namentliche_Abstimmung_zu_Zusatz-TOP_1.pdf",
-      "session_date": "2025-04-11",
-      "session_number": "104",
-      "topic": "Abstimmung Drs. 8/4793",
-      "druk": "8/4793",
-      "resolution": "Abgelehnt",
-      "counts": {
-        "za": 0,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 1,
-        "nieobecni": 0
-      },
-      "named_votes": {
-        "za": [],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": []
-      },
-      "passed": false
-    },
-    {
-      "id": "2025-06-25_TOP8",
-      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-06-25_108.Sitzung_Namentliche_Abstimmung_zu_TOP_8.pdf",
-      "session_date": "2025-06-25",
-      "session_number": "108",
-      "topic": "Abstimmung Drs. 8/5014",
-      "druk": "8/5014",
-      "resolution": "Angenommen",
-      "counts": {
-        "za": 0,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 1,
-        "nieobecni": 0
-      },
-      "named_votes": {
-        "za": [],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": []
-      },
-      "passed": true
-    },
-    {
-      "id": "2025-06-26_TOP22",
-      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-06-26_109.Sitzung_Namentliche_Abstimmung_zu_TOP_22.pdf",
-      "session_date": "2025-06-26",
-      "session_number": "109",
-      "topic": "Abstimmung Drs. 8/5019",
-      "druk": "8/5019",
-      "resolution": "Abgelehnt",
-      "counts": {
-        "za": 0,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 1,
-        "nieobecni": 0
-      },
-      "named_votes": {
-        "za": [],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": []
-      },
-      "passed": false
-    },
-    {
-      "id": "2025-10-10_TOP35",
-      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-10-10-117._Sitzung_Namentliche_Abstimmung_zu_TOP_35.pdf",
-      "session_date": "2025-10-10",
-      "session_number": "117",
-      "topic": "Abstimmung Drs. 8/5297",
-      "druk": "8/5297",
-      "resolution": "Abgelehnt",
-      "counts": {
-        "za": 28,
-        "przeciw": 37,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 14,
-        "nieobecni": 0
-      },
-      "named_votes": {
-        "za": [
-          71,
-          55,
-          33,
-          51,
-          46,
-          66,
-          45,
-          37,
-          72,
-          34,
-          54,
-          28,
-          15,
-          29,
-          39,
-          63,
-          61,
-          40,
-          26,
-          17,
-          76,
-          5,
-          1,
-          77,
-          62,
-          4,
-          59,
-          19
-        ],
-        "przeciw": [
-          9,
-          20,
-          75,
-          47,
-          65,
-          35,
-          18,
-          57,
-          73,
-          38,
-          25,
-          10,
-          56,
-          53,
-          64,
-          44,
-          74,
-          6,
-          8,
-          50,
-          16,
-          14,
-          69,
-          7,
-          31,
-          58,
-          60,
-          11,
-          41,
-          67,
-          48,
-          27,
-          2,
-          21,
-          12,
-          49,
-          70
-        ],
-        "wstrzymal_sie": [],
-        "brak_glosu": [
-          23,
-          36,
-          3,
-          13,
-          68,
-          30,
-          43,
-          32,
-          22,
-          24,
-          0,
-          52,
-          42
-        ],
-        "nieobecni": []
-      },
-      "passed": false
-    }
-  ],
-  "similarity_top": [],
-  "similarity_bottom": [],
-  "scraped_at": "2026-05-20 15:22:22",
-  "source": "https://www.landtag-mv.de",
   "councilor_index": [
     "Andreas Butzki",
     "Ann Christin von Allwörden",
@@ -1642,6 +1515,7 @@
     "Marc Reinhardt",
     "Marcel Falk",
     "Martin Schmidt",
+    "Martina\nElektronische Abstimmung über Votebox. Infos über Verfahren Tegtmeier",
     "Michael Meister",
     "Michael Noetzel",
     "Michel-Friedrich Schiefler",
@@ -1660,6 +1534,10 @@
     "Sabine Enseleit",
     "Sandy van Baal",
     "Sebastian Ehlers",
+    "Sicherheit und Datenschutz Berg Christiane 1 StimmeGlawe Harry 1 StimmeFoerster Henning 1 StimmeNoetzel Michael 1 StimmeSchneider-GärtnerEva Maria 1 StimmeDomke René 1 StimmeBarlen Julian 1 StimmeGundlack Tilo 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
+    "Sicherheit und Datenschutz Shepley Anne 1 StimmeGlawe Harry 1 Stimmevon Allwörden Ann Christin 1 StimmeSchneider-GärtnerEva Maria 1 StimmeButzki Andreas 1 StimmeHesse Birgit 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
+    "Sicherheit und Datenschutz Stein Thore 1 StimmePulz-Debler Steffi 1 StimmeRösler Jeannine 1 StimmeSchneider-GärtnerEva Maria 1 StimmeFalk Marcel 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
+    "Sicherheit und Datenschutz Wegner Jutta 1 StimmeBerg Christiane 1 StimmeGlawe Harry 1 StimmeAlbrecht Christian 1 StimmeFoerster Henning 1 StimmeSchneider-GärtnerEva Maria 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
     "Stefanie Drese",
     "Steffi Pulz-Debler",
     "Stephan J. Reuken",
@@ -1674,5 +1552,221 @@
     "Torsten Koplin",
     "Torsten Renz",
     "Wolfgang Waldmüller"
-  ]
+  ],
+  "votes": [
+    {
+      "id": "2025-01-31_TOP32",
+      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-01-31_98._Sitzung_Namentliche_Abstimmung_zu_TOP_32.pdf",
+      "session_date": "2025-01-31",
+      "session_number": "98",
+      "topic": "Abstimmung Drs. 8/4505",
+      "druk": "8/4505",
+      "resolution": "Abgelehnt",
+      "counts": {
+        "za": 0,
+        "przeciw": 0,
+        "wstrzymal_sie": 0,
+        "brak_glosu": 1,
+        "nieobecni": 0
+      },
+      "named_votes": {
+        "za": [],
+        "przeciw": [],
+        "wstrzymal_sie": [],
+        "brak_glosu": [
+          66
+        ],
+        "nieobecni": []
+      },
+      "passed": false
+    },
+    {
+      "id": "2025-04-11_TOP1",
+      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-04-11_104._Sitzung_Namentliche_Abstimmung_zu_Zusatz-TOP_1.pdf",
+      "session_date": "2025-04-11",
+      "session_number": "104",
+      "topic": "Abstimmung Drs. 8/4793",
+      "druk": "8/4793",
+      "resolution": "Abgelehnt",
+      "counts": {
+        "za": 0,
+        "przeciw": 0,
+        "wstrzymal_sie": 0,
+        "brak_glosu": 1,
+        "nieobecni": 0
+      },
+      "named_votes": {
+        "za": [],
+        "przeciw": [],
+        "wstrzymal_sie": [],
+        "brak_glosu": [
+          67
+        ],
+        "nieobecni": []
+      },
+      "passed": false
+    },
+    {
+      "id": "2025-06-25_TOP8",
+      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-06-25_108.Sitzung_Namentliche_Abstimmung_zu_TOP_8.pdf",
+      "session_date": "2025-06-25",
+      "session_number": "108",
+      "topic": "Abstimmung Drs. 8/5014",
+      "druk": "8/5014",
+      "resolution": "Angenommen",
+      "counts": {
+        "za": 0,
+        "przeciw": 0,
+        "wstrzymal_sie": 0,
+        "brak_glosu": 1,
+        "nieobecni": 0
+      },
+      "named_votes": {
+        "za": [],
+        "przeciw": [],
+        "wstrzymal_sie": [],
+        "brak_glosu": [
+          68
+        ],
+        "nieobecni": []
+      },
+      "passed": true
+    },
+    {
+      "id": "2025-06-26_TOP22",
+      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-06-26_109.Sitzung_Namentliche_Abstimmung_zu_TOP_22.pdf",
+      "session_date": "2025-06-26",
+      "session_number": "109",
+      "topic": "Abstimmung Drs. 8/5019",
+      "druk": "8/5019",
+      "resolution": "Abgelehnt",
+      "counts": {
+        "za": 0,
+        "przeciw": 0,
+        "wstrzymal_sie": 0,
+        "brak_glosu": 1,
+        "nieobecni": 0
+      },
+      "named_votes": {
+        "za": [],
+        "przeciw": [],
+        "wstrzymal_sie": [],
+        "brak_glosu": [
+          65
+        ],
+        "nieobecni": []
+      },
+      "passed": false
+    },
+    {
+      "id": "2025-10-10_TOP35",
+      "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-10-10-117._Sitzung_Namentliche_Abstimmung_zu_TOP_35.pdf",
+      "session_date": "2025-10-10",
+      "session_number": "117",
+      "topic": "Abstimmung Drs. 8/5297",
+      "druk": "8/5297",
+      "resolution": "Abgelehnt",
+      "counts": {
+        "za": 28,
+        "przeciw": 37,
+        "wstrzymal_sie": 0,
+        "brak_glosu": 14,
+        "nieobecni": 0
+      },
+      "named_votes": {
+        "za": [
+          76,
+          56,
+          33,
+          52,
+          47,
+          71,
+          45,
+          37,
+          77,
+          34,
+          55,
+          28,
+          15,
+          29,
+          39,
+          64,
+          62,
+          40,
+          26,
+          17,
+          81,
+          5,
+          1,
+          82,
+          63,
+          4,
+          60,
+          19
+        ],
+        "przeciw": [
+          9,
+          20,
+          80,
+          48,
+          70,
+          35,
+          18,
+          58,
+          78,
+          38,
+          25,
+          10,
+          57,
+          54,
+          69,
+          44,
+          79,
+          6,
+          8,
+          51,
+          16,
+          14,
+          74,
+          7,
+          31,
+          59,
+          61,
+          11,
+          41,
+          72,
+          49,
+          27,
+          2,
+          21,
+          12,
+          50,
+          75
+        ],
+        "wstrzymal_sie": [],
+        "brak_glosu": [
+          23,
+          36,
+          3,
+          13,
+          73,
+          30,
+          43,
+          32,
+          22,
+          24,
+          0,
+          53,
+          42,
+          46
+        ],
+        "nieobecni": []
+      },
+      "passed": false
+    }
+  ],
+  "similarity_top": [],
+  "similarity_bottom": [],
+  "scraped_at": "2026-05-21 00:19:40",
+  "source": "https://www.landtag-mv.de"
 }
