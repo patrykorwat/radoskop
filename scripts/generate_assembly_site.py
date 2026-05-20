@@ -343,7 +343,12 @@ def main() -> int:
         root_url = "https://radoskop.pl"
         default_sub_apex = "radoskop.pl"
 
+    # Reguły kategoryzacji per locale. Polskie sejmiki → pl, Landtag MV → de.
+    from vote_categories import generate_cat_rules_js
+    _cat_rules_js = generate_cat_rules_js(cfg.get("locale", "pl"))
+
     replacements = {
+        "{{CAT_RULES_JS}}": _cat_rules_js,
         # Sejmiki/landy nie używają disclaimera per-radny — wszystkie polskie
         # sejmiki mają imienne głosowania, Landtag MV ma per-Abgeordneten.
         # Placeholder pusty żeby template nie miał {{...}} leftover.

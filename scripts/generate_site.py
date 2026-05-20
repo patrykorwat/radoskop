@@ -670,8 +670,14 @@ def main():
     else:
         vote_disclaimer_html = ""
 
+    # Reguły kategoryzacji per locale (litewskie dla Wilna, słowackie dla
+    # Bratysławy itd.). Fallback PL gdy locale nieobsługiwany.
+    from vote_categories import generate_cat_rules_js
+    _cat_rules_js = generate_cat_rules_js(config.get("locale", "pl"))
+
     # Build replacements
     replacements = {
+        "{{CAT_RULES_JS}}": _cat_rules_js,
         "{{VOTE_DATA_DISCLAIMER}}": vote_disclaimer_html,
         "{{CITY_NAME}}": config["city_name"],
         "{{CITY_GENITIVE}}": config["city_genitive"],
