@@ -73,7 +73,10 @@ def transform_template_for_assembly(html: str, kind: str = "wojewodztwo") -> str
         # Wszystkie polskie odmiany "Rada Miasta" idą na "Landtag", bez
         # odmieniania (Landtag w niemieckim się nie odmienia). Plus odmiana
         # CITY_NAME na CITY_GENITIVE jest robiona przez placeholdery niżej.
+        # Dodatkowe frazy bez "Rada" prefix: "radni Miasta {{CITY_GENITIVE}}"
+        # w copy/og description, "rada miasta" w meta keywords.
         replacements = [
+            # Z prefixem "Rada"
             ("Rada Miasta", "Landtag"),
             ("rada miasta", "landtag"),
             ("Rady Miasta", "Landtagu"),
@@ -81,6 +84,12 @@ def transform_template_for_assembly(html: str, kind: str = "wojewodztwo") -> str
             ("Radzie Miasta", "Landtagowi"),
             ("Radę Miasta", "Landtag"),
             ("Radą Miasta", "Landtagiem"),
+            # "radni Miasta {{CITY_GENITIVE}}" → "posłowie Landtagu {{CITY_GENITIVE}}"
+            ("radni Miasta", "posłowie Landtagu"),
+            ("radnych Miasta", "posłów Landtagu"),
+            ("radnymi Miasta", "posłami Landtagu"),
+            # Schema.org GovernmentOrganization keywords
+            (", rada miasta, ", ", landtag, "),
         ]
     else:
         replacements = [

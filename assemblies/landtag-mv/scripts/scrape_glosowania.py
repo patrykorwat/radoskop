@@ -120,7 +120,14 @@ SECTION_NAMES = {
 }
 
 # Wpis na liście: "(AfD) Mustermann, Max" lub "(BÜNDNIS 90/DIE GRÜNEN) Schmidt, Anna"
-NAME_RE = re.compile(r"\(([^)]+)\)\s*([\wÄÖÜäöüß\-\.\s]+?,\s*[\wÄÖÜäöüß\-\.\s]+)")
+# Niektórzy posłowie mają tytuł akademicki w nawiasie po nazwisku, np.
+# "(SPD) Northoff (Prof. Dr.), Robert" albo "(SPD) Backhaus (Dr.), Till".
+# Klasa znaków obejmuje też `(` i `)` w body nazwiska. Tytuł jest potem
+# zdejmowany w preprocessingu (post_strip_title).
+NAME_RE = re.compile(r"\(([^)]+)\)\s*([\wÄÖÜäöüß\-\.\s\(\)]+?,\s*[\wÄÖÜäöüß\-\.\s]+)")
+# Tytuł akademicki w nawiasach po nazwisku (Prof. Dr.) lub (Dr.) - usuwamy
+# żeby dwóch posłów o tym samym nazwisku nie pojawiało się jako różni.
+TITLE_PAREN_RE = re.compile(r"\s*\([^)]+\)\s*")
 
 
 def fetch(url: str, timeout: int = 15) -> str:
@@ -279,12 +286,16 @@ def parse_pdf_text(pdf_path: Path) -> dict:
     }
     councilor_clubs: dict[str, str] = {}
 
-    # Podziel tekst na sekcje. Każda sekcja zaczyna się od nazwy
-    # ("Ja", "Nein", "Enthaltung", "Nicht abgestimmt") na początku linii.
-    # Format Votebox jest płaski: po summary linijka z nazwą sekcji,
-    # potem treść jak "(SPD) Nachname, Vorname; (AfD) Nachname, Vorname; ..."
+    # Podziel tekst na sekcje. Real format Votebox MV ma:
+    #   Header summary z procentami: "Ja 43,08 % 28 Stimmen"
+    #   Per-sekcja header (bez procentów): "Ja 28 Stimmen"
+    #   Body z imionami: "(AfD) de Jesus-Fernandes, Thomas; (AfD) ..."
+    # Pattern dopasowuje header "Ja|Nein|Enthaltung|Nicht abgestimmt N Stimmen"
+    # bez procentów (procenty są w summary, my chcemy body section header).
+    # Regex \d+\s+Stimmen wymaga że po liczbie idzie spacja+Stimmen, czyli
+    # natychmiast (nie `,08 % 28 Stimmen` które ma przecinek po liczbie).
     section_pattern = re.compile(
-        r"^(Ja|Nein|Enthaltung|Nicht abgestimmt)\s*(?:\(\d+\))?\s*:?\s*$",
+        r"^(Ja|Nein|Enthaltung|Nicht abgestimmt)\s+\d+\s+Stimmen\s*$",
         re.MULTILINE,
     )
     matches = list(section_pattern.finditer(text))
@@ -302,9 +313,14 @@ def parse_pdf_text(pdf_path: Path) -> dict:
             # "Nachname, Vorname" -> "Vorname Nachname" (Radoskop convention)
             if "," in name_raw:
                 nach, vor = [s.strip() for s in name_raw.split(",", 1)]
+                # Usuń tytuł akademicki z nazwiska, np. "Northoff (Prof. Dr.)"
+                # → "Northoff". Bez tego ten sam poseł pojawiałby się jako
+                # różny w sesjach gdzie format byłby inny.
+                nach = TITLE_PAREN_RE.sub("", nach).strip()
+                vor = TITLE_PAREN_RE.sub("", vor).strip()
                 name = f"{vor} {nach}"
             else:
-                name = name_raw
+                name = TITLE_PAREN_RE.sub("", name_raw).strip()
             named_votes[target_cat].append(name)
             councilor_clubs[name] = fraktion
 

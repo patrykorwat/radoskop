@@ -1,65 +1,65 @@
 {
   "club_assignments": {
-    "Agnese Logina": "Progresīvie",
-    "Aija Melle": "Progresīvie",
-    "Ainārs Šlesers": "Latvija pirmajā vietā",
-    "Aleksejs Rosļikovs": "Stabilitātei!",
-    "Alija Turlaja": "Progresīvie",
-    "Andrejs Klementjevs": "Latvija pirmajā vietā",
-    "Andris Ozols": "Latvija pirmajā vietā",
-    "Ansis Pūpols": "Nacionālā apvienība",
-    "Artūrs Klēbahs": "Suverēnā Vara, Apvienība Jaunlatvieši",
-    "Dainis Locis": "Nacionālā apvienība",
-    "Deniss Kļukins": "Latvija pirmajā vietā",
-    "Dzintra Geka-Vaska": "Jaunā Vienotība",
-    "Dāvis Stalts": "Jaunā Vienotība",
-    "Edgars Bergholcs": "Apvienotais saraksts",
-    "Edgars Ikstens": "Jaunā Vienotība",
-    "Eduards Zivtiņš": "Latvija pirmajā vietā",
-    "Edvards Ratnieks": "Nacionālā apvienība",
-    "Edvards Šlesers": "Latvija pirmajā vietā",
-    "Einārs Cilinskis": "Nacionālā apvienība",
-    "Elīna Treija": "Nacionālā apvienība",
-    "Igors Solomatins": "Suverēnā Vara, Apvienība Jaunlatvieši",
-    "Inese Andersone": "Jaunā Vienotība",
-    "Inese Voika": "Jaunā Vienotība",
-    "Inna Djeri": "Suverēnā Vara, Apvienība Jaunlatvieši",
-    "Jakovs Pliners": "Stabilitātei!",
-    "Jevgēnija Šafraneka": "Latvija pirmajā vietā",
-    "Justīne Panteļējeva": "Progresīvie",
-    "Jūlija Sohina": "Suverēnā Vara, Apvienība Jaunlatvieši",
-    "Jūlija Stepaņenko": "Suverēnā Vara, Apvienība Jaunlatvieši",
-    "Kaspars Krištopans": "Latvija pirmajā vietā",
-    "Kaspars Spunde": "Nacionālā apvienība",
-    "Laima Geikina": "Jaunā Vienotība",
-    "Lauma Paegļkalna": "Jaunā Vienotība",
-    "Lauris Ērenpreiss": "Nacionālā apvienība",
-    "Linda Ozola": "Jaunā Vienotība",
-    "Liāna Langa": "Nacionālā apvienība",
-    "Maija Armaņeva": "Latvija pirmajā vietā",
-    "Mairis Briedis": "Stabilitātei!",
-    "Mairita Lūse": "Progresīvie",
-    "Marta Kotello": "Progresīvie",
-    "Māris Sprindžuks": "Apvienotais saraksts",
-    "Mārtiņš Eņģelis": "Progresīvie",
-    "Mārtiņš Kossovičs": "Progresīvie",
-    "Mārtiņš Šics": "Apvienotais saraksts",
-    "Nikolajs Kabanovs": "Stabilitātei!",
-    "Ritvars Jansons": "Nacionālā apvienība",
-    "Roberts Žemaitis": "Latvija pirmajā vietā",
-    "Romualds Ražuks": "Apvienotais saraksts",
-    "Rūdolfs Brēmanis": "Suverēnā Vara, Apvienība Jaunlatvieši",
-    "Rūta Mežavilka": "Progresīvie",
-    "Selīna Vancāne": "Progresīvie",
-    "Sergejs Dolgopolovs": "Latvija pirmajā vietā",
-    "Valērijs Petrovs": "Stabilitātei!",
-    "Viesturs Kleinbergs": "Progresīvie",
-    "Vilnis Ķirsis": "Jaunā Vienotība",
-    "Vjačeslavs Stepaņenko": "Suverēnā Vara, Apvienība Jaunlatvieši",
-    "Vladislavs Bartaševičs": "Latvija pirmajā vietā",
-    "Ēriks Stendzenieks": "Latvija pirmajā vietā",
-    "Ģirts Lapiņš": "Nacionālā apvienība",
-    "Ļubova Švecova": "Suverēnā Vara, Apvienība Jaunlatvieši"
+    "Agnese Logina": "PRO",
+    "Aija Melle": "PRO",
+    "Ainārs Šlesers": "LPV",
+    "Aleksejs Rosļikovs": "ST",
+    "Alija Turlaja": "PRO",
+    "Andrejs Klementjevs": "LPV",
+    "Andris Ozols": "LPV",
+    "Ansis Pūpols": "NA",
+    "Artūrs Klēbahs": "SV-AJ",
+    "Dainis Locis": "NA",
+    "Deniss Kļukins": "LPV",
+    "Dzintra Geka-Vaska": "JV",
+    "Dāvis Stalts": "JV",
+    "Edgars Bergholcs": "AS",
+    "Edgars Ikstens": "JV",
+    "Eduards Zivtiņš": "LPV",
+    "Edvards Ratnieks": "NA",
+    "Edvards Šlesers": "LPV",
+    "Einārs Cilinskis": "NA",
+    "Elīna Treija": "NA",
+    "Igors Solomatins": "SV-AJ",
+    "Inese Andersone": "JV",
+    "Inese Voika": "JV",
+    "Inna Djeri": "SV-AJ",
+    "Jakovs Pliners": "ST",
+    "Jevgēnija Šafraneka": "LPV",
+    "Justīne Panteļējeva": "PRO",
+    "Jūlija Sohina": "SV-AJ",
+    "Jūlija Stepaņenko": "SV-AJ",
+    "Kaspars Krištopans": "LPV",
+    "Kaspars Spunde": "NA",
+    "Laima Geikina": "JV",
+    "Lauma Paegļkalna": "JV",
+    "Lauris Ērenpreiss": "NA",
+    "Linda Ozola": "JV",
+    "Liāna Langa": "NA",
+    "Maija Armaņeva": "LPV",
+    "Mairis Briedis": "ST",
+    "Mairita Lūse": "PRO",
+    "Marta Kotello": "PRO",
+    "Māris Sprindžuks": "AS",
+    "Mārtiņš Eņģelis": "PRO",
+    "Mārtiņš Kossovičs": "PRO",
+    "Mārtiņš Šics": "AS",
+    "Nikolajs Kabanovs": "ST",
+    "Ritvars Jansons": "NA",
+    "Roberts Žemaitis": "LPV",
+    "Romualds Ražuks": "AS",
+    "Rūdolfs Brēmanis": "SV-AJ",
+    "Rūta Mežavilka": "PRO",
+    "Selīna Vancāne": "PRO",
+    "Sergejs Dolgopolovs": "LPV",
+    "Valērijs Petrovs": "ST",
+    "Viesturs Kleinbergs": "PRO",
+    "Vilnis Ķirsis": "JV",
+    "Vjačeslavs Stepaņenko": "SV-AJ",
+    "Vladislavs Bartaševičs": "LPV",
+    "Ēriks Stendzenieks": "LPV",
+    "Ģirts Lapiņš": "NA",
+    "Ļubova Švecova": "SV-AJ"
   },
   "_meta": {
     "kadencja": "2025-2029",
@@ -70,43 +70,57 @@
     "source_secondary": "https://www.riga.lv/lv/frakcijas-un-bloki",
     "compiled_at": "2026-05-19",
     "party_aliases": {
-      "Jaunā Vienotība": [
-        "Jaunā VIENOTĪBA",
-        "JV"
-      ],
-      "Progresīvie": [
-        "PROGRESĪVIE",
-        "P"
-      ],
-      "Latvija pirmajā vietā": [
-        "LATVIJA PIRMAJĀ VIETĀ",
-        "LPV"
-      ],
-      "Suverēnā Vara, Apvienība Jaunlatvieši": [
-        "SUVERĒNĀ VARA, APVIENĪBA JAUNLATVIEŠI",
-        "SV/AJ"
-      ],
-      "Nacionālā apvienība": [
-        "Nacionālā apvienība \"Visu Latvijai!\"-\"Tēvzemei un Brīvībai/LNNK\"",
-        "NA"
-      ],
-      "Apvienotais saraksts": [
-        "APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija",
-        "AS"
-      ],
-      "Stabilitātei!": [
-        "Politiskā partija \"Stabilitātei!\"",
-        "S!"
-      ]
+      "JV": {
+        "full_lv": "Jaunā Vienotība",
+        "cvk_official": "Jaunā VIENOTĪBA",
+        "short_canonical": "JV",
+        "config_key": "JV"
+      },
+      "PRO": {
+        "full_lv": "Progresīvie",
+        "cvk_official": "PROGRESĪVIE",
+        "short_canonical": "P",
+        "config_key": "PRO"
+      },
+      "LPV": {
+        "full_lv": "Latvija pirmajā vietā",
+        "cvk_official": "LATVIJA PIRMAJĀ VIETĀ",
+        "short_canonical": "LPV",
+        "config_key": "LPV"
+      },
+      "SV-AJ": {
+        "full_lv": "Suverēnā Vara, Apvienība Jaunlatvieši",
+        "cvk_official": "SUVERĒNĀ VARA, APVIENĪBA JAUNLATVIEŠI",
+        "short_canonical": "SV/AJ",
+        "config_key": "SV-AJ"
+      },
+      "NA": {
+        "full_lv": "Nacionālā apvienība",
+        "cvk_official": "Nacionālā apvienība \"Visu Latvijai!\"-\"Tēvzemei un Brīvībai/LNNK\"",
+        "short_canonical": "NA",
+        "config_key": "NA"
+      },
+      "AS": {
+        "full_lv": "Apvienotais saraksts",
+        "cvk_official": "APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija",
+        "short_canonical": "AS",
+        "config_key": "AS"
+      },
+      "ST": {
+        "full_lv": "Stabilitātei!",
+        "cvk_official": "Politiskā partija \"Stabilitātei!\"",
+        "short_canonical": "S!",
+        "config_key": "ST"
+      }
     },
     "club_counts": {
-      "Progresīvie": 11,
-      "Latvija pirmajā vietā": 13,
-      "Stabilitātei!": 5,
-      "Nacionālā apvienība": 10,
-      "Suverēnā Vara, Apvienība Jaunlatvieši": 8,
-      "Jaunā Vienotība": 9,
-      "Apvienotais saraksts": 4
+      "PRO": 11,
+      "LPV": 13,
+      "ST": 5,
+      "NA": 10,
+      "SV-AJ": 8,
+      "JV": 9,
+      "AS": 4
     },
     "notes": "All 60 elected deputies of Rīgas dome 2025-2029 term. Source: Central Election Commission of Latvia (CVK) official results page for Riga municipality. Names in standardised Latvian nominative form (Vārds Uzvārds)."
   }

@@ -239,6 +239,32 @@ def ocr_header(png_path: Path) -> str:
     return ""
 
 
+def _find_count_near_label(text: str, label_patterns: list[str]) -> int | None:
+    """Per-label search z elastycznym sąsiedztwem liczby.
+
+    Łotewski OCR daje różne układy:
+      "Par: 43 Pret: 0 Atturas: 0"     (inline)
+      "Par 43\nPret 0\nAtturas 0"       (newline)
+      "Par\n43\nPret\n0\nAtturas\n0"    (label osobno)
+      "43 Par"                          (liczba PRZED label)
+      "BALSOJUMI: PAR 43, PRET 0..."   (uppercase)
+    Dla każdego patternu label szukamy liczby w ±40 znakach okolicy.
+    """
+    for pat in label_patterns:
+        for m in re.finditer(pat, text, re.IGNORECASE):
+            # Najpierw po label (typowo "Par: 43")
+            after = text[m.end():m.end() + 40]
+            num_after = re.search(r"\b(\d+)\b", after)
+            if num_after:
+                return int(num_after.group(1))
+            # Fallback: liczba przed label (np. "43 par")
+            before = text[max(0, m.start() - 20):m.start()]
+            num_before = re.search(r"\b(\d+)\b(?!.*\b\d+\b)", before)
+            if num_before:
+                return int(num_before.group(1))
+    return None
+
+
 def parse_ocr_text(text: str) -> dict[str, Any]:
     """Wyciąga z OCR text: counts (Par/Pret/Atturas), datetime, tytuł."""
     out: dict[str, Any] = {
@@ -251,17 +277,30 @@ def parse_ocr_text(text: str) -> dict[str, Any]:
     if not text:
         return out
 
-    # Counts: regex z luźnym matchem (OCR czasami daje "Par : 43" lub
-    # "Par. 43" lub "Por: 43"). Używamy fuzzy matchu.
-    counts_re = re.compile(
-        r"\bP[ao]r[\s:.\-]+(\d+)\s+P[reti]+[\s:.\-]+(\d+)\s+At[tu]?u?r[ao]?s?[\s:.\-]+(\d+)",
-        re.IGNORECASE,
-    )
-    m = counts_re.search(text)
-    if m:
-        out["par"] = int(m.group(1))
-        out["pret"] = int(m.group(2))
-        out["atturas"] = int(m.group(3))
+    # Counts per label z tolerancją na OCR-noise:
+    # Par (za): łotewski "par" = "for". OCR często myli "Par" z "Por".
+    # Pret (przeciw): mylone z "Pret" / "Prei" / "Preti".
+    # Atturas (wstrzymał się): mylone z "Atturas" / "Atturos" / "Atur".
+    par = _find_count_near_label(text, [r"\bP[ao]r\b"])
+    pret = _find_count_near_label(text, [r"\bP[reti]{2,4}\b"])
+    atturas = _find_count_near_label(text, [r"\bAt[tu]?u?r[ao]s?\b"])
+
+    # Fallback: stary monolityczny regex (działa gdy układ jest klasyczny
+    # "Par: 43 Pret: 0 Atturas: 0" w jednej linii).
+    if par is None or pret is None or atturas is None:
+        counts_re = re.compile(
+            r"\bP[ao]r[\s:.\-]+(\d+)\s+P[reti]+[\s:.\-]+(\d+)\s+At[tu]?u?r[ao]?s?[\s:.\-]+(\d+)",
+            re.IGNORECASE,
+        )
+        m = counts_re.search(text)
+        if m:
+            par = par if par is not None else int(m.group(1))
+            pret = pret if pret is not None else int(m.group(2))
+            atturas = atturas if atturas is not None else int(m.group(3))
+
+    out["par"] = par
+    out["pret"] = pret
+    out["atturas"] = atturas
 
     # Datetime: "Datums: 14.01.2026 11:09" lub OCR variants ("Datums" → "Datums" w lav).
     dt_re = re.compile(
@@ -570,6 +609,20 @@ def main() -> int:
                         ocr_cache.mkdir(parents=True, exist_ok=True)
                         ocr_text_path.write_text(text, encoding="utf-8")
                     ocr_parsed = parse_ocr_text(text)
+                    # Debug: jeśli parsowanie nie wyciągnęło żadnego count,
+                    # zapisz sample text żeby user mógł sprawdzić format
+                    # OCR. Tylko pierwsze 3 puste w runie żeby nie zaśmiecać.
+                    if (ocr_parsed.get("par") is None
+                            and ocr_parsed.get("pret") is None
+                            and ocr_parsed.get("atturas") is None
+                            and text):
+                        debug_path = args.cache / "ocr_debug_unparseable"
+                        debug_path.mkdir(exist_ok=True)
+                        # Limit do 5 sampleów per run
+                        existing = list(debug_path.glob("*.txt"))
+                        if len(existing) < 5:
+                            sample = debug_path / f"{pdf_path.stem}.txt"
+                            sample.write_text(text[:2000], encoding="utf-8")
 
             raw_votes.append({
                 "meeting_id": meeting_id,
