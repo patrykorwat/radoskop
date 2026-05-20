@@ -738,13 +738,20 @@ def parse_vote_results(all_votes: list[dict]) -> list[dict]:
             "nieobecni": len(named_votes["nieobecni"]),
         }
 
+        # Wyciąg numeru druku z tekstu tematu. BIP Łódź wkleja string typu
+        # "druk nr 87/2026" albo "Druk Nr 87/2026" w opisie głosowania.
+        # Niektóre tematy mają sekwencję wielu druków (autopoprawki); biorę
+        # pierwszy. Format: liczba/rok.
+        druk_match = re.search(r"druk\s*nr\s*([\w\-/]+)", subject, re.IGNORECASE)
+        druk = druk_match.group(1).strip() if druk_match else None
+
         result.append({
             "id": vote_id,
             "source_url": v.get("source_url", ""),
             "session_date": session_date,
             "session_number": session_number,
             "topic": subject,
-            "druk": None,
+            "druk": druk,
             "resolution": None,
             "counts": counts,
             "named_votes": named_votes,
@@ -1044,7 +1051,6 @@ def scrape(output_path: str, profiles_path: str, pdf_dir: str | None = None, deb
         return
 
     all_raw_votes = []
-    vote_counter = 0
     # PDF cache: pliki PDF z BIP, persystentne między runami. Jeśli pdf_dir
     # podany przez pipeline (--pdf-dir scratch_dir/pdfs), używamy go;
     # inaczej fallback do "pdfs" obok cwd dla local dev.
@@ -1059,6 +1065,11 @@ def scrape(output_path: str, profiles_path: str, pdf_dir: str | None = None, deb
         session_number = session.get("number", "")
         session_date = session.get("date")
         session_url = session.get("url")
+        # Counter resetowany per sesja, żeby vote_id był NN per sesja (001, 002,
+        # ..., NNN), a nie cumulative przez całą kadencję. Bez tego XXIX
+        # dostawała IDs 1646-1730 (kontynuacja z poprzednich sesji), co psuło
+        # routing i deep link do konkretnego głosowania.
+        vote_counter = 0
 
         print(f"\n  [{i+1}/{len(sessions)}] Sesja {session_number} ({session_date})")
 

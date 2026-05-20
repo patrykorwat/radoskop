@@ -11,7 +11,7 @@ timestamp), bez per-radny attribution. To znaczne ograniczenie w
 porównaniu z polskimi miastami i Tallinem (TEELE API).
 
 Frakcje per radny są przyporządkowane z zewn. mapping w
-`cities/riga/data/deputati_2025_2029.json`, bo PDF tej info nie ma.
+`cities/riga/deputati_2025_2029.json`, bo PDF tej info nie ma.
 Frekwencja per radny per sesja NIE jest zbierana (brak parser per-radny).
 
 Pipeline:
@@ -62,7 +62,13 @@ from urllib.request import Request, urlopen
 SCRIPT_DIR = Path(__file__).resolve().parent
 CITY_DIR = SCRIPT_DIR.parent
 DEFAULT_CONFIG = CITY_DIR / "config.json"
-DEFAULT_DEPUTATI = CITY_DIR / "data" / "deputati_2025_2029.json"
+# Deputati JSON: source-of-truth mapowania radny → klub. Plik leży na
+# poziomie cities/riga/ (nie w data/ bo data/ jest w .gitignore i nie
+# trafiał do repo). Backward compat: jeśli plik na poziomie city nie
+# istnieje, fallback do starej ścieżki cities/riga/data/.
+_DEPUTATI_NEW = CITY_DIR / "deputati_2025_2029.json"
+_DEPUTATI_OLD = CITY_DIR / "data" / "deputati_2025_2029.json"
+DEFAULT_DEPUTATI = _DEPUTATI_NEW if _DEPUTATI_NEW.is_file() else _DEPUTATI_OLD
 DEFAULT_DOCS = CITY_DIR / "docs"
 DEFAULT_CACHE = CITY_DIR / ".cache"
 
@@ -458,12 +464,31 @@ def main() -> int:
 
     with open(args.config, "r", encoding="utf-8") as f:
         config = json.load(f)
+    # Soft-fail jeśli brak pliku deputati. Riga 2025-2029 wymaga ręcznego
+    # zbudowania mapowania radny → klub z danych riga.lv (NIE da się
+    # zescrapować automatycznie, bo Rīgas dome publikuje protokoły bez
+    # klubowości). Bez tego pliku scraper i tak nie ma jak przypisać
+    # głosów do partii. Lepiej skip-and-warn niż crash całego pipeline.
+    from pathlib import Path as _Path
+    if not _Path(args.deputati).is_file():
+        print(
+            f"[riga] WARN: brak {args.deputati}. "
+            "Skipping scrape - zostaw poprzednie data.json (jeśli istnieje).",
+            file=sys.stderr,
+        )
+        print(
+            "[riga] Plik deputati JSON musi być zbudowany ręcznie z listy "
+            "radnych Rīgas dome (riga.lv/lv/dome/deputati) plus mapowanie "
+            "klubowości. Soft-disable do czasu uzupełnienia.",
+            file=sys.stderr,
+        )
+        return 0  # Soft-fail: exit OK, pipeline pójdzie dalej
     with open(args.deputati, "r", encoding="utf-8") as f:
         deputati_data = json.load(f)
     club_assignments: dict[str, str] = deputati_data.get("club_assignments", {})
     if not club_assignments:
-        print("[riga] FATAL: brak club_assignments w deputati JSON", file=sys.stderr)
-        return 1
+        print("[riga] WARN: deputati JSON bez club_assignments, skip scrape", file=sys.stderr)
+        return 0
 
     cache = args.cache if not args.skip_fetch else None
     json_cache = (args.cache / "json") if cache else None

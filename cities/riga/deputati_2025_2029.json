@@ -1,0 +1,113 @@
+{
+  "club_assignments": {
+    "Agnese Logina": "Progresīvie",
+    "Aija Melle": "Progresīvie",
+    "Ainārs Šlesers": "Latvija pirmajā vietā",
+    "Aleksejs Rosļikovs": "Stabilitātei!",
+    "Alija Turlaja": "Progresīvie",
+    "Andrejs Klementjevs": "Latvija pirmajā vietā",
+    "Andris Ozols": "Latvija pirmajā vietā",
+    "Ansis Pūpols": "Nacionālā apvienība",
+    "Artūrs Klēbahs": "Suverēnā Vara, Apvienība Jaunlatvieši",
+    "Dainis Locis": "Nacionālā apvienība",
+    "Deniss Kļukins": "Latvija pirmajā vietā",
+    "Dzintra Geka-Vaska": "Jaunā Vienotība",
+    "Dāvis Stalts": "Jaunā Vienotība",
+    "Edgars Bergholcs": "Apvienotais saraksts",
+    "Edgars Ikstens": "Jaunā Vienotība",
+    "Eduards Zivtiņš": "Latvija pirmajā vietā",
+    "Edvards Ratnieks": "Nacionālā apvienība",
+    "Edvards Šlesers": "Latvija pirmajā vietā",
+    "Einārs Cilinskis": "Nacionālā apvienība",
+    "Elīna Treija": "Nacionālā apvienība",
+    "Igors Solomatins": "Suverēnā Vara, Apvienība Jaunlatvieši",
+    "Inese Andersone": "Jaunā Vienotība",
+    "Inese Voika": "Jaunā Vienotība",
+    "Inna Djeri": "Suverēnā Vara, Apvienība Jaunlatvieši",
+    "Jakovs Pliners": "Stabilitātei!",
+    "Jevgēnija Šafraneka": "Latvija pirmajā vietā",
+    "Justīne Panteļējeva": "Progresīvie",
+    "Jūlija Sohina": "Suverēnā Vara, Apvienība Jaunlatvieši",
+    "Jūlija Stepaņenko": "Suverēnā Vara, Apvienība Jaunlatvieši",
+    "Kaspars Krištopans": "Latvija pirmajā vietā",
+    "Kaspars Spunde": "Nacionālā apvienība",
+    "Laima Geikina": "Jaunā Vienotība",
+    "Lauma Paegļkalna": "Jaunā Vienotība",
+    "Lauris Ērenpreiss": "Nacionālā apvienība",
+    "Linda Ozola": "Jaunā Vienotība",
+    "Liāna Langa": "Nacionālā apvienība",
+    "Maija Armaņeva": "Latvija pirmajā vietā",
+    "Mairis Briedis": "Stabilitātei!",
+    "Mairita Lūse": "Progresīvie",
+    "Marta Kotello": "Progresīvie",
+    "Māris Sprindžuks": "Apvienotais saraksts",
+    "Mārtiņš Eņģelis": "Progresīvie",
+    "Mārtiņš Kossovičs": "Progresīvie",
+    "Mārtiņš Šics": "Apvienotais saraksts",
+    "Nikolajs Kabanovs": "Stabilitātei!",
+    "Ritvars Jansons": "Nacionālā apvienība",
+    "Roberts Žemaitis": "Latvija pirmajā vietā",
+    "Romualds Ražuks": "Apvienotais saraksts",
+    "Rūdolfs Brēmanis": "Suverēnā Vara, Apvienība Jaunlatvieši",
+    "Rūta Mežavilka": "Progresīvie",
+    "Selīna Vancāne": "Progresīvie",
+    "Sergejs Dolgopolovs": "Latvija pirmajā vietā",
+    "Valērijs Petrovs": "Stabilitātei!",
+    "Viesturs Kleinbergs": "Progresīvie",
+    "Vilnis Ķirsis": "Jaunā Vienotība",
+    "Vjačeslavs Stepaņenko": "Suverēnā Vara, Apvienība Jaunlatvieši",
+    "Vladislavs Bartaševičs": "Latvija pirmajā vietā",
+    "Ēriks Stendzenieks": "Latvija pirmajā vietā",
+    "Ģirts Lapiņš": "Nacionālā apvienība",
+    "Ļubova Švecova": "Suverēnā Vara, Apvienība Jaunlatvieši"
+  },
+  "_meta": {
+    "kadencja": "2025-2029",
+    "election_date": "2025-06-07",
+    "total_seats": 60,
+    "deputies_count": 60,
+    "source": "https://dati.cvk.lv/PV2025/ieveletie-deputati/riga/",
+    "source_secondary": "https://www.riga.lv/lv/frakcijas-un-bloki",
+    "compiled_at": "2026-05-19",
+    "party_aliases": {
+      "Jaunā Vienotība": [
+        "Jaunā VIENOTĪBA",
+        "JV"
+      ],
+      "Progresīvie": [
+        "PROGRESĪVIE",
+        "P"
+      ],
+      "Latvija pirmajā vietā": [
+        "LATVIJA PIRMAJĀ VIETĀ",
+        "LPV"
+      ],
+      "Suverēnā Vara, Apvienība Jaunlatvieši": [
+        "SUVERĒNĀ VARA, APVIENĪBA JAUNLATVIEŠI",
+        "SV/AJ"
+      ],
+      "Nacionālā apvienība": [
+        "Nacionālā apvienība \"Visu Latvijai!\"-\"Tēvzemei un Brīvībai/LNNK\"",
+        "NA"
+      ],
+      "Apvienotais saraksts": [
+        "APVIENOTAIS SARAKSTS - Latvijas Zaļā partija, Latvijas Reģionu Apvienība, Liepājas partija",
+        "AS"
+      ],
+      "Stabilitātei!": [
+        "Politiskā partija \"Stabilitātei!\"",
+        "S!"
+      ]
+    },
+    "club_counts": {
+      "Progresīvie": 11,
+      "Latvija pirmajā vietā": 13,
+      "Stabilitātei!": 5,
+      "Nacionālā apvienība": 10,
+      "Suverēnā Vara, Apvienība Jaunlatvieši": 8,
+      "Jaunā Vienotība": 9,
+      "Apvienotais saraksts": 4
+    },
+    "notes": "All 60 elected deputies of Rīgas dome 2025-2029 term. Source: Central Election Commission of Latvia (CVK) official results page for Riga municipality. Names in standardised Latvian nominative form (Vārds Uzvārds)."
+  }
+}
