@@ -376,6 +376,15 @@ def main() -> int:
         "{{PRESSEKODEX_NOTICE}}": "",
     }
 
+    # Lokalizacja UI dla landów spoza Polski (Landtag MV → de).
+    # WAŻNE: apply_locale ZANIM podstawimy placeholdery, bo część fraz
+    # ma {{CITY_NAME}}/{{CITY_GENITIVE}} w wartościach polskich. Po
+    # tłumaczeniu placeholdery są w wartościach niemieckich.
+    # Dla polskich sejmików locale="pl" (lub brak) → apply_locale no-op.
+    from i18n import apply_locale  # noqa: E402
+    locale = cfg.get("locale", "pl")
+    template = apply_locale(template, locale)
+
     html = template
     for k, v in replacements.items():
         html = html.replace(k, v)

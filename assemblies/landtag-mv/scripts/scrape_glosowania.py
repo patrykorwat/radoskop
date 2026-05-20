@@ -495,9 +495,10 @@ def build_kadencja(
         total_named = sum(len(v) for v in parsed['named_votes'].values())
         log(f"    parsed in {time.time()-t0:.1f}s, {total_named} głosów imiennych")
 
-        # Debug dump: jeśli wszystkie counts puste, zapisz PDF text żeby
-        # zdiagnozować nieobsługiwany format. Limit 5 sampleów per run.
-        if total_named == 0 and cache_dir:
+        # Debug dump: jeśli wyciągnięto podejrzanie mało imion (< 10, podczas
+        # gdy Landtag ma 79 posłów), zapisz PDF text żeby zdiagnozować
+        # nieobsługiwany format. Limit 5 sampleów per run.
+        if total_named < 10 and cache_dir:
             debug_dir = cache_dir / "parse_debug_unparseable"
             debug_dir.mkdir(exist_ok=True)
             existing = list(debug_dir.glob("*.txt"))
