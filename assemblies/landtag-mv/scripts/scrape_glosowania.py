@@ -286,16 +286,19 @@ def parse_pdf_text(pdf_path: Path) -> dict:
     }
     councilor_clubs: dict[str, str] = {}
 
-    # Podziel tekst na sekcje. Real format Votebox MV ma:
-    #   Header summary z procentami: "Ja 43,08 % 28 Stimmen"
-    #   Per-sekcja header (bez procentów): "Ja 28 Stimmen"
-    #   Body z imionami: "(AfD) de Jesus-Fernandes, Thomas; (AfD) ..."
-    # Pattern dopasowuje header "Ja|Nein|Enthaltung|Nicht abgestimmt N Stimmen"
-    # bez procentów (procenty są w summary, my chcemy body section header).
-    # Regex \d+\s+Stimmen wymaga że po liczbie idzie spacja+Stimmen, czyli
-    # natychmiast (nie `,08 % 28 Stimmen` które ma przecinek po liczbie).
+    # Podziel tekst na sekcje. Format Votebox MV:
+    #   Summary line: "Ja 43,08 % 28 Stimmen" (procenty - skip)
+    #   Section header: "Ja 28 Stimmen" albo "Ja: 28" albo "Ja - 28"
+    #   Body: "(AfD) Nachname, Vorname; (AfD) ..."
+    # Pattern v2: tolerantny na różne separatory po label oraz brak "Stimmen"
+    # w niektórych wariantach Votebox. Wymaga że po label idzie liczba (przed
+    # ewentualnym "Stimmen") plus NIE jest poprzedzona "%" (to skipuje summary).
     section_pattern = re.compile(
-        r"^(Ja|Nein|Enthaltung|Nicht abgestimmt)\s+\d+\s+Stimmen\s*$",
+        r"^(Ja|Nein|Enthaltung|Nicht abgestimmt)"
+        r"\s*[:\-]?\s*"           # opcjonalny ":" albo "-"
+        r"(\d+)"                  # liczba
+        r"(?:\s+Stimmen)?"        # opcjonalne "Stimmen"
+        r"\s*$",
         re.MULTILINE,
     )
     matches = list(section_pattern.finditer(text))
@@ -489,7 +492,23 @@ def build_kadencja(
         except Exception as e:
             log(f"  ERR parsowania {meta['filename']}: {e}")
             continue
-        log(f"    parsed in {time.time()-t0:.1f}s, {sum(len(v) for v in parsed['named_votes'].values())} głosów imiennych")
+        total_named = sum(len(v) for v in parsed['named_votes'].values())
+        log(f"    parsed in {time.time()-t0:.1f}s, {total_named} głosów imiennych")
+
+        # Debug dump: jeśli wszystkie counts puste, zapisz PDF text żeby
+        # zdiagnozować nieobsługiwany format. Limit 5 sampleów per run.
+        if total_named == 0 and cache_dir:
+            debug_dir = cache_dir / "parse_debug_unparseable"
+            debug_dir.mkdir(exist_ok=True)
+            existing = list(debug_dir.glob("*.txt"))
+            if len(existing) < 5:
+                try:
+                    sample_text = _extract_pdf_text_safe(pdf_local)
+                    debug_path = debug_dir / f"{meta['filename']}.txt"
+                    debug_path.write_text(sample_text[:3000], encoding="utf-8")
+                    log(f"    [debug] zapisano sample tekst do {debug_path}")
+                except Exception:
+                    pass
 
         counts = {cat: len(parsed["named_votes"][cat]) for cat in parsed["named_votes"]}
         # Vote ID: data_TOP-numer (np. 2025-10-10_TOP35)
