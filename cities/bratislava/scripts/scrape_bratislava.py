@@ -370,11 +370,39 @@ def parse_hlasovania_page(html: str, session_date: str, bod_number: str) -> list
 
 
 def parse_session_topic_for_bod(bod_html: str) -> str:
-    """Z bod page wyciąga tytuł bodu (jest w breadcrumbs i jako H1)."""
-    # Tytuł bodu jest w breadcrumbs jako ostatni element
+    """Z bod page wyciąga tytuł bodu.
+
+    Platforma zastupitelstvo.bratislava.sk publikuje tytuł w 3 miejscach:
+    1. <title>...</title> - czyste, najwyższy priorytet
+    2. Ostatni breadcrumb item: <ol class="breadcrumb">...<span>TYTUŁ</span>
+    3. Stary format "\n3. {tytuł}\n" w plain text breadcrumbs (legacy)
+
+    Próbujemy w tej kolejności. Większość bodów ma title HTML wyrenderowany
+    przez SSR, więc kolejność 1 zwykle wystarcza.
+    """
+    # Priorytet 1: <title>
+    m = re.search(r"<title[^>]*>(.*?)</title>", bod_html, re.DOTALL | re.IGNORECASE)
+    if m:
+        title = m.group(1).strip()
+        # Niektóre strony dodają "| Zastupitelstvo Bratislava" - obetnij
+        title = re.sub(r"\s*[|–-]\s*(Zastupitelstvo|Digitálne).*$", "", title).strip()
+        if title and len(title) > 5:
+            return title
+
+    # Priorytet 2: ostatni breadcrumb item (span, nie a)
+    m = re.search(
+        r'<ol class="breadcrumb">.*?<span[^>]*>([^<]+)</span>\s*</li>\s*</ol>',
+        bod_html,
+        re.DOTALL,
+    )
+    if m:
+        return m.group(1).strip()
+
+    # Priorytet 3: legacy format "\n3. tytuł\n"
     m = re.search(r"\n3\.\s+([^\n]+)\n", bod_html)
     if m:
         return m.group(1).strip()
+
     return ""
 
 

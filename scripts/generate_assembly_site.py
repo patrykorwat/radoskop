@@ -344,6 +344,10 @@ def main() -> int:
         default_sub_apex = "radoskop.pl"
 
     replacements = {
+        # Sejmiki/landy nie używają disclaimera per-radny — wszystkie polskie
+        # sejmiki mają imienne głosowania, Landtag MV ma per-Abgeordneten.
+        # Placeholder pusty żeby template nie miał {{...}} leftover.
+        "{{VOTE_DATA_DISCLAIMER}}": "",
         "{{CITY_NAME}}": city_name,
         "{{CITY_GENITIVE}}": city_gen,
         "{{SITE_TITLE}}": cfg.get("site_title", ""),

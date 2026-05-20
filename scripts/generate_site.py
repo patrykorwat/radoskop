@@ -652,8 +652,27 @@ def main():
     else:
         pressekodex_notice = ""
 
+    # Disclaimer dla miast, których źródło nie publikuje per-radny attribution.
+    # Pole `vote_data_disclaimer` w config (string albo dict {locale: text}).
+    # Renderowane jako żółty banner pod nagłówkiem hero. Pusty placeholder
+    # jeśli config nie ma tego pola (większość miast PL go nie potrzebuje).
+    _disclaimer = config.get("vote_data_disclaimer", "")
+    if isinstance(_disclaimer, dict):
+        _disclaimer = _disclaimer.get(config.get("locale", "pl"), _disclaimer.get("pl", ""))
+    if _disclaimer:
+        vote_disclaimer_html = (
+            '<div style="margin:14px auto 0;max-width:720px;padding:10px 14px;'
+            'background:rgba(250,204,21,0.12);border:1px solid rgba(202,138,4,0.5);'
+            'border-radius:8px;font-size:0.9rem;color:var(--text);line-height:1.5">'
+            f'{_disclaimer}'
+            '</div>'
+        )
+    else:
+        vote_disclaimer_html = ""
+
     # Build replacements
     replacements = {
+        "{{VOTE_DATA_DISCLAIMER}}": vote_disclaimer_html,
         "{{CITY_NAME}}": config["city_name"],
         "{{CITY_GENITIVE}}": config["city_genitive"],
         "{{SITE_TITLE}}": config["site_title"],

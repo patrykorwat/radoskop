@@ -41,7 +41,12 @@
   "has_stenogram": false,
   "has_voting_data": true,
   "has_named_votes": false,
-  "named_votes_note": "Rīgas dome publikuje balsošanas protokols jako skany z podpisami odręcznymi — per-radny vote attribution niedostępne. Tylko agregaty counts (Par/Pret/Atturas) + tytuł + wynik.",
+  "named_votes_note": "Rīgas dome publikuje balsošanas protokols jako skany z podpisami odręcznymi. Per-radny vote attribution niedostępne. Tylko agregaty counts (Par/Pret/Atturas) plus tytuł plus wynik.",
+  "vote_data_disclaimer": {
+    "lv": "<strong>Datu ierobežojums:</strong> Rīgas dome publicē balsošanas protokolus kā parakstītus skenētus PDF, bez deputātu atribūcijas. Radoskop rāda tikai kopējos rezultātus (Par/Pret/Atturējās) un balsojuma tēmas. Konkrētu deputātu balsošanas vēsture nav pieejama publiski. <a href=\"https://www.riga.lv/lv/darba-kartiba\" style=\"color:inherit;text-decoration:underline\">Avots: riga.lv</a>",
+    "pl": "<strong>Ograniczenie danych:</strong> Rīgas dome publikuje protokoły głosowań jako podpisane skany PDF, bez przypisania do konkretnych radnych. Radoskop pokazuje tylko agregaty (Par/Pret/Atturējās) plus tematy głosowań. Historia głosowań konkretnego radnego nie jest dostępna publicznie. <a href=\"https://www.riga.lv/lv/darba-kartiba\" style=\"color:inherit;text-decoration:underline\">Źródło: riga.lv</a>",
+    "en": "<strong>Data limitation:</strong> Rīgas dome publishes voting protocols as signed scanned PDFs, without per-deputy attribution. Radoskop shows only aggregates (Par/Pret/Atturējās) and vote topics. Individual deputy voting history is not publicly available. <a href=\"https://www.riga.lv/lv/darba-kartiba\" style=\"color:inherit;text-decoration:underline\">Source: riga.lv</a>"
+  },
   "has_speaker_activity": false,
   "scrape_status": "active",
   "currency": "€",
