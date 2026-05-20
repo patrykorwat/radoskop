@@ -1,42 +1,138 @@
 {
   "id": "2021-2026",
   "label": "8. Wahlperiode (2021–2026)",
-  "clubs": {},
+  "clubs": {
+    "AfD": 14,
+    "BÜNDNIS 90/DIE GRÜNEN": 7,
+    "CDU": 14,
+    "Die Linke": 9,
+    "Gruppe der FDP": 3,
+    "SPD": 34,
+    "fraktionslos": 2
+  },
   "sessions": [
     {
       "date": "2025-01-31",
       "number": "98",
       "vote_count": 1,
-      "attendee_count": 0,
-      "attendees": []
+      "attendee_count": 1,
+      "attendees": [
+        "Sicherheit und Datenschutz Shepley Anne 1 StimmeGlawe Harry 1 Stimmevon Allwörden Ann Christin 1 StimmeSchneider-GärtnerEva Maria 1 StimmeButzki Andreas 1 StimmeHesse Birgit 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
+      ]
     },
     {
       "date": "2025-04-11",
       "number": "104",
       "vote_count": 1,
-      "attendee_count": 0,
-      "attendees": []
+      "attendee_count": 1,
+      "attendees": [
+        "Sicherheit und Datenschutz Stein Thore 1 StimmePulz-Debler Steffi 1 StimmeRösler Jeannine 1 StimmeSchneider-GärtnerEva Maria 1 StimmeFalk Marcel 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
+      ]
     },
     {
       "date": "2025-06-25",
       "number": "108",
       "vote_count": 1,
-      "attendee_count": 0,
-      "attendees": []
+      "attendee_count": 1,
+      "attendees": [
+        "Sicherheit und Datenschutz Wegner Jutta 1 StimmeBerg Christiane 1 StimmeGlawe Harry 1 StimmeAlbrecht Christian 1 StimmeFoerster Henning 1 StimmeSchneider-GärtnerEva Maria 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
+      ]
     },
     {
       "date": "2025-06-26",
       "number": "109",
       "vote_count": 1,
-      "attendee_count": 0,
-      "attendees": []
+      "attendee_count": 1,
+      "attendees": [
+        "Sicherheit und Datenschutz Berg Christiane 1 StimmeGlawe Harry 1 StimmeFoerster Henning 1 StimmeNoetzel Michael 1 StimmeSchneider-GärtnerEva Maria 1 StimmeDomke René 1 StimmeBarlen Julian 1 StimmeGundlack Tilo 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
+      ]
     },
     {
       "date": "2025-10-10",
       "number": "117",
       "vote_count": 1,
-      "attendee_count": 0,
-      "attendees": []
+      "attendee_count": 79,
+      "attendees": [
+        "Andreas Butzki",
+        "Ann Christin von Allwörden",
+        "Anna-Konstanze Schröder",
+        "Anne Shepley",
+        "Barbara Becker-Hornickel",
+        "Beate Schlupp",
+        "Beatrix Hegenkötter",
+        "Bettina Martin",
+        "Birgit Hesse",
+        "Christian Albrecht",
+        "Christian Brade",
+        "Christian Pegel",
+        "Christian Winter",
+        "Christiane Berg",
+        "Christine Klingohr",
+        "Constanze Oehlrich",
+        "Dagmar Kaselitz",
+        "Daniel Peters",
+        "Daniel Trepsdorf",
+        "David Wulff",
+        "Dirk Bruhn",
+        "Dirk Stamer",
+        "Elke-Annette Schmidt",
+        "Enrico Schult",
+        "Eva Maria Schneider-Gärtner",
+        "Falko Beitz",
+        "Franz-Robert Liskow",
+        "Grit Schmelzer",
+        "Hannes Damm",
+        "Harald Terpe",
+        "Harry Glawe",
+        "Heiko Miraß",
+        "Henning Foerster",
+        "Horst Förster",
+        "Jan-Phillip Tadsen",
+        "Jeannine Rösler",
+        "Jens Schulze-Wiehenbrauk",
+        "Jens-Holger Schneider",
+        "Julian Barlen",
+        "Jutta Wegner",
+        "Katy Hoffmeister",
+        "Mandy Pfeifer",
+        "Manuela Schwesig",
+        "Marc Reinhardt",
+        "Marcel Falk",
+        "Martin Schmidt",
+        "Martina\nElektronische Abstimmung über Votebox. Infos über Verfahren Tegtmeier",
+        "Michael Meister",
+        "Michael Noetzel",
+        "Michel-Friedrich Schiefler",
+        "Monique Wölk",
+        "Nadine Julitz",
+        "Nikolaus Kramer",
+        "Nils Saemann",
+        "Patrick Dahlemann",
+        "Paul-Joachim Timm",
+        "Petra Federau",
+        "Philipp da Cunha",
+        "Rainer Albrecht",
+        "Ralf Mucha",
+        "René Domke",
+        "Robert Northoff",
+        "Sabine Enseleit",
+        "Sandy van Baal",
+        "Sebastian Ehlers",
+        "Stefanie Drese",
+        "Steffi Pulz-Debler",
+        "Stephan J. Reuken",
+        "Sylva Rahm-Präger",
+        "Thomas Diener",
+        "Thomas Krüger",
+        "Thomas Würdisch",
+        "Thomas de Jesus-Fernandes",
+        "Thore Stein",
+        "Till Backhaus",
+        "Tilo Gundlack",
+        "Torsten Koplin",
+        "Torsten Renz",
+        "Wolfgang Waldmüller"
+      ]
     }
   ],
   "total_sessions": 5,
@@ -56,14 +152,16 @@
         "za": 0,
         "przeciw": 0,
         "wstrzymal_sie": 0,
-        "brak_glosu": 0,
+        "brak_glosu": 1,
         "nieobecni": 0
       },
       "named_votes": {
         "za": [],
         "przeciw": [],
         "wstrzymal_sie": [],
-        "brak_glosu": [],
+        "brak_glosu": [
+          "Sicherheit und Datenschutz Shepley Anne 1 StimmeGlawe Harry 1 Stimmevon Allwörden Ann Christin 1 StimmeSchneider-GärtnerEva Maria 1 StimmeButzki Andreas 1 StimmeHesse Birgit 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
+        ],
         "nieobecni": []
       },
       "passed": false
@@ -80,14 +178,16 @@
         "za": 0,
         "przeciw": 0,
         "wstrzymal_sie": 0,
-        "brak_glosu": 0,
+        "brak_glosu": 1,
         "nieobecni": 0
       },
       "named_votes": {
         "za": [],
         "przeciw": [],
         "wstrzymal_sie": [],
-        "brak_glosu": [],
+        "brak_glosu": [
+          "Sicherheit und Datenschutz Stein Thore 1 StimmePulz-Debler Steffi 1 StimmeRösler Jeannine 1 StimmeSchneider-GärtnerEva Maria 1 StimmeFalk Marcel 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
+        ],
         "nieobecni": []
       },
       "passed": false
@@ -104,14 +204,16 @@
         "za": 0,
         "przeciw": 0,
         "wstrzymal_sie": 0,
-        "brak_glosu": 0,
+        "brak_glosu": 1,
         "nieobecni": 0
       },
       "named_votes": {
         "za": [],
         "przeciw": [],
         "wstrzymal_sie": [],
-        "brak_glosu": [],
+        "brak_glosu": [
+          "Sicherheit und Datenschutz Wegner Jutta 1 StimmeBerg Christiane 1 StimmeGlawe Harry 1 StimmeAlbrecht Christian 1 StimmeFoerster Henning 1 StimmeSchneider-GärtnerEva Maria 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
+        ],
         "nieobecni": []
       },
       "passed": true
@@ -128,14 +230,16 @@
         "za": 0,
         "przeciw": 0,
         "wstrzymal_sie": 0,
-        "brak_glosu": 0,
+        "brak_glosu": 1,
         "nieobecni": 0
       },
       "named_votes": {
         "za": [],
         "przeciw": [],
         "wstrzymal_sie": [],
-        "brak_glosu": [],
+        "brak_glosu": [
+          "Sicherheit und Datenschutz Berg Christiane 1 StimmeGlawe Harry 1 StimmeFoerster Henning 1 StimmeNoetzel Michael 1 StimmeSchneider-GärtnerEva Maria 1 StimmeDomke René 1 StimmeBarlen Julian 1 StimmeGundlack Tilo 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
+        ],
         "nieobecni": []
       },
       "passed": false
@@ -149,17 +253,99 @@
       "druk": "8/5297",
       "resolution": "Abgelehnt",
       "counts": {
-        "za": 0,
-        "przeciw": 0,
+        "za": 28,
+        "przeciw": 37,
         "wstrzymal_sie": 0,
-        "brak_glosu": 0,
+        "brak_glosu": 14,
         "nieobecni": 0
       },
       "named_votes": {
-        "za": [],
-        "przeciw": [],
+        "za": [
+          "Thomas de Jesus-Fernandes",
+          "Petra Federau",
+          "Horst Förster",
+          "Nikolaus Kramer",
+          "Michael Meister",
+          "Stephan J. Reuken",
+          "Martin Schmidt",
+          "Jens-Holger Schneider",
+          "Thore Stein",
+          "Jan-Phillip Tadsen",
+          "Paul-Joachim Timm",
+          "Hannes Damm",
+          "Constanze Oehlrich",
+          "Harald Terpe",
+          "Jutta Wegner",
+          "Sebastian Ehlers",
+          "Sabine Enseleit",
+          "Katy Hoffmeister",
+          "Franz-Robert Liskow",
+          "Daniel Peters",
+          "Torsten Renz",
+          "Beate Schlupp",
+          "Ann Christin von Allwörden",
+          "Wolfgang Waldmüller",
+          "Sandy van Baal",
+          "Barbara Becker-Hornickel",
+          "René Domke",
+          "David Wulff"
+        ],
+        "przeciw": [
+          "Christian Albrecht",
+          "Dirk Bruhn",
+          "Torsten Koplin",
+          "Michael Noetzel",
+          "Steffi Pulz-Debler",
+          "Jeannine Rösler",
+          "Daniel Trepsdorf",
+          "Rainer Albrecht",
+          "Till Backhaus",
+          "Julian Barlen",
+          "Falko Beitz",
+          "Christian Brade",
+          "Philipp da Cunha",
+          "Patrick Dahlemann",
+          "Stefanie Drese",
+          "Marcel Falk",
+          "Tilo Gundlack",
+          "Beatrix Hegenkötter",
+          "Birgit Hesse",
+          "Nadine Julitz",
+          "Dagmar Kaselitz",
+          "Christine Klingohr",
+          "Thomas Krüger",
+          "Bettina Martin",
+          "Heiko Miraß",
+          "Ralf Mucha",
+          "Robert Northoff",
+          "Christian Pegel",
+          "Mandy Pfeifer",
+          "Sylva Rahm-Präger",
+          "Michel-Friedrich Schiefler",
+          "Grit Schmelzer",
+          "Anna-Konstanze Schröder",
+          "Dirk Stamer",
+          "Christian Winter",
+          "Monique Wölk",
+          "Thomas Würdisch"
+        ],
         "wstrzymal_sie": [],
-        "brak_glosu": [],
+        "brak_glosu": [
+          "Enrico Schult",
+          "Jens Schulze-Wiehenbrauk",
+          "Anne Shepley",
+          "Christiane Berg",
+          "Thomas Diener",
+          "Harry Glawe",
+          "Marc Reinhardt",
+          "Henning Foerster",
+          "Elke-Annette Schmidt",
+          "Eva Maria Schneider-Gärtner",
+          "Andreas Butzki",
+          "Nils Saemann",
+          "Manuela Schwesig",
+          "Martina\nElektronische Abstimmung über Votebox. Infos über Verfahren Tegtmeier"
+        ],
         "nieobecni": []
       },
       "passed": false
@@ -167,6 +353,6 @@
   ],
   "similarity_top": [],
   "similarity_bottom": [],
-  "scraped_at": "2026-05-20 10:42:42",
+  "scraped_at": "2026-05-20 12:36:46",
   "source": "https://www.landtag-mv.de"
 }

@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-05-20T08:42:42Z",
+  "scraped_at": "2026-05-20T10:36:46Z",
   "generated": true,
   "default_kadencja": "2021-2026",
   "kadencje": [
@@ -11,36 +11,124 @@
           "date": "2025-01-31",
           "number": "98",
           "vote_count": 1,
-          "attendee_count": 0,
-          "attendees": []
+          "attendee_count": 1,
+          "attendees": [
+            "Sicherheit und Datenschutz Shepley Anne 1 StimmeGlawe Harry 1 Stimmevon Allwörden Ann Christin 1 StimmeSchneider-GärtnerEva Maria 1 StimmeButzki Andreas 1 StimmeHesse Birgit 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
+          ]
         },
         {
           "date": "2025-04-11",
           "number": "104",
           "vote_count": 1,
-          "attendee_count": 0,
-          "attendees": []
+          "attendee_count": 1,
+          "attendees": [
+            "Sicherheit und Datenschutz Stein Thore 1 StimmePulz-Debler Steffi 1 StimmeRösler Jeannine 1 StimmeSchneider-GärtnerEva Maria 1 StimmeFalk Marcel 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
+          ]
         },
         {
           "date": "2025-06-25",
           "number": "108",
           "vote_count": 1,
-          "attendee_count": 0,
-          "attendees": []
+          "attendee_count": 1,
+          "attendees": [
+            "Sicherheit und Datenschutz Wegner Jutta 1 StimmeBerg Christiane 1 StimmeGlawe Harry 1 StimmeAlbrecht Christian 1 StimmeFoerster Henning 1 StimmeSchneider-GärtnerEva Maria 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
+          ]
         },
         {
           "date": "2025-06-26",
           "number": "109",
           "vote_count": 1,
-          "attendee_count": 0,
-          "attendees": []
+          "attendee_count": 1,
+          "attendees": [
+            "Sicherheit und Datenschutz Berg Christiane 1 StimmeGlawe Harry 1 StimmeFoerster Henning 1 StimmeNoetzel Michael 1 StimmeSchneider-GärtnerEva Maria 1 StimmeDomke René 1 StimmeBarlen Julian 1 StimmeGundlack Tilo 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
+          ]
         },
         {
           "date": "2025-10-10",
           "number": "117",
           "vote_count": 1,
-          "attendee_count": 0,
-          "attendees": []
+          "attendee_count": 79,
+          "attendees": [
+            "Andreas Butzki",
+            "Ann Christin von Allwörden",
+            "Anna-Konstanze Schröder",
+            "Anne Shepley",
+            "Barbara Becker-Hornickel",
+            "Beate Schlupp",
+            "Beatrix Hegenkötter",
+            "Bettina Martin",
+            "Birgit Hesse",
+            "Christian Albrecht",
+            "Christian Brade",
+            "Christian Pegel",
+            "Christian Winter",
+            "Christiane Berg",
+            "Christine Klingohr",
+            "Constanze Oehlrich",
+            "Dagmar Kaselitz",
+            "Daniel Peters",
+            "Daniel Trepsdorf",
+            "David Wulff",
+            "Dirk Bruhn",
+            "Dirk Stamer",
+            "Elke-Annette Schmidt",
+            "Enrico Schult",
+            "Eva Maria Schneider-Gärtner",
+            "Falko Beitz",
+            "Franz-Robert Liskow",
+            "Grit Schmelzer",
+            "Hannes Damm",
+            "Harald Terpe",
+            "Harry Glawe",
+            "Heiko Miraß",
+            "Henning Foerster",
+            "Horst Förster",
+            "Jan-Phillip Tadsen",
+            "Jeannine Rösler",
+            "Jens Schulze-Wiehenbrauk",
+            "Jens-Holger Schneider",
+            "Julian Barlen",
+            "Jutta Wegner",
+            "Katy Hoffmeister",
+            "Mandy Pfeifer",
+            "Manuela Schwesig",
+            "Marc Reinhardt",
+            "Marcel Falk",
+            "Martin Schmidt",
+            "Martina\nElektronische Abstimmung über Votebox. Infos über Verfahren Tegtmeier",
+            "Michael Meister",
+            "Michael Noetzel",
+            "Michel-Friedrich Schiefler",
+            "Monique Wölk",
+            "Nadine Julitz",
+            "Nikolaus Kramer",
+            "Nils Saemann",
+            "Patrick Dahlemann",
+            "Paul-Joachim Timm",
+            "Petra Federau",
+            "Philipp da Cunha",
+            "Rainer Albrecht",
+            "Ralf Mucha",
+            "René Domke",
+            "Robert Northoff",
+            "Sabine Enseleit",
+            "Sandy van Baal",
+            "Sebastian Ehlers",
+            "Stefanie Drese",
+            "Steffi Pulz-Debler",
+            "Stephan J. Reuken",
+            "Sylva Rahm-Präger",
+            "Thomas Diener",
+            "Thomas Krüger",
+            "Thomas Würdisch",
+            "Thomas de Jesus-Fernandes",
+            "Thore Stein",
+            "Till Backhaus",
+            "Tilo Gundlack",
+            "Torsten Koplin",
+            "Torsten Renz",
+            "Wolfgang Waldmüller"
+          ]
         }
       ],
       "total_sessions": 5,
