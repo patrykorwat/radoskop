@@ -9,14 +9,14 @@
 <meta name="author" content="Patryk Orwat">
 <link rel="canonical" href="https://mv.radoskop.eu/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Radoskop Mecklenburg-Vorpommern — Jak głosują radni?">
-<meta property="og:description" content="Otwarte narzędzie monitoringu Landtagu Mecklenburg-Vorpommerns. Frekwencja, głosowania i aktywność radnych.">
+<meta property="og:title" content="Radoskop Mecklenburg-Vorpommern — Wie stimmen die Abgeordneten ab?">
+<meta property="og:description" content="Otwarte narzędzie monitoringu Landtagu Mecklenburg-Vorpommerns. Anwesenheit, głosowania i aktywność radnych.">
 <meta property="og:url" content="https://mv.radoskop.eu/">
 <meta property="og:locale" content="pl_PL">
 <meta property="og:site_name" content="Radoskop Mecklenburg-Vorpommern">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Radoskop Mecklenburg-Vorpommern — Jak głosują radni?">
-<meta name="twitter:description" content="Otwarte narzędzie monitoringu Landtagu Mecklenburg-Vorpommerns. Frekwencja, głosowania i aktywność radnych.">
+<meta name="twitter:title" content="Radoskop Mecklenburg-Vorpommern — Wie stimmen die Abgeordneten ab?">
+<meta name="twitter:description" content="Otwarte narzędzie monitoringu Landtagu Mecklenburg-Vorpommerns. Anwesenheit, głosowania i aktywność radnych.">
 <link rel="alternate" type="application/atom+xml" title="Radoskop Mecklenburg-Vorpommern" href="https://mv.radoskop.eu/feed.xml">
 <script type="application/ld+json">
 {
@@ -114,7 +114,7 @@ header > .header-actions { flex:0 0 auto; margin-left:auto; }
 header h1 { font-size:2rem; font-weight:700; cursor:pointer; }
 header h1 span { color:var(--accent); }
 header p { color:var(--muted); margin-top:4px; }
-/* Kadencja bar — wyraźnie inny visual od tab-bar żeby się nie zlewały.
+/* Wahlperiode bar — wyraźnie inny visual od tab-bar żeby się nie zlewały.
  * Pill-style z subtle background, mniejszy padding, group dotted by tło. */
 .kadencja-bar { display:inline-flex; gap:2px; background:var(--bg); border:1px solid var(--border); border-radius:999px; padding:3px; }
 .kadencja-btn { padding:5px 12px; border-radius:999px; border:none; background:transparent; color:var(--muted); cursor:pointer; font-size:0.78rem; font-weight:500; white-space:nowrap; transition:background 0.15s, color 0.15s; }
@@ -152,9 +152,9 @@ tr:hover td { background:rgba(99,102,241,0.05); }
 .pill-przeciw { background:rgba(239,68,68,0.15); color:var(--red); }
 .pill-wstrzymal { background:rgba(234,179,8,0.15); color:var(--yellow); }
 /* Tab bar: dwa tiery hierarchiczne.
- *   Primary (4): Ranking, Sesje, Głosowania, Komisje — mocniejsze visualy,
+ *   Primary (4): Ranking, Sitzungen, Abstimmungen, Ausschüsse — mocniejsze visualy,
  *     border, pełny padding, font 0.85rem.
- *   Secondary (4): Profile, Interpelacje, Budżet, Aktualności — subtle,
+ *   Secondary (4): Profile, Schriftliche Anfragen, Budżet, Aktualności — subtle,
  *     bez ramki, mniejszy padding, muted color, hover background.
  * Razem 2 wiersze (primary nad secondary), na desktop oba inline. */
 .tab-bar { display:flex; flex-direction:column; gap:8px; margin-bottom:20px; }
@@ -279,7 +279,7 @@ footer a { color:var(--accent); text-decoration:none; }
 @media (max-width: 480px) {
   .container { padding: 12px; }
 
-  /* Header: kompaktowy, h1 mniejszy. Kadencja-bar inline pill style.
+  /* Header: kompaktowy, h1 mniejszy. Wahlperiode-bar inline pill style.
    * Auth + theme buttons są przeniesione do topbara, więc header w mobile
    * to tylko tytuł + subtitle (jeden div, full width). */
   header { padding: 12px 0 8px; margin-bottom: 14px; gap: 6px; }
@@ -300,7 +300,7 @@ footer a { color:var(--accent); text-decoration:none; }
 
   /* Tab bar: dwa tiery wizualnie wyraźnie odróżnione.
    * Primary tier: 4 tabs w jednym wierszu (grid 4-col), kompaktowe.
-   * Tekst może się zawijać na 2 linie ("Ranking radnych" = 2 wiersze).
+   * Tekst może się zawijać na 2 linie ("Ranking der Abgeordneten" = 2 wiersze).
    * Secondary tier: flex-wrap z mniejszymi pill buttonami.
    * Subtle border separator między tierami. */
   .tab-bar { gap: 10px; margin-bottom: 14px; }
@@ -358,7 +358,7 @@ footer a { color:var(--accent); text-decoration:none; }
   .metric-card .metric-value { font-size: 1.3rem; }
   .metric-card .metric-label { font-size: 0.65rem; }
 
-  /* Komisje: jedna kolumna (300px minmax > 320px content) */
+  /* Ausschüsse: jedna kolumna (300px minmax > 320px content) */
   .komisje-grid { grid-template-columns: 1fr; gap: 10px; }
   .komisja-card { padding: 14px; }
   .komisja-card-title { font-size: 0.9rem; margin-bottom: 10px; }
@@ -380,7 +380,7 @@ footer a { color:var(--accent); text-decoration:none; }
   .chart-wrap { padding: 12px; }
   canvas { max-height: 480px !important; }
 
-  /* Theme toggle: ikona only na mobile, ukryj label "Ciemny/Jasny" */
+  /* Theme toggle: ikona only na mobile, ukryj label "Dunkel/Hell" */
   .theme-toggle { padding: 5px 8px; font-size: 0.78rem; }
   .theme-toggle #theme-label { display: none; }
 
@@ -532,20 +532,20 @@ footer a { color:var(--accent); text-decoration:none; }
 <nav class="topbar" aria-label="Główna nawigacja">
   <a class="topbar-logo" href="https://radoskop.pl/">Rado<span>skop</span></a>
   <div class="topbar-nav">
-    <a href="https://radoskop.eu/reports/">Raporty</a>
+    <a href="https://radoskop.eu/reports/">Berichte</a>
     <a href="https://radoskop.eu/business/">Business</a>
   </div>
   <div class="topbar-actions">
-    <button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
+    <button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Anmelden</button>
     <div class="user-chip" id="user-chip" style="display:none">
       <button id="user-chip-link" onclick="goToProfile()" aria-label="Moje konto" title="Moje konto" style="background:none;border:none;padding:0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:inherit;font:inherit;">
         <span class="user-avatar" id="user-avatar" title=""></span>
         <span id="user-name" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
       </button>
-      <button class="user-logout" onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj">×</button>
+      <button class="user-logout" onclick="doLogout()" aria-label="Abmelden" title="Abmelden">×</button>
     </div>
-    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny">
-      <span id="theme-icon">🌙</span> <span id="theme-label">Ciemny</span>
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Hell-/Dunkel-Modus">
+      <span id="theme-icon">🌙</span> <span id="theme-label">Dunkel</span>
     </button>
   </div>
 </nav>
@@ -565,14 +565,14 @@ footer a { color:var(--accent); text-decoration:none; }
     <div class="tab-row" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding-bottom:14px;border-bottom:1px solid var(--border);margin-bottom:22px">
       <div class="tab-bar" id="tab-bar" style="margin-bottom:0">
         <div class="tab-tier tab-tier--primary">
-          <button class="tab active" data-tab="ranking">Ranking radnych</button>
+          <button class="tab active" data-tab="ranking">Ranking der Abgeordneten</button>
           <button class="tab" data-tab="budget">Budżet</button>
-          <button class="tab" data-tab="votes">Głosowania</button>
-          <button class="tab" data-tab="komisje">Komisje</button>
+          <button class="tab" data-tab="votes">Abstimmungen</button>
+          <button class="tab" data-tab="komisje">Ausschüsse</button>
         </div>
         <div class="tab-tier tab-tier--secondary">
-          <button class="tab tab-secondary" data-tab="interpelacje">Interpelacje</button>
-          <button class="tab tab-secondary" data-tab="sessions">Sesje</button>
+          <button class="tab tab-secondary" data-tab="interpelacje">Schriftliche Anfragen</button>
+          <button class="tab tab-secondary" data-tab="sessions">Sitzungen</button>
         <a href="/news/" class="tab" style="text-decoration:none">Aktualności</a>
         </div>
       </div>
@@ -585,14 +585,14 @@ footer a { color:var(--accent); text-decoration:none; }
         <table id="councilor-table">
           <thead>
             <tr>
-              <th style="width:30px" aria-label="Porównaj"></th>
-              <th data-sort="name">Radny/a <span class="sort-arrow"></span></th>
-              <th data-sort="club">Klub <span class="sort-arrow"></span></th>
-              <th data-sort="frekwencja">Frekwencja <span class="sort-arrow"></span></th>
-              <th data-sort="aktywnosc">Aktywność <span class="sort-arrow"></span></th>
+              <th style="width:30px" aria-label="Vergleichen"></th>
+              <th data-sort="name">Abgeordnete:r <span class="sort-arrow"></span></th>
+              <th data-sort="club">Fraktion <span class="sort-arrow"></span></th>
+              <th data-sort="frekwencja">Anwesenheit <span class="sort-arrow"></span></th>
+              <th data-sort="aktywnosc">Aktivität <span class="sort-arrow"></span></th>
               <th data-sort="zgodnosc_z_klubem">Zgodność z&nbsp;klubem <span class="sort-arrow"></span></th>
-              <th data-sort="votes_za">Za <span class="sort-arrow"></span></th>
-              <th data-sort="votes_przeciw">Przeciw <span class="sort-arrow"></span></th>
+              <th data-sort="votes_za">Dafür <span class="sort-arrow"></span></th>
+              <th data-sort="votes_przeciw">Dagegen <span class="sort-arrow"></span></th>
               <th data-sort="votes_wstrzymal">Wstrzym. <span class="sort-arrow"></span></th>
               <th data-sort="votes_brak">Brak&nbsp;gł. <span class="sort-arrow"></span></th>
               <th data-sort="rebellion_count">Wbrew&nbsp;klubowi <span class="sort-arrow"></span></th>
@@ -609,12 +609,12 @@ footer a { color:var(--accent); text-decoration:none; }
           <thead>
             <tr>
               <th>Nr</th>
-              <th>Data</th>
+              <th>Datum</th>
               <th>Głosowań</th>
-              <th>Przyjętych</th>
+              <th>Angenommen</th>
               <th>Odrzuconych</th>
-              <th>Obecnych</th>
-              <th>Mówców</th>
+              <th>Anwesend</th>
+              <th>Redner</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -624,15 +624,15 @@ footer a { color:var(--accent); text-decoration:none; }
 
     <div id="tab-votes" class="section" style="display:none">
       <div style="margin-bottom:12px">
-        <input type="text" id="vote-search" placeholder="Szukaj głosowań po temacie..."
+        <input type="text" id="vote-search" placeholder="Abstimmungen nach Thema suchen..."
           style="width:100%;max-width:400px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:0.9rem;font-family:inherit"
           oninput="handleVoteSearch(this.value)">
       </div>
       <div class="filter-bar" id="cat-filter" style="margin-bottom:12px;flex-wrap:wrap"></div>
       <div style="margin-bottom:8px;display:flex;gap:8px;flex-wrap:wrap">
-        <button class="session-pill vote-result-pill" data-result="all">Wszystkie wyniki</button>
-        <button class="session-pill vote-result-pill" data-result="accepted">Przyjęte</button>
-        <button class="session-pill vote-result-pill" data-result="rejected">Odrzucone</button>
+        <button class="session-pill vote-result-pill" data-result="all">Alle Ergebnisse</button>
+        <button class="session-pill vote-result-pill" data-result="accepted">Angenommen</button>
+        <button class="session-pill vote-result-pill" data-result="rejected">Abgelehnt</button>
       </div>
       <div id="vote-result-summary" style="margin-bottom:12px;color:var(--muted);font-size:0.9rem"></div>
       <div id="votes-grouped"></div>
@@ -674,14 +674,14 @@ footer a { color:var(--accent); text-decoration:none; }
 
   <footer>
     <div style="margin-bottom:10px">
-      <a href="https://radoskop.eu">Radoskop</a> · <a href="https://radoskop.eu#cities">wszystkie miasta</a>
+      <a href="https://radoskop.eu">Radoskop</a> · <a href="https://radoskop.eu#cities">alle Städte</a>
     </div>
     <div style="margin-bottom:10px;color:var(--muted);font-size:0.8rem">
       Polecane (projekt zewnętrzny): <a href="https://www.tygodniksejmowy.pl/" target="_blank" rel="noopener">Tygodnik Sejmowy</a> — analiza prac Sejmu RP
     </div>
-    Dane źródłowe: <a href="https://www.landtag-mv.de/" target="_blank">landtag-mv.de</a>.
+    Quelldaten: <a href="https://www.landtag-mv.de/" target="_blank">landtag-mv.de</a>.
     Kod: <a href="https://github.com/radoskoppl/radoskop" target="_blank">GitHub</a> (AGPL-3.0).
-    <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/pricing/">Cennik</a> · <a href="https://radoskop.eu/business/">Business</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">Regulamin</a>
+    <a href="https://radoskop.eu/reports/">Berichte</a> · <a href="https://radoskop.eu/pricing/">Cennik</a> · <a href="https://radoskop.eu/business/">Business</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Datenschutz</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">AGB</a>
     
   </footer>
 
@@ -723,7 +723,7 @@ function applyTheme(theme) {
   const icon = document.getElementById('theme-icon');
   const label = document.getElementById('theme-label');
   if (icon) icon.textContent = theme === 'light' ? '🌙' : '☀️';
-  if (label) label.textContent = theme === 'light' ? 'Ciemny' : 'Jasny';
+  if (label) label.textContent = theme === 'light' ? 'Dunkel' : 'Hell';
   // Update Chart.js defaults
   const s = getComputedStyle(document.documentElement);
   Chart.defaults.color = s.getPropertyValue('--chart-text').trim() || '#4b5563';
@@ -745,9 +745,9 @@ const CITY_SLUG = location.hostname.split('.')[0] || 'sopot';
 const API_BASE = (window.RADOSKOP_API || 'https://api.radoskop.pl') + '/api/' + CITY_SLUG;
 
 // Capability flags wstrzykiwane z config.json przez generate_site.py.
-// HAS_VOTING_DATA = false dla miast bez imiennych głosowań (np. Berlin —
+// HAS_VOTING_DATA = false dla miast bez imiennych Abstimmungen (np. Berlin —
 // Hammelsprung jest anonimowy). Wtedy zamiast "Głosowań" pokazujemy
-// "Wystąpień" / "Słów" z protokołów. HAS_SPEAKER_ACTIVITY = true dla
+// "Wortmeldungen" / "Wörter" z protokołów. HAS_SPEAKER_ACTIVITY = true dla
 // miast które parsują stenogramy/Plenarprotokolle (Berlin, Gdańsk).
 const HAS_VOTING_DATA = true;
 const HAS_SPEAKER_ACTIVITY = false;
@@ -773,32 +773,36 @@ let _interpKad = null;
 // Vote categories — auto-classification by topic keywords
 const VOTE_CATS = {
   budzet:       { label: 'Budżet',           order: 1 },
-  inwestycje:   { label: 'Inwestycje',       order: 2 },
+  inwestycje:   { label: 'Investitionen',       order: 2 },
   planowanie:   { label: 'Planowanie',        order: 3 },
   nieruchomosci:{ label: 'Nieruchomości',     order: 4 },
-  transport:    { label: 'Transport',         order: 5 },
+  transport:    { label: 'Verkehr',         order: 5 },
   oswiata:      { label: 'Oświata',           order: 6 },
-  zdrowie:      { label: 'Zdrowie/Społeczne', order: 7 },
-  srodowisko:   { label: 'Środowisko',        order: 8 },
-  kultura:      { label: 'Kultura',           order: 9 },
+  zdrowie:      { label: 'Gesundheit/Soziales', order: 7 },
+  srodowisko:   { label: 'Umwelt',        order: 8 },
+  kultura:      { label: 'Kultur',           order: 9 },
   skarga:       { label: 'Skargi/Petycje',    order: 10 },
   nazwy:        { label: 'Nazwy',             order: 11 },
-  procedura:    { label: 'Proceduralne',      order: 12 },
-  inne:         { label: 'Inne',              order: 13 },
+  procedura:    { label: 'Verfahrensfragen',      order: 12 },
+  inne:         { label: 'Sonstiges',              order: 13 },
 };
+// Reguły kategoryzacji per język wstrzykiwane przez generate_site.py /
+// generate_assembly_site.py z radoskop/scripts/vote_categories.py.
+// Dla miast PL to polskie keyword, dla zagranicznych (LT/SK/DE/LV/CS/ET)
+// odpowiednie tłumaczenia. Fallback do PL gdy locale nieobsługiwany.
 const CAT_RULES = [
-  ['budzet',       /budże[tc]|finansow|dochodów|wydatków|podatk|opłat|skarbnik|absolutorium|WPF|wieloletni.*prognoz|dotacj|umarzani.*spłat|rozkładani.*rat|kredyt|pożyczk|zaciągnięci|stawek.*jednostkow|ekwiwalent.*pienięż|średni.*cen.*paliw|czynszów|odpłatności za pobyt/i],
-  ['inwestycje',   /inwestycj|budow[aąęy]|przebudow|remont|modernizacj|spółk.*kapitał|objęci.*udziałów/i],
-  ['planowanie',   /plan.*zagospodarowania|miejscowego planu|studium|zagospodarowania przestrzennego|rewitaliz|obszar.*zdegradowan/i],
-  ['nieruchomosci',/nieruchom|gruntu|działk|dzierżaw|użytkowania wieczyst|sprzedaż.*lokalu|bonifikat|lokali użytkow|zasad.*gospodarowan.*zasob|lokali.*mieszkaln|wynajmowan.*lokali|mieszkaniow/i],
-  ['transport',    /transport|komunikacj|kategorii dróg|drogi gminnej|tramwaj|autobus|metro|parking|ścieżk.*rowerow|stref.*płatnego parkowania|elektromobil|zarząd.*dróg/i],
-  ['oswiata',      /szkoł|przedszkol|żłob|oświat|edukacj|stypend|nadania imienia|sieci.*szkół|liceum|branżow.*szkół|godzin zajęć|nagrod.*edukacyjn/i],
-  ['zdrowie',      /zdrow|szpital|społeczn|pomoc.*społeczn|bezdomn|niepełnospraw|senioraln|opiek|alkohol|profilaktyk|piecz.*zastępcz|mieszkani.*wspomagany|mieszkani.*chronionych|organizacj.*pozarządow/i],
-  ['srodowisko',   /środowisk|zieleń|park[uói]|ekolog|odpady|klimat|wycink|kąpielisk|sezon.*kąpielow/i],
-  ['kultura',      /kultur|bibliotek|zabytk|pomnik|muzeum|teatr|nagrod.*miasta|nagrody.*miasta|konkurs.*literack|konserwatorsk|nagrod.*historyczn|nagrod.*literack/i],
-  ['skarga',       /skarg|petycj|rozpatrzenia skargi|rozpatrzenia wniosku/i],
-  ['nazwy',        /nadania nazwy|nazwy? obiektowi|nazewnictw|zniesieni.*nazwy?|zmiany? nazw|nadania ulic/i],
-  ['procedura',    /protokoł|porządk.*obrad|ślubowani|włącz?enie druku|komisj.*rewizyjn|powołani|regulamin|statut.*dzielnicy|statut.*zakładu|przyjęci.*regulamin|odesłanie do komisji|zamknięci.*obrad|otwarci.*sesji|okręg.*wyborczy|podział.*dzielnicy|ławnik|rezolucj|oświadczeni|apel|upoważnien.*dyrektor|tekst.*jednolity|stanowisko nr|przewodniczą|wiceprzewodniczą|porozumieni.*gmin|współdziałan.*gmin|kasyn.*gry|wyrażeni.*opinii|stwierdzeni.*nieważności|wyznaczeni.*termin|przedstawiciel.*rady|powierzeni|referendum|zmian.*siedziby|członk.*jury|kandydat.*na członk/i],
+  ['budzet', /Haushalt|Finanz|Steuer|Gebühr|Zuschuss|Darlehen|Kredit|Etat|Abgabe|Entgelt|Vergütung/i],
+  ['inwestycje', /Investition|Bau\b|Sanierung|Modernisierung|Umbau|Neubau|Errichtung/i],
+  ['planowanie', /Bebauungsplan|Flächennutzungsplan|Stadtplanung|Bauleitplan|Raumordnung|Entwicklungsplan/i],
+  ['nieruchomosci', /Grundstück|Immobilie|Liegenschaft|Pacht|Miete|Gebäude|Wohnung|Erbbaurecht/i],
+  ['transport', /Verkehr|Nahverkehr|Straße|Bus\b|Bahn|U-Bahn|S-Bahn|Parken|Radweg|ÖPNV|Mobilität|Tram/i],
+  ['oswiata', /Schule|Kita|Kindergarten|Bildung|Stipendium|Hochschule|Gymnasium|Ausbildung/i],
+  ['zdrowie', /Gesundheit|Krankenhaus|Sozial|Pflege|Behindert|Senior|Klinik|Sucht|Drogen/i],
+  ['srodowisko', /Umwelt|Grün|Park\b|Ökolog|Abfall|Klima|Naturschutz|Müll|Gewässer/i],
+  ['kultura', /Kultur|Bibliothek|Denkmal|Museum|Theater|Kunst|Festival/i],
+  ['skarga', /Beschwerde|Petition|Eingabe|Bürgerantrag/i],
+  ['nazwy', /Benennung|Straßenname|Namensgebung|Umbenennung/i],
+  ['procedura', /Protokoll|Tagesordnung|Geschäftsordnung|Satzung|Ausschuss|Wahlperiode|Beschlussfassung|Verordnung|Bestellung|Ernennung|Wahl\b|Drucksache|Antrag der Fraktion|Resolution|Entschließung|Stellungnahme|Vereidigung/i],
 ];
 function categorizeVote(topic) {
   if (!topic) return 'inne';
@@ -1042,7 +1046,7 @@ async function init() {
     }
     selectKadencja(initialKid);
   } catch(e) {
-    document.getElementById('loading').textContent = 'Błąd ładowania danych: ' + e.message;
+    document.getElementById('loading').textContent = 'Fehler beim Laden der Daten: ' + e.message;
   }
 }
 
@@ -1116,7 +1120,7 @@ const KAD_SLUGS = {'2018-2023':'viii','2024-2029':'ix'};
 const SLUG_KADS = Object.fromEntries(Object.entries(KAD_SLUGS).map(([k,v])=>[v,k]));
 
 const BASE_TITLE = 'Radoskop Landtag MV. Wie stimmen die Abgeordneten ab?';
-const TAB_TITLES = {ranking:'Ranking radnych',sessions:'Sesje',votes:'Głosowania',komisje:'Komisje',interpelacje:'Interpelacje',budget:'Budżet'};
+const TAB_TITLES = {ranking:'Ranking der Abgeordneten',sessions:'Sitzungen',votes:'Abstimmungen',komisje:'Ausschüsse',interpelacje:'Schriftliche Anfragen',budget:'Budżet'};
 function setTitle(subtitle) {
   document.title = subtitle ? subtitle + ' \u2013 ' + BASE_TITLE : BASE_TITLE;
 }
@@ -1315,7 +1319,7 @@ function showTerms() {
 }
 
 // --- Impressum / provider identification page ---
-// Treść jest wstrzykiwana z config.json przez generate_site.py jako
+// Inhalt jest wstrzykiwana z config.json przez generate_site.py jako
 // IMPRESSUM_HTML placeholder. Dla miast PL block jest pusty (regulamin
 // pokrywa wymóg identyfikacji administratora). Dla DE/CS block zawiera
 // pełne dane wymagane przez par. 5 TMG / par. 18 MStV (Berlin) lub
@@ -1338,7 +1342,7 @@ function showImpressum() {
 }
 
 // --- Reports catalog ---
-// Wszystkie raporty katalogowane są na radoskop.eu/reports/ (jedna kanoniczna
+// Alle raporty katalogowane są na radoskop.eu/reports/ (jedna kanoniczna
 // strona dla całej platformy). Subdomena miasta tu tylko przekierowuje,
 // żeby uniknąć duplikatu treści i SEO konfliktów.
 function showReports() {
@@ -1415,7 +1419,7 @@ function renderCouncilorTable() {
   tbody.innerHTML = data.map(c => {
     const checked = compareList.includes(c.name);
     return `<tr>
-      <td><input type="checkbox" class="compare-check" data-name="${c.name.replace(/"/g, '&quot;')}" ${checked?'checked':''} onchange="toggleCompare(this.dataset.name, this.checked)" aria-label="Porównaj ${c.name}"></td>
+      <td><input type="checkbox" class="compare-check" data-name="${c.name.replace(/"/g, '&quot;')}" ${checked?'checked':''} onchange="toggleCompare(this.dataset.name, this.checked)" aria-label="Vergleichen ${c.name}"></td>
       <td>${profileLink(c.name)}</td>
       <td><span class="club ${clubClass(c.club)}">${c.club}</span></td>
       <td>${pctBar(c.frekwencja)}</td>
@@ -1456,7 +1460,7 @@ function showProfile(name) {
   var _pk = profile.kadencje[Object.keys(profile.kadencje).pop()] || {};
   setOgMeta({
     title: profile.name + ' \u2013 Radoskop Mecklenburg-Vorpommern',
-    description: profile.name + ', ' + (_pk.club_full || _pk.club || '') + '. Frekwencja ' + (_pk.frekwencja||0).toFixed(0) + '%, aktywnosc ' + (_pk.aktywnosc||0).toFixed(0) + '%.',
+    description: profile.name + ', ' + (_pk.club_full || _pk.club || '') + '. Anwesenheit ' + (_pk.frekwencja||0).toFixed(0) + '%, aktywnosc ' + (_pk.aktywnosc||0).toFixed(0) + '%.',
     url: 'https://mv.radoskop.eu/profil/' + profile.slug + '/',
     image: 'https://mv.radoskop.eu/profil/' + profile.slug + '/og.png'
   });
@@ -1473,7 +1477,7 @@ function showProfile(name) {
     const hasVotes = kd.has_voting_data;
 
     let html = `
-      <button class="profile-back" onclick="showMain()">← Strona główna</button>
+      <button class="profile-back" onclick="showMain()">← Startseite</button>
       <div class="profile-header">
         <div class="profile-avatar" style="background:${clubBg(club)}">${initials(profile.name)}</div>
         <div class="profile-info">
@@ -1487,7 +1491,7 @@ function showProfile(name) {
         </div>
       </div>`;
 
-    // Kadencja toggle — always show all kadencje, disable if councilor has no data there
+    // Wahlperiode toggle — always show all kadencje, disable if councilor has no data there
     const allKadencje = RAW.kadencje.map(k => k.id);
     html += `<div class="profile-kadencja-toggle">`;
     for (const k of allKadencje) {
@@ -1497,7 +1501,7 @@ function showProfile(name) {
       if (hasData) {
         html += `<button class="kadencja-btn ${k===kid?'active':''}" onclick="window._profileKadSwitch('${k}')">${label}</button>`;
       } else {
-        html += `<button class="kadencja-btn" style="opacity:0.35;cursor:default" title="Brak danych dla tej kadencji">${label}</button>`;
+        html += `<button class="kadencja-btn" style="opacity:0.35;cursor:default" title="Keine Daten für diese Wahlperiode">${label}</button>`;
       }
     }
     html += `</div>`;
@@ -1508,15 +1512,15 @@ function showProfile(name) {
         <div class="profile-metrics" style="flex:1;min-width:280px;margin-bottom:0">
           <div class="metric-card">
             <div class="metric-value" style="color:${kd.frekwencja>=90?'var(--green)':kd.frekwencja>=70?'var(--yellow)':'var(--red)'}">${kd.frekwencja}%</div>
-            <div class="metric-label">Frekwencja</div>
+            <div class="metric-label">Anwesenheit</div>
           </div>
           <div class="metric-card">
             <div class="metric-value" style="color:${kd.aktywnosc>=90?'var(--green)':kd.aktywnosc>=70?'var(--yellow)':'var(--red)'}">${kd.aktywnosc}%</div>
-            <div class="metric-label">Aktywność</div>
+            <div class="metric-label">Aktivität</div>
           </div>
           ${kd.club === 'Niezrzeszeni' ? '' : `<div class="metric-card">
             <div class="metric-value" style="color:${kd.zgodnosc_z_klubem>=90?'var(--green)':kd.zgodnosc_z_klubem>=70?'var(--yellow)':'var(--red)'}">${kd.zgodnosc_z_klubem}%</div>
-            <div class="metric-label">Zgodność z klubem</div>
+            <div class="metric-label">Fraktionsdisziplin</div>
           </div>`}
           <div class="metric-card">
             <div class="metric-value">${kd.votes_total}</div>
@@ -1524,23 +1528,23 @@ function showProfile(name) {
           </div>
           <div class="metric-card">
             <div class="metric-value" style="color:var(--green)">${kd.votes_za}</div>
-            <div class="metric-label">Za</div>
+            <div class="metric-label">Dafür</div>
           </div>
           <div class="metric-card">
             <div class="metric-value" style="color:var(--red)">${kd.votes_przeciw}</div>
-            <div class="metric-label">Przeciw</div>
+            <div class="metric-label">Dagegen</div>
           </div>
           <div class="metric-card">
             <div class="metric-value" style="color:var(--yellow)">${kd.votes_wstrzymal}</div>
-            <div class="metric-label">${isFemale(profile.name) ? 'Wstrzymała się' : 'Wstrzymał się'}</div>
+            <div class="metric-label">${isFemale(profile.name) ? 'Enthalten' : 'Enthalten'}</div>
           </div>
           <div class="metric-card">
             <div class="metric-value">${kd.votes_brak}</div>
-            <div class="metric-label">Brak głosu</div>
+            <div class="metric-label">Nicht abgestimmt</div>
           </div>
           <div class="metric-card">
             <div class="metric-value">${kd.votes_nieobecny}</div>
-            <div class="metric-label">${isFemale(profile.name) ? 'Nieobecna' : 'Nieobecny'}</div>
+            <div class="metric-label">${isFemale(profile.name) ? 'Abwesend' : 'Abwesend'}</div>
           </div>
         </div>
         <div style="width:200px;flex-shrink:0">
@@ -1555,27 +1559,27 @@ function showProfile(name) {
     if (kd.has_activity_data && kd.activity) {
       const act = kd.activity;
       html += `<div class="section">
-        <h2>Aktywność na sesjach</h2>
+        <h2>Aktivität in den Sitzungen</h2>
         <div class="profile-metrics">
           <div class="metric-card">
             <div class="metric-value" style="color:var(--blue)">${act.sessions_spoke}</div>
-            <div class="metric-label">Sesji z wypowiedzią</div>
+            <div class="metric-label">Sitzungen mit Redebeitrag</div>
           </div>
           <div class="metric-card">
             <div class="metric-value" style="color:var(--green)">${act.total_statements}</div>
             <div class="metric-label">Wypowiedzi łącznie</div>
           </div>
           <div class="metric-card">
-            <div class="metric-value">${act.total_words.toLocaleString('pl')}</div>
-            <div class="metric-label">Słów łącznie</div>
+            <div class="metric-value">${act.total_words.toLocaleString('de')}</div>
+            <div class="metric-label">Wörter insgesamt</div>
           </div>
           <div class="metric-card">
             <div class="metric-value">${act.avg_statements_per_session}</div>
             <div class="metric-label">Śr. wypowiedzi/sesję</div>
           </div>
           <div class="metric-card">
-            <div class="metric-value">${act.avg_words_per_session.toLocaleString('pl')}</div>
-            <div class="metric-label">Śr. słów/sesję</div>
+            <div class="metric-value">${act.avg_words_per_session.toLocaleString('de')}</div>
+            <div class="metric-label">⌀ Wörter/Sitzung</div>
           </div>
         </div>`;
 
@@ -1593,7 +1597,7 @@ function showProfile(name) {
 
     if (kd.okręg) {
       html += `<div class="profile-meta-card">
-        <h3>Okręg wyborczy</h3>
+        <h3>Wahlkreis</h3>
         <div style="font-size:1.2rem;font-weight:600">Okręg nr ${kd.okręg}</div>
         <div style="color:var(--muted);font-size:0.85rem;margin-top:4px">${kd.okręg_dzielnice || ''}</div>
       </div>`;
@@ -1601,15 +1605,15 @@ function showProfile(name) {
 
     if (kd.komisje && kd.komisje.length > 0) {
       html += `<div class="profile-meta-card">
-        <h3>Komisje</h3>
+        <h3>Ausschüsse</h3>
         ${kd.komisje.map(k => `<div class="tag">${k}</div>`).join('')}
       </div>`;
     }
 
-    // Kadencje history
+    // Wahlperioden history
     const kadencjeLabels = { '2018-2023': 'VIII kadencja (2018–2024)', '2024-2029': 'IX kadencja (2024–2029)' };
     html += `<div class="profile-meta-card">
-      <h3>Kadencje</h3>
+      <h3>Wahlperioden</h3>
       ${kids.map(k => {
         const d = profile.kadencje[k];
         const cl = d.club || '?';
@@ -1625,7 +1629,7 @@ function showProfile(name) {
       const profileShareTitle = profile.name + ' \u2013 Radoskop Mecklenburg-Vorpommern';
       const profileShareText = profile.name + ' (' + club + '): frekwencja ' + Math.round(kd.frekwencja) + '%, zgodność z klubem ' + Math.round(kd.zgodnosc_z_klubem) + '%. Sprawdź na Radoskopie!';
       html += `<div class="section">
-        <h2>Udostępnij</h2>
+        <h2>Teilen</h2>
         ${shareBar(profileShareTitle, profileShareText, profileShareUrl, 'profile-share')}
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
           <button style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:0.85rem;font-family:inherit" onclick="downloadCard('${profile.name.replace(/'/g,"\\'")}','${club}',${kd.frekwencja},${kd.aktywnosc},${kd.zgodnosc_z_klubem},${kd.votes_za},${kd.votes_przeciw},${kd.votes_wstrzymal})">
@@ -1663,7 +1667,7 @@ function showProfile(name) {
           h += `<div style="display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap">
             <button class="reb-prev" style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:${page>1?'var(--text)':'var(--muted)'};cursor:${page>1?'pointer':'default'};font-size:0.85rem;font-family:inherit" ${page<=1?'disabled':''}>← Poprzednie</button>
             <span style="color:var(--muted);font-size:0.85rem">${from}–${to} z ${rebs.length}</span>
-            <button class="reb-next" style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:${page<rebPages?'var(--text)':'var(--muted)'};cursor:${page<rebPages?'pointer':'default'};font-size:0.85rem;font-family:inherit" ${page>=rebPages?'disabled':''}>Następne →</button>
+            <button class="reb-next" style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:${page<rebPages?'var(--text)':'var(--muted)'};cursor:${page<rebPages?'pointer':'default'};font-size:0.85rem;font-family:inherit" ${page>=rebPages?'disabled':''}>Weiter →</button>
           </div>`;
         }
         if (kd.rebellion_count > rebs.length) {
@@ -1688,7 +1692,7 @@ function showProfile(name) {
       window._pendingRebPage = null;
     }
 
-    // Interpelacje placeholder — rendered async
+    // Schriftliche Anfragen placeholder — rendered async
     html += `<div id="profile-interp-container"></div>`;
 
     // Votes placeholder - loaded async after the view is rendered
@@ -1712,7 +1716,7 @@ function showProfile(name) {
         new Chart(ctx.getContext('2d'), {
           type: 'doughnut',
           data: {
-            labels: ['Za', 'Przeciw', isFemale(profile.name) ? 'Wstrzymała się' : 'Wstrzymał się', 'Brak głosu', isFemale(profile.name) ? 'Nieobecna' : 'Nieobecny'],
+            labels: ['Dafür', 'Dagegen', isFemale(profile.name) ? 'Enthalten' : 'Enthalten', 'Nicht abgestimmt', isFemale(profile.name) ? 'Abwesend' : 'Abwesend'],
             datasets: [{
               data: [kd.votes_za, kd.votes_przeciw, kd.votes_wstrzymal, kd.votes_brak, kd.votes_nieobecny],
               backgroundColor: ['rgba(34,197,94,0.8)', 'rgba(239,68,68,0.8)', 'rgba(234,179,8,0.8)', 'rgba(139,141,151,0.5)', 'rgba(75,85,99,0.5)'],
@@ -1745,7 +1749,7 @@ function showProfile(name) {
               borderRadius: 3,
               yAxisID: 'y',
             }, {
-              label: 'Słowa',
+              label: 'Wörter',
               data: sessions.map(s => s.words),
               type: 'line',
               borderColor: 'rgba(234,179,8,0.9)',
@@ -1760,7 +1764,7 @@ function showProfile(name) {
             scales: {
               x: { ticks: { color: '#6b7280', maxRotation: 45 }, grid: { display: false } },
               y: { position: 'left', title: { display: true, text: 'Wypowiedzi', color: '#6b7280' }, ticks: { color: '#6b7280' }, grid: { color: 'rgba(0,0,0,0.06)' } },
-              y1: { position: 'right', title: { display: true, text: 'Słowa', color: '#6b7280' }, ticks: { color: '#6b7280' }, grid: { display: false } },
+              y1: { position: 'right', title: { display: true, text: 'Wörter', color: '#6b7280' }, ticks: { color: '#6b7280' }, grid: { display: false } },
             },
             plugins: {
               legend: { labels: { color: '#4b5563' } }
@@ -1809,8 +1813,8 @@ function showProfile(name) {
         let _interpPageNum = 1;
 
         // Build stable shell once: heading, search input, and a results slot
-        iContainer.innerHTML = `<div class="section"><h2 id="interp-heading">Interpelacje i zapytania (${allInterp.length})</h2>`
-          + `<input type="text" id="interp-search" placeholder="Szukaj w interpelacjach..." style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:0.85rem;margin-bottom:12px;font-family:inherit">`
+        iContainer.innerHTML = `<div class="section"><h2 id="interp-heading">Schriftliche Anfragen i zapytania (${allInterp.length})</h2>`
+          + `<input type="text" id="interp-search" placeholder="In Anfragen suchen..." style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:0.85rem;margin-bottom:12px;font-family:inherit">`
           + `<div id="interp-results"></div></div>`;
 
         const _interpResultsEl = document.getElementById('interp-results');
@@ -1831,9 +1835,9 @@ function showProfile(name) {
           if (_interpPageNum > totalPages) _interpPageNum = totalPages;
           const pageItems = filtered.slice((_interpPageNum - 1) * INTERP_PER_PAGE, _interpPageNum * INTERP_PER_PAGE);
 
-          _interpHeadingEl.textContent = `Interpelacje i zapytania (${filtered.length})`;
+          _interpHeadingEl.textContent = `Schriftliche Anfragen i zapytania (${filtered.length})`;
 
-          let iHtml = `<div style="overflow-x:auto"><table><thead><tr><th>Data</th><th>Typ</th><th>Przedmiot</th><th>Treść</th><th>Odpowiedź</th></tr></thead><tbody>`;
+          let iHtml = `<div style="overflow-x:auto"><table><thead><tr><th>Datum</th><th>Typ</th><th>Przedmiot</th><th>Inhalt</th><th>Antwort</th></tr></thead><tbody>`;
           pageItems.forEach(d => {
             const tC = d.typ === 'interpelacja' ? 'pill-za' : 'pill-wstrzymal';
             const tL = d.typ === 'interpelacja' ? 'Interpelacja' : 'Zapytanie';
@@ -1932,8 +1936,8 @@ function showProfile(name) {
           const visiblePvs = _profActiveCat === 'all' ? pvs : pvs.filter(x => x.cat === _profActiveCat);
           html += `<div class="profile-sess-group" data-sessdate="${date}" style="margin-bottom:16px">
             <div style="font-weight:600;margin-bottom:6px;font-size:0.9rem">
-              ${sessionLink(number, 'Sesja ' + number + ' · ' + date)}
-              <span style="color:var(--muted);font-weight:400;margin-left:8px">(${visiblePvs.length} głosowań)</span>
+              ${sessionLink(number, 'Sitzung ' + number + ' · ' + date)}
+              <span style="color:var(--muted);font-weight:400;margin-left:8px">(${visiblePvs.length} Abstimmungen)</span>
             </div>
             <table><tbody>`;
           visiblePvs.forEach(({vote: v, pv, cat}) => {
@@ -1945,15 +1949,15 @@ function showProfile(name) {
           html += `</tbody></table></div>`;
         }
 
-        if (!html) html = '<div style="color:var(--muted);padding:12px">Brak głosowań w tej kategorii.</div>';
+        if (!html) html = '<div style="color:var(--muted);padding:12px">Brak Abstimmungen w tej kategorii.</div>';
 
         if (totalPages > 1) {
           const from = (_profSessPage - 1) * PROF_SESS_PER_PAGE + 1;
           const to = Math.min(_profSessPage * PROF_SESS_PER_PAGE, filteredKeys.length);
           html += `<div style="display:flex;align-items:center;gap:10px;margin-top:16px;flex-wrap:wrap">
             <button class="prof-sess-prev" style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:${_profSessPage > 1 ? 'var(--text)' : 'var(--muted)'};cursor:${_profSessPage > 1 ? 'pointer' : 'default'};font-size:0.85rem;font-family:inherit" ${_profSessPage <= 1 ? 'disabled' : ''}>← Poprzednie</button>
-            <span style="color:var(--muted);font-size:0.85rem">Sesje ${from}–${to} z ${filteredKeys.length}</span>
-            <button class="prof-sess-next" style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:${_profSessPage < totalPages ? 'var(--text)' : 'var(--muted)'};cursor:${_profSessPage < totalPages ? 'pointer' : 'default'};font-size:0.85rem;font-family:inherit" ${_profSessPage >= totalPages ? 'disabled' : ''}>Następne →</button>
+            <span style="color:var(--muted);font-size:0.85rem">Sitzungen ${from}–${to} z ${filteredKeys.length}</span>
+            <button class="prof-sess-next" style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:${_profSessPage < totalPages ? 'var(--text)' : 'var(--muted)'};cursor:${_profSessPage < totalPages ? 'pointer' : 'default'};font-size:0.85rem;font-family:inherit" ${_profSessPage >= totalPages ? 'disabled' : ''}>Weiter →</button>
           </div>`;
         }
 
@@ -1970,7 +1974,7 @@ function showProfile(name) {
       // Wire up category filter
       const profCatBar = document.getElementById('profile-cat-filter');
       if (profCatBar) {
-        let pf = `<button class="session-pill active" data-pcat="all">Wszystkie <span class="pill-count">(${allPersonVotes.length})</span></button>`;
+        let pf = `<button class="session-pill active" data-pcat="all">Alle <span class="pill-count">(${allPersonVotes.length})</span></button>`;
         for (const cat of profCatOrder) {
           if (!profCatCounts[cat]) continue;
           pf += `<button class="session-pill cat-pill cat-${cat}" data-pcat="${cat}">${VOTE_CATS[cat]?.label||cat} <span class="pill-count">(${profCatCounts[cat]})</span></button>`;
@@ -2070,7 +2074,7 @@ async function renderSessionsTable() {
 async function renderVotesTable() {
   const container = document.getElementById('votes-grouped');
   if (!K || !K.vote_stats) {
-    if (container) container.innerHTML = '<p style="color:var(--muted)">Brak danych o indywidualnych głosowaniach.</p>';
+    if (container) container.innerHTML = '<p style="color:var(--muted)">Keine Daten zu individuellen Abstimmungen.</p>';
     return;
   }
 
@@ -2085,13 +2089,13 @@ async function renderVotesTable() {
   if (voteEndDate) params.set('date_to', voteEndDate);
 
   // Show loading state
-  container.innerHTML = '<p style="color:var(--muted)">Ładowanie głosowań...</p>';
+  container.innerHTML = '<p style="color:var(--muted)">Ładowanie Abstimmungen...</p>';
 
   try {
     const resp = await fetch(API_BASE + '/kadencja/' + currentKid + '/votes?' + params.toString());
     _votesData = await resp.json();
   } catch(e) {
-    container.innerHTML = '<p style="color:var(--red)">Błąd ładowania głosowań.</p>';
+    container.innerHTML = '<p style="color:var(--red)">Błąd ładowania Abstimmungen.</p>';
     return;
   }
 
@@ -2102,7 +2106,7 @@ async function renderVotesTable() {
   // Build category filter pills
   const catBar = document.getElementById('cat-filter');
   const catOrder = Object.keys(VOTE_CATS).sort((a,b) => (VOTE_CATS[a]?.order||99) - (VOTE_CATS[b]?.order||99));
-  let catPillsHtml = `<button class="session-pill ${currentCatFilter==='all'?'active':''}" data-cat="all">Wszystkie <span class="pill-count">(${totalVotes})</span></button>`;
+  let catPillsHtml = `<button class="session-pill ${currentCatFilter==='all'?'active':''}" data-cat="all">Alle <span class="pill-count">(${totalVotes})</span></button>`;
   for (const cat of catOrder) {
     if (!catCounts[cat]) continue;
     catPillsHtml += `<button class="session-pill cat-pill cat-${cat} ${currentCatFilter===cat?'active':''}" data-cat="${cat}">${VOTE_CATS[cat]?.label||cat} <span class="pill-count">(${catCounts[cat]})</span></button>`;
@@ -2126,7 +2130,7 @@ async function renderVotesTable() {
   });
 
   if (votes.length === 0) {
-    container.innerHTML = '<p style="color:var(--muted)">Brak głosowań spełniających kryteria filtrowania.</p>';
+    container.innerHTML = '<p style="color:var(--muted)">Brak Abstimmungen spełniających kryteria filtrowania.</p>';
     return;
   }
 
@@ -2149,7 +2153,7 @@ async function renderVotesTable() {
       <div class="votes-sess-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="votes-sess-title">
           <span class="votes-sess-toggle">▼</span>
-          ${sessionLinkStop(sg.number, 'Sesja ' + sg.number + ' · ' + sg.date)}
+          ${sessionLinkStop(sg.number, 'Sitzung ' + sg.number + ' · ' + sg.date)}
         </div>
         <div class="votes-sess-stats">
           <span>${sessVotes.length} głos.</span>
@@ -2168,7 +2172,7 @@ async function renderVotesTable() {
         <td><span class="pill pill-za">${c.za||0}</span></td>
         <td>${c.przeciw ? `<span class="pill pill-przeciw">${c.przeciw}</span>` : '0'}</td>
         <td>${c.wstrzymal_sie ? `<span class="pill pill-wstrzymal">${c.wstrzymal_sie}</span>` : '0'}</td>
-        <td><span style="color:${v.passed?'var(--green)':'var(--red)'};font-weight:600;font-size:0.8rem">${v.passed?'Przyjęte':'Odrzucone'}</span></td>
+        <td><span style="color:${v.passed?'var(--green)':'var(--red)'};font-weight:600;font-size:0.8rem">${v.passed?'Angenommen':'Abgelehnt'}</span></td>
       </tr>`;
     });
 
@@ -2183,9 +2187,9 @@ async function renderVotesTable() {
     if (currentPage > 1) {
       html += `<button class="filter-btn" onclick="_votesPage=${currentPage-1};renderVotesTable()">← Poprzednia</button>`;
     }
-    html += `<span style="color:var(--muted);font-size:0.85rem">Strona ${currentPage} z ${totalPages} (${_votesData.total} głosowań)</span>`;
+    html += `<span style="color:var(--muted);font-size:0.85rem">Strona ${currentPage} z ${totalPages} (${_votesData.total} Abstimmungen)</span>`;
     if (currentPage < totalPages) {
-      html += `<button class="filter-btn" onclick="_votesPage=${currentPage+1};renderVotesTable()">Następna →</button>`;
+      html += `<button class="filter-btn" onclick="_votesPage=${currentPage+1};renderVotesTable()">Weiter →</button>`;
     }
     html += `</div>`;
   }
@@ -2196,7 +2200,7 @@ async function renderVotesTable() {
     const total = _votesData.total || 0;
     const passedAll = K.vote_stats.passed || 0;
     const rejectedAll = K.vote_stats.rejected || 0;
-    let summary = `<strong>${total}</strong> głosowań`;
+    let summary = `<strong>${total}</strong> Abstimmungen`;
     if (voteSearchQuery) summary += ` (szukanie: "${voteSearchQuery}")`;
     if (voteResultFilter !== 'all') {
       summary += ` • filtr: ${voteResultFilter === 'accepted' ? 'przyjęte' : 'odrzucone'}`;
@@ -2233,10 +2237,10 @@ async function showVote(voteId) {
     // ze starego deploya albo z indeksu Google. Po przejściu na nową
     // kadencję dane historyczne nie są publikowane.
     // UX: zamiast suchego "Nie znaleziono" pokazujemy info + linki do
-    // aktualnych głosowań, żeby user nie utknął i Google Ads nie oznaczał
+    // aktualnych Abstimmungen, żeby user nie utknął i Google Ads nie oznaczał
     // strony jako "Destination not working".
     view.innerHTML = '<div style="padding:40px;max-width:560px;margin:0 auto">'
-      + '<h2 style="margin:0 0 12px">Głosowanie niedostępne</h2>'
+      + '<h2 style="margin:0 0 12px">Abstimmung niedostępne</h2>'
       + '<p style="color:var(--muted);margin:0 0 16px">'
       + 'To głosowanie nie zostało znalezione w aktualnej kadencji. '
       + 'Możliwe że pochodzi z archiwum poprzedniej kadencji albo link jest błędny.'
@@ -2244,15 +2248,15 @@ async function showVote(voteId) {
       + '<p style="margin:20px 0"><a href="/" style="color:var(--text);font-weight:600">Wróć na stronę główną →</a></p>'
       + '<p style="margin:0"><a href="/glosowanie/" style="color:var(--text)">Zobacz aktualne głosowania →</a></p>'
       + '</div>';
-    setTitle('Głosowanie niedostępne');
+    setTitle('Abstimmung niedostępne');
     return;
   }
 
-  setTitle('Głosowanie: ' + (vote.topic || voteId).substring(0, 60));
+  setTitle('Abstimmung: ' + (vote.topic || voteId).substring(0, 60));
   var _vc = vote.counts || {};
   setOgMeta({
     title: (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Mecklenburg-Vorpommern',
-    description: 'Za ' + (_vc.za||0) + ', przeciw ' + (_vc.przeciw||0) + ', wstrzym. ' + (_vc.wstrzymal_sie||0) + '. Sesja ' + (vote.session_number||'') + ', ' + (vote.session_date||'') + '.',
+    description: 'Dafür ' + (_vc.za||0) + ', przeciw ' + (_vc.przeciw||0) + ', wstrzym. ' + (_vc.wstrzymal_sie||0) + '. Sitzung ' + (vote.session_number||'') + ', ' + (vote.session_date||'') + '.',
     url: 'https://mv.radoskop.eu/glosowanie/' + voteId + '/',
     image: 'https://mv.radoskop.eu/glosowanie/' + voteId + '/og.png'
   });
@@ -2281,15 +2285,15 @@ async function showVote(voteId) {
     }).join('')}</div>`;
   }
 
-  // Fallback dla głosowań bez wyciągniętego numeru sesji rzymskiego (parser
+  // Fallback dla Abstimmungen bez wyciągniętego numeru sesji rzymskiego (parser
   // BIP czasem nie złapie z highlight). Używamy session_date jako klucza do
   // showSession, bo backend API obsługuje też lookup po dacie.
   const sessKey = vote.session_number || vote.session_date || '';
   const sessLabel = vote.session_number || vote.session_date || '?';
   let html = `
-    ${sessKey ? `<button class="profile-back" onclick="showSession('${sessKey}')">← Sesja ${sessLabel}</button>` : ''}
+    ${sessKey ? `<button class="profile-back" onclick="showSession('${sessKey}')">← Sitzung ${sessLabel}</button>` : ''}
     <div style="margin-bottom:24px">
-      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessKey ? sessionLink(sessKey, 'Sesja ' + sessLabel + ' · ' + (vote.session_date || ''), ' style="color:var(--muted)"') : (vote.session_date ? 'Sesja · ' + vote.session_date : '')}</div>
+      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessKey ? sessionLink(sessKey, 'Sitzung ' + sessLabel + ' · ' + (vote.session_date || ''), ' style="color:var(--muted)"') : (vote.session_date ? 'Sitzung · ' + vote.session_date : '')}</div>
       <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
       ${vote.summary ? `<p style="color:var(--text);margin-top:8px;font-size:0.95rem;line-height:1.6;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px">${vote.summary}</p>` : ''}
       ${vote.druk ? `<div style="color:var(--muted);margin-top:4px">Druk: ${vote.druk}</div>` : ''}
@@ -2298,7 +2302,7 @@ async function showVote(voteId) {
       <div style="margin-top:12px">
         ${shareBar(
           (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Mecklenburg-Vorpommern',
-          (passed ? 'Przyjęte' : 'Odrzucone') + ': za ' + (c.za||0) + ', przeciw ' + (c.przeciw||0) + ', wstrzym. ' + (c.wstrzymal_sie||0) + '. ' + (vote.topic || '').substring(0, 100),
+          (passed ? 'Angenommen' : 'Abgelehnt') + ': za ' + (c.za||0) + ', przeciw ' + (c.przeciw||0) + ', wstrzym. ' + (c.wstrzymal_sie||0) + '. ' + (vote.topic || '').substring(0, 100),
           'https://mv.radoskop.eu/glosowanie/' + voteId + '/',
           'vote-share'
         )}
@@ -2307,28 +2311,28 @@ async function showVote(voteId) {
 
     <div class="profile-metrics" style="margin-bottom:24px">
       <div class="metric-card">
-        <div class="metric-value" style="color:${passed?'var(--green)':'var(--red)'}">${passed?'Przyjęte':'Odrzucone'}</div>
-        <div class="metric-label">Wynik</div>
+        <div class="metric-value" style="color:${passed?'var(--green)':'var(--red)'}">${passed?'Angenommen':'Abgelehnt'}</div>
+        <div class="metric-label">Ergebnis</div>
       </div>
       <div class="metric-card">
         <div class="metric-value" style="color:var(--green)">${c.za||0}</div>
-        <div class="metric-label">Za</div>
+        <div class="metric-label">Dafür</div>
       </div>
       <div class="metric-card">
         <div class="metric-value" style="color:var(--red)">${c.przeciw||0}</div>
-        <div class="metric-label">Przeciw</div>
+        <div class="metric-label">Dagegen</div>
       </div>
       <div class="metric-card">
         <div class="metric-value" style="color:var(--yellow)">${c.wstrzymal_sie||0}</div>
-        <div class="metric-label">Wstrzymał się</div>
+        <div class="metric-label">Enthalten</div>
       </div>
       <div class="metric-card">
         <div class="metric-value">${c.brak_glosu||0}</div>
-        <div class="metric-label">Brak głosu</div>
+        <div class="metric-label">Nicht abgestimmt</div>
       </div>
       <div class="metric-card">
         <div class="metric-value">${c.nieobecni||0}</div>
-        <div class="metric-label">Nieobecni</div>
+        <div class="metric-label">Abwesend</div>
       </div>
     </div>
 
@@ -2343,19 +2347,19 @@ async function showVote(voteId) {
     <div id="commission-timeline"></div>
 
     <div class="section">
-      <div class="vote-cat-header" style="color:var(--green)">Za (${(nv.za||[]).length})</div>
+      <div class="vote-cat-header" style="color:var(--green)">Dafür (${(nv.za||[]).length})</div>
       ${renderNameList(nv.za, 'rgba(34,197,94,0.08)')}
 
-      <div class="vote-cat-header" style="color:var(--red)">Przeciw (${(nv.przeciw||[]).length})</div>
+      <div class="vote-cat-header" style="color:var(--red)">Dagegen (${(nv.przeciw||[]).length})</div>
       ${renderNameList(nv.przeciw, 'rgba(239,68,68,0.08)')}
 
-      <div class="vote-cat-header" style="color:var(--yellow)">Wstrzymał się (${(nv.wstrzymal_sie||[]).length})</div>
+      <div class="vote-cat-header" style="color:var(--yellow)">Enthalten (${(nv.wstrzymal_sie||[]).length})</div>
       ${renderNameList(nv.wstrzymal_sie, 'rgba(234,179,8,0.08)')}
 
-      <div class="vote-cat-header">Brak głosu (${(nv.brak_glosu||[]).length})</div>
+      <div class="vote-cat-header">Nicht abgestimmt (${(nv.brak_glosu||[]).length})</div>
       ${renderNameList(nv.brak_glosu, 'rgba(139,141,151,0.05)')}
 
-      <div class="vote-cat-header">Nieobecni (${(nv.nieobecni||[]).length})</div>
+      <div class="vote-cat-header">Abwesend (${(nv.nieobecni||[]).length})</div>
       ${renderNameList(nv.nieobecni, 'rgba(75,85,99,0.05)')}
     </div>
   `;
@@ -2469,7 +2473,7 @@ async function renderCommissionTimeline(druk, container) {
   const sessionRow = entry.session && entry.session.date ? `
     <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-top:0.5px solid var(--border);opacity:0.75">
       <div style="font-size:11px;color:var(--accent);min-width:78px;font-family:var(--font-mono,monospace)">${entry.session.date}</div>
-      <div style="flex:1;font-size:13px;color:var(--text)">⚑ Sesja${entry.session.number_roman ? ' '+entry.session.number_roman : ''}, głosowanie</div>
+      <div style="flex:1;font-size:13px;color:var(--text)">⚑ Sitzung${entry.session.number_roman ? ' '+entry.session.number_roman : ''}, głosowanie</div>
     </div>
   ` : '';
 
@@ -2562,11 +2566,11 @@ async function showSession(sessionNumber) {
     }
   }
   if (!sess) {
-    // Sesja nie znaleziona, prawdopodobnie stary URL z archiwum kadencji.
+    // Sitzung nie znaleziona, prawdopodobnie stary URL z archiwum kadencji.
     // Friendly fallback z linkami zamiast suchego błędu (Google Ads
     // oznacza "Nie znaleziono" jako Destination not working).
     view.innerHTML = '<div style="padding:40px;max-width:560px;margin:0 auto">'
-      + '<h2 style="margin:0 0 12px">Sesja niedostępna</h2>'
+      + '<h2 style="margin:0 0 12px">Sitzung niedostępna</h2>'
       + '<p style="color:var(--muted);margin:0 0 16px">'
       + 'Ta sesja nie została znaleziona w aktualnej kadencji. '
       + 'Możliwe że pochodzi z archiwum poprzedniej kadencji albo link jest błędny.'
@@ -2574,11 +2578,11 @@ async function showSession(sessionNumber) {
       + '<p style="margin:20px 0"><a href="/" style="color:var(--text);font-weight:600">Wróć na stronę główną →</a></p>'
       + '<p style="margin:0"><a href="/sesja/" style="color:var(--text)">Zobacz aktualne sesje →</a></p>'
       + '</div>';
-    setTitle('Sesja niedostępna');
+    setTitle('Sitzung niedostępna');
     return;
   }
 
-  setTitle('Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : ''));
+  setTitle('Sitzung ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : ''));
   // Sumaryczna metryka sesji: dla miast z imiennymi g\u0142osowaniami liczba
   // g\u0142osowa\u0144, dla miast typu Berlin (Hammelsprung anonimowy) liczba
   // wypowiedzi z protoko\u0142u.
@@ -2588,8 +2592,8 @@ async function showSession(sessionNumber) {
     ? ((sess.vote_count || 0) + ' g\u0142osowa\u0144')
     : (sessStatementCount + ' wyst\u0105pie\u0144');
   setOgMeta({
-    title: 'Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' \u2013 Radoskop Mecklenburg-Vorpommern',
-    description: 'Sesja ' + sessionNumber + ', ' + (sess.date||'') + '. ' + sessSummaryStat + ', ' + (sess.attendee_count||0) + ' obecnych.',
+    title: 'Sitzung ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' \u2013 Radoskop Mecklenburg-Vorpommern',
+    description: 'Sitzung ' + sessionNumber + ', ' + (sess.date||'') + '. ' + sessSummaryStat + ', ' + (sess.attendee_count||0) + ' Anwesende.',
     url: 'https://mv.radoskop.eu/sesja/' + encodeURIComponent(sessionNumber) + '/'
   });
 
@@ -2612,14 +2616,14 @@ async function showSession(sessionNumber) {
   const rejected = hasVoteRecords ? (sessionVotes.length - passed) : 0;
 
   let html = `
-    <button class="profile-back" onclick="showMain()">← Strona główna</button>
+    <button class="profile-back" onclick="showMain()">← Startseite</button>
     <div style="margin-bottom:24px">
-      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">Sesja ${sess.number} · ${sess.date}</h2>
+      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">Sitzung ${sess.number} · ${sess.date}</h2>
       ${sess.source_url ? `<div style="margin-top:6px"><a href="${sess.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół (BIP) ↗</a></div>` : ''}
       <div style="margin-top:12px">
         ${shareBar(
-          'Sesja ' + sess.number + ' (' + (sess.date||'') + ') \u2013 Radoskop Mecklenburg-Vorpommern',
-          'Sesja ' + sess.number + ': ' + sessSummaryStat + ', ' + (sess.attendee_count||present.size||0) + ' obecnych radnych.',
+          'Sitzung ' + sess.number + ' (' + (sess.date||'') + ') \u2013 Radoskop Mecklenburg-Vorpommern',
+          'Sitzung ' + sess.number + ': ' + sessSummaryStat + ', ' + (sess.attendee_count||present.size||0) + ' anwesende Abgeordnete.',
           'https://mv.radoskop.eu/sesja/' + encodeURIComponent(sessionNumber) + '/',
           'session-share'
         )}
@@ -2632,11 +2636,11 @@ async function showSession(sessionNumber) {
         <div class="metric-label">Głosowań</div>
       </div>` : `<div class="metric-card">
         <div class="metric-value">${sessStatementCount}</div>
-        <div class="metric-label">Wystąpień</div>
+        <div class="metric-label">Wortmeldungen</div>
       </div>`}
       ${hasVoteRecords ? `<div class="metric-card">
         <div class="metric-value" style="color:var(--green)">${passed}</div>
-        <div class="metric-label">Przyjętych</div>
+        <div class="metric-label">Angenommen</div>
       </div>
       <div class="metric-card">
         <div class="metric-value" style="color:var(--red)">${rejected}</div>
@@ -2644,11 +2648,11 @@ async function showSession(sessionNumber) {
       </div>` : ''}
       <div class="metric-card">
         <div class="metric-value">${sess.attendee_count}</div>
-        <div class="metric-label">Obecnych</div>
+        <div class="metric-label">Anwesend</div>
       </div>
       <div class="metric-card">
         <div class="metric-value" style="color:var(--muted)">${absent.length}</div>
-        <div class="metric-label">Nieobecnych</div>
+        <div class="metric-label">Abwesend</div>
       </div>
     </div>`;
 
@@ -2664,12 +2668,12 @@ async function showSession(sessionNumber) {
     const totalStatements = speakers.reduce((s, sp) => s + (sp.statements ?? sp.turns ?? 0), 0);
 
     html += `<div class="section">
-      <h2>Aktywność mówców</h2>
+      <h2>Rede-Aktivität</h2>
       <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px;font-size:0.78rem;color:var(--muted);font-variant-numeric:tabular-nums">
         <span><strong style="color:var(--text);font-weight:500">${speakers.length}</strong> mówców</span>
-        <span><strong style="color:var(--text);font-weight:500">${totalStatements.toLocaleString('pl')}</strong> wyp.</span>
-        <span><strong style="color:var(--text);font-weight:500">${totalWords.toLocaleString('pl')}</strong> słów</span>
-        <span>mediana <strong style="color:var(--text);font-weight:500">${medianWords.toLocaleString('pl')}</strong></span>
+        <span><strong style="color:var(--text);font-weight:500">${totalStatements.toLocaleString('de')}</strong> Beitr.</span>
+        <span><strong style="color:var(--text);font-weight:500">${totalWords.toLocaleString('de')}</strong> Wörter</span>
+        <span>mediana <strong style="color:var(--text);font-weight:500">${medianWords.toLocaleString('de')}</strong></span>
       </div>
       <div class="speakers-grid">`;
     const SPEAKERS_TOP_VISIBLE = 10;
@@ -2687,7 +2691,7 @@ async function showSession(sessionNumber) {
         <div class="speaker-bar-track">
           <div class="speaker-bar-fill" style="width:${barPct}%;background:${color}"></div>
         </div>
-        <span class="speaker-meta"><strong>${sp.words.toLocaleString('pl')}</strong> słów · ${statements} wyp.</span>
+        <span class="speaker-meta"><strong>${sp.words.toLocaleString('de')}</strong> Wörter · ${statements} Beitr.</span>
       </div>`;
     }).join('');
     if (speakers.length > SPEAKERS_TOP_VISIBLE) {
@@ -2708,15 +2712,15 @@ async function showSession(sessionNumber) {
 
   // Category summary with filter
   html += `<div class="section">
-    <h2>Głosowania (${sessVoteCount})</h2>
+    <h2>Abstimmungen (${sessVoteCount})</h2>
     <div class="filter-bar" id="session-cat-filter" style="margin-bottom:12px;flex-wrap:wrap">
-      <button class="session-pill active" data-scat="all">Wszystkie <span class="pill-count">(${sessionVotes.length})</span></button>`;
+      <button class="session-pill active" data-scat="all">Alle <span class="pill-count">(${sessionVotes.length})</span></button>`;
   catOrder.forEach(cat => {
     html += `<button class="session-pill cat-pill cat-${cat}" data-scat="${cat}">${VOTE_CATS[cat]?.label||cat} <span class="pill-count">(${grouped[cat].length})</span></button>`;
   });
   html += `</div>`;
   if (!sessionVotes.length) {
-    html += `<p style="color:var(--muted)">Brak danych o indywidualnych głosowaniach.</p>`;
+    html += `<p style="color:var(--muted)">Keine Daten zu individuellen Abstimmungen.</p>`;
   }
 
   // Grouped tables
@@ -2724,9 +2728,9 @@ async function showSession(sessionNumber) {
   catOrder.forEach(cat => {
     const votes = grouped[cat];
     html += `<div class="cat-group" data-catgroup="${cat}">
-      <div class="cat-group-header">${catPill(cat)} <span class="cat-group-count">${votes.length} głosowań</span></div>
+      <div class="cat-group-header">${catPill(cat)} <span class="cat-group-count">${votes.length} Abstimmungen</span></div>
       <table class="ranking-table">
-        <thead><tr><th>#</th><th>Temat</th><th>Za</th><th>Przeciw</th><th>Wstrzym.</th><th>Wynik</th></tr></thead>
+        <thead><tr><th>#</th><th>Thema</th><th>Dafür</th><th>Dagegen</th><th>Wstrzym.</th><th>Ergebnis</th></tr></thead>
         <tbody>`;
     votes.forEach(v => {
       globalIdx++;
@@ -2748,7 +2752,7 @@ async function showSession(sessionNumber) {
 
   // Attendance
   html += `<div class="section">
-    <h2>Obecni (${present.size})</h2>
+    <h2>Anwesend (${present.size})</h2>
     <div class="session-attendees">`;
   sortByLastName([...present]).forEach(n => {
     const cl = clubMap[n] || '?';
@@ -2758,7 +2762,7 @@ async function showSession(sessionNumber) {
 
   if (absent.length > 0) {
     html += `<div class="section">
-      <h2>Nieobecni (${absent.length})</h2>
+      <h2>Abwesend (${absent.length})</h2>
       <div class="session-attendees">`;
     absent.forEach(n => {
       const cl = clubMap[n] || '?';
@@ -2785,7 +2789,7 @@ async function showSession(sessionNumber) {
   }
 }
 
-// --- Komisje tab ---
+// --- Ausschüsse tab ---
 // Free tier: lista komisji ze statystykami (meetings, drafts_total, drafts_voted,
 // median_lead_time_days, last_meeting_date). Pełne posiedzenia są dostępne
 // w detalu komisji (showKomisja), gdzie API gateuje top N + hidden teaser.
@@ -2807,7 +2811,7 @@ async function refreshSubscriptionStatus() {
   } catch (e) {
     BUSINESS_ACTIVE = false;
   }
-  // Drop cache, żeby render Komisji wyciągnął świeże dane z nowym tier.
+  // Drop cache, żeby render Ausschüsse wyciągnął świeże dane z nowym tier.
   _komisjeListCache = null;
 }
 async function renderKomisjeList() {
@@ -2876,7 +2880,7 @@ async function renderKomisjeList() {
   const businessBanner = BUSINESS_ACTIVE
     ? `<div style="margin-top:24px;padding:14px 16px;background:rgba(34,197,94,0.08);border-left:3px solid var(--green);font-size:13px;color:var(--text);display:flex;align-items:center;gap:10px;flex-wrap:wrap">
          <span style="font-weight:600;color:var(--green)">✓ Business aktywny.</span>
-         <span>Wszystkie komisje pokazują pełne archiwum posiedzeń z porządkami, protokołami i głosowaniami druków.</span>
+         <span>Alle komisje pokazują pełne archiwum posiedzeń z porządkami, protokołami i głosowaniami druków.</span>
        </div>`
     : `<div style="margin-top:24px;padding:16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px;color:var(--text)">
          Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport JSON) dostępna w pakiecie Business.
@@ -2887,7 +2891,7 @@ async function renderKomisjeList() {
 
   container.innerHTML = `
     <div style="margin-bottom:20px">
-      <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)">Komisje rady</h2>
+      <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)">Ausschüsse rady</h2>
       <p style="color:var(--muted);font-size:0.9rem">${commissions.length} komisji, ${totalMeetings} posiedzeń, ${totalDrafts} druków w procedowaniu${totalInCommission > 0 ? `, w tym ${totalInCommission} w toku` : ''}.</p>
     </div>
     <div class="komisje-grid">${cards}</div>
@@ -2913,7 +2917,7 @@ async function showKomisja(slug) {
 
   const commission = envelope && envelope.commission;
   if (!envelope || envelope.available === false || !commission) {
-    view.innerHTML = '<button class="profile-back" onclick="backFromKomisja()">← Komisje</button>'
+    view.innerHTML = '<button class="profile-back" onclick="backFromKomisja()">← Ausschüsse</button>'
       + '<div style="padding:40px;max-width:560px;margin:0 auto">'
       + '<h2 style="margin:0 0 12px">Komisja niedostępna</h2>'
       + '<p style="color:var(--muted);margin:0 0 16px">'
@@ -2998,7 +3002,7 @@ async function showKomisja(slug) {
   }
 
   view.innerHTML = `
-    <button class="profile-back" onclick="backFromKomisja()">← Komisje</button>
+    <button class="profile-back" onclick="backFromKomisja()">← Ausschüsse</button>
     <div style="margin-bottom:24px">
       <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${label}</h2>
     </div>
@@ -3042,7 +3046,7 @@ function backFromKomisja() {
 async function renderInterpelacje() {
   trackEvent('view_interpelacje');
   const container = document.getElementById('interpelacje-content');
-  container.innerHTML = '<p style="color:var(--muted)">Ładowanie interpelacji...</p>';
+  container.innerHTML = '<p style="color:var(--muted)">Ładowanie Anfragen...</p>';
 
   // Fetch from API
   const params = new URLSearchParams();
@@ -3055,7 +3059,7 @@ async function renderInterpelacje() {
     const resp = await fetch(API_BASE + '/interpelacje?' + params.toString());
     result = await resp.json();
   } catch(e) {
-    container.innerHTML = '<p style="color:var(--red)">Błąd ładowania interpelacji.</p>';
+    container.innerHTML = '<p style="color:var(--red)">Błąd ładowania Anfragen.</p>';
     return;
   }
 
@@ -3088,18 +3092,18 @@ async function renderInterpelacje() {
 
   let html = `<div class="kadencja-bar" id="interp-kad-bar" style="margin-bottom:16px">`;
   kadencje.forEach(k => {
-    html += `<button class="kadencja-btn${k === currentKad ? ' active' : ''}" data-kad="${k}">Kadencja ${k}</button>`;
+    html += `<button class="kadencja-btn${k === currentKad ? ' active' : ''}" data-kad="${k}">Wahlperiode ${k}</button>`;
   });
   html += `</div>`;
   html += `<div class="stats-grid">
-    <div class="stat-card"><div class="label">Interpelacje i zapytania</div><div class="value">${total}</div></div>
-    <div class="stat-card"><div class="label">Interpelacje</div><div class="value">${interp}</div></div>
+    <div class="stat-card"><div class="label">Schriftliche Anfragen i zapytania</div><div class="value">${total}</div></div>
+    <div class="stat-card"><div class="label">Schriftliche Anfragen</div><div class="value">${interp}</div></div>
     <div class="stat-card"><div class="label">Zapytania</div><div class="value">${zapyt}</div></div>
     <div class="stat-card"><div class="label">Z odpowiedzią</div><div class="value">${answered} <span style="font-size:0.9rem;color:var(--muted)">(${total ? Math.round(100*answered/total) : 0}%)</span></div></div>
   </div>`;
 
-  // Najbardziej aktywni radni — speaker-bar layout (analogicznie do
-  // "Aktywność mówców" na stronie sesji): club pill + nazwisko | bar track |
+  // Aktivste Abgeordnete — speaker-bar layout (analogicznie do
+  // "Rede-Aktivität" na stronie sesji): club pill + nazwisko | bar track |
   // count. Top 10 widocznych, reszta za buttonem "Pokaż pozostałych".
   if (topRadni.length > 0) {
     const maxCount = topRadni[0].count;
@@ -3107,7 +3111,7 @@ async function renderInterpelacje() {
     const sortedCounts = topRadni.map(r => r.count).sort((a, b) => a - b);
     const medianCount = sortedCounts[Math.floor(sortedCounts.length / 2)] || 0;
 
-    // Klub: bierzemy z K.councilors (per kadencja) albo z PROFILES (cross-kad).
+    // Fraktion: bierzemy z K.councilors (per kadencja) albo z PROFILES (cross-kad).
     const clubLookup = {};
     (K && K.councilors || []).forEach(co => { clubLookup[co.name] = co.club; });
     if (PROFILES && PROFILES.profiles) {
@@ -3120,10 +3124,10 @@ async function renderInterpelacje() {
     }
 
     html += `<div class="section">
-      <h2>Najbardziej aktywni radni</h2>
+      <h2>Aktivste Abgeordnete</h2>
       <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px;font-size:0.78rem;color:var(--muted);font-variant-numeric:tabular-nums">
         <span><strong style="color:var(--text);font-weight:500">${topRadni.length}</strong> radnych w top</span>
-        <span>łącznie <strong style="color:var(--text);font-weight:500">${totalActivity.toLocaleString('pl')}</strong> interp. i zapytań</span>
+        <span>łącznie <strong style="color:var(--text);font-weight:500">${totalActivity.toLocaleString('de')}</strong> interp. i zapytań</span>
         <span>mediana <strong style="color:var(--text);font-weight:500">${medianCount}</strong> na osobę</span>
       </div>
       <div class="speakers-grid">`;
@@ -3153,9 +3157,9 @@ async function renderInterpelacje() {
 
   // List of interpelacje
   const pageItems = result.items || [];
-  html += `<div class="section"><h2>Lista interpelacji i zapytań</h2>`;
+  html += `<div class="section"><h2>Anfragen und Anträge</h2>`;
   html += `<div style="overflow-x:auto"><table id="interp-table"><thead><tr>
-    <th>Data</th><th>Typ</th><th>Radny/a</th><th>Przedmiot</th><th>Treść</th><th>Odpowiedź</th>
+    <th>Datum</th><th>Typ</th><th>Abgeordnete:r</th><th>Przedmiot</th><th>Inhalt</th><th>Antwort</th>
   </tr></thead><tbody>`;
   pageItems.forEach(d => {
     const typClass = d.typ === 'interpelacja' ? 'pill-za' : 'pill-wstrzymal';
@@ -3183,7 +3187,7 @@ async function renderInterpelacje() {
     }
     html += `<span style="color:var(--muted);font-size:0.85rem">Strona ${currentPage} z ${totalPages} (${result.total} pozycji)</span>`;
     if (currentPage < totalPages) {
-      html += `<button class="filter-btn" onclick="_interpPage=${currentPage+1};renderInterpelacje()">Następna →</button>`;
+      html += `<button class="filter-btn" onclick="_interpPage=${currentPage+1};renderInterpelacje()">Weiter →</button>`;
     }
     html += `</div>`;
   }
@@ -3306,11 +3310,11 @@ function renderBudget() {
           <td style="text-align:left;font-size:0.85rem">${v.topic.length > 120 ? v.topic.substring(0,120)+'…' : v.topic}</td>
           <td style="width:50px"><span class="pill pill-za">${v.za}</span></td>
           <td style="width:50px">${v.przeciw ? `<span class="pill pill-przeciw">${v.przeciw}</span>` : '0'}</td>
-          <td style="width:70px;font-size:0.8rem;font-weight:600;color:${passed?'var(--green)':'var(--red)'}">${passed?'Przyjęte':'Odrzucone'}</td>
+          <td style="width:70px;font-size:0.8rem;font-weight:600;color:${passed?'var(--green)':'var(--red)'}">${passed?'Angenommen':'Abgelehnt'}</td>
         </tr>`;
       };
 
-      dhtml += `<h2>Głosowania budżetowe (${votes.length})</h2><table><tbody>`;
+      dhtml += `<h2>Abstimmungen budżetowe (${votes.length})</h2><table><tbody>`;
       if (uchwalenie.length) dhtml += uchwalenie.map(renderVoteRow).join('');
       if (poprawki.length) {
         dhtml += `<tr><td colspan="5" style="font-size:0.8rem;color:var(--muted);padding:4px 12px">Poprawki (${poprawki.length})</td></tr>`;
@@ -3333,7 +3337,7 @@ function renderBudget() {
       const restSum = rest.reduce((s, c) => s + c.amount, 0);
       const labels = top.map(c => c.name);
       const values = top.map(c => c.amount / 1e6);
-      if (restSum > 0) { labels.push('Pozostałe'); values.push(restSum / 1e6); }
+      if (restSum > 0) { labels.push('Andere'); values.push(restSum / 1e6); }
       const colors = ['#4f46e5','#0ea5e9','#10b981','#f59e0b','#ef4444','#8b5cf6','#ec4899','#6b7280','#a3a3a3'];
       if (budgetChartCat) budgetChartCat.destroy();
       const catCtx = document.getElementById('budget-cat-chart');
@@ -3447,9 +3451,9 @@ function renderCompareBar() {
   if (compareList.length < 2) { if (bar) bar.remove(); return; }
   if (!bar) { bar = document.createElement('div'); bar.id = 'compare-bar'; bar.className = 'compare-bar'; document.body.appendChild(bar); }
   bar.style.display = 'flex';
-  bar.innerHTML = `<span>Porównaj: <strong>${compareList.join(' vs ')}</strong></span>
-    <button class="compare-go" onclick="showCompare()">Porównaj ${compareList.length} radnych</button>
-    <button class="compare-clear" onclick="clearCompare()">Wyczyść</button>`;
+  bar.innerHTML = `<span>Vergleichen: <strong>${compareList.join(' vs ')}</strong></span>
+    <button class="compare-go" onclick="showCompare()">Vergleichen ${compareList.length} radnych</button>
+    <button class="compare-clear" onclick="clearCompare()">Löschen</button>`;
 }
 function clearCompare() {
   compareList = [];
@@ -3464,8 +3468,8 @@ function showCompare() {
   const councilors = compareList.map(name => K.councilors.find(c => c.name === name)).filter(Boolean);
   if (councilors.length < 2) return;
   const cols = councilors.length;
-  let html = `<button class="profile-back" onclick="showMain()">← Strona główna</button>
-    <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:20px">Porównanie radnych</h2>
+  let html = `<button class="profile-back" onclick="showMain()">← Startseite</button>
+    <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:20px">Vergleich der Abgeordneten</h2>
     <div class="compare-grid" style="grid-template-columns:repeat(${cols},1fr)">`;
   councilors.forEach(c => {
     html += `<div class="compare-col">
@@ -3474,15 +3478,15 @@ function showCompare() {
         <div><h3 style="border:none;padding:0;margin:0">${c.name}</h3><span class="club ${clubClass(c.club)}">${c.club}</span></div>
       </div>
       <div style="display:grid;gap:8px">
-        <div>Frekwencja: ${pctBar(c.frekwencja)}</div>
-        <div>Aktywność: ${pctBar(c.aktywnosc)}</div>
-        <div>Zgodność z klubem: ${c.club === 'Niezrzeszeni' ? '<span style="color:var(--muted)">n/d</span>' : pctBar(c.zgodnosc_z_klubem)}</div>
+        <div>Anwesenheit: ${pctBar(c.frekwencja)}</div>
+        <div>Aktivität: ${pctBar(c.aktywnosc)}</div>
+        <div>Fraktionsdisziplin: ${c.club === 'Niezrzeszeni' ? '<span style="color:var(--muted)">n/d</span>' : pctBar(c.zgodnosc_z_klubem)}</div>
         <div style="display:flex;gap:6px;margin-top:4px">
-          <span class="pill pill-za">Za: ${c.votes_za}</span>
-          <span class="pill pill-przeciw">Przeciw: ${c.votes_przeciw}</span>
+          <span class="pill pill-za">Dafür: ${c.votes_za}</span>
+          <span class="pill pill-przeciw">Dagegen: ${c.votes_przeciw}</span>
           <span class="pill pill-wstrzymal">Wstrzym.: ${c.votes_wstrzymal}</span>
         </div>
-        <div style="color:var(--muted);font-size:0.85rem">Buntów: ${c.rebellion_count}</div>
+        <div style="color:var(--muted);font-size:0.85rem">Abweichungen: ${c.rebellion_count}</div>
       </div>
     </div>`;
   });
@@ -3502,7 +3506,7 @@ function showCompare() {
     }
   }
   if (diffs.length > 0) {
-    html += `<div class="section"><h2>Głosowania, w których się różnili (${diffs.length})</h2>`;
+    html += `<div class="section"><h2>Abstimmungen, w których się różnili (${diffs.length})</h2>`;
     diffs.slice(0, 30).forEach(d => {
       html += `<div class="diff-row"><div class="diff-topic"><a class="name-link" onclick="showVote('${d.id}')">${(d.topic||'?').substring(0,100)}</a><div style="color:var(--muted);font-size:0.8rem">${d.session}</div></div>`;
       names.forEach(n => {
@@ -3523,7 +3527,7 @@ function showCompare() {
     const rb = ['rgba(99,102,241,0.15)','rgba(34,197,94,0.15)','rgba(239,68,68,0.15)'];
     new Chart(radarCtx.getContext('2d'), {
       type: 'radar',
-      data: { labels: ['Frekwencja','Aktywność','Zgodność z klubem','Głosy za (%)','Głosy przeciw (%)'],
+      data: { labels: ['Anwesenheit','Aktivität','Fraktionsdisziplin','Głosy za (%)','Głosy przeciw (%)'],
         datasets: councilors.map((c, i) => ({
           label: c.name,
           data: [c.frekwencja, c.aktywnosc, c.zgodnosc_z_klubem,
@@ -3552,11 +3556,11 @@ function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
   ctx.fillText(name.split(' ').map(w=>w[0]).join('').substring(0,2),50,60);
   ctx.textAlign='left'; ctx.textBaseline='top';
   ctx.fillStyle='#e4e4e7'; ctx.font='bold 22px -apple-system,sans-serif'; ctx.fillText(name,90,40);
-  ctx.fillStyle='#8b8d97'; ctx.font='14px -apple-system,sans-serif'; ctx.fillText('Klub '+club+'  ·  Landtag Mecklenburg-Vorpommerns',90,68);
+  ctx.fillStyle='#8b8d97'; ctx.font='14px -apple-system,sans-serif'; ctx.fillText('Fraktion '+club+'  ·  Landtag Mecklenburg-Vorpommerns',90,68);
   const metrics = [
-    {label:'Frekwencja',value:frek+'%',color:frek>=90?'#22c55e':frek>=70?'#eab308':'#ef4444'},
-    {label:'Aktywność',value:akt+'%',color:akt>=90?'#22c55e':akt>=70?'#eab308':'#ef4444'},
-    {label:'Zgodność z klubem',value:zgod+'%',color:zgod>=90?'#22c55e':zgod>=70?'#eab308':'#ef4444'},
+    {label:'Anwesenheit',value:frek+'%',color:frek>=90?'#22c55e':frek>=70?'#eab308':'#ef4444'},
+    {label:'Aktivität',value:akt+'%',color:akt>=90?'#22c55e':akt>=70?'#eab308':'#ef4444'},
+    {label:'Fraktionsdisziplin',value:zgod+'%',color:zgod>=90?'#22c55e':zgod>=70?'#eab308':'#ef4444'},
   ];
   metrics.forEach((m,i) => {
     const x=30+i*180, y=120;
@@ -3573,7 +3577,7 @@ function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
     ctx.fillStyle='rgba(239,68,68,0.8)'; ctx.fillRect(30+zaW,barY,przW,barH);
     ctx.fillStyle='rgba(234,179,8,0.8)'; ctx.beginPath(); ctx.roundRect(30+zaW+przW,barY,barW-zaW-przW,barH,4); ctx.fill();
     ctx.textAlign='left'; ctx.fillStyle='#8b8d97'; ctx.font='12px -apple-system,sans-serif';
-    ctx.fillText(`Za: ${za}  ·  Przeciw: ${przeciw}  ·  Wstrzymał się: ${wstrzym}`,30,barY+30);
+    ctx.fillText(`Dafür: ${za}  ·  Dagegen: ${przeciw}  ·  Enthalten: ${wstrzym}`,30,barY+30);
   }
   ctx.fillStyle='#2a2d3a'; ctx.fillRect(0,300,600,40);
   ctx.fillStyle='#6366f1'; ctx.font='bold 13px -apple-system,sans-serif'; ctx.textAlign='center';
@@ -3605,11 +3609,11 @@ function shareBar(title, text, url, containerId) {
   var html = '<div class="share-bar">';
 
   if (hasNative) {
-    html += '<button class="share-btn share-native" onclick="nativeShare(\'' + encodedTitle + '\',\'' + encodedText + '\',\'' + encodedUrl + '\')">' + svgShare + ' Udostępnij</button>';
+    html += '<button class="share-btn share-native" onclick="nativeShare(\'' + encodedTitle + '\',\'' + encodedText + '\',\'' + encodedUrl + '\')">' + svgShare + ' Teilen</button>';
   }
 
-  html += '<a class="share-btn" href="https://x.com/intent/tweet?text=' + encodedText + '&url=' + encodedUrl + '" target="_blank" rel="noopener" title="Udostępnij na X">' + svgX + ' X</a>';
-  html += '<a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl + '" target="_blank" rel="noopener" title="Udostępnij na Facebooku">' + svgFb + ' Facebook</a>';
+  html += '<a class="share-btn" href="https://x.com/intent/tweet?text=' + encodedText + '&url=' + encodedUrl + '" target="_blank" rel="noopener" title="Auf X teilen">' + svgX + ' X</a>';
+  html += '<a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl + '" target="_blank" rel="noopener" title="Auf Facebook teilen">' + svgFb + ' Facebook</a>';
   html += '<button class="share-btn" id="' + containerId + '-copy" onclick="copyShareLink(\'' + encodedUrl + '\',\'' + containerId + '-copy\')" title="Kopiuj link">' + svgLink + ' Kopiuj link</button>';
   html += '</div>';
   return html;
@@ -3765,7 +3769,7 @@ init();
     <form class="auth-form" onsubmit="return submitAuth(event)">
       <input type="email" id="auth-email" placeholder="E-mail" required autocomplete="email">
       <input type="password" id="auth-password" placeholder="Hasło (min. 10 znaków)" required autocomplete="current-password" minlength="10">
-      <button type="submit" id="auth-submit">Zaloguj się</button>
+      <button type="submit" id="auth-submit">Anmelden</button>
       <div id="auth-error" class="auth-error" style="display:none"></div>
       <div id="auth-success" class="auth-success" style="display:none"></div>
     </form>
@@ -3885,7 +3889,7 @@ function setAuthMode(mode) {
   _authMode = mode;
   document.getElementById('auth-tab-login').classList.toggle('active', mode === 'login');
   document.getElementById('auth-tab-signup').classList.toggle('active', mode === 'signup');
-  document.getElementById('auth-submit').textContent = mode === 'signup' ? 'Zarejestruj się' : 'Zaloguj się';
+  document.getElementById('auth-submit').textContent = mode === 'signup' ? 'Zarejestruj się' : 'Anmelden';
   document.getElementById('auth-password').setAttribute('autocomplete', mode === 'signup' ? 'new-password' : 'current-password');
   document.getElementById('auth-forgot-link').style.display = mode === 'login' ? '' : 'none';
   document.getElementById('auth-error').style.display = 'none';
@@ -3956,7 +3960,7 @@ function _authErrorMessage(data, mode) {
   switch (data.error) {
     case 'invalid_email': return 'Niepoprawny adres e-mail.';
     case 'invalid_password': return data.message || 'Hasło musi mieć co najmniej 10 znaków.';
-    case 'email_taken': return 'Konto z tym adresem już istnieje. Zaloguj się.';
+    case 'email_taken': return 'Konto z tym adresem już istnieje. Anmelden.';
     case 'invalid_credentials': return 'Niepoprawny e-mail lub hasło.';
     case 'missing_fields': return 'Wypełnij wszystkie pola.';
     case 'csrf_blocked': return 'Błąd bezpieczeństwa. Otwórz stronę bezpośrednio.';
