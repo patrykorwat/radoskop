@@ -113,6 +113,17 @@ SESSION_TPL = f"{BASE}/si0057.asp?__ksinr={{ksinr}}"
 FILE_TPL = f"{BASE}/getfile.asp?id={{file_id}}&type=do"
 MEMBERS_URL = f"{BASE}/kp0040.asp?__kgrnr=1"
 
+# Strony członkostwa frakcji — kp0040 per gremium ID frakcji.
+# Pozwala pobrać radnych z frakcjami niezależnie od głosowań (OCR).
+FRAKTION_URLS: dict[str, str] = {
+    "AfD":               f"{BASE}/kp0040.asp?__kgrnr=96&",
+    "CDU":               f"{BASE}/kp0040.asp?__kgrnr=78&",
+    "SPD":               f"{BASE}/kp0040.asp?__kgrnr=31&",
+    "Die Linke":         f"{BASE}/kp0040.asp?__kgrnr=98&",
+    "Unabhängige Bürger": f"{BASE}/kp0040.asp?__kgrnr=110&",
+    "Grüne":             f"{BASE}/kp0040.asp?__kgrnr=104&",
+}
+
 KADENCJA_ID = "2024-2029"
 KADENCJA_LABEL = "Wahlperiode 2024–2029"
 KADENCJA_START = date(2024, 7, 8)
@@ -365,6 +376,39 @@ def parse_ocr_table(ocr_text: str) -> dict:
     return {"named_votes": named_votes, "councilor_clubs": councilor_clubs}
 
 
+def fetch_councilors_from_fractions() -> dict[str, str]:
+    """Pobierz mapę name->club z oficjalnych stron frakcji SessionNet.
+
+    Niezależne od OCR — działa też gdy nie ma jeszcze głosowań imiennych.
+    Używane jako seed dla all_councilors w build_kadencja.
+    """
+    from bs4 import BeautifulSoup
+    name_to_club: dict[str, str] = {}
+    for club, url in FRAKTION_URLS.items():
+        try:
+            html = fetch(url)
+            soup = BeautifulSoup(html, "html.parser")
+            table = soup.find("table")
+            if not table:
+                log(f"  fetch_councilors: brak tabeli dla {club}")
+                continue
+            for row in table.find_all("tr")[1:]:
+                cells = row.find_all("td")
+                if not cells:
+                    continue
+                link = cells[0].find("a")
+                if not link:
+                    continue
+                name = link.get_text(strip=True)
+                if name:
+                    name_to_club[name] = club
+            log(f"  fetch_councilors: {club} -> {sum(1 for v in name_to_club.values() if v == club)} radnych")
+        except Exception as e:
+            log(f"  fetch_councilors: ERR {club}: {e}")
+        time.sleep(0.2)
+    return name_to_club
+
+
 def build_kadencja(cache_dir: Path | None, limit_sessions: int | None = None) -> dict:
     if cache_dir:
         cache_dir.mkdir(parents=True, exist_ok=True)
@@ -383,7 +427,12 @@ def build_kadencja(cache_dir: Path | None, limit_sessions: int | None = None) ->
         sessions = sessions[:limit_sessions]
 
     votes: list[dict] = []
-    all_councilors: dict[str, str] = {}
+    # Seed councilors z oficjalnych stron frakcji — niezależny od OCR.
+    # Dzięki temu lista radnych pojawia się na stronie nawet przed
+    # pierwszym sparsowanym głosowaniem imiennym.
+    log("Pobieram radnych z oficjalnych stron frakcji...")
+    all_councilors: dict[str, str] = fetch_councilors_from_fractions()
+    log(f"  {len(all_councilors)} radnych z frakcji")
     sess_meta: dict[str, dict] = {}
 
     for s in sessions:
