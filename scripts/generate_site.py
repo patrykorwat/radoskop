@@ -194,6 +194,29 @@ def apply_english_paths(html: str) -> str:
         "interpelacje:'interpellations',budget:'budget'}",
     )
 
+    # /druk/ — strona druku (treść + procedowanie w komisjach). URL-facing
+    # path: /druk/ → /bill/. API endpoint (API_BASE + '/druk/...') zostaje
+    # po polsku jak inne API endpointy — dotyka tylko backend, nie SEO.
+    html = html.replace("path.startsWith('/druk/')", "path.startsWith('/bill/')")
+    html = html.replace("path.replace('/druk/', '')", "path.replace('/bill/', '')")
+    html = html.replace(
+        "navigateTo('/druk/' + kadSlug + '/' + encodeURIComponent(drukId) + '/')",
+        "navigateTo('/bill/' + kadSlug + '/' + encodeURIComponent(drukId) + '/')",
+    )
+    html = html.replace(
+        'href="/druk/${KAD_SLUGS[currentKid]||currentKid}/${encodeURIComponent(dStr)}/"',
+        'href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${encodeURIComponent(dStr)}/"',
+    )
+    html = html.replace(
+        'href="/druk/${KAD_SLUGS[voteKid]||voteKid}/${vote.druk}/"',
+        'href="/bill/${KAD_SLUGS[voteKid]||voteKid}/${vote.druk}/"',
+    )
+    html = html.replace(
+        'href="/druk/${KAD_SLUGS[currentKid]||currentKid}/${v.druk}/"',
+        'href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${v.druk}/"',
+    )
+    html = html.replace("{{SITE_URL}}/druk/", "{{SITE_URL}}/bill/")
+
     # /polityka-prywatnosci/ + /regulamin/ → /privacy/ + /terms/. Po migracji
     # 2026-05 path mapping jest jednolity. Treść strony żyje na apex
     # radoskop.eu/privacy/ i /terms/ (bilingual przez ?lang=en), SPA tylko
@@ -679,8 +702,8 @@ def main():
     replacements = {
         "{{CAT_RULES_JS}}": _cat_rules_js,
         "{{VOTE_DATA_DISCLAIMER}}": vote_disclaimer_html,
-        "{{CITY_NAME}}": config["city_name"],
-        "{{CITY_GENITIVE}}": config["city_genitive"],
+        "{{CITY_NAME}}": config.get("city_name") or config.get("voivodeship_name", ""),
+        "{{CITY_GENITIVE}}": config.get("city_genitive") or config.get("voivodeship_genitive", ""),
         "{{SITE_TITLE}}": config["site_title"],
         "{{SITE_URL}}": config["site_url"],
         "{{SITE_DESCRIPTION}}": config["site_description"],
@@ -812,7 +835,7 @@ def main():
         with open(output_dir / "CNAME", "w") as f:
             f.write(config["cname"] + "\n")
 
-    print(f"Generated site for {config['city_name']}:")
+    print(f"Generated site for {config.get('city_name') or config.get('voivodeship_name', '?')}:")
     print(f"  index.html  → {output_dir / 'index.html'}")
     print(f"  404.html    → {output_dir / '404.html'}")
     print(f"  sitemap.xml → {output_dir / 'sitemap.xml'}")

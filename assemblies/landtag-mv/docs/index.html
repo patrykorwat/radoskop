@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Radoskop Landtag MV. Wie stimmen die Abgeordneten ab?</title>
 <meta name="description" content="Radoskop. Offenes Monitoring des Landtags Mecklenburg-Vorpommern. Namentliche Abstimmungen, Fraktionsdisziplin, Anwesenheit der Abgeordneten.">
-<meta name="keywords" content="Mecklenburg-Vorpommern, landtag, radni, głosowania, frekwencja, samorząd, monitoring, transparentność">
+<meta name="keywords" content="Mecklenburg-Vorpommern, rada miasta, radni, głosowania, frekwencja, samorząd, monitoring, transparentność">
 <meta name="author" content="Patryk Orwat">
 <link rel="canonical" href="https://mv.radoskop.eu/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Radoskop Mecklenburg-Vorpommern — Wie stimmen die Abgeordneten ab?">
-<meta property="og:description" content="Otwarte narzędzie monitoringu Landtagu Mecklenburg-Vorpommerns. Anwesenheit, głosowania i aktywność radnych.">
+<meta property="og:description" content="Otwarte narzędzie monitoringu Rady Miasta Mecklenburg-Vorpommerns. Anwesenheit, głosowania i aktywność radnych.">
 <meta property="og:url" content="https://mv.radoskop.eu/">
-<meta property="og:locale" content="pl_PL">
+<meta property="og:locale" content="de_DE">
 <meta property="og:site_name" content="Radoskop Mecklenburg-Vorpommern">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Radoskop Mecklenburg-Vorpommern — Wie stimmen die Abgeordneten ab?">
-<meta name="twitter:description" content="Otwarte narzędzie monitoringu Landtagu Mecklenburg-Vorpommerns. Anwesenheit, głosowania i aktywność radnych.">
+<meta name="twitter:description" content="Otwarte narzędzie monitoringu Rady Miasta Mecklenburg-Vorpommerns. Anwesenheit, głosowania i aktywność radnych.">
 <link rel="alternate" type="application/atom+xml" title="Radoskop Mecklenburg-Vorpommern" href="https://mv.radoskop.eu/feed.xml">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Radoskop Mecklenburg-Vorpommern",
-  "description": "Otwarte narzędzie monitoringu Landtagu Mecklenburg-Vorpommerns. Sprawdź frekwencję, głosowania i aktywność radnych na sesjach.",
+  "description": "Otwarte narzędzie monitoringu Rady Miasta Mecklenburg-Vorpommerns. Sprawdź frekwencję, głosowania i aktywność radnych na sesjach.",
   "url": "https://mv.radoskop.eu/",
   "applicationCategory": "GovernmentApplication",
   "operatingSystem": "Web",
@@ -33,7 +33,7 @@
   },
   "about": {
     "@type": "GovernmentOrganization",
-    "name": "Landtag Mecklenburg-Vorpommerns",
+    "name": "Abgeordnetenhaus von Mecklenburg-Vorpommern",
     "url": "https://www.landtag-mv.de/"
   },
   "license": "https://www.gnu.org/licenses/agpl-3.0.html",
@@ -224,6 +224,8 @@ footer a { color:var(--accent); text-decoration:none; }
 .vote-name-item { padding:6px 10px; border-radius:6px; font-size:0.85rem; display:flex; align-items:center; gap:6px; }
 .vote-name-item .club { flex-shrink:0; }
 .vote-cat-header { font-size:0.9rem; font-weight:600; margin:16px 0 8px; padding:6px 0; border-bottom:1px solid var(--border); }
+.druk-tresc { line-height:1.7; font-size:0.95rem; padding:16px 0; white-space:pre-wrap; }
+.druk-paywall { margin-top:12px; padding:16px; background:rgba(99,102,241,0.06); border:1px solid var(--border); border-radius:8px; text-align:center; }
 .session-pill { padding:4px 10px; border-radius:6px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-size:0.8rem; white-space:nowrap; }
 .session-pill.active { background:var(--accent); color:white; border-color:var(--accent); }
 .session-pill.cat-pill { font-size:0.75rem; padding:3px 10px; }
@@ -527,7 +529,7 @@ footer a { color:var(--accent); text-decoration:none; }
 .share-btn.share-native:hover { opacity:0.9; color:white; }
 .share-copied { color:var(--green) !important; border-color:var(--green) !important; }
 </style>
-</head>
+<style>[data-tab="budget"]{display:none!important}</style></head>
 <body>
 <nav class="topbar" aria-label="Główna nawigacja">
   <a class="topbar-logo" href="https://radoskop.pl/">Rado<span>skop</span></a>
@@ -553,7 +555,7 @@ footer a { color:var(--accent); text-decoration:none; }
   <header>
     <div onclick="showMain()" style="cursor:pointer">
       <h1>Rado<span>skop</span> Mecklenburg-Vorpommern</h1>
-      <p>Jak głosują posłowie Landtagu Mecklenburg-Vorpommerns? Dane z protokołów BIP.</p>
+      <p>Wie stimmen die Abgeordneten in Mecklenburg-Vorpommern ab? Daten aus offiziellen Protokollen.</p>
     </div>
     
   </header>
@@ -573,7 +575,7 @@ footer a { color:var(--accent); text-decoration:none; }
         <div class="tab-tier tab-tier--secondary">
           <button class="tab tab-secondary" data-tab="interpelacje">Schriftliche Anfragen</button>
           <button class="tab tab-secondary" data-tab="sessions">Sitzungen</button>
-        <a href="/news/" class="tab" style="text-decoration:none">Aktualności</a>
+        <a href="/news/" class="tab tab-secondary" style="text-decoration:none">Aktualności</a>
         </div>
       </div>
       <div class="kadencja-bar" id="kadencja-bar"></div>
@@ -669,6 +671,9 @@ footer a { color:var(--accent); text-decoration:none; }
   <!-- Impressum / provider identification view (only shown for DE/CS instances) -->
   <div id="impressum-view" style="display:none"></div>
 
+  <!-- Druk detail view -->
+  <div id="druk-view" style="display:none"></div>
+
   <!-- Reports catalog view -->
   <div id="reports-view" style="display:none"></div>
 
@@ -681,8 +686,8 @@ footer a { color:var(--accent); text-decoration:none; }
     </div>
     Quelldaten: <a href="https://www.landtag-mv.de/" target="_blank">landtag-mv.de</a>.
     Kod: <a href="https://github.com/radoskoppl/radoskop" target="_blank">GitHub</a> (AGPL-3.0).
-    <a href="https://radoskop.eu/reports/">Berichte</a> · <a href="https://radoskop.eu/pricing/">Cennik</a> · <a href="https://radoskop.eu/business/">Business</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Datenschutz</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">AGB</a>
-    
+    <a href="https://radoskop.eu/reports/">Berichte</a> · <a href="https://radoskop.eu/pricing/">Cennik</a> · <a href="https://radoskop.eu/business/">Business</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Datenschutz</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">AGB</a> · <a href="/impressum/" onclick="event.preventDefault();showImpressum()">Impressum</a>
+    <div style="margin-top:8px;color:var(--muted);font-size:0.75rem">Wir folgen dem <a href="https://www.presserat.de/pressekodex.html" target="_blank" rel="noopener">Pressekodex</a> des Deutschen Presserats. <a href="https://www.presserat.de/beschwerde.html" target="_blank" rel="noopener">Beschwerdeverfahren</a>.</div>
   </footer>
 
 </div>
@@ -1014,6 +1019,18 @@ async function init() {
       showKomisja(slug);
       return;
     }
+    if (path.startsWith('/bill/')) {
+      // Format: /druk/{kadSlug}/{drukId}/
+      const parts = path.replace('/bill/', '').replace(/\/$/, '').split('/');
+      if (parts.length >= 2 && parts[0] && parts[1]) {
+        const kadSlug = parts[0];
+        const did = decodeURIComponent(parts[1]);
+        const kadId = SLUG_KADS[kadSlug] || kadSlug;
+        selectKadencjaQuiet(kadId);
+        showDruk(did, kadId);
+        return;
+      }
+    }
     if (path === '/news' || path === '/news/') {
       // /news/ to statyczna strona z listą wpisów (SEO content
       // wstrzyknięty przez generate_feed.py). Nie ładujemy SPA appki —
@@ -1111,6 +1128,7 @@ function hideAllViews() {
   document.getElementById('vote-view').style.display = 'none';
   document.getElementById('session-view').style.display = 'none';
   document.getElementById('reports-view').style.display = 'none';
+  document.getElementById('druk-view').style.display = 'none';
 }
 
 let currentTab = 'ranking';
@@ -1329,7 +1347,7 @@ function showImpressum() {
   var el = document.getElementById('impressum-view');
   el.style.display = 'block';
   /* IMPRESSUM_HTML_BEGIN */
-  el.innerHTML = '';
+  el.innerHTML = '<div style="max-width:800px;margin:0 auto;padding:20px 0"><button class="profile-back" onclick="showMain()">← Startseite</button><h1 style="font-size:1.5rem;margin:20px 0 10px">Impressum</h1><p style="color:var(--muted);margin-bottom:20px">Anbieterkennzeichnung gemäß §5 TMG und §18 Abs. 2 Medienstaatsvertrag (MStV).</p><h2 style="font-size:1.1rem;margin:24px 0 8px">Anbieter</h2><p>Patryk Orwat<br>Przytulna 44/11<br>80-176 Gdańsk, Polska</p><h2 style="font-size:1.1rem;margin:24px 0 8px">Kontakt</h2><p>E-Mail: <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a></p><h2 style="font-size:1.1rem;margin:24px 0 8px">Verantwortlich für den Inhalt nach §18 Abs. 2 MStV</h2><p>Patryk Orwat<br>Przytulna 44/11<br>80-176 Gdańsk, Polska</p><h2 style="font-size:1.1rem;margin:24px 0 8px">Streitschlichtung</h2><p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>. Wir sind nicht bereit oder verpflichtet, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">Haftung für Inhalte</h2><p>Als Anbieter sind wir gemäß §7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§8 bis 10 TMG sind wir als Anbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Die dargestellten Daten zu Mandatsträger:innen stammen ausschließlich aus offiziellen öffentlichen Registern (Plenarprotokolle des Berliner Abgeordnetenhauses, PARDOK, Open Data). Bei Hinweisen auf Unrichtigkeiten korrigieren wir Daten nach Verifikation gegen die Quelle innerhalb von 7 Werktagen.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">Datenschutz</h2><p>Informationen zur Verarbeitung personenbezogener Daten finden Sie in der <a href="/privacy/" onclick="event.preventDefault();showPrivacy()">Datenschutzerklärung</a>. Informationen zu Mandatsträger:innen werden auf Grundlage von Art. 6 Abs. 1 lit. e und f DSGVO sowie Art. 85 DSGVO in Verbindung mit dem Berliner Pressegesetz und §57 BDSG verarbeitet.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">Datenrichtigstellung für Mandatsträger:innen</h2><p>Anträge auf Datenrichtigstellung bitte an <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a> mit Angabe von Name, Stadt, beanstandeter Daten und Quellverweis. Bearbeitung innerhalb von 7 Werktagen.</p><h2 style="font-size:1.1rem;margin:24px 0 8px">Redaktionelle Leitlinien und Pressekodex</h2><p>Radoskop folgt den <a href="https://www.presserat.de/pressekodex.html" target="_blank" rel="noopener">Publizistischen Grundsätzen (Pressekodex)</a> des Deutschen Presserats als anerkanntem Standard journalistischer Sorgfalt. Für die Tätigkeit von Radoskop relevant sind insbesondere folgende Ziffern:</p><ul style="margin:8px 0 8px 24px"><li><strong>Ziffer 1</strong> (Wahrhaftigkeit und Achtung der Menschenwürde): Alle dargestellten Daten stammen aus überprüfbaren offiziellen Quellen.</li><li><strong>Ziffer 2</strong> (Sorgfalt): Die Methodik der Datenverarbeitung ist als Open Source auf <a href="https://github.com/radoskoppl/radoskop" target="_blank" rel="noopener">GitHub</a> dokumentiert und nachvollziehbar.</li><li><strong>Ziffer 3</strong> (Richtigstellung): Korrekturen werden innerhalb von 7 Werktagen nach Verifikation gegen die Quelle vorgenommen.</li><li><strong>Ziffer 7</strong> (Trennung von Werbung und Redaktion): Radoskop zeigt keine Werbung und nimmt keine Werbeeinnahmen an.</li><li><strong>Ziffer 8</strong> (Schutz der Persönlichkeit): Es werden ausschließlich Daten aus dem öffentlichen Mandat verarbeitet.</li><li><strong>Ziffer 12</strong> (Diskriminierungen): Es werden keine wertenden Etiketten verwendet, ausschließlich objektive Metriken aus offiziellen Protokollen.</li></ul><h2 style="font-size:1.1rem;margin:24px 0 8px">Beschwerdeverfahren beim Deutschen Presserat</h2><p>Wer der Auffassung ist, dass eine Veröffentlichung auf Radoskop gegen den Pressekodex verstößt, kann eine Beschwerde beim Deutschen Presserat einreichen. Das Verfahren ist kostenlos und kann auf <a href="https://www.presserat.de/beschwerde.html" target="_blank" rel="noopener">presserat.de/beschwerde.html</a> eingereicht werden. Parallel oder alternativ kann jeder Mandatsträger und jede Mandatsträgerin direkt eine Datenrichtigstellung über <a href="mailto:patrykorwat@gmail.com">patrykorwat@gmail.com</a> beantragen, die in der Regel schneller bearbeitet wird.</p></div>';
   navigateTo('/impressum/');
   setTitle('Impressum');
   setOgMeta({
@@ -1461,8 +1479,8 @@ function showProfile(name) {
   setOgMeta({
     title: profile.name + ' \u2013 Radoskop Mecklenburg-Vorpommern',
     description: profile.name + ', ' + (_pk.club_full || _pk.club || '') + '. Anwesenheit ' + (_pk.frekwencja||0).toFixed(0) + '%, aktywnosc ' + (_pk.aktywnosc||0).toFixed(0) + '%.',
-    url: 'https://mv.radoskop.eu/profil/' + profile.slug + '/',
-    image: 'https://mv.radoskop.eu/profil/' + profile.slug + '/og.png'
+    url: 'https://mv.radoskop.eu/profile/' + profile.slug + '/',
+    image: 'https://mv.radoskop.eu/profile/' + profile.slug + '/og.png'
   });
 
   // Find which kadencje this person has data for
@@ -1625,7 +1643,7 @@ function showProfile(name) {
 
     // Share section with social buttons + card download + embed
     if (hasVotes) {
-      const profileShareUrl = 'https://mv.radoskop.eu/profil/' + profile.slug + '/';
+      const profileShareUrl = 'https://mv.radoskop.eu/profile/' + profile.slug + '/';
       const profileShareTitle = profile.name + ' \u2013 Radoskop Mecklenburg-Vorpommern';
       const profileShareText = profile.name + ' (' + club + '): frekwencja ' + Math.round(kd.frekwencja) + '%, zgodność z klubem ' + Math.round(kd.zgodnosc_z_klubem) + '%. Sprawdź na Radoskopie!';
       html += `<div class="section">
@@ -2168,7 +2186,7 @@ async function renderVotesTable() {
       const c = v.counts || {};
       html += `<tr class="vote-row" onclick="showVote('${v.id || ''}')">
         <td style="color:var(--muted);width:30px">${i+1}</td>
-        <td>${catPill(v.category || categorizeVote(v.topic))} ${v.topic ? v.topic.substring(0,120) : '?'}${v.druk ? ` <span style="color:var(--muted)">(druk ${v.druk})</span>` : ''}</td>
+        <td>${catPill(v.category || categorizeVote(v.topic))} ${v.topic ? v.topic.substring(0,120) : '?'}${v.druk ? ` <a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${v.druk}/" onclick="event.preventDefault();event.stopPropagation();showDruk(${v.druk},'${currentKid}')" style="color:var(--muted);text-decoration:none">(druk ${v.druk})</a>` : ''}</td>
         <td><span class="pill pill-za">${c.za||0}</span></td>
         <td>${c.przeciw ? `<span class="pill pill-przeciw">${c.przeciw}</span>` : '0'}</td>
         <td>${c.wstrzymal_sie ? `<span class="pill pill-wstrzymal">${c.wstrzymal_sie}</span>` : '0'}</td>
@@ -2224,11 +2242,12 @@ async function showVote(voteId) {
 
   // Fetch vote detail from API (try current kadencja first)
   let vote = null;
+  let voteKid = currentKid;
   const kidsToTry = [currentKid, ...RAW.kadencje.map(k => k.id).filter(k => k !== currentKid)];
   for (const kid of kidsToTry) {
     try {
       const resp = await fetch(API_BASE + '/kadencja/' + kid + '/vote/' + voteId);
-      if (resp.ok) { vote = await resp.json(); break; }
+      if (resp.ok) { vote = await resp.json(); voteKid = kid; break; }
     } catch(e) { /* try next */ }
   }
   if (!vote) {
@@ -2257,8 +2276,8 @@ async function showVote(voteId) {
   setOgMeta({
     title: (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Mecklenburg-Vorpommern',
     description: 'Dafür ' + (_vc.za||0) + ', przeciw ' + (_vc.przeciw||0) + ', wstrzym. ' + (_vc.wstrzymal_sie||0) + '. Sitzung ' + (vote.session_number||'') + ', ' + (vote.session_date||'') + '.',
-    url: 'https://mv.radoskop.eu/glosowanie/' + voteId + '/',
-    image: 'https://mv.radoskop.eu/glosowanie/' + voteId + '/og.png'
+    url: 'https://mv.radoskop.eu/vote/' + voteId + '/',
+    image: 'https://mv.radoskop.eu/vote/' + voteId + '/og.png'
   });
 
   const c = vote.counts || {};
@@ -2296,14 +2315,14 @@ async function showVote(voteId) {
       <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessKey ? sessionLink(sessKey, 'Sitzung ' + sessLabel + ' · ' + (vote.session_date || ''), ' style="color:var(--muted)"') : (vote.session_date ? 'Sitzung · ' + vote.session_date : '')}</div>
       <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
       ${vote.summary ? `<p style="color:var(--text);margin-top:8px;font-size:0.95rem;line-height:1.6;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px">${vote.summary}</p>` : ''}
-      ${vote.druk ? `<div style="color:var(--muted);margin-top:4px">Druk: ${vote.druk}</div>` : ''}
+      ${vote.druk ? `<div style="margin-top:4px"><a class="name-link" href="/bill/${KAD_SLUGS[voteKid]||voteKid}/${vote.druk}/" onclick="event.preventDefault();showDruk(${vote.druk},'${voteKid}')">Druk ${vote.druk} →</a></div>` : ''}
       ${vote.resolution ? `<div style="color:var(--muted)">Uchwała: ${vote.resolution}</div>` : ''}
       ${vote.source_url ? `<div style="margin-top:6px"><a href="${vote.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół głosowania (BIP) ↗</a></div>` : ''}
       <div style="margin-top:12px">
         ${shareBar(
           (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Mecklenburg-Vorpommern',
           (passed ? 'Angenommen' : 'Abgelehnt') + ': za ' + (c.za||0) + ', przeciw ' + (c.przeciw||0) + ', wstrzym. ' + (c.wstrzymal_sie||0) + '. ' + (vote.topic || '').substring(0, 100),
-          'https://mv.radoskop.eu/glosowanie/' + voteId + '/',
+          'https://mv.radoskop.eu/vote/' + voteId + '/',
           'vote-share'
         )}
       </div>
@@ -2344,8 +2363,6 @@ async function showVote(voteId) {
       <div style="width:${barW(c.nieobecni||0)}%;background:rgba(75,85,99,0.5)">${c.nieobecni||0}</div>
     </div>
 
-    <div id="commission-timeline"></div>
-
     <div class="section">
       <div class="vote-cat-header" style="color:var(--green)">Dafür (${(nv.za||[]).length})</div>
       ${renderNameList(nv.za, 'rgba(34,197,94,0.08)')}
@@ -2367,10 +2384,77 @@ async function showVote(voteId) {
   view.innerHTML = html;
   window.scrollTo(0, 0);
 
-  // Sekcja "Procedowanie w komisjach" — wzbogacenie z radoskop-premium
-  // (correlations.json → druk_to_commissions.json). Async, bez blokowania
-  // głównego renderu. Brak danych = nic się nie pojawia.
-  renderCommissionTimeline(vote.druk, document.getElementById('commission-timeline'));
+}
+
+// showDruk — strona druku z treścią przez API premium i commission timeline.
+// Endpoint: GET API_BASE + '/kadencja/{kadId}/druk/{drukId}' (credentials: include)
+// Pliki źródłowe: radoskop/cities/{city}/druki/{kadId}/{drukId}.json (poza docs/)
+// URL strony: /druk/{kadSlug}/{drukId}/ → np. /bill/ix/123/
+async function showDruk(drukId, kadId) {
+  drukId = String(drukId);
+  kadId = kadId || currentKid;
+  trackEvent('view_druk', { druk: drukId, kadencja: kadId });
+
+  hideAllViews();
+  const view = document.getElementById('druk-view');
+  view.style.display = 'block';
+  view.innerHTML = '<p style="color:var(--muted);padding:20px 0">Lädt...</p>';
+
+  const kadSlug = KAD_SLUGS[kadId] || kadId;
+  setOgMeta({
+    title: 'Druk ' + drukId + ' – Radoskop Mecklenburg-Vorpommern',
+    url: 'https://mv.radoskop.eu/bill/' + kadSlug + '/' + encodeURIComponent(drukId) + '/'
+  });
+  navigateTo('/bill/' + kadSlug + '/' + encodeURIComponent(drukId) + '/');
+  setTitle('Druk ' + drukId);
+
+  // Fetch przez API premium (credentials: include = session cookie).
+  // data_api.py czyta pliki z radoskop/cities/{city}/druki/{kadId}/{drukId}.json
+  // i zwraca tier-zaleznie:
+  //   free tier:    { tytul, tresc_preview }   (pierwsze ~50 slow)
+  //   premium tier: { tytul, tresc, source_url } (pelna tresc + PDF na S3)
+  let entry = null;
+  try {
+    const resp = await fetch(
+      API_BASE + '/kadencja/' + encodeURIComponent(kadId) + '/druk/' + encodeURIComponent(drukId),
+      { credentials: 'include' }
+    );
+    if (resp.ok) entry = await resp.json();
+  } catch (e) { /* brak danych = entry null */ }
+
+  const tytul = entry && entry.tytul ? entry.tytul : 'Druk ' + drukId;
+
+  let contentHtml = '';
+  if (entry && entry.tresc) {
+    // Premium: pelna tresc + link do PDF na S3
+    const localCopyLink = entry.source_url
+      ? `<div style="margin-top:12px"><a href="${entry.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">&#8599; Lokalna kopia dokumentu</a></div>`
+      : '';
+    contentHtml = `<div class="druk-tresc"><p>${entry.tresc}</p>${localCopyLink}</div>`;
+  } else if (entry && entry.tresc_preview) {
+    // Free: preview + CTA
+    contentHtml = `
+      <div class="druk-tresc">
+        <p>${entry.tresc_preview}...</p>
+        <div class="druk-paywall">
+          <p style="margin:0 0 12px;color:var(--muted);font-size:0.9rem">Pełna treść dostępna w pakiecie Premium.</p>
+          <button class="auth-btn" onclick="showBusiness({from:'druk_content',druk:'${drukId}'})">Odblokuj Premium</button>
+        </div>
+      </div>`;
+  } else {
+    contentHtml = '<p style="color:var(--muted)">Inhalt druku nie jest jeszcze dostępna.</p>';
+  }
+
+  view.innerHTML = `
+    <button class="profile-back" onclick="history.back()">← Wróć</button>
+    <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0;margin-bottom:4px">${tytul}</h2>
+    <div style="color:var(--muted);font-size:0.85rem;margin-bottom:16px">Druk nr ${drukId}</div>
+    ${contentHtml}
+    <div id="druk-commission-timeline"></div>
+  `;
+
+  renderCommissionTimeline(Number(drukId), document.getElementById('druk-commission-timeline'));
+  window.scrollTo(0, 0);
 }
 
 // Mini-cache per druk żeby przy szybkim klikaniu między głosowaniami
@@ -2482,7 +2566,7 @@ async function renderCommissionTimeline(druk, container) {
   const noCommissionRow = status === 'voted_without_commission' ? `
     <div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-top:0.5px solid var(--border)">
       <div style="flex:1;font-size:13px;color:var(--text)">
-        Ten projekt uchwały nie był procedowany w żadnej z 18 komisji landtagu przed głosowaniem na sesji plenarnej.
+        Ten projekt uchwały nie był procedowany w żadnej z 18 komisji rady miasta przed głosowaniem na sesji plenarnej.
         <div style="font-size:12px;color:var(--muted);margin-top:4px">Może to oznaczać tryb pilny, lex specialis albo specyfikę proceduralną.</div>
       </div>
     </div>
@@ -2594,7 +2678,7 @@ async function showSession(sessionNumber) {
   setOgMeta({
     title: 'Sitzung ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' \u2013 Radoskop Mecklenburg-Vorpommern',
     description: 'Sitzung ' + sessionNumber + ', ' + (sess.date||'') + '. ' + sessSummaryStat + ', ' + (sess.attendee_count||0) + ' Anwesende.',
-    url: 'https://mv.radoskop.eu/sesja/' + encodeURIComponent(sessionNumber) + '/'
+    url: 'https://mv.radoskop.eu/session/' + encodeURIComponent(sessionNumber) + '/'
   });
 
   // Club lookup from current kadencja
@@ -2624,7 +2708,7 @@ async function showSession(sessionNumber) {
         ${shareBar(
           'Sitzung ' + sess.number + ' (' + (sess.date||'') + ') \u2013 Radoskop Mecklenburg-Vorpommern',
           'Sitzung ' + sess.number + ': ' + sessSummaryStat + ', ' + (sess.attendee_count||present.size||0) + ' anwesende Abgeordnete.',
-          'https://mv.radoskop.eu/sesja/' + encodeURIComponent(sessionNumber) + '/',
+          'https://mv.radoskop.eu/session/' + encodeURIComponent(sessionNumber) + '/',
           'session-share'
         )}
       </div>
@@ -2941,7 +3025,7 @@ async function showKomisja(slug) {
   setOgMeta({
     title: label + ' – Radoskop Mecklenburg-Vorpommern',
     description: `${s.meetings || 0} posiedzeń, ${s.drafts_total || 0} druków w procedowaniu, mediana lead time ${leadDisplay}.`,
-    url: 'https://mv.radoskop.eu/komisja/' + encodeURIComponent(slug) + '/'
+    url: 'https://mv.radoskop.eu/commission/' + encodeURIComponent(slug) + '/'
   });
 
   // Premium: jeśli API zwraca drafts_votes (mapa druk → {vote_id, ...}),
@@ -2956,7 +3040,7 @@ async function showKomisja(slug) {
       if (info && info.vote_id) {
         const vid = info.vote_id;
         const passedIcon = info.passed === true ? ' <span style="color:var(--green)">✓</span>' : info.passed === false ? ' <span style="color:var(--red)">✗</span>' : '';
-        return `<a href="/glosowanie/${encodeURIComponent(vid)}/" onclick="event.preventDefault();showVote('${vid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
+        return `<a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${encodeURIComponent(dStr)}/" onclick="event.preventDefault();showDruk(${dStr},'${currentKid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
       }
       return `<span style="${baseStyle}">druk ${dStr}</span>`;
     }).join('');
@@ -3556,7 +3640,7 @@ function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
   ctx.fillText(name.split(' ').map(w=>w[0]).join('').substring(0,2),50,60);
   ctx.textAlign='left'; ctx.textBaseline='top';
   ctx.fillStyle='#e4e4e7'; ctx.font='bold 22px -apple-system,sans-serif'; ctx.fillText(name,90,40);
-  ctx.fillStyle='#8b8d97'; ctx.font='14px -apple-system,sans-serif'; ctx.fillText('Fraktion '+club+'  ·  Landtag Mecklenburg-Vorpommerns',90,68);
+  ctx.fillStyle='#8b8d97'; ctx.font='14px -apple-system,sans-serif'; ctx.fillText('Fraktion '+club+'  ·  Abgeordnetenhaus von Mecklenburg-Vorpommern',90,68);
   const metrics = [
     {label:'Anwesenheit',value:frek+'%',color:frek>=90?'#22c55e':frek>=70?'#eab308':'#ef4444'},
     {label:'Aktivität',value:akt+'%',color:akt>=90?'#22c55e':akt>=70?'#eab308':'#ef4444'},
@@ -3590,7 +3674,7 @@ function showEmbedCode(slug) {
   const modal=document.getElementById('embed-modal'), code=document.getElementById('embed-code');
   if(modal.style.display==='none'){
     modal.style.display='block';
-    code.value=`<iframe src="https://mv.radoskop.eu/profil/${slug}/" width="400" height="500" frameborder="0" style="border:1px solid #e2e5e9;border-radius:12px" title="Radoskop Mecklenburg-Vorpommern"></iframe>`;
+    code.value=`<iframe src="https://mv.radoskop.eu/profile/${slug}/" width="400" height="500" frameborder="0" style="border:1px solid #e2e5e9;border-radius:12px" title="Radoskop Mecklenburg-Vorpommern"></iframe>`;
   } else { modal.style.display='none'; }
 }
 
@@ -4076,14 +4160,6 @@ document.addEventListener('keydown', (e) => {
     closeAuthModal();
   }
 });
-</script>
-<script>
-// Sejmik: definicje klubów i mapowanie radny -> klub.
-const SEJMIK_CLUBS = {"SPD": {"color": "#dc2626", "bg": "rgba(220,38,38,0.12)", "avatar_bg": "#b91c1c"}, "CDU": {"color": "#0f172a", "bg": "rgba(15,23,42,0.12)", "avatar_bg": "#1e293b"}, "AfD": {"color": "#0ea5e9", "bg": "rgba(14,165,233,0.12)", "avatar_bg": "#0369a1"}, "Die Linke": {"color": "#7c2d92", "bg": "rgba(124,45,146,0.12)", "avatar_bg": "#6b21a8"}, "BÜNDNIS 90/DIE GRÜNEN": {"color": "#16a34a", "bg": "rgba(22,163,74,0.12)", "avatar_bg": "#15803d"}, "Gruppe der FDP": {"color": "#facc15", "bg": "rgba(250,204,21,0.18)", "avatar_bg": "#ca8a04"}, "fraktionslos": {"color": "#64748b", "bg": "rgba(100,116,139,0.12)", "avatar_bg": "#475569"}};
-const SEJMIK_CLUB_OF = {"Sicherheit und Datenschutz Shepley Anne 1 StimmeGlawe Harry 1 Stimmevon Allwörden Ann Christin 1 StimmeSchneider-GärtnerEva Maria 1 StimmeButzki Andreas 1 StimmeHesse Birgit 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren": "BÜNDNIS 90/DIE GRÜNEN", "Sicherheit und Datenschutz Stein Thore 1 StimmePulz-Debler Steffi 1 StimmeRösler Jeannine 1 StimmeSchneider-GärtnerEva Maria 1 StimmeFalk Marcel 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren": "AfD", "Sicherheit und Datenschutz Wegner Jutta 1 StimmeBerg Christiane 1 StimmeGlawe Harry 1 StimmeAlbrecht Christian 1 StimmeFoerster Henning 1 StimmeSchneider-GärtnerEva Maria 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren": "BÜNDNIS 90/DIE GRÜNEN", "Sicherheit und Datenschutz Berg Christiane 1 StimmeGlawe Harry 1 StimmeFoerster Henning 1 StimmeNoetzel Michael 1 StimmeSchneider-GärtnerEva Maria 1 StimmeDomke René 1 StimmeBarlen Julian 1 StimmeGundlack Tilo 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren": "CDU", "Thomas de Jesus-Fernandes": "AfD", "Petra Federau": "AfD", "Horst Förster": "AfD", "Nikolaus Kramer": "AfD", "Michael Meister": "AfD", "Stephan J. Reuken": "AfD", "Martin Schmidt": "AfD", "Jens-Holger Schneider": "AfD", "Thore Stein": "AfD", "Jan-Phillip Tadsen": "AfD", "Paul-Joachim Timm": "AfD", "Hannes Damm": "BÜNDNIS 90/DIE GRÜNEN", "Constanze Oehlrich": "BÜNDNIS 90/DIE GRÜNEN", "Harald Terpe": "BÜNDNIS 90/DIE GRÜNEN", "Jutta Wegner": "BÜNDNIS 90/DIE GRÜNEN", "Sebastian Ehlers": "CDU", "Sabine Enseleit": "CDU", "Katy Hoffmeister": "CDU", "Franz-Robert Liskow": "CDU", "Daniel Peters": "CDU", "Torsten Renz": "CDU", "Beate Schlupp": "CDU", "Ann Christin von Allwörden": "CDU", "Wolfgang Waldmüller": "CDU", "Sandy van Baal": "fraktionslos", "Barbara Becker-Hornickel": "Gruppe der FDP", "René Domke": "Gruppe der FDP", "David Wulff": "Gruppe der FDP", "Christian Albrecht": "Die Linke", "Dirk Bruhn": "Die Linke", "Torsten Koplin": "Die Linke", "Michael Noetzel": "Die Linke", "Steffi Pulz-Debler": "Die Linke", "Jeannine Rösler": "Die Linke", "Daniel Trepsdorf": "Die Linke", "Rainer Albrecht": "SPD", "Till Backhaus": "SPD", "Julian Barlen": "SPD", "Falko Beitz": "SPD", "Christian Brade": "SPD", "Philipp da Cunha": "SPD", "Patrick Dahlemann": "SPD", "Stefanie Drese": "SPD", "Marcel Falk": "SPD", "Tilo Gundlack": "SPD", "Beatrix Hegenkötter": "SPD", "Birgit Hesse": "SPD", "Nadine Julitz": "SPD", "Dagmar Kaselitz": "SPD", "Christine Klingohr": "SPD", "Thomas Krüger": "SPD", "Bettina Martin": "SPD", "Heiko Miraß": "SPD", "Ralf Mucha": "SPD", "Robert Northoff": "SPD", "Christian Pegel": "SPD", "Mandy Pfeifer": "SPD", "Sylva Rahm-Präger": "SPD", "Michel-Friedrich Schiefler": "SPD", "Grit Schmelzer": "SPD", "Anna-Konstanze Schröder": "SPD", "Dirk Stamer": "SPD", "Christian Winter": "SPD", "Monique Wölk": "SPD", "Thomas Würdisch": "SPD", "Enrico Schult": "AfD", "Jens Schulze-Wiehenbrauk": "AfD", "Anne Shepley": "BÜNDNIS 90/DIE GRÜNEN", "Christiane Berg": "CDU", "Thomas Diener": "CDU", "Harry Glawe": "CDU", "Marc Reinhardt": "CDU", "Henning Foerster": "Die Linke", "Elke-Annette Schmidt": "Die Linke", "Eva Maria Schneider-Gärtner": "fraktionslos", "Andreas Butzki": "SPD", "Nils Saemann": "SPD", "Manuela Schwesig": "SPD", "Martina\nElektronische Abstimmung über Votebox. Infos über Verfahren Tegtmeier": "SPD"};
-// Globalna mapa nazwisko -> klub (template miasta używa, jeśli
-// councilors[].club nie jest ustawione w data.json).
-window.clubAssignments = SEJMIK_CLUB_OF;
 </script>
 </body>
 </html>

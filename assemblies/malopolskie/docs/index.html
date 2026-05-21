@@ -5,25 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Radoskop Sejmik Małopolskie. Jak głosują radni?</title>
 <meta name="description" content="Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Małopolskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.">
-<meta name="keywords" content="Małopolskie, sejmik województwa, radni, głosowania, frekwencja, samorząd, monitoring, transparentność">
+<meta name="keywords" content="małopolskie, rada miasta, radni, głosowania, frekwencja, samorząd, monitoring, transparentność">
 <meta name="author" content="Patryk Orwat">
 <link rel="canonical" href="https://malopolskie.radoskop.pl/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Radoskop Małopolskie — Jak głosują radni?">
-<meta property="og:description" content="Otwarte narzędzie monitoringu Sejmiku Województwa Małopolskiego. Frekwencja, głosowania i aktywność radnych.">
+<meta property="og:title" content="Radoskop małopolskie — Jak głosują radni?">
+<meta property="og:description" content="Otwarte narzędzie monitoringu Rady Miasta małopolskiego. Frekwencja, głosowania i aktywność radnych.">
 <meta property="og:url" content="https://malopolskie.radoskop.pl/">
 <meta property="og:locale" content="pl_PL">
-<meta property="og:site_name" content="Radoskop Małopolskie">
+<meta property="og:site_name" content="Radoskop małopolskie">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Radoskop Małopolskie — Jak głosują radni?">
-<meta name="twitter:description" content="Otwarte narzędzie monitoringu Sejmiku Województwa Małopolskiego. Frekwencja, głosowania i aktywność radnych.">
-<link rel="alternate" type="application/atom+xml" title="Radoskop Małopolskie" href="https://malopolskie.radoskop.pl/feed.xml">
+<meta name="twitter:title" content="Radoskop małopolskie — Jak głosują radni?">
+<meta name="twitter:description" content="Otwarte narzędzie monitoringu Rady Miasta małopolskiego. Frekwencja, głosowania i aktywność radnych.">
+<link rel="alternate" type="application/atom+xml" title="Radoskop małopolskie" href="https://malopolskie.radoskop.pl/feed.xml">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Radoskop Małopolskie",
-  "description": "Otwarte narzędzie monitoringu Sejmiku Województwa Małopolskiego. Sprawdź frekwencję, głosowania i aktywność radnych na sesjach.",
+  "name": "Radoskop małopolskie",
+  "description": "Otwarte narzędzie monitoringu Rady Miasta małopolskiego. Sprawdź frekwencję, głosowania i aktywność radnych na sesjach.",
   "url": "https://malopolskie.radoskop.pl/",
   "applicationCategory": "GovernmentApplication",
   "operatingSystem": "Web",
@@ -33,7 +33,7 @@
   },
   "about": {
     "@type": "GovernmentOrganization",
-    "name": "Sejmik Województwa Małopolskiego",
+    "name": "Rada Miasta małopolskiego",
     "url": "https://bip.malopolska.pl/"
   },
   "license": "https://www.gnu.org/licenses/agpl-3.0.html",
@@ -218,6 +218,8 @@ footer a { color:var(--accent); text-decoration:none; }
 .vote-name-item { padding:6px 10px; border-radius:6px; font-size:0.85rem; display:flex; align-items:center; gap:6px; }
 .vote-name-item .club { flex-shrink:0; }
 .vote-cat-header { font-size:0.9rem; font-weight:600; margin:16px 0 8px; padding:6px 0; border-bottom:1px solid var(--border); }
+.druk-tresc { line-height:1.7; font-size:0.95rem; padding:16px 0; white-space:pre-wrap; }
+.druk-paywall { margin-top:12px; padding:16px; background:rgba(99,102,241,0.06); border:1px solid var(--border); border-radius:8px; text-align:center; }
 .session-pill { padding:4px 10px; border-radius:6px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-size:0.8rem; white-space:nowrap; }
 .session-pill.active { background:var(--accent); color:white; border-color:var(--accent); }
 .session-pill.cat-pill { font-size:0.75rem; padding:3px 10px; }
@@ -521,7 +523,7 @@ footer a { color:var(--accent); text-decoration:none; }
 .share-btn.share-native:hover { opacity:0.9; color:white; }
 .share-copied { color:var(--green) !important; border-color:var(--green) !important; }
 </style>
-</head>
+<style>[data-tab="budget"]{display:none!important}</style></head>
 <body>
 <nav class="topbar" aria-label="Główna nawigacja">
   <a class="topbar-logo" href="https://radoskop.pl/">Rado<span>skop</span></a>
@@ -546,8 +548,8 @@ footer a { color:var(--accent); text-decoration:none; }
 <div class="container">
   <header>
     <div onclick="showMain()" style="cursor:pointer">
-      <h1>Rado<span>skop</span> Małopolskie</h1>
-      <p>Jak głosują radni Miasta Małopolskiego? Dane z protokołów BIP.</p>
+      <h1>Rado<span>skop</span> małopolskie</h1>
+      <p>Jak głosują radni Miasta małopolskiego? Dane z protokołów BIP.</p>
     </div>
     
   </header>
@@ -567,7 +569,7 @@ footer a { color:var(--accent); text-decoration:none; }
         <div class="tab-tier tab-tier--secondary">
           <button class="tab tab-secondary" data-tab="interpelacje">Interpelacje</button>
           <button class="tab tab-secondary" data-tab="sessions">Sesje</button>
-        <a href="/news/" class="tab" style="text-decoration:none">Aktualności</a>
+        <a href="/news/" class="tab tab-secondary" style="text-decoration:none">Aktualności</a>
         </div>
       </div>
       <div class="kadencja-bar" id="kadencja-bar"></div>
@@ -662,6 +664,9 @@ footer a { color:var(--accent); text-decoration:none; }
 
   <!-- Impressum / provider identification view (only shown for DE/CS instances) -->
   <div id="impressum-view" style="display:none"></div>
+
+  <!-- Druk detail view -->
+  <div id="druk-view" style="display:none"></div>
 
   <!-- Reports catalog view -->
   <div id="reports-view" style="display:none"></div>
@@ -1008,6 +1013,18 @@ async function init() {
       showKomisja(slug);
       return;
     }
+    if (path.startsWith('/bill/')) {
+      // Format: /druk/{kadSlug}/{drukId}/
+      const parts = path.replace('/bill/', '').replace(/\/$/, '').split('/');
+      if (parts.length >= 2 && parts[0] && parts[1]) {
+        const kadSlug = parts[0];
+        const did = decodeURIComponent(parts[1]);
+        const kadId = SLUG_KADS[kadSlug] || kadSlug;
+        selectKadencjaQuiet(kadId);
+        showDruk(did, kadId);
+        return;
+      }
+    }
     if (path === '/news' || path === '/news/') {
       // /news/ to statyczna strona z listą wpisów (SEO content
       // wstrzyknięty przez generate_feed.py). Nie ładujemy SPA appki —
@@ -1105,6 +1122,7 @@ function hideAllViews() {
   document.getElementById('vote-view').style.display = 'none';
   document.getElementById('session-view').style.display = 'none';
   document.getElementById('reports-view').style.display = 'none';
+  document.getElementById('druk-view').style.display = 'none';
 }
 
 let currentTab = 'ranking';
@@ -1327,7 +1345,7 @@ function showImpressum() {
   navigateTo('/impressum/');
   setTitle('Impressum');
   setOgMeta({
-    title: 'Impressum — Radoskop Małopolskie',
+    title: 'Impressum — Radoskop małopolskie',
     description: 'Anbieterkennzeichnung gemäß §5 TMG.',
     url: 'https://malopolskie.radoskop.pl/impressum/'
   });
@@ -1453,10 +1471,10 @@ function showProfile(name) {
   setTitle(profile.name);
   var _pk = profile.kadencje[Object.keys(profile.kadencje).pop()] || {};
   setOgMeta({
-    title: profile.name + ' \u2013 Radoskop Małopolskie',
+    title: profile.name + ' \u2013 Radoskop małopolskie',
     description: profile.name + ', ' + (_pk.club_full || _pk.club || '') + '. Frekwencja ' + (_pk.frekwencja||0).toFixed(0) + '%, aktywnosc ' + (_pk.aktywnosc||0).toFixed(0) + '%.',
-    url: 'https://malopolskie.radoskop.pl/profil/' + profile.slug + '/',
-    image: 'https://malopolskie.radoskop.pl/profil/' + profile.slug + '/og.png'
+    url: 'https://malopolskie.radoskop.pl/profile/' + profile.slug + '/',
+    image: 'https://malopolskie.radoskop.pl/profile/' + profile.slug + '/og.png'
   });
 
   // Find which kadencje this person has data for
@@ -1619,8 +1637,8 @@ function showProfile(name) {
 
     // Share section with social buttons + card download + embed
     if (hasVotes) {
-      const profileShareUrl = 'https://malopolskie.radoskop.pl/profil/' + profile.slug + '/';
-      const profileShareTitle = profile.name + ' \u2013 Radoskop Małopolskie';
+      const profileShareUrl = 'https://malopolskie.radoskop.pl/profile/' + profile.slug + '/';
+      const profileShareTitle = profile.name + ' \u2013 Radoskop małopolskie';
       const profileShareText = profile.name + ' (' + club + '): frekwencja ' + Math.round(kd.frekwencja) + '%, zgodność z klubem ' + Math.round(kd.zgodnosc_z_klubem) + '%. Sprawdź na Radoskopie!';
       html += `<div class="section">
         <h2>Udostępnij</h2>
@@ -2162,7 +2180,7 @@ async function renderVotesTable() {
       const c = v.counts || {};
       html += `<tr class="vote-row" onclick="showVote('${v.id || ''}')">
         <td style="color:var(--muted);width:30px">${i+1}</td>
-        <td>${catPill(v.category || categorizeVote(v.topic))} ${v.topic ? v.topic.substring(0,120) : '?'}${v.druk ? ` <span style="color:var(--muted)">(druk ${v.druk})</span>` : ''}</td>
+        <td>${catPill(v.category || categorizeVote(v.topic))} ${v.topic ? v.topic.substring(0,120) : '?'}${v.druk ? ` <a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${v.druk}/" onclick="event.preventDefault();event.stopPropagation();showDruk(${v.druk},'${currentKid}')" style="color:var(--muted);text-decoration:none">(druk ${v.druk})</a>` : ''}</td>
         <td><span class="pill pill-za">${c.za||0}</span></td>
         <td>${c.przeciw ? `<span class="pill pill-przeciw">${c.przeciw}</span>` : '0'}</td>
         <td>${c.wstrzymal_sie ? `<span class="pill pill-wstrzymal">${c.wstrzymal_sie}</span>` : '0'}</td>
@@ -2218,11 +2236,12 @@ async function showVote(voteId) {
 
   // Fetch vote detail from API (try current kadencja first)
   let vote = null;
+  let voteKid = currentKid;
   const kidsToTry = [currentKid, ...RAW.kadencje.map(k => k.id).filter(k => k !== currentKid)];
   for (const kid of kidsToTry) {
     try {
       const resp = await fetch(API_BASE + '/kadencja/' + kid + '/vote/' + voteId);
-      if (resp.ok) { vote = await resp.json(); break; }
+      if (resp.ok) { vote = await resp.json(); voteKid = kid; break; }
     } catch(e) { /* try next */ }
   }
   if (!vote) {
@@ -2249,10 +2268,10 @@ async function showVote(voteId) {
   setTitle('Głosowanie: ' + (vote.topic || voteId).substring(0, 60));
   var _vc = vote.counts || {};
   setOgMeta({
-    title: (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Małopolskie',
+    title: (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop małopolskie',
     description: 'Za ' + (_vc.za||0) + ', przeciw ' + (_vc.przeciw||0) + ', wstrzym. ' + (_vc.wstrzymal_sie||0) + '. Sesja ' + (vote.session_number||'') + ', ' + (vote.session_date||'') + '.',
-    url: 'https://malopolskie.radoskop.pl/glosowanie/' + voteId + '/',
-    image: 'https://malopolskie.radoskop.pl/glosowanie/' + voteId + '/og.png'
+    url: 'https://malopolskie.radoskop.pl/vote/' + voteId + '/',
+    image: 'https://malopolskie.radoskop.pl/vote/' + voteId + '/og.png'
   });
 
   const c = vote.counts || {};
@@ -2290,14 +2309,14 @@ async function showVote(voteId) {
       <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessKey ? sessionLink(sessKey, 'Sesja ' + sessLabel + ' · ' + (vote.session_date || ''), ' style="color:var(--muted)"') : (vote.session_date ? 'Sesja · ' + vote.session_date : '')}</div>
       <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
       ${vote.summary ? `<p style="color:var(--text);margin-top:8px;font-size:0.95rem;line-height:1.6;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px">${vote.summary}</p>` : ''}
-      ${vote.druk ? `<div style="color:var(--muted);margin-top:4px">Druk: ${vote.druk}</div>` : ''}
+      ${vote.druk ? `<div style="margin-top:4px"><a class="name-link" href="/bill/${KAD_SLUGS[voteKid]||voteKid}/${vote.druk}/" onclick="event.preventDefault();showDruk(${vote.druk},'${voteKid}')">Druk ${vote.druk} →</a></div>` : ''}
       ${vote.resolution ? `<div style="color:var(--muted)">Uchwała: ${vote.resolution}</div>` : ''}
       ${vote.source_url ? `<div style="margin-top:6px"><a href="${vote.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół głosowania (BIP) ↗</a></div>` : ''}
       <div style="margin-top:12px">
         ${shareBar(
-          (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Małopolskie',
+          (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop małopolskie',
           (passed ? 'Przyjęte' : 'Odrzucone') + ': za ' + (c.za||0) + ', przeciw ' + (c.przeciw||0) + ', wstrzym. ' + (c.wstrzymal_sie||0) + '. ' + (vote.topic || '').substring(0, 100),
-          'https://malopolskie.radoskop.pl/glosowanie/' + voteId + '/',
+          'https://malopolskie.radoskop.pl/vote/' + voteId + '/',
           'vote-share'
         )}
       </div>
@@ -2338,8 +2357,6 @@ async function showVote(voteId) {
       <div style="width:${barW(c.nieobecni||0)}%;background:rgba(75,85,99,0.5)">${c.nieobecni||0}</div>
     </div>
 
-    <div id="commission-timeline"></div>
-
     <div class="section">
       <div class="vote-cat-header" style="color:var(--green)">Za (${(nv.za||[]).length})</div>
       ${renderNameList(nv.za, 'rgba(34,197,94,0.08)')}
@@ -2361,10 +2378,77 @@ async function showVote(voteId) {
   view.innerHTML = html;
   window.scrollTo(0, 0);
 
-  // Sekcja "Procedowanie w komisjach" — wzbogacenie z radoskop-premium
-  // (correlations.json → druk_to_commissions.json). Async, bez blokowania
-  // głównego renderu. Brak danych = nic się nie pojawia.
-  renderCommissionTimeline(vote.druk, document.getElementById('commission-timeline'));
+}
+
+// showDruk — strona druku z treścią przez API premium i commission timeline.
+// Endpoint: GET API_BASE + '/kadencja/{kadId}/druk/{drukId}' (credentials: include)
+// Pliki źródłowe: radoskop/cities/{city}/druki/{kadId}/{drukId}.json (poza docs/)
+// URL strony: /druk/{kadSlug}/{drukId}/ → np. /bill/ix/123/
+async function showDruk(drukId, kadId) {
+  drukId = String(drukId);
+  kadId = kadId || currentKid;
+  trackEvent('view_druk', { druk: drukId, kadencja: kadId });
+
+  hideAllViews();
+  const view = document.getElementById('druk-view');
+  view.style.display = 'block';
+  view.innerHTML = '<p style="color:var(--muted);padding:20px 0">Ładowanie...</p>';
+
+  const kadSlug = KAD_SLUGS[kadId] || kadId;
+  setOgMeta({
+    title: 'Druk ' + drukId + ' – Radoskop małopolskie',
+    url: 'https://malopolskie.radoskop.pl/bill/' + kadSlug + '/' + encodeURIComponent(drukId) + '/'
+  });
+  navigateTo('/bill/' + kadSlug + '/' + encodeURIComponent(drukId) + '/');
+  setTitle('Druk ' + drukId);
+
+  // Fetch przez API premium (credentials: include = session cookie).
+  // data_api.py czyta pliki z radoskop/cities/{city}/druki/{kadId}/{drukId}.json
+  // i zwraca tier-zaleznie:
+  //   free tier:    { tytul, tresc_preview }   (pierwsze ~50 slow)
+  //   premium tier: { tytul, tresc, source_url } (pelna tresc + PDF na S3)
+  let entry = null;
+  try {
+    const resp = await fetch(
+      API_BASE + '/kadencja/' + encodeURIComponent(kadId) + '/druk/' + encodeURIComponent(drukId),
+      { credentials: 'include' }
+    );
+    if (resp.ok) entry = await resp.json();
+  } catch (e) { /* brak danych = entry null */ }
+
+  const tytul = entry && entry.tytul ? entry.tytul : 'Druk ' + drukId;
+
+  let contentHtml = '';
+  if (entry && entry.tresc) {
+    // Premium: pelna tresc + link do PDF na S3
+    const localCopyLink = entry.source_url
+      ? `<div style="margin-top:12px"><a href="${entry.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">&#8599; Lokalna kopia dokumentu</a></div>`
+      : '';
+    contentHtml = `<div class="druk-tresc"><p>${entry.tresc}</p>${localCopyLink}</div>`;
+  } else if (entry && entry.tresc_preview) {
+    // Free: preview + CTA
+    contentHtml = `
+      <div class="druk-tresc">
+        <p>${entry.tresc_preview}...</p>
+        <div class="druk-paywall">
+          <p style="margin:0 0 12px;color:var(--muted);font-size:0.9rem">Pełna treść dostępna w pakiecie Premium.</p>
+          <button class="auth-btn" onclick="showBusiness({from:'druk_content',druk:'${drukId}'})">Odblokuj Premium</button>
+        </div>
+      </div>`;
+  } else {
+    contentHtml = '<p style="color:var(--muted)">Treść druku nie jest jeszcze dostępna.</p>';
+  }
+
+  view.innerHTML = `
+    <button class="profile-back" onclick="history.back()">← Wróć</button>
+    <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0;margin-bottom:4px">${tytul}</h2>
+    <div style="color:var(--muted);font-size:0.85rem;margin-bottom:16px">Druk nr ${drukId}</div>
+    ${contentHtml}
+    <div id="druk-commission-timeline"></div>
+  `;
+
+  renderCommissionTimeline(Number(drukId), document.getElementById('druk-commission-timeline'));
+  window.scrollTo(0, 0);
 }
 
 // Mini-cache per druk żeby przy szybkim klikaniu między głosowaniami
@@ -2476,7 +2560,7 @@ async function renderCommissionTimeline(druk, container) {
   const noCommissionRow = status === 'voted_without_commission' ? `
     <div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-top:0.5px solid var(--border)">
       <div style="flex:1;font-size:13px;color:var(--text)">
-        Ten projekt uchwały nie był procedowany w żadnej z 18 komisji sejmiku województwa przed głosowaniem na sesji plenarnej.
+        Ten projekt uchwały nie był procedowany w żadnej z 18 komisji rady miasta przed głosowaniem na sesji plenarnej.
         <div style="font-size:12px;color:var(--muted);margin-top:4px">Może to oznaczać tryb pilny, lex specialis albo specyfikę proceduralną.</div>
       </div>
     </div>
@@ -2586,9 +2670,9 @@ async function showSession(sessionNumber) {
     ? ((sess.vote_count || 0) + ' g\u0142osowa\u0144')
     : (sessStatementCount + ' wyst\u0105pie\u0144');
   setOgMeta({
-    title: 'Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' \u2013 Radoskop Małopolskie',
+    title: 'Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' \u2013 Radoskop małopolskie',
     description: 'Sesja ' + sessionNumber + ', ' + (sess.date||'') + '. ' + sessSummaryStat + ', ' + (sess.attendee_count||0) + ' obecnych.',
-    url: 'https://malopolskie.radoskop.pl/sesja/' + encodeURIComponent(sessionNumber) + '/'
+    url: 'https://malopolskie.radoskop.pl/session/' + encodeURIComponent(sessionNumber) + '/'
   });
 
   // Club lookup from current kadencja
@@ -2616,9 +2700,9 @@ async function showSession(sessionNumber) {
       ${sess.source_url ? `<div style="margin-top:6px"><a href="${sess.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół (BIP) ↗</a></div>` : ''}
       <div style="margin-top:12px">
         ${shareBar(
-          'Sesja ' + sess.number + ' (' + (sess.date||'') + ') \u2013 Radoskop Małopolskie',
+          'Sesja ' + sess.number + ' (' + (sess.date||'') + ') \u2013 Radoskop małopolskie',
           'Sesja ' + sess.number + ': ' + sessSummaryStat + ', ' + (sess.attendee_count||present.size||0) + ' obecnych radnych.',
-          'https://malopolskie.radoskop.pl/sesja/' + encodeURIComponent(sessionNumber) + '/',
+          'https://malopolskie.radoskop.pl/session/' + encodeURIComponent(sessionNumber) + '/',
           'session-share'
         )}
       </div>
@@ -2933,9 +3017,9 @@ async function showKomisja(slug) {
 
   setTitle(label);
   setOgMeta({
-    title: label + ' – Radoskop Małopolskie',
+    title: label + ' – Radoskop małopolskie',
     description: `${s.meetings || 0} posiedzeń, ${s.drafts_total || 0} druków w procedowaniu, mediana lead time ${leadDisplay}.`,
-    url: 'https://malopolskie.radoskop.pl/komisja/' + encodeURIComponent(slug) + '/'
+    url: 'https://malopolskie.radoskop.pl/commission/' + encodeURIComponent(slug) + '/'
   });
 
   // Premium: jeśli API zwraca drafts_votes (mapa druk → {vote_id, ...}),
@@ -2950,7 +3034,7 @@ async function showKomisja(slug) {
       if (info && info.vote_id) {
         const vid = info.vote_id;
         const passedIcon = info.passed === true ? ' <span style="color:var(--green)">✓</span>' : info.passed === false ? ' <span style="color:var(--red)">✗</span>' : '';
-        return `<a href="/glosowanie/${encodeURIComponent(vid)}/" onclick="event.preventDefault();showVote('${vid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
+        return `<a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${encodeURIComponent(dStr)}/" onclick="event.preventDefault();showDruk(${dStr},'${currentKid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
       }
       return `<span style="${baseStyle}">druk ${dStr}</span>`;
     }).join('');
@@ -3550,7 +3634,7 @@ function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
   ctx.fillText(name.split(' ').map(w=>w[0]).join('').substring(0,2),50,60);
   ctx.textAlign='left'; ctx.textBaseline='top';
   ctx.fillStyle='#e4e4e7'; ctx.font='bold 22px -apple-system,sans-serif'; ctx.fillText(name,90,40);
-  ctx.fillStyle='#8b8d97'; ctx.font='14px -apple-system,sans-serif'; ctx.fillText('Klub '+club+'  ·  Sejmik Województwa Małopolskiego',90,68);
+  ctx.fillStyle='#8b8d97'; ctx.font='14px -apple-system,sans-serif'; ctx.fillText('Klub '+club+'  ·  Rada Miasta małopolskiego',90,68);
   const metrics = [
     {label:'Frekwencja',value:frek+'%',color:frek>=90?'#22c55e':frek>=70?'#eab308':'#ef4444'},
     {label:'Aktywność',value:akt+'%',color:akt>=90?'#22c55e':akt>=70?'#eab308':'#ef4444'},
@@ -3575,7 +3659,7 @@ function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
   }
   ctx.fillStyle='#2a2d3a'; ctx.fillRect(0,300,600,40);
   ctx.fillStyle='#6366f1'; ctx.font='bold 13px -apple-system,sans-serif'; ctx.textAlign='center';
-  ctx.fillText('Radoskop Małopolskie  ·  radoskop.pl',300,315);
+  ctx.fillText('Radoskop małopolskie  ·  radoskop.pl',300,315);
   const link=document.createElement('a');
   link.download=`radoskop-${name.toLowerCase().replace(/\s/g,'-')}.png`;
   link.href=canvas.toDataURL('image/png'); link.click();
@@ -3584,7 +3668,7 @@ function showEmbedCode(slug) {
   const modal=document.getElementById('embed-modal'), code=document.getElementById('embed-code');
   if(modal.style.display==='none'){
     modal.style.display='block';
-    code.value=`<iframe src="https://malopolskie.radoskop.pl/profil/${slug}/" width="400" height="500" frameborder="0" style="border:1px solid #e2e5e9;border-radius:12px" title="Radoskop Małopolskie"></iframe>`;
+    code.value=`<iframe src="https://malopolskie.radoskop.pl/profile/${slug}/" width="400" height="500" frameborder="0" style="border:1px solid #e2e5e9;border-radius:12px" title="Radoskop małopolskie"></iframe>`;
   } else { modal.style.display='none'; }
 }
 
@@ -4070,14 +4154,6 @@ document.addEventListener('keydown', (e) => {
     closeAuthModal();
   }
 });
-</script>
-<script>
-// Sejmik: definicje klubów i mapowanie radny -> klub.
-const SEJMIK_CLUBS = {};
-const SEJMIK_CLUB_OF = {};
-// Globalna mapa nazwisko -> klub (template miasta używa, jeśli
-// councilors[].club nie jest ustawione w data.json).
-window.clubAssignments = SEJMIK_CLUB_OF;
 </script>
 </body>
 </html>
