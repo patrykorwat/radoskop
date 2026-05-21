@@ -52,6 +52,12 @@ KADENCJE = {
 
 DELAY = 0.3
 STABLE_AGE_DAYS = 2
+# Okno (dni od daty sesji), w którym BIP może jeszcze dorzucić docx z wynikami.
+# Jeśli zapisane data.json ma sesję z 0 głosami młodszą niż to okno, skip-if
+# -unchanged NIE może zadziałać — sygnatura listy sesji (number:date) się nie
+# zmienia gdy docx pojawia się później, więc pusta sesja zostawała pusta na
+# zawsze. Powyżej okna sesja z 0 głosami jest traktowana jak trwale pusta.
+PENDING_RESULTS_WINDOW_DAYS = 30
 
 # HTML disk cache - kluczowy speedup dla warszawa, bo każdy fetch przez
 # Playwright kosztuje 3-30s (browser navigate + wait_for_networkidle + wait_for_selector).
@@ -85,6 +91,47 @@ def _is_session_stable(date_str: str | None) -> bool:
     except (ValueError, TypeError):
         return False
     return (datetime.now() - dt).days >= STABLE_AGE_DAYS
+
+
+def _has_pending_empty_session(out_path: "Path") -> bool:
+    """True gdy zapisane data.json ma sesję z 0 głosami w oknie publikacji wyników.
+
+    Sesje trzymane są w kadencja-{id}.json obok data.json (index ma tylko stub'y).
+    Czytamy je i szukamy sesji vote_count==0 młodszej niż PENDING_RESULTS_WINDOW
+    _DAYS. Taka sesja oznacza, że docx z wynikami mógł dojść po poprzednim runie,
+    więc skip-if-unchanged musi puścić pełny scrape (sygnatura listy się nie
+    zmienia, bo number:date te same). Błąd odczytu => True (bezpieczniej zrobić
+    pełny scrape niż utrwalić pustkę).
+    """
+    try:
+        index = json.loads(out_path.read_text(encoding="utf-8"))
+    except Exception:
+        return True
+    now = datetime.now()
+    for stub in index.get("kadencje", []):
+        kid = stub.get("id")
+        if not kid:
+            continue
+        kad_path = out_path.parent / f"kadencja-{kid}.json"
+        if not kad_path.exists():
+            continue
+        try:
+            kad = json.loads(kad_path.read_text(encoding="utf-8"))
+        except Exception:
+            return True
+        for s in kad.get("sessions", []):
+            if s.get("vote_count", 0) != 0:
+                continue
+            date_str = s.get("date")
+            if not date_str:
+                continue
+            try:
+                dt = datetime.strptime(date_str, "%Y-%m-%d")
+            except (ValueError, TypeError):
+                continue
+            if (now - dt).days <= PENDING_RESULTS_WINDOW_DAYS:
+                return True
+    return False
 
 # Globalny kontekst Playwright
 _browser = None
@@ -178,6 +225,7 @@ def fetch(url: str, wait_for: str = "li.search-entry-list-item", save_as: str = 
 def scrape_session_list_all(oldest_start: str, max_pages: int = 0) -> list[dict]:
     """Pobierz paginowaną listę sesji z BIP (wszystkie kadencje od oldest_start)."""
     sessions = []
+    seen_urls: set[str] = set()
     page = 1
     kadencja_start = oldest_start
 
@@ -198,6 +246,7 @@ def scrape_session_list_all(oldest_start: str, max_pages: int = 0) -> list[dict]
                 print(f"  Zapisano HTML do debug_sessions_page1.html")
             break
 
+        new_on_page = 0
         for item in items:
             a = item.find("a", class_="search-entry-link-wrapper")
             if not a or not a.get("href"):
@@ -206,6 +255,16 @@ def scrape_session_list_all(oldest_start: str, max_pages: int = 0) -> list[dict]
             href = a["href"]
             if not href.startswith("http"):
                 href = BIP_BASE + href
+
+            # Portlet wyszukiwania Liferay przy numerze strony poza zakresem
+            # klampuje do ostatniej ważnej strony i zwraca te same wpisy ponownie.
+            # Bez dedup po URL sesji ta sama sesja trafiała do listy 2x (i dalej
+            # do głosowań, frekwencji, output). URL sesji jest unikalny per sesja,
+            # więc to stabilny klucz tożsamości.
+            if href in seen_urls:
+                continue
+            seen_urls.add(href)
+            new_on_page += 1
 
             highlights = item.select(".search-entry-value-highlight")
             outlines = item.select(".search-entry-value-highlight-outline")
@@ -240,6 +299,13 @@ def scrape_session_list_all(oldest_start: str, max_pages: int = 0) -> list[dict]
                 "date": date,
                 "url": href,
             })
+
+        # Strona bez żadnej NOWEJ sesji = Liferay zwrócił powtórkę (clamp poza
+        # zakresem) albo dotarliśmy do końca. Stop, inaczej dublujemy / pętla
+        # nieskończona.
+        if new_on_page == 0:
+            print(f"  Strona {page} bez nowych sesji — koniec paginacji")
+            break
 
         # Paginacja — próbuj następną stronę dopóki są wyniki
         # Liferay SPA nie zawsze ma poprawny .next-btn, więc inkrementujemy i sprawdzamy
@@ -968,10 +1034,17 @@ def main():
                         and stored.get("kadencje") == target_kadencje
                         and stored.get("kadencje_known") == sorted(KADENCJE.keys())
                     ):
-                        elapsed = time.time() - _t0
-                        print(f"\n[skip] Lista sesji identyczna z poprzednim runem ({len(all_sessions)} sesji, signature matched). data.json zachowane.")
-                        print(f"=== Timing ===\n  scrape_session_list: {elapsed:.1f}s (cumulative, skipped reszta)")
-                        return
+                        # Sygnatura listy = number:date. Nie wykrywa pojawienia
+                        # się docx z wynikami dla już znanej sesji. Jeśli zapisane
+                        # data.json ma pustą sesję w oknie publikacji wyników, nie
+                        # skipuj — inaczej pusta sesja zostaje pusta na zawsze.
+                        if _has_pending_empty_session(out_path_pre):
+                            print("\n[skip-check] Signature matched, ale jest sesja z 0 głosami w oknie publikacji wyników — pełny scrape żeby dociągnąć docx.")
+                        else:
+                            elapsed = time.time() - _t0
+                            print(f"\n[skip] Lista sesji identyczna z poprzednim runem ({len(all_sessions)} sesji, signature matched). data.json zachowane.")
+                            print(f"=== Timing ===\n  scrape_session_list: {elapsed:.1f}s (cumulative, skipped reszta)")
+                            return
             except Exception as exc:
                 print(f"  [skip-check] błąd: {exc}, kontynuuję pełen scrape")
         if not all_sessions:
