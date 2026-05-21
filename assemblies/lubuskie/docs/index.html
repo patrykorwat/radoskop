@@ -1110,7 +1110,7 @@ function hideAllViews() {
 let currentTab = 'ranking';
 const TAB_SLUGS = {ranking:'ranking',sessions:'sessions',votes:'votes',komisje:'commissions',interpelacje:'interpellations',budget:'budget'};
 const SLUG_TABS = Object.fromEntries(Object.entries(TAB_SLUGS).map(([k,v])=>[v,k]));
-const KAD_SLUGS = {'2018-2023':'viii','2024-2029':'ix'};
+const KAD_SLUGS = {'2018-2024':'viii','2024-2029':'ix'};
 const SLUG_KADS = Object.fromEntries(Object.entries(KAD_SLUGS).map(([k,v])=>[v,k]));
 
 const BASE_TITLE = 'Radoskop Sejmik Lubuskie. Jak głosują radni?';
@@ -1605,7 +1605,7 @@ function showProfile(name) {
     }
 
     // Kadencje history
-    const kadencjeLabels = { '2018-2023': 'VIII kadencja (2018–2024)', '2024-2029': 'IX kadencja (2024–2029)' };
+    const kadencjeLabels = { '2018-2024': 'VIII kadencja (2018–2024)', '2024-2029': 'IX kadencja (2024–2029)' };
     html += `<div class="profile-meta-card">
       <h3>Kadencje</h3>
       ${kids.map(k => {
