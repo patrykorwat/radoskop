@@ -5,25 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Radoskop Sejmik Lubelskie. Jak głosują radni?</title>
 <meta name="description" content="Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Lubelskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.">
-<meta name="keywords" content="lubelskie, rada miasta, radni, głosowania, frekwencja, samorząd, monitoring, transparentność">
+<meta name="keywords" content="Lubelskie, sejmik województwa, radni, głosowania, frekwencja, samorząd, monitoring, transparentność">
 <meta name="author" content="Patryk Orwat">
 <link rel="canonical" href="https://lubelskie.radoskop.pl/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Radoskop lubelskie — Jak głosują radni?">
-<meta property="og:description" content="Otwarte narzędzie monitoringu Rady Miasta lubelskiego. Frekwencja, głosowania i aktywność radnych.">
+<meta property="og:title" content="Radoskop Lubelskie — Jak głosują radni?">
+<meta property="og:description" content="Otwarte narzędzie monitoringu Sejmiku Województwa Lubelskiego. Frekwencja, głosowania i aktywność radnych.">
 <meta property="og:url" content="https://lubelskie.radoskop.pl/">
 <meta property="og:locale" content="pl_PL">
-<meta property="og:site_name" content="Radoskop lubelskie">
+<meta property="og:site_name" content="Radoskop Lubelskie">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Radoskop lubelskie — Jak głosują radni?">
-<meta name="twitter:description" content="Otwarte narzędzie monitoringu Rady Miasta lubelskiego. Frekwencja, głosowania i aktywność radnych.">
-<link rel="alternate" type="application/atom+xml" title="Radoskop lubelskie" href="https://lubelskie.radoskop.pl/feed.xml">
+<meta name="twitter:title" content="Radoskop Lubelskie — Jak głosują radni?">
+<meta name="twitter:description" content="Otwarte narzędzie monitoringu Sejmiku Województwa Lubelskiego. Frekwencja, głosowania i aktywność radnych.">
+<link rel="alternate" type="application/atom+xml" title="Radoskop Lubelskie" href="https://lubelskie.radoskop.pl/feed.xml">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Radoskop lubelskie",
-  "description": "Otwarte narzędzie monitoringu Rady Miasta lubelskiego. Sprawdź frekwencję, głosowania i aktywność radnych na sesjach.",
+  "name": "Radoskop Lubelskie",
+  "description": "Otwarte narzędzie monitoringu Sejmiku Województwa Lubelskiego. Sprawdź frekwencję, głosowania i aktywność radnych na sesjach.",
   "url": "https://lubelskie.radoskop.pl/",
   "applicationCategory": "GovernmentApplication",
   "operatingSystem": "Web",
@@ -33,7 +33,7 @@
   },
   "about": {
     "@type": "GovernmentOrganization",
-    "name": "Rada Miasta lubelskiego",
+    "name": "Sejmik Województwa Lubelskiego",
     "url": "https://umwl.bip.lubelskie.pl/"
   },
   "license": "https://www.gnu.org/licenses/agpl-3.0.html",
@@ -523,7 +523,7 @@ footer a { color:var(--accent); text-decoration:none; }
 .share-btn.share-native:hover { opacity:0.9; color:white; }
 .share-copied { color:var(--green) !important; border-color:var(--green) !important; }
 </style>
-<style>[data-tab="budget"]{display:none!important}</style></head>
+</head>
 <body>
 <nav class="topbar" aria-label="Główna nawigacja">
   <a class="topbar-logo" href="https://radoskop.pl/">Rado<span>skop</span></a>
@@ -548,8 +548,8 @@ footer a { color:var(--accent); text-decoration:none; }
 <div class="container">
   <header>
     <div onclick="showMain()" style="cursor:pointer">
-      <h1>Rado<span>skop</span> lubelskie</h1>
-      <p>Jak głosują radni Miasta lubelskiego? Dane z protokołów BIP.</p>
+      <h1>Rado<span>skop</span> Lubelskie</h1>
+      <p>Jak głosują radni Miasta Lubelskiego? Dane z protokołów BIP.</p>
     </div>
     
   </header>
@@ -569,7 +569,7 @@ footer a { color:var(--accent); text-decoration:none; }
         <div class="tab-tier tab-tier--secondary">
           <button class="tab tab-secondary" data-tab="interpelacje">Interpelacje</button>
           <button class="tab tab-secondary" data-tab="sessions">Sesje</button>
-        <a href="/news/" class="tab tab-secondary" style="text-decoration:none">Aktualności</a>
+        <a href="/news/" class="tab" style="text-decoration:none">Aktualności</a>
         </div>
       </div>
       <div class="kadencja-bar" id="kadencja-bar"></div>
@@ -1345,7 +1345,7 @@ function showImpressum() {
   navigateTo('/impressum/');
   setTitle('Impressum');
   setOgMeta({
-    title: 'Impressum — Radoskop lubelskie',
+    title: 'Impressum — Radoskop Lubelskie',
     description: 'Anbieterkennzeichnung gemäß §5 TMG.',
     url: 'https://lubelskie.radoskop.pl/impressum/'
   });
@@ -1471,10 +1471,10 @@ function showProfile(name) {
   setTitle(profile.name);
   var _pk = profile.kadencje[Object.keys(profile.kadencje).pop()] || {};
   setOgMeta({
-    title: profile.name + ' \u2013 Radoskop lubelskie',
+    title: profile.name + ' \u2013 Radoskop Lubelskie',
     description: profile.name + ', ' + (_pk.club_full || _pk.club || '') + '. Frekwencja ' + (_pk.frekwencja||0).toFixed(0) + '%, aktywnosc ' + (_pk.aktywnosc||0).toFixed(0) + '%.',
-    url: 'https://lubelskie.radoskop.pl/profile/' + profile.slug + '/',
-    image: 'https://lubelskie.radoskop.pl/profile/' + profile.slug + '/og.png'
+    url: 'https://lubelskie.radoskop.pl/profil/' + profile.slug + '/',
+    image: 'https://lubelskie.radoskop.pl/profil/' + profile.slug + '/og.png'
   });
 
   // Find which kadencje this person has data for
@@ -1637,8 +1637,8 @@ function showProfile(name) {
 
     // Share section with social buttons + card download + embed
     if (hasVotes) {
-      const profileShareUrl = 'https://lubelskie.radoskop.pl/profile/' + profile.slug + '/';
-      const profileShareTitle = profile.name + ' \u2013 Radoskop lubelskie';
+      const profileShareUrl = 'https://lubelskie.radoskop.pl/profil/' + profile.slug + '/';
+      const profileShareTitle = profile.name + ' \u2013 Radoskop Lubelskie';
       const profileShareText = profile.name + ' (' + club + '): frekwencja ' + Math.round(kd.frekwencja) + '%, zgodność z klubem ' + Math.round(kd.zgodnosc_z_klubem) + '%. Sprawdź na Radoskopie!';
       html += `<div class="section">
         <h2>Udostępnij</h2>
@@ -2268,10 +2268,10 @@ async function showVote(voteId) {
   setTitle('Głosowanie: ' + (vote.topic || voteId).substring(0, 60));
   var _vc = vote.counts || {};
   setOgMeta({
-    title: (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop lubelskie',
+    title: (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Lubelskie',
     description: 'Za ' + (_vc.za||0) + ', przeciw ' + (_vc.przeciw||0) + ', wstrzym. ' + (_vc.wstrzymal_sie||0) + '. Sesja ' + (vote.session_number||'') + ', ' + (vote.session_date||'') + '.',
-    url: 'https://lubelskie.radoskop.pl/vote/' + voteId + '/',
-    image: 'https://lubelskie.radoskop.pl/vote/' + voteId + '/og.png'
+    url: 'https://lubelskie.radoskop.pl/glosowanie/' + voteId + '/',
+    image: 'https://lubelskie.radoskop.pl/glosowanie/' + voteId + '/og.png'
   });
 
   const c = vote.counts || {};
@@ -2314,9 +2314,9 @@ async function showVote(voteId) {
       ${vote.source_url ? `<div style="margin-top:6px"><a href="${vote.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół głosowania (BIP) ↗</a></div>` : ''}
       <div style="margin-top:12px">
         ${shareBar(
-          (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop lubelskie',
+          (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Lubelskie',
           (passed ? 'Przyjęte' : 'Odrzucone') + ': za ' + (c.za||0) + ', przeciw ' + (c.przeciw||0) + ', wstrzym. ' + (c.wstrzymal_sie||0) + '. ' + (vote.topic || '').substring(0, 100),
-          'https://lubelskie.radoskop.pl/vote/' + voteId + '/',
+          'https://lubelskie.radoskop.pl/glosowanie/' + voteId + '/',
           'vote-share'
         )}
       </div>
@@ -2396,8 +2396,8 @@ async function showDruk(drukId, kadId) {
 
   const kadSlug = KAD_SLUGS[kadId] || kadId;
   setOgMeta({
-    title: 'Druk ' + drukId + ' – Radoskop lubelskie',
-    url: 'https://lubelskie.radoskop.pl/bill/' + kadSlug + '/' + encodeURIComponent(drukId) + '/'
+    title: 'Druk ' + drukId + ' – Radoskop Lubelskie',
+    url: 'https://lubelskie.radoskop.pl/druk/' + kadSlug + '/' + encodeURIComponent(drukId) + '/'
   });
   navigateTo('/bill/' + kadSlug + '/' + encodeURIComponent(drukId) + '/');
   setTitle('Druk ' + drukId);
@@ -2560,7 +2560,7 @@ async function renderCommissionTimeline(druk, container) {
   const noCommissionRow = status === 'voted_without_commission' ? `
     <div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-top:0.5px solid var(--border)">
       <div style="flex:1;font-size:13px;color:var(--text)">
-        Ten projekt uchwały nie był procedowany w żadnej z 18 komisji rady miasta przed głosowaniem na sesji plenarnej.
+        Ten projekt uchwały nie był procedowany w żadnej z 18 komisji sejmiku województwa przed głosowaniem na sesji plenarnej.
         <div style="font-size:12px;color:var(--muted);margin-top:4px">Może to oznaczać tryb pilny, lex specialis albo specyfikę proceduralną.</div>
       </div>
     </div>
@@ -2670,9 +2670,9 @@ async function showSession(sessionNumber) {
     ? ((sess.vote_count || 0) + ' g\u0142osowa\u0144')
     : (sessStatementCount + ' wyst\u0105pie\u0144');
   setOgMeta({
-    title: 'Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' \u2013 Radoskop lubelskie',
+    title: 'Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' \u2013 Radoskop Lubelskie',
     description: 'Sesja ' + sessionNumber + ', ' + (sess.date||'') + '. ' + sessSummaryStat + ', ' + (sess.attendee_count||0) + ' obecnych.',
-    url: 'https://lubelskie.radoskop.pl/session/' + encodeURIComponent(sessionNumber) + '/'
+    url: 'https://lubelskie.radoskop.pl/sesja/' + encodeURIComponent(sessionNumber) + '/'
   });
 
   // Club lookup from current kadencja
@@ -2700,9 +2700,9 @@ async function showSession(sessionNumber) {
       ${sess.source_url ? `<div style="margin-top:6px"><a href="${sess.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół (BIP) ↗</a></div>` : ''}
       <div style="margin-top:12px">
         ${shareBar(
-          'Sesja ' + sess.number + ' (' + (sess.date||'') + ') \u2013 Radoskop lubelskie',
+          'Sesja ' + sess.number + ' (' + (sess.date||'') + ') \u2013 Radoskop Lubelskie',
           'Sesja ' + sess.number + ': ' + sessSummaryStat + ', ' + (sess.attendee_count||present.size||0) + ' obecnych radnych.',
-          'https://lubelskie.radoskop.pl/session/' + encodeURIComponent(sessionNumber) + '/',
+          'https://lubelskie.radoskop.pl/sesja/' + encodeURIComponent(sessionNumber) + '/',
           'session-share'
         )}
       </div>
@@ -3017,9 +3017,9 @@ async function showKomisja(slug) {
 
   setTitle(label);
   setOgMeta({
-    title: label + ' – Radoskop lubelskie',
+    title: label + ' – Radoskop Lubelskie',
     description: `${s.meetings || 0} posiedzeń, ${s.drafts_total || 0} druków w procedowaniu, mediana lead time ${leadDisplay}.`,
-    url: 'https://lubelskie.radoskop.pl/commission/' + encodeURIComponent(slug) + '/'
+    url: 'https://lubelskie.radoskop.pl/komisja/' + encodeURIComponent(slug) + '/'
   });
 
   // Premium: jeśli API zwraca drafts_votes (mapa druk → {vote_id, ...}),
@@ -3634,7 +3634,7 @@ function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
   ctx.fillText(name.split(' ').map(w=>w[0]).join('').substring(0,2),50,60);
   ctx.textAlign='left'; ctx.textBaseline='top';
   ctx.fillStyle='#e4e4e7'; ctx.font='bold 22px -apple-system,sans-serif'; ctx.fillText(name,90,40);
-  ctx.fillStyle='#8b8d97'; ctx.font='14px -apple-system,sans-serif'; ctx.fillText('Klub '+club+'  ·  Rada Miasta lubelskiego',90,68);
+  ctx.fillStyle='#8b8d97'; ctx.font='14px -apple-system,sans-serif'; ctx.fillText('Klub '+club+'  ·  Sejmik Województwa Lubelskiego',90,68);
   const metrics = [
     {label:'Frekwencja',value:frek+'%',color:frek>=90?'#22c55e':frek>=70?'#eab308':'#ef4444'},
     {label:'Aktywność',value:akt+'%',color:akt>=90?'#22c55e':akt>=70?'#eab308':'#ef4444'},
@@ -3659,7 +3659,7 @@ function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
   }
   ctx.fillStyle='#2a2d3a'; ctx.fillRect(0,300,600,40);
   ctx.fillStyle='#6366f1'; ctx.font='bold 13px -apple-system,sans-serif'; ctx.textAlign='center';
-  ctx.fillText('Radoskop lubelskie  ·  radoskop.pl',300,315);
+  ctx.fillText('Radoskop Lubelskie  ·  radoskop.pl',300,315);
   const link=document.createElement('a');
   link.download=`radoskop-${name.toLowerCase().replace(/\s/g,'-')}.png`;
   link.href=canvas.toDataURL('image/png'); link.click();
@@ -3668,7 +3668,7 @@ function showEmbedCode(slug) {
   const modal=document.getElementById('embed-modal'), code=document.getElementById('embed-code');
   if(modal.style.display==='none'){
     modal.style.display='block';
-    code.value=`<iframe src="https://lubelskie.radoskop.pl/profile/${slug}/" width="400" height="500" frameborder="0" style="border:1px solid #e2e5e9;border-radius:12px" title="Radoskop lubelskie"></iframe>`;
+    code.value=`<iframe src="https://lubelskie.radoskop.pl/profil/${slug}/" width="400" height="500" frameborder="0" style="border:1px solid #e2e5e9;border-radius:12px" title="Radoskop Lubelskie"></iframe>`;
   } else { modal.style.display='none'; }
 }
 
@@ -4154,6 +4154,14 @@ document.addEventListener('keydown', (e) => {
     closeAuthModal();
   }
 });
+</script>
+<script>
+// Sejmik: definicje klubów i mapowanie radny -> klub.
+const SEJMIK_CLUBS = {};
+const SEJMIK_CLUB_OF = {};
+// Globalna mapa nazwisko -> klub (template miasta używa, jeśli
+// councilors[].club nie jest ustawione w data.json).
+window.clubAssignments = SEJMIK_CLUB_OF;
 </script>
 </body>
 </html>

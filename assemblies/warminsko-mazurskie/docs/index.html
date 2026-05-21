@@ -222,6 +222,8 @@ footer a { color:var(--accent); text-decoration:none; }
 .vote-name-item { padding:6px 10px; border-radius:6px; font-size:0.85rem; display:flex; align-items:center; gap:6px; }
 .vote-name-item .club { flex-shrink:0; }
 .vote-cat-header { font-size:0.9rem; font-weight:600; margin:16px 0 8px; padding:6px 0; border-bottom:1px solid var(--border); }
+.druk-tresc { line-height:1.7; font-size:0.95rem; padding:16px 0; white-space:pre-wrap; }
+.druk-paywall { margin-top:12px; padding:16px; background:rgba(99,102,241,0.06); border:1px solid var(--border); border-radius:8px; text-align:center; }
 .session-pill { padding:4px 10px; border-radius:6px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-size:0.8rem; white-space:nowrap; }
 .session-pill.active { background:var(--accent); color:white; border-color:var(--accent); }
 .session-pill.cat-pill { font-size:0.75rem; padding:3px 10px; }
@@ -667,6 +669,9 @@ footer a { color:var(--accent); text-decoration:none; }
   <!-- Impressum / provider identification view (only shown for DE/CS instances) -->
   <div id="impressum-view" style="display:none"></div>
 
+  <!-- Druk detail view -->
+  <div id="druk-view" style="display:none"></div>
+
   <!-- Reports catalog view -->
   <div id="reports-view" style="display:none"></div>
 
@@ -1012,6 +1017,18 @@ async function init() {
       showKomisja(slug);
       return;
     }
+    if (path.startsWith('/bill/')) {
+      // Format: /druk/{kadSlug}/{drukId}/
+      const parts = path.replace('/bill/', '').replace(/\/$/, '').split('/');
+      if (parts.length >= 2 && parts[0] && parts[1]) {
+        const kadSlug = parts[0];
+        const did = decodeURIComponent(parts[1]);
+        const kadId = SLUG_KADS[kadSlug] || kadSlug;
+        selectKadencjaQuiet(kadId);
+        showDruk(did, kadId);
+        return;
+      }
+    }
     if (path === '/news' || path === '/news/') {
       // /news/ to statyczna strona z listą wpisów (SEO content
       // wstrzyknięty przez generate_feed.py). Nie ładujemy SPA appki —
@@ -1109,6 +1126,7 @@ function hideAllViews() {
   document.getElementById('vote-view').style.display = 'none';
   document.getElementById('session-view').style.display = 'none';
   document.getElementById('reports-view').style.display = 'none';
+  document.getElementById('druk-view').style.display = 'none';
 }
 
 let currentTab = 'ranking';
@@ -2166,7 +2184,7 @@ async function renderVotesTable() {
       const c = v.counts || {};
       html += `<tr class="vote-row" onclick="showVote('${v.id || ''}')">
         <td style="color:var(--muted);width:30px">${i+1}</td>
-        <td>${catPill(v.category || categorizeVote(v.topic))} ${v.topic ? v.topic.substring(0,120) : '?'}${v.druk ? ` <span style="color:var(--muted)">(druk ${v.druk})</span>` : ''}</td>
+        <td>${catPill(v.category || categorizeVote(v.topic))} ${v.topic ? v.topic.substring(0,120) : '?'}${v.druk ? ` <a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${v.druk}/" onclick="event.preventDefault();event.stopPropagation();showDruk(${v.druk},'${currentKid}')" style="color:var(--muted);text-decoration:none">(druk ${v.druk})</a>` : ''}</td>
         <td><span class="pill pill-za">${c.za||0}</span></td>
         <td>${c.przeciw ? `<span class="pill pill-przeciw">${c.przeciw}</span>` : '0'}</td>
         <td>${c.wstrzymal_sie ? `<span class="pill pill-wstrzymal">${c.wstrzymal_sie}</span>` : '0'}</td>
@@ -2222,11 +2240,12 @@ async function showVote(voteId) {
 
   // Fetch vote detail from API (try current kadencja first)
   let vote = null;
+  let voteKid = currentKid;
   const kidsToTry = [currentKid, ...RAW.kadencje.map(k => k.id).filter(k => k !== currentKid)];
   for (const kid of kidsToTry) {
     try {
       const resp = await fetch(API_BASE + '/kadencja/' + kid + '/vote/' + voteId);
-      if (resp.ok) { vote = await resp.json(); break; }
+      if (resp.ok) { vote = await resp.json(); voteKid = kid; break; }
     } catch(e) { /* try next */ }
   }
   if (!vote) {
@@ -2294,7 +2313,7 @@ async function showVote(voteId) {
       <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessKey ? sessionLink(sessKey, 'Sesja ' + sessLabel + ' · ' + (vote.session_date || ''), ' style="color:var(--muted)"') : (vote.session_date ? 'Sesja · ' + vote.session_date : '')}</div>
       <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
       ${vote.summary ? `<p style="color:var(--text);margin-top:8px;font-size:0.95rem;line-height:1.6;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px">${vote.summary}</p>` : ''}
-      ${vote.druk ? `<div style="color:var(--muted);margin-top:4px">Druk: ${vote.druk}</div>` : ''}
+      ${vote.druk ? `<div style="margin-top:4px"><a class="name-link" href="/bill/${KAD_SLUGS[voteKid]||voteKid}/${vote.druk}/" onclick="event.preventDefault();showDruk(${vote.druk},'${voteKid}')">Druk ${vote.druk} →</a></div>` : ''}
       ${vote.resolution ? `<div style="color:var(--muted)">Uchwała: ${vote.resolution}</div>` : ''}
       ${vote.source_url ? `<div style="margin-top:6px"><a href="${vote.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół głosowania (BIP) ↗</a></div>` : ''}
       <div style="margin-top:12px">
@@ -2342,8 +2361,6 @@ async function showVote(voteId) {
       <div style="width:${barW(c.nieobecni||0)}%;background:rgba(75,85,99,0.5)">${c.nieobecni||0}</div>
     </div>
 
-    <div id="commission-timeline"></div>
-
     <div class="section">
       <div class="vote-cat-header" style="color:var(--green)">Za (${(nv.za||[]).length})</div>
       ${renderNameList(nv.za, 'rgba(34,197,94,0.08)')}
@@ -2365,10 +2382,77 @@ async function showVote(voteId) {
   view.innerHTML = html;
   window.scrollTo(0, 0);
 
-  // Sekcja "Procedowanie w komisjach" — wzbogacenie z radoskop-premium
-  // (correlations.json → druk_to_commissions.json). Async, bez blokowania
-  // głównego renderu. Brak danych = nic się nie pojawia.
-  renderCommissionTimeline(vote.druk, document.getElementById('commission-timeline'));
+}
+
+// showDruk — strona druku z treścią przez API premium i commission timeline.
+// Endpoint: GET API_BASE + '/kadencja/{kadId}/druk/{drukId}' (credentials: include)
+// Pliki źródłowe: radoskop/cities/{city}/druki/{kadId}/{drukId}.json (poza docs/)
+// URL strony: /druk/{kadSlug}/{drukId}/ → np. /bill/ix/123/
+async function showDruk(drukId, kadId) {
+  drukId = String(drukId);
+  kadId = kadId || currentKid;
+  trackEvent('view_druk', { druk: drukId, kadencja: kadId });
+
+  hideAllViews();
+  const view = document.getElementById('druk-view');
+  view.style.display = 'block';
+  view.innerHTML = '<p style="color:var(--muted);padding:20px 0">Ładowanie...</p>';
+
+  const kadSlug = KAD_SLUGS[kadId] || kadId;
+  setOgMeta({
+    title: 'Druk ' + drukId + ' – Radoskop Warmińsko-mazurskie',
+    url: 'https://warminsko-mazurskie.radoskop.pl/druk/' + kadSlug + '/' + encodeURIComponent(drukId) + '/'
+  });
+  navigateTo('/bill/' + kadSlug + '/' + encodeURIComponent(drukId) + '/');
+  setTitle('Druk ' + drukId);
+
+  // Fetch przez API premium (credentials: include = session cookie).
+  // data_api.py czyta pliki z radoskop/cities/{city}/druki/{kadId}/{drukId}.json
+  // i zwraca tier-zaleznie:
+  //   free tier:    { tytul, tresc_preview }   (pierwsze ~50 slow)
+  //   premium tier: { tytul, tresc, source_url } (pelna tresc + PDF na S3)
+  let entry = null;
+  try {
+    const resp = await fetch(
+      API_BASE + '/kadencja/' + encodeURIComponent(kadId) + '/druk/' + encodeURIComponent(drukId),
+      { credentials: 'include' }
+    );
+    if (resp.ok) entry = await resp.json();
+  } catch (e) { /* brak danych = entry null */ }
+
+  const tytul = entry && entry.tytul ? entry.tytul : 'Druk ' + drukId;
+
+  let contentHtml = '';
+  if (entry && entry.tresc) {
+    // Premium: pelna tresc + link do PDF na S3
+    const localCopyLink = entry.source_url
+      ? `<div style="margin-top:12px"><a href="${entry.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">&#8599; Lokalna kopia dokumentu</a></div>`
+      : '';
+    contentHtml = `<div class="druk-tresc"><p>${entry.tresc}</p>${localCopyLink}</div>`;
+  } else if (entry && entry.tresc_preview) {
+    // Free: preview + CTA
+    contentHtml = `
+      <div class="druk-tresc">
+        <p>${entry.tresc_preview}...</p>
+        <div class="druk-paywall">
+          <p style="margin:0 0 12px;color:var(--muted);font-size:0.9rem">Pełna treść dostępna w pakiecie Premium.</p>
+          <button class="auth-btn" onclick="showBusiness({from:'druk_content',druk:'${drukId}'})">Odblokuj Premium</button>
+        </div>
+      </div>`;
+  } else {
+    contentHtml = '<p style="color:var(--muted)">Treść druku nie jest jeszcze dostępna.</p>';
+  }
+
+  view.innerHTML = `
+    <button class="profile-back" onclick="history.back()">← Wróć</button>
+    <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0;margin-bottom:4px">${tytul}</h2>
+    <div style="color:var(--muted);font-size:0.85rem;margin-bottom:16px">Druk nr ${drukId}</div>
+    ${contentHtml}
+    <div id="druk-commission-timeline"></div>
+  `;
+
+  renderCommissionTimeline(Number(drukId), document.getElementById('druk-commission-timeline'));
+  window.scrollTo(0, 0);
 }
 
 // Mini-cache per druk żeby przy szybkim klikaniu między głosowaniami
@@ -2954,7 +3038,7 @@ async function showKomisja(slug) {
       if (info && info.vote_id) {
         const vid = info.vote_id;
         const passedIcon = info.passed === true ? ' <span style="color:var(--green)">✓</span>' : info.passed === false ? ' <span style="color:var(--red)">✗</span>' : '';
-        return `<a href="/glosowanie/${encodeURIComponent(vid)}/" onclick="event.preventDefault();showVote('${vid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
+        return `<a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${encodeURIComponent(dStr)}/" onclick="event.preventDefault();showDruk(${dStr},'${currentKid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
       }
       return `<span style="${baseStyle}">druk ${dStr}</span>`;
     }).join('');

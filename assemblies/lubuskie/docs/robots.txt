@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /*.json$
-Disallow: /*?p=
 
 Sitemap: https://lubuskie.radoskop.pl/sitemap.xml
