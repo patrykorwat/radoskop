@@ -809,12 +809,14 @@ def build_councilor_profiles(all_votes: list[dict], kadencja_id: str = "2024-202
             continue
 
         frekwencja = round(voted / total * 100, 1) if total else 0
+        active = s["za"] + s["przeciw"] + s["wstrzymal_sie"]
+        aktywnosc = round(active / voted * 100, 1) if voted > 0 else 0.0
         club = name_to_club.get(name, "?")
 
         entry = {
             "club": club,
             "frekwencja": frekwencja,
-            "aktywnosc": 0.0,
+            "aktywnosc": aktywnosc,
             "zgodnosc_z_klubem": 0.0,
             "votes_za": s["za"],
             "votes_przeciw": s["przeciw"],

@@ -18,13 +18,13 @@ from collections import defaultdict
 KADENCJE = [
     {
         "id": "2018-2023",
-        "label": "Kadencja 2018–2023",
+        "label": "VIII kadencja (2018–2023)",
         "start": "2018-01-01",
         "end": "2024-05-07",  # IX kadencja inauguracja: 7 maja 2024
     },
     {
         "id": "2024-2029",
-        "label": "Kadencja 2024–2029",
+        "label": "IX kadencja (2024–2029)",
         "start": "2024-05-07",
         "end": "2030-01-01",
     },

@@ -297,6 +297,8 @@ PL_TO_DE: list[tuple[str, str]] = [
     ("Następna →", "Weiter →"),
     ("Następne →", "Weiter →"),
     ("Wszystkie", "Alle"),
+    ("Wszyscy", "Alle"),
+    ("Aktualności", "Aktuelles"),
     ("Sortuj po", "Sortieren nach"),
     ("Filtruj", "Filter"),
     ("Pokaż więcej", "Mehr anzeigen"),
@@ -311,6 +313,7 @@ PL_TO_DE: list[tuple[str, str]] = [
     ("Aktywność", "Aktivität"),
     ("Zgodność z klubem", "Fraktionsdisziplin"),
     ("Podobieństwo", "Ähnlichkeit"),
+    ("Wbrew klubowi", "Gegen Fraktion"),
     ("Buntów", "Abweichungen"),
     ("Sesji z wypowiedzią", "Sitzungen mit Redebeitrag"),
     ("Słów łącznie", "Wörter insgesamt"),
@@ -349,7 +352,9 @@ PL_TO_DE: list[tuple[str, str]] = [
 
     # ── Wartości głosowań (gdy są imienne, np. namentliche Abstimmung) ──
     ("Brak głosu", "Nicht abgestimmt"),
+    ("Brak gł.", "Kein Abst."),
     ("Wstrzymał się", "Enthalten"),
+    ("Wstrzym.", "Enthalt."),
     ("Wstrzymała się", "Enthalten"),
     ("Nieobecny", "Abwesend"),
     ("Nieobecna", "Abwesend"),

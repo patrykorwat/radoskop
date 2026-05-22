@@ -906,7 +906,7 @@ def build_councilors(all_votes: list[dict], profiles: dict) -> list[dict]:
             "name": c["name"],
             "club": c["club"],
             "district": c["district"],
-            "frekwencja": 0.0,  # Na podstawie sesji, nie głosowań
+            "frekwencja": round(present_votes / total_votes * 100, 1) if total_votes > 0 else 0.0,
             "aktywnosc": round(aktywnosc, 1),
             "zgodnosc_z_klubem": round(zgodnosc, 1),
             "votes_za": c["votes_za"],

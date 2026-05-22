@@ -881,14 +881,19 @@ function renderGlobalStats(){
   var ncountries=Object.keys(countries).length;
   var prefix=CITIES.length+' miast';
   if(ncountries>1)prefix+=' z '+ncountries+' krajów';
-  document.getElementById('global-stats').textContent =
-    prefix + ' · ' + formatInt(totV) + ' głosowań · ' + formatInt(totC) + ' radnych · frekwencja · interpelacje · budżety';
+  document.getElementById('global-stats').innerHTML =
+    prefix + ' · <span id="global-votes">' + formatInt(totV) + '</span> głosowań · ' + formatInt(totC) + ' radnych · frekwencja · interpelacje · budżety';
   var sc=document.getElementById('search-count');
   if(sc) sc.textContent = formatInt(totC)+' radnych z '+CITIES.length+' miast';
   var vc=document.getElementById('vote-search-count');
   if(vc) vc.textContent = 'Wpisz min. 2 znaki, by szukać w '+CITIES.length+' miastach';
   document.getElementById('ranking-subtitle').textContent =
     formatInt(totC)+' radnych z '+CITIES.length+' miast. Najbardziej aktywni i najczęściej opuszczający sesje.';
+  // Sync vote count with live API so it stays consistent with search widget
+  fetch(API_BASE+'/search/stats').then(function(r){return r.json();}).then(function(d){
+    var el=document.getElementById('global-votes');
+    if(el && d.votes) el.textContent=formatInt(d.votes);
+  }).catch(function(){});
 }
 
 // ── City directory ──
@@ -924,6 +929,7 @@ function renderCities(){
   // sekcji #international, więc tutaj filtrujemy po country.
   var filtered=CITIES.filter(function(c){
     if((c.country||'pl')!=='pl')return false;
+    if(!c.sessions)return false;
     if(q && normalize(c.name).indexOf(q)===-1)return false;
     if(voivo && c.voivodeship!==voivo)return false;
     if(pop && String(popBucket(c.population))!==pop)return false;
@@ -965,7 +971,7 @@ document.addEventListener('DOMContentLoaded',function(){
 
 // ── International cities (renderowane w osobnej sekcji nad #cities) ──
 function renderInternationalCities(){
-  var intl=CITIES.filter(function(c){return (c.country||'pl')!=='pl';});
+  var intl=CITIES.filter(function(c){return (c.country||'pl')!=='pl' && c.sessions;});
   var section=document.getElementById('international');
   if(!intl.length){ section.style.display='none'; return; }
   section.style.display='block';
