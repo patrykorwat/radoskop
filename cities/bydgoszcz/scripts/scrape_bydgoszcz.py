@@ -136,6 +136,23 @@ def _build_name_lookup(councilors: dict[str, str]) -> dict[str, str]:
 COUNCILOR_LOOKUP = _build_name_lookup(COUNCILORS)
 
 
+def _build_canonical_lookup(councilors: dict[str, str]) -> dict[str, str]:
+    """Mapuje warianty zapisu (Nazwisko Imię, Imię Nazwisko) → kanoniczny zapis Imię Nazwisko."""
+    lookup = {}
+    for name in councilors:
+        lookup[name] = name  # identity
+        parts = name.split()
+        if len(parts) == 2:
+            lookup[f"{parts[1]} {parts[0]}"] = name
+        elif len(parts) == 3:
+            lookup[f"{parts[1]} {parts[2]} {parts[0]}"] = name
+            lookup[f"{parts[2]} {parts[1]} {parts[0]}"] = name
+    return lookup
+
+
+CANONICAL_LOOKUP = _build_canonical_lookup(COUNCILORS)
+
+
 # ---------------------------------------------------------------------------
 # HTTP helpers
 # ---------------------------------------------------------------------------
@@ -457,8 +474,10 @@ def _parse_single_page(page_text: str, url: str) -> dict | None:
                 vote_line = lines[i + 2].strip()
                 vote = _classify_vote(vote_line)
                 if vote and name_line and len(name_line) > 2:
-                    club = COUNCILOR_LOOKUP.get(name_line, "")
-                    result["votes"][name_line] = {
+                    # PDF podaje "Nazwisko Imię" — normalizujemy do "Imię Nazwisko"
+                    canonical = CANONICAL_LOOKUP.get(name_line, name_line)
+                    club = COUNCILOR_LOOKUP.get(canonical, COUNCILOR_LOOKUP.get(name_line, ""))
+                    result["votes"][canonical] = {
                         "vote": vote,
                         "club": club,
                     }
@@ -643,6 +662,19 @@ def build_data_json(voting_records: list[dict]) -> dict:
                             "club_majority": club_majority[club],
                         })
 
+    # Frekwencja: ile sesji radny był obecny (zagłosował choć raz) / łączna liczba sesji.
+    # Sesja = unikalna data. Radny jest "obecny" na sesji gdy ma chociaż jeden głos
+    # inny niż "nieobecny" (ZA / PRZECIW / WSTRZYMUJĘ SIĘ / brak głosu).
+    total_sessions_count = len(sessions_data)
+    councillor_sessions_present: dict[str, set] = defaultdict(set)
+    for record in voting_records:
+        d = record.get("session_date")
+        if not d:
+            continue
+        for name, info in record.get("votes", {}).items():
+            if info["vote"] != "nieobecny":
+                councillor_sessions_present[name].add(d)
+
     total_votes_count = len(all_votes)
     councilors_list = []
     for c in sorted(councilors_data.values(), key=lambda x: x["name"]):
@@ -650,11 +682,13 @@ def build_data_json(voting_records: list[dict]) -> dict:
         aktywnosc = (present / total_votes_count * 100) if total_votes_count > 0 else 0
         total_club = c["votes_with_club"] + c["votes_against_club"]
         zgodnosc = (c["votes_with_club"] / total_club * 100) if total_club > 0 else 0
+        sessions_present = len(councillor_sessions_present.get(c["name"], set()))
+        frekwencja = (sessions_present / total_sessions_count * 100) if total_sessions_count > 0 else 0.0
         councilors_list.append({
             "name": c["name"],
             "club": c["club"],
             "district": c["district"],
-            "frekwencja": 0.0,
+            "frekwencja": round(frekwencja, 1),
             "aktywnosc": round(aktywnosc, 1),
             "zgodnosc_z_klubem": round(zgodnosc, 1),
             "votes_za": c["votes_za"],
@@ -778,7 +812,12 @@ def build_profiles_json(voting_records: list[dict]) -> dict:
         if votes_total == 0:
             votes_total = 1
 
-        frekwencja = 100.0 * (votes_total - votes_data["nieobecny"]) / votes_total if votes_total > 0 else 0.0
+        # Frekwencja per sesja: unikalne daty gdzie radny był obecny (głos != nieobecny)
+        sessions_present = len({
+            v["session"] for v in votes_data["votes"] if v["vote"] != "nieobecny"
+        })
+        total_sessions = len({v["session"] for v in votes_data["votes"]})
+        frekwencja = 100.0 * sessions_present / total_sessions if total_sessions > 0 else 0.0
         zgodnosc = 0.0
 
         profile = {
