@@ -526,6 +526,29 @@ footer a { color:var(--accent); text-decoration:none; }
 .share-btn.share-native { background:var(--accent); color:white; border-color:var(--accent); }
 .share-btn.share-native:hover { opacity:0.9; color:white; }
 .share-copied { color:var(--green) !important; border-color:var(--green) !important; }
+
+/* ── Karta "miasto na tle Polski" — benchmark krajowy ── */
+.nat-benchmark { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin:0 0 22px; }
+.nb-head { display:flex; flex-direction:column; gap:2px; }
+.nb-title { font-size:1.05rem; font-weight:700; margin:0; border:none; padding:0; }
+.nb-sub { color:var(--muted); font-size:0.82rem; }
+.nb-rows { display:grid; gap:16px; margin-top:16px; }
+@media (min-width:640px){ .nb-rows { grid-template-columns:repeat(3,1fr); gap:24px; } }
+.nb-row-top { display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; }
+.nb-label { font-size:0.78rem; color:var(--muted); cursor:help; }
+.nb-val { font-size:1.2rem; font-weight:700; }
+.nb-rank { margin-left:auto; font-size:0.72rem; font-weight:700; padding:2px 9px; border-radius:999px; white-space:nowrap; }
+.nb-good { background:rgba(22,163,74,0.14); color:var(--green); }
+.nb-bad { background:rgba(220,38,38,0.14); color:var(--red); }
+.nb-mid { background:rgba(107,114,128,0.16); color:var(--muted); }
+.nb-bar { position:relative; height:6px; background:var(--border); border-radius:999px; margin-top:10px; }
+.nb-marker { position:absolute; top:50%; width:13px; height:13px; border-radius:50%; transform:translate(-50%,-50%); border:2px solid var(--surface); box-shadow:0 0 0 1px var(--border); }
+.nb-marker.nb-good { background:var(--green); }
+.nb-marker.nb-bad { background:var(--red); }
+.nb-marker.nb-mid { background:var(--muted); }
+.nb-scale { display:flex; justify-content:space-between; font-size:0.68rem; color:var(--muted); margin-top:5px; }
+.nb-cta { display:inline-block; margin-top:16px; font-size:0.86rem; font-weight:600; color:var(--accent); text-decoration:none; }
+.nb-cta:hover { text-decoration:underline; }
 </style>
 </head>
 <body>
@@ -580,6 +603,10 @@ footer a { color:var(--accent); text-decoration:none; }
     </div>
 
     <div id="tab-ranking" class="section">
+      <!-- Benchmark krajowy: jak to miasto wypada wśród miast monitorowanych
+           przez Radoskop. Wypełniane przez renderNationalBenchmark(); ukryte
+           dla sejmików i miast zagranicznych (brak wpisu w comparison.json). -->
+      <div id="nat-benchmark" class="nat-benchmark" style="display:none"></div>
       <div class="filter-bar" id="club-filter"></div>
       <div style="overflow-x:auto">
         <table id="councilor-table">
@@ -910,6 +937,7 @@ async function init() {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('app').style.display = 'block';
     renderKadencjaBar();
+    renderNationalBenchmark();
 
     // Deep links
     if (path.startsWith('/profile/')) {
@@ -1375,6 +1403,100 @@ function showMain() {
     description: 'Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Podkarpackiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.',
     url: 'https://podkarpackie.radoskop.pl' + mainPath()
   });
+}
+
+// ── Benchmark krajowy: "miasto na tle Polski" ──
+// Pokazuje, jak bieżąca rada wypada wśród miast monitorowanych przez Radoskop
+// na trzech metrykach: frekwencja, zgodność z klubem, średnia liczba buntów na
+// radnego. Dane czerpiemy ze wspólnego zbioru porównawczego apex
+// (data.radoskop.pl/_main/comparison.json), żeby nie duplikować logiki.
+// Karta pojawia się TYLKO dla miast obecnych w tym zbiorze. Sejmiki wojewódzkie
+// i instancje zagraniczne nie mają tam wpisu (slug się nie zgadza), więc dla
+// nich pozostaje ukryta. Cała funkcja jest odporna na brak danych: każdy błąd
+// kończy się cichym ukryciem karty, nigdy nie psuje reszty strony.
+let _benchmarkDone = false;
+async function renderNationalBenchmark() {
+  if (_benchmarkDone) return;        // tylko raz na sesję
+  _benchmarkDone = true;
+  const box = document.getElementById('nat-benchmark');
+  if (!box) return;
+
+  let data;
+  try {
+    const r = await fetch('https://data.radoskop.pl/_main/comparison.json', { cache: 'no-cache' });
+    if (!r.ok) return;
+    data = await r.json();
+  } catch (e) { return; }
+
+  const cities = (data && Array.isArray(data.cities)) ? data.cities : [];
+  const me = cities.find(c => c.slug === CITY_SLUG);
+  if (!me || cities.length < 2) return;   // brak miasta w zbiorze → ukryj
+
+  // Definicje metryk. higher=true → wyższa wartość jest "lepsza" (zielona).
+  const metrics = [
+    { key: 'avg_frekwencja', label: 'Frekwencja',         unit: '%', higher: true,
+      help: 'Średni udział radnych w głosowaniach' },
+    { key: 'avg_zgodnosc',   label: 'Zgodność z klubem',  unit: '%', higher: true,
+      help: 'Jak często radni głosują zgodnie z większością swojego klubu' },
+    { key: 'avg_rebellions', label: 'Bunty na radnego',   unit: '',  higher: false,
+      help: 'Średnia liczba głosów oddanych wbrew własnemu klubowi, w przeliczeniu na radnego' },
+  ];
+
+  const num = v => (typeof v === 'number' && isFinite(v) && v > 0);
+  const fmt = (v, u) => (Math.round(v * 10) / 10) + (u || '');
+
+  const rows = metrics.map(m => {
+    // 0.0 w zbiorze oznacza brak danej metryki dla miasta — pomijamy je
+    // zarówno przy rankingu, jak i przy skali min/max.
+    const valid = cities.filter(c => num(c[m.key]));
+    const myVal = me[m.key];
+    if (!num(myVal) || valid.length < 2) return null;
+    const sorted = valid.slice().sort((a, b) =>
+      m.higher ? b[m.key] - a[m.key] : a[m.key] - b[m.key]);
+    const rank = sorted.findIndex(c => c.slug === CITY_SLUG) + 1;
+    const n = sorted.length;
+    const vals = valid.map(c => c[m.key]);
+    const min = Math.min(...vals), max = Math.max(...vals);
+    const pos = max > min ? ((myVal - min) / (max - min)) * 100 : 50;
+    return { m, myVal, rank, n, min, max, pos };
+  }).filter(Boolean);
+
+  if (!rows.length) return;
+
+  // Ton koloru wg pozycji w rankingu: górna 1/3 zielona, dolna 1/3 czerwona.
+  function tone(rank, n) {
+    const frac = (rank - 1) / Math.max(n - 1, 1);  // 0 = najlepszy
+    if (frac <= 0.34) return 'good';
+    if (frac >= 0.67) return 'bad';
+    return 'mid';
+  }
+  const esc = s => String(s).replace(/[&<>"]/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  let html = '<div class="nb-head">'
+    + '<h3 class="nb-title">Podkarpackie na tle Polski</h3>'
+    + '<span class="nb-sub">Wśród ' + cities.length
+    + ' miast monitorowanych przez Radoskop · bieżąca kadencja</span></div>';
+
+  html += '<div class="nb-rows">';
+  rows.forEach(r => {
+    const t = tone(r.rank, r.n);
+    html += '<div class="nb-row">'
+      + '<div class="nb-row-top">'
+        + '<span class="nb-label" title="' + esc(r.m.help) + '">' + esc(r.m.label) + '</span>'
+        + '<span class="nb-val">' + fmt(r.myVal, r.m.unit) + '</span>'
+        + '<span class="nb-rank nb-' + t + '">' + r.rank + '. z ' + r.n + '</span>'
+      + '</div>'
+      + '<div class="nb-bar"><div class="nb-marker nb-' + t + '" style="left:' + r.pos.toFixed(1) + '%"></div></div>'
+      + '<div class="nb-scale"><span>' + fmt(r.min, r.m.unit) + '</span><span>' + fmt(r.max, r.m.unit) + '</span></div>'
+    + '</div>';
+  });
+  html += '</div>';
+
+  html += '<a class="nb-cta" href="https://radoskop.pl#zestawienia">Zobacz pełne porównanie miast →</a>';
+
+  box.innerHTML = html;
+  box.style.display = 'block';
 }
 
 function render() {
