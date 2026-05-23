@@ -129,6 +129,21 @@ CAT_RULES_BY_LOCALE: dict[str, list[tuple[str, str]]] = {
         ("nazwy", r"nimetus|tänava nimi|nime andmine|ümbernimetamine"),
         ("procedura", r"protokoll|päevakord|kodukord|põhikiri|komisjon|otsuse muutmine|määrus|nimetamine|volitamine|valimine|kandidaat|ametivanne"),
     ],
+    # ── Nederlands (Amsterdam, Den Haag) ────────────────────────────────
+    "nl": [
+        ("budzet", r"begroting|financiën|financieel|belasting|heffing|leges|tarieven|subsidie|lening|krediet|precario|rioolheffing|toeristenbelasting|reclamebelasting|marktgelden|precariobelasting"),
+        ("inwestycje", r"investering|bouw|nieuwbouw|verbouw|renovatie|reconstructie|herinrichting|kapitaal|oprichting|aanleg"),
+        ("planowanie", r"bestemmingsplan|omgevingsplan|omgevingsvisie|stedenbouw|ruimtelijk|structuurvisie|gebiedsplan|locatieplan|exploitatieplan"),
+        ("nieruchomosci", r"grond|vastgoed|pand|verhuur|huur|woning|woningen|sociale huur|middenhuur|erfpacht|perceel|verkoop.*onroerend|onroerend goed|atelierbeleid|broedplaats"),
+        ("transport", r"verkeer|vervoer|openbaar vervoer|fiets|parkeer|stalling|metro|tram|bus\b|wegverkeer|mobiliteit|scheepvaart|haven|cruise|zeecruise|rivierboot"),
+        ("oswiata", r"onderwijs|school|scholen|leerling|kinderopvang|peuterspeelzaal|gymnasium|middelbaar|basisschool|stipendium|stagefonds|sportakkoord"),
+        ("zdrowie", r"gezondheid|zorg|welzijn|sociaal|armoede|bijstand|beschermd wonen|maatschappelijk|daklozen|verslaving|ouderen|mantelzorg|thuiszorg|gehandicapt"),
+        ("srodowisko", r"groen|groenstructuur|park\b|milieu|klimaat|duurzaam|boom|bomen|ecolog|afval|water|recreatiegebied|lutkemeer|natuur"),
+        ("kultura", r"cultuur|museum|bibliotheek|monument|erfgoed|theater|kunst|subsidie.*cultur|festival|evenement"),
+        ("skarga", r"klacht|bezwaar|petitie|beroep|motie van afkeuring"),
+        ("nazwy", r"vernoeming|straatnaam|naamswijziging|naamgeving"),
+        ("procedura", r"verordening|reglement|statuut|commissie|raadscommissie|presidium|amendement|motie\b|agenda|notulen|vergadering.*vaststelling|besluit.*vaststelling|aangenomen worden|leden van de raad|volmacht|lidmaatschap|stemming.*procedur|regeling.*vaststell|legesverordening|algemene verordening|afdeling.*verordening|wijziging.*verordening"),
+    ],
 }
 
 
