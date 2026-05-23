@@ -69,7 +69,7 @@
   },
   "kadencja_active": "2024-2029",
   "has_budget": false,
-  "has_komisje": false,
+  "has_komisje": true,
   "budget_note": "",
   "samorzad_type": "miasto",
   "rada_name": "Rada Miejska w Radomiu",
