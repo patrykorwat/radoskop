@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-05-23T10:12:31Z",
+  "scraped_at": "2026-05-23T11:49:39Z",
   "profiles": [
     {
       "name": "Adam Koczyk",
@@ -131,16 +131,16 @@
           "rebellion_count": 3,
           "rebellions": [
             {
-              "session": "2025-11-17",
-              "topic": "Rozszerzenie porządku obrad: Informacja o sytuacji w Szpitalu im. NMP w Częstochowie",
-              "their_vote": "przeciw",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
               "session": "2025-05-26",
               "topic": "Rozszerzenie porządku obrad: Informacja w sprawie pociągu specjalnego relacji Katowice - Warszawa w dniu 25 maja 2025 roku",
               "their_vote": "przeciw",
               "club_majority": "za"
+            },
+            {
+              "session": "2025-11-17",
+              "topic": "Rozszerzenie porządku obrad: Informacja o sytuacji w Szpitalu im. NMP w Częstochowie",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2025-10-20",
@@ -253,15 +253,15 @@
           "rebellion_count": 2,
           "rebellions": [
             {
-              "session": "2025-02-10",
-              "topic": "Podjęcie uchwały w sprawie wyrażenia zgody na udzielenie w roku 2025 pomocy finansowej Miastu Bielsko-Biała z przeznaczeniem na współfinansowanie realizacji projektu pod nazwą: „Rewitalizacja linii ko",
-              "their_vote": "przeciw",
-              "club_majority": "za"
-            },
-            {
               "session": "2025-05-26",
               "topic": "Przyjęcie protokołu z XIV sesji Sejmiku Województwa Śląskiego",
               "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Podjęcie uchwały w sprawie wyrażenia zgody na udzielenie w roku 2025 pomocy finansowej Miastu Bielsko-Biała z przeznaczeniem na współfinansowanie realizacji projektu pod nazwą: „Rewitalizacja linii ko",
+              "their_vote": "przeciw",
               "club_majority": "za"
             }
           ],
@@ -351,6 +351,12 @@
               "club_majority": "za"
             },
             {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie udzielenia pomocy finansowej dla Gminy Czerwionka-Leszczyny na dofinansowanie zakupu samochodu ratowniczo-gaśniczego (druk VII/265)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2025-06-23",
               "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokoś",
               "their_vote": "za",
@@ -363,18 +369,6 @@
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie udzielenia pomocy finansowej dla Gminy Czerwionka-Leszczyny na dofinansowanie zakupu samochodu ratowniczo-gaśniczego (druk VII/265)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2026-01-19",
-              "topic": "Przyjęcie protokołu z XXI sesji Sejmiku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
               "session": "2026-04-20",
               "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Zabrzu oraz likwidacji Szkoły Policealnej w Zabrzu wchodzącej w skład tego Centrum (druk VI",
               "their_vote": "wstrzymal_sie",
@@ -383,6 +377,12 @@
             {
               "session": "2026-04-20",
               "topic": "Podjęcie uchwały w sprawie przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie innej lokalizacji prowadzenia zajęć dydaktycznych, wych",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-01-19",
+              "topic": "Przyjęcie protokołu z XXI sesji Sejmiku",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -460,6 +460,12 @@
               "club_majority": "za"
             },
             {
+              "session": "2025-05-26",
+              "topic": "Podjęcie uchwały w sprawie wskazania kandydatów Sejmiku Województwa Śląskiego do składu Rady Śląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia (druk VII/204)",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2025-11-17",
               "topic": "Podjęcie uchwały w sprawie zmiany w planie dochodów gromadzonych na wydzielonym rachunku przez jednostki oświatowe oraz finansowanych z nich wydatków na 2025 rok (druk VII/273)",
               "their_vote": "wstrzymal_sie",
@@ -478,26 +484,32 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-06-23",
-              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokoś",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-05-26",
-              "topic": "Podjęcie uchwały w sprawie wskazania kandydatów Sejmiku Województwa Śląskiego do składu Rady Śląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia (druk VII/204)",
-              "their_vote": "przeciw",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
               "session": "2025-08-25",
               "topic": "Podjęcie uchwały w sprawie zmiany uchwały nr VII/16/7/2025 Sejmiku Województwa Śląskiego z dnia 23 czerwca 2025 roku w sprawie udzielenia pomocy finansowej gminom województwa śląskiego w ramach konkur",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
+              "session": "2025-06-23",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokoś",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Gliwicach oraz likwidacji Szkoły Policealnej w Gliwicach wchodzącej w skład tego Centrum (d",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Zabrzu oraz likwidacji Szkoły Policealnej w Zabrzu wchodzącej w skład tego Centrum (druk VI",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie innej lokalizacji prowadzenia zajęć dydaktycznych, wych",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -538,20 +550,8 @@
               "club_majority": "za"
             },
             {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Gliwicach oraz likwidacji Szkoły Policealnej w Gliwicach wchodzącej w skład tego Centrum (d",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Zabrzu oraz likwidacji Szkoły Policealnej w Zabrzu wchodzącej w skład tego Centrum (druk VI",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie innej lokalizacji prowadzenia zajęć dydaktycznych, wych",
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -599,6 +599,12 @@
               "club_majority": "za"
             },
             {
+              "session": "2025-05-26",
+              "topic": "Podjęcie uchwały w sprawie wskazania kandydatów Sejmiku Województwa Śląskiego do składu Rady Śląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia (druk VII/204)",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2025-11-17",
               "topic": "Podjęcie uchwały w sprawie zmiany w planie dochodów gromadzonych na wydzielonym rachunku przez jednostki oświatowe oraz finansowanych z nich wydatków na 2025 rok (druk VII/273)",
               "their_vote": "wstrzymal_sie",
@@ -611,16 +617,10 @@
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-06-23",
-              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokoś",
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Śląskiego na lata 2025-2035 (druk VII/258)",
               "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-06-23",
-              "topic": "Wprowadzenie do porządku obrad: Ocena zasobów pomocy społecznej. Województwo śląskie 2025",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
+              "club_majority": "przeciw"
             },
             {
               "session": "2025-03-17",
@@ -629,32 +629,14 @@
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-05-26",
-              "topic": "Podjęcie uchwały w sprawie wskazania kandydatów Sejmiku Województwa Śląskiego do składu Rady Śląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia (druk VII/204)",
-              "their_vote": "przeciw",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Śląskiego na lata 2025-2035 (druk VII/258)",
-              "their_vote": "za",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
+              "session": "2025-06-23",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokoś",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie wyrażenia zgody na zbycie w drodze darowizny przez Województwo Śląskie na rzecz Śląskiego Uniwersytetu Medycznego w Katowicach części nieruchomości gruntowej zabudowanej, po",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
+              "session": "2025-06-23",
+              "topic": "Wprowadzenie do porządku obrad: Ocena zasobów pomocy społecznej. Województwo śląskie 2025",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             },
@@ -673,6 +655,24 @@
             {
               "session": "2026-04-20",
               "topic": "Podjęcie uchwały w sprawie przekształcenia Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez likwidację Szkoły Policealnej w Sosnowcu wchodzącej w skład tej placówki (druk VII/349)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie wyrażenia zgody na zbycie w drodze darowizny przez Województwo Śląskie na rzecz Śląskiego Uniwersytetu Medycznego w Katowicach części nieruchomości gruntowej zabudowanej, po",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             },
@@ -744,9 +744,9 @@
           "rebellion_count": 13,
           "rebellions": [
             {
-              "session": "2025-06-23",
-              "topic": "Podjęcie uchwały w sprawie zmiany przedstawiciela Sejmiku Województwa Śląskiego w Radzie Społecznej Samodzielnego Publicznego Zakładu Opieki Zdrowotnej Szpitala Psychiatrycznego z siedzibą w Toszku na",
-              "their_vote": "przeciw",
+              "session": "2025-08-25",
+              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokość staw",
+              "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
             {
@@ -756,20 +756,26 @@
               "club_majority": "przeciw"
             },
             {
-              "session": "2025-08-25",
-              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokość staw",
+              "session": "2025-06-23",
+              "topic": "Podjęcie uchwały w sprawie zmiany przedstawiciela Sejmiku Województwa Śląskiego w Radzie Społecznej Samodzielnego Publicznego Zakładu Opieki Zdrowotnej Szpitala Psychiatrycznego z siedzibą w Toszku na",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Gliwicach oraz likwidacji Szkoły Policealnej w Gliwicach wchodzącej w skład tego Centrum (d",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Zabrzu oraz likwidacji Szkoły Policealnej w Zabrzu wchodzącej w skład tego Centrum (druk VI",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie innej lokalizacji prowadzenia zajęć dydaktycznych, wych",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -804,20 +810,14 @@
               "club_majority": "za"
             },
             {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Gliwicach oraz likwidacji Szkoły Policealnej w Gliwicach wchodzącej w skład tego Centrum (d",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Zabrzu oraz likwidacji Szkoły Policealnej w Zabrzu wchodzącej w skład tego Centrum (druk VI",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie innej lokalizacji prowadzenia zajęć dydaktycznych, wych",
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             }
@@ -859,8 +859,8 @@
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-03-17",
-              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi przeciwko sposobowi przeprowadzenia konsultacji społecznych projektu Audytu krajobrazowego województwa śląskiego (druk VII/179)",
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
             },
@@ -871,34 +871,10 @@
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
+              "session": "2025-03-17",
+              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi przeciwko sposobowi przeprowadzenia konsultacji społecznych projektu Audytu krajobrazowego województwa śląskiego (druk VII/179)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie wyrażenia zgody na zbycie w drodze darowizny przez Województwo Śląskie na rzecz Śląskiego Uniwersytetu Medycznego w Katowicach części nieruchomości gruntowej zabudowanej, po",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2026-01-19",
@@ -935,6 +911,30 @@
               "topic": "Podjęcie uchwały w sprawie zamiaru przekształcenia Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu (druk VII/305)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie wyrażenia zgody na zbycie w drodze darowizny przez Województwo Śląskie na rzecz Śląskiego Uniwersytetu Medycznego w Katowicach części nieruchomości gruntowej zabudowanej, po",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2026-05-18",
@@ -1157,16 +1157,22 @@
           "rebellion_count": 19,
           "rebellions": [
             {
-              "session": "2025-02-10",
-              "topic": "Podjęcie uchwały w sprawie zaciągnięcia kredytów długoterminowych dla Województwa Śląskiego w 2025 roku (druk VII/159)",
-              "their_vote": "przeciw",
-              "club_majority": "wstrzymal_sie"
+              "session": "2025-05-26",
+              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/199)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             },
             {
-              "session": "2025-02-10",
-              "topic": "Podjęcie uchwały w sprawie wyrażenia zgody na obciążenie hipoteką umowną nieruchomości Województwa Śląskiego położonej w Sosnowcu, Plac Medyków 1, objętej księgą wieczystą numer KA1S/00041536/4 (druk ",
-              "their_vote": "przeciw",
+              "session": "2025-05-26",
+              "topic": "Podjęcie uchwały w sprawie zawarcia Porozumienia między Województwem Śląskim (Rzeczpospolita Polska) i Prowincją Liaoning (Chińska Republika Ludowa) o ustanowieniu stosunków opartych na partnerstwie i",
+              "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2025-05-26",
+              "topic": "Podjęcie uchwały w sprawie wskazania kandydatów Sejmiku Województwa Śląskiego do składu Rady Śląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia (druk VII/204)",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2025-11-17",
@@ -1175,21 +1181,9 @@
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-06-23",
-              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokoś",
-              "their_vote": "przeciw",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-06-23",
-              "topic": "Wprowadzenie do porządku obrad: Ocena zasobów pomocy społecznej. Województwo śląskie 2025",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-06-23",
-              "topic": "wniosek o reasumpcję głosowania: podjęcie uchwały w sprawie udzielenia wotum zaufania Zarządowi Województwa Śląskiego (druk VII/209)",
-              "their_vote": "za",
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
+              "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
             },
             {
@@ -1211,34 +1205,34 @@
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-05-26",
-              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/199)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2025-05-26",
-              "topic": "Podjęcie uchwały w sprawie zawarcia Porozumienia między Województwem Śląskim (Rzeczpospolita Polska) i Prowincją Liaoning (Chińska Republika Ludowa) o ustanowieniu stosunków opartych na partnerstwie i",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-05-26",
-              "topic": "Podjęcie uchwały w sprawie wskazania kandydatów Sejmiku Województwa Śląskiego do składu Rady Śląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia (druk VII/204)",
+              "session": "2025-02-10",
+              "topic": "Podjęcie uchwały w sprawie zaciągnięcia kredytów długoterminowych dla Województwa Śląskiego w 2025 roku (druk VII/159)",
               "their_vote": "przeciw",
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie połączenia Samodzielnego Publicznego Zakładu Opieki Zdrowotnej Zakładu Diagnostyki Obrazowej z siedzibą w Sosnowcu z Wojewódzkim Szpitalem Specjalistycznym Nr 5 im. Św. Barb",
+              "session": "2025-02-10",
+              "topic": "Podjęcie uchwały w sprawie wyrażenia zgody na obciążenie hipoteką umowną nieruchomości Województwa Śląskiego położonej w Sosnowcu, Plac Medyków 1, objętej księgą wieczystą numer KA1S/00041536/4 (druk ",
               "their_vote": "przeciw",
               "club_majority": "za"
+            },
+            {
+              "session": "2025-06-23",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokoś",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-06-23",
+              "topic": "Wprowadzenie do porządku obrad: Ocena zasobów pomocy społecznej. Województwo śląskie 2025",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-06-23",
+              "topic": "wniosek o reasumpcję głosowania: podjęcie uchwały w sprawie udzielenia wotum zaufania Zarządowi Województwa Śląskiego (druk VII/209)",
+              "their_vote": "za",
+              "club_majority": "przeciw"
             },
             {
               "session": "2026-04-20",
@@ -1257,6 +1251,12 @@
               "topic": "Podjęcie uchwały w sprawie przekształcenia Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez likwidację Szkoły Policealnej w Sosnowcu wchodzącej w skład tej placówki (druk VII/349)",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie połączenia Samodzielnego Publicznego Zakładu Opieki Zdrowotnej Zakładu Diagnostyki Obrazowej z siedzibą w Sosnowcu z Wojewódzkim Szpitalem Specjalistycznym Nr 5 im. Św. Barb",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             },
             {
               "session": "2026-05-18",
@@ -1308,6 +1308,24 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Gliwicach oraz likwidacji Szkoły Policealnej w Gliwicach wchodzącej w skład tego Centrum (d",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Zabrzu oraz likwidacji Szkoły Policealnej w Zabrzu wchodzącej w skład tego Centrum (druk VI",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie innej lokalizacji prowadzenia zajęć dydaktycznych, wych",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
               "session": "2026-03-16",
               "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
               "their_vote": "za",
@@ -1330,24 +1348,6 @@
               "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na Zarząd Województwa Śląskiego (druk VII/334)",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Gliwicach oraz likwidacji Szkoły Policealnej w Gliwicach wchodzącej w skład tego Centrum (d",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Zabrzu oraz likwidacji Szkoły Policealnej w Zabrzu wchodzącej w skład tego Centrum (druk VI",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie innej lokalizacji prowadzenia zajęć dydaktycznych, wych",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
             },
             {
               "session": "2026-05-18",
@@ -1387,12 +1387,6 @@
           "rebellion_count": 24,
           "rebellions": [
             {
-              "session": "2025-02-10",
-              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
               "session": "2025-09-22",
               "topic": "Podjęcie uchwały w sprawie zmiany uchwały Sejmiku Województwa Śląskiego w sprawie Obszaru Chronionego Krajobrazu „Meandry rzeki Odry” (druk VII/247)",
               "their_vote": "wstrzymal_sie",
@@ -1417,30 +1411,6 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-06-23",
-              "topic": "Podjęcie uchwały w sprawie przyjęcia Zasad udzielania i rozmiaru obniżek tygodniowego obowiązkowego wymiaru godzin zajęć dydaktycznych, wychowawczych i opiekuńczych nauczycielom pełniącym stanowiska k",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-06-23",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokość stawek i szczegółowe warunki p",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokość staw",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Przyjęcie protokołu z XVI sesji Sejmiku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
               "session": "2025-10-20",
               "topic": "Podjęcie uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Śląskiego na lata 2025-2035 (druk VII/258)",
               "their_vote": "wstrzymal_sie",
@@ -1459,8 +1429,50 @@
               "club_majority": "przeciw"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
+              "session": "2025-08-25",
+              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokość staw",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Przyjęcie protokołu z XVI sesji Sejmiku",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-23",
+              "topic": "Podjęcie uchwały w sprawie przyjęcia Zasad udzielania i rozmiaru obniżek tygodniowego obowiązkowego wymiaru godzin zajęć dydaktycznych, wychowawczych i opiekuńczych nauczycielom pełniącym stanowiska k",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-23",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokość stawek i szczegółowe warunki p",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Gliwicach oraz likwidacji Szkoły Policealnej w Gliwicach wchodzącej w skład tego Centrum (d",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Zabrzu oraz likwidacji Szkoły Policealnej w Zabrzu wchodzącej w skład tego Centrum (druk VI",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie innej lokalizacji prowadzenia zajęć dydaktycznych, wych",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -1507,20 +1519,8 @@
               "club_majority": "za"
             },
             {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Gliwicach oraz likwidacji Szkoły Policealnej w Gliwicach wchodzącej w skład tego Centrum (d",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Zabrzu oraz likwidacji Szkoły Policealnej w Zabrzu wchodzącej w skład tego Centrum (druk VI",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie innej lokalizacji prowadzenia zajęć dydaktycznych, wych",
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -1592,27 +1592,15 @@
           "rebellion_count": 10,
           "rebellions": [
             {
-              "session": "2025-11-17",
-              "topic": "Podjęcie uchwały w sprawie nadania Statutu Wojewódzkiemu Urzędowi Pracy w Katowicach (druk VII/276)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-06-23",
-              "topic": "Wprowadzenie do porządku obrad: Ocena zasobów pomocy społecznej. Województwo śląskie 2025",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-03-17",
-              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie rozstrzygnięcia o zasadności nieuwzględnienia opinii gminy Hażlach w projekcie Audytu krajobrazowego województwa śląskiego (druk VII/177)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
               "session": "2025-05-26",
               "topic": "Podjęcie uchwały w sprawie wskazania kandydatów Sejmiku Województwa Śląskiego do składu Rady Śląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia (druk VII/204)",
               "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-11-17",
+              "topic": "Podjęcie uchwały w sprawie nadania Statutu Wojewódzkiemu Urzędowi Pracy w Katowicach (druk VII/276)",
+              "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             },
             {
@@ -1622,8 +1610,14 @@
               "club_majority": "przeciw"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
+              "session": "2025-03-17",
+              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie rozstrzygnięcia o zasadności nieuwzględnienia opinii gminy Hażlach w projekcie Audytu krajobrazowego województwa śląskiego (druk VII/177)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-06-23",
+              "topic": "Wprowadzenie do porządku obrad: Ocena zasobów pomocy społecznej. Województwo śląskie 2025",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             },
@@ -1642,6 +1636,12 @@
             {
               "session": "2026-04-20",
               "topic": "Podjęcie uchwały w sprawie przekształcenia Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez likwidację Szkoły Policealnej w Sosnowcu wchodzącej w skład tej placówki (druk VII/349)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             },
@@ -1683,16 +1683,16 @@
           "rebellion_count": 3,
           "rebellions": [
             {
-              "session": "2025-02-10",
-              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
               "session": "2025-09-22",
               "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na Dyrektora Zespołu Parków Krajobrazowych Województwa Śląskiego (druk VII/253)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             },
             {
               "session": "2026-01-19",
@@ -1762,12 +1762,6 @@
           "rebellion_count": 4,
           "rebellions": [
             {
-              "session": "2025-02-10",
-              "topic": "Przyjęcie protokołu z X sesji Sejmiku Województwa Śląskiego",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
               "session": "2025-05-26",
               "topic": "Przyjęcie protokołu z XIII sesji Sejmiku Województwa Śląskiego",
               "their_vote": "wstrzymal_sie",
@@ -1776,6 +1770,12 @@
             {
               "session": "2025-05-26",
               "topic": "Przyjęcie protokołu z XIV sesji Sejmiku Województwa Śląskiego",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Przyjęcie protokołu z X sesji Sejmiku Województwa Śląskiego",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -2017,6 +2017,12 @@
               "club_majority": "wstrzymal_sie"
             },
             {
+              "session": "2025-05-26",
+              "topic": "Podjęcie uchwały w sprawie oceny sytuacji na rynku pracy województwa śląskiego i realizacji zadań w zakresie polityki rynku pracy w 2024 roku (druk VII/200)",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2025-11-17",
               "topic": "Podjęcie uchwały w sprawie warunków wynagradzania egzaminatorów przeprowadzających egzaminy kandydatów na kierowców i kierowców (druk VII/280)",
               "their_vote": "przeciw",
@@ -2053,10 +2059,22 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-05-26",
-              "topic": "Podjęcie uchwały w sprawie oceny sytuacji na rynku pracy województwa śląskiego i realizacji zadań w zakresie polityki rynku pracy w 2024 roku (druk VII/200)",
-              "their_vote": "przeciw",
+              "session": "2025-10-20",
+              "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
+              "their_vote": "za",
               "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/259)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             },
             {
               "session": "2025-08-25",
@@ -2077,34 +2095,16 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-10-20",
-              "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/259)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Przeniesienie punktu 13. porządku obrad: Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332) do punktu 4. porządku",
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Gliwicach oraz likwidacji Szkoły Policealnej w Gliwicach wchodzącej w skład tego Centrum (d",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Zabrzu oraz likwidacji Szkoły Policealnej w Zabrzu wchodzącej w skład tego Centrum (druk VI",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             },
             {
               "session": "2026-01-19",
@@ -2119,16 +2119,16 @@
               "club_majority": "przeciw"
             },
             {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Gliwicach oraz likwidacji Szkoły Policealnej w Gliwicach wchodzącej w skład tego Centrum (d",
+              "session": "2026-03-16",
+              "topic": "Przeniesienie punktu 13. porządku obrad: Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332) do punktu 4. porządku",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
             {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Zabrzu oraz likwidacji Szkoły Policealnej w Zabrzu wchodzącej w skład tego Centrum (druk VI",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             }
           ],
           "has_voting_data": true,
@@ -2162,12 +2162,6 @@
           "rebellion_count": 17,
           "rebellions": [
             {
-              "session": "2025-02-10",
-              "topic": "Przyjęcie protokołu z X sesji Sejmiku Województwa Śląskiego",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
               "session": "2025-09-22",
               "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na Dyrektora Zespołu Parków Krajobrazowych Województwa Śląskiego (druk VII/253)",
               "their_vote": "wstrzymal_sie",
@@ -2198,10 +2192,22 @@
               "club_majority": "za"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
+              "session": "2025-02-10",
+              "topic": "Przyjęcie protokołu z X sesji Sejmiku Województwa Śląskiego",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Zabrzu oraz likwidacji Szkoły Policealnej w Zabrzu wchodzącej w skład tego Centrum (druk VI",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie innej lokalizacji prowadzenia zajęć dydaktycznych, wych",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             },
             {
               "session": "2026-01-19",
@@ -2234,16 +2240,10 @@
               "club_majority": "za"
             },
             {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Zabrzu oraz likwidacji Szkoły Policealnej w Zabrzu wchodzącej w skład tego Centrum (druk VI",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie innej lokalizacji prowadzenia zajęć dydaktycznych, wych",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2026-05-18",
@@ -2313,18 +2313,6 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-03-17",
-              "topic": "Przyjęcie protokołu z XI sesji Sejmiku Województwa Śląskiego",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-03-17",
-              "topic": "Podjęcie uchwały w sprawie uchwalenia aktualizacji Planu zrównoważonego rozwoju publicznego transportu zbiorowego Województwa Śląskiego (druk VII/171)",
-              "their_vote": "przeciw",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
               "session": "2025-10-20",
               "topic": "Przyjęcie protokołu z XVIII sesji Sejmiku",
               "their_vote": "wstrzymal_sie",
@@ -2337,22 +2325,16 @@
               "club_majority": "przeciw"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
-              "their_vote": "za",
+              "session": "2025-03-17",
+              "topic": "Przyjęcie protokołu z XI sesji Sejmiku Województwa Śląskiego",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-17",
+              "topic": "Podjęcie uchwały w sprawie uchwalenia aktualizacji Planu zrównoważonego rozwoju publicznego transportu zbiorowego Województwa Śląskiego (druk VII/171)",
+              "their_vote": "przeciw",
               "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2026-01-19",
-              "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie przyjęcia stanowiska w sprawie utworzenia ośrodka Europejskiej Agencji Kosmicznej w Polsce na terenie województwa śląskiego",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-01-19",
-              "topic": "Podjęcie uchwały w sprawie ogłoszenia roku 2026 Rokiem Miasta Częstochowy (druk VII/299)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
             },
             {
               "session": "2026-04-20",
@@ -2375,6 +2357,24 @@
             {
               "session": "2026-04-20",
               "topic": "Podjęcie uchwały w sprawie przekształcenia Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez likwidację Szkoły Policealnej w Sosnowcu wchodzącej w skład tej placówki (druk VII/349)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-01-19",
+              "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie przyjęcia stanowiska w sprawie utworzenia ośrodka Europejskiej Agencji Kosmicznej w Polsce na terenie województwa śląskiego",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-01-19",
+              "topic": "Podjęcie uchwały w sprawie ogłoszenia roku 2026 Rokiem Miasta Częstochowy (druk VII/299)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             },
@@ -2476,14 +2476,14 @@
           "rebellion_count": 2,
           "rebellions": [
             {
-              "session": "2025-03-17",
-              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie rozstrzygnięcia o zasadności nieuwzględnienia opinii gminy Hażlach w projekcie Audytu krajobrazowego województwa śląskiego (druk VII/177)",
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
               "their_vote": "przeciw",
               "club_majority": "za"
             },
             {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
+              "session": "2025-03-17",
+              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie rozstrzygnięcia o zasadności nieuwzględnienia opinii gminy Hażlach w projekcie Audytu krajobrazowego województwa śląskiego (druk VII/177)",
               "their_vote": "przeciw",
               "club_majority": "za"
             }
@@ -2519,6 +2519,60 @@
           "rebellion_count": 21,
           "rebellions": [
             {
+              "session": "2025-09-22",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały Sejmiku Województwa Śląskiego w sprawie Obszaru Chronionego Krajobrazu „Meandry rzeki Odry” (druk VII/247)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Śląskiego na lata 2025-2035 (druk VII/258)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/259)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/234)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na działalność Zarządu Województwa Śląskiego (druk VII/230)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na Marszałka Województwa Śląskiego (druk VII/231)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-03-17",
+              "topic": "Podjęcie uchwały w sprawie uchwalenia aktualizacji Planu zrównoważonego rozwoju publicznego transportu zbiorowego Województwa Śląskiego (druk VII/171)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2025-02-10",
               "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
               "their_vote": "wstrzymal_sie",
@@ -2529,12 +2583,6 @@
               "topic": "Podjęcie uchwały w sprawie zaciągnięcia kredytów długoterminowych dla Województwa Śląskiego w 2025 roku (druk VII/159)",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-09-22",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały Sejmiku Województwa Śląskiego w sprawie Obszaru Chronionego Krajobrazu „Meandry rzeki Odry” (druk VII/247)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
             },
             {
               "session": "2025-06-23",
@@ -2573,60 +2621,6 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-03-17",
-              "topic": "Podjęcie uchwały w sprawie uchwalenia aktualizacji Planu zrównoważonego rozwoju publicznego transportu zbiorowego Województwa Śląskiego (druk VII/171)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/234)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na działalność Zarządu Województwa Śląskiego (druk VII/230)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na Marszałka Województwa Śląskiego (druk VII/231)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Śląskiego na lata 2025-2035 (druk VII/258)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/259)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
-              "their_vote": "za",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
               "session": "2026-01-19",
               "topic": "Podjęcie uchwały w sprawie przyjęcia apelu do Prezydenta Rzeczypospolitej Polskiej o podpisanie ustawy uznającej język śląski za język regionalny, uchwalonej przez Sejm Rzeczypospolitej Polskiej w dni",
               "their_vote": "wstrzymal_sie",
@@ -2637,6 +2631,12 @@
               "topic": "Podjęcie uchwały w sprawie ogłoszenia roku 2026 Rokiem Miasta Częstochowy (druk VII/299)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2026-05-18",
@@ -2749,12 +2749,6 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-02-10",
-              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
               "session": "2025-11-17",
               "topic": "Podjęcie uchwały w sprawie warunków wynagradzania egzaminatorów przeprowadzających egzaminy kandydatów na kierowców i kierowców (druk VII/280)",
               "their_vote": "przeciw",
@@ -2785,10 +2779,22 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-06-23",
-              "topic": "Podjęcie uchwały w sprawie wskazania kandydata Sejmiku Województwa Śląskiego na członka Regionalnej Rady Ochrony Przyrody (druk VII/212)",
+              "session": "2025-10-20",
+              "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/259)",
               "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             },
             {
               "session": "2025-08-25",
@@ -2809,26 +2815,38 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-10-20",
-              "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
+              "session": "2025-02-10",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-06-23",
+              "topic": "Podjęcie uchwały w sprawie wskazania kandydata Sejmiku Województwa Śląskiego na członka Regionalnej Rady Ochrony Przyrody (druk VII/212)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-20",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie ustanowienia roku 2027 Rokiem Rzemieślnika w Województwie Śląskim",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Katowicach oraz likwidacji Szkoły Policealnej w Katowicach wchodzącej w skład tego Centrum ",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/259)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Raciborzu oraz likwidacji Szkoły Policealnej w Raciborzu wchodzącej w skład tego Centrum (d",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
+              "session": "2026-04-20",
+              "topic": "Podjęcie uchwały w sprawie przekształcenia Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez likwidację Szkoły Policealnej w Sosnowcu wchodzącej w skład tej placówki (druk VII/349)",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             },
@@ -2869,26 +2887,8 @@
               "club_majority": "za"
             },
             {
-              "session": "2026-04-20",
-              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie ustanowienia roku 2027 Rokiem Rzemieślnika w Województwie Śląskim",
-              "their_vote": "przeciw",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Katowicach oraz likwidacji Szkoły Policealnej w Katowicach wchodzącej w skład tego Centrum ",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Raciborzu oraz likwidacji Szkoły Policealnej w Raciborzu wchodzącej w skład tego Centrum (d",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2026-04-20",
-              "topic": "Podjęcie uchwały w sprawie przekształcenia Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez likwidację Szkoły Policealnej w Sosnowcu wchodzącej w skład tej placówki (druk VII/349)",
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             },
@@ -2954,15 +2954,15 @@
               "club_majority": "przeciw"
             },
             {
-              "session": "2025-11-17",
-              "topic": "Podjęcie uchwały w sprawie zmiany nazwy wojewódzkiej samorządowej instytucji kultury - Śląskiego Centrum Wolności i Solidarności (druk VII/286)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
               "session": "2025-05-26",
               "topic": "Rozszerzenie porządku obrad: Informacja w sprawie pociągu specjalnego relacji Katowice - Warszawa w dniu 25 maja 2025 roku",
               "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-11-17",
+              "topic": "Podjęcie uchwały w sprawie zmiany nazwy wojewódzkiej samorządowej instytucji kultury - Śląskiego Centrum Wolności i Solidarności (druk VII/286)",
+              "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             }
           ],
@@ -3003,18 +3003,6 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-06-23",
-              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokoś",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-06-23",
-              "topic": "Wprowadzenie do porządku obrad: Ocena zasobów pomocy społecznej. Województwo śląskie 2025",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
               "session": "2025-08-25",
               "topic": "Przyjęcie protokołu z XV sesji Sejmiku",
               "their_vote": "wstrzymal_sie",
@@ -3027,22 +3015,16 @@
               "club_majority": "za"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie nadania statutu Muzeum Górnictwa Węglowego w Zabrzu (druk VII/327)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
+              "session": "2025-06-23",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokoś",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-01-19",
-              "topic": "Przyjęcie protokołu z XXI sesji Sejmiku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
+              "session": "2025-06-23",
+              "topic": "Wprowadzenie do porządku obrad: Ocena zasobów pomocy społecznej. Województwo śląskie 2025",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2026-04-20",
@@ -3061,6 +3043,24 @@
               "topic": "Podjęcie uchwały w sprawie przekształcenia Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez likwidację Szkoły Policealnej w Sosnowcu wchodzącej w skład tej placówki (druk VII/349)",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-01-19",
+              "topic": "Przyjęcie protokołu z XXI sesji Sejmiku",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie nadania statutu Muzeum Górnictwa Węglowego w Zabrzu (druk VII/327)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             },
             {
               "session": "2026-05-18",
@@ -3106,22 +3106,16 @@
           "rebellion_count": 15,
           "rebellions": [
             {
-              "session": "2025-02-10",
-              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2025-02-10",
-              "topic": "Przyjęcie protokołu z X sesji Sejmiku Województwa Śląskiego",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
               "session": "2025-09-22",
               "topic": "Podjęcie uchwały w sprawie zmiany uchwały Sejmiku Województwa Śląskiego w sprawie Obszaru Chronionego Krajobrazu „Meandry rzeki Odry” (druk VII/247)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2025-05-26",
+              "topic": "Podjęcie uchwały w sprawie oceny sytuacji na rynku pracy województwa śląskiego i realizacji zadań w zakresie polityki rynku pracy w 2024 roku (druk VII/200)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2025-11-17",
@@ -3148,6 +3142,18 @@
               "club_majority": "za"
             },
             {
+              "session": "2025-02-10",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Przyjęcie protokołu z X sesji Sejmiku Województwa Śląskiego",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
               "session": "2025-06-23",
               "topic": "Podjęcie uchwały w sprawie zmiany w planie dochodów gromadzonych na wydzielonym rachunku przez jednostki oświatowe oraz finansowanych z nich wydatków na 2025 rok (druk VII/216)",
               "their_vote": "wstrzymal_sie",
@@ -3158,12 +3164,6 @@
               "topic": "Podjęcie uchwały w sprawie przyjęcia Zasad udzielania i rozmiaru obniżek tygodniowego obowiązkowego wymiaru godzin zajęć dydaktycznych, wychowawczych i opiekuńczych nauczycielom pełniącym stanowiska k",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
-            },
-            {
-              "session": "2025-05-26",
-              "topic": "Podjęcie uchwały w sprawie oceny sytuacji na rynku pracy województwa śląskiego i realizacji zadań w zakresie polityki rynku pracy w 2024 roku (druk VII/200)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2026-04-20",
@@ -3227,16 +3227,40 @@
           "rebellion_count": 14,
           "rebellions": [
             {
-              "session": "2025-02-10",
-              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
               "session": "2025-11-17",
               "topic": "Podjęcie uchwały w sprawie uchylenia statutu Wojewódzkiego Urzędu Pracy w Katowicach, nadanego uchwałą Nr I/20/8/2000 Sejmiku Województwa Śląskiego z dnia 29 maja 2000 roku, w sprawie utworzenia Wojew",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Śląskiego na lata 2025-2035 (druk VII/258)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania statutu Śląskiemu Centrum Wolności i Solidarności (druk VII/260)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Przyjęcie protokołu z XV sesji Sejmiku",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Przyjęcie protokołu z XVI sesji Sejmiku",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             },
             {
               "session": "2025-06-23",
@@ -3257,36 +3281,6 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-08-25",
-              "topic": "Przyjęcie protokołu z XV sesji Sejmiku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Przyjęcie protokołu z XVI sesji Sejmiku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Śląskiego na lata 2025-2035 (druk VII/258)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania statutu Śląskiemu Centrum Wolności i Solidarności (druk VII/260)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-01-19",
-              "topic": "Przyjęcie protokołu z XXI sesji Sejmiku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
               "session": "2026-04-20",
               "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Katowicach oraz likwidacji Szkoły Policealnej w Katowicach wchodzącej w skład tego Centrum ",
               "their_vote": "za",
@@ -3303,6 +3297,12 @@
               "topic": "Podjęcie uchwały w sprawie przekształcenia Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez likwidację Szkoły Policealnej w Sosnowcu wchodzącej w skład tej placówki (druk VII/349)",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-01-19",
+              "topic": "Przyjęcie protokołu z XXI sesji Sejmiku",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             },
             {
               "session": "2026-05-18",
