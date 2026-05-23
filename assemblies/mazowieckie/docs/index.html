@@ -1510,7 +1510,7 @@ function render() {
 }
 
 function renderClubFilter() {
-  const clubs = [...new Set((K.councilors || []).map(c=>c.club))].sort();
+  const clubs = [...new Set((K.councilors || []).map(c=>c.club))].filter(c => c && c !== '?').sort();
   const bar = document.getElementById('club-filter');
   bar.innerHTML = `<button class="filter-btn active" data-club="all">Wszyscy</button>` +
     clubs.map(c => `<button class="filter-btn" data-club="${c}">${c}</button>`).join('');
@@ -1558,15 +1558,15 @@ function renderCouncilorTable() {
     return `<tr>
       <td><input type="checkbox" class="compare-check" data-name="${c.name.replace(/"/g, '&quot;')}" ${checked?'checked':''} onchange="toggleCompare(this.dataset.name, this.checked)" aria-label="Porównaj ${c.name}"></td>
       <td>${profileLink(c.name)}</td>
-      <td><span class="club ${clubClass(c.club)}">${c.club}</span></td>
+      <td><span class="club ${clubClass(c.club)}">${(c.club && c.club !== '?') ? c.club : 'Niezrzeszeni'}</span></td>
       <td>${pctBar(c.frekwencja)}</td>
       <td>${pctBar(c.aktywnosc)}</td>
-      <td>${c.club === 'Niezrzeszeni' ? '<span style="color:var(--muted)">n/d</span>' : pctBar(c.zgodnosc_z_klubem)}</td>
+      <td>${(!c.club || c.club === '?' || c.club === 'Niezrzeszeni') ? '<span style="color:var(--muted)">n/d</span>' : pctBar(c.zgodnosc_z_klubem)}</td>
       <td>${c.votes_za}</td>
       <td>${c.votes_przeciw > 0 ? `<span class="pill pill-przeciw">${c.votes_przeciw}</span>` : '0'}</td>
       <td>${c.votes_wstrzymal > 0 ? `<span class="pill pill-wstrzymal">${c.votes_wstrzymal}</span>` : '0'}</td>
-      <td>${c.votes_brak}</td>
-      <td>${c.club === 'Niezrzeszeni' ? '<span style="color:var(--muted)">n/d</span>' : (c.rebellion_count > 0 ? `<span class="pill pill-przeciw">${c.rebellion_count}</span>` : '0')}</td>
+      <td>${c.votes_brak ?? 0}</td>
+      <td>${(!c.club || c.club === '?' || c.club === 'Niezrzeszeni') ? '<span style="color:var(--muted)">n/d</span>' : (c.rebellion_count > 0 ? `<span class="pill pill-przeciw">${c.rebellion_count}</span>` : '0')}</td>
     </tr>`;
   }).join('');
 
@@ -1676,7 +1676,7 @@ function showProfile(name) {
             <div class="metric-label">${isFemale(profile.name) ? 'Wstrzymała się' : 'Wstrzymał się'}</div>
           </div>
           <div class="metric-card">
-            <div class="metric-value">${kd.votes_brak}</div>
+            <div class="metric-value">${kd.votes_brak ?? 0}</div>
             <div class="metric-label">Brak głosu</div>
           </div>
           <div class="metric-card">

@@ -154,7 +154,7 @@ tr:hover td { background:rgba(99,102,241,0.05); }
 /* Tab bar: dwa tiery hierarchiczne.
  *   Primary (4): Ranking, Sitzungen, Abstimmungen, Ausschüsse — mocniejsze visualy,
  *     border, pełny padding, font 0.85rem.
- *   Secondary (4): Profile, Schriftliche Anfragen, Budżet, Aktualności — subtle,
+ *   Secondary (4): Profile, Schriftliche Anfragen, Budżet, Aktuelles — subtle,
  *     bez ramki, mniejszy padding, muted color, hover background.
  * Razem 2 wiersze (primary nad secondary), na desktop oba inline. */
 .tab-bar { display:flex; flex-direction:column; gap:8px; margin-bottom:20px; }
@@ -622,7 +622,7 @@ footer a { color:var(--accent); text-decoration:none; }
               <th data-sort="zgodnosc_z_klubem">Zgodność z&nbsp;klubem <span class="sort-arrow"></span></th>
               <th data-sort="votes_za">Dafür <span class="sort-arrow"></span></th>
               <th data-sort="votes_przeciw">Dagegen <span class="sort-arrow"></span></th>
-              <th data-sort="votes_wstrzymal">Wstrzym. <span class="sort-arrow"></span></th>
+              <th data-sort="votes_wstrzymal">Enthalt. <span class="sort-arrow"></span></th>
               <th data-sort="votes_brak">Brak&nbsp;gł. <span class="sort-arrow"></span></th>
               <th data-sort="rebellion_count">Wbrew&nbsp;klubowi <span class="sort-arrow"></span></th>
             </tr>
@@ -1513,9 +1513,9 @@ function render() {
 }
 
 function renderClubFilter() {
-  const clubs = [...new Set((K.councilors || []).map(c=>c.club))].sort();
+  const clubs = [...new Set((K.councilors || []).map(c=>c.club))].filter(c => c && c !== '?').sort();
   const bar = document.getElementById('club-filter');
-  bar.innerHTML = `<button class="filter-btn active" data-club="all">Wszyscy</button>` +
+  bar.innerHTML = `<button class="filter-btn active" data-club="all">Alle</button>` +
     clubs.map(c => `<button class="filter-btn" data-club="${c}">${c}</button>`).join('');
   bar.querySelectorAll('.filter-btn').forEach(btn => {
     btn.onclick = () => {
@@ -1561,15 +1561,15 @@ function renderCouncilorTable() {
     return `<tr>
       <td><input type="checkbox" class="compare-check" data-name="${c.name.replace(/"/g, '&quot;')}" ${checked?'checked':''} onchange="toggleCompare(this.dataset.name, this.checked)" aria-label="Vergleichen ${c.name}"></td>
       <td>${profileLink(c.name)}</td>
-      <td><span class="club ${clubClass(c.club)}">${c.club}</span></td>
+      <td><span class="club ${clubClass(c.club)}">${(c.club && c.club !== '?') ? c.club : 'Niezrzeszeni'}</span></td>
       <td>${pctBar(c.frekwencja)}</td>
       <td>${pctBar(c.aktywnosc)}</td>
-      <td>${c.club === 'Niezrzeszeni' ? '<span style="color:var(--muted)">n/d</span>' : pctBar(c.zgodnosc_z_klubem)}</td>
+      <td>${(!c.club || c.club === '?' || c.club === 'Niezrzeszeni') ? '<span style="color:var(--muted)">n/d</span>' : pctBar(c.zgodnosc_z_klubem)}</td>
       <td>${c.votes_za}</td>
       <td>${c.votes_przeciw > 0 ? `<span class="pill pill-przeciw">${c.votes_przeciw}</span>` : '0'}</td>
       <td>${c.votes_wstrzymal > 0 ? `<span class="pill pill-wstrzymal">${c.votes_wstrzymal}</span>` : '0'}</td>
-      <td>${c.votes_brak}</td>
-      <td>${c.club === 'Niezrzeszeni' ? '<span style="color:var(--muted)">n/d</span>' : (c.rebellion_count > 0 ? `<span class="pill pill-przeciw">${c.rebellion_count}</span>` : '0')}</td>
+      <td>${c.votes_brak ?? 0}</td>
+      <td>${(!c.club || c.club === '?' || c.club === 'Niezrzeszeni') ? '<span style="color:var(--muted)">n/d</span>' : (c.rebellion_count > 0 ? `<span class="pill pill-przeciw">${c.rebellion_count}</span>` : '0')}</td>
     </tr>`;
   }).join('');
 
@@ -1679,7 +1679,7 @@ function showProfile(name) {
             <div class="metric-label">${isFemale(profile.name) ? 'Enthalten' : 'Enthalten'}</div>
           </div>
           <div class="metric-card">
-            <div class="metric-value">${kd.votes_brak}</div>
+            <div class="metric-value">${kd.votes_brak ?? 0}</div>
             <div class="metric-label">Nicht abgestimmt</div>
           </div>
           <div class="metric-card">
@@ -2936,7 +2936,7 @@ async function showSession(sessionNumber) {
     html += `<div class="cat-group" data-catgroup="${cat}">
       <div class="cat-group-header">${catPill(cat)} <span class="cat-group-count">${votes.length} Abstimmungen</span></div>
       <table class="ranking-table">
-        <thead><tr><th>#</th><th>Thema</th><th>Dafür</th><th>Dagegen</th><th>Wstrzym.</th><th>Ergebnis</th></tr></thead>
+        <thead><tr><th>#</th><th>Thema</th><th>Dafür</th><th>Dagegen</th><th>Enthalt.</th><th>Ergebnis</th></tr></thead>
         <tbody>`;
     votes.forEach(v => {
       globalIdx++;
@@ -3617,7 +3617,7 @@ function renderBudget() {
 
 function bindTabs() {
   document.querySelectorAll('.tab').forEach(tab => {
-    if (!tab.dataset.tab) return;  // Aktualności jest <a> z href, nie data-tab
+    if (!tab.dataset.tab) return;  // Aktuelles jest <a> z href, nie data-tab
     tab.onclick = () => {
       activateTab(tab.dataset.tab);
       navigateTo(mainPath());
@@ -3690,7 +3690,7 @@ function showCompare() {
         <div style="display:flex;gap:6px;margin-top:4px">
           <span class="pill pill-za">Dafür: ${c.votes_za}</span>
           <span class="pill pill-przeciw">Dagegen: ${c.votes_przeciw}</span>
-          <span class="pill pill-wstrzymal">Wstrzym.: ${c.votes_wstrzymal}</span>
+          <span class="pill pill-wstrzymal">Enthalt.: ${c.votes_wstrzymal}</span>
         </div>
         <div style="color:var(--muted);font-size:0.85rem">Abweichungen: ${c.rebellion_count}</div>
       </div>
