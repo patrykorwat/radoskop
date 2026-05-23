@@ -58,10 +58,11 @@ SLEEP_BETWEEN_CALLS = 0.3
 CATEGORIES = ("za", "przeciw", "wstrzymal_sie", "brak_glosu", "nieobecni")
 
 # CSS class na HTML -> kategoria Radoskop.
-# Amsterdam używa angielskich nazw klas CSS (voor/against/abstain),
-# mimo że etykiety w UI są po niderlandzku.
+# Amsterdam używa "voor/against/abstain", Den Haag używa "in_favor/against/abstain".
+# "divided" to sekcja z mieszanymi głosami — obsługiwana osobno w parse_voting_blocks.
 CSS_CLASS_TO_VOTE = {
     "voor": "za",
+    "in_favor": "za",      # Den Haag
     "against": "przeciw",
     "abstain": "wstrzymal_sie",
 }
@@ -159,10 +160,11 @@ def fetch_raad_meetings(
     kadencja_start: str,
     cache_dir: Path | None,
 ) -> list[dict[str, str]]:
-    """Pobierz listę sesji RAAD z ORI ES od daty kadencji."""
+    """Pobierz listę sesji rady z ORI ES od daty kadencji."""
     base = config.get("ori_es_base", "https://api.openraadsinformatie.nl/v1/elastic")
     index = _ori_index(config)
     url = f"{base}/{index}/_search"
+    session_name = config.get("ori_session_name", "RAAD")
 
     query = {
         "size": 500,
@@ -170,7 +172,7 @@ def fetch_raad_meetings(
             "bool": {
                 "must": [
                     {"match": {"@type": "Meeting"}},
-                    {"match": {"name": "RAAD"}}
+                    {"match": {"name": session_name}}
                 ],
                 "filter": {
                     "range": {
@@ -282,31 +284,41 @@ def parse_voting_blocks(
             r'<div\s+class="votes_list\s+(\w+)">(.*?)</div>',
             re.S,
         )
+        # Per-partia: <li tabindex="0">PARTY<ul>...<li class="CSS">Naam</li>...</ul></li>
+        party_block_pattern = re.compile(
+            r'<li\s+tabindex="0">([^<]+?)\s*<ul>(.*?)</ul>\s*</li>',
+            re.S,
+        )
+        # Regex dla nazw członków — obsługuje voor/in_favor/against/abstain
+        member_re = re.compile(
+            r'<li\s+class="(voor|in_favor|against|abstain)">([^<]+)</li>'
+        )
+
         for sec_m in section_pattern.finditer(block):
-            css_class = sec_m.group(1)    # "voor", "against", "onthouden"
+            css_class = sec_m.group(1)    # "voor"/"in_favor"/"against"/"abstain"/"divided"
             sec_html = sec_m.group(2)
 
-            # Mapowanie CSS class → kategoria Radoskop
-            cat = CSS_CLASS_TO_VOTE.get(css_class)
-            if not cat:
-                continue
-
-            # Per-partia: <li tabindex="0">PARTY<ul>...<li class="CSS">Naam</li>...</ul></li>
-            party_block_pattern = re.compile(
-                r'<li\s+tabindex="0">([^<]+?)\s*<ul>(.*?)</ul>\s*</li>',
-                re.S,
-            )
-            for pb in party_block_pattern.finditer(sec_html):
-                # party_name nie jest potrzebna per-radny (wystarczy klasa)
-                members_html = pb.group(2)
-                member_names = re.findall(
-                    r'<li\s+class="(?:voor|against|abstain)">([^<]+)</li>',
-                    members_html,
-                )
-                for name in member_names:
-                    name = name.strip()
-                    if name:
-                        named_by_cat[cat].append(name)
+            if css_class == "divided":
+                # Sekcja "verdeeld": każdy członek ma własną klasę głosu.
+                # Iterujemy per-partia i per-członek z indywidualną klasą.
+                for pb in party_block_pattern.finditer(sec_html):
+                    members_html = pb.group(2)
+                    for mem_m in member_re.finditer(members_html):
+                        ind_cat = CSS_CLASS_TO_VOTE.get(mem_m.group(1))
+                        ind_name = mem_m.group(2).strip()
+                        if ind_cat and ind_name:
+                            named_by_cat[ind_cat].append(ind_name)
+            else:
+                # Wszyscy w sekcji głosowali tak samo — mapuj klasę sekcji
+                cat = CSS_CLASS_TO_VOTE.get(css_class)
+                if not cat:
+                    continue
+                for pb in party_block_pattern.finditer(sec_html):
+                    members_html = pb.group(2)
+                    for mem_m in member_re.finditer(members_html):
+                        name = mem_m.group(2).strip()
+                        if name:
+                            named_by_cat[cat].append(name)
 
         # Zlicz
         for cat, names in named_by_cat.items():
@@ -469,20 +481,22 @@ def main() -> int:
     kadencja_id = args.kadencja_id or config.get("kadencja_active", "2022-2026")
     kadencja_start = config["kadencje"][kadencja_id]["start"]
 
-    print(f"[amsterdam] pobieranie listy sesji RAAD od {kadencja_start} z ORI",
+    city_tag = config.get("city_name", "amsterdam").lower()
+    session_name = config.get("ori_session_name", "RAAD")
+    print(f"[{city_tag}] pobieranie listy sesji {session_name} od {kadencja_start} z ORI",
           file=sys.stderr)
     meetings = fetch_raad_meetings(config, kadencja_start, cache)
-    print(f"[amsterdam] znaleziono {len(meetings)} sesji RAAD", file=sys.stderr)
+    print(f"[{city_tag}] znaleziono {len(meetings)} sesji {session_name}", file=sys.stderr)
 
     if args.max_sessions:
         meetings = meetings[: args.max_sessions]
-        print(f"[amsterdam] LIMIT: {len(meetings)} sesji do scrape", file=sys.stderr)
+        print(f"[{city_tag}] LIMIT: {len(meetings)} sesji do scrape", file=sys.stderr)
 
     all_votes: list[dict[str, Any]] = []
 
     for i, meeting in enumerate(meetings, 1):
         print(
-            f"[amsterdam] [{i}/{len(meetings)}] sesja {meeting['date']} "
+            f"[{city_tag}] [{i}/{len(meetings)}] sesja {meeting['date']} "
             f"(id={meeting['id']})",
             file=sys.stderr,
         )
@@ -496,7 +510,7 @@ def main() -> int:
         print(f"  {len(voted)} głosowań imiennych", file=sys.stderr)
         all_votes.extend(voted)
 
-    print(f"[amsterdam] łącznie {len(all_votes)} głosowań", file=sys.stderr)
+    print(f"[{city_tag}] łącznie {len(all_votes)} głosowań", file=sys.stderr)
 
     # Usuń stare pliki kadencji nieobjęte configiem
     valid_ids = set(config.get("kadencje", {}).keys())
@@ -504,7 +518,7 @@ def main() -> int:
         kid = old.stem.replace("kadencja-", "")
         if kid not in valid_ids:
             old.unlink()
-            print(f"[amsterdam] usunięto stały {old.name}", file=sys.stderr)
+            print(f"[{city_tag}] usunięto stały {old.name}", file=sys.stderr)
 
     kadencje_to_generate = (
         [kadencja_id] if args.kadencja_id
@@ -516,7 +530,7 @@ def main() -> int:
         kdef = config["kadencje"][kid]
         built = build_kadencja(all_votes, meetings, config, kid)
         if not built["votes"]:
-            print(f"[amsterdam] skip kadencja-{kid}: 0 głosowań", file=sys.stderr)
+            print(f"[{city_tag}] skip kadencja-{kid}: 0 głosowań", file=sys.stderr)
             continue
 
         out = {
@@ -531,7 +545,7 @@ def main() -> int:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, ensure_ascii=False, indent=2)
         print(
-            f"[amsterdam] zapisano {out_path.name}: "
+            f"[{city_tag}] zapisano {out_path.name}: "
             f"{len(built['sessions'])} sesji, "
             f"{len(built['votes'])} głosowań, "
             f"{len(built['councilor_index'])} radnych",
