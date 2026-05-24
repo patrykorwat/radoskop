@@ -218,6 +218,26 @@ footer a { color:var(--accent); text-decoration:none; }
 .vote-name-item { padding:6px 10px; border-radius:6px; font-size:0.85rem; display:flex; align-items:center; gap:6px; }
 .vote-name-item .club { flex-shrink:0; }
 .vote-cat-header { font-size:0.9rem; font-weight:600; margin:16px 0 8px; padding:6px 0; border-bottom:1px solid var(--border); }
+/* ── Głosowanie według frakcji (regiony bez głosowań imiennych) ───────── */
+.faction-notice { display:flex; gap:10px; align-items:flex-start; margin:12px 0 20px; padding:12px 14px; background:rgba(99,102,241,0.06); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:8px; font-size:0.88rem; line-height:1.55; color:var(--text); }
+.faction-notice svg { flex-shrink:0; width:18px; height:18px; margin-top:1px; color:var(--accent); }
+.faction-rows { display:grid; gap:10px; margin-top:8px; }
+.faction-row { padding:10px 12px; border:1px solid var(--border); border-radius:8px; background:var(--surface); }
+.faction-row-head { display:flex; align-items:center; gap:10px; margin-bottom:8px; flex-wrap:wrap; }
+.faction-row-name { font-weight:600; font-size:0.95rem; display:flex; align-items:center; gap:8px; }
+.faction-row-swatch { width:12px; height:12px; border-radius:3px; flex-shrink:0; }
+.faction-stance { font-size:0.78rem; font-weight:700; padding:2px 8px; border-radius:999px; text-transform:uppercase; letter-spacing:0.02em; }
+.faction-stance.stance-za { background:rgba(34,197,94,0.16); color:var(--green); }
+.faction-stance.stance-przeciw { background:rgba(239,68,68,0.16); color:var(--red); }
+.faction-stance.stance-wstrzymal { background:rgba(234,179,8,0.18); color:var(--yellow); }
+.faction-stance.stance-mixed { background:rgba(139,141,151,0.18); color:var(--muted); }
+.faction-stance.stance-none { background:rgba(139,141,151,0.12); color:var(--muted); }
+.faction-row-meta { margin-left:auto; font-size:0.8rem; color:var(--muted); }
+.faction-bar { display:flex; height:20px; border-radius:5px; overflow:hidden; }
+.faction-bar div { display:flex; align-items:center; justify-content:center; font-size:0.72rem; font-weight:600; color:white; min-width:0; }
+.faction-legend { display:flex; flex-wrap:wrap; gap:14px; margin-top:10px; font-size:0.8rem; color:var(--muted); }
+.faction-legend span { display:inline-flex; align-items:center; gap:5px; }
+.faction-legend i { width:10px; height:10px; border-radius:2px; display:inline-block; }
 .druk-tresc { line-height:1.7; font-size:0.95rem; padding:16px 0; white-space:pre-wrap; }
 .druk-paywall { margin-top:12px; padding:16px; background:rgba(99,102,241,0.06); border:1px solid var(--border); border-radius:8px; text-align:center; }
 .session-pill { padding:4px 10px; border-radius:6px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-size:0.8rem; white-space:nowrap; }
@@ -2347,6 +2367,101 @@ async function renderVotesTable() {
   container.innerHTML = html;
 }
 
+// ── Głosowania frakcyjne ─────────────────────────────────────────────
+// Regiony jak Francja (vote "à main levée") czy część niemieckich gremiów
+// nie protokołują głosów per radny — publikują tylko "tableau des votes par
+// groupe" / wynik per Fraktion. Taki vote ma vote_mode === 'faction' i klucz
+// faction_votes zamiast list nazwisk w named_votes. faction_votes[grupa] to
+// obiekt z licznikami {za, przeciw, wstrzymal_sie, (brak_glosu), (nieobecni)}
+// oraz opcjonalnym "seats". Stanowisko grupy (dominujący kierunek) liczymy
+// tutaj, jeśli backend go nie dostarczył.
+function isFactionVote(vote) {
+  if (!vote) return false;
+  if (vote.vote_mode === 'faction') return true;
+  const fv = vote.faction_votes;
+  if (!fv || typeof fv !== 'object' || !Object.keys(fv).length) return false;
+  // Brak rozpisania imiennego → traktuj jako frakcyjne.
+  const nv = vote.named_votes || {};
+  const namedTotal = ['za','przeciw','wstrzymal_sie','brak_glosu','nieobecni']
+    .reduce((s,k) => s + ((nv[k]||[]).length), 0);
+  return namedTotal === 0;
+}
+
+function factionStance(g) {
+  const za = g.za||0, prz = g.przeciw||0, wst = g.wstrzymal_sie||0;
+  const max = Math.max(za, prz, wst);
+  // Grupa bez oddanych głosów (sami nieobecni / brak głosu) — nie udawaj, że
+  // się wstrzymała; pokaż neutralne "Nie głosowała".
+  if (max === 0) return {cls:'stance-none', key:'none'};
+  // Stanowisko jednoznaczne tylko gdy jeden kierunek dominuje.
+  const tied = [za,prz,wst].filter(v => v === max).length > 1;
+  if (tied) return {cls:'stance-mixed', key:'mixed'};
+  if (max === za) return {cls:'stance-za', key:'za'};
+  if (max === prz) return {cls:'stance-przeciw', key:'przeciw'};
+  return {cls:'stance-wstrzymal', key:'wstrzymal_sie'};
+}
+
+function renderFactionVotes(vote) {
+  const fv = vote.faction_votes || {};
+  const entries = Object.entries(fv);
+  // Sortuj malejąco po liczbie reprezentowanych głosów (seats lub suma).
+  entries.sort((a,b) => {
+    const ta = (a[1].seats != null) ? a[1].seats : (a[1].za||0)+(a[1].przeciw||0)+(a[1].wstrzymal_sie||0)+(a[1].brak_glosu||0)+(a[1].nieobecni||0);
+    const tb = (b[1].seats != null) ? b[1].seats : (b[1].za||0)+(b[1].przeciw||0)+(b[1].wstrzymal_sie||0)+(b[1].brak_glosu||0)+(b[1].nieobecni||0);
+    return tb - ta;
+  });
+  const stanceLabel = {za:'Za', przeciw:'Przeciw', wstrzymal_sie:'Wstrzymał się', mixed:'Podzielona', none:'Nie głosowała'};
+  const rowsHtml = entries.map(([name, g]) => {
+    const za = g.za||0, prz = g.przeciw||0, wst = g.wstrzymal_sie||0;
+    const brak = g.brak_glosu||0, nieob = g.nieobecni||0;
+    const cast = za + prz + wst;
+    const total = cast + brak + nieob;
+    const st = factionStance(g);
+    const seats = (g.seats != null) ? g.seats : total;
+    const seg = (n) => total > 0 ? Math.max(n/total*100, n > 0 ? 4 : 0) : 0;
+    const swatch = (typeof clubColor === 'function') ? clubColor(name) : 'var(--muted)';
+    let bar = '';
+    if (total > 0) {
+      bar = `<div class="faction-bar">
+        ${za>0?`<div style="width:${seg(za)}%;background:rgba(34,197,94,0.85)" title="Za: ${za}">${za}</div>`:''}
+        ${prz>0?`<div style="width:${seg(prz)}%;background:rgba(239,68,68,0.85)" title="Przeciw: ${prz}">${prz}</div>`:''}
+        ${wst>0?`<div style="width:${seg(wst)}%;background:rgba(234,179,8,0.85)" title="Wstrzymał się: ${wst}">${wst}</div>`:''}
+        ${brak>0?`<div style="width:${seg(brak)}%;background:rgba(139,141,151,0.5)" title="Brak głosu: ${brak}">${brak}</div>`:''}
+        ${nieob>0?`<div style="width:${seg(nieob)}%;background:rgba(75,85,99,0.5)" title="Nieobecni: ${nieob}">${nieob}</div>`:''}
+      </div>`;
+    } else {
+      bar = `<div style="color:var(--muted);font-size:0.82rem">—</div>`;
+    }
+    return `<div class="faction-row">
+      <div class="faction-row-head">
+        <span class="faction-row-name"><span class="faction-row-swatch" style="background:${swatch}"></span>${name}</span>
+        <span class="faction-stance ${st.cls}">${stanceLabel[st.key]||stanceLabel.mixed}</span>
+        <span class="faction-row-meta">${seats} ${seats === 1 ? 'mandat' : 'mandatów'}</span>
+      </div>
+      ${bar}
+    </div>`;
+  }).join('');
+
+  return `<div class="section">
+    <div class="vote-cat-header">Głosowanie według frakcji</div>
+    <div class="faction-rows">${rowsHtml}</div>
+    <div class="faction-legend">
+      <span><i style="background:rgba(34,197,94,0.85)"></i>Za</span>
+      <span><i style="background:rgba(239,68,68,0.85)"></i>Przeciw</span>
+      <span><i style="background:rgba(234,179,8,0.85)"></i>Wstrzymał się</span>
+      <span><i style="background:rgba(139,141,151,0.5)"></i>Brak głosu</span>
+      <span><i style="background:rgba(75,85,99,0.5)"></i>Nieobecni</span>
+    </div>
+  </div>`;
+}
+
+function factionNoticeHtml() {
+  return `<div class="faction-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <span>W tym regionie głosowania imienne (per radny) nie są publicznie protokołowane. Pokazujemy wynik w rozbiciu na frakcje, zgodnie z oficjalnym protokołem.</span>
+  </div>`;
+}
+
 async function showVote(voteId) {
   trackEvent('view_vote', {vote_id: voteId});
 
@@ -2399,6 +2514,7 @@ async function showVote(voteId) {
   const c = vote.counts || {};
   // API returns already resolved named_votes
   const nv = vote.named_votes || {};
+  const factionMode = isFactionVote(vote);
   const total = (c.za||0) + (c.przeciw||0) + (c.wstrzymal_sie||0);
   const passed = vote.passed !== undefined ? vote.passed : (c.za||0) > total/2;
   const allVoted = (c.za||0) + (c.przeciw||0) + (c.wstrzymal_sie||0) + (c.brak_glosu||0) + (c.nieobecni||0);
@@ -2443,6 +2559,7 @@ async function showVote(voteId) {
         )}
       </div>
     </div>
+    ${factionMode ? factionNoticeHtml() : ''}
 
     <div class="profile-metrics" style="margin-bottom:24px">
       <div class="metric-card">
@@ -2479,6 +2596,7 @@ async function showVote(voteId) {
       <div style="width:${barW(c.nieobecni||0)}%;background:rgba(75,85,99,0.5)">${c.nieobecni||0}</div>
     </div>
 
+    ${factionMode ? renderFactionVotes(vote) : `
     <div class="section">
       <div class="vote-cat-header" style="color:var(--green)">Za (${(nv.za||[]).length})</div>
       ${renderNameList(nv.za, 'rgba(34,197,94,0.08)')}
@@ -2494,7 +2612,7 @@ async function showVote(voteId) {
 
       <div class="vote-cat-header">Nieobecni (${(nv.nieobecni||[]).length})</div>
       ${renderNameList(nv.nieobecni, 'rgba(75,85,99,0.05)')}
-    </div>
+    </div>`}
   `;
 
   view.innerHTML = html;
