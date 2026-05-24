@@ -758,7 +758,11 @@ def main():
     # użytkownika, nie na atrybutach HTML).
     locale_lower = locale.lower()
     if locale_lower != "pl":
-        og_locale_map = {"de": "de_DE", "cs": "cs_CZ", "en": "en_US"}
+        og_locale_map = {
+            "de": "de_DE", "cs": "cs_CZ", "en": "en_US", "fr": "fr_FR",
+            "lt": "lt_LT", "et": "et_EE", "lv": "lv_LV", "nl": "nl_NL",
+            "sk": "sk_SK",
+        }
         og_locale = og_locale_map.get(locale_lower, locale_lower)
         html = html.replace('<html lang="pl">', f'<html lang="{locale_lower}">', 1)
         html = html.replace(

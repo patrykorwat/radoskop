@@ -253,6 +253,14 @@ PL_TO_EN: list[tuple[str, str]] = [
 
 
 PL_TO_DE: list[tuple[str, str]] = [
+    # ── Głosowania frakcyjne (regiony bez głosowań imiennych) ────────
+    ("W tym regionie głosowania imienne (per radny) nie są publicznie protokołowane. Pokazujemy wynik w rozbiciu na frakcje, zgodnie z oficjalnym protokołem.",
+     "In dieser Region werden namentliche Abstimmungen (pro Abgeordneten) nicht öffentlich protokolliert. Wir zeigen das Ergebnis nach Fraktionen, gemäß dem offiziellen Protokoll."),
+    ("Głosowanie według frakcji", "Abstimmung nach Fraktion"),
+    ("Nie głosowała", "Nicht abgestimmt"),
+    ("Podzielona", "Geteilt"),
+    ("mandatów", "Sitze"),
+    ("mandat", "Sitz"),
     ("Mapa dostępności z monitorowanymi miastami", "Verfügbarkeitskarte mit überwachten Städten"),
     ("Mapa dostępności", "Verfügbarkeitskarte"),
     # Auth / theme toggle
@@ -393,6 +401,159 @@ PL_TO_DE: list[tuple[str, str]] = [
     ("wyp.", "Beitr."),
     ("słów", "Wörter"),
     ("toLocaleString('pl')", "toLocaleString('de')"),
+]
+
+
+# Francja: głosowania domyślnie "à main levée", protokoły publikują wynik
+# per groupe politique, nie per radny. To główny region docelowy dla widoku
+# frakcyjnego (faction_votes / vote_mode == "faction"). Słownik mirroruje
+# strukturę PL_TO_DE — apply_locale i tak sortuje po długości DESC, więc
+# kolejność wpisów nie wpływa na poprawność.
+PL_TO_FR: list[tuple[str, str]] = [
+    # ── Votes par groupe (régions sans vote nominal) ─────────────────
+    ("W tym regionie głosowania imienne (per radny) nie są publicznie protokołowane. Pokazujemy wynik w rozbiciu na frakcje, zgodnie z oficjalnym protokołem.",
+     "Dans cette région, les votes nominaux (par élu) ne sont pas consignés publiquement. Nous présentons le résultat par groupe, conformément au procès-verbal officiel."),
+    ("Głosowanie według frakcji", "Vote par groupe"),
+    ("Nie głosowała", "N'a pas voté"),
+    ("Podzielona", "Partagé"),
+    ("mandatów", "sièges"),
+    ("mandat", "siège"),
+    ("Mapa dostępności z monitorowanymi miastami", "Carte de couverture des villes suivies"),
+    ("Mapa dostępności", "Carte de couverture"),
+    # Auth / theme toggle
+    ("Zaloguj się", "Se connecter"),
+    ("Wyloguj", "Se déconnecter"),
+    ("Ciemny", "Sombre"),
+    ("Jasny", "Clair"),
+    # Vote topic categories
+    ("Zdrowie/Społeczne", "Santé/Social"),
+    ("Inwestycje", "Investissements"),
+    ("Środowisko", "Environnement"),
+    ("Proceduralne", "Procédure"),
+    ("Kultura", "Culture"),
+    ("Transport", "Transport"),
+    ("Inne", "Autres"),
+    # ── Navigation et onglets ────────────────────────────────────────
+    ("Jak głosują radni Miasta {{CITY_GENITIVE}}? Dane z protokołów BIP.",
+     "Comment votent les élus de {{CITY_NAME}} ? Données issues des procès-verbaux officiels."),
+    ("Jak głosują radni?", "Comment votent les élus ?"),
+    ("Rada Miasta {{CITY_GENITIVE}}", "Conseil municipal de {{CITY_NAME}}"),
+    ("wszystkie miasta", "toutes les villes"),
+    ("Dane źródłowe:", "Données sources :"),
+    ("Raporty", "Rapports"),
+    ("Polityka prywatności", "Confidentialité"),
+    ("Regulamin", "Conditions d'utilisation"),
+    ("Najbardziej aktywni radni", "Élus les plus actifs"),
+    ("Najczęściej głosują tak samo", "Votent le plus souvent de même"),
+    ("Najrzadziej głosują tak samo", "Votent le moins souvent de même"),
+    ("Profile radnych", "Profils des élus"),
+    ("Ranking radnych", "Classement des élus"),
+    ("Kto z kim głosuje", "Qui vote avec qui"),
+    ("Wszystkie wyniki", "Tous les résultats"),
+    ("Lista interpelacji i zapytań", "Questions et interpellations"),
+    ("Interpelacje", "Interpellations"),
+    ("interpelacji", "interpellations"),
+    ("Strona główna", "Accueil"),
+    ("Powrót do listy", "Retour à la liste"),
+
+    # ── Filtres et tris ──────────────────────────────────────────────
+    ("Szukaj głosowań po temacie...", "Rechercher des votes par thème..."),
+    ("Szukaj w interpelacjach...", "Rechercher dans les interpellations..."),
+    ("Następna →", "Suivant →"),
+    ("Następne →", "Suivant →"),
+    ("Wszystkie", "Tous"),
+    ("Wszyscy", "Tous"),
+    ("Aktualności", "Actualités"),
+    ("Sortuj po", "Trier par"),
+    ("Filtruj", "Filtrer"),
+    ("Pokaż więcej", "Afficher plus"),
+    ("Pokaż mniej", "Afficher moins"),
+    ("Wyczyść", "Effacer"),
+    ("Pozostałe", "Autres"),
+
+    # ── Étiquettes dans les tableaux et fiches ──────────────────────
+    ("Aktywność na sesjach", "Activité en séance"),
+    ("Aktywność mówców", "Activité oratoire"),
+    ("Frekwencja", "Présence"),
+    ("Aktywność", "Activité"),
+    ("Zgodność z klubem", "Discipline de groupe"),
+    ("Podobieństwo", "Similarité"),
+    ("Wbrew klubowi", "Contre le groupe"),
+    ("Buntów", "Dissidences"),
+    ("Sesji z wypowiedzią", "Séances avec intervention"),
+    ("Słów łącznie", "Mots au total"),
+    ("Mówców", "Orateurs"),
+    ("Słowa", "Mots"),
+    ("Słów", "Mots"),
+    ("Wystąpień", "Interventions"),
+    ("wystąpień", "interventions"),
+    ("Obecnych", "Présents"),
+    ("Obecni", "Présents"),
+    ("obecnych radnych", "élus présents"),
+    ("obecnych", "présents"),
+    ("Nieobecnych", "Absents"),
+    ("Nieobecni", "Absents"),
+    ("Głosowania", "Votes"),
+    ("Głosowanie", "Vote"),
+    ("głosowań", "votes"),
+    ("Sesje", "Séances"),
+    ("Sesja", "Séance"),
+    ("Komisje", "Commissions"),
+    ("Komisji", "Commissions"),
+    ("Klub", "Groupe"),
+    ("Kluby", "Groupes"),
+    ("Kadencje", "Mandatures"),
+    ("Kadencja", "Mandature"),
+    ("Radny/a", "Élu·e"),
+    ("Radnych", "Élus"),
+    ("Radni", "Élus"),
+    ("Okręg wyborczy", "Circonscription"),
+    ("Temat", "Thème"),
+    ("Treść", "Contenu"),
+    ("Odpowiedź", "Réponse"),
+    ("Data", "Date"),
+    ("Wyniki", "Résultats"),
+    ("Wynik", "Résultat"),
+
+    # ── Valeurs de vote (lorsque nominales, ex. scrutin public) ─────
+    ("Brak głosu", "N'a pas voté"),
+    ("Brak gł.", "Pas de vote"),
+    ("Wstrzymał się", "Abstention"),
+    ("Wstrzym.", "Abst."),
+    ("Wstrzymała się", "Abstention"),
+    ("Nieobecny", "Absent"),
+    ("Nieobecna", "Absente"),
+    ("Przyjęte", "Adopté"),
+    ("Przyjętych", "Adoptés"),
+    ("Odrzucone", "Rejeté"),
+    ("Przeciw", "Contre"),
+    ("Za", "Pour"),
+
+    # ── États et erreurs ─────────────────────────────────────────────
+    ("Brak danych dla tej kadencji", "Aucune donnée pour cette mandature"),
+    ("Brak danych o indywidualnych głosowaniach.", "Aucune donnée sur les votes individuels."),
+    ("Nie znaleziono głosowania.", "Vote introuvable."),
+    ("Nie znaleziono sesji.", "Séance introuvable."),
+    ("Błąd ładowania danych:", "Erreur de chargement des données :"),
+    ("Ładowanie...", "Chargement..."),
+
+    # ── Actions ──────────────────────────────────────────────────────
+    ("Udostępnij na Facebooku", "Partager sur Facebook"),
+    ("Udostępnij na X", "Partager sur X"),
+    ("Udostępnij", "Partager"),
+    ("Porównaj radnych", "Comparer les élus"),
+    ("Porównanie radnych", "Comparaison des élus"),
+    ("Porównaj", "Comparer"),
+    ("Przełącz motyw jasny/ciemny", "Basculer le thème clair/sombre"),
+
+    # ── Pied de page et mentions légales ────────────────────────────
+    ("Kontakt", "Contact"),
+
+    # ── Abréviations et petites étiquettes inline ───────────────────
+    ("Śr. słów/sesję", "Moy. mots/séance"),
+    ("wyp.", "interv."),
+    ("słów", "mots"),
+    ("toLocaleString('pl')", "toLocaleString('fr')"),
 ]
 
 
@@ -1508,6 +1669,7 @@ def apply_locale(html: str, locale: str) -> str:
     Locale "et" → słownik PL_TO_ET (Tallinn).
     Locale "lv" → słownik PL_TO_LV (Rīga).
     Locale "nl" → słownik PL_TO_NL (Amsterdam).
+    Locale "fr" → słownik PL_TO_FR (region frakcyjny, np. Paris/Lyon).
 
     Wymiana używa regex z negative lookbehind/lookahead na word characters,
     żeby pojedyncze słowa nie trafiały w identyfikatory JS lub CSS classes
@@ -1530,6 +1692,7 @@ def apply_locale(html: str, locale: str) -> str:
         "et": PL_TO_ET,
         "lv": PL_TO_LV,
         "nl": PL_TO_NL,
+        "fr": PL_TO_FR,
     }
     d = dictionaries.get(locale.lower())
     if d is None:
