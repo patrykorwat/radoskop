@@ -11,7 +11,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CITY_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-SHARED_SCRAPER="$(cd "$CITY_DIR/../../amsterdam/scripts" && pwd)/scrape_notubiz.py"
+SHARED_SCRAPER="$(cd "$CITY_DIR/../amsterdam/scripts" && pwd)/scrape_notubiz.py"
 
 echo "[denhaag] scrape_notubiz.py"
 python3 "$SHARED_SCRAPER" \

@@ -12,14 +12,19 @@ Brak dedykowanego JSON API per-radny — dane są server-side rendered.
 
 Źródło głosowań:
     https://amsterdam.raadsinformatie.nl/vergadering/{meeting_id}
-    Każda strona zawiera bloki <div id="voting_N"> z sekcjami votes_parties:
-        <div class="votes_list voor">  → za
-        <div class="votes_list against"> → przeciw
-        <div class="votes_list onthouden"> → wstrzymal_sie
-    Wewnątrz każdej sekcji: per-partia listy radnych z klasą CSS odpowiadającą wyniku.
+    Każda strona zawiera bloki <div id="voting_N"> z sekcjami votes_list:
+        <div class="votes_list in_favor"> → za
+        <div class="votes_list against">  → przeciw
+        <div class="votes_list abstain">  → wstrzymal_sie
+        <div class="votes_list divided">  → sekcja mieszana, klasa per-radny
+    Wewnątrz każdej sekcji: per-partia bloki <li tabindex="0">PARTIA<ul>...</ul></li>,
+    a każdy radny ma klasę CSS odpowiadającą jego głosowi.
     Nieobecni = councilor_count - suma głosów (wyciągane z aria-label).
 
-Mapowanie party_name → slug w config.party_name_to_slug.
+Przynależność klubowa: nazwa partii z bloku per-partia mapowana przez
+config.party_name_to_slug na slug klubu. Zebrane przypisania nazwisko → slug
+są zapisywane do config.club_assignments (merge, ręczne poprawki wygrywają),
+bo build_assembly_metrics.py czyta kluby właśnie stamtąd.
 
 Output: docs/kadencja-{id}.json w standardowym schemacie Radoskop.
 
@@ -58,13 +63,15 @@ SLEEP_BETWEEN_CALLS = 0.3
 CATEGORIES = ("za", "przeciw", "wstrzymal_sie", "brak_glosu", "nieobecni")
 
 # CSS class na HTML -> kategoria Radoskop.
-# Amsterdam używa "voor/against/abstain", Den Haag używa "in_favor/against/abstain".
-# "divided" to sekcja z mieszanymi głosami — obsługiwana osobno w parse_voting_blocks.
+# Amsterdam i Den Haag używają tych samych klas "in_favor/against/abstain".
+# "voor" i "onthouden" to starsze warianty markupu trzymane jako fallback.
+# "divided" to sekcja z mieszanymi głosami, obsługiwana osobno w parse_voting_blocks.
 CSS_CLASS_TO_VOTE = {
-    "voor": "za",
-    "in_favor": "za",      # Den Haag
+    "in_favor": "za",
+    "voor": "za",            # starszy wariant
     "against": "przeciw",
     "abstain": "wstrzymal_sie",
+    "onthouden": "wstrzymal_sie",  # starszy wariant
 }
 
 # Wynik głosowania (z aria-label) -> stała Radoskop
@@ -243,8 +250,12 @@ def parse_voting_blocks(
     """
     party_map: dict[str, str] = config.get("party_name_to_slug", {})
     result_map: dict[str, str] = config.get("result_text_map", {})
-    vote_map: dict[str, str] = config.get("vote_text_map", {})
     councilor_count: int = config.get("councilor_count", 45)
+
+    def _party_slug(raw_party: str) -> str:
+        """Mapuje nazwę partii z HTML na slug klubu. Nieznane -> 'NZ'."""
+        name = _strip_tags(raw_party).strip()
+        return party_map.get(name, "NZ")
 
     # Każdy blok głosowania to: <div id="voting_N" ...>...</div>
     # Kończymy gdy zaczyna się kolejny voting_ lub koniec listy
@@ -274,9 +285,11 @@ def parse_voting_blocks(
         afwezig_m = re.search(r'afwezig:\s*(\d+)', aria_text, re.I)
         afwezig = int(afwezig_m.group(1)) if afwezig_m else 0
 
-        # Sekcje votes_list: voor / against / onthouden
+        # Sekcje votes_list: in_favor / against / abstain / divided
         named_by_cat: dict[str, list[str]] = {c: [] for c in CATEGORIES}
         counts: dict[str, int] = {c: 0 for c in CATEGORIES}
+        # Przynależność klubowa zebrana z bloków per-partia w tym głosowaniu.
+        club_by_name: dict[str, str] = {}
 
         # votes_list zawiera tylko ul/li/h5 — zero nested div,
         # więc pierwszy </div> zamyka tę sekcję.
@@ -289,36 +302,40 @@ def parse_voting_blocks(
             r'<li\s+tabindex="0">([^<]+?)\s*<ul>(.*?)</ul>\s*</li>',
             re.S,
         )
-        # Regex dla nazw członków — obsługuje voor/in_favor/against/abstain
+        # Regex dla nazw członków — obsługuje in_favor/against/abstain plus warianty
         member_re = re.compile(
-            r'<li\s+class="(voor|in_favor|against|abstain)">([^<]+)</li>'
+            r'<li\s+class="(in_favor|voor|against|abstain|onthouden)">([^<]+)</li>'
         )
 
         for sec_m in section_pattern.finditer(block):
-            css_class = sec_m.group(1)    # "voor"/"in_favor"/"against"/"abstain"/"divided"
+            css_class = sec_m.group(1)    # "in_favor"/"against"/"abstain"/"divided"/...
             sec_html = sec_m.group(2)
 
             if css_class == "divided":
                 # Sekcja "verdeeld": każdy członek ma własną klasę głosu.
                 # Iterujemy per-partia i per-członek z indywidualną klasą.
                 for pb in party_block_pattern.finditer(sec_html):
+                    slug = _party_slug(pb.group(1))
                     members_html = pb.group(2)
                     for mem_m in member_re.finditer(members_html):
                         ind_cat = CSS_CLASS_TO_VOTE.get(mem_m.group(1))
                         ind_name = mem_m.group(2).strip()
                         if ind_cat and ind_name:
                             named_by_cat[ind_cat].append(ind_name)
+                            club_by_name[ind_name] = slug
             else:
                 # Wszyscy w sekcji głosowali tak samo — mapuj klasę sekcji
                 cat = CSS_CLASS_TO_VOTE.get(css_class)
                 if not cat:
                     continue
                 for pb in party_block_pattern.finditer(sec_html):
+                    slug = _party_slug(pb.group(1))
                     members_html = pb.group(2)
                     for mem_m in member_re.finditer(members_html):
                         name = mem_m.group(2).strip()
                         if name:
                             named_by_cat[cat].append(name)
+                            club_by_name[name] = slug
 
         # Zlicz
         for cat, names in named_by_cat.items():
@@ -344,6 +361,7 @@ def parse_voting_blocks(
             "counts": counts,
             "named_by_cat": named_by_cat,
             "all_names": all_names,
+            "club_by_name": club_by_name,
         })
 
     return result_votes
@@ -387,6 +405,13 @@ def build_kadencja(
         all_names.update(v.get("all_names", set()))
     councilor_index = sorted(all_names)
     name_to_idx = {n: i for i, n in enumerate(councilor_index)}
+
+    # Przynależność klubowa nazwisko -> slug (ostatni zaobserwowany wygrywa).
+    club_assignments: dict[str, str] = {}
+    for v in votes_in_kad:
+        for name, slug in v.get("club_by_name", {}).items():
+            if name in name_to_idx and slug:
+                club_assignments[name] = slug
 
     # Zbuduj votes_flat
     votes_flat: list[dict[str, Any]] = []
@@ -453,6 +478,7 @@ def build_kadencja(
         "sessions": sessions,
         "votes": votes_flat,
         "councilor_index": councilor_index,
+        "club_assignments": club_assignments,
     }
 
 
@@ -526,12 +552,16 @@ def main() -> int:
     )
     scraped_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
+    collected_clubs: dict[str, str] = {}
+
     for kid in kadencje_to_generate:
         kdef = config["kadencje"][kid]
         built = build_kadencja(all_votes, meetings, config, kid)
         if not built["votes"]:
             print(f"[{city_tag}] skip kadencja-{kid}: 0 głosowań", file=sys.stderr)
             continue
+
+        collected_clubs.update(built.get("club_assignments", {}))
 
         out = {
             "id": kid,
@@ -551,6 +581,28 @@ def main() -> int:
             f"{len(built['councilor_index'])} radnych",
             file=sys.stderr,
         )
+
+    # Zaktualizuj club_assignments w config.json na podstawie zebranych partii.
+    # build_assembly_metrics.py czyta kluby z config["club_assignments"],
+    # więc bez tego wszyscy radni mają klub "NZ".
+    if collected_clubs:
+        try:
+            with open(args.config, "r", encoding="utf-8") as f:
+                cfg = json.load(f)
+            existing = cfg.get("club_assignments", {})
+            # Ręczne poprawki wygrywają nad świeżo zescrapowanymi.
+            merged = {**collected_clubs, **existing}
+            cfg["club_assignments"] = merged
+            with open(args.config, "w", encoding="utf-8") as f:
+                json.dump(cfg, f, ensure_ascii=False, indent=2)
+            print(
+                f"[{city_tag}] zaktualizowano club_assignments "
+                f"({len(merged)} radnych) w {Path(args.config).name}",
+                file=sys.stderr,
+            )
+        except Exception as exc:
+            print(f"[{city_tag}] WARN: nie można zaktualizować config.json: {exc}",
+                  file=sys.stderr)
 
     return 0
 
