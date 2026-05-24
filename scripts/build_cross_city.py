@@ -144,6 +144,13 @@ def build_cross_city_json(base_path: Path, output_path: Path):
             continue
 
         config = city_info['config']
+
+        # Miasta z "disabled": true (paris frakcyjny z danymi przykładowymi,
+        # rostock zablokowany) nie wchodzą do cross-city porównania.
+        if config.get('disabled'):
+            print(f"Skipping {city_dir.name}: disabled w config.json")
+            continue
+
         kadencja = get_kadencja_data(city_info)
 
         if not kadencja:

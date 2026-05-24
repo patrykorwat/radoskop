@@ -119,15 +119,66 @@ SECTION_NAMES = {
     "Nicht abgestimmt": "brak_glosu",
 }
 
-# Wpis na liście: "(AfD) Mustermann, Max" lub "(BÜNDNIS 90/DIE GRÜNEN) Schmidt, Anna"
-# Niektórzy posłowie mają tytuł akademicki w nawiasie po nazwisku, np.
-# "(SPD) Northoff (Prof. Dr.), Robert" albo "(SPD) Backhaus (Dr.), Till".
-# Klasa znaków obejmuje też `(` i `)` w body nazwiska. Tytuł jest potem
-# zdejmowany w preprocessingu (post_strip_title).
+# Votebox ma DWA szablony PDF (potwierdzone na realnych plikach 8. WP):
+#   1. "ABSTIMMUNGSPROTOKOLL" (np. 117. Sitzung) — czyste nagłówki sekcji
+#      "Ja 28 Stimmen" w osobnych liniach + nazwiska rozdzielone średnikami
+#      z przecinkiem: "(AfD) de Jesus-Fernandes, Thomas; (AfD) Federau, Petra".
+#   2. "ABSTIMMUNGSERGEBNIS" (np. 98. Sitzung) — nagłówki tylko jako linia
+#      podsumowania z procentem "Ja 43,94% 29 Stimmen", nazwiska BEZ przecinka
+#      w osobnych liniach, układ dwukolumnowy. Z czystego tekstu pdfplumbera
+#      kolejność czytania jest pomieszana i nie da się pewnie przypisać nazwisk
+#      do sekcji — dlatego dla tego szablonu bierzemy tylko liczniki zbiorcze
+#      (counts) z nagłówka, a listy imienne walidujemy i odrzucamy, jeśli nie
+#      zgadzają się z licznikami (patrz parse_votebox_text + names_reliable).
+
+# Wpis pojedynczego posła w sekcji. Body przetwarzamy osobno (przecinek
+# opcjonalny), więc tu łapiemy tylko "(Fraktion) reszta".
+ENTRY_RE = re.compile(r"\(([^)]+)\)\s*(.+)", re.DOTALL)
+
+# Stary monolityczny NAME_RE (wymagał przecinka) — zostawiony dla zgodności
+# z ewentualnymi importami, ale parser już go nie używa.
 NAME_RE = re.compile(r"\(([^)]+)\)\s*([\wÄÖÜäöüß\-\.\s\(\)]+?,\s*[\wÄÖÜäöüß\-\.\s]+)")
 # Tytuł akademicki w nawiasach po nazwisku (Prof. Dr.) lub (Dr.) - usuwamy
 # żeby dwóch posłów o tym samym nazwisku nie pojawiało się jako różni.
 TITLE_PAREN_RE = re.compile(r"\s*\([^)]+\)\s*")
+
+# Liczniki zbiorcze z linii podsumowania. Tolerancyjne na: opcjonalny ":"/"-",
+# opcjonalny procent ("43,94%" albo "43,08 %"), opcjonalne "Stimmen".
+# Działa dla obu szablonów Votebox. Każda etykieta brana z PIERWSZEGO
+# wystąpienia (to zawsze blok podsumowania na górze protokołu).
+COUNT_LABELS = {
+    "Ja": "za",
+    "Nein": "przeciw",
+    "Enthaltung": "wstrzymal_sie",
+    "Nicht abgestimmt": "brak_glosu",
+}
+
+
+def _count_re(label: str) -> re.Pattern:
+    return re.compile(
+        r"(?<![A-Za-zÄÖÜäöüß])" + re.escape(label) +
+        r"\s*[:\-]?\s*"
+        r"(?:\d{1,3}(?:[.,]\d+)?\s*%\s*)?"   # opcjonalny procent
+        r"(\d{1,3})(?![\d.,])"                # liczba głosów
+    )
+
+
+_COUNT_PATTERNS = {label: _count_re(label) for label in COUNT_LABELS}
+
+
+def extract_section_counts(text: str) -> dict[str, int]:
+    """Wyciągnij liczniki za/przeciw/wstrzymal_sie/brak_glosu z nagłówka.
+
+    Pewne źródło wyniku niezależnie od tego, czy listy imienne dadzą się
+    sparsować. "Nicht abgestimmt" sprawdzane PRZED "Ja"/"Nein", a literał
+    zawiera "Nicht ", więc nie myli się z nagłówkowym "Abgestimmt:".
+    """
+    counts = {"za": 0, "przeciw": 0, "wstrzymal_sie": 0, "brak_glosu": 0, "nieobecni": 0}
+    for label, cat in COUNT_LABELS.items():
+        m = _COUNT_PATTERNS[label].search(text)
+        if m:
+            counts[cat] = int(m.group(1))
+    return counts
 
 
 def fetch(url: str, timeout: int = 15) -> str:
@@ -256,84 +307,148 @@ def _extract_pdf_text_safe(pdf_path: Path) -> str:
             return ""
 
 
-def parse_pdf_text(pdf_path: Path) -> dict:
-    """Wyciąg metadata i listy imienne z PDF Votebox.
+# Nagłówek sekcji listy imiennej w szablonie PROTOKOLL: osobna linia
+# "Ja 28 Stimmen" (BEZ procentu — linia podsumowania "Ja 43,08 % 28 Stimmen"
+# jest świadomie pomijana, bo ma "%").
+SECTION_HEADER_RE = re.compile(
+    r"^(Ja|Nein|Enthaltung|Nicht abgestimmt)"
+    r"\s*[:\-]?\s*"
+    r"(\d+)"
+    r"(?:\s+Stimmen)?"
+    r"\s*$",
+    re.MULTILINE,
+)
 
-    Zwraca:
-        {
-            "topic": str,
-            "drucksache": str | None,
-            "result": str | None,
-            "session_time": str | None,
-            "named_votes": {"za": [...], "przeciw": [...], ...},
-            "councilor_clubs": {nazwisko_imie: fraktion}  # do zbierania clubów
-        }
+# Temat: linia "Antrag/Gesetzentwurf/... ... Drucksache N/NNNN".
+TOPIC_ALT_RE = re.compile(
+    r"((?:Antrag|Gesetzentwurf|Beschlussempfehlung|Entschlie[ßs]ungsantrag|"
+    r"Änderungsantrag|Unterrichtung)\b.+?)(?:[-–]\s*)?Drucksache",
+    re.DOTALL,
+)
+
+
+def _normalize_name(fraktion: str, body: str) -> str:
+    """'(Fraktion) Nachname, Vorname' / 'Nachname Vorname' -> 'Vorname Nachname'.
+
+    Tytuły akademickie w nawiasach ((Dr.), (Prof. Dr.)) usuwamy, żeby ten sam
+    poseł nie pojawiał się jako dwie osoby. Bez przecinka (szablon ERGEBNIS)
+    zostawiamy surowo — i tak walidacja odrzuci te listy, bo z dwukolumnowego
+    tekstu nie da się pewnie przypisać nazwisk do sekcji.
     """
-    text = _extract_pdf_text_safe(pdf_path)
+    body = re.sub(r"\s+", " ", body).strip().rstrip(";").strip()
+    if "," in body:
+        nach, vor = [s.strip() for s in body.split(",", 1)]
+        nach = TITLE_PAREN_RE.sub(" ", nach).strip()
+        vor = TITLE_PAREN_RE.sub(" ", vor).strip()
+        return f"{vor} {nach}".strip()
+    return TITLE_PAREN_RE.sub(" ", body).strip()
 
-    # Header
+
+def _strip_noise(text: str) -> str:
+    """Usuń stopkę Votebox i nagłówki strony, które zaśmiecają listy nazwisk.
+
+    Bez tego ostatni wpis sekcji wciągał stopkę ("... Martina\\nElektronische
+    Abstimmung über Votebox ...") i tworzył nazwisko-śmiecia — dokładnie taki
+    garbage trafił wcześniej do club_assignments.
+    """
+    text = re.sub(r"Elektronische Abstimmung über Votebox[^\n]*", "", text)
+    text = re.sub(
+        r"^\s*(?:LANDTAG MECKLENBURG-VORPOMMERN|"
+        r"ABSTIMMUNGS(?:PROTOKOLL|ERGEBNIS))\s*$",
+        "", text, flags=re.MULTILINE,
+    )
+    text = re.sub(r"^\s*\d{1,3}\.?\s*[Ss]itzung\b[^\n]*$", "", text, flags=re.MULTILINE)
+    return text
+
+
+def parse_votebox_text(text: str) -> dict:
+    """Czysty parser tekstu protokołu Votebox (testowalny bez PDF/sieci).
+
+    Obsługuje OBA szablony Votebox:
+      * liczniki (counts) bierze z nagłówka podsumowania — pewne dla obu
+        szablonów (extract_section_counts),
+      * listy imienne parsuje z sekcji (szablon PROTOKOLL),
+      * waliduje: jeśli liczba nazwisk w którejś sekcji != licznik z nagłówka,
+        ustawia names_reliable=False i ZWRACA PUSTE listy imienne — lepiej
+        pokazać sam wynik zbiorczy niż błędne / zerowe nazwiska (regresja,
+        która psuła 4 z 5 głosowań szablonu ERGEBNIS).
+
+    Zwraca dict: topic, drucksache, result, counts, named_votes,
+    councilor_clubs, names_reliable.
+    """
+    text = _strip_noise(text)
+
     drucksache_m = HEADER_DRUCKSACHE_RE.search(text)
     drucksache = drucksache_m.group(1).strip() if drucksache_m else None
     result_m = HEADER_RESULT_RE.search(text)
     result = result_m.group(1).strip() if result_m else None
-    title_m = HEADER_TITLE_RE.search(text)
-    topic = title_m.group(1).strip().replace("\n", " ") if title_m else ""
-    topic = re.sub(r"\s+", " ", topic)[:300]
 
-    # Sekcje imienne
+    topic = ""
+    title_m = HEADER_TITLE_RE.search(text)
+    if title_m:
+        topic = title_m.group(1)
+    else:
+        alt_m = TOPIC_ALT_RE.search(text)
+        if alt_m:
+            topic = alt_m.group(1)
+    topic = re.sub(r"\s+", " ", topic).strip()[:300]
+
+    # 1) Liczniki zbiorcze — pewne źródło wyniku.
+    counts = extract_section_counts(text)
+
+    # 2) Listy imienne (szablon PROTOKOLL: nagłówki sekcji + body ze średnikami).
     named_votes: dict[str, list[str]] = {
         "za": [], "przeciw": [], "wstrzymal_sie": [], "brak_glosu": [], "nieobecni": []
     }
     councilor_clubs: dict[str, str] = {}
 
-    # Podziel tekst na sekcje. Format Votebox MV:
-    #   Summary line: "Ja 43,08 % 28 Stimmen" (procenty - skip)
-    #   Section header: "Ja 28 Stimmen" albo "Ja: 28" albo "Ja - 28"
-    #   Body: "(AfD) Nachname, Vorname; (AfD) ..."
-    # Pattern v2: tolerantny na różne separatory po label oraz brak "Stimmen"
-    # w niektórych wariantach Votebox. Wymaga że po label idzie liczba (przed
-    # ewentualnym "Stimmen") plus NIE jest poprzedzona "%" (to skipuje summary).
-    section_pattern = re.compile(
-        r"^(Ja|Nein|Enthaltung|Nicht abgestimmt)"
-        r"\s*[:\-]?\s*"           # opcjonalny ":" albo "-"
-        r"(\d+)"                  # liczba
-        r"(?:\s+Stimmen)?"        # opcjonalne "Stimmen"
-        r"\s*$",
-        re.MULTILINE,
-    )
-    matches = list(section_pattern.finditer(text))
+    matches = list(SECTION_HEADER_RE.finditer(text))
     for i, m in enumerate(matches):
-        section_label = m.group(1)
-        target_cat = SECTION_NAMES.get(section_label)
+        target_cat = SECTION_NAMES.get(m.group(1))
         if not target_cat:
             continue
         start = m.end()
         end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
         chunk = text[start:end]
-        for nm in NAME_RE.finditer(chunk):
-            fraktion = nm.group(1).strip()
-            name_raw = nm.group(2).strip()
-            # "Nachname, Vorname" -> "Vorname Nachname" (Radoskop convention)
-            if "," in name_raw:
-                nach, vor = [s.strip() for s in name_raw.split(",", 1)]
-                # Usuń tytuł akademicki z nazwiska, np. "Northoff (Prof. Dr.)"
-                # → "Northoff". Bez tego ten sam poseł pojawiałby się jako
-                # różny w sesjach gdzie format byłby inny.
-                nach = TITLE_PAREN_RE.sub("", nach).strip()
-                vor = TITLE_PAREN_RE.sub("", vor).strip()
-                name = f"{vor} {nach}"
-            else:
-                name = TITLE_PAREN_RE.sub("", name_raw).strip()
+        # Wpisy rozdzielone średnikami. Newline NIE jest separatorem — bywa
+        # zawinięciem w środku wpisu ("(AfD) Reuken, \nStephan J.;").
+        for piece in chunk.split(";"):
+            em = ENTRY_RE.match(piece.strip())
+            if not em:
+                continue
+            fraktion = em.group(1).strip()
+            name = _normalize_name(fraktion, em.group(2))
+            if not name:
+                continue
             named_votes[target_cat].append(name)
             councilor_clubs[name] = fraktion
 
+    # 3) Walidacja: liczba nazwisk per sekcja musi zgadzać się z licznikiem.
+    names_reliable = all(
+        len(named_votes[cat]) == counts[cat]
+        for cat in ("za", "przeciw", "wstrzymal_sie", "brak_glosu")
+    )
+    # Dodatkowy bezpiecznik: nie ufaj pojedynczym strzępkom (np. 1 fantomowy
+    # głos przy zerowych licznikach), które dawały efekt "counts = same zera".
+    if not names_reliable:
+        named_votes = {k: [] for k in named_votes}
+        councilor_clubs = {}
+
     return {
-        "topic": topic or f"Abstimmung Drs. {drucksache}" if drucksache else "Namentliche Abstimmung",
+        "topic": topic or (f"Abstimmung Drs. {drucksache}" if drucksache else "Namentliche Abstimmung"),
         "drucksache": drucksache,
         "result": result,
+        "counts": counts,
         "named_votes": named_votes,
         "councilor_clubs": councilor_clubs,
+        "names_reliable": names_reliable,
     }
+
+
+def parse_pdf_text(pdf_path: Path) -> dict:
+    """Wrapper: wyciąga tekst z PDF i deleguje do parse_votebox_text."""
+    text = _extract_pdf_text_safe(pdf_path)
+    return parse_votebox_text(text)
 
 
 def passed_from_counts(counts: dict, result_str: str | None) -> bool | None:
@@ -495,10 +610,10 @@ def build_kadencja(
         total_named = sum(len(v) for v in parsed['named_votes'].values())
         log(f"    parsed in {time.time()-t0:.1f}s, {total_named} głosów imiennych")
 
-        # Debug dump: jeśli wyciągnięto podejrzanie mało imion (< 10, podczas
-        # gdy Landtag ma 79 posłów), zapisz PDF text żeby zdiagnozować
-        # nieobsługiwany format. Limit 5 sampleów per run.
-        if total_named < 10 and cache_dir:
+        # Debug dump: jeśli listy imienne nie przeszły walidacji względem
+        # liczników (nieobsługiwany / dwukolumnowy szablon), zapisz PDF text
+        # żeby zdiagnozować format. Limit 5 sampleów per run.
+        if not parsed.get("names_reliable", True) and cache_dir:
             debug_dir = cache_dir / "parse_debug_unparseable"
             debug_dir.mkdir(exist_ok=True)
             existing = list(debug_dir.glob("*.txt"))
@@ -511,7 +626,16 @@ def build_kadencja(
                 except Exception:
                     pass
 
-        counts = {cat: len(parsed["named_votes"][cat]) for cat in parsed["named_votes"]}
+        # Liczniki bierzemy z nagłówka (pewne dla obu szablonów Votebox), NIE
+        # z długości list imiennych — inaczej szablon ERGEBNIS dawał same zera.
+        counts = parsed["counts"]
+        names_reliable = parsed.get("names_reliable", True)
+        if not names_reliable:
+            log(
+                f"    UWAGA: listy imienne niespójne z licznikami "
+                f"(counts={counts}) — zapisuję sam wynik zbiorczy bez nazwisk "
+                f"[{meta['filename']}]"
+            )
         # Vote ID: data_TOP-numer (np. 2025-10-10_TOP35)
         vote_id = f"{meta['session_date']}_TOP{meta['top']}"
 
@@ -532,6 +656,7 @@ def build_kadencja(
             "resolution": parsed.get("result"),
             "counts": counts,
             "named_votes": parsed["named_votes"],
+            "named_votes_available": names_reliable,
             "passed": passed_from_counts(counts, parsed.get("result")),
         })
 

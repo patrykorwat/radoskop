@@ -719,43 +719,15 @@ def append_to_cities_meta(slug: str, voivodeship: str, population: Optional[int]
 
 
 def register_in_pipeline(slug: str, dry_write: bool = False) -> list[str]:
-    """Dopisuje slug do ALL_CITIES w scrape_all.sh + run_pipeline.py.
+    """No-op: rejestracja miasta w pipeline jest teraz automatyczna.
 
-    Zwraca listę plików które zostały zmienione (do raportowania).
+    `run_pipeline.py` (discover_all_cities) i `scrape_all.sh` odkrywają miasta
+    z `radoskop/cities/*/config.json` — samo utworzenie configu wystarcza, nie
+    trzeba dopisywać sluga do żadnej listy. Wcześniej ta funkcja łatała dwie
+    sztywne listy ALL_CITIES regexem; po przejściu na auto-discovery zostawiamy
+    pustą implementację (zgodność API z callerami).
     """
-    changed = []
-    # scrape_all.sh: linia ALL_CITIES=(... )
-    if SCRAPE_ALL_SH.is_file():
-        text = SCRAPE_ALL_SH.read_text(encoding="utf-8")
-        if f" {slug})" not in text and f"{slug} " not in text and f"({slug}" not in text:
-            new_text = re.sub(
-                r"(ALL_CITIES=\([^)]*?)(\))",
-                lambda m: m.group(1).rstrip() + f" {slug}" + m.group(2),
-                text,
-                count=1,
-            )
-            if new_text != text and not dry_write:
-                SCRAPE_ALL_SH.write_text(new_text, encoding="utf-8")
-                changed.append(str(SCRAPE_ALL_SH))
-            elif dry_write:
-                changed.append(str(SCRAPE_ALL_SH))
-    # run_pipeline.py: lista ALL_CITIES w Pythonie
-    if RUN_PIPELINE_PY.is_file():
-        text = RUN_PIPELINE_PY.read_text(encoding="utf-8")
-        if f'"{slug}"' not in text:
-            # Insert przed zamknięciem `]` listy ALL_CITIES (multiline).
-            new_text = re.sub(
-                r"(ALL_CITIES\s*=\s*\[(?:[^\]]|\n)*?)(\n\])",
-                lambda m: m.group(1).rstrip(",\n ") + f',\n    "{slug}",  # NEW: auto-added by add_city.py' + m.group(2),
-                text,
-                count=1,
-            )
-            if new_text != text and not dry_write:
-                RUN_PIPELINE_PY.write_text(new_text, encoding="utf-8")
-                changed.append(str(RUN_PIPELINE_PY))
-            elif dry_write:
-                changed.append(str(RUN_PIPELINE_PY))
-    return changed
+    return []
 
 
 # ---------------------------------------------------------------------------

@@ -261,6 +261,15 @@ PL_TO_DE: list[tuple[str, str]] = [
     ("Podzielona", "Geteilt"),
     ("mandatów", "Sitze"),
     ("mandat", "Sitz"),
+    # ── Głosowania przez podniesienie ręki (wynik bez decompte) ──────
+    ("W tym gremium głosowania odbywają się przez podniesienie ręki. Protokół podaje wynik głosowania, bez rozbicia na pojedyncze głosy ani frakcje.",
+     "In diesem Gremium wird per Handzeichen abgestimmt. Das Protokoll gibt das Abstimmungsergebnis an, ohne Aufschlüsselung nach einzelnen Stimmen oder Fraktionen."),
+    ("Przez podniesienie ręki", "Per Handzeichen"),
+    ("W głosowaniu imiennym", "In namentlicher Abstimmung"),
+    ("Tryb głosowania", "Abstimmungsart"),
+    ("Wniosek złożony przez", "Eingebracht von"),
+    ("Wycofane", "Zurückgezogen"),
+    ("Odroczone", "Vertagt"),
     ("Mapa dostępności z monitorowanymi miastami", "Verfügbarkeitskarte mit überwachten Städten"),
     ("Mapa dostępności", "Verfügbarkeitskarte"),
     # Auth / theme toggle
@@ -418,6 +427,15 @@ PL_TO_FR: list[tuple[str, str]] = [
     ("Podzielona", "Partagé"),
     ("mandatów", "sièges"),
     ("mandat", "siège"),
+    # ── Vote à main levée (résultat sans décompte) ───────────────────
+    ("W tym gremium głosowania odbywają się przez podniesienie ręki. Protokół podaje wynik głosowania, bez rozbicia na pojedyncze głosy ani frakcje.",
+     "Dans cette assemblée, les votes ont lieu à main levée. Le procès-verbal indique le résultat du vote, sans décompte nominatif ni détail par groupe."),
+    ("Przez podniesienie ręki", "À main levée"),
+    ("W głosowaniu imiennym", "Par scrutin public"),
+    ("Tryb głosowania", "Mode de vote"),
+    ("Wniosek złożony przez", "Déposé par"),
+    ("Wycofane", "Retiré"),
+    ("Odroczone", "Ajourné"),
     ("Mapa dostępności z monitorowanymi miastami", "Carte de couverture des villes suivies"),
     ("Mapa dostępności", "Carte de couverture"),
     # Auth / theme toggle

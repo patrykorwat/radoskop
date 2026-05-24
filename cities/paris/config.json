@@ -46,14 +46,20 @@
   "has_stenogram": false,
   "has_voting_data": true,
   "has_speaker_activity": false,
-  "disabled": true,
-  "disabled_reason": "Tryb frakcyjny (voting_display=faction). Config i kontrakt danych gotowe, scraper opendata.paris.fr / tableau des votes par groupe w fazie implementacji (scripts/scrape_paris.py to szkielet). Włączyć po pierwszym realnym scrapie. Brak głosowań imiennych — strukturalnie Tier 4, patrz eu_council_voting_analysis.md.",
-  "scrape_status": "planned_faction",
+  "voting_mode": "show_of_hands",
+  "scrape_status": "active",
+  "scrape_note": "Aktywny. Pipeline: cities/paris/scripts/run.sh -> scrape_paris.py --scrape odkrywa comptes rendus sommaires (cdn.paris.fr), parsuje wynik każdej pozycji (adopté/rejeté/retiré + modalité + wnioskodawca vœu) i pisze docs/kadencja-2020-2026.json + data.json + profiles.json (vote_mode show_of_hands). Dane głosowań pojawią się po pierwszym uruchomieniu scrape (wymaga sieci do paris.fr). Front renderuje przez isShowOfHandsVote/renderShowOfHands; i18n FR/DE komplet. Rozbicie na grupy tylko dla scrutins publics z PV intégral. Tło: eu_council_voting_analysis.md.",
   "currency": "€",
   "scrape": {
+    "runner": "run.sh",
     "opendata_portal": "https://opendata.paris.fr/",
-    "source_format": "tableau des votes par groupe (PDF / portail open data)",
-    "note": "Conseil de Paris vote à main levée. Pas de vote nominatif au PV. Le scraper produit des enregistrements via lib_faction_votes.make_faction_vote (counts agrégés depuis le tableau par groupe). Voir GLOSOWANIA_FRAKCYJNE.md."
+    "agenda_dataset": "ordre-du-jour-du-conseil-de-paris-conseil-municipal-et-departemental",
+    "agenda_export_url": "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets/ordre-du-jour-du-conseil-de-paris-conseil-municipal-et-departemental/exports/json",
+    "votes_in_open_data": false,
+    "compte_rendu_sommaire": "https://www.paris.fr/pages/comptes-rendus-et-debats-et-deliberations-du-conseil-224",
+    "results_source": "compte rendu sommaire (PDF, cdn.paris.fr) — wynik per délibération/vœu",
+    "faction_breakdown_source": "tableau des votes par groupe w procès-verbal intégral (PDF), tylko scrutins publics",
+    "note": "scrape_paris.py: --agenda (porządek obrad z ODS API), --pv URL (wyniki głosowań z compte rendu sommaire: adopté/rejeté/retiré + modalité + deponent vœu). Pełne liczniki per grupa buduje build_faction_vote_from_tableau -> lib_faction_votes.make_faction_vote dla scrutins publics. Voir radoskop-premium/strategia/GLOSOWANIA_FRAKCYJNE.md."
   },
   "clubs": {
     "PARIS_EN_COMMUN": {

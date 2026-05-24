@@ -170,6 +170,13 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
     with open(config_path, "r", encoding="utf-8") as f:
         config = json.load(f)
 
+    # Miasta z "disabled": true (np. paris w trybie frakcyjnym z danymi
+    # przykładowymi, rostock zablokowany) nie generują stron SEO — żeby dane
+    # niegotowe / przykładowe nie trafiły do sitemapy i Google.
+    if config.get("disabled"):
+        print(f"  Skipping {city_dir.name}: disabled w config.json")
+        return
+
     site_url = config["site_url"].rstrip("/")
     city_name = config["city_name"]
     city_gen = config["city_genitive"]

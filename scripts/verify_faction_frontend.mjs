@@ -39,7 +39,10 @@ const end = html.indexOf("async function showVote(");
 assert(start !== -1, "nie znaleziono function isFactionVote w template");
 assert(end !== -1 && end > start, "nie znaleziono async function showVote w template");
 const jsBlock = html.slice(start, end);
-for (const fn of ["isFactionVote", "factionStance", "renderFactionVotes", "factionNoticeHtml"]) {
+for (const fn of [
+  "isFactionVote", "factionStance", "renderFactionVotes", "factionNoticeHtml",
+  "isShowOfHandsVote", "showOfHandsNoticeHtml", "renderShowOfHands",
+]) {
   assert(jsBlock.includes("function " + fn), "brak funkcji " + fn + " w wyciętym bloku");
 }
 
@@ -49,9 +52,10 @@ const clubColor = (code) => "#123456:" + code;
 // 3. Załaduj funkcje z template do bieżącego scope.
 const loaded = new Function(
   "clubColor",
-  jsBlock + "\nreturn { isFactionVote, factionStance, renderFactionVotes, factionNoticeHtml };"
+  jsBlock + "\nreturn { isFactionVote, factionStance, renderFactionVotes, factionNoticeHtml, isShowOfHandsVote, showOfHandsNoticeHtml, renderShowOfHands };"
 )(clubColor);
-const { isFactionVote, factionStance, renderFactionVotes, factionNoticeHtml } = loaded;
+const { isFactionVote, factionStance, renderFactionVotes, factionNoticeHtml,
+        isShowOfHandsVote, showOfHandsNoticeHtml, renderShowOfHands } = loaded;
 
 // 4. Wczytaj rekord z helpera Pythona.
 const src = process.argv[2]
@@ -94,5 +98,26 @@ const notice = factionNoticeHtml();
 assert(notice.includes("głosowania imienne"), "notka nie wyjaśnia braku głosowań imiennych");
 assert(notice.includes("faction-notice"), "notka bez klasy faction-notice");
 
+// 6. Głosowania show_of_hands (Paryż à main levée) — syntetyczny vote.
+const sohVote = {
+  vote_mode: "show_of_hands",
+  result: "adopté",
+  passed: true,
+  modalite: "main levée",
+  unanimite: false,
+  deposited_by: "Paris en commun",
+};
+assert(isShowOfHandsVote(sohVote) === true, "isShowOfHandsVote true dla vote_mode=show_of_hands");
+assert(isShowOfHandsVote(vote) === false, "vote frakcyjny nie jest show_of_hands");
+const sohRender = renderShowOfHands(sohVote);
+assert(sohRender.includes("Przyjęte"), "renderShowOfHands brak wyniku Przyjęte");
+assert(sohRender.includes("Przez podniesienie ręki"), "renderShowOfHands brak trybu");
+assert(sohRender.includes("Paris en commun"), "renderShowOfHands brak wnioskodawcy");
+const retVote = { vote_mode: "show_of_hands", result: "retiré", passed: null };
+assert(renderShowOfHands(retVote).includes("Wycofane"), "retiré -> Wycofane");
+const sohNotice = showOfHandsNoticeHtml();
+assert(sohNotice.includes("przez podniesienie ręki"), "notka show_of_hands bez wyjaśnienia trybu");
+assert(sohNotice.includes("faction-notice"), "notka show_of_hands bez klasy");
+
 // Wypisz render na stdout — używany dalej do testu lokalizacji (de/fr).
-process.stdout.write(JSON.stringify({ ok: true, rendered, notice }));
+process.stdout.write(JSON.stringify({ ok: true, rendered, notice, sohRender, sohNotice }));

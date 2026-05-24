@@ -49,6 +49,16 @@
   "currency": "€",
   "berlin_pardok_xml_url": "https://www.parlament-berlin.de/opendata/pardok-wp{wp}.xml",
   "berlin_plpr_url_pattern": "https://pardok.parlament-berlin.de/starweb/adis/citat/VT/{wp}/PlenarPr/p{wp}-{nnn}-wp.pdf",
+  "voting_mode": "named",
+  "scrape": {
+    "votes_source": "abgeordnetenwatch.de",
+    "aw_polls_endpoint": "https://www.abgeordnetenwatch.de/api/v2/polls?field_legislature=133",
+    "aw_parliament_period": 133,
+    "aw_open_data_poll": "https://www.abgeordnetenwatch.de/open-data/info/parliament_period/133/poll",
+    "official_protocol_base": "https://www.parlament-berlin.de/ados/19/IIIPlen/protokoll/",
+    "note": "Berlin głosuje domyślnie przez Handzeichen (brak rozpisania). Rozpisane są tylko namentliche Abstimmungen — te zbiera abgeordnetenwatch.de z pełnymi głosami PER POSEŁ (yes/no/abstain/no_show + frakcja). Tryb 'named': buduj named_votes z AW, frakcję dolicz przez lib_faction_votes.faction_votes_from_named (widok frakcyjny za darmo). Pokrycie częściowe (tylko głosowania imienne). Po wyborach powtórzonych 12.02.2023 FDP wypadła z parlamentu — 5 frakcji (CDU 52, SPD 34, Grüne 34, Linke 22, AfD 17). FDP-Fraktion zostaje w clubs jako historyczna. Szczegóły: BERLIN_RESEARCH.md.",
+    "wahlperiode_repeat_election": "2023-02-12"
+  },
   "clubs": {
     "CDU": {
       "name": "CDU-Fraktion",

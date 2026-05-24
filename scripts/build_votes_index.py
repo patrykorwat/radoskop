@@ -30,24 +30,38 @@ from pathlib import Path
 MAX_TOPIC_LEN = 160
 
 
+def _city_disabled(config_path: Path) -> bool:
+    """True jeśli config ma "disabled": true — miasto NIE wchodzi do indeksu.
+
+    Chroni przed wyciekiem miast bez realnego scrapie (np. paris w trybie
+    frakcyjnym z danymi przykładowymi, rostock zablokowany) do publicznego
+    cross-city indeksu wyszukiwarki.
+    """
+    try:
+        with open(config_path, "r", encoding="utf-8") as f:
+            return bool(json.load(f).get("disabled"))
+    except Exception:
+        return False
+
+
 def discover_city_dirs(workspace: Path) -> list[tuple[str, Path]]:
-    """List (slug, city_dir) for every city with a config.json in monorepo.
+    """List (slug, city_dir) for every ENABLED city with a config.json.
 
     Falls back to legacy sibling layout (`radoskop-{slug}/`) only when the
     monorepo layout is absent — keeps dev environments without the migration
-    still working.
+    still working. Miasta z "disabled": true są pomijane.
     """
     out: list[tuple[str, Path]] = []
     mono = workspace / "radoskop" / "cities"
     if mono.is_dir():
         for d in sorted(mono.iterdir()):
-            if d.is_dir() and (d / "config.json").exists():
+            if d.is_dir() and (d / "config.json").exists() and not _city_disabled(d / "config.json"):
                 out.append((d.name, d))
         return out
     for d in sorted(workspace.iterdir()):
         if d.is_dir() and d.name.startswith("radoskop-") and d.name != "radoskop-premium":
             slug = d.name[len("radoskop-"):]
-            if (d / "config.json").exists():
+            if (d / "config.json").exists() and not _city_disabled(d / "config.json"):
                 out.append((slug, d))
     return out
 
