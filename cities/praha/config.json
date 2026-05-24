@@ -49,6 +49,10 @@
   "has_interpelacje": false,
   "has_stenogram": false,
   "scrape_status": "active",
+  "scrape": {
+    "runner": "run.sh",
+    "post": "assembly_metrics"
+  },
   "currency": "Kč",
   "budget_years": [
     2021,

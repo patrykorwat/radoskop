@@ -20,11 +20,44 @@ try:
         build_votes_from_pv_results,
         discover_pv_urls,
         extract_session_date,
+        parse_annex_text,
         parse_compte_rendu_sommaire,
+        parse_scrutins,
         parse_seance_date,
     )
 except Exception as e:
     pytest.skip(f"nie można zaimportować scrape_paris ({e})", allow_module_level=True)
+
+
+# Realny fragment OCR aneksu (scrutin public) — wiersze per radny z zawijaniem
+# nazwy grupy do drugiej linii. Choix: Pour[++]/Contre[+]/Abst[-]/NPPV[--].
+ANNEX_OCR = """\
+ID du siégTitre Nom Groupe Procuration par Choix de vote Pondération
+32 AHOUDIAN Adji 1 - Socialiste et Divers Contre[+] 1
+Gauche
+65 ARENAS Rodrigo 4 - Nouveau Paris Pour[++] 1
+Populaire
+68 DUTREUIL Frédérique 2 - Ecologiste et Social de Abst[-] 1
+Paris
+133 ALPHAND David 5 - Paris Liberté NPPV[--] 1
+146 BOUADMA Lila 8 - Non-inscrits Contre[+] 1
+"""
+
+# Realny blok scrutin public z compte rendu (séance 14.04.2026, vœu n° 5).
+SCRUTIN_TEXT = """\
+Scrutin public sur le vœu n° 5.
+Le scrutin est ouvert.
+Le scrutin est clos.
+Les résultats sont les suivants :
+Nombre d'inscrits : 163
+Nombre de votants : 143
+Abstentions : 6
+NPPV : 29
+Pour : 12
+Contre : 96
+(Voir détail des votes annexe n° 1).
+Le vœu n° 5, avec un avis défavorable de l'Exécutif, est rejeté au scrutin public.
+"""
 
 
 # Realne formaty linków ze strony comptes rendus (cdn.paris.fr).
@@ -187,6 +220,54 @@ def test_discover_pv_urls_only_sommaire():
     assert "compte_rendu_sommaire_octobre_25-nCAe.pdf" in urls[0]
     # PV intégral (bez 'sommaire') pominięty.
     assert not any("integral" in u for u in urls)
+
+
+def test_parse_annex_text_groups_and_choices():
+    p = parse_annex_text(ANNEX_OCR)
+    c = p["counts"]
+    assert c["za"] == 1 and c["przeciw"] == 2 and c["wstrzymal_sie"] == 1 and c["brak_glosu"] == 1
+    fv = p["faction_votes"]
+    # kody kanoniczne (stabilne mimo truncacji nazwy w OCR)
+    assert fv["SOCIALISTE_DG"]["przeciw"] == 1
+    assert fv["NOUVEAU_PARIS"]["za"] == 1
+    assert fv["ECOLOGISTE"]["wstrzymal_sie"] == 1
+    assert fv["PARIS_LIBERTE"]["brak_glosu"] == 1
+    assert fv["NZ"]["przeciw"] == 1
+    # nazwiska per kategoria
+    assert "ARENAS Rodrigo" in p["named_votes"]["za"]
+    assert "AHOUDIAN Adji" in p["named_votes"]["przeciw"]
+    assert "DUTREUIL Frédérique" in p["named_votes"]["wstrzymal_sie"]
+
+
+def test_parse_scrutins_aggregate_counts():
+    s = parse_scrutins(SCRUTIN_TEXT)
+    assert ("voeu", "5") in s
+    c = s[("voeu", "5")]
+    assert c["za"] == 12 and c["przeciw"] == 96
+    assert c["wstrzymal_sie"] == 6 and c["brak_glosu"] == 29
+    assert c["nieobecni"] == 163 - 143  # inscrits - votants
+
+
+def test_scrutin_result_uses_counts_and_passed():
+    res = parse_compte_rendu_sommaire(SCRUTIN_TEXT)
+    v5 = [r for r in res if r["reference"] == "n° 5"][0]
+    assert v5["scrutin"] is True
+    assert v5["counts"]["za"] == 12 and v5["counts"]["przeciw"] == 96
+    assert v5["passed"] is False  # 12 < 96
+    votes = build_votes_from_pv_results(res, "2026-04-14")
+    bv = [v for v in votes if v["reference"] == "n° 5"][0]
+    assert bv["vote_mode"] == "scrutin"  # bez OCR aneksu -> tylko zbiorcze
+    assert bv["counts"]["przeciw"] == 96
+
+
+def test_repousse_is_rejected():
+    res = parse_compte_rendu_sommaire(
+        "Vœu n° 7 déposé par le groupe Paris Liberté ! relatif à X.\n"
+        "Le vœu n° 7, avec un avis défavorable de l'Exécutif, est repoussé.\n"
+    )
+    v7 = [r for r in res if r["reference"] == "n° 7"][0]
+    assert v7["result"] == "rejeté"
+    assert v7["passed"] is False
 
 
 def test_faction_vote_adapter_shape():

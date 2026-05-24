@@ -44,6 +44,10 @@
   "has_voting_data": true,
   "has_activity_data": false,
   "scrape_status": "active",
+  "scrape": {
+    "runner": "run.sh",
+    "post": "assembly_metrics"
+  },
   "currency": "€",
   "session_list_url": "https://zastupitelstvo.bratislava.sk/mestske-zastupitelstvo-hlavneho-mesta-sr-bratislavy-2022-2026/?tabOrgan=3",
   "session_list_base": "https://zastupitelstvo.bratislava.sk/",

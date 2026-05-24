@@ -35,6 +35,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import sys
 import unicodedata
@@ -200,17 +201,28 @@ def write_agenda(out_dir: Path, limit: int | None = None) -> Path:
 # parsowalne wyniki głosowań — większość à main levée (bez liczb), część przez
 # scrutin public (z tableau par groupe w PV intégral).
 
+# Wynik pozycji. "repoussé" = odrzucony (częsty dla voeux z avis défavorable),
+# "rejeté au scrutin public" = odrzucony w głosowaniu imiennym.
+_OUTCOME = r"(adopt[ée]|rejet[ée]|repouss[ée]|retir[ée]|ajourn[ée])"
 # Linia wyniku: "Le projet de délibération DSP 72 est adopté à main levée."
 PV_RESULT_PJ_RE = re.compile(
     r"Le projet de d[ée]lib[ée]ration\s+([A-Z]{1,6}\s*\d+)\b.*?\b"
-    r"est\s+(adopt[ée]|rejet[ée]|retir[ée]|ajourn[ée])\b([^.]*)",
+    r"est\s+" + _OUTCOME + r"\b([^.]*)",
     re.IGNORECASE,
 )
 # Linia wyniku dla vœu/amendement: "Le vœu n° 17, est retiré."
 # "vœu" to v+œ+u (ligatura), wariant bez ligatury to "voeu" — łapiemy oba.
 PV_RESULT_VOEU_RE = re.compile(
-    r"Le\s+(v(?:œu|oeu)|amendement)\s+n°?\s*(\d+\s*(?:bis|ter)?)\b.*?\b"
-    r"est\s+(adopt[ée]|rejet[ée]|retir[ée]|ajourn[ée])\b([^.]*)",
+    r"L(?:e|['’])\s*(v(?:œu|oeu)|amendement)\s+n°?\s*(\d+\s*(?:bis|ter)?)\b.*?\b"
+    r"est\s+" + _OUTCOME + r"\b([^.]*)",
+    re.IGNORECASE,
+)
+
+# Scrutin public: nagłówek + blok wyników (zbiorcze liczby, bez rozbicia na
+# osoby — to jest w skanowanych aneksach). Pour/Contre/Abstentions/NPPV.
+SCRUTIN_HEADER_RE = re.compile(
+    r"Scrutin public sur\s+(?:l['’]|le\s+|la\s+)?"
+    r"(v(?:œu|oeu)|amendement|projet de d[ée]lib[ée]ration)\s+n°?\s*(\d+\s*(?:bis|ter)?)",
     re.IGNORECASE,
 )
 # Nagłówek projektu délibération: "2025 DSP 72 Subvention ...".
@@ -222,21 +234,26 @@ PV_HEADER_VOEU_RE = re.compile(
 )
 PV_DEPOSANT_RE = re.compile(r"d[ée]pos[ée](?:\s+par)?\s+(?:le groupe\s+)?(.+?)(?:\s+relatif|\s+relative|\.|$)", re.IGNORECASE)
 
-# Nazwa grupy w PV -> kod klubu z config["clubs"] (best-effort, substring).
+# Nazwa grupy w PV/aneksie -> kod klubu z config["clubs"] (substring po stripie
+# akcentów). Pokrywa truncację z OCR ("Ecologiste et Social de" bez "Paris").
+# Grupy Conseil de Paris kadencji od 2026 (z aneksów scrutin public) + starsze.
 GROUP_NAME_TO_CODE = [
+    ("socialiste et divers", "SOCIALISTE_DG"),   # 1 - Socialiste et Divers Gauche
+    ("ecologiste et social", "ECOLOGISTE"),       # 2 - Écologiste et Social de Paris
+    ("communiste", "COMMUNISTE"),                 # 3 - Communiste ... de Paris
+    ("nouveau paris", "NOUVEAU_PARIS"),           # 4 - Nouveau Paris Populaire
+    ("paris liberte", "PARIS_LIBERTE"),           # 5 - Paris Liberté !
+    ("paris apaise", "PARIS_APAISE"),             # 6 - Paris apaisé
+    ("paris au centre", "PARIS_CENTRE"),          # 7 - Paris au centre
+    ("non-inscrit", "NZ"),
+    ("non inscrit", "NZ"),
+    # starsze nazwy (mandature 2020-2026) — fallback dla deposantów vœu:
     ("paris en commun", "PARIS_EN_COMMUN"),
     ("changer paris", "CHANGER_PARIS"),
-    ("républicains", "CHANGER_PARIS"),
     ("republicains", "CHANGER_PARIS"),
-    ("écologiste", "ECOLOGISTES"),
-    ("ecologiste", "ECOLOGISTES"),
-    ("communiste", "COMMUNISTE"),
-    ("génération", "GENERATIONS"),
-    ("generation", "GENERATIONS"),
+    ("ecologiste", "ECOLOGISTE"),
     ("modem", "MODEM"),
-    ("démocrates", "MODEM"),
-    ("indépendants et progressistes", "INDEPENDANTS"),
-    ("non-inscrit", "NZ"),
+    ("democrates", "MODEM"),
 ]
 
 
@@ -245,13 +262,52 @@ def _outcome_norm(raw: str) -> tuple[str, bool | None]:
     r = _strip_accents(raw.lower())
     if r.startswith("adopt"):
         return "adopté", True
-    if r.startswith("rejet"):
+    if r.startswith("rejet") or r.startswith("repouss"):
         return "rejeté", False
     if r.startswith("retir"):
         return "retiré", None
     if r.startswith("ajourn"):
         return "ajourné", None
     return raw, None
+
+
+def _find_int(pattern: str, text: str) -> int | None:
+    m = re.search(pattern, text, re.IGNORECASE)
+    return int(m.group(1)) if m else None
+
+
+def parse_scrutins(text: str) -> dict:
+    """Wyciągnij zbiorcze wyniki scrutins publics → {(kind, num): counts}.
+
+    Compte rendu sommaire podaje przy każdym scrutin public liczby: Pour,
+    Contre, Abstentions, NPPV (ne prend pas part au vote), Nombre d'inscrits /
+    votants. Rozbicie na osoby jest tylko w skanowanych aneksach, więc bierzemy
+    wartości zbiorcze. nieobecni = inscrits - votants.
+    kind: 'voeu' | 'amendement' | 'projet_deliberation'.
+    """
+    out: dict = {}
+    heads = list(SCRUTIN_HEADER_RE.finditer(text))
+    for i, h in enumerate(heads):
+        kw = _strip_accents(h.group(1).lower())
+        kind = "voeu" if kw.startswith("v") else ("amendement" if kw.startswith("a") else "projet_deliberation")
+        num = re.sub(r"\s+", " ", h.group(2)).strip()
+        start = h.end()
+        end = heads[i + 1].start() if i + 1 < len(heads) else min(len(text), start + 1500)
+        win = text[start:end]
+        pour = _find_int(r"Pour\s*:\s*(\d+)", win)
+        contre = _find_int(r"Contre\s*:\s*(\d+)", win)
+        if pour is None or contre is None:
+            continue
+        abst = _find_int(r"Abstentions?\s*:\s*(\d+)", win) or 0
+        nppv = _find_int(r"NPPV\s*:\s*(\d+)", win) or 0
+        inscrits = _find_int(r"inscrits\s*:\s*(\d+)", win)
+        votants = _find_int(r"votants\s*:\s*(\d+)", win)
+        nieob = (inscrits - votants) if (inscrits and votants and inscrits >= votants) else 0
+        out[(kind, num)] = {
+            "za": pour, "przeciw": contre, "wstrzymal_sie": abst,
+            "brak_glosu": nppv, "nieobecni": nieob,
+        }
+    return out
 
 
 def _group_code(name: str | None) -> str | None:
@@ -262,6 +318,71 @@ def _group_code(name: str | None) -> str | None:
         if _strip_accents(needle) in low:
             return code
     return None
+
+
+# ── OCR aneksów scrutin public (imienny rozkład głosów) ──────────────────────
+# Aneksy compte rendu sommaire to SKANOWANE tabele per radny: ID siège, Nom,
+# Groupe ("N - Nazwa"), Choix de vote (Pour[++]/Contre[+]/Abst[-]/NPPV[--]).
+# OCR (tesseract) odczytuje ~96% wierszy. Liczby ZBIORCZE bierzemy z tekstu
+# (parse_scrutins, dokładne); OCR daje przybliżony rozkład PER GRUPA + nazwiska,
+# oznaczony jako OCR i dołączany tylko gdy zgadza się z agregatem (walidacja).
+ANNEX_HEADER_RE = re.compile(
+    r"Annexe\s+n°?\s*\d+\s*-\s*Scrutin public relatif\s+(?:au\s+|à\s+l['’]|à\s+la\s+|aux?\s+)?"
+    r"(v(?:œu|oeu)|amendement|projet de d[ée]lib[ée]ration)\s+n°?\s*(\d+\s*(?:bis|ter)?)",
+    re.IGNORECASE,
+)
+ANNEX_ROW_RE = re.compile(
+    r"^\s*\d{1,3}\s+(.+?)\s+(\d+)\s*[-—]\s*(.+?)\s+"
+    r"(Pour|Contre|Abst\w*|NPPV|Non[\s-]?votant|Ne\s+prend)\b.*$",
+    re.IGNORECASE,
+)
+
+
+def _annex_choice(s: str) -> str:
+    s = s.lower()
+    if s.startswith("pour"):
+        return "za"
+    if s.startswith("contre"):
+        return "przeciw"
+    if s.startswith("abst"):
+        return "wstrzymal_sie"
+    return "brak_glosu"  # NPPV / Non votant / Ne prend pas part
+
+
+def parse_annex_text(text: str) -> dict:
+    """OCR-tekst jednego aneksu -> {faction_votes, named_votes, counts}.
+
+    faction_votes kluczowane czytelną etykietą grupy "N - Nazwa" (numer grupy
+    jest stabilny mimo zawijania nazwy). counts = sumy per kategoria z OCR
+    (przybliżone — walidowane potem względem agregatu z tekstu).
+    """
+    empty = lambda: {"za": 0, "przeciw": 0, "wstrzymal_sie": 0, "brak_glosu": 0, "nieobecni": 0}
+    by_num: dict[str, dict] = {}
+    gname: dict[str, str] = {}
+    named: dict[str, list] = {k: [] for k in empty()}
+    counts = empty()
+    for ln in text.splitlines():
+        m = ANNEX_ROW_RE.match(ln)
+        if not m:
+            continue
+        name = re.sub(r"\s*\[A\]", "", m.group(1)).strip().rstrip("_").strip()
+        gnum = m.group(2)
+        cat = _annex_choice(m.group(4))
+        counts[cat] += 1
+        by_num.setdefault(gnum, empty())[cat] += 1
+        lbl = re.sub(r"\s+", " ", m.group(3)).strip()
+        if len(lbl) > len(gname.get(gnum, "")):
+            gname[gnum] = lbl
+        named[cat].append(name)
+    # Kluczuj faction_votes kanonicznym kodem klubu (stabilny mimo truncacji
+    # OCR nazwy). Nieznane grupy → "GR{numer}" zamiast gubić głosy.
+    faction_votes: dict = {}
+    for gnum, c in by_num.items():
+        code = _group_code(gname.get(gnum, "")) or f"GR{gnum}"
+        tgt = faction_votes.setdefault(code, {k: 0 for k in counts})
+        for k, v in c.items():
+            tgt[k] += v
+    return {"faction_votes": faction_votes, "named_votes": named, "counts": counts}
 
 
 def parse_compte_rendu_sommaire(text: str) -> list[dict]:
@@ -350,6 +471,20 @@ def parse_compte_rendu_sommaire(text: str) -> list[dict]:
                 "unanimite": "unanimite" in tail,
                 "modalite": "main levée" if "main lev" in tail else ("scrutin" if "scrutin" in tail else None),
             })
+
+    # Dołącz zbiorcze liczby ze scrutins publics do pasujących pozycji.
+    scrutins = parse_scrutins(text)
+    for r in results:
+        if r["kind"] not in ("voeu", "amendement"):
+            continue
+        num = r["reference"].replace("n°", "").strip()
+        counts = scrutins.get((r["kind"], num))
+        if counts:
+            r["counts"] = counts
+            r["scrutin"] = True
+            r["modalite"] = "scrutin"
+            # Wynik z liczb (spójny z linią "adopté/rejeté au scrutin public").
+            r["passed"] = counts["za"] > counts["przeciw"]
     return results
 
 
@@ -385,9 +520,22 @@ def build_votes_from_pv_results(
     build_faction_vote_from_tableau (vote_mode 'faction').
     """
     sd = session_date or "0000-00-00"
+    empty = {"za": 0, "przeciw": 0, "wstrzymal_sie": 0, "brak_glosu": 0, "nieobecni": 0}
     votes: list[dict] = []
     for r in results:
         ref = r.get("reference") or "?"
+        is_scrutin = bool(r.get("scrutin"))
+        has_faction = bool(r.get("faction_votes"))
+        counts = r.get("counts") or dict(empty)
+        named = r.get("named_votes") or {k: [] for k in empty}
+        # Hierarchia trybu: faction (scrutin + OCR rozkładu na grupy) > scrutin
+        # (zbiorcze liczby z tekstu) > show_of_hands (à main levée, bez liczb).
+        if has_faction:
+            mode = "faction"
+        elif is_scrutin:
+            mode = "scrutin"
+        else:
+            mode = "show_of_hands"
         votes.append({
             "id": f"paris_{sd}_{_ref_slug(ref)}",
             "session_date": session_date,
@@ -401,10 +549,11 @@ def build_votes_from_pv_results(
             "modalite": r.get("modalite"),
             "unanimite": bool(r.get("unanimite")),
             "passed": r.get("passed"),
-            "vote_mode": "show_of_hands",
-            "counts": {"za": 0, "przeciw": 0, "wstrzymal_sie": 0, "brak_glosu": 0, "nieobecni": 0},
-            "named_votes": {"za": [], "przeciw": [], "wstrzymal_sie": [], "brak_glosu": [], "nieobecni": []},
-            "faction_votes": {},
+            "vote_mode": mode,
+            "counts": {k: counts.get(k, 0) for k in empty},
+            "named_votes": {k: list(named.get(k, [])) for k in empty},
+            "faction_votes": r.get("faction_votes") or {},
+            "faction_votes_source": "ocr" if r.get("faction_ocr") else None,
         })
     return votes
 
@@ -441,11 +590,11 @@ def fetch_text(url: str) -> str:
     return r.text
 
 
-def scrape(out_dir: Path, limit_sessions: int | None = None) -> Path:
+def scrape(out_dir: Path, limit_sessions: int | None = None, cache_dir: Path | None = None) -> Path:
     """Pełny scrape: odkryj PV sommaire, sparsuj każdy, zbuduj kadencja-{id}.json.
 
     Agreguje wyniki ze wszystkich sesji w jeden plik kadencji. To jest tryb
-    uruchamiany przez scheduled pipeline (--scrape).
+    uruchamiany przez scheduled pipeline (--scrape). cache_dir cache'uje OCR.
     """
     html = fetch_text(COMPTES_RENDUS_URL)
     urls = discover_pv_urls(html)
@@ -454,16 +603,25 @@ def scrape(out_dir: Path, limit_sessions: int | None = None) -> Path:
     all_votes: list[dict] = []
     sessions_done = 0
     for url in urls:
+        pdf_path = None
         try:
-            text = fetch_pv_text(url)
-            results = parse_compte_rendu_sommaire(text)
-            sd = extract_session_date(text)
+            pdf_path = _download_pdf(url)
+            results, sd = process_pv_file(pdf_path, cache_dir=cache_dir)
             votes = build_votes_from_pv_results(results, sd)
             all_votes.extend(votes)
             sessions_done += 1
-            print(f"  {url}: {len(votes)} pozycji (sesja {sd})", file=sys.stderr)
+            n_scrutin = sum(1 for v in votes if v["vote_mode"] in ("scrutin", "faction"))
+            n_ocr = sum(1 for v in votes if v.get("faction_votes_source") == "ocr")
+            print(f"  {url}: {len(votes)} pozycji, {n_scrutin} scrutins, "
+                  f"{n_ocr} z rozkładem OCR (sesja {sd})", file=sys.stderr)
         except Exception as e:
             print(f"  POMINIĘTO {url}: {e}", file=sys.stderr)
+        finally:
+            if pdf_path is not None:
+                try:
+                    pdf_path.unlink()
+                except Exception:
+                    pass
     out_dir.mkdir(parents=True, exist_ok=True)
     out_file = out_dir / f"kadencja-{KADENCJA_ID}.json"
     payload = {
@@ -536,14 +694,180 @@ def fetch_pv_text(url: str) -> str:
     return "\n".join(parts)
 
 
-def write_pv_results(url: str, out_dir: Path) -> tuple[Path, Path]:
+def _download_pdf(url: str) -> Path:
+    import requests
+    import tempfile
+    r = requests.get(url, headers={"User-Agent": "radoskop-paris/1.0"}, timeout=120)
+    r.raise_for_status()
+    f = tempfile.NamedTemporaryFile(suffix=".pdf", delete=False)
+    f.write(r.content)
+    f.close()
+    return Path(f.name)
+
+
+def _pdf_text(pdf_path: Path) -> str:
+    import pdfplumber
+    with pdfplumber.open(pdf_path) as pdf:
+        return "\n".join((p.extract_text() or "") for p in pdf.pages)
+
+
+def _tess_lang() -> str:
+    import subprocess
+    try:
+        langs = subprocess.run(["tesseract", "--list-langs"], capture_output=True, text=True).stdout
+        return "fra" if re.search(r"\bfra\b", langs) else "eng"
+    except Exception:
+        return "eng"
+
+
+def _pdf_md5(pdf_path: Path) -> str:
+    import hashlib
+    h = hashlib.md5()
+    with open(pdf_path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()[:12]
+
+
+def ocr_pdf_pages(
+    pdf_path: Path, first: int, last: int, dpi: int = 300,
+    cache_dir: Path | None = None, doc_id: str | None = None,
+) -> str:
+    """OCR stron [first..last] PDF (pdftoppm @dpi + tesseract). Pusty string gdy
+    brak narzędzi.
+
+    Cache: gdy podany cache_dir + doc_id (md5 PDF), wynik OCR jest zapisywany do
+    ocr_{doc_id}_{first}-{last}_{lang}.txt i odczytywany przy kolejnych runach.
+    OCR aneksów jest drogie (300dpi + tesseract), a PDF-y na cdn.paris.fr są
+    niezmienne (hash w nazwie), więc cache eliminuje ponowne OCR co godzinę.
+    """
+    import glob
+    import subprocess
+    import tempfile
+    lang = _tess_lang()
+    cache_file = None
+    if cache_dir is not None and doc_id:
+        cache_dir = Path(cache_dir)
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        cache_file = cache_dir / f"ocr_{doc_id}_{first}-{last}_{lang}.txt"
+        if cache_file.exists():
+            try:
+                return cache_file.read_text(encoding="utf-8")
+            except Exception:
+                pass
+    with tempfile.TemporaryDirectory() as td:
+        try:
+            subprocess.run(
+                ["pdftoppm", "-png", "-r", str(dpi), "-f", str(first), "-l", str(last),
+                 str(pdf_path), f"{td}/pg"],
+                check=True, capture_output=True,
+            )
+        except Exception as e:
+            print(f"    pdftoppm padł: {e}", file=sys.stderr)
+            return ""
+        parts = []
+        for img in sorted(glob.glob(f"{td}/pg-*.png")):
+            try:
+                parts.append(subprocess.run(
+                    ["tesseract", img, "stdout", "-l", lang, "--psm", "6"],
+                    capture_output=True, text=True,
+                ).stdout)
+            except Exception:
+                pass
+    text = "\n".join(parts)
+    if cache_file is not None and text.strip():
+        try:
+            cache_file.write_text(text, encoding="utf-8")
+        except Exception:
+            pass
+    return text
+
+
+def annex_ranges(pdf_path: Path) -> list[tuple[str, str, int, int]]:
+    """Znajdź zakresy stron aneksów (skany scrutins publics) po nagłówku tekstowym
+    'Annexe n° X - Scrutin public relatif au ... n° Y'. Zwraca (kind, num, first, last)."""
+    import pdfplumber
+    heads: list[tuple[str, str, int]] = []
+    with pdfplumber.open(pdf_path) as pdf:
+        n = len(pdf.pages)
+        for i, page in enumerate(pdf.pages, start=1):
+            m = ANNEX_HEADER_RE.search(page.extract_text() or "")
+            if m:
+                kw = _strip_accents(m.group(1).lower())
+                kind = "voeu" if kw.startswith("v") else ("amendement" if kw.startswith("a") else "projet_deliberation")
+                num = re.sub(r"\s+", " ", m.group(2)).strip()
+                heads.append((kind, num, i))
+    out = []
+    for idx, (kind, num, pg) in enumerate(heads):
+        last = (heads[idx + 1][2] - 1) if idx + 1 < len(heads) else n
+        out.append((kind, num, pg, last))
+    return out
+
+
+def parse_scrutin_annexes(pdf_path: Path, cache_dir: Path | None = None) -> dict:
+    """OCR każdego aneksu -> {(kind, num): parse_annex_text(...)}. Z cache OCR."""
+    doc_id = _pdf_md5(pdf_path) if cache_dir is not None else None
+    out: dict = {}
+    for kind, num, first, last in annex_ranges(pdf_path):
+        text = ocr_pdf_pages(pdf_path, first, last, cache_dir=cache_dir, doc_id=doc_id)
+        if text.strip():
+            out[(kind, num)] = parse_annex_text(text)
+    return out
+
+
+def enrich_with_annexes(results: list[dict], pdf_path: Path, cache_dir: Path | None = None) -> list[dict]:
+    """Dołącz imienny/grupowy rozkład z OCR aneksów do pozycji scrutin public.
+
+    Liczby ZBIORCZE (counts) zostają z tekstu (dokładne). OCR dokłada
+    faction_votes (per grupa) + named_votes (per osoba) TYLKO gdy suma głosów z
+    OCR pokrywa >=85% agregatu (walidacja — OCR bywa niekompletny). Flaga
+    faction_ocr=True oznacza dane z OCR (przybliżone).
+    """
+    cats = ("za", "przeciw", "wstrzymal_sie", "brak_glosu")
+    try:
+        annexes = parse_scrutin_annexes(pdf_path, cache_dir=cache_dir)
+    except Exception as e:
+        print(f"  OCR aneksów pominięty: {e}", file=sys.stderr)
+        return results
+    for r in results:
+        if not r.get("scrutin") or r["kind"] not in ("voeu", "amendement"):
+            continue
+        num = r["reference"].replace("n°", "").strip()
+        a = annexes.get((r["kind"], num))
+        if not a:
+            continue
+        agg = r.get("counts") or {}
+        agg_total = sum(agg.get(c, 0) for c in cats)
+        ocr_total = sum(a["counts"].get(c, 0) for c in cats)
+        if agg_total > 0 and ocr_total >= 0.85 * agg_total:
+            r["faction_votes"] = a["faction_votes"]
+            r["named_votes"] = a["named_votes"]
+            r["faction_ocr"] = True
+    return results
+
+
+def process_pv_file(pdf_path: Path, cache_dir: Path | None = None) -> tuple[list[dict], str | None]:
+    """Pełne przetworzenie jednego PDF compte rendu: tekst + OCR aneksów."""
+    text = _pdf_text(pdf_path)
+    results = parse_compte_rendu_sommaire(text)
+    session_date = extract_session_date(text)
+    enrich_with_annexes(results, pdf_path, cache_dir=cache_dir)
+    return results, session_date
+
+
+def write_pv_results(url: str, out_dir: Path, cache_dir: Path | None = None) -> tuple[Path, Path]:
     """Pobierz PV, zapisz surowe wyniki ORAZ kadencja-{id}.json dla pipeline'u.
 
     Zwraca (pv_results_path, kadencja_path).
     """
-    text = fetch_pv_text(url)
-    results = parse_compte_rendu_sommaire(text)
-    session_date = extract_session_date(text)
+    pdf_path = _download_pdf(url)
+    try:
+        results, session_date = process_pv_file(pdf_path, cache_dir=cache_dir)
+    finally:
+        try:
+            pdf_path.unlink()
+        except Exception:
+            pass
     out_dir.mkdir(parents=True, exist_ok=True)
 
     results_payload = {
@@ -615,6 +939,10 @@ def main() -> int:
         help="pełny scrape: odkryj wszystkie PV sommaire i zbuduj kadencja json",
     )
     ap.add_argument(
+        "--pv-file", metavar="PATH",
+        help="przetwórz lokalny PDF compte rendu (tekst + OCR aneksów), debug",
+    )
+    ap.add_argument(
         "--limit", type=int, default=None,
         help="ogranicz liczbę rekordów (debug)",
     )
@@ -622,7 +950,12 @@ def main() -> int:
         "--out", default=str(CITY_DIR / "docs"),
         help="katalog wyjściowy (domyślnie cities/paris/docs/, gitignored)",
     )
+    ap.add_argument(
+        "--cache-dir", default=os.environ.get("RADOSKOP_OCR_CACHE", str(CITY_DIR / ".cache" / "ocr")),
+        help="katalog cache OCR aneksów (domyślnie cities/paris/.cache/ocr, gitignored)",
+    )
     args = ap.parse_args()
+    cache_dir = Path(args.cache_dir) if args.cache_dir else None
 
     if args.agenda:
         out = write_agenda(Path(args.out), limit=args.limit)
@@ -630,14 +963,28 @@ def main() -> int:
         return 0
 
     if args.scrape:
-        out = scrape(Path(args.out), limit_sessions=args.limit)
+        out = scrape(Path(args.out), limit_sessions=args.limit, cache_dir=cache_dir)
         print(f"Zapisano kadencja (wszystkie sesje): {out}")
         return 0
 
     if args.pv:
-        results_file, kadencja_file = write_pv_results(args.pv, Path(args.out))
+        results_file, kadencja_file = write_pv_results(args.pv, Path(args.out), cache_dir=cache_dir)
         print(f"Zapisano wyniki głosowań: {results_file}")
         print(f"Zapisano kadencja (dla pipeline'u): {kadencja_file}")
+        return 0
+
+    if args.pv_file:
+        results, sd = process_pv_file(Path(args.pv_file), cache_dir=cache_dir)
+        votes = build_votes_from_pv_results(results, sd)
+        out_dir = Path(args.out)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        with open(out_dir / f"kadencja-{KADENCJA_ID}.json", "w", encoding="utf-8") as f:
+            json.dump({"kadencja": KADENCJA_ID, "source": args.pv_file,
+                       "generated_by": "scrape_paris.py --pv-file",
+                       "session_date": sd, "votes": votes}, f, ensure_ascii=False, indent=2)
+        n_scrutin = sum(1 for v in votes if v["vote_mode"] in ("scrutin", "faction"))
+        n_ocr = sum(1 for v in votes if v.get("faction_votes_source") == "ocr")
+        print(f"Sesja {sd}: {len(votes)} pozycji, {n_scrutin} scrutins, {n_ocr} z rozkładem OCR")
         return 0
 
     print(

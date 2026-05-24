@@ -42,6 +42,10 @@
   "has_voting_data": true,
   "has_speaker_activity": false,
   "scrape_status": "active",
+  "scrape": {
+    "runner": "run.sh",
+    "post": "assembly_metrics"
+  },
   "currency": "€",
   "teele_api_base": "https://teele.tallinn.ee/api",
   "teele_unit_id": 2336,

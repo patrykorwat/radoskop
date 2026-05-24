@@ -42,6 +42,10 @@
   "has_voting_data": true,
   "has_speaker_activity": false,
   "scrape_status": "active",
+  "scrape": {
+    "runner": "run.sh",
+    "post": "assembly_metrics"
+  },
   "currency": "€",
   "datagovlt_api_base": "https://get.data.gov.lt/datasets/gov/vilniaus_m_sav/balsavimai",
   "datagovlt_dataset_id": "3849",

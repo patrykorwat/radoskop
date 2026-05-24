@@ -287,6 +287,19 @@ UMAMI_WEBSITE_ID = "792c059f-c77e-4b4e-ad9c-31f4a7d5cfe4"
 UMAMI_SCRIPT_URL = "https://stats.radoskop.pl/script.js"
 
 
+def _is_councilorless(config: dict) -> bool:
+    """True dla miast bez głosów per radny (à main levée / tylko per frakcja).
+
+    Trigger: config["voting_mode"]=="show_of_hands" albo config["voting_display"]
+    =="faction". Takie miasta nie mają rankingu radnych — strona główna prowadzi
+    zakładką "Głosowania", a taby radnych są ukryte.
+    """
+    return (
+        str(config.get("voting_mode", "")).lower() == "show_of_hands"
+        or str(config.get("voting_display", "")).lower() == "faction"
+    )
+
+
 def has_activity_data(output_dir: Path) -> bool:
     """Return True iff the city has any scraped activity worth listing in /aktualnosci/.
 
@@ -724,6 +737,9 @@ def main():
         # Capability flags do JS template literali — JS boolean
         "{{HAS_VOTING_DATA}}": "true" if config.get("has_voting_data", True) else "false",
         "{{HAS_SPEAKER_ACTIVITY}}": "true" if config.get("has_speaker_activity", False) else "false",
+        # Miasta bez radnych per osoba (głosowanie à main levée / per frakcja).
+        # Strona główna prowadzi wtedy zakładką "Głosowania".
+        "{{HAS_COUNCILORS}}": "false" if _is_councilorless(config) else "true",
         # Impressum / Anbieterkennzeichnung
         "{{IMPRESSUM_HTML}}": impressum_html,
         "{{IMPRESSUM_FOOTER_LINK}}": impressum_footer_link,
@@ -761,7 +777,7 @@ def main():
         og_locale_map = {
             "de": "de_DE", "cs": "cs_CZ", "en": "en_US", "fr": "fr_FR",
             "lt": "lt_LT", "et": "et_EE", "lv": "lv_LV", "nl": "nl_NL",
-            "sk": "sk_SK",
+            "sk": "sk_SK", "hu": "hu_HU",
         }
         og_locale = og_locale_map.get(locale_lower, locale_lower)
         html = html.replace('<html lang="pl">', f'<html lang="{locale_lower}">', 1)
@@ -798,6 +814,19 @@ def main():
         # ukrywamy tab "Głosowania/Abstimmungen". Tab "Sesje" zostaje widoczny
         # bo pokazuje frekwencję i aktywność mówczą.
         hide_css.append('[data-tab="votes"]{display:none!important}')
+    if _is_councilorless(config):
+        # Miasta bez radnych per osoba (Paryż à main levée): brak rankingu,
+        # frekwencji, profili, sesji imiennych. Strona główna = "Głosowania".
+        # Ukrywamy taby radnych/sesji/komisji/interpelacji; flip aktywnej
+        # zakładki i widocznej sekcji na votes robimy niżej (na HTML).
+        for t in ("ranking", "sessions", "komisje", "interpelacje"):
+            hide_css.append(f'[data-tab="{t}"]{{display:none!important}}')
+        # Statyczny stan początkowy (zanim JS przejmie): aktywny tab + widoczna
+        # sekcja = votes. Match po data-tab/id (apply_locale nie tłumaczy ich).
+        html = html.replace('class="tab active" data-tab="ranking"', 'class="tab" data-tab="ranking"')
+        html = html.replace('class="tab" data-tab="votes"', 'class="tab active" data-tab="votes"')
+        html = html.replace('<div id="tab-ranking" class="section">', '<div id="tab-ranking" class="section" style="display:none">')
+        html = html.replace('<div id="tab-votes" class="section" style="display:none">', '<div id="tab-votes" class="section">')
     if hide_css:
         injected = "<style>" + "".join(hide_css) + "</style>"
         # Wstrzykuje przed </head>. Jeśli z jakiegoś powodu nie ma

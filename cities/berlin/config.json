@@ -51,6 +51,7 @@
   "berlin_plpr_url_pattern": "https://pardok.parlament-berlin.de/starweb/adis/citat/VT/{wp}/PlenarPr/p{wp}-{nnn}-wp.pdf",
   "voting_mode": "named",
   "scrape": {
+    "runner": "run.sh",
     "votes_source": "abgeordnetenwatch.de",
     "aw_polls_endpoint": "https://www.abgeordnetenwatch.de/api/v2/polls?field_legislature=133",
     "aw_parliament_period": 133,

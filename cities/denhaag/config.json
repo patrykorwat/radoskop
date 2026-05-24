@@ -42,6 +42,11 @@
   "has_voting_data": true,
   "has_speaker_activity": false,
   "scrape_status": "active",
+  "scrape": {
+    "runner": "run.sh",
+    "post": "assembly_metrics",
+    "generate_site": true
+  },
   "currency": "€",
   "notubiz_organisation_id": 318,
   "notubiz_raadsinformatie_base": "https://denhaag.raadsinformatie.nl",

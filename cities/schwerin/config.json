@@ -39,6 +39,8 @@
   "scrape_status": "active",
   "currency": "€",
   "scrape": {
+    "runner": "run.sh",
+    "post": "assembly_metrics",
     "sessions_index": "https://bis.schwerin.de/si0042.asp?__cwpnr=5&__cselect=0&__kgrnr=1",
     "session_url_template": "https://bis.schwerin.de/si0057.asp?__ksinr={ksinr}",
     "file_url_template": "https://bis.schwerin.de/getfile.asp?id={file_id}&type=do",

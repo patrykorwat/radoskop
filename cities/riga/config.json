@@ -49,6 +49,10 @@
   },
   "has_speaker_activity": false,
   "scrape_status": "active",
+  "scrape": {
+    "runner": "run.sh",
+    "post": "assembly_metrics"
+  },
   "currency": "€",
   "pkip_api_base": "https://pkip.riga.lv/agendaitempublish",
   "pkip_meeting_title_filter": "Rīgas domes sēde",
