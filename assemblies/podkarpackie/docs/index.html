@@ -2466,6 +2466,43 @@ function factionNoticeHtml() {
   </div>`;
 }
 
+// ── Głosowania przez podniesienie ręki (wynik bez decompte) ──────────────────
+// Regiony jak Paryż głosują domyślnie "à main levée": protokół (compte rendu
+// sommaire) podaje WYNIK pozycji (przyjęte / odrzucone / wycofane) i tryb, ale
+// bez liczb i bez rozbicia na osoby czy frakcje. Vote ma vote_mode ===
+// 'show_of_hands'. Pokazujemy wynik i tryb zamiast pustych kart z zerami.
+function isShowOfHandsVote(vote) {
+  return !!vote && vote.vote_mode === 'show_of_hands';
+}
+
+function showOfHandsNoticeHtml() {
+  return `<div class="faction-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <span>W tym gremium głosowania odbywają się przez podniesienie ręki. Protokół podaje wynik głosowania, bez rozbicia na pojedyncze głosy ani frakcje.</span>
+  </div>`;
+}
+
+function renderShowOfHands(vote) {
+  const resultMap = {'adopté':'Przyjęte','rejeté':'Odrzucone','retiré':'Wycofane','ajourné':'Odroczone'};
+  const r = vote.result || (vote.passed === true ? 'adopté' : (vote.passed === false ? 'rejeté' : ''));
+  const label = resultMap[r] || r || '—';
+  const color = vote.passed === true ? 'var(--green)' : (vote.passed === false ? 'var(--red)' : 'var(--muted)');
+  let mode = '';
+  if (vote.unanimite) mode = 'Jednomyślnie';
+  else if (vote.modalite === 'main levée') mode = 'Przez podniesienie ręki';
+  else if (vote.modalite === 'scrutin') mode = 'W głosowaniu imiennym';
+  const dep = vote.deposited_by
+    ? `<div class="faction-row" style="margin-top:8px"><div class="faction-row-head"><span class="faction-row-name">Wniosek złożony przez</span><span class="faction-row-meta">${vote.deposited_by}</span></div></div>`
+    : '';
+  return `<div class="section">
+    <div class="profile-metrics" style="margin-bottom:8px">
+      <div class="metric-card"><div class="metric-value" style="color:${color}">${label}</div><div class="metric-label">Wynik</div></div>
+      ${mode ? `<div class="metric-card"><div class="metric-value" style="font-size:1.05rem">${mode}</div><div class="metric-label">Tryb głosowania</div></div>` : ''}
+    </div>
+    ${dep}
+  </div>`;
+}
+
 async function showVote(voteId) {
   trackEvent('view_vote', {vote_id: voteId});
 
@@ -2519,6 +2556,7 @@ async function showVote(voteId) {
   // API returns already resolved named_votes
   const nv = vote.named_votes || {};
   const factionMode = isFactionVote(vote);
+  const resultOnly = isShowOfHandsVote(vote);
   const total = (c.za||0) + (c.przeciw||0) + (c.wstrzymal_sie||0);
   const passed = vote.passed !== undefined ? vote.passed : (c.za||0) > total/2;
   const allVoted = (c.za||0) + (c.przeciw||0) + (c.wstrzymal_sie||0) + (c.brak_glosu||0) + (c.nieobecni||0);
@@ -2540,31 +2578,9 @@ async function showVote(voteId) {
     }).join('')}</div>`;
   }
 
-  // Fallback dla głosowań bez wyciągniętego numeru sesji rzymskiego (parser
-  // BIP czasem nie złapie z highlight). Używamy session_date jako klucza do
-  // showSession, bo backend API obsługuje też lookup po dacie.
-  const sessKey = vote.session_number || vote.session_date || '';
-  const sessLabel = vote.session_number || vote.session_date || '?';
-  let html = `
-    ${sessKey ? `<button class="profile-back" onclick="showSession('${sessKey}')">← Sesja ${sessLabel}</button>` : ''}
-    <div style="margin-bottom:24px">
-      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessKey ? sessionLink(sessKey, 'Sesja ' + sessLabel + ' · ' + (vote.session_date || ''), ' style="color:var(--muted)"') : (vote.session_date ? 'Sesja · ' + vote.session_date : '')}</div>
-      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
-      ${vote.summary ? `<p style="color:var(--text);margin-top:8px;font-size:0.95rem;line-height:1.6;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px">${vote.summary}</p>` : ''}
-      ${vote.druk ? `<div style="margin-top:4px"><a class="name-link" href="/bill/${KAD_SLUGS[voteKid]||voteKid}/${vote.druk}/" onclick="event.preventDefault();showDruk(${vote.druk},'${voteKid}')">Druk ${vote.druk} →</a></div>` : ''}
-      ${vote.resolution ? `<div style="color:var(--muted)">Uchwała: ${vote.resolution}</div>` : ''}
-      ${vote.source_url ? `<div style="margin-top:6px"><a href="${vote.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół głosowania (BIP) ↗</a></div>` : ''}
-      <div style="margin-top:12px">
-        ${shareBar(
-          (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Podkarpackie',
-          (passed ? 'Przyjęte' : 'Odrzucone') + ': za ' + (c.za||0) + ', przeciw ' + (c.przeciw||0) + ', wstrzym. ' + (c.wstrzymal_sie||0) + '. ' + (vote.topic || '').substring(0, 100),
-          'https://podkarpackie.radoskop.pl/glosowanie/' + voteId + '/',
-          'vote-share'
-        )}
-      </div>
-    </div>
-    ${factionMode ? factionNoticeHtml() : ''}
-
+  // Karty liczników + pasek wyniku. Ukrywane dla głosowań show_of_hands
+  // (brak liczb), żeby nie pokazywać mylących zer.
+  const metricsBarHtml = `
     <div class="profile-metrics" style="margin-bottom:24px">
       <div class="metric-card">
         <div class="metric-value" style="color:${passed?'var(--green)':'var(--red)'}">${passed?'Przyjęte':'Odrzucone'}</div>
@@ -2598,9 +2614,14 @@ async function showVote(voteId) {
       <div style="width:${barW(c.wstrzymal_sie||0)}%;background:rgba(234,179,8,0.8)">${c.wstrzymal_sie||0}</div>
       <div style="width:${barW(c.brak_glosu||0)}%;background:rgba(139,141,151,0.5)">${c.brak_glosu||0}</div>
       <div style="width:${barW(c.nieobecni||0)}%;background:rgba(75,85,99,0.5)">${c.nieobecni||0}</div>
-    </div>
+    </div>`;
 
-    ${factionMode ? renderFactionVotes(vote) : `
+  // Rozbicie głosów: imienne (lista nazwisk), frakcyjne, albo sam wynik
+  // (show_of_hands). Wydzielone z głównego szablonu, żeby uniknąć potrójnego
+  // zagnieżdżenia template literals.
+  const breakdownHtml = resultOnly
+    ? renderShowOfHands(vote)
+    : (factionMode ? renderFactionVotes(vote) : `
     <div class="section">
       <div class="vote-cat-header" style="color:var(--green)">Za (${(nv.za||[]).length})</div>
       ${renderNameList(nv.za, 'rgba(34,197,94,0.08)')}
@@ -2616,7 +2637,35 @@ async function showVote(voteId) {
 
       <div class="vote-cat-header">Nieobecni (${(nv.nieobecni||[]).length})</div>
       ${renderNameList(nv.nieobecni, 'rgba(75,85,99,0.05)')}
-    </div>`}
+    </div>`);
+
+  // Fallback dla głosowań bez wyciągniętego numeru sesji rzymskiego (parser
+  // BIP czasem nie złapie z highlight). Używamy session_date jako klucza do
+  // showSession, bo backend API obsługuje też lookup po dacie.
+  const sessKey = vote.session_number || vote.session_date || '';
+  const sessLabel = vote.session_number || vote.session_date || '?';
+  let html = `
+    ${sessKey ? `<button class="profile-back" onclick="showSession('${sessKey}')">← Sesja ${sessLabel}</button>` : ''}
+    <div style="margin-bottom:24px">
+      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessKey ? sessionLink(sessKey, 'Sesja ' + sessLabel + ' · ' + (vote.session_date || ''), ' style="color:var(--muted)"') : (vote.session_date ? 'Sesja · ' + vote.session_date : '')}</div>
+      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
+      ${vote.summary ? `<p style="color:var(--text);margin-top:8px;font-size:0.95rem;line-height:1.6;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px">${vote.summary}</p>` : ''}
+      ${vote.druk ? `<div style="margin-top:4px"><a class="name-link" href="/bill/${KAD_SLUGS[voteKid]||voteKid}/${vote.druk}/" onclick="event.preventDefault();showDruk(${vote.druk},'${voteKid}')">Druk ${vote.druk} →</a></div>` : ''}
+      ${vote.resolution ? `<div style="color:var(--muted)">Uchwała: ${vote.resolution}</div>` : ''}
+      ${vote.source_url ? `<div style="margin-top:6px"><a href="${vote.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół głosowania (BIP) ↗</a></div>` : ''}
+      <div style="margin-top:12px">
+        ${shareBar(
+          (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Podkarpackie',
+          (passed ? 'Przyjęte' : 'Odrzucone') + ': za ' + (c.za||0) + ', przeciw ' + (c.przeciw||0) + ', wstrzym. ' + (c.wstrzymal_sie||0) + '. ' + (vote.topic || '').substring(0, 100),
+          'https://podkarpackie.radoskop.pl/glosowanie/' + voteId + '/',
+          'vote-share'
+        )}
+      </div>
+    </div>
+    ${factionMode ? factionNoticeHtml() : ''}
+    ${resultOnly ? showOfHandsNoticeHtml() : ''}
+    ${resultOnly ? '' : metricsBarHtml}
+    ${breakdownHtml}
   `;
 
   view.innerHTML = html;

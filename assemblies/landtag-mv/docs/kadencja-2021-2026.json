@@ -2,9 +2,9 @@
   "id": "2021-2026",
   "label": "8. Wahlperiode (2021–2026)",
   "clubs": {
-    "AfD": 14,
-    "BÜNDNIS 90/DIE GRÜNEN": 7,
-    "CDU": 14,
+    "AfD": 13,
+    "BÜNDNIS 90/DIE GRÜNEN": 5,
+    "CDU": 13,
     "Die Linke": 9,
     "Gruppe der FDP": 3,
     "SPD": 34,
@@ -15,37 +15,29 @@
       "date": "2025-01-31",
       "number": "98",
       "vote_count": 1,
-      "attendee_count": 1,
-      "attendees": [
-        "Sicherheit und Datenschutz Shepley Anne 1 StimmeGlawe Harry 1 Stimmevon Allwörden Ann Christin 1 StimmeSchneider-GärtnerEva Maria 1 StimmeButzki Andreas 1 StimmeHesse Birgit 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
-      ]
+      "attendee_count": 0,
+      "attendees": []
     },
     {
       "date": "2025-04-11",
       "number": "104",
       "vote_count": 1,
-      "attendee_count": 1,
-      "attendees": [
-        "Sicherheit und Datenschutz Stein Thore 1 StimmePulz-Debler Steffi 1 StimmeRösler Jeannine 1 StimmeSchneider-GärtnerEva Maria 1 StimmeFalk Marcel 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
-      ]
+      "attendee_count": 0,
+      "attendees": []
     },
     {
       "date": "2025-06-25",
       "number": "108",
       "vote_count": 1,
-      "attendee_count": 1,
-      "attendees": [
-        "Sicherheit und Datenschutz Wegner Jutta 1 StimmeBerg Christiane 1 StimmeGlawe Harry 1 StimmeAlbrecht Christian 1 StimmeFoerster Henning 1 StimmeSchneider-GärtnerEva Maria 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
-      ]
+      "attendee_count": 0,
+      "attendees": []
     },
     {
       "date": "2025-06-26",
       "number": "109",
       "vote_count": 1,
-      "attendee_count": 1,
-      "attendees": [
-        "Sicherheit und Datenschutz Berg Christiane 1 StimmeGlawe Harry 1 StimmeFoerster Henning 1 StimmeNoetzel Michael 1 StimmeSchneider-GärtnerEva Maria 1 StimmeDomke René 1 StimmeBarlen Julian 1 StimmeGundlack Tilo 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
-      ]
+      "attendee_count": 0,
+      "attendees": []
     },
     {
       "date": "2025-10-10",
@@ -99,7 +91,7 @@
         "Marc Reinhardt",
         "Marcel Falk",
         "Martin Schmidt",
-        "Martina\nElektronische Abstimmung über Votebox. Infos über Verfahren Tegtmeier",
+        "Martina Tegtmeier",
         "Michael Meister",
         "Michael Noetzel",
         "Michel-Friedrich Schiefler",
@@ -137,7 +129,7 @@
   ],
   "total_sessions": 5,
   "total_votes": 5,
-  "total_councilors": 83,
+  "total_councilors": 79,
   "councilors": [
     {
       "name": "Andreas Butzki",
@@ -876,8 +868,8 @@
       "rebellions": []
     },
     {
-      "name": "Martina\nElektronische Abstimmung über Votebox. Infos über Verfahren Tegtmeier",
-      "slug": "martina-elektronische-abstimmung-uber-votebox-infos-uber-verfahren-tegtmeier",
+      "name": "Martina Tegtmeier",
+      "slug": "martina-tegtmeier",
       "club": "SPD",
       "frekwencja": 20.0,
       "aktywnosc": 0.0,
@@ -1180,70 +1172,6 @@
       "rebellions": []
     },
     {
-      "name": "Sicherheit und Datenschutz Berg Christiane 1 StimmeGlawe Harry 1 StimmeFoerster Henning 1 StimmeNoetzel Michael 1 StimmeSchneider-GärtnerEva Maria 1 StimmeDomke René 1 StimmeBarlen Julian 1 StimmeGundlack Tilo 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-      "slug": "sicherheit-und-datenschutz-berg-christiane-1-stimmeglawe-harry-1-stimmefoerster-henning-1-stimmenoetzel-michael-1-stimmeschneider-gartnereva-maria-1-stimmedomke-rene-1-stimmebarlen-julian-1-stimmegundlack-tilo-1-stimmemartin-bettina-1-stimmemira-heiko-1-stimmesaemann-nils-1-stimmeschwesig-manuela-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
-      "club": "CDU",
-      "frekwencja": 20.0,
-      "aktywnosc": 0.0,
-      "zgodnosc_z_klubem": 0.0,
-      "votes_za": 0,
-      "votes_przeciw": 0,
-      "votes_wstrzymal": 0,
-      "votes_brak": 1,
-      "votes_nieobecny": 0,
-      "votes_total": 5,
-      "rebellion_count": 0,
-      "rebellions": []
-    },
-    {
-      "name": "Sicherheit und Datenschutz Shepley Anne 1 StimmeGlawe Harry 1 Stimmevon Allwörden Ann Christin 1 StimmeSchneider-GärtnerEva Maria 1 StimmeButzki Andreas 1 StimmeHesse Birgit 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-      "slug": "sicherheit-und-datenschutz-shepley-anne-1-stimmeglawe-harry-1-stimmevon-allworden-ann-christin-1-stimmeschneider-gartnereva-maria-1-stimmebutzki-andreas-1-stimmehesse-birgit-1-stimmemartin-bettina-1-stimmemira-heiko-1-stimmepfeifer-mandy-1-stimmesaemann-nils-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
-      "club": "BÜNDNIS 90/DIE GRÜNEN",
-      "frekwencja": 20.0,
-      "aktywnosc": 0.0,
-      "zgodnosc_z_klubem": 0.0,
-      "votes_za": 0,
-      "votes_przeciw": 0,
-      "votes_wstrzymal": 0,
-      "votes_brak": 1,
-      "votes_nieobecny": 0,
-      "votes_total": 5,
-      "rebellion_count": 0,
-      "rebellions": []
-    },
-    {
-      "name": "Sicherheit und Datenschutz Stein Thore 1 StimmePulz-Debler Steffi 1 StimmeRösler Jeannine 1 StimmeSchneider-GärtnerEva Maria 1 StimmeFalk Marcel 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-      "slug": "sicherheit-und-datenschutz-stein-thore-1-stimmepulz-debler-steffi-1-stimmerosler-jeannine-1-stimmeschneider-gartnereva-maria-1-stimmefalk-marcel-1-stimmemira-heiko-1-stimmepfeifer-mandy-1-stimmesaemann-nils-1-stimmeschwesig-manuela-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
-      "club": "AfD",
-      "frekwencja": 20.0,
-      "aktywnosc": 0.0,
-      "zgodnosc_z_klubem": 0.0,
-      "votes_za": 0,
-      "votes_przeciw": 0,
-      "votes_wstrzymal": 0,
-      "votes_brak": 1,
-      "votes_nieobecny": 0,
-      "votes_total": 5,
-      "rebellion_count": 0,
-      "rebellions": []
-    },
-    {
-      "name": "Sicherheit und Datenschutz Wegner Jutta 1 StimmeBerg Christiane 1 StimmeGlawe Harry 1 StimmeAlbrecht Christian 1 StimmeFoerster Henning 1 StimmeSchneider-GärtnerEva Maria 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-      "slug": "sicherheit-und-datenschutz-wegner-jutta-1-stimmeberg-christiane-1-stimmeglawe-harry-1-stimmealbrecht-christian-1-stimmefoerster-henning-1-stimmeschneider-gartnereva-maria-1-stimmesaemann-nils-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
-      "club": "BÜNDNIS 90/DIE GRÜNEN",
-      "frekwencja": 20.0,
-      "aktywnosc": 0.0,
-      "zgodnosc_z_klubem": 0.0,
-      "votes_za": 0,
-      "votes_przeciw": 0,
-      "votes_wstrzymal": 0,
-      "votes_brak": 1,
-      "votes_nieobecny": 0,
-      "votes_total": 5,
-      "rebellion_count": 0,
-      "rebellions": []
-    },
-    {
       "name": "Stefanie Drese",
       "slug": "stefanie-drese",
       "club": "SPD",
@@ -1515,7 +1443,7 @@
     "Marc Reinhardt",
     "Marcel Falk",
     "Martin Schmidt",
-    "Martina\nElektronische Abstimmung über Votebox. Infos über Verfahren Tegtmeier",
+    "Martina Tegtmeier",
     "Michael Meister",
     "Michael Noetzel",
     "Michel-Friedrich Schiefler",
@@ -1534,10 +1462,6 @@
     "Sabine Enseleit",
     "Sandy van Baal",
     "Sebastian Ehlers",
-    "Sicherheit und Datenschutz Berg Christiane 1 StimmeGlawe Harry 1 StimmeFoerster Henning 1 StimmeNoetzel Michael 1 StimmeSchneider-GärtnerEva Maria 1 StimmeDomke René 1 StimmeBarlen Julian 1 StimmeGundlack Tilo 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-    "Sicherheit und Datenschutz Shepley Anne 1 StimmeGlawe Harry 1 Stimmevon Allwörden Ann Christin 1 StimmeSchneider-GärtnerEva Maria 1 StimmeButzki Andreas 1 StimmeHesse Birgit 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-    "Sicherheit und Datenschutz Stein Thore 1 StimmePulz-Debler Steffi 1 StimmeRösler Jeannine 1 StimmeSchneider-GärtnerEva Maria 1 StimmeFalk Marcel 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-    "Sicherheit und Datenschutz Wegner Jutta 1 StimmeBerg Christiane 1 StimmeGlawe Harry 1 StimmeAlbrecht Christian 1 StimmeFoerster Henning 1 StimmeSchneider-GärtnerEva Maria 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
     "Stefanie Drese",
     "Steffi Pulz-Debler",
     "Stephan J. Reuken",
@@ -1559,25 +1483,24 @@
       "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-01-31_98._Sitzung_Namentliche_Abstimmung_zu_TOP_32.pdf",
       "session_date": "2025-01-31",
       "session_number": "98",
-      "topic": "Abstimmung Drs. 8/4505",
+      "topic": "Antrag der Fraktion der FDP Grundsteuer – Verwerfungen abmildern und gerecht reformieren",
       "druk": "8/4505",
       "resolution": "Abgelehnt",
       "counts": {
-        "za": 0,
-        "przeciw": 0,
+        "za": 29,
+        "przeciw": 37,
         "wstrzymal_sie": 0,
-        "brak_glosu": 1,
+        "brak_glosu": 13,
         "nieobecni": 0
       },
       "named_votes": {
         "za": [],
         "przeciw": [],
         "wstrzymal_sie": [],
-        "brak_glosu": [
-          66
-        ],
+        "brak_glosu": [],
         "nieobecni": []
       },
+      "named_votes_available": false,
       "passed": false
     },
     {
@@ -1585,25 +1508,24 @@
       "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-04-11_104._Sitzung_Namentliche_Abstimmung_zu_Zusatz-TOP_1.pdf",
       "session_date": "2025-04-11",
       "session_number": "104",
-      "topic": "Abstimmung Drs. 8/4793",
+      "topic": "Antrag der Fraktion der CDU Zukunft des Tourismusverbandes Mecklenburg-Vorpommern – Transparenz und Abgelehnt unabhängige Prüfung sicherstellen",
       "druk": "8/4793",
       "resolution": "Abgelehnt",
       "counts": {
-        "za": 0,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 1,
+        "za": 26,
+        "przeciw": 36,
+        "wstrzymal_sie": 8,
+        "brak_glosu": 9,
         "nieobecni": 0
       },
       "named_votes": {
         "za": [],
         "przeciw": [],
         "wstrzymal_sie": [],
-        "brak_glosu": [
-          67
-        ],
+        "brak_glosu": [],
         "nieobecni": []
       },
+      "named_votes_available": false,
       "passed": false
     },
     {
@@ -1611,25 +1533,24 @@
       "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-06-25_108.Sitzung_Namentliche_Abstimmung_zu_TOP_8.pdf",
       "session_date": "2025-06-25",
       "session_number": "108",
-      "topic": "Abstimmung Drs. 8/5014",
+      "topic": "Antrag der Fraktionen der SPD und DIE LINKE Rechtsstaat und Demokratie schützen – Politisch motivierte Kriminalität und Angenommen Rechtsextremismus bekämpfen – Zivilgesellschaft den Rücken stärken",
       "druk": "8/5014",
       "resolution": "Angenommen",
       "counts": {
-        "za": 0,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 1,
+        "za": 40,
+        "przeciw": 24,
+        "wstrzymal_sie": 7,
+        "brak_glosu": 8,
         "nieobecni": 0
       },
       "named_votes": {
         "za": [],
         "przeciw": [],
         "wstrzymal_sie": [],
-        "brak_glosu": [
-          68
-        ],
+        "brak_glosu": [],
         "nieobecni": []
       },
+      "named_votes_available": false,
       "passed": true
     },
     {
@@ -1637,25 +1558,24 @@
       "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-06-26_109.Sitzung_Namentliche_Abstimmung_zu_TOP_22.pdf",
       "session_date": "2025-06-26",
       "session_number": "109",
-      "topic": "Abstimmung Drs. 8/5019",
+      "topic": "Antrag der Fraktion der AfD Anlasslose hoheitliche Beflaggung kommunaler Dienststellen ermöglichen Abgelehnt",
       "druk": "8/5019",
       "resolution": "Abgelehnt",
       "counts": {
-        "za": 0,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 1,
+        "za": 13,
+        "przeciw": 53,
+        "wstrzymal_sie": 1,
+        "brak_glosu": 12,
         "nieobecni": 0
       },
       "named_votes": {
         "za": [],
         "przeciw": [],
         "wstrzymal_sie": [],
-        "brak_glosu": [
-          65
-        ],
+        "brak_glosu": [],
         "nieobecni": []
       },
+      "named_votes_available": false,
       "passed": false
     },
     {
@@ -1663,7 +1583,7 @@
       "source_url": "https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1_Parlamentssekretariat_Aeltestenrat/Namentliche_Abstimmungen/2025-10-10-117._Sitzung_Namentliche_Abstimmung_zu_TOP_35.pdf",
       "session_date": "2025-10-10",
       "session_number": "117",
-      "topic": "Abstimmung Drs. 8/5297",
+      "topic": "Antrag der Fraktion der CDU Aufklärung und Konsequenzen nach Beförderungsskandal im Innenministerium Abgelehnt",
       "druk": "8/5297",
       "resolution": "Abgelehnt",
       "counts": {
@@ -1675,15 +1595,15 @@
       },
       "named_votes": {
         "za": [
-          76,
+          72,
           56,
           33,
           52,
           47,
-          71,
+          67,
           45,
           37,
-          77,
+          73,
           34,
           55,
           28,
@@ -1695,10 +1615,10 @@
           40,
           26,
           17,
-          81,
+          77,
           5,
           1,
-          82,
+          78,
           63,
           4,
           60,
@@ -1707,41 +1627,41 @@
         "przeciw": [
           9,
           20,
-          80,
+          76,
           48,
-          70,
+          66,
           35,
           18,
           58,
-          78,
+          74,
           38,
           25,
           10,
           57,
           54,
-          69,
+          65,
           44,
-          79,
+          75,
           6,
           8,
           51,
           16,
           14,
-          74,
+          70,
           7,
           31,
           59,
           61,
           11,
           41,
-          72,
+          68,
           49,
           27,
           2,
           21,
           12,
           50,
-          75
+          71
         ],
         "wstrzymal_sie": [],
         "brak_glosu": [
@@ -1749,7 +1669,7 @@
           36,
           3,
           13,
-          73,
+          69,
           30,
           43,
           32,
@@ -1762,11 +1682,12 @@
         ],
         "nieobecni": []
       },
+      "named_votes_available": true,
       "passed": false
     }
   ],
   "similarity_top": [],
   "similarity_bottom": [],
-  "scraped_at": "2026-05-24 18:51:34",
+  "scraped_at": "2026-05-24 22:31:21",
   "source": "https://www.landtag-mv.de"
 }

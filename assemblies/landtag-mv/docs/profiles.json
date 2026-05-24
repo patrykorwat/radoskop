@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-05-24T16:51:34Z",
+  "scraped_at": "2026-05-24T20:31:22Z",
   "profiles": [
     {
       "name": "Andreas Butzki",
@@ -1382,8 +1382,8 @@
       }
     },
     {
-      "name": "Martina\nElektronische Abstimmung über Votebox. Infos über Verfahren Tegtmeier",
-      "slug": "martina-elektronische-abstimmung-uber-votebox-infos-uber-verfahren-tegtmeier",
+      "name": "Martina Tegtmeier",
+      "slug": "martina-tegtmeier",
       "kadencje": {
         "2021-2026": {
           "club": "SPD",
@@ -1952,126 +1952,6 @@
       }
     },
     {
-      "name": "Sicherheit und Datenschutz Berg Christiane 1 StimmeGlawe Harry 1 StimmeFoerster Henning 1 StimmeNoetzel Michael 1 StimmeSchneider-GärtnerEva Maria 1 StimmeDomke René 1 StimmeBarlen Julian 1 StimmeGundlack Tilo 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-      "slug": "sicherheit-und-datenschutz-berg-christiane-1-stimmeglawe-harry-1-stimmefoerster-henning-1-stimmenoetzel-michael-1-stimmeschneider-gartnereva-maria-1-stimmedomke-rene-1-stimmebarlen-julian-1-stimmegundlack-tilo-1-stimmemartin-bettina-1-stimmemira-heiko-1-stimmesaemann-nils-1-stimmeschwesig-manuela-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
-      "kadencje": {
-        "2021-2026": {
-          "club": "CDU",
-          "club_full": "CDU",
-          "okręg": null,
-          "okręg_dzielnice": null,
-          "roles": [],
-          "komisje": [],
-          "notes": "",
-          "mid_term": false,
-          "former": false,
-          "frekwencja": 20.0,
-          "aktywnosc": 0.0,
-          "zgodnosc_z_klubem": 0.0,
-          "votes_za": 0,
-          "votes_przeciw": 0,
-          "votes_wstrzymal": 0,
-          "votes_brak": 1,
-          "votes_nieobecny": 0,
-          "votes_total": 5,
-          "rebellion_count": 0,
-          "rebellions": [],
-          "has_voting_data": true,
-          "has_activity_data": false
-        }
-      }
-    },
-    {
-      "name": "Sicherheit und Datenschutz Shepley Anne 1 StimmeGlawe Harry 1 Stimmevon Allwörden Ann Christin 1 StimmeSchneider-GärtnerEva Maria 1 StimmeButzki Andreas 1 StimmeHesse Birgit 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-      "slug": "sicherheit-und-datenschutz-shepley-anne-1-stimmeglawe-harry-1-stimmevon-allworden-ann-christin-1-stimmeschneider-gartnereva-maria-1-stimmebutzki-andreas-1-stimmehesse-birgit-1-stimmemartin-bettina-1-stimmemira-heiko-1-stimmepfeifer-mandy-1-stimmesaemann-nils-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
-      "kadencje": {
-        "2021-2026": {
-          "club": "BÜNDNIS 90/DIE GRÜNEN",
-          "club_full": "BÜNDNIS 90/DIE GRÜNEN",
-          "okręg": null,
-          "okręg_dzielnice": null,
-          "roles": [],
-          "komisje": [],
-          "notes": "",
-          "mid_term": false,
-          "former": false,
-          "frekwencja": 20.0,
-          "aktywnosc": 0.0,
-          "zgodnosc_z_klubem": 0.0,
-          "votes_za": 0,
-          "votes_przeciw": 0,
-          "votes_wstrzymal": 0,
-          "votes_brak": 1,
-          "votes_nieobecny": 0,
-          "votes_total": 5,
-          "rebellion_count": 0,
-          "rebellions": [],
-          "has_voting_data": true,
-          "has_activity_data": false
-        }
-      }
-    },
-    {
-      "name": "Sicherheit und Datenschutz Stein Thore 1 StimmePulz-Debler Steffi 1 StimmeRösler Jeannine 1 StimmeSchneider-GärtnerEva Maria 1 StimmeFalk Marcel 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-      "slug": "sicherheit-und-datenschutz-stein-thore-1-stimmepulz-debler-steffi-1-stimmerosler-jeannine-1-stimmeschneider-gartnereva-maria-1-stimmefalk-marcel-1-stimmemira-heiko-1-stimmepfeifer-mandy-1-stimmesaemann-nils-1-stimmeschwesig-manuela-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
-      "kadencje": {
-        "2021-2026": {
-          "club": "AfD",
-          "club_full": "AfD",
-          "okręg": null,
-          "okręg_dzielnice": null,
-          "roles": [],
-          "komisje": [],
-          "notes": "",
-          "mid_term": false,
-          "former": false,
-          "frekwencja": 20.0,
-          "aktywnosc": 0.0,
-          "zgodnosc_z_klubem": 0.0,
-          "votes_za": 0,
-          "votes_przeciw": 0,
-          "votes_wstrzymal": 0,
-          "votes_brak": 1,
-          "votes_nieobecny": 0,
-          "votes_total": 5,
-          "rebellion_count": 0,
-          "rebellions": [],
-          "has_voting_data": true,
-          "has_activity_data": false
-        }
-      }
-    },
-    {
-      "name": "Sicherheit und Datenschutz Wegner Jutta 1 StimmeBerg Christiane 1 StimmeGlawe Harry 1 StimmeAlbrecht Christian 1 StimmeFoerster Henning 1 StimmeSchneider-GärtnerEva Maria 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-      "slug": "sicherheit-und-datenschutz-wegner-jutta-1-stimmeberg-christiane-1-stimmeglawe-harry-1-stimmealbrecht-christian-1-stimmefoerster-henning-1-stimmeschneider-gartnereva-maria-1-stimmesaemann-nils-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
-      "kadencje": {
-        "2021-2026": {
-          "club": "BÜNDNIS 90/DIE GRÜNEN",
-          "club_full": "BÜNDNIS 90/DIE GRÜNEN",
-          "okręg": null,
-          "okręg_dzielnice": null,
-          "roles": [],
-          "komisje": [],
-          "notes": "",
-          "mid_term": false,
-          "former": false,
-          "frekwencja": 20.0,
-          "aktywnosc": 0.0,
-          "zgodnosc_z_klubem": 0.0,
-          "votes_za": 0,
-          "votes_przeciw": 0,
-          "votes_wstrzymal": 0,
-          "votes_brak": 1,
-          "votes_nieobecny": 0,
-          "votes_total": 5,
-          "rebellion_count": 0,
-          "rebellions": [],
-          "has_voting_data": true,
-          "has_activity_data": false
-        }
-      }
-    },
-    {
       "name": "Stefanie Drese",
       "slug": "stefanie-drese",
       "kadencje": {
@@ -2492,5 +2372,5 @@
       }
     }
   ],
-  "total": 83
+  "total": 79
 }

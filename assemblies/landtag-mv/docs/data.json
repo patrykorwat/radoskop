@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-05-24T16:51:34Z",
+  "scraped_at": "2026-05-24T20:31:22Z",
   "generated": true,
   "default_kadencja": "2021-2026",
   "kadencje": [
@@ -11,37 +11,29 @@
           "date": "2025-01-31",
           "number": "98",
           "vote_count": 1,
-          "attendee_count": 1,
-          "attendees": [
-            "Sicherheit und Datenschutz Shepley Anne 1 StimmeGlawe Harry 1 Stimmevon Allwörden Ann Christin 1 StimmeSchneider-GärtnerEva Maria 1 StimmeButzki Andreas 1 StimmeHesse Birgit 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
-          ]
+          "attendee_count": 0,
+          "attendees": []
         },
         {
           "date": "2025-04-11",
           "number": "104",
           "vote_count": 1,
-          "attendee_count": 1,
-          "attendees": [
-            "Sicherheit und Datenschutz Stein Thore 1 StimmePulz-Debler Steffi 1 StimmeRösler Jeannine 1 StimmeSchneider-GärtnerEva Maria 1 StimmeFalk Marcel 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
-          ]
+          "attendee_count": 0,
+          "attendees": []
         },
         {
           "date": "2025-06-25",
           "number": "108",
           "vote_count": 1,
-          "attendee_count": 1,
-          "attendees": [
-            "Sicherheit und Datenschutz Wegner Jutta 1 StimmeBerg Christiane 1 StimmeGlawe Harry 1 StimmeAlbrecht Christian 1 StimmeFoerster Henning 1 StimmeSchneider-GärtnerEva Maria 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
-          ]
+          "attendee_count": 0,
+          "attendees": []
         },
         {
           "date": "2025-06-26",
           "number": "109",
           "vote_count": 1,
-          "attendee_count": 1,
-          "attendees": [
-            "Sicherheit und Datenschutz Berg Christiane 1 StimmeGlawe Harry 1 StimmeFoerster Henning 1 StimmeNoetzel Michael 1 StimmeSchneider-GärtnerEva Maria 1 StimmeDomke René 1 StimmeBarlen Julian 1 StimmeGundlack Tilo 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren"
-          ]
+          "attendee_count": 0,
+          "attendees": []
         },
         {
           "date": "2025-10-10",
@@ -95,7 +87,7 @@
             "Marc Reinhardt",
             "Marcel Falk",
             "Martin Schmidt",
-            "Martina\nElektronische Abstimmung über Votebox. Infos über Verfahren Tegtmeier",
+            "Martina Tegtmeier",
             "Michael Meister",
             "Michael Noetzel",
             "Michel-Friedrich Schiefler",
@@ -133,7 +125,7 @@
       ],
       "total_sessions": 5,
       "total_votes": 5,
-      "total_councilors": 83,
+      "total_councilors": 79,
       "councilors": [
         {
           "name": "Andreas Butzki",
@@ -872,8 +864,8 @@
           "rebellions": []
         },
         {
-          "name": "Martina\nElektronische Abstimmung über Votebox. Infos über Verfahren Tegtmeier",
-          "slug": "martina-elektronische-abstimmung-uber-votebox-infos-uber-verfahren-tegtmeier",
+          "name": "Martina Tegtmeier",
+          "slug": "martina-tegtmeier",
           "club": "SPD",
           "frekwencja": 20.0,
           "aktywnosc": 0.0,
@@ -1170,70 +1162,6 @@
           "votes_przeciw": 0,
           "votes_wstrzymal": 0,
           "votes_brak": 0,
-          "votes_nieobecny": 0,
-          "votes_total": 5,
-          "rebellion_count": 0,
-          "rebellions": []
-        },
-        {
-          "name": "Sicherheit und Datenschutz Berg Christiane 1 StimmeGlawe Harry 1 StimmeFoerster Henning 1 StimmeNoetzel Michael 1 StimmeSchneider-GärtnerEva Maria 1 StimmeDomke René 1 StimmeBarlen Julian 1 StimmeGundlack Tilo 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-          "slug": "sicherheit-und-datenschutz-berg-christiane-1-stimmeglawe-harry-1-stimmefoerster-henning-1-stimmenoetzel-michael-1-stimmeschneider-gartnereva-maria-1-stimmedomke-rene-1-stimmebarlen-julian-1-stimmegundlack-tilo-1-stimmemartin-bettina-1-stimmemira-heiko-1-stimmesaemann-nils-1-stimmeschwesig-manuela-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
-          "club": "CDU",
-          "frekwencja": 20.0,
-          "aktywnosc": 0.0,
-          "zgodnosc_z_klubem": 0.0,
-          "votes_za": 0,
-          "votes_przeciw": 0,
-          "votes_wstrzymal": 0,
-          "votes_brak": 1,
-          "votes_nieobecny": 0,
-          "votes_total": 5,
-          "rebellion_count": 0,
-          "rebellions": []
-        },
-        {
-          "name": "Sicherheit und Datenschutz Shepley Anne 1 StimmeGlawe Harry 1 Stimmevon Allwörden Ann Christin 1 StimmeSchneider-GärtnerEva Maria 1 StimmeButzki Andreas 1 StimmeHesse Birgit 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-          "slug": "sicherheit-und-datenschutz-shepley-anne-1-stimmeglawe-harry-1-stimmevon-allworden-ann-christin-1-stimmeschneider-gartnereva-maria-1-stimmebutzki-andreas-1-stimmehesse-birgit-1-stimmemartin-bettina-1-stimmemira-heiko-1-stimmepfeifer-mandy-1-stimmesaemann-nils-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
-          "club": "BÜNDNIS 90/DIE GRÜNEN",
-          "frekwencja": 20.0,
-          "aktywnosc": 0.0,
-          "zgodnosc_z_klubem": 0.0,
-          "votes_za": 0,
-          "votes_przeciw": 0,
-          "votes_wstrzymal": 0,
-          "votes_brak": 1,
-          "votes_nieobecny": 0,
-          "votes_total": 5,
-          "rebellion_count": 0,
-          "rebellions": []
-        },
-        {
-          "name": "Sicherheit und Datenschutz Stein Thore 1 StimmePulz-Debler Steffi 1 StimmeRösler Jeannine 1 StimmeSchneider-GärtnerEva Maria 1 StimmeFalk Marcel 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-          "slug": "sicherheit-und-datenschutz-stein-thore-1-stimmepulz-debler-steffi-1-stimmerosler-jeannine-1-stimmeschneider-gartnereva-maria-1-stimmefalk-marcel-1-stimmemira-heiko-1-stimmepfeifer-mandy-1-stimmesaemann-nils-1-stimmeschwesig-manuela-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
-          "club": "AfD",
-          "frekwencja": 20.0,
-          "aktywnosc": 0.0,
-          "zgodnosc_z_klubem": 0.0,
-          "votes_za": 0,
-          "votes_przeciw": 0,
-          "votes_wstrzymal": 0,
-          "votes_brak": 1,
-          "votes_nieobecny": 0,
-          "votes_total": 5,
-          "rebellion_count": 0,
-          "rebellions": []
-        },
-        {
-          "name": "Sicherheit und Datenschutz Wegner Jutta 1 StimmeBerg Christiane 1 StimmeGlawe Harry 1 StimmeAlbrecht Christian 1 StimmeFoerster Henning 1 StimmeSchneider-GärtnerEva Maria 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren",
-          "slug": "sicherheit-und-datenschutz-wegner-jutta-1-stimmeberg-christiane-1-stimmeglawe-harry-1-stimmealbrecht-christian-1-stimmefoerster-henning-1-stimmeschneider-gartnereva-maria-1-stimmesaemann-nils-1-stimme-elektronische-abstimmung-uber-votebox-infos-uber-verfahren",
-          "club": "BÜNDNIS 90/DIE GRÜNEN",
-          "frekwencja": 20.0,
-          "aktywnosc": 0.0,
-          "zgodnosc_z_klubem": 0.0,
-          "votes_za": 0,
-          "votes_przeciw": 0,
-          "votes_wstrzymal": 0,
-          "votes_brak": 1,
           "votes_nieobecny": 0,
           "votes_total": 5,
           "rebellion_count": 0,

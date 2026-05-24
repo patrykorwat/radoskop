@@ -2468,6 +2468,43 @@ function factionNoticeHtml() {
   </div>`;
 }
 
+// ── Abstimmungen przez podniesienie ręki (wynik bez decompte) ──────────────────
+// Regiony jak Paryż głosują domyślnie "à main levée": protokół (compte rendu
+// sommaire) podaje WYNIK pozycji (przyjęte / odrzucone / wycofane) i tryb, ale
+// bez liczb i bez rozbicia na osoby czy frakcje. Vote ma vote_mode ===
+// 'show_of_hands'. Pokazujemy wynik i tryb zamiast pustych kart z zerami.
+function isShowOfHandsVote(vote) {
+  return !!vote && vote.vote_mode === 'show_of_hands';
+}
+
+function showOfHandsNoticeHtml() {
+  return `<div class="faction-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <span>In diesem Gremium wird per Handzeichen abgestimmt. Das Protokoll gibt das Abstimmungsergebnis an, ohne Aufschlüsselung nach einzelnen Stimmen oder Fraktionen.</span>
+  </div>`;
+}
+
+function renderShowOfHands(vote) {
+  const resultMap = {'adopté':'Angenommen','rejeté':'Abgelehnt','retiré':'Zurückgezogen','ajourné':'Vertagt'};
+  const r = vote.result || (vote.passed === true ? 'adopté' : (vote.passed === false ? 'rejeté' : ''));
+  const label = resultMap[r] || r || '—';
+  const color = vote.passed === true ? 'var(--green)' : (vote.passed === false ? 'var(--red)' : 'var(--muted)');
+  let mode = '';
+  if (vote.unanimite) mode = 'Jednomyślnie';
+  else if (vote.modalite === 'main levée') mode = 'Per Handzeichen';
+  else if (vote.modalite === 'scrutin') mode = 'In namentlicher Abstimmung';
+  const dep = vote.deposited_by
+    ? `<div class="faction-row" style="margin-top:8px"><div class="faction-row-head"><span class="faction-row-name">Eingebracht von</span><span class="faction-row-meta">${vote.deposited_by}</span></div></div>`
+    : '';
+  return `<div class="section">
+    <div class="profile-metrics" style="margin-bottom:8px">
+      <div class="metric-card"><div class="metric-value" style="color:${color}">${label}</div><div class="metric-label">Ergebnis</div></div>
+      ${mode ? `<div class="metric-card"><div class="metric-value" style="font-size:1.05rem">${mode}</div><div class="metric-label">Abstimmungsart</div></div>` : ''}
+    </div>
+    ${dep}
+  </div>`;
+}
+
 async function showVote(voteId) {
   trackEvent('view_vote', {vote_id: voteId});
 
@@ -2521,6 +2558,7 @@ async function showVote(voteId) {
   // API returns already resolved named_votes
   const nv = vote.named_votes || {};
   const factionMode = isFactionVote(vote);
+  const resultOnly = isShowOfHandsVote(vote);
   const total = (c.za||0) + (c.przeciw||0) + (c.wstrzymal_sie||0);
   const passed = vote.passed !== undefined ? vote.passed : (c.za||0) > total/2;
   const allVoted = (c.za||0) + (c.przeciw||0) + (c.wstrzymal_sie||0) + (c.brak_glosu||0) + (c.nieobecni||0);
@@ -2542,31 +2580,9 @@ async function showVote(voteId) {
     }).join('')}</div>`;
   }
 
-  // Fallback dla Abstimmungen bez wyciągniętego numeru sesji rzymskiego (parser
-  // BIP czasem nie złapie z highlight). Używamy session_date jako klucza do
-  // showSession, bo backend API obsługuje też lookup po dacie.
-  const sessKey = vote.session_number || vote.session_date || '';
-  const sessLabel = vote.session_number || vote.session_date || '?';
-  let html = `
-    ${sessKey ? `<button class="profile-back" onclick="showSession('${sessKey}')">← Sitzung ${sessLabel}</button>` : ''}
-    <div style="margin-bottom:24px">
-      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessKey ? sessionLink(sessKey, 'Sitzung ' + sessLabel + ' · ' + (vote.session_date || ''), ' style="color:var(--muted)"') : (vote.session_date ? 'Sitzung · ' + vote.session_date : '')}</div>
-      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
-      ${vote.summary ? `<p style="color:var(--text);margin-top:8px;font-size:0.95rem;line-height:1.6;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px">${vote.summary}</p>` : ''}
-      ${vote.druk ? `<div style="margin-top:4px"><a class="name-link" href="/bill/${KAD_SLUGS[voteKid]||voteKid}/${vote.druk}/" onclick="event.preventDefault();showDruk(${vote.druk},'${voteKid}')">Druk ${vote.druk} →</a></div>` : ''}
-      ${vote.resolution ? `<div style="color:var(--muted)">Uchwała: ${vote.resolution}</div>` : ''}
-      ${vote.source_url ? `<div style="margin-top:6px"><a href="${vote.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół głosowania (BIP) ↗</a></div>` : ''}
-      <div style="margin-top:12px">
-        ${shareBar(
-          (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Mecklenburg-Vorpommern',
-          (passed ? 'Angenommen' : 'Abgelehnt') + ': za ' + (c.za||0) + ', przeciw ' + (c.przeciw||0) + ', wstrzym. ' + (c.wstrzymal_sie||0) + '. ' + (vote.topic || '').substring(0, 100),
-          'https://mv.radoskop.eu/glosowanie/' + voteId + '/',
-          'vote-share'
-        )}
-      </div>
-    </div>
-    ${factionMode ? factionNoticeHtml() : ''}
-
+  // Karty liczników + pasek wyniku. Ukrywane dla Abstimmungen show_of_hands
+  // (brak liczb), żeby nie pokazywać mylących zer.
+  const metricsBarHtml = `
     <div class="profile-metrics" style="margin-bottom:24px">
       <div class="metric-card">
         <div class="metric-value" style="color:${passed?'var(--green)':'var(--red)'}">${passed?'Angenommen':'Abgelehnt'}</div>
@@ -2600,9 +2616,14 @@ async function showVote(voteId) {
       <div style="width:${barW(c.wstrzymal_sie||0)}%;background:rgba(234,179,8,0.8)">${c.wstrzymal_sie||0}</div>
       <div style="width:${barW(c.brak_glosu||0)}%;background:rgba(139,141,151,0.5)">${c.brak_glosu||0}</div>
       <div style="width:${barW(c.nieobecni||0)}%;background:rgba(75,85,99,0.5)">${c.nieobecni||0}</div>
-    </div>
+    </div>`;
 
-    ${factionMode ? renderFactionVotes(vote) : `
+  // Rozbicie głosów: imienne (lista nazwisk), frakcyjne, albo sam wynik
+  // (show_of_hands). Wydzielone z głównego szablonu, żeby uniknąć potrójnego
+  // zagnieżdżenia template literals.
+  const breakdownHtml = resultOnly
+    ? renderShowOfHands(vote)
+    : (factionMode ? renderFactionVotes(vote) : `
     <div class="section">
       <div class="vote-cat-header" style="color:var(--green)">Dafür (${(nv.za||[]).length})</div>
       ${renderNameList(nv.za, 'rgba(34,197,94,0.08)')}
@@ -2618,7 +2639,35 @@ async function showVote(voteId) {
 
       <div class="vote-cat-header">Abwesend (${(nv.nieobecni||[]).length})</div>
       ${renderNameList(nv.nieobecni, 'rgba(75,85,99,0.05)')}
-    </div>`}
+    </div>`);
+
+  // Fallback dla Abstimmungen bez wyciągniętego numeru sesji rzymskiego (parser
+  // BIP czasem nie złapie z highlight). Używamy session_date jako klucza do
+  // showSession, bo backend API obsługuje też lookup po dacie.
+  const sessKey = vote.session_number || vote.session_date || '';
+  const sessLabel = vote.session_number || vote.session_date || '?';
+  let html = `
+    ${sessKey ? `<button class="profile-back" onclick="showSession('${sessKey}')">← Sitzung ${sessLabel}</button>` : ''}
+    <div style="margin-bottom:24px">
+      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessKey ? sessionLink(sessKey, 'Sitzung ' + sessLabel + ' · ' + (vote.session_date || ''), ' style="color:var(--muted)"') : (vote.session_date ? 'Sitzung · ' + vote.session_date : '')}</div>
+      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
+      ${vote.summary ? `<p style="color:var(--text);margin-top:8px;font-size:0.95rem;line-height:1.6;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px">${vote.summary}</p>` : ''}
+      ${vote.druk ? `<div style="margin-top:4px"><a class="name-link" href="/bill/${KAD_SLUGS[voteKid]||voteKid}/${vote.druk}/" onclick="event.preventDefault();showDruk(${vote.druk},'${voteKid}')">Druk ${vote.druk} →</a></div>` : ''}
+      ${vote.resolution ? `<div style="color:var(--muted)">Uchwała: ${vote.resolution}</div>` : ''}
+      ${vote.source_url ? `<div style="margin-top:6px"><a href="${vote.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół głosowania (BIP) ↗</a></div>` : ''}
+      <div style="margin-top:12px">
+        ${shareBar(
+          (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop Mecklenburg-Vorpommern',
+          (passed ? 'Angenommen' : 'Abgelehnt') + ': za ' + (c.za||0) + ', przeciw ' + (c.przeciw||0) + ', wstrzym. ' + (c.wstrzymal_sie||0) + '. ' + (vote.topic || '').substring(0, 100),
+          'https://mv.radoskop.eu/glosowanie/' + voteId + '/',
+          'vote-share'
+        )}
+      </div>
+    </div>
+    ${factionMode ? factionNoticeHtml() : ''}
+    ${resultOnly ? showOfHandsNoticeHtml() : ''}
+    ${resultOnly ? '' : metricsBarHtml}
+    ${breakdownHtml}
   `;
 
   view.innerHTML = html;
@@ -4404,7 +4453,7 @@ document.addEventListener('keydown', (e) => {
 <script>
 // Sejmik: definicje klubów i mapowanie radny -> klub.
 const SEJMIK_CLUBS = {"SPD": {"color": "#dc2626", "bg": "rgba(220,38,38,0.12)", "avatar_bg": "#b91c1c"}, "CDU": {"color": "#0f172a", "bg": "rgba(15,23,42,0.12)", "avatar_bg": "#1e293b"}, "AfD": {"color": "#0ea5e9", "bg": "rgba(14,165,233,0.12)", "avatar_bg": "#0369a1"}, "Die Linke": {"color": "#7c2d92", "bg": "rgba(124,45,146,0.12)", "avatar_bg": "#6b21a8"}, "BÜNDNIS 90/DIE GRÜNEN": {"color": "#16a34a", "bg": "rgba(22,163,74,0.12)", "avatar_bg": "#15803d"}, "Gruppe der FDP": {"color": "#facc15", "bg": "rgba(250,204,21,0.18)", "avatar_bg": "#ca8a04"}, "fraktionslos": {"color": "#64748b", "bg": "rgba(100,116,139,0.12)", "avatar_bg": "#475569"}};
-const SEJMIK_CLUB_OF = {"Sicherheit und Datenschutz Shepley Anne 1 StimmeGlawe Harry 1 Stimmevon Allwörden Ann Christin 1 StimmeSchneider-GärtnerEva Maria 1 StimmeButzki Andreas 1 StimmeHesse Birgit 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren": "BÜNDNIS 90/DIE GRÜNEN", "Sicherheit und Datenschutz Stein Thore 1 StimmePulz-Debler Steffi 1 StimmeRösler Jeannine 1 StimmeSchneider-GärtnerEva Maria 1 StimmeFalk Marcel 1 StimmeMiraß Heiko 1 StimmePfeifer Mandy 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren": "AfD", "Sicherheit und Datenschutz Wegner Jutta 1 StimmeBerg Christiane 1 StimmeGlawe Harry 1 StimmeAlbrecht Christian 1 StimmeFoerster Henning 1 StimmeSchneider-GärtnerEva Maria 1 StimmeSaemann Nils 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren": "BÜNDNIS 90/DIE GRÜNEN", "Sicherheit und Datenschutz Berg Christiane 1 StimmeGlawe Harry 1 StimmeFoerster Henning 1 StimmeNoetzel Michael 1 StimmeSchneider-GärtnerEva Maria 1 StimmeDomke René 1 StimmeBarlen Julian 1 StimmeGundlack Tilo 1 StimmeMartin Bettina 1 StimmeMiraß Heiko 1 StimmeSaemann Nils 1 StimmeSchwesig Manuela 1 Stimme\nElektronische Abstimmung über Votebox. Infos über Verfahren": "CDU", "Thomas de Jesus-Fernandes": "AfD", "Petra Federau": "AfD", "Horst Förster": "AfD", "Nikolaus Kramer": "AfD", "Michael Meister": "AfD", "Stephan J. Reuken": "AfD", "Martin Schmidt": "AfD", "Jens-Holger Schneider": "AfD", "Thore Stein": "AfD", "Jan-Phillip Tadsen": "AfD", "Paul-Joachim Timm": "AfD", "Hannes Damm": "BÜNDNIS 90/DIE GRÜNEN", "Constanze Oehlrich": "BÜNDNIS 90/DIE GRÜNEN", "Harald Terpe": "BÜNDNIS 90/DIE GRÜNEN", "Jutta Wegner": "BÜNDNIS 90/DIE GRÜNEN", "Sebastian Ehlers": "CDU", "Sabine Enseleit": "CDU", "Katy Hoffmeister": "CDU", "Franz-Robert Liskow": "CDU", "Daniel Peters": "CDU", "Torsten Renz": "CDU", "Beate Schlupp": "CDU", "Ann Christin von Allwörden": "CDU", "Wolfgang Waldmüller": "CDU", "Sandy van Baal": "fraktionslos", "Barbara Becker-Hornickel": "Gruppe der FDP", "René Domke": "Gruppe der FDP", "David Wulff": "Gruppe der FDP", "Christian Albrecht": "Die Linke", "Dirk Bruhn": "Die Linke", "Torsten Koplin": "Die Linke", "Michael Noetzel": "Die Linke", "Steffi Pulz-Debler": "Die Linke", "Jeannine Rösler": "Die Linke", "Daniel Trepsdorf": "Die Linke", "Rainer Albrecht": "SPD", "Till Backhaus": "SPD", "Julian Barlen": "SPD", "Falko Beitz": "SPD", "Christian Brade": "SPD", "Philipp da Cunha": "SPD", "Patrick Dahlemann": "SPD", "Stefanie Drese": "SPD", "Marcel Falk": "SPD", "Tilo Gundlack": "SPD", "Beatrix Hegenkötter": "SPD", "Birgit Hesse": "SPD", "Nadine Julitz": "SPD", "Dagmar Kaselitz": "SPD", "Christine Klingohr": "SPD", "Thomas Krüger": "SPD", "Bettina Martin": "SPD", "Heiko Miraß": "SPD", "Ralf Mucha": "SPD", "Robert Northoff": "SPD", "Christian Pegel": "SPD", "Mandy Pfeifer": "SPD", "Sylva Rahm-Präger": "SPD", "Michel-Friedrich Schiefler": "SPD", "Grit Schmelzer": "SPD", "Anna-Konstanze Schröder": "SPD", "Dirk Stamer": "SPD", "Christian Winter": "SPD", "Monique Wölk": "SPD", "Thomas Würdisch": "SPD", "Enrico Schult": "AfD", "Jens Schulze-Wiehenbrauk": "AfD", "Anne Shepley": "BÜNDNIS 90/DIE GRÜNEN", "Christiane Berg": "CDU", "Thomas Diener": "CDU", "Harry Glawe": "CDU", "Marc Reinhardt": "CDU", "Henning Foerster": "Die Linke", "Elke-Annette Schmidt": "Die Linke", "Eva Maria Schneider-Gärtner": "fraktionslos", "Andreas Butzki": "SPD", "Nils Saemann": "SPD", "Manuela Schwesig": "SPD", "Martina\nElektronische Abstimmung über Votebox. Infos über Verfahren Tegtmeier": "SPD"};
+const SEJMIK_CLUB_OF = {"Thomas de Jesus-Fernandes": "AfD", "Petra Federau": "AfD", "Horst Förster": "AfD", "Nikolaus Kramer": "AfD", "Michael Meister": "AfD", "Stephan J. Reuken": "AfD", "Martin Schmidt": "AfD", "Jens-Holger Schneider": "AfD", "Thore Stein": "AfD", "Jan-Phillip Tadsen": "AfD", "Paul-Joachim Timm": "AfD", "Hannes Damm": "BÜNDNIS 90/DIE GRÜNEN", "Constanze Oehlrich": "BÜNDNIS 90/DIE GRÜNEN", "Harald Terpe": "BÜNDNIS 90/DIE GRÜNEN", "Jutta Wegner": "BÜNDNIS 90/DIE GRÜNEN", "Sebastian Ehlers": "CDU", "Sabine Enseleit": "CDU", "Katy Hoffmeister": "CDU", "Franz-Robert Liskow": "CDU", "Daniel Peters": "CDU", "Torsten Renz": "CDU", "Beate Schlupp": "CDU", "Ann Christin von Allwörden": "CDU", "Wolfgang Waldmüller": "CDU", "Sandy van Baal": "fraktionslos", "Barbara Becker-Hornickel": "Gruppe der FDP", "René Domke": "Gruppe der FDP", "David Wulff": "Gruppe der FDP", "Christian Albrecht": "Die Linke", "Dirk Bruhn": "Die Linke", "Torsten Koplin": "Die Linke", "Michael Noetzel": "Die Linke", "Steffi Pulz-Debler": "Die Linke", "Jeannine Rösler": "Die Linke", "Daniel Trepsdorf": "Die Linke", "Rainer Albrecht": "SPD", "Till Backhaus": "SPD", "Julian Barlen": "SPD", "Falko Beitz": "SPD", "Christian Brade": "SPD", "Philipp da Cunha": "SPD", "Patrick Dahlemann": "SPD", "Stefanie Drese": "SPD", "Marcel Falk": "SPD", "Tilo Gundlack": "SPD", "Beatrix Hegenkötter": "SPD", "Birgit Hesse": "SPD", "Nadine Julitz": "SPD", "Dagmar Kaselitz": "SPD", "Christine Klingohr": "SPD", "Thomas Krüger": "SPD", "Bettina Martin": "SPD", "Heiko Miraß": "SPD", "Ralf Mucha": "SPD", "Robert Northoff": "SPD", "Christian Pegel": "SPD", "Mandy Pfeifer": "SPD", "Sylva Rahm-Präger": "SPD", "Michel-Friedrich Schiefler": "SPD", "Grit Schmelzer": "SPD", "Anna-Konstanze Schröder": "SPD", "Dirk Stamer": "SPD", "Christian Winter": "SPD", "Monique Wölk": "SPD", "Thomas Würdisch": "SPD", "Enrico Schult": "AfD", "Jens Schulze-Wiehenbrauk": "AfD", "Anne Shepley": "BÜNDNIS 90/DIE GRÜNEN", "Christiane Berg": "CDU", "Thomas Diener": "CDU", "Harry Glawe": "CDU", "Marc Reinhardt": "CDU", "Henning Foerster": "Die Linke", "Elke-Annette Schmidt": "Die Linke", "Eva Maria Schneider-Gärtner": "fraktionslos", "Andreas Butzki": "SPD", "Nils Saemann": "SPD", "Manuela Schwesig": "SPD", "Martina Tegtmeier": "SPD"};
 // Globalna mapa nazwisko -> klub (template miasta używa, jeśli
 // councilors[].club nie jest ustawione w data.json).
 window.clubAssignments = SEJMIK_CLUB_OF;
