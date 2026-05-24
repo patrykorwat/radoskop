@@ -800,6 +800,11 @@ const API_BASE = (window.RADOSKOP_API || 'https://api.radoskop.pl') + '/api/' + 
 // miast które parsują stenogramy/Plenarprotokolle (Berlin, Gdańsk).
 const HAS_VOTING_DATA = true;
 const HAS_SPEAKER_ACTIVITY = false;
+// Miasta bez radnych per osoba (Paryż: głosowanie à main levée, wynik per
+// pozycja bez listy nazwisk). Strona główna prowadzi wtedy zakładką
+// "Głosowania", a ranking radnych jest ukryty (generate_site dokłada CSS).
+const HAS_COUNCILORS = {{HAS_COUNCILORS}};
+const DEFAULT_TAB = HAS_COUNCILORS ? 'ranking' : 'votes';
 
 let RAW = null;
 let PROFILES = null;
@@ -1095,7 +1100,7 @@ async function init() {
     if (path.startsWith('/term/')) {
       const parts = path.replace('/term/', '').split('/');
       const kid = SLUG_KADS[parts[0]];
-      const tab = SLUG_TABS[parts[1]] || 'ranking';
+      const tab = SLUG_TABS[parts[1]] || DEFAULT_TAB;
       if (kid) {
         selectKadencjaQuiet(kid);
         activateTab(tab);
@@ -1149,7 +1154,7 @@ function activateTab(tabName) {
   const allTabs = ['ranking','sessions','votes','komisje','interpelacje','budget'];
   // Guard: invalid tabName cofamy do ranking, żeby nie zostawić currentTab jako undefined.
   if (!tabName || tabName === 'undefined' || tabName === 'null' || !allTabs.includes(tabName)) {
-    tabName = 'ranking';
+    tabName = DEFAULT_TAB;
   }
   trackEvent('view_tab', {tab_name: tabName});
   currentTab = tabName;
@@ -1176,7 +1181,7 @@ function hideAllViews() {
   document.getElementById('druk-view').style.display = 'none';
 }
 
-let currentTab = 'ranking';
+let currentTab = (typeof DEFAULT_TAB !== 'undefined') ? DEFAULT_TAB : 'ranking';
 const TAB_SLUGS = {ranking:'ranking',sessions:'sessions',votes:'votes',komisje:'commissions',interpelacje:'interpellations',budget:'budget'};
 const SLUG_TABS = Object.fromEntries(Object.entries(TAB_SLUGS).map(([k,v])=>[v,k]));
 const KAD_SLUGS = {'2018-2024':'viii','2024-2029':'ix'};
