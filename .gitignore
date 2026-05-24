@@ -1,6 +1,13 @@
 .venv
 *.pyc
+__pycache__/
 .DS_Store
+
+# pytest cache. W niektórych środowiskach (NAS/sandbox) gdy domyślny katalog
+# cache jest read-only, pytest tworzy zastępcze pytest-cache-files-<losowy>/
+# w cwd przy każdym uruchomieniu — ignorujemy oba warianty.
+.pytest_cache/
+pytest-cache-files-*/
 
 # Per-city scrape outputs and generated assets — large, churn often, durable
 # copy lives in s3://radoskop-public/{slug}/. Monorepo keeps only code and
