@@ -763,7 +763,12 @@ applyTheme(getTheme());
 
 // API configuration
 const CITY_SLUG = location.hostname.split('.')[0] || 'sopot';
-const API_BASE = (window.RADOSKOP_API || 'https://api.radoskop.pl') + '/api/' + CITY_SLUG;
+// Dobieramy API host z TLD bieżącej strony: .eu → api.radoskop.eu, reszta → api.radoskop.pl.
+// Dzięki temu Paris (paris.radoskop.eu) nie robi cross-origin do api.radoskop.pl.
+const _API_HOST = window.RADOSKOP_API || (
+  location.hostname.endsWith('.radoskop.eu') ? 'https://api.radoskop.eu' : 'https://api.radoskop.pl'
+);
+const API_BASE = _API_HOST + '/api/' + CITY_SLUG;
 
 // Capability flags wstrzykiwane z config.json przez generate_site.py.
 // HAS_VOTING_DATA = false dla miast bez imiennych głosowań (np. Berlin —
@@ -4024,7 +4029,7 @@ init();
 // /me lokalny: api.radoskop.pl (cookie .radoskop.pl po bridge / signup .pl).
 // Cross-TLD cookies blokowane przez Firefox Total Cookie Protection, Safari ITP,
 // Chrome Privacy Sandbox, więc pytamy backend o sesję na BIEŻĄCEJ TLD.
-const AUTH_API = (window.RADOSKOP_AUTH_API || 'https://api.radoskop.pl') + '/api/auth';
+const AUTH_API = (window.RADOSKOP_AUTH_API || _API_HOST) + '/api/auth';
 
 // Token bridge: gdy user nie ma sesji na .pl, otwieramy radoskop.eu (gdzie
 // może mieć sesję np. po Google login). Apex .eu z parametrem bridge_to
