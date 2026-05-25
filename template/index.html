@@ -1855,7 +1855,7 @@ function showProfile(name) {
         new Chart(ctx.getContext('2d'), {
           type: 'doughnut',
           data: {
-            labels: ['Za', 'Przeciw', isFemale(profile.name) ? 'Wstrzymała się' : 'Wstrzymał się', 'Brak głosu', isFemale(profile.name) ? 'Nieobecna' : 'Nieobecny'],
+            labels: ["Za", "Przeciw", isFemale(profile.name) ? "Wstrzymała się" : "Wstrzymał się", "Brak głosu", isFemale(profile.name) ? "Nieobecna" : "Nieobecny"],
             datasets: [{
               data: [kd.votes_za, kd.votes_przeciw, kd.votes_wstrzymal, kd.votes_brak, kd.votes_nieobecny],
               backgroundColor: ['rgba(34,197,94,0.8)', 'rgba(239,68,68,0.8)', 'rgba(234,179,8,0.8)', 'rgba(139,141,151,0.5)', 'rgba(75,85,99,0.5)'],
@@ -2395,7 +2395,7 @@ function renderFactionVotes(vote) {
     const tb = (b[1].seats != null) ? b[1].seats : (b[1].za||0)+(b[1].przeciw||0)+(b[1].wstrzymal_sie||0)+(b[1].brak_glosu||0)+(b[1].nieobecni||0);
     return tb - ta;
   });
-  const stanceLabel = {za:'Za', przeciw:'Przeciw', wstrzymal_sie:'Wstrzymał się', mixed:'Podzielona', none:'Nie głosowała'};
+  const stanceLabel = {za:"Za", przeciw:"Przeciw", wstrzymal_sie:"Wstrzymał się", mixed:"Podzielona", none:"Nie głosowała"};
   const rowsHtml = entries.map(([name, g]) => {
     const za = g.za||0, prz = g.przeciw||0, wst = g.wstrzymal_sie||0;
     const brak = g.brak_glosu||0, nieob = g.nieobecni||0;
