@@ -285,13 +285,16 @@ def _extract_sessions_from_soup(soup: BeautifulSoup, base_url: str) -> list[dict
 
 
 def _fetch_paginated(base_url: str) -> list[dict]:
-    """Fetch a BIP listing page + all pagination pages, extract sessions."""
+    """Fetch a BIP listing page + all pagination pages, extract sessions.
+
+    Strona 1 (base_url) jest zawsze pobierana świeżo — nowe sesje dochodzą
+    na początku listy. Strony 2+ są historyczne i mogą być cachowane.
+    """
     sessions = []
     visited = set()
 
     try:
-        # Listy sesji i paginacja zawsze świeże — nowe sesje dochodzą
-        soup = fetch(base_url, use_cache=False)
+        soup = fetch(base_url, use_cache=False)  # strona 1: zawsze świeża
     except Exception as e:
         print(f"  Nie udało się pobrać {base_url}: {e}")
         return sessions
@@ -309,7 +312,7 @@ def _fetch_paginated(base_url: str) -> list[dict]:
             if page_url not in visited:
                 visited.add(page_url)
                 try:
-                    page_soup = fetch(page_url, use_cache=False)
+                    page_soup = fetch(page_url, use_cache=True)  # historyczne, cacheable
                     sessions.extend(_extract_sessions_from_soup(page_soup, base_url))
                 except Exception:
                     pass
@@ -319,7 +322,7 @@ def _fetch_paginated(base_url: str) -> list[dict]:
             if page_url not in visited:
                 visited.add(page_url)
                 try:
-                    page_soup = fetch(page_url, use_cache=False)
+                    page_soup = fetch(page_url, use_cache=True)  # historyczne, cacheable
                     sessions.extend(_extract_sessions_from_soup(page_soup, base_url))
                 except Exception:
                     pass
