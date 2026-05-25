@@ -114,9 +114,11 @@ VOKS_TOKENS = [
 _VOKS_ALT = "|".join(re.escape(t) for t in VOKS_TOKENS)
 # Wiersz imienny: <nazwisko> <Voks><frakcja>. Voks bywa SKLEJONY z frakcją
 # bez spacji (artefakt pdftotext, np. "Déri Tibor IgenDEMOKRATIKUS KOALICIÓ"),
-# dlatego po Voks dopuszczamy zero lub więcej spacji.
+# dlatego po Voks dopuszczamy zero lub więcej spacji — ALE tylko gdy frakcja
+# zaczyna się od WIELKIEJ litery. Bez tego wymagania "Nem" matchuje wewnątrz
+# słów jak "Nemzetközi" lub "Nemzetiségi" (Nem + zetközi -> fałszywy radny).
 MEMBER_ROW_RE = re.compile(
-    rf"^\s*(?P<name>.+?)\s+(?P<voks>{_VOKS_ALT})\s*(?P<frakcio>\S.*?)\s*$"
+    rf"^\s*(?P<name>.+?)\s+(?P<voks>{_VOKS_ALT})(?:\s+|(?=[A-ZÁÉÍÓÖŐÚÜŰ]))(?P<frakcio>\S.*?)\s*$"
 )
 
 # Nagłówek tabeli imiennej.
@@ -447,7 +449,7 @@ def build_kadencja(
         votes_flat.append({
             "id": vote_id,
             "session_date": date,
-            "session_number": date,
+            "session_number": None,
             "source_url": b.get("source_url", ""),
             "topic": b.get("topic", ""),
             "druk": b.get("szama", ""),
@@ -476,7 +478,7 @@ def build_kadencja(
         attendees_list = sorted(sess["attendees"])
         sessions.append({
             "date": date,
-            "number": date,
+            "number": None,
             "title": f"Fővárosi Közgyűlés {date}",
             "start": "",
             "end": "",

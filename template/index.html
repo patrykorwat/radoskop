@@ -822,7 +822,14 @@ const VOTE_CATS = {
 // Dla miast PL to polskie keyword, dla zagranicznych (LT/SK/DE/LV/CS/ET)
 // odpowiednie tłumaczenia. Fallback do PL gdy locale nieobsługiwany.
 const CAT_RULES = {{CAT_RULES_JS}};
-function categorizeVote(topic) {
+// KIND_CATS: mapowanie item_kind → klucz VOTE_CATS (opcjonalne, domyślnie {}).
+// Używane przez города z głosowaniami nieimiennymi gdzie item_kind jest
+// naturalną kategorią (np. Paryż: voeu/amendement/projet_deliberation).
+const KIND_CATS = {{KIND_CATS_JS}};
+// VOTE_CATS_EXTRA: dodatkowe wpisy dla miast z własnymi kategoriami.
+Object.assign(VOTE_CATS, {{VOTE_CATS_EXTRA_JS}});
+function categorizeVote(topic, itemKind) {
+  if (itemKind && KIND_CATS[itemKind]) return KIND_CATS[itemKind];
   if (!topic) return 'inne';
   for (const [cat, re] of CAT_RULES) {
     if (re.test(topic)) return cat;
@@ -1682,7 +1689,7 @@ function showProfile(name) {
         const slice = rebs.slice((page - 1) * REBS_PER_PAGE, page * REBS_PER_PAGE);
         let h = slice.map(r => `<div class="rebellion-item">
           <div class="reb-date">${r.session} · głos: <span class="pill pill-${r.their_vote === 'przeciw' ? 'przeciw' : 'wstrzymal'}">${rebVoteLabel(r.their_vote)}</span> (klub: ${rebClubLabel(r.club_majority)})</div>
-          <div>${catPill(categorizeVote(r.topic))} ${r.topic}</div>
+          <div>${catPill(categorizeVote(r.topic, r.item_kind))} ${r.topic}</div>
         </div>`).join('');
         if (rebPages > 1) {
           const from = (page - 1) * REBS_PER_PAGE + 1;
@@ -1913,7 +1920,7 @@ function showProfile(name) {
           const resp = await fetch(API_BASE + '/kadencja/' + kid + '/votes?councilor=' + encodeURIComponent(profile.name) + '&per_page=500&page=' + page);
           const data = await resp.json();
           for (const v of (data.items || [])) {
-            const cat = categorizeVote(v.topic);
+            const cat = categorizeVote(v.topic, v.item_kind);
             allPersonVotes.push({vote: v, pv: v.person_vote, cat, sessDate: v.session_date, sessNum: v.session_number});
             profCatCounts[cat] = (profCatCounts[cat]||0) + 1;
           }
@@ -2191,7 +2198,7 @@ async function renderVotesTable() {
       const c = v.counts || {};
       html += `<tr class="vote-row" onclick="showVote('${v.id || ''}')">
         <td style="color:var(--muted);width:30px">${i+1}</td>
-        <td>${catPill(v.category || categorizeVote(v.topic))} ${v.topic ? v.topic.substring(0,120) : '?'}${v.druk ? ` <a href="/druk/${KAD_SLUGS[currentKid]||currentKid}/${v.druk}/" onclick="event.preventDefault();event.stopPropagation();showDruk(${v.druk},'${currentKid}')" style="color:var(--muted);text-decoration:none">(druk ${v.druk})</a>` : ''}</td>
+        <td>${catPill(v.category || categorizeVote(v.topic, v.item_kind))} ${v.topic ? v.topic.substring(0,120) : '?'}${v.druk ? ` <a href="/druk/${KAD_SLUGS[currentKid]||currentKid}/${v.druk}/" onclick="event.preventDefault();event.stopPropagation();showDruk(${v.druk},'${currentKid}')" style="color:var(--muted);text-decoration:none">(druk ${v.druk})</a>` : ''}</td>
         <td><span class="pill pill-za">${c.za||0}</span></td>
         <td>${c.przeciw ? `<span class="pill pill-przeciw">${c.przeciw}</span>` : '0'}</td>
         <td>${c.wstrzymal_sie ? `<span class="pill pill-wstrzymal">${c.wstrzymal_sie}</span>` : '0'}</td>
@@ -2854,12 +2861,12 @@ async function showSession(sessionNumber) {
   let html = `
     <button class="profile-back" onclick="showMain()">← Strona główna</button>
     <div style="margin-bottom:24px">
-      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">Sesja ${sess.number} · ${sess.date}</h2>
+      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">Sesja ${sess.number != null ? sess.number + ' · ' : ''}${sess.date}</h2>
       ${sess.source_url ? `<div style="margin-top:6px"><a href="${sess.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół (BIP) ↗</a></div>` : ''}
       <div style="margin-top:12px">
         ${shareBar(
-          'Sesja ' + sess.number + ' (' + (sess.date||'') + ') \u2013 Radoskop {{CITY_NAME}}',
-          'Sesja ' + sess.number + ': ' + sessSummaryStat + ', ' + (sess.attendee_count||present.size||0) + ' obecnych radnych.',
+          (sess.number != null ? 'Sesja ' + sess.number + ' ' : '') + '(' + (sess.date||'') + ') \u2013 Radoskop {{CITY_NAME}}',
+          (sess.number != null ? 'Sesja ' + sess.number + ': ' : '') + sessSummaryStat + ', ' + (sess.attendee_count||present.size||0) + ' obecnych radnych.',
           '{{SITE_URL}}/sesja/' + encodeURIComponent(sessionNumber) + '/',
           'session-share'
         )}
@@ -2940,7 +2947,7 @@ async function showSession(sessionNumber) {
   // Votes grouped by category
   const grouped = {};
   sessionVotes.forEach(v => {
-    const cat = categorizeVote(v.topic);
+    const cat = categorizeVote(v.topic, v.item_kind);
     if (!grouped[cat]) grouped[cat] = [];
     grouped[cat].push(v);
   });

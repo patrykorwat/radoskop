@@ -379,12 +379,15 @@ class EsesjaScraper:
         councilors: dict | None = None,
         delay: float = 1.0,
         default_kadencja: str | None = None,
+        name_order: str = "as_is",
     ):
         self.base_url = base_url.rstrip("/")
         self.sessions_url = f"{self.base_url}/glosowania"
         self.kadencje = kadencje
         self.councilors = councilors or {}
         self.club_lookup = build_name_lookup(self.councilors)
+        # "swap_surname_first": eSesja zwraca "Kowalski Jan" → normalizuj do "Jan Kowalski"
+        self.name_order = name_order
         self.delay = delay
         # Default kadencja: the only one that's currently active (no end date).
         # Falls back to the first key in `kadencje`.
@@ -449,6 +452,23 @@ class EsesjaScraper:
             except Exception:
                 pass
         return BeautifulSoup(resp.text, "lxml")
+
+    # -- Name normalisation ------------------------------------------------
+
+    def _normalize_name(self, raw: str) -> str:
+        """Opcjonalnie zamienia kolejność "Nazwisko Imię" -> "Imię Nazwisko".
+
+        Aktywne tylko gdy name_order=="swap_surname_first" (eSesja niektórych
+        miast zwraca nazwisko przed imieniem). Obsługuje nazwiska złożone
+        (np. "Adamczyk-Nowak Beata" -> "Beata Adamczyk-Nowak").
+        """
+        if self.name_order != "swap_surname_first" or not raw:
+            return raw
+        parts = raw.split()
+        if len(parts) < 2:
+            return raw
+        # Ostatni token to imię, reszta to nazwisko (może być złożone).
+        return f"{parts[-1]} {' '.join(parts[:-1])}"
 
     # -- Club resolution ---------------------------------------------------
 
@@ -682,7 +702,7 @@ class EsesjaScraper:
         for vote in all_votes:
             for cat, names in vote["named_votes"].items():
                 for name in names:
-                    stats[name]["name"] = name
+                    stats[name]["name"] = self._normalize_name(name)
                     stats[name]["club"] = self.resolve_club(name)
                     stats[name]["votes_total"] += 1
                     if cat == "za":

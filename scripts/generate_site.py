@@ -620,6 +620,41 @@ def build_impressum_html(config: dict, country: str) -> tuple[str, str]:
     return _esc_js_string(body), link
 
 
+def _build_kind_cats_js(config: dict) -> str:
+    """JS obiekt mapujący item_kind → klucz VOTE_CATS.
+
+    Używany przez miasta gdzie głosowania mają item_kind zamiast / oprócz
+    tematu tekstowego (np. Paryż: voeu/amendement/projet_deliberation).
+    Konfigurowane przez config.item_kind_cats lub autowykrywane dla locale fr.
+    """
+    import json as _json
+    mapping = config.get("item_kind_cats") or {}
+    if not mapping and config.get("locale", "pl") == "fr":
+        mapping = {
+            "voeu": "voeu",
+            "amendement": "amendement",
+            "projet_deliberation": "deliberation",
+        }
+    return _json.dumps(mapping, ensure_ascii=False)
+
+
+def _build_vote_cats_extra_js(config: dict) -> str:
+    """JS obiekt z dodatkowymi wpisami do VOTE_CATS dla specyficznych miast.
+
+    Dla Paryża dodaje voeu/amendement/deliberation jako osobne kategorie.
+    Konfigurowane przez config.vote_cats_extra lub autowykrywane dla locale fr.
+    """
+    import json as _json
+    extra = config.get("vote_cats_extra") or {}
+    if not extra and config.get("locale", "pl") == "fr":
+        extra = {
+            "deliberation": {"label": "Délibération", "order": 1},
+            "voeu": {"label": "Vœu", "order": 2},
+            "amendement": {"label": "Amendement", "order": 3},
+        }
+    return _json.dumps(extra, ensure_ascii=False)
+
+
 def generate_robots(config: dict) -> str:
     """Generate robots.txt."""
     return (
@@ -714,6 +749,8 @@ def main():
     # Build replacements
     replacements = {
         "{{CAT_RULES_JS}}": _cat_rules_js,
+        "{{KIND_CATS_JS}}": _build_kind_cats_js(config),
+        "{{VOTE_CATS_EXTRA_JS}}": _build_vote_cats_extra_js(config),
         "{{VOTE_DATA_DISCLAIMER}}": vote_disclaimer_html,
         "{{CITY_NAME}}": config.get("city_name") or config.get("voivodeship_name", ""),
         "{{CITY_GENITIVE}}": config.get("city_genitive") or config.get("voivodeship_genitive", ""),
@@ -739,7 +776,7 @@ def main():
         "{{HAS_SPEAKER_ACTIVITY}}": "true" if config.get("has_speaker_activity", False) else "false",
         # Miasta bez radnych per osoba (głosowanie à main levée / per frakcja).
         # Strona główna prowadzi wtedy zakładką "Głosowania".
-        "{{HAS_COUNCILORS}}": "false" if _is_councilorless(config) else "true",
+        "{{HAS_COUNCILORS}}": "false" if (_is_councilorless(config) and not config.get("has_named_votes")) else "true",
         # Impressum / Anbieterkennzeichnung
         "{{IMPRESSUM_HTML}}": impressum_html,
         "{{IMPRESSUM_FOOTER_LINK}}": impressum_footer_link,
@@ -819,7 +856,13 @@ def main():
         # frekwencji, profili, sesji imiennych. Strona główna = "Głosowania".
         # Ukrywamy taby radnych/sesji/komisji/interpelacji; flip aktywnej
         # zakładki i widocznej sekcji na votes robimy niżej (na HTML).
-        for t in ("ranking", "sessions", "komisje", "interpelacje"):
+        has_named = config.get("has_named_votes")
+        # Ranking ukryty zawsze (brak per-radny statystyk).
+        # Sessions i councillors odkrywamy gdy miasto ma profiles (has_named_votes).
+        always_hide = ["ranking", "komisje", "interpelacje"]
+        if not has_named:
+            always_hide += ["sessions", "councillors"]
+        for t in always_hide:
             hide_css.append(f'[data-tab="{t}"]{{display:none!important}}')
         # Statyczny stan początkowy (zanim JS przejmie): aktywny tab + widoczna
         # sekcja = votes. Match po data-tab/id (apply_locale nie tłumaczy ich).

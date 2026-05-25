@@ -11,7 +11,26 @@
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "bytom.radoskop.pl",
-  "clubs": {},
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#f97316",
+      "bg": "rgba(249,115,22,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PIS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1d4ed8",
+      "bg": "rgba(29,78,216,0.12)",
+      "avatar_bg": "#1e40af"
+    },
+    "WB2050": {
+      "name": "Wspólny Bytom 2050",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    }
+  },
   "kadencje": {
     "2024-2029": {
       "label": "IX kadencja (2024–2029)",

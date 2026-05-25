@@ -816,7 +816,7 @@ def scrape(out_dir: Path, limit_sessions: int | None = None, cache_dir: Path | N
         "source": COMPTES_RENDUS_URL,
         "generated_by": "scrape_paris.py --scrape",
         "vote_mode": "show_of_hands",
-        "session_count": sessions_done,
+        "total_sessions": sessions_done,
         "votes": all_votes,
     }
     with open(out_file, "w", encoding="utf-8") as f:
