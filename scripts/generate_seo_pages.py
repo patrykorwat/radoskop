@@ -148,6 +148,67 @@ def _maybe_write_page(path: Path, content: str):
     write_page(path, content)
 
 
+def _percentile_rank(value: float, sorted_values: list) -> int:
+    """Return what % of values this value is higher than (0–100)."""
+    if not sorted_values:
+        return 0
+    below = sum(1 for v in sorted_values if v < value)
+    return round(below / len(sorted_values) * 100)
+
+
+def _enrich_profiles_with_percentiles(profiles: list, city_slug: str, city_dir: Path) -> None:
+    """Inject percentile_* fields into each profile's most recent kadencja.
+
+    Reads councilor-percentiles.json from radoskop/docs/ (sibling of city_dir).
+    Silently no-ops if the file is missing or the city has no tier mapping.
+    Fields added to each kadencja entry:
+      percentile_tier          str   e.g. 'medium'
+      percentile_tier_label    str   e.g. '50–200 tys. mieszkańców'
+      percentile_tier_n_cities int
+      percentile_tier_n_councilors int
+      percentile_aktywnosc     int   0–100 (higher = better)
+      percentile_frekwencja    int   0–100
+      percentile_zgodnosc      int   0–100
+    """
+    # city_dir = radoskop/cities/{slug}, so parent.parent = radoskop/
+    percentiles_path = city_dir.parent.parent / 'docs' / 'councilor-percentiles.json'
+    if not percentiles_path.exists():
+        return
+
+    try:
+        with open(percentiles_path, 'r', encoding='utf-8') as f:
+            pdata = json.load(f)
+    except Exception:
+        return
+
+    tier_slug = pdata.get('city_tiers', {}).get(city_slug)
+    if not tier_slug:
+        return
+
+    tier = pdata.get('tiers', {}).get(tier_slug)
+    if not tier:
+        return
+
+    sorted_fr = tier.get('sorted_frekwencja', [])
+    sorted_ak = tier.get('sorted_aktywnosc', [])
+    sorted_zg = tier.get('sorted_zgodnosc_z_klubem', [])
+
+    for p in profiles:
+        kad_keys = sorted(p.get('kadencje', {}).keys(), reverse=True)
+        if not kad_keys:
+            continue
+        kad = p['kadencje'][kad_keys[0]]
+        if not kad.get('has_voting_data'):
+            continue
+        kad['percentile_tier'] = tier_slug
+        kad['percentile_tier_label'] = tier.get('label', '')
+        kad['percentile_tier_n_cities'] = tier.get('n_cities', 0)
+        kad['percentile_tier_n_councilors'] = tier.get('n_councilors', 0)
+        kad['percentile_frekwencja'] = _percentile_rank(kad.get('frekwencja', 0), sorted_fr)
+        kad['percentile_aktywnosc'] = _percentile_rank(kad.get('aktywnosc', 0), sorted_ak)
+        kad['percentile_zgodnosc'] = _percentile_rank(kad.get('zgodnosc_z_klubem', 0), sorted_zg)
+
+
 def process_city(city_dir: Path, output_dir: Path | None = None):
     """Generate all SEO pages for one city.
 
@@ -212,6 +273,10 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
     if profiles_path.exists():
         with open(profiles_path, "r", encoding="utf-8") as f:
             profiles = json.load(f).get("profiles", [])
+
+    # Enrich profiles with cross-city percentile data (if available).
+    city_slug = city_dir.name
+    _enrich_profiles_with_percentiles(profiles, city_slug, city_dir)
 
     # Load data.json for kadencje index
     kadencje = []

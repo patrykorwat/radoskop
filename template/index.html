@@ -1585,6 +1585,64 @@ function showProfile(name) {
       html += `<div class="section"><p style="color:var(--muted)">Brak danych głosowania — mandat zakończony przed dostępnym okresem danych.</p></div>`;
     }
 
+    // Cross-city comparison widget (premium conversion)
+    if (hasVotes && kd.percentile_tier) {
+      const isLoggedIn = !!_authUser;
+      const tierLabel = kd.percentile_tier_label || '';
+      const nCities = kd.percentile_tier_n_cities || 0;
+      const nCouncilors = kd.percentile_tier_n_councilors || 0;
+      const pAkt = kd.percentile_aktywnosc ?? null;
+      const pFrek = kd.percentile_frekwencja ?? null;
+      const pZgod = kd.percentile_zgodnosc ?? null;
+
+      function _barColor(pct) {
+        if (pct >= 75) return 'var(--green)';
+        if (pct >= 40) return 'var(--yellow)';
+        return 'var(--red)';
+      }
+      function _rankLabel(pct) {
+        if (pct === null) return '';
+        return `wyżej niż ${pct}%`;
+      }
+      function _metricBar(label, value, pct, blurred) {
+        const blurStyle = blurred ? 'filter:blur(4px);pointer-events:none;user-select:none;' : '';
+        return `<div style="${blurStyle}margin-bottom:14px">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+            <span style="font-size:0.85rem;color:var(--muted)">${label}</span>
+            <span style="font-size:0.82rem;font-weight:500;color:${_barColor(pct)}">${_rankLabel(pct)}</span>
+          </div>
+          <div style="background:var(--border);border-radius:4px;height:5px;overflow:hidden;position:relative">
+            <div style="background:${_barColor(pct)};height:100%;width:${value}%;border-radius:4px"></div>
+          </div>
+        </div>`;
+      }
+
+      const loginUrl = AUTH_FRONTEND + '/?bridge_to=' + encodeURIComponent(window.location.href) + '&unlock=comparison';
+      const overlayHtml = isLoggedIn ? '' : \`
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border-radius:8px;background:color-mix(in srgb,var(--bg) 60%,transparent)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span style="font-size:0.82rem;color:var(--muted);text-align:center">Pełne porównanie dostępne po zalogowaniu</span>
+          <button class="auth-btn" style="font-size:0.82rem;padding:5px 14px" onclick="window.location.href='\${loginUrl}'">Zaloguj się</button>
+        </div>\`;
+
+      const lockedRows = isLoggedIn
+        ? _metricBar('Frekwencja na sesjach', kd.frekwencja, pFrek, false)
+          + _metricBar('Zgodność z klubem', kd.zgodnosc_z_klubem, pZgod, false)
+        : \`<div style="position:relative">
+            \${_metricBar('Frekwencja na sesjach', kd.frekwencja, pFrek, true)}
+            \${_metricBar('Zgodność z klubem', kd.zgodnosc_z_klubem, pZgod, true)}
+            \${overlayHtml}
+           </div>\`;
+
+      const cityWord = nCities === 1 ? 'miasto' : nCities < 5 ? 'miasta' : 'miast';
+      html += \`<div class="section" style="margin-bottom:24px">
+        <h2 style="margin-bottom:4px">Porównanie z podobnymi miastami</h2>
+        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:16px">\${tierLabel} · \${nCities} \${cityWord}, \${nCouncilors} radnych</p>
+        \${_metricBar('Aktywność głosowania', kd.aktywnosc, pAkt, false)}
+        \${lockedRows}
+      </div>\`;
+    }
+
     // Speaking activity section
     if (kd.has_activity_data && kd.activity) {
       const act = kd.activity;

@@ -111,6 +111,20 @@ def load_profiles(city_dir: Path) -> Dict[str, Dict[str, Any]]:
         return {}
 
 
+def load_population_lookup(base_path: Path) -> dict[str, int]:
+    """Load slug→population from radoskop/docs/cities.json."""
+    cities_json = base_path / 'radoskop' / 'docs' / 'cities.json'
+    if not cities_json.exists():
+        return {}
+    try:
+        with open(cities_json, 'r', encoding='utf-8') as f:
+            entries = json.load(f)
+        return {e['slug']: e['population'] for e in entries if e.get('population')}
+    except Exception as e:
+        print(f"Warning: could not load cities.json for population lookup: {e}")
+        return {}
+
+
 def build_cross_city_json(base_path: Path, output_path: Path):
     """Main function to aggregate all city data and build cross-city JSON."""
 
@@ -119,6 +133,8 @@ def build_cross_city_json(base_path: Path, output_path: Path):
     # migracji. Bez tego nowe miasta dodane do cities/ (np. czestochowa, radom)
     # nie wchodziły do cross-city.json bo nie było odpowiadającego sibling
     # `radoskop-{slug}/` dir w workspace root.
+    population_lookup = load_population_lookup(base_path)
+
     city_dirs: list[Path] = []
     monorepo_cities = base_path / 'radoskop' / 'cities'
     if monorepo_cities.is_dir():
@@ -169,9 +185,14 @@ def build_cross_city_json(base_path: Path, output_path: Path):
         avg_aktywnosc = sum(c.get('aktywnosc', 0) for c in councilors) / len(councilors)
         avg_zgodnosc = sum(c.get('zgodnosc_z_klubem', 0) for c in councilors) / len(councilors)
 
+        city_slug = city_dir.name
+        population = population_lookup.get(city_slug) or config.get('population')
+
         city_record = {
             'name': city_name,
+            'slug': city_slug,
             'url': site_url,
+            'population': population,
             'councilor_count': len(councilors),
             'session_count': kadencja.get('total_sessions', 0),
             'vote_count': kadencja.get('total_votes', 0),
@@ -196,7 +217,9 @@ def build_cross_city_json(base_path: Path, output_path: Path):
             councilor_record = {
                 'name': name,
                 'city': city_name,
+                'city_slug': city_slug,
                 'city_url': site_url,
+                'population': population,
                 'club': club,
                 'frekwencja': councilor.get('frekwencja', 0),
                 'aktywnosc': councilor.get('aktywnosc', 0),
