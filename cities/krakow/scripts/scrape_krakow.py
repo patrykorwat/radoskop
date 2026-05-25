@@ -1091,28 +1091,6 @@ def main():
         session_speakers = process_transcripts(steno_links, cache_dir, profiles_lookup)
         print(f"  Transkrypcje: {len(session_speakers)}/{len(all_sessions)} sesji")
 
-
-def compact_named_votes(output):
-    """Convert named_votes from string arrays to indexed format for smaller JSON."""
-    for kad in output.get("kadencje", []):
-        names = set()
-        for v in kad.get("votes", []):
-            nv = v.get("named_votes", {})
-            for cat_names in nv.values():
-                for n in cat_names:
-                    if isinstance(n, str):
-                        names.add(n)
-        if not names:
-            continue
-        index = sorted(names, key=lambda n: n.split()[-1] + " " + n)
-        name_to_idx = {n: i for i, n in enumerate(index)}
-        kad["councilor_index"] = index
-        for v in kad.get("votes", []):
-            nv = v.get("named_votes", {})
-            for cat in nv:
-                nv[cat] = sorted(name_to_idx[n] for n in nv[cat] if isinstance(n, str) and n in name_to_idx)
-    return output
-
     # Build output
     build_step = 4 if args.transcripts else 3
     print(f"\n[{build_step}/{total_steps}] Budowanie pliku wyjściowego...")
@@ -1167,6 +1145,27 @@ def compact_named_votes(output):
     # Merge stats into profiles.json
     merge_stats_to_profiles(args.profiles, output)
 
+
+def compact_named_votes(output):
+    """Convert named_votes from string arrays to indexed format for smaller JSON."""
+    for kad in output.get("kadencje", []):
+        names = set()
+        for v in kad.get("votes", []):
+            nv = v.get("named_votes", {})
+            for cat_names in nv.values():
+                for n in cat_names:
+                    if isinstance(n, str):
+                        names.add(n)
+        if not names:
+            continue
+        index = sorted(names, key=lambda n: n.split()[-1] + " " + n)
+        name_to_idx = {n: i for i, n in enumerate(index)}
+        kad["councilor_index"] = index
+        for v in kad.get("votes", []):
+            nv = v.get("named_votes", {})
+            for cat in nv:
+                nv[cat] = sorted(name_to_idx[n] for n in nv[cat] if isinstance(n, str) and n in name_to_idx)
+    return output
 
 
 def save_split_output(output, out_path):
