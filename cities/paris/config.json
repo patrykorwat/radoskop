@@ -26,11 +26,15 @@
   "rada_name": "Conseil de Paris",
   "rada_name_genitive": "du Conseil de Paris",
   "councilor_count": 163,
-  "kadencja_active": "2020-2026",
+  "kadencja_active": "2026-2032",
   "kadencje": {
     "2020-2026": {
       "label": "Mandature 2020–2026",
       "start": "2020-07-03"
+    },
+    "2026-2032": {
+      "label": "2026-2032",
+      "start": "2026-03-29"
     }
   },
   "voting_display": "faction",
@@ -298,5 +302,6 @@
     "Yasmina Merzi": "SOCIALISTE_DG",
     "Yvain Bourgeat-Lami": "SOCIALISTE_DG"
   },
-  "roster_note": "club_assignments wyprowadzone z imiennych scrutins publics (OCR aneksów compte rendu sommaire). Nazwiska z warstwy tekstowej (czyste), przynależność grupowa z OCR. 162 radnych, 5 bez dopasowanej grupy (NZ)."
+  "roster_note": "club_assignments wyprowadzone z imiennych scrutins publics (OCR aneksów compte rendu sommaire). Nazwiska z warstwy tekstowej (czyste), przynależność grupowa z OCR. 162 radnych, 5 bez dopasowanej grupy (NZ).",
+  "has_named_votes": true
 }

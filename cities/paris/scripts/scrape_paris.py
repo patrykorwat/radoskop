@@ -49,7 +49,128 @@ sys.path.insert(0, str(REPO_DIR / "scripts"))
 
 from lib_faction_votes import make_faction_vote  # noqa: E402
 
-KADENCJA_ID = "2020-2026"
+KADENCJA_ID = "2026-2032"
+
+# ---------------------------------------------------------------------------
+# Radni kadencji 2026-2032 (źródło: Wikipedia + paris.fr, stan 2026-03-29)
+# Slug: imię-nazwisko z normalizacją znaków diakrytycznych.
+# ---------------------------------------------------------------------------
+import unicodedata as _ud
+
+def _slug(name: str) -> str:
+    nfkd = _ud.normalize("NFKD", name)
+    ascii_ = nfkd.encode("ascii", "ignore").decode()
+    return re.sub(r"[^a-z0-9]+", "-", ascii_.lower()).strip("-")
+
+
+# (name, club_key) — club_key musi odpowiadać kluczowi w config.json["clubs"]
+_COUNCILLORS_2026: list[tuple[str, str]] = [
+    # GSDG - Groupe Socialiste et divers gauche (53)
+    ("Emmanuel Grégoire", "SOCIALISTE_DG"), ("Lamia El Aaraje", "SOCIALISTE_DG"),
+    ("Marine Rosset", "SOCIALISTE_DG"), ("Éric Pliez", "SOCIALISTE_DG"),
+    ("Jérôme Coumet", "SOCIALISTE_DG"), ("Alexandra Cordebard", "SOCIALISTE_DG"),
+    ("Isabelle Rocca", "SOCIALISTE_DG"), ("François Vauglin", "SOCIALISTE_DG"),
+    ("Johanne Kouassi", "SOCIALISTE_DG"), ("Halima Jemni", "SOCIALISTE_DG"),
+    ("Ariel Weil", "SOCIALISTE_DG"), ("Paul Simondon", "SOCIALISTE_DG"),
+    ("Emma Rafowicz", "SOCIALISTE_DG"), ("Éric Lejoindre", "SOCIALISTE_DG"),
+    ("François Dagnaud", "SOCIALISTE_DG"), ("Théa Fourdrinier", "SOCIALISTE_DG"),
+    ("Antoine Guillou", "SOCIALISTE_DG"), ("Marion Waller", "SOCIALISTE_DG"),
+    ("Alexandre Menucci", "SOCIALISTE_DG"), ("Juliette Sabatier", "SOCIALISTE_DG"),
+    ("Richard Bouigue", "SOCIALISTE_DG"), ("Thomas Chevandier", "SOCIALISTE_DG"),
+    ("Florian Sitbon", "SOCIALISTE_DG"), ("Carine Rolland", "SOCIALISTE_DG"),
+    ("Kévin Havet", "SOCIALISTE_DG"), ("Gaston Laval", "SOCIALISTE_DG"),
+    ("Mathieu Delmestre", "SOCIALISTE_DG"), ("Gabrielle Siry-Houari", "SOCIALISTE_DG"),
+    ("Adji Ahoudian", "SOCIALISTE_DG"), ("Dominique Kielemoës", "SOCIALISTE_DG"),
+    ("Elisa Yavchitz", "SOCIALISTE_DG"), ("Camille Vizioz-Brami", "SOCIALISTE_DG"),
+    ("Luc Lebon", "SOCIALISTE_DG"), ("Kadiatou Coulibaly", "SOCIALISTE_DG"),
+    ("Geneviève Garrigos", "SOCIALISTE_DG"), ("Daniel Tran", "SOCIALISTE_DG"),
+    ("Charles Mergey", "SOCIALISTE_DG"), ("Yvain Bourgeat-Lami", "SOCIALISTE_DG"),
+    ("Saïd Benmouffok", "SOCIALISTE_DG"), ("Karine Barbagli", "SOCIALISTE_DG"),
+    ("Pierre Lombard", "SOCIALISTE_DG"), ("Audrey Pulvar", "SOCIALISTE_DG"),
+    ("Pierre Rabadan", "SOCIALISTE_DG"), ("Maxime Sauvage", "SOCIALISTE_DG"),
+    ("Maxime des Gayets", "SOCIALISTE_DG"), ("Alexandra Jardin", "SOCIALISTE_DG"),
+    ("Céline Hervieu", "SOCIALISTE_DG"), ("Agnès Bertrand", "SOCIALISTE_DG"),
+    ("Karim Ziady", "SOCIALISTE_DG"), ("Anouch Toranian", "SOCIALISTE_DG"),
+    ("Yasmina Merzi", "SOCIALISTE_DG"), ("Valentin Guénanen", "SOCIALISTE_DG"),
+    ("Carine Ekon", "SOCIALISTE_DG"),
+    # ESP - Écologiste et Social de Paris (36)
+    ("David Belliard", "ECOLOGISTE"), ("Anne-Claire Boux", "ECOLOGISTE"),
+    ("Fatoumata Koné", "ECOLOGISTE"), ("Guillaume Durand", "ECOLOGISTE"),
+    ("Dan Lert", "ECOLOGISTE"), ("Amina Bouri", "ECOLOGISTE"),
+    ("Carine Petit", "ECOLOGISTE"), ("Antoine Dupont", "ECOLOGISTE"),
+    ("Laurent Sorel", "ECOLOGISTE"), ("Maxime Crosnier", "ECOLOGISTE"),
+    ("Mélody Tonolli", "ECOLOGISTE"), ("Marie-Pierre Marchand", "ECOLOGISTE"),
+    ("Mams Yaffa", "ECOLOGISTE"), ("Aminata Niakaté", "ECOLOGISTE"),
+    ("Alice Timsit", "ECOLOGISTE"), ("Pierre Benassaya", "ECOLOGISTE"),
+    ("Sylvain Raifaud", "ECOLOGISTE"), ("Rania Kissi", "ECOLOGISTE"),
+    ("Arnaud Lehoux", "ECOLOGISTE"), ("Nour Durand-Raucher", "ECOLOGISTE"),
+    ("Manon Havet", "ECOLOGISTE"), ("Tom Rouffio", "ECOLOGISTE"),
+    ("Frédérique Dutreuil", "ECOLOGISTE"), ("Simon Duquerroir", "ECOLOGISTE"),
+    ("Sylvain Maschino", "ECOLOGISTE"), ("Jeanne Ouvret", "ECOLOGISTE"),
+    ("Laëtitia Vipard", "ECOLOGISTE"), ("Irénée Frerot", "ECOLOGISTE"),
+    ("Bechir Saket Bouderbala", "ECOLOGISTE"), ("Marion-Émi Alix", "ECOLOGISTE"),
+    ("Azadeh Akrami-Castanon", "ECOLOGISTE"), ("Lucie Castets", "ECOLOGISTE"),
+    ("Antoine Alibert", "ECOLOGISTE"), ("Annah Bikouloulou", "ECOLOGISTE"),
+    ("Nicolas Rouveau", "ECOLOGISTE"), ("Ophélie Madinier", "ECOLOGISTE"),
+    # GCP - Groupe Communiste de Paris (13)
+    ("Ian Brossat", "COMMUNISTE"), ("Raphaëlle Primet", "COMMUNISTE"),
+    ("Adrien Tiberti", "COMMUNISTE"), ("Laurence Patrice", "COMMUNISTE"),
+    ("Jean-Noël Aqua", "COMMUNISTE"), ("Barbara Gomes", "COMMUNISTE"),
+    ("Jacques Baudrier", "COMMUNISTE"), ("Nicolas Bonnet Oulaldj", "COMMUNISTE"),
+    ("Hélène Bidard", "COMMUNISTE"), ("Ladji Sakho", "COMMUNISTE"),
+    ("Camille Naget", "COMMUNISTE"), ("Gwenaëlle Austin", "COMMUNISTE"),
+    ("Rym Karaoun Gouezou", "COMMUNISTE"),
+    # NI - Non inscrits (1)
+    ("Lila Bouadma", "NZ"),
+    # PL - Paris Liberté (32)
+    ("Rachida Dati", "PARIS_LIBERTE"), ("Sylvain Maillard", "PARIS_LIBERTE"),
+    ("Eric Schahl", "PARIS_LIBERTE"), ("Agnès Evren", "PARIS_LIBERTE"),
+    ("Geoffroy Boulard", "PARIS_LIBERTE"), ("Benjamin Haddad", "PARIS_LIBERTE"),
+    ("Jean-Pierre Lecoq", "PARIS_LIBERTE"), ("Nelly Garnier", "PARIS_LIBERTE"),
+    ("Philippe Goujon", "PARIS_LIBERTE"), ("Jérémy Redler", "PARIS_LIBERTE"),
+    ("Valérie Montandon", "PARIS_LIBERTE"), ("Catherine Dumas", "PARIS_LIBERTE"),
+    ("Emmanuelle Dauvergne", "PARIS_LIBERTE"), ("Grégory Canal", "PARIS_LIBERTE"),
+    ("David Alphand", "PARIS_LIBERTE"), ("François-Marie Didier", "PARIS_LIBERTE"),
+    ("Aurélien Véron", "PARIS_LIBERTE"), ("Inès de Raguenel", "PARIS_LIBERTE"),
+    ("Anne Biraben", "PARIS_LIBERTE"), ("Jérôme Sterkers", "PARIS_LIBERTE"),
+    ("Catherine Lécuyer", "PARIS_LIBERTE"), ("Pierre Liscia", "PARIS_LIBERTE"),
+    ("Jean-Baptiste Olivier", "PARIS_LIBERTE"), ("Valentine Serino", "PARIS_LIBERTE"),
+    ("Karl Astie", "PARIS_LIBERTE"), ("Antoine Beauquier", "PARIS_LIBERTE"),
+    ("Alexandra Nicol", "PARIS_LIBERTE"), ("Frédéric Péchenard", "PARIS_LIBERTE"),
+    ("Véronique Baldini", "PARIS_LIBERTE"), ("Anne-Claire Tyssandier", "PARIS_LIBERTE"),
+    ("Thierry Guerrier", "PARIS_LIBERTE"), ("Eléonore Creuze", "PARIS_LIBERTE"),
+    # PA - Paris apaisé (11)
+    ("Emmanuelle Hoffman", "PARIS_APAISE"),
+    ("Florence Berthout", "PARIS_APAISE"), ("Daniel-Georges Courtois", "PARIS_APAISE"),
+    ("Marlène Schiappa", "PARIS_APAISE"), ("Julie Boillot", "PARIS_APAISE"),
+    ("Antoine Lesieur", "PARIS_APAISE"), ("Catherine Ibled", "PARIS_APAISE"),
+    ("Clara Chassaniol", "PARIS_APAISE"), ("Rachel-Flore Pardo", "PARIS_APAISE"),
+    ("Alexia Germont", "PARIS_APAISE"), ("Abdoulaye Kanté", "PARIS_APAISE"),
+    # PAC - Paris au centre (8)
+    ("Maud Gatel", "PARIS_CENTRE"), ("Delphine Bürkli", "PARIS_CENTRE"), ("Pierre Baty", "PARIS_CENTRE"),
+    ("Béatrice Lecouturier", "PARIS_CENTRE"), ("Séverine de Compreignac", "PARIS_CENTRE"),
+    ("Pierre Casanova", "PARIS_CENTRE"), ("Jules Pasquier", "PARIS_CENTRE"),
+    ("Sandro Gozi", "PARIS_CENTRE"),
+    # NPP - Nouveau Paris Populaire (9)
+    ("Sophia Chikirou", "NOUVEAU_PARIS"), ("Émile Meunier", "NOUVEAU_PARIS"),
+    ("Céline Verzeletti", "NOUVEAU_PARIS"), ("Roland Timsit", "NOUVEAU_PARIS"),
+    ("Sonia Chaouche", "NOUVEAU_PARIS"), ("Rodrigo Arenas", "NOUVEAU_PARIS"),
+    ("Sophie de La Rochefoucauld", "NOUVEAU_PARIS"),
+    ("Christophe Prudhomme", "NOUVEAU_PARIS"), ("Sabrina Nouri", "NOUVEAU_PARIS"),
+]
+
+
+def _build_profiles(scraped_at: str) -> dict:
+    profiles = []
+    for name, club in _COUNCILLORS_2026:
+        profiles.append({
+            "slug": _slug(name),
+            "name": name,
+            "club": club,
+            "kadencja": KADENCJA_ID,
+        })
+    return {"scraped_at": scraped_at, "profiles": profiles, "total": len(profiles)}
+
 
 # Opendatasoft (portal opendata.paris.fr), Explore API v2.1.
 ODS_BASE = "https://opendata.paris.fr/api/explore/v2.1/catalog/datasets"
@@ -590,19 +711,80 @@ def fetch_text(url: str) -> str:
     return r.text
 
 
+_STABLE_DAYS = 7  # sesja starsza niż N dni — PDF nie zmieni się już
+
+
+def _load_url_map(out_dir: Path) -> dict:
+    """Wczytaj sidecar {url -> session_date} z poprzednich runów."""
+    p = out_dir / "_paris_url_map.json"
+    if p.exists():
+        try:
+            return json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {}
+
+
+def _save_url_map(out_dir: Path, url_map: dict) -> None:
+    p = out_dir / "_paris_url_map.json"
+    p.write_text(json.dumps(url_map, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def _is_stable_session(session_date: str | None) -> bool:
+    if not session_date:
+        return False
+    try:
+        from datetime import date, timedelta
+        d = date.fromisoformat(session_date)
+        return (date.today() - d).days > _STABLE_DAYS
+    except Exception:
+        return False
+
+
 def scrape(out_dir: Path, limit_sessions: int | None = None, cache_dir: Path | None = None) -> Path:
     """Pełny scrape: odkryj PV sommaire, sparsuj każdy, zbuduj kadencja-{id}.json.
 
     Agreguje wyniki ze wszystkich sesji w jeden plik kadencji. To jest tryb
     uruchamiany przez scheduled pipeline (--scrape). cache_dir cache'uje OCR.
+    Stabilne sesje (starsze niż _STABLE_DAYS dni) są pomijane jeśli już
+    przetworzone i ich wyniki są w istniejącym kadencja-*.json.
     """
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out_file = out_dir / f"kadencja-{KADENCJA_ID}.json"
+
+    # Wczytaj istniejące wyniki — zbuduj słownik session_date -> [votes]
+    existing_by_date: dict[str, list[dict]] = {}
+    if out_file.exists():
+        try:
+            existing = json.loads(out_file.read_text(encoding="utf-8"))
+            for v in existing.get("votes", []):
+                sd = v.get("session_date") or ""
+                existing_by_date.setdefault(sd, []).append(v)
+        except Exception:
+            pass
+
+    # Sidecar mapujący url -> session_date z poprzednich runów
+    url_map = _load_url_map(out_dir)
+
     html = fetch_text(COMPTES_RENDUS_URL)
     urls = discover_pv_urls(html)
     if limit_sessions:
         urls = urls[:limit_sessions]
+
     all_votes: list[dict] = []
     sessions_done = 0
+    url_map_dirty = False
+
     for url in urls:
+        # Sprawdź czy sesja jest już przetworzona i stabilna
+        cached_date = url_map.get(url)
+        if cached_date and _is_stable_session(cached_date) and cached_date in existing_by_date:
+            cached_votes = existing_by_date[cached_date]
+            all_votes.extend(cached_votes)
+            sessions_done += 1
+            print(f"  [CACHE] {url}: {len(cached_votes)} pozycji (sesja {cached_date})", file=sys.stderr)
+            continue
+
         pdf_path = None
         try:
             pdf_path = _download_pdf(url)
@@ -614,6 +796,9 @@ def scrape(out_dir: Path, limit_sessions: int | None = None, cache_dir: Path | N
             n_ocr = sum(1 for v in votes if v.get("faction_votes_source") == "ocr")
             print(f"  {url}: {len(votes)} pozycji, {n_scrutin} scrutins, "
                   f"{n_ocr} z rozkładem OCR (sesja {sd})", file=sys.stderr)
+            if sd and sd not in url_map:
+                url_map[url] = sd
+                url_map_dirty = True
         except Exception as e:
             print(f"  POMINIĘTO {url}: {e}", file=sys.stderr)
         finally:
@@ -622,8 +807,10 @@ def scrape(out_dir: Path, limit_sessions: int | None = None, cache_dir: Path | N
                     pdf_path.unlink()
                 except Exception:
                     pass
-    out_dir.mkdir(parents=True, exist_ok=True)
-    out_file = out_dir / f"kadencja-{KADENCJA_ID}.json"
+
+    if url_map_dirty:
+        _save_url_map(out_dir, url_map)
+
     payload = {
         "kadencja": KADENCJA_ID,
         "source": COMPTES_RENDUS_URL,
@@ -648,12 +835,13 @@ def _config_kadencja_label() -> str:
 
 
 def _write_manifest(out_dir: Path, votes: list[dict], sessions_done: int) -> None:
-    """Zapisz docs/data.json (manifest dla API /data) i puste profiles.json.
-
-    Paryż nie ma radnych ani profili (show_of_hands), więc profiles puste.
-    Schemat data.json zgodny z innymi miastami (default_kadencja + kadencje[]).
-    """
+    """Zapisz docs/data.json (manifest dla API /data) i profiles.json z radnymi."""
     now = datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    profiles_data = _build_profiles(now)
+    councillors = [
+        {"name": p["name"], "slug": p["slug"], "club": p["club"]}
+        for p in profiles_data["profiles"]
+    ]
     data_payload = {
         "scraped_at": now,
         "generated": True,
@@ -664,8 +852,8 @@ def _write_manifest(out_dir: Path, votes: list[dict], sessions_done: int) -> Non
             "label": _config_kadencja_label(),
             "total_votes": len(votes),
             "total_sessions": sessions_done,
-            "total_councilors": 0,
-            "councilors": [],
+            "total_councilors": len(councillors),
+            "councilors": councillors,
         }],
     }
     if not votes:
@@ -674,8 +862,7 @@ def _write_manifest(out_dir: Path, votes: list[dict], sessions_done: int) -> Non
         json.dumps(data_payload, ensure_ascii=False, indent=2), encoding="utf-8"
     )
     (out_dir / "profiles.json").write_text(
-        json.dumps({"scraped_at": now, "profiles": [], "total": 0}, ensure_ascii=False, indent=2),
-        encoding="utf-8",
+        json.dumps(profiles_data, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
 
