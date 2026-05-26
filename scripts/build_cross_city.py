@@ -266,6 +266,7 @@ def build_cross_city_json(base_path: Path, output_path: Path):
     output = {
         'generated': datetime.utcnow().isoformat() + 'Z',
         'cities': cities_data,
+        'councilors': all_councilors,
         'top_frekwencja': top_frekwencja,
         'bottom_frekwencja': bottom_frekwencja,
         'top_rebellion': top_rebellion,
