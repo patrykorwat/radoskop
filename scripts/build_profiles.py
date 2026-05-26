@@ -7,9 +7,10 @@ Usage:
 """
 
 import json
-import sys
 import os
+import sys
 from datetime import datetime, timezone
+from pathlib import Path
 
 # ── Wikipedia data: X kadencja (2024-2029) ─────────────────────────────
 
@@ -601,7 +602,59 @@ def load_activity_data(activity_path):
     return {}
 
 
-def build_profiles(data_json_path, out_path, activity_path=None):
+def _enrich_with_percentiles(profiles: list, city_slug: str, percentiles_path: str) -> None:
+    """Inject percentile_* fields into each profile's kadencja entries that have voting data.
+
+    Reads councilor-percentiles.json (built by build_councilor_percentiles.py).
+    Silently no-ops if the file is missing or the city has no tier mapping.
+    Fields added:
+      percentile_tier, percentile_tier_label, percentile_tier_n_cities,
+      percentile_tier_n_councilors, percentile_aktywnosc, percentile_frekwencja,
+      percentile_zgodnosc  (all int 0-100)
+    """
+    import os
+    if not os.path.exists(percentiles_path):
+        return
+    try:
+        with open(percentiles_path, 'r', encoding='utf-8') as f:
+            pdata = json.load(f)
+    except Exception:
+        return
+
+    tier_slug = pdata.get('city_tiers', {}).get(city_slug)
+    if not tier_slug:
+        return
+    tier = pdata.get('tiers', {}).get(tier_slug)
+    if not tier:
+        return
+
+    sorted_fr = tier.get('sorted_frekwencja', [])
+    sorted_ak = tier.get('sorted_aktywnosc', [])
+    sorted_zg = tier.get('sorted_zgodnosc_z_klubem', [])
+
+    def _rank(value, sorted_values):
+        if not sorted_values:
+            return 0
+        below = sum(1 for v in sorted_values if v < value)
+        return round(below / len(sorted_values) * 100)
+
+    for p in profiles:
+        for kad in p.get('kadencje', {}).values():
+            if not kad.get('has_voting_data'):
+                continue
+            kad['percentile_tier'] = tier_slug
+            kad['percentile_tier_label'] = tier.get('label', '')
+            kad['percentile_tier_n_cities'] = tier.get('n_cities', 0)
+            kad['percentile_tier_n_councilors'] = tier.get('n_councilors', 0)
+            kad['percentile_frekwencja'] = _rank(kad.get('frekwencja', 0), sorted_fr)
+            kad['percentile_aktywnosc'] = _rank(kad.get('aktywnosc', 0), sorted_ak)
+            kad['percentile_zgodnosc'] = _rank(kad.get('zgodnosc_z_klubem', 0), sorted_zg)
+
+    n = sum(1 for p in profiles for kad in p.get('kadencje', {}).values() if kad.get('percentile_tier'))
+    print(f"  Percentile enrichment: tier={tier_slug} ({tier.get('n_councilors',0)} radnych), enriched {n} kadencja entries")
+
+
+def build_profiles(data_json_path, out_path, activity_path=None, percentiles_path=None, city_slug=None):
     with open(data_json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
@@ -710,6 +763,23 @@ def build_profiles(data_json_path, out_path, activity_path=None):
         if profile["kadencje"]:
             profiles.append(profile)
 
+    # Cross-city percentile enrichment — inject percentile_* into each kadencja.
+    # Auto-detect paths when not provided: councilor-percentiles.json lives in
+    # radoskop/docs/ (two levels above the city docs dir), city_slug from path.
+    if percentiles_path is None:
+        # Heuristic: out_path = .../cities/{slug}/docs/profiles.json
+        out_parts = Path(out_path).resolve().parts
+        try:
+            cities_idx = list(out_parts).index('cities')
+            city_slug = city_slug or out_parts[cities_idx + 1]
+            radoskop_root = Path(*out_parts[:cities_idx])
+            percentiles_path = str(radoskop_root / 'docs' / 'councilor-percentiles.json')
+        except (ValueError, IndexError):
+            pass
+
+    if percentiles_path and city_slug:
+        _enrich_with_percentiles(profiles, city_slug, percentiles_path)
+
     output = {
         "scraped_at": datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "profiles": profiles,
@@ -749,4 +819,48 @@ if __name__ == "__main__":
         if idx + 1 < len(sys.argv):
             activity_path = sys.argv[idx + 1]
 
-    build_profiles(data_path, out_path, activity_path)
+    percentiles_path = None
+    if "--percentiles" in sys.argv:
+        idx = sys.argv.index("--percentiles")
+        if idx + 1 < len(sys.argv):
+            percentiles_path = sys.argv[idx + 1]
+
+    city_slug = None
+    if "--city" in sys.argv:
+        idx = sys.argv.index("--city")
+        if idx + 1 < len(sys.argv):
+            city_slug = sys.argv[idx + 1]
+
+    # --enrich-only: read existing profiles.json, inject percentiles, save back.
+    # Usage: build_profiles.py --enrich-only --out profiles.json --city poznan
+    if "--enrich-only" in sys.argv:
+        if not os.path.exists(out_path):
+            print(f"--enrich-only: {out_path} not found, skipping")
+            sys.exit(0)
+        # Auto-detect percentiles path and city slug from out_path if not provided.
+        eff_percentiles = percentiles_path
+        eff_city = city_slug
+        if eff_percentiles is None or eff_city is None:
+            out_parts = list(Path(out_path).resolve().parts)
+            try:
+                cities_idx = out_parts.index('cities')
+                if eff_city is None:
+                    eff_city = out_parts[cities_idx + 1]
+                if eff_percentiles is None:
+                    radoskop_root = Path(*out_parts[:cities_idx])
+                    eff_percentiles = str(radoskop_root / 'docs' / 'councilor-percentiles.json')
+            except (ValueError, IndexError):
+                pass
+        if not eff_city or not eff_percentiles:
+            print("--enrich-only: could not determine city/percentiles path, skipping")
+            sys.exit(0)
+        with open(out_path, 'r', encoding='utf-8') as f:
+            existing = json.load(f)
+        profiles = existing.get('profiles', [])
+        _enrich_with_percentiles(profiles, eff_city, eff_percentiles)
+        existing['profiles'] = profiles
+        with open(out_path, 'w', encoding='utf-8') as f:
+            json.dump(existing, f, ensure_ascii=False, indent=2)
+        sys.exit(0)
+
+    build_profiles(data_path, out_path, activity_path, percentiles_path=percentiles_path, city_slug=city_slug)
