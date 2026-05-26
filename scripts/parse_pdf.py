@@ -184,7 +184,7 @@ def parse_voting_pdf(pdf_path):
         # Druk number
         druk_match = re.search(r'\(druk\s+(\d+)\)', vote.get("topic", ""))
         if druk_match:
-            vote["druk"] = int(druk_match.group(1))
+            vote["druk"] = druk_match.group(1)  # str, jak we wszystkich innych scraperach
 
         # Resolution number (e.g. XXIII/562/26)
         reso_match = re.search(r'([IVXLCDM]+/\d+/\d+)', block[:500])
