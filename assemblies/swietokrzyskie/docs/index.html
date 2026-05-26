@@ -1622,7 +1622,7 @@ function showProfile(name) {
       }
       function _rankLabel(pct) {
         if (pct === null) return '';
-        return `wyżej niż ${pct}%`;
+        return `lepiej niż ${pct}% radnych`;
       }
       function _metricBar(label, value, pct, blurred) {
         const blurStyle = blurred ? 'filter:blur(4px);pointer-events:none;user-select:none;' : '';
@@ -1641,8 +1641,13 @@ function showProfile(name) {
       const overlayHtml = isLoggedIn ? '' : `
         <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border-radius:8px;background:color-mix(in srgb,var(--bg) 60%,transparent)">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span style="font-size:0.82rem;color:var(--muted);text-align:center">Pełne porównanie dostępne po zalogowaniu</span>
-          <button class="auth-btn" style="font-size:0.82rem;padding:5px 14px" onclick="window.location.href='${loginUrl}'">Zaloguj się</button>
+          <span style="font-size:0.82rem;color:var(--muted);text-align:center">Pełne porównanie + analiza AI dostępne po zalogowaniu</span>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:2px">
+            <span style="font-size:0.75rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2px 8px">📊 Ranking w kategorii</span>
+            <span style="font-size:0.75rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2px 8px">🤖 Ocena AI interpelacji</span>
+            <span style="font-size:0.75rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2px 8px">🔔 Alerty o aktywności</span>
+          </div>
+          <button class="auth-btn" style="font-size:0.82rem;padding:5px 14px;margin-top:4px" onclick="window.location.href='${loginUrl}'">Zaloguj się</button>
         </div>`;
 
       const lockedRows = isLoggedIn
@@ -1752,6 +1757,77 @@ function showProfile(name) {
           <button style="margin-top:6px;padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:0.85rem;font-family:inherit" onclick="navigator.clipboard.writeText(document.getElementById('embed-code').value)">Kopiuj kod</button>
         </div>
       </div>`;
+
+      // "W mediach" section
+      const _newsApiBase = _API_HOST;
+      const _newsQ = encodeURIComponent(profile.name + ' Świętokrzyskie');
+      html += `<div class="section">
+        <h2>W mediach</h2>
+        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:12px">Ostatnie wzmianki w prasie i internecie</p>
+        <div id="news-list" style="display:flex;flex-direction:column;gap:10px">
+          <div style="color:var(--muted);font-size:0.85rem">Wczytywanie...</div>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+          <a href="https://www.google.com/search?q=${_newsQ}&tbm=nws" target="_blank" rel="noopener"
+            style="font-size:0.8rem;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px">
+            Google News →
+          </a>
+          <a href="https://duckduckgo.com/?q=${_newsQ}&ia=news" target="_blank" rel="noopener"
+            style="font-size:0.8rem;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px">
+            DuckDuckGo →
+          </a>
+        </div>
+      </div>`;
+
+      // Fetch news async
+      (function() {
+        const rawQ = profile.name + ' Świętokrzyskie';
+        fetch(_newsApiBase + '/api/news?q=' + encodeURIComponent(rawQ))
+          .then(r => r.json())
+          .then(data => {
+            const container = document.getElementById('news-list');
+            if (!container) return;
+            const items = data.items || [];
+            if (!items.length) {
+              container.innerHTML = '<div style="color:var(--muted);font-size:0.85rem">Brak wyników w Google News.</div>';
+              return;
+            }
+            container.innerHTML = items.map(it => {
+              const dateStr = it.published ? new Date(it.published).toLocaleDateString('pl-PL', {day:'numeric',month:'short',year:'numeric'}) : '';
+              return \`<a href="\${it.url}" target="_blank" rel="noopener"
+                style="display:block;padding:10px 12px;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);background:var(--surface);transition:border-color 0.15s"
+                onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+                <div style="font-size:0.88rem;font-weight:500;line-height:1.4">\${it.title}</div>
+                <div style="font-size:0.76rem;color:var(--muted);margin-top:4px">\${it.source}\${dateStr ? ' · ' + dateStr : ''}</div>
+              </a>\`;
+            }).join('');
+          })
+          .catch(() => {
+            const container = document.getElementById('news-list');
+            if (container) container.innerHTML = '<div style="color:var(--muted);font-size:0.85rem">Nie udało się załadować wyników.</div>';
+          });
+      })();
+
+      // Alert subscription button
+      const _alertCitySlug = '{{CITY_SLUG}}';
+      const _alertCouncilorSlug = profile.slug;
+      const _alertCouncilorName = profile.name;
+      html += \`<div class="section" id="alert-section">
+        <h2>Alerty</h2>
+        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:12px">Dostań email gdy ten radny głosuje inaczej niż klub lub składa interpelację.</p>
+        <div id="alert-btn-wrap">
+          \${_authUser
+            ? \`<button id="alert-toggle-btn" style="padding:7px 18px;border-radius:8px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;font-size:0.88rem;font-family:inherit"
+                onclick="toggleCouncilorAlert('\${_alertCitySlug}','\${_alertCouncilorSlug}','\${_alertCouncilorName.replace(/'/g,"\\\\'")}')"
+              >🔔 Obserwuj radnego</button>\`
+            : \`<button class="auth-btn" style="font-size:0.88rem;padding:7px 18px"
+                onclick="window.location.href='\${AUTH_FRONTEND}/?bridge_to='+encodeURIComponent(window.location.href)+'&unlock=alerts'">
+                Zaloguj się, by obserwować
+              </button>\`
+          }
+          <div id="alert-status" style="font-size:0.82rem;color:var(--muted);margin-top:8px"></div>
+        </div>
+      </div>\`;
     }
 
     if (hasVotes && kd.rebellion_count > 0 && kd.club !== 'Niezrzeszeni') {
@@ -1813,6 +1889,11 @@ function showProfile(name) {
     }
 
     view.innerHTML = html;
+
+    // Init alert button state (toggle jeśli user jest zalogowany)
+    if (_authUser) {
+      _initAlertBtn('{{CITY_SLUG}}', profile.slug);
+    }
 
     // Render rebellion votes (synchronous, data already in kd.rebellions)
     if (window._pendingRebPage) { window._pendingRebPage(); window._pendingRebPage = null; }
@@ -3907,6 +3988,62 @@ function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
   link.download=`radoskop-${name.toLowerCase().replace(/\s/g,'-')}.png`;
   link.href=canvas.toDataURL('image/png'); link.click();
 }
+async function toggleCouncilorAlert(citySlug, councilorSlug, councilorName) {
+  const btn = document.getElementById('alert-toggle-btn');
+  const status = document.getElementById('alert-status');
+  if (btn) btn.disabled = true;
+
+  try {
+    const listRes = await fetch(_API_HOST + '/api/auth/alerts', {credentials:'include'});
+    const listData = await listRes.json();
+    const existing = (listData.alerts || []).find(
+      a => a.city_slug === citySlug && a.councilor_slug === councilorSlug
+    );
+
+    if (existing) {
+      await fetch(_API_HOST + '/api/auth/alerts/' + existing.id, {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {'Origin': window.location.origin},
+      });
+      if (btn) { btn.textContent = '🔔 Obserwuj radnego'; btn.disabled = false; }
+      if (status) status.textContent = 'Alert wyłączony.';
+    } else {
+      await fetch(_API_HOST + '/api/auth/alerts', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {'Content-Type':'application/json','Origin':window.location.origin},
+        body: JSON.stringify({
+          city_slug: citySlug,
+          councilor_slug: councilorSlug,
+          councilor_name: councilorName,
+          alert_rebellion: true,
+          alert_interpelacja: true,
+          alert_session_miss: false,
+        }),
+      });
+      if (btn) { btn.textContent = '🔕 Przestań obserwować'; btn.disabled = false; }
+      if (status) status.textContent = 'Dostaniesz email gdy radny złoży interpelację lub zagłosuje przeciw klubowi.';
+    }
+  } catch(e) {
+    if (btn) btn.disabled = false;
+    if (status) status.textContent = 'Błąd — spróbuj ponownie.';
+  }
+}
+
+async function _initAlertBtn(citySlug, councilorSlug) {
+  const btn = document.getElementById('alert-toggle-btn');
+  if (!btn) return;
+  try {
+    const res = await fetch(_API_HOST + '/api/auth/alerts', {credentials:'include'});
+    const data = await res.json();
+    const active = (data.alerts || []).some(
+      a => a.city_slug === citySlug && a.councilor_slug === councilorSlug
+    );
+    btn.textContent = active ? '🔕 Przestań obserwować' : '🔔 Obserwuj radnego';
+  } catch(e) {}
+}
+
 function showEmbedCode(slug) {
   const modal=document.getElementById('embed-modal'), code=document.getElementById('embed-code');
   if(modal.style.display==='none'){
