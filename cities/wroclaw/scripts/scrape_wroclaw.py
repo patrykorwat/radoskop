@@ -268,50 +268,55 @@ def _extract_sessions_from_soup(soup: BeautifulSoup, base_url: str) -> list[dict
     return sessions
 
 
-def _fetch_paginated(base_url: str) -> list[dict]:
+def _fetch_paginated(base_url: str, stop_before_date: str | None = None) -> list[dict]:
     """Fetch a BIP listing page + all pagination pages, extract sessions.
 
-    Strona 1 (base_url) jest zawsze pobierana świeżo — nowe sesje dochodzą
-    na początku listy. Strony 2+ są historyczne (starsze sesje nie zmieniają
-    swojego miejsca w indeksie) i mogą być cachowane, co eliminuje dziesiątki
-    zbędnych HTTP requests przy każdym uruchomieniu pipeline'u.
+    Strona 1 (base_url) jest zawsze pobierana świeżo. Strony 2+ są cachowane.
+
+    Paginacja następuje wyłącznie przez link "następna" (nie przez numerowane linki
+    w nawigacji — BIP Wrocław ma tysiące numerycznych linków do dokumentów, które
+    wyglądają jak numery stron i powodują pobranie 2000+ zbędnych stron).
+
+    stop_before_date: YYYY-MM-DD — przerywa paginację gdy wszystkie sesje na stronie
+    są starsze niż ta data. Pozwala zatrzymać się po znalezieniu wszystkich sesji
+    bieżącej kadencji bez przeglądania historycznych stron.
     """
     sessions = []
     visited = set()
+    current_url = base_url
+    is_first_page = True
 
-    try:
-        soup = fetch(base_url, use_cache=False)  # strona 1: zawsze świeża
-    except Exception as e:
-        print(f"  Nie udało się pobrać {base_url}: {e}")
-        return sessions
+    while current_url:
+        if current_url in visited:
+            break
+        visited.add(current_url)
 
-    sessions.extend(_extract_sessions_from_soup(soup, base_url))
-    visited.add(base_url)
+        try:
+            soup = fetch(current_url, use_cache=not is_first_page)
+        except Exception as e:
+            print(f"  Nie udało się pobrać {current_url}: {e}")
+            break
 
-    # Follow pagination links: ?strona=2, ?strona=3, or text "2", "3", ">"
-    for a in soup.find_all("a", href=True):
-        text = a.get_text(strip=True)
-        href = a["href"]
-        # Check for numbered pagination links
-        if re.match(r'^\d+$', text) and int(text) > 1:
-            page_url = urljoin(base_url, href)
-            if page_url not in visited:
-                visited.add(page_url)
-                try:
-                    page_soup = fetch(page_url, use_cache=True)  # historyczne, cacheable
-                    sessions.extend(_extract_sessions_from_soup(page_soup, base_url))
-                except Exception:
-                    pass
-        # Check for "następna" / ">" links
-        elif text.lower() in ("następna", "»", ">", "next"):
-            page_url = urljoin(base_url, href)
-            if page_url not in visited:
-                visited.add(page_url)
-                try:
-                    page_soup = fetch(page_url, use_cache=True)  # historyczne, cacheable
-                    sessions.extend(_extract_sessions_from_soup(page_soup, base_url))
-                except Exception:
-                    pass
+        page_sessions = _extract_sessions_from_soup(soup, base_url)
+        sessions.extend(page_sessions)
+        is_first_page = False
+
+        # Early stop: if all sessions on this page predate the cutoff, we are past
+        # the kadencja we care about — no need to keep paging backward in time.
+        if stop_before_date and page_sessions:
+            if all(s["date"] < stop_before_date for s in page_sessions):
+                break
+
+        # Find the "następna" / next link to continue pagination.
+        # Deliberately NOT following numbered links — BIP Wrocław embeds
+        # thousands of numeric document-ID links that look like page numbers.
+        current_url = None
+        for a in soup.find_all("a", href=True):
+            if a.get_text(strip=True).lower() in ("następna", "»", ">", "next", "→"):
+                candidate = urljoin(base_url, a["href"])
+                if candidate not in visited:
+                    current_url = candidate
+                    break
 
     return sessions
 
@@ -323,13 +328,15 @@ def scrape_session_list() -> list[dict]:
     with pagination support.
     """
     sessions = []
+    kadencja_start = KADENCJE["2024-2029"]["start"]
 
     for url in SESSIONS_URLS:
         print(f"  Próbuję: {url}")
-        page_sessions = _fetch_paginated(url)
+        page_sessions = _fetch_paginated(url, stop_before_date=kadencja_start)
         if page_sessions:
             print(f"    → znaleziono {len(page_sessions)} sesji")
             sessions.extend(page_sessions)
+            break  # IX kadencja found — skip VIII kadencja fallback
 
     if not sessions:
         print("  UWAGA: Nie znaleziono sesji na żadnej stronie!")
@@ -345,7 +352,6 @@ def scrape_session_list() -> list[dict]:
             unique.append(s)
 
     # Filter by kadencja — only sessions from 2024-05-07 onwards
-    kadencja_start = KADENCJE["2024-2029"]["start"]
     filtered = [s for s in unique if s["date"] >= kadencja_start]
     print(f"  Znaleziono {len(unique)} sesji ogółem, {len(filtered)} w kadencji 2024-2029")
 
