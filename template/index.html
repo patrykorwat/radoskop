@@ -1752,7 +1752,7 @@ function showProfile(name) {
       html += `<div class="section">
         <h2>W mediach</h2>
         <p style="font-size:0.82rem;color:var(--muted);margin-bottom:12px">Ostatnie wzmianki w prasie i internecie</p>
-        <div id="news-list" style="display:flex;flex-direction:column;gap:10px">
+        <div id="news-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px">
           <div style="color:var(--muted);font-size:0.85rem">Wczytywanie...</div>
         </div>
         <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
