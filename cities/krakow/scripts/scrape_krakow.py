@@ -110,26 +110,44 @@ def _cache_path(url: str) -> Path | None:
     return _CACHE_DIR / f"{h}.html"
 
 
+_BIP_UNAVAILABLE = "Chwilowy brak dostępu do wybranych informacji"
+
+
 def fetch(url: str, use_cache: bool = True) -> BeautifulSoup:
     """Fetch a page (with disk cache) and return BeautifulSoup.
 
     use_cache=False wymusza HTTP request (np. dla świeżych sesji których
     zawartość może się zmienić).
+
+    Strony BIP zwracające "Chwilowy brak dostępu" NIE są zapisywane do
+    cache (i istniejący wpis w cache z taką odpowiedzią jest ignorowany),
+    żeby tymczasowa niedostępność nie trwale zatruwała cache.
     """
     cache_file = _cache_path(url) if use_cache else None
     if cache_file and cache_file.exists() and cache_file.stat().st_size > 100:
-        # Cache hit — bez HTTP, bez sleep
-        return BeautifulSoup(cache_file.read_text(encoding="utf-8"), "lxml")
+        content = cache_file.read_text(encoding="utf-8")
+        if _BIP_UNAVAILABLE not in content:
+            # Cache hit — bez HTTP, bez sleep
+            return BeautifulSoup(content, "lxml")
+        # Stary cache zawiera "brak dostępu" — usuń i refetchuj
+        print(f"  Cache zawiera 'brak dostępu', usuwam i refetchuję: {url}")
+        try:
+            cache_file.unlink()
+        except Exception:
+            pass
 
     time.sleep(DELAY)
     print(f"  GET {url}")
     resp = _session.get(url, timeout=30)
     resp.raise_for_status()
-    if cache_file:
+    if cache_file and _BIP_UNAVAILABLE not in resp.text:
+        # Tylko zapisz do cache jeśli strona ma prawidłową zawartość
         try:
             cache_file.write_text(resp.text, encoding="utf-8")
         except Exception:
             pass  # cache write failure nie blokuje scrape
+    elif cache_file and _BIP_UNAVAILABLE in resp.text:
+        print(f"    UWAGA: BIP zwrócił 'brak dostępu' — pomijam cache dla {url}")
     return BeautifulSoup(resp.text, "lxml")
 
 
