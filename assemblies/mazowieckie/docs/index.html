@@ -209,7 +209,10 @@ footer a { color:var(--accent); text-decoration:none; }
 .metric-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px; text-align:center; }
 .metric-card .metric-value { font-size:1.8rem; font-weight:700; }
 .metric-card .metric-label { font-size:0.75rem; color:var(--muted); text-transform:uppercase; margin-top:2px; }
-.profile-kadencja-toggle { display:flex; gap:4px; margin-bottom:20px; }
+.profile-kadencja-toggle { display:flex; gap:4px; margin-bottom:12px; }
+.profile-tab-bar { display:flex; gap:4px; margin-bottom:20px; border-bottom:1px solid var(--border); padding-bottom:0; }
+.profile-tab { padding:7px 16px; font-size:0.88rem; font-family:inherit; background:none; border:none; border-bottom:2px solid transparent; color:var(--muted); cursor:pointer; margin-bottom:-1px; transition:color 0.15s, border-color 0.15s; }
+.profile-tab.active { color:var(--text); border-bottom-color:var(--accent); font-weight:500; }
 .rebellion-item { padding:8px 12px; border-bottom:1px solid var(--border); font-size:0.85rem; }
 .rebellion-item .reb-date { color:var(--muted); font-size:0.8rem; }
 .tag { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.8rem; margin:2px; background:var(--surface); border:1px solid var(--border); }
@@ -1500,6 +1503,17 @@ function renderCouncilorTable() {
 }
 
 
+function switchProfileTab(tab) {
+  ['main', 'votes', 'interp'].forEach(t => {
+    const el = document.getElementById('profile-tab-' + t);
+    if (el) el.style.display = t === tab ? '' : 'none';
+  });
+  document.querySelectorAll('.profile-tab').forEach((btn, i) => {
+    const tabs = ['main', 'votes', 'interp'];
+    btn.classList.toggle('active', tabs[i] === tab);
+  });
+}
+
 function showProfile(name) {
   const profile = findProfile(name);
   if (!profile) return;
@@ -1559,10 +1573,17 @@ function showProfile(name) {
     }
     html += `</div>`;
 
-    // Voting metrics + chart side by side
+    html += `<div class="profile-tab-bar">
+      <button class="profile-tab active" onclick="switchProfileTab('main')">Główna</button>
+      <button class="profile-tab" onclick="switchProfileTab('votes')">Głosy</button>
+      <button class="profile-tab" onclick="switchProfileTab('interp')">Interpelacje</button>
+    </div>`;
+    html += `<div id="profile-tab-main">`;
+
+    // Voting metrics: 3 key KPIs + compact vote breakdown + chart
     if (hasVotes) {
-      html += `<div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;margin-bottom:24px">
-        <div class="profile-metrics" style="flex:1;min-width:280px;margin-bottom:0">
+      const _colCount = kd.club === 'Niezrzeszeni' ? 2 : 3;
+      html += `<div style="display:grid;grid-template-columns:repeat(${_colCount},1fr);gap:12px;margin-bottom:16px">
           <div class="metric-card">
             <div class="metric-value" style="color:${kd.frekwencja>=90?'var(--green)':kd.frekwencja>=70?'var(--yellow)':'var(--red)'}">${kd.frekwencja}%</div>
             <div class="metric-label">Frekwencja</div>
@@ -1575,35 +1596,26 @@ function showProfile(name) {
             <div class="metric-value" style="color:${kd.zgodnosc_z_klubem>=90?'var(--green)':kd.zgodnosc_z_klubem>=70?'var(--yellow)':'var(--red)'}">${kd.zgodnosc_z_klubem}%</div>
             <div class="metric-label">Zgodność z klubem</div>
           </div>`}
-          <div class="metric-card">
-            <div class="metric-value">${kd.votes_total}</div>
-            <div class="metric-label">Głosowań</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-value" style="color:var(--green)">${kd.votes_za}</div>
-            <div class="metric-label">Za</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-value" style="color:var(--red)">${kd.votes_przeciw}</div>
-            <div class="metric-label">Przeciw</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-value" style="color:var(--yellow)">${kd.votes_wstrzymal}</div>
-            <div class="metric-label">${isFemale(profile.name) ? 'Wstrzymała się' : 'Wstrzymał się'}</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-value">${kd.votes_brak ?? 0}</div>
-            <div class="metric-label">Brak głosu</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-value">${kd.votes_nieobecny}</div>
-            <div class="metric-label">${isFemale(profile.name) ? 'Nieobecna' : 'Nieobecny'}</div>
-          </div>
         </div>
-        <div style="width:200px;flex-shrink:0">
-          <canvas id="profile-chart"></canvas>
-        </div>
-      </div>`;
+        <div style="display:flex;gap:20px;align-items:center;margin-bottom:24px;flex-wrap:wrap">
+          <div style="flex-shrink:0">
+            <canvas id="profile-chart" style="width:120px;height:120px"></canvas>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,auto);gap:6px 20px;align-items:baseline">
+            <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">Łącznie</span>
+            <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">Za</span>
+            <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">Przeciw</span>
+            <span style="font-size:1.3rem;font-weight:700">${kd.votes_total}</span>
+            <span style="font-size:1.3rem;font-weight:700;color:var(--green)">${kd.votes_za}</span>
+            <span style="font-size:1.3rem;font-weight:700;color:var(--red)">${kd.votes_przeciw}</span>
+            <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">${isFemale(profile.name) ? 'Wstrzymała' : 'Wstrzymał'}</span>
+            <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">Brak głosu</span>
+            <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">${isFemale(profile.name) ? 'Nieobecna' : 'Nieobecny'}</span>
+            <span style="font-size:1.3rem;font-weight:700;color:var(--yellow)">${kd.votes_wstrzymal}</span>
+            <span style="font-size:1.3rem;font-weight:700">${kd.votes_brak ?? 0}</span>
+            <span style="font-size:1.3rem;font-weight:700">${kd.votes_nieobecny}</span>
+          </div>
+        </div>`;
     } else if (kd.former) {
       html += `<div class="section"><p style="color:var(--muted)">Brak danych głosowania — mandat zakończony przed dostępnym okresem danych.</p></div>`;
     }
@@ -1627,14 +1639,12 @@ function showProfile(name) {
         if (pct === null) return '';
         return `lepiej niż ${pct}% radnych`;
       }
-      function _metricBar(label, value, pct, blurred) {
+      function _metricCol(label, value, pct, blurred) {
         const blurStyle = blurred ? 'filter:blur(4px);pointer-events:none;user-select:none;' : '';
-        return `<div style="${blurStyle}margin-bottom:14px">
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-            <span style="font-size:0.85rem;color:var(--muted)">${label}</span>
-            <span style="font-size:0.82rem;font-weight:500;color:${_barColor(pct)}">${_rankLabel(pct)}</span>
-          </div>
-          <div style="background:var(--border);border-radius:4px;height:5px;overflow:hidden;position:relative">
+        return `<div style="${blurStyle}">
+          <div style="font-size:0.78rem;color:var(--muted);text-transform:uppercase;margin-bottom:4px">${label}</div>
+          <div style="font-size:0.82rem;font-weight:500;color:${_barColor(pct)};margin-bottom:8px">${_rankLabel(pct)}</div>
+          <div style="background:var(--border);border-radius:4px;height:5px;overflow:hidden">
             <div style="background:${_barColor(pct)};height:100%;width:${value}%;border-radius:4px"></div>
           </div>
         </div>`;
@@ -1653,12 +1663,12 @@ function showProfile(name) {
           <button class="auth-btn" style="font-size:0.82rem;padding:5px 14px;margin-top:4px" onclick="window.location.href='${loginUrl}'">Zaloguj się</button>
         </div>`;
 
-      const lockedRows = isLoggedIn
-        ? _metricBar('Frekwencja na sesjach', kd.frekwencja, pFrek, false)
-          + _metricBar('Zgodność z klubem', kd.zgodnosc_z_klubem, pZgod, false)
-        : `<div style="position:relative">
-            ${_metricBar('Frekwencja na sesjach', kd.frekwencja, pFrek, true)}
-            ${_metricBar('Zgodność z klubem', kd.zgodnosc_z_klubem, pZgod, true)}
+      const lockedCols = isLoggedIn
+        ? _metricCol('Frekwencja na sesjach', kd.frekwencja, pFrek, false)
+          + _metricCol('Zgodność z klubem', kd.zgodnosc_z_klubem, pZgod, false)
+        : `<div style="position:relative;grid-column:span 2;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;border-radius:8px;overflow:hidden">
+            ${_metricCol('Frekwencja na sesjach', kd.frekwencja, pFrek, true)}
+            ${_metricCol('Zgodność z klubem', kd.zgodnosc_z_klubem, pZgod, true)}
             ${overlayHtml}
            </div>`;
 
@@ -1666,8 +1676,10 @@ function showProfile(name) {
       html += `<div class="section" style="margin-bottom:24px">
         <h2 style="margin-bottom:4px">Porównanie z podobnymi miastami</h2>
         <p style="font-size:0.82rem;color:var(--muted);margin-bottom:16px">${tierLabel} · ${nCities} ${cityWord}, ${nCouncilors} radnych</p>
-        ${_metricBar('Aktywność głosowania', kd.aktywnosc, pAkt, false)}
-        ${lockedRows}
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+          ${_metricCol('Aktywność głosowania', kd.aktywnosc, pAkt, false)}
+          ${lockedCols}
+        </div>
       </div>`;
     }
 
@@ -1746,14 +1758,10 @@ function showProfile(name) {
       const profileShareText = profile.name + ' (' + club + '): frekwencja ' + Math.round(kd.frekwencja) + '%, zgodność z klubem ' + Math.round(kd.zgodnosc_z_klubem) + '%. Sprawdź na Radoskopie!';
       html += `<div class="section">
         <h2>Udostępnij</h2>
-        ${shareBar(profileShareTitle, profileShareText, profileShareUrl, 'profile-share')}
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-          <button style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:0.85rem;font-family:inherit" onclick="downloadCard('${profile.name.replace(/'/g,"\\'")}','${club}',${kd.frekwencja},${kd.aktywnosc},${kd.zgodnosc_z_klubem},${kd.votes_za},${kd.votes_przeciw},${kd.votes_wstrzymal})">
-            📥 Pobierz kartę (PNG)
-          </button>
-          <button style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:0.85rem;font-family:inherit" onclick="showEmbedCode('${profile.slug}')">
-            &lt;/&gt; Kod do osadzenia
-          </button>
+        <div class="share-bar">
+          ${shareBarInner(profileShareTitle, profileShareText, profileShareUrl, 'profile-share')}
+          <button class="share-btn" onclick="downloadCard('${profile.name.replace(/'/g,"\\'")}','${club}',${kd.frekwencja},${kd.aktywnosc},${kd.zgodnosc_z_klubem},${kd.votes_za},${kd.votes_przeciw},${kd.votes_wstrzymal})">📥 Pobierz kartę (PNG)</button>
+          <button class="share-btn" onclick="showEmbedCode('${profile.slug}')">&lt;/&gt; Kod do osadzenia</button>
         </div>
         <div id="embed-modal" style="display:none;margin-top:12px">
           <textarea id="embed-code" readonly style="width:100%;height:80px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:10px;font-size:0.8rem;font-family:monospace;resize:none"></textarea>
@@ -1767,7 +1775,7 @@ function showProfile(name) {
       html += `<div class="section">
         <h2>W mediach</h2>
         <p style="font-size:0.82rem;color:var(--muted);margin-bottom:12px">Ostatnie wzmianki w prasie i internecie</p>
-        <div id="news-list" style="display:flex;flex-direction:column;gap:10px">
+        <div id="news-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px">
           <div style="color:var(--muted);font-size:0.85rem">Wczytywanie...</div>
         </div>
         <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
@@ -1879,16 +1887,18 @@ function showProfile(name) {
       window._pendingRebPage = null;
     }
 
-    // Interpelacje placeholder — rendered async
-    html += `<div id="profile-interp-container"></div>`;
+    html += `</div>`; // end profile-tab-main
 
-    // Votes placeholder - loaded async after the view is rendered
+    // Interpelacje tab
+    html += `<div id="profile-tab-interp" style="display:none"><div id="profile-interp-container"></div></div>`;
+
+    // Głosy tab
     if (hasVotes) {
-      html += `<div class="section">
+      html += `<div id="profile-tab-votes" style="display:none"><div class="section">
         <h2>Głosy na sesjach</h2>
         <div class="filter-bar" id="profile-cat-filter" style="margin-bottom:12px;flex-wrap:wrap"></div>
         <div id="profile-votes-container"><div style="color:var(--muted);padding:12px">Ładowanie głosów...</div></div>
-      </div>`;
+      </div></div>`;
     }
 
     view.innerHTML = html;
@@ -1916,9 +1926,9 @@ function showProfile(name) {
             }]
           },
           options: {
-            responsive: true,
+            responsive: false,
             plugins: {
-              legend: { position: 'bottom', labels: { color: '#4b5563', padding: 16 } }
+              legend: { display: false }
             }
           }
         });
@@ -4056,7 +4066,7 @@ function showEmbedCode(slug) {
 }
 
 // Social sharing
-function shareBar(title, text, url, containerId) {
+function shareBarInner(title, text, url, containerId) {
   var hasNative = typeof navigator.share === 'function';
   var svgShare = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>';
   var svgX = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>';
@@ -4067,17 +4077,18 @@ function shareBar(title, text, url, containerId) {
   var encodedTitle = encodeURIComponent(title);
   var encodedText = encodeURIComponent(text);
 
-  var html = '<div class="share-bar">';
-
+  var html = '';
   if (hasNative) {
     html += '<button class="share-btn share-native" onclick="nativeShare(\'' + encodedTitle + '\',\'' + encodedText + '\',\'' + encodedUrl + '\')">' + svgShare + ' Udostępnij</button>';
   }
-
   html += '<a class="share-btn" href="https://x.com/intent/tweet?text=' + encodedText + '&url=' + encodedUrl + '" target="_blank" rel="noopener" title="Udostępnij na X">' + svgX + ' X</a>';
   html += '<a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl + '" target="_blank" rel="noopener" title="Udostępnij na Facebooku">' + svgFb + ' Facebook</a>';
   html += '<button class="share-btn" id="' + containerId + '-copy" onclick="copyShareLink(\'' + encodedUrl + '\',\'' + containerId + '-copy\')" title="Kopiuj link">' + svgLink + ' Kopiuj link</button>';
-  html += '</div>';
   return html;
+}
+
+function shareBar(title, text, url, containerId) {
+  return '<div class="share-bar">' + shareBarInner(title, text, url, containerId) + '</div>';
 }
 
 function nativeShare(encodedTitle, encodedText, encodedUrl) {
