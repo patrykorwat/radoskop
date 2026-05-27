@@ -1797,12 +1797,12 @@ function showProfile(name) {
             }
             container.innerHTML = items.map(it => {
               const dateStr = it.published ? new Date(it.published).toLocaleDateString('pl-PL', {day:'numeric',month:'short',year:'numeric'}) : '';
-              return \`<a href="\${it.url}" target="_blank" rel="noopener"
+              return `<a href="${it.url}" target="_blank" rel="noopener"
                 style="display:block;padding:10px 12px;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);background:var(--surface);transition:border-color 0.15s"
                 onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
-                <div style="font-size:0.88rem;font-weight:500;line-height:1.4">\${it.title}</div>
-                <div style="font-size:0.76rem;color:var(--muted);margin-top:4px">\${it.source}\${dateStr ? ' · ' + dateStr : ''}</div>
-              </a>\`;
+                <div style="font-size:0.88rem;font-weight:500;line-height:1.4">${it.title}</div>
+                <div style="font-size:0.76rem;color:var(--muted);margin-top:4px">${it.source}${dateStr ? ' · ' + dateStr : ''}</div>
+              </a>`;
             }).join('');
           })
           .catch(() => {
@@ -1815,22 +1815,22 @@ function showProfile(name) {
       const _alertCitySlug = '{{CITY_SLUG}}';
       const _alertCouncilorSlug = profile.slug;
       const _alertCouncilorName = profile.name;
-      html += \`<div class="section" id="alert-section">
+      html += `<div class="section" id="alert-section">
         <h2>Alerty</h2>
         <p style="font-size:0.82rem;color:var(--muted);margin-bottom:12px">Dostań email gdy ten radny głosuje inaczej niż klub lub składa interpelację.</p>
         <div id="alert-btn-wrap">
-          \${_authUser
-            ? \`<button id="alert-toggle-btn" style="padding:7px 18px;border-radius:8px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;font-size:0.88rem;font-family:inherit"
-                onclick="toggleCouncilorAlert('\${_alertCitySlug}','\${_alertCouncilorSlug}','\${_alertCouncilorName.replace(/'/g,"\\\\'")}')"
-              >🔔 Obserwuj radnego</button>\`
-            : \`<button class="auth-btn" style="font-size:0.88rem;padding:7px 18px"
-                onclick="window.location.href='\${AUTH_FRONTEND}/?bridge_to='+encodeURIComponent(window.location.href)+'&unlock=alerts'">
+          ${_authUser
+            ? `<button id="alert-toggle-btn" style="padding:7px 18px;border-radius:8px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;font-size:0.88rem;font-family:inherit"
+                onclick="toggleCouncilorAlert('${_alertCitySlug}','${_alertCouncilorSlug}','${_alertCouncilorName.replace(/'/g,"\'")}')"
+              >🔔 Obserwuj radnego</button>`
+            : `<button class="auth-btn" style="font-size:0.88rem;padding:7px 18px"
+                onclick="window.location.href='${AUTH_FRONTEND}/?bridge_to='+encodeURIComponent(window.location.href)+'&unlock=alerts'">
                 Zaloguj się, by obserwować
-              </button>\`
+              </button>`
           }
           <div id="alert-status" style="font-size:0.82rem;color:var(--muted);margin-top:8px"></div>
         </div>
-      </div>\`;
+      </div>`;
     }
 
     if (hasVotes && kd.rebellion_count > 0 && kd.club !== 'Niezrzeszeni') {
