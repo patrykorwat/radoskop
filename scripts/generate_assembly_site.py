@@ -347,12 +347,19 @@ def main() -> int:
     from vote_categories import generate_cat_rules_js
     _cat_rules_js = generate_cat_rules_js(cfg.get("locale", "pl"))
 
+    # Assembly slug = katalog assemblies/{slug}/. Mappuje na {{CITY_SLUG}}
+    # tak jak w generate_site.py (template wspólny). JS subscribe-na-alerty
+    # wysyła ten slug do backendu — bez substytucji DB dostaje literał
+    # "{{CITY_SLUG}}" i alerty nie znajdują match'u.
+    assembly_slug = cfg.get("voivodeship_slug") or cfg.get("slug") or cfg_path.parent.name
+
     replacements = {
         "{{CAT_RULES_JS}}": _cat_rules_js,
         # Sejmiki/landy nie używają disclaimera per-radny — wszystkie polskie
         # sejmiki mają imienne głosowania, Landtag MV ma per-Abgeordneten.
         # Placeholder pusty żeby template nie miał {{...}} leftover.
         "{{VOTE_DATA_DISCLAIMER}}": "",
+        "{{CITY_SLUG}}": assembly_slug,
         "{{CITY_NAME}}": city_name,
         "{{CITY_GENITIVE}}": city_gen,
         "{{SITE_TITLE}}": cfg.get("site_title", ""),

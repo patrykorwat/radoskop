@@ -746,12 +746,19 @@ def main():
     from vote_categories import generate_cat_rules_js
     _cat_rules_js = generate_cat_rules_js(config.get("locale", "pl"))
 
+    # City slug = nazwa katalogu cities/{slug}/. Używany w JS template'cie
+    # do {{CITY_SLUG}} (frontend wysyła go w POST do /api/admin/dispatch-*
+    # przy subscribe na alerty). Brak substytucji = literal "{{CITY_SLUG}}"
+    # trafia do DB i alerty nigdy nie znajdują subscribers po slugu miasta.
+    city_slug = config.get("slug") or config_path.parent.name
+
     # Build replacements
     replacements = {
         "{{CAT_RULES_JS}}": _cat_rules_js,
         "{{KIND_CATS_JS}}": _build_kind_cats_js(config),
         "{{VOTE_CATS_EXTRA_JS}}": _build_vote_cats_extra_js(config),
         "{{VOTE_DATA_DISCLAIMER}}": vote_disclaimer_html,
+        "{{CITY_SLUG}}": city_slug,
         "{{CITY_NAME}}": config.get("city_name") or config.get("voivodeship_name", ""),
         "{{CITY_GENITIVE}}": config.get("city_genitive") or config.get("voivodeship_genitive", ""),
         "{{SITE_TITLE}}": config["site_title"],
