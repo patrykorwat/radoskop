@@ -1571,7 +1571,7 @@ function showProfile(name) {
       const profileShareUrl = 'https://mv.radoskop.eu/profil/' + profile.slug + '/';
       const profileShareTitle = profile.name + ' – Radoskop Mecklenburg-Vorpommern';
       const profileShareText = profile.name + ' (' + club + '): frekwencja ' + Math.round(kd.frekwencja) + '%, zgodność z klubem ' + Math.round(kd.zgodnosc_z_klubem) + '%. Sprawdź na Radoskopie!';
-      const _alertCitySlug = '{{CITY_SLUG}}';
+      const _alertCitySlug = 'landtag-mv';
       const _alertCouncilorSlug = profile.slug;
       const _alertCouncilorName = profile.name;
       const alertBtnHtml = _authUser
@@ -1605,7 +1605,7 @@ function showProfile(name) {
     }
 
     const _profileActionsHtml = _profileCards.length === 0 ? '' :
-      `<div class="profile-actions" style="display:flex;flex-direction:column;gap:10px;flex-basis:260px;min-width:240px">${_profileCards.join('')}</div>`;
+      `<div class="profile-actions" style="display:flex;flex-direction:column;gap:10px;flex-basis:340px;min-width:300px;max-width:380px">${_profileCards.join('')}</div>`;
 
     let html = `
       <button class="profile-back" onclick="showMain()">← Startseite</button>
@@ -1647,28 +1647,16 @@ function showProfile(name) {
     </div>`;
     html += `<div id="profile-tab-main">`;
 
-    // Voting metrics: 3 key KPIs + compact vote breakdown + chart
+    // Voting summary: donut + vote breakdown + 3 KPI pills (Frek/Akt/Zgod)
+    // wszystko w jednym wierszu. Wcześniej KPI były osobnymi metric-cards
+    // wyżej, teraz są kompaktowe i siedzą obok donuta.
     if (hasVotes) {
-      const _colCount = kd.club === 'Niezrzeszeni' ? 2 : 3;
-      html += `<div style="display:grid;grid-template-columns:repeat(${_colCount},1fr);gap:12px;margin-bottom:16px">
-          <div class="metric-card">
-            <div class="metric-value" style="color:${kd.frekwencja>=90?'var(--green)':kd.frekwencja>=70?'var(--yellow)':'var(--red)'}">${kd.frekwencja}%</div>
-            <div class="metric-label">Anwesenheit</div>
-          </div>
-          <div class="metric-card">
-            <div class="metric-value" style="color:${kd.aktywnosc>=90?'var(--green)':kd.aktywnosc>=70?'var(--yellow)':'var(--red)'}">${kd.aktywnosc}%</div>
-            <div class="metric-label">Aktivität</div>
-          </div>
-          ${kd.club === 'Niezrzeszeni' ? '' : `<div class="metric-card">
-            <div class="metric-value" style="color:${kd.zgodnosc_z_klubem>=90?'var(--green)':kd.zgodnosc_z_klubem>=70?'var(--yellow)':'var(--red)'}">${kd.zgodnosc_z_klubem}%</div>
-            <div class="metric-label">Fraktionsdisziplin</div>
-          </div>`}
-        </div>
-        <div style="display:flex;gap:20px;align-items:center;margin-bottom:24px;flex-wrap:wrap">
+      const _kpiColor = (v) => v >= 90 ? 'var(--green)' : v >= 70 ? 'var(--yellow)' : 'var(--red)';
+      html += `<div style="display:flex;gap:28px;align-items:center;margin-bottom:24px;flex-wrap:wrap">
           <div style="flex-shrink:0">
-            <canvas id="profile-chart" style="width:120px;height:120px"></canvas>
+            <canvas id="profile-chart" style="width:110px;height:110px"></canvas>
           </div>
-          <div style="display:grid;grid-template-columns:repeat(3,auto);gap:6px 20px;align-items:baseline">
+          <div style="display:grid;grid-template-columns:repeat(3,auto);gap:6px 18px;align-items:baseline">
             <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">Łącznie</span>
             <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">Dafür</span>
             <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">Dagegen</span>
@@ -1681,6 +1669,20 @@ function showProfile(name) {
             <span style="font-size:1.3rem;font-weight:700;color:var(--yellow)">${kd.votes_wstrzymal}</span>
             <span style="font-size:1.3rem;font-weight:700">${kd.votes_brak ?? 0}</span>
             <span style="font-size:1.3rem;font-weight:700">${kd.votes_nieobecny}</span>
+          </div>
+          <div style="display:flex;gap:24px;flex:1;justify-content:flex-end;align-items:center;flex-wrap:wrap;padding-left:8px;border-left:1px solid var(--border);min-height:80px;padding-top:4px;padding-bottom:4px">
+            <div style="text-align:center;min-width:70px">
+              <div style="font-size:1.7rem;font-weight:700;line-height:1;color:${_kpiColor(kd.frekwencja)}">${kd.frekwencja}%</div>
+              <div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:5px">Anwesenheit</div>
+            </div>
+            <div style="text-align:center;min-width:70px">
+              <div style="font-size:1.7rem;font-weight:700;line-height:1;color:${_kpiColor(kd.aktywnosc)}">${kd.aktywnosc}%</div>
+              <div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:5px">Aktivität</div>
+            </div>
+            ${kd.club === 'Niezrzeszeni' ? '' : `<div style="text-align:center;min-width:70px">
+              <div style="font-size:1.7rem;font-weight:700;line-height:1;color:${_kpiColor(kd.zgodnosc_z_klubem)}">${kd.zgodnosc_z_klubem}%</div>
+              <div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:5px">Fraktionsdisziplin</div>
+            </div>`}
           </div>
         </div>`;
     } else if (kd.former) {
@@ -1722,16 +1724,10 @@ function showProfile(name) {
       }
 
       const loginUrl = AUTH_FRONTEND + '/?bridge_to=' + encodeURIComponent(window.location.href) + '&unlock=comparison';
+      // Pojedynczy CTA bez listy feature pills, mniej hałasu, jaśniejszy akcja.
       const overlayHtml = isLoggedIn ? '' : `
-        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border-radius:8px;background:color-mix(in srgb,var(--bg) 60%,transparent)">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span style="font-size:0.82rem;color:var(--muted);text-align:center">Pełne porównanie + analiza AI dostępne po zalogowaniu</span>
-          <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:2px">
-            <span style="font-size:0.75rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2px 8px">📊 Ranking w kategorii</span>
-            <span style="font-size:0.75rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2px 8px">🤖 Ocena AI Anfragen</span>
-            <span style="font-size:0.75rem;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:2px 8px">🔔 Alerty o aktywności</span>
-          </div>
-          <button class="auth-btn" style="font-size:0.82rem;padding:5px 14px;margin-top:4px" onclick="window.location.href='${loginUrl}'">Anmelden</button>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:8px;background:color-mix(in srgb,var(--bg) 60%,transparent)">
+          <button class="auth-btn" style="font-size:0.88rem;padding:8px 20px" onclick="window.location.href='${loginUrl}'">Zaloguj, by zobaczyć więcej</button>
         </div>`;
 
       const lockedCols = isLoggedIn
@@ -1919,7 +1915,7 @@ function showProfile(name) {
 
     // Init alert button state (toggle jeśli user jest zalogowany)
     if (_authUser) {
-      _initAlertBtn('{{CITY_SLUG}}', profile.slug);
+      _initAlertBtn('landtag-mv', profile.slug);
     }
 
     // Render rebellion votes (synchronous, data already in kd.rebellions)
