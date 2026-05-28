@@ -2306,6 +2306,16 @@ async function renderSessionsTable() {
     const voteCount = s.vote_count || 0;
     const hasCounts = s.passed !== undefined;
     const speakers = s.speaker_count || 0;
+    // Sesja bez opublikowanych wyników: pokaż datę, ale zamiast zer wstaw
+    // znacznik "wyniki wkrótce" zamiast mylących 0 głosowań / 0 obecnych.
+    if (s.results_pending) {
+      return `<tr class="vote-row" onclick="showSession('${s.number}')">
+        <td style="font-weight:600">${s.number || '?'}</td>
+        <td>${s.date}</td>
+        <td colspan="4" style="color:var(--muted);font-size:0.85rem">Wyniki głosowań jeszcze nieopublikowane</td>
+        <td>${speakers > 0 ? speakers : '—'}</td>
+      </tr>`;
+    }
     return `<tr class="vote-row" onclick="showSession('${s.number}')">
       <td style="font-weight:600">${s.number || '?'}</td>
       <td>${s.date}</td>
@@ -3062,6 +3072,27 @@ async function showSession(sessionNumber) {
     description: 'Sesja ' + sessionNumber + ', ' + (sess.date||'') + '. ' + sessSummaryStat + ', ' + (sess.attendee_count||0) + ' obecnych.',
     url: '{{SITE_URL}}/sesja/' + encodeURIComponent(sessionNumber) + '/'
   });
+
+  // Sesja bez opublikowanych wyników głosowań. Pokazujemy datę i porządek
+  // obrad, ale NIE liczymy obecnych/nieobecnych — brak attendees nie znaczy
+  // że wszyscy byli nieobecni, tylko że BIP nie wydał jeszcze "Wykazu głosowań".
+  if (sess.results_pending) {
+    const _linkStyle = 'color:var(--accent);font-size:0.9rem;text-decoration:none';
+    const agendaLink = sess.agenda_url ? `<a href="${sess.agenda_url}" target="_blank" rel="noopener" style="${_linkStyle}">↗ Porządek obrad</a>` : '';
+    const bipLink = sess.url ? `<a href="${sess.url}" target="_blank" rel="noopener" style="${_linkStyle}">↗ Strona sesji w BIP</a>` : '';
+    view.innerHTML = `
+      <button class="profile-back" onclick="showMain()">← Strona główna</button>
+      <div style="margin-bottom:24px">
+        <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">Sesja ${sess.number != null ? sess.number + ' · ' : ''}${sess.date}</h2>
+      </div>
+      <div class="section">
+        <div style="padding:14px 16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:0.92rem;color:var(--text);line-height:1.5">
+          Wyniki imiennych głosowań z tej sesji nie zostały jeszcze opublikowane w BIP. Gdy się pojawią, pokażemy je tutaj automatycznie.
+        </div>
+        ${(agendaLink || bipLink) ? `<div style="display:flex;gap:18px;margin-top:16px;flex-wrap:wrap">${agendaLink}${bipLink}</div>` : ''}
+      </div>`;
+    return;
+  }
 
   // Club lookup from current kadencja
   const clubMap = {};

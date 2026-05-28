@@ -240,6 +240,7 @@ class SessionMeta:
     title: str
     detail_url: str
     nadzwyczajna: bool
+    agenda_url: str = ""
 
 
 # Title format BIP olsztyn (varies):
@@ -344,6 +345,21 @@ def find_voting_pdf_url(http_session: requests.Session, detail_url: str, debug: 
             return href if href.startswith("http") else BIP_BASE + href
     if debug:
         print(f"      brak 'Wykaz głosowań' w {detail_url}")
+    return None
+
+
+def find_agenda_url(http_session: requests.Session, detail_url: str, debug: bool = False) -> str | None:
+    """Link do "Porządek obrad" w sekcji Załączniki sesji. Używane dla sesji
+    bez opublikowanego "Wykazu głosowań" — pokazujemy chociaż harmonogram.
+    HTML detalu jest już w cache po find_voting_pdf_url, więc bez nowego GET."""
+    html = fetch_html(http_session, detail_url, use_cache=True, debug=debug)
+    soup = BeautifulSoup(html, "html.parser")
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        text = a.get_text(" ", strip=True).lower()
+        if "porz" in text and "obrad" in text:
+            if "/attachment/" in href or href.lower().endswith(".pdf"):
+                return href if href.startswith("http") else BIP_BASE + href
     return None
 
 
@@ -626,14 +642,24 @@ def build_outputs(sessions: list[SessionMeta], votes: list[dict],
                 if key in ("za", "przeciw", "wstrzymal_sie", "brak_glosu"):
                     attendees.update(names)
 
-        # BIP Olsztyna publikuje "Wykaz głosowań" PDF z opóźnieniem 3-6 miesięcy
-        # od dnia sesji. Świeże sesje mają tylko porządek obrad, bez wyników.
-        # POMIJAMY je w sessions[] żeby uniknąć fałszywego "24 nieobecnych"
-        # generowanego przez frontend (len(COUNCILORS) - 0 attendees). Sesja
-        # pojawi się na stronie dopiero gdy BIP opublikuje PDF z głosowaniami,
-        # następny pipeline run ją wciągnie.
+        # BIP Olsztyna publikuje "Wykaz głosowań" PDF z opóźnieniem (realnie
+        # nawet ~9 miesięcy). Sesje bez opublikowanych wyników dołączamy z flagą
+        # results_pending zamiast je pomijać — pokazujemy datę i porządek obrad.
+        # Flaga mówi frontendowi żeby NIE liczył fałszywych "24 nieobecnych"
+        # (brak attendees != wszyscy nieobecni). Po publikacji PDF następny
+        # pipeline run wypełni głosowania i flaga zniknie.
         if not s_votes:
-            print(f"      pomijam w sessions_out (brak PDF wyników)")
+            print(f"      sesja bez wyników → results_pending (porządek: {'tak' if s.agenda_url else 'brak'})")
+            sessions_out.append({
+                "number": s.number,
+                "date": s.date,
+                "url": s.detail_url,
+                "agenda_url": s.agenda_url,
+                "vote_count": 0,
+                "attendee_count": 0,
+                "extraordinary": s.nadzwyczajna,
+                "results_pending": True,
+            })
             continue
         sessions_out.append({
             "number": s.number,
@@ -642,6 +668,7 @@ def build_outputs(sessions: list[SessionMeta], votes: list[dict],
             "vote_count": len(s_votes),
             "attendee_count": len(attendees),
             "extraordinary": s.nadzwyczajna,
+            "results_pending": False,
         })
 
     profiles = build_profiles(votes)
@@ -727,6 +754,16 @@ def scrape(output_path: Path, profiles_path: Path, pdf_dir: Path, parsed_dir: Pa
             continue
         if not pdf_url:
             print(f"      brak PDF wyników głosowań")
+            # Wyniki jeszcze nieopublikowane przez BIP. Wyłuskaj porządek obrad
+            # żeby sesja mogła pokazać chociaż harmonogram (build_outputs zrobi
+            # z niej wpis results_pending zamiast ją pomijać).
+            try:
+                agenda = find_agenda_url(http_session, session.detail_url, debug=debug)
+                if agenda:
+                    session.agenda_url = agenda
+            except Exception as exc:
+                if debug:
+                    print(f"      [warn] nie znalazłem porządku obrad: {exc}")
             continue
         pdf_path = fetch_pdf(http_session, pdf_url, pdf_dir, debug=debug)
         if not pdf_path:
