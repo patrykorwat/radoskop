@@ -129,6 +129,31 @@ CAT_RULES_BY_LOCALE: dict[str, list[tuple[str, str]]] = {
         ("nazwy", r"nimetus|tänava nimi|nime andmine|ümbernimetamine"),
         ("procedura", r"protokoll|päevakord|kodukord|põhikiri|komisjon|otsuse muutmine|määrus|nimetamine|volitamine|valimine|kandidaat|ametivanne"),
     ],
+    # ── Duński (Kopenhaga) ──────────────────────────────────────────────
+    # Krótkie duńskie słowa (havn, vej, bus, tog, lan, gade, park) muszą mieć
+    # granice słów (\b) bo inaczej trafiają w środki innych słów (np. 'havn'
+    # w 'Københavns'). 'park' osobno od 'parkering' (środowisko vs transport).
+    # planowanie i nieruchomosci PRZED budzet, bo 'lokalplan' zawiera 'lan'.
+    "da": [
+        # Krótkie duńskie słowa (vej, havn, bus, tog, gade, park) muszą mieć
+        # granice słów żeby nie trafiać w środki innych słów (np. 'havn' w
+        # 'Københavns'). Dla typowych prefiksów w compoundach (klima, kultur,
+        # bibliotek) używamy tylko lewej granicy. Kolejność: nazwy PRZED
+        # transport (vejnavn -> nazwy, nie vej -> transport); planowanie i
+        # nieruchomosci PRZED budzet (lokalplan zawiera 'lan').
+        ("nazwy", r"\bnavngivning\b|\bvejnavn|\bgadenavn|\bomd[øo]bning\b|\bstednavn|\bnavne?[æae]ndring\b"),
+        ("planowanie", r"\blokalplan|\bkommuneplan|\bbyudvikling|\bbyplan\b|\bbyomdannelse|\budviklingsplan|\bbyrum\b|\bgenopretning|\bhelhedsplan|\bbygge ?og bevaring"),
+        ("nieruchomosci", r"\bejendom|\bgrund\b|\bmatrikel|\balmene boliger|\budlejning|\blejebolig|\blejekontrakt|\blejem[åa]l|\bareal\b|\bsalg af ejendom|\bk[øo]b af ejendom|\bfamilieboliger|\bungdomsbolig|\bplejebolig|\bandelsbolig"),
+        ("oswiata", r"\bskole|\bfolkeskole|\bspecialskole|\bb[øo]rnehave|\bvuggestue|\bdaginstitution|\bdagtilbud|\bfritidsklub|\bfritidsordning|\bfritidshjem|\buddannelse|\bgymnasium|\belev\b|\belever\b|\bp[æae]dagogisk"),
+        ("zdrowie", r"\bsundhed|\bhospital|\bsygehus|\bsocial\b|\bsociale\b|\bsocialudvalg|\b[æae]ldre\b|\b[æae]ldreomsorg|\b[æae]ldrepleje|\bomsorg\b|\bhandicap|\budsatte\b|\bhjeml[øo]se\b|\bmisbrug|\bensomhed|\bbost[øo]tte|\bsundhedshus|\btandpleje"),
+        ("srodowisko", r"\bmilj[øo]|\bklima|\bgr[øo]n\b|\bgr[øo]nt\b|\bgr[øo]nne\b|\bb[æae]redygtig|\baffald|\bskraldespand|\bnatur\b|\bnatur[bcdfg-z]|\bbiodivers|\bpark\b|\bparken\b|\bparker\b|\bparkerne\b|\btr[æae]er\b|\btr[æae]plantning|\bjordforuren|\bvandkvalitet|\bst[øo]j\b|\bkystsikring"),
+        ("kultura", r"\bkultur|\bbibliotek|\bmuseum|\bkunst\b|\bkunstner|\bteater|\bmusik\b|\bfestival|\bfortidsminde|\bfredet\b|\bkulturarv|\bungdomskultur|\bbiograf\b|\bspillested"),
+        ("transport", r"\btrafik|\bvej\b|\bveje\b|\bvejnet|\bgade\b|\bgader\b|\bcykel|\bcyklist|\bcyklisme|\bmetro\b|\bbus\b|\bbusser\b|\bletbane|\bs-tog\b|\btog\b|\bparkering|\bp-plads|\bstoppested|\bmobilitet\b|\bhavn\b|\bhavnen\b|\bhavne\b|\bhavneudvikling|\bkanal\b|\bkanaler\b|\bf[æae]rge|\bbro\b|\bbroer\b|\bkryds\b|\bhastighedsgr[æae]nse|\bhastighedsd[æae]mp|\bkollektiv trafik|\blinje \d+[A-Z]?\b|\bfredelig"),
+        ("budzet", r"\bbudget|\bfinansier|\bfinansiel|\bskat\b|\bskatter\b|\bgebyr|\bafgift|\btilskud|\bbevilling|\bl[åa]n\b|\bkredit\b|\bvederlag|\bhonorering|\btakst|\bkontingent|\bm[åa]ltal|regnskab\b|\bkirkeligning|\boverenskomstforhandl"),
+        ("inwestycje", r"\banl[æae]g\b|\banl[æae]gsbevilling|\binvestering|\bbyggeri\b|\bnybyggeri|\bombygning|\brenovering|\bmodernisering|\budbygning|\bop[fø]relse|\budskiftning|\betablering\b|\btilbygning"),
+        ("skarga", r"\bklage\b|\bklager\b|\bklageudvalg|\bindsigelse\b|\bborgerhenvendelse"),
+        ("procedura", r"\bdagsorden|\bforretningsorden|\bvedt[æae]gter|\bkommissorium|\budvalg\b|\bvalg af\b|\bvalgperiode|\bkandidat\b|\bindstilling om udpegning|\bmedlemsforslag\b|\bforesp[øo]rgsel|\bborgmester|\budn[æae]vnelse|\bhabilitet|\bprotokol|\bprotokolbem[æae]rkning|\budpegning\b|\bh[øo]ring\b|\bsamarbejdsaftale|\bfuldmagt|\bdelegation\b|\bber[æae]tning|\brokering|\bsuppleant"),
+    ],
     # ── Nederlands (Amsterdam, Den Haag) ────────────────────────────────
     "nl": [
         ("budzet", r"begroting|financiën|financieel|belasting|heffing|leges|tarieven|subsidie|lening|krediet|precario|rioolheffing|toeristenbelasting|reclamebelasting|marktgelden|precariobelasting"),

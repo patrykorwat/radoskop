@@ -115,6 +115,38 @@ class ParseBeslutning(unittest.TestCase):
         d = scrape_kk._parse_beslutning_block("Foo bar baz, nic tu nie ma.", self.cfg)
         self.assertIsNone(d)
 
+    def test_uden_afstemning_trukket_tilbage_is_neutral(self) -> None:
+        text = "Beslutning Borgerrepræsentationens beslutning ... Indstillingen blev trukket tilbage uden afstemning."
+        d = scrape_kk._parse_beslutning_block(text, self.cfg)
+        self.assertIsNotNone(d)
+        self.assertEqual(d["mode"], "show_of_hands")
+        self.assertIsNone(d["passed"])  # neutralne, nie False
+
+    def test_uden_afstemning_udsat_is_neutral(self) -> None:
+        text = "Beslutning Borgerrepræsentationens beslutning ... Sagen blev udsat uden afstemning."
+        d = scrape_kk._parse_beslutning_block(text, self.cfg)
+        self.assertIsNotNone(d)
+        self.assertIsNone(d["passed"])
+
+    def test_uden_afstemning_forkastet(self) -> None:
+        text = "Beslutning Borgerrepræsentationens beslutning ... Medlemsforslaget blev forkastet uden afstemning."
+        d = scrape_kk._parse_beslutning_block(text, self.cfg)
+        self.assertIsNotNone(d)
+        self.assertFalse(d["passed"])
+
+    def test_uden_afstemning_subject_variant_borgerrep(self) -> None:
+        text = "Beslutning Borgerrepræsentationens beslutning ... Borgerrepræsentationen vedtog indstillingen uden afstemning."
+        d = scrape_kk._parse_beslutning_block(text, self.cfg)
+        self.assertIsNotNone(d)
+        self.assertEqual(d["mode"], "show_of_hands")
+        self.assertTrue(d["passed"])
+
+    def test_uden_afstemning_subject_variant_aendring(self) -> None:
+        text = "Beslutning ... Ændringsforslaget blev godkendt uden afstemning."
+        d = scrape_kk._parse_beslutning_block(text, self.cfg)
+        self.assertIsNotNone(d)
+        self.assertTrue(d["passed"])
+
 
 class ParsePunkt(unittest.TestCase):
     """Lekkie integracyjne testy parse_punkt na zlepkach HTML."""
@@ -158,6 +190,44 @@ class ParsePunkt(unittest.TestCase):
         self.assertTrue(v["passed"])
         self.assertEqual(v["session_date"], "2025-05-22")
         self.assertEqual(v["punkt"], 7)
+
+
+class UdvalgParsing(unittest.TestCase):
+    def test_single_medlem_af(self) -> None:
+        u = scrape_kk._parse_udvalg("Medlem af Økonomiudvalget")
+        self.assertEqual(u, ["Økonomiudvalget"])
+
+    def test_medlem_af_og_keeps_compound_name(self) -> None:
+        # Sundheds- og Omsorgsudvalget ZAWIERA " og " w nazwie — nie wolno
+        # splittować po " og " bo rozbije nazwę na pseudo-udvalgi.
+        u = scrape_kk._parse_udvalg("Medlem af Socialudvalget og Sundheds- og Omsorgsudvalget")
+        self.assertEqual(u, ["Socialudvalget", "Sundheds- og Omsorgsudvalget"])
+
+    def test_borgmester_forperson(self) -> None:
+        u = scrape_kk._parse_udvalg(
+            "Børne- og ungdomsborgmesteren er forperson for Børne- og Ungdomsudvalget."
+        )
+        self.assertEqual(u, ["Børne- og Ungdomsudvalget (forperson)"])
+
+    def test_borgmester_title_fallback(self) -> None:
+        # Wpis "Line Barfod, klima-, miljø- og teknikborgmester" gdy
+        # after_text nie ma "X-borgmesteren er forperson for Y".
+        self.assertEqual(
+            scrape_kk._udvalg_from_borgmester_title("klima-, miljø- og teknikborgmester"),
+            "Klima-, Miljø- og Teknikudvalget",
+        )
+        self.assertEqual(
+            scrape_kk._udvalg_from_borgmester_title("overborgmester"),
+            "Økonomiudvalget",
+        )
+        self.assertEqual(
+            scrape_kk._udvalg_from_borgmester_title("sundheds- og omsorgsborgmester"),
+            "Sundheds- og Omsorgsudvalget",
+        )
+
+    def test_no_udvalg(self) -> None:
+        self.assertEqual(scrape_kk._parse_udvalg(""), [])
+        self.assertEqual(scrape_kk._parse_udvalg("Random text without udvalg"), [])
 
 
 class IndexParsing(unittest.TestCase):

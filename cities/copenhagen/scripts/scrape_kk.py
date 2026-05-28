@@ -48,7 +48,23 @@ from lib_faction_votes import make_faction_vote  # noqa: E402
 BASE = "https://www.kk.dk"
 INDEX_PATH = "/dagsordener-og-referater/Borgerrepr%C3%A6sentationen"
 INDEX_URL = BASE + INDEX_PATH
+ROSTER_URL = BASE + "/politik/borgerrepraesentationen/medlemsoversigt"
 UA = "radoskop-copenhagen/1.0 (+https://radoskop.eu)"
+
+# Pełne nazwy partii (etykieta na medlemsoversigt) -> kod klubu z config.clubs.
+PARTY_LABEL_TO_CLUB: dict[str, str] = {
+    "Enhedslisten": "OE",
+    "Socialdemokratiet": "A",
+    "Det Konservative Folkeparti": "C",
+    "Radikale Venstre": "B",
+    "Socialistisk Folkeparti": "F",
+    "Venstre": "V",
+    "Liberal Alliance": "I",
+    "Alternativet": "AA",
+    "Dansk Folkeparti": "O",
+    "Frie Grønne": "Q",
+    "Frie Gronne": "Q",  # fallback bez znaku ø
+}
 
 # Bookstaver partii widziane w referatach BR. Mapowanie na kody clubs z
 # config.json (letter_to_club). Bookstaver "Q" (Frie Grønne) i "Å"
@@ -93,6 +109,216 @@ MEETING_LINK_RE = re.compile(
     r"/dagsordener-og-referater/Borgerrepr%C3%A6sentationen/m%C3%B8de-(\d{8})/referat\b",
     re.IGNORECASE,
 )
+
+
+# ── Roster (lista radnych) ────────────────────────────────────────────
+PARTY_LABEL_RE_TEXT = "|".join(re.escape(k) for k in PARTY_LABEL_TO_CLUB.keys())
+# Medlemsoversigt renderuje każdy wpis jako: "<parti> | Borgerrepræsentationen ... <a href='/politik/borgerrepraesentationen/medlemsoversigt/{slug}' lub '/politik/borgmestre/{slug}'>NAZWISKO</a>" + opis ról ("Medlem af X og Y", "X-borgmesteren er forperson for Y").
+# Łapiemy też tekst od końca nazwiska do początku następnego wpisu, żeby
+# wyciągnąć udvalg (komisje).
+ROSTER_ENTRY_RE = re.compile(
+    rf"(?:(?P<p1>{PARTY_LABEL_RE_TEXT})\s*\|\s*Borgerrepr[æae]sentationen|"
+    rf"Borgerrepr[æae]sentationen\s*\|\s*(?P<p2>{PARTY_LABEL_RE_TEXT}))"
+    r".*?<a[^>]+href=[\"']"
+    r"(?P<href>/politik/(?:borgerrepraesentationen/medlemsoversigt|borgmestre)/[^\"']+)"
+    r"[\"'][^>]*>(?P<name>[^<]+)</a>"
+    r"(?P<after>.*?)"
+    rf"(?=(?:{PARTY_LABEL_RE_TEXT})\s*\|\s*Borgerrepr[æae]sentationen|"
+    rf"Borgerrepr[æae]sentationen\s*\|\s*(?:{PARTY_LABEL_RE_TEXT})|\Z)",
+    re.IGNORECASE | re.DOTALL,
+)
+SUPPLEANT_TAG_RE = re.compile(r"\s*\(suppleant\)\s*$", re.IGNORECASE)
+ORLOV_TAG_RE = re.compile(r"\s*\(orlov\)\s*$", re.IGNORECASE)
+
+# "Medlem af Økonomiudvalget" / "Medlem af A og B" / "Midlertidigt medlem af X og Y med første dag den Z og indtil videre."
+MEDLEM_AF_RE = re.compile(
+    r"(?:Midlertidigt\s+)?[Mm]edlem\s+af\s+(?P<udvalg>[^.]+?)(?:\s+med f[øo]rste dag\b|\s+og indtil\b|\.|$)",
+    re.IGNORECASE,
+)
+# Borgmistrz: "Beskæftigelses-, integrations- og erhvervsborgmesteren er forperson for Beskæftigelses-, Integrations- og Erhvervsudvalget."
+BORGMESTER_FORPERSON_RE = re.compile(
+    r"borgmester(?:en)?\s+er\s+forperson\s+for\s+(?P<udvalg>[^.]+?)(?:\.|$)",
+    re.IGNORECASE,
+)
+
+# Normalizacja nazwy udvalg: spróbuj sprowadzić do kanonicznej wersji z
+# config.json. Strip whitespace, kropki, "og". Match po słowach kluczowych.
+CANONICAL_UDVALG: dict[str, str] = {
+    "okonomi": "Økonomiudvalget",
+    "social": "Socialudvalget",
+    "born": "Børne- og Ungdomsudvalget",
+    "klima": "Klima-, Miljø- og Teknikudvalget",
+    "kultur": "Kultur-, Fritids- og Borgerserviceudvalget",
+    "beskaeft": "Beskæftigelses-, Integrations- og Erhvervsudvalget",
+    "sundhed": "Sundheds- og Omsorgsudvalget",
+}
+
+
+def _normalize_udvalg(raw: str) -> str | None:
+    """Zwróć kanoniczną nazwę udvalg albo None gdy nie rozpoznane."""
+    if not raw:
+        return None
+    # Strip akcentów do ASCII dla matchowania
+    raw = raw.strip().rstrip(".").strip()
+    ascii_lc = (raw.lower()
+                .replace("ø", "o").replace("å", "a").replace("æ", "ae")
+                .replace("ö", "o").replace("ä", "a"))
+    for needle, canonical in CANONICAL_UDVALG.items():
+        if needle in ascii_lc:
+            return canonical
+    return raw  # zostaw oryginał gdy nie pasuje do żadnego znanego udvalg
+
+
+def _udvalg_from_borgmester_title(title: str) -> str | None:
+    """Mapuj tytuł borgmistrzowski na udvalg.
+
+    Tytuły z kk.dk: 'overborgmester', 'socialborgmester',
+    'sundheds- og omsorgsborgmester', 'klima-, miljø- og teknikborgmester',
+    'kultur-, fritids- og borgerserviceborgmester',
+    'børne- og ungdomsborgmester',
+    'beskæftigelses-, integrations- og erhvervsborgmester'.
+    """
+    if not title:
+        return None
+    t = (title.lower()
+         .replace("ø", "o").replace("å", "a").replace("æ", "ae"))
+    if "overborgmester" in t:
+        return "Økonomiudvalget"
+    if "social" in t:
+        return "Socialudvalget"
+    if "born" in t or "ungdom" in t:
+        return "Børne- og Ungdomsudvalget"
+    if "klima" in t or "miljo" in t or "teknik" in t:
+        return "Klima-, Miljø- og Teknikudvalget"
+    if "kultur" in t or "fritid" in t or "borgerservice" in t:
+        return "Kultur-, Fritids- og Borgerserviceudvalget"
+    if "beskaeft" in t or "integration" in t or "erhverv" in t:
+        return "Beskæftigelses-, Integrations- og Erhvervsudvalget"
+    if "sundhed" in t or "omsorg" in t:
+        return "Sundheds- og Omsorgsudvalget"
+    return None
+
+
+def _parse_udvalg(text: str) -> list[str]:
+    """Wyciągnij listę udvalg z tekstu po nazwisku radnego.
+
+    Zwraca listę kanonicznych nazw, deduplikowaną, w kolejności pojawienia.
+    Obsługuje 'Medlem af X og Y' oraz 'X-borgmesteren er forperson for Y'.
+
+    Krytyczny detail: nazwy udvalgów same zawierają " og " ("Sundheds- og
+    Omsorgsudvalget", "Børne- og Ungdomsudvalget", "Beskæftigelses-,
+    Integrations- og Erhvervsudvalget"). Nie można naiwnie splittować po
+    " og ". Zamiast tego skanujemy text na znane kanoniczne nazwy
+    (substring match, akcent-insensitive).
+    """
+    found: list[str] = []
+    seen: set[str] = set()
+
+    def _ascii_lc(s: str) -> str:
+        return (s.lower()
+                .replace("ø", "o").replace("å", "a").replace("æ", "ae"))
+
+    def _add(canonical: str, suffix: str = "") -> None:
+        label = f"{canonical}{suffix}"
+        if label in seen:
+            return
+        seen.add(label)
+        found.append(label)
+
+    # Lista kanonicznych BR udvalgów (7 stałych). Lokaludvalg nie scanu-
+    # jemy bo to inne ciało (dzielnicowe, nie BR).
+    BR_UDVALG = [
+        "Økonomiudvalget",
+        "Socialudvalget",
+        "Børne- og Ungdomsudvalget",
+        "Klima-, Miljø- og Teknikudvalget",
+        "Kultur-, Fritids- og Borgerserviceudvalget",
+        "Beskæftigelses-, Integrations- og Erhvervsudvalget",
+        "Sundheds- og Omsorgsudvalget",
+    ]
+
+    # Borgmistrz jako forperson — wykryj NAJPIERW, żeby nie nadpisać
+    # plain medlem-of dla tej samej osoby/udvalgu.
+    forperson_udvalg: set[str] = set()
+    text_ascii = _ascii_lc(text)
+    for m in BORGMESTER_FORPERSON_RE.finditer(text):
+        raw_ascii = _ascii_lc(m.group("udvalg"))
+        for canon in BR_UDVALG:
+            if _ascii_lc(canon) in raw_ascii:
+                forperson_udvalg.add(canon)
+                _add(canon, " (forperson)")
+
+    # "Medlem af" — bierzemy cały segment od "af" do końca zdania, potem
+    # po prostu sprawdzamy, które kanoniczne udvalgi są w nim obecne.
+    for m in MEDLEM_AF_RE.finditer(text):
+        seg_ascii = _ascii_lc(m.group("udvalg"))
+        for canon in BR_UDVALG:
+            if canon in forperson_udvalg:
+                continue  # już dodane jako forperson
+            if _ascii_lc(canon) in seg_ascii:
+                _add(canon)
+
+    return found
+
+
+def fetch_roster(max_pages: int = 5) -> list[dict]:
+    """Pobierz medlemsoversigt BR i zwróć listę radnych z partią i udvalgami.
+
+    Format wpisu: {name, slug, club, is_suppleant, profile_url, komisje}.
+    Slug pochodzi z URL kk.dk (ostatni segment). Duplikaty (po slugu) usuwane.
+    """
+    out: list[dict] = []
+    seen_slugs: set[str] = set()
+    for page in range(max_pages):
+        url = f"{ROSTER_URL}?page={page}"
+        try:
+            html = fetch_text(url)
+        except Exception as e:
+            print(f"  roster page={page} padł: {e}", file=sys.stderr)
+            break
+        before = len(out)
+        for m in ROSTER_ENTRY_RE.finditer(html):
+            party_label = m.group("p1") or m.group("p2")
+            club = PARTY_LABEL_TO_CLUB.get(party_label)
+            href = m.group("href")
+            name_raw = m.group("name").strip()
+            is_supp = bool(SUPPLEANT_TAG_RE.search(name_raw))
+            is_orlov = bool(ORLOV_TAG_RE.search(name_raw))
+            name = SUPPLEANT_TAG_RE.sub("", name_raw)
+            name = ORLOV_TAG_RE.sub("", name).strip()
+            # Borgmistrz: "Andreas Keil, beskæftigelses-, integrations- og erhvervsborgmester"
+            # — wyciągamy tytuł (po przecinku) jako fallback dla forperson
+            # gdy główny opis "X-borgmesteren er forperson for Y" jest pusty.
+            borgmester_title = ""
+            if "," in name and "borgmester" in name.lower():
+                parts = name.split(",", 1)
+                name = parts[0].strip()
+                borgmester_title = parts[1].strip()
+            slug = href.rstrip("/").rsplit("/", 1)[-1]
+            if slug in seen_slugs:
+                continue
+            seen_slugs.add(slug)
+            # Tekst po linku do następnego wpisu zawiera "Medlem af X og Y".
+            after_text = html_to_text(m.group("after") or "")
+            komisje = _parse_udvalg(after_text)
+            # Fallback: jeśli borgmistrz nie ma forperson w 'after' ale ma tytuł
+            # w nazwisku (np. Line Barfod, klima-...), zmapuj tytuł na udvalg.
+            if borgmester_title and not any("forperson" in k for k in komisje):
+                fallback = _udvalg_from_borgmester_title(borgmester_title)
+                if fallback:
+                    komisje = [f"{fallback} (forperson)"] + [k for k in komisje if k != fallback]
+            out.append({
+                "name": name,
+                "slug": slug,
+                "club": club,
+                "is_suppleant": is_supp,
+                "is_orlov": is_orlov,
+                "profile_url": BASE + href,
+                "komisje": komisje,
+            })
+        if len(out) == before:
+            break  # pusta strona, koniec
+    return out
 
 
 def discover_meeting_urls(max_pages: int = 30) -> list[tuple[str, str]]:
@@ -162,12 +388,37 @@ ZERO_ABSTAIN_RE = re.compile(
     r"Ingen\s+medlemmer\s+undlod\s+at\s+stemme",
     re.IGNORECASE,
 )
-UDEN_AFSTEMNING_RE = re.compile(
-    r"(?:Indstillingen|Medlemsforslaget|Foresp[øo]rgslen|Forslaget)\s+blev\s+"
+UDEN_AFSTEMNING_PASSIVE_RE = re.compile(
+    # Pasywny: "<noun> blev <outcome> ... uden afstemning | enstemmigt".
+    # Outcome to imiesłów: godkendt / vedtaget / tiltrådt / forkastet /
+    # trukket tilbage / udsat.
+    r"(?:Indstillingen|Medlemsforslaget|Foresp[øo]rgslen|Forslaget|"
+    r"Ændringsforslaget|Bekendtg[øo]relsen|Sagen|Punktet|Det)\s+blev\s+"
     r"(?P<outcome>godkendt|vedtaget|tiltr[ae]dt|forkastet|trukket\s+tilbage|udsat)"
-    r"\s+(?:uden\s+afstemning|ved\s+enstemmighed|enstemmigt)",
+    r"[^.]*?"
+    r"(?:uden\s+afstemning|ved\s+enstemmighed|enstemmigt)",
     re.IGNORECASE,
 )
+UDEN_AFSTEMNING_ACTIVE_RE = re.compile(
+    # Aktywny: "Borgerrepræsentationen <verb> ... uden afstemning". Outcome to
+    # czasownik w czasie przeszłym: vedtog / godkendte / tiltrådte / udsatte /
+    # forkastede.
+    r"Borgerrepr[æae]sentationen\s+"
+    r"(?P<outcome>vedtog|godkendte|tiltr[åa]dte|udsatte|forkastede)"
+    r"[^.]*?"
+    r"(?:uden\s+afstemning|ved\s+enstemmighed|enstemmigt)",
+    re.IGNORECASE,
+)
+# Wycofane/odroczone (trukket tilbage, udsat, udsatte) NIE są odrzuceniem
+# — to osobny status. passed=None oznacza "rezolucja nie zapadła w tym
+# punkcie", zamiast mylącego False.
+NEUTRAL_OUTCOMES = ("trukket", "udsat", "udsatte")
+POSITIVE_OUTCOMES = ("godkendt", "vedtaget", "tiltr", "vedtog", "godkendte", "tiltr")
+NEGATIVE_OUTCOMES = ("forkastet", "forkastede")
+# Wycofane/odroczone (trukket tilbage, udsat) NIE są odrzuceniem — to
+# osobny status. passed=None oznacza "rezolucja nie zapadła w tym punkcie",
+# zamiast mylącego False.
+NEUTRAL_OUTCOMES = ("trukket", "udsat", "udsatte")
 
 # Linie z bookstavami i nazwiskami. Format:
 #   "For stemte: Ø (Charlotte Lund, ...), A, C, F, B, V, Å, I, O og Finn Rudaizky (Løsgænger)"
@@ -267,11 +518,22 @@ def _parse_beslutning_block(text: str, config: dict) -> dict | None:
     block = text[m_start.start():]
     block = re.split(r"\b(?:Bilag\b|Til top)", block, maxsplit=1)[0]
 
-    # Variant A: uden afstemning / enstemmighed.
-    m_uden = UDEN_AFSTEMNING_RE.search(block)
+    # Variant A: uden afstemning / enstemmighed (passive or active form).
+    m_uden = UDEN_AFSTEMNING_PASSIVE_RE.search(block) or UDEN_AFSTEMNING_ACTIVE_RE.search(block)
     if m_uden:
         outcome_raw = m_uden.group("outcome").lower()
-        passed = outcome_raw.startswith(("godkendt", "vedtaget", "tiltr"))
+        # Pozytywne: godkendt/vedtaget/tiltrådt (i czasowe vedtog/godkendte).
+        # Neutralne (trukket tilbage / udsat): passed=None — nie odrzucenie,
+        # tylko brak rozstrzygnięcia w danym punkcie.
+        # Negatywne: forkastet / forkastede.
+        if outcome_raw.startswith(NEUTRAL_OUTCOMES):
+            passed = None
+        elif outcome_raw.startswith(NEGATIVE_OUTCOMES):
+            passed = False
+        elif outcome_raw.startswith(POSITIVE_OUTCOMES):
+            passed = True
+        else:
+            passed = None  # nieznany outcome — neutralny zamiast zgadywać
         return {
             "mode": "show_of_hands",
             "passed": passed,
@@ -421,13 +683,19 @@ def parse_punkt(url: str, html: str, config: dict, *, meeting_date_iso: str | No
             meeting_date_iso = f"{yyyy}-{mm}-{dd}"
 
     vote_id = f"copenhagen_{meeting_date_iso or '0000-00-00'}_punkt-{punkt_n or 0}"
+    # kk.dk nie numeruje sesji BR sekwencyjnie — używamy daty jako session_number
+    # (DD.MM.YYYY zgodnie z duńską konwencją). Dzięki temu groupBy po
+    # session_number w template'cie nie tworzy 'Møde null'.
+    session_number = None
+    if meeting_date_iso and len(meeting_date_iso) == 10:
+        session_number = f"{meeting_date_iso[8:10]}.{meeting_date_iso[5:7]}.{meeting_date_iso[0:4]}"
 
     if decision["mode"] == "show_of_hands":
         # Brak counts, brak faction_votes. Rekord vote z vote_mode show_of_hands.
         return {
             "id": vote_id,
             "session_date": meeting_date_iso,
-            "session_number": None,
+            "session_number": session_number,
             "source_url": url,
             "topic": topic,
             "punkt": punkt_n,
@@ -448,6 +716,7 @@ def parse_punkt(url: str, html: str, config: dict, *, meeting_date_iso: str | No
         topic=topic,
         faction_tallies=decision["faction_votes"],
         club_seats=seats,
+        session_number=session_number,
         source_url=url,
         result=decision["result"],
     )
@@ -546,7 +815,17 @@ def scrape(out_dir: Path, config: dict, limit_meetings: int | None = None) -> Pa
             json.dump(payload, f, ensure_ascii=False, indent=2)
         written.append(out_file)
 
-    _write_manifest(out_dir, config, by_kadencja, sessions_per_kad)
+    # Roster aktualnej kadencji z medlemsoversigt (kk.dk). Faction-mode nie
+    # opiera profilu radnego na głosach imiennych, ale lista nazwisk + partii
+    # jest potrzebna do wyszukiwarki, Google News, OG, breadcrumbs itp.
+    try:
+        roster = fetch_roster()
+        print(f"  roster: {len(roster)} medlemmer", file=sys.stderr)
+    except Exception as e:
+        print(f"  roster fetch padł: {e}", file=sys.stderr)
+        roster = []
+
+    _write_manifest(out_dir, config, by_kadencja, sessions_per_kad, roster=roster)
     return written[0] if written else out_dir / "data.json"
 
 
@@ -555,9 +834,28 @@ def _write_manifest(
     config: dict,
     by_kadencja: dict[str, list[dict]],
     sessions_per_kad: dict[str, set[str]],
+    roster: list[dict] | None = None,
 ) -> None:
-    """data.json: manifest dla pipeline'u (po wzorze paris._write_manifest)."""
+    """data.json + profiles.json: manifest dla pipeline'u (wzór paris)."""
     now = datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    roster = roster or []
+    active_kid = config.get("kadencja_active", "")
+
+    # Roster dotyczy kadencji aktywnej; w starszych kadencjach lista jest pusta,
+    # bo medlemsoversigt na kk.dk pokazuje tylko bieżący skład. Każdy medlem
+    # dostaje listę komisji (udvalg) — wyciąganą z "Medlem af X og Y" przy
+    # nazwisku.
+    councilors_active = [
+        {
+            "name": r["name"],
+            "slug": r["slug"],
+            "club": r["club"],
+            "komisje": r.get("komisje", []),
+        }
+        for r in roster
+        if not r.get("is_suppleant")
+    ]
+
     kadencje_payload = []
     for kid, meta in (config.get("kadencje") or {}).items():
         votes = by_kadencja.get(kid, [])
@@ -567,20 +865,52 @@ def _write_manifest(
             "label": meta.get("label", kid),
             "total_votes": len(votes),
             "total_sessions": len(sessions),
-            "total_councilors": config.get("councilor_count", 0),
-            "councilors": [],  # faction-mode: brak per-medlem profili
+            "total_councilors": (
+                len(councilors_active) if kid == active_kid else 0
+            ),
+            "councilors": councilors_active if kid == active_kid else [],
         })
+
     data_payload = {
         "scraped_at": now,
         "generated": True,
-        "default_kadencja": config.get("kadencja_active", ""),
+        "default_kadencja": active_kid,
         "vote_mode": "faction",
         "kadencje": kadencje_payload,
     }
-    if not any(by_kadencja.values()):
+    if not any(by_kadencja.values()) and not roster:
         data_payload["_status"] = "no_data"
     (out_dir / "data.json").write_text(
         json.dumps(data_payload, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+
+    # profiles.json: pełna lista radnych (włącznie z suppleantami) dla
+    # wyszukiwarki nazwisk i SEO.
+    profiles_payload = {
+        "scraped_at": now,
+        "profiles": [
+            {
+                "slug": r["slug"],
+                "name": r["name"],
+                "club": r["club"],
+                "kadencja": active_kid,
+                "is_suppleant": r.get("is_suppleant", False),
+                "is_orlov": r.get("is_orlov", False),
+                "profile_url": r.get("profile_url"),
+                "kadencje": {
+                    active_kid: {
+                        "club": r["club"],
+                        "komisje": r.get("komisje", []),
+                        "has_voting_data": False,
+                    }
+                },
+            }
+            for r in roster
+        ],
+        "total": len(roster),
+    }
+    (out_dir / "profiles.json").write_text(
+        json.dumps(profiles_payload, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
 
