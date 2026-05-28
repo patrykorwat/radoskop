@@ -821,7 +821,7 @@ def main():
         og_locale_map = {
             "de": "de_DE", "cs": "cs_CZ", "en": "en_US", "fr": "fr_FR",
             "lt": "lt_LT", "et": "et_EE", "lv": "lv_LV", "nl": "nl_NL",
-            "sk": "sk_SK", "hu": "hu_HU",
+            "sk": "sk_SK", "hu": "hu_HU", "da": "da_DK",
         }
         og_locale = og_locale_map.get(locale_lower, locale_lower)
         html = html.replace('<html lang="pl">', f'<html lang="{locale_lower}">', 1)

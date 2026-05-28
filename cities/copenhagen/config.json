@@ -1,0 +1,174 @@
+{
+  "city_name": "København",
+  "city_genitive": "Kopenhagi",
+  "country": "dk",
+  "country_name": "Danmark",
+  "locale": "da",
+  "site_title": "Radoskop København. Hvordan stemmer Borgerrepræsentationen?",
+  "site_url": "https://copenhagen.radoskop.eu",
+  "site_description": "Radoskop. Åbent indblik i Københavns Borgerrepræsentation. Da afstemninger føres pr. parti, viser vi resultatet fordelt på partier i overensstemmelse med det officielle referat.",
+  "site_description_short": "Åbent indblik i Københavns Borgerrepræsentation. Afstemninger fordelt på partier.",
+  "bip_url": "https://www.kk.dk/dagsordener-og-referater/Borgerrepr%C3%A6sentationen",
+  "bip_name": "kk.dk / dagsordener-og-referater",
+  "bip_kind": "copenhagen_kk_faction",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "copenhagen.radoskop.eu",
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "samorzad_type": "miasto",
+  "rada_name": "Borgerrepræsentationen",
+  "rada_name_genitive": "Borgerrepræsentationen",
+  "councilor_count": 55,
+  "kadencja_active": "2026-2029",
+  "kadencje": {
+    "2022-2025": {
+      "label": "Valgperiode 2022–2025",
+      "start": "2022-01-01",
+      "end": "2025-12-31"
+    },
+    "2026-2029": {
+      "label": "Valgperiode 2026–2029",
+      "start": "2026-01-01"
+    }
+  },
+  "voting_display": "faction",
+  "vote_data_disclaimer": {
+    "da": "I Borgerrepræsentationen føres afstemninger som hovedregel pr. parti. Det officielle referat angiver hvilke bogstaver (Ø, A, C, F, B, V, Å, I, O, Q) der stemte for, imod eller undlod, samt navne på enkeltmedlemmer ved partispalt og løsgængere. Radoskop viser derfor resultatet fordelt på partier uden fuld navnliste.",
+    "pl": "W Borgerrepræsentationen głosowania protokołowane są domyślnie per partia. Oficjalny referat zawiera litery (Ø, A, C, F, B, V, Å, I, O, Q) głosujących za, przeciw lub wstrzymujących, oraz nazwiska pojedynczych członków przy rozłamach w partii i niezrzeszonych. Radoskop pokazuje wynik per frakcja bez pełnej listy nazwisk."
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "komisje_public": false,
+  "komisje_premium": false,
+  "has_interpelacje": false,
+  "has_stenogram": false,
+  "has_voting_data": true,
+  "has_speaker_activity": false,
+  "voting_mode": "faction",
+  "scrape_status": "active",
+  "scrape_note": "Aktywny. Pipeline: cities/copenhagen/scripts/run.sh -> scrape_kk.py --scrape odkrywa referaty Borgerrepræsentationen (kk.dk/dagsordener-og-referater/Borgerrepræsentationen?page=N), pobiera każdy punkt, parsuje sekcję Beslutning. Trzy ścieżki: 'uden afstemning' -> vote_mode=show_of_hands; 'vedtaget/forkastet med X stemmer imod Y' + 'For stemte: ...' / 'Imod stemte: ...' -> vote_mode=faction z faction_votes per bookstav (Ø, A, C, F, B, V, Å, I, O, Q). Rozłamy partii ('Ø (Charlotte Lund, Hassan...)') wpadają jako named_votes dla tej frakcji. Løsgængere (Finn Rudaizky, Helle Jønch) traktowani jako frakcja NZ. Brak nazwisk per radny w typowym głosowaniu, dlatego voting_display=faction. Disabled do walidacji pierwszego scrape. Tło: radoskop-premium/strategia/eu_council_voting_analysis.md (Dania w Tier 4 do faction-mode), GLOSOWANIA_FRAKCYJNE.md (kontrakt danych).",
+  "currency": "kr.",
+  "scrape": {
+    "runner": "run.sh",
+    "deps": [
+      "requests"
+    ],
+    "index_url": "https://www.kk.dk/dagsordener-og-referater/Borgerrepr%C3%A6sentationen",
+    "agenda_path_pattern": "/dagsordener-og-referater/Borgerrepr%C3%A6sentationen/m%C3%B8de-{DDMMYYYY}/referat/punkt-{N}",
+    "meeting_path_pattern": "/dagsordener-og-referater/Borgerrepr%C3%A6sentationen/m%C3%B8de-{DDMMYYYY}/referat",
+    "note": "scrape_kk.py: --scrape pełny scrape z paginacją indeksu (~24 stron, 598 BR posiedzeń od 2014), --punkt URL pojedynczy punkt, --m URL pojedyncze posiedzenie. Parsowanie HTML (Drupal 11, bez JS). Regex na 'For stemte:' / 'Imod stemte:' / 'Undlod at stemme:' wyłapuje listę bookstaver i nazwisk w nawiasach. Kontrakt danych: lib_faction_votes.make_faction_vote.",
+    "license": "CC BY 4.0"
+  },
+  "clubs": {
+    "OE": {
+      "name": "Enhedslisten",
+      "letter": "Ø",
+      "color": "#cc1f1f",
+      "bg": "rgba(204,31,31,0.12)",
+      "avatar_bg": "#a01818",
+      "seats": 15
+    },
+    "A": {
+      "name": "Socialdemokratiet",
+      "letter": "A",
+      "color": "#a82531",
+      "bg": "rgba(168,37,49,0.12)",
+      "avatar_bg": "#7a1b24",
+      "seats": 10
+    },
+    "C": {
+      "name": "Det Konservative Folkeparti",
+      "letter": "C",
+      "color": "#0a8754",
+      "bg": "rgba(10,135,84,0.12)",
+      "avatar_bg": "#066a40",
+      "seats": 8
+    },
+    "B": {
+      "name": "Radikale Venstre",
+      "letter": "B",
+      "color": "#733280",
+      "bg": "rgba(115,50,128,0.12)",
+      "avatar_bg": "#562460",
+      "seats": 6
+    },
+    "F": {
+      "name": "Socialistisk Folkeparti",
+      "letter": "F",
+      "color": "#c93491",
+      "bg": "rgba(201,52,145,0.12)",
+      "avatar_bg": "#9a2670",
+      "seats": 6
+    },
+    "V": {
+      "name": "Venstre",
+      "letter": "V",
+      "color": "#1a4f8a",
+      "bg": "rgba(26,79,138,0.12)",
+      "avatar_bg": "#123966",
+      "seats": 5
+    },
+    "AA": {
+      "name": "Alternativet",
+      "letter": "Å",
+      "color": "#2bb7a2",
+      "bg": "rgba(43,183,162,0.12)",
+      "avatar_bg": "#1e8a79",
+      "seats": 2
+    },
+    "I": {
+      "name": "Liberal Alliance",
+      "letter": "I",
+      "color": "#0e8a8a",
+      "bg": "rgba(14,138,138,0.12)",
+      "avatar_bg": "#0a6868",
+      "seats": 1
+    },
+    "O": {
+      "name": "Dansk Folkeparti",
+      "letter": "O",
+      "color": "#d4a017",
+      "bg": "rgba(212,160,23,0.12)",
+      "avatar_bg": "#a17a10",
+      "seats": 1
+    },
+    "Q": {
+      "name": "Frie Grønne",
+      "letter": "Q",
+      "color": "#3aa64a",
+      "bg": "rgba(58,166,74,0.12)",
+      "avatar_bg": "#2c8038",
+      "seats": 1
+    },
+    "NZ": {
+      "name": "Løsgængere",
+      "letter": "",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563",
+      "seats": 0
+    }
+  },
+  "letter_to_club": {
+    "Ø": "OE",
+    "A": "A",
+    "C": "C",
+    "B": "B",
+    "F": "F",
+    "V": "V",
+    "Å": "AA",
+    "I": "I",
+    "O": "O",
+    "Q": "Q"
+  },
+  "roster_note": "Mandater pr. parti (valg 2025-11-18) suma 55: Ø=15, A=10, C=8, B=6, F=6, V=5, Å=2, I=1, O=1, Q=1. Borgmester (overborgmester): Sisse Marie Welling (F). Nazwiska pojedynczych członków pojawiają się w referatach przy partispalt lub Løsgængere. Domyślnie scraper nie buduje pełnej listy radnych — to świadoma decyzja, bo profil per medlem nie jest centralnym formatem w faction-mode.",
+  "has_named_votes": false,
+  "disabled": false
+}

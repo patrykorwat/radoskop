@@ -575,6 +575,169 @@ PL_TO_FR: list[tuple[str, str]] = [
 ]
 
 
+# Dania: model identyczny z Francją. W Borgerrepræsentationen głosowania są
+# protokołowane per parti (Ø, A, C, F, B, V, Å, I, O, Q), nie per radny,
+# z wyjątkiem rozłamów wewnątrz partii kiedy zapis bywa imienny dla tej
+# konkretnej grupy. Większość punktów przechodzi "uden afstemning" (konsens
+# bez głosowania). To region docelowy dla widoku frakcyjnego analogicznie
+# do Paryża.
+PL_TO_DA: list[tuple[str, str]] = [
+    # ── Afstemning per gruppe (regioner uden navneopråb) ─────────────
+    ("W tym regionie głosowania imienne (per radny) nie są publicznie protokołowane. Pokazujemy wynik w rozbiciu na frakcje, zgodnie z oficjalnym protokołem.",
+     "I denne region føres der ikke offentligt protokol over navnlige afstemninger (per medlem). Vi viser resultatet fordelt på partier i overensstemmelse med det officielle referat."),
+    ("Głosowanie według frakcji", "Afstemning fordelt på partier"),
+    ("Nie głosowała", "Stemte ikke"),
+    ("Podzielona", "Delt"),
+    ("mandatów", "mandater"),
+    ("mandat", "mandat"),
+    # ── Afstemning ved håndsoprækning (uden decompte) ────────────────
+    ("W tym gremium głosowania odbywają się przez podniesienie ręki. Protokół podaje wynik głosowania, bez rozbicia na pojedyncze głosy ani frakcje.",
+     "I denne forsamling foretages afstemninger ved håndsoprækning. Referatet angiver afstemningsresultatet uden opdeling på enkeltstemmer eller partier."),
+    ("Przez podniesienie ręki", "Ved håndsoprækning"),
+    ("W głosowaniu imiennym", "Ved navnlig afstemning"),
+    ("Tryb głosowania", "Afstemningsform"),
+    ("Wniosek złożony przez", "Stillet af"),
+    ("Wycofane", "Trukket tilbage"),
+    ("Odroczone", "Udsat"),
+    ("Mapa dostępności z monitorowanymi miastami", "Dækningskort med overvågede byer"),
+    ("Mapa dostępności", "Dækningskort"),
+    # Auth / theme toggle
+    ("Zaloguj się", "Log ind"),
+    ("Wyloguj", "Log ud"),
+    ("Ciemny", "Mørk"),
+    ("Jasny", "Lys"),
+    # Vote topic categories
+    ("Zdrowie/Społeczne", "Sundhed/Social"),
+    ("Inwestycje", "Investeringer"),
+    ("Środowisko", "Miljø"),
+    ("Proceduralne", "Procedure"),
+    ("Kultura", "Kultur"),
+    ("Transport", "Transport"),
+    ("Inne", "Andet"),
+    # ── Navigation og faner ──────────────────────────────────────────
+    ("Jak głosują radni Miasta {{CITY_GENITIVE}}? Dane z protokołów BIP.",
+     "Hvordan stemmer medlemmerne af {{CITY_NAME}}s Borgerrepræsentation? Data fra officielle referater."),
+    ("Jak głosują radni?", "Hvordan stemmer medlemmerne?"),
+    ("Rada Miasta {{CITY_GENITIVE}}", "{{CITY_NAME}}s Borgerrepræsentation"),
+    ("wszystkie miasta", "alle byer"),
+    ("Dane źródłowe:", "Kildedata:"),
+    ("Raporty", "Rapporter"),
+    ("Polityka prywatności", "Privatlivspolitik"),
+    ("Regulamin", "Vilkår"),
+    ("Najbardziej aktywni radni", "Mest aktive medlemmer"),
+    ("Najczęściej głosują tak samo", "Stemmer oftest ens"),
+    ("Najrzadziej głosują tak samo", "Stemmer sjældnest ens"),
+    ("Profile radnych", "Medlemsprofiler"),
+    ("Ranking radnych", "Medlemsrangering"),
+    ("Kto z kim głosuje", "Hvem stemmer med hvem"),
+    ("Wszystkie wyniki", "Alle resultater"),
+    ("Lista interpelacji i zapytań", "Forespørgsler og spørgsmål"),
+    ("Interpelacje", "Forespørgsler"),
+    ("interpelacji", "forespørgsler"),
+    ("Strona główna", "Forside"),
+    ("Powrót do listy", "Tilbage til listen"),
+
+    # ── Filtre og sortering ──────────────────────────────────────────
+    ("Szukaj głosowań po temacie...", "Søg afstemninger efter emne..."),
+    ("Szukaj w interpelacjach...", "Søg i forespørgsler..."),
+    ("Następna →", "Næste →"),
+    ("Następne →", "Næste →"),
+    ("Wszystkie", "Alle"),
+    ("Wszyscy", "Alle"),
+    ("Aktualności", "Nyheder"),
+    ("Sortuj po", "Sortér efter"),
+    ("Filtruj", "Filtrér"),
+    ("Pokaż więcej", "Vis flere"),
+    ("Pokaż mniej", "Vis færre"),
+    ("Wyczyść", "Ryd"),
+    ("Pozostałe", "Andre"),
+
+    # ── Etiketter i tabeller og kort ────────────────────────────────
+    ("Aktywność na sesjach", "Aktivitet på møder"),
+    ("Aktywność mówców", "Taleraktivitet"),
+    ("Frekwencja", "Fremmøde"),
+    ("Aktywność", "Aktivitet"),
+    ("Zgodność z klubem", "Partidisciplin"),
+    ("Podobieństwo", "Lighed"),
+    ("Wbrew klubowi", "Mod partiet"),
+    ("Buntów", "Afvigelser"),
+    ("Sesji z wypowiedzią", "Møder med indlæg"),
+    ("Słów łącznie", "Ord i alt"),
+    ("Mówców", "Talere"),
+    ("Słowa", "Ord"),
+    ("Słów", "Ord"),
+    ("Wystąpień", "Indlæg"),
+    ("wystąpień", "indlæg"),
+    ("Obecnych", "Til stede"),
+    ("Obecni", "Til stede"),
+    ("obecnych radnych", "fremmødte medlemmer"),
+    ("obecnych", "fremmødte"),
+    ("Nieobecnych", "Fraværende"),
+    ("Nieobecni", "Fraværende"),
+    ("Głosowania", "Afstemninger"),
+    ("Głosowanie", "Afstemning"),
+    ("głosowań", "afstemninger"),
+    ("Sesje", "Møder"),
+    ("Sesja", "Møde"),
+    ("Komisje", "Udvalg"),
+    ("Komisji", "Udvalg"),
+    ("Klub", "Parti"),
+    ("Kluby", "Partier"),
+    ("Kadencje", "Valgperioder"),
+    ("Kadencja", "Valgperiode"),
+    ("Radny/a", "Medlem"),
+    ("Radnych", "Medlemmer"),
+    ("Radni", "Medlemmer"),
+    ("Okręg wyborczy", "Valgkreds"),
+    ("Temat", "Emne"),
+    ("Treść", "Indhold"),
+    ("Odpowiedź", "Svar"),
+    ("Data", "Dato"),
+    ("Wyniki", "Resultater"),
+    ("Wynik", "Resultat"),
+
+    # ── Stemmeværdier (når navnlige, fx ved partispalt) ──────────────
+    ("Brak głosu", "Ingen stemme"),
+    ("Brak gł.", "Ingen st."),
+    ("Wstrzymał się", "Undlod"),
+    ("Wstrzym.", "Undlod"),
+    ("Wstrzymała się", "Undlod"),
+    ("Nieobecny", "Fraværende"),
+    ("Nieobecna", "Fraværende"),
+    ("Przyjęte", "Vedtaget"),
+    ("Przyjętych", "Vedtagne"),
+    ("Odrzucone", "Forkastet"),
+    ("Przeciw", "Imod"),
+    ("Za", "For"),
+
+    # ── Tilstande og fejl ────────────────────────────────────────────
+    ("Brak danych dla tej kadencji", "Ingen data for denne valgperiode"),
+    ("Brak danych o indywidualnych głosowaniach.", "Ingen data om individuelle afstemninger."),
+    ("Nie znaleziono głosowania.", "Afstemning ikke fundet."),
+    ("Nie znaleziono sesji.", "Møde ikke fundet."),
+    ("Błąd ładowania danych:", "Fejl ved indlæsning af data:"),
+    ("Ładowanie...", "Indlæser..."),
+
+    # ── Handlinger ───────────────────────────────────────────────────
+    ("Udostępnij na Facebooku", "Del på Facebook"),
+    ("Udostępnij na X", "Del på X"),
+    ("Udostępnij", "Del"),
+    ("Porównaj radnych", "Sammenlign medlemmer"),
+    ("Porównanie radnych", "Sammenligning af medlemmer"),
+    ("Porównaj", "Sammenlign"),
+    ("Przełącz motyw jasny/ciemny", "Skift lyst/mørkt tema"),
+
+    # ── Sidefod og juridisk ─────────────────────────────────────────
+    ("Kontakt", "Kontakt"),
+
+    # ── Forkortelser og små inline etiketter ────────────────────────
+    ("Śr. słów/sesję", "Gns. ord/møde"),
+    ("wyp.", "indl."),
+    ("słów", "ord"),
+    ("toLocaleString('pl')", "toLocaleString('da')"),
+]
+
+
 PL_TO_CS: list[tuple[str, str]] = [
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Mapa dostępności z monitorowanymi miastami", "Mapa pokrytí se sledovanými městy"),
@@ -1906,6 +2069,7 @@ def apply_locale(html: str, locale: str) -> str:
     Locale "lv" → słownik PL_TO_LV (Rīga).
     Locale "nl" → słownik PL_TO_NL (Amsterdam).
     Locale "fr" → słownik PL_TO_FR (region frakcyjny, np. Paris/Lyon).
+    Locale "da" → słownik PL_TO_DA (Kopenhaga, region frakcyjny).
     Locale "hu" → słownik PL_TO_HU (Budapest).
 
     Wymiana używa regex z negative lookbehind/lookahead na word characters,
@@ -1930,6 +2094,7 @@ def apply_locale(html: str, locale: str) -> str:
         "lv": PL_TO_LV,
         "nl": PL_TO_NL,
         "fr": PL_TO_FR,
+        "da": PL_TO_DA,
         "hu": PL_TO_HU,
     }
     d = dictionaries.get(locale.lower())
