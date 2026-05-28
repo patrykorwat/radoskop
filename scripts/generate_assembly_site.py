@@ -378,9 +378,16 @@ def main() -> int:
         "{{ROOT_HOST}}": root_host,
         "{{ROOT_URL}}": root_url,
         "{{EXAMPLE_SUBDOMAIN}}": cfg.get("cname") or f"{cfg.get('voivodeship_slug','')}.{default_sub_apex}",
-        # Capability flags — sejmik zawsze ma imienne głosowania
+        # Capability flags — sejmik zawsze ma imienne głosowania, są radni.
         "{{HAS_VOTING_DATA}}": "true" if cfg.get("has_voting_data", True) else "false",
         "{{HAS_SPEAKER_ACTIVITY}}": "true" if cfg.get("has_speaker_activity", False) else "false",
+        # Sejmiki/landy mają radnych (Abgeordnete też), więc HAS_COUNCILORS=true.
+        # Bez tego template ma {{...}} leftover w renderze.
+        "{{HAS_COUNCILORS}}": "false" if cfg.get("has_councilorless") else "true",
+        # Kind/vote category JS — dla sejmików defaults empty bo nie ma
+        # bespoke kategoryzacji item_kind jak np. Paryż.
+        "{{KIND_CATS_JS}}": "{}",
+        "{{VOTE_CATS_EXTRA_JS}}": "{}",
         # Impressum/Pressekodex — DE-only, dla PL puste. Tu też puste, ale
         # docelowo dla landtagu MV potrzebne (Telemediengesetz §5).
         "{{IMPRESSUM_HTML}}": "",
