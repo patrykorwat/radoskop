@@ -1553,6 +1553,10 @@ function showProfile(name) {
       _profileCards.push(`<div class="section" style="margin-bottom:0;padding:12px 14px">${_mandateBody}</div>`);
     }
 
+    // alertBtnHtml zadeklarowane w outer scope (let) bo używamy go zarówno
+    // w środku if(hasVotes) jak i w template literal niżej (przy renderowaniu
+    // inline button obok h2 z nazwiskiem). const w bloku rzucał ReferenceError.
+    let alertBtnHtml = '';
     if (hasVotes) {
       const profileShareUrl = '{{SITE_URL}}/profil/' + profile.slug + '/';
       const profileShareTitle = profile.name + ' – Radoskop {{CITY_NAME}}';
@@ -1560,13 +1564,10 @@ function showProfile(name) {
       const _alertCitySlug = '{{CITY_SLUG}}';
       const _alertCouncilorSlug = profile.slug;
       const _alertCouncilorName = profile.name;
-      // Kompaktowy button inline obok nazwiska. Bez full-width, bez paska
-      // statusu w samym buttonie. id=alert-section + #alert-toggle-btn
-      // zostają żeby _initAlertBtn i existing JS toggling działały.
       // Tekst musi pasować do _initAlertBtn i toggleCouncilorAlert które
       // przypisują '🔔 Obserwuj radnego' / '🔕 Przestań obserwować'.
       // Inaczej widać flicker między load a JS init.
-      const alertBtnHtml = _authUser
+      alertBtnHtml = _authUser
         ? `<button id="alert-toggle-btn" style="padding:5px 12px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;font-size:0.82rem;font-family:inherit;white-space:nowrap"
             onclick="toggleCouncilorAlert('${_alertCitySlug}','${_alertCouncilorSlug}','${_alertCouncilorName.replace(/'/g,"\'")}')"
           >🔔 Obserwuj radnego</button>`
