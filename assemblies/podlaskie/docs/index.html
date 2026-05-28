@@ -799,7 +799,7 @@ const HAS_SPEAKER_ACTIVITY = false;
 // Miasta bez radnych per osoba (Paryż: głosowanie à main levée, wynik per
 // pozycja bez listy nazwisk). Strona główna prowadzi wtedy zakładką
 // "Głosowania", a ranking radnych jest ukryty (generate_site dokłada CSS).
-const HAS_COUNCILORS = {{HAS_COUNCILORS}};
+const HAS_COUNCILORS = true;
 const DEFAULT_TAB = HAS_COUNCILORS ? 'ranking' : 'votes';
 
 let RAW = null;
@@ -857,9 +857,9 @@ const CAT_RULES = [
 // KIND_CATS: mapowanie item_kind → klucz VOTE_CATS (opcjonalne, domyślnie {}).
 // Używane przez города z głosowaniami nieimiennymi gdzie item_kind jest
 // naturalną kategorią (np. Paryż: voeu/amendement/projet_deliberation).
-const KIND_CATS = {{KIND_CATS_JS}};
+const KIND_CATS = {};
 // VOTE_CATS_EXTRA: dodatkowe wpisy dla miast z własnymi kategoriami.
-Object.assign(VOTE_CATS, {{VOTE_CATS_EXTRA_JS}});
+Object.assign(VOTE_CATS, {});
 function categorizeVote(topic, itemKind) {
   if (itemKind && KIND_CATS[itemKind]) return KIND_CATS[itemKind];
   if (!topic) return 'inne';
@@ -1577,6 +1577,10 @@ function showProfile(name) {
       _profileCards.push(`<div class="section" style="margin-bottom:0;padding:12px 14px">${_mandateBody}</div>`);
     }
 
+    // alertBtnHtml zadeklarowane w outer scope (let) bo używamy go zarówno
+    // w środku if(hasVotes) jak i w template literal niżej (przy renderowaniu
+    // inline button obok h2 z nazwiskiem). const w bloku rzucał ReferenceError.
+    let alertBtnHtml = '';
     if (hasVotes) {
       const profileShareUrl = 'https://podlaskie.radoskop.pl/profil/' + profile.slug + '/';
       const profileShareTitle = profile.name + ' – Radoskop Podlaskie';
@@ -1584,13 +1588,10 @@ function showProfile(name) {
       const _alertCitySlug = 'podlaskie';
       const _alertCouncilorSlug = profile.slug;
       const _alertCouncilorName = profile.name;
-      // Kompaktowy button inline obok nazwiska. Bez full-width, bez paska
-      // statusu w samym buttonie. id=alert-section + #alert-toggle-btn
-      // zostają żeby _initAlertBtn i existing JS toggling działały.
       // Tekst musi pasować do _initAlertBtn i toggleCouncilorAlert które
       // przypisują '🔔 Obserwuj radnego' / '🔕 Przestań obserwować'.
       // Inaczej widać flicker między load a JS init.
-      const alertBtnHtml = _authUser
+      alertBtnHtml = _authUser
         ? `<button id="alert-toggle-btn" style="padding:5px 12px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;font-size:0.82rem;font-family:inherit;white-space:nowrap"
             onclick="toggleCouncilorAlert('${_alertCitySlug}','${_alertCouncilorSlug}','${_alertCouncilorName.replace(/'/g,"\'")}')"
           >🔔 Obserwuj radnego</button>`
