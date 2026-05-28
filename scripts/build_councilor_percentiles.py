@@ -65,12 +65,15 @@ def compute_tier_stats(values: list[float]) -> dict:
     }
 
 
-def councilor_percentile_rank(value: float, sorted_values: list[float]) -> int:
-    """Return what % of councilors this value is higher than (0–100)."""
+def councilor_percentile_rank(value: float, sorted_values: list[float]) -> float:
+    """Return what % of councilors this value is higher than (0–100).
+
+    Float (3 miejsca) by front mógł pokazać "Top X%" z dziesiętnymi.
+    """
     if not sorted_values:
-        return 0
+        return 0.0
     below = sum(1 for v in sorted_values if v < value)
-    return round(below / len(sorted_values) * 100)
+    return round(below / len(sorted_values) * 100, 3)
 
 
 def build_percentiles(cross_city_path: Path, output_path: Path) -> None:

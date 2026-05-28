@@ -1723,19 +1723,33 @@ function showProfile(name) {
       function _rankLabel(pct) {
         if (pct === null) return '';
         // pct = percentile rank (better than X% of councilors). Etykieta
-        // "Top Y%" wymaga inversji: Y = 100 - pct. Clamp do min 1% bo
-        // "Top 0%" jest niezrozumiałe (oznaczałoby absolutny najlepszy).
-        const top = Math.max(1, 100 - pct);
-        return `Top ${top}% radnych`;
+        // "Top Y%" wymaga inwersji: Y = 100 - pct. Float, bez clampu na 1% —
+        // czubek stawki dostaje precyzyjne "Top 0,12%" w stylu OnlyFans.
+        // Granularność i tak ograniczona liczbą radnych w grupie (100/N), więc
+        // floor = 100/nCouncilors żeby nie pokazać niemożliwie małej liczby.
+        let top = 100 - pct;
+        const floor = nCouncilors > 0 ? 100 / nCouncilors : 0;
+        if (floor > 0 && top < floor) top = floor;
+        // Adaptacyjna precyzja: im bliżej czubka, tym więcej cyfr.
+        let decimals;
+        if (top >= 10) decimals = 0;
+        else if (top >= 1) decimals = 1;
+        else if (top >= 0.1) decimals = 2;
+        else decimals = 3;
+        let s = top.toFixed(decimals);
+        // Utnij zbędne zera końcowe (0,40 → 0,4; 5,0 → 5) i podmień na przecinek.
+        if (s.indexOf('.') !== -1) s = s.replace(/0+$/, '').replace(/\.$/, '');
+        return `Top ${s.replace('.', ',')}% radnych`;
       }
       function _metricCol(label, value, pct, blurred) {
+        // Jedna jasna wartość na metrykę: czysta odznaka "Top X%" (styl
+        // OnlyFans). Bez paska — wcześniej pasek pokazywał surową wartość, co
+        // kłóciło się wizualnie z percentylem obok. Kolor koduje pozycję
+        // (zielony = czubek, czerwony = dół stawki). Param value niewykorzystany.
         const blurStyle = blurred ? 'filter:blur(4px);pointer-events:none;user-select:none;' : '';
         return `<div style="${blurStyle}">
-          <div style="font-size:0.78rem;color:var(--muted);text-transform:uppercase;margin-bottom:4px">${label}</div>
-          <div style="font-size:0.82rem;font-weight:500;color:${_barColor(pct)};margin-bottom:8px">${_rankLabel(pct)}</div>
-          <div style="background:var(--border);border-radius:4px;height:5px;overflow:hidden">
-            <div style="background:${_barColor(pct)};height:100%;width:${value}%;border-radius:4px"></div>
-          </div>
+          <div style="font-size:0.78rem;color:var(--muted);text-transform:uppercase;margin-bottom:6px">${label}</div>
+          <div style="font-size:1.15rem;font-weight:700;color:${_barColor(pct)};line-height:1.15">${_rankLabel(pct)}</div>
         </div>`;
       }
 

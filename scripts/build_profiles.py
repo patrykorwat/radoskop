@@ -610,7 +610,7 @@ def _enrich_with_percentiles(profiles: list, city_slug: str, percentiles_path: s
     Fields added:
       percentile_tier, percentile_tier_label, percentile_tier_n_cities,
       percentile_tier_n_councilors, percentile_aktywnosc, percentile_frekwencja,
-      percentile_zgodnosc  (all int 0-100)
+      percentile_zgodnosc  (float 0-100, percentile rank)
     """
     import os
     if not os.path.exists(percentiles_path):
@@ -633,10 +633,14 @@ def _enrich_with_percentiles(profiles: list, city_slug: str, percentiles_path: s
     sorted_zg = tier.get('sorted_zgodnosc_z_klubem', [])
 
     def _rank(value, sorted_values):
+        # Percentile rank jako float (% radnych poniżej tej wartości). Float bo
+        # front pokazuje "Top X%" z miejscami po przecinku — najlepsi dostają
+        # np. "Top 0,12%" zamiast zaokrąglonego "Top 1%". 3 miejsca wystarczą
+        # dla grup do ~kilkudziesięciu tysięcy radnych (granularność = 100/N).
         if not sorted_values:
-            return 0
+            return 0.0
         below = sum(1 for v in sorted_values if v < value)
-        return round(below / len(sorted_values) * 100)
+        return round(below / len(sorted_values) * 100, 3)
 
     for p in profiles:
         for kad in p.get('kadencje', {}).values():
