@@ -195,7 +195,21 @@ footer a { color:var(--accent); text-decoration:none; }
 /* Profile page */
 .profile-back { display:inline-flex; align-items:center; gap:6px; color:var(--accent); cursor:pointer; font-size:0.9rem; margin-bottom:20px; background:none; border:none; font-family:inherit; }
 .profile-back:hover { text-decoration:underline; }
-.profile-header { display:flex; gap:24px; align-items:flex-start; margin-bottom:30px; flex-wrap:wrap; }
+/* Desktop: float-right sidebar w block container. Content (avatar, kadencja,
+   tab bar, metric row) flowuje obok. .section z clear:right startuje poniżej
+   sidebar'a żeby nie nachodzić na cards (comparison, news, aktywność). */
+.profile-header { display:block; margin-bottom:24px; }
+.profile-header::after { content:""; display:block; clear:both; }
+.profile-actions { float:right; width:320px; margin:0 0 16px 24px; }
+.profile-header .section { clear:right; }
+
+/* Mobile: float off, cards full width na swojej pozycji w DOM (między
+   avatar+info a kadencja toggle). Bez orderowania bo DOM już ułożony
+   dobrze. */
+@media (max-width: 720px) {
+  .profile-actions { float:none; width:100%; margin:0 0 16px 0; }
+  .profile-header .section { clear:none; }
+}
 .profile-avatar { width:80px; height:80px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:700; color:white; flex-shrink:0; }
 .profile-info h2 { font-size:1.6rem; font-weight:700; border:none; padding:0; margin:0; }
 .profile-info .subtitle { color:var(--muted); font-size:0.9rem; margin-top:2px; }
@@ -550,7 +564,7 @@ footer a { color:var(--accent); text-decoration:none; }
 </head>
 <body>
 <nav class="topbar" aria-label="Główna nawigacja">
-  <a class="topbar-logo" href="https://radoskop.pl/">Rado<span>skop</span></a>
+  <a class="topbar-logo" href="/" onclick="if(window.showMain){event.preventDefault();showMain();}">Rado<span>skop</span> {{CITY_NAME}}</a>
   <div class="topbar-nav">
     <a href="https://radoskop.eu/reports/">Raporty</a>
     <a href="https://radoskop.eu/business/">Business</a>
@@ -570,13 +584,11 @@ footer a { color:var(--accent); text-decoration:none; }
   </div>
 </nav>
 <div class="container">
-  <header>
-    <div onclick="showMain()" style="cursor:pointer">
-      <h1>Rado<span>skop</span> {{CITY_NAME}}</h1>
-      <p>Jak głosują radni Miasta {{CITY_GENITIVE}}? Dane z protokołów BIP.</p>
-    </div>
-    {{VOTE_DATA_DISCLAIMER}}
-  </header>
+  <!-- Duży nagłówek "Radoskop {{CITY_NAME}}" + subtitle usunięty (2026-05-27).
+       Nazwa miasta przeniesiona do topbar-logo żeby zaoszczędzić pion.
+       VOTE_DATA_DISCLAIMER (jeśli miasto ma dane jakimi ostrzega o ich
+       jakości — np. Bratysława non-imienne) zostaje, samodzielny block. -->
+  {{VOTE_DATA_DISCLAIMER}}
 
   <div id="loading">Ładowanie danych...</div>
 
@@ -1548,13 +1560,19 @@ function showProfile(name) {
       const _alertCitySlug = '{{CITY_SLUG}}';
       const _alertCouncilorSlug = profile.slug;
       const _alertCouncilorName = profile.name;
+      // Kompaktowy button inline obok nazwiska. Bez full-width, bez paska
+      // statusu w samym buttonie. id=alert-section + #alert-toggle-btn
+      // zostają żeby _initAlertBtn i existing JS toggling działały.
+      // Tekst musi pasować do _initAlertBtn i toggleCouncilorAlert które
+      // przypisują '🔔 Obserwuj radnego' / '🔕 Przestań obserwować'.
+      // Inaczej widać flicker między load a JS init.
       const alertBtnHtml = _authUser
-        ? `<button id="alert-toggle-btn" style="padding:6px 14px;border-radius:8px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;font-size:0.85rem;font-family:inherit;width:100%"
+        ? `<button id="alert-toggle-btn" style="padding:5px 12px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;font-size:0.82rem;font-family:inherit;white-space:nowrap"
             onclick="toggleCouncilorAlert('${_alertCitySlug}','${_alertCouncilorSlug}','${_alertCouncilorName.replace(/'/g,"\'")}')"
           >🔔 Obserwuj radnego</button>`
-        : `<button class="auth-btn" style="font-size:0.85rem;padding:6px 14px;width:100%"
+        : `<button class="auth-btn" style="font-size:0.82rem;padding:5px 12px;white-space:nowrap"
             onclick="window.location.href='${AUTH_FRONTEND}/?bridge_to='+encodeURIComponent(window.location.href)+'&unlock=alerts'">
-            Zaloguj, by obserwować
+            🔔 Zaloguj, by obserwować
           </button>`;
       _profileCards.push(`<div class="section" style="margin-bottom:0;padding:12px 14px">
         <h2 style="font-size:0.95rem;margin-bottom:8px;padding-bottom:6px">Udostępnij</h2>
@@ -1568,26 +1586,36 @@ function showProfile(name) {
           <button style="margin-top:6px;padding:5px 12px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:0.8rem;font-family:inherit" onclick="navigator.clipboard.writeText(document.getElementById('embed-code').value)">Kopiuj kod</button>
         </div>
       </div>`);
-      _profileCards.push(`<div class="section" id="alert-section" style="margin-bottom:0;padding:12px 14px">
-        <h2 style="font-size:0.95rem;margin-bottom:6px;padding-bottom:6px">Alerty</h2>
-        <p style="font-size:0.76rem;color:var(--muted);margin-bottom:10px;line-height:1.4">Email gdy radny głosuje inaczej niż klub lub składa interpelację.</p>
-        <div id="alert-btn-wrap">
-          ${alertBtnHtml}
-          <div id="alert-status" style="font-size:0.78rem;color:var(--muted);margin-top:6px"></div>
-        </div>
-      </div>`);
+      // Alerty card usunięta — przycisk "Obserwuj radnego" inline obok
+      // h2 z nazwiskiem w profile-info. Mniej hałasu, jasniejsza akcja,
+      // i nie powiększa sidebar'a (chronimy przestrzeń pod sekcjami).
     }
 
+    // Float-right sidebar: cards oblywają się obok następnego contentu
+    // (avatar+info, kadencja toggle, tab bar, metric row itd.). Gdy content
+    // przerasta wysokość sidebar'a, naturalnie ciągnie się dalej pełną
+    // szerokością poniżej. Mobile (poniżej 720px): float:none przez CSS
+    // media query, cards stackują się przed contentem.
     const _profileActionsHtml = _profileCards.length === 0 ? '' :
-      `<div class="profile-actions" style="display:flex;flex-direction:column;gap:10px;flex-basis:340px;min-width:300px;max-width:380px">${_profileCards.join('')}</div>`;
+      `<aside class="profile-actions" style="display:flex;flex-direction:column;gap:10px">${_profileCards.join('')}</aside>`;
 
+    // Avatar+info pierwsze pełną szerokością, potem actions (float:right
+     // przez CSS) - subsequent content (kadencja, tab bar, metric row) flow
+     // wokół. Na mobile (flex column) avatar+info → cards → kadencja → tab →
+     // metric naturalnie po DOM order, bez potrzeby trickow z order.
     let html = `
       <button class="profile-back" onclick="showMain()">← Strona główna</button>
       <div class="profile-header">
-        <div style="display:flex;gap:24px;flex:1;min-width:280px;align-items:flex-start">
+        <div style="display:flex;gap:24px;align-items:flex-start;margin-bottom:16px">
           <div class="profile-avatar" style="background:${clubBg(club)}">${initials(profile.name)}</div>
-          <div class="profile-info" style="flex:1">
-            <h2>${profile.name}</h2>
+          <div class="profile-info" style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:28px;flex-wrap:wrap">
+              <h2 style="margin:0">${profile.name}</h2>
+              ${hasVotes ? `<div id="alert-section" style="display:inline-flex;align-items:center;gap:8px">
+                ${alertBtnHtml}
+                <span id="alert-status" style="font-size:0.78rem;color:var(--muted)"></span>
+              </div>` : ''}
+            </div>
             <div class="subtitle">
               <span class="club ${clubClass(club)}">${club}</span>
               ${kd.club_full ? ` · ${kd.club_full}` : ''}
@@ -1596,8 +1624,7 @@ function showProfile(name) {
             ${kd.mandate_end ? `<div class="subtitle" style="margin-top:4px;color:var(--yellow)">Mandat wygaszony: ${kd.mandate_end}</div>` : (kd.notes ? `<div class="subtitle" style="margin-top:4px;color:var(--yellow)">${kd.notes}</div>` : '')}
           </div>
         </div>
-        ${_profileActionsHtml}
-      </div>`;
+        ${_profileActionsHtml}`;
 
     // Kadencja toggle — always show all kadencje, disable if councilor has no data there
     const allKadencje = RAW.kadencje.map(k => k.id);
@@ -1884,6 +1911,11 @@ function showProfile(name) {
         <div id="profile-votes-container"><div style="color:var(--muted);padding:12px">Ładowanie głosów...</div></div>
       </div></div>`;
     }
+
+    // Zamknięcie .profile-header (actions wstrzyknięte na początku jako
+    // float:right, content flow'uje obok aż do końca sidebar'a, potem
+    // rozciąga się pełną szerokością; clearfix przez .profile-header::after).
+    html += `</div>`;
 
     view.innerHTML = html;
 
