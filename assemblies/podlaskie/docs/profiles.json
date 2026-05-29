@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-05-29T09:03:22Z",
+  "scraped_at": "2026-05-29T14:47:08Z",
   "profiles": [
     {
       "name": "Adam Sekściński",
@@ -15,16 +15,16 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 93.3,
-          "aktywnosc": 91.8,
-          "zgodnosc_z_klubem": 89.8,
-          "votes_za": 162,
-          "votes_przeciw": 41,
-          "votes_wstrzymal": 43,
-          "votes_brak": 15,
+          "frekwencja": 93.8,
+          "aktywnosc": 92.2,
+          "zgodnosc_z_klubem": 88.4,
+          "votes_za": 167,
+          "votes_przeciw": 43,
+          "votes_wstrzymal": 49,
+          "votes_brak": 16,
           "votes_nieobecny": 4,
-          "votes_total": 268,
-          "rebellion_count": 25,
+          "votes_total": 281,
+          "rebellion_count": 30,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -141,6 +141,36 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Podlaskiego na lata 2026 – 2041. /Druk Nr 390/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian w budżecie województwa podlaskiego na 2026 rok. /Druk Nr 391/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie udzielenia pomocy finansowej na realizację przez gminy zadań w ramach „Programu odnowy wsi województwa podlaskiego – Kreatywna wieś” na 2026 rok. /Druk Nr 398/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie zasad przyznawania stypendiów za wyniki w nauce uczniom szkół, dla których organem prowadzącym jest Samorząd Województwa Podlaskiego, w ram",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Wygenerowano za pomocą app.esesja.pl Rozpatrzenie projektu uchwały w sprawie powołania komisji konkursowej w celu przeprowadzenia postępowania konkursowego na stanowisko Dyrektora Podlaskiego Wojewódz",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
               "session": "2026-04-21",
               "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie Łomżyńskiego Parku Krajobrazowego Doliny Narwi. /Druk Nr 375/.",
               "their_vote": "wstrzymal_sie",
@@ -196,17 +226,24 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 93.3,
-          "aktywnosc": 89.9,
-          "zgodnosc_z_klubem": 100.0,
-          "votes_za": 220,
-          "votes_przeciw": 20,
-          "votes_wstrzymal": 1,
-          "votes_brak": 7,
+          "frekwencja": 93.8,
+          "aktywnosc": 91.1,
+          "zgodnosc_z_klubem": 99.6,
+          "votes_za": 233,
+          "votes_przeciw": 21,
+          "votes_wstrzymal": 2,
+          "votes_brak": 8,
           "votes_nieobecny": 31,
-          "votes_total": 268,
-          "rebellion_count": 0,
-          "rebellions": [],
+          "votes_total": 281,
+          "rebellion_count": 1,
+          "rebellions": [
+            {
+              "session": "2026-05-26",
+              "topic": "Przyjęcie Stanowiska Sejmiku Województwa Podlaskiego w zakresie wsparcia przez Prezydenta Rzeczpospolitej Polskiej inicjatyw ustawodawczych mających na celu przedłużenie terminu przedłożenia właściwej",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            }
+          ],
           "has_voting_data": true,
           "has_activity_data": false
         }
@@ -226,16 +263,16 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 86.7,
-          "aktywnosc": 96.6,
-          "zgodnosc_z_klubem": 98.5,
-          "votes_za": 237,
-          "votes_przeciw": 22,
-          "votes_wstrzymal": 0,
+          "frekwencja": 87.5,
+          "aktywnosc": 97.5,
+          "zgodnosc_z_klubem": 98.2,
+          "votes_za": 250,
+          "votes_przeciw": 23,
+          "votes_wstrzymal": 1,
           "votes_brak": 3,
           "votes_nieobecny": 8,
-          "votes_total": 268,
-          "rebellion_count": 4,
+          "votes_total": 281,
+          "rebellion_count": 5,
           "rebellions": [
             {
               "session": "2025-12-16",
@@ -253,6 +290,12 @@
               "session": "2025-02-25",
               "topic": "Rozpatrzenie projektu uchwały w sprawie rozpatrzenia petycji „TAK dla przywrócenia PKS Suwałki!”. /Druk Nr 165/.",
               "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Przyjęcie Stanowiska Sejmiku Województwa Podlaskiego w zakresie wsparcia przez Prezydenta Rzeczpospolitej Polskiej inicjatyw ustawodawczych mających na celu przedłużenie terminu przedłożenia właściwej",
+              "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
             },
             {
@@ -281,16 +324,16 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 86.7,
-          "aktywnosc": 76.5,
-          "zgodnosc_z_klubem": 77.1,
-          "votes_za": 108,
-          "votes_przeciw": 43,
-          "votes_wstrzymal": 54,
-          "votes_brak": 38,
+          "frekwencja": 87.5,
+          "aktywnosc": 77.6,
+          "zgodnosc_z_klubem": 75.7,
+          "votes_za": 113,
+          "votes_przeciw": 47,
+          "votes_wstrzymal": 58,
+          "votes_brak": 40,
           "votes_nieobecny": 38,
-          "votes_total": 268,
-          "rebellion_count": 47,
+          "votes_total": 281,
+          "rebellion_count": 53,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -527,6 +570,42 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian w budżecie województwa podlaskiego na 2026 rok. /Druk Nr 391/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie Obszaru Chronionego Krajobrazu „Pojezierze Sejneńskie”. /Druk Nr 397/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie zasad przyznawania stypendiów za wyniki w nauce uczniom szkół, dla których organem prowadzącym jest Samorząd Województwa Podlaskiego, w ram",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie określenia zasad, trybu i harmonogramu aktualizacji Strategii Rozwoju Województwa Podlaskiego 2030. /Druk Nr 395/.",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Wygenerowano za pomocą app.esesja.pl Rozpatrzenie projektu uchwały w sprawie powołania komisji konkursowej w celu przeprowadzenia postępowania konkursowego na stanowisko Dyrektora Podlaskiego Wojewódz",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Przyjęcie Stanowiska Sejmiku Województwa Podlaskiego w zakresie wsparcia przez Prezydenta Rzeczpospolitej Polskiej inicjatyw ustawodawczych mających na celu przedłużenie terminu przedłożenia właściwej",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
               "session": "2026-04-21",
               "topic": "Rozpatrzenie projektu uchwały w sprawie wyboru przedstawicieli do Rady Społecznej działającej w Wojewódzkiej Stacji Pogotowia Ratunkowego Samodzielnym Publicznym Zakładzie Opieki Zdrowotnej w Łomży. /",
               "their_vote": "przeciw",
@@ -595,15 +674,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 103.4,
-          "zgodnosc_z_klubem": 90.6,
-          "votes_za": 218,
-          "votes_przeciw": 38,
-          "votes_wstrzymal": 21,
+          "aktywnosc": 104.3,
+          "zgodnosc_z_klubem": 90.8,
+          "votes_za": 230,
+          "votes_przeciw": 40,
+          "votes_wstrzymal": 23,
           "votes_brak": 8,
           "votes_nieobecny": 0,
-          "votes_total": 268,
-          "rebellion_count": 26,
+          "votes_total": 281,
+          "rebellion_count": 27,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -714,6 +793,12 @@
               "club_majority": "przeciw"
             },
             {
+              "session": "2026-05-26",
+              "topic": "Przyjęcie protokołu z XXIII sesji Sejmiku.",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2026-04-21",
               "topic": "Rozpatrzenie projektu uchwały w sprawie nadania statutu Samodzielnemu Publicznemu Zakładowi Opieki Zdrowotnej Wojewódzkiemu Szpitalowi Zespolonemu im. Jędrzeja Śniadeckiego w Białymstoku. /Druk Nr 367",
               "their_vote": "za",
@@ -782,15 +867,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 98.9,
-          "zgodnosc_z_klubem": 98.9,
-          "votes_za": 243,
+          "aktywnosc": 99.6,
+          "zgodnosc_z_klubem": 98.6,
+          "votes_za": 256,
           "votes_przeciw": 21,
-          "votes_wstrzymal": 1,
+          "votes_wstrzymal": 3,
           "votes_brak": 18,
           "votes_nieobecny": 0,
-          "votes_total": 268,
-          "rebellion_count": 3,
+          "votes_total": 281,
+          "rebellion_count": 4,
           "rebellions": [
             {
               "session": "2025-12-16",
@@ -802,6 +887,12 @@
               "session": "2025-02-25",
               "topic": "Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na rozwiązanie umowy o pracę z Radnym Województwa Podlaskiego. /Druk Nr 166/.",
               "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Przyjęcie Stanowiska Sejmiku Województwa Podlaskiego w zakresie wsparcia przez Prezydenta Rzeczpospolitej Polskiej inicjatyw ustawodawczych mających na celu przedłużenie terminu przedłożenia właściwej",
+              "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
             },
             {
@@ -830,16 +921,16 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 93.3,
-          "aktywnosc": 85.4,
-          "zgodnosc_z_klubem": 77.7,
-          "votes_za": 154,
-          "votes_przeciw": 24,
-          "votes_wstrzymal": 51,
-          "votes_brak": 18,
+          "frekwencja": 93.8,
+          "aktywnosc": 86.8,
+          "zgodnosc_z_klubem": 77.9,
+          "votes_za": 164,
+          "votes_przeciw": 26,
+          "votes_wstrzymal": 54,
+          "votes_brak": 19,
           "votes_nieobecny": 10,
-          "votes_total": 268,
-          "rebellion_count": 51,
+          "votes_total": 281,
+          "rebellion_count": 54,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -1100,6 +1191,24 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie Obszaru Chronionego Krajobrazu „Pojezierze Sejneńskie”. /Druk Nr 397/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie zasad przyznawania stypendiów za wyniki w nauce uczniom szkół, dla których organem prowadzącym jest Samorząd Województwa Podlaskiego, w ram",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Wygenerowano za pomocą app.esesja.pl Rozpatrzenie projektu uchwały w sprawie powołania komisji konkursowej w celu przeprowadzenia postępowania konkursowego na stanowisko Dyrektora Podlaskiego Wojewódz",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
               "session": "2026-03-24",
               "topic": "Wygenerowano za pomocą app.esesja.pl Przyjęcie protokołu z XXI sesji Sejmiku.",
               "their_vote": "za",
@@ -1168,14 +1277,14 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 104.5,
-          "zgodnosc_z_klubem": 98.9,
-          "votes_za": 255,
-          "votes_przeciw": 23,
-          "votes_wstrzymal": 2,
+          "aktywnosc": 105.0,
+          "zgodnosc_z_klubem": 99.0,
+          "votes_za": 268,
+          "votes_przeciw": 24,
+          "votes_wstrzymal": 3,
           "votes_brak": 4,
           "votes_nieobecny": 0,
-          "votes_total": 268,
+          "votes_total": 281,
           "rebellion_count": 3,
           "rebellions": [
             {
@@ -1216,15 +1325,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 93.3,
-          "aktywnosc": 91.8,
+          "frekwencja": 93.8,
+          "aktywnosc": 92.2,
           "zgodnosc_z_klubem": 98.8,
-          "votes_za": 221,
-          "votes_przeciw": 21,
+          "votes_za": 233,
+          "votes_przeciw": 22,
           "votes_wstrzymal": 4,
-          "votes_brak": 20,
+          "votes_brak": 22,
           "votes_nieobecny": 5,
-          "votes_total": 268,
+          "votes_total": 281,
           "rebellion_count": 3,
           "rebellions": [
             {
@@ -1265,15 +1374,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 93.3,
-          "aktywnosc": 86.9,
+          "frekwencja": 93.8,
+          "aktywnosc": 87.5,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 212,
-          "votes_przeciw": 21,
+          "votes_za": 224,
+          "votes_przeciw": 22,
           "votes_wstrzymal": 0,
-          "votes_brak": 9,
+          "votes_brak": 12,
           "votes_nieobecny": 21,
-          "votes_total": 268,
+          "votes_total": 281,
           "rebellion_count": 0,
           "rebellions": [],
           "has_voting_data": true,
@@ -1295,16 +1404,16 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 93.3,
+          "frekwencja": 93.8,
           "aktywnosc": 90.7,
-          "zgodnosc_z_klubem": 98.4,
-          "votes_za": 220,
-          "votes_przeciw": 20,
+          "zgodnosc_z_klubem": 98.0,
+          "votes_za": 231,
+          "votes_przeciw": 21,
           "votes_wstrzymal": 3,
-          "votes_brak": 7,
+          "votes_brak": 9,
           "votes_nieobecny": 19,
-          "votes_total": 268,
-          "rebellion_count": 4,
+          "votes_total": 281,
+          "rebellion_count": 5,
           "rebellions": [
             {
               "session": "2025-10-27",
@@ -1329,6 +1438,12 @@
               "topic": "Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na rozwiązanie umowy o pracę z Radnym Województwa Podlaskiego. /Druk Nr 166/.",
               "their_vote": "przeciw",
               "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie dokonania zmian w składzie osobowym Komisji Rewizyjnej Sejmiku Województwa Podlaskiego. /Druk Nr 400/.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
             }
           ],
           "has_voting_data": true,
@@ -1351,15 +1466,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 101.5,
-          "zgodnosc_z_klubem": 98.5,
-          "votes_za": 247,
-          "votes_przeciw": 23,
+          "aktywnosc": 101.8,
+          "zgodnosc_z_klubem": 98.3,
+          "votes_za": 260,
+          "votes_przeciw": 24,
           "votes_wstrzymal": 2,
           "votes_brak": 9,
           "votes_nieobecny": 1,
-          "votes_total": 268,
-          "rebellion_count": 4,
+          "votes_total": 281,
+          "rebellion_count": 5,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -1384,6 +1499,12 @@
               "topic": "Rozpatrzenie projektu uchwały w sprawie wyrażenia zgody na rozwiązanie umowy o pracę z Radnym Województwa Podlaskiego. /Druk Nr 166/.",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie dokonania zmian w składzie osobowym Komisji Rewizyjnej Sejmiku Województwa Podlaskiego. /Druk Nr 400/.",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             }
           ],
           "has_voting_data": true,
@@ -1406,14 +1527,14 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 81.3,
+          "aktywnosc": 80.1,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 195,
-          "votes_przeciw": 22,
+          "votes_za": 201,
+          "votes_przeciw": 23,
           "votes_wstrzymal": 1,
-          "votes_brak": 46,
+          "votes_brak": 54,
           "votes_nieobecny": 9,
-          "votes_total": 268,
+          "votes_total": 281,
           "rebellion_count": 0,
           "rebellions": [],
           "has_voting_data": true,
@@ -1436,15 +1557,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 89.2,
-          "votes_za": 186,
-          "votes_przeciw": 37,
-          "votes_wstrzymal": 45,
+          "aktywnosc": 101.4,
+          "zgodnosc_z_klubem": 87.7,
+          "votes_za": 194,
+          "votes_przeciw": 39,
+          "votes_wstrzymal": 52,
           "votes_brak": 18,
           "votes_nieobecny": 3,
-          "votes_total": 268,
-          "rebellion_count": 29,
+          "votes_total": 281,
+          "rebellion_count": 35,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -1579,6 +1700,42 @@
               "club_majority": "przeciw"
             },
             {
+              "session": "2026-05-26",
+              "topic": "Przyjęcie protokołu z XXIII sesji Sejmiku.",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Podlaskiego na lata 2026 – 2041. /Druk Nr 390/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie udzielenia pomocy finansowej na realizację przez gminy zadań w ramach „Programu odnowy wsi województwa podlaskiego – Kreatywna wieś” na 2026 rok. /Druk Nr 398/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie określenia zadań samorządu Województwa Podlaskiego realizowanych ze środków Państwowego Funduszu Rehabilitacji Osób Niepełnosprawnych i prz",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Wygenerowano za pomocą app.esesja.pl Rozpatrzenie projektu uchwały w sprawie powołania komisji konkursowej w celu przeprowadzenia postępowania konkursowego na stanowisko Dyrektora Podlaskiego Wojewódz",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie dokonania zmian w składzie osobowym Komisji Rewizyjnej Sejmiku Województwa Podlaskiego. /Druk Nr 400/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
               "session": "2026-04-21",
               "topic": "Przyjęcie protokołu z XXII sesji Sejmiku.",
               "their_vote": "za",
@@ -1641,15 +1798,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 103.4,
-          "zgodnosc_z_klubem": 74.0,
-          "votes_za": 254,
+          "aktywnosc": 102.8,
+          "zgodnosc_z_klubem": 73.7,
+          "votes_za": 265,
           "votes_przeciw": 21,
-          "votes_wstrzymal": 2,
-          "votes_brak": 5,
+          "votes_wstrzymal": 3,
+          "votes_brak": 6,
           "votes_nieobecny": 1,
-          "votes_total": 268,
-          "rebellion_count": 72,
+          "votes_total": 281,
+          "rebellion_count": 76,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -1964,6 +2121,30 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-05-26",
+              "topic": "Przyjęcie protokołu z XXIII sesji Sejmiku.",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie zasad przyznawania stypendiów za wyniki w nauce uczniom szkół, dla których organem prowadzącym jest Samorząd Województwa Podlaskiego, w ram",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie określenia zasad, trybu i harmonogramu aktualizacji Strategii Rozwoju Województwa Podlaskiego 2030. /Druk Nr 395/.",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Przyjęcie Stanowiska Sejmiku Województwa Podlaskiego w zakresie wsparcia przez Prezydenta Rzeczpospolitej Polskiej inicjatyw ustawodawczych mających na celu przedłużenie terminu przedłożenia właściwej",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
               "session": "2026-04-21",
               "topic": "Przyjęcie protokołu z XXII sesji Sejmiku.",
               "their_vote": "za",
@@ -2104,15 +2285,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 91.0,
-          "zgodnosc_z_klubem": 84.0,
-          "votes_za": 169,
-          "votes_przeciw": 42,
-          "votes_wstrzymal": 33,
-          "votes_brak": 26,
+          "aktywnosc": 92.5,
+          "zgodnosc_z_klubem": 84.2,
+          "votes_za": 180,
+          "votes_przeciw": 44,
+          "votes_wstrzymal": 36,
+          "votes_brak": 27,
           "votes_nieobecny": 2,
-          "votes_total": 268,
-          "rebellion_count": 39,
+          "votes_total": 281,
+          "rebellion_count": 41,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -2289,6 +2470,18 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-05-26",
+              "topic": "Przyjęcie protokołu z XXIII sesji Sejmiku.",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie dokonania zmian w składzie osobowym Komisji Rewizyjnej Sejmiku Województwa Podlaskiego. /Druk Nr 400/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
               "session": "2026-04-21",
               "topic": "Rozpatrzenie projektu uchwały w sprawie wyboru przedstawicieli do Rady Społecznej działającej w Wojewódzkiej Stacji Pogotowia Ratunkowego Samodzielnym Publicznym Zakładzie Opieki Zdrowotnej w Łomży. /",
               "their_vote": "przeciw",
@@ -2369,14 +2562,14 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 100.7,
-          "zgodnosc_z_klubem": 88.1,
-          "votes_za": 177,
-          "votes_przeciw": 43,
+          "aktywnosc": 98.2,
+          "zgodnosc_z_klubem": 88.4,
+          "votes_za": 182,
+          "votes_przeciw": 44,
           "votes_wstrzymal": 50,
           "votes_brak": 9,
-          "votes_nieobecny": 9,
-          "votes_total": 268,
+          "votes_nieobecny": 17,
+          "votes_total": 281,
           "rebellion_count": 32,
           "rebellions": [
             {
@@ -2592,15 +2785,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 95.9,
-          "zgodnosc_z_klubem": 95.3,
-          "votes_za": 228,
-          "votes_przeciw": 24,
+          "aktywnosc": 96.4,
+          "zgodnosc_z_klubem": 95.2,
+          "votes_za": 241,
+          "votes_przeciw": 25,
           "votes_wstrzymal": 5,
-          "votes_brak": 5,
+          "votes_brak": 6,
           "votes_nieobecny": 22,
-          "votes_total": 268,
-          "rebellion_count": 12,
+          "votes_total": 281,
+          "rebellion_count": 13,
           "rebellions": [
             {
               "session": "2024-10-29",
@@ -2663,6 +2856,12 @@
               "club_majority": "przeciw"
             },
             {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie dokonania zmian w składzie osobowym Komisji Rewizyjnej Sejmiku Województwa Podlaskiego. /Druk Nr 400/.",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2026-03-24",
               "topic": "Wniosek formalny o zmianę porządku obrad. Wniosek o zdjęcie z porządku obrad pkt 12: Rozpatrzenie projektu uchwały w sprawie rozpatrzenia petycji dotyczącej wykreślenia z „Planu Gospodarki Odpadami Wo",
               "their_vote": "przeciw",
@@ -2694,15 +2893,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 93.3,
-          "aktywnosc": 88.8,
+          "frekwencja": 87.5,
+          "aktywnosc": 84.7,
           "zgodnosc_z_klubem": 72.7,
           "votes_za": 118,
           "votes_przeciw": 53,
           "votes_wstrzymal": 67,
           "votes_brak": 36,
-          "votes_nieobecny": 1,
-          "votes_total": 268,
+          "votes_nieobecny": 4,
+          "votes_total": 281,
           "rebellion_count": 65,
           "rebellions": [
             {
@@ -3115,16 +3314,16 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 93.3,
-          "aktywnosc": 88.4,
-          "zgodnosc_z_klubem": 88.6,
-          "votes_za": 157,
-          "votes_przeciw": 44,
-          "votes_wstrzymal": 36,
-          "votes_brak": 19,
+          "frekwencja": 93.8,
+          "aktywnosc": 89.7,
+          "zgodnosc_z_klubem": 88.1,
+          "votes_za": 163,
+          "votes_przeciw": 46,
+          "votes_wstrzymal": 43,
+          "votes_brak": 20,
           "votes_nieobecny": 13,
-          "votes_total": 268,
-          "rebellion_count": 27,
+          "votes_total": 281,
+          "rebellion_count": 30,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -3247,6 +3446,24 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Podlaskiego na lata 2026 – 2041. /Druk Nr 390/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian w budżecie województwa podlaskiego na 2026 rok. /Druk Nr 391/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Wygenerowano za pomocą app.esesja.pl Rozpatrzenie projektu uchwały w sprawie powołania komisji konkursowej w celu przeprowadzenia postępowania konkursowego na stanowisko Dyrektora Podlaskiego Wojewódz",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
               "session": "2026-04-21",
               "topic": "Przyjęcie protokołu z XXII sesji Sejmiku.",
               "their_vote": "za",
@@ -3309,15 +3526,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 94.0,
-          "zgodnosc_z_klubem": 90.1,
-          "votes_za": 179,
-          "votes_przeciw": 44,
-          "votes_wstrzymal": 29,
-          "votes_brak": 33,
+          "aktywnosc": 94.7,
+          "zgodnosc_z_klubem": 89.5,
+          "votes_za": 186,
+          "votes_przeciw": 47,
+          "votes_wstrzymal": 33,
+          "votes_brak": 34,
           "votes_nieobecny": 5,
-          "votes_total": 268,
-          "rebellion_count": 25,
+          "votes_total": 281,
+          "rebellion_count": 28,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -3434,6 +3651,24 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian w budżecie województwa podlaskiego na 2026 rok. /Druk Nr 391/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie Obszaru Chronionego Krajobrazu „Pojezierze Sejneńskie”. /Druk Nr 397/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie zasad przyznawania stypendiów za wyniki w nauce uczniom szkół, dla których organem prowadzącym jest Samorząd Województwa Podlaskiego, w ram",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2026-04-21",
               "topic": "Przyjęcie protokołu z XXII sesji Sejmiku.",
               "their_vote": "za",
@@ -3489,15 +3724,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 93.3,
-          "aktywnosc": 95.1,
+          "frekwencja": 93.8,
+          "aktywnosc": 96.4,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 213,
-          "votes_przeciw": 15,
-          "votes_wstrzymal": 27,
+          "votes_za": 226,
+          "votes_przeciw": 17,
+          "votes_wstrzymal": 28,
           "votes_brak": 5,
           "votes_nieobecny": 27,
-          "votes_total": 268,
+          "votes_total": 281,
           "rebellion_count": 0,
           "rebellions": [],
           "has_voting_data": true,
@@ -3520,15 +3755,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 96.6,
-          "zgodnosc_z_klubem": 84.6,
-          "votes_za": 155,
-          "votes_przeciw": 44,
-          "votes_wstrzymal": 60,
+          "aktywnosc": 97.9,
+          "zgodnosc_z_klubem": 83.6,
+          "votes_za": 161,
+          "votes_przeciw": 46,
+          "votes_wstrzymal": 68,
           "votes_brak": 19,
           "votes_nieobecny": 14,
-          "votes_total": 268,
-          "rebellion_count": 40,
+          "votes_total": 281,
+          "rebellion_count": 45,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -3735,6 +3970,36 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Podlaskiego na lata 2026 – 2041. /Druk Nr 390/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian w budżecie województwa podlaskiego na 2026 rok. /Druk Nr 391/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie udzielenia pomocy finansowej na realizację przez gminy zadań w ramach „Programu odnowy wsi województwa podlaskiego – Kreatywna wieś” na 2026 rok. /Druk Nr 398/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Wygenerowano za pomocą app.esesja.pl Rozpatrzenie projektu uchwały w sprawie powołania komisji konkursowej w celu przeprowadzenia postępowania konkursowego na stanowisko Dyrektora Podlaskiego Wojewódz",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie dokonania zmian w składzie osobowym Komisji Rewizyjnej Sejmiku Województwa Podlaskiego. /Druk Nr 400/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
               "session": "2026-04-21",
               "topic": "Przyjęcie protokołu z XXII sesji Sejmiku.",
               "their_vote": "za",
@@ -3790,15 +4055,15 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 93.3,
-          "aktywnosc": 93.7,
+          "frekwencja": 87.5,
+          "aktywnosc": 89.3,
           "zgodnosc_z_klubem": 99.6,
           "votes_za": 230,
           "votes_przeciw": 20,
           "votes_wstrzymal": 1,
           "votes_brak": 13,
-          "votes_nieobecny": 6,
-          "votes_total": 268,
+          "votes_nieobecny": 19,
+          "votes_total": 281,
           "rebellion_count": 1,
           "rebellions": [
             {
@@ -3828,15 +4093,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 102.2,
-          "zgodnosc_z_klubem": 88.0,
-          "votes_za": 186,
-          "votes_przeciw": 47,
-          "votes_wstrzymal": 41,
-          "votes_brak": 15,
+          "aktywnosc": 102.8,
+          "zgodnosc_z_klubem": 87.9,
+          "votes_za": 196,
+          "votes_przeciw": 50,
+          "votes_wstrzymal": 43,
+          "votes_brak": 16,
           "votes_nieobecny": 0,
-          "votes_total": 268,
-          "rebellion_count": 33,
+          "votes_total": 281,
+          "rebellion_count": 35,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -3989,6 +4254,18 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian w budżecie województwa podlaskiego na 2026 rok. /Druk Nr 391/.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie określenia zasad, trybu i harmonogramu aktualizacji Strategii Rozwoju Województwa Podlaskiego 2030. /Druk Nr 395/.",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2026-04-21",
               "topic": "Rozpatrzenie projektu uchwały w sprawie wyboru przedstawicieli do Rady Społecznej działającej w Wojewódzkiej Stacji Pogotowia Ratunkowego Samodzielnym Publicznym Zakładzie Opieki Zdrowotnej w Łomży. /",
               "their_vote": "przeciw",
@@ -4056,16 +4333,16 @@
           "notes": "",
           "mid_term": false,
           "former": false,
-          "frekwencja": 93.3,
-          "aktywnosc": 97.4,
-          "zgodnosc_z_klubem": 74.3,
-          "votes_za": 240,
+          "frekwencja": 93.8,
+          "aktywnosc": 97.5,
+          "zgodnosc_z_klubem": 74.1,
+          "votes_za": 253,
           "votes_przeciw": 21,
           "votes_wstrzymal": 0,
           "votes_brak": 7,
           "votes_nieobecny": 12,
-          "votes_total": 268,
-          "rebellion_count": 67,
+          "votes_total": 281,
+          "rebellion_count": 71,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -4386,6 +4663,30 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-05-26",
+              "topic": "Przyjęcie protokołu z XXIII sesji Sejmiku.",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie zasad przyznawania stypendiów za wyniki w nauce uczniom szkół, dla których organem prowadzącym jest Samorząd Województwa Podlaskiego, w ram",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie określenia zasad, trybu i harmonogramu aktualizacji Strategii Rozwoju Województwa Podlaskiego 2030. /Druk Nr 395/.",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Przyjęcie Stanowiska Sejmiku Województwa Podlaskiego w zakresie wsparcia przez Prezydenta Rzeczpospolitej Polskiej inicjatyw ustawodawczych mających na celu przedłużenie terminu przedłożenia właściwej",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
               "session": "2026-04-21",
               "topic": "Przyjęcie protokołu z XXII sesji Sejmiku.",
               "their_vote": "za",
@@ -4490,15 +4791,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 102.6,
-          "zgodnosc_z_klubem": 99.3,
-          "votes_za": 250,
-          "votes_przeciw": 23,
+          "aktywnosc": 103.2,
+          "zgodnosc_z_klubem": 99.0,
+          "votes_za": 263,
+          "votes_przeciw": 25,
           "votes_wstrzymal": 2,
           "votes_brak": 9,
           "votes_nieobecny": 1,
-          "votes_total": 268,
-          "rebellion_count": 2,
+          "votes_total": 281,
+          "rebellion_count": 3,
           "rebellions": [
             {
               "session": "2025-06-30",
@@ -4511,6 +4812,12 @@
               "topic": "Przyjęcie porządku obrad. Wniosek o wprowadzenie do porządku obrad pkt 23a Informacja Zarządu Województwa Podlaskiego o bieżącej sytuacji w Spółce PKS Nova.",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie dokonania zmian w składzie osobowym Komisji Rewizyjnej Sejmiku Województwa Podlaskiego. /Druk Nr 400/.",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
             }
           ],
           "has_voting_data": true,
@@ -4533,15 +4840,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 101.9,
-          "zgodnosc_z_klubem": 96.7,
-          "votes_za": 246,
-          "votes_przeciw": 23,
-          "votes_wstrzymal": 4,
+          "aktywnosc": 102.5,
+          "zgodnosc_z_klubem": 96.2,
+          "votes_za": 258,
+          "votes_przeciw": 25,
+          "votes_wstrzymal": 5,
           "votes_brak": 11,
           "votes_nieobecny": 2,
-          "votes_total": 268,
-          "rebellion_count": 9,
+          "votes_total": 281,
+          "rebellion_count": 11,
           "rebellions": [
             {
               "session": "2024-10-29",
@@ -4586,6 +4893,18 @@
               "club_majority": "przeciw"
             },
             {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie określenia zadań samorządu Województwa Podlaskiego realizowanych ze środków Państwowego Funduszu Rehabilitacji Osób Niepełnosprawnych i prz",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie dokonania zmian w składzie osobowym Komisji Rewizyjnej Sejmiku Województwa Podlaskiego. /Druk Nr 400/.",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2026-03-24",
               "topic": "Wygenerowano za pomocą app.esesja.pl Przyjęcie protokołu z XXI sesji Sejmiku.",
               "their_vote": "za",
@@ -4618,15 +4937,15 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 99.3,
-          "zgodnosc_z_klubem": 98.9,
-          "votes_za": 241,
+          "aktywnosc": 98.6,
+          "zgodnosc_z_klubem": 98.2,
+          "votes_za": 252,
           "votes_przeciw": 23,
           "votes_wstrzymal": 2,
-          "votes_brak": 11,
+          "votes_brak": 13,
           "votes_nieobecny": 5,
-          "votes_total": 268,
-          "rebellion_count": 3,
+          "votes_total": 281,
+          "rebellion_count": 5,
           "rebellions": [
             {
               "session": "2024-10-29",
@@ -4639,6 +4958,18 @@
               "topic": "Rozpatrzenie projektu uchwały w sprawie wskazania przedstawicieli Sejmiku Województwa Podlaskiego do składu Podlaskiej Rady Działalności Pożytku Publicznego VI kadencji. /Druk Nr 244/.",
               "their_vote": "przeciw",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie dokonania zmian w składzie osobowym Komisji Rewizyjnej Sejmiku Województwa Podlaskiego. /Druk Nr 400/.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-05-26",
+              "topic": "Przyjęcie Stanowiska Sejmiku Województwa Podlaskiego w zakresie wsparcia przez Prezydenta Rzeczpospolitej Polskiej inicjatyw ustawodawczych mających na celu przedłużenie terminu przedłożenia właściwej",
+              "their_vote": "za",
+              "club_majority": "przeciw"
             },
             {
               "session": "2026-03-24",
@@ -4667,14 +4998,14 @@
           "mid_term": false,
           "former": false,
           "frekwencja": 100.0,
-          "aktywnosc": 76.5,
-          "zgodnosc_z_klubem": 87.8,
-          "votes_za": 131,
-          "votes_przeciw": 33,
+          "aktywnosc": 73.7,
+          "zgodnosc_z_klubem": 87.9,
+          "votes_za": 132,
+          "votes_przeciw": 34,
           "votes_wstrzymal": 41,
-          "votes_brak": 45,
-          "votes_nieobecny": 9,
-          "votes_total": 268,
+          "votes_brak": 47,
+          "votes_nieobecny": 19,
+          "votes_total": 281,
           "rebellion_count": 25,
           "rebellions": [
             {
