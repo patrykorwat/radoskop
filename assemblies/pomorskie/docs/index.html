@@ -1118,6 +1118,16 @@ async function init() {
 
 function renderKadencjaBar() {
   const bar = document.getElementById('kadencja-bar');
+  // Ukryj cały bar gdy miasto ma tylko jedną kadencję — pojedynczy przycisk
+  // wewnątrz pill-toggle wygląda jak zepsuty switch (issue zgłoszony dla
+  // Kopenhagi 2026-05-28). Etykieta kadencji jest widoczna w innych miejscach
+  // (manifest, stopka, breadcrumbs), więc nic się nie traci.
+  if (!RAW.kadencje || RAW.kadencje.length < 2) {
+    bar.style.display = 'none';
+    bar.innerHTML = '';
+    return;
+  }
+  bar.style.display = '';
   bar.innerHTML = RAW.kadencje.map(k =>
     `<button class="kadencja-btn" data-kid="${k.id}">${k.label}</button>`
   ).join('');
@@ -1570,7 +1580,11 @@ function showProfile(name) {
       if (kd.komisje && kd.komisje.length > 0) {
         _mandateBody += `${kd.okręg ? '<div style="margin-top:10px;padding-top:10px;border-top:0.5px solid var(--border)"></div>' : ''}
           <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;font-weight:500">Komisje</div>
-          <div style="display:flex;gap:4px;flex-wrap:wrap">${kd.komisje.map(k => `<span class="tag" style="font-size:0.72rem;padding:2px 7px">${k}</span>`).join('')}</div>`;
+          <div style="display:flex;gap:4px;flex-wrap:wrap">${kd.komisje.map(k => {
+            const _kslug = komisjaSlugFromLabel(k);
+            const _kesc = _kslug.replace(/'/g, "\\'");
+            return `<a class="tag" href="/commission/${encodeURIComponent(_kslug)}/" onclick="event.preventDefault();showKomisja('${_kesc}')" style="font-size:0.72rem;padding:2px 7px;text-decoration:none;cursor:pointer">${k}</a>`;
+          }).join('')}</div>`;
       }
       _profileCards.push(`<div class="section" style="margin-bottom:0;padding:12px 14px">${_mandateBody}</div>`);
     }
@@ -1731,19 +1745,33 @@ function showProfile(name) {
       function _rankLabel(pct) {
         if (pct === null) return '';
         // pct = percentile rank (better than X% of councilors). Etykieta
-        // "Top Y%" wymaga inversji: Y = 100 - pct. Clamp do min 1% bo
-        // "Top 0%" jest niezrozumiałe (oznaczałoby absolutny najlepszy).
-        const top = Math.max(1, 100 - pct);
-        return `Top ${top}% radnych`;
+        // "Top Y%" wymaga inwersji: Y = 100 - pct. Float, bez clampu na 1% —
+        // czubek stawki dostaje precyzyjne "Top 0,12%" w stylu OnlyFans.
+        // Granularność i tak ograniczona liczbą radnych w grupie (100/N), więc
+        // floor = 100/nCouncilors żeby nie pokazać niemożliwie małej liczby.
+        let top = 100 - pct;
+        const floor = nCouncilors > 0 ? 100 / nCouncilors : 0;
+        if (floor > 0 && top < floor) top = floor;
+        // Adaptacyjna precyzja: im bliżej czubka, tym więcej cyfr.
+        let decimals;
+        if (top >= 10) decimals = 0;
+        else if (top >= 1) decimals = 1;
+        else if (top >= 0.1) decimals = 2;
+        else decimals = 3;
+        let s = top.toFixed(decimals);
+        // Utnij zbędne zera końcowe (0,40 → 0,4; 5,0 → 5) i podmień na przecinek.
+        if (s.indexOf('.') !== -1) s = s.replace(/0+$/, '').replace(/\.$/, '');
+        return `Top ${s.replace('.', ',')}% radnych`;
       }
       function _metricCol(label, value, pct, blurred) {
+        // Jedna jasna wartość na metrykę: czysta odznaka "Top X%" (styl
+        // OnlyFans). Bez paska — wcześniej pasek pokazywał surową wartość, co
+        // kłóciło się wizualnie z percentylem obok. Kolor koduje pozycję
+        // (zielony = czubek, czerwony = dół stawki). Param value niewykorzystany.
         const blurStyle = blurred ? 'filter:blur(4px);pointer-events:none;user-select:none;' : '';
         return `<div style="${blurStyle}">
-          <div style="font-size:0.78rem;color:var(--muted);text-transform:uppercase;margin-bottom:4px">${label}</div>
-          <div style="font-size:0.82rem;font-weight:500;color:${_barColor(pct)};margin-bottom:8px">${_rankLabel(pct)}</div>
-          <div style="background:var(--border);border-radius:4px;height:5px;overflow:hidden">
-            <div style="background:${_barColor(pct)};height:100%;width:${value}%;border-radius:4px"></div>
-          </div>
+          <div style="font-size:0.78rem;color:var(--muted);text-transform:uppercase;margin-bottom:6px">${label}</div>
+          <div style="font-size:1.15rem;font-weight:700;color:${_barColor(pct)};line-height:1.15">${_rankLabel(pct)}</div>
         </div>`;
       }
 
@@ -2300,6 +2328,16 @@ async function renderSessionsTable() {
     const voteCount = s.vote_count || 0;
     const hasCounts = s.passed !== undefined;
     const speakers = s.speaker_count || 0;
+    // Sesja bez opublikowanych wyników: pokaż datę, ale zamiast zer wstaw
+    // znacznik "wyniki wkrótce" zamiast mylących 0 głosowań / 0 obecnych.
+    if (s.results_pending) {
+      return `<tr class="vote-row" onclick="showSession('${s.number}')">
+        <td style="font-weight:600">${s.number || '?'}</td>
+        <td>${s.date}</td>
+        <td colspan="4" style="color:var(--muted);font-size:0.85rem">Wyniki głosowań jeszcze nieopublikowane</td>
+        <td>${speakers > 0 ? speakers : '—'}</td>
+      </tr>`;
+    }
     return `<tr class="vote-row" onclick="showSession('${s.number}')">
       <td style="font-weight:600">${s.number || '?'}</td>
       <td>${s.date}</td>
@@ -2390,11 +2428,17 @@ async function renderVotesTable() {
     const passedCount = sessVotes.filter(v => v.passed).length;
     const rejectedCount = sessVotes.length - passedCount;
 
-    html += `<div class="votes-sess-group" data-sess="${sg.number}">
+    // Niektóre źródła (np. kk.dk dla Kopenhagi) nie mają numerów sesji,
+    // tylko daty. Wtedy używamy daty jako klucza i nie renderujemy 'Sesja null'.
+    const sessKeyText = sg.number != null ? sg.number : sg.date;
+    const sessLabelText = sg.number != null
+      ? ('Sesja ' + sg.number + ' · ' + sg.date)
+      : ('Sesja ' + sg.date);
+    html += `<div class="votes-sess-group" data-sess="${sessKeyText}">
       <div class="votes-sess-header" onclick="this.parentElement.classList.toggle('collapsed')">
         <div class="votes-sess-title">
           <span class="votes-sess-toggle">▼</span>
-          ${sessionLinkStop(sg.number, 'Sesja ' + sg.number + ' · ' + sg.date)}
+          ${sessionLinkStop(sessKeyText, sessLabelText)}
         </div>
         <div class="votes-sess-stats">
           <span>${sessVotes.length} głos.</span>
@@ -3051,6 +3095,27 @@ async function showSession(sessionNumber) {
     url: 'https://pomorskie.radoskop.pl/sesja/' + encodeURIComponent(sessionNumber) + '/'
   });
 
+  // Sesja bez opublikowanych wyników głosowań. Pokazujemy datę i porządek
+  // obrad, ale NIE liczymy obecnych/nieobecnych — brak attendees nie znaczy
+  // że wszyscy byli nieobecni, tylko że BIP nie wydał jeszcze "Wykazu głosowań".
+  if (sess.results_pending) {
+    const _linkStyle = 'color:var(--accent);font-size:0.9rem;text-decoration:none';
+    const agendaLink = sess.agenda_url ? `<a href="${sess.agenda_url}" target="_blank" rel="noopener" style="${_linkStyle}">↗ Porządek obrad</a>` : '';
+    const bipLink = sess.url ? `<a href="${sess.url}" target="_blank" rel="noopener" style="${_linkStyle}">↗ Strona sesji w BIP</a>` : '';
+    view.innerHTML = `
+      <button class="profile-back" onclick="showMain()">← Strona główna</button>
+      <div style="margin-bottom:24px">
+        <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">Sesja ${sess.number != null ? sess.number + ' · ' : ''}${sess.date}</h2>
+      </div>
+      <div class="section">
+        <div style="padding:14px 16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:0.92rem;color:var(--text);line-height:1.5">
+          Wyniki imiennych głosowań z tej sesji nie zostały jeszcze opublikowane w BIP. Gdy się pojawią, pokażemy je tutaj automatycznie.
+        </div>
+        ${(agendaLink || bipLink) ? `<div style="display:flex;gap:18px;margin-top:16px;flex-wrap:wrap">${agendaLink}${bipLink}</div>` : ''}
+      </div>`;
+    return;
+  }
+
   // Club lookup from current kadencja
   const clubMap = {};
   (K.councilors || []).forEach(co => { clubMap[co.name] = co.club; });
@@ -3268,6 +3333,48 @@ async function refreshSubscriptionStatus() {
   // Drop cache, żeby render Komisji wyciągnął świeże dane z nowym tier.
   _komisjeListCache = null;
 }
+
+// Slug komisji z labela w profilu radnego. Musi odwzorowywać
+// slugify_council() z backendu (scrapers/komisje/config.py) żeby link
+// trafiał w ten sam url_slug którego używa /komisja/{slug}. Najpierw
+// odcinamy rolę w nawiasie ("Komisja X (przewodniczący)" → "Komisja X").
+const _KOMISJA_PL_MAP = {'ł':'l','ą':'a','ę':'e','ó':'o','ś':'s','ż':'z','ź':'z','ć':'c','ń':'n'};
+function komisjaSlugFromLabel(label) {
+  const base = String(label || '').replace(/\s*\([^)]*\)\s*$/, '').trim().toLowerCase();
+  const tr = base.replace(/[łąęóśżźćń]/g, ch => _KOMISJA_PL_MAP[ch] || ch);
+  return tr.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+// Rola radnego w komisji wyłuskana z nawiasu na końcu labela.
+function komisjaRoleFromLabel(label) {
+  const m = String(label || '').match(/\(([^)]*)\)\s*$/);
+  return m ? m[1].trim() : '';
+}
+
+// Skład komisji zbudowany z PROFILES dla danej kadencji. Zwraca listę
+// {name, slug, club, role} posortowaną: przewodniczący, wice, członkowie.
+function komisjaMembers(commissionSlug, kid) {
+  if (!PROFILES || !PROFILES.profiles) return [];
+  const out = [];
+  PROFILES.profiles.forEach(p => {
+    const kd = p.kadencje && p.kadencje[kid];
+    if (!kd || !Array.isArray(kd.komisje)) return;
+    kd.komisje.forEach(k => {
+      if (komisjaSlugFromLabel(k) === commissionSlug) {
+        out.push({ name: p.name, slug: p.slug, club: kd.club || '', role: komisjaRoleFromLabel(k) });
+      }
+    });
+  });
+  const rank = r => {
+    const lr = (r || '').toLowerCase();
+    if (lr.includes('przewodnicz') && !lr.includes('wice')) return 0;
+    if (lr.includes('wice')) return 1;
+    return 2;
+  };
+  out.sort((a, b) => rank(a.role) - rank(b.role) || a.name.localeCompare(b.name, 'pl'));
+  return out;
+}
+
 async function renderKomisjeList() {
   const container = document.getElementById('komisje-content');
   if (!container) return;
@@ -3407,12 +3514,11 @@ async function showKomisja(slug) {
       const dStr = String(d);
       const info = dv[dStr];
       const baseStyle = 'color:var(--accent);font-size:12px;background:rgba(99,102,241,0.08);padding:1px 6px;border-radius:4px;margin-right:4px;display:inline-block;margin-bottom:2px';
-      if (info && info.vote_id) {
-        const vid = info.vote_id;
-        const passedIcon = info.passed === true ? ' <span style="color:var(--green)">✓</span>' : info.passed === false ? ' <span style="color:var(--red)">✗</span>' : '';
-        return `<a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${encodeURIComponent(dStr)}/" onclick="event.preventDefault();showDruk(${dStr},'${currentKid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
-      }
-      return `<span style="${baseStyle}">druk ${dStr}</span>`;
+      const passedIcon = (info && info.passed === true) ? ' <span style="color:var(--green)">✓</span>' : (info && info.passed === false) ? ' <span style="color:var(--red)">✗</span>' : '';
+      // Każdy druk linkuje do swojej strony (showDruk), niezależnie od tego
+      // czy mamy zmapowane głosowanie. Gdy jest głosowanie, dokładamy ikonę
+      // wyniku ✓/✗ przy numerze.
+      return `<a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${encodeURIComponent(dStr)}/" onclick="event.preventDefault();showDruk(${dStr},'${currentKid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
     }).join('');
     const links = [];
     if (m.page_url) links.push(`<a href="${m.page_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none">↗ BIP</a>`);
@@ -3455,6 +3561,27 @@ async function showKomisja(slug) {
     `;
   }
 
+  // Skład komisji z profili radnych (PROFILES) dla bieżącej kadencji.
+  // Rola (przewodniczący/wiceprzewodniczący) wyłuskana z labela komisji.
+  const members = komisjaMembers(slug, currentKid);
+  const membersHtml = members.length
+    ? members.map(m => {
+        const roleBadge = m.role
+          ? `<span style="font-size:11px;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:1px 7px;border-radius:999px;margin-left:6px">${m.role}</span>`
+          : '';
+        return `<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-top:0.5px solid var(--border)">
+          <span class="club ${clubClass(m.club)}">${(m.club && m.club !== '?') ? m.club : 'Niezrzeszeni'}</span>
+          ${profileLink(m.name)}${roleBadge}
+        </div>`;
+      }).join('')
+    : '';
+  const skladHtml = membersHtml
+    ? `<div class="section">
+         <h2>Skład komisji (${members.length})</h2>
+         ${membersHtml}
+       </div>`
+    : '';
+
   view.innerHTML = `
     <button class="profile-back" onclick="backFromKomisja()">← Komisje</button>
     <div style="margin-bottom:24px">
@@ -3482,6 +3609,7 @@ async function showKomisja(slug) {
         <div class="metric-label">Mediana lead time</div>
       </div>
     </div>
+    ${skladHtml}
     <div class="section">
       <h2>Posiedzenia ${meetingsTotal > meetingsTop.length ? `(${meetingsTop.length} z ${meetingsTotal})` : `(${meetingsTotal})`}</h2>
       ${meetingsHtml || '<p style="color:var(--muted);padding:14px 0">Brak posiedzeń w archiwum.</p>'}
