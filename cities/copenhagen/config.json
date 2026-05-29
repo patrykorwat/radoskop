@@ -170,5 +170,5 @@
   },
   "roster_note": "Mandater pr. parti (valg 2025-11-18) suma 55: Ø=15, A=10, C=8, B=6, F=6, V=5, Å=2, I=1, O=1, Q=1. Borgmester (overborgmester): Sisse Marie Welling (F). Nazwiska pojedynczych członków pojawiają się w referatach przy partispalt lub Løsgængere. Domyślnie scraper nie buduje pełnej listy radnych — to świadoma decyzja, bo profil per medlem nie jest centralnym formatem w faction-mode.",
   "has_named_votes": false,
-  "disabled": false
+  "disabled": true
 }
