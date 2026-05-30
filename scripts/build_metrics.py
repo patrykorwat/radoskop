@@ -498,11 +498,23 @@ def main():
         "default_kadencja": kadencje[-1]["id"] if kadencje else None,
     }
 
-    os.makedirs(os.path.dirname(out_file) or ".", exist_ok=True)
+    out_dir = os.path.dirname(out_file) or "."
+    os.makedirs(out_dir, exist_ok=True)
     with open(out_file, 'w', encoding='utf-8') as f:
         json.dump(dashboard, f, ensure_ascii=False, indent=2)
 
     print(f"\nSaved to: {out_file}")
+
+    # Zapisz też rozdzielone pliki kadencja-{id}.json. Front (SPA) oraz
+    # verify_city.py czytają per-kadencja właśnie te pliki, nie monolityczny
+    # data.json. Bez tego kroku stary kadencja-{id}.json zostawał na S3
+    # (chroniony przez PRESERVE_ORPHAN_GLOBS w deploy_main_s3.py), więc strona
+    # i freshness pokazywały nieaktualne dane mimo świeżego data.json.
+    for kdata in kadencje:
+        kpath = os.path.join(out_dir, f"kadencja-{kdata['id']}.json")
+        with open(kpath, 'w', encoding='utf-8') as f:
+            json.dump(kdata, f, ensure_ascii=False, indent=2)
+        print(f"Saved to: {kpath}")
 
 
 if __name__ == "__main__":
