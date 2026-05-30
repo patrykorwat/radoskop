@@ -5,13 +5,34 @@
   "site_url": "https://zabrze.radoskop.pl",
   "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Zabrze. Sprawdź frekwencję, głosowania i aktywność radnych.",
   "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Zabrze.",
-  "bip_url": "https://bip.um.zabrze.pl/",
+  "bip_url": "https://bip.miastozabrze.pl/",
   "bip_name": "BIP Zabrze",
   "esesja_url": null,
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "zabrze.radoskop.pl",
-  "clubs": {},
+  "clubs": {
+    "KO-Nowe Zabrze": {
+      "color": "#0284c7",
+      "bg": "rgba(14,165,233,0.12)",
+      "avatar_bg": "#0369a1"
+    },
+    "PiS": {
+      "color": "#7c3aed",
+      "bg": "rgba(168,85,247,0.12)",
+      "avatar_bg": "#6d28d9"
+    },
+    "Przyjazne Zabrze": {
+      "color": "#16a34a",
+      "bg": "rgba(34,197,94,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "Niezrzeszeni": {
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
   "kadencje": {
     "2024-2029": {
       "label": "IX kadencja (2024–2029)",
