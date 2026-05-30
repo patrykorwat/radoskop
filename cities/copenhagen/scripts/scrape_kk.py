@@ -740,16 +740,23 @@ def _ddmmyyyy_to_iso(s: str) -> str:
 
 
 def _kadencja_for_date(iso: str, config: dict) -> str:
-    """Mapuj datę posiedzenia na klucz kadencji z config['kadencje']."""
+    """Mapuj datę posiedzenia na klucz kadencji z config['kadencje'].
+
+    Zwraca "" gdy data jest poza wszystkimi zdefiniowanymi kadencjami. NIE
+    wpadamy fallbackiem do kadencja_active — indeks kk.dk ma posiedzenia BR od
+    2014, a Radoskop pokrywa tylko skonfigurowane terminy. Wcześniejszy fallback
+    wrzucał sesje sprzed 2022 do aktywnej kadencji (2026-2029) i scraper mielił
+    8 lat archiwum bez sensu.
+    """
     if not iso:
-        return config.get("kadencja_active", "")
+        return ""
     kadencje = config.get("kadencje") or {}
     for kid, meta in kadencje.items():
         start = meta.get("start") or ""
         end = meta.get("end") or "9999-12-31"
         if start <= iso <= end:
             return kid
-    return config.get("kadencja_active", "")
+    return ""
 
 
 def scrape_meeting(meeting_url: str, config: dict) -> tuple[list[dict], str]:
@@ -771,13 +778,79 @@ def scrape_meeting(meeting_url: str, config: dict) -> tuple[list[dict], str]:
     return votes, iso
 
 
-def scrape(out_dir: Path, config: dict, limit_meetings: int | None = None) -> Path:
+# Ile najnowszych posiedzeń re-scrapować mimo cache. Referat (protokół) bywa
+# uzupełniany kilka dni po posiedzeniu, więc świeże dni odświeżamy zawsze.
+REFRESH_RECENT = 3
+
+
+def _load_existing(out_dir: Path, config: dict) -> tuple[set[str], dict[str, list[dict]]]:
+    """Wczytaj już zescrapowane posiedzenia z poprzedniego runu.
+
+    Zwraca (done_isos, votes_by_iso). done_isos to daty posiedzeń które już
+    przerobiliśmy (też te z 0 głosowań). votes_by_iso pozwala reużyć rekordy
+    bez ponownego pobierania kk.dk.
+
+    Źródło: kadencja-*.json w out_dir. Fallback: deployed site (S3) gdy out_dir
+    pusty po świeżym clone — inaczej pierwszy run musiałby pobrać całą historię
+    (>2h) i poległby na timeout pipeline'u, nigdy nie bootstrapując cache.
+    """
+    payloads: list[dict] = []
+    for f in sorted(out_dir.glob("kadencja-*.json")):
+        try:
+            payloads.append(json.loads(f.read_text(encoding="utf-8")))
+        except (json.JSONDecodeError, OSError):
+            pass
+    if not payloads:
+        site = (config.get("site_url") or "").rstrip("/")
+        for kid in (config.get("kadencje") or {}):
+            if not site:
+                break
+            try:
+                payloads.append(json.loads(fetch_text(f"{site}/kadencja-{kid}.json")))
+                print(f"  [cache seed] pobrano kadencja-{kid}.json z {site}", file=sys.stderr)
+            except Exception:
+                pass
+
+    done: set[str] = set()
+    by_iso: dict[str, list[dict]] = {}
+    for p in payloads:
+        for iso in p.get("scraped_meetings", []) or []:
+            done.add(iso)
+        for v in p.get("votes", []) or []:
+            iso = v.get("session_date")
+            if iso:
+                by_iso.setdefault(iso, []).append(v)
+                done.add(iso)  # backward-compat gdy brak scraped_meetings
+    return done, by_iso
+
+
+def scrape(out_dir: Path, config: dict, limit_meetings: int | None = None,
+           incremental: bool = True, refresh_recent: int = REFRESH_RECENT) -> Path:
     """Pełny scrape: indeks -> posiedzenia -> punkty -> kadencja-{id}.json.
 
     Grupuje rekordy po kadencji (config.kadencje). Pisze osobny plik dla
     każdej kadencji + data.json z manifestem.
+
+    incremental=True (domyślnie): posiedzenia zescrapowane w poprzednim runie
+    są reużywane z dysku zamiast pobierane ponownie. Re-scrapujemy tylko nowe
+    posiedzenia + `refresh_recent` najnowszych (protokoły bywają uzupełniane).
+    Bez tego copenhagen pobierał całą historię BR co run (>2h) i wieszał NAS.
     """
     out_dir.mkdir(parents=True, exist_ok=True)
+
+    # Roster + profiles PIERWSZE, przed czymkolwiek związanym z posiedzeniami.
+    # Profile radnych zależą tylko od medlemsoversigt (faction-mode, brak głosów
+    # imiennych), więc piszemy profiles.json zanim ruszymy discover/scrape. Gdyby
+    # cokolwiek po stronie posiedzeń padło albo dostało timeout (proces ubity),
+    # profile i tak są zapisane. Wcześniej roster+profiles były na końcu i hang
+    # na pętli posiedzeń zostawiał miasto bez profili.
+    try:
+        roster = fetch_roster()
+        print(f"  roster: {len(roster)} medlemmer", file=sys.stderr)
+    except Exception as e:
+        print(f"  roster fetch padł: {e}", file=sys.stderr)
+        roster = []
+    _write_profiles(out_dir, config, roster)
 
     meetings = discover_meeting_urls()
     if limit_meetings:
@@ -785,11 +858,34 @@ def scrape(out_dir: Path, config: dict, limit_meetings: int | None = None) -> Pa
 
     print(f"[copenhagen] odkryto {len(meetings)} posiedzeń BR", file=sys.stderr)
 
+    done_isos, votes_by_iso = (set(), {})
+    if incremental:
+        done_isos, votes_by_iso = _load_existing(out_dir, config)
+        print(f"[copenhagen] cache: {len(done_isos)} posiedzeń znanych z poprzedniego runu", file=sys.stderr)
+
+    # Najnowsze N dat zawsze odświeżamy (protokół dopisywany po posiedzeniu).
+    all_isos = sorted({_ddmmyyyy_to_iso(dd) for _, dd in meetings if _ddmmyyyy_to_iso(dd)}, reverse=True)
+    refresh_isos = set(all_isos[:refresh_recent]) if incremental else set()
+
     by_kadencja: dict[str, list[dict]] = {}
     sessions_per_kad: dict[str, set[str]] = {}
+    reused = 0
+    skipped_scope = 0
     for url, ddmmyyyy in meetings:
         iso = _ddmmyyyy_to_iso(ddmmyyyy)
         kid = _kadencja_for_date(iso, config)
+        if not kid:
+            # Poza skonfigurowanymi kadencjami (indeks kk.dk sięga 2014).
+            # Pomijamy zanim pobierzemy cokolwiek — nie marnujemy requestów
+            # i nie zaśmiecamy aktywnej kadencji starymi sesjami.
+            skipped_scope += 1
+            continue
+        if incremental and iso and iso in done_isos and iso not in refresh_isos:
+            votes = votes_by_iso.get(iso, [])
+            by_kadencja.setdefault(kid, []).extend(votes)
+            sessions_per_kad.setdefault(kid, set()).add(iso)
+            reused += 1
+            continue
         try:
             votes, _ = scrape_meeting(url, config)
         except Exception as e:
@@ -800,6 +896,9 @@ def scrape(out_dir: Path, config: dict, limit_meetings: int | None = None) -> Pa
             sessions_per_kad.setdefault(kid, set()).add(iso)
         print(f"  {url}: {len(votes)} głosowań ({iso}, kadencja {kid})", file=sys.stderr)
 
+    print(f"[copenhagen] reużyto z cache: {reused}, pobrano świeżo: {len(meetings) - reused - skipped_scope}, "
+          f"pominięto poza kadencjami: {skipped_scope}", file=sys.stderr)
+
     written: list[Path] = []
     for kid, votes in by_kadencja.items():
         payload = {
@@ -808,6 +907,7 @@ def scrape(out_dir: Path, config: dict, limit_meetings: int | None = None) -> Pa
             "generated_by": "scrape_kk.py --scrape",
             "vote_mode": "faction",
             "total_sessions": len(sessions_per_kad.get(kid, set())),
+            "scraped_meetings": sorted(sessions_per_kad.get(kid, set())),
             "votes": votes,
         }
         out_file = out_dir / f"kadencja-{kid}.json"
@@ -815,16 +915,8 @@ def scrape(out_dir: Path, config: dict, limit_meetings: int | None = None) -> Pa
             json.dump(payload, f, ensure_ascii=False, indent=2)
         written.append(out_file)
 
-    # Roster aktualnej kadencji z medlemsoversigt (kk.dk). Faction-mode nie
-    # opiera profilu radnego na głosach imiennych, ale lista nazwisk + partii
-    # jest potrzebna do wyszukiwarki, Google News, OG, breadcrumbs itp.
-    try:
-        roster = fetch_roster()
-        print(f"  roster: {len(roster)} medlemmer", file=sys.stderr)
-    except Exception as e:
-        print(f"  roster fetch padł: {e}", file=sys.stderr)
-        roster = []
-
+    # roster pobrany wyżej (przed pętlą), profiles.json już zapisany. Tu tylko
+    # data.json z licznikami głosów/sesji per kadencja.
     _write_manifest(out_dir, config, by_kadencja, sessions_per_kad, roster=roster)
     return written[0] if written else out_dir / "data.json"
 
@@ -884,8 +976,16 @@ def _write_manifest(
         json.dumps(data_payload, ensure_ascii=False, indent=2), encoding="utf-8"
     )
 
-    # profiles.json: pełna lista radnych (włącznie z suppleantami) dla
-    # wyszukiwarki nazwisk i SEO.
+
+def _write_profiles(out_dir: Path, config: dict, roster: list[dict] | None = None) -> None:
+    """profiles.json: pełna lista radnych (z suppleantami) dla wyszukiwarki
+    nazwisk i SEO. Niezależne od scrapu posiedzeń — wołane przed pętlą, żeby
+    profile istniały nawet gdy scrape głosowań padnie/timeout.
+    """
+    out_dir.mkdir(parents=True, exist_ok=True)
+    now = datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    roster = roster or []
+    active_kid = config.get("kadencja_active", "")
     profiles_payload = {
         "scraped_at": now,
         "profiles": [
@@ -930,6 +1030,10 @@ def main() -> int:
                     help="scrape jednego punktu (debug, wypisuje rekord)")
     ap.add_argument("--limit", type=int, default=None,
                     help="ogranicz liczbę posiedzeń (debug)")
+    ap.add_argument("--full", action="store_true",
+                    help="wyłącz inkrementalność: re-scrape całej historii (wolne)")
+    ap.add_argument("--refresh-recent", type=int, default=REFRESH_RECENT,
+                    help=f"ile najnowszych posiedzeń odświeżać mimo cache (domyślnie {REFRESH_RECENT})")
     ap.add_argument("--out", default=str(CITY_DIR / "docs"),
                     help="katalog wyjściowy (domyślnie cities/copenhagen/docs/)")
     args = ap.parse_args()
@@ -939,7 +1043,8 @@ def main() -> int:
 
     if args.scrape:
         out_dir.mkdir(parents=True, exist_ok=True)
-        out_file = scrape(out_dir, config, limit_meetings=args.limit)
+        out_file = scrape(out_dir, config, limit_meetings=args.limit,
+                          incremental=not args.full, refresh_recent=args.refresh_recent)
         print(f"Zapisano: {out_file}")
         return 0
 

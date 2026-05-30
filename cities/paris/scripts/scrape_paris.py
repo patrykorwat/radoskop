@@ -168,6 +168,17 @@ def _build_profiles(scraped_at: str) -> dict:
             "name": name,
             "club": club,
             "kadencja": KADENCJA_ID,
+            "is_suppleant": False,
+            # Zagnieżdżone kadencje{} jak w copenhagen — showProfile w template
+            # czyta profile.kadencje[kid], bez tego strona profilu się wywala.
+            # Faction-mode: brak głosów imiennych per radny, brak metryk.
+            "kadencje": {
+                KADENCJA_ID: {
+                    "club": club,
+                    "komisje": [],
+                    "has_voting_data": False,
+                }
+            },
         })
     return {"scraped_at": scraped_at, "profiles": profiles, "total": len(profiles)}
 

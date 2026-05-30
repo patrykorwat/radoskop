@@ -784,6 +784,10 @@ def main():
         # Miasta bez radnych per osoba (głosowanie à main levée / per frakcja).
         # Strona główna prowadzi wtedy zakładką "Głosowania".
         "{{HAS_COUNCILORS}}": "false" if (_is_councilorless(config) and not config.get("has_named_votes")) else "true",
+        # Tryb listy radnych: miasta faction (Kopenhaga, Paryż) pokazują tab
+        # "Radni" jako listę z profiles.json (nazwisko/klub/komisje), bo tabela
+        # metryk (frekwencja/aktywność) nie ma sensu bez głosów imiennych.
+        "{{COUNCILOR_ROSTER_MODE}}": "true" if _is_councilorless(config) else "false",
         # Impressum / Anbieterkennzeichnung
         "{{IMPRESSUM_HTML}}": impressum_html,
         "{{IMPRESSUM_FOOTER_LINK}}": impressum_footer_link,
@@ -859,24 +863,19 @@ def main():
         # bo pokazuje frekwencję i aktywność mówczą.
         hide_css.append('[data-tab="votes"]{display:none!important}')
     if _is_councilorless(config):
-        # Miasta bez radnych per osoba (Paryż à main levée): brak rankingu,
-        # frekwencji, profili, sesji imiennych. Strona główna = "Głosowania".
-        # Ukrywamy taby radnych/sesji/komisji/interpelacji; flip aktywnej
-        # zakładki i widocznej sekcji na votes robimy niżej (na HTML).
+        # Miasta faction (Kopenhaga, Paryż): brak głosów imiennych per radny,
+        # więc tabela metryk (frekwencja/aktywność) nie ma sensu. ALE tab radnych
+        # ZOSTAJE — renderuje listę radnych z profiles.json (COUNCILOR_ROSTER_MODE
+        # w template robi roster zamiast tabeli). Chowamy tylko komisje/
+        # interpelacje (osobne featury), a sesje gdy brak imiennych głosowań.
         has_named = config.get("has_named_votes")
-        # Ranking ukryty zawsze (brak per-radny statystyk).
-        # Sessions i councillors odkrywamy gdy miasto ma profiles (has_named_votes).
-        always_hide = ["ranking", "komisje", "interpelacje"]
+        always_hide = ["komisje", "interpelacje"]
         if not has_named:
-            always_hide += ["sessions", "councillors"]
+            always_hide += ["sessions"]
         for t in always_hide:
             hide_css.append(f'[data-tab="{t}"]{{display:none!important}}')
-        # Statyczny stan początkowy (zanim JS przejmie): aktywny tab + widoczna
-        # sekcja = votes. Match po data-tab/id (apply_locale nie tłumaczy ich).
-        html = html.replace('class="tab active" data-tab="ranking"', 'class="tab" data-tab="ranking"')
-        html = html.replace('class="tab" data-tab="votes"', 'class="tab active" data-tab="votes"')
-        html = html.replace('<div id="tab-ranking" class="section">', '<div id="tab-ranking" class="section" style="display:none">')
-        html = html.replace('<div id="tab-votes" class="section" style="display:none">', '<div id="tab-votes" class="section">')
+        # Start na tabie radnych (lista). Tab "ranking" zostaje aktywny — bez
+        # flipu na votes, bo lista radnych jest teraz domyślną zakładką.
     if hide_css:
         injected = "<style>" + "".join(hide_css) + "</style>"
         # Wstrzykuje przed </head>. Jeśli z jakiegoś powodu nie ma

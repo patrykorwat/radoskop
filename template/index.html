@@ -614,7 +614,8 @@ footer a { color:var(--accent); text-decoration:none; }
     <div id="tab-ranking" class="section">
 
       <div class="filter-bar" id="club-filter"></div>
-      <div style="overflow-x:auto">
+      <div id="councilor-roster" style="display:none"></div>
+      <div id="councilor-table-wrap" style="overflow-x:auto">
         <table id="councilor-table">
           <thead>
             <tr>
@@ -796,7 +797,11 @@ const HAS_SPEAKER_ACTIVITY = {{HAS_SPEAKER_ACTIVITY}};
 // pozycja bez listy nazwisk). Strona główna prowadzi wtedy zakładką
 // "Głosowania", a ranking radnych jest ukryty (generate_site dokłada CSS).
 const HAS_COUNCILORS = {{HAS_COUNCILORS}};
-const DEFAULT_TAB = HAS_COUNCILORS ? 'ranking' : 'votes';
+// Miasta faction (copenhagen, paris): tab "Radni" pokazuje listę radnych z
+// profiles.json (nazwisko, klub, komisje) zamiast tabeli metryk, których tryb
+// faction nie ma (brak frekwencji/aktywności per radny).
+const COUNCILOR_ROSTER_MODE = {{COUNCILOR_ROSTER_MODE}};
+const DEFAULT_TAB = (HAS_COUNCILORS || COUNCILOR_ROSTER_MODE) ? 'ranking' : 'votes';
 
 let RAW = null;
 let PROFILES = null;
@@ -1434,8 +1439,23 @@ function render() {
   bindSort();
 }
 
+// Lista radnych aktywnej kadencji z PROFILES (tryb faction). Zwraca
+// [{name, slug, club, komisje}] posortowane klub→nazwisko.
+function rosterFromProfiles() {
+  if (!PROFILES || !PROFILES.profiles) return [];
+  const out = [];
+  PROFILES.profiles.forEach(p => {
+    if (p.is_suppleant) return;
+    const kd = (p.kadencje && (p.kadencje[currentKid] || p.kadencje[p.kadencja])) || {};
+    out.push({ name: p.name, slug: p.slug, club: p.club || kd.club || '', komisje: kd.komisje || [] });
+  });
+  out.sort((a, b) => (a.club || '').localeCompare(b.club || '', 'pl') || a.name.localeCompare(b.name, 'pl'));
+  return out;
+}
+
 function renderClubFilter() {
-  const clubs = [...new Set((K.councilors || []).map(c=>c.club))].filter(c => c && c !== '?').sort();
+  const source = COUNCILOR_ROSTER_MODE ? rosterFromProfiles() : (K.councilors || []);
+  const clubs = [...new Set(source.map(c=>c.club))].filter(c => c && c !== '?').sort();
   const bar = document.getElementById('club-filter');
   bar.innerHTML = `<button class="filter-btn active" data-club="all">Wszyscy</button>` +
     clubs.map(c => `<button class="filter-btn" data-club="${c}">${c}</button>`).join('');
@@ -1455,7 +1475,32 @@ function initials(name) {
   return name.split(' ').map(w => w[0]).join('').substring(0,2);
 }
 
+function renderCouncilorRoster() {
+  const wrap = document.getElementById('councilor-table-wrap');
+  const roster = document.getElementById('councilor-roster');
+  if (wrap) wrap.style.display = 'none';
+  if (!roster) return;
+  roster.style.display = '';
+  let data = rosterFromProfiles();
+  if (clubFilter !== 'all') data = data.filter(c => c.club === clubFilter);
+  if (!data.length) {
+    roster.innerHTML = '<p style="color:var(--muted);padding:20px 0">Lista radnych jeszcze niedostępna dla tego miasta.</p>';
+    return;
+  }
+  const rows = data.map(c => {
+    const komisje = (c.komisje || []).length
+      ? `<div style="margin-top:6px;display:flex;gap:4px;flex-wrap:wrap">${c.komisje.map(k => `<span class="tag" style="font-size:0.72rem;padding:2px 7px">${k}</span>`).join('')}</div>`
+      : '';
+    return `<div style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-top:0.5px solid var(--border)">
+      <span class="club ${clubClass(c.club)}" style="margin-top:1px">${(c.club && c.club !== '?') ? c.club : 'Niezrzeszeni'}</span>
+      <div style="min-width:0">${profileLink(c.name)}${komisje}</div>
+    </div>`;
+  }).join('');
+  roster.innerHTML = `<p style="color:var(--muted);font-size:0.9rem;margin-bottom:4px">${data.length} ${data.length === 1 ? 'radny/a' : 'radnych'}</p>${rows}`;
+}
+
 function renderCouncilorTable() {
+  if (COUNCILOR_ROSTER_MODE) { renderCouncilorRoster(); return; }
   const tbody = document.querySelector('#councilor-table tbody');
   let data = K.councilors || [];
   if (clubFilter !== 'all') data = data.filter(c => c.club === clubFilter);
