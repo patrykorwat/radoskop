@@ -84,40 +84,45 @@ MONTHS_PL = {
 }
 
 # Skład Rady Miasta Olsztyna IX kadencji (25 radnych).
-# Source: PKW wybory samorządowe 2024.
-# Format: "Imię Nazwisko" → kod klubu. PDF z BIP może podawać też w formie
-# "NAZWISKO Imię" (caps), normalizujemy w build_name_lookup().
+# WAŻNE: kod to AKTUALNY KLUB RADNYCH wg oficjalnej listy BIP
+# (bip.olsztyn.eu/20/radni-2024-2029.html), NIE komitet wyborczy ze startu.
+# Przypisanie musi pozostać aktualne — przy zmianach mandatów/klubów aktualizuj
+# wg tej strony. Format: "Imię Nazwisko" → kod klubu. PDF wyników podaje
+# "Nazwisko Imię [drugie]", dopasowanie po nazwisku w resolve_canonical_name().
+# Stan zweryfikowany 2026-05-30 (BIP wersja 27-11-2025 + PDF XXIV sesji):
+#   - KO rozszerzone o Antosz i Grzymowicz (klub KO, choć start z innych KWW)
+#     oraz o Pancera (przejął mandat po Rembiszewskiej-Piątek → wiceprezydent)
+#     i Fabianowicza (mandat w trakcie kadencji).
+#   - Arczak, Babalski, Małkowski, Możdżonek są niezrzeszeni (bez klubu w BIP).
 COUNCILORS: dict[str, str] = {
-    # KO — Koalicja Obywatelska
-    "Marcin Galibarczyk": "KO",
-    "Katarzyna Faliszewska": "KO",
-    "Ewa Zakrzewska": "KO",
-    "Joanna Misiewicz": "KO",
+    # KO — Klub Radnych Koalicji Obywatelskiej (14)
     "Łukasz Łukaszewski": "KO",
-    "Sylwia Rembiszewska-Piątek": "KO",
+    "Nelly Antosz": "KO",
+    "Ewa Zakrzewska": "KO",
+    "Halina Ciunel": "KO",
+    "Marek Fabianowicz": "KO",
+    "Katarzyna Faliszewska": "KO",
+    "Marcin Galibarczyk": "KO",
+    "Tomasz Głażewski": "KO",
+    "Piotr Grzymowicz": "KO",
     "Marta Kamińska": "KO",
     "Paweł Klonowski": "KO",
-    "Halina Ciunel": "KO",
-    "Tomasz Głażewski": "KO",
+    "Joanna Misiewicz": "KO",
+    "Piotr Pancer": "KO",
     "Wioletta Śląska-Zyśk": "KO",
-    # PiS — Prawo i Sprawiedliwość
-    "Przemysław Bałdyga": "PiS",
-    "Adam Andrasz": "PiS",
+    # PiS — Klub Radnych Prawa i Sprawiedliwości (7)
     "Grzegorz Smoliński": "PiS",
+    "Adam Andrasz": "PiS",
+    "Przemysław Bałdyga": "PiS",
+    "Krzysztof Guzek": "PiS",
     "Edyta Markowicz": "PiS",
-    "Jarosław Babalski": "PiS",
     "Radosław Nojman": "PiS",
     "Zdzisława Tołwińska": "PiS",
-    "Krzysztof Guzek": "PiS",
-    # KWW Piotra Grzymowicza
-    "Piotr Grzymowicz": "KWW Grzymowicza",
-    # KWW Wspólny Olsztyn
-    "Mirosław Arczak": "Wspólny Olsztyn",
-    # KWW Czesława Jerzego Małkowskiego
-    "Nelly Antosz": "KWW Małkowskiego",
-    "Czesław Małkowski": "KWW Małkowskiego",
-    # KWW M.Możdżonka - Lepszy Olsztyn
-    "Marcin Możdżonek": "Lepszy Olsztyn",
+    # Niezrzeszeni — bez przynależności klubowej wg BIP (4)
+    "Mirosław Arczak": "Niezrzeszeni",
+    "Jarosław Babalski": "Niezrzeszeni",
+    "Czesław Małkowski": "Niezrzeszeni",
+    "Marcin Możdżonek": "Niezrzeszeni",
 }
 
 
@@ -210,6 +215,8 @@ def build_name_lookup() -> dict[str, str]:
     Pierwszy klucz łapie 'Imię Nazwisko' i 'Nazwisko Imię' w dowolnej kolejności.
     Drugi łapie 'Imię Drugie Nazwisko' (PDFy często mają middle names) gdy
     full key zawiódłby."""
+    global _SURNAME_LOOKUP
+    _SURNAME_LOOKUP = _build_surname_lookup()
     out = {}
     for canonical_name in COUNCILORS:
         out[_normalize_name_for_match(canonical_name)] = canonical_name
@@ -220,13 +227,41 @@ def build_name_lookup() -> dict[str, str]:
 
 
 _NAME_LOOKUP: dict[str, str] = {}
+_SURNAME_LOOKUP: dict[str, str] = {}
+
+
+def _build_surname_lookup() -> dict[str, str]:
+    """Mapuje samo nazwisko (bez diakrytyków, lower) → kanoniczne imię i nazwisko.
+
+    PDF eSesja podaje radnych jako "Nazwisko Imię [drugie imię]", a COUNCILORS
+    trzyma "Imię Nazwisko". Nazwiska w radzie Olsztyna są unikalne, więc
+    dopasowanie po samym nazwisku jest bezpieczne i odporne na kolejność oraz
+    drugie imiona.
+    """
+    out: dict[str, str] = {}
+    for canonical in COUNCILORS:
+        toks = [t for t in re.split(r"\s+", canonical.strip()) if t]
+        if not toks:
+            continue
+        out[_strip_diacritics(toks[-1]).lower()] = canonical
+    return out
 
 
 def resolve_canonical_name(name: str) -> str | None:
     direct = _NAME_LOOKUP.get(_normalize_name_for_match(name))
     if direct:
         return direct
-    return _NAME_LOOKUP.get(_surname_initial_key(name))
+    via_initial = _NAME_LOOKUP.get(_surname_initial_key(name))
+    if via_initial:
+        return via_initial
+    # Fallback po samym nazwisku — radzi sobie z "Nazwisko Imię Drugie"
+    # (kolejność eSesja) gdy pełny klucz zawiódł przez drugie imię.
+    toks = [t for t in re.split(r"\s+", (name or "").strip()) if t]
+    for cand in ({toks[0], toks[-1]} if toks else set()):
+        hit = _SURNAME_LOOKUP.get(_strip_diacritics(cand).lower())
+        if hit:
+            return hit
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -330,30 +365,89 @@ def fetch_session_list(http_session: requests.Session, debug: bool = False, max_
 # Session detail: znajdź "Wykaz głosowań" PDF
 # ---------------------------------------------------------------------------
 
+def _strip_diacritics(s: str) -> str:
+    return (s or "").translate(str.maketrans("ąćęłńóśźżĄĆĘŁŃÓŚŹŻ", "acelnoszzacelnoszz"))
+
+
+def _is_voting_attachment_title(text: str) -> bool:
+    """Czy tytuł załącznika to imienny wykaz/wyniki głosowań.
+
+    Tytuły zmieniają się między sesjami BIP Olsztyna, m.in.:
+      - "Wyniki głosowań z XXIV sesji RM"      (XXIV, marzec 2026)
+      - "Wyniki głosowania z XXIII sesji RM"   (XXIII, luty 2026)
+      - "Wykaz głosowań" / "Wykaz imienny ..."  (starsze sesje)
+      - "glosowanie z XXII/26 Sesji Rady Miasta" (XXII, styczeń 2026 — bez "ł",
+                                                   bez słowa "wyniki"/"wykaz")
+    Dlatego normalizujemy diakrytyki i dopasowujemy do rdzenia "glosowa", a
+    dodatkowo akceptujemy formy "wyniki/wykaz głosowań". Wykluczamy porządek
+    obrad i protokół, które nie zawierają rdzenia "glosowa".
+    """
+    norm = _strip_diacritics((text or "").lower())
+    if "glosowa" not in norm:
+        return False
+    # "glosowa" łapie: glosowanie, glosowania, glosowan, wyniki/wykaz glosowan.
+    # To wystarczające — porzadek obrad / protokol nie zawierają tego rdzenia.
+    return True
+
+
+_PAGE_RE = re.compile(r"[?&]page=(\d+)\b")
+
+
+def _attachments_soup(http_session: requests.Session, detail_url: str, debug: bool = False) -> "BeautifulSoup":
+    """Zwraca soup strony z sekcją "Załączniki".
+
+    Treść sesji jest paginowana (`?page=N`), a blok "Załączniki" renderuje się
+    dopiero na OSTATNIEJ stronie (potwierdzone 2026-05-30: XXIV → page=6,
+    XXV → page=4; na stronie bazowej linków do PDF nie ma). Dlatego czytamy
+    stronę bazową, ustalamy maksymalny numer paginacji i — jeśli > 1 — pobieramy
+    ostatnią stronę. fetch_html cache'uje, więc kolejne wywołania są tanie.
+    """
+    base_html = fetch_html(http_session, detail_url, use_cache=True, debug=debug)
+    base_soup = BeautifulSoup(base_html, "html.parser")
+    pages = [int(m.group(1)) for a in base_soup.find_all("a", href=True)
+             for m in [_PAGE_RE.search(a["href"])] if m]
+    last = max(pages) if pages else 1
+    if last <= 1:
+        return base_soup
+    sep = "&" if "?" in detail_url else "?"
+    last_url = f"{detail_url}{sep}page={last}"
+    try:
+        last_html = fetch_html(http_session, last_url, use_cache=True, debug=debug)
+        return BeautifulSoup(last_html, "html.parser")
+    except Exception as exc:
+        if debug:
+            print(f"      [warn] nie pobrałem ostatniej strony {last_url}: {exc}")
+        return base_soup
+
+
 def find_voting_pdf_url(http_session: requests.Session, detail_url: str, debug: bool = False) -> str | None:
-    """Strona detalu sesji ma sekcję Załączniki. URL załącznika może mieć format
-    `/attachment/informacja/{id}/{hash}.html` (BIP olsztyn) albo bezpośredni `.pdf`."""
-    html = fetch_html(http_session, detail_url, use_cache=True, debug=debug)
-    soup = BeautifulSoup(html, "html.parser")
+    """Znajduje URL załącznika z imiennymi głosowaniami w sekcji Załączniki.
+
+    URL załącznika ma format `/attachment/informacja/{id}/{hash}.html`.
+    UWAGA: attachment .html NIE jest stroną-wrapperem — serwer pod tym URL-em
+    zwraca bajty PDF z `Content-Disposition: attachment` (potwierdzone
+    2026-05-30 w przeglądarce). `fetch_pdf` dostaje więc realny PDF mimo
+    rozszerzenia .html w linku.
+    """
+    soup = _attachments_soup(http_session, detail_url, debug=debug)
     for a in soup.find_all("a", href=True):
         href = a["href"]
-        text = a.get_text(" ", strip=True).lower()
-        if not (("wykaz" in text or "wyniki" in text) and "głos" in text):
+        text = a.get_text(" ", strip=True)
+        if not _is_voting_attachment_title(text):
             continue
         # Akceptujemy URLs do attachments (HTML wrapper) plus bezpośrednie PDF
         if "/attachment/" in href or href.lower().endswith(".pdf"):
             return href if href.startswith("http") else BIP_BASE + href
     if debug:
-        print(f"      brak 'Wykaz głosowań' w {detail_url}")
+        print(f"      brak załącznika z głosowaniami w {detail_url}")
     return None
 
 
 def find_agenda_url(http_session: requests.Session, detail_url: str, debug: bool = False) -> str | None:
     """Link do "Porządek obrad" w sekcji Załączniki sesji. Używane dla sesji
-    bez opublikowanego "Wykazu głosowań" — pokazujemy chociaż harmonogram.
-    HTML detalu jest już w cache po find_voting_pdf_url, więc bez nowego GET."""
-    html = fetch_html(http_session, detail_url, use_cache=True, debug=debug)
-    soup = BeautifulSoup(html, "html.parser")
+    bez opublikowanego wykazu głosowań — pokazujemy chociaż harmonogram.
+    Korzysta z tego samego (cache'owanego) soup ostatniej strony."""
+    soup = _attachments_soup(http_session, detail_url, debug=debug)
     for a in soup.find_all("a", href=True):
         href = a["href"]
         text = a.get_text(" ", strip=True).lower()
@@ -387,6 +481,85 @@ def _classify_vote_token(token: str) -> str | None:
     return VOTE_RESULT_TOKENS.get(t)
 
 
+# Format eSesja/MWi ("Wyniki głosowań z N sesji RM"): każde głosowanie to blok
+# zaczynający się linią "Głosowanie", potem "N. <temat>", "Typ głosowania ...",
+# liczniki, "Uprawnieni do głosowania" i tabela imienna w dwóch kolumnach po
+# dwóch radnych w wierszu. Nazwiska w kolejności "Nazwisko Imię [drugie]".
+ESESJA_TOKEN_MAP = {
+    "ZA": "za",
+    "PRZECIW": "przeciw",
+    "WSTRZYMUJĘ SIĘ": "wstrzymal_sie",
+    "WSTRZYMAŁ SIĘ": "wstrzymal_sie",
+    "WSTRZYMAŁA SIĘ": "wstrzymal_sie",
+    "NIEOBECNY": "nieobecni",
+    "NIEOBECNA": "nieobecni",
+    "OBECNY": "brak_glosu",   # "Obecni niegłosujący" — obecny, ale nie głosował
+    "OBECNA": "brak_glosu",
+}
+_ESESJA_TOKENS_RE = r"ZA|PRZECIW|WSTRZYMUJĘ SIĘ|WSTRZYMAŁ[AO]? SIĘ|NIEOBECNA|NIEOBECNY|OBECNA|OBECNY"
+# Wiersz: "12. Nazwisko Imię TOKEN" — kończy się przed kolejnym "N." lub na końcu
+# linii (re.MULTILINE, żeby $ łapał ostatniego pojedynczego radnego w kolumnie).
+_ESESJA_ROW_RE = re.compile(
+    r"(\d{1,2})\.\s+(.+?)\s+(" + _ESESJA_TOKENS_RE + r")(?=\s+\d{1,2}\.|\s*$)",
+    re.MULTILINE,
+)
+_ESESJA_BLOCK_SPLIT_RE = re.compile(r"(?m)^Głosowanie\s*$")
+_ESESJA_COUNT_LABELS = [
+    ("za", r"Głosy za"),
+    ("przeciw", r"Głosy przeciw"),
+    ("wstrzymal_sie", r"Głosy wstrzymujące się"),
+    ("brak_glosu", r"Obecni niegłosujący"),
+    ("nieobecni", r"Liczba nieobecnych"),
+]
+
+
+def _parse_esesja_pdf(full_text: str, session: SessionMeta, debug: bool = False) -> list[dict]:
+    votes: list[dict] = []
+    blocks = _ESESJA_BLOCK_SPLIT_RE.split(full_text)
+    for block in blocks[1:]:  # blocks[0] to preambuła przed pierwszym "Głosowanie"
+        if "Uprawnieni do głosowania" not in block:
+            continue
+        # Numer głosowania = kolejny indeks w dokumencie. Wiodące "N." w temacie
+        # to numer PUNKTU porządku obrad, nie głosowania — kilka głosowań może
+        # dotyczyć tego samego punktu (poprawki), więc nie nadaje się na id.
+        vote_num = len(votes) + 1
+        mtopic = re.match(r"\s*(?:\d+\.\s*)?(.+?)\s*Typ głosowania", block, re.S)
+        topic = re.sub(r"\s+", " ", mtopic.group(1)).strip(" .„”\"") if mtopic else ""
+
+        counts = {"za": 0, "przeciw": 0, "wstrzymal_sie": 0, "brak_glosu": 0, "nieobecni": 0}
+        for key, label in _ESESJA_COUNT_LABELS:
+            m = re.search(label + r"\s+(\d+)", block)
+            if m:
+                counts[key] = int(m.group(1))
+
+        named = {"za": [], "przeciw": [], "wstrzymal_sie": [], "brak_glosu": [], "nieobecni": []}
+        section = block.split("Uprawnieni do głosowania", 1)[1]
+        unmatched: list[str] = []
+        for _lp, raw_name, token in _ESESJA_ROW_RE.findall(section):
+            key = ESESJA_TOKEN_MAP.get(token.strip().upper())
+            if not key:
+                continue
+            canonical = resolve_canonical_name(raw_name.strip())
+            if canonical:
+                named[key].append(canonical)
+            else:
+                unmatched.append(raw_name.strip())
+        if unmatched and debug:
+            print(f"      [warn] głos {vote_num}: nierozpoznani radni: {unmatched}")
+
+        # Session number w vote_id zapobiega kolizji dwóch sesji tego samego dnia.
+        num_part = f"_{session.number}" if getattr(session, "number", "") else ""
+        votes.append({
+            "id": f"{session.date}{num_part}_{vote_num:03d}",
+            "session_number": session.number,
+            "session_date": session.date,
+            "topic": topic[:300] if topic else f"Głosowanie nr {vote_num}",
+            "counts": counts,
+            "named_votes": named,
+        })
+    return votes
+
+
 def parse_voting_pdf(pdf_path: Path, session: SessionMeta, debug: bool = False) -> list[dict]:
     votes: list[dict] = []
     try:
@@ -400,15 +573,19 @@ def parse_voting_pdf(pdf_path: Path, session: SessionMeta, debug: bool = False) 
                 preview = full_text[:600].replace("\n", " | ")
                 print(f"      preview: {preview}")
 
-            vote_idx = 0
-            blocks = _split_into_vote_blocks(full_text)
-            for block in blocks:
-                vote_idx += 1
-                parsed = _parse_vote_block(block, session, vote_idx)
-                if parsed:
-                    votes.append(parsed)
+            # Główna ścieżka: format eSesja/MWi (aktualny w BIP Olsztyn 2026).
+            votes = _parse_esesja_pdf(full_text, session, debug=debug)
 
+            # Fallback: starszy generyczny parser bloków "GŁOSOWANIE nr N".
             if not votes:
+                vote_idx = 0
+                for block in _split_into_vote_blocks(full_text):
+                    vote_idx += 1
+                    parsed = _parse_vote_block(block, session, vote_idx)
+                    if parsed:
+                        votes.append(parsed)
+            if not votes:
+                vote_idx = 0
                 for page in pdf.pages:
                     for table in page.extract_tables() or []:
                         parsed_table = _parse_vote_table(table, session, vote_idx + 1)
@@ -642,9 +819,12 @@ def build_outputs(sessions: list[SessionMeta], votes: list[dict],
                 if key in ("za", "przeciw", "wstrzymal_sie", "brak_glosu"):
                     attendees.update(names)
 
-        # BIP Olsztyna publikuje "Wykaz głosowań" PDF z opóźnieniem (realnie
-        # nawet ~9 miesięcy). Sesje bez opublikowanych wyników dołączamy z flagą
-        # results_pending zamiast je pomijać — pokazujemy datę i porządek obrad.
+        # BIP Olsztyna publikuje imienne wyniki głosowań szybko — w ciągu kilku
+        # dni po sesji (2026-05-30: XXII–XXV publikowane 2–5 dni po terminie,
+        # tytuł zmienny: "Wyniki głosowań/głosowania z N sesji RM", starsze
+        # "glosowanie z N/RR Sesji"). Najświeższa sesja może jeszcze nie mieć
+        # opublikowanego wykazu — wtedy dołączamy ją z flagą results_pending
+        # zamiast pomijać, pokazując datę i porządek obrad.
         # Flaga mówi frontendowi żeby NIE liczył fałszywych "24 nieobecnych"
         # (brak attendees != wszyscy nieobecni). Po publikacji PDF następny
         # pipeline run wypełni głosowania i flaga zniknie.

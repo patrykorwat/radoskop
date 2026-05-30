@@ -26,6 +26,7 @@ PROTOKOLY_DIR.mkdir(exist_ok=True)
 # BIP listing pages for session protocols by year
 BIP_LISTING_PAGES = {
     # IX kadencja (2024-2029)
+    2026: "https://bip.gdansk.pl/rada-miasta-gdanska/Protokoly-z-sesji-z-2026-r-audio-wideo,a,304531",
     2025: "https://bip.gdansk.pl/rada-miasta-gdanska/Protokoly-z-sesji-z-2025-r-audio-wideo,a,279560",
     2024: "https://bip.gdansk.pl/rada-miasta-gdanska/Protokoly-z-sesji-z-2024-r-audio-wideo,a,257107",
     # VIII kadencja (2018-2024)
@@ -144,6 +145,8 @@ KNOWN_URLS = {
     "XX/2025": "https://download.cloudgdansk.pl/gdansk-pl/d/202601267660/protokol-xx-sesji-rmg.pdf",
     "XXI/2025": "https://download.cloudgdansk.pl/gdansk-pl/d/202601268438/protokol-z-xxi-sesji-rmg.pdf",
     "XXII/2025": "https://download.cloudgdansk.pl/gdansk-pl/d/202602269547/protokol-z-xxii-sesji-rmg.pdf",
+    "XXIII/2026": "https://download.cloudgdansk.pl/gdansk-pl/d/202604272884/protokol-xxiii-sesji-rmg.pdf",
+    "XXIV/2026": "https://download.cloudgdansk.pl/gdansk-pl/d/202604272885/protokol-xxiv-sesji-rmg.pdf",
 }
 
 

@@ -11,25 +11,20 @@
   "author": "Patryk Orwat",
   "cname": "bydgoszcz.radoskop.pl",
   "clubs": {
-    "KO": {
+    "KO i Lewica": {
       "color": "#0284c7",
       "bg": "rgba(14,165,233,0.12)",
       "avatar_bg": "#0369a1"
     },
-    "PiS": {
+    "Bydgoska Prawica": {
       "color": "#7c3aed",
       "bg": "rgba(168,85,247,0.12)",
       "avatar_bg": "#6d28d9"
     },
-    "Trzecia Droga": {
-      "color": "#dc2626",
-      "bg": "rgba(220,38,38,0.12)",
-      "avatar_bg": "#b91c1c"
-    },
-    "Lewica": {
-      "color": "#ea580c",
-      "bg": "rgba(234,88,12,0.12)",
-      "avatar_bg": "#c2410c"
+    "Niezrzeszeni": {
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
     }
   },
   "kadencje": {

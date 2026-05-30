@@ -54,6 +54,13 @@ except ImportError:
 # ---------------------------------------------------------------------------
 
 BIP_BASE = "https://bip.um.bydgoszcz.pl/"
+# Strona nadrzędna kategorii — linkuje do osobnych artykułów per ROK
+# ("...imienne-wykazy-glosowan-radnych-w-roku-{YYYY}-kadencja-{KAD}"). BIP
+# tworzy nowy artykuł co roku (2024→5811, 2025→7219, 2026→9839, ...), więc nie
+# da się zaszyć jednego URL — odkrywamy roczniki dynamicznie.
+VOTING_CATEGORY_URL = "https://bip.um.bydgoszcz.pl/artykuly/1211/imienne-wykazy-glosowan-radnych"
+KADENCJA_SLUG = "2024-2029"
+# Zachowane dla zgodności wstecznej / fallbacku, gdyby strona kategorii padła.
 VOTING_LIST_URL = "https://bip.um.bydgoszcz.pl/artykul/1211/5811/imienne-wykazy-glosowan-radnych-w-roku-2024-kadencja-2024-2029"
 
 KADENCJE = {
@@ -76,40 +83,51 @@ SESSION_DATES = {
     # To be filled based on BIP data
 }
 
-# Councillor names and clubs — Rada Miasta Bydgoszczy IX kadencja (2024-2029)
-# Data source: bip.um.bydgoszcz.pl and election results 2024
+# Skład Rady Miasta Bydgoszczy IX kadencji (2024-2029) — 28 mandatów.
+# WAŻNE: kod to AKTUALNY KLUB RADNYCH wg oficjalnej listy BIP
+# (bip.um.bydgoszcz.pl/artykul/1473/5809/kadencja-ix-2024-2029), NIE komitet
+# wyborczy. Przypisanie musi pozostać aktualne — aktualizuj wg tej strony przy
+# zmianach mandatów/klubów. Kluby: "KO i Lewica", "Bydgoska Prawica",
+# "Niezrzeszeni" (radni z "Klub radnych: -" lub "Niezrzeszony" w BIP).
+# Stan zweryfikowany 2026-05-30 (BIP akt. 20.01.2026 + PDF XXXI sesji):
+#   - Anna Mackiewicz: mandat wygasł 31.07.2024 (została wiceprezydentem);
+#     zachowana dla atrybucji głosów z 2024, w jej miejsce Aurelia Ratajczak.
+#   - Katarzyna Zaczek (Bydgoska Prawica) — mandat w trakcie kadencji.
+#   - Czerska-Thomas, Ginther, Hoppe, Dzakanowski są niezrzeszeni wg BIP.
 COUNCILORS = {
-    # KO/Lewica coalition (15 mandates)
-    "Monika Matowska": "KO",
-    "Lech Zagłoba-Zygler": "KO",
-    "Anna Mackiewicz": "KO",
-    "Janusz Czwojda": "KO",
-    "Kazimierz Drozd": "KO",
-    "Maciej Świątkowski": "KO",
-    "Zdzisław Tylicki": "KO",
-    "Elżbieta Rusielewicz": "KO",
-    "Mateusz Zwolak": "KO",
-    "Robert Kufel": "KO",
-    "Jakub Mikołajczak": "KO",
-    "Jan Szopiński": "KO",
-    "Marek Jeleniewski": "KO",
-    "Izabela Nowicka": "KO",
-    "Maria Gałęska": "KO",
-    # Bydgoska Prawica/PiS coalition (10 mandates)
-    "Paweł Bokiej": "PiS",
-    "Bogdan Dzakanowski": "PiS",
-    "Szymon Róg": "PiS",
-    "Grażyna Szabelska": "PiS",
-    "Wojciech Bielawa": "PiS",
-    "Piotr Walczak": "PiS",
-    "Paweł Sieg": "PiS",
-    "Michał Krzemkowski": "PiS",
-    "Jędrzej Gralik": "PiS",
-    "Katarzyna Siembida": "PiS",
-    # Trzecia Droga (3 mandates)
-    "Radosław Ginther": "Trzecia Droga",
-    "Joanna Czerska-Thomas": "Trzecia Droga",
-    "Tomasz Hoppe": "Trzecia Droga",
+    # Klub radnych Koalicja Obywatelska i Lewica (15)
+    "Monika Matowska": "KO i Lewica",
+    "Elżbieta Rusielewicz": "KO i Lewica",
+    "Kazimierz Drozd": "KO i Lewica",
+    "Lech Zagłoba-Zygler": "KO i Lewica",
+    "Janusz Czwojda": "KO i Lewica",
+    "Maria Gałęska": "KO i Lewica",
+    "Marek Jeleniewski": "KO i Lewica",
+    "Robert Kufel": "KO i Lewica",
+    "Jakub Mikołajczak": "KO i Lewica",
+    "Izabela Nowicka": "KO i Lewica",
+    "Aurelia Ratajczak": "KO i Lewica",
+    "Jan Szopiński": "KO i Lewica",
+    "Maciej Świątkowski": "KO i Lewica",
+    "Zdzisław Tylicki": "KO i Lewica",
+    "Mateusz Zwolak": "KO i Lewica",
+    # Była radna (mandat wygasł 31.07.2024) — dla atrybucji głosów z 2024
+    "Anna Mackiewicz": "KO i Lewica",
+    # Klub radnych Bydgoska Prawica (9)
+    "Wojciech Bielawa": "Bydgoska Prawica",
+    "Paweł Bokiej": "Bydgoska Prawica",
+    "Jędrzej Gralik": "Bydgoska Prawica",
+    "Michał Krzemkowski": "Bydgoska Prawica",
+    "Szymon Róg": "Bydgoska Prawica",
+    "Paweł Sieg": "Bydgoska Prawica",
+    "Grażyna Szabelska": "Bydgoska Prawica",
+    "Piotr Walczak": "Bydgoska Prawica",
+    "Katarzyna Zaczek": "Bydgoska Prawica",
+    # Niezrzeszeni — brak klubu wg BIP (4)
+    "Joanna Czerska-Thomas": "Niezrzeszeni",
+    "Radosław Ginther": "Niezrzeszeni",
+    "Tomasz Hoppe": "Niezrzeszeni",
+    "Bogdan Dzakanowski": "Niezrzeszeni",
 }
 
 MONTHS_PL = {
@@ -321,30 +339,67 @@ def roman_to_int(s: str) -> int | None:
 # Step 1: Scrape voting list
 # ---------------------------------------------------------------------------
 
-def scrape_voting_list() -> list[dict]:
-    """Pobiera listę PDF-ów z imiennymi wykazami głosowań."""
-    print(f"  Pobieram listę głosowań: {VOTING_LIST_URL}")
+def discover_year_pages() -> list[str]:
+    """Ze strony kategorii zbiera URL-e artykułów rocznych dla danej kadencji.
 
+    Każdy rok to osobny artykuł "...w-roku-{YYYY}-kadencja-{KAD}". Filtrujemy po
+    slugu kadencji, żeby nie zaciągnąć starej kadencji 2018-2024.
+    """
     try:
-        soup = fetch(VOTING_LIST_URL)
+        soup = fetch(VOTING_CATEGORY_URL)
     except Exception as e:
-        print(f"  BŁĄD: Nie udało się pobrać listy głosowań: {e}")
+        print(f"  BŁĄD: nie pobrałem strony kategorii: {e}")
         return []
+    pages = []
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        if "imienne-wykazy-glosowan-radnych-w-roku" in href and KADENCJA_SLUG in href:
+            pages.append(urljoin(BIP_BASE, href) if not href.startswith("http") else href)
+    # Dedup zachowując kolejność (najnowszy rok pierwszy na stronie BIP).
+    seen, out = set(), []
+    for p in pages:
+        if p not in seen:
+            seen.add(p); out.append(p)
+    return out
 
+
+def _scrape_pdf_links_from_page(page_url: str) -> list[dict]:
+    """Z jednej strony rocznej zbiera linki do PDF-ów z wynikami."""
+    try:
+        soup = fetch(page_url)
+    except Exception as e:
+        print(f"    BŁĄD strony {page_url}: {e}")
+        return []
     pdf_links = []
     for a in soup.find_all("a", href=True):
         href = a["href"]
         text = a.get_text(strip=True)
-
-        # Look for links to PDFs or attachment downloads
-        if "attachments/download" in href or href.endswith(".pdf"):
+        # Metryczki/podglądy mają #fragment lub nie są pobraniem — pomijamy.
+        if ("attachments/download" in href or href.endswith(".pdf")) and "#" not in href:
             full_url = urljoin(BIP_BASE, href) if not href.startswith("http") else href
-            pdf_links.append({
-                "url": full_url,
-                "title": text,
-            })
+            pdf_links.append({"url": full_url, "title": text})
+    return pdf_links
 
-    print(f"  Znaleziono {len(pdf_links)} linków do PDF-ów")
+
+def scrape_voting_list() -> list[dict]:
+    """Pobiera listę PDF-ów ze WSZYSTKICH stron rocznych kadencji."""
+    year_pages = discover_year_pages()
+    if not year_pages:
+        print(f"  Brak stron rocznych z kategorii, fallback: {VOTING_LIST_URL}")
+        year_pages = [VOTING_LIST_URL]
+    else:
+        print(f"  Strony roczne ({KADENCJA_SLUG}): {len(year_pages)}")
+
+    pdf_links, seen = [], set()
+    for page in year_pages:
+        print(f"  Pobieram listę głosowań: {page}")
+        for link in _scrape_pdf_links_from_page(page):
+            if link["url"] in seen:
+                continue
+            seen.add(link["url"])
+            pdf_links.append(link)
+
+    print(f"  Znaleziono {len(pdf_links)} linków do PDF-ów (łącznie, wszystkie lata)")
     return pdf_links
 
 
@@ -610,7 +665,7 @@ def build_data_json(voting_records: list[dict]) -> dict:
 
     councilors_data = {}
     for name in sorted(all_names):
-        club = COUNCILOR_LOOKUP.get(name, "Niezrzeszony")
+        club = COUNCILOR_LOOKUP.get(name, "Niezrzeszeni")
         councilors_data[name] = {
             "name": name,
             "club": club,
@@ -649,7 +704,7 @@ def build_data_json(voting_records: list[dict]) -> dict:
             cat = {"za": "za", "przeciw": "przeciw", "wstrzymal_sie": "wstrzymal_sie"}.get(v)
             if cat:
                 club = c["club"]
-                if club and club != "Niezrzeszony" and club in club_majority:
+                if club and club != "Niezrzeszeni" and club in club_majority:
                     if cat == club_majority[club]:
                         c["votes_with_club"] += 1
                     else:
@@ -825,7 +880,7 @@ def build_profiles_json(voting_records: list[dict]) -> dict:
             "slug": make_slug(councillor_name),
             "kadencje": {
                 "2024-2029": {
-                    "club": club if club else "Niezrzeszony",
+                    "club": club if club else "Niezrzeszeni",
                     "has_voting_data": True,
                     "has_activity_data": False,
                     "frekwencja": round(frekwencja, 1),

@@ -24,29 +24,10 @@
       "avatar_bg": "#6d28d9",
       "color_var": "var(--purple)"
     },
-    "KWW Grzymowicza": {
-      "color": "#16a34a",
-      "bg": "rgba(34,197,94,0.12)",
-      "avatar_bg": "#15803d",
-      "color_var": "var(--green)"
-    },
-    "Wspólny Olsztyn": {
-      "color": "#ea580c",
-      "bg": "rgba(249,115,22,0.12)",
-      "avatar_bg": "#c2410c",
-      "color_var": "var(--orange)"
-    },
-    "KWW Małkowskiego": {
-      "color": "#dc2626",
-      "bg": "rgba(220,38,38,0.12)",
-      "avatar_bg": "#b91c1c",
-      "color_var": "var(--red)"
-    },
-    "Lepszy Olsztyn": {
-      "color": "#ca8a04",
-      "bg": "rgba(202,138,4,0.12)",
-      "avatar_bg": "#a16207",
-      "color_var": "var(--yellow)"
+    "Niezrzeszeni": {
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
     }
   },
   "kadencje": {
