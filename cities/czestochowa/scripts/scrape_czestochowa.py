@@ -342,12 +342,74 @@ def _classify_vote_token(token: str) -> str | None:
     return VOTE_RESULT_TOKENS.get(t)
 
 
+# Format BIP Częstochowy (zweryfikowany 2026-05-30 na XXXII sesji): eSesja
+# "Raport z głosowań". Każde głosowanie to jedna linia nagłówka:
+#   "N. Głosowanie w sprawie <temat> - czas głosowania: <data>, godz. HH:MM,
+#    wyniki: ZA: a, PRZECIW: b, WSTRZYMUJĘ SIĘ: c, BRAK GŁOSU: d, NIEOBECNI: e"
+# po czym "Wyniki imienne: IMIĘ NAZWISKO (TOKEN), ...". Nazwiska WIELKIMI
+# literami w kolejności "Imię Nazwisko", token w nawiasie.
+_RAPORT_HEAD_RE = re.compile(
+    r"(\d+)\.\s*Głosowanie\s+(?:w sprawie\s+)?(.*?)\s*-\s*czas głosowania:\s*(.*?),\s*"
+    r"godz\.\s*[\d:]+\s*,\s*wyniki:\s*ZA:\s*(\d+),\s*PRZECIW:\s*(\d+),\s*"
+    r"WSTRZYMUJĘ SIĘ:\s*(\d+),\s*BRAK GŁOSU:\s*(\d+),\s*NIEOBECN[YI]:\s*(\d+)"
+)
+_RAPORT_PAIR_RE = re.compile(r"([^,()]+?)\s*\(([^)]+)\)")
+_RAPORT_TOKEN = {
+    "ZA": "za",
+    "PRZECIW": "przeciw",
+    "WSTRZYMUJĘ SIĘ": "wstrzymal_sie",
+    "WSTRZYMUJE SIE": "wstrzymal_sie",
+    "BRAK GŁOSU": "brak_glosu",
+    "BRAK GLOSU": "brak_glosu",
+    "NIEOBECNI": "nieobecni",
+    "NIEOBECNY": "nieobecni",
+    "NIEOBECNA": "nieobecni",
+}
+
+
+def _parse_raport_pdf(full_text: str, session: SessionMeta, debug: bool = False) -> list[dict]:
+    # Złącz dywizy rozbite końcem wiersza (np. "WOJTYSIAK-\nKOWALIK") i spłaszcz
+    # białe znaki — nazwiska i tokeny zawijają się między wierszami/stronami.
+    joined = re.sub(r"(?<=\w)-\s*\n\s*(?=\w)", "-", full_text)
+    flat = re.sub(r"\s+", " ", joined)
+    heads = list(_RAPORT_HEAD_RE.finditer(flat))
+    if not heads:
+        return []
+    starts = [m.start() for m in heads] + [len(flat)]
+    votes: list[dict] = []
+    for i, m in enumerate(heads):
+        topic = m.group(2).strip(" .:-")
+        cz, cp, cw, cb, cn = (int(x) for x in m.groups()[3:8])
+        counts = {"za": cz, "przeciw": cp, "wstrzymal_sie": cw, "brak_glosu": cb, "nieobecni": cn}
+        seg = flat[m.end():starts[i + 1]]
+        seg = seg.split("Wyniki imienne:", 1)[1] if "Wyniki imienne:" in seg else ""
+        named = {"za": [], "przeciw": [], "wstrzymal_sie": [], "brak_glosu": [], "nieobecni": []}
+        for raw_name, token in _RAPORT_PAIR_RE.findall(seg):
+            key = _RAPORT_TOKEN.get(token.strip().upper())
+            if not key:
+                continue
+            canonical = resolve_canonical_name(re.sub(r"^[,\s]+", "", raw_name).strip())
+            if canonical:
+                named[key].append(canonical)
+        vote_num = i + 1
+        num_part = f"_{session.number}" if getattr(session, "number", "") else ""
+        votes.append({
+            "id": f"{session.date}{num_part}_{vote_num:03d}",
+            "session_number": session.number,
+            "session_date": session.date,
+            "topic": topic[:300] if topic else f"Głosowanie nr {vote_num}",
+            "counts": counts,
+            "named_votes": named,
+        })
+    return votes
+
+
 def parse_voting_pdf(pdf_path: Path, session: SessionMeta, debug: bool = False) -> list[dict]:
     """Parsuje 'Wykaz głosowań' PDF do listy głosowań w formacie Radoskop.
 
-    Format BIP Częstochowy nie sprawdzony przy pisaniu, scraper jest defensywny.
-    Zwraca [] z log warning gdy parser nie wykryje głosowań — wtedy trzeba
-    sprawdzić PDF i dorobić heurystykę pod faktyczny układ tabel.
+    Główna ścieżka: format eSesja "Raport z głosowań" (`_parse_raport_pdf`,
+    zweryfikowany na XXXII sesji 2026). Starszy parser blokowy + tabelowy
+    zostają jako fallback na wypadek zmiany formatu przez BIP.
     """
     votes: list[dict] = []
     try:
@@ -361,15 +423,18 @@ def parse_voting_pdf(pdf_path: Path, session: SessionMeta, debug: bool = False) 
                 preview = full_text[:600].replace("\n", " | ")
                 print(f"      preview: {preview}")
 
-            vote_idx = 0
-            blocks = _split_into_vote_blocks(full_text)
-            for block in blocks:
-                vote_idx += 1
-                parsed = _parse_vote_block(block, session, vote_idx)
-                if parsed:
-                    votes.append(parsed)
+            votes = _parse_raport_pdf(full_text, session, debug=debug)
 
             if not votes:
+                vote_idx = 0
+                for block in _split_into_vote_blocks(full_text):
+                    vote_idx += 1
+                    parsed = _parse_vote_block(block, session, vote_idx)
+                    if parsed:
+                        votes.append(parsed)
+
+            if not votes:
+                vote_idx = 0
                 for page in pdf.pages:
                     for table in page.extract_tables() or []:
                         parsed_table = _parse_vote_table(table, session, vote_idx + 1)

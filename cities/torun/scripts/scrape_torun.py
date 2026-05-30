@@ -39,6 +39,7 @@ import subprocess
 import sys
 import tempfile
 import unicodedata
+from datetime import date
 from pathlib import Path
 from urllib.parse import urljoin
 
@@ -146,10 +147,15 @@ class TorunScraper(BipScraper):
                 parsed = parse_session_link_text(text)
                 if not parsed:
                     continue
-                number, date = parsed
+                number, sess_date = parsed
+                # BIP Toruń listuje też PRZYSZŁE zaplanowane sesje (np. cały
+                # harmonogram do grudnia). Nie mają głosowań i zafałszowują
+                # "ostatnią sesję" (freshness), więc pomijamy daty w przyszłości.
+                if sess_date > date.today().isoformat():
+                    continue
                 sessions[full_url] = {
                     "url": full_url,
-                    "date": date,
+                    "date": sess_date,
                     "number": number,
                     "title": text,
                 }

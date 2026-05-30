@@ -473,14 +473,29 @@ class EsesjaScraper:
     # -- Club resolution ---------------------------------------------------
 
     def resolve_club(self, name: str) -> str:
+        if not name:
+            return ""
         if name in self.club_lookup:
             return self.club_lookup[name]
-        parts = name.split()
-        if parts:
-            last = parts[0]
-            for key, club in self.club_lookup.items():
-                if key.split()[0] == last or key.split()[-1] == last:
-                    return club
+        # eSesja części miast zwraca NAZWISKO wielkimi literami i/lub w kolejności
+        # "Nazwisko Imię", a club_assignments trzyma "Imię Nazwisko" title-case
+        # (np. "ROŻNIATOWSKI Arkadiusz" vs "Arkadiusz Rożniatowski"). Dlatego
+        # dopasowujemy niewrażliwie na wielkość liter.
+        ncf = name.casefold()
+        for key, club in self.club_lookup.items():
+            if key.casefold() == ncf:
+                return club
+        # Dopasowanie po zbiorze tokenów: ten sam radny gdy nazwa i klucz dzielą
+        # oba główne tokeny (nazwisko + imię). Odporne na kolejność, wielkość
+        # liter i drugie imię; wymaga 2 wspólnych tokenów, więc samo wspólne imię
+        # nie powoduje fałszywego trafienia.
+        nm = {t.casefold() for t in name.split()}
+        if not nm:
+            return ""
+        for key, club in self.club_lookup.items():
+            kt = {t.casefold() for t in key.split()}
+            if nm == kt or len(nm & kt) >= 2:
+                return club
         return ""
 
     # -- Step 1: session list ----------------------------------------------
@@ -658,6 +673,14 @@ class EsesjaScraper:
                 continue
             for osoba in wim.find_all("div", class_="osobaa"):
                 name = osoba.get_text(strip=True)
+                # Niektóre instancje eSesja (np. Racibórz) doklejają token głosu
+                # w nawiasie do nazwy w div.osobaa, np. "Dutkiewicz Katarzyna
+                # (NIE)" albo "Czerner Marian (WSTRZYMAŁ(A) SIĘ)". Kategorię i tak
+                # bierzemy z nagłówka h3, więc obcinamy końcowy nawias — inaczej
+                # ten sam radny tworzy wiele wpisów w rosterze (Racibórz: 65 zamiast
+                # 22). Zachłannie, bo token bywa zagnieżdżony "(WSTRZYMAŁ(A) SIĘ)".
+                # Dla miast bez tokenu w nazwie to no-op (brak nawiasu na końcu).
+                name = re.sub(r"\s*\(.*\)\s*$", "", name).strip()
                 if name and len(name) > 2:
                     named_votes[cat_key].append(name)
 
