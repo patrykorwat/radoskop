@@ -542,8 +542,20 @@ class EsesjaScraper:
                 # Dedup ZAWSZE wcześniej, paginacja musi widzieć komisje jako
                 # zobaczone, inaczej zatrzyma się na pierwszej stronie samych
                 # komisji (np. Katowice — pierwsza strona ma 0 sesji).
-                first_word = text.strip().split()[:1]
-                if first_word and first_word[0].lower() != "sesja":
+                # Sesja rady vs komisja/inne posiedzenie. Tytuł sesji zawiera
+                # słowo "sesja", CZĘSTO z numerem rzymskim na początku
+                # ("XXII sesja", "II Sesja", "XXII nadzwyczajna sesja"). Stary
+                # filtr `first_word == "sesja"` odrzucał takie sesje — dla części
+                # eSesji (bransk/walbrzych/kobylka/reda/debica/lubawa...)
+                # przechodziła tylko inauguracyjna "Sesja Rady", więc dane były
+                # zamrożone na maju 2024. Teraz: akceptuj gdy tytuł zawiera rdzeń
+                # "sesj", a odrzucaj komisje i inne posiedzenia.
+                low = text.strip().lower()
+                if "komisj" in low or low.startswith(
+                    ("posiedzenie", "wspólne", "wspolne", "konwent", "spotkanie", "narada", "debata")
+                ):
+                    continue
+                if "sesj" not in low:
                     continue
                 day = int(m.group(1))
                 month = MONTHS_PL.get(m.group(2).lower())

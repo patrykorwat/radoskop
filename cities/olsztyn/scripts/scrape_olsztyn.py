@@ -393,31 +393,31 @@ def _is_voting_attachment_title(text: str) -> bool:
 _PAGE_RE = re.compile(r"[?&]page=(\d+)\b")
 
 
-def _attachments_soup(http_session: requests.Session, detail_url: str, debug: bool = False) -> "BeautifulSoup":
-    """Zwraca soup strony z sekcją "Załączniki".
+def _attachments_soups(http_session: requests.Session, detail_url: str, debug: bool = False) -> list:
+    """Zwraca soupy WSZYSTKICH stron paginacji sesji (`?page=N`).
 
-    Treść sesji jest paginowana (`?page=N`), a blok "Załączniki" renderuje się
-    dopiero na OSTATNIEJ stronie (potwierdzone 2026-05-30: XXIV → page=6,
-    XXV → page=4; na stronie bazowej linków do PDF nie ma). Dlatego czytamy
-    stronę bazową, ustalamy maksymalny numer paginacji i — jeśli > 1 — pobieramy
-    ostatnią stronę. fetch_html cache'uje, więc kolejne wywołania są tanie.
+    Treść sesji jest paginowana, a załącznik z głosowaniami bywa na różnych
+    stronach zależnie od sesji: starsze sesje mają go na stronie 1, nowe
+    wielostronicowe dopiero na ostatniej (XXIV → page=6, XXV → page=4). Czytanie
+    tylko jednej strony gubiło część sesji (regresja 340→153 z 2026-05-30 gdy
+    czytałem tylko ostatnią). Dlatego przeszukujemy wszystkie strony i bierzemy
+    pierwsze trafienie. fetch_html cache'uje, więc to tanie.
     """
     base_html = fetch_html(http_session, detail_url, use_cache=True, debug=debug)
     base_soup = BeautifulSoup(base_html, "html.parser")
+    soups = [base_soup]
     pages = [int(m.group(1)) for a in base_soup.find_all("a", href=True)
              for m in [_PAGE_RE.search(a["href"])] if m]
     last = max(pages) if pages else 1
-    if last <= 1:
-        return base_soup
     sep = "&" if "?" in detail_url else "?"
-    last_url = f"{detail_url}{sep}page={last}"
-    try:
-        last_html = fetch_html(http_session, last_url, use_cache=True, debug=debug)
-        return BeautifulSoup(last_html, "html.parser")
-    except Exception as exc:
-        if debug:
-            print(f"      [warn] nie pobrałem ostatniej strony {last_url}: {exc}")
-        return base_soup
+    for p in range(2, last + 1):
+        try:
+            html = fetch_html(http_session, f"{detail_url}{sep}page={p}", use_cache=True, debug=debug)
+            soups.append(BeautifulSoup(html, "html.parser"))
+        except Exception as exc:
+            if debug:
+                print(f"      [warn] nie pobrałem strony {p} z {detail_url}: {exc}")
+    return soups
 
 
 def find_voting_pdf_url(http_session: requests.Session, detail_url: str, debug: bool = False) -> str | None:
@@ -429,15 +429,15 @@ def find_voting_pdf_url(http_session: requests.Session, detail_url: str, debug: 
     2026-05-30 w przeglądarce). `fetch_pdf` dostaje więc realny PDF mimo
     rozszerzenia .html w linku.
     """
-    soup = _attachments_soup(http_session, detail_url, debug=debug)
-    for a in soup.find_all("a", href=True):
-        href = a["href"]
-        text = a.get_text(" ", strip=True)
-        if not _is_voting_attachment_title(text):
-            continue
-        # Akceptujemy URLs do attachments (HTML wrapper) plus bezpośrednie PDF
-        if "/attachment/" in href or href.lower().endswith(".pdf"):
-            return href if href.startswith("http") else BIP_BASE + href
+    for soup in _attachments_soups(http_session, detail_url, debug=debug):
+        for a in soup.find_all("a", href=True):
+            href = a["href"]
+            text = a.get_text(" ", strip=True)
+            if not _is_voting_attachment_title(text):
+                continue
+            # Akceptujemy URLs do attachments (HTML wrapper) plus bezpośrednie PDF
+            if "/attachment/" in href or href.lower().endswith(".pdf"):
+                return href if href.startswith("http") else BIP_BASE + href
     if debug:
         print(f"      brak załącznika z głosowaniami w {detail_url}")
     return None
@@ -446,14 +446,14 @@ def find_voting_pdf_url(http_session: requests.Session, detail_url: str, debug: 
 def find_agenda_url(http_session: requests.Session, detail_url: str, debug: bool = False) -> str | None:
     """Link do "Porządek obrad" w sekcji Załączniki sesji. Używane dla sesji
     bez opublikowanego wykazu głosowań — pokazujemy chociaż harmonogram.
-    Korzysta z tego samego (cache'owanego) soup ostatniej strony."""
-    soup = _attachments_soup(http_session, detail_url, debug=debug)
-    for a in soup.find_all("a", href=True):
-        href = a["href"]
-        text = a.get_text(" ", strip=True).lower()
-        if "porz" in text and "obrad" in text:
-            if "/attachment/" in href or href.lower().endswith(".pdf"):
-                return href if href.startswith("http") else BIP_BASE + href
+    Przeszukuje wszystkie strony paginacji (cache'owane)."""
+    for soup in _attachments_soups(http_session, detail_url, debug=debug):
+        for a in soup.find_all("a", href=True):
+            href = a["href"]
+            text = a.get_text(" ", strip=True).lower()
+            if "porz" in text and "obrad" in text:
+                if "/attachment/" in href or href.lower().endswith(".pdf"):
+                    return href if href.startswith("http") else BIP_BASE + href
     return None
 
 

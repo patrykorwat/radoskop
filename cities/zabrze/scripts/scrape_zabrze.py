@@ -52,6 +52,14 @@ try:
 except ImportError:
     print("Zainstaluj: pip install requests")
     sys.exit(1)
+
+# bip.miastozabrze.pl na runtime NAS zwraca CERTIFICATE_VERIFY_FAILED (CA bundle
+# kontenera nie ma pośredniego cert). Jak w scrape_olsztyn.py: wyłączamy verify
+# tylko dla tego scrapera i wyciszamy ostrzeżenie. Okresowo sprawdzać czy cert
+# chain BIP-u się poprawił.
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+_VERIFY_TLS = False
 try:
     from bs4 import BeautifulSoup
 except ImportError:
@@ -145,7 +153,7 @@ def fetch_html(http: requests.Session, url: str, use_cache: bool = True, debug: 
             return cache_p.read_text(encoding="utf-8")
     if debug:
         print(f"  GET {url}")
-    resp = http.get(url, headers=HEADERS, timeout=TIMEOUT)
+    resp = http.get(url, headers=HEADERS, timeout=TIMEOUT, verify=_VERIFY_TLS)
     resp.raise_for_status()
     text = resp.text
     if cache_p is not None:
@@ -158,7 +166,7 @@ def fetch_zip(http: requests.Session, url: str, debug: bool = False) -> bytes | 
     if debug:
         print(f"      GET ZIP {url}")
     try:
-        resp = http.get(url, headers=HEADERS, timeout=TIMEOUT)
+        resp = http.get(url, headers=HEADERS, timeout=TIMEOUT, verify=_VERIFY_TLS)
         resp.raise_for_status()
         time.sleep(DELAY)
         return resp.content
