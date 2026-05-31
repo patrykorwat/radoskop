@@ -97,6 +97,5 @@
     }
   },
   "club_assignments": {},
-  "disabled": true,
-  "disabled_reason": "Nowe miasto UA — weryfikacja danych po pierwszym scrape. Usuń disabled:true po sprawdzeniu."
+  "disabled": false
 }
