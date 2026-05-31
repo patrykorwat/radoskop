@@ -167,6 +167,34 @@ def kadencja_for_date(date_str: str, kadencje: dict) -> str | None:
     return None
 
 
+# GL_Text to jedyne pole wpisane ręcznie — bywa zepsute: surowe znaki
+# kontrolne (raw \n, \t → "Invalid control character") albo niezescapowane
+# proste cudzysłowy w nazwach ustaw/programów (→ "Expecting ',' delimiter").
+# Reszta pliku (DPList itd.) jest generowana maszynowo i poprawna, więc
+# naprawiamy tylko wnętrze GL_Text, kotwicząc na następnym polu "DPList".
+GLTEXT_RE = re.compile(r'("GL_Text"\s*:\s*")(.*?)("\s*,\s*"DPList")', re.DOTALL)
+
+
+def lenient_loads(raw: str) -> dict[str, Any]:
+    """Parsuje JSON głosowania, naprawiając typowe uszkodzenia pola GL_Text."""
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        pass
+    # 1) surowe znaki kontrolne w stringach (raw \n / \t w GL_Text)
+    try:
+        return json.loads(raw, strict=False)
+    except json.JSONDecodeError:
+        pass
+    # 2) niezescapowane cudzysłowy w GL_Text — przepisz wnętrze i zescapuj
+    m = GLTEXT_RE.search(raw)
+    if not m:
+        raise
+    fixed_val = json.dumps(m.group(2), ensure_ascii=False)
+    repaired = raw[:m.start()] + '"GL_Text": ' + fixed_val + ', "DPList"' + raw[m.end():]
+    return json.loads(repaired, strict=False)
+
+
 def parse_zip_votes(raw_zip: bytes) -> list[dict[str, Any]]:
     """Parsuje ZIP z plikami JSON. Zwraca listę wpisów per głosowanie."""
     votes: list[dict[str, Any]] = []
@@ -177,7 +205,7 @@ def parse_zip_votes(raw_zip: bytes) -> list[dict[str, Any]]:
                 continue
             try:
                 raw_json = zf.read(zip_path)
-                obj = json.loads(raw_json.decode("utf-8"))
+                obj = lenient_loads(raw_json.decode("utf-8"))
             except Exception as exc:
                 print(f"  WARN: skip {zip_path}: {exc}", file=sys.stderr)
                 continue
