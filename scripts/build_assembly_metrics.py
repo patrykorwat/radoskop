@@ -90,12 +90,17 @@ def compute_councilor_metrics(
     if not idx:
         return []
 
-    # Frekwencja: ile sesji obecny vs total sessions.
+    # Frekwencja: ile sesji obecny vs total sessions z DANYMI o obecności.
+    # Mianownik liczymy tylko z sesji mających listę obecnych (głosowych) —
+    # inaczej posiedzenia pokazane dla świeżości (np. plenarki Landtagu MV bez
+    # namentliche Abstimmung, results_pending) zaniżałyby frekwencję wszystkim.
+    # Dla samorządów gdzie każda sesja ma attendees zachowanie bez zmian.
     sessions_per_name: Counter = Counter()
     for s in sessions:
         for att in s.get("attendees", []):
             sessions_per_name[att] += 1
-    total_sessions = max(len(sessions), 1)
+    counted_sessions = [s for s in sessions if s.get("attendees")]
+    total_sessions = max(len(counted_sessions) or len(sessions), 1)
 
     # Statystyki głosów.
     name_to_idx = {n: i for i, n in enumerate(idx)}

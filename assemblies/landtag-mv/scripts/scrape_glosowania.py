@@ -286,6 +286,34 @@ def parse_month_legislation(html: str) -> list[dict]:
     return out
 
 
+# Nagłówek posiedzenia plenarnego: "117. Sitzung des Landtages am 10.10.2025".
+SITTING_RE = re.compile(
+    r"(\d+)\.\s*Sitzung\s+des\s+Landtages\s+am\s+(\d{1,2})\.(\d{1,2})\.(\d{4})",
+    re.IGNORECASE,
+)
+
+
+def parse_month_sittings(html: str) -> list[dict]:
+    """Wyciągnij posiedzenia plenarne (numer + data) z HTML strony miesiąca.
+
+    Łapie WSZYSTKIE posiedzenia danego miesiąca, niezależnie od tego czy miały
+    namentliche Abstimmung. Pozwala pokazać bieżącą aktywność Landtagu (sesje
+    2025-2026) na stronie, nie tylko 5 imiennych głosowań. Bez imiennych =
+    sesja oznaczona results_pending (parser frontu pokaże "wyniki wkrótce")."""
+    text = BeautifulSoup(html, "lxml").get_text(" ")
+    out: list[dict] = []
+    seen: set[tuple[str, str]] = set()
+    for m in SITTING_RE.finditer(text):
+        num = m.group(1)
+        date_iso = f"{m.group(4)}-{int(m.group(3)):02d}-{int(m.group(2)):02d}"
+        key = (date_iso, num)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append({"number": num, "date": date_iso})
+    return out
+
+
 def fetch_month_pdfs(slug: str, cache_dir: Path | None = None) -> list[str]:
     """Linki PDF namentliche dla miesiąca (cienki wrapper, zgodność wsteczna)."""
     return parse_month_pdfs(_get_month_html(slug, cache_dir))
@@ -627,6 +655,7 @@ def build_kadencja(
 
     all_pdf_urls: list[str] = []
     all_legislation: list[dict] = []
+    all_sittings: list[dict] = []
     consecutive_failures = 0
     for idx, slug in enumerate(months, start=1):
         prefix = f"[{idx}/{len(months)}] {slug}"
@@ -636,6 +665,7 @@ def build_kadencja(
             for leg in parse_month_legislation(html):
                 leg["month"] = slug
                 all_legislation.append(leg)
+            all_sittings.extend(parse_month_sittings(html))
             consecutive_failures = 0
         except requests.HTTPError as e:
             if e.response.status_code == 404:
@@ -876,16 +906,37 @@ def build_kadencja(
             nv_indexed[cat] = indices
         v["named_votes"] = nv_indexed
 
+    # Dołącz posiedzenia plenarne bez namentliche Abstimmung, żeby strona
+    # pokazywała bieżącą aktywność (sesje 2025-2026), nie tylko 5 imiennych.
+    # Frekwencja NIE liczy tych sesji (brak attendees) — patrz
+    # build_assembly_metrics: mianownik to sesje z listą obecnych.
+    sittings_added = 0
+    for st in all_sittings:
+        key = (st["date"], st["number"])
+        if key not in sessions:
+            sessions[key] = {
+                "date": st["date"], "number": st["number"],
+                "vote_count": 0, "attendees": set(),
+            }
+            sittings_added += 1
+    if sittings_added:
+        log(f"Dołączono {sittings_added} posiedzeń bez namentliche (aktywność, results_pending)")
+
     # Build sessions list (sorted)
     sessions_list = []
     for (sdate, snum), s in sorted(sessions.items(), key=lambda x: x[0]):
-        sessions_list.append({
+        entry = {
             "date": sdate,
             "number": snum,
             "vote_count": s["vote_count"],
             "attendee_count": len(s["attendees"]),
             "attendees": sorted(s["attendees"]),
-        })
+        }
+        # Sesja bez imiennych wyników: znacznik dla frontu ("wyniki wkrótce"
+        # zamiast mylących zer). Frekwencja i tak ją pomija (brak attendees).
+        if s["vote_count"] == 0:
+            entry["results_pending"] = True
+        sessions_list.append(entry)
 
     # Club counts (z councilor_index + all_councilors)
     club_counts: dict[str, int] = defaultdict(int)

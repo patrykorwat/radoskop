@@ -21,7 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 try:
     from scrape_glosowania import (
         extract_section_counts, parse_votebox_text,
-        parse_month_pdfs, parse_month_legislation,
+        parse_month_pdfs, parse_month_legislation, parse_month_sittings,
         _columns_from_words, _group_words_into_lines,
     )
 except Exception as e:  # brak requests/pdfplumber w env — pomiń, nie failuj
@@ -168,6 +168,9 @@ def test_topic_extraction():
 # ── Strona miesiąca: linki PDF + wyniki uchwał ──────────────────────────────
 MONTH_HTML = """
 <html><body>
+<h4>117. Sitzung des Landtages am 10.10.2025</h4>
+<h4>116. Sitzung des Landtages am 09.10.2025</h4>
+<p>Tagesordnung der 115., 116. und 117. Sitzung</p>
 <h4>Beschlussprotokolle</h4>
 <p><a href="https://www.dokumentation.landtag-mv.de/parldok/dokument/66872/8_115_beschlussprotokoll#navpanes=0">Beschlussprotokoll 115. Sitzung</a></p>
 <h4>Abgeschlossene Gesetzgebung</h4>
@@ -184,6 +187,17 @@ def test_month_pdfs_parsing():
     urls = parse_month_pdfs(MONTH_HTML)
     assert len(urls) == 1
     assert urls[0].endswith("Namentliche_Abstimmung_zu_TOP_35.pdf")
+
+
+def test_month_sittings_parsing():
+    sittings = parse_month_sittings(MONTH_HTML)
+    keys = {(s["number"], s["date"]) for s in sittings}
+    # Nagłówki posiedzeń złapane i daty znormalizowane do ISO.
+    assert ("117", "2025-10-10") in keys
+    assert ("116", "2025-10-09") in keys
+    # "Tagesordnung der 115., 116. und 117. Sitzung" (bez "des Landtages am")
+    # NIE tworzy fałszywych posiedzeń.
+    assert len(sittings) == 2
 
 
 def test_month_legislation_parsing():
