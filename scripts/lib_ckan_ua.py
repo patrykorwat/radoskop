@@ -118,6 +118,38 @@ def _ckan_package_show(ckan_base: str, dataset_id: str) -> dict[str, Any]:
     return result["result"]
 
 
+def _discover_resources_from_html(page_url: str) -> list[dict[str, str]]:
+    """HTML fallback: parsuje stronę datasetu CKAN i wyciąga linki do plików CSV.
+
+    Używane gdy /api/3/action/package_show jest niedostępne (geo-block, timeout).
+    Szuka atrybutów href zawierających '/download/' i rozszerzenie .csv.
+
+    Zwraca listę zasobów w formacie kompatybilnym z _find_latest_csv():
+      [{"url": "https://...", "name": "vote_2026-05-20.csv", "format": "CSV"}]
+    """
+    import re as _re
+    print(f"  [html-fallback] GET {page_url}", file=sys.stderr)
+    raw = _http_get(page_url, timeout=30)
+    html = raw.decode("utf-8", errors="replace")
+    # Szukaj href="..." zawierający /download/ i kończący się na .csv
+    pattern = _re.compile(
+        r'href=["\']([^"\'?#]*?/download/([^"\'?#/\s]+\.csv))["\']',
+        _re.IGNORECASE,
+    )
+    base = page_url.split("/dataset/")[0]
+    seen: set[str] = set()
+    resources: list[dict[str, str]] = []
+    for m in pattern.finditer(html):
+        href, filename = m.group(1), m.group(2)
+        url = href if href.startswith("http") else f"{base}{href}"
+        if url in seen:
+            continue
+        seen.add(url)
+        resources.append({"url": url, "name": filename, "format": "CSV"})
+    print(f"  [html-fallback] {len(resources)} zasobów CSV", file=sys.stderr)
+    return resources
+
+
 def _find_latest_csv(resources: list[dict], name_prefix: str) -> dict | None:
     """Znajduje zasób CSV o podanym prefiksie nazwy, posortowany malejąco.
 
@@ -173,12 +205,17 @@ class CkanUaClient:
         deputies_dataset_id: str | None = None,
         cache_dir: Path | None = None,
         skip_fetch: bool = False,
+        votes_browse_url: str | None = None,
+        deputies_browse_url: str | None = None,
     ) -> None:
         self.ckan_base = ckan_base.rstrip("/")
         self.votes_dataset_id = votes_dataset_id
         self.deputies_dataset_id = deputies_dataset_id
         self.cache_dir = cache_dir
         self.skip_fetch = skip_fetch
+        # Fallback: gdy API niedostępne, parsuj HTML strony datasetu.
+        self.votes_browse_url = votes_browse_url
+        self.deputies_browse_url = deputies_browse_url
 
     def _cache_path(self, name: str) -> Path | None:
         if self.cache_dir is None:
@@ -200,10 +237,37 @@ class CkanUaClient:
                 json.dump(rows, f, ensure_ascii=False)
         return rows
 
+    def _get_votes_resources(self) -> list[dict[str, str]]:
+        """Pobiera listę zasobów datasetu głosowań. API → HTML fallback."""
+        try:
+            pkg = _ckan_package_show(self.ckan_base, self.votes_dataset_id)
+            return pkg.get("resources", [])
+        except RuntimeError as exc:
+            if not self.votes_browse_url:
+                raise
+            print(
+                f"  WARN: CKAN API niedostępne ({exc}), próbuję HTML fallback",
+                file=sys.stderr,
+            )
+            return _discover_resources_from_html(self.votes_browse_url)
+
+    def _get_deputies_resources(self) -> list[dict[str, str]]:
+        """Pobiera listę zasobów datasetu radnych. API → HTML fallback."""
+        try:
+            pkg = _ckan_package_show(self.ckan_base, self.deputies_dataset_id)
+            return pkg.get("resources", [])
+        except RuntimeError as exc:
+            if not self.deputies_browse_url:
+                raise
+            print(
+                f"  WARN: CKAN API niedostępne ({exc}), próbuję HTML fallback (deputies)",
+                file=sys.stderr,
+            )
+            return _discover_resources_from_html(self.deputies_browse_url)
+
     def fetch_tables(self) -> dict[str, list[dict[str, str]]]:
         """Pobiera 5 tabel głosowań z CKAN. Zwraca dict name→rows."""
-        pkg = _ckan_package_show(self.ckan_base, self.votes_dataset_id)
-        resources = pkg.get("resources", [])
+        resources = self._get_votes_resources()
 
         tables: dict[str, list[dict[str, str]]] = {}
         for table_name in ("convocations", "sessions", "motions", "voteEvents", "vote"):
@@ -230,8 +294,7 @@ class CkanUaClient:
         """Pobiera tabelę radnych z opcjonalnego datasetu deputies."""
         if not self.deputies_dataset_id:
             return []
-        pkg = _ckan_package_show(self.ckan_base, self.deputies_dataset_id)
-        resources = pkg.get("resources", [])
+        resources = self._get_deputies_resources()
         resource = _find_latest_csv(resources, "deputies")
         if resource is None:
             print("  WARN: brak zasobu deputies CSV", file=sys.stderr)

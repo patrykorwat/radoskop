@@ -81,6 +81,9 @@ def main() -> int:
         deputies_dataset_id=deputies_id,
         cache_dir=args.cache,
         skip_fetch=args.skip_fetch,
+        # HTML fallback gdy API geo-zablokowane (np. z NAS poza Ukrainą)
+        votes_browse_url=config.get("ckan_votes_browse_url"),
+        deputies_browse_url=config.get("ckan_deputies_browse_url"),
     )
 
     config["slug"] = city_slug

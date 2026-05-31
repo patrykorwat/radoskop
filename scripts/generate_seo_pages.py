@@ -209,7 +209,7 @@ def _enrich_profiles_with_percentiles(profiles: list, city_slug: str, city_dir: 
         kad['percentile_zgodnosc'] = _percentile_rank(kad.get('zgodnosc_z_klubem', 0), sorted_zg)
 
 
-def process_city(city_dir: Path, output_dir: Path | None = None):
+def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = False):
     """Generate all SEO pages for one city.
 
     Reads source data (config.json, index.html, profiles.json, data.json,
@@ -234,8 +234,9 @@ def process_city(city_dir: Path, output_dir: Path | None = None):
     # Miasta z "disabled": true (np. paris w trybie frakcyjnym z danymi
     # przykładowymi, rostock zablokowany) nie generują stron SEO — żeby dane
     # niegotowe / przykładowe nie trafiły do sitemapy i Google.
-    if config.get("disabled"):
-        print(f"  Skipping {city_dir.name}: disabled w config.json")
+    # --force (przekazywane przez run_pipeline gdy --city) omija ten check.
+    if config.get("disabled") and not force:
+        print(f"  Skipping {city_dir.name}: disabled w config.json (użyj --force żeby nadpisać)")
         return
 
     site_url = config["site_url"].rstrip("/")
@@ -639,6 +640,11 @@ def main():
              "deploy the output dir to S3 separately.",
     )
     parser.add_argument(
+        "--force", action="store_true",
+        help="Generuj strony nawet dla miast z disabled:true w config.json. "
+             "Używać przy ręcznym testowaniu nowego miasta przed jego odblokow.",
+    )
+    parser.add_argument(
         "--sitemap-only", action="store_true",
         help="Pomija pisanie tysięcy HTML SEO pages — generuje tylko sitemap.xml. "
              "Używać po migracji na dynamiczny rendering SEO w Cloudflare Worker "
@@ -673,7 +679,7 @@ def main():
             print(f"\n=== {city} ===")
             slug = city_dir.name.removeprefix("radoskop-")
             output_dir = (output_base / slug) if output_base else None
-            process_city(city_dir, output_dir=output_dir)
+            process_city(city_dir, output_dir=output_dir, force=args.force)
         else:
             print(f"  Skipping {city}: not found")
 
