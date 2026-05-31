@@ -362,6 +362,16 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
     # 2. Vote pages (per kadencja)
     # ════════════════════════════════════════════
     vote_count = 0
+    # Mapa data → rzymski numer sesji. Po migracji ID głosowań z formatu
+    # DATA_NNN na DATA_RZYMSKI_NNN (np. 2024-12-18_011 → 2024-12-18_VII_011)
+    # stare permalinki z indeksu Google nie pasują do nowych ID i dają
+    # soft-404. Worker (radoskop-premium/cloudflare/worker.js) czyta tę mapę
+    # z /_redirects/votes.json i robi 301 ze starego DATA_NNN na nowy
+    # DATA_RZYMSKI_NNN. NNN jest zachowane między scrape'ami (zweryfikowane).
+    # Daty z więcej niż jednym rzymskim (kolizja dwóch sesji w jednym dniu)
+    # są pomijane — nie da się jednoznacznie zmapować DATA_NNN.
+    vote_id_romans: dict[str, str] = {}
+    vote_id_roman_conflict: set[str] = set()
     for k in kadencje:
         kid = k.get("id", "")
         kad_file = docs / f"kadencja-{kid}.json"
@@ -375,6 +385,18 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             vid = vote.get("id", "")
             if not vid:
                 continue
+
+            # Zbierz data → rzymski dla mapy redirectów (tylko ID w formacie
+            # DATA_RZYMSKI_NNN). Inne formaty (np. DATA_NNN bez rzymskiego)
+            # nie wymagają remapowania, więc je pomijamy.
+            _vm = re.match(r"^(\d{4}-\d{2}-\d{2})_([IVXLC]+)_\d+$", vid)
+            if _vm:
+                _vdate, _vroman = _vm.group(1), _vm.group(2)
+                _prev = vote_id_romans.get(_vdate)
+                if _prev is not None and _prev != _vroman:
+                    vote_id_roman_conflict.add(_vdate)
+                else:
+                    vote_id_romans[_vdate] = _vroman
 
             topic = vote.get("topic", "").replace(";", "").strip()
             counts = vote.get("counts", {})
@@ -626,6 +648,24 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
 
     total_urls = len(sitemap_entries) + 1
     print(f"  sitemap.xml: {total_urls} URLs")
+
+    # ════════════════════════════════════════════
+    # 9. Mapa redirectów ID głosowań (_redirects/votes.json)
+    # ════════════════════════════════════════════
+    # Daty z kolizją rzymskich usuwamy z mapy (niejednoznaczne).
+    vote_redirect_map = {
+        d: r for d, r in sorted(vote_id_romans.items())
+        if d not in vote_id_roman_conflict
+    }
+    redirects_dir = out / "_redirects"
+    redirects_dir.mkdir(parents=True, exist_ok=True)
+    with open(redirects_dir / "votes.json", "w", encoding="utf-8") as f:
+        json.dump(vote_redirect_map, f, ensure_ascii=False, separators=(",", ":"))
+    print(
+        f"  _redirects/votes.json: {len(vote_redirect_map)} dat"
+        + (f" ({len(vote_id_roman_conflict)} pominiętych przez kolizję)"
+           if vote_id_roman_conflict else "")
+    )
 
 
 def main():

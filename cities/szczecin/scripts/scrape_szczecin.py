@@ -340,34 +340,67 @@ def fetch_esesja_session_map() -> dict:
     """Fetch eSesja voting archive and build date → vote list URL map.
 
     Returns {session_date: esesja_url} so we can match BIP sessions to eSesja.
+
+    Archiwum /glosowania jest PAGINOWANE (po ~20 sesji na stronę, odwrotnie
+    chronologicznie). Strona 1 trzyma najnowsze sesje, starsze są na
+    /glosowania/2, /glosowania/3... Trzeba przejść WSZYSTKIE strony, inaczej
+    sesje sprzed granicy paginacji wypadają — przez to znikały sesje
+    2024-05..2024-10 (np. 2024-06-18) i ich permalinki dawały soft-404.
+    Granica strony przesuwa się gdy dochodzą nowe sesje, więc cap stron jest
+    luźny tylko jako zabezpieczenie przed pętlą.
     """
-    # Archiwum eSesja — top-level index, NIGDY z cache
-    soup = fetch(ESESJA_ARCHIVE, use_cache=False)
     session_map = {}
+    seen_pages = set()
+    page = 1
+    MAX_PAGES = 30  # ~600 sesji, z zapasem; stop i tak na braku "następne"
 
-    for a in soup.find_all("a", href=True):
-        href = a["href"]
-        if "/listaglosowan/" not in href:
-            continue
+    while page <= MAX_PAGES:
+        page_url = ESESJA_ARCHIVE if page == 1 else f"{ESESJA_ARCHIVE}/{page}"
+        if page_url in seen_pages:
+            break
+        seen_pages.add(page_url)
+        # Archiwum eSesja — NIGDY z cache (nowe sesje dochodzą)
+        soup = fetch(page_url, use_cache=False)
 
-        text = a.get_text(strip=True)
-        # Extract date from text like "...w dniu 27 stycznia 2026, godz..."
-        m = re.search(r'w\s+dniu\s+(\d{1,2})\s+(\w+)\s+(\d{4})', text)
-        if not m:
-            continue
+        found_on_page = 0
+        for a in soup.find_all("a", href=True):
+            href = a["href"]
+            if "/listaglosowan/" not in href:
+                continue
 
-        day = int(m.group(1))
-        month_name = m.group(2).lower()
-        year = int(m.group(3))
-        month = MONTHS_PL.get(month_name)
-        if not month:
-            continue
+            text = a.get_text(strip=True)
+            # Extract date from text like "...w dniu 27 stycznia 2026, godz..."
+            m = re.search(r'w\s+dniu\s+(\d{1,2})\s+(\w+)\s+(\d{4})', text)
+            if not m:
+                continue
 
-        date = f"{year}-{month:02d}-{day:02d}"
-        url = href if href.startswith("http") else ESESJA_BASE + href
-        session_map[date] = url
+            day = int(m.group(1))
+            month_name = m.group(2).lower()
+            year = int(m.group(3))
+            month = MONTHS_PL.get(month_name)
+            if not month:
+                continue
 
-    print(f"  eSesja: znaleziono {len(session_map)} sesji z głosowaniami")
+            date = f"{year}-{month:02d}-{day:02d}"
+            url = href if href.startswith("http") else ESESJA_BASE + href
+            if date not in session_map:
+                session_map[date] = url
+                found_on_page += 1
+
+        # Czy istnieje następna strona? eSesja daje link do /glosowania/{page+1}
+        # (tekst "następne" lub numer). Jeśli brak — koniec.
+        next_page = page + 1
+        has_next = any(
+            re.search(rf"/glosowania/{next_page}(?:[/?#]|$)", a["href"])
+            for a in soup.find_all("a", href=True)
+        )
+        if found_on_page == 0 and page > 1:
+            break
+        if not has_next:
+            break
+        page = next_page
+
+    print(f"  eSesja: znaleziono {len(session_map)} sesji z głosowaniami ({len(seen_pages)} stron archiwum)")
     return session_map
 
 
