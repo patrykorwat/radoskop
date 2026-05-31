@@ -381,6 +381,10 @@ def main() -> int:
         # Capability flags — sejmik zawsze ma imienne głosowania, są radni.
         "{{HAS_VOTING_DATA}}": "true" if cfg.get("has_voting_data", True) else "false",
         "{{HAS_SPEAKER_ACTIVITY}}": "true" if cfg.get("has_speaker_activity", False) else "false",
+        # Sejmiki nigdy nie mają trybu faction/show_of_hands bez per-radny,
+        # więc COUNCILOR_ROSTER_MODE zawsze false (sejmiki z imiennymi głosami
+        # mają normalny ranking radnych, nie roster z profiles.json).
+        "{{COUNCILOR_ROSTER_MODE}}": "false",
         # Sejmiki/landy mają radnych (Abgeordnete też), więc HAS_COUNCILORS=true.
         # Bez tego template ma {{...}} leftover w renderze.
         "{{HAS_COUNCILORS}}": "false" if cfg.get("has_councilorless") else "true",
