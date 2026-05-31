@@ -788,6 +788,10 @@ def main():
         # "Radni" jako listę z profiles.json (nazwisko/klub/komisje), bo tabela
         # metryk (frekwencja/aktywność) nie ma sensu bez głosów imiennych.
         "{{COUNCILOR_ROSTER_MODE}}": "true" if _is_councilorless(config) else "false",
+        # Landing mode: gdy miasto ma osobny statyczny landing na / i listę
+        # radnych na /councillors/ (build_landing.py). SPA emituje wtedy ranking
+        # jako /councillors/ zamiast /. Włączane per miasto flagą landing_enabled.
+        "{{LANDING_MODE}}": "true" if config.get("landing_enabled") else "false",
         # Impressum / Anbieterkennzeichnung
         "{{IMPRESSUM_HTML}}": impressum_html,
         "{{IMPRESSUM_FOOTER_LINK}}": impressum_footer_link,

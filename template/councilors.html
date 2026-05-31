@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radni {{CITY_GENITIVE}} — Radoskop {{CITY_NAME}}</title>
+<meta name="description" content="Lista radnych Rady Miasta {{CITY_GENITIVE}} z frekwencją, liczbą głosów i zgodnością z klubem.">
+<meta name="author" content="{{AUTHOR}}">
+<link rel="canonical" href="{{SITE_URL}}/councillors/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Radni {{CITY_GENITIVE}} · Radoskop {{CITY_NAME}}">
+<meta property="og:description" content="Frekwencja, liczba głosów i zgodność z klubem dla każdego radnego.">
+<meta property="og:locale" content="pl_PL">
+{{GA_SNIPPET}}
+<script>
+(function(){
+  try {
+    var m = document.cookie.match(/(?:^|;\s*)radoskop_theme=([^;]+)/);
+    var t = m ? decodeURIComponent(m[1]) : null;
+    if (t !== 'dark' && t !== 'light') {
+      try { var s = localStorage.getItem('radoskop_theme'); if (s === 'dark' || s === 'light') t = s; } catch(e) {}
+    }
+    if (t !== 'dark' && t !== 'light') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch(e) {}
+})();
+</script>
+<style>
+:root, [data-theme="light"] {
+  --bg: #f8f9fa; --surface: #ffffff; --border: #e2e5e9; --text: #1a1d27;
+  --muted: #6b7280; --accent: #4f46e5; --green: #16a34a; --red: #dc2626;
+  --yellow: #ca8a04; --blue: #2563eb;
+}
+[data-theme="dark"] {
+  --bg: #0f1117; --surface: #1a1d27; --border: #2a2d3a; --text: #e4e4e7;
+  --muted: #8b8d97; --accent: #6366f1; --green: #22c55e; --red: #ef4444;
+  --yellow: #eab308; --blue: #3b82f6;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+a { color:inherit; }
+.topbar { position:sticky; top:0; z-index:100; background:var(--surface); border-bottom:1px solid var(--border); padding:10px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.topbar-logo { font-size:1.05rem; font-weight:700; text-decoration:none; }
+.topbar-logo span { color:var(--accent); }
+.topbar-nav { display:flex; gap:20px; flex-wrap:wrap; }
+.topbar-nav a { font-size:.88rem; color:var(--muted); text-decoration:none; }
+.topbar-nav a:hover { color:var(--accent); }
+.topbar-actions { display:flex; gap:6px; align-items:center; }
+.theme-toggle { padding:5px 10px; font-size:.8rem; border:1px solid var(--border); background:var(--bg); color:var(--muted); border-radius:8px; cursor:pointer; }
+.container { max-width:1100px; margin:0 auto; padding:20px; }
+
+.crumbs { font-size:.82rem; color:var(--muted); margin:14px 0 4px; }
+.crumbs a { color:var(--accent); text-decoration:none; }
+.page-head { padding:6px 0 18px; border-bottom:1px solid var(--border); margin-bottom:18px; }
+.page-head h1 { font-size:2rem; font-weight:800; letter-spacing:-.01em; }
+.page-head .sub { color:var(--muted); margin-top:4px; font-size:.95rem; }
+
+.toolbar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:16px; }
+.toolbar input, .toolbar select { font:inherit; font-size:.88rem; padding:8px 10px; border:1px solid var(--border); border-radius:8px; background:var(--surface); color:var(--text); }
+.toolbar input { flex:1; min-width:200px; }
+.toolbar .count { margin-left:auto; font-size:.82rem; color:var(--muted); }
+
+.tablewrap { background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+table { width:100%; border-collapse:collapse; font-size:.9rem; }
+th { text-align:left; padding:12px 14px; color:var(--muted); font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--border); cursor:pointer; user-select:none; white-space:nowrap; }
+th:hover { color:var(--accent); }
+th .ar { opacity:.35; font-size:.7rem; margin-left:3px; }
+th.s .ar { opacity:1; color:var(--accent); }
+td { padding:11px 14px; border-bottom:1px solid var(--border); vertical-align:middle; }
+tr:last-child td { border-bottom:none; }
+tbody tr:hover { background:var(--bg); }
+.rank { color:var(--muted); font-variant-numeric:tabular-nums; width:34px; }
+.name { font-weight:600; }
+.name a { text-decoration:none; }
+.name a:hover { color:var(--accent); }
+.num { text-align:right; font-variant-numeric:tabular-nums; }
+.metric { display:flex; align-items:center; gap:8px; justify-content:flex-end; }
+.metric .mv { font-variant-numeric:tabular-nums; font-weight:600; min-width:38px; text-align:right; }
+.bar { width:62px; height:6px; border-radius:3px; background:var(--border); overflow:hidden; }
+.bar > i { display:block; height:100%; border-radius:3px; }
+
+.club-badge { display:inline-block; font-size:.72rem; font-weight:600; padding:2px 7px; border-radius:4px; white-space:nowrap; }
+.club-ko { background:#dbeafe; color:#1e40af; }
+.club-lewica { background:#fee2e2; color:#b91c1c; }
+.club-pis { background:#fef9c3; color:#854d0e; }
+.club-niez { background:#e5e7eb; color:#374151; }
+
+footer { border-top:1px solid var(--border); margin-top:34px; padding:24px 0 40px; color:var(--muted); font-size:.82rem; }
+footer a { color:var(--accent); text-decoration:none; }
+
+@media (max-width:720px) {
+  .topbar-nav { display:none; }
+  .hide-sm { display:none; }
+  .page-head h1 { font-size:1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="Główna nawigacja">
+  <a class="topbar-logo" href="{{SITE_URL}}/">Rado<span>skop</span> {{CITY_NAME}}</a>
+  <div class="topbar-nav">
+    <a href="https://radoskop.eu/reports/">Raporty</a>
+    <a href="https://radoskop.eu/business/">Business</a>
+  </div>
+  <div class="topbar-actions">
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw">Motyw</button>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="crumbs"><a href="{{SITE_URL}}/">Strona główna</a> / Radni</div>
+  <div class="page-head">
+    <h1>Radni {{CITY_GENITIVE}}</h1>
+    <div class="sub"><span id="roster-count">{{ROSTER_COUNT}}</span> radnych w kadencji. Kliknij nagłówek, żeby posortować.</div>
+  </div>
+
+  <div class="toolbar">
+    <input id="q" type="text" placeholder="Szukaj radnego…" oninput="render()">
+    <select id="club" onchange="render()">
+      <option value="">Wszystkie kluby</option>
+      {{CLUB_OPTIONS}}
+    </select>
+    <span class="count" id="shown-count"></span>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th data-k="rank" class="rank">#</th>
+          <th data-k="name">Radny <span class="ar">↕</span></th>
+          <th data-k="club" class="hide-sm">Klub <span class="ar">↕</span></th>
+          <th data-k="attendance" class="num">Frekwencja <span class="ar">↕</span></th>
+          <th data-k="votes" class="num hide-sm">Głosów <span class="ar">↕</span></th>
+          <th data-k="agreement" class="num">Zgodność z klubem <span class="ar">↕</span></th>
+        </tr>
+      </thead>
+      <tbody id="rows">{{ROSTER_ROWS}}</tbody>
+    </table>
+  </div>
+
+  <footer>
+    Radoskop {{CITY_NAME}} to niezależny, otwarty monitoring rady. Dane pochodzą z <a href="{{BIP_URL}}" target="_blank" rel="noopener">{{BIP_NAME}}</a> i są odświeżane dwa razy dziennie.
+    <a href="{{SITE_URL}}/">Wróć na stronę główną</a>.
+  </footer>
+
+</div>
+
+<script>
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('radoskop_theme', next); } catch(e) {}
+  var host = location.hostname.replace(/^[^.]+\./,'.');
+  document.cookie = 'radoskop_theme=' + next + ';path=/;max-age=31536000;domain=' + host;
+}
+
+// Dane wstrzykuje generator (build-time) jako {{ROSTER_JSON}}.
+var ROSTER = window.RADOSKOP_ROSTER || {{ROSTER_JSON}};
+
+var SITE = "{{SITE_URL}}"; if (SITE.indexOf("{{") !== -1) SITE = "";
+// Mapa kolorow klubow liczona build-time per miasto (kluby z BIP roznia sie miastami).
+var CLUB_STYLE = window.RADOSKOP_CLUBSTYLE || {{CLUB_STYLE_JSON}};
+function esc(s){ return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function clubBadge(club){
+  var st = CLUB_STYLE[club] || {bg:'#e5e7eb', fg:'#374151'};
+  return '<span class="club-badge" style="background:' + st.bg + ';color:' + st.fg + '">' + esc(club) + '</span>';
+}
+var sortKey = 'agreement', sortDir = -1;
+
+function barColor(v){ return v >= 90 ? 'var(--green)' : (v >= 75 ? 'var(--yellow)' : 'var(--red)'); }
+function metric(v){
+  if (v == null) return '<div class="metric"><span class="mv" style="color:var(--muted)">—</span></div>';
+  return '<div class="metric"><span class="mv">' + v + '%</span>'
+       + '<span class="bar"><i style="width:' + v + '%;background:' + barColor(v) + '"></i></span></div>';
+}
+
+function render(){
+  var q = (document.getElementById('q').value || '').toLowerCase();
+  var cf = document.getElementById('club').value;
+  var list = ROSTER.filter(function(r){
+    return (!q || r.name.toLowerCase().indexOf(q) !== -1) && (!cf || r.club === cf);
+  });
+  list.sort(function(a,b){
+    var x = a[sortKey], y = b[sortKey];
+    if (typeof x === 'string') { x = x.toLowerCase(); y = (y||'').toLowerCase(); return x < y ? -sortDir : (x > y ? sortDir : 0); }
+    if (x == null) x = -1; if (y == null) y = -1;
+    return (x - y) * sortDir;
+  });
+  var rows = list.map(function(r, i){
+    return '<tr>'
+      + '<td class="rank">' + (i + 1) + '</td>'
+      + '<td class="name"><a href="' + SITE + '/profile/' + r.slug + '/">' + esc(r.name) + '</a></td>'
+      + '<td class="hide-sm">' + clubBadge(r.club) + '</td>'
+      + '<td class="num">' + metric(r.attendance) + '</td>'
+      + '<td class="num hide-sm">' + r.votes + '</td>'
+      + '<td class="num">' + metric(r.agreement) + '</td>'
+      + '</tr>';
+  }).join('');
+  document.getElementById('rows').innerHTML = rows;
+  document.getElementById('roster-count').textContent = ROSTER.length;
+  document.getElementById('shown-count').textContent = 'Pokazano ' + list.length + ' z ' + ROSTER.length;
+  document.querySelectorAll('th').forEach(function(th){
+    th.classList.toggle('s', th.getAttribute('data-k') === sortKey);
+  });
+}
+
+document.querySelectorAll('th[data-k]').forEach(function(th){
+  th.addEventListener('click', function(){
+    var k = th.getAttribute('data-k');
+    if (sortKey === k) sortDir = -sortDir;
+    else { sortKey = k; sortDir = (k === 'name' || k === 'club') ? 1 : -1; }
+    render();
+  });
+});
+render();
+</script>
+</body>
+</html>

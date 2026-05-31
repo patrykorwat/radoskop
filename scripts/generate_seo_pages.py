@@ -298,6 +298,13 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
 
     sitemap_entries = []
 
+    # Statyczna lista radnych (/councillors/) gdy miasto ma landing.
+    if config.get("landing_enabled"):
+        sitemap_entries.append({
+            "loc": f"{site_url}/councillors/",
+            "changefreq": "weekly", "priority": "0.9",
+        })
+
     # ════════════════════════════════════════════
     # 1. Profile pages
     # ════════════════════════════════════════════

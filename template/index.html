@@ -804,6 +804,9 @@ const HAS_COUNCILORS = {{HAS_COUNCILORS}};
 // profiles.json (nazwisko, klub, komisje) zamiast tabeli metryk, których tryb
 // faction nie ma (brak frekwencji/aktywności per radny).
 const COUNCILOR_ROSTER_MODE = {{COUNCILOR_ROSTER_MODE}};
+// LANDING_MODE: / to statyczny landing, lista radnych na /councillors/.
+// SPA emituje wtedy ranking jako /councillors/ (mainPath), inaczej '/'.
+const LANDING_MODE = {{LANDING_MODE}};
 const DEFAULT_TAB = (HAS_COUNCILORS || COUNCILOR_ROSTER_MODE) ? 'ranking' : 'votes';
 
 let RAW = null;
@@ -1084,6 +1087,14 @@ async function init() {
       navigateTo(toCanonicalPath(path), true);
       return;
     }
+    if (path === '/councillors' || path === '/councillors/') {
+      // LANDING_MODE: ranking radnych jest osobną statyczną stroną. Gdy SPA
+      // (app.html) trafi tu fallbackiem, pokazujemy tab ranking.
+      selectKadencjaQuiet(initialKid);
+      activateTab('ranking');
+      navigateTo(mainPath(), true);
+      return;
+    }
     if (path === '/budzet' || path === '/budzet/') {
       selectKadencjaQuiet(initialKid);
       activateTab('budget');
@@ -1295,7 +1306,7 @@ function mainPath(tab, kid) {
   if (tab === 'komisje') return '/commissions/';
   const kadSlug = KAD_SLUGS[kid] || kid;
   const tabSlug = TAB_SLUGS_EN[tab] || tab;
-  if (tab === 'ranking' && kid === defaultKid) return '/';
+  if (tab === 'ranking' && kid === defaultKid) return LANDING_MODE ? '/councillors/' : '/';
   return '/term/' + kadSlug + '/' + tabSlug + '/';
 }
 

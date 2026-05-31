@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{SITE_TITLE}}</title>
+<meta name="description" content="{{SITE_DESCRIPTION}}">
+<meta name="keywords" content="{{CITY_NAME}}, rada miasta, radni, imienne głosowania, jawność, rejestr głosów, samorząd, transparentność">
+<meta name="author" content="{{AUTHOR}}">
+<link rel="canonical" href="{{SITE_URL}}/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Radoskop {{CITY_NAME}} · Imienny rejestr głosowań rady">
+<meta property="og:description" content="Pełny, imienny rejestr głosowań Rady Miasta {{CITY_GENITIVE}}. Jawnie, trwale, przeszukiwalnie.">
+<meta property="og:url" content="{{SITE_URL}}/">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="Radoskop {{CITY_NAME}}">
+<meta name="twitter:card" content="summary">
+{{GA_SNIPPET}}
+<script>
+// Anti-FOUC: ustaw data-theme przed renderem CSS
+(function(){
+  try {
+    var m = document.cookie.match(/(?:^|;\s*)radoskop_theme=([^;]+)/);
+    var t = m ? decodeURIComponent(m[1]) : null;
+    if (t !== 'dark' && t !== 'light') {
+      try { var s = localStorage.getItem('radoskop_theme'); if (s === 'dark' || s === 'light') t = s; } catch(e) {}
+    }
+    if (t !== 'dark' && t !== 'light') {
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch(e) {}
+})();
+</script>
+<style>
+:root, [data-theme="light"] {
+  --bg: #f8f9fa; --surface: #ffffff; --border: #e2e5e9; --text: #1a1d27;
+  --muted: #6b7280; --accent: #4f46e5; --green: #16a34a; --red: #dc2626;
+  --yellow: #ca8a04; --blue: #2563eb;
+}
+[data-theme="dark"] {
+  --bg: #0f1117; --surface: #1a1d27; --border: #2a2d3a; --text: #e4e4e7;
+  --muted: #8b8d97; --accent: #6366f1; --green: #22c55e; --red: #ef4444;
+  --yellow: #eab308; --blue: #3b82f6;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:var(--bg); color:var(--text); line-height:1.55; }
+a { color:inherit; }
+.topbar { position:sticky; top:0; z-index:100; background:var(--surface); border-bottom:1px solid var(--border); padding:10px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.topbar-logo { font-size:1.05rem; font-weight:700; text-decoration:none; }
+.topbar-logo span { color:var(--accent); }
+.topbar-nav { display:flex; gap:20px; flex-wrap:wrap; }
+.topbar-nav a { font-size:.88rem; color:var(--muted); text-decoration:none; transition:color .15s; }
+.topbar-nav a:hover { color:var(--accent); }
+.topbar-actions { display:flex; gap:6px; align-items:center; }
+.theme-toggle { padding:5px 10px; font-size:.8rem; border:1px solid var(--border); background:var(--bg); color:var(--muted); border-radius:8px; cursor:pointer; }
+.container { max-width:1100px; margin:0 auto; padding:20px; }
+
+/* Hero band */
+.hero { padding:56px 0 40px; border-bottom:1px solid var(--border); }
+.hero .eyebrow { font-size:.8rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+.hero h1 { font-size:2.9rem; font-weight:800; line-height:1.08; letter-spacing:-.02em; white-space:nowrap; }
+.hero h1 .hl { color:var(--accent); }
+.hero p.lead { margin-top:18px; font-size:1.12rem; color:var(--muted); max-width:60ch; }
+.hero .insight { margin-top:20px; font-size:1.3rem; line-height:1.4; font-weight:500; color:var(--text); max-width:62ch; }
+.hero .insight strong { color:var(--accent); font-weight:700; }
+.hero .cta-row { margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; }
+
+/* Wyroznienia */
+.highlights { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+.hcard { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; display:flex; justify-content:space-between; align-items:flex-start; gap:14px; }
+.hcard .htag { font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+.hcard .hname { font-size:1.15rem; font-weight:700; margin-top:6px; }
+.hcard .hsub { font-size:.85rem; color:var(--muted); margin-top:3px; }
+.hcard .hnum { font-size:1.8rem; font-weight:800; line-height:1; font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right; }
+.hcard .hnum small { font-size:.66rem; font-weight:600; color:var(--muted); display:block; margin-top:5px; }
+.club-badge { display:inline-block; font-size:.7rem; font-weight:600; padding:2px 7px; border-radius:4px; margin-top:8px; }
+.club-ko { background:#dbeafe; color:#1e40af; }
+.club-lewica { background:#fee2e2; color:#b91c1c; }
+.club-pis { background:#fef9c3; color:#854d0e; }
+
+/* Wiarygodnosc */
+.proof { display:flex; flex-wrap:wrap; gap:28px; justify-content:center; text-align:center; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:26px 24px; }
+.proof .pi .pv { font-size:1.7rem; font-weight:800; font-variant-numeric:tabular-nums; }
+.proof .pi .pl { font-size:.82rem; color:var(--muted); margin-top:3px; }
+.proof-note { text-align:center; color:var(--muted); font-size:.85rem; margin-top:14px; }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:11px 18px; border-radius:10px; font-size:.92rem; font-weight:600; text-decoration:none; border:1px solid transparent; cursor:pointer; }
+.btn-primary { background:var(--accent); color:#fff; }
+.btn-primary:hover { filter:brightness(1.08); }
+.btn-ghost { background:transparent; color:var(--text); border-color:var(--border); }
+.btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
+
+/* Section */
+.section { margin:44px 0; }
+.section h2 { font-size:1.35rem; font-weight:700; margin-bottom:6px; letter-spacing:-.01em; }
+.section .subtitle { color:var(--muted); font-size:.95rem; margin-bottom:18px; }
+
+/* Confrontation band */
+.band { background:var(--surface); border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:12px; padding:26px 28px; }
+.band h3 { font-size:1.5rem; font-weight:800; letter-spacing:-.01em; }
+.band p { color:var(--muted); margin-top:10px; font-size:1rem; max-width:70ch; }
+
+/* Stats */
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; }
+.stat-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 18px; }
+.stat-card .value { font-size:2rem; font-weight:800; line-height:1.05; font-variant-numeric:tabular-nums; }
+.stat-card .label { font-size:.82rem; color:var(--muted); margin-top:4px; }
+
+/* Nav cards */
+.navgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.navcard { display:block; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; text-decoration:none; transition:border-color .15s, transform .1s; }
+.navcard:hover { border-color:var(--accent); transform:translateY(-1px); }
+.navcard .nk { font-size:1.05rem; font-weight:700; color:var(--text); }
+.navcard .nd { font-size:.85rem; color:var(--muted); margin-top:5px; }
+.navcard .arrow { color:var(--accent); font-weight:700; }
+.navlabel { font-size:.72rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin:22px 0 10px; }
+
+/* Generic card */
+.card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; }
+.sec { font-size:.72rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:14px; }
+.mu { color:var(--muted); }
+
+table { width:100%; border-collapse:collapse; font-size:.9rem; }
+th { text-align:left; padding:0 8px 9px 0; color:var(--muted); font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--border); }
+td { padding:10px 8px 10px 0; border-bottom:1px solid var(--border); }
+
+footer { border-top:1px solid var(--border); margin-top:48px; padding:26px 0 40px; color:var(--muted); font-size:.82rem; }
+footer a { color:var(--accent); text-decoration:none; }
+
+@media (max-width:880px) {
+  .hero h1 { font-size:2.1rem; }
+  .hero .insight { font-size:1.1rem; }
+  .navgrid { grid-template-columns:1fr; }
+  .highlights { grid-template-columns:1fr; }
+}
+@media (max-width:520px) {
+  .hero h1 { font-size:1.6rem; }
+  .topbar-nav { display:none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="Główna nawigacja">
+  <a class="topbar-logo" href="{{SITE_URL}}/">Rado<span>skop</span> {{CITY_NAME}}</a>
+  <div class="topbar-nav">
+    <a href="https://radoskop.eu/reports/">Raporty</a>
+    <a href="https://radoskop.eu/business/">Business</a>
+  </div>
+  <div class="topbar-actions">
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw">Motyw</button>
+  </div>
+</nav>
+
+<div class="container">
+
+  <section class="hero">
+    <div class="eyebrow">Rada Miasta {{CITY_GENITIVE}}<span id="kad-label">{{KAD_LABEL_SUFFIX}}</span></div>
+    <h1>Tak działa <span class="hl">rada miasta</span>.</h1>
+    <p class="insight" id="hero-insight">{{HERO_INSIGHT}}</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="{{SITE_URL}}/councillors/">Sprawdź, jak głosują radni</a>
+      <a class="btn btn-ghost" href="{{SITE_URL}}/" data-kadlink="votes">Wszystkie głosowania</a>
+    </div>
+  </section>
+
+  <!--METRICS_START-->
+  <section class="section" id="liczby">
+    <h2>Rada w liczbach</h2>
+    <div class="subtitle">Aktualny obraz kadencji. Dane odświeżane dwa razy dziennie.</div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="value" id="stat-glosowania">{{STAT_GLOSOWANIA}}</div><div class="label">głosowań imiennych w kadencji</div></div>
+      <div class="stat-card"><div class="value" id="stat-radnych">{{STAT_RADNYCH}}</div><div class="label">radnych pod obserwacją</div></div>
+      <div class="stat-card"><div class="value" id="stat-sporne">{{STAT_SPORNE}}</div><div class="label">głosowań spornych (różnica &lt; 10)</div></div>
+      <div class="stat-card"><div class="value" id="stat-sesje">{{STAT_SESJE}}</div><div class="label">sesji w archiwum</div></div>
+    </div>
+  </section>
+
+  <section class="section" id="wyroznienia">
+    <h2>Wyróżnienia kadencji</h2>
+    <div class="subtitle">Najciekawsze nazwiska i decyzje, wprost z rejestru głosowań.</div>
+    <div class="highlights">
+      <div class="hcard">
+        <div>
+          <div class="htag">Najaktywniejszy radny</div>
+          <div class="hname" id="hl-active-name">{{HL_ACTIVE_NAME}}</div>
+          <div class="hsub">najwyższa aktywność w głosowaniach</div>
+          <span class="club-badge {{HL_ACTIVE_CLUBCLASS}}" id="hl-active-club">{{HL_ACTIVE_CLUB}}</span>
+        </div>
+        <div class="hnum"><span id="hl-active-num">{{HL_ACTIVE_NUM}}</span><small>aktywności</small></div>
+      </div>
+      <div class="hcard">
+        <div>
+          <div class="htag">Najczęściej głosował przeciw własnemu klubowi</div>
+          <div class="hname" id="hl-rebel-name">{{HL_REBEL_NAME}}</div>
+          <div class="hsub">rozbieżność z linią klubu</div>
+          <span class="club-badge {{HL_REBEL_CLUBCLASS}}" id="hl-rebel-club">{{HL_REBEL_CLUB}}</span>
+        </div>
+        <div class="hnum"><span id="hl-rebel-num">{{HL_REBEL_NUM}}</span><small>razy wbrew</small></div>
+      </div>
+      <div class="hcard">
+        <div>
+          <div class="htag">Najbardziej kontrowersyjne głosowanie</div>
+          <div class="hname" id="hl-vote-title">{{HL_VOTE_TITLE}}</div>
+          <div class="hsub" id="hl-vote-sub">{{HL_VOTE_SUB}}</div>
+        </div>
+        <div class="hnum"><span id="hl-vote-num">{{HL_VOTE_NUM}}</span><small>za : przeciw</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="aktywnosc">
+    <h2>Aktywność w czasie</h2>
+    <div class="subtitle">Liczba głosowań na sesjach i ile z nich było spornych.</div>
+    <div class="card">
+      <div id="sparkbars" style="display:flex; align-items:flex-end; gap:3px; height:70px; margin-bottom:10px;"></div>
+      <div style="display:flex; gap:16px; font-size:.78rem;">
+        <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:9px;height:9px;border-radius:2px;background:var(--accent);"></span><span class="mu">głosowania</span></span>
+        <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:9px;height:9px;border-radius:2px;background:var(--red);"></span><span class="mu">sporne</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="glosowania">
+    <h2>Ostatnie sporne głosowania</h2>
+    <div class="subtitle">Tam, gdzie rada była podzielona, każdy głos ważył najwięcej.</div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Głosowanie</th><th>Data</th>
+            <th style="text-align:right;">Za</th><th style="text-align:right;">Przeciw</th><th style="text-align:right;">Wstrzym.</th>
+            <th style="padding-left:16px;">Rozkład</th>
+          </tr>
+        </thead>
+        <tbody id="sporne-rows">
+          {{SPORNE_ROWS}}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!--METRICS_END-->
+
+  <section class="section" id="strony">
+    <h2>Cały serwis</h2>
+    <div class="subtitle">Wejdź w dowolną część i sprawdź radnych z każdej strony.</div>
+
+    <div class="navlabel">Strony podstawowe</div>
+    <div class="navgrid">
+      <a class="navcard" href="{{SITE_URL}}/councillors/">
+        <div class="nk">Lista radnych <span class="arrow">&rarr;</span></div>
+        <div class="nd">Ranking, frekwencja i karta każdego radnego z pełną historią głosów.</div>
+      </a>
+      <a class="navcard" href="{{SITE_URL}}/" data-kadlink="sessions">
+        <div class="nk">Sesje <span class="arrow">&rarr;</span></div>
+        <div class="nd">Porządek obrad, protokoły i wyniki każdej sesji rady.</div>
+      </a>
+      <a class="navcard" href="{{SITE_URL}}/" data-kadlink="votes">
+        <div class="nk">Głosowania <span class="arrow">&rarr;</span></div>
+        <div class="nd">Pełny, imienny rejestr głosowań z rozkładem za, przeciw, wstrzymanie.</div>
+      </a>
+    </div>
+
+    <div class="navlabel">Strony dodatkowe</div>
+    <div class="navgrid">
+      <a class="navcard" href="{{SITE_URL}}/interpellations/">
+        <div class="nk">Interpelacje <span class="arrow">&rarr;</span></div>
+        <div class="nd">Pytania i wnioski radnych wraz z odpowiedziami urzędu.</div>
+      </a>
+      <a class="navcard" href="{{SITE_URL}}/budget/">
+        <div class="nk">Budżety <span class="arrow">&rarr;</span></div>
+        <div class="nd">Wydatki miasta i to, kto jak głosował nad pieniędzmi.</div>
+      </a>
+      <a class="navcard" href="{{SITE_URL}}/commissions/">
+        <div class="nk">Komisje <span class="arrow">&rarr;</span></div>
+        <div class="nd">Składy komisji i przebieg prac nad drukami przed sesją.</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="wiarygodnosc">
+    <div class="proof">
+      <div class="pi"><div class="pv" id="pf-votes">{{STAT_GLOSOWANIA}}</div><div class="pl">głosowań przeanalizowanych</div></div>
+      <div class="pi"><div class="pv" id="pf-radnych">{{STAT_RADNYCH}}</div><div class="pl">radnych monitorowanych</div></div>
+      <div class="pi"><div class="pv">2× dziennie</div><div class="pl">dane aktualizowane</div></div>
+    </div>
+    <div class="proof-note">Dane pochodzą bezpośrednio z {{BIP_NAME}} i są aktualizowane automatycznie.</div>
+  </section>
+
+  <section class="section">
+    <div class="band" style="text-align:center; border-left:none; border-top:4px solid var(--accent);">
+      <h3>Sprawdź swojego radnego.</h3>
+      <p style="margin-left:auto;margin-right:auto;">Pełny rejestr jest otwarty i darmowy. Zobacz, jak głosował radny z Twojego okręgu, i porównaj go z resztą rady.</p>
+      <div class="cta-row" style="justify-content:center;">
+        <a class="btn btn-primary" href="{{SITE_URL}}/councillors/">Sprawdź swojego radnego</a>
+        <a class="btn btn-ghost" href="{{SITE_URL}}/feed.xml">Subskrybuj RSS</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Radoskop {{CITY_NAME}} to niezależny, otwarty monitoring rady. Dane pochodzą z <a href="{{BIP_URL}}" target="_blank" rel="noopener">{{BIP_NAME}}</a>.
+    Kod na licencji AGPL: <a href="{{GITHUB_URL}}" target="_blank" rel="noopener">repozytorium</a>.
+    <a href="{{ROOT_URL}}/">Pozostałe miasta</a>.
+  </footer>
+
+</div>
+
+{{LANDING_DATA_SCRIPT}}
+<script>
+// Kadencja sterowana tokenami z generatora (per miasto, rozne lata, Gdansk = poprzednia).
+// DEFAULT_KAD_SLUG idzie do URL /term/{slug}/ (np. 2024-2029, ix), DEFAULT_KAD_LABEL do napisu (np. "2024 / 2029").
+// Jesli generator nie podstawi tokenow, linki sesje/votes ida na /councillors/ a etykieta kadencji znika.
+(function(){
+  var SITE = "{{SITE_URL}}"; if (SITE.indexOf("{{") !== -1) SITE = "";
+  var slug = "{{DEFAULT_KAD_SLUG}}"; if (slug.indexOf("{{") !== -1) slug = "";
+  var label = "{{DEFAULT_KAD_LABEL}}"; if (label.indexOf("{{") !== -1) label = "";
+
+  var lab = document.getElementById('kad-label');
+  if (lab && label) lab.textContent = ' · kadencja ' + label;
+
+  document.querySelectorAll('[data-kadlink]').forEach(function(a){
+    var tab = a.getAttribute('data-kadlink'); // sessions | votes
+    a.setAttribute('href', slug ? SITE + '/term/' + slug + '/' + tab + '/' : SITE + '/councillors/');
+  });
+})();
+
+// Dane landingu wstrzykuje generator jako window.RADOSKOP_LANDING.
+// Ponizej tylko nadpisanie pol, ktore sa w configu; brak configu => zostaja
+// przykladowe wartosci z HTML (podglad szablonu).
+(function(){
+  var D = window.RADOSKOP_LANDING; if (!D) return;
+  function set(id, val){ var el = document.getElementById(id); if (el && val != null) el.textContent = val; }
+  var nf = function(n){ return (''+n).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
+
+  if (D.totalVotes != null) { set('ins-votes', nf(D.totalVotes)); set('stat-glosowania', nf(D.totalVotes)); set('pf-votes', nf(D.totalVotes)); }
+  if (D.councilors != null) { set('stat-radnych', D.councilors); set('pf-radnych', D.councilors); }
+  if (D.contested != null) set('stat-sporne', nf(D.contested));
+  if (D.sessions != null) set('stat-sesje', D.sessions);
+
+  if (D.active)  { set('hl-active-name', D.active.name); set('hl-active-num', D.active.count); }
+  if (D.rebel)   { set('hl-rebel-name', D.rebel.name); set('hl-rebel-num', D.rebel.count); }
+  if (D.topVote) { set('hl-vote-title', D.topVote.title); set('hl-vote-sub', D.topVote.sub); set('hl-vote-num', D.topVote.result); }
+})();
+
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('radoskop_theme', next); } catch(e) {}
+  var host = location.hostname.replace(/^[^.]+\./,'.');
+  document.cookie = 'radoskop_theme=' + next + ';path=/;max-age=31536000;domain=' + host;
+}
+
+// Sparkbars: dane wstrzykuje warstwa danych (window.RADOSKOP_ACTIVITY).
+// Ponizej fallback demonstracyjny dla podgladu szablonu.
+(function(){
+  var votes = (window.RADOSKOP_ACTIVITY && window.RADOSKOP_ACTIVITY.votes) || [48,62,38,71,55,89,44,67,92,58,75,81,68,95,52,78,61,84,47,73,88,65,79,56,83,70,94,59,86,42];
+  var disp  = (window.RADOSKOP_ACTIVITY && window.RADOSKOP_ACTIVITY.contested) || [8,12,6,15,9,18,7,14,19,11,16,20,13,22,10,17,12,21,8,15,18,13,17,10,19,14,23,11,20,7];
+  var box = document.getElementById('sparkbars');
+  var maxV = Math.max.apply(null, votes);
+  votes.forEach(function(v,i){
+    var wrap = document.createElement('div');
+    wrap.style.cssText = 'flex:1;position:relative;height:70px;';
+    var b1 = document.createElement('div');
+    b1.style.cssText = 'position:absolute;bottom:0;width:100%;height:' + Math.round(v/maxV*70) + 'px;background:var(--accent);opacity:.6;border-radius:1px 1px 0 0;';
+    var b2 = document.createElement('div');
+    b2.style.cssText = 'position:absolute;bottom:0;width:100%;height:' + Math.round(disp[i]/maxV*70) + 'px;background:var(--red);opacity:.6;border-radius:1px 1px 0 0;';
+    wrap.appendChild(b1); wrap.appendChild(b2); box.appendChild(wrap);
+  });
+})();
+</script>
+</body>
+</html>
