@@ -14,6 +14,13 @@ import os
 import glob
 from pathlib import Path
 
+# Gadatliwość. Domyślnie cicho: w pipeline NAS te komunikaty (odrzucone
+# nie-nazwiska z filtra, per-głosowanie warningi walidacji) zalewały log
+# setkami linii bez wartości operacyjnej. Włącz RADOSKOP_PARSE_VERBOSE=1
+# (lub --verbose) do debugowania parsera. Podsumowanie per plik
+# (OK (N votes, X/Y validated)) zostaje zawsze.
+VERBOSE = os.environ.get("RADOSKOP_PARSE_VERBOSE", "").strip() not in ("", "0", "false", "False")
+
 
 def parse_voting_pdf(pdf_path):
     """Parse a single eSesja voting protocol PDF into structured data."""
@@ -277,7 +284,7 @@ def parse_voting_pdf(pdf_path):
                             names.append(n)
                         elif n and not re.match(r'^(Strona|Wygenerowano|Wyniki)', n):
                             rejected.append(n)
-                    if rejected:
+                    if rejected and VERBOSE:
                         print(f"    name filter rejected ({key}): {rejected[:5]}")
                     vote["named_votes"][key] = names
                 else:
@@ -371,12 +378,13 @@ def batch_parse(input_path, output_dir):
         try:
             session = parse_voting_pdf(pdf_file)
             ok, fail, errors = validate_session(session)
-            print(f"OK ({session['vote_count']} votes, {ok}/{ok+fail} validated)")
-            if errors[:3]:
-                for e in errors[:3]:
+            suffix = f", {fail} warn" if fail else ""
+            print(f"OK ({session['vote_count']} votes, {ok}/{ok+fail} validated{suffix})")
+            # Pojedyncze warningi walidacji tylko w trybie verbose — ratio
+            # X/Y validated wyżej już sygnalizuje skalę rozjazdu.
+            if errors and VERBOSE:
+                for e in errors:
                     print(f"  WARNING: {e}")
-                if len(errors) > 3:
-                    print(f"  ... and {len(errors)-3} more warnings")
             all_sessions.append(session)
         except Exception as e:
             print(f"FAILED: {e}")
@@ -414,5 +422,7 @@ if __name__ == "__main__":
         idx = sys.argv.index("--out")
         if idx + 1 < len(sys.argv):
             output_dir = sys.argv[idx + 1]
+    if "--verbose" in sys.argv or "-v" in sys.argv:
+        VERBOSE = True
 
     batch_parse(input_path, output_dir)
