@@ -46,7 +46,7 @@ from typing import Any
 # samego kanonicznego template/index.html co miasta i muszą po migracji
 # 2026-05 mieć angielskie URL slugi tak samo jak miasta.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from generate_site import apply_english_paths  # noqa: E402
+from generate_site import apply_english_paths, assemble_template  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -304,6 +304,10 @@ def main() -> int:
         print(f"ERROR: brak templatu: {template_path}", file=sys.stderr)
         return 1
     template = template_path.read_text(encoding="utf-8")
+    # Sklej partiale (CSS/head/auth-modal) PRZED transform/locale — transform
+    # podmienia "Rada Miasta"→"Sejmik" m.in. w head (JSON-LD, meta), więc musi
+    # widzieć pełny HTML. Reconstrukcja bajt-w-bajt.
+    template = assemble_template(template, template_path.parent)
     samorzad_kind = cfg.get("samorzad_type", "wojewodztwo")
     # Transform "Rada Miasta" → "Sejmik Województwa" (PL) lub "Landtag" (DE)
     # w wszystkich miejscach (meta tagi, copy strony, schema.org
@@ -385,6 +389,10 @@ def main() -> int:
         # więc COUNCILOR_ROSTER_MODE zawsze false (sejmiki z imiennymi głosami
         # mają normalny ranking radnych, nie roster z profiles.json).
         "{{COUNCILOR_ROSTER_MODE}}": "false",
+        # Landing mode: ranking radnych jako /councillors/ gdy landing_enabled.
+        # MUSI być podstawione (template/index.html ma {{LANDING_MODE}}), inaczej
+        # SPA sejmiku = const LANDING_MODE = {{...}}; → SyntaxError.
+        "{{LANDING_MODE}}": "true" if cfg.get("landing_enabled") else "false",
         # Sejmiki/landy mają radnych (Abgeordnete też), więc HAS_COUNCILORS=true.
         # Bez tego template ma {{...}} leftover w renderze.
         "{{HAS_COUNCILORS}}": "false" if cfg.get("has_councilorless") else "true",

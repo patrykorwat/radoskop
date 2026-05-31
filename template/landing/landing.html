@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="hero">
+    <div class="eyebrow">{{ eyebrow }}{% if kad_label %} · {{ t.term_word }} {{ kad_label }}{% endif %}</div>
+    <h1>{{ hero_title_html|safe }}</h1>
+    <p class="insight">{{ insight_html|safe }}</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="{{ url_councillors }}">{{ t.cta_check_votes }}</a>
+      <a class="btn btn-ghost" href="{{ url_votes }}">{{ t.cta_all_votes }}</a>
+    </div>
+  </section>
+
+{% if not lightweight %}
+  <section class="section">
+    <h2>{{ t.sec_numbers_h2 }}</h2>
+    <div class="subtitle">{{ t.sec_numbers_sub }}</div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="value">{{ stat_votes }}</div><div class="label">{{ t.stat_votes_label }}</div></div>
+      <div class="stat-card"><div class="value">{{ stat_councilors }}</div><div class="label">{{ t.stat_councilors_label }}</div></div>
+      <div class="stat-card"><div class="value">{{ stat_contested }}</div><div class="label">{{ t.stat_contested_label|safe }}</div></div>
+      <div class="stat-card"><div class="value">{{ stat_sessions }}</div><div class="label">{{ t.stat_sessions_label }}</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>{{ t.sec_highlights_h2 }}</h2>
+    <div class="subtitle">{{ t.sec_highlights_sub }}</div>
+    <div class="highlights">
+      <div class="hcard">
+        <div>
+          <div class="htag">{{ t.hl_active_tag }}</div>
+          <div class="hname">{{ hl.active.name }}</div>
+          <div class="hsub">{{ t.hl_active_sub }}</div>
+          {{ hl.active.badge|safe }}
+        </div>
+        <div class="hnum"><span>{{ hl.active.num }}</span><small>{{ t.hl_active_unit }}</small></div>
+      </div>
+      <div class="hcard">
+        <div>
+          <div class="htag">{{ t.hl_rebel_tag }}</div>
+          <div class="hname">{{ hl.rebel.name }}</div>
+          <div class="hsub">{{ t.hl_rebel_sub }}</div>
+          {{ hl.rebel.badge|safe }}
+        </div>
+        <div class="hnum"><span>{{ hl.rebel.num }}</span><small>{{ t.hl_rebel_unit }}</small></div>
+      </div>
+      <div class="hcard">
+        <div>
+          <div class="htag">{{ t.hl_vote_tag }}</div>
+          <div class="hname">{{ hl.vote.title }}</div>
+          <div class="hsub">{{ hl.vote.sub }}</div>
+        </div>
+        <div class="hnum"><span>{{ hl.vote.num }}</span><small>{{ t.hl_vote_unit }}</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>{{ t.sec_activity_h2 }}</h2>
+    <div class="subtitle">{{ t.sec_activity_sub }}</div>
+    <div class="card">
+      <div id="sparkbars" style="display:flex; align-items:flex-end; gap:3px; height:70px; margin-bottom:10px;"></div>
+      <div style="display:flex; gap:16px; font-size:.78rem;">
+        <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:9px;height:9px;border-radius:2px;background:var(--accent);"></span><span class="mu">{{ t.legend_votes }}</span></span>
+        <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:9px;height:9px;border-radius:2px;background:var(--red);"></span><span class="mu">{{ t.legend_contested }}</span></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>{{ t.sec_contested_h2 }}</h2>
+    <div class="subtitle">{{ t.sec_contested_sub }}</div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>{{ t.th_vote }}</th><th>{{ t.th_date }}</th>
+            <th style="text-align:right;">{{ t.th_for }}</th><th style="text-align:right;">{{ t.th_against }}</th><th style="text-align:right;">{{ t.th_abstain }}</th>
+            <th style="padding-left:16px;">{{ t.th_split }}</th>
+          </tr>
+        </thead>
+        <tbody>{{ sporne_rows|safe }}</tbody>
+      </table>
+    </div>
+  </section>
+{% endif %}
+
+  <section class="section">
+    <h2>{{ t.sec_all_h2 }}</h2>
+    <div class="subtitle">{{ t.sec_all_sub }}</div>
+
+    <div class="navlabel">{{ t.nav_label_main }}</div>
+    <div class="navgrid">
+      <a class="navcard" href="{{ url_councillors }}">
+        <div class="nk">{{ t.nav_councilors_title }} <span class="arrow">&rarr;</span></div>
+        <div class="nd">{{ t.nav_councilors_desc }}</div>
+      </a>
+      <a class="navcard" href="{{ url_sessions }}">
+        <div class="nk">{{ t.nav_sessions_title }} <span class="arrow">&rarr;</span></div>
+        <div class="nd">{{ t.nav_sessions_desc }}</div>
+      </a>
+      <a class="navcard" href="{{ url_votes }}">
+        <div class="nk">{{ t.nav_votes_title }} <span class="arrow">&rarr;</span></div>
+        <div class="nd">{{ t.nav_votes_desc }}</div>
+      </a>
+    </div>
+
+    <div class="navlabel">{{ t.nav_label_extra }}</div>
+    <div class="navgrid">
+      <a class="navcard" href="{{ url_interpellations }}">
+        <div class="nk">{{ t.nav_interp_title }} <span class="arrow">&rarr;</span></div>
+        <div class="nd">{{ t.nav_interp_desc }}</div>
+      </a>
+      <a class="navcard" href="{{ url_budget }}">
+        <div class="nk">{{ t.nav_budget_title }} <span class="arrow">&rarr;</span></div>
+        <div class="nd">{{ t.nav_budget_desc }}</div>
+      </a>
+      <a class="navcard" href="{{ url_committees }}">
+        <div class="nk">{{ t.nav_committees_title }} <span class="arrow">&rarr;</span></div>
+        <div class="nd">{{ t.nav_committees_desc }}</div>
+      </a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="proof">
+      <div class="pi"><div class="pv">{{ stat_votes }}</div><div class="pl">{{ t.proof_votes_label }}</div></div>
+      <div class="pi"><div class="pv">{{ stat_councilors }}</div><div class="pl">{{ t.proof_councilors_label }}</div></div>
+      <div class="pi"><div class="pv">{{ t.proof_freq_value }}</div><div class="pl">{{ t.proof_freq_label }}</div></div>
+    </div>
+    <div class="proof-note">{{ proof_note }}</div>
+  </section>
+
+  <section class="section">
+    <div class="band" style="text-align:center; border-top:4px solid var(--accent);">
+      <h3>{{ t.cta_final_h3 }}</h3>
+      <p style="margin-left:auto;margin-right:auto;">{{ t.cta_final_p }}</p>
+      <div class="cta-row" style="justify-content:center;">
+        <a class="btn btn-primary" href="{{ url_councillors }}">{{ t.cta_final_primary }}</a>
+        <a class="btn btn-ghost" href="{{ site_url }}/feed.xml">{{ t.cta_rss }}</a>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block footer %}
+  <footer>
+    Radoskop {{ city_name }} {{ t.footer_tagline }}. {{ t.footer_data_from }} <a href="{{ bip_url }}" target="_blank" rel="noopener">{{ bip_name }}</a>.
+    {{ t.footer_license }}: <a href="{{ github_url }}" target="_blank" rel="noopener">{{ t.footer_repo }}</a>.
+    <a href="{{ root_url }}/">{{ t.footer_other_cities }}</a>.
+  </footer>
+{% endblock %}
+
+{% block scripts %}
+{% if not lightweight %}
+<script>window.RADOSKOP_ACTIVITY={{ activity_json|safe }};</script>
+<script>
+(function(){
+  var A = window.RADOSKOP_ACTIVITY || {votes:[],contested:[]};
+  var votes = A.votes||[], disp = A.contested||[];
+  var box = document.getElementById('sparkbars');
+  if (!box || !votes.length) return;
+  var maxV = Math.max.apply(null, votes) || 1;
+  votes.forEach(function(v,i){
+    var wrap = document.createElement('div'); wrap.style.cssText='flex:1;position:relative;height:70px;';
+    var b1 = document.createElement('div'); b1.style.cssText='position:absolute;bottom:0;width:100%;height:'+Math.round(v/maxV*70)+'px;background:var(--accent);opacity:.6;border-radius:1px 1px 0 0;';
+    var b2 = document.createElement('div'); b2.style.cssText='position:absolute;bottom:0;width:100%;height:'+Math.round((disp[i]||0)/maxV*70)+'px;background:var(--red);opacity:.6;border-radius:1px 1px 0 0;';
+    wrap.appendChild(b1); wrap.appendChild(b2); box.appendChild(wrap);
+  });
+})();
+</script>
+{% endif %}
+{% endblock %}

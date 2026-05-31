@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}{{ councilors_title }} — Radoskop {{ city_name }}{% endblock %}
+{% block description %}{{ councilors_meta_desc }}{% endblock %}
+{% block canonical %}{{ site_url }}/councillors/{% endblock %}
+{% block og_title %}{{ councilors_title }} · Radoskop {{ city_name }}{% endblock %}
+{% block og_description %}{{ councilors_meta_desc }}{% endblock %}
+
+{% block content %}
+  <div class="crumbs"><a href="{{ site_url }}/">{{ t.crumb_home }}</a> / {{ t.crumb_councilors }}</div>
+  <div class="page-head">
+    <h1>{{ councilors_title }}</h1>
+    <div class="sub">{{ councilors_sub }}</div>
+  </div>
+
+  <div class="toolbar">
+    <input id="q" type="text" placeholder="{{ t.search_placeholder }}" oninput="render()">
+    <select id="club" onchange="render()">
+      <option value="">{{ t.all_clubs }}</option>
+      {{ club_options|safe }}
+    </select>
+    <span class="count" id="shown-count"></span>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th data-k="rank" class="rank">#</th>
+          <th data-k="name">{{ t.th_councilor }} <span class="ar">↕</span></th>
+          <th data-k="club" class="hide-sm">{{ t.th_club }} <span class="ar">↕</span></th>
+          <th data-k="attendance" class="num">{{ t.th_attendance }} <span class="ar">↕</span></th>
+          <th data-k="votes" class="num hide-sm">{{ t.th_votes_count }} <span class="ar">↕</span></th>
+          <th data-k="agreement" class="num">{{ t.th_agreement }} <span class="ar">↕</span></th>
+        </tr>
+      </thead>
+      <tbody id="rows">{{ roster_rows|safe }}</tbody>
+    </table>
+  </div>
+{% endblock %}
+
+{% block footer %}
+  <footer>
+    Radoskop {{ city_name }} {{ t.footer_tagline }}. {{ t.footer_data_from }} <a href="{{ bip_url }}" target="_blank" rel="noopener">{{ bip_name }}</a> {{ t.footer_updated_2x }}.
+    <a href="{{ site_url }}/">{{ t.back_home }}</a>.
+  </footer>
+{% endblock %}
+
+{% block scripts %}
+<script>
+window.RADOSKOP_ROSTER={{ roster_json|safe }};
+window.RADOSKOP_CLUBSTYLE={{ club_style_json|safe }};
+window.RADOSKOP_I18N={shown:{{ i18n_shown_json|safe }}};
+</script>
+<script>
+var ROSTER = window.RADOSKOP_ROSTER || [];
+var CLUB_STYLE = window.RADOSKOP_CLUBSTYLE || {};
+var SHOWN = (window.RADOSKOP_I18N||{}).shown || "{n} / {total}";
+var SITE = "{{ site_url }}";
+function esc(s){ return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function clubBadge(club){
+  var st = CLUB_STYLE[club] || {bg:'#e5e7eb', fg:'#374151'};
+  return '<span class="club-badge" style="background:'+st.bg+';color:'+st.fg+'">'+esc(club)+'</span>';
+}
+function barColor(v){ return v >= 90 ? 'var(--green)' : (v >= 75 ? 'var(--yellow)' : 'var(--red)'); }
+function metric(v){
+  if (v == null) return '<div class="metric"><span class="mv" style="color:var(--muted)">—</span></div>';
+  v = Math.round(v);
+  return '<div class="metric"><span class="mv">'+v+'%</span><span class="bar"><i style="width:'+v+'%;background:'+barColor(v)+'"></i></span></div>';
+}
+var sortKey='agreement', sortDir=-1;
+function render(){
+  var q=(document.getElementById('q').value||'').toLowerCase();
+  var cf=document.getElementById('club').value;
+  var list=ROSTER.filter(function(r){return (!q||(''+r.name).toLowerCase().indexOf(q)!==-1)&&(!cf||r.club===cf);});
+  list.sort(function(a,b){
+    var x=a[sortKey], y=b[sortKey];
+    if(typeof x==='string'){x=x.toLowerCase();y=(''+(y||'')).toLowerCase();return x<y?-sortDir:(x>y?sortDir:0);}
+    if(x==null)x=-1; if(y==null)y=-1; return (x-y)*sortDir;
+  });
+  document.getElementById('rows').innerHTML = list.map(function(r,i){
+    return '<tr>'
+      +'<td class="rank">'+(i+1)+'</td>'
+      +'<td class="name"><a href="'+SITE+'/profile/'+esc(r.slug)+'/">'+esc(r.name)+'</a></td>'
+      +'<td class="hide-sm">'+clubBadge(r.club)+'</td>'
+      +'<td class="num">'+metric(r.attendance)+'</td>'
+      +'<td class="num hide-sm">'+(r.votes!=null?r.votes:'—')+'</td>'
+      +'<td class="num">'+metric(r.agreement)+'</td>'
+      +'</tr>';
+  }).join('');
+  document.getElementById('shown-count').textContent = SHOWN.replace('{n}', list.length).replace('{total}', ROSTER.length);
+  document.querySelectorAll('th').forEach(function(th){ th.classList.toggle('s', th.getAttribute('data-k')===sortKey); });
+}
+document.querySelectorAll('th[data-k]').forEach(function(th){
+  th.addEventListener('click', function(){
+    var k=th.getAttribute('data-k');
+    if(sortKey===k) sortDir=-sortDir; else { sortKey=k; sortDir=(k==='name'||k==='club')?1:-1; }
+    render();
+  });
+});
+render();
+</script>
+{% endblock %}

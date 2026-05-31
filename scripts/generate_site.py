@@ -27,6 +27,33 @@ from i18n import apply_locale  # noqa: E402
 # AGPL repo (ten plik) nie zawiera business content (cen, klauzul SaaS).
 
 
+def assemble_template(html: str, template_dir) -> str:
+    """Złóż szkielet index.html z wyniesionych partiali przez Jinja2 `{% include %}`.
+
+    Dekompozycja monolitu: CSS -> app/app.css, head -> partials/head.html,
+    modal logowania -> partials/auth_modal.html. index.html używa
+    `{% include "..." %}`. Renderujemy WYŁĄCZNIE bloki Jinja — delimitery zmiennych
+    `{{ }}` i komentarzy `{# #}` są wyłączone (zmienione na nieużywane ciągi), więc
+    79 tokenów SPA `{{TOKEN}}` zostaje nietkniętych dla późniejszego str.replace.
+    keep_trailing_newline=True zachowuje końcowe newline plików (byte-identyczność).
+
+    Wołane PRZED apply_locale / transform_template_for_assembly, żeby te przebiegi
+    widziały pełny HTML jak dawny monolit. Współdzielone przez generate_site.py
+    i generate_assembly_site.py.
+    """
+    from jinja2 import Environment, FileSystemLoader
+    env = Environment(
+        loader=FileSystemLoader(str(template_dir)),
+        autoescape=False,
+        keep_trailing_newline=True,
+        variable_start_string="@@NOJINJAVAR_OPEN@@",
+        variable_end_string="@@NOJINJAVAR_CLOSE@@",
+        comment_start_string="@@NOJINJACMT_OPEN@@",
+        comment_end_string="@@NOJINJACMT_CLOSE@@",
+    )
+    return env.from_string(html).render()
+
+
 def apply_english_paths(html: str) -> str:
     """Translate Polish URL slug paths to English. Działa dla WSZYSTKICH miast.
 
@@ -690,6 +717,12 @@ def main():
 
     with open(template_path, "r", encoding="utf-8") as f:
         template = f.read()
+
+    # Sklej wyniesione partiale (CSS/head/auth-modal) PRZED apply_locale/
+    # apply_english_paths — te przebiegi robią str.replace na treści, która
+    # po dekompozycji żyje w plikach. Po sklejeniu HTML jest identyczny jak
+    # dawny monolit, więc reszta pipeline i output bez zmian.
+    template = assemble_template(template, template_dir)
 
     # Domena root zależy od kraju: PL miasta na radoskop.pl, reszta na
     # radoskop.eu. Cname miasta (config.cname) używamy jako example

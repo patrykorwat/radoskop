@@ -1,0 +1,64 @@
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{SITE_TITLE}}</title>
+<meta name="description" content="{{SITE_DESCRIPTION}}">
+<meta name="keywords" content="{{CITY_NAME}}, rada miasta, radni, głosowania, frekwencja, samorząd, monitoring, transparentność">
+<meta name="author" content="{{AUTHOR}}">
+<link rel="canonical" href="{{SITE_URL}}/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Radoskop {{CITY_NAME}} — Jak głosują radni?">
+<meta property="og:description" content="Otwarte narzędzie monitoringu Rady Miasta {{CITY_GENITIVE}}. Frekwencja, głosowania i aktywność radnych.">
+<meta property="og:url" content="{{SITE_URL}}/">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="Radoskop {{CITY_NAME}}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Radoskop {{CITY_NAME}} — Jak głosują radni?">
+<meta name="twitter:description" content="Otwarte narzędzie monitoringu Rady Miasta {{CITY_GENITIVE}}. Frekwencja, głosowania i aktywność radnych.">
+<link rel="alternate" type="application/atom+xml" title="Radoskop {{CITY_NAME}}" href="{{SITE_URL}}/feed.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Radoskop {{CITY_NAME}}",
+  "description": "Otwarte narzędzie monitoringu Rady Miasta {{CITY_GENITIVE}}. Sprawdź frekwencję, głosowania i aktywność radnych na sesjach.",
+  "url": "{{SITE_URL}}/",
+  "applicationCategory": "GovernmentApplication",
+  "operatingSystem": "Web",
+  "author": {
+    "@type": "Person",
+    "name": "{{AUTHOR}}"
+  },
+  "about": {
+    "@type": "GovernmentOrganization",
+    "name": "Rada Miasta {{CITY_GENITIVE}}",
+    "url": "{{BIP_URL}}"
+  },
+  "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+  "isAccessibleForFree": true,
+  "sameAs": [
+    "https://x.com/radoskop"
+  ],
+  "inLanguage": "pl"
+}
+</script>
+{{GA_SNIPPET}}
+<script>
+// Anti-FOUC: ustaw data-theme PRZED render'em CSS, żeby uniknąć migotania
+// light→dark. Inline blocking script w <head>. Ten sam mechanizm cookie
+// cross-subdomain co w toggleTheme() (sekcja niżej) — Domain=.radoskop.{pl,eu}.
+(function(){
+  try {
+    var m = document.cookie.match(/(?:^|;\s*)radoskop_theme=([^;]+)/);
+    var t = m ? decodeURIComponent(m[1]) : null;
+    if (t !== 'dark' && t !== 'light') {
+      try { var s = localStorage.getItem('radoskop_theme'); if (s === 'dark' || s === 'light') t = s; } catch(e) {}
+    }
+    if (t !== 'dark' && t !== 'light') {
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch(e) { /* default: brak data-theme → light z CSS :root */ }
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>

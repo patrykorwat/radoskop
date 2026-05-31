@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}{{ site_title }}{% endblock %}</title>
+<meta name="description" content="{% block description %}{{ site_description }}{% endblock %}">
+<meta name="author" content="{{ author }}">
+<link rel="canonical" href="{% block canonical %}{{ site_url }}/{% endblock %}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{% block og_title %}{{ site_title }}{% endblock %}">
+<meta property="og:description" content="{% block og_description %}{{ site_description }}{% endblock %}">
+<meta property="og:locale" content="{{ og_locale }}">
+{{ umami_snippet|safe }}
+<script>
+// Anti-FOUC: ustaw data-theme przed renderem CSS.
+(function(){
+  try {
+    var m = document.cookie.match(/(?:^|;\s*)radoskop_theme=([^;]+)/);
+    var t = m ? decodeURIComponent(m[1]) : null;
+    if (t !== 'dark' && t !== 'light') {
+      try { var s = localStorage.getItem('radoskop_theme'); if (s === 'dark' || s === 'light') t = s; } catch(e) {}
+    }
+    if (t !== 'dark' && t !== 'light') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch(e) {}
+})();
+</script>
+<style>
+{% include "partials/theme_vars.css" %}
+{% include "app/landing.css" %}
+{% block head_extra %}{% endblock %}
+</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="{{ t.aria_nav }}">
+  <a class="topbar-logo" href="{{ site_url }}/">Rado<span>skop</span> {{ city_name }}</a>
+  <div class="topbar-nav">
+    <a href="https://radoskop.eu/reports/">{{ t.nav_reports }}</a>
+    <a href="https://radoskop.eu/business/">{{ t.nav_business }}</a>
+  </div>
+  <div class="topbar-actions">
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="{{ t.aria_theme }}">{{ t.theme_toggle }}</button>
+  </div>
+</nav>
+
+<div class="container">
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}
+</div>
+
+<script>
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('radoskop_theme', next); } catch(e) {}
+  var host = location.hostname.replace(/^[^.]+\./,'.');
+  document.cookie = 'radoskop_theme=' + next + ';path=/;max-age=31536000;domain=' + host;
+}
+</script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,82 @@
+{
+  "amsterdam": {
+    "error": null,
+    "kind": "city",
+    "sha256": "f00d6b26d2d4bfece69e31e9ca72fdcba4a4b3fccc3b484d4daa3694f99729a8"
+  },
+  "berlin": {
+    "error": null,
+    "kind": "city",
+    "sha256": "2e65f22c08a2e744ca5ca6ab44323f34da6602354e96545d6d757f72f8cd6430"
+  },
+  "bratislava": {
+    "error": null,
+    "kind": "city",
+    "sha256": "81e1b748a3a386203fb1d038a6a42712dbce03cc6659fb8e6550607ac1e6aaa2"
+  },
+  "budapest": {
+    "error": null,
+    "kind": "city",
+    "sha256": "0453d63f1c2205db42cebb905d0912cc5ab974507b9f9dbec8a0acdf08014243"
+  },
+  "copenhagen": {
+    "error": null,
+    "kind": "city",
+    "sha256": "780e6e658275a94d8ee39fa1593bf71a97f5fea19b44c29c9ba6f8fe2e1b23e3"
+  },
+  "katowice": {
+    "error": null,
+    "kind": "city",
+    "sha256": "20d71b8e67994242163a6378c9a0d05bb947268d74e13a07bfff6c52125faabf"
+  },
+  "kyiv": {
+    "error": null,
+    "kind": "city",
+    "sha256": "108efb675cec254b627ac9b50a178e952cf71ff81d0ee11978e893556bcaa3cb"
+  },
+  "landtag-mv": {
+    "error": null,
+    "kind": "assembly",
+    "sha256": "5f4b90b5a2e4bd2a15616b5fbadfe6dea0e62b7f2157fbdfc9552850106a54c0"
+  },
+  "mazowieckie": {
+    "error": null,
+    "kind": "assembly",
+    "sha256": "df49f245d271225f866d39229a95c233bf153d6f8c0ffe47ab3ab1317b18da3a"
+  },
+  "paris": {
+    "error": null,
+    "kind": "city",
+    "sha256": "36799136f5dca8db3d5a3686615fdf22362eff5a4872b43f04fe6ee6e3c2b66b"
+  },
+  "praha": {
+    "error": null,
+    "kind": "city",
+    "sha256": "f2e17eab911a329c86e4b903c920c8276e344bb56aa682f4cea5308bab760a97"
+  },
+  "riga": {
+    "error": null,
+    "kind": "city",
+    "sha256": "e2359a47304b73b48b46e014301bedd7c0b777afb6d83a4311e20532bdad4119"
+  },
+  "schwerin": {
+    "error": null,
+    "kind": "city",
+    "sha256": "ee22290fb60adc2990d48a5ac73c9ee757e8541a1cc0a6a5c1a13c4d1ea5574b"
+  },
+  "tallinn": {
+    "error": null,
+    "kind": "city",
+    "sha256": "664c9345afc0caaf34552fe4317e89f99368f5bcce9a2339b310681b63936691"
+  },
+  "vilnius": {
+    "error": null,
+    "kind": "city",
+    "sha256": "8dbef7eddf5d0b2c3ed7b2c89df02c09ecb9400c5c15eaa8073af20a0fb04d0d"
+  },
+  "wroclaw": {
+    "error": null,
+    "kind": "city",
+    "sha256": "ce74a15c27b0949dbf25532085caa7e31e2c2d5d2fbacd55a55aeefaf91e34e3"
+  }
+}
