@@ -12,6 +12,22 @@
   },
   "sessions": [
     {
+      "date": "2025-01-29",
+      "number": "96",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-01-30",
+      "number": "97",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
       "date": "2025-01-31",
       "number": "98",
       "vote_count": 1,
@@ -19,11 +35,75 @@
       "attendees": []
     },
     {
+      "date": "2025-03-12",
+      "number": "99",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-03-13",
+      "number": "100",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-03-14",
+      "number": "101",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-04-09",
+      "number": "102",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-04-10",
+      "number": "103",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
       "date": "2025-04-11",
       "number": "104",
       "vote_count": 1,
       "attendee_count": 0,
       "attendees": []
+    },
+    {
+      "date": "2025-05-14",
+      "number": "105",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-05-15",
+      "number": "106",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-05-16",
+      "number": "107",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
     },
     {
       "date": "2025-06-25",
@@ -38,6 +118,62 @@
       "vote_count": 1,
       "attendee_count": 0,
       "attendees": []
+    },
+    {
+      "date": "2025-06-27",
+      "number": "110",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-07-16",
+      "number": "111",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-07-17",
+      "number": "112",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-07-18",
+      "number": "113",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-09-15",
+      "number": "114",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-10-08",
+      "number": "115",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-10-09",
+      "number": "116",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
     },
     {
       "date": "2025-10-10",
@@ -125,9 +261,129 @@
         "Torsten Renz",
         "Wolfgang Waldmüller"
       ]
+    },
+    {
+      "date": "2025-10-12",
+      "number": "123",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-11-12",
+      "number": "118",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-11-13",
+      "number": "119",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-11-14",
+      "number": "120",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-12-10",
+      "number": "121",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2025-12-11",
+      "number": "122",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2026-01-28",
+      "number": "124",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2026-01-29",
+      "number": "125",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2026-01-30",
+      "number": "126",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2026-03-18",
+      "number": "127",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2026-03-19",
+      "number": "128",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2026-03-20",
+      "number": "129",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2026-05-06",
+      "number": "130",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2026-05-07",
+      "number": "131",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
+    },
+    {
+      "date": "2026-05-08",
+      "number": "132",
+      "vote_count": 0,
+      "attendee_count": 0,
+      "attendees": [],
+      "results_pending": true
     }
   ],
-  "total_sessions": 5,
+  "total_sessions": 37,
   "total_votes": 5,
   "total_councilors": 79,
   "councilors": [
@@ -135,7 +391,7 @@
       "name": "Andreas Butzki",
       "slug": "andreas-butzki",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
       "votes_za": 0,
@@ -151,7 +407,7 @@
       "name": "Ann Christin von Allwörden",
       "slug": "ann-christin-von-allworden",
       "club": "CDU",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -167,7 +423,7 @@
       "name": "Anna-Konstanze Schröder",
       "slug": "anna-konstanze-schroder",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -183,7 +439,7 @@
       "name": "Anne Shepley",
       "slug": "anne-shepley",
       "club": "BÜNDNIS 90/DIE GRÜNEN",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
       "votes_za": 0,
@@ -199,7 +455,7 @@
       "name": "Barbara Becker-Hornickel",
       "slug": "barbara-becker-hornickel",
       "club": "Gruppe der FDP",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -215,7 +471,7 @@
       "name": "Beate Schlupp",
       "slug": "beate-schlupp",
       "club": "CDU",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -231,7 +487,7 @@
       "name": "Beatrix Hegenkötter",
       "slug": "beatrix-hegenkotter",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -247,7 +503,7 @@
       "name": "Bettina Martin",
       "slug": "bettina-martin",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -263,7 +519,7 @@
       "name": "Birgit Hesse",
       "slug": "birgit-hesse",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -279,7 +535,7 @@
       "name": "Christian Albrecht",
       "slug": "christian-albrecht",
       "club": "Die Linke",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -295,7 +551,7 @@
       "name": "Christian Brade",
       "slug": "christian-brade",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -311,7 +567,7 @@
       "name": "Christian Pegel",
       "slug": "christian-pegel",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -327,7 +583,7 @@
       "name": "Christian Winter",
       "slug": "christian-winter",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -343,7 +599,7 @@
       "name": "Christiane Berg",
       "slug": "christiane-berg",
       "club": "CDU",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
       "votes_za": 0,
@@ -359,7 +615,7 @@
       "name": "Christine Klingohr",
       "slug": "christine-klingohr",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -375,7 +631,7 @@
       "name": "Constanze Oehlrich",
       "slug": "constanze-oehlrich",
       "club": "BÜNDNIS 90/DIE GRÜNEN",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -391,7 +647,7 @@
       "name": "Dagmar Kaselitz",
       "slug": "dagmar-kaselitz",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -407,7 +663,7 @@
       "name": "Daniel Peters",
       "slug": "daniel-peters",
       "club": "CDU",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -423,7 +679,7 @@
       "name": "Daniel Trepsdorf",
       "slug": "daniel-trepsdorf",
       "club": "Die Linke",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -439,7 +695,7 @@
       "name": "David Wulff",
       "slug": "david-wulff",
       "club": "Gruppe der FDP",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -455,7 +711,7 @@
       "name": "Dirk Bruhn",
       "slug": "dirk-bruhn",
       "club": "Die Linke",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -471,7 +727,7 @@
       "name": "Dirk Stamer",
       "slug": "dirk-stamer",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -487,7 +743,7 @@
       "name": "Elke-Annette Schmidt",
       "slug": "elke-annette-schmidt",
       "club": "Die Linke",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
       "votes_za": 0,
@@ -503,7 +759,7 @@
       "name": "Enrico Schult",
       "slug": "enrico-schult",
       "club": "AfD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
       "votes_za": 0,
@@ -519,7 +775,7 @@
       "name": "Eva Maria Schneider-Gärtner",
       "slug": "eva-maria-schneider-gartner",
       "club": "fraktionslos",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
       "votes_za": 0,
@@ -535,7 +791,7 @@
       "name": "Falko Beitz",
       "slug": "falko-beitz",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -551,7 +807,7 @@
       "name": "Franz-Robert Liskow",
       "slug": "franz-robert-liskow",
       "club": "CDU",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -567,7 +823,7 @@
       "name": "Grit Schmelzer",
       "slug": "grit-schmelzer",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -583,7 +839,7 @@
       "name": "Hannes Damm",
       "slug": "hannes-damm",
       "club": "BÜNDNIS 90/DIE GRÜNEN",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -599,7 +855,7 @@
       "name": "Harald Terpe",
       "slug": "harald-terpe",
       "club": "BÜNDNIS 90/DIE GRÜNEN",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -615,7 +871,7 @@
       "name": "Harry Glawe",
       "slug": "harry-glawe",
       "club": "CDU",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
       "votes_za": 0,
@@ -631,7 +887,7 @@
       "name": "Heiko Miraß",
       "slug": "heiko-mira",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -647,7 +903,7 @@
       "name": "Henning Foerster",
       "slug": "henning-foerster",
       "club": "Die Linke",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
       "votes_za": 0,
@@ -663,7 +919,7 @@
       "name": "Horst Förster",
       "slug": "horst-forster",
       "club": "AfD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -679,7 +935,7 @@
       "name": "Jan-Phillip Tadsen",
       "slug": "jan-phillip-tadsen",
       "club": "AfD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -695,7 +951,7 @@
       "name": "Jeannine Rösler",
       "slug": "jeannine-rosler",
       "club": "Die Linke",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -711,7 +967,7 @@
       "name": "Jens Schulze-Wiehenbrauk",
       "slug": "jens-schulze-wiehenbrauk",
       "club": "AfD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
       "votes_za": 0,
@@ -727,7 +983,7 @@
       "name": "Jens-Holger Schneider",
       "slug": "jens-holger-schneider",
       "club": "AfD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -743,7 +999,7 @@
       "name": "Julian Barlen",
       "slug": "julian-barlen",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -759,7 +1015,7 @@
       "name": "Jutta Wegner",
       "slug": "jutta-wegner",
       "club": "BÜNDNIS 90/DIE GRÜNEN",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -775,7 +1031,7 @@
       "name": "Katy Hoffmeister",
       "slug": "katy-hoffmeister",
       "club": "CDU",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -791,7 +1047,7 @@
       "name": "Mandy Pfeifer",
       "slug": "mandy-pfeifer",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -807,7 +1063,7 @@
       "name": "Manuela Schwesig",
       "slug": "manuela-schwesig",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
       "votes_za": 0,
@@ -823,7 +1079,7 @@
       "name": "Marc Reinhardt",
       "slug": "marc-reinhardt",
       "club": "CDU",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
       "votes_za": 0,
@@ -839,7 +1095,7 @@
       "name": "Marcel Falk",
       "slug": "marcel-falk",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -855,7 +1111,7 @@
       "name": "Martin Schmidt",
       "slug": "martin-schmidt",
       "club": "AfD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -871,7 +1127,7 @@
       "name": "Martina Tegtmeier",
       "slug": "martina-tegtmeier",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
       "votes_za": 0,
@@ -887,7 +1143,7 @@
       "name": "Michael Meister",
       "slug": "michael-meister",
       "club": "AfD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -903,7 +1159,7 @@
       "name": "Michael Noetzel",
       "slug": "michael-noetzel",
       "club": "Die Linke",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -919,7 +1175,7 @@
       "name": "Michel-Friedrich Schiefler",
       "slug": "michel-friedrich-schiefler",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -935,7 +1191,7 @@
       "name": "Monique Wölk",
       "slug": "monique-wolk",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -951,7 +1207,7 @@
       "name": "Nadine Julitz",
       "slug": "nadine-julitz",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -967,7 +1223,7 @@
       "name": "Nikolaus Kramer",
       "slug": "nikolaus-kramer",
       "club": "AfD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -983,7 +1239,7 @@
       "name": "Nils Saemann",
       "slug": "nils-saemann",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
       "votes_za": 0,
@@ -999,7 +1255,7 @@
       "name": "Patrick Dahlemann",
       "slug": "patrick-dahlemann",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -1015,7 +1271,7 @@
       "name": "Paul-Joachim Timm",
       "slug": "paul-joachim-timm",
       "club": "AfD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -1031,7 +1287,7 @@
       "name": "Petra Federau",
       "slug": "petra-federau",
       "club": "AfD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -1047,7 +1303,7 @@
       "name": "Philipp da Cunha",
       "slug": "philipp-da-cunha",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -1063,7 +1319,7 @@
       "name": "Rainer Albrecht",
       "slug": "rainer-albrecht",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -1079,7 +1335,7 @@
       "name": "Ralf Mucha",
       "slug": "ralf-mucha",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -1095,7 +1351,7 @@
       "name": "René Domke",
       "slug": "rene-domke",
       "club": "Gruppe der FDP",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -1111,7 +1367,7 @@
       "name": "Robert Northoff",
       "slug": "robert-northoff",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -1127,7 +1383,7 @@
       "name": "Sabine Enseleit",
       "slug": "sabine-enseleit",
       "club": "CDU",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -1143,7 +1399,7 @@
       "name": "Sandy van Baal",
       "slug": "sandy-van-baal",
       "club": "fraktionslos",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -1159,7 +1415,7 @@
       "name": "Sebastian Ehlers",
       "slug": "sebastian-ehlers",
       "club": "CDU",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -1175,7 +1431,7 @@
       "name": "Stefanie Drese",
       "slug": "stefanie-drese",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -1191,7 +1447,7 @@
       "name": "Steffi Pulz-Debler",
       "slug": "steffi-pulz-debler",
       "club": "Die Linke",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -1207,7 +1463,7 @@
       "name": "Stephan J. Reuken",
       "slug": "stephan-j-reuken",
       "club": "AfD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -1223,7 +1479,7 @@
       "name": "Sylva Rahm-Präger",
       "slug": "sylva-rahm-prager",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -1239,7 +1495,7 @@
       "name": "Thomas Diener",
       "slug": "thomas-diener",
       "club": "CDU",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 0.0,
       "zgodnosc_z_klubem": 0.0,
       "votes_za": 0,
@@ -1255,7 +1511,7 @@
       "name": "Thomas Krüger",
       "slug": "thomas-kruger",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -1271,7 +1527,7 @@
       "name": "Thomas Würdisch",
       "slug": "thomas-wurdisch",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -1287,7 +1543,7 @@
       "name": "Thomas de Jesus-Fernandes",
       "slug": "thomas-de-jesus-fernandes",
       "club": "AfD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -1303,7 +1559,7 @@
       "name": "Thore Stein",
       "slug": "thore-stein",
       "club": "AfD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -1319,7 +1575,7 @@
       "name": "Till Backhaus",
       "slug": "till-backhaus",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -1335,7 +1591,7 @@
       "name": "Tilo Gundlack",
       "slug": "tilo-gundlack",
       "club": "SPD",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -1351,7 +1607,7 @@
       "name": "Torsten Koplin",
       "slug": "torsten-koplin",
       "club": "Die Linke",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 0,
@@ -1367,7 +1623,7 @@
       "name": "Torsten Renz",
       "slug": "torsten-renz",
       "club": "CDU",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -1383,7 +1639,7 @@
       "name": "Wolfgang Waldmüller",
       "slug": "wolfgang-waldmuller",
       "club": "CDU",
-      "frekwencja": 20.0,
+      "frekwencja": 100.0,
       "aktywnosc": 20.0,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 1,
@@ -1501,6 +1757,7 @@
         "nieobecni": []
       },
       "named_votes_available": false,
+      "names_source": null,
       "passed": false
     },
     {
@@ -1526,6 +1783,7 @@
         "nieobecni": []
       },
       "named_votes_available": false,
+      "names_source": null,
       "passed": false
     },
     {
@@ -1551,6 +1809,7 @@
         "nieobecni": []
       },
       "named_votes_available": false,
+      "names_source": null,
       "passed": true
     },
     {
@@ -1576,6 +1835,7 @@
         "nieobecni": []
       },
       "named_votes_available": false,
+      "names_source": null,
       "passed": false
     },
     {
@@ -1683,11 +1943,285 @@
         "nieobecni": []
       },
       "named_votes_available": true,
+      "names_source": "protokoll",
       "passed": false
     }
   ],
+  "legislation": [
+    {
+      "drucksache": "8/4097",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/62590/8_4097_gesetz_ueber_die_bildung_von_berufsakademien_in_mecklenburg_vorpommern_berufsakademiegesetz_mecklenburg_vorpommern_bag_m_v",
+      "month": "januar-2025"
+    },
+    {
+      "drucksache": "8/4283",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/62958/8_4283_sechstes_gesetz_zur_aenderung_der_verfassung_des_landes_mecklenburg_vorpommern",
+      "month": "januar-2025"
+    },
+    {
+      "drucksache": "8/4384",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/63331/8_4384_drittes_gesetz_zur_anpassung_der_finanzbeziehungen_zwischen_land_und_kommunen_in_mecklenburg_vorpommern",
+      "month": "januar-2025"
+    },
+    {
+      "drucksache": "8/4261",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/63061/8_4261_siebtes_gesetz_zur_aenderung_des_schulgesetzes",
+      "month": "maerz-2025"
+    },
+    {
+      "drucksache": "8/4262",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/62937/8_4262_erstes_gesetz_zur_aenderung_des_gesetzes_ueber_die_industrie_und_handelskammern_fuer_das_land_mecklenburg_vorpommern",
+      "month": "maerz-2025"
+    },
+    {
+      "drucksache": "8/4263",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/62993/8_4263_gesetz_zur_aenderung_des_bauproduktenmarktueberwachungsgesetzes_der_landesbauordnung_mecklenburg_vorpommern_des_architekten_und_ingenieurgesetzes_und_",
+      "month": "maerz-2025"
+    },
+    {
+      "drucksache": "8/4371",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/63239/8_4371_erstes_gesetz_zur_aenderung_des_spielbankgesetzes",
+      "month": "maerz-2025"
+    },
+    {
+      "drucksache": "8/4372",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/63375/8_4372_gesetz_zur_aenderung_des_wasserverkehrs_und_hafensicherheitsgesetzes",
+      "month": "april-2025"
+    },
+    {
+      "drucksache": "8/4501",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/63687/8_4501_siebtes_gesetz_zur_aenderung_der_verfassung_des_landes_mecklenburg_vorpommern",
+      "month": "april-2025"
+    },
+    {
+      "drucksache": "8/4507",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/63676/8_4507_gesetz_zum_staatsvertrag_zwischen_der_freien_und_hansestadt_hamburg_und_den_laendern_niedersachsen_schleswig_holstein_und_mecklenburg_vorpommern_ueber",
+      "month": "april-2025"
+    },
+    {
+      "drucksache": "8/4498",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/63636/8_4498_entwurf_eines_haushaltsbegleitgesetzes_zum_nachtragshaushaltsgesetz_2025",
+      "month": "mai-2025"
+    },
+    {
+      "drucksache": "8/4499",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/63648/8_4499_gesetz_ueber_die_feststellung_eines_nachtrags_zum_haushalt_fuer_das_haushaltsjahr_2025_nachtragshaushaltsgesetz_2025",
+      "month": "mai-2025"
+    },
+    {
+      "drucksache": "8/4373",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/63357/8_4373_gesetz_ueber_die_lehrkraeftebildung_in_mecklenburg_vorpommern_lehrkraeftebildungsgesetz_lehrkrbildg_m_v",
+      "month": "mai-2025"
+    },
+    {
+      "drucksache": "8/4465",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/63463/8_4465_gesetz_zu_dem_abkommen_ueber_die_aenderung_des_abkommens_ueber_die_errichtung_und_finanzierung_des_instituts_fuer_medizinische_und_pharmazeutische_pru",
+      "month": "mai-2025"
+    },
+    {
+      "drucksache": "8/4635",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/63969/8_4635_gesetz_zur_aenderung_des_landeshochschulgesetzes",
+      "month": "mai-2025"
+    },
+    {
+      "drucksache": "8/4732",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/64272/8_4732_gesetz_zum_vertrag_ueber_die_errichtung_den_betrieb_und_die_weiterentwicklung_des_nationalen_once_only_technical_systems_noots_vertrag_zur_ausfuehrung",
+      "month": "juni-2025"
+    },
+    {
+      "drucksache": "8/4870",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/64429/8_4870_krankenhausgesetz_fuer_das_land_mecklenburg_vorpommern_landeskrankenhausgesetz_lkhg_m_v",
+      "month": "oktober-2025"
+    },
+    {
+      "drucksache": "8/4993",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/64748/8_4993_gesetz_zu_dem_abkommen_zur_aenderung_des_abkommens_ueber_die_zentralstelle_der_laender_fuer_sicherheitstechnik",
+      "month": "oktober-2025"
+    },
+    {
+      "drucksache": "8/5016",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/64812/8_5016_gesetz_zur_aenderung_der_verfassung_des_landes_mecklenburg_vorpommern",
+      "month": "oktober-2025"
+    },
+    {
+      "drucksache": "8/5017",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/64802/8_5017_gesetz_zur_aenderung_des_landesverfassungsschutzgesetzes",
+      "month": "oktober-2025"
+    },
+    {
+      "drucksache": "8/5119",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/65103/8_5119_gesetz_zur_aenderung_des_baugesetzbuchausfuehrungsgesetzes",
+      "month": "oktober-2025"
+    },
+    {
+      "drucksache": "8/4264",
+      "result": "abgelehnt",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/62994/8_4264_gesetz_ueber_die_beteiligung_von_buergerinnen_und_buergern_sowie_gemeinden_an_wind_und_solarparks",
+      "month": "november-2025"
+    },
+    {
+      "drucksache": "8/4265",
+      "result": "abgelehnt",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/62990/8_4265_gesetz_zur_einfuehrung_eines_klimaschutzgesetzes_des_landes_mecklenburg_vorpommern_und_zur_aenderung_weiterer_gesetze",
+      "month": "november-2025"
+    },
+    {
+      "drucksache": "8/4828",
+      "result": "abgelehnt",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/64370/8_4828_erstes_gesetz_zur_aenderung_des_denkmalschutzgesetzes",
+      "month": "november-2025"
+    },
+    {
+      "drucksache": "8/5089",
+      "result": "abgelehnt",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/65025/8_5089_gesetz_zu_dem_abkommen_ueber_die_errichtung_und_finanzierung_der_akademie_fuer_oeffentliches_gesundheitswesen_in_duesseldorf",
+      "month": "november-2025"
+    },
+    {
+      "drucksache": "8/5301",
+      "result": "abgelehnt",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/66450/8_5301_gesetz_zum_achten_staatsvertrag_zur_aenderung_medienrechtlicher_staatsvertraege_reform_des_verfahrens_zur_festsetzung_des_rundfunkbeitrages",
+      "month": "november-2025"
+    },
+    {
+      "drucksache": "8/5092",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/65178",
+      "month": "januar-2026"
+    },
+    {
+      "drucksache": "8/5314",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/66819",
+      "month": "januar-2026"
+    },
+    {
+      "drucksache": "8/5315",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/66720",
+      "month": "januar-2026"
+    },
+    {
+      "drucksache": "8/5316",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/66794",
+      "month": "januar-2026"
+    },
+    {
+      "drucksache": "8/5318",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/66724",
+      "month": "januar-2026"
+    },
+    {
+      "drucksache": "8/5334",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/66610",
+      "month": "januar-2026"
+    },
+    {
+      "drucksache": "8/5417",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/67544",
+      "month": "januar-2026"
+    },
+    {
+      "drucksache": "8/5404",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/67746",
+      "month": "maerz-2026"
+    },
+    {
+      "drucksache": "8/5419",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/67636",
+      "month": "maerz-2026"
+    },
+    {
+      "drucksache": "8/5420",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/67528",
+      "month": "maerz-2026"
+    },
+    {
+      "drucksache": "8/5436",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/67912",
+      "month": "maerz-2026"
+    },
+    {
+      "drucksache": "8/5680",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/68568",
+      "month": "maerz-2026"
+    },
+    {
+      "drucksache": "8/5682",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/68624",
+      "month": "maerz-2026"
+    },
+    {
+      "drucksache": "8/5405",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/67515",
+      "month": "mai-2026"
+    },
+    {
+      "drucksache": "8/5416",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/67635",
+      "month": "mai-2026"
+    },
+    {
+      "drucksache": "8/5681",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/68905",
+      "month": "mai-2026"
+    },
+    {
+      "drucksache": "8/6161",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/69904",
+      "month": "mai-2026"
+    },
+    {
+      "drucksache": "8/6162",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/69909",
+      "month": "mai-2026"
+    },
+    {
+      "drucksache": "8/6170",
+      "result": "angenommen",
+      "url": "https://www.dokumentation.landtag-mv.de/parldok/dokument/69977",
+      "month": "mai-2026"
+    }
+  ],
+  "total_legislation": 45,
   "similarity_top": [],
   "similarity_bottom": [],
-  "scraped_at": "2026-05-31 16:34:29",
+  "scraped_at": "2026-05-31 18:20:33",
   "source": "https://www.landtag-mv.de"
 }
