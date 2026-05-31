@@ -37,7 +37,7 @@
   "has_komisje": false,
   "has_interpelacje": false,
   "disabled": true,
-  "disabled_reason": "ALLRIS net (Lange Software) używa Wicket SPA - listy sesji nie renderują się bez session-state-id token. Bez Playwright nie da się scrape'ować. Phase 2 implementacji. Vorlage 2019/IV/4432 świadomie wyłączyła OParl mimo że ALLRIS to wspiera.",
+  "disabled_reason": "Roster (skład + frakcje, 50 radnych) zescrapowany z ALLRIS gr020 — server-rendered, bez Playwright. Sesje i głosowania nadal zablokowane: ALLRIS net Wicket SPA wymaga Playwright (Faza 2), a wynik per TOP to tylko Beschluss (bez per-radny). Disabled do czasu danych głosowań.",
   "scrape_status": "blocked_playwright",
   "currency": "€",
   "scrape": {
@@ -46,5 +46,98 @@
     "oparl_status": "disabled_by_city_vorlage_2019_IV_4432",
     "note": "ALLRIS net 4.1.6, Wicket SPA. HTML bez session zwraca pusty kalendarz. Wymaga Playwright + reverse-engineering Ajax handshake (page-version-id state) ALBO odkrycie endpoint AJAX. Faza 2 po pilocie Landtag MV + Schwerin."
   },
-  "clubs": {}
+  "clubs": {
+    "CDU": {
+      "color": "#1f2937",
+      "bg": "rgba(31,41,55,0.12)",
+      "avatar_bg": "#111827"
+    },
+    "Linke": {
+      "color": "#be185d",
+      "bg": "rgba(190,24,93,0.12)",
+      "avatar_bg": "#9d174d"
+    },
+    "SPD": {
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)",
+      "avatar_bg": "#b91c1c"
+    },
+    "FDP/UFR": {
+      "color": "#ca8a04",
+      "bg": "rgba(202,138,4,0.12)",
+      "avatar_bg": "#a16207"
+    },
+    "Rostocker Bund": {
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "Niezrzeszeni": {
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    },
+    "Grüne": {
+      "color": "#16a34a",
+      "bg": "rgba(34,197,94,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "AfD": {
+      "color": "#2563eb",
+      "bg": "rgba(37,99,235,0.12)",
+      "avatar_bg": "#1d4ed8"
+    }
+  },
+  "club_assignments": {
+    "Andreas Szabó": "FDP/UFR",
+    "Anja Eggert": "Grüne",
+    "Anke Knitter": "SPD",
+    "Anne Mucha": "SPD",
+    "Axel Tolksdorff": "Rostocker Bund",
+    "Bernd Dittrich": "Niezrzeszeni",
+    "Brigitte Dade": "Linke",
+    "Carmen-Alina Botezatu": "SPD",
+    "Carsten Penzlin": "Linke",
+    "Chris Günther": "CDU",
+    "Christian Albrecht": "Linke",
+    "Daniel Peters": "CDU",
+    "Daniel Stepputtis": "Grüne",
+    "Eric Adelsberger": "FDP/UFR",
+    "Eric-Helge Giesel": "Niezrzeszeni",
+    "Falco Zorn": "AfD",
+    "Felix Winter": "Grüne",
+    "Franziska Raeuber": "CDU",
+    "Hannes Möller": "Linke",
+    "Heinrich Prophet": "CDU",
+    "Helmut Schulz": "AfD",
+    "Julia Kristin Pittasch": "FDP/UFR",
+    "Julia Müller": "CDU",
+    "Jutta Reinders": "Linke",
+    "Kenny Gordon Grafenhorst": "CDU",
+    "Kira Ludwig": "SPD",
+    "Kristin Schröder": "Linke",
+    "Lisa Rieker": "Grüne",
+    "Manuela Semder": "Niezrzeszeni",
+    "Marcel Ehlert": "AfD",
+    "May-Britt Krüger": "CDU",
+    "Michael Meister": "AfD",
+    "Michael Noetzel": "Linke",
+    "Nurgül Senli": "Linke",
+    "Patrick Tempel": "CDU",
+    "Rainer Bauer": "FDP/UFR",
+    "Robert Kröger": "Linke",
+    "Sabine Krüger": "Grüne",
+    "Sandra Wandt": "SPD",
+    "Stefan Posselt": "SPD",
+    "Stefanie Glamann": "AfD",
+    "Steffi Manske": "SPD",
+    "Stephan Porst": "Grüne",
+    "Sybille Bachmann": "Rostocker Bund",
+    "Thoralf Sens": "SPD",
+    "Tilmann Reiner Anselm Lamberg": "Niezrzeszeni",
+    "Toni Marten": "AfD",
+    "Toralf Herzer": "Linke",
+    "Uwe Eberhardt": "CDU",
+    "Uwe Flachsmeyer": "Grüne"
+  }
 }
