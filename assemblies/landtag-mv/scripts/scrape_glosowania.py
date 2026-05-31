@@ -214,26 +214,24 @@ def list_archive_months(start: date, end: date) -> list[str]:
     return out
 
 
-def fetch_month_pdfs(slug: str, cache_dir: Path | None = None) -> list[str]:
-    """Pobierz stronę archiwum miesiąca, wyciągnij linki PDF namentliche.
-
-    Strona ma sekcję `<h4>Namentliche Abstimmungen</h4>` z listą `<a>`
-    do plików `/fileadmin/.../Namentliche_Abstimmungen/YYYY-MM-DD-NNN._
-    Sitzung_Namentliche_Abstimmung_zu_TOP_NN.pdf`. Sekcja może być
-    pusta, wtedy [].
-    """
+def _get_month_html(slug: str, cache_dir: Path | None = None) -> str:
+    """Pobierz (lub odczytaj z cache) HTML strony archiwum miesiąca."""
     url = ARCHIVE_BASE + slug
-    cache_file = None
     if cache_dir is not None:
         cache_file = cache_dir / f"month_{slug}.html"
         if cache_file.exists() and cache_file.stat().st_size > 100:
-            html = cache_file.read_text(encoding="utf-8")
-        else:
-            html = fetch(url)
-            cache_file.write_text(html, encoding="utf-8")
-    else:
+            return cache_file.read_text(encoding="utf-8")
         html = fetch(url)
+        cache_file.write_text(html, encoding="utf-8")
+        return html
+    return fetch(url)
 
+
+def parse_month_pdfs(html: str) -> list[str]:
+    """Wyciągnij linki PDF namentliche z HTML strony miesiąca.
+
+    Pliki `/fileadmin/.../Namentliche_Abstimmungen/YYYY-MM-DD-NNN._Sitzung_
+    Namentliche_Abstimmung_zu_TOP_NN.pdf`. Sekcja może być pusta -> []."""
     soup = BeautifulSoup(html, "lxml")
     out: list[str] = []
     for a in soup.find_all("a", href=True):
@@ -246,6 +244,51 @@ def fetch_month_pdfs(slug: str, cache_dir: Path | None = None) -> list[str]:
         if full not in out:
             out.append(full)
     return out
+
+
+# Słowa-wyniki w sekcji "Abgeschlossene Gesetzgebung" (lista uchwał Drs.).
+LEGIS_RESULT_RE = re.compile(
+    r"\b(angenommen|abgelehnt|zur(?:ü|ue)ckgezogen|"
+    r"f(?:ü|ue)r\s+erledigt\s+erkl(?:ä|ae)rt|(?:für\s+)?(?:über|ueber)wiesen)\b",
+    re.IGNORECASE,
+)
+DRS_RE = re.compile(r"^\d+/\d+$")
+
+
+def parse_month_legislation(html: str) -> list[dict]:
+    """Wyciągnij wyniki uchwał (Drucksache + angenommen/abgelehnt/...) z HTML.
+
+    To dane na poziomie TYGODNIA obrad (sekcja "Abgeschlossene Gesetzgebung"
+    obejmuje wszystkie sesje tygodnia łącznie), BEZ imiennej atrybucji i bez
+    przypisania do pojedynczej sesji. Linki bez słowa-wyniku w tym samym
+    elemencie (Beschlussprotokoll, Plenarprotokoll) są pomijane.
+
+    Zwraca [{drucksache, result, url}] zdedup. po (drucksache, result)."""
+    soup = BeautifulSoup(html, "lxml")
+    out: list[dict] = []
+    seen: set[tuple[str, str]] = set()
+    for a in soup.find_all("a", href=True):
+        if "parldok" not in a["href"]:
+            continue
+        drs = a.get_text(strip=True)
+        if not DRS_RE.match(drs):
+            continue
+        parent_text = a.parent.get_text(" ", strip=True) if a.parent else ""
+        m = LEGIS_RESULT_RE.search(parent_text)
+        if not m:
+            continue
+        result = re.sub(r"\s+", " ", m.group(1)).lower()
+        key = (drs, result)
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append({"drucksache": drs, "result": result, "url": a["href"].split("#")[0]})
+    return out
+
+
+def fetch_month_pdfs(slug: str, cache_dir: Path | None = None) -> list[str]:
+    """Linki PDF namentliche dla miesiąca (cienki wrapper, zgodność wsteczna)."""
+    return parse_month_pdfs(_get_month_html(slug, cache_dir))
 
 
 def parse_pdf_filename(url: str) -> dict | None:
@@ -445,10 +488,89 @@ def parse_votebox_text(text: str) -> dict:
     }
 
 
+def _group_words_into_lines(words: list[dict], y_tol: float = 3.0) -> list[str]:
+    """Pogrupuj słowa pdfplumbera w linie po współrzędnej `top`,
+    wewnątrz linii sortuj po `x0`. Zwraca listę tekstów linii."""
+    lines: list[dict] = []
+    for w in sorted(words, key=lambda w: (w["top"], w["x0"])):
+        for ln in lines:
+            if abs(ln["top"] - w["top"]) <= y_tol:
+                ln["words"].append(w)
+                break
+        else:
+            lines.append({"top": w["top"], "words": [w]})
+    out = []
+    for ln in sorted(lines, key=lambda l: l["top"]):
+        ws = sorted(ln["words"], key=lambda w: w["x0"])
+        out.append(" ".join(w["text"] for w in ws))
+    return out
+
+
+def _columns_from_words(words: list[dict], page_width: float) -> str:
+    """Odbuduj tekst strony respektując układ dwukolumnowy.
+
+    Szablon ERGEBNIS układa nazwiska w dwóch kolumnach. extract_text() czyta
+    je naprzemiennie (lewa-prawa-lewa...), przez co kolejność i przypisanie do
+    sekcji się rozjeżdża. Tu dzielimy słowa na lewą/prawą po środku strony i
+    czytamy najpierw całą lewą kolumnę z góry na dół, potem prawą. Linie
+    nagłówków/podsumowania (szerokie, zaczynają się po lewej) trafiają do lewej
+    i zostają na górze — sekcje "Ja N Stimmen" itd. parsuje dalej parser.
+    """
+    mid = page_width / 2.0
+    left = [w for w in words if (w["x0"] + w["x1"]) / 2.0 < mid]
+    right = [w for w in words if (w["x0"] + w["x1"]) / 2.0 >= mid]
+    if len(left) >= 5 and len(right) >= 5:
+        return "\n".join(_group_words_into_lines(left) + _group_words_into_lines(right))
+    return "\n".join(_group_words_into_lines(words))
+
+
+def _reconstruct_columns_text(pdf_path: Path) -> str:
+    """Druga próba ekstrakcji tekstu dla dwukolumnowego ERGEBNIS — z współrzędnych.
+
+    pdfplumber.extract_text() spłaszcza dwie kolumny i miesza kolejność.
+    Tu używamy extract_words() (pozycje x/y) i odbudowujemy tekst kolumna po
+    kolumnie. Zwraca tekst w kolejności zbliżonej do wizualnej, gotowy do
+    ponownego podania do parse_votebox_text."""
+    pages_text: list[str] = []
+    with pdfplumber.open(pdf_path) as pdf:
+        for page in pdf.pages:
+            words = page.extract_words(use_text_flow=False, keep_blank_chars=False)
+            if not words:
+                continue
+            pages_text.append(_columns_from_words(words, float(page.width)))
+    return "\n".join(pages_text)
+
+
 def parse_pdf_text(pdf_path: Path) -> dict:
-    """Wrapper: wyciąga tekst z PDF i deleguje do parse_votebox_text."""
+    """Wrapper: wyciąga tekst z PDF i deleguje do parse_votebox_text.
+
+    Dwa podejścia, drugie tylko gdy pierwsze nie dało wiarygodnych nazwisk:
+      1. extract_text() — działa dla szablonu PROTOKOLL.
+      2. rekonstrukcja kolumn z extract_words() — ratuje dwukolumnowy ERGEBNIS.
+
+    Walidacja względem liczników (names_reliable w parse_votebox_text) jest
+    bezpiecznikiem: jeśli żadne podejście nie da spójnych nazwisk, zwracamy
+    pierwsze (counts-only) i zachowujemy dotychczasowe zachowanie bez regresji.
+    """
     text = _extract_pdf_text_safe(pdf_path)
-    return parse_votebox_text(text)
+    parsed = parse_votebox_text(text)
+    parsed["names_source"] = "protokoll" if parsed.get("names_reliable") else None
+    if parsed.get("names_reliable"):
+        return parsed
+
+    try:
+        recon = _reconstruct_columns_text(pdf_path)
+    except Exception as e:
+        log(f"    rekonstrukcja kolumn padła ({e})")
+        recon = ""
+    if recon:
+        parsed2 = parse_votebox_text(recon)
+        if parsed2.get("names_reliable"):
+            log("    [ergebnis] odzyskano nazwiska przez rekonstrukcję kolumn")
+            parsed2["names_source"] = "reconstructed"
+            return parsed2
+
+    return parsed  # counts-only, bez regresji
 
 
 def passed_from_counts(counts: dict, result_str: str | None) -> bool | None:
@@ -485,6 +607,7 @@ def build_kadencja(
             "id": KADENCJA_ID, "label": KADENCJA_LABEL, "clubs": {},
             "sessions": [], "total_sessions": 0, "total_votes": 0,
             "total_councilors": 0, "councilors": [], "votes": [],
+            "legislation": [], "total_legislation": 0,
             "similarity_top": [], "similarity_bottom": [],
             "scraped_at": time.strftime("%Y-%m-%d %H:%M:%S"), "source": BASE,
         }
@@ -494,6 +617,7 @@ def build_kadencja(
             "id": KADENCJA_ID, "label": KADENCJA_LABEL, "clubs": {},
             "sessions": [], "total_sessions": 0, "total_votes": 0,
             "total_councilors": 0, "councilors": [], "votes": [],
+            "legislation": [], "total_legislation": 0,
             "similarity_top": [], "similarity_bottom": [],
             "scraped_at": time.strftime("%Y-%m-%d %H:%M:%S"), "source": BASE,
         }
@@ -502,11 +626,16 @@ def build_kadencja(
     log(f"Skanuję {len(months)} miesięcy archiwum landtag-mv.de...")
 
     all_pdf_urls: list[str] = []
+    all_legislation: list[dict] = []
     consecutive_failures = 0
     for idx, slug in enumerate(months, start=1):
         prefix = f"[{idx}/{len(months)}] {slug}"
         try:
-            urls = fetch_month_pdfs(slug, cache_dir)
+            html = _get_month_html(slug, cache_dir)
+            urls = parse_month_pdfs(html)
+            for leg in parse_month_legislation(html):
+                leg["month"] = slug
+                all_legislation.append(leg)
             consecutive_failures = 0
         except requests.HTTPError as e:
             if e.response.status_code == 404:
@@ -545,6 +674,16 @@ def build_kadencja(
             pdf_urls_unique.append(u)
 
     log(f"Razem {len(pdf_urls_unique)} unikalnych PDFów namentliche")
+
+    # Dedup uchwał (tygodniowa "Abgeschlossene Gesetzgebung") po (drs, wynik).
+    legislation_unique: list[dict] = []
+    seen_leg: set[tuple[str, str]] = set()
+    for leg in all_legislation:
+        key = (leg["drucksache"], leg["result"])
+        if key not in seen_leg:
+            seen_leg.add(key)
+            legislation_unique.append(leg)
+    log(f"Razem {len(legislation_unique)} uchwał z wynikiem (poziom tygodnia, bez imiennych)")
 
     if limit_sessions:
         pdf_urls_unique = pdf_urls_unique[:limit_sessions]
@@ -623,8 +762,25 @@ def build_kadencja(
                     debug_path = debug_dir / f"{meta['filename']}.txt"
                     debug_path.write_text(sample_text[:3000], encoding="utf-8")
                     log(f"    [debug] zapisano sample tekst do {debug_path}")
-                except Exception:
-                    pass
+                    # Zrzut słów ze współrzędnymi — to pozwala dopracować
+                    # geometrię rekonstrukcji kolumn na realnych danych
+                    # (NAS ma dostęp do PDF, sandbox dev nie). Wyślij ten plik
+                    # jeśli ERGEBNIS dalej gubi nazwiska.
+                    words_dump = []
+                    with pdfplumber.open(pdf_local) as _pdf:
+                        for _pi, _pg in enumerate(_pdf.pages):
+                            for _w in _pg.extract_words(use_text_flow=False, keep_blank_chars=False):
+                                words_dump.append({
+                                    "page": _pi, "text": _w["text"],
+                                    "x0": round(_w["x0"], 1), "x1": round(_w["x1"], 1),
+                                    "top": round(_w["top"], 1), "bottom": round(_w["bottom"], 1),
+                                    "page_width": round(float(_pg.width), 1),
+                                })
+                    (debug_dir / f"{meta['filename']}.words.json").write_text(
+                        json.dumps(words_dump, ensure_ascii=False, indent=1), encoding="utf-8")
+                    log(f"    [debug] zapisano zrzut słów ({len(words_dump)} słów)")
+                except Exception as e:
+                    log(f"    [debug] zrzut słów padł: {e}")
 
         # Liczniki bierzemy z nagłówka (pewne dla obu szablonów Votebox), NIE
         # z długości list imiennych — inaczej szablon ERGEBNIS dawał same zera.
@@ -657,6 +813,7 @@ def build_kadencja(
             "counts": counts,
             "named_votes": parsed["named_votes"],
             "named_votes_available": names_reliable,
+            "names_source": parsed.get("names_source"),
             "passed": passed_from_counts(counts, parsed.get("result")),
         })
 
@@ -668,6 +825,33 @@ def build_kadencja(
         # Update club lookup
         for name, fraktion in parsed["councilor_clubs"].items():
             all_councilors[name] = fraktion
+
+    # Kanonizacja nazwisk odzyskanych z ERGEBNIS. Rekonstrukcja kolumn daje
+    # surowe "Nachname Vorname" (bez przecinka), a PROTOKOLL "Vorname Nachname".
+    # Mapujemy po zbiorze tokenów (kolejność nieistotna) na formę PROTOKOLL,
+    # żeby ten sam poseł nie trafił do indeksu dwa razy. Brak dopasowania =
+    # zostaje surowa forma (lepsze niż zgubienie głosu).
+    protokoll_names: set[str] = set()
+    for v in votes:
+        if v.get("names_source") == "protokoll":
+            for names in v["named_votes"].values():
+                protokoll_names.update(names)
+    roster_by_tokens = {frozenset(n.split()): n for n in protokoll_names}
+    if roster_by_tokens:
+        for v in votes:
+            if v.get("names_source") != "reconstructed":
+                continue
+            for cat, names in v["named_votes"].items():
+                v["named_votes"][cat] = [
+                    roster_by_tokens.get(frozenset(n.split()), n) for n in names
+                ]
+    # Przebuduj all_councilors do nazwisk faktycznie użytych po kanonizacji,
+    # żeby usunąć warianty-duplikaty z indeksu/przypisań klubowych.
+    used_names: set[str] = set()
+    for v in votes:
+        for names in v["named_votes"].values():
+            used_names.update(names)
+    all_councilors = {n: all_councilors.get(n, "?") for n in used_names}
 
     log(f"Sparsowano {len(votes)} głosowań z {len(sessions)} sesji, {len(all_councilors)} posłów")
 
@@ -719,6 +903,11 @@ def build_kadencja(
         "councilors": [],
         "councilor_index": councilor_index,
         "votes": votes,
+        # Uchwały z wynikiem na poziomie tygodnia obrad (Abgeschlossene
+        # Gesetzgebung). BEZ imiennej atrybucji i bez przypisania do sesji —
+        # per-sesyjne wyniki wymagałyby parsowania PDF Beschlussprotokoll.
+        "legislation": legislation_unique,
+        "total_legislation": len(legislation_unique),
         "similarity_top": [],
         "similarity_bottom": [],
         "scraped_at": time.strftime("%Y-%m-%d %H:%M:%S"),

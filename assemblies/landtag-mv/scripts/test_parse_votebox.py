@@ -19,7 +19,11 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 try:
-    from scrape_glosowania import extract_section_counts, parse_votebox_text
+    from scrape_glosowania import (
+        extract_section_counts, parse_votebox_text,
+        parse_month_pdfs, parse_month_legislation,
+        _columns_from_words, _group_words_into_lines,
+    )
 except Exception as e:  # brak requests/pdfplumber w env — pomiń, nie failuj
     pytest.skip(f"nie można zaimportować scrape_glosowania ({e})", allow_module_level=True)
 
@@ -159,3 +163,60 @@ def test_topic_extraction():
     p = parse_votebox_text(PROTOKOLL_117)
     assert "Beförderungsskandal" in p["topic"]
     assert p["drucksache"] == "8/5297"
+
+
+# ── Strona miesiąca: linki PDF + wyniki uchwał ──────────────────────────────
+MONTH_HTML = """
+<html><body>
+<h4>Beschlussprotokolle</h4>
+<p><a href="https://www.dokumentation.landtag-mv.de/parldok/dokument/66872/8_115_beschlussprotokoll#navpanes=0">Beschlussprotokoll 115. Sitzung</a></p>
+<h4>Abgeschlossene Gesetzgebung</h4>
+<p>Drs.-Nr. <a href="https://www.dokumentation.landtag-mv.de/parldok/dokument/64429/x#navpanes=0">8/4870</a> angenommen</p>
+<p>Drs.-Nr. <a href="https://www.dokumentation.landtag-mv.de/parldok/dokument/65103/y#navpanes=0">8/5119</a> abgelehnt</p>
+<p>Drs.-Nr. <a href="https://www.dokumentation.landtag-mv.de/parldok/dokument/9999/z#navpanes=0">8/5119</a> abgelehnt</p>
+<h4>Namentliche Abstimmungen</h4>
+<a href="https://www.landtag-mv.de/fileadmin/1.Abteilung_P/PD1/Namentliche_Abstimmungen/2025-10-10-117._Sitzung_Namentliche_Abstimmung_zu_TOP_35.pdf">117. Sitzung TOP 35</a>
+</body></html>
+"""
+
+
+def test_month_pdfs_parsing():
+    urls = parse_month_pdfs(MONTH_HTML)
+    assert len(urls) == 1
+    assert urls[0].endswith("Namentliche_Abstimmung_zu_TOP_35.pdf")
+
+
+def test_month_legislation_parsing():
+    legs = parse_month_legislation(MONTH_HTML)
+    keys = {(l["drucksache"], l["result"]) for l in legs}
+    # Wyniki wyciągnięte, Beschlussprotokoll (bez słowa-wyniku) pominięty.
+    assert ("8/4870", "angenommen") in keys
+    assert ("8/5119", "abgelehnt") in keys
+    # Dedup po (drs, wynik): druga 8/5119 abgelehnt nie dubluje.
+    assert len(legs) == 2
+    # URL bez kotwicy #navpanes.
+    assert all("#" not in l["url"] for l in legs)
+
+
+# ── Rekonstrukcja kolumn (ratunek dla dwukolumnowego ERGEBNIS) ──────────────
+def _w(text, x0, top):
+    return {"text": text, "x0": x0, "x1": x0 + 20, "top": top, "bottom": top + 10}
+
+
+def test_group_words_into_lines_order():
+    words = [_w("b", 80, 100), _w("a", 40, 100), _w("c", 40, 120)]
+    assert _group_words_into_lines(words) == ["a b", "c"]
+
+
+def test_columns_left_fully_before_right():
+    # Strona 600px: środek 300. Lewa kolumna (x0~40/65), prawa (x0~300/325).
+    words = [
+        _w("La", 40, 100), _w("Lb", 65, 100),
+        _w("Lc", 40, 120), _w("Ld", 65, 120),
+        _w("Le", 40, 140), _w("Lf", 65, 140),
+        _w("Ra", 300, 100), _w("Rb", 325, 100),
+        _w("Rc", 300, 120), _w("Rd", 325, 120),
+        _w("Re", 300, 140), _w("Rf", 325, 140),
+    ]
+    text = _columns_from_words(words, page_width=600)
+    assert text.split("\n") == ["La Lb", "Lc Ld", "Le Lf", "Ra Rb", "Rc Rd", "Re Rf"]
