@@ -118,20 +118,14 @@ def _ckan_package_show(ckan_base: str, dataset_id: str) -> dict[str, Any]:
     return result["result"]
 
 
-def _discover_resources_from_html(page_url: str) -> list[dict[str, str]]:
-    """HTML fallback: parsuje stronę datasetu CKAN i wyciąga linki do plików CSV.
+def _parse_resources_from_html(raw: bytes, page_url: str) -> list[dict[str, str]]:
+    """Parsuje HTML strony datasetu CKAN i wyciąga linki download do CSV.
 
-    Używane gdy /api/3/action/package_show jest niedostępne (geo-block, timeout).
-    Szuka atrybutów href zawierających '/download/' i rozszerzenie .csv.
-
-    Zwraca listę zasobów w formacie kompatybilnym z _find_latest_csv():
-      [{"url": "https://...", "name": "vote_2026-05-20.csv", "format": "CSV"}]
+    Oddziela parsowanie od fetchowania — pozwala używać z circuit breakerem
+    który pobiera raw bytes przez własny mechanizm z krótkim timeoutem.
     """
     import re as _re
-    print(f"  [html-fallback] GET {page_url}", file=sys.stderr)
-    raw = _http_get(page_url, timeout=30)
     html = raw.decode("utf-8", errors="replace")
-    # Szukaj href="..." zawierający /download/ i kończący się na .csv
     pattern = _re.compile(
         r'href=["\']([^"\'?#]*?/download/([^"\'?#/\s]+\.csv))["\']',
         _re.IGNORECASE,
@@ -142,12 +136,18 @@ def _discover_resources_from_html(page_url: str) -> list[dict[str, str]]:
     for m in pattern.finditer(html):
         href, filename = m.group(1), m.group(2)
         url = href if href.startswith("http") else f"{base}{href}"
-        if url in seen:
-            continue
-        seen.add(url)
-        resources.append({"url": url, "name": filename, "format": "CSV"})
+        if url not in seen:
+            seen.add(url)
+            resources.append({"url": url, "name": filename, "format": "CSV"})
     print(f"  [html-fallback] {len(resources)} zasobów CSV", file=sys.stderr)
     return resources
+
+
+def _discover_resources_from_html(page_url: str, timeout: int = 30) -> list[dict[str, str]]:
+    """HTML fallback (pełna wersja z własnym fetchem)."""
+    print(f"  [html-fallback] GET {page_url}", file=sys.stderr)
+    raw = _http_get(page_url, timeout=timeout)
+    return _parse_resources_from_html(raw, page_url)
 
 
 def _find_latest_csv(resources: list[dict], name_prefix: str) -> dict | None:
@@ -207,15 +207,23 @@ class CkanUaClient:
         skip_fetch: bool = False,
         votes_browse_url: str | None = None,
         deputies_browse_url: str | None = None,
+        html_first: bool = False,
+        http_timeout: int = 30,
     ) -> None:
         self.ckan_base = ckan_base.rstrip("/")
         self.votes_dataset_id = votes_dataset_id
         self.deputies_dataset_id = deputies_dataset_id
         self.cache_dir = cache_dir
         self.skip_fetch = skip_fetch
-        # Fallback: gdy API niedostępne, parsuj HTML strony datasetu.
         self.votes_browse_url = votes_browse_url
         self.deputies_browse_url = deputies_browse_url
+        # Gdy True: idź od razu w HTML, nie próbuj API.
+        self.html_first = html_first
+        # Timeout per request dla wywołań discovery (nie dla pobierania CSV).
+        self.http_timeout = http_timeout
+        # Circuit breaker: po pierwszym timeout discovery wszystkie kolejne
+        # tabele od razu rzucają bez czekania na kolejne timeouty.
+        self._discovery_failed = False
 
     def _cache_path(self, name: str) -> Path | None:
         if self.cache_dir is None:
@@ -237,33 +245,68 @@ class CkanUaClient:
                 json.dump(rows, f, ensure_ascii=False)
         return rows
 
-    def _get_votes_resources(self) -> list[dict[str, str]]:
-        """Pobiera listę zasobów datasetu głosowań. API → HTML fallback."""
+    def _discovery_get(self, url: str) -> bytes:
+        """Pobiera URL z krótkim timeoutem (self.http_timeout).
+
+        Circuit breaker: po pierwszym niepowodzeniu ustawia _discovery_failed=True
+        i kolejne wywołania rzucają natychmiast bez czekania na timeout.
+        """
+        if self._discovery_failed:
+            raise RuntimeError("serwer nieosiągalny (circuit breaker)")
         try:
-            pkg = _ckan_package_show(self.ckan_base, self.votes_dataset_id)
-            return pkg.get("resources", [])
+            return _http_get(url, timeout=self.http_timeout)
+        except RuntimeError as exc:
+            self._discovery_failed = True
+            raise RuntimeError(f"serwer nieosiągalny: {exc}") from exc
+
+    def _get_votes_resources(self) -> list[dict[str, str]]:
+        """Pobiera listę zasobów datasetu głosowań.
+
+        html_first=True: od razu HTML, API pomijane.
+        html_first=False: API → HTML fallback przy błędzie.
+        Circuit breaker: pierwsze timeout = wszystkie kolejne tabele skip natychmiast.
+        """
+        if self._discovery_failed:
+            raise RuntimeError("serwer nieosiągalny (circuit breaker)")
+        if self.html_first and self.votes_browse_url:
+            print(f"  [html] GET {self.votes_browse_url}", file=sys.stderr)
+            raw = self._discovery_get(self.votes_browse_url)
+            return _parse_resources_from_html(raw, self.votes_browse_url)
+        try:
+            api_url = f"{self.ckan_base}/api/3/action/package_show?id={self.votes_dataset_id}"
+            raw = self._discovery_get(api_url)
+            result = json.loads(raw)
+            if not result.get("success"):
+                raise RuntimeError(f"CKAN API error: {result}")
+            return result["result"].get("resources", [])
         except RuntimeError as exc:
             if not self.votes_browse_url:
                 raise
-            print(
-                f"  WARN: CKAN API niedostępne ({exc}), próbuję HTML fallback",
-                file=sys.stderr,
-            )
-            return _discover_resources_from_html(self.votes_browse_url)
+            print(f"  WARN: {exc}, próbuję HTML fallback", file=sys.stderr)
+            raw = self._discovery_get(self.votes_browse_url)
+            return _parse_resources_from_html(raw, self.votes_browse_url)
 
     def _get_deputies_resources(self) -> list[dict[str, str]]:
-        """Pobiera listę zasobów datasetu radnych. API → HTML fallback."""
+        """Pobiera listę zasobów datasetu radnych. Analogicznie do _get_votes_resources."""
+        if self._discovery_failed:
+            raise RuntimeError("serwer nieosiągalny (circuit breaker)")
+        if self.html_first and self.deputies_browse_url:
+            print(f"  [html] GET {self.deputies_browse_url}", file=sys.stderr)
+            raw = self._discovery_get(self.deputies_browse_url)
+            return _parse_resources_from_html(raw, self.deputies_browse_url)
         try:
-            pkg = _ckan_package_show(self.ckan_base, self.deputies_dataset_id)
-            return pkg.get("resources", [])
+            api_url = f"{self.ckan_base}/api/3/action/package_show?id={self.deputies_dataset_id}"
+            raw = self._discovery_get(api_url)
+            result = json.loads(raw)
+            if not result.get("success"):
+                raise RuntimeError(f"CKAN API error: {result}")
+            return result["result"].get("resources", [])
         except RuntimeError as exc:
             if not self.deputies_browse_url:
                 raise
-            print(
-                f"  WARN: CKAN API niedostępne ({exc}), próbuję HTML fallback (deputies)",
-                file=sys.stderr,
-            )
-            return _discover_resources_from_html(self.deputies_browse_url)
+            print(f"  WARN: {exc}, HTML fallback (deputies)", file=sys.stderr)
+            raw = self._discovery_get(self.deputies_browse_url)
+            return _parse_resources_from_html(raw, self.deputies_browse_url)
 
     def fetch_tables(self) -> dict[str, list[dict[str, str]]]:
         """Pobiera 5 tabel głosowań z CKAN. Zwraca dict name→rows."""

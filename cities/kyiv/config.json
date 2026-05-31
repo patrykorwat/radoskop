@@ -52,6 +52,7 @@
   "currency": "₴",
   "ckan_votes_dataset_id": "9a17f3c0-018f-4c9e-88f5-ac77add45f51",
   "ckan_votes_internal_id": "11dc30c6-6cbf-4f63-ab92-ebb156a7a689",
+  "ckan_timeout": 15,
   "vote_text_map": {
     "За": "za",
     "Проти": "przeciw",
@@ -118,6 +119,5 @@
     }
   },
   "club_assignments": {},
-  "disabled": true,
-  "disabled_reason": "Nowe miasto UA — weryfikacja danych po pierwszym scrape. Usuń disabled:true po sprawdzeniu."
+  "disabled": false
 }

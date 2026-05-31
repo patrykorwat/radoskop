@@ -83,10 +83,10 @@ def http_get(url: str, timeout: int = 60) -> bytes:
     raise RuntimeError(f"Failed after 3 attempts: {last_err}")
 
 
-def ckan_list_resources(dataset_id: str) -> list[dict[str, str]]:
+def ckan_list_resources(dataset_id: str, timeout: int = 30) -> list[dict[str, str]]:
     url = f"{CKAN_BASE}/api/3/action/package_show?id={dataset_id}"
     print(f"  CKAN API {url}", file=sys.stderr)
-    raw = http_get(url, timeout=30)
+    raw = http_get(url, timeout=timeout)
     pkg = json.loads(raw)
     if not pkg.get("success"):
         raise RuntimeError(f"CKAN error: {pkg}")
@@ -266,13 +266,19 @@ def main() -> int:
     args.cache.mkdir(parents=True, exist_ok=True)
 
     dataset_id = config["ckan_votes_dataset_id"]
+    ckan_timeout = int(config.get("ckan_timeout", 30))
     cache_index = args.cache / "resources.json"
 
     if args.skip_fetch and cache_index.exists():
         with open(cache_index, encoding="utf-8") as f:
             resources = json.load(f)
     else:
-        resources = ckan_list_resources(dataset_id)
+        try:
+            resources = ckan_list_resources(dataset_id, timeout=ckan_timeout)
+        except RuntimeError as exc:
+            print(f"[vinnytsia] BŁĄD discovery: {exc}", file=sys.stderr)
+            print("[vinnytsia] data.gov.ua niedostępne — pomiń scrape", file=sys.stderr)
+            return 1
         with open(cache_index, "w", encoding="utf-8") as f:
             json.dump(resources, f, ensure_ascii=False)
 

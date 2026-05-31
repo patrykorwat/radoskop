@@ -81,9 +81,13 @@ def main() -> int:
         deputies_dataset_id=deputies_id,
         cache_dir=args.cache,
         skip_fetch=args.skip_fetch,
-        # HTML fallback gdy API geo-zablokowane (np. z NAS poza Ukrainą)
         votes_browse_url=config.get("ckan_votes_browse_url"),
         deputies_browse_url=config.get("ckan_deputies_browse_url"),
+        # ckan_html_first:true → pomija API, idzie od razu w HTML strony datasetu.
+        # ckan_timeout: krótki timeout (np. 8s) gdy serwer jest nieosiągalny —
+        # circuit breaker skończy cały run w ~8s zamiast ~180s.
+        html_first=bool(config.get("ckan_html_first")),
+        http_timeout=int(config.get("ckan_timeout", 30)),
     )
 
     config["slug"] = city_slug

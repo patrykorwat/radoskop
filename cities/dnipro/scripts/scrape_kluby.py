@@ -79,15 +79,56 @@ def normalize_faction(text: str) -> str:
     return "NZ"
 
 
-def fetch_deputies_csv(ckan_base: str, deputies_id: str) -> list[dict[str, str]]:
-    """Pobiera deputies CSV przez CKAN API."""
-    api_url = f"{ckan_base}/api/3/action/package_show?id={deputies_id}"
-    raw = http_get(api_url)
-    pkg = json.loads(raw)
-    if not pkg.get("success"):
-        raise RuntimeError(f"CKAN error: {pkg}")
-    resources = pkg["result"]["resources"]
-    # Szukaj najnowszego deputies_*.csv
+def _resources_from_html(page_url: str) -> list[dict[str, str]]:
+    """HTML fallback: wyciąga linki /download/*.csv ze strony datasetu."""
+    import re as _re
+    raw = http_get(page_url, timeout=30)
+    html = raw.decode("utf-8", errors="replace")
+    pattern = _re.compile(
+        r'href=["\']([^"\'?#]*?/download/([^"\'?#/\s]+\.csv))["\']',
+        _re.IGNORECASE,
+    )
+    base = page_url.split("/dataset/")[0]
+    seen: set[str] = set()
+    resources = []
+    for m in pattern.finditer(html):
+        href, filename = m.group(1), m.group(2)
+        url = href if href.startswith("http") else f"{base}{href}"
+        if url not in seen:
+            seen.add(url)
+            resources.append({"url": url, "name": filename, "format": "CSV"})
+    return resources
+
+
+def fetch_deputies_csv(
+    ckan_base: str,
+    deputies_id: str,
+    browse_url: str | None = None,
+    html_first: bool = False,
+) -> list[dict[str, str]]:
+    """Pobiera deputies CSV.
+
+    html_first=True albo API timeout → HTML fallback z browse_url.
+    """
+    def _resources_from_api() -> list[dict]:
+        api_url = f"{ckan_base}/api/3/action/package_show?id={deputies_id}"
+        raw = http_get(api_url, timeout=15)
+        pkg = json.loads(raw)
+        if not pkg.get("success"):
+            raise RuntimeError(f"CKAN error: {pkg}")
+        return pkg["result"]["resources"]
+
+    if html_first and browse_url:
+        resources = _resources_from_html(browse_url)
+    else:
+        try:
+            resources = _resources_from_api()
+        except Exception as exc:
+            if not browse_url:
+                raise
+            print(f"  WARN: API niedostępne ({exc}), HTML fallback", file=sys.stderr)
+            resources = _resources_from_html(browse_url)
+
     deputies_res = [
         r for r in resources
         if r.get("name", "").lower().startswith("deputies")

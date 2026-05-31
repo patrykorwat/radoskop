@@ -51,6 +51,7 @@
   },
   "currency": "₴",
   "ckan_votes_dataset_id": "3d8bbfe2-c725-4644-8f86-9a5565bd9f12",
+  "ckan_timeout": 15,
   "vote_text_map": {
     "За": "za",
     "Проти": "przeciw",
@@ -90,6 +91,5 @@
     }
   },
   "club_assignments": {},
-  "disabled": true,
-  "disabled_reason": "Nowe miasto UA — dane stale od sierpień 2025 (sesja 59). Weryfikacja i enable po potwierdzeniu aktualności."
+  "disabled": false
 }

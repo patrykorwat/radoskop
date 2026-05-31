@@ -55,6 +55,8 @@
   "ckan_votes_browse_url": "https://data.dniprorada.gov.ua/dataset/385eb385-1d2a-4de5-a95e-23889a25631a",
   "ckan_deputies_id": "ed6dab52-ab26-42d4-88f9-843608bdefb5",
   "ckan_deputies_browse_url": "https://data.dniprorada.gov.ua/dataset/1f8b635d-8924-47a0-b655-99227ede84ff",
+  "ckan_html_first": true,
+  "ckan_timeout": 8,
   "vote_text_map": {
     "За": "za",
     "Проти": "przeciw",
@@ -99,5 +101,5 @@
     }
   },
   "club_assignments": {},
-  "disabled": false
+  "disabled": true
 }
