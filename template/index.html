@@ -941,7 +941,8 @@ async function init() {
 
     // Determine which kadencja to load first
     const defaultKid = RAW.default_kadencja || RAW.kadencje[RAW.kadencje.length-1].id;
-    const path = routePath();
+    // URL-e są angielskie; router dopasowuje na polskich tokenach → normalizuj.
+    const path = toInternalPath(routePath());
     let initialKid = defaultKid;
     if (path.startsWith('/kadencja/')) {
       const parts = path.replace('/kadencja/', '').split('/');
@@ -962,7 +963,7 @@ async function init() {
       if (profile) {
         selectKadencjaQuiet(initialKid);
         showProfile(profile.name);
-        navigateTo(path, true);
+        navigateTo(toCanonicalPath(path), true);
         return;
       }
     }
@@ -978,14 +979,14 @@ async function init() {
         const v = (d.items || [])[0];
         if (v && v.id) {
           showVote(v.id);
-          navigateTo('/glosowanie/' + v.id + '/', true);
+          navigateTo('/vote/' + v.id + '/', true);
         } else {
           activateTab('votes');
-          navigateTo(path, true);
+          navigateTo(toCanonicalPath(path), true);
         }
       } catch(e) {
         activateTab('votes');
-        navigateTo(path, true);
+        navigateTo(toCanonicalPath(path), true);
       }
       return;
     }
@@ -993,7 +994,7 @@ async function init() {
       selectKadencjaQuiet(initialKid);
       const vid = path.replace('/glosowanie/', '');
       showVote(vid);
-      navigateTo(path, true);
+      navigateTo(toCanonicalPath(path), true);
       return;
     }
     if (path === '/sesja' || path === '/sesja/') {
@@ -1002,34 +1003,34 @@ async function init() {
       // co Google Ads oznaczał jako Destination not working.)
       selectKadencjaQuiet(initialKid);
       activateTab('sessions');
-      navigateTo(path, true);
+      navigateTo(toCanonicalPath(path), true);
       return;
     }
     if (path.startsWith('/sesja/')) {
       selectKadencjaQuiet(initialKid);
       const snum = decodeURIComponent(path.replace('/sesja/', ''));
       showSession(snum);
-      navigateTo(path, true);
+      navigateTo(toCanonicalPath(path), true);
       return;
     }
     if (path === '/polityka-prywatnosci' || path === '/polityka-prywatnosci/') {
       showPrivacy();
-      navigateTo(path, true);
+      navigateTo(toCanonicalPath(path), true);
       return;
     }
     if (path === '/regulamin' || path === '/regulamin/') {
       showTerms();
-      navigateTo(path, true);
+      navigateTo(toCanonicalPath(path), true);
       return;
     }
     if (path === '/impressum' || path === '/impressum/') {
       showImpressum();
-      navigateTo(path, true);
+      navigateTo(toCanonicalPath(path), true);
       return;
     }
     if (path === '/raporty' || path === '/raporty/') {
       showReports();
-      navigateTo(path, true);
+      navigateTo(toCanonicalPath(path), true);
       return;
     }
     if (path === '/business' || path === '/business/' || path === '/premium' || path === '/premium/') {
@@ -1046,13 +1047,13 @@ async function init() {
     if (path === '/interpelacje' || path === '/interpelacje/') {
       selectKadencjaQuiet(initialKid);
       activateTab('interpelacje');
-      navigateTo(path, true);
+      navigateTo(toCanonicalPath(path), true);
       return;
     }
     if (path === '/komisje' || path === '/komisje/') {
       selectKadencjaQuiet(initialKid);
       activateTab('komisje');
-      navigateTo(path, true);
+      navigateTo(toCanonicalPath(path), true);
       return;
     }
     if (path.startsWith('/komisja/')) {
@@ -1080,13 +1081,13 @@ async function init() {
       document.getElementById('loading').style.display = 'none';
       const sc = document.getElementById('seo-content');
       if (sc) sc.style.display = 'block';
-      navigateTo(path, true);
+      navigateTo(toCanonicalPath(path), true);
       return;
     }
     if (path === '/budzet' || path === '/budzet/') {
       selectKadencjaQuiet(initialKid);
       activateTab('budget');
-      navigateTo(path, true);
+      navigateTo(toCanonicalPath(path), true);
       return;
     }
     if (path.startsWith('/kadencja/')) {
@@ -1098,7 +1099,7 @@ async function init() {
         activateTab(tab);
         // Jeśli URL miał "undefined" albo nieznany tab segment, przepisz
         // na czysty mainPath() zamiast zostawiać brzydki path w pasku.
-        const cleanPath = (!SLUG_TABS[parts[1]]) ? mainPath() : path;
+        const cleanPath = (!SLUG_TABS[parts[1]]) ? mainPath() : toCanonicalPath(path);
         navigateTo(cleanPath, true);
         return;
       }
@@ -1189,6 +1190,44 @@ const SLUG_TABS = Object.fromEntries(Object.entries(TAB_SLUGS).map(([k,v])=>[v,k
 const KAD_SLUGS = {'2018-2024':'viii','2024-2029':'ix'};
 const SLUG_KADS = Object.fromEntries(Object.entries(KAD_SLUGS).map(([k,v])=>[v,k]));
 
+// URL-e serwisu są kanonicznie ANGIELSKIE (spójne z workerem PATH_REDIRECTS,
+// <link canonical> i sitemap). Router wewnętrznie używa polskich tokenów, więc
+// normalizujemy wejściowy path EN→PL przed dopasowaniem (toInternalPath), a
+// emitujemy PL→EN (toCanonicalPath, mainPath). Stare polskie URL-e (bookmarki,
+// historia) dalej działają — toInternalPath jest dla nich no-op, a w pasku
+// adresu zostają przepisane na angielski kanon. Slugi taba w /term/{kad}/{tab}/
+// też tłumaczone (votes/sessions). /druk/, /impressum/ NIE migrowane (brak
+// angielskiego kanonu w workerze).
+const EN_TO_PL_SLUG = {
+  vote:'glosowanie', session:'sesja', profile:'profil', reports:'raporty',
+  interpellations:'interpelacje', commissions:'komisje', commission:'komisja',
+  budget:'budzet', term:'kadencja', news:'aktualnosci',
+  privacy:'polityka-prywatnosci', terms:'regulamin',
+};
+const PL_TO_EN_SLUG = Object.fromEntries(Object.entries(EN_TO_PL_SLUG).map(([k,v])=>[v,k]));
+const EN_TO_PL_TAB = {votes:'glosowania', sessions:'sesje', ranking:'ranking'};
+const PL_TO_EN_TAB = Object.fromEntries(Object.entries(EN_TO_PL_TAB).map(([k,v])=>[v,k]));
+// Internal tab → angielski slug URL (emisja w mainPath).
+const TAB_SLUGS_EN = {ranking:'ranking', sessions:'sessions', votes:'votes'};
+
+function toInternalPath(path) {
+  if (!path || path === '/') return path || '/';
+  const seg = path.split('/');                 // '/term/ix/votes' -> ['','term','ix','votes']
+  if (seg[1] && EN_TO_PL_SLUG[seg[1]]) seg[1] = EN_TO_PL_SLUG[seg[1]];
+  if (seg[1] === 'kadencja' && seg[3] && EN_TO_PL_TAB[seg[3]]) seg[3] = EN_TO_PL_TAB[seg[3]];
+  return seg.join('/');
+}
+
+function toCanonicalPath(path) {
+  if (!path || path === '/') return '/';
+  const seg = path.split('/');
+  if (seg[1] && PL_TO_EN_SLUG[seg[1]]) seg[1] = PL_TO_EN_SLUG[seg[1]];
+  if (seg[1] === 'term' && seg[3] && PL_TO_EN_TAB[seg[3]]) seg[3] = PL_TO_EN_TAB[seg[3]];
+  let out = seg.join('/');
+  if (out !== '/' && !out.endsWith('/')) out += '/';
+  return out;
+}
+
 const BASE_TITLE = '{{SITE_TITLE}}';
 const TAB_TITLES = {ranking:'Ranking radnych',sessions:'Sesje',votes:'Głosowania',komisje:'Komisje',interpelacje:'Interpelacje',budget:'Budżet'};
 function setTitle(subtitle) {
@@ -1251,13 +1290,13 @@ function mainPath(tab, kid) {
   if (!kid || kid === 'undefined' || kid === 'null') {
     kid = defaultKid;
   }
-  if (tab === 'budget') return '/budzet/';
-  if (tab === 'interpelacje') return '/interpelacje/';
-  if (tab === 'komisje') return '/komisje/';
+  if (tab === 'budget') return '/budget/';
+  if (tab === 'interpelacje') return '/interpellations/';
+  if (tab === 'komisje') return '/commissions/';
   const kadSlug = KAD_SLUGS[kid] || kid;
-  const tabSlug = TAB_SLUGS[tab] || tab;
+  const tabSlug = TAB_SLUGS_EN[tab] || tab;
   if (tab === 'ranking' && kid === defaultKid) return '/';
-  return '/kadencja/' + kadSlug + '/' + tabSlug + '/';
+  return '/term/' + kadSlug + '/' + tabSlug + '/';
 }
 
 function navigateTo(path, replace) {
@@ -1317,27 +1356,27 @@ function trackEvent(eventName, params) {
 function profileLink(name, content) {
   var s = profileSlug(name);
   var esc = name.replace(/'/g, "\\'");
-  return '<a class="name-link" ' + 'href="/profil/' + s + '/" onclick="event.preventDefault();showProfile(\'' + esc + '\')">' + (content || name) + '</a>';
+  return '<a class="name-link" ' + 'href="/profile/' + s + '/" onclick="event.preventDefault();showProfile(\'' + esc + '\')">' + (content || name) + '</a>';
 }
 
 function profileLinkStyled(name, style, content) {
   var s = profileSlug(name);
   var esc = name.replace(/'/g, "\\'");
-  return '<a class="name-link" ' + 'href="/profil/' + s + '/" onclick="event.preventDefault();showProfile(\'' + esc + '\')" style="' + style + '">' + (content || name) + '</a>';
+  return '<a class="name-link" ' + 'href="/profile/' + s + '/" onclick="event.preventDefault();showProfile(\'' + esc + '\')" style="' + style + '">' + (content || name) + '</a>';
 }
 
 function voteLink(voteId, content) {
-  return '<a class="name-link" ' + 'href="/glosowanie/' + voteId + '/" onclick="event.preventDefault();showVote(\'' + voteId + '\')">' + content + '</a>';
+  return '<a class="name-link" ' + 'href="/vote/' + voteId + '/" onclick="event.preventDefault();showVote(\'' + voteId + '\')">' + content + '</a>';
 }
 
 function sessionLink(number, content, extraAttrs) {
   var enc = encodeURIComponent(number);
-  return '<a class="name-link" ' + 'href="/sesja/' + enc + '/" onclick="event.preventDefault();showSession(\'' + number + '\')"' + (extraAttrs || '') + '>' + content + '</a>';
+  return '<a class="name-link" ' + 'href="/session/' + enc + '/" onclick="event.preventDefault();showSession(\'' + number + '\')"' + (extraAttrs || '') + '>' + content + '</a>';
 }
 
 function sessionLinkStop(number, content) {
   var enc = encodeURIComponent(number);
-  return '<a ' + 'href="/sesja/' + enc + '/" onclick="event.preventDefault();event.stopPropagation();showSession(\'' + number + '\')">' + content + '</a>';
+  return '<a ' + 'href="/session/' + enc + '/" onclick="event.preventDefault();event.stopPropagation();showSession(\'' + number + '\')">' + content + '</a>';
 }
 
 // --- Privacy policy page ---
@@ -1569,14 +1608,14 @@ function showProfile(name) {
   hideAllViews();
   const view = document.getElementById('profile-view');
   view.style.display = 'block';
-  navigateTo('/profil/' + profile.slug + '/');
+  navigateTo('/profile/' + profile.slug + '/');
   setTitle(profile.name);
   var _pk = profile.kadencje[Object.keys(profile.kadencje).pop()] || {};
   setOgMeta({
     title: profile.name + ' \u2013 Radoskop {{CITY_NAME}}',
     description: profile.name + ', ' + (_pk.club_full || _pk.club || '') + '. Frekwencja ' + (_pk.frekwencja||0).toFixed(0) + '%, aktywnosc ' + (_pk.aktywnosc||0).toFixed(0) + '%.',
-    url: '{{SITE_URL}}/profil/' + profile.slug + '/',
-    image: '{{SITE_URL}}/profil/' + profile.slug + '/og.png'
+    url: '{{SITE_URL}}/profile/' + profile.slug + '/',
+    image: '{{SITE_URL}}/profile/' + profile.slug + '/og.png'
   });
 
   // Find which kadencje this person has data for
@@ -1609,7 +1648,7 @@ function showProfile(name) {
           <div style="display:flex;gap:4px;flex-wrap:wrap">${kd.komisje.map(k => {
             const _kslug = komisjaSlugFromLabel(k);
             const _kesc = _kslug.replace(/'/g, "\\'");
-            return `<a class="tag" href="/komisja/${encodeURIComponent(_kslug)}/" onclick="event.preventDefault();showKomisja('${_kesc}')" style="font-size:0.72rem;padding:2px 7px;text-decoration:none;cursor:pointer">${k}</a>`;
+            return `<a class="tag" href="/commission/${encodeURIComponent(_kslug)}/" onclick="event.preventDefault();showKomisja('${_kesc}')" style="font-size:0.72rem;padding:2px 7px;text-decoration:none;cursor:pointer">${k}</a>`;
           }).join('')}</div>`;
       }
       _profileCards.push(`<div class="section" style="margin-bottom:0;padding:12px 14px">${_mandateBody}</div>`);
@@ -1620,7 +1659,7 @@ function showProfile(name) {
     // inline button obok h2 z nazwiskiem). const w bloku rzucał ReferenceError.
     let alertBtnHtml = '';
     if (hasVotes) {
-      const profileShareUrl = '{{SITE_URL}}/profil/' + profile.slug + '/';
+      const profileShareUrl = '{{SITE_URL}}/profile/' + profile.slug + '/';
       const profileShareTitle = profile.name + ' – Radoskop {{CITY_NAME}}';
       const profileShareText = profile.name + ' (' + club + '): frekwencja ' + Math.round(kd.frekwencja) + '%, zgodność z klubem ' + Math.round(kd.zgodnosc_z_klubem) + '%. Sprawdź na Radoskopie!';
       const _alertCitySlug = '{{CITY_SLUG}}';
@@ -2663,7 +2702,7 @@ async function showVote(voteId) {
   const view = document.getElementById('vote-view');
   view.style.display = 'block';
   view.innerHTML = '<p style="padding:40px;color:var(--muted)">Ładowanie głosowania...</p>';
-  navigateTo('/glosowanie/' + voteId + '/');
+  navigateTo('/vote/' + voteId + '/');
 
   // Fetch vote detail from API (try current kadencja first)
   let vote = null;
@@ -2690,7 +2729,7 @@ async function showVote(voteId) {
       + 'Możliwe że pochodzi z archiwum poprzedniej kadencji albo link jest błędny.'
       + '</p>'
       + '<p style="margin:20px 0"><a href="/" style="color:var(--text);font-weight:600">Wróć na stronę główną →</a></p>'
-      + '<p style="margin:0"><a href="/glosowanie/" style="color:var(--text)">Zobacz aktualne głosowania →</a></p>'
+      + '<p style="margin:0"><a href="/vote/" style="color:var(--text)">Zobacz aktualne głosowania →</a></p>'
       + '</div>';
     setTitle('Głosowanie niedostępne');
     return;
@@ -2701,8 +2740,8 @@ async function showVote(voteId) {
   setOgMeta({
     title: (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop {{CITY_NAME}}',
     description: 'Za ' + (_vc.za||0) + ', przeciw ' + (_vc.przeciw||0) + ', wstrzym. ' + (_vc.wstrzymal_sie||0) + '. Sesja ' + (vote.session_number||'') + ', ' + (vote.session_date||'') + '.',
-    url: '{{SITE_URL}}/glosowanie/' + voteId + '/',
-    image: '{{SITE_URL}}/glosowanie/' + voteId + '/og.png'
+    url: '{{SITE_URL}}/vote/' + voteId + '/',
+    image: '{{SITE_URL}}/vote/' + voteId + '/og.png'
   });
 
   const c = vote.counts || {};
@@ -2810,7 +2849,7 @@ async function showVote(voteId) {
         ${shareBar(
           (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop {{CITY_NAME}}',
           (passed ? 'Przyjęte' : 'Odrzucone') + ': za ' + (c.za||0) + ', przeciw ' + (c.przeciw||0) + ', wstrzym. ' + (c.wstrzymal_sie||0) + '. ' + (vote.topic || '').substring(0, 100),
-          '{{SITE_URL}}/glosowanie/' + voteId + '/',
+          '{{SITE_URL}}/vote/' + voteId + '/',
           'vote-share'
         )}
       </div>
@@ -3070,7 +3109,7 @@ async function showSession(sessionNumber) {
   const view = document.getElementById('session-view');
   view.style.display = 'block';
   view.innerHTML = '<p style="padding:40px;color:var(--muted)">Ładowanie sesji...</p>';
-  navigateTo('/sesja/' + encodeURIComponent(sessionNumber) + '/');
+  navigateTo('/session/' + encodeURIComponent(sessionNumber) + '/');
 
   // Fetch session detail from API
   let sess = null;
@@ -3100,7 +3139,7 @@ async function showSession(sessionNumber) {
       + 'Możliwe że pochodzi z archiwum poprzedniej kadencji albo link jest błędny.'
       + '</p>'
       + '<p style="margin:20px 0"><a href="/" style="color:var(--text);font-weight:600">Wróć na stronę główną →</a></p>'
-      + '<p style="margin:0"><a href="/sesja/" style="color:var(--text)">Zobacz aktualne sesje →</a></p>'
+      + '<p style="margin:0"><a href="/session/" style="color:var(--text)">Zobacz aktualne sesje →</a></p>'
       + '</div>';
     setTitle('Sesja niedostępna');
     return;
@@ -3118,7 +3157,7 @@ async function showSession(sessionNumber) {
   setOgMeta({
     title: 'Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' \u2013 Radoskop {{CITY_NAME}}',
     description: 'Sesja ' + sessionNumber + ', ' + (sess.date||'') + '. ' + sessSummaryStat + ', ' + (sess.attendee_count||0) + ' obecnych.',
-    url: '{{SITE_URL}}/sesja/' + encodeURIComponent(sessionNumber) + '/'
+    url: '{{SITE_URL}}/session/' + encodeURIComponent(sessionNumber) + '/'
   });
 
   // Sesja bez opublikowanych wyników głosowań. Pokazujemy datę i porządek
@@ -3169,7 +3208,7 @@ async function showSession(sessionNumber) {
         ${shareBar(
           (sess.number != null ? 'Sesja ' + sess.number + ' ' : '') + '(' + (sess.date||'') + ') \u2013 Radoskop {{CITY_NAME}}',
           (sess.number != null ? 'Sesja ' + sess.number + ': ' : '') + sessSummaryStat + ', ' + (sess.attendee_count||present.size||0) + ' obecnych radnych.',
-          '{{SITE_URL}}/sesja/' + encodeURIComponent(sessionNumber) + '/',
+          '{{SITE_URL}}/session/' + encodeURIComponent(sessionNumber) + '/',
           'session-share'
         )}
       </div>
@@ -3448,7 +3487,7 @@ async function renderKomisjeList() {
       : '';
     const esc = (c.url_slug || '').replace(/'/g, "\\'");
     return `
-      <a class="komisja-card" href="/komisja/${encodeURIComponent(c.url_slug)}/" onclick="event.preventDefault();showKomisja('${esc}')">
+      <a class="komisja-card" href="/commission/${encodeURIComponent(c.url_slug)}/" onclick="event.preventDefault();showKomisja('${esc}')">
         <div class="komisja-card-title">
           <span>${c.label || c.url_slug}</span>
           ${inCommissionBadge}
@@ -3494,7 +3533,7 @@ async function showKomisja(slug) {
   const view = document.getElementById('session-view'); // reusing detail container
   view.style.display = 'block';
   view.innerHTML = '<p style="padding:40px;color:var(--muted)">Ładowanie komisji...</p>';
-  navigateTo('/komisja/' + encodeURIComponent(slug) + '/');
+  navigateTo('/commission/' + encodeURIComponent(slug) + '/');
 
   let envelope = null;
   try {
@@ -3528,7 +3567,7 @@ async function showKomisja(slug) {
   setOgMeta({
     title: label + ' – Radoskop {{CITY_NAME}}',
     description: `${s.meetings || 0} posiedzeń, ${s.drafts_total || 0} druków w procedowaniu, mediana lead time ${leadDisplay}.`,
-    url: '{{SITE_URL}}/komisja/' + encodeURIComponent(slug) + '/'
+    url: '{{SITE_URL}}/commission/' + encodeURIComponent(slug) + '/'
   });
 
   // Premium: jeśli API zwraca drafts_votes (mapa druk → {vote_id, ...}),
@@ -4254,7 +4293,7 @@ function showEmbedCode(slug) {
   const modal=document.getElementById('embed-modal'), code=document.getElementById('embed-code');
   if(modal.style.display==='none'){
     modal.style.display='block';
-    code.value=`<iframe src="{{SITE_URL}}/profil/${slug}/" width="400" height="500" frameborder="0" style="border:1px solid #e2e5e9;border-radius:12px" title="Radoskop {{CITY_NAME}}"></iframe>`;
+    code.value=`<iframe src="{{SITE_URL}}/profile/${slug}/" width="400" height="500" frameborder="0" style="border:1px solid #e2e5e9;border-radius:12px" title="Radoskop {{CITY_NAME}}"></iframe>`;
   } else { modal.style.display='none'; }
 }
 
@@ -4308,7 +4347,7 @@ function copyShareLink(encodedUrl, btnId) {
 
 window.addEventListener('popstate', async () => {
   _popstateActive = true;
-  const path = routePath();
+  const path = toInternalPath(routePath());
   if (path.startsWith('/profil/')) {
     const slug = path.replace('/profil/', '');
     const profile = PROFILES && PROFILES.profiles.find(p => p.slug === slug);
