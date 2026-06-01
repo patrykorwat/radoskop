@@ -60,7 +60,8 @@
     <h2>{{ t.sec_activity_h2 }}</h2>
     <div class="subtitle">{{ t.sec_activity_sub }}</div>
     <div class="card">
-      <div id="sparkbars" style="display:flex; align-items:flex-end; gap:3px; height:70px; margin-bottom:10px;"></div>
+      <div id="sparkbars" style="display:flex; align-items:flex-end; gap:3px; height:70px;"></div>
+      <div id="sparkaxis" style="display:flex; justify-content:space-between; font-size:.72rem; color:var(--muted); margin:5px 0 12px;"></div>
       <div style="display:flex; gap:16px; font-size:.78rem;">
         <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:9px;height:9px;border-radius:2px;background:var(--accent);"></span><span class="mu">{{ t.legend_votes }}</span></span>
         <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:9px;height:9px;border-radius:2px;background:var(--red);"></span><span class="mu">{{ t.legend_contested }}</span></span>
@@ -157,17 +158,25 @@
 <script>window.RADOSKOP_ACTIVITY={{ activity_json|safe }};</script>
 <script>
 (function(){
-  var A = window.RADOSKOP_ACTIVITY || {votes:[],contested:[]};
-  var votes = A.votes||[], disp = A.contested||[];
+  var A = window.RADOSKOP_ACTIVITY || [];
   var box = document.getElementById('sparkbars');
-  if (!box || !votes.length) return;
-  var maxV = Math.max.apply(null, votes) || 1;
-  votes.forEach(function(v,i){
-    var wrap = document.createElement('div'); wrap.style.cssText='flex:1;position:relative;height:70px;';
-    var b1 = document.createElement('div'); b1.style.cssText='position:absolute;bottom:0;width:100%;height:'+Math.round(v/maxV*70)+'px;background:var(--accent);opacity:.6;border-radius:1px 1px 0 0;';
-    var b2 = document.createElement('div'); b2.style.cssText='position:absolute;bottom:0;width:100%;height:'+Math.round((disp[i]||0)/maxV*70)+'px;background:var(--red);opacity:.6;border-radius:1px 1px 0 0;';
-    wrap.appendChild(b1); wrap.appendChild(b2); box.appendChild(wrap);
+  if (!box || !A.length) return;
+  var SITE = "{{ site_url }}";
+  function my(d){ var m=/^(\d{4})-(\d{2})/.exec(d||''); return m? m[2]+'.'+m[1] : ''; }
+  var maxV = A.reduce(function(x,s){ return Math.max(x, s.votes||0); }, 0) || 1;
+  A.forEach(function(s){
+    var v = s.votes||0, c = s.contested||0;
+    var cell = s.number != null
+      ? (function(){ var a=document.createElement('a'); a.href=SITE+'/session/'+encodeURIComponent(s.number)+'/'; return a; })()
+      : document.createElement('div');
+    cell.style.cssText='flex:1;position:relative;height:70px;display:block;';
+    cell.title = (s.date||'') + ' · ' + v + ' {{ t.legend_votes }}' + (c? ', '+c+' {{ t.legend_contested }}':'');
+    var b1=document.createElement('div'); b1.style.cssText='position:absolute;bottom:0;width:100%;height:'+Math.round(v/maxV*70)+'px;background:var(--accent);opacity:.6;border-radius:1px 1px 0 0;';
+    var b2=document.createElement('div'); b2.style.cssText='position:absolute;bottom:0;width:100%;height:'+Math.round(c/maxV*70)+'px;background:var(--red);opacity:.6;border-radius:1px 1px 0 0;';
+    cell.appendChild(b1); cell.appendChild(b2); box.appendChild(cell);
   });
+  var ax = document.getElementById('sparkaxis');
+  if (ax && A.length){ ax.innerHTML='<span>'+my(A[0].date)+'</span><span>'+my(A[A.length-1].date)+'</span>'; }
 })();
 </script>
 {% endif %}

@@ -86,14 +86,20 @@ def compute_context(kad):
                    -((v.get("counts") or {}).get("za", 0) + (v.get("counts") or {}).get("przeciw", 0))),
                    default=None)
 
+    # Aktywność per sesja (oś czasu): data, numer sesji (do linku), liczba
+    # głosowań i ile spornych. Numer z votes.session_number lub mapy sessions[].
+    date_to_num = {s.get("date"): s.get("number") for s in sessions if s.get("date")}
     by_date = {}
     for v in votes:
         d = v.get("session_date") or ""
-        by_date.setdefault(d, {"votes": 0, "contested": 0})
-        by_date[d]["votes"] += 1
+        e = by_date.setdefault(d, {"votes": 0, "contested": 0,
+                                   "number": v.get("session_number") or date_to_num.get(d)})
+        e["votes"] += 1
         if v in contested:
-            by_date[d]["contested"] += 1
-    ordered = [by_date[d] for d in sorted(by_date)]
+            e["contested"] += 1
+    activity = [{"date": d, "number": by_date[d]["number"],
+                 "votes": by_date[d]["votes"], "contested": by_date[d]["contested"]}
+                for d in sorted(by_date) if d]
 
     return {
         "total_votes": kad.get("total_votes", len(votes)),
@@ -101,8 +107,7 @@ def compute_context(kad):
         "total_sessions": kad.get("total_sessions", len(sessions)),
         "contested": len(contested),
         "active": active, "rebel": rebel, "top_vote": top_vote,
-        "activity": {"votes": [x["votes"] for x in ordered],
-                     "contested": [x["contested"] for x in ordered]},
+        "activity": activity,
         "councilors": councilors, "votes": votes,
     }
 
@@ -128,7 +133,7 @@ def hl_title_html(t, key="hero_title"):
     return re.sub(r"\[\[(.+?)\]\]", r'<span class="hl">\1</span>', esc(t[key]))
 
 
-def sporne_rows(contested_votes, limit=5):
+def sporne_rows(contested_votes, site_url, limit=5):
     rows = []
     for v in contested_votes[:limit]:
         c = v.get("counts") or {}
@@ -138,9 +143,15 @@ def sporne_rows(contested_votes, limit=5):
                f'<div style="width:{za/tot*100:.0f}%;background:var(--green);opacity:.85;border-radius:1px;"></div>'
                f'<div style="width:{prz/tot*100:.0f}%;background:var(--red);opacity:.85;border-radius:1px;"></div>'
                f'<div style="width:{ws/tot*100:.0f}%;background:var(--yellow);opacity:.85;border-radius:1px;"></div></div>')
+        vid = v.get("id")
+        topic = esc(v.get("topic"))
+        # Link do strony głosowania, gdy znamy id. Cały wiersz klikalny przez <a>
+        # w komórce tematu (reszta kolumn to liczby — temat wystarcza jako cel).
+        topic_cell = (f'<a href="{site_url}/vote/{esc(vid)}/" style="color:inherit;text-decoration:none;">'
+                      f'{topic}</a>') if vid else topic
         rows.append(
             '<tr>'
-            f'<td style="font-weight:600;">{esc(v.get("topic"))}</td>'
+            f'<td style="font-weight:600;">{topic_cell}</td>'
             f'<td class="mu">{fmt_date(v.get("session_date"))}</td>'
             f'<td style="text-align:right;color:var(--green);font-weight:600;">{za}</td>'
             f'<td style="text-align:right;color:var(--red);font-weight:600;">{prz}</td>'
@@ -310,7 +321,7 @@ def main():
         },
         sporne_rows=sporne_rows(sorted(
             [v for v in (kad.get("votes") or []) if (v.get("counts") or {}).get("przeciw", 0) > 0],
-            key=lambda v: v.get("session_date") or "", reverse=True)),
+            key=lambda v: v.get("session_date") or "", reverse=True), site_url),
         activity_json=json.dumps(ctx["activity"], ensure_ascii=False),
         proof_note=t["proof_note"].format(bip=esc(config.get("bip_name", "BIP"))),
     )
