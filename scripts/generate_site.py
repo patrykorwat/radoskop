@@ -41,9 +41,25 @@ def assemble_template(html: str, template_dir) -> str:
     widziały pełny HTML jak dawny monolit. Współdzielone przez generate_site.py
     i generate_assembly_site.py.
     """
-    from jinja2 import Environment, FileSystemLoader
+    from pathlib import Path as _Path
+    tdir = _Path(template_dir)
+    try:
+        from jinja2 import Environment, FileSystemLoader
+    except ImportError:
+        # Fallback bez jinja2: ręcznie rozwiń {% include "X" %} rekurencyjnie
+        # (app.css zawiera zagnieżdżony include theme_vars.css). Wynik bajt-w-bajt
+        # taki sam jak Jinja (oba wstawiają surową treść pliku w miejsce tagu).
+        # Dzięki temu brak jinja2 NIGDY nie wywala generacji SPA — psuje co najwyżej
+        # landing (build_landing.py, który Jinja wymaga twardo).
+        import re as _re
+        pat = _re.compile(r'\{%\s*include\s*"([^"]+)"\s*%\}')
+        for _ in range(10):
+            if not pat.search(html):
+                break
+            html = pat.sub(lambda m: (tdir / m.group(1)).read_text(encoding="utf-8"), html)
+        return html
     env = Environment(
-        loader=FileSystemLoader(str(template_dir)),
+        loader=FileSystemLoader(str(tdir)),
         autoescape=False,
         keep_trailing_newline=True,
         variable_start_string="@@NOJINJAVAR_OPEN@@",
