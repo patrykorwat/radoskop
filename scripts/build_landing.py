@@ -329,16 +329,13 @@ def main():
     )
     coun_html = env.get_template("councilors.html").render(**coun_ctx)
 
-    # ── Zapis: SPA -> app.html (idempotentnie), landing -> index.html ──
+    # ── Zapis ──
+    # WAŻNE: index.html ZOSTAJE SPA (uniwersalny fallback workera dla /profile/,
+    # /vote/, /session/, /term/...). Landing zapisujemy OSOBNO jako landing.html;
+    # worker serwuje go TYLKO dla dokładnej ścieżki "/". Dzięki temu landing nie
+    # może zepsuć tras detalu (brak landing.html lub stary worker => zwykły SPA).
     os.makedirs(args.out, exist_ok=True)
-    out_index = os.path.join(args.out, "index.html")
-    out_app = os.path.join(args.out, "app.html")
-    if os.path.exists(out_index):
-        cur = open(out_index, encoding="utf-8").read()
-        if 'class="hero"' not in cur:  # to SPA, nie landing
-            with open(out_app, "w", encoding="utf-8") as f:
-                f.write(cur)
-    with open(out_index, "w", encoding="utf-8") as f:
+    with open(os.path.join(args.out, "landing.html"), "w", encoding="utf-8") as f:
         f.write(landing_html)
 
     coun_dir = os.path.join(args.out, "councillors")
