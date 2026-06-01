@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ratsmitglieder Mecklenburg-Vorpommerns — Radoskop Mecklenburg-Vorpommern</title>
+<meta name="description" content="Die auffälligsten Namen und Entscheidungen, direkt aus dem Abstimmungsregister.">
+<meta name="author" content="Patryk Orwat">
+<link rel="canonical" href="https://mv.radoskop.eu/councillors/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ratsmitglieder Mecklenburg-Vorpommerns · Radoskop Mecklenburg-Vorpommern">
+<meta property="og:description" content="Die auffälligsten Namen und Entscheidungen, direkt aus dem Abstimmungsregister.">
+<meta property="og:locale" content="de_DE">
+<script async defer data-website-id="792c059f-c77e-4b4e-ad9c-31f4a7d5cfe4" src="https://stats.radoskop.pl/script.js"></script>
+<script>
+// Anti-FOUC: ustaw data-theme przed renderem CSS.
+(function(){
+  try {
+    var m = document.cookie.match(/(?:^|;\s*)radoskop_theme=([^;]+)/);
+    var t = m ? decodeURIComponent(m[1]) : null;
+    if (t !== 'dark' && t !== 'light') {
+      try { var s = localStorage.getItem('radoskop_theme'); if (s === 'dark' || s === 'light') t = s; } catch(e) {}
+    }
+    if (t !== 'dark' && t !== 'light') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch(e) {}
+})();
+</script>
+<style>
+:root, [data-theme="light"] {
+  --bg: #f8f9fa;
+  --surface: #ffffff;
+  --border: #e2e5e9;
+  --text: #1a1d27;
+  --muted: #6b7280;
+  --accent: #4f46e5;
+  --green: #16a34a;
+  --red: #dc2626;
+  --yellow: #ca8a04;
+  --blue: #2563eb;
+  --chart-text: #4b5563;
+  --chart-border: rgba(0,0,0,0.08);
+}
+[data-theme="dark"] {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --border: #2a2d3a;
+  --text: #e4e4e7;
+  --muted: #8b8d97;
+  --accent: #6366f1;
+  --green: #22c55e;
+  --red: #ef4444;
+  --yellow: #eab308;
+  --blue: #3b82f6;
+  --chart-text: #a1a1aa;
+  --chart-border: rgba(255,255,255,0.06);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:var(--bg); color:var(--text); line-height:1.55; }
+a { color:inherit; }
+.topbar { position:sticky; top:0; z-index:100; background:var(--surface); border-bottom:1px solid var(--border); padding:10px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.topbar-logo { font-size:1.05rem; font-weight:700; text-decoration:none; }
+.topbar-logo span { color:var(--accent); }
+.topbar-nav { display:flex; gap:20px; flex-wrap:wrap; }
+.topbar-nav a { font-size:.88rem; color:var(--muted); text-decoration:none; transition:color .15s; }
+.topbar-nav a:hover { color:var(--accent); }
+.topbar-actions { display:flex; gap:6px; align-items:center; }
+.theme-toggle { padding:5px 10px; font-size:.8rem; border:1px solid var(--border); background:var(--bg); color:var(--muted); border-radius:8px; cursor:pointer; }
+.container { max-width:1100px; margin:0 auto; padding:20px; }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:11px 18px; border-radius:10px; font-size:.92rem; font-weight:600; text-decoration:none; border:1px solid transparent; cursor:pointer; }
+.btn-primary { background:var(--accent); color:#fff; }
+.btn-primary:hover { filter:brightness(1.08); }
+.btn-ghost { background:transparent; color:var(--text); border-color:var(--border); }
+.btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin:44px 0; }
+.section h2 { font-size:1.35rem; font-weight:700; margin-bottom:6px; letter-spacing:-.01em; }
+.section .subtitle { color:var(--muted); font-size:.95rem; margin-bottom:18px; }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; }
+.mu { color:var(--muted); }
+.club-badge { display:inline-block; font-size:.72rem; font-weight:600; padding:2px 7px; border-radius:4px; white-space:nowrap; }
+footer { border-top:1px solid var(--border); margin-top:48px; padding:26px 0 40px; color:var(--muted); font-size:.82rem; }
+footer a { color:var(--accent); text-decoration:none; }
+
+/* Hero */
+.hero { padding:56px 0 40px; border-bottom:1px solid var(--border); }
+.hero .eyebrow { font-size:.8rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+.hero h1 { font-size:2.9rem; font-weight:800; line-height:1.08; letter-spacing:-.02em; white-space:nowrap; }
+.hero h1 .hl { color:var(--accent); }
+.hero .insight { margin-top:20px; font-size:1.3rem; line-height:1.4; font-weight:500; color:var(--text); max-width:62ch; }
+.hero .insight strong { color:var(--accent); font-weight:700; }
+.hero .cta-row { margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; }
+
+/* Highlights */
+.highlights { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+.hcard { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; display:flex; justify-content:space-between; align-items:flex-start; gap:14px; }
+.hcard .htag { font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+.hcard .hname { font-size:1.15rem; font-weight:700; margin-top:6px; }
+.hcard .hsub { font-size:.85rem; color:var(--muted); margin-top:3px; }
+.hcard .hnum { font-size:1.8rem; font-weight:800; line-height:1; font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right; }
+.hcard .hnum small { font-size:.66rem; font-weight:600; color:var(--muted); display:block; margin-top:5px; }
+.hcard .club-badge { margin-top:8px; }
+
+/* Stats */
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; }
+.stat-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 18px; }
+.stat-card .value { font-size:2rem; font-weight:800; line-height:1.05; font-variant-numeric:tabular-nums; }
+.stat-card .label { font-size:.82rem; color:var(--muted); margin-top:4px; }
+
+/* Nav cards */
+.navgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.navcard { display:block; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; text-decoration:none; transition:border-color .15s, transform .1s; }
+.navcard:hover { border-color:var(--accent); transform:translateY(-1px); }
+.navcard .nk { font-size:1.05rem; font-weight:700; color:var(--text); }
+.navcard .nd { font-size:.85rem; color:var(--muted); margin-top:5px; }
+.navcard .arrow { color:var(--accent); font-weight:700; }
+.navlabel { font-size:.72rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin:22px 0 10px; }
+
+/* Confidence */
+.proof { display:flex; flex-wrap:wrap; gap:28px; justify-content:center; text-align:center; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:26px 24px; }
+.proof .pi .pv { font-size:1.7rem; font-weight:800; font-variant-numeric:tabular-nums; }
+.proof .pi .pl { font-size:.82rem; color:var(--muted); margin-top:3px; }
+.proof-note { text-align:center; color:var(--muted); font-size:.85rem; margin-top:14px; }
+
+/* Confrontation band */
+.band { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:26px 28px; }
+.band h3 { font-size:1.5rem; font-weight:800; letter-spacing:-.01em; }
+.band p { color:var(--muted); margin-top:10px; font-size:1rem; max-width:70ch; }
+
+/* Tables (sporne + councillors) */
+table { width:100%; border-collapse:collapse; font-size:.9rem; }
+th { text-align:left; padding:0 8px 9px 0; color:var(--muted); font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--border); }
+td { padding:10px 8px 10px 0; border-bottom:1px solid var(--border); }
+
+/* Councillors list */
+.crumbs { font-size:.82rem; color:var(--muted); margin:14px 0 4px; }
+.crumbs a { color:var(--accent); text-decoration:none; }
+.page-head { padding:6px 0 18px; border-bottom:1px solid var(--border); margin-bottom:18px; }
+.page-head h1 { font-size:2rem; font-weight:800; letter-spacing:-.01em; }
+.page-head .sub { color:var(--muted); margin-top:4px; font-size:.95rem; }
+.toolbar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:16px; }
+.toolbar input, .toolbar select { font:inherit; font-size:.88rem; padding:8px 10px; border:1px solid var(--border); border-radius:8px; background:var(--surface); color:var(--text); }
+.toolbar input { flex:1; min-width:200px; }
+.toolbar .count { margin-left:auto; font-size:.82rem; color:var(--muted); }
+.tablewrap { background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+.tablewrap th { padding:12px 14px; cursor:pointer; user-select:none; white-space:nowrap; }
+.tablewrap th:hover { color:var(--accent); }
+.tablewrap th .ar { opacity:.35; font-size:.7rem; margin-left:3px; }
+.tablewrap th.s .ar { opacity:1; color:var(--accent); }
+.tablewrap td { padding:11px 14px; vertical-align:middle; }
+.tablewrap tr:last-child td { border-bottom:none; }
+.tablewrap tbody tr:hover { background:var(--bg); }
+.rank { color:var(--muted); font-variant-numeric:tabular-nums; width:34px; }
+.name { font-weight:600; }
+.name a { text-decoration:none; }
+.name a:hover { color:var(--accent); }
+.num { text-align:right; font-variant-numeric:tabular-nums; }
+.metric { display:flex; align-items:center; gap:8px; justify-content:flex-end; }
+.metric .mv { font-variant-numeric:tabular-nums; font-weight:600; min-width:38px; text-align:right; }
+.bar { width:62px; height:6px; border-radius:3px; background:var(--border); overflow:hidden; }
+.bar > i { display:block; height:100%; border-radius:3px; }
+
+@media (max-width:880px) {
+  .hero h1 { font-size:2.1rem; }
+  .hero .insight { font-size:1.1rem; }
+  .navgrid { grid-template-columns:1fr; }
+  .highlights { grid-template-columns:1fr; }
+  .page-head h1 { font-size:1.5rem; }
+}
+@media (max-width:520px) {
+  .hero h1 { font-size:1.6rem; }
+  .topbar-nav { display:none; }
+  .hide-sm { display:none; }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="Main navigation">
+  <a class="topbar-logo" href="https://mv.radoskop.eu/">Rado<span>skop</span> Mecklenburg-Vorpommern</a>
+  <div class="topbar-nav">
+    <a href="https://radoskop.eu/reports/">Berichte</a>
+    <a href="https://radoskop.eu/business/">Business</a>
+  </div>
+  <div class="topbar-actions">
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">Thema</button>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="crumbs"><a href="https://mv.radoskop.eu/">Startseite</a> / Ratsmitglieder</div>
+  <div class="page-head">
+    <h1>Ratsmitglieder Mecklenburg-Vorpommerns</h1>
+    <div class="sub">79 Ratsmitglieder in der Wahlperiode. Klicken Sie auf eine Spalte zum Sortieren.</div>
+  </div>
+
+  <div class="toolbar">
+    <input id="q" type="text" placeholder="Ratsmitglied suchen…" oninput="render()">
+    <select id="club" onchange="render()">
+      <option value="">Alle Fraktionen</option>
+      <option value="SPD">SPD</option>
+      <option value="CDU">CDU</option>
+      <option value="BÜNDNIS 90/DIE GRÜNEN">BÜNDNIS 90/DIE GRÜNEN</option>
+      <option value="Gruppe der FDP">Gruppe der FDP</option>
+      <option value="Die Linke">Die Linke</option>
+      <option value="AfD">AfD</option>
+      <option value="fraktionslos">fraktionslos</option>
+    </select>
+    <span class="count" id="shown-count"></span>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th data-k="rank" class="rank">#</th>
+          <th data-k="name">Ratsmitglied <span class="ar">↕</span></th>
+          <th data-k="club" class="hide-sm">Fraktion <span class="ar">↕</span></th>
+          <th data-k="attendance" class="num">Anwesenheit <span class="ar">↕</span></th>
+          <th data-k="votes" class="num hide-sm">Stimmen <span class="ar">↕</span></th>
+          <th data-k="agreement" class="num">Fraktionstreue <span class="ar">↕</span></th>
+        </tr>
+      </thead>
+      <tbody id="rows"><tr><td class="rank">1</td><td class="name"><a href="https://mv.radoskop.eu/profile/ann-christin-von-allworden/">Ann Christin von Allwörden</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(15,23,42,0.12);color:#0f172a">CDU</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">2</td><td class="name"><a href="https://mv.radoskop.eu/profile/anna-konstanze-schroder/">Anna-Konstanze Schröder</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">3</td><td class="name"><a href="https://mv.radoskop.eu/profile/barbara-becker-hornickel/">Barbara Becker-Hornickel</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(250,204,21,0.18);color:#facc15">Gruppe der FDP</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">4</td><td class="name"><a href="https://mv.radoskop.eu/profile/beate-schlupp/">Beate Schlupp</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(15,23,42,0.12);color:#0f172a">CDU</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">5</td><td class="name"><a href="https://mv.radoskop.eu/profile/beatrix-hegenkotter/">Beatrix Hegenkötter</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">6</td><td class="name"><a href="https://mv.radoskop.eu/profile/bettina-martin/">Bettina Martin</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">7</td><td class="name"><a href="https://mv.radoskop.eu/profile/birgit-hesse/">Birgit Hesse</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">8</td><td class="name"><a href="https://mv.radoskop.eu/profile/christian-albrecht/">Christian Albrecht</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,45,146,0.12);color:#7c2d92">Die Linke</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">9</td><td class="name"><a href="https://mv.radoskop.eu/profile/christian-brade/">Christian Brade</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">10</td><td class="name"><a href="https://mv.radoskop.eu/profile/christian-pegel/">Christian Pegel</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">11</td><td class="name"><a href="https://mv.radoskop.eu/profile/christian-winter/">Christian Winter</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">12</td><td class="name"><a href="https://mv.radoskop.eu/profile/christine-klingohr/">Christine Klingohr</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">13</td><td class="name"><a href="https://mv.radoskop.eu/profile/constanze-oehlrich/">Constanze Oehlrich</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(22,163,74,0.12);color:#16a34a">BÜNDNIS 90/DIE GRÜNEN</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">14</td><td class="name"><a href="https://mv.radoskop.eu/profile/dagmar-kaselitz/">Dagmar Kaselitz</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">15</td><td class="name"><a href="https://mv.radoskop.eu/profile/daniel-peters/">Daniel Peters</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(15,23,42,0.12);color:#0f172a">CDU</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">16</td><td class="name"><a href="https://mv.radoskop.eu/profile/daniel-trepsdorf/">Daniel Trepsdorf</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,45,146,0.12);color:#7c2d92">Die Linke</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">17</td><td class="name"><a href="https://mv.radoskop.eu/profile/david-wulff/">David Wulff</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(250,204,21,0.18);color:#facc15">Gruppe der FDP</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">18</td><td class="name"><a href="https://mv.radoskop.eu/profile/dirk-bruhn/">Dirk Bruhn</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,45,146,0.12);color:#7c2d92">Die Linke</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">19</td><td class="name"><a href="https://mv.radoskop.eu/profile/dirk-stamer/">Dirk Stamer</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">20</td><td class="name"><a href="https://mv.radoskop.eu/profile/falko-beitz/">Falko Beitz</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">21</td><td class="name"><a href="https://mv.radoskop.eu/profile/franz-robert-liskow/">Franz-Robert Liskow</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(15,23,42,0.12);color:#0f172a">CDU</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">22</td><td class="name"><a href="https://mv.radoskop.eu/profile/grit-schmelzer/">Grit Schmelzer</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">23</td><td class="name"><a href="https://mv.radoskop.eu/profile/hannes-damm/">Hannes Damm</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(22,163,74,0.12);color:#16a34a">BÜNDNIS 90/DIE GRÜNEN</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">24</td><td class="name"><a href="https://mv.radoskop.eu/profile/harald-terpe/">Harald Terpe</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(22,163,74,0.12);color:#16a34a">BÜNDNIS 90/DIE GRÜNEN</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">25</td><td class="name"><a href="https://mv.radoskop.eu/profile/heiko-mira/">Heiko Miraß</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">26</td><td class="name"><a href="https://mv.radoskop.eu/profile/horst-forster/">Horst Förster</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0ea5e9">AfD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">27</td><td class="name"><a href="https://mv.radoskop.eu/profile/jan-phillip-tadsen/">Jan-Phillip Tadsen</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0ea5e9">AfD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">28</td><td class="name"><a href="https://mv.radoskop.eu/profile/jeannine-rosler/">Jeannine Rösler</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,45,146,0.12);color:#7c2d92">Die Linke</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">29</td><td class="name"><a href="https://mv.radoskop.eu/profile/jens-holger-schneider/">Jens-Holger Schneider</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0ea5e9">AfD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">30</td><td class="name"><a href="https://mv.radoskop.eu/profile/julian-barlen/">Julian Barlen</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">31</td><td class="name"><a href="https://mv.radoskop.eu/profile/jutta-wegner/">Jutta Wegner</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(22,163,74,0.12);color:#16a34a">BÜNDNIS 90/DIE GRÜNEN</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">32</td><td class="name"><a href="https://mv.radoskop.eu/profile/katy-hoffmeister/">Katy Hoffmeister</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(15,23,42,0.12);color:#0f172a">CDU</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">33</td><td class="name"><a href="https://mv.radoskop.eu/profile/mandy-pfeifer/">Mandy Pfeifer</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">34</td><td class="name"><a href="https://mv.radoskop.eu/profile/marcel-falk/">Marcel Falk</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">35</td><td class="name"><a href="https://mv.radoskop.eu/profile/martin-schmidt/">Martin Schmidt</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0ea5e9">AfD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">36</td><td class="name"><a href="https://mv.radoskop.eu/profile/michael-meister/">Michael Meister</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0ea5e9">AfD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">37</td><td class="name"><a href="https://mv.radoskop.eu/profile/michael-noetzel/">Michael Noetzel</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,45,146,0.12);color:#7c2d92">Die Linke</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">38</td><td class="name"><a href="https://mv.radoskop.eu/profile/michel-friedrich-schiefler/">Michel-Friedrich Schiefler</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">39</td><td class="name"><a href="https://mv.radoskop.eu/profile/monique-wolk/">Monique Wölk</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">40</td><td class="name"><a href="https://mv.radoskop.eu/profile/nadine-julitz/">Nadine Julitz</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">41</td><td class="name"><a href="https://mv.radoskop.eu/profile/nikolaus-kramer/">Nikolaus Kramer</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0ea5e9">AfD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">42</td><td class="name"><a href="https://mv.radoskop.eu/profile/patrick-dahlemann/">Patrick Dahlemann</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">43</td><td class="name"><a href="https://mv.radoskop.eu/profile/paul-joachim-timm/">Paul-Joachim Timm</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0ea5e9">AfD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">44</td><td class="name"><a href="https://mv.radoskop.eu/profile/petra-federau/">Petra Federau</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0ea5e9">AfD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">45</td><td class="name"><a href="https://mv.radoskop.eu/profile/philipp-da-cunha/">Philipp da Cunha</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">46</td><td class="name"><a href="https://mv.radoskop.eu/profile/rainer-albrecht/">Rainer Albrecht</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">47</td><td class="name"><a href="https://mv.radoskop.eu/profile/ralf-mucha/">Ralf Mucha</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">48</td><td class="name"><a href="https://mv.radoskop.eu/profile/rene-domke/">René Domke</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(250,204,21,0.18);color:#facc15">Gruppe der FDP</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">49</td><td class="name"><a href="https://mv.radoskop.eu/profile/robert-northoff/">Robert Northoff</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">50</td><td class="name"><a href="https://mv.radoskop.eu/profile/sabine-enseleit/">Sabine Enseleit</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(15,23,42,0.12);color:#0f172a">CDU</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">51</td><td class="name"><a href="https://mv.radoskop.eu/profile/sandy-van-baal/">Sandy van Baal</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(100,116,139,0.12);color:#64748b">fraktionslos</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">52</td><td class="name"><a href="https://mv.radoskop.eu/profile/sebastian-ehlers/">Sebastian Ehlers</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(15,23,42,0.12);color:#0f172a">CDU</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">53</td><td class="name"><a href="https://mv.radoskop.eu/profile/stefanie-drese/">Stefanie Drese</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">54</td><td class="name"><a href="https://mv.radoskop.eu/profile/steffi-pulz-debler/">Steffi Pulz-Debler</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,45,146,0.12);color:#7c2d92">Die Linke</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">55</td><td class="name"><a href="https://mv.radoskop.eu/profile/stephan-j-reuken/">Stephan J. Reuken</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0ea5e9">AfD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">56</td><td class="name"><a href="https://mv.radoskop.eu/profile/sylva-rahm-prager/">Sylva Rahm-Präger</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">57</td><td class="name"><a href="https://mv.radoskop.eu/profile/thomas-kruger/">Thomas Krüger</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">58</td><td class="name"><a href="https://mv.radoskop.eu/profile/thomas-wurdisch/">Thomas Würdisch</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">59</td><td class="name"><a href="https://mv.radoskop.eu/profile/thomas-de-jesus-fernandes/">Thomas de Jesus-Fernandes</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0ea5e9">AfD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">60</td><td class="name"><a href="https://mv.radoskop.eu/profile/thore-stein/">Thore Stein</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0ea5e9">AfD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">61</td><td class="name"><a href="https://mv.radoskop.eu/profile/till-backhaus/">Till Backhaus</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">62</td><td class="name"><a href="https://mv.radoskop.eu/profile/tilo-gundlack/">Tilo Gundlack</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">63</td><td class="name"><a href="https://mv.radoskop.eu/profile/torsten-koplin/">Torsten Koplin</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,45,146,0.12);color:#7c2d92">Die Linke</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">64</td><td class="name"><a href="https://mv.radoskop.eu/profile/torsten-renz/">Torsten Renz</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(15,23,42,0.12);color:#0f172a">CDU</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">65</td><td class="name"><a href="https://mv.radoskop.eu/profile/wolfgang-waldmuller/">Wolfgang Waldmüller</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(15,23,42,0.12);color:#0f172a">CDU</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">66</td><td class="name"><a href="https://mv.radoskop.eu/profile/andreas-butzki/">Andreas Butzki</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">0%</span><span class="bar"><i style="width:0%;background:var(--red)"></i></span></div></td></tr>
+        <tr><td class="rank">67</td><td class="name"><a href="https://mv.radoskop.eu/profile/anne-shepley/">Anne Shepley</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(22,163,74,0.12);color:#16a34a">BÜNDNIS 90/DIE GRÜNEN</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">0%</span><span class="bar"><i style="width:0%;background:var(--red)"></i></span></div></td></tr>
+        <tr><td class="rank">68</td><td class="name"><a href="https://mv.radoskop.eu/profile/christiane-berg/">Christiane Berg</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(15,23,42,0.12);color:#0f172a">CDU</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">0%</span><span class="bar"><i style="width:0%;background:var(--red)"></i></span></div></td></tr>
+        <tr><td class="rank">69</td><td class="name"><a href="https://mv.radoskop.eu/profile/elke-annette-schmidt/">Elke-Annette Schmidt</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,45,146,0.12);color:#7c2d92">Die Linke</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">0%</span><span class="bar"><i style="width:0%;background:var(--red)"></i></span></div></td></tr>
+        <tr><td class="rank">70</td><td class="name"><a href="https://mv.radoskop.eu/profile/enrico-schult/">Enrico Schult</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0ea5e9">AfD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">0%</span><span class="bar"><i style="width:0%;background:var(--red)"></i></span></div></td></tr>
+        <tr><td class="rank">71</td><td class="name"><a href="https://mv.radoskop.eu/profile/eva-maria-schneider-gartner/">Eva Maria Schneider-Gärtner</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(100,116,139,0.12);color:#64748b">fraktionslos</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">0%</span><span class="bar"><i style="width:0%;background:var(--red)"></i></span></div></td></tr>
+        <tr><td class="rank">72</td><td class="name"><a href="https://mv.radoskop.eu/profile/harry-glawe/">Harry Glawe</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(15,23,42,0.12);color:#0f172a">CDU</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">0%</span><span class="bar"><i style="width:0%;background:var(--red)"></i></span></div></td></tr>
+        <tr><td class="rank">73</td><td class="name"><a href="https://mv.radoskop.eu/profile/henning-foerster/">Henning Foerster</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,45,146,0.12);color:#7c2d92">Die Linke</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">0%</span><span class="bar"><i style="width:0%;background:var(--red)"></i></span></div></td></tr>
+        <tr><td class="rank">74</td><td class="name"><a href="https://mv.radoskop.eu/profile/jens-schulze-wiehenbrauk/">Jens Schulze-Wiehenbrauk</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0ea5e9">AfD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">0%</span><span class="bar"><i style="width:0%;background:var(--red)"></i></span></div></td></tr>
+        <tr><td class="rank">75</td><td class="name"><a href="https://mv.radoskop.eu/profile/manuela-schwesig/">Manuela Schwesig</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">0%</span><span class="bar"><i style="width:0%;background:var(--red)"></i></span></div></td></tr>
+        <tr><td class="rank">76</td><td class="name"><a href="https://mv.radoskop.eu/profile/marc-reinhardt/">Marc Reinhardt</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(15,23,42,0.12);color:#0f172a">CDU</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">0%</span><span class="bar"><i style="width:0%;background:var(--red)"></i></span></div></td></tr>
+        <tr><td class="rank">77</td><td class="name"><a href="https://mv.radoskop.eu/profile/martina-tegtmeier/">Martina Tegtmeier</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">0%</span><span class="bar"><i style="width:0%;background:var(--red)"></i></span></div></td></tr>
+        <tr><td class="rank">78</td><td class="name"><a href="https://mv.radoskop.eu/profile/nils-saemann/">Nils Saemann</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(220,38,38,0.12);color:#dc2626">SPD</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">0%</span><span class="bar"><i style="width:0%;background:var(--red)"></i></span></div></td></tr>
+        <tr><td class="rank">79</td><td class="name"><a href="https://mv.radoskop.eu/profile/thomas-diener/">Thomas Diener</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(15,23,42,0.12);color:#0f172a">CDU</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">5</td><td class="num"><div class="metric"><span class="mv">0%</span><span class="bar"><i style="width:0%;background:var(--red)"></i></span></div></td></tr></tbody>
+    </table>
+  </div>
+
+
+  <footer>
+    Radoskop Mecklenburg-Vorpommern ist ein unabhängiges, offenes Monitoring des Rates. Daten stammen aus <a href="https://www.landtag-mv.de/" target="_blank" rel="noopener">landtag-mv.de</a> und werden zweimal täglich aktualisiert.
+    <a href="https://mv.radoskop.eu/">Zurück zur Startseite</a>.
+  </footer>
+
+</div>
+
+<script>
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('radoskop_theme', next); } catch(e) {}
+  var host = location.hostname.replace(/^[^.]+\./,'.');
+  document.cookie = 'radoskop_theme=' + next + ';path=/;max-age=31536000;domain=' + host;
+}
+</script>
+
+<script>
+window.RADOSKOP_ROSTER=[{"name": "Andreas Butzki", "slug": "andreas-butzki", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 0.0}, {"name": "Ann Christin von Allwörden", "slug": "ann-christin-von-allworden", "club": "CDU", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Anna-Konstanze Schröder", "slug": "anna-konstanze-schroder", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Anne Shepley", "slug": "anne-shepley", "club": "BÜNDNIS 90/DIE GRÜNEN", "attendance": 100.0, "votes": 5, "agreement": 0.0}, {"name": "Barbara Becker-Hornickel", "slug": "barbara-becker-hornickel", "club": "Gruppe der FDP", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Beate Schlupp", "slug": "beate-schlupp", "club": "CDU", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Beatrix Hegenkötter", "slug": "beatrix-hegenkotter", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Bettina Martin", "slug": "bettina-martin", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Birgit Hesse", "slug": "birgit-hesse", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Christian Albrecht", "slug": "christian-albrecht", "club": "Die Linke", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Christian Brade", "slug": "christian-brade", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Christian Pegel", "slug": "christian-pegel", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Christian Winter", "slug": "christian-winter", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Christiane Berg", "slug": "christiane-berg", "club": "CDU", "attendance": 100.0, "votes": 5, "agreement": 0.0}, {"name": "Christine Klingohr", "slug": "christine-klingohr", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Constanze Oehlrich", "slug": "constanze-oehlrich", "club": "BÜNDNIS 90/DIE GRÜNEN", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Dagmar Kaselitz", "slug": "dagmar-kaselitz", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Daniel Peters", "slug": "daniel-peters", "club": "CDU", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Daniel Trepsdorf", "slug": "daniel-trepsdorf", "club": "Die Linke", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "David Wulff", "slug": "david-wulff", "club": "Gruppe der FDP", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Dirk Bruhn", "slug": "dirk-bruhn", "club": "Die Linke", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Dirk Stamer", "slug": "dirk-stamer", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Elke-Annette Schmidt", "slug": "elke-annette-schmidt", "club": "Die Linke", "attendance": 100.0, "votes": 5, "agreement": 0.0}, {"name": "Enrico Schult", "slug": "enrico-schult", "club": "AfD", "attendance": 100.0, "votes": 5, "agreement": 0.0}, {"name": "Eva Maria Schneider-Gärtner", "slug": "eva-maria-schneider-gartner", "club": "fraktionslos", "attendance": 100.0, "votes": 5, "agreement": 0.0}, {"name": "Falko Beitz", "slug": "falko-beitz", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Franz-Robert Liskow", "slug": "franz-robert-liskow", "club": "CDU", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Grit Schmelzer", "slug": "grit-schmelzer", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Hannes Damm", "slug": "hannes-damm", "club": "BÜNDNIS 90/DIE GRÜNEN", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Harald Terpe", "slug": "harald-terpe", "club": "BÜNDNIS 90/DIE GRÜNEN", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Harry Glawe", "slug": "harry-glawe", "club": "CDU", "attendance": 100.0, "votes": 5, "agreement": 0.0}, {"name": "Heiko Miraß", "slug": "heiko-mira", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Henning Foerster", "slug": "henning-foerster", "club": "Die Linke", "attendance": 100.0, "votes": 5, "agreement": 0.0}, {"name": "Horst Förster", "slug": "horst-forster", "club": "AfD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Jan-Phillip Tadsen", "slug": "jan-phillip-tadsen", "club": "AfD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Jeannine Rösler", "slug": "jeannine-rosler", "club": "Die Linke", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Jens Schulze-Wiehenbrauk", "slug": "jens-schulze-wiehenbrauk", "club": "AfD", "attendance": 100.0, "votes": 5, "agreement": 0.0}, {"name": "Jens-Holger Schneider", "slug": "jens-holger-schneider", "club": "AfD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Julian Barlen", "slug": "julian-barlen", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Jutta Wegner", "slug": "jutta-wegner", "club": "BÜNDNIS 90/DIE GRÜNEN", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Katy Hoffmeister", "slug": "katy-hoffmeister", "club": "CDU", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Mandy Pfeifer", "slug": "mandy-pfeifer", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Manuela Schwesig", "slug": "manuela-schwesig", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 0.0}, {"name": "Marc Reinhardt", "slug": "marc-reinhardt", "club": "CDU", "attendance": 100.0, "votes": 5, "agreement": 0.0}, {"name": "Marcel Falk", "slug": "marcel-falk", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Martin Schmidt", "slug": "martin-schmidt", "club": "AfD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Martina Tegtmeier", "slug": "martina-tegtmeier", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 0.0}, {"name": "Michael Meister", "slug": "michael-meister", "club": "AfD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Michael Noetzel", "slug": "michael-noetzel", "club": "Die Linke", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Michel-Friedrich Schiefler", "slug": "michel-friedrich-schiefler", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Monique Wölk", "slug": "monique-wolk", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Nadine Julitz", "slug": "nadine-julitz", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Nikolaus Kramer", "slug": "nikolaus-kramer", "club": "AfD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Nils Saemann", "slug": "nils-saemann", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 0.0}, {"name": "Patrick Dahlemann", "slug": "patrick-dahlemann", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Paul-Joachim Timm", "slug": "paul-joachim-timm", "club": "AfD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Petra Federau", "slug": "petra-federau", "club": "AfD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Philipp da Cunha", "slug": "philipp-da-cunha", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Rainer Albrecht", "slug": "rainer-albrecht", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Ralf Mucha", "slug": "ralf-mucha", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "René Domke", "slug": "rene-domke", "club": "Gruppe der FDP", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Robert Northoff", "slug": "robert-northoff", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Sabine Enseleit", "slug": "sabine-enseleit", "club": "CDU", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Sandy van Baal", "slug": "sandy-van-baal", "club": "fraktionslos", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Sebastian Ehlers", "slug": "sebastian-ehlers", "club": "CDU", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Stefanie Drese", "slug": "stefanie-drese", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Steffi Pulz-Debler", "slug": "steffi-pulz-debler", "club": "Die Linke", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Stephan J. Reuken", "slug": "stephan-j-reuken", "club": "AfD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Sylva Rahm-Präger", "slug": "sylva-rahm-prager", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Thomas Diener", "slug": "thomas-diener", "club": "CDU", "attendance": 100.0, "votes": 5, "agreement": 0.0}, {"name": "Thomas Krüger", "slug": "thomas-kruger", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Thomas Würdisch", "slug": "thomas-wurdisch", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Thomas de Jesus-Fernandes", "slug": "thomas-de-jesus-fernandes", "club": "AfD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Thore Stein", "slug": "thore-stein", "club": "AfD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Till Backhaus", "slug": "till-backhaus", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Tilo Gundlack", "slug": "tilo-gundlack", "club": "SPD", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Torsten Koplin", "slug": "torsten-koplin", "club": "Die Linke", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Torsten Renz", "slug": "torsten-renz", "club": "CDU", "attendance": 100.0, "votes": 5, "agreement": 100.0}, {"name": "Wolfgang Waldmüller", "slug": "wolfgang-waldmuller", "club": "CDU", "attendance": 100.0, "votes": 5, "agreement": 100.0}];
+window.RADOSKOP_CLUBSTYLE={"SPD": {"bg": "rgba(220,38,38,0.12)", "fg": "#dc2626"}, "CDU": {"bg": "rgba(15,23,42,0.12)", "fg": "#0f172a"}, "AfD": {"bg": "rgba(14,165,233,0.12)", "fg": "#0ea5e9"}, "Die Linke": {"bg": "rgba(124,45,146,0.12)", "fg": "#7c2d92"}, "BÜNDNIS 90/DIE GRÜNEN": {"bg": "rgba(22,163,74,0.12)", "fg": "#16a34a"}, "Gruppe der FDP": {"bg": "rgba(250,204,21,0.18)", "fg": "#facc15"}, "fraktionslos": {"bg": "rgba(100,116,139,0.12)", "fg": "#64748b"}};
+window.RADOSKOP_I18N={shown:"{n} von {total} angezeigt"};
+</script>
+<script>
+var ROSTER = window.RADOSKOP_ROSTER || [];
+var CLUB_STYLE = window.RADOSKOP_CLUBSTYLE || {};
+var SHOWN = (window.RADOSKOP_I18N||{}).shown || "{n} / {total}";
+var SITE = "https://mv.radoskop.eu";
+function esc(s){ return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function clubBadge(club){
+  var st = CLUB_STYLE[club] || {bg:'#e5e7eb', fg:'#374151'};
+  return '<span class="club-badge" style="background:'+st.bg+';color:'+st.fg+'">'+esc(club)+'</span>';
+}
+function barColor(v){ return v >= 90 ? 'var(--green)' : (v >= 75 ? 'var(--yellow)' : 'var(--red)'); }
+function metric(v){
+  if (v == null) return '<div class="metric"><span class="mv" style="color:var(--muted)">—</span></div>';
+  v = Math.round(v);
+  return '<div class="metric"><span class="mv">'+v+'%</span><span class="bar"><i style="width:'+v+'%;background:'+barColor(v)+'"></i></span></div>';
+}
+var sortKey='agreement', sortDir=-1;
+function render(){
+  var q=(document.getElementById('q').value||'').toLowerCase();
+  var cf=document.getElementById('club').value;
+  var list=ROSTER.filter(function(r){return (!q||(''+r.name).toLowerCase().indexOf(q)!==-1)&&(!cf||r.club===cf);});
+  list.sort(function(a,b){
+    var x=a[sortKey], y=b[sortKey];
+    if(typeof x==='string'){x=x.toLowerCase();y=(''+(y||'')).toLowerCase();return x<y?-sortDir:(x>y?sortDir:0);}
+    if(x==null)x=-1; if(y==null)y=-1; return (x-y)*sortDir;
+  });
+  document.getElementById('rows').innerHTML = list.map(function(r,i){
+    return '<tr>'
+      +'<td class="rank">'+(i+1)+'</td>'
+      +'<td class="name"><a href="'+SITE+'/profile/'+esc(r.slug)+'/">'+esc(r.name)+'</a></td>'
+      +'<td class="hide-sm">'+clubBadge(r.club)+'</td>'
+      +'<td class="num">'+metric(r.attendance)+'</td>'
+      +'<td class="num hide-sm">'+(r.votes!=null?r.votes:'—')+'</td>'
+      +'<td class="num">'+metric(r.agreement)+'</td>'
+      +'</tr>';
+  }).join('');
+  document.getElementById('shown-count').textContent = SHOWN.replace('{n}', list.length).replace('{total}', ROSTER.length);
+  document.querySelectorAll('th').forEach(function(th){ th.classList.toggle('s', th.getAttribute('data-k')===sortKey); });
+}
+document.querySelectorAll('th[data-k]').forEach(function(th){
+  th.addEventListener('click', function(){
+    var k=th.getAttribute('data-k');
+    if(sortKey===k) sortDir=-sortDir; else { sortKey=k; sortDir=(k==='name'||k==='club')?1:-1; }
+    render();
+  });
+});
+render();
+</script>
+
+</body>
+</html>

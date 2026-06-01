@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-06-01T10:30:52Z",
+  "scraped_at": "2026-06-01T15:03:21Z",
   "generated": true,
   "default_kadencja": "2024-2029",
   "kadencje": [
@@ -696,10 +696,61 @@
           ],
           "attendee_count": 42,
           "speakers": []
+        },
+        {
+          "date": "2025-02-10",
+          "number": "",
+          "vote_count": 13,
+          "attendees": [
+            "Adam Koczyk",
+            "Adam Lubas",
+            "Aldona Węgrzynowicz",
+            "Aleksandra Poloczek",
+            "Aleksandra Targosz- Bernaciak",
+            "Aleksandra Targosz-Bernaciak",
+            "Alina Bednarz",
+            "Barbara Gadowska",
+            "Bartłomiej Kowalski",
+            "Beata Białowąs",
+            "Beata Kocik",
+            "Bronisław Karasek",
+            "Dariusz Starzycki",
+            "Dorota Tobiszowska",
+            "Ewa Chmielorz",
+            "Ewelina Balt",
+            "Grzegorz Wolnik",
+            "Jacek Brzezinka",
+            "Jacek Jarco",
+            "Jadwiga Baczyńska",
+            "Jan Kawulok",
+            "Julia Kloc- Kondracka",
+            "Julia Kloc-Kondracka",
+            "Józef Kubica",
+            "Lucyna Ekkert",
+            "Maciej Gruchlik",
+            "Maciej Kolon",
+            "Marcin Szarek",
+            "Marek Bieniek",
+            "Marek Kopel",
+            "Maria Nowak",
+            "Mariusz Trepka",
+            "Mirosław Mazur",
+            "Paweł Bańkowski",
+            "Piotr Czarnynoga",
+            "Rafał Adamczyk",
+            "Rafał Ryplewicz",
+            "Stanisław Baczyński",
+            "Stanisław Gmitruk",
+            "Tomasz Papaj",
+            "Wojciech Kałuża",
+            "Łukasz Dwornik"
+          ],
+          "attendee_count": 42,
+          "speakers": []
         }
       ],
-      "total_sessions": 14,
-      "total_votes": 240,
+      "total_sessions": 15,
+      "total_votes": 253,
       "total_councilors": 47,
       "councilors": [
         {
@@ -709,12 +760,12 @@
           "frekwencja": 100.0,
           "aktywnosc": 99.2,
           "zgodnosc_z_klubem": 99.6,
-          "votes_za": 225,
+          "votes_za": 238,
           "votes_przeciw": 13,
           "votes_wstrzymal": 0,
           "votes_brak": 2,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 1,
           "rebellions": [
             {
@@ -732,12 +783,12 @@
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 228,
+          "votes_za": 241,
           "votes_przeciw": 12,
           "votes_wstrzymal": 0,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -748,12 +799,12 @@
           "frekwencja": 100.0,
           "aktywnosc": 98.8,
           "zgodnosc_z_klubem": 99.6,
-          "votes_za": 224,
+          "votes_za": 237,
           "votes_przeciw": 13,
           "votes_wstrzymal": 0,
           "votes_brak": 3,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 1,
           "rebellions": [
             {
@@ -769,22 +820,16 @@
           "slug": "aleksandra-poloczek",
           "club": "TD",
           "frekwencja": 100.0,
-          "aktywnosc": 85.0,
-          "zgodnosc_z_klubem": 98.5,
-          "votes_za": 191,
+          "aktywnosc": 85.8,
+          "zgodnosc_z_klubem": 98.6,
+          "votes_za": 204,
           "votes_przeciw": 13,
           "votes_wstrzymal": 0,
           "votes_brak": 32,
           "votes_nieobecny": 4,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 3,
           "rebellions": [
-            {
-              "session": "2025-10-20",
-              "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
-              "their_vote": "przeciw",
-              "club_majority": "za"
-            },
             {
               "session": "2025-11-17",
               "topic": "Rozszerzenie porządku obrad: Informacja o sytuacji w Szpitalu im. NMP w Częstochowie",
@@ -796,6 +841,12 @@
               "topic": "Rozszerzenie porządku obrad: Informacja w sprawie pociągu specjalnego relacji Katowice - Warszawa w dniu 25 maja 2025 roku",
               "their_vote": "przeciw",
               "club_majority": "za"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             }
           ]
         },
@@ -803,15 +854,15 @@
           "name": "Aleksandra Targosz- Bernaciak",
           "slug": "aleksandra-targosz--bernaciak",
           "club": "NZ",
-          "frekwencja": 42.9,
-          "aktywnosc": 5.0,
+          "frekwencja": 46.7,
+          "aktywnosc": 5.5,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 12,
+          "votes_za": 14,
           "votes_przeciw": 0,
           "votes_wstrzymal": 0,
           "votes_brak": 0,
           "votes_nieobecny": 37,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -819,15 +870,15 @@
           "name": "Aleksandra Targosz-Bernaciak",
           "slug": "aleksandra-targosz-bernaciak",
           "club": "KO",
-          "frekwencja": 64.3,
-          "aktywnosc": 63.3,
-          "zgodnosc_z_klubem": 98.7,
-          "votes_za": 140,
+          "frekwencja": 66.7,
+          "aktywnosc": 64.4,
+          "zgodnosc_z_klubem": 98.8,
+          "votes_za": 151,
           "votes_przeciw": 11,
           "votes_wstrzymal": 1,
           "votes_brak": 0,
           "votes_nieobecny": 39,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 2,
           "rebellions": [
             {
@@ -848,21 +899,27 @@
           "name": "Alina Bednarz",
           "slug": "alina-bednarz",
           "club": "KO",
-          "frekwencja": 85.7,
-          "aktywnosc": 89.6,
-          "zgodnosc_z_klubem": 99.5,
-          "votes_za": 203,
-          "votes_przeciw": 11,
+          "frekwencja": 86.7,
+          "aktywnosc": 90.1,
+          "zgodnosc_z_klubem": 99.1,
+          "votes_za": 215,
+          "votes_przeciw": 12,
           "votes_wstrzymal": 1,
           "votes_brak": 2,
           "votes_nieobecny": 23,
-          "votes_total": 240,
-          "rebellion_count": 1,
+          "votes_total": 253,
+          "rebellion_count": 2,
           "rebellions": [
             {
               "session": "2025-05-26",
               "topic": "Przyjęcie protokołu z XIV sesji Sejmiku Województwa Śląskiego",
               "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Podjęcie uchwały w sprawie wyrażenia zgody na udzielenie w roku 2025 pomocy finansowej Miastu Bielsko-Biała z przeznaczeniem na współfinansowanie realizacji projektu pod nazwą: „Rewitalizacja linii ko",
+              "their_vote": "przeciw",
               "club_majority": "za"
             }
           ]
@@ -871,15 +928,15 @@
           "name": "Barbara Gadowska",
           "slug": "barbara-gadowska",
           "club": "KO",
-          "frekwencja": 92.9,
-          "aktywnosc": 90.4,
-          "zgodnosc_z_klubem": 99.5,
-          "votes_za": 205,
+          "frekwencja": 93.3,
+          "aktywnosc": 90.9,
+          "zgodnosc_z_klubem": 99.6,
+          "votes_za": 218,
           "votes_przeciw": 11,
           "votes_wstrzymal": 1,
           "votes_brak": 0,
           "votes_nieobecny": 23,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 1,
           "rebellions": [
             {
@@ -895,21 +952,21 @@
           "slug": "bartomiej-kowalski",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 95.4,
-          "zgodnosc_z_klubem": 95.6,
-          "votes_za": 158,
-          "votes_przeciw": 37,
-          "votes_wstrzymal": 34,
-          "votes_brak": 11,
+          "aktywnosc": 94.9,
+          "zgodnosc_z_klubem": 95.8,
+          "votes_za": 163,
+          "votes_przeciw": 39,
+          "votes_wstrzymal": 38,
+          "votes_brak": 13,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 10,
           "rebellions": [
             {
-              "session": "2025-12-15",
-              "topic": "Podjęcie uchwały w sprawie powołania doraźnej Komisji ds. Projektów Rządowych (druk VII/297)",
-              "their_vote": "przeciw",
-              "club_majority": "wstrzymal_sie"
+              "session": "2025-11-17",
+              "topic": "Podjęcie uchwały w sprawie uchylenia statutu Wojewódzkiego Urzędu Pracy w Katowicach, nadanego uchwałą Nr I/20/8/2000 Sejmiku Województwa Śląskiego z dnia 29 maja 2000 roku, w sprawie utworzenia Wojew",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             },
             {
               "session": "2025-10-20",
@@ -918,8 +975,8 @@
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-11-17",
-              "topic": "Podjęcie uchwały w sprawie uchylenia statutu Wojewódzkiego Urzędu Pracy w Katowicach, nadanego uchwałą Nr I/20/8/2000 Sejmiku Województwa Śląskiego z dnia 29 maja 2000 roku, w sprawie utworzenia Wojew",
+              "session": "2025-09-22",
+              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na Dyrektora Zespołu Parków Krajobrazowych Województwa Śląskiego (druk VII/253)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -936,10 +993,10 @@
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-09-22",
-              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na Dyrektora Zespołu Parków Krajobrazowych Województwa Śląskiego (druk VII/253)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
+              "session": "2025-12-15",
+              "topic": "Podjęcie uchwały w sprawie powołania doraźnej Komisji ds. Projektów Rządowych (druk VII/297)",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2026-05-18",
@@ -978,8 +1035,8 @@
           "votes_przeciw": 0,
           "votes_wstrzymal": 0,
           "votes_brak": 0,
-          "votes_nieobecny": 240,
-          "votes_total": 240,
+          "votes_nieobecny": 253,
+          "votes_total": 253,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -988,22 +1045,16 @@
           "slug": "beata-biaowas",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 97.5,
-          "zgodnosc_z_klubem": 92.3,
-          "votes_za": 154,
-          "votes_przeciw": 36,
-          "votes_wstrzymal": 44,
-          "votes_brak": 6,
+          "aktywnosc": 97.2,
+          "zgodnosc_z_klubem": 92.7,
+          "votes_za": 160,
+          "votes_przeciw": 38,
+          "votes_wstrzymal": 48,
+          "votes_brak": 7,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 18,
           "rebellions": [
-            {
-              "session": "2025-08-25",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały nr VII/16/7/2025 Sejmiku Województwa Śląskiego z dnia 23 czerwca 2025 roku w sprawie udzielenia pomocy finansowej gminom województwa śląskiego w ramach konkur",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
             {
               "session": "2025-11-17",
               "topic": "Podjęcie uchwały w sprawie zmiany w planie dochodów gromadzonych na wydzielonym rachunku przez jednostki oświatowe oraz finansowanych z nich wydatków na 2025 rok (druk VII/273)",
@@ -1023,12 +1074,6 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-06-23",
-              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokoś",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
               "session": "2025-05-26",
               "topic": "Podjęcie uchwały w sprawie wskazania kandydatów Sejmiku Województwa Śląskiego do składu Rady Śląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia (druk VII/204)",
               "their_vote": "przeciw",
@@ -1039,6 +1084,18 @@
               "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na Dyrektora Zespołu Parków Krajobrazowych Województwa Śląskiego (druk VII/253)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały nr VII/16/7/2025 Sejmiku Województwa Śląskiego z dnia 23 czerwca 2025 roku w sprawie udzielenia pomocy finansowej gminom województwa śląskiego w ramach konkur",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-23",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokoś",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2026-05-18",
@@ -1061,12 +1118,6 @@
             {
               "session": "2026-04-20",
               "topic": "Podjęcie uchwały w sprawie przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie innej lokalizacji prowadzenia zajęć dydaktycznych, wych",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -1105,6 +1156,12 @@
               "topic": "Podjęcie uchwały w sprawie zamiaru przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie dodatkowej lokalizacji prowadzenia zajęć dydakt",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ]
         },
@@ -1113,28 +1170,16 @@
           "slug": "beata-kocik",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 95.4,
-          "zgodnosc_z_klubem": 93.4,
-          "votes_za": 170,
-          "votes_przeciw": 35,
-          "votes_wstrzymal": 24,
-          "votes_brak": 11,
+          "aktywnosc": 94.1,
+          "zgodnosc_z_klubem": 93.7,
+          "votes_za": 174,
+          "votes_przeciw": 37,
+          "votes_wstrzymal": 27,
+          "votes_brak": 15,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 15,
           "rebellions": [
-            {
-              "session": "2025-03-17",
-              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie rozstrzygnięcia o zasadności nieuwzględnienia opinii gminy Hażlach w projekcie Audytu krajobrazowego województwa śląskiego (druk VII/177)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Śląskiego na lata 2025-2035 (druk VII/258)",
-              "their_vote": "za",
-              "club_majority": "przeciw"
-            },
             {
               "session": "2025-11-17",
               "topic": "Podjęcie uchwały w sprawie zmiany w planie dochodów gromadzonych na wydzielonym rachunku przez jednostki oświatowe oraz finansowanych z nich wydatków na 2025 rok (druk VII/273)",
@@ -1144,6 +1189,30 @@
             {
               "session": "2025-11-17",
               "topic": "Podjęcie uchwały w sprawie nadania Statutu Wojewódzkiemu Urzędowi Pracy w Katowicach (druk VII/276)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-05-26",
+              "topic": "Podjęcie uchwały w sprawie wskazania kandydatów Sejmiku Województwa Śląskiego do składu Rady Śląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia (druk VII/204)",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Śląskiego na lata 2025-2035 (druk VII/258)",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-09-22",
+              "topic": "Podjęcie uchwały w sprawie udzielenia pomocy finansowej jednostkom samorządu terytorialnego województwa śląskiego na realizację zadań w ramach Programu rozwoju infrastruktury sportowej w województwach",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-17",
+              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie rozstrzygnięcia o zasadności nieuwzględnienia opinii gminy Hażlach w projekcie Audytu krajobrazowego województwa śląskiego (druk VII/177)",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             },
@@ -1158,18 +1227,6 @@
               "topic": "Wprowadzenie do porządku obrad: Ocena zasobów pomocy społecznej. Województwo śląskie 2025",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-05-26",
-              "topic": "Podjęcie uchwały w sprawie wskazania kandydatów Sejmiku Województwa Śląskiego do składu Rady Śląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia (druk VII/204)",
-              "their_vote": "przeciw",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-09-22",
-              "topic": "Podjęcie uchwały w sprawie udzielenia pomocy finansowej jednostkom samorządu terytorialnego województwa śląskiego na realizację zadań w ramach Programu rozwoju infrastruktury sportowej w województwach",
-              "their_vote": "przeciw",
-              "club_majority": "za"
             },
             {
               "session": "2026-05-18",
@@ -1220,14 +1277,14 @@
           "slug": "bronisaw-karasek",
           "club": "TD",
           "frekwencja": 100.0,
-          "aktywnosc": 96.7,
+          "aktywnosc": 96.8,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 221,
+          "votes_za": 234,
           "votes_przeciw": 10,
           "votes_wstrzymal": 1,
           "votes_brak": 8,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -1236,14 +1293,14 @@
           "slug": "dariusz-starzycki",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 94.6,
-          "votes_za": 160,
-          "votes_przeciw": 35,
-          "votes_wstrzymal": 45,
-          "votes_brak": 0,
+          "aktywnosc": 99.6,
+          "zgodnosc_z_klubem": 94.8,
+          "votes_za": 166,
+          "votes_przeciw": 37,
+          "votes_wstrzymal": 49,
+          "votes_brak": 1,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 13,
           "rebellions": [
             {
@@ -1283,18 +1340,6 @@
               "club_majority": "za"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
               "session": "2026-01-19",
               "topic": "Podjęcie uchwały w sprawie zamiaru likwidacji Szkoły Policealnej w Gliwicach wchodzącej w skład Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Gliwicach (druk VII/301)",
               "their_vote": "wstrzymal_sie",
@@ -1323,6 +1368,18 @@
               "topic": "Podjęcie uchwały w sprawie zamiaru przekształcenia Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu (druk VII/305)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ]
         },
@@ -1330,17 +1387,29 @@
           "name": "Dorota Tobiszowska",
           "slug": "dorota-tobiszowska",
           "club": "PiS",
-          "frekwencja": 92.9,
+          "frekwencja": 93.3,
           "aktywnosc": 91.7,
-          "zgodnosc_z_klubem": 93.2,
-          "votes_za": 156,
-          "votes_przeciw": 28,
-          "votes_wstrzymal": 36,
-          "votes_brak": 1,
+          "zgodnosc_z_klubem": 93.5,
+          "votes_za": 162,
+          "votes_przeciw": 30,
+          "votes_wstrzymal": 40,
+          "votes_brak": 2,
           "votes_nieobecny": 19,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 15,
           "rebellions": [
+            {
+              "session": "2025-11-17",
+              "topic": "Podjęcie uchwały w sprawie nadania Statutu Wojewódzkiemu Urzędowi Pracy w Katowicach (druk VII/276)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
             {
               "session": "2025-03-17",
               "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi przeciwko sposobowi przeprowadzenia konsultacji społecznych projektu Audytu krajobrazowego województwa śląskiego (druk VII/179)",
@@ -1354,46 +1423,10 @@
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2025-11-17",
-              "topic": "Podjęcie uchwały w sprawie nadania Statutu Wojewódzkiemu Urzędowi Pracy w Katowicach (druk VII/276)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
               "session": "2026-05-18",
               "topic": "Podjęcie uchwały w sprawie zmian budżetu Województwa Śląskiego na 2026 rok (druk VII/361)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie wyrażenia zgody na zbycie w drodze darowizny przez Województwo Śląskie na rzecz Śląskiego Uniwersytetu Medycznego w Katowicach części nieruchomości gruntowej zabudowanej, po",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2026-01-19",
@@ -1430,6 +1463,30 @@
               "topic": "Podjęcie uchwały w sprawie zamiaru przekształcenia Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu (druk VII/305)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie wyrażenia zgody na zbycie w drodze darowizny przez Województwo Śląskie na rzecz Śląskiego Uniwersytetu Medycznego w Katowicach części nieruchomości gruntowej zabudowanej, po",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             }
           ]
         },
@@ -1437,15 +1494,15 @@
           "name": "Ewa Chmielorz",
           "slug": "ewa-chmielorz",
           "club": "KO",
-          "frekwencja": 92.9,
-          "aktywnosc": 85.8,
-          "zgodnosc_z_klubem": 99.0,
-          "votes_za": 194,
+          "frekwencja": 93.3,
+          "aktywnosc": 86.6,
+          "zgodnosc_z_klubem": 99.1,
+          "votes_za": 207,
           "votes_przeciw": 11,
           "votes_wstrzymal": 1,
           "votes_brak": 19,
           "votes_nieobecny": 15,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 2,
           "rebellions": [
             {
@@ -1466,15 +1523,15 @@
           "name": "Ewelina Balt",
           "slug": "ewelina-balt",
           "club": "Lewica",
-          "frekwencja": 85.7,
-          "aktywnosc": 81.7,
+          "frekwencja": 86.7,
+          "aktywnosc": 82.6,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 188,
+          "votes_za": 201,
           "votes_przeciw": 8,
           "votes_wstrzymal": 0,
           "votes_brak": 1,
           "votes_nieobecny": 43,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -1482,15 +1539,15 @@
           "name": "Grzegorz Wolnik",
           "slug": "grzegorz-wolnik",
           "club": "KO",
-          "frekwencja": 85.7,
-          "aktywnosc": 85.0,
+          "frekwencja": 86.7,
+          "aktywnosc": 85.8,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 192,
+          "votes_za": 205,
           "votes_przeciw": 12,
           "votes_wstrzymal": 0,
           "votes_brak": 6,
           "votes_nieobecny": 30,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -1498,15 +1555,15 @@
           "name": "Jacek Brzezinka",
           "slug": "jacek-brzezinka",
           "club": "KO",
-          "frekwencja": 85.7,
-          "aktywnosc": 85.4,
-          "zgodnosc_z_klubem": 99.0,
-          "votes_za": 193,
+          "frekwencja": 86.7,
+          "aktywnosc": 85.8,
+          "zgodnosc_z_klubem": 99.1,
+          "votes_za": 205,
           "votes_przeciw": 10,
           "votes_wstrzymal": 2,
-          "votes_brak": 1,
+          "votes_brak": 2,
           "votes_nieobecny": 34,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 2,
           "rebellions": [
             {
@@ -1530,12 +1587,12 @@
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
           "zgodnosc_z_klubem": 99.6,
-          "votes_za": 229,
+          "votes_za": 242,
           "votes_przeciw": 11,
           "votes_wstrzymal": 0,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 1,
           "rebellions": [
             {
@@ -1550,17 +1607,47 @@
           "name": "Jadwiga Baczyńska",
           "slug": "jadwiga-baczynska",
           "club": "PiS",
-          "frekwencja": 92.9,
+          "frekwencja": 93.3,
           "aktywnosc": 92.9,
-          "zgodnosc_z_klubem": 92.4,
-          "votes_za": 163,
-          "votes_przeciw": 34,
-          "votes_wstrzymal": 26,
-          "votes_brak": 3,
+          "zgodnosc_z_klubem": 91.9,
+          "votes_za": 168,
+          "votes_przeciw": 38,
+          "votes_wstrzymal": 29,
+          "votes_brak": 4,
           "votes_nieobecny": 14,
-          "votes_total": 240,
-          "rebellion_count": 17,
+          "votes_total": 253,
+          "rebellion_count": 19,
           "rebellions": [
+            {
+              "session": "2025-11-17",
+              "topic": "Podjęcie uchwały w sprawie nadania Statutu Wojewódzkiemu Urzędowi Pracy w Katowicach (druk VII/276)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-05-26",
+              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/199)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-05-26",
+              "topic": "Podjęcie uchwały w sprawie zawarcia Porozumienia między Województwem Śląskim (Rzeczpospolita Polska) i Prowincją Liaoning (Chińska Republika Ludowa) o ustanowieniu stosunków opartych na partnerstwie i",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-05-26",
+              "topic": "Podjęcie uchwały w sprawie wskazania kandydatów Sejmiku Województwa Śląskiego do składu Rady Śląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia (druk VII/204)",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
             {
               "session": "2025-03-17",
               "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie rozstrzygnięcia o zasadności nieuwzględnienia opinii gminy Hażlach w projekcie Audytu krajobrazowego województwa śląskiego (druk VII/177)",
@@ -1580,16 +1667,16 @@
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
+              "session": "2025-02-10",
+              "topic": "Podjęcie uchwały w sprawie zaciągnięcia kredytów długoterminowych dla Województwa Śląskiego w 2025 roku (druk VII/159)",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2025-11-17",
-              "topic": "Podjęcie uchwały w sprawie nadania Statutu Wojewódzkiemu Urzędowi Pracy w Katowicach (druk VII/276)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
+              "session": "2025-02-10",
+              "topic": "Podjęcie uchwały w sprawie wyrażenia zgody na obciążenie hipoteką umowną nieruchomości Województwa Śląskiego położonej w Sosnowcu, Plac Medyków 1, objętej księgą wieczystą numer KA1S/00041536/4 (druk ",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             },
             {
               "session": "2025-06-23",
@@ -1608,24 +1695,6 @@
               "topic": "wniosek o reasumpcję głosowania: podjęcie uchwały w sprawie udzielenia wotum zaufania Zarządowi Województwa Śląskiego (druk VII/209)",
               "their_vote": "za",
               "club_majority": "przeciw"
-            },
-            {
-              "session": "2025-05-26",
-              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/199)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2025-05-26",
-              "topic": "Podjęcie uchwały w sprawie zawarcia Porozumienia między Województwem Śląskim (Rzeczpospolita Polska) i Prowincją Liaoning (Chińska Republika Ludowa) o ustanowieniu stosunków opartych na partnerstwie i",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-05-26",
-              "topic": "Podjęcie uchwały w sprawie wskazania kandydatów Sejmiku Województwa Śląskiego do składu Rady Śląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia (druk VII/204)",
-              "their_vote": "przeciw",
-              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2026-05-18",
@@ -1669,15 +1738,15 @@
           "name": "Jan Chrząszcz",
           "slug": "jan-chrzaszcz",
           "club": "PiS",
-          "frekwencja": 42.9,
-          "aktywnosc": 46.2,
+          "frekwencja": 40.0,
+          "aktywnosc": 43.9,
           "zgodnosc_z_klubem": 91.9,
           "votes_za": 78,
           "votes_przeciw": 13,
           "votes_wstrzymal": 20,
           "votes_brak": 0,
-          "votes_nieobecny": 129,
-          "votes_total": 240,
+          "votes_nieobecny": 142,
+          "votes_total": 253,
           "rebellion_count": 9,
           "rebellions": [
             {
@@ -1740,34 +1809,22 @@
           "name": "Jan Kawulok",
           "slug": "jan-kawulok",
           "club": "PiS",
-          "frekwencja": 85.7,
-          "aktywnosc": 87.1,
-          "zgodnosc_z_klubem": 89.0,
-          "votes_za": 126,
-          "votes_przeciw": 31,
-          "votes_wstrzymal": 52,
-          "votes_brak": 8,
+          "frekwencja": 86.7,
+          "aktywnosc": 87.4,
+          "zgodnosc_z_klubem": 89.1,
+          "votes_za": 132,
+          "votes_przeciw": 32,
+          "votes_wstrzymal": 57,
+          "votes_brak": 9,
           "votes_nieobecny": 23,
-          "votes_total": 240,
-          "rebellion_count": 23,
+          "votes_total": 253,
+          "rebellion_count": 24,
           "rebellions": [
             {
-              "session": "2025-08-25",
-              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokość staw",
+              "session": "2025-11-17",
+              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Przyjęcie protokołu z XVI sesji Sejmiku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-12-15",
-              "topic": "Podjęcie uchwały w sprawie powołania doraźnej Komisji ds. Projektów Rządowych (druk VII/297)",
-              "their_vote": "przeciw",
-              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2025-10-20",
@@ -1788,8 +1845,32 @@
               "club_majority": "przeciw"
             },
             {
-              "session": "2025-11-17",
-              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
+              "session": "2025-09-22",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały Sejmiku Województwa Śląskiego w sprawie Obszaru Chronionego Krajobrazu „Meandry rzeki Odry” (druk VII/247)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-09-22",
+              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na Dyrektora Zespołu Parków Krajobrazowych Województwa Śląskiego (druk VII/253)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokość staw",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Przyjęcie protokołu z XVI sesji Sejmiku",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -1806,16 +1887,10 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-09-22",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały Sejmiku Województwa Śląskiego w sprawie Obszaru Chronionego Krajobrazu „Meandry rzeki Odry” (druk VII/247)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-09-22",
-              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na Dyrektora Zespołu Parków Krajobrazowych Województwa Śląskiego (druk VII/253)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
+              "session": "2025-12-15",
+              "topic": "Podjęcie uchwały w sprawie powołania doraźnej Komisji ds. Projektów Rządowych (druk VII/297)",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2026-05-18",
@@ -1838,12 +1913,6 @@
             {
               "session": "2026-04-20",
               "topic": "Podjęcie uchwały w sprawie przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie innej lokalizacji prowadzenia zajęć dydaktycznych, wych",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -1888,6 +1957,12 @@
               "topic": "Podjęcie uchwały w sprawie przekazania petycji według właściwości (druk VII/300)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ]
         },
@@ -1895,15 +1970,15 @@
           "name": "Julia Kloc- Kondracka",
           "slug": "julia-kloc--kondracka",
           "club": "NZ",
-          "frekwencja": 50.0,
-          "aktywnosc": 8.8,
+          "frekwencja": 53.3,
+          "aktywnosc": 9.1,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 21,
+          "votes_za": 23,
           "votes_przeciw": 0,
           "votes_wstrzymal": 0,
           "votes_brak": 3,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -1911,21 +1986,27 @@
           "name": "Julia Kloc-Kondracka",
           "slug": "julia-kloc-kondracka",
           "club": "PiS",
-          "frekwencja": 92.9,
-          "aktywnosc": 82.1,
-          "zgodnosc_z_klubem": 94.9,
-          "votes_za": 141,
-          "votes_przeciw": 33,
-          "votes_wstrzymal": 23,
-          "votes_brak": 15,
+          "frekwencja": 93.3,
+          "aktywnosc": 81.4,
+          "zgodnosc_z_klubem": 95.1,
+          "votes_za": 145,
+          "votes_przeciw": 35,
+          "votes_wstrzymal": 26,
+          "votes_brak": 17,
           "votes_nieobecny": 4,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 10,
           "rebellions": [
             {
-              "session": "2025-03-17",
-              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie rozstrzygnięcia o zasadności nieuwzględnienia opinii gminy Hażlach w projekcie Audytu krajobrazowego województwa śląskiego (druk VII/177)",
+              "session": "2025-11-17",
+              "topic": "Podjęcie uchwały w sprawie nadania Statutu Wojewódzkiemu Urzędowi Pracy w Katowicach (druk VII/276)",
               "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-05-26",
+              "topic": "Podjęcie uchwały w sprawie wskazania kandydatów Sejmiku Województwa Śląskiego do składu Rady Śląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia (druk VII/204)",
+              "their_vote": "przeciw",
               "club_majority": "wstrzymal_sie"
             },
             {
@@ -1935,8 +2016,8 @@
               "club_majority": "przeciw"
             },
             {
-              "session": "2025-11-17",
-              "topic": "Podjęcie uchwały w sprawie nadania Statutu Wojewódzkiemu Urzędowi Pracy w Katowicach (druk VII/276)",
+              "session": "2025-03-17",
+              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie rozstrzygnięcia o zasadności nieuwzględnienia opinii gminy Hażlach w projekcie Audytu krajobrazowego województwa śląskiego (druk VII/177)",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
             },
@@ -1944,12 +2025,6 @@
               "session": "2025-06-23",
               "topic": "Wprowadzenie do porządku obrad: Ocena zasobów pomocy społecznej. Województwo śląskie 2025",
               "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-05-26",
-              "topic": "Podjęcie uchwały w sprawie wskazania kandydatów Sejmiku Województwa Śląskiego do składu Rady Śląskiego Oddziału Wojewódzkiego Narodowego Funduszu Zdrowia (druk VII/204)",
-              "their_vote": "przeciw",
               "club_majority": "wstrzymal_sie"
             },
             {
@@ -1988,22 +2063,28 @@
           "name": "Józef Kubica",
           "slug": "jozef-kubica",
           "club": "PiS",
-          "frekwencja": 71.4,
-          "aktywnosc": 54.2,
-          "zgodnosc_z_klubem": 98.5,
-          "votes_za": 91,
-          "votes_przeciw": 22,
-          "votes_wstrzymal": 17,
-          "votes_brak": 38,
+          "frekwencja": 73.3,
+          "aktywnosc": 56.1,
+          "zgodnosc_z_klubem": 97.9,
+          "votes_za": 97,
+          "votes_przeciw": 23,
+          "votes_wstrzymal": 22,
+          "votes_brak": 39,
           "votes_nieobecny": 72,
-          "votes_total": 240,
-          "rebellion_count": 2,
+          "votes_total": 253,
+          "rebellion_count": 3,
           "rebellions": [
             {
               "session": "2025-09-22",
               "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na Dyrektora Zespołu Parków Krajobrazowych Województwa Śląskiego (druk VII/253)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             },
             {
               "session": "2026-01-19",
@@ -2017,15 +2098,15 @@
           "name": "Katarzyna Twardzik",
           "slug": "katarzyna-twardzik",
           "club": "KO",
-          "frekwencja": 78.6,
-          "aktywnosc": 72.1,
+          "frekwencja": 73.3,
+          "aktywnosc": 68.4,
           "zgodnosc_z_klubem": 100.0,
           "votes_za": 165,
           "votes_przeciw": 8,
           "votes_wstrzymal": 0,
           "votes_brak": 8,
-          "votes_nieobecny": 59,
-          "votes_total": 240,
+          "votes_nieobecny": 72,
+          "votes_total": 253,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -2033,16 +2114,16 @@
           "name": "Lucyna Ekkert",
           "slug": "lucyna-ekkert",
           "club": "KO",
-          "frekwencja": 71.4,
-          "aktywnosc": 75.4,
-          "zgodnosc_z_klubem": 98.3,
-          "votes_za": 167,
+          "frekwencja": 73.3,
+          "aktywnosc": 76.7,
+          "zgodnosc_z_klubem": 97.9,
+          "votes_za": 179,
           "votes_przeciw": 11,
-          "votes_wstrzymal": 3,
+          "votes_wstrzymal": 4,
           "votes_brak": 0,
           "votes_nieobecny": 59,
-          "votes_total": 240,
-          "rebellion_count": 3,
+          "votes_total": 253,
+          "rebellion_count": 4,
           "rebellions": [
             {
               "session": "2025-05-26",
@@ -2053,6 +2134,12 @@
             {
               "session": "2025-05-26",
               "topic": "Przyjęcie protokołu z XIV sesji Sejmiku Województwa Śląskiego",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Przyjęcie protokołu z X sesji Sejmiku Województwa Śląskiego",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -2068,15 +2155,15 @@
           "name": "Maciej Gruchlik",
           "slug": "maciej-gruchlik",
           "club": "KO",
-          "frekwencja": 85.7,
-          "aktywnosc": 92.1,
+          "frekwencja": 86.7,
+          "aktywnosc": 92.5,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 209,
+          "votes_za": 222,
           "votes_przeciw": 12,
           "votes_wstrzymal": 0,
           "votes_brak": 0,
           "votes_nieobecny": 19,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -2084,15 +2171,15 @@
           "name": "Maciej Kolon",
           "slug": "maciej-kolon",
           "club": "KO",
-          "frekwencja": 64.3,
-          "aktywnosc": 67.5,
+          "frekwencja": 66.7,
+          "aktywnosc": 69.2,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 157,
+          "votes_za": 170,
           "votes_przeciw": 5,
           "votes_wstrzymal": 0,
           "votes_brak": 9,
           "votes_nieobecny": 69,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -2101,16 +2188,22 @@
           "slug": "marcin-szarek",
           "club": "KO",
           "frekwencja": 100.0,
-          "aktywnosc": 86.7,
-          "zgodnosc_z_klubem": 98.1,
-          "votes_za": 193,
+          "aktywnosc": 87.4,
+          "zgodnosc_z_klubem": 98.2,
+          "votes_za": 206,
           "votes_przeciw": 13,
           "votes_wstrzymal": 2,
           "votes_brak": 32,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 4,
           "rebellions": [
+            {
+              "session": "2025-11-17",
+              "topic": "Podjęcie uchwały w sprawie zmiany nazwy wojewódzkiej samorządowej instytucji kultury - Śląskiego Centrum Wolności i Solidarności (druk VII/286)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
             {
               "session": "2025-10-20",
               "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
@@ -2121,12 +2214,6 @@
               "session": "2025-10-20",
               "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania statutu Śląskiemu Centrum Wolności i Solidarności (druk VII/260)",
               "their_vote": "przeciw",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-11-17",
-              "topic": "Podjęcie uchwały w sprawie zmiany nazwy wojewódzkiej samorządowej instytucji kultury - Śląskiego Centrum Wolności i Solidarności (druk VII/286)",
-              "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
             {
@@ -2142,14 +2229,14 @@
           "slug": "marek-bieniek",
           "club": "TD",
           "frekwencja": 100.0,
-          "aktywnosc": 96.7,
-          "zgodnosc_z_klubem": 98.7,
-          "votes_za": 222,
+          "aktywnosc": 96.4,
+          "zgodnosc_z_klubem": 98.8,
+          "votes_za": 234,
           "votes_przeciw": 7,
           "votes_wstrzymal": 3,
-          "votes_brak": 8,
+          "votes_brak": 9,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 3,
           "rebellions": [
             {
@@ -2177,14 +2264,14 @@
           "slug": "marek-kopel",
           "club": "NZ",
           "frekwencja": 100.0,
-          "aktywnosc": 94.6,
+          "aktywnosc": 94.9,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 216,
+          "votes_za": 229,
           "votes_przeciw": 11,
           "votes_wstrzymal": 0,
           "votes_brak": 13,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -2192,59 +2279,17 @@
           "name": "Maria Nowak",
           "slug": "maria-nowak",
           "club": "PiS",
-          "frekwencja": 85.7,
-          "aktywnosc": 75.0,
-          "zgodnosc_z_klubem": 88.9,
-          "votes_za": 119,
-          "votes_przeciw": 25,
-          "votes_wstrzymal": 36,
-          "votes_brak": 19,
+          "frekwencja": 86.7,
+          "aktywnosc": 75.9,
+          "zgodnosc_z_klubem": 89.6,
+          "votes_za": 125,
+          "votes_przeciw": 27,
+          "votes_wstrzymal": 40,
+          "votes_brak": 20,
           "votes_nieobecny": 41,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 20,
           "rebellions": [
-            {
-              "session": "2025-08-25",
-              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokość staw",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Przyjęcie protokołu z XV sesji Sejmiku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Przyjęcie protokołu z XVI sesji Sejmiku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-04-14",
-              "topic": "Podjęcie uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Śląskiego na lata 2025-2035 (druk VII/181)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/259)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
             {
               "session": "2025-11-17",
               "topic": "Podjęcie uchwały w sprawie warunków wynagradzania egzaminatorów przeprowadzających egzaminy kandydatów na kierowców i kierowców (druk VII/280)",
@@ -2288,6 +2333,48 @@
               "club_majority": "wstrzymal_sie"
             },
             {
+              "session": "2025-10-20",
+              "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/259)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-04-14",
+              "topic": "Podjęcie uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Śląskiego na lata 2025-2035 (druk VII/181)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokość staw",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Przyjęcie protokołu z XV sesji Sejmiku",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Przyjęcie protokołu z XVI sesji Sejmiku",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
               "session": "2026-04-20",
               "topic": "Podjęcie uchwały w sprawie rozwiązania Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Gliwicach oraz likwidacji Szkoły Policealnej w Gliwicach wchodzącej w skład tego Centrum (d",
               "their_vote": "wstrzymal_sie",
@@ -2300,18 +2387,6 @@
               "club_majority": "za"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Przeniesienie punktu 13. porządku obrad: Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332) do punktu 4. porządku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
               "session": "2026-01-19",
               "topic": "Przyjęcie protokołu z XXI sesji Sejmiku",
               "their_vote": "wstrzymal_sie",
@@ -2322,6 +2397,18 @@
               "topic": "Podjęcie uchwały w sprawie przyjęcia apelu do Prezydenta Rzeczypospolitej Polskiej o podpisanie ustawy uznającej język śląski za język regionalny, uchwalonej przez Sejm Rzeczypospolitej Polskiej w dni",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Przeniesienie punktu 13. porządku obrad: Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332) do punktu 4. porządku",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie przyjęcia stanowiska dotyczącego zmiany podmiotu tworzącego Szpital Wojewódzki w Bielsku-Białej (druk VII/332)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             }
           ]
         },
@@ -2329,23 +2416,17 @@
           "name": "Mariusz Trepka",
           "slug": "mariusz-trepka",
           "club": "PiS",
-          "frekwencja": 85.7,
-          "aktywnosc": 91.2,
-          "zgodnosc_z_klubem": 92.7,
-          "votes_za": 147,
-          "votes_przeciw": 32,
-          "votes_wstrzymal": 40,
-          "votes_brak": 3,
+          "frekwencja": 86.7,
+          "aktywnosc": 91.3,
+          "zgodnosc_z_klubem": 92.6,
+          "votes_za": 152,
+          "votes_przeciw": 34,
+          "votes_wstrzymal": 45,
+          "votes_brak": 4,
           "votes_nieobecny": 18,
-          "votes_total": 240,
-          "rebellion_count": 16,
+          "votes_total": 253,
+          "rebellion_count": 17,
           "rebellions": [
-            {
-              "session": "2025-12-15",
-              "topic": "Podjęcie uchwały w sprawie powołania doraźnej Komisji ds. Projektów Rządowych (druk VII/297)",
-              "their_vote": "przeciw",
-              "club_majority": "wstrzymal_sie"
-            },
             {
               "session": "2025-11-17",
               "topic": "Podjęcie uchwały w sprawie uchylenia statutu Wojewódzkiego Urzędu Pracy w Katowicach, nadanego uchwałą Nr I/20/8/2000 Sejmiku Województwa Śląskiego z dnia 29 maja 2000 roku, w sprawie utworzenia Wojew",
@@ -2369,6 +2450,18 @@
               "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na Dyrektora Zespołu Parków Krajobrazowych Województwa Śląskiego (druk VII/253)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Przyjęcie protokołu z X sesji Sejmiku Województwa Śląskiego",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-12-15",
+              "topic": "Podjęcie uchwały w sprawie powołania doraźnej Komisji ds. Projektów Rządowych (druk VII/297)",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2026-05-18",
@@ -2401,12 +2494,6 @@
               "club_majority": "za"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
               "session": "2026-01-19",
               "topic": "Przyjęcie protokołu z XXI sesji Sejmiku",
               "their_vote": "wstrzymal_sie",
@@ -2435,6 +2522,12 @@
               "topic": "Podjęcie uchwały w sprawie zamiaru likwidacji Szkoły Policealnej w Raciborzu wchodzącej w skład Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Raciborzu (druk VII/304)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             }
           ]
         },
@@ -2442,17 +2535,41 @@
           "name": "Małgorzata Mańka",
           "slug": "magorzata-manka",
           "club": "PiS",
-          "frekwencja": 92.9,
-          "aktywnosc": 89.6,
+          "frekwencja": 86.7,
+          "aktywnosc": 85.0,
           "zgodnosc_z_klubem": 93.0,
           "votes_za": 151,
           "votes_przeciw": 32,
           "votes_wstrzymal": 32,
           "votes_brak": 6,
-          "votes_nieobecny": 19,
-          "votes_total": 240,
+          "votes_nieobecny": 32,
+          "votes_total": 253,
           "rebellion_count": 15,
           "rebellions": [
+            {
+              "session": "2025-11-17",
+              "topic": "Podjęcie uchwały w sprawie nadania Statutu Wojewódzkiemu Urzędowi Pracy w Katowicach (druk VII/276)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-11-17",
+              "topic": "Podjęcie uchwały w sprawie Parku Krajobrazowego Orlich Gniazd w części położonej w województwie śląskim (druk VII/275)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Przyjęcie protokołu z XVIII sesji Sejmiku",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Śląskiego na lata 2025-2035 (druk VII/258)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
             {
               "session": "2025-03-17",
               "topic": "Przyjęcie protokołu z XI sesji Sejmiku Województwa Śląskiego",
@@ -2470,30 +2587,6 @@
               "topic": "Podjęcie uchwały w sprawie powołania doraźnej Komisji ds. Projektów Rządowych (druk VII/297)",
               "their_vote": "przeciw",
               "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Przyjęcie protokołu z XVIII sesji Sejmiku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Śląskiego na lata 2025-2035 (druk VII/258)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2025-11-17",
-              "topic": "Podjęcie uchwały w sprawie nadania Statutu Wojewódzkiemu Urzędowi Pracy w Katowicach (druk VII/276)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-11-17",
-              "topic": "Podjęcie uchwały w sprawie Parku Krajobrazowego Orlich Gniazd w części położonej w województwie śląskim (druk VII/275)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
             },
             {
               "session": "2026-05-18",
@@ -2526,12 +2619,6 @@
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
               "session": "2026-01-19",
               "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie przyjęcia stanowiska w sprawie utworzenia ośrodka Europejskiej Agencji Kosmicznej w Polsce na terenie województwa śląskiego",
               "their_vote": "wstrzymal_sie",
@@ -2542,6 +2629,12 @@
               "topic": "Podjęcie uchwały w sprawie ogłoszenia roku 2026 Rokiem Miasta Częstochowy (druk VII/299)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             }
           ]
         },
@@ -2549,15 +2642,15 @@
           "name": "Mirosław Mazur",
           "slug": "mirosaw-mazur",
           "club": "KO",
-          "frekwencja": 92.9,
-          "aktywnosc": 89.2,
+          "frekwencja": 93.3,
+          "aktywnosc": 89.3,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 204,
+          "votes_za": 216,
           "votes_przeciw": 10,
           "votes_wstrzymal": 0,
-          "votes_brak": 1,
+          "votes_brak": 2,
           "votes_nieobecny": 25,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -2565,15 +2658,15 @@
           "name": "Paweł Bańkowski",
           "slug": "pawe-bankowski",
           "club": "KO",
-          "frekwencja": 92.9,
-          "aktywnosc": 88.8,
+          "frekwencja": 93.3,
+          "aktywnosc": 89.3,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 202,
+          "votes_za": 215,
           "votes_przeciw": 11,
           "votes_wstrzymal": 0,
           "votes_brak": 12,
           "votes_nieobecny": 15,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -2581,26 +2674,26 @@
           "name": "Paweł Kobyliński",
           "slug": "pawe-kobylinski",
           "club": "KO",
-          "frekwencja": 85.7,
-          "aktywnosc": 80.8,
+          "frekwencja": 80.0,
+          "aktywnosc": 76.7,
           "zgodnosc_z_klubem": 99.0,
           "votes_za": 181,
           "votes_przeciw": 13,
           "votes_wstrzymal": 0,
           "votes_brak": 11,
-          "votes_nieobecny": 35,
-          "votes_total": 240,
+          "votes_nieobecny": 48,
+          "votes_total": 253,
           "rebellion_count": 2,
           "rebellions": [
             {
-              "session": "2025-03-17",
-              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie rozstrzygnięcia o zasadności nieuwzględnienia opinii gminy Hażlach w projekcie Audytu krajobrazowego województwa śląskiego (druk VII/177)",
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
               "their_vote": "przeciw",
               "club_majority": "za"
             },
             {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
+              "session": "2025-03-17",
+              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie rozstrzygnięcia o zasadności nieuwzględnienia opinii gminy Hażlach w projekcie Audytu krajobrazowego województwa śląskiego (druk VII/177)",
               "their_vote": "przeciw",
               "club_majority": "za"
             }
@@ -2611,40 +2704,16 @@
           "slug": "piotr-czarnynoga",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 84.6,
-          "zgodnosc_z_klubem": 90.6,
-          "votes_za": 147,
-          "votes_przeciw": 23,
-          "votes_wstrzymal": 33,
-          "votes_brak": 27,
+          "aktywnosc": 85.0,
+          "zgodnosc_z_klubem": 90.2,
+          "votes_za": 154,
+          "votes_przeciw": 24,
+          "votes_wstrzymal": 37,
+          "votes_brak": 28,
           "votes_nieobecny": 10,
-          "votes_total": 240,
-          "rebellion_count": 19,
+          "votes_total": 253,
+          "rebellion_count": 21,
           "rebellions": [
-            {
-              "session": "2025-03-17",
-              "topic": "Podjęcie uchwały w sprawie uchwalenia aktualizacji Planu zrównoważonego rozwoju publicznego transportu zbiorowego Województwa Śląskiego (druk VII/171)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/234)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na działalność Zarządu Województwa Śląskiego (druk VII/230)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na Marszałka Województwa Śląskiego (druk VII/231)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
             {
               "session": "2025-10-20",
               "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
@@ -2668,6 +2737,48 @@
               "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
               "their_vote": "za",
               "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-09-22",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały Sejmiku Województwa Śląskiego w sprawie Obszaru Chronionego Krajobrazu „Meandry rzeki Odry” (druk VII/247)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-03-17",
+              "topic": "Podjęcie uchwały w sprawie uchwalenia aktualizacji Planu zrównoważonego rozwoju publicznego transportu zbiorowego Województwa Śląskiego (druk VII/171)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Podjęcie uchwały w sprawie zaciągnięcia kredytów długoterminowych dla Województwa Śląskiego w 2025 roku (druk VII/159)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/234)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na działalność Zarządu Województwa Śląskiego (druk VII/230)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na Marszałka Województwa Śląskiego (druk VII/231)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2025-06-23",
@@ -2706,22 +2817,10 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-09-22",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały Sejmiku Województwa Śląskiego w sprawie Obszaru Chronionego Krajobrazu „Meandry rzeki Odry” (druk VII/247)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
               "session": "2026-05-18",
               "topic": "Podjęcie uchwały w sprawie zmian budżetu Województwa Śląskiego na 2026 rok (druk VII/361)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
-            },
-            {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
             },
             {
               "session": "2026-01-19",
@@ -2734,6 +2833,12 @@
               "topic": "Podjęcie uchwały w sprawie ogłoszenia roku 2026 Rokiem Miasta Częstochowy (druk VII/299)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             }
           ]
         },
@@ -2744,12 +2849,12 @@
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
           "zgodnosc_z_klubem": 99.6,
-          "votes_za": 226,
+          "votes_za": 239,
           "votes_przeciw": 12,
           "votes_wstrzymal": 2,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 1,
           "rebellions": [
             {
@@ -2767,12 +2872,12 @@
           "frekwencja": 100.0,
           "aktywnosc": 100.0,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 228,
+          "votes_za": 241,
           "votes_przeciw": 12,
           "votes_wstrzymal": 0,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -2780,59 +2885,17 @@
           "name": "Stanisław Baczyński",
           "slug": "stanisaw-baczynski",
           "club": "PiS",
-          "frekwencja": 85.7,
-          "aktywnosc": 87.9,
-          "zgodnosc_z_klubem": 86.7,
-          "votes_za": 143,
-          "votes_przeciw": 29,
-          "votes_wstrzymal": 39,
-          "votes_brak": 1,
+          "frekwencja": 86.7,
+          "aktywnosc": 88.1,
+          "zgodnosc_z_klubem": 87.0,
+          "votes_za": 149,
+          "votes_przeciw": 30,
+          "votes_wstrzymal": 44,
+          "votes_brak": 2,
           "votes_nieobecny": 28,
-          "votes_total": 240,
-          "rebellion_count": 28,
+          "votes_total": 253,
+          "rebellion_count": 29,
           "rebellions": [
-            {
-              "session": "2025-08-25",
-              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokość staw",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Przyjęcie protokołu z XV sesji Sejmiku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Podjęcie uchwały w sprawie zmiany przedstawiciela Sejmiku Województwa Śląskiego w Radzie Społecznej Wojewódzkiego Pogotowia Ratunkowego w Katowicach na kadencję 2024-2028 (druk VII/229)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-04-14",
-              "topic": "Podjęcie uchwały w sprawie rozwiązania Europejskiego Ugrupowania Współpracy Terytorialnej TRITIA z ograniczoną odpowiedzialnością i otwarcia jego likwidacji (druk VII/185)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/259)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
-            {
-              "session": "2025-10-20",
-              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "przeciw"
-            },
             {
               "session": "2025-11-17",
               "topic": "Podjęcie uchwały w sprawie warunków wynagradzania egzaminatorów przeprowadzających egzaminy kandydatów na kierowców i kierowców (druk VII/280)",
@@ -2860,6 +2923,54 @@
             {
               "session": "2025-11-17",
               "topic": "Podjęcie uchwały w sprawie rozpatrzenia skargi na działania wykonawcy (Budimex S.A.) oraz inwestora (Zarząd Dróg Wojewódzkich w Katowicach) w związku z utrudnieniem dostępu do lokalu użytkowego przy d",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Rozszerzenie porządku obrad: Podjęcie uchwały w sprawie rozpatrzenia skargi na działania oraz zaniechania Zarządu Dróg Wojewódzkich w Katowicach (druk VII/270)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmian budżetu i w budżecie Województwa Śląskiego na 2025 rok (druk VII/259)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-10-20",
+              "topic": "Podjęcie uchwały w sprawie zmiany wysokości wynagrodzenia Marszałka Województwa Śląskiego (druk VII/268)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-04-14",
+              "topic": "Podjęcie uchwały w sprawie rozwiązania Europejskiego Ugrupowania Współpracy Terytorialnej TRITIA z ograniczoną odpowiedzialnością i otwarcia jego likwidacji (druk VII/185)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie zmiany uchwały Nr VI/62/5/2023 Sejmiku Województwa Śląskiego z dnia 20 listopada 2023 r. w sprawie przyjęcia Regulaminu określającego wysokość staw",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Przyjęcie protokołu z XV sesji Sejmiku",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Podjęcie uchwały w sprawie zmiany przedstawiciela Sejmiku Województwa Śląskiego w Radzie Społecznej Wojewódzkiego Pogotowia Ratunkowego w Katowicach na kadencję 2024-2028 (druk VII/229)",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -2918,12 +3029,6 @@
               "club_majority": "wstrzymal_sie"
             },
             {
-              "session": "2026-03-16",
-              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
-              "their_vote": "za",
-              "club_majority": "wstrzymal_sie"
-            },
-            {
               "session": "2026-01-19",
               "topic": "Podjęcie uchwały w sprawie zamiaru likwidacji Szkoły Policealnej w Gliwicach wchodzącej w skład Centrum Kształcenia Zawodowego i Ustawicznego Województwa Śląskiego w Gliwicach (druk VII/301)",
               "their_vote": "wstrzymal_sie",
@@ -2958,6 +3063,12 @@
               "topic": "Podjęcie uchwały w sprawie zamiaru przekształcenia szkoły wchodzącej w skład Regionalnego Centrum Kształcenia Ustawicznego w Sosnowcu poprzez utworzenie dodatkowej lokalizacji prowadzenia zajęć dydakt",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-03-16",
+              "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie nadania Statutu Młodzieżowemu Sejmikowi Województwa Śląskiego (druk VII/326)",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
             }
           ]
         },
@@ -2966,22 +3077,16 @@
           "slug": "stanisaw-gmitruk",
           "club": "TD",
           "frekwencja": 100.0,
-          "aktywnosc": 98.3,
-          "zgodnosc_z_klubem": 98.7,
-          "votes_za": 224,
+          "aktywnosc": 98.4,
+          "zgodnosc_z_klubem": 98.8,
+          "votes_za": 237,
           "votes_przeciw": 10,
           "votes_wstrzymal": 2,
           "votes_brak": 4,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 3,
           "rebellions": [
-            {
-              "session": "2025-12-15",
-              "topic": "Wniosek o zmianę zapisów w par. 2 - wnioskodawca radny Piotr Czarnynoga",
-              "their_vote": "za",
-              "club_majority": "przeciw"
-            },
             {
               "session": "2025-11-17",
               "topic": "Podjęcie uchwały w sprawie zmiany nazwy wojewódzkiej samorządowej instytucji kultury - Śląskiego Centrum Wolności i Solidarności (druk VII/286)",
@@ -2993,6 +3098,12 @@
               "topic": "Rozszerzenie porządku obrad: Informacja w sprawie pociągu specjalnego relacji Katowice - Warszawa w dniu 25 maja 2025 roku",
               "their_vote": "przeciw",
               "club_majority": "za"
+            },
+            {
+              "session": "2025-12-15",
+              "topic": "Wniosek o zmianę zapisów w par. 2 - wnioskodawca radny Piotr Czarnynoga",
+              "their_vote": "za",
+              "club_majority": "przeciw"
             }
           ]
         },
@@ -3001,16 +3112,22 @@
           "slug": "tomasz-papaj",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 94.6,
-          "votes_za": 168,
-          "votes_przeciw": 36,
-          "votes_wstrzymal": 36,
-          "votes_brak": 0,
+          "aktywnosc": 99.6,
+          "zgodnosc_z_klubem": 94.8,
+          "votes_za": 174,
+          "votes_przeciw": 38,
+          "votes_wstrzymal": 40,
+          "votes_brak": 1,
           "votes_nieobecny": 0,
-          "votes_total": 240,
+          "votes_total": 253,
           "rebellion_count": 13,
           "rebellions": [
+            {
+              "session": "2025-11-17",
+              "topic": "Podjęcie uchwały w sprawie uchylenia statutu Wojewódzkiego Urzędu Pracy w Katowicach, nadanego uchwałą Nr I/20/8/2000 Sejmiku Województwa Śląskiego z dnia 29 maja 2000 roku, w sprawie utworzenia Wojew",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
             {
               "session": "2025-08-25",
               "topic": "Przyjęcie protokołu z XV sesji Sejmiku",
@@ -3020,12 +3137,6 @@
             {
               "session": "2025-08-25",
               "topic": "Przyjęcie protokołu z XVI sesji Sejmiku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-11-17",
-              "topic": "Podjęcie uchwały w sprawie uchylenia statutu Wojewódzkiego Urzędu Pracy w Katowicach, nadanego uchwałą Nr I/20/8/2000 Sejmiku Województwa Śląskiego z dnia 29 maja 2000 roku, w sprawie utworzenia Wojew",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -3072,6 +3183,12 @@
               "club_majority": "wstrzymal_sie"
             },
             {
+              "session": "2026-01-19",
+              "topic": "Przyjęcie protokołu z XXI sesji Sejmiku",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
               "session": "2026-03-16",
               "topic": "Zdjęcie z porządku obrad: Podjęcie uchwały w sprawie nadania statutu Muzeum Górnictwa Węglowego w Zabrzu (druk VII/327)",
               "their_vote": "wstrzymal_sie",
@@ -3082,12 +3199,6 @@
               "topic": "Podjęcie uchwały w sprawie zmiany uchwały w sprawie określenia szczegółowych zasad, sposobu i trybu udzielania ulg, warunkach dopuszczalności pomocy publicznej w przypadkach, w których ulga stanowić b",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
-            },
-            {
-              "session": "2026-01-19",
-              "topic": "Przyjęcie protokołu z XXI sesji Sejmiku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
             }
           ]
         },
@@ -3095,16 +3206,16 @@
           "name": "Wojciech Kałuża",
           "slug": "wojciech-kauza",
           "club": "PiS",
-          "frekwencja": 57.1,
-          "aktywnosc": 50.8,
-          "zgodnosc_z_klubem": 89.3,
-          "votes_za": 74,
-          "votes_przeciw": 24,
-          "votes_wstrzymal": 24,
-          "votes_brak": 27,
+          "frekwencja": 60.0,
+          "aktywnosc": 52.6,
+          "zgodnosc_z_klubem": 88.7,
+          "votes_za": 79,
+          "votes_przeciw": 25,
+          "votes_wstrzymal": 29,
+          "votes_brak": 29,
           "votes_nieobecny": 91,
-          "votes_total": 240,
-          "rebellion_count": 13,
+          "votes_total": 253,
+          "rebellion_count": 15,
           "rebellions": [
             {
               "session": "2025-11-17",
@@ -3131,18 +3242,6 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-06-23",
-              "topic": "Podjęcie uchwały w sprawie zmiany w planie dochodów gromadzonych na wydzielonym rachunku przez jednostki oświatowe oraz finansowanych z nich wydatków na 2025 rok (druk VII/216)",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-06-23",
-              "topic": "Podjęcie uchwały w sprawie przyjęcia Zasad udzielania i rozmiaru obniżek tygodniowego obowiązkowego wymiaru godzin zajęć dydaktycznych, wychowawczych i opiekuńczych nauczycielom pełniącym stanowiska k",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
               "session": "2025-05-26",
               "topic": "Podjęcie uchwały w sprawie oceny sytuacji na rynku pracy województwa śląskiego i realizacji zadań w zakresie polityki rynku pracy w 2024 roku (druk VII/200)",
               "their_vote": "za",
@@ -3151,6 +3250,30 @@
             {
               "session": "2025-09-22",
               "topic": "Podjęcie uchwały w sprawie zmiany uchwały Sejmiku Województwa Śląskiego w sprawie Obszaru Chronionego Krajobrazu „Meandry rzeki Odry” (druk VII/247)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-02-10",
+              "topic": "Przyjęcie protokołu z X sesji Sejmiku Województwa Śląskiego",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-23",
+              "topic": "Podjęcie uchwały w sprawie zmiany w planie dochodów gromadzonych na wydzielonym rachunku przez jednostki oświatowe oraz finansowanych z nich wydatków na 2025 rok (druk VII/216)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-06-23",
+              "topic": "Podjęcie uchwały w sprawie przyjęcia Zasad udzielania i rozmiaru obniżek tygodniowego obowiązkowego wymiaru godzin zajęć dydaktycznych, wychowawczych i opiekuńczych nauczycielom pełniącym stanowiska k",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -3190,26 +3313,20 @@
           "name": "Łukasz Dwornik",
           "slug": "ukasz-dwornik",
           "club": "PiS",
-          "frekwencja": 85.7,
-          "aktywnosc": 90.0,
-          "zgodnosc_z_klubem": 94.0,
-          "votes_za": 151,
-          "votes_przeciw": 31,
-          "votes_wstrzymal": 34,
-          "votes_brak": 3,
+          "frekwencja": 86.7,
+          "aktywnosc": 90.1,
+          "zgodnosc_z_klubem": 93.9,
+          "votes_za": 157,
+          "votes_przeciw": 32,
+          "votes_wstrzymal": 39,
+          "votes_brak": 4,
           "votes_nieobecny": 21,
-          "votes_total": 240,
-          "rebellion_count": 13,
+          "votes_total": 253,
+          "rebellion_count": 14,
           "rebellions": [
             {
-              "session": "2025-08-25",
-              "topic": "Przyjęcie protokołu z XV sesji Sejmiku",
-              "their_vote": "wstrzymal_sie",
-              "club_majority": "za"
-            },
-            {
-              "session": "2025-08-25",
-              "topic": "Przyjęcie protokołu z XVI sesji Sejmiku",
+              "session": "2025-11-17",
+              "topic": "Podjęcie uchwały w sprawie uchylenia statutu Wojewódzkiego Urzędu Pracy w Katowicach, nadanego uchwałą Nr I/20/8/2000 Sejmiku Województwa Śląskiego z dnia 29 maja 2000 roku, w sprawie utworzenia Wojew",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },
@@ -3226,8 +3343,20 @@
               "club_majority": "za"
             },
             {
-              "session": "2025-11-17",
-              "topic": "Podjęcie uchwały w sprawie uchylenia statutu Wojewódzkiego Urzędu Pracy w Katowicach, nadanego uchwałą Nr I/20/8/2000 Sejmiku Województwa Śląskiego z dnia 29 maja 2000 roku, w sprawie utworzenia Wojew",
+              "session": "2025-02-10",
+              "topic": "Wprowadzenie do porządku obrad: Podjęcie uchwały w sprawie poparcia działań zmierzających do zmiany podmiotu tworzącego dla Szpitala Wojewódzkiego w Bielsku-Białej (druk VII/165)",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Przyjęcie protokołu z XV sesji Sejmiku",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2025-08-25",
+              "topic": "Przyjęcie protokołu z XVI sesji Sejmiku",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
             },

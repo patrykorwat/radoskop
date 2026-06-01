@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radni pomorskiego — Radoskop pomorskie</title>
+<meta name="description" content="Najciekawsze nazwiska i decyzje, wprost z rejestru głosowań.">
+<meta name="author" content="Patryk Orwat">
+<link rel="canonical" href="https://pomorskie.radoskop.pl/councillors/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Radni pomorskiego · Radoskop pomorskie">
+<meta property="og:description" content="Najciekawsze nazwiska i decyzje, wprost z rejestru głosowań.">
+<meta property="og:locale" content="pl_PL">
+<script async defer data-website-id="792c059f-c77e-4b4e-ad9c-31f4a7d5cfe4" src="https://stats.radoskop.pl/script.js"></script>
+<script>
+// Anti-FOUC: ustaw data-theme przed renderem CSS.
+(function(){
+  try {
+    var m = document.cookie.match(/(?:^|;\s*)radoskop_theme=([^;]+)/);
+    var t = m ? decodeURIComponent(m[1]) : null;
+    if (t !== 'dark' && t !== 'light') {
+      try { var s = localStorage.getItem('radoskop_theme'); if (s === 'dark' || s === 'light') t = s; } catch(e) {}
+    }
+    if (t !== 'dark' && t !== 'light') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  } catch(e) {}
+})();
+</script>
+<style>
+:root, [data-theme="light"] {
+  --bg: #f8f9fa;
+  --surface: #ffffff;
+  --border: #e2e5e9;
+  --text: #1a1d27;
+  --muted: #6b7280;
+  --accent: #4f46e5;
+  --green: #16a34a;
+  --red: #dc2626;
+  --yellow: #ca8a04;
+  --blue: #2563eb;
+  --chart-text: #4b5563;
+  --chart-border: rgba(0,0,0,0.08);
+}
+[data-theme="dark"] {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --border: #2a2d3a;
+  --text: #e4e4e7;
+  --muted: #8b8d97;
+  --accent: #6366f1;
+  --green: #22c55e;
+  --red: #ef4444;
+  --yellow: #eab308;
+  --blue: #3b82f6;
+  --chart-text: #a1a1aa;
+  --chart-border: rgba(255,255,255,0.06);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:var(--bg); color:var(--text); line-height:1.55; }
+a { color:inherit; }
+.topbar { position:sticky; top:0; z-index:100; background:var(--surface); border-bottom:1px solid var(--border); padding:10px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.topbar-logo { font-size:1.05rem; font-weight:700; text-decoration:none; }
+.topbar-logo span { color:var(--accent); }
+.topbar-nav { display:flex; gap:20px; flex-wrap:wrap; }
+.topbar-nav a { font-size:.88rem; color:var(--muted); text-decoration:none; transition:color .15s; }
+.topbar-nav a:hover { color:var(--accent); }
+.topbar-actions { display:flex; gap:6px; align-items:center; }
+.theme-toggle { padding:5px 10px; font-size:.8rem; border:1px solid var(--border); background:var(--bg); color:var(--muted); border-radius:8px; cursor:pointer; }
+.container { max-width:1100px; margin:0 auto; padding:20px; }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:11px 18px; border-radius:10px; font-size:.92rem; font-weight:600; text-decoration:none; border:1px solid transparent; cursor:pointer; }
+.btn-primary { background:var(--accent); color:#fff; }
+.btn-primary:hover { filter:brightness(1.08); }
+.btn-ghost { background:transparent; color:var(--text); border-color:var(--border); }
+.btn-ghost:hover { border-color:var(--accent); color:var(--accent); }
+.section { margin:44px 0; }
+.section h2 { font-size:1.35rem; font-weight:700; margin-bottom:6px; letter-spacing:-.01em; }
+.section .subtitle { color:var(--muted); font-size:.95rem; margin-bottom:18px; }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; }
+.mu { color:var(--muted); }
+.club-badge { display:inline-block; font-size:.72rem; font-weight:600; padding:2px 7px; border-radius:4px; white-space:nowrap; }
+footer { border-top:1px solid var(--border); margin-top:48px; padding:26px 0 40px; color:var(--muted); font-size:.82rem; }
+footer a { color:var(--accent); text-decoration:none; }
+
+/* Hero */
+.hero { padding:56px 0 40px; border-bottom:1px solid var(--border); }
+.hero .eyebrow { font-size:.8rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+.hero h1 { font-size:2.9rem; font-weight:800; line-height:1.08; letter-spacing:-.02em; white-space:nowrap; }
+.hero h1 .hl { color:var(--accent); }
+.hero .insight { margin-top:20px; font-size:1.3rem; line-height:1.4; font-weight:500; color:var(--text); max-width:62ch; }
+.hero .insight strong { color:var(--accent); font-weight:700; }
+.hero .cta-row { margin-top:28px; display:flex; gap:12px; flex-wrap:wrap; }
+
+/* Highlights */
+.highlights { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+.hcard { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; display:flex; justify-content:space-between; align-items:flex-start; gap:14px; }
+.hcard .htag { font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+.hcard .hname { font-size:1.15rem; font-weight:700; margin-top:6px; }
+.hcard .hsub { font-size:.85rem; color:var(--muted); margin-top:3px; }
+.hcard .hnum { font-size:1.8rem; font-weight:800; line-height:1; font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right; }
+.hcard .hnum small { font-size:.66rem; font-weight:600; color:var(--muted); display:block; margin-top:5px; }
+.hcard .club-badge { margin-top:8px; }
+
+/* Stats */
+.stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; }
+.stat-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 18px; }
+.stat-card .value { font-size:2rem; font-weight:800; line-height:1.05; font-variant-numeric:tabular-nums; }
+.stat-card .label { font-size:.82rem; color:var(--muted); margin-top:4px; }
+
+/* Nav cards */
+.navgrid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.navcard { display:block; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; text-decoration:none; transition:border-color .15s, transform .1s; }
+.navcard:hover { border-color:var(--accent); transform:translateY(-1px); }
+.navcard .nk { font-size:1.05rem; font-weight:700; color:var(--text); }
+.navcard .nd { font-size:.85rem; color:var(--muted); margin-top:5px; }
+.navcard .arrow { color:var(--accent); font-weight:700; }
+.navlabel { font-size:.72rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin:22px 0 10px; }
+
+/* Confidence */
+.proof { display:flex; flex-wrap:wrap; gap:28px; justify-content:center; text-align:center; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:26px 24px; }
+.proof .pi .pv { font-size:1.7rem; font-weight:800; font-variant-numeric:tabular-nums; }
+.proof .pi .pl { font-size:.82rem; color:var(--muted); margin-top:3px; }
+.proof-note { text-align:center; color:var(--muted); font-size:.85rem; margin-top:14px; }
+
+/* Confrontation band */
+.band { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:26px 28px; }
+.band h3 { font-size:1.5rem; font-weight:800; letter-spacing:-.01em; }
+.band p { color:var(--muted); margin-top:10px; font-size:1rem; max-width:70ch; }
+
+/* Tables (sporne + councillors) */
+table { width:100%; border-collapse:collapse; font-size:.9rem; }
+th { text-align:left; padding:0 8px 9px 0; color:var(--muted); font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--border); }
+td { padding:10px 8px 10px 0; border-bottom:1px solid var(--border); }
+
+/* Councillors list */
+.crumbs { font-size:.82rem; color:var(--muted); margin:14px 0 4px; }
+.crumbs a { color:var(--accent); text-decoration:none; }
+.page-head { padding:6px 0 18px; border-bottom:1px solid var(--border); margin-bottom:18px; }
+.page-head h1 { font-size:2rem; font-weight:800; letter-spacing:-.01em; }
+.page-head .sub { color:var(--muted); margin-top:4px; font-size:.95rem; }
+.toolbar { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-bottom:16px; }
+.toolbar input, .toolbar select { font:inherit; font-size:.88rem; padding:8px 10px; border:1px solid var(--border); border-radius:8px; background:var(--surface); color:var(--text); }
+.toolbar input { flex:1; min-width:200px; }
+.toolbar .count { margin-left:auto; font-size:.82rem; color:var(--muted); }
+.tablewrap { background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+.tablewrap th { padding:12px 14px; cursor:pointer; user-select:none; white-space:nowrap; }
+.tablewrap th:hover { color:var(--accent); }
+.tablewrap th .ar { opacity:.35; font-size:.7rem; margin-left:3px; }
+.tablewrap th.s .ar { opacity:1; color:var(--accent); }
+.tablewrap td { padding:11px 14px; vertical-align:middle; }
+.tablewrap tr:last-child td { border-bottom:none; }
+.tablewrap tbody tr:hover { background:var(--bg); }
+.rank { color:var(--muted); font-variant-numeric:tabular-nums; width:34px; }
+.name { font-weight:600; }
+.name a { text-decoration:none; }
+.name a:hover { color:var(--accent); }
+.num { text-align:right; font-variant-numeric:tabular-nums; }
+.metric { display:flex; align-items:center; gap:8px; justify-content:flex-end; }
+.metric .mv { font-variant-numeric:tabular-nums; font-weight:600; min-width:38px; text-align:right; }
+.bar { width:62px; height:6px; border-radius:3px; background:var(--border); overflow:hidden; }
+.bar > i { display:block; height:100%; border-radius:3px; }
+
+@media (max-width:880px) {
+  .hero h1 { font-size:2.1rem; }
+  .hero .insight { font-size:1.1rem; }
+  .navgrid { grid-template-columns:1fr; }
+  .highlights { grid-template-columns:1fr; }
+  .page-head h1 { font-size:1.5rem; }
+}
+@media (max-width:520px) {
+  .hero h1 { font-size:1.6rem; }
+  .topbar-nav { display:none; }
+  .hide-sm { display:none; }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="topbar" aria-label="Główna nawigacja">
+  <a class="topbar-logo" href="https://pomorskie.radoskop.pl/">Rado<span>skop</span> pomorskie</a>
+  <div class="topbar-nav">
+    <a href="https://radoskop.eu/reports/">Raporty</a>
+    <a href="https://radoskop.eu/business/">Business</a>
+  </div>
+  <div class="topbar-actions">
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw">Motyw</button>
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="crumbs"><a href="https://pomorskie.radoskop.pl/">Strona główna</a> / Radni</div>
+  <div class="page-head">
+    <h1>Radni pomorskiego</h1>
+    <div class="sub">33 radnych w kadencji. Kliknij nagłówek, żeby posortować.</div>
+  </div>
+
+  <div class="toolbar">
+    <input id="q" type="text" placeholder="Szukaj radnego…" oninput="render()">
+    <select id="club" onchange="render()">
+      <option value="">Wszystkie kluby</option>
+      <option value="KO">KO</option>
+      <option value="PiS">PiS</option>
+      <option value="TD">TD</option>
+    </select>
+    <span class="count" id="shown-count"></span>
+  </div>
+
+  <div class="tablewrap">
+    <table>
+      <thead>
+        <tr>
+          <th data-k="rank" class="rank">#</th>
+          <th data-k="name">Radny <span class="ar">↕</span></th>
+          <th data-k="club" class="hide-sm">Klub <span class="ar">↕</span></th>
+          <th data-k="attendance" class="num">Frekwencja <span class="ar">↕</span></th>
+          <th data-k="votes" class="num hide-sm">Głosów <span class="ar">↕</span></th>
+          <th data-k="agreement" class="num">Zgodność z klubem <span class="ar">↕</span></th>
+        </tr>
+      </thead>
+      <tbody id="rows"><tr><td class="rank">1</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/adam-bondarenko/">Adam Bondarenko</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">84%</span><span class="bar"><i style="width:84%;background:var(--yellow)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">2</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/paulina-filipowicz/">Paulina Filipowicz</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">84%</span><span class="bar"><i style="width:84%;background:var(--yellow)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">3</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/jan-kleinszmidt/">Jan Kleinszmidt</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">4</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/iwona-mielewczyk/">Iwona Mielewczyk</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">5</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/zenon-odya/">Zenon Odya</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">96%</span><span class="bar"><i style="width:96%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">6</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/jozef-sarnowski/">Józef Sarnowski</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">7</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/stefan-skonieczny/">Stefan Skonieczny</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">8</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/marcin-skwierawski/">Marcin Skwierawski</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">9</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/piotr-widz/">Piotr Widz</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">92%</span><span class="bar"><i style="width:92%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">10</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/piotr-wittbrodt/">Piotr Wittbrodt</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">11</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/leszek-bonna/">Leszek Bonna</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">92%</span><span class="bar"><i style="width:92%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">12</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/beata-koniarska/">Beata Koniarska</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">92%</span><span class="bar"><i style="width:92%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">13</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/danuta-rek/">Danuta Rek</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">96%</span><span class="bar"><i style="width:96%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">14</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/andrzej-struk/">Andrzej Struk</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">96%</span><span class="bar"><i style="width:96%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">15</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/krzysztof-trawicki/">Krzysztof Trawicki</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(22,163,74,0.12);color:#15803d">TD</span></td><td class="num"><div class="metric"><span class="mv">88%</span><span class="bar"><i style="width:88%;background:var(--yellow)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">16</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/jarosaw-scigaa/">Jarosław Ścigała</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(22,163,74,0.12);color:#15803d">TD</span></td><td class="num"><div class="metric"><span class="mv">88%</span><span class="bar"><i style="width:88%;background:var(--yellow)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">17</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/mieczysaw-struk/">Mieczysław Struk</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">80%</span><span class="bar"><i style="width:80%;background:var(--yellow)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">18</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/beata-jankowska/">Beata Jankowska</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">19</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/krzysztof-sawski/">Krzysztof Sławski</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,58,237,0.12);color:#7c3aed">PiS</span></td><td class="num"><div class="metric"><span class="mv">80%</span><span class="bar"><i style="width:80%;background:var(--yellow)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">99%</span><span class="bar"><i style="width:99%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">20</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/kinga-borusewicz/">Kinga Borusewicz</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">92%</span><span class="bar"><i style="width:92%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">98%</span><span class="bar"><i style="width:98%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">21</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/sylwia-leyk/">Sylwia Leyk</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,58,237,0.12);color:#7c3aed">PiS</span></td><td class="num"><div class="metric"><span class="mv">88%</span><span class="bar"><i style="width:88%;background:var(--yellow)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">98%</span><span class="bar"><i style="width:98%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">22</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/marta-muller-gajek/">Marta Müller-Gajek</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,58,237,0.12);color:#7c3aed">PiS</span></td><td class="num"><div class="metric"><span class="mv">96%</span><span class="bar"><i style="width:96%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">98%</span><span class="bar"><i style="width:98%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">23</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/beata-dunajewska/">Beata Dunajewska</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">97%</span><span class="bar"><i style="width:97%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">24</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/przemysaw-rys/">Przemysław Ryś</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">97%</span><span class="bar"><i style="width:97%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">25</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/marta-cymanska/">Marta Cymańska</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,58,237,0.12);color:#7c3aed">PiS</span></td><td class="num"><div class="metric"><span class="mv">92%</span><span class="bar"><i style="width:92%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">97%</span><span class="bar"><i style="width:97%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">26</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/olga-haase/">Olga Haase</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(14,165,233,0.12);color:#0284c7">KO</span></td><td class="num"><div class="metric"><span class="mv">84%</span><span class="bar"><i style="width:84%;background:var(--yellow)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">97%</span><span class="bar"><i style="width:97%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">27</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/szymon-redlin/">Szymon Redlin</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(22,163,74,0.12);color:#15803d">TD</span></td><td class="num"><div class="metric"><span class="mv">96%</span><span class="bar"><i style="width:96%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">97%</span><span class="bar"><i style="width:97%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">28</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/sebastian-dadaczynski/">Sebastian Dadaczyński</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,58,237,0.12);color:#7c3aed">PiS</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">96%</span><span class="bar"><i style="width:96%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">29</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/piotr-karczewski/">Piotr Karczewski</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,58,237,0.12);color:#7c3aed">PiS</span></td><td class="num"><div class="metric"><span class="mv">88%</span><span class="bar"><i style="width:88%;background:var(--yellow)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">96%</span><span class="bar"><i style="width:96%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">30</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/roman-dambek/">Roman Dambek</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,58,237,0.12);color:#7c3aed">PiS</span></td><td class="num"><div class="metric"><span class="mv">96%</span><span class="bar"><i style="width:96%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">95%</span><span class="bar"><i style="width:95%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">31</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/arwid-zebrowski/">Arwid Żebrowski</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,58,237,0.12);color:#7c3aed">PiS</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">94%</span><span class="bar"><i style="width:94%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">32</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/kazimierz-klawiter/">Kazimierz Klawiter</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,58,237,0.12);color:#7c3aed">PiS</span></td><td class="num"><div class="metric"><span class="mv">100%</span><span class="bar"><i style="width:100%;background:var(--green)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">94%</span><span class="bar"><i style="width:94%;background:var(--green)"></i></span></div></td></tr>
+        <tr><td class="rank">33</td><td class="name"><a href="https://pomorskie.radoskop.pl/profile/natalia-nitek-pazynska/">Natalia Nitek-Płażyńska</a></td><td class="hide-sm"><span class="club-badge" style="background:rgba(124,58,237,0.12);color:#7c3aed">PiS</span></td><td class="num"><div class="metric"><span class="mv">68%</span><span class="bar"><i style="width:68%;background:var(--red)"></i></span></div></td><td class="num hide-sm">365</td><td class="num"><div class="metric"><span class="mv">91%</span><span class="bar"><i style="width:91%;background:var(--green)"></i></span></div></td></tr></tbody>
+    </table>
+  </div>
+
+
+  <footer>
+    Radoskop pomorskie to niezależny, otwarty monitoring rady. Dane pochodzą z <a href="https://bip.pomorskie.eu/" target="_blank" rel="noopener">BIP Urząd Marszałkowski Województwa Pomorskiego</a> i są odświeżane dwa razy dziennie.
+    <a href="https://pomorskie.radoskop.pl/">Wróć na stronę główną</a>.
+  </footer>
+
+</div>
+
+<script>
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('radoskop_theme', next); } catch(e) {}
+  var host = location.hostname.replace(/^[^.]+\./,'.');
+  document.cookie = 'radoskop_theme=' + next + ';path=/;max-age=31536000;domain=' + host;
+}
+</script>
+
+<script>
+window.RADOSKOP_ROSTER=[{"name": "Adam Bondarenko", "slug": "adam-bondarenko", "club": "KO", "attendance": 84.0, "votes": 365, "agreement": 100.0}, {"name": "Kinga Borusewicz", "slug": "kinga-borusewicz", "club": "KO", "attendance": 92.0, "votes": 365, "agreement": 98.5}, {"name": "Marta Cymańska", "slug": "marta-cymanska", "club": "PiS", "attendance": 92.0, "votes": 365, "agreement": 97.1}, {"name": "Sebastian Dadaczyński", "slug": "sebastian-dadaczynski", "club": "PiS", "attendance": 100.0, "votes": 365, "agreement": 96.0}, {"name": "Beata Dunajewska", "slug": "beata-dunajewska", "club": "KO", "attendance": 100.0, "votes": 365, "agreement": 97.4}, {"name": "Paulina Filipowicz", "slug": "paulina-filipowicz", "club": "KO", "attendance": 84.0, "votes": 365, "agreement": 100.0}, {"name": "Olga Haase", "slug": "olga-haase", "club": "KO", "attendance": 84.0, "votes": 365, "agreement": 97.0}, {"name": "Beata Jankowska", "slug": "beata-jankowska", "club": "KO", "attendance": 100.0, "votes": 365, "agreement": 99.5}, {"name": "Piotr Karczewski", "slug": "piotr-karczewski", "club": "PiS", "attendance": 88.0, "votes": 365, "agreement": 95.5}, {"name": "Kazimierz Klawiter", "slug": "kazimierz-klawiter", "club": "PiS", "attendance": 100.0, "votes": 365, "agreement": 93.9}, {"name": "Jan Kleinszmidt", "slug": "jan-kleinszmidt", "club": "KO", "attendance": 100.0, "votes": 365, "agreement": 100.0}, {"name": "Beata Koniarska", "slug": "beata-koniarska", "club": "KO", "attendance": 92.0, "votes": 365, "agreement": 99.7}, {"name": "Iwona Mielewczyk", "slug": "iwona-mielewczyk", "club": "KO", "attendance": 100.0, "votes": 365, "agreement": 100.0}, {"name": "Marta Müller-Gajek", "slug": "marta-muller-gajek", "club": "PiS", "attendance": 96.0, "votes": 365, "agreement": 98.0}, {"name": "Zenon Odya", "slug": "zenon-odya", "club": "KO", "attendance": 96.0, "votes": 365, "agreement": 100.0}, {"name": "Szymon Redlin", "slug": "szymon-redlin", "club": "TD", "attendance": 96.0, "votes": 365, "agreement": 96.8}, {"name": "Danuta Rek", "slug": "danuta-rek", "club": "KO", "attendance": 96.0, "votes": 365, "agreement": 99.7}, {"name": "Przemysław Ryś", "slug": "przemysaw-rys", "club": "KO", "attendance": 100.0, "votes": 365, "agreement": 97.4}, {"name": "Józef Sarnowski", "slug": "jozef-sarnowski", "club": "KO", "attendance": 100.0, "votes": 365, "agreement": 100.0}, {"name": "Stefan Skonieczny", "slug": "stefan-skonieczny", "club": "KO", "attendance": 100.0, "votes": 365, "agreement": 100.0}, {"name": "Marcin Skwierawski", "slug": "marcin-skwierawski", "club": "KO", "attendance": 100.0, "votes": 365, "agreement": 100.0}, {"name": "Krzysztof Sławski", "slug": "krzysztof-sawski", "club": "PiS", "attendance": 80.0, "votes": 365, "agreement": 98.9}, {"name": "Andrzej Struk", "slug": "andrzej-struk", "club": "KO", "attendance": 96.0, "votes": 365, "agreement": 99.7}, {"name": "Krzysztof Trawicki", "slug": "krzysztof-trawicki", "club": "TD", "attendance": 88.0, "votes": 365, "agreement": 99.7}, {"name": "Piotr Widz", "slug": "piotr-widz", "club": "KO", "attendance": 92.0, "votes": 365, "agreement": 100.0}, {"name": "Piotr Wittbrodt", "slug": "piotr-wittbrodt", "club": "KO", "attendance": 100.0, "votes": 365, "agreement": 100.0}, {"name": "Arwid Żebrowski", "slug": "arwid-zebrowski", "club": "PiS", "attendance": 100.0, "votes": 365, "agreement": 94.3}, {"name": "Leszek Bonna", "slug": "leszek-bonna", "club": "KO", "attendance": 92.0, "votes": 365, "agreement": 100.0}, {"name": "Roman Dambek", "slug": "roman-dambek", "club": "PiS", "attendance": 96.0, "votes": 365, "agreement": 95.0}, {"name": "Sylwia Leyk", "slug": "sylwia-leyk", "club": "PiS", "attendance": 88.0, "votes": 365, "agreement": 98.5}, {"name": "Natalia Nitek-Płażyńska", "slug": "natalia-nitek-pazynska", "club": "PiS", "attendance": 68.0, "votes": 365, "agreement": 90.7}, {"name": "Mieczysław Struk", "slug": "mieczysaw-struk", "club": "KO", "attendance": 80.0, "votes": 365, "agreement": 99.6}, {"name": "Jarosław Ścigała", "slug": "jarosaw-scigaa", "club": "TD", "attendance": 88.0, "votes": 365, "agreement": 99.7}];
+window.RADOSKOP_CLUBSTYLE={"KO": {"bg": "rgba(14,165,233,0.12)", "fg": "#0284c7"}, "PiS": {"bg": "rgba(124,58,237,0.12)", "fg": "#7c3aed"}, "TD": {"bg": "rgba(22,163,74,0.12)", "fg": "#15803d"}};
+window.RADOSKOP_I18N={shown:"Pokazano {n} z {total}"};
+</script>
+<script>
+var ROSTER = window.RADOSKOP_ROSTER || [];
+var CLUB_STYLE = window.RADOSKOP_CLUBSTYLE || {};
+var SHOWN = (window.RADOSKOP_I18N||{}).shown || "{n} / {total}";
+var SITE = "https://pomorskie.radoskop.pl";
+function esc(s){ return (''+s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function clubBadge(club){
+  var st = CLUB_STYLE[club] || {bg:'#e5e7eb', fg:'#374151'};
+  return '<span class="club-badge" style="background:'+st.bg+';color:'+st.fg+'">'+esc(club)+'</span>';
+}
+function barColor(v){ return v >= 90 ? 'var(--green)' : (v >= 75 ? 'var(--yellow)' : 'var(--red)'); }
+function metric(v){
+  if (v == null) return '<div class="metric"><span class="mv" style="color:var(--muted)">—</span></div>';
+  v = Math.round(v);
+  return '<div class="metric"><span class="mv">'+v+'%</span><span class="bar"><i style="width:'+v+'%;background:'+barColor(v)+'"></i></span></div>';
+}
+var sortKey='agreement', sortDir=-1;
+function render(){
+  var q=(document.getElementById('q').value||'').toLowerCase();
+  var cf=document.getElementById('club').value;
+  var list=ROSTER.filter(function(r){return (!q||(''+r.name).toLowerCase().indexOf(q)!==-1)&&(!cf||r.club===cf);});
+  list.sort(function(a,b){
+    var x=a[sortKey], y=b[sortKey];
+    if(typeof x==='string'){x=x.toLowerCase();y=(''+(y||'')).toLowerCase();return x<y?-sortDir:(x>y?sortDir:0);}
+    if(x==null)x=-1; if(y==null)y=-1; return (x-y)*sortDir;
+  });
+  document.getElementById('rows').innerHTML = list.map(function(r,i){
+    return '<tr>'
+      +'<td class="rank">'+(i+1)+'</td>'
+      +'<td class="name"><a href="'+SITE+'/profile/'+esc(r.slug)+'/">'+esc(r.name)+'</a></td>'
+      +'<td class="hide-sm">'+clubBadge(r.club)+'</td>'
+      +'<td class="num">'+metric(r.attendance)+'</td>'
+      +'<td class="num hide-sm">'+(r.votes!=null?r.votes:'—')+'</td>'
+      +'<td class="num">'+metric(r.agreement)+'</td>'
+      +'</tr>';
+  }).join('');
+  document.getElementById('shown-count').textContent = SHOWN.replace('{n}', list.length).replace('{total}', ROSTER.length);
+  document.querySelectorAll('th').forEach(function(th){ th.classList.toggle('s', th.getAttribute('data-k')===sortKey); });
+}
+document.querySelectorAll('th[data-k]').forEach(function(th){
+  th.addEventListener('click', function(){
+    var k=th.getAttribute('data-k');
+    if(sortKey===k) sortDir=-sortDir; else { sortKey=k; sortDir=(k==='name'||k==='club')?1:-1; }
+    render();
+  });
+});
+render();
+</script>
+
+</body>
+</html>
