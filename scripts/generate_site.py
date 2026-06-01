@@ -17,6 +17,7 @@ from pathlib import Path
 # Lokalny import modułu i18n (ten sam katalog scripts/)
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from i18n import apply_locale  # noqa: E402
+from landing_strings import catalog as landing_catalog  # noqa: E402
 
 
 # Treść Polityki prywatności i Regulaminu nie jest już inline'owana
@@ -49,8 +50,7 @@ def assemble_template(html: str, template_dir) -> str:
         # Fallback bez jinja2: ręcznie rozwiń {% include "X" %} rekurencyjnie
         # (app.css zawiera zagnieżdżony include theme_vars.css). Wynik bajt-w-bajt
         # taki sam jak Jinja (oba wstawiają surową treść pliku w miejsce tagu).
-        # Dzięki temu brak jinja2 NIGDY nie wywala generacji SPA — psuje co najwyżej
-        # landing (build_landing.py, który Jinja wymaga twardo).
+        # Dzięki temu brak jinja2 NIGDY nie wywala generacji SPA.
         import re as _re
         pat = _re.compile(r'\{%\s*include\s*"([^"]+)"\s*%\}')
         for _ in range(10):
@@ -68,6 +68,40 @@ def assemble_template(html: str, template_dir) -> str:
         comment_end_string="@@NOJINJACMT_CLOSE@@",
     )
     return env.from_string(html).render()
+
+
+def build_seo_content(cat: dict, name: str, eyebrow_override: str = "",
+                      htitle_override: str | None = None) -> str:
+    """Statyczny, zlokalizowany blok #seo-content dla crawlerów (client-rendered
+    landing). cat = landing_strings.catalog(locale). name = nazwa do nagłówka
+    (dopełniacz miasta). Sejmiki podają eyebrow_override=rada_name i
+    htitle_override="" (katalog hero_title dotyczy rady miasta). Linki w
+    angielskich ścieżkach kanonicznych (nie wymagają slugu kadencji).
+    Inline-script chowa blok dla przeglądarek z JS jeszcze podczas parsowania;
+    init() usuwa go całkiem."""
+    eyebrow = eyebrow_override or cat.get("hero_eyebrow", "{name}").replace("{name}", name)
+    if htitle_override is None:
+        htitle = cat.get("hero_title", "").replace("[[", "").replace("]]", "")
+    else:
+        htitle = htitle_override
+    desc = cat.get("cta_final_p", "")
+    links = [
+        ("/councillors/", cat.get("nav_councilors_title", "")),
+        ("/interpellations/", cat.get("nav_interp_title", "")),
+        ("/budget/", cat.get("nav_budget_title", "")),
+        ("/committees/", cat.get("nav_committees_title", "")),
+    ]
+    nav = "".join(f'<a href="{h}">{t}</a>' for h, t in links if t)
+    para = " ".join(p for p in (htitle, desc) if p)
+    return (
+        '<section id="seo-content">'
+        f"<h1>{eyebrow}</h1>"
+        f"<p>{para}</p>"
+        f'<nav aria-label="{cat.get("aria_nav", "")}">{nav}</nav>'
+        "</section>"
+        '<script>var _sc=document.getElementById("seo-content");'
+        'if(_sc)_sc.style.display="none";</script>'
+    )
 
 
 def apply_english_paths(html: str) -> str:
@@ -802,6 +836,9 @@ def main():
     city_slug = config.get("slug") or config_path.parent.name
 
     # Build replacements
+    _lcat = landing_catalog((config.get("locale") or "pl").lower())
+    _seo_name = config.get("city_genitive") or config.get("city_name") \
+        or config.get("voivodeship_genitive") or config.get("voivodeship_name", "")
     replacements = {
         "{{CAT_RULES_JS}}": _cat_rules_js,
         "{{KIND_CATS_JS}}": _build_kind_cats_js(config),
@@ -837,10 +874,11 @@ def main():
         # "Radni" jako listę z profiles.json (nazwisko/klub/komisje), bo tabela
         # metryk (frekwencja/aktywność) nie ma sensu bez głosów imiennych.
         "{{COUNCILOR_ROSTER_MODE}}": "true" if _is_councilorless(config) else "false",
-        # Landing mode: gdy miasto ma osobny statyczny landing na / i listę
-        # radnych na /councillors/ (build_landing.py). SPA emituje wtedy ranking
-        # jako /councillors/ zamiast /. Włączane per miasto flagą landing_enabled.
-        "{{LANDING_MODE}}": "true" if config.get("landing_enabled") else "false",
+        # Katalog i18n landingu (widok SPA) dla locale miasta — renderLandingHTML
+        # używa tych stringów. catalog() ma fallback locale->en->pl.
+        "{{LANDING_I18N}}": json.dumps(_lcat, ensure_ascii=False),
+        # Statyczny SEO fallback dla "/" (client-rendered landing).
+        "{{SEO_CONTENT}}": build_seo_content(_lcat, _seo_name),
         # Impressum / Anbieterkennzeichnung
         "{{IMPRESSUM_HTML}}": impressum_html,
         "{{IMPRESSUM_FOOTER_LINK}}": impressum_footer_link,

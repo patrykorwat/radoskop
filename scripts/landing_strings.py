@@ -8,7 +8,8 @@ miasto w dowolnym języku nigdy nie zobaczy pustego/zepsutego napisu —
 brakujące tłumaczenie spada na angielski.
 
 Stringi parametryczne używają {name}/{votes}/{n}/{bip}/{label}/{total}
-i są formatowane w build_landing.py (str.format), NIE w Jinja.
+i są formatowane w SPA (renderLandingHTML: _t/_tf) oraz w build_seo_content
+(generate_site.py) przez str.replace na kluczach {param}.
 
 UWAGA: tłumaczenia da/sk/hu/uk/lt/lv/et dla krótkich etykiet są maszynowe
 i warte natywnej weryfikacji. Dłuższe zdania w tych językach świadomie

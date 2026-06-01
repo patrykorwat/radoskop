@@ -46,7 +46,8 @@ from typing import Any
 # samego kanonicznego template/index.html co miasta i muszą po migracji
 # 2026-05 mieć angielskie URL slugi tak samo jak miasta.
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from generate_site import apply_english_paths, assemble_template  # noqa: E402
+from generate_site import apply_english_paths, assemble_template, build_seo_content  # noqa: E402
+from landing_strings import catalog as landing_catalog  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -357,6 +358,7 @@ def main() -> int:
     # "{{CITY_SLUG}}" i alerty nie znajdują match'u.
     assembly_slug = cfg.get("voivodeship_slug") or cfg.get("slug") or cfg_path.parent.name
 
+    _lcat_asm = landing_catalog((cfg.get("locale") or "pl").lower())
     replacements = {
         "{{CAT_RULES_JS}}": _cat_rules_js,
         # Sejmiki/landy nie używają disclaimera per-radny — wszystkie polskie
@@ -389,10 +391,12 @@ def main() -> int:
         # więc COUNCILOR_ROSTER_MODE zawsze false (sejmiki z imiennymi głosami
         # mają normalny ranking radnych, nie roster z profiles.json).
         "{{COUNCILOR_ROSTER_MODE}}": "false",
-        # Landing mode: ranking radnych jako /councillors/ gdy landing_enabled.
-        # MUSI być podstawione (template/index.html ma {{LANDING_MODE}}), inaczej
-        # SPA sejmiku = const LANDING_MODE = {{...}}; → SyntaxError.
-        "{{LANDING_MODE}}": "true" if cfg.get("landing_enabled") else "false",
+        "{{LANDING_I18N}}": json.dumps(_lcat_asm, ensure_ascii=False),
+        # SEO fallback dla "/" — eyebrow = rada_name (sejmik/Landtag, nie rada
+        # miasta); htitle pominięty bo katalog hero_title dotyczy rady miasta.
+        "{{SEO_CONTENT}}": build_seo_content(
+            _lcat_asm, city_gen, eyebrow_override=cfg.get("rada_name", ""),
+            htitle_override=""),
         # Sejmiki/landy mają radnych (Abgeordnete też), więc HAS_COUNCILORS=true.
         # Bez tego template ma {{...}} leftover w renderze.
         "{{HAS_COUNCILORS}}": "false" if cfg.get("has_councilorless") else "true",
