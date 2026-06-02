@@ -140,10 +140,6 @@ th.sorted { color:var(--text); }
 td { padding:10px 12px; border-bottom:1px solid var(--border); }
 tr:hover td { background:rgba(99,102,241,0.05); }
 .club { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; }
-.club-KO { background:rgba(14,165,233,0.12); color:#0284c7; }
-.club-TD { background:rgba(22,163,74,0.12); color:#15803d; }
-.club-PiS { background:rgba(124,58,237,0.12); color:#7c3aed; }
-.club-NZ { background:rgba(107,114,128,0.12); color:#6b7280; }
 .club-unknown { background:rgba(139,141,151,0.15); color:var(--muted); }
 .bar { height:6px; border-radius:3px; background:var(--border); position:relative; min-width:60px; }
 .bar-fill { height:100%; border-radius:3px; position:absolute; left:0; top:0; }
@@ -567,6 +563,10 @@ footer a { color:var(--accent); text-decoration:none; }
 .share-copied { color:var(--green) !important; border-color:var(--green) !important; }
 
 </style>
+<style id="rdsk-club">.club-KO { background:rgba(14,165,233,0.12); color:#0284c7; }
+.club-TD { background:rgba(22,163,74,0.12); color:#15803d; }
+.club-PiS { background:rgba(124,58,237,0.12); color:#7c3aed; }
+.club-NZ { background:rgba(107,114,128,0.12); color:#6b7280; }</style>
 </head>
 <body>
 <nav class="topbar" aria-label="Główna nawigacja">
@@ -1025,8 +1025,10 @@ async function init() {
     await loadKadencja(initialKid);
 
     document.getElementById('loading').style.display = 'none';
-    var _sc = document.getElementById('seo-content');
-    if (_sc) _sc.remove();
+    // Usuń WSZYSTKIE #seo-content (może być duplikat: homepage blok SEO
+    // + per-strona blok z generate_seo_pages). getElementById brałby tylko
+    // pierwszy, zostawiając drugi widoczny na profilu/sesji/głosowaniu.
+    document.querySelectorAll('#seo-content').forEach(function(e){ e.remove(); });
     document.getElementById('app').style.display = 'block';
     renderKadencjaBar();
     // Deep links
@@ -1750,7 +1752,6 @@ function clubBg(club) {
 }
 function clubClass(club) {
   return ['KO','TD','PiS','NZ'].includes(club) ? `club-${club}` : 'club-unknown';
-}
 function initials(name) {
   return name.split(' ').map(w => w[0]).join('').substring(0,2);
 }

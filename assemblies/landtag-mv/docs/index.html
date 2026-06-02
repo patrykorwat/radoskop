@@ -140,13 +140,6 @@ th.sorted { color:var(--text); }
 td { padding:10px 12px; border-bottom:1px solid var(--border); }
 tr:hover td { background:rgba(99,102,241,0.05); }
 .club { display:inline-block; padding:2px 8px; border-radius:4px; font-size:0.75rem; font-weight:600; }
-.club-SPD { background:rgba(220,38,38,0.12); color:#dc2626; }
-.club-CDU { background:rgba(15,23,42,0.12); color:#0f172a; }
-.club-AfD { background:rgba(14,165,233,0.12); color:#0ea5e9; }
-.club-Die Linke { background:rgba(124,45,146,0.12); color:#7c2d92; }
-.club-BÜNDNIS 90/DIE GRÜNEN { background:rgba(22,163,74,0.12); color:#16a34a; }
-.club-Gruppe der FDP { background:rgba(250,204,21,0.18); color:#facc15; }
-.club-fraktionslos { background:rgba(100,116,139,0.12); color:#64748b; }
 .club-unknown { background:rgba(139,141,151,0.15); color:var(--muted); }
 .bar { height:6px; border-radius:3px; background:var(--border); position:relative; min-width:60px; }
 .bar-fill { height:100%; border-radius:3px; position:absolute; left:0; top:0; }
@@ -570,6 +563,13 @@ footer a { color:var(--accent); text-decoration:none; }
 .share-copied { color:var(--green) !important; border-color:var(--green) !important; }
 
 </style>
+<style id="rdsk-club">.club-SPD { background:rgba(220,38,38,0.12); color:#dc2626; }
+.club-CDU { background:rgba(15,23,42,0.12); color:#0f172a; }
+.club-AfD { background:rgba(14,165,233,0.12); color:#0ea5e9; }
+.club-Die Linke { background:rgba(124,45,146,0.12); color:#7c2d92; }
+.club-BÜNDNIS 90/DIE GRÜNEN { background:rgba(22,163,74,0.12); color:#16a34a; }
+.club-Gruppe der FDP { background:rgba(250,204,21,0.18); color:#facc15; }
+.club-fraktionslos { background:rgba(100,116,139,0.12); color:#64748b; }</style>
 </head>
 <body>
 <nav class="topbar" aria-label="Główna nawigacja">
@@ -1028,8 +1028,10 @@ async function init() {
     await loadKadencja(initialKid);
 
     document.getElementById('loading').style.display = 'none';
-    var _sc = document.getElementById('seo-content');
-    if (_sc) _sc.remove();
+    // Usuń WSZYSTKIE #seo-content (może być duplikat: homepage blok SEO
+    // + per-strona blok z generate_seo_pages). getElementById brałby tylko
+    // pierwszy, zostawiając drugi widoczny na profilu/sesji/głosowaniu.
+    document.querySelectorAll('#seo-content').forEach(function(e){ e.remove(); });
     document.getElementById('app').style.display = 'block';
     renderKadencjaBar();
     // Deep links
@@ -1753,7 +1755,6 @@ function clubBg(club) {
 }
 function clubClass(club) {
   return ['SPD','CDU','AfD','Die Linke','BÜNDNIS 90/DIE GRÜNEN','Gruppe der FDP','fraktionslos'].includes(club) ? `club-${club}` : 'club-unknown';
-}
 function initials(name) {
   return name.split(' ').map(w => w[0]).join('').substring(0,2);
 }
@@ -5030,7 +5031,7 @@ document.addEventListener('keydown', (e) => {
 <script>
 // Sejmik: definicje klubów i mapowanie radny -> klub.
 const SEJMIK_CLUBS = {"SPD": {"color": "#dc2626", "bg": "rgba(220,38,38,0.12)", "avatar_bg": "#b91c1c"}, "CDU": {"color": "#0f172a", "bg": "rgba(15,23,42,0.12)", "avatar_bg": "#1e293b"}, "AfD": {"color": "#0ea5e9", "bg": "rgba(14,165,233,0.12)", "avatar_bg": "#0369a1"}, "Die Linke": {"color": "#7c2d92", "bg": "rgba(124,45,146,0.12)", "avatar_bg": "#6b21a8"}, "BÜNDNIS 90/DIE GRÜNEN": {"color": "#16a34a", "bg": "rgba(22,163,74,0.12)", "avatar_bg": "#15803d"}, "Gruppe der FDP": {"color": "#facc15", "bg": "rgba(250,204,21,0.18)", "avatar_bg": "#ca8a04"}, "fraktionslos": {"color": "#64748b", "bg": "rgba(100,116,139,0.12)", "avatar_bg": "#475569"}};
-const SEJMIK_CLUB_OF = {"Tilo Gundlack": "SPD", "Jan-Phillip Tadsen": "AfD", "Daniel Peters": "CDU", "Martin Schmidt": "AfD", "Franz-Robert Liskow": "CDU", "Beate Schlupp": "CDU", "Thomas Krüger": "SPD", "Grit Schmelzer": "SPD", "Christian Brade": "SPD", "Anna-Konstanze Schröder": "SPD", "Paul-Joachim Timm": "AfD", "Sandy van Baal": "fraktionslos", "Wolfgang Waldmüller": "CDU", "Ann Christin von Allwörden": "CDU", "Michael Meister": "AfD", "Manuela Schwesig": "SPD", "Martina Tegtmeier": "SPD", "Ralf Mucha": "SPD", "Hannes Damm": "BÜNDNIS 90/DIE GRÜNEN", "Jeannine Rösler": "Die Linke", "Marcel Falk": "SPD", "Michael Noetzel": "Die Linke", "Sylva Rahm-Präger": "SPD", "Heiko Miraß": "SPD", "Jens-Holger Schneider": "AfD", "Bettina Martin": "SPD", "Dirk Stamer": "SPD", "Thore Stein": "AfD", "Thomas de Jesus-Fernandes": "AfD", "Nils Saemann": "SPD", "Torsten Koplin": "Die Linke", "Thomas Diener": "CDU", "Till Backhaus": "SPD", "Sebastian Ehlers": "CDU", "Marc Reinhardt": "CDU", "Beatrix Hegenkötter": "SPD", "Patrick Dahlemann": "SPD", "Andreas Butzki": "SPD", "Sabine Enseleit": "CDU", "Enrico Schult": "AfD", "David Wulff": "Gruppe der FDP", "Dirk Bruhn": "Die Linke", "Christian Albrecht": "Die Linke", "Harald Terpe": "BÜNDNIS 90/DIE GRÜNEN", "Monique Wölk": "SPD", "Petra Federau": "AfD", "Torsten Renz": "CDU", "Julian Barlen": "SPD", "Elke-Annette Schmidt": "Die Linke", "Philipp da Cunha": "SPD", "Nikolaus Kramer": "AfD", "Thomas Würdisch": "SPD", "Christian Pegel": "SPD", "Steffi Pulz-Debler": "Die Linke", "Stephan J. Reuken": "AfD", "Henning Foerster": "Die Linke", "Jutta Wegner": "BÜNDNIS 90/DIE GRÜNEN", "Christine Klingohr": "SPD", "Christian Winter": "SPD", "Stefanie Drese": "SPD", "Eva Maria Schneider-Gärtner": "fraktionslos", "Falko Beitz": "SPD", "Mandy Pfeifer": "SPD", "Harry Glawe": "CDU", "Katy Hoffmeister": "CDU", "Nadine Julitz": "SPD", "Constanze Oehlrich": "BÜNDNIS 90/DIE GRÜNEN", "Christiane Berg": "CDU", "Rainer Albrecht": "SPD", "Robert Northoff": "SPD", "Barbara Becker-Hornickel": "Gruppe der FDP", "Dagmar Kaselitz": "SPD", "Michel-Friedrich Schiefler": "SPD", "Anne Shepley": "BÜNDNIS 90/DIE GRÜNEN", "Horst Förster": "AfD", "Jens Schulze-Wiehenbrauk": "AfD", "René Domke": "Gruppe der FDP", "Birgit Hesse": "SPD", "Daniel Trepsdorf": "Die Linke"};
+const SEJMIK_CLUB_OF = {"Harry Glawe": "CDU", "Grit Schmelzer": "SPD", "Beate Schlupp": "CDU", "Thomas Krüger": "SPD", "Mandy Pfeifer": "SPD", "Jutta Wegner": "BÜNDNIS 90/DIE GRÜNEN", "Patrick Dahlemann": "SPD", "Beatrix Hegenkötter": "SPD", "Jeannine Rösler": "Die Linke", "Elke-Annette Schmidt": "Die Linke", "Philipp da Cunha": "SPD", "Sebastian Ehlers": "CDU", "Petra Federau": "AfD", "Thore Stein": "AfD", "Christine Klingohr": "SPD", "Andreas Butzki": "SPD", "Michael Meister": "AfD", "Henning Foerster": "Die Linke", "Daniel Trepsdorf": "Die Linke", "Michael Noetzel": "Die Linke", "Bettina Martin": "SPD", "Martin Schmidt": "AfD", "Ralf Mucha": "SPD", "Anna-Konstanze Schröder": "SPD", "Christian Brade": "SPD", "Robert Northoff": "SPD", "Stephan J. Reuken": "AfD", "Jens-Holger Schneider": "AfD", "Hannes Damm": "BÜNDNIS 90/DIE GRÜNEN", "Sandy van Baal": "fraktionslos", "Harald Terpe": "BÜNDNIS 90/DIE GRÜNEN", "Sylva Rahm-Präger": "SPD", "Marc Reinhardt": "CDU", "Katy Hoffmeister": "CDU", "David Wulff": "Gruppe der FDP", "Michel-Friedrich Schiefler": "SPD", "Christian Winter": "SPD", "Dagmar Kaselitz": "SPD", "Christian Albrecht": "Die Linke", "Christiane Berg": "CDU", "Barbara Becker-Hornickel": "Gruppe der FDP", "Torsten Koplin": "Die Linke", "Christian Pegel": "SPD", "Birgit Hesse": "SPD", "Falko Beitz": "SPD", "Daniel Peters": "CDU", "Tilo Gundlack": "SPD", "Paul-Joachim Timm": "AfD", "Wolfgang Waldmüller": "CDU", "Heiko Miraß": "SPD", "Stefanie Drese": "SPD", "Nikolaus Kramer": "AfD", "René Domke": "Gruppe der FDP", "Franz-Robert Liskow": "CDU", "Thomas Diener": "CDU", "Thomas Würdisch": "SPD", "Martina Tegtmeier": "SPD", "Anne Shepley": "BÜNDNIS 90/DIE GRÜNEN", "Rainer Albrecht": "SPD", "Enrico Schult": "AfD", "Till Backhaus": "SPD", "Marcel Falk": "SPD", "Eva Maria Schneider-Gärtner": "fraktionslos", "Jens Schulze-Wiehenbrauk": "AfD", "Ann Christin von Allwörden": "CDU", "Monique Wölk": "SPD", "Manuela Schwesig": "SPD", "Nils Saemann": "SPD", "Julian Barlen": "SPD", "Torsten Renz": "CDU", "Dirk Stamer": "SPD", "Dirk Bruhn": "Die Linke", "Jan-Phillip Tadsen": "AfD", "Constanze Oehlrich": "BÜNDNIS 90/DIE GRÜNEN", "Sabine Enseleit": "CDU", "Thomas de Jesus-Fernandes": "AfD", "Horst Förster": "AfD", "Nadine Julitz": "SPD", "Steffi Pulz-Debler": "Die Linke"};
 // Globalna mapa nazwisko -> klub (template miasta używa, jeśli
 // councilors[].club nie jest ustawione w data.json).
 window.clubAssignments = SEJMIK_CLUB_OF;

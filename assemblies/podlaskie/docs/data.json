@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-06-02T14:36:52Z",
+  "scraped_at": "2026-06-02T18:06:08Z",
   "generated": true,
   "default_kadencja": "2024-2029",
   "kadencje": [
@@ -80,6 +80,43 @@
             "Łukasz Siekierko"
           ],
           "attendee_count": 29,
+          "speakers": []
+        },
+        {
+          "date": "2026-03-24",
+          "number": "XXII",
+          "vote_count": 10,
+          "attendees": [
+            "Adam Sekściński",
+            "Anna Augustyn",
+            "Anna Naszkiewicz",
+            "Bernadeta Krynicka",
+            "Bogdan Dyjuk",
+            "Bogusław Dębski",
+            "Cezary Cieślukowski",
+            "Igor Łukaszuk",
+            "Jacek Piorunek",
+            "Jarosław Dworzański",
+            "Jerzy Leszczyński",
+            "Karol Pilecki",
+            "Leszek Dec",
+            "Marek Malinowski",
+            "Marek Olbryś",
+            "Mariusz Gromko",
+            "Mikołaj Janowski",
+            "Paweł Wnukowski",
+            "Rafał Supiński",
+            "Robert Jabłoński",
+            "Stanisław Derehajło",
+            "Tomasz Madras",
+            "Waldemar Kwaterski",
+            "Wanda Mieczkowska",
+            "Wojciech Grochowski",
+            "Łukasz Nazarko",
+            "Łukasz Prokorym",
+            "Łukasz Siekierko"
+          ],
+          "attendee_count": 28,
           "speakers": []
         },
         {
@@ -578,23 +615,23 @@
           "speakers": []
         }
       ],
-      "total_sessions": 15,
-      "total_votes": 271,
+      "total_sessions": 16,
+      "total_votes": 281,
       "total_councilors": 30,
       "councilors": [
         {
           "name": "Adam Sekściński",
           "slug": "adam-sekscinski",
           "club": "PiS",
-          "frekwencja": 93.3,
-          "aktywnosc": 91.1,
-          "zgodnosc_z_klubem": 87.9,
-          "votes_za": 162,
-          "votes_przeciw": 39,
-          "votes_wstrzymal": 46,
+          "frekwencja": 93.8,
+          "aktywnosc": 92.2,
+          "zgodnosc_z_klubem": 88.4,
+          "votes_za": 167,
+          "votes_przeciw": 43,
+          "votes_wstrzymal": 49,
           "votes_brak": 16,
           "votes_nieobecny": 4,
-          "votes_total": 271,
+          "votes_total": 281,
           "rebellion_count": 30,
           "rebellions": [
             {
@@ -783,15 +820,15 @@
           "name": "Anna Augustyn",
           "slug": "anna-augustyn",
           "club": "KO",
-          "frekwencja": 93.3,
-          "aktywnosc": 90.8,
+          "frekwencja": 93.8,
+          "aktywnosc": 91.1,
           "zgodnosc_z_klubem": 99.6,
-          "votes_za": 223,
+          "votes_za": 233,
           "votes_przeciw": 21,
           "votes_wstrzymal": 2,
           "votes_brak": 8,
           "votes_nieobecny": 31,
-          "votes_total": 271,
+          "votes_total": 281,
           "rebellion_count": 1,
           "rebellions": [
             {
@@ -806,16 +843,16 @@
           "name": "Anna Naszkiewicz",
           "slug": "anna-naszkiewicz",
           "club": "KO",
-          "frekwencja": 86.7,
-          "aktywnosc": 97.0,
-          "zgodnosc_z_klubem": 98.5,
-          "votes_za": 240,
-          "votes_przeciw": 22,
+          "frekwencja": 87.5,
+          "aktywnosc": 97.5,
+          "zgodnosc_z_klubem": 98.2,
+          "votes_za": 250,
+          "votes_przeciw": 23,
           "votes_wstrzymal": 1,
           "votes_brak": 3,
           "votes_nieobecny": 8,
-          "votes_total": 271,
-          "rebellion_count": 4,
+          "votes_total": 281,
+          "rebellion_count": 5,
           "rebellions": [
             {
               "session": "2025-12-16",
@@ -840,6 +877,12 @@
               "topic": "Przyjęcie Stanowiska Sejmiku Województwa Podlaskiego w zakresie wsparcia przez Prezydenta Rzeczpospolitej Polskiej inicjatyw ustawodawczych mających na celu przedłużenie terminu przedłożenia właściwej",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Wygenerowano za pomocą app.esesja.pl Przyjęcie protokołu z XXI sesji Sejmiku.",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             }
           ]
         },
@@ -847,15 +890,15 @@
           "name": "Artur Kosicki",
           "slug": "artur-kosicki",
           "club": "PiS",
-          "frekwencja": 93.3,
-          "aktywnosc": 80.4,
+          "frekwencja": 87.5,
+          "aktywnosc": 77.6,
           "zgodnosc_z_klubem": 75.7,
           "votes_za": 113,
           "votes_przeciw": 47,
           "votes_wstrzymal": 58,
           "votes_brak": 40,
-          "votes_nieobecny": 32,
-          "votes_total": 271,
+          "votes_nieobecny": 38,
+          "votes_total": 281,
           "rebellion_count": 53,
           "rebellions": [
             {
@@ -1183,15 +1226,15 @@
           "slug": "bernadeta-krynicka",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 103.3,
-          "zgodnosc_z_klubem": 91.1,
-          "votes_za": 222,
-          "votes_przeciw": 36,
-          "votes_wstrzymal": 22,
+          "aktywnosc": 104.3,
+          "zgodnosc_z_klubem": 90.8,
+          "votes_za": 230,
+          "votes_przeciw": 40,
+          "votes_wstrzymal": 23,
           "votes_brak": 8,
           "votes_nieobecny": 0,
-          "votes_total": 271,
-          "rebellion_count": 25,
+          "votes_total": 281,
+          "rebellion_count": 27,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -1326,6 +1369,18 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Podlaskiego na lata 2026 – 2041. /Druk Nr 344/.",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian w budżecie województwa podlaskiego na 2026 rok. /Druk Nr 345/. wraz z autopoprawkami.",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2026-02-24",
               "topic": "Przyjęcie protokołu z XX sesji Sejmiku.",
               "their_vote": "za",
@@ -1350,14 +1405,14 @@
           "slug": "bogdan-dyjuk",
           "club": "TD",
           "frekwencja": 100.0,
-          "aktywnosc": 99.3,
-          "zgodnosc_z_klubem": 98.5,
-          "votes_za": 246,
-          "votes_przeciw": 20,
+          "aktywnosc": 99.6,
+          "zgodnosc_z_klubem": 98.6,
+          "votes_za": 256,
+          "votes_przeciw": 21,
           "votes_wstrzymal": 3,
           "votes_brak": 18,
           "votes_nieobecny": 0,
-          "votes_total": 271,
+          "votes_total": 281,
           "rebellion_count": 4,
           "rebellions": [
             {
@@ -1390,16 +1445,16 @@
           "name": "Bogusław Dębski",
           "slug": "bogusaw-debski",
           "club": "PiS",
-          "frekwencja": 93.3,
-          "aktywnosc": 85.2,
+          "frekwencja": 93.8,
+          "aktywnosc": 86.8,
           "zgodnosc_z_klubem": 77.9,
-          "votes_za": 157,
-          "votes_przeciw": 22,
-          "votes_wstrzymal": 52,
+          "votes_za": 164,
+          "votes_przeciw": 26,
+          "votes_wstrzymal": 54,
           "votes_brak": 19,
           "votes_nieobecny": 10,
-          "votes_total": 271,
-          "rebellion_count": 51,
+          "votes_total": 281,
+          "rebellion_count": 54,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -1678,6 +1733,24 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-03-24",
+              "topic": "Wygenerowano za pomocą app.esesja.pl Przyjęcie protokołu z XXI sesji Sejmiku.",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Przyjęcie Stanowiska Sejmiku Województwa Podlaskiego w sprawie Strategii ochrony obszarów wodno-błotnych w Polsce wraz z Planem działań.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Podlaskiego na lata 2026 – 2041. /Druk Nr 344/.",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2026-02-24",
               "topic": "Przyjęcie protokołu z XX sesji Sejmiku.",
               "their_vote": "za",
@@ -1714,21 +1787,33 @@
           "slug": "cezary-cieslukowski",
           "club": "TD",
           "frekwencja": 100.0,
-          "aktywnosc": 104.1,
-          "zgodnosc_z_klubem": 99.6,
-          "votes_za": 258,
-          "votes_przeciw": 23,
-          "votes_wstrzymal": 1,
+          "aktywnosc": 105.0,
+          "zgodnosc_z_klubem": 99.0,
+          "votes_za": 268,
+          "votes_przeciw": 24,
+          "votes_wstrzymal": 3,
           "votes_brak": 4,
           "votes_nieobecny": 0,
-          "votes_total": 271,
-          "rebellion_count": 1,
+          "votes_total": 281,
+          "rebellion_count": 3,
           "rebellions": [
             {
               "session": "2025-09-23",
               "topic": "Rozpatrzenie projektu uchwały w sprawie przyjęcia rezygnacji Wiceprzewodniczącego Sejmiku Województwa Podlaskiego. /Druk Nr 276/.",
               "their_vote": "za",
               "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie udzielenia pomocy finansowej jednostkom samorządu terytorialnego w formie dotacji celowej na dofinansowanie przedsięwzięć międzynarodowych w ramach Konkursu pn.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie przystąpienia Województwa Podlaskiego do Europejskiej Sieci Współpracy Regionów w Zakresie Badań i Innowacji – ERRIN (European Regions Research and Innovation N",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ]
         },
@@ -1736,16 +1821,16 @@
           "name": "Igor Łukaszuk",
           "slug": "igor-ukaszuk",
           "club": "KO",
-          "frekwencja": 93.3,
-          "aktywnosc": 91.5,
-          "zgodnosc_z_klubem": 99.2,
-          "votes_za": 223,
+          "frekwencja": 93.8,
+          "aktywnosc": 92.2,
+          "zgodnosc_z_klubem": 98.8,
+          "votes_za": 233,
           "votes_przeciw": 22,
-          "votes_wstrzymal": 3,
+          "votes_wstrzymal": 4,
           "votes_brak": 22,
           "votes_nieobecny": 5,
-          "votes_total": 271,
-          "rebellion_count": 2,
+          "votes_total": 281,
+          "rebellion_count": 3,
           "rebellions": [
             {
               "session": "2024-11-26",
@@ -1758,6 +1843,12 @@
               "topic": "Przyjęcie protokołu z VIII sesji Sejmiku.",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Wygenerowano za pomocą app.esesja.pl Przyjęcie protokołu z XXI sesji Sejmiku.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ]
         },
@@ -1765,15 +1856,15 @@
           "name": "Jacek Piorunek",
           "slug": "jacek-piorunek",
           "club": "KO",
-          "frekwencja": 93.3,
-          "aktywnosc": 87.1,
+          "frekwencja": 93.8,
+          "aktywnosc": 87.5,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 214,
+          "votes_za": 224,
           "votes_przeciw": 22,
           "votes_wstrzymal": 0,
           "votes_brak": 12,
           "votes_nieobecny": 21,
-          "votes_total": 271,
+          "votes_total": 281,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -1781,15 +1872,15 @@
           "name": "Jarosław Dworzański",
           "slug": "jarosaw-dworzanski",
           "club": "KO",
-          "frekwencja": 93.3,
-          "aktywnosc": 90.4,
+          "frekwencja": 93.8,
+          "aktywnosc": 90.7,
           "zgodnosc_z_klubem": 98.0,
-          "votes_za": 221,
+          "votes_za": 231,
           "votes_przeciw": 21,
           "votes_wstrzymal": 3,
           "votes_brak": 9,
           "votes_nieobecny": 19,
-          "votes_total": 271,
+          "votes_total": 281,
           "rebellion_count": 5,
           "rebellions": [
             {
@@ -1829,14 +1920,14 @@
           "slug": "jerzy-leszczynski",
           "club": "TD",
           "frekwencja": 100.0,
-          "aktywnosc": 101.5,
-          "zgodnosc_z_klubem": 98.2,
-          "votes_za": 250,
-          "votes_przeciw": 23,
+          "aktywnosc": 101.8,
+          "zgodnosc_z_klubem": 98.3,
+          "votes_za": 260,
+          "votes_przeciw": 24,
           "votes_wstrzymal": 2,
           "votes_brak": 9,
           "votes_nieobecny": 1,
-          "votes_total": 271,
+          "votes_total": 281,
           "rebellion_count": 5,
           "rebellions": [
             {
@@ -1876,14 +1967,14 @@
           "slug": "karol-pilecki",
           "club": "KO",
           "frekwencja": 100.0,
-          "aktywnosc": 79.3,
+          "aktywnosc": 80.1,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 191,
+          "votes_za": 201,
           "votes_przeciw": 23,
           "votes_wstrzymal": 1,
-          "votes_brak": 53,
+          "votes_brak": 54,
           "votes_nieobecny": 9,
-          "votes_total": 271,
+          "votes_total": 281,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -1892,15 +1983,15 @@
           "slug": "leszek-dec",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 100.0,
-          "zgodnosc_z_klubem": 88.2,
-          "votes_za": 190,
-          "votes_przeciw": 35,
-          "votes_wstrzymal": 46,
+          "aktywnosc": 101.4,
+          "zgodnosc_z_klubem": 87.7,
+          "votes_za": 194,
+          "votes_przeciw": 39,
+          "votes_wstrzymal": 52,
           "votes_brak": 18,
           "votes_nieobecny": 3,
-          "votes_total": 271,
-          "rebellion_count": 32,
+          "votes_total": 281,
+          "rebellion_count": 35,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -2089,6 +2180,24 @@
               "club_majority": "przeciw"
             },
             {
+              "session": "2026-03-24",
+              "topic": "Przyjęcie Stanowiska Sejmiku Województwa Podlaskiego w sprawie Strategii ochrony obszarów wodno-błotnych w Polsce wraz z Planem działań.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie udzielenia pomocy finansowej jednostkom samorządu terytorialnego w formie dotacji celowej na dofinansowanie przedsięwzięć międzynarodowych w ramach Konkursu pn.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie przystąpienia Województwa Podlaskiego do Europejskiej Sieci Współpracy Regionów w Zakresie Badań i Innowacji – ERRIN (European Regions Research and Innovation N",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
               "session": "2026-02-24",
               "topic": "Przyjęcie protokołu z XX sesji Sejmiku.",
               "their_vote": "za",
@@ -2101,15 +2210,15 @@
           "slug": "marek-malinowski",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 103.0,
-          "zgodnosc_z_klubem": 74.6,
-          "votes_za": 255,
+          "aktywnosc": 102.8,
+          "zgodnosc_z_klubem": 73.7,
+          "votes_za": 265,
           "votes_przeciw": 21,
           "votes_wstrzymal": 3,
-          "votes_brak": 5,
+          "votes_brak": 6,
           "votes_nieobecny": 1,
-          "votes_total": 271,
-          "rebellion_count": 71,
+          "votes_total": 281,
+          "rebellion_count": 76,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -2514,6 +2623,36 @@
               "club_majority": "wstrzymal_sie"
             },
             {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Podlaskiego na lata 2026 – 2041. /Druk Nr 344/.",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie uchwalenia budżetu województwa podlaskiego na rok 2026. /Druk Nr 352/.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian w budżecie województwa podlaskiego na 2026 rok. /Druk Nr 345/. wraz z autopoprawkami.",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie udzielenia pomocy finansowej jednostkom samorządu terytorialnego w formie dotacji celowej na dofinansowanie przedsięwzięć międzynarodowych w ramach Konkursu pn.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie przystąpienia Województwa Podlaskiego do Europejskiej Sieci Współpracy Regionów w Zakresie Badań i Innowacji – ERRIN (European Regions Research and Innovation N",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
               "session": "2026-02-24",
               "topic": "Przyjęcie protokołu z XX sesji Sejmiku.",
               "their_vote": "za",
@@ -2544,15 +2683,15 @@
           "slug": "marek-olbrys",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 91.5,
-          "zgodnosc_z_klubem": 84.7,
-          "votes_za": 175,
-          "votes_przeciw": 41,
-          "votes_wstrzymal": 32,
-          "votes_brak": 26,
+          "aktywnosc": 92.5,
+          "zgodnosc_z_klubem": 84.2,
+          "votes_za": 180,
+          "votes_przeciw": 44,
+          "votes_wstrzymal": 36,
+          "votes_brak": 27,
           "votes_nieobecny": 2,
-          "votes_total": 271,
-          "rebellion_count": 38,
+          "votes_total": 281,
+          "rebellion_count": 41,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -2759,6 +2898,24 @@
               "club_majority": "wstrzymal_sie"
             },
             {
+              "session": "2026-03-24",
+              "topic": "Wniosek formalny o zmianę porządku obrad. Wniosek o zdjęcie z porządku obrad pkt 12: Rozpatrzenie projektu uchwały w sprawie rozpatrzenia petycji dotyczącej wykreślenia z „Planu Gospodarki Odpadami Wo",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Przyjęcie Stanowiska Sejmiku Województwa Podlaskiego w sprawie Strategii ochrony obszarów wodno-błotnych w Polsce wraz z Planem działań.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Podlaskiego na lata 2026 – 2041. /Druk Nr 344/.",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2026-02-24",
               "topic": "Przyjęcie protokołu z XX sesji Sejmiku.",
               "their_vote": "za",
@@ -2789,15 +2946,15 @@
           "slug": "mariusz-gromko",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 97.8,
-          "zgodnosc_z_klubem": 88.7,
-          "votes_za": 178,
-          "votes_przeciw": 40,
-          "votes_wstrzymal": 47,
+          "aktywnosc": 98.2,
+          "zgodnosc_z_klubem": 88.4,
+          "votes_za": 182,
+          "votes_przeciw": 44,
+          "votes_wstrzymal": 50,
           "votes_brak": 9,
-          "votes_nieobecny": 14,
-          "votes_total": 271,
-          "rebellion_count": 30,
+          "votes_nieobecny": 17,
+          "votes_total": 281,
+          "rebellion_count": 32,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -2974,6 +3131,18 @@
               "club_majority": "wstrzymal_sie"
             },
             {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian w budżecie województwa podlaskiego na 2026 rok. /Druk Nr 345/. wraz z autopoprawkami.",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie przystąpienia Województwa Podlaskiego do Europejskiej Sieci Współpracy Regionów w Zakresie Badań i Innowacji – ERRIN (European Regions Research and Innovation N",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
               "session": "2026-02-24",
               "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie wyboru przedstawicieli do Rady Społecznej działającej w Wojewódzkim Ośrodku Profilaktyki i Terapii Uzależnień w Łomży. /Druk Nr 338/.",
               "their_vote": "wstrzymal_sie",
@@ -2986,15 +3155,15 @@
           "slug": "mikoaj-janowski",
           "club": "TD",
           "frekwencja": 100.0,
-          "aktywnosc": 95.9,
-          "zgodnosc_z_klubem": 95.8,
-          "votes_za": 233,
-          "votes_przeciw": 23,
-          "votes_wstrzymal": 4,
-          "votes_brak": 5,
+          "aktywnosc": 96.4,
+          "zgodnosc_z_klubem": 95.2,
+          "votes_za": 241,
+          "votes_przeciw": 25,
+          "votes_wstrzymal": 5,
+          "votes_brak": 6,
           "votes_nieobecny": 22,
-          "votes_total": 271,
-          "rebellion_count": 11,
+          "votes_total": 281,
+          "rebellion_count": 13,
           "rebellions": [
             {
               "session": "2024-10-29",
@@ -3061,6 +3230,18 @@
               "topic": "Rozpatrzenie projektu uchwały w sprawie dokonania zmian w składzie osobowym Komisji Rewizyjnej Sejmiku Województwa Podlaskiego. /Druk Nr 400/.",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Wniosek formalny o zmianę porządku obrad. Wniosek o zdjęcie z porządku obrad pkt 12: Rozpatrzenie projektu uchwały w sprawie rozpatrzenia petycji dotyczącej wykreślenia z „Planu Gospodarki Odpadami Wo",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie przystąpienia Województwa Podlaskiego do Europejskiej Sieci Współpracy Regionów w Zakresie Badań i Innowacji – ERRIN (European Regions Research and Innovation N",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ]
         },
@@ -3068,16 +3249,16 @@
           "name": "Paweł Wnukowski",
           "slug": "pawe-wnukowski",
           "club": "PiS",
-          "frekwencja": 86.7,
-          "aktywnosc": 86.0,
-          "zgodnosc_z_klubem": 73.4,
+          "frekwencja": 87.5,
+          "aktywnosc": 84.7,
+          "zgodnosc_z_klubem": 72.7,
           "votes_za": 118,
-          "votes_przeciw": 51,
-          "votes_wstrzymal": 64,
-          "votes_brak": 31,
-          "votes_nieobecny": 3,
-          "votes_total": 271,
-          "rebellion_count": 62,
+          "votes_przeciw": 53,
+          "votes_wstrzymal": 67,
+          "votes_brak": 36,
+          "votes_nieobecny": 4,
+          "votes_total": 281,
+          "rebellion_count": 65,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -3410,6 +3591,24 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-03-24",
+              "topic": "Wniosek formalny o zmianę porządku obrad. Wniosek o zdjęcie z porządku obrad pkt 12: Rozpatrzenie projektu uchwały w sprawie rozpatrzenia petycji dotyczącej wykreślenia z „Planu Gospodarki Odpadami Wo",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Przyjęcie porządku obrad.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Podlaskiego na lata 2026 – 2041. /Druk Nr 344/.",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2026-02-24",
               "topic": "Rozpatrzenie projektu uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Podlaskiego na lata 2026 – 2041. /Druk Nr 332/.",
               "their_vote": "przeciw",
@@ -3457,15 +3656,15 @@
           "name": "Rafał Supiński",
           "slug": "rafa-supinski",
           "club": "PiS",
-          "frekwencja": 93.3,
-          "aktywnosc": 88.2,
-          "zgodnosc_z_klubem": 87.4,
-          "votes_za": 158,
-          "votes_przeciw": 41,
-          "votes_wstrzymal": 40,
+          "frekwencja": 93.8,
+          "aktywnosc": 89.7,
+          "zgodnosc_z_klubem": 88.1,
+          "votes_za": 163,
+          "votes_przeciw": 46,
+          "votes_wstrzymal": 43,
           "votes_brak": 20,
           "votes_nieobecny": 13,
-          "votes_total": 271,
+          "votes_total": 281,
           "rebellion_count": 30,
           "rebellions": [
             {
@@ -3655,14 +3854,14 @@
           "slug": "robert-jabonski",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 95.6,
-          "zgodnosc_z_klubem": 89.2,
-          "votes_za": 183,
-          "votes_przeciw": 45,
-          "votes_wstrzymal": 31,
-          "votes_brak": 31,
-          "votes_nieobecny": 3,
-          "votes_total": 271,
+          "aktywnosc": 94.7,
+          "zgodnosc_z_klubem": 89.5,
+          "votes_za": 186,
+          "votes_przeciw": 47,
+          "votes_wstrzymal": 33,
+          "votes_brak": 34,
+          "votes_nieobecny": 5,
+          "votes_total": 281,
           "rebellion_count": 28,
           "rebellions": [
             {
@@ -3839,15 +4038,15 @@
           "name": "Stanisław Derehajło",
           "slug": "stanisaw-derehajo",
           "club": "Konf",
-          "frekwencja": 93.3,
-          "aktywnosc": 94.8,
+          "frekwencja": 93.8,
+          "aktywnosc": 96.4,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 216,
-          "votes_przeciw": 14,
-          "votes_wstrzymal": 27,
+          "votes_za": 226,
+          "votes_przeciw": 17,
+          "votes_wstrzymal": 28,
           "votes_brak": 5,
           "votes_nieobecny": 27,
-          "votes_total": 271,
+          "votes_total": 281,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -3856,14 +4055,14 @@
           "slug": "tomasz-madras",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 96.3,
-          "zgodnosc_z_klubem": 82.8,
-          "votes_za": 155,
-          "votes_przeciw": 41,
-          "votes_wstrzymal": 65,
+          "aktywnosc": 97.9,
+          "zgodnosc_z_klubem": 83.6,
+          "votes_za": 161,
+          "votes_przeciw": 46,
+          "votes_wstrzymal": 68,
           "votes_brak": 19,
           "votes_nieobecny": 14,
-          "votes_total": 271,
+          "votes_total": 281,
           "rebellion_count": 45,
           "rebellions": [
             {
@@ -4142,15 +4341,15 @@
           "name": "Waldemar Kwaterski",
           "slug": "waldemar-kwaterski",
           "club": "KO",
-          "frekwencja": 86.7,
+          "frekwencja": 87.5,
           "aktywnosc": 89.3,
           "zgodnosc_z_klubem": 99.6,
-          "votes_za": 221,
+          "votes_za": 230,
           "votes_przeciw": 20,
           "votes_wstrzymal": 1,
           "votes_brak": 13,
-          "votes_nieobecny": 17,
-          "votes_total": 271,
+          "votes_nieobecny": 19,
+          "votes_total": 281,
           "rebellion_count": 1,
           "rebellions": [
             {
@@ -4166,15 +4365,15 @@
           "slug": "wanda-mieczkowska",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 101.8,
-          "zgodnosc_z_klubem": 88.4,
-          "votes_za": 189,
-          "votes_przeciw": 46,
-          "votes_wstrzymal": 41,
+          "aktywnosc": 102.8,
+          "zgodnosc_z_klubem": 87.9,
+          "votes_za": 196,
+          "votes_przeciw": 50,
+          "votes_wstrzymal": 43,
           "votes_brak": 16,
           "votes_nieobecny": 0,
-          "votes_total": 271,
-          "rebellion_count": 32,
+          "votes_total": 281,
+          "rebellion_count": 35,
           "rebellions": [
             {
               "session": "2024-12-20",
@@ -4357,6 +4556,24 @@
               "club_majority": "wstrzymal_sie"
             },
             {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian Wieloletniej Prognozy Finansowej Województwa Podlaskiego na lata 2026 – 2041. /Druk Nr 344/.",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie zmian w budżecie województwa podlaskiego na 2026 rok. /Druk Nr 345/. wraz z autopoprawkami.",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Rozpatrzenie projektu uchwały w sprawie przystąpienia Województwa Podlaskiego do Europejskiej Sieci Współpracy Regionów w Zakresie Badań i Innowacji – ERRIN (European Regions Research and Innovation N",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
               "session": "2026-02-24",
               "topic": "Rozpatrzenie projektu uchwały zmieniającej uchwałę w sprawie wyboru przedstawicieli do Rady Społecznej działającej w Wojewódzkim Ośrodku Profilaktyki i Terapii Uzależnień w Łomży. /Druk Nr 338/.",
               "their_vote": "wstrzymal_sie",
@@ -4374,15 +4591,15 @@
           "name": "Wiesława Burnos",
           "slug": "wiesawa-burnos",
           "club": "PiS",
-          "frekwencja": 100.0,
-          "aktywnosc": 101.1,
+          "frekwencja": 93.8,
+          "aktywnosc": 97.5,
           "zgodnosc_z_klubem": 74.1,
           "votes_za": 253,
           "votes_przeciw": 21,
           "votes_wstrzymal": 0,
           "votes_brak": 7,
-          "votes_nieobecny": 2,
-          "votes_total": 271,
+          "votes_nieobecny": 12,
+          "votes_total": 281,
           "rebellion_count": 71,
           "rebellions": [
             {
@@ -4818,14 +5035,14 @@
           "slug": "wojciech-grochowski",
           "club": "TD",
           "frekwencja": 100.0,
-          "aktywnosc": 103.0,
-          "zgodnosc_z_klubem": 98.9,
-          "votes_za": 253,
-          "votes_przeciw": 24,
+          "aktywnosc": 103.2,
+          "zgodnosc_z_klubem": 99.0,
+          "votes_za": 263,
+          "votes_przeciw": 25,
           "votes_wstrzymal": 2,
           "votes_brak": 9,
           "votes_nieobecny": 1,
-          "votes_total": 271,
+          "votes_total": 281,
           "rebellion_count": 3,
           "rebellions": [
             {
@@ -4853,15 +5070,15 @@
           "slug": "ukasz-nazarko",
           "club": "TD",
           "frekwencja": 100.0,
-          "aktywnosc": 103.0,
-          "zgodnosc_z_klubem": 96.8,
-          "votes_za": 250,
-          "votes_przeciw": 24,
+          "aktywnosc": 102.5,
+          "zgodnosc_z_klubem": 96.2,
+          "votes_za": 258,
+          "votes_przeciw": 25,
           "votes_wstrzymal": 5,
           "votes_brak": 11,
-          "votes_nieobecny": 0,
-          "votes_total": 271,
-          "rebellion_count": 9,
+          "votes_nieobecny": 2,
+          "votes_total": 281,
+          "rebellion_count": 11,
           "rebellions": [
             {
               "session": "2024-10-29",
@@ -4916,6 +5133,18 @@
               "topic": "Rozpatrzenie projektu uchwały w sprawie dokonania zmian w składzie osobowym Komisji Rewizyjnej Sejmiku Województwa Podlaskiego. /Druk Nr 400/.",
               "their_vote": "przeciw",
               "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Wygenerowano za pomocą app.esesja.pl Przyjęcie protokołu z XXI sesji Sejmiku.",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Przyjęcie Stanowiska Sejmiku Województwa Podlaskiego w sprawie Strategii ochrony obszarów wodno-błotnych w Polsce wraz z Planem działań.",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             }
           ]
         },
@@ -4924,15 +5153,15 @@
           "slug": "ukasz-prokorym",
           "club": "KO",
           "frekwencja": 100.0,
-          "aktywnosc": 98.2,
-          "zgodnosc_z_klubem": 98.5,
-          "votes_za": 242,
+          "aktywnosc": 98.6,
+          "zgodnosc_z_klubem": 98.2,
+          "votes_za": 252,
           "votes_przeciw": 23,
-          "votes_wstrzymal": 1,
+          "votes_wstrzymal": 2,
           "votes_brak": 13,
           "votes_nieobecny": 5,
-          "votes_total": 271,
-          "rebellion_count": 4,
+          "votes_total": 281,
+          "rebellion_count": 5,
           "rebellions": [
             {
               "session": "2024-10-29",
@@ -4957,6 +5186,12 @@
               "topic": "Przyjęcie Stanowiska Sejmiku Województwa Podlaskiego w zakresie wsparcia przez Prezydenta Rzeczpospolitej Polskiej inicjatyw ustawodawczych mających na celu przedłużenie terminu przedłożenia właściwej",
               "their_vote": "za",
               "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-03-24",
+              "topic": "Wygenerowano za pomocą app.esesja.pl Przyjęcie protokołu z XXI sesji Sejmiku.",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ]
         },
@@ -4965,14 +5200,14 @@
           "slug": "ukasz-siekierko",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 72.0,
-          "zgodnosc_z_klubem": 87.2,
-          "votes_za": 127,
-          "votes_przeciw": 30,
-          "votes_wstrzymal": 38,
+          "aktywnosc": 73.7,
+          "zgodnosc_z_klubem": 87.9,
+          "votes_za": 132,
+          "votes_przeciw": 34,
+          "votes_wstrzymal": 41,
           "votes_brak": 47,
           "votes_nieobecny": 19,
-          "votes_total": 271,
+          "votes_total": 281,
           "rebellion_count": 25,
           "rebellions": [
             {
