@@ -46,6 +46,21 @@ def make_page(main_html, canonical_url, title, description, og_image=None, extra
     """Create a page variant with unique SEO tags and optional body content."""
     h = main_html
 
+    # Usuń homepage'owy blok SEO ({{SEO_CONTENT}} = <section id="seo-content">…)
+    # wstrzyknięty do index.html dla strony głównej. Na prerenderowanych
+    # podstronach (profil/sesja/głosowanie) jego treść (landing miasta) nie ma
+    # sensu i kolidowała id="seo-content" z blokiem per-strona niżej — przez co
+    # zostawała widoczna po hydratacji. Strona główna (/) zachowuje swój blok,
+    # bo nie przechodzi przez make_page.
+    h = re.sub(
+        r'<section id="seo-content">.*?</section>\s*'
+        r'<script>var _sc=document\.getElementById\("seo-content"\);'
+        r'if\(_sc\)_sc\.style\.display="none";</script>\s*',
+        '',
+        h,
+        flags=re.S,
+    )
+
     # Replace canonical
     h = re.sub(
         r'<link rel="canonical" href="[^"]*">',

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>{% include "partials/head.html" %}<style>{% include "app/app.css" %}</style>
+<style id="rdsk-club">{{CLUB_CSS}}</style>
 </head>
 <body>
 <nav class="topbar" aria-label="Główna nawigacja">
@@ -446,8 +447,10 @@ async function init() {
     await loadKadencja(initialKid);
 
     document.getElementById('loading').style.display = 'none';
-    var _sc = document.getElementById('seo-content');
-    if (_sc) _sc.remove();
+    // Usuń WSZYSTKIE #seo-content (może być duplikat: homepage blok SEO
+    // + per-strona blok z generate_seo_pages). getElementById brałby tylko
+    // pierwszy, zostawiając drugi widoczny na profilu/sesji/głosowaniu.
+    document.querySelectorAll('#seo-content').forEach(function(e){ e.remove(); });
     document.getElementById('app').style.display = 'block';
     renderKadencjaBar();
     // Deep links
@@ -1164,7 +1167,6 @@ function renderClubFilter() {
 }
 
 {{CLUB_JS}}
-}
 function initials(name) {
   return name.split(' ').map(w => w[0]).join('').substring(0,2);
 }

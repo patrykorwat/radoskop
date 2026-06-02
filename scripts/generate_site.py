@@ -296,12 +296,13 @@ def generate_club_js(clubs: dict) -> str:
     names = list(clubs.keys())
 
     if not clubs:
-        # No clubs defined: return safe fallback functions
-        # NOTE: clubClass is left without closing } — the template provides it
+        # No clubs defined: return safe fallback functions. Self-contained
+        # (clubClass domknięte) — od splitu na data.js blok klubowy musi być
+        # kompletny; szablon nie dokleja już zamykającego }.
         return (
             "function clubColor(club) {\n  return 'var(--muted)';\n}\n"
             "function clubBg(club) {\n  return '#374151';\n}\n"
-            "function clubClass(club) {\n  return 'club-unknown';"
+            "function clubClass(club) {\n  return 'club-unknown';\n}"
         )
 
     # clubColor — uses color_var if available, falls back to color
@@ -317,7 +318,7 @@ def generate_club_js(clubs: dict) -> str:
 
     # clubClass
     names_js = "[" + ",".join(f"'{n}'" for n in names) + "]"
-    club_class = f"function clubClass(club) {{\n  return {names_js}.includes(club) ? `club-${{club}}` : 'club-unknown';"
+    club_class = f"function clubClass(club) {{\n  return {names_js}.includes(club) ? `club-${{club}}` : 'club-unknown';\n}}"
 
     return f"{club_color}\n{club_bg}\n{club_class}"
 
@@ -697,6 +698,201 @@ def _build_vote_cats_extra_js(config: dict) -> str:
     return _json.dumps(extra, ensure_ascii=False)
 
 
+# Token-y per-miasto żyjące w dwóch dużych <script> body. Rozbicie kontekstowe:
+# - BARE: deklaracje `const X = {{T}};` / `Object.assign(.., {{T}})` → CFG.x goły.
+# - BACKTICK: token w template-literal (`..${..}..`) → ${CFG.x}. Celujemy w
+#   stabilne delimitery (nie polski tekst), bo apply_locale tłumaczy otoczenie.
+# - SQ (reszta): token w stringu '...' → ' + CFG.x + ' (puste konkatenacje
+#   nieszkodliwe). Po BARE+BACKTICK wszystkie pozostałe wystąpienia są SQ.
+_CFG_BARE = {
+    "{{HAS_VOTING_DATA}}": "CFG.hasVotingData",
+    "{{HAS_SPEAKER_ACTIVITY}}": "CFG.hasSpeakerActivity",
+    "{{HAS_COUNCILORS}}": "CFG.hasCouncilors",
+    "{{COUNCILOR_ROSTER_MODE}}": "CFG.councilorRosterMode",
+    "{{CAT_RULES_JS}}": "CFG.catRules",
+    "{{KIND_CATS_JS}}": "CFG.kindCats",
+    "{{VOTE_CATS_EXTRA_JS}}": "CFG.voteCatsExtra",
+}
+_CFG_BACKTICK = [
+    ("{{BIP_NAME}}", "${CFG.bipName}"),       # tylko w backticku budżetu
+    ("{{BUDGET_NOTE}}", "${CFG.budgetNote}"),  # tylko w backticku budżetu
+    ('<iframe src="{{SITE_URL}}', '<iframe src="${CFG.siteUrl}'),
+    ('title="Radoskop {{CITY_NAME}}"></iframe>', 'title="Radoskop ${CFG.cityName}"></iframe>'),
+]
+_CFG_SQ = {
+    "{{SITE_URL}}": "CFG.siteUrl",
+    "{{CITY_NAME}}": "CFG.cityName",
+    "{{CITY_GENITIVE}}": "CFG.cityGenitive",
+    "{{CITY_SLUG}}": "CFG.citySlug",
+    "{{SITE_DESCRIPTION}}": "CFG.siteDescription",
+    "{{SITE_TITLE}}": "CFG.siteTitle",
+    "{{IMPRESSUM_HTML}}": "CFG.impressumHtml",
+    "{{ROOT_HOST}}": "CFG.rootHost",
+}
+
+
+def split_js_to_cfg(html: str, big_min_bytes: int = 2000) -> str:
+    """Przepisz per-miasto tokeny w dużych body <script> na odwołania `CFG.x`,
+    żeby kod aplikacji stał się bajt-identyczny między miastami tej samej locale
+    (per-miasto wartości jadą osobno w data.js jako window.__CFG).
+
+    Wołane PO apply_locale (tłumaczenia trzymają tokeny intact) i PRZED pętlą
+    podstawień, więc te tokeny nie zostaną wypełnione literałami w JS. Tokeny w
+    HTML (nav/footer/head, SEO_CONTENT) zostają nietknięte i wypełniane normalnie.
+    Usuwa też `{{CLUB_JS}}` z app-bloku (funkcje klubowe lecą do data.js).
+    """
+    import re as _re
+    hi = html.find("</head>")
+    if hi == -1:
+        return html
+    head, body = html[:hi], html[hi:]
+
+    def _t(m):
+        c = m.group(1)
+        if len(c.encode("utf-8")) < big_min_bytes:
+            return m.group(0)
+        for k, v in _CFG_BARE.items():
+            c = c.replace(k, v)
+        for k, v in _CFG_BACKTICK:
+            c = c.replace(k, v)
+        for k, v in _CFG_SQ.items():
+            c = c.replace(k, "' + " + v + " + '")
+        if "Cross-subdomain cookie helpers" in c:
+            c = "\nconst CFG = window.__CFG;\n" + c
+            c = c.replace("{{CLUB_JS}}\n", "")
+        return "<script>" + c + "</script>"
+
+    body = _re.sub(r"<script>(.*?)</script>", _t, body, flags=_re.S)
+    return head + body
+
+
+def build_cfg_data_js(replacements: dict) -> str:
+    """Zbuduj zawartość data.js (window.__CFG + funkcje klubowe) z policzonych
+    wartości per-miasto. Skalary przez json.dumps (poprawny escaping niezależny
+    od kontekstu), bloki konfiguracji (CAT_RULES/KIND_CATS/VOTE_CATS_EXTRA) i
+    CLUB_JS wstrzykiwane jako surowy JS. `</script>` w wartościach escapowany."""
+    import json as _json
+
+    def s(tok: str) -> str:
+        return _json.dumps(replacements.get(tok, ""), ensure_ascii=False)
+
+    def raw(tok: str) -> str:
+        return replacements.get(tok, "{}") or "{}"
+
+    def b(tok: str) -> str:
+        return "true" if replacements.get(tok) == "true" else "false"
+
+    obj = (
+        "window.__CFG={"
+        f'"siteUrl":{s("{{SITE_URL}}")},'
+        f'"cityName":{s("{{CITY_NAME}}")},'
+        f'"citySlug":{s("{{CITY_SLUG}}")},'
+        f'"cityGenitive":{s("{{CITY_GENITIVE}}")},'
+        f'"siteTitle":{s("{{SITE_TITLE}}")},'
+        f'"siteDescription":{s("{{SITE_DESCRIPTION}}")},'
+        f'"bipName":{s("{{BIP_NAME}}")},'
+        f'"rootHost":{s("{{ROOT_HOST}}")},'
+        f'"budgetNote":{s("{{BUDGET_NOTE}}")},'
+        f'"impressumHtml":{s("{{IMPRESSUM_HTML}}")},'
+        f'"hasVotingData":{b("{{HAS_VOTING_DATA}}")},'
+        f'"hasSpeakerActivity":{b("{{HAS_SPEAKER_ACTIVITY}}")},'
+        f'"hasCouncilors":{b("{{HAS_COUNCILORS}}")},'
+        f'"councilorRosterMode":{b("{{COUNCILOR_ROSTER_MODE}}")},'
+        f'"catRules":{raw("{{CAT_RULES_JS}}")},'
+        f'"kindCats":{raw("{{KIND_CATS_JS}}")},'
+        f'"voteCatsExtra":{raw("{{VOTE_CATS_EXTRA_JS}}")}'
+        "};\n"
+    )
+    club = replacements.get("{{CLUB_JS}}", "")
+    out = obj + club
+    return out.replace("</script>", "<\\/script>")
+
+
+def externalize_assets(html: str, output_dir: Path, asset_base: str = "/assets",
+                       js_min_bytes: int = 2000, css_min_bytes: int = 1000) -> str:
+    """Wynieś duże inline <style>/<script> ze szkieletu do /assets/, żeby 70k
+    prerenderowanych stron SEO przestało nosić ~248KB zduplikowanego CSS/JS.
+
+    Trzy pliki:
+      /assets/data.js  — window.__CFG + funkcje klubowe (per-miasto, ~3KB);
+                          oznaczony `<script data-rdsk-cfg>`, ładowany pierwszy.
+      /assets/app.js   — wspólny kod aplikacji (+ auth), bajt-identyczny między
+                          miastami tej samej locale.
+      /assets/app.css  — wspólny CSS (app.css + landing-view).
+
+    Bezpieczne z konstrukcji:
+      - NIE rusza <script> w <head> (anti-FOUC) ani JSON-LD (type=...);
+      - zostawia inline małe skrypty (seo-hide `_sc`, < js_min_bytes) i mały
+        per-miasto <style> hide_css (< css_min_bytes), żeby regexy w
+        generate_seo_pages.make_page działały i żeby per-miasto CSS nie trafił
+        do wspólnego app.css;
+      - no-op gdy struktura nieoczekiwana.
+
+    Ścieżki STABILNE (bez hasha) → zmiana kodu/motywu rusza tylko /assets/*,
+    bajty 70k stron treści nietknięte → sync je pomija. Cache busting po stronie
+    deployu (purge /assets/* na Cloudflare; S3 wystawia ETag do rewalidacji).
+    """
+    import re as _re
+    hi = html.find("</head>")
+    if hi == -1:
+        return html
+    head, body = html[:hi], html[hi:]
+
+    # 1) Per-miasto data.js (oznaczony atrybutem, nie goły <script>).
+    data_js = {"content": None}
+
+    def _take_data(m):
+        data_js["content"] = m.group(1)
+        return f'<script defer src="{asset_base}/data.js"></script>'
+
+    body = _re.sub(r'<script data-rdsk-cfg>(.*?)</script>', _take_data, body, flags=_re.S)
+
+    # 2) CSS: tylko duże/wspólne bloki (app.css + landing-view); per-miasto
+    #    hide_css (<style>...{display:none}...</style>) zostaje inline.
+    css_parts: list[str] = []
+
+    def _take_css(m):
+        if len(m.group(1).encode("utf-8")) < css_min_bytes:
+            return m.group(0)
+        css_parts.append(m.group(1))
+        return ""
+
+    style_re = _re.compile(r"<style>(.*?)</style>", _re.S)
+    head = style_re.sub(_take_css, head)
+    body = style_re.sub(_take_css, body)
+
+    # 3) JS: duże gołe <script> (app + auth) → app.js.
+    js_parts: list[str] = []
+    placed = {"done": False}
+
+    def _take_js(m):
+        content = m.group(1)
+        if len(content.encode("utf-8")) < js_min_bytes:
+            return m.group(0)
+        js_parts.append(content)
+        if not placed["done"]:
+            placed["done"] = True
+            return f'<script defer src="{asset_base}/app.js"></script>'
+        return ""
+
+    body = _re.sub(r"<script>(.*?)</script>", _take_js, body, flags=_re.S)
+
+    if not css_parts and not js_parts and data_js["content"] is None:
+        return html
+
+    assets = output_dir / "assets"
+    assets.mkdir(parents=True, exist_ok=True)
+    if data_js["content"] is not None:
+        (assets / "data.js").write_text(data_js["content"], encoding="utf-8")
+    if css_parts:
+        (assets / "app.css").write_text("\n".join(css_parts), encoding="utf-8")
+        head = head + f'<link rel="stylesheet" href="{asset_base}/app.css">'
+    if js_parts:
+        (assets / "app.js").write_text("\n".join(js_parts), encoding="utf-8")
+
+    return head + body
+
+
 def generate_robots(config: dict) -> str:
     """Generate robots.txt."""
     return (
@@ -891,6 +1087,12 @@ def main():
             1,
         )
 
+    # Split per-miasto tokeny w JS na odwołania CFG.x ZANIM podstawimy literały.
+    # Po tym dwa duże <script> body są (per locale) bajt-identyczne między
+    # miastami; per-miasto wartości pójdą do data.js (window.__CFG) niżej.
+    # Tokeny HTML (nav/footer/head, SEO_CONTENT) zostają i wypełnia je pętla.
+    html = split_js_to_cfg(html)
+
     # Apply replacements
     for placeholder, value in replacements.items():
         html = html.replace(placeholder, value)
@@ -950,6 +1152,24 @@ def main():
     # Write output
     output_dir = Path(args.output)
     output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Wstrzyknij per-miasto data.js (window.__CFG + funkcje klubowe) tuż przed
+    # app-blokiem (marker `const CFG = window.__CFG;`), żeby z defer załadował
+    # się pierwszy. Wartości policzone (json.dumps skalarów), bez tokenów.
+    _data_js = build_cfg_data_js(replacements)
+    _app_marker = "<script>\nconst CFG = window.__CFG;"
+    if _app_marker in html:
+        html = html.replace(
+            _app_marker,
+            f"<script data-rdsk-cfg>{_data_js}</script>" + _app_marker,
+            1,
+        )
+
+    # Wynieś wspólny CSS/JS do /assets/, zanim zapiszemy szkielet. Robione
+    # TUTAJ (na finalnym html) celowo: generate_seo_pages.py czyta ten
+    # docs/index.html i derywuje 70k stron, więc odchudzony szkielet
+    # automatycznie odchudza cały długi ogon.
+    html = externalize_assets(html, output_dir)
 
     # index.html
     with open(output_dir / "index.html", "w", encoding="utf-8") as f:
