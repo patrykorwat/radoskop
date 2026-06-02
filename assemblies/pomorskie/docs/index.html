@@ -569,7 +569,7 @@ footer a { color:var(--accent); text-decoration:none; }
 </head>
 <body>
 <nav class="topbar" aria-label="Główna nawigacja">
-  <a class="topbar-logo" href="/" onclick="if(window.showMain){event.preventDefault();showMain();}">Rado<span>skop</span> Pomorskie</a>
+  <a class="topbar-logo" href="/" onclick="if(window.showLanding){event.preventDefault();showLanding();}">Rado<span>skop</span> Pomorskie</a>
   <div class="topbar-nav">
     <a href="https://radoskop.eu/reports/">Raporty</a>
     <a href="https://radoskop.eu/business/">Business</a>
@@ -596,6 +596,11 @@ footer a { color:var(--accent); text-decoration:none; }
   
 
   <div id="loading">Ładowanie danych...</div>
+
+  <!-- SEO fallback dla "/" (client-rendered landing). Statyczny, zlokalizowany
+       build-time z landing_strings. Widoczny dla crawlerów bez JS; SPA chowa go
+       inline-scriptem przy parsowaniu i usuwa w init(). -->
+  <section id="seo-content"><h1>Sejmik Województwa Pomorskiego</h1><p>Pełny rejestr jest otwarty i darmowy. Zobacz, jak głosował radny z Twojego okręgu, i porównaj go z resztą rady.</p><nav aria-label="Główna nawigacja"><a href="/councillors/">Lista radnych</a><a href="/interpellations/">Interpelacje</a><a href="/budget/">Budżety</a><a href="/committees/">Komisje</a></nav></section><script>var _sc=document.getElementById("seo-content");if(_sc)_sc.style.display="none";</script>
 
   <!-- Main dashboard view -->
   <div id="app" style="display:none">
@@ -714,6 +719,56 @@ footer a { color:var(--accent); text-decoration:none; }
   <!-- Reports catalog view -->
   <div id="reports-view" style="display:none"></div>
 
+  <!-- Landing (strona główna) — widok renderowany client-side z danych kadencji -->
+  <style>
+  #landing-view .lp-hero { padding:48px 0 36px; border-bottom:1px solid var(--border); }
+  #landing-view .lp-eyebrow { font-size:.8rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+  #landing-view .lp-h1 { font-size:2.6rem; font-weight:800; line-height:1.1; letter-spacing:-.02em; }
+  #landing-view .lp-h1 .hl { color:var(--accent); }
+  #landing-view .lp-insight { margin-top:18px; font-size:1.25rem; line-height:1.4; font-weight:500; max-width:62ch; }
+  #landing-view .lp-insight strong { color:var(--accent); font-weight:700; }
+  #landing-view .lp-cta { margin-top:26px; display:flex; gap:12px; flex-wrap:wrap; }
+  #landing-view .lp-btn { display:inline-flex; align-items:center; gap:8px; padding:11px 18px; border-radius:10px; font-size:.92rem; font-weight:600; text-decoration:none; border:1px solid transparent; cursor:pointer; }
+  #landing-view .lp-btn-p { background:var(--accent); color:#fff; }
+  #landing-view .lp-btn-g { background:transparent; color:var(--text); border-color:var(--border); }
+  #landing-view .lp-sec { margin:40px 0; }
+  #landing-view .lp-sec h2 { font-size:1.3rem; font-weight:700; margin-bottom:6px; }
+  #landing-view .lp-sub { color:var(--muted); font-size:.95rem; margin-bottom:18px; }
+  #landing-view .lp-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; }
+  #landing-view .lp-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 18px; }
+  #landing-view .lp-stat .v { font-size:2rem; font-weight:800; line-height:1.05; font-variant-numeric:tabular-nums; }
+  #landing-view .lp-stat .l { font-size:.82rem; color:var(--muted); margin-top:4px; }
+  #landing-view .lp-hl { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+  #landing-view .lp-hcard { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; display:flex; justify-content:space-between; align-items:flex-start; gap:14px; }
+  #landing-view .lp-tag { font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); }
+  #landing-view .lp-name { font-size:1.1rem; font-weight:700; margin-top:6px; }
+  #landing-view .lp-name a { color:inherit; text-decoration:none; }
+  #landing-view .lp-hsub { font-size:.85rem; color:var(--muted); margin-top:3px; }
+  #landing-view .lp-num { font-size:1.7rem; font-weight:800; line-height:1; font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right; }
+  #landing-view .lp-num small { font-size:.66rem; font-weight:600; color:var(--muted); display:block; margin-top:5px; }
+  #landing-view .lp-badge { display:inline-block; font-size:.7rem; font-weight:600; padding:2px 7px; border-radius:4px; margin-top:8px; }
+  #landing-view .lp-nav { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  #landing-view .lp-navcard { display:block; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; text-decoration:none; cursor:pointer; }
+  #landing-view .lp-navcard:hover { border-color:var(--accent); }
+  #landing-view .lp-navcard .nk { font-size:1.05rem; font-weight:700; color:var(--text); }
+  #landing-view .lp-navcard .nk .ar { color:var(--accent); }
+  #landing-view .lp-navcard .nd { font-size:.85rem; color:var(--muted); margin-top:5px; }
+  #landing-view .lp-navlabel { font-size:.72rem; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin:22px 0 10px; }
+  #landing-view .lp-spark { display:flex; align-items:flex-end; gap:3px; height:64px; }
+  #landing-view .lp-axis { display:flex; justify-content:space-between; font-size:.72rem; color:var(--muted); margin:5px 0 10px; }
+  #landing-view .lp-band { background:var(--surface); border:1px solid var(--border); border-top:4px solid var(--accent); border-radius:12px; padding:24px; text-align:center; }
+  #landing-view .lp-band h3 { font-size:1.4rem; font-weight:800; }
+  #landing-view .lp-band p { color:var(--muted); margin:8px auto 0; max-width:60ch; }
+  #landing-view .mu { color:var(--muted); }
+  #landing-view .lp-card table { width:100%; border-collapse:collapse; font-size:.9rem; }
+  #landing-view .lp-card th { text-align:left; padding:0 8px 9px 0; color:var(--muted); font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.05em; border-bottom:1px solid var(--border); white-space:nowrap; }
+  #landing-view .lp-card td { padding:10px 8px 10px 0; border-bottom:1px solid var(--border); }
+  #landing-view .lp-card a.name-link { color:inherit; text-decoration:none; }
+  #landing-view .lp-card a.name-link:hover { color:var(--accent); }
+  @media (max-width:760px){ #landing-view .lp-h1{font-size:1.9rem;} #landing-view .lp-nav,#landing-view .lp-hl{grid-template-columns:1fr;} }
+  </style>
+  <div id="landing-view" style="display:none"></div>
+
   <footer>
     <div style="margin-bottom:12px">
       <a href="https://radoskop.pl">Radoskop</a> · <a href="https://radoskop.pl#cities">wszystkie miasta</a> · <a href="https://x.com/radoskop" target="_blank" rel="noopener me">X (Twitter)</a>
@@ -806,9 +861,6 @@ const HAS_COUNCILORS = true;
 // profiles.json (nazwisko, klub, komisje) zamiast tabeli metryk, których tryb
 // faction nie ma (brak frekwencji/aktywności per radny).
 const COUNCILOR_ROSTER_MODE = false;
-// LANDING_MODE: / to statyczny landing, lista radnych na /councillors/.
-// SPA emituje wtedy ranking jako /councillors/ (mainPath), inaczej '/'.
-const LANDING_MODE = true;
 const DEFAULT_TAB = (HAS_COUNCILORS || COUNCILOR_ROSTER_MODE) ? 'ranking' : 'votes';
 
 let RAW = null;
@@ -972,9 +1024,26 @@ async function init() {
     await loadKadencja(initialKid);
 
     document.getElementById('loading').style.display = 'none';
+    var _sc = document.getElementById('seo-content');
+    if (_sc) _sc.remove();
     document.getElementById('app').style.display = 'block';
     renderKadencjaBar();
     // Deep links
+    // Strona główna "/" → widok landingu (renderowany z danych kadencji).
+    if (path === '/' || path === '') {
+      await selectKadencjaQuiet(initialKid);
+      showLanding();
+      return;
+    }
+    // Lista radnych "/councillors/" → tab ranking w #app.
+    if (path === '/councillors' || path === '/councillors/') {
+      await selectKadencjaQuiet(initialKid);
+      hideAllViews();
+      document.getElementById('app').style.display = 'block';
+      activateTab('ranking');
+      navigateTo('/councillors/', true);
+      return;
+    }
     if (path.startsWith('/profile/')) {
       const slug = path.replace('/profile/', '');
       const profile = PROFILES.profiles.find(p => p.slug === slug);
@@ -1102,14 +1171,6 @@ async function init() {
       navigateTo(toCanonicalPath(path), true);
       return;
     }
-    if (path === '/councillors' || path === '/councillors/') {
-      // LANDING_MODE: ranking radnych jest osobną statyczną stroną. Gdy SPA
-      // (app.html) trafi tu fallbackiem, pokazujemy tab ranking.
-      selectKadencjaQuiet(initialKid);
-      activateTab('ranking');
-      navigateTo(mainPath(), true);
-      return;
-    }
     if (path === '/budget' || path === '/budget/') {
       selectKadencjaQuiet(initialKid);
       activateTab('budget');
@@ -1176,7 +1237,12 @@ async function selectKadencjaQuiet(kid) {
 
 async function selectKadencja(kid) {
   await selectKadencjaQuiet(kid);
-  navigateTo(mainPath());
+  // Nie wyrzucaj z widoku detalu (profil/głosowanie/sesja/druk/komisja) przy
+  // zmianie kadencji — navigateTo(mainPath()) tylko gdy jesteśmy na #app.
+  // Inaczej deep-link np. /profile/x/ był przerzucany na stronę główną.
+  if (document.getElementById('app').style.display !== 'none') {
+    navigateTo(mainPath());
+  }
 }
 
 function activateTab(tabName) {
@@ -1202,6 +1268,7 @@ function activateTab(tabName) {
 
 function hideAllViews() {
   document.getElementById('app').style.display = 'none';
+  var _lv = document.getElementById('landing-view'); if (_lv) _lv.style.display = 'none';
   document.getElementById('profile-view').style.display = 'none';
   document.getElementById('compare-view').style.display = 'none';
   document.getElementById('vote-view').style.display = 'none';
@@ -1321,7 +1388,7 @@ function mainPath(tab, kid) {
   if (tab === 'komisje') return '/commissions/';
   const kadSlug = KAD_SLUGS[kid] || kid;
   const tabSlug = TAB_SLUGS_EN[tab] || tab;
-  if (tab === 'ranking' && kid === defaultKid) return LANDING_MODE ? '/councillors/' : '/';
+  if (tab === 'ranking' && kid === defaultKid) return '/councillors/';
   return '/term/' + kadSlug + '/' + tabSlug + '/';
 }
 
@@ -1494,6 +1561,94 @@ function showMain() {
     description: 'Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Pomorskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.',
     url: 'https://pomorskie.radoskop.pl' + mainPath()
   });
+}
+
+// ── Landing (strona główna) jako widok SPA ─────────────────────────────
+function _lpNf(n){ return String(n==null?0:n).replace(/\B(?=(\d{3})+(?!\d))/g,' '); }
+function _lpDate(d){ var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(d||''); return m?m[3]+'.'+m[2]+'.'+m[1]:(d||''); }
+function _lpMY(d){ var m=/^(\d{4})-(\d{2})/.exec(d||''); return m?m[2]+'.'+m[1]:''; }
+function _lpBadge(club){ if(!club||club==='?')return ''; return '<span class="lp-badge" style="background:'+clubBg(club)+';color:'+clubColor(club)+'">'+esc(club)+'</span>'; }
+function _lpGo(tab){ hideAllViews(); document.getElementById('app').style.display='block'; activateTab(tab); navigateTo(mainPath(tab), true); window.scrollTo(0,0); }
+// Katalog tłumaczeń landingu dla locale miasta (wstrzyknięty build-time z
+// landing_strings.catalog(locale)). _t klucz, _tf z podstawieniem {param}.
+const LANDING_I18N = {"nav_reports": "Raporty", "nav_business": "Business", "theme_toggle": "Motyw", "aria_nav": "Główna nawigacja", "aria_theme": "Przełącz motyw", "hero_eyebrow": "Rada Miasta {name}", "term_word": "kadencja", "hero_title": "Tak działa [[rada miasta]].", "hero_title_assembly": "Tak działa [[sejmik województwa]].", "cta_check_votes": "Sprawdź, jak głosują radni", "cta_all_votes": "Wszystkie głosowania", "insight_full": "W tej kadencji radni {name} oddali już <strong>{votes} głosów</strong>. Spornych było <strong>{contested}</strong>.", "insight_light": "Rada {name} liczy <strong>{n}</strong> radnych. Sprawdź ich pełną listę i kluby.", "sec_numbers_h2": "Rada w liczbach", "sec_numbers_sub": "Aktualny obraz kadencji. Dane odświeżane dwa razy dziennie.", "stat_votes_label": "głosowań imiennych w kadencji", "stat_councilors_label": "radnych pod obserwacją", "stat_contested_label": "głosowań spornych (różnica &lt; 10)", "stat_sessions_label": "sesji w archiwum", "sec_highlights_h2": "Wyróżnienia kadencji", "sec_highlights_sub": "Najciekawsze nazwiska i decyzje, wprost z rejestru głosowań.", "hl_active_tag": "Najaktywniejszy radny", "hl_active_sub": "najwyższa aktywność w głosowaniach", "hl_active_unit": "aktywności", "hl_rebel_tag": "Najczęściej głosował przeciw własnemu klubowi", "hl_rebel_sub": "rozbieżność z linią klubu", "hl_rebel_unit": "razy wbrew", "hl_vote_tag": "Najbardziej kontrowersyjne głosowanie", "hl_vote_unit": "za : przeciw", "vote_margin": "różnica {n}", "sec_activity_h2": "Aktywność w czasie", "sec_activity_sub": "Liczba głosowań na sesjach i ile z nich było spornych.", "legend_votes": "głosowania", "legend_contested": "sporne", "sec_contested_h2": "Ostatnie sporne głosowania", "sec_contested_sub": "Tam, gdzie rada była podzielona, każdy głos ważył najwięcej.", "th_vote": "Głosowanie", "th_date": "Data", "th_for": "Za", "th_against": "Przeciw", "th_abstain": "Wstrzym.", "th_split": "Rozkład", "sec_all_h2": "Cały serwis", "sec_all_sub": "Wejdź w dowolną część i sprawdź radnych z każdej strony.", "nav_label_main": "Strony podstawowe", "nav_label_extra": "Strony dodatkowe", "nav_councilors_title": "Lista radnych", "nav_councilors_desc": "Ranking, frekwencja i karta każdego radnego z pełną historią głosów.", "nav_sessions_title": "Sesje", "nav_sessions_desc": "Porządek obrad, protokoły i wyniki każdej sesji rady.", "nav_votes_title": "Głosowania", "nav_votes_desc": "Pełny, imienny rejestr głosowań z rozkładem za, przeciw, wstrzymanie.", "nav_interp_title": "Interpelacje", "nav_interp_desc": "Pytania i wnioski radnych wraz z odpowiedziami urzędu.", "nav_budget_title": "Budżety", "nav_budget_desc": "Wydatki miasta i to, kto jak głosował nad pieniędzmi.", "nav_committees_title": "Komisje", "nav_committees_desc": "Składy komisji i przebieg prac nad drukami przed sesją.", "proof_votes_label": "głosowań przeanalizowanych", "proof_councilors_label": "radnych monitorowanych", "proof_freq_value": "2× dziennie", "proof_freq_label": "dane aktualizowane", "proof_note": "Dane pochodzą bezpośrednio z {bip} i są aktualizowane automatycznie.", "cta_final_h3": "Sprawdź swojego radnego.", "cta_final_p": "Pełny rejestr jest otwarty i darmowy. Zobacz, jak głosował radny z Twojego okręgu, i porównaj go z resztą rady.", "cta_final_primary": "Sprawdź swojego radnego", "cta_rss": "Subskrybuj RSS", "footer_tagline": "to niezależny, otwarty monitoring rady", "footer_data_from": "Dane pochodzą z", "footer_license": "Kod na licencji AGPL", "footer_repo": "repozytorium", "footer_other_cities": "Pozostałe miasta", "footer_updated_2x": "i są odświeżane dwa razy dziennie", "back_home": "Wróć na stronę główną", "crumb_home": "Strona główna", "crumb_councilors": "Radni", "councilors_title": "Radni {name}", "councilors_sub": "{n} radnych w kadencji. Kliknij nagłówek, żeby posortować.", "search_placeholder": "Szukaj radnego…", "all_clubs": "Wszystkie kluby", "th_councilor": "Radny", "th_club": "Klub", "th_attendance": "Frekwencja", "th_votes_count": "Głosów", "th_agreement": "Zgodność z klubem", "shown_count": "Pokazano {n} z {total}"};
+function _t(k){ var v = LANDING_I18N && LANDING_I18N[k]; return (v==null)?'':v; }
+function _tf(k,o){ var s=_t(k); for(var p in o){ s=s.split('{'+p+'}').join(o[p]); } return s; }
+function _hl(s){ return s.replace(/\[\[(.+?)\]\]/,'<span class="hl">$1</span>'); }
+
+function _landingStats(){
+  var votes=(K&&K.votes)||[], cs=(K&&K.councilors)||[], ss=(K&&K.sessions)||[];
+  function diff(v){ var c=v.counts||{}; return Math.abs((c.za||0)-(c.przeciw||0)); }
+  var contested=votes.filter(function(v){ var c=v.counts||{}; return (c.przeciw||0)>0 && diff(v)<10; });
+  var active=cs.slice().sort(function(a,b){ return (b.aktywnosc||0)-(a.aktywnosc||0) || (b.votes_total||0)-(a.votes_total||0); })[0];
+  var rebel=cs.filter(function(c){return (c.rebellion_count||0)>0;}).sort(function(a,b){ return (b.rebellion_count||0)-(a.rebellion_count||0); })[0];
+  var real=votes.filter(function(v){ return ((v.counts||{}).przeciw||0)>0; });
+  var topVote=real.slice().sort(function(a,b){ var da=Math.abs((a.counts.za||0)-(a.counts.przeciw||0)), db=Math.abs((b.counts.za||0)-(b.counts.przeciw||0)); return da-db || ((b.counts.za+b.counts.przeciw)-(a.counts.za+a.counts.przeciw)); })[0];
+  var byDate={}, d2n={}; ss.forEach(function(s){ if(s.date)d2n[s.date]=s.number; });
+  votes.forEach(function(v){ var d=v.session_date||''; if(!d)return; if(!byDate[d])byDate[d]={votes:0,contested:0,number:(v.session_number!=null?v.session_number:d2n[d])}; byDate[d].votes++; if(contested.indexOf(v)>-1)byDate[d].contested++; });
+  var activity=Object.keys(byDate).sort().map(function(d){ return {date:d,number:byDate[d].number,votes:byDate[d].votes,contested:byDate[d].contested}; });
+  var recent=real.slice().sort(function(a,b){ return (b.session_date||'').localeCompare(a.session_date||''); }).slice(0,5);
+  return { tv:(K.total_votes!=null?K.total_votes:votes.length), tc:(K.total_councilors!=null?K.total_councilors:cs.length),
+           ts:(K.total_sessions!=null?K.total_sessions:ss.length), contested:contested.length,
+           active:active, rebel:rebel, topVote:topVote, activity:activity, recent:recent };
+}
+
+function renderLandingHTML(){
+  var s=_landingStats(), gen='Pomorskiego';
+  var label=(K&&K.label)?String(K.label).replace('Kadencja ','').replace('–',' / '):'';
+  var a=s.active, r=s.rebel, tv=s.topVote, vm=tv?Math.abs((tv.counts.za||0)-(tv.counts.przeciw||0)):0;
+  var rows=s.recent.map(function(v){ var c=v.counts||{}, za=c.za||0, prz=c.przeciw||0, ws=c.wstrzymal_sie||0, tot=Math.max(za+prz+ws,1);
+    return '<tr><td style="font-weight:600">'+voteLink(v.id, esc(v.topic||''))+'</td><td class="mu">'+_lpDate(v.session_date)+'</td>'+
+      '<td style="text-align:right;color:var(--green);font-weight:600">'+za+'</td><td style="text-align:right;color:var(--red);font-weight:600">'+prz+'</td><td style="text-align:right" class="mu">'+ws+'</td>'+
+      '<td style="padding-left:16px"><div style="display:flex;gap:1px;height:14px"><div style="width:'+(za/tot*100).toFixed(0)+'%;background:var(--green);opacity:.85"></div><div style="width:'+(prz/tot*100).toFixed(0)+'%;background:var(--red);opacity:.85"></div><div style="width:'+(ws/tot*100).toFixed(0)+'%;background:var(--yellow);opacity:.85"></div></div></td></tr>'; }).join('');
+  var maxV=s.activity.reduce(function(x,e){ return Math.max(x,e.votes||0); },0)||1;
+  var bars=s.activity.map(function(e){ var h1=Math.round((e.votes||0)/maxV*64), h2=Math.round((e.contested||0)/maxV*64),
+      inner='<div style="position:absolute;bottom:0;width:100%;height:'+h1+'px;background:var(--accent);opacity:.6;border-radius:1px 1px 0 0"></div><div style="position:absolute;bottom:0;width:100%;height:'+h2+'px;background:var(--red);opacity:.6;border-radius:1px 1px 0 0"></div>',
+      st='flex:1;position:relative;height:64px;display:block';
+    return e.number!=null ? '<a href="/session/'+encodeURIComponent(e.number)+'/" onclick="event.preventDefault();showSession(\''+e.number+'\')" title="'+esc(e.date||'')+'" style="'+st+'">'+inner+'</a>' : '<div style="'+st+'">'+inner+'</div>'; }).join('');
+  var ax=s.activity.length?('<span>'+_lpMY(s.activity[0].date)+'</span><span>'+_lpMY(s.activity[s.activity.length-1].date)+'</span>'):'';
+  function nav(tab,tk,dk){ return '<a class="lp-navcard" href="#" onclick="event.preventDefault();_lpGo(\''+tab+'\')"><div class="nk">'+_t(tk)+' <span class="ar">&rarr;</span></div><div class="nd">'+_t(dk)+'</div></a>'; }
+  return ''+
+  '<section class="lp-hero"><div class="lp-eyebrow">'+_tf('hero_eyebrow',{name:gen})+(label?' · '+_t('term_word')+' '+label:'')+'</div>'+
+    '<h1 class="lp-h1">'+_hl(_t('hero_title'))+'</h1>'+
+    '<p class="lp-insight">'+_tf('insight_full',{name:gen,votes:_lpNf(s.tv),contested:_lpNf(s.contested)})+'</p>'+
+    '<div class="lp-cta"><a class="lp-btn lp-btn-p" href="/councillors/" onclick="event.preventDefault();_lpGo(\'ranking\')">'+_t('cta_check_votes')+'</a>'+
+    '<a class="lp-btn lp-btn-g" href="#" onclick="event.preventDefault();_lpGo(\'votes\')">'+_t('cta_all_votes')+'</a></div></section>'+
+  '<section class="lp-sec"><h2>'+_t('sec_numbers_h2')+'</h2><div class="lp-sub">'+_t('sec_numbers_sub')+'</div><div class="lp-stats">'+
+    '<div class="lp-card lp-stat"><div class="v">'+_lpNf(s.tv)+'</div><div class="l">'+_t('stat_votes_label')+'</div></div>'+
+    '<div class="lp-card lp-stat"><div class="v">'+s.tc+'</div><div class="l">'+_t('stat_councilors_label')+'</div></div>'+
+    '<div class="lp-card lp-stat"><div class="v">'+_lpNf(s.contested)+'</div><div class="l">'+_t('stat_contested_label')+'</div></div>'+
+    '<div class="lp-card lp-stat"><div class="v">'+s.ts+'</div><div class="l">'+_t('stat_sessions_label')+'</div></div></div></section>'+
+  (a?('<section class="lp-sec"><h2>'+_t('sec_highlights_h2')+'</h2><div class="lp-sub">'+_t('sec_highlights_sub')+'</div><div class="lp-hl">'+
+    '<div class="lp-hcard"><div><div class="lp-tag">'+_t('hl_active_tag')+'</div><div class="lp-name">'+profileLink(a.name)+'</div><div class="lp-hsub">'+_t('hl_active_sub')+'</div>'+_lpBadge(a.club)+'</div><div class="lp-num"><span>'+Math.round(a.aktywnosc||0)+'</span><small>'+_t('hl_active_unit')+'</small></div></div>'+
+    (r?('<div class="lp-hcard"><div><div class="lp-tag">'+_t('hl_rebel_tag')+'</div><div class="lp-name">'+profileLink(r.name)+'</div><div class="lp-hsub">'+_t('hl_rebel_sub')+'</div>'+_lpBadge(r.club)+'</div><div class="lp-num"><span>'+(r.rebellion_count||0)+'</span><small>'+_t('hl_rebel_unit')+'</small></div></div>'):'')+
+    (tv?('<div class="lp-hcard"><div><div class="lp-tag">'+_t('hl_vote_tag')+'</div><div class="lp-name">'+voteLink(tv.id, esc(tv.topic||''))+'</div><div class="lp-hsub">'+_lpDate(tv.session_date)+' · '+_tf('vote_margin',{n:vm})+'</div></div><div class="lp-num"><span>'+(tv.counts.za||0)+':'+(tv.counts.przeciw||0)+'</span><small>'+_t('hl_vote_unit')+'</small></div></div>'):'')+
+    '</div></section>'):'')+
+  (s.activity.length?('<section class="lp-sec"><h2>'+_t('sec_activity_h2')+'</h2><div class="lp-sub">'+_t('sec_activity_sub')+'</div><div class="lp-card"><div class="lp-spark">'+bars+'</div><div class="lp-axis">'+ax+'</div><div style="display:flex;gap:16px;font-size:.78rem"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--accent)"></span><span class="mu">'+_t('legend_votes')+'</span></span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--red)"></span><span class="mu">'+_t('legend_contested')+'</span></span></div></div></section>'):'')+
+  (rows?('<section class="lp-sec"><h2>'+_t('sec_contested_h2')+'</h2><div class="lp-sub">'+_t('sec_contested_sub')+'</div><div class="lp-card"><table><thead><tr><th>'+_t('th_vote')+'</th><th>'+_t('th_date')+'</th><th style="text-align:right">'+_t('th_for')+'</th><th style="text-align:right">'+_t('th_against')+'</th><th style="text-align:right">'+_t('th_abstain')+'</th><th style="padding-left:16px">'+_t('th_split')+'</th></tr></thead><tbody>'+rows+'</tbody></table></div></section>'):'')+
+  '<section class="lp-sec"><h2>'+_t('sec_all_h2')+'</h2><div class="lp-sub">'+_t('sec_all_sub')+'</div>'+
+    '<div class="lp-navlabel">'+_t('nav_label_main')+'</div><div class="lp-nav">'+
+    nav('ranking','nav_councilors_title','nav_councilors_desc')+
+    nav('sessions','nav_sessions_title','nav_sessions_desc')+
+    nav('votes','nav_votes_title','nav_votes_desc')+'</div>'+
+    '<div class="lp-navlabel">'+_t('nav_label_extra')+'</div><div class="lp-nav">'+
+    nav('interpelacje','nav_interp_title','nav_interp_desc')+
+    nav('budget','nav_budget_title','nav_budget_desc')+
+    nav('komisje','nav_committees_title','nav_committees_desc')+'</div></section>'+
+  '<section class="lp-sec"><div class="lp-band"><h3>'+_t('cta_final_h3')+'</h3><p>'+_t('cta_final_p')+'</p><div class="lp-cta" style="justify-content:center"><a class="lp-btn lp-btn-p" href="/councillors/" onclick="event.preventDefault();_lpGo(\'ranking\')">'+_t('cta_final_primary')+'</a></div></div></section>';
+}
+
+function showLanding(){
+  hideAllViews();
+  var lv=document.getElementById('landing-view');
+  if(!lv){ showMain(); return; }
+  lv.style.display='block';
+  try { lv.innerHTML=renderLandingHTML(); }
+  catch(e){ lv.style.display='none'; showMain(); activateTab('ranking'); return; }
+  navigateTo('/', true);
+  setTitle('');
+  setOgMeta({ title: BASE_TITLE, description: 'Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Pomorskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.', url: 'https://pomorskie.radoskop.pl/' });
+  window.scrollTo(0,0);
 }
 
 function render() {
@@ -4381,6 +4536,11 @@ function copyShareLink(encodedUrl, btnId) {
 window.addEventListener('popstate', async () => {
   _popstateActive = true;
   const path = toInternalPath(routePath());
+  if (path === '/' || path === '') { showLanding(); _popstateActive = false; return; }
+  if (path === '/councillors' || path === '/councillors/') {
+    hideAllViews(); document.getElementById('app').style.display = 'block';
+    activateTab('ranking'); _popstateActive = false; return;
+  }
   if (path.startsWith('/profile/')) {
     const slug = path.replace('/profile/', '');
     const profile = PROFILES && PROFILES.profiles.find(p => p.slug === slug);
