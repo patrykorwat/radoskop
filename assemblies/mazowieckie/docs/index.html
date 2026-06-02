@@ -1752,6 +1752,7 @@ function clubBg(club) {
 }
 function clubClass(club) {
   return ['KO','TD','PiS','NZ'].includes(club) ? `club-${club}` : 'club-unknown';
+}
 function initials(name) {
   return name.split(' ').map(w => w[0]).join('').substring(0,2);
 }
