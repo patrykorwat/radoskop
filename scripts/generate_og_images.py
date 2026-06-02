@@ -454,7 +454,22 @@ def process_city(city_dir: Path, force=False):
             generate_city_votes_image(city_name, site_url, label, votes_og)
         except Exception as e:
             print(f"  ERROR votes OG: {e}")
-    print(f"  1 shared vote OG image (was per-vote)")
+
+    # Cleanup: usuń STARE per-głosowanie og.png (z poprzednich buildów). Samo
+    # zaprzestanie generowania ich nie kasuje — bez tego zostają w docs i
+    # mirror-sync trzyma je na S3 (oszczędność się nie materializuje).
+    removed = 0
+    for vote_dir_name in (vote_slug, "glosowanie"):  # angielski + legacy
+        vdir = docs / vote_dir_name
+        if not vdir.is_dir():
+            continue
+        for og in vdir.glob("*/og.png"):
+            try:
+                og.unlink()
+                removed += 1
+            except OSError:
+                pass
+    print(f"  1 shared vote OG image (usunięto {removed} starych per-vote PNG)")
 
 
 def main():
