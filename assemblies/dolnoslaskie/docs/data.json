@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-06-01T23:57:00Z",
+  "scraped_at": "2026-06-02T08:08:20Z",
   "generated": true,
   "default_kadencja": "2024-2029",
   "kadencje": [
@@ -7,6 +7,49 @@
       "id": "2024-2029",
       "label": "VII kadencja (2024-2029)",
       "sessions": [
+        {
+          "date": "2026-04-29",
+          "number": "XXVII",
+          "vote_count": 86,
+          "attendees": [
+            "Adam Jaśnikowski",
+            "Alina Szełemej",
+            "Andrzej Kredkowski",
+            "Cezary Przybylski",
+            "Damian Mrozek",
+            "Dorota Galant",
+            "Ewa Kocemba",
+            "Ewelina Szydłowska-Kędziera",
+            "Jarosław Rabczenko",
+            "Jerzy Pokój",
+            "Kamil Barczyk",
+            "Karolina Hołownia-Twardowska",
+            "Katarzyna Lubiniecka-Różyło",
+            "Krzysztof Mróz",
+            "Magdalena Brodowska",
+            "Magdalena Piasecka",
+            "Marcin Borys",
+            "Marcin Krzyżanowski",
+            "Marek Łapiński",
+            "Mateusz Jędrachowicz",
+            "Małgorzata Calińska-Mayer",
+            "Michał Rado",
+            "Mirosław Lubiński",
+            "Monika Włodarczyk",
+            "Natalia Gołąb",
+            "Paweł Gancarz",
+            "Paweł Grabek",
+            "Piotr Karwan",
+            "Piotr Kraczkowski",
+            "Sławomir Piechota",
+            "Tymoteusz Myrda",
+            "Tytus Czartoryski",
+            "Wojciech Bochnak",
+            "Łukasz Lach"
+          ],
+          "attendee_count": 34,
+          "speakers": []
+        },
         {
           "date": "2026-03-26",
           "number": "XXVI",
@@ -880,23 +923,23 @@
           "speakers": []
         }
       ],
-      "total_sessions": 21,
-      "total_votes": 976,
+      "total_sessions": 22,
+      "total_votes": 1062,
       "total_councilors": 39,
       "councilors": [
         {
           "name": "Adam Jaśnikowski",
           "slug": "adam-jasnikowski",
           "club": "KO",
-          "frekwencja": 90.5,
-          "aktywnosc": 86.9,
+          "frekwencja": 90.9,
+          "aktywnosc": 87.9,
           "zgodnosc_z_klubem": 99.1,
-          "votes_za": 833,
+          "votes_za": 918,
           "votes_przeciw": 12,
           "votes_wstrzymal": 3,
           "votes_brak": 26,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 8,
           "rebellions": [
             {
@@ -953,15 +996,15 @@
           "name": "Alina Szełemej",
           "slug": "alina-szeemej",
           "club": "KO",
-          "frekwencja": 90.5,
-          "aktywnosc": 84.6,
-          "zgodnosc_z_klubem": 98.7,
-          "votes_za": 807,
+          "frekwencja": 90.9,
+          "aktywnosc": 85.5,
+          "zgodnosc_z_klubem": 98.8,
+          "votes_za": 889,
           "votes_przeciw": 9,
           "votes_wstrzymal": 10,
-          "votes_brak": 52,
+          "votes_brak": 55,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 11,
           "rebellions": [
             {
@@ -1037,15 +1080,15 @@
           "slug": "andrzej-kredkowski",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 89.7,
+          "aktywnosc": 89.4,
           "zgodnosc_z_klubem": 98.5,
-          "votes_za": 737,
-          "votes_przeciw": 52,
-          "votes_wstrzymal": 86,
-          "votes_brak": 86,
+          "votes_za": 802,
+          "votes_przeciw": 56,
+          "votes_wstrzymal": 91,
+          "votes_brak": 97,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 13,
+          "votes_total": 1062,
+          "rebellion_count": 14,
           "rebellions": [
             {
               "session": "2024-11-07",
@@ -1108,6 +1151,12 @@
               "club_majority": "wstrzymal_sie"
             },
             {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny 1. Przerwa do godziny 18:00",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
               "session": "2026-01-29",
               "topic": "Uchwała w sprawie wyznaczenia przedstawiciela Sejmiku Województwa Dolnośląskiego do Rady Kuratorów fundacji - Zakład Narodowy im. Ossolińskich (Monika Włodarczyk)",
               "their_vote": "za",
@@ -1131,15 +1180,15 @@
           "name": "Cezary Przybylski",
           "slug": "cezary-przybylski",
           "club": "BS",
-          "frekwencja": 95.2,
-          "aktywnosc": 80.8,
-          "zgodnosc_z_klubem": 99.1,
-          "votes_za": 766,
-          "votes_przeciw": 13,
+          "frekwencja": 95.5,
+          "aktywnosc": 81.7,
+          "zgodnosc_z_klubem": 99.2,
+          "votes_za": 842,
+          "votes_przeciw": 16,
           "votes_wstrzymal": 10,
-          "votes_brak": 117,
+          "votes_brak": 123,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 7,
           "rebellions": [
             {
@@ -1192,13 +1241,13 @@
           "club": "PiS",
           "frekwencja": 100.0,
           "aktywnosc": 96.3,
-          "zgodnosc_z_klubem": 96.9,
-          "votes_za": 801,
-          "votes_przeciw": 42,
-          "votes_wstrzymal": 97,
-          "votes_brak": 23,
+          "zgodnosc_z_klubem": 97.2,
+          "votes_za": 875,
+          "votes_przeciw": 47,
+          "votes_wstrzymal": 101,
+          "votes_brak": 24,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 29,
           "rebellions": [
             {
@@ -1382,15 +1431,15 @@
           "slug": "dorota-galant",
           "club": "KO",
           "frekwencja": 100.0,
-          "aktywnosc": 93.3,
-          "zgodnosc_z_klubem": 99.5,
-          "votes_za": 894,
-          "votes_przeciw": 12,
-          "votes_wstrzymal": 5,
-          "votes_brak": 54,
+          "aktywnosc": 93.6,
+          "zgodnosc_z_klubem": 99.3,
+          "votes_za": 975,
+          "votes_przeciw": 13,
+          "votes_wstrzymal": 6,
+          "votes_brak": 56,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 5,
+          "votes_total": 1062,
+          "rebellion_count": 7,
           "rebellions": [
             {
               "session": "2024-09-26",
@@ -1421,6 +1470,18 @@
               "topic": "Uchwała w sprawie apelu do Rządu Rzeczypospolitej Polskiej w sprawie zapłaty za nadwykonania, wykonane na rzecz pacjentów przez podmioty medyczne",
               "their_vote": "za",
               "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny. Przełożenie obrad do kolejnego terminu sesji Sejmiku",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Uchwała w sprawie zmiany uchwały nr XXIV/630/26 Sejmiku Województwa Dolnośląskiego z dnia 29 stycznia 2026 roku w sprawie przyjęcia rocznego planu kontroli Komisji Rewizyjnej Sejmiku Województwa Dolno",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
             }
           ]
         },
@@ -1428,15 +1489,15 @@
           "name": "Ewa Kocemba",
           "slug": "ewa-kocemba",
           "club": "KO",
-          "frekwencja": 90.5,
-          "aktywnosc": 84.2,
-          "zgodnosc_z_klubem": 96.0,
-          "votes_za": 780,
+          "frekwencja": 90.9,
+          "aktywnosc": 85.1,
+          "zgodnosc_z_klubem": 96.3,
+          "votes_za": 862,
           "votes_przeciw": 24,
           "votes_wstrzymal": 18,
-          "votes_brak": 58,
+          "votes_brak": 61,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 33,
           "rebellions": [
             {
@@ -1643,16 +1704,16 @@
           "name": "Ewelina Szydłowska-Kędziera",
           "slug": "ewelina-szydowska-kedziera",
           "club": "PiS",
-          "frekwencja": 71.4,
-          "aktywnosc": 53.9,
-          "zgodnosc_z_klubem": 97.3,
-          "votes_za": 429,
-          "votes_przeciw": 35,
+          "frekwencja": 72.7,
+          "aktywnosc": 49.8,
+          "zgodnosc_z_klubem": 97.2,
+          "votes_za": 431,
+          "votes_przeciw": 36,
           "votes_wstrzymal": 62,
-          "votes_brak": 94,
+          "votes_brak": 142,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 14,
+          "votes_total": 1062,
+          "rebellion_count": 15,
           "rebellions": [
             {
               "session": "2024-12-12",
@@ -1737,6 +1798,12 @@
               "topic": "Uchwała w sprawie rozpatrzenia petycji Stowarzyszenia Karkonoska Lokalna Organizacja Turystyczna z dnia 14 stycznia 2025 r. o wsparcie Mieszkańców powiatu karkonoskiego i kamiennogórskiego, gmin Szkla",
               "their_vote": "za",
               "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny. Przełożenie obrad do kolejnego terminu sesji Sejmiku",
+              "their_vote": "za",
+              "club_majority": "przeciw"
             }
           ]
         },
@@ -1744,15 +1811,15 @@
           "name": "Grzegorz Macko",
           "slug": "grzegorz-macko",
           "club": "PiS",
-          "frekwencja": 14.3,
-          "aktywnosc": 6.1,
+          "frekwencja": 13.6,
+          "aktywnosc": 5.6,
           "zgodnosc_z_klubem": 100.0,
           "votes_za": 60,
           "votes_przeciw": 0,
           "votes_wstrzymal": 0,
           "votes_brak": 8,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -1763,12 +1830,12 @@
           "frekwencja": 100.0,
           "aktywnosc": 88.0,
           "zgodnosc_z_klubem": 99.8,
-          "votes_za": 843,
+          "votes_za": 919,
           "votes_przeciw": 14,
           "votes_wstrzymal": 2,
-          "votes_brak": 99,
+          "votes_brak": 108,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 2,
           "rebellions": [
             {
@@ -1790,15 +1857,15 @@
           "slug": "jerzy-pokoj",
           "club": "KO",
           "frekwencja": 100.0,
-          "aktywnosc": 91.8,
-          "zgodnosc_z_klubem": 99.6,
-          "votes_za": 881,
-          "votes_przeciw": 13,
+          "aktywnosc": 92.3,
+          "zgodnosc_z_klubem": 99.5,
+          "votes_za": 964,
+          "votes_przeciw": 14,
           "votes_wstrzymal": 2,
-          "votes_brak": 69,
+          "votes_brak": 70,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 4,
+          "votes_total": 1062,
+          "rebellion_count": 5,
           "rebellions": [
             {
               "session": "2025-11-27",
@@ -1823,6 +1890,12 @@
               "topic": "Uchwała w sprawie apelu do Rządu Rzeczypospolitej Polskiej w sprawie umowy Unii Europejskiej z państwami Mercosuru",
               "their_vote": "wstrzymal_sie",
               "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny. Przełożenie obrad do kolejnego terminu sesji Sejmiku",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             }
           ]
         },
@@ -1830,15 +1903,15 @@
           "name": "Kamil Barczyk",
           "slug": "kamil-barczyk",
           "club": "TD",
-          "frekwencja": 95.2,
-          "aktywnosc": 85.5,
-          "zgodnosc_z_klubem": 99.4,
-          "votes_za": 818,
-          "votes_przeciw": 10,
+          "frekwencja": 95.5,
+          "aktywnosc": 86.2,
+          "zgodnosc_z_klubem": 99.5,
+          "votes_za": 896,
+          "votes_przeciw": 13,
           "votes_wstrzymal": 6,
-          "votes_brak": 73,
+          "votes_brak": 77,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 5,
           "rebellions": [
             {
@@ -1878,15 +1951,15 @@
           "slug": "karolina-hoownia-twardowska",
           "club": "TD",
           "frekwencja": 100.0,
-          "aktywnosc": 90.3,
-          "zgodnosc_z_klubem": 97.7,
-          "votes_za": 854,
+          "aktywnosc": 90.8,
+          "zgodnosc_z_klubem": 97.6,
+          "votes_za": 937,
           "votes_przeciw": 14,
           "votes_wstrzymal": 13,
-          "votes_brak": 83,
+          "votes_brak": 85,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 20,
+          "votes_total": 1062,
+          "rebellion_count": 23,
           "rebellions": [
             {
               "session": "2024-09-26",
@@ -2003,6 +2076,24 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny. Przełożenie obrad do kolejnego terminu sesji Sejmiku",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny 1. Przerwa do godziny 18:00",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny 4. Przerwa i przeniesienie obrad na termin 20.05.2026",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
               "session": "2026-03-26",
               "topic": "Wniosek formalny 6. Radnej Ewy Kocemby do wysłanie projektu uchwały o Audycie do prac komisji",
               "their_vote": "za",
@@ -2014,15 +2105,15 @@
           "name": "Katarzyna Lubiniecka-Różyło",
           "slug": "katarzyna-lubiniecka-rozyo",
           "club": "NZ",
-          "frekwencja": 85.7,
-          "aktywnosc": 90.1,
+          "frekwencja": 86.4,
+          "aktywnosc": 90.7,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 832,
-          "votes_przeciw": 17,
-          "votes_wstrzymal": 30,
-          "votes_brak": 13,
+          "votes_za": 914,
+          "votes_przeciw": 18,
+          "votes_wstrzymal": 31,
+          "votes_brak": 14,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -2030,16 +2121,16 @@
           "name": "Krzysztof Mróz",
           "slug": "krzysztof-mroz",
           "club": "PiS",
-          "frekwencja": 95.2,
-          "aktywnosc": 84.3,
-          "zgodnosc_z_klubem": 87.7,
-          "votes_za": 609,
-          "votes_przeciw": 67,
-          "votes_wstrzymal": 147,
-          "votes_brak": 85,
+          "frekwencja": 95.5,
+          "aktywnosc": 85.0,
+          "zgodnosc_z_klubem": 84.9,
+          "votes_za": 651,
+          "votes_przeciw": 74,
+          "votes_wstrzymal": 178,
+          "votes_brak": 90,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 101,
+          "votes_total": 1062,
+          "rebellion_count": 136,
           "rebellions": [
             {
               "session": "2024-12-12",
@@ -2570,6 +2661,216 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 6. Uchwała w sprawie zmiany składu Rady Społecznej w Dolnośląskim Centrum Onkologii, Pulmonologii i Hematologii we Wrocławiu DRUK nr XXVII/20",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 7. Uchwała w sprawie udzielenia jednostkom samorządu terytorialnego pomocy finansowej w formie dotacji celowych z budżetu Województwa Dolnośląskiego w roku 2026 na realizację pro",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 8. Uchwała w sprawie zmiany uchwały nr XLIII/858/22 Sejmiku Województwa Dolnośląskiego z dnia 24 lutego 2022 r. w sprawie nadania statutu Specjalistycznemu Szpitalowi Ginekologic",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 9. Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej, w formie dotacji celowej, na zadania realizowane przez gminy w zakresie projektów złożonyc",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 11. Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2026 DRUK nr XXVII/25",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 14. Uchwała w sprawie udzielenia jednostkom samorządu terytorialnego pomocy finansowej w formie dotacji celowych z budżetu Województwa Dolnośląskiego w zakresie utworzenia gabine",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 13. Uchwała w sprawie zmiany uchwały nr XXIV/630/26 Sejmiku Województwa Dolnośląskiego z dnia 29 stycznia 2026 roku w sprawie przyjęcia rocznego planu kontroli Komisji Rewizyjnej",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 12. Uchwała zmieniająca uchwałę nr LVIII/1228/23 Sejmiku Województwa Dolnośląskiego w sprawie nadania Statutu Rady Seniorów Województwa Dolnośląskiego DRUK nr XXVII/26",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 15. Uchwała w sprawie przyznania Janowi Rudemu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/28",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny. Przełożenie obrad do kolejnego terminu sesji Sejmiku",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 17. Uchwała w sprawie przyznania Stanisławie Chajm Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/30",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 19. Uchwała w sprawie przyznania Aleksandrowi Kobylarkowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/32",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 21. Uchwała w sprawie przyznania Markowi Rabskiemu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/34",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 23. Uchwała w sprawie przyznania Janowi Drabczykowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/36",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 24. Uchwała w sprawie przyznania Włodzimierzowi Głazowi Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/37",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 22. Uchwała w sprawie przyznania Oddziałowi PTTK „Ziemi Kłodzkiej” Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/35",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 25. Uchwała w sprawie przyznania Mieczysławowi Puchalskiemu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/38",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 26. Uchwała w sprawie przyznania Stowarzyszeniu Geodetów Polskich Oddział we Wrocławiu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/39",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 27. Uchwała w sprawie przyznania Tomaszowi Jędrzejowskiemu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/40",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 28. Uchwała w sprawie przyznania Zuzannie Jarmułowskiej - Tyszer Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/41",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 29. Uchwała w sprawie przyznania Renacie Krzaczkowskiej Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/42",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 30. Uchwała w sprawie przyznania Jolancie Pajkert-Marek Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/43",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 31. Uchwała w sprawie przyznania Edwardowi Ziai Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/44",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 32. Uchwała w sprawie przyznania Stanisławowi Froncowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/45",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 33. Uchwała w sprawie przyznania Jarosławowi Bogackiemu Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/46",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 34. Uchwała w sprawie przyznania Janowi Wysopalowi Odznaki Honorowej Srebrnej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/47",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 1. Uchwała w sprawie zmiany uchwały nr XVI/400/20 Sejmiku Województwa Dolnośląskiego z dnia 26 lutego 2020 r. w sprawie określenia przystanków komunikacyjnych, których właściciel",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Uchwała w sprawie zmiany uchwały nr XXIII/582/25 Sejmiku Województwa Dolnośląskiego z dnia 18 grudnia 2025 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego z autopoprawką DRUK ",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2026 z autopoprawką DRUK nr XXVII/14",
+              "their_vote": "przeciw",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacji celowej wybranym gminom wyłonionym w ramach otwartego konkursu pn. \"Dolnośląski Fundusz Karawaningo",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 2. Uchwała w sprawie zawarcia porozumienia między Województwem Dolnośląskim a Krajem Bańskobystrzyckim o współpracy międzyregionalnej z autopoprawką DRUK nr XXVII/16",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2026 DRUK nr XXVII/25",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 3. Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacji celowej wybranym gminom wyłonionym w ramach otwartego konkursu pn. \"Dolnoś",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 4. Uchwała w sprawie wyrażenia zgody na zmianę warunków umowy darowizny zawartej pomiędzy Województwem Dolnośląskim a Skarbem Państwa dotyczącej nieruchomości gruntowej zabudowan",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 5. Uchwała w sprawie zmiany uchwały nr LI/1044/22 Sejmiku Województwa Dolnośląskiego z dnia 15 grudnia 2022 r. w sprawie określenia zasad, trybu i harmonogramu opracowania Strate",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
               "session": "2026-03-26",
               "topic": "Uchwała w sprawie przystąpienia do sporządzenia planu obszarów przyspieszonego rozwoju OZE dla energii otrzymywanej z biogazu rolniczego i biometanu",
               "their_vote": "wstrzymal_sie",
@@ -2653,16 +2954,16 @@
           "name": "Magdalena Brodowska",
           "slug": "magdalena-brodowska",
           "club": "PiS",
-          "frekwencja": 85.7,
-          "aktywnosc": 80.2,
-          "zgodnosc_z_klubem": 92.0,
-          "votes_za": 616,
-          "votes_przeciw": 50,
-          "votes_wstrzymal": 117,
-          "votes_brak": 21,
+          "frekwencja": 86.4,
+          "aktywnosc": 81.4,
+          "zgodnosc_z_klubem": 91.4,
+          "votes_za": 683,
+          "votes_przeciw": 56,
+          "votes_wstrzymal": 125,
+          "votes_brak": 25,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 63,
+          "votes_total": 1062,
+          "rebellion_count": 74,
           "rebellions": [
             {
               "session": "2024-12-12",
@@ -3001,6 +3302,72 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 10. Uchwała w sprawie zmiany uchwały nr XXIII/582/25 Sejmiku Województwa Dolnośląskiego z dnia 18 grudnia 2025 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląs",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 11. Uchwała w sprawie zmian w budżecie Województwa Dolnośląskiego na rok 2026 DRUK nr XXVII/25",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny. Przełożenie obrad do kolejnego terminu sesji Sejmiku",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 22. Uchwała w sprawie przyznania Oddziałowi PTTK „Ziemi Kłodzkiej” Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/35",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 26. Uchwała w sprawie przyznania Stowarzyszeniu Geodetów Polskich Oddział we Wrocławiu Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/39",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Uchwała w sprawie zmiany uchwały nr XXIII/582/25 Sejmiku Województwa Dolnośląskiego z dnia 18 grudnia 2025 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego z autopoprawką DRUK ",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Uchwała w sprawie zmian w składach osobowych Komisji stałych Sejmiku Województwa Dolnośląskiego DRUK nr XXVII/4",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Uchwała w sprawie zmiany uchwały nr XVI/400/20 Sejmiku Województwa Dolnośląskiego z dnia 26 lutego 2020 r. w sprawie określenia przystanków komunikacyjnych, których właścicielem lub zarządzającym jest",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacji celowej wybranym gminom wyłonionym w ramach otwartego konkursu pn. \"Dolnośląski Fundusz Karawaningo",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Uchwała w sprawie wyrażenia zgody na zmianę warunków umowy darowizny zawartej pomiędzy Województwem Dolnośląskim a Skarbem Państwa dotyczącej nieruchomości gruntowej zabudowanej położonej w Kiełczowie",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Uchwała w sprawie zmiany uchwały nr LI/1044/22 Sejmiku Województwa Dolnośląskiego z dnia 15 grudnia 2022 r. w sprawie określenia zasad, trybu i harmonogramu opracowania Strategii Rozwoju Województwa D",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
               "session": "2026-03-26",
               "topic": "Uchwała w sprawie nadania statutu Wojewódzkiemu Szpitalowi Specjalistycznemu w Legnicy",
               "their_vote": "wstrzymal_sie",
@@ -3049,14 +3416,14 @@
           "slug": "magdalena-piasecka",
           "club": "KO",
           "frekwencja": 100.0,
-          "aktywnosc": 93.5,
+          "aktywnosc": 94.0,
           "zgodnosc_z_klubem": 99.7,
-          "votes_za": 898,
+          "votes_za": 983,
           "votes_przeciw": 12,
           "votes_wstrzymal": 3,
           "votes_brak": 53,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 3,
           "rebellions": [
             {
@@ -3083,16 +3450,16 @@
           "name": "Marcin Borys",
           "slug": "marcin-borys",
           "club": "KO",
-          "frekwencja": 81.0,
-          "aktywnosc": 74.9,
-          "zgodnosc_z_klubem": 97.0,
-          "votes_za": 701,
+          "frekwencja": 81.8,
+          "aktywnosc": 76.6,
+          "zgodnosc_z_klubem": 96.9,
+          "votes_za": 781,
           "votes_przeciw": 18,
-          "votes_wstrzymal": 12,
-          "votes_brak": 35,
+          "votes_wstrzymal": 15,
+          "votes_brak": 37,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 22,
+          "votes_total": 1062,
+          "rebellion_count": 25,
           "rebellions": [
             {
               "session": "2024-06-27",
@@ -3179,6 +3546,24 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 20. Uchwała w sprawie przyznania Beacie Witek Odznaki Honorowej Złotej Zasłużony dla Województwa Dolnośląskiego DRUK nr XXVII/33",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Uchwała w sprawie zmiany uchwały nr LI/1044/22 Sejmiku Województwa Dolnośląskiego z dnia 15 grudnia 2022 r. w sprawie określenia zasad, trybu i harmonogramu opracowania Strategii Rozwoju Województwa D",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Zmiana porządku obrad 5. Uchwała w sprawie zmiany uchwały nr LI/1044/22 Sejmiku Województwa Dolnośląskiego z dnia 15 grudnia 2022 r. w sprawie określenia zasad, trybu i harmonogramu opracowania Strate",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "za"
+            },
+            {
               "session": "2026-03-26",
               "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacji celowej gminom wyłonionym w ramach konkursu pn. „Dolnośląski Fundusz Pomocy Rozwojowej 2026”",
               "their_vote": "wstrzymal_sie",
@@ -3232,16 +3617,16 @@
           "name": "Marcin Krzyżanowski",
           "slug": "marcin-krzyzanowski",
           "club": "PiS",
-          "frekwencja": 95.2,
-          "aktywnosc": 90.0,
-          "zgodnosc_z_klubem": 97.3,
-          "votes_za": 736,
-          "votes_przeciw": 50,
-          "votes_wstrzymal": 92,
+          "frekwencja": 95.5,
+          "aktywnosc": 90.7,
+          "zgodnosc_z_klubem": 97.4,
+          "votes_za": 813,
+          "votes_przeciw": 54,
+          "votes_wstrzymal": 96,
           "votes_brak": 22,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 24,
+          "votes_total": 1062,
+          "rebellion_count": 25,
           "rebellions": [
             {
               "session": "2024-12-12",
@@ -3322,6 +3707,12 @@
               "club_majority": "przeciw"
             },
             {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny. Przełożenie obrad do kolejnego terminu sesji Sejmiku",
+              "their_vote": "za",
+              "club_majority": "przeciw"
+            },
+            {
               "session": "2026-03-26",
               "topic": "Zmiana porządku obrad 10. Zdjęcie punktu w sprawie apelu o Polskim Funduszu Inwestycji Obronnych",
               "their_vote": "za",
@@ -3394,15 +3785,15 @@
           "slug": "marek-apinski",
           "club": "KO",
           "frekwencja": 100.0,
-          "aktywnosc": 95.6,
+          "aktywnosc": 95.9,
           "zgodnosc_z_klubem": 99.1,
-          "votes_za": 908,
-          "votes_przeciw": 23,
+          "votes_za": 992,
+          "votes_przeciw": 24,
           "votes_wstrzymal": 2,
           "votes_brak": 31,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 8,
+          "votes_total": 1062,
+          "rebellion_count": 9,
           "rebellions": [
             {
               "session": "2025-12-15",
@@ -3425,6 +3816,12 @@
             {
               "session": "2025-06-12",
               "topic": "Zmiana porządku obrad 13.Wycofanie uchwały w sprawie zmiany składu Rady Społecznej w Specjalistycznym Szpitalu im. dra Alfreda Sokołowskiego w Wałbrzychu",
+              "their_vote": "przeciw",
+              "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny. Przełożenie obrad do kolejnego terminu sesji Sejmiku",
               "their_vote": "przeciw",
               "club_majority": "za"
             },
@@ -3458,15 +3855,15 @@
           "name": "Mateusz Jędrachowich",
           "slug": "mateusz-jedrachowich",
           "club": "NZ",
-          "frekwencja": 4.8,
-          "aktywnosc": 1.2,
+          "frekwencja": 4.5,
+          "aktywnosc": 1.1,
           "zgodnosc_z_klubem": 100.0,
           "votes_za": 12,
           "votes_przeciw": 0,
           "votes_wstrzymal": 0,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -3474,15 +3871,15 @@
           "name": "Mateusz Jędrachowicz",
           "slug": "mateusz-jedrachowicz",
           "club": "NZ",
-          "frekwencja": 85.7,
-          "aktywnosc": 84.0,
+          "frekwencja": 86.4,
+          "aktywnosc": 84.5,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 789,
+          "votes_za": 866,
           "votes_przeciw": 16,
           "votes_wstrzymal": 15,
-          "votes_brak": 56,
+          "votes_brak": 63,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -3491,15 +3888,15 @@
           "slug": "magorzata-calinska-mayer",
           "club": "PiS",
           "frekwencja": 100.0,
-          "aktywnosc": 95.5,
+          "aktywnosc": 95.8,
           "zgodnosc_z_klubem": 98.4,
-          "votes_za": 772,
-          "votes_przeciw": 62,
-          "votes_wstrzymal": 98,
+          "votes_za": 848,
+          "votes_przeciw": 66,
+          "votes_wstrzymal": 103,
           "votes_brak": 32,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 15,
+          "votes_total": 1062,
+          "rebellion_count": 16,
           "rebellions": [
             {
               "session": "2024-12-12",
@@ -3586,6 +3983,12 @@
               "club_majority": "za"
             },
             {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny 1. Przerwa do godziny 18:00",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
               "session": "2026-03-26",
               "topic": "Wniosek formalny 6. Wiceprzewodniczącego Marka Łapińskiego w sprawie czytania Audytu",
               "their_vote": "przeciw",
@@ -3598,14 +4001,14 @@
           "slug": "micha-rado",
           "club": "BS",
           "frekwencja": 100.0,
-          "aktywnosc": 75.1,
+          "aktywnosc": 73.6,
           "zgodnosc_z_klubem": 98.8,
-          "votes_za": 716,
-          "votes_przeciw": 7,
+          "votes_za": 762,
+          "votes_przeciw": 10,
           "votes_wstrzymal": 10,
-          "votes_brak": 163,
+          "votes_brak": 165,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 9,
           "rebellions": [
             {
@@ -3668,15 +4071,15 @@
           "name": "Mirosław Lubiński",
           "slug": "mirosaw-lubinski",
           "club": "KO",
-          "frekwencja": 71.4,
-          "aktywnosc": 64.8,
-          "zgodnosc_z_klubem": 98.7,
-          "votes_za": 617,
+          "frekwencja": 72.7,
+          "aktywnosc": 67.4,
+          "zgodnosc_z_klubem": 98.9,
+          "votes_za": 701,
           "votes_przeciw": 9,
           "votes_wstrzymal": 6,
-          "votes_brak": 59,
+          "votes_brak": 60,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 8,
           "rebellions": [
             {
@@ -3733,16 +4136,16 @@
           "name": "Monika Włodarczyk",
           "slug": "monika-wodarczyk",
           "club": "KO",
-          "frekwencja": 95.2,
-          "aktywnosc": 84.1,
-          "zgodnosc_z_klubem": 99.3,
-          "votes_za": 803,
-          "votes_przeciw": 12,
+          "frekwencja": 95.5,
+          "aktywnosc": 83.3,
+          "zgodnosc_z_klubem": 99.2,
+          "votes_za": 866,
+          "votes_przeciw": 13,
           "votes_wstrzymal": 6,
-          "votes_brak": 94,
+          "votes_brak": 115,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 6,
+          "votes_total": 1062,
+          "rebellion_count": 7,
           "rebellions": [
             {
               "session": "2024-09-26",
@@ -3779,6 +4182,12 @@
               "topic": "Wniosek formalny 2. Wniosek o zamknięcie dyskusji",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny. Przełożenie obrad do kolejnego terminu sesji Sejmiku",
+              "their_vote": "przeciw",
+              "club_majority": "za"
             }
           ]
         },
@@ -3788,13 +4197,13 @@
           "club": "TD",
           "frekwencja": 100.0,
           "aktywnosc": 88.8,
-          "zgodnosc_z_klubem": 99.3,
-          "votes_za": 848,
-          "votes_przeciw": 13,
+          "zgodnosc_z_klubem": 99.4,
+          "votes_za": 921,
+          "votes_przeciw": 16,
           "votes_wstrzymal": 6,
-          "votes_brak": 93,
+          "votes_brak": 102,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 6,
           "rebellions": [
             {
@@ -3840,14 +4249,14 @@
           "slug": "pawe-gancarz",
           "club": "TD",
           "frekwencja": 100.0,
-          "aktywnosc": 86.7,
+          "aktywnosc": 87.4,
           "zgodnosc_z_klubem": 99.8,
-          "votes_za": 830,
-          "votes_przeciw": 14,
+          "votes_za": 909,
+          "votes_przeciw": 17,
           "votes_wstrzymal": 2,
-          "votes_brak": 113,
+          "votes_brak": 116,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 2,
           "rebellions": [
             {
@@ -3868,15 +4277,15 @@
           "name": "Paweł Grabek",
           "slug": "pawe-grabek",
           "club": "PiS",
-          "frekwencja": 85.7,
-          "aktywnosc": 83.3,
-          "zgodnosc_z_klubem": 98.5,
-          "votes_za": 679,
-          "votes_przeciw": 49,
-          "votes_wstrzymal": 85,
+          "frekwencja": 86.4,
+          "aktywnosc": 84.6,
+          "zgodnosc_z_klubem": 98.7,
+          "votes_za": 755,
+          "votes_przeciw": 54,
+          "votes_wstrzymal": 89,
           "votes_brak": 17,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 12,
           "rebellions": [
             {
@@ -3957,15 +4366,15 @@
           "name": "Paweł Kura",
           "slug": "pawe-kura",
           "club": "PiS",
-          "frekwencja": 71.4,
-          "aktywnosc": 70.1,
+          "frekwencja": 68.2,
+          "aktywnosc": 64.4,
           "zgodnosc_z_klubem": 98.2,
           "votes_za": 569,
           "votes_przeciw": 39,
           "votes_wstrzymal": 76,
           "votes_brak": 36,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 12,
           "rebellions": [
             {
@@ -4046,16 +4455,16 @@
           "name": "Piotr Karwan",
           "slug": "piotr-karwan",
           "club": "PiS",
-          "frekwencja": 90.5,
-          "aktywnosc": 83.4,
+          "frekwencja": 90.9,
+          "aktywnosc": 84.7,
           "zgodnosc_z_klubem": 98.8,
-          "votes_za": 679,
-          "votes_przeciw": 44,
-          "votes_wstrzymal": 91,
+          "votes_za": 755,
+          "votes_przeciw": 48,
+          "votes_wstrzymal": 96,
           "votes_brak": 64,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 10,
+          "votes_total": 1062,
+          "rebellion_count": 11,
           "rebellions": [
             {
               "session": "2024-12-12",
@@ -4116,6 +4525,12 @@
               "topic": "Uchwała w sprawie udzielenia z budżetu Województwa Dolnośląskiego pomocy finansowej w formie dotacji celowej jednostkom samorządu terytorialnego województwa dolnośląskiego na dofinansowanie realizacji",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny 1. Przerwa do godziny 18:00",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
             }
           ]
         },
@@ -4123,15 +4538,15 @@
           "name": "Piotr Kraczkowski",
           "slug": "piotr-kraczkowski",
           "club": "NZ",
-          "frekwencja": 66.7,
-          "aktywnosc": 58.7,
+          "frekwencja": 68.2,
+          "aktywnosc": 61.4,
           "zgodnosc_z_klubem": 100.0,
-          "votes_za": 555,
+          "votes_za": 634,
           "votes_przeciw": 15,
           "votes_wstrzymal": 3,
-          "votes_brak": 73,
+          "votes_brak": 79,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -4139,15 +4554,15 @@
           "name": "Renata Granowska",
           "slug": "renata-granowska",
           "club": "KO",
-          "frekwencja": 14.3,
-          "aktywnosc": 3.2,
+          "frekwencja": 13.6,
+          "aktywnosc": 2.9,
           "zgodnosc_z_klubem": 100.0,
           "votes_za": 31,
           "votes_przeciw": 0,
           "votes_wstrzymal": 0,
           "votes_brak": 37,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -4155,15 +4570,15 @@
           "name": "Robert Jagła",
           "slug": "robert-jaga",
           "club": "KO",
-          "frekwencja": 9.5,
-          "aktywnosc": 3.0,
+          "frekwencja": 9.1,
+          "aktywnosc": 2.7,
           "zgodnosc_z_klubem": 100.0,
           "votes_za": 29,
           "votes_przeciw": 0,
           "votes_wstrzymal": 0,
           "votes_brak": 0,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 0,
           "rebellions": []
         },
@@ -4171,15 +4586,15 @@
           "name": "Sławomir Piechota",
           "slug": "sawomir-piechota",
           "club": "KO",
-          "frekwencja": 81.0,
-          "aktywnosc": 74.4,
+          "frekwencja": 81.8,
+          "aktywnosc": 74.1,
           "zgodnosc_z_klubem": 99.7,
-          "votes_za": 712,
+          "votes_za": 773,
           "votes_przeciw": 13,
           "votes_wstrzymal": 1,
-          "votes_brak": 88,
+          "votes_brak": 109,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 2,
           "rebellions": [
             {
@@ -4201,14 +4616,14 @@
           "slug": "tymoteusz-myrda",
           "club": "BS",
           "frekwencja": 100.0,
-          "aktywnosc": 87.6,
-          "zgodnosc_z_klubem": 99.2,
-          "votes_za": 831,
-          "votes_przeciw": 11,
+          "aktywnosc": 88.0,
+          "zgodnosc_z_klubem": 99.3,
+          "votes_za": 908,
+          "votes_przeciw": 14,
           "votes_wstrzymal": 13,
-          "votes_brak": 44,
+          "votes_brak": 49,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 7,
           "rebellions": [
             {
@@ -4259,16 +4674,16 @@
           "name": "Tytus Czartoryski",
           "slug": "tytus-czartoryski",
           "club": "PiS",
-          "frekwencja": 95.2,
-          "aktywnosc": 83.4,
+          "frekwencja": 95.5,
+          "aktywnosc": 84.4,
           "zgodnosc_z_klubem": 97.7,
-          "votes_za": 680,
-          "votes_przeciw": 54,
-          "votes_wstrzymal": 80,
-          "votes_brak": 70,
+          "votes_za": 754,
+          "votes_przeciw": 58,
+          "votes_wstrzymal": 84,
+          "votes_brak": 73,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 19,
+          "votes_total": 1062,
+          "rebellion_count": 21,
           "rebellions": [
             {
               "session": "2024-12-12",
@@ -4379,6 +4794,18 @@
               "club_majority": "wstrzymal_sie"
             },
             {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny 1. Przerwa do godziny 18:00",
+              "their_vote": "wstrzymal_sie",
+              "club_majority": "przeciw"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Uchwała w sprawie zmiany uchwały nr XXIII/582/25 Sejmiku Województwa Dolnośląskiego z dnia 18 grudnia 2025 r. w sprawie Wieloletniej Prognozy Finansowej Województwa Dolnośląskiego z autopoprawką DRUK ",
+              "their_vote": "za",
+              "club_majority": "wstrzymal_sie"
+            },
+            {
               "session": "2026-03-26",
               "topic": "Wniosek formalny 6. Wiceprzewodniczącego Marka Łapińskiego w sprawie czytania Audytu",
               "their_vote": "za",
@@ -4390,15 +4817,15 @@
           "name": "Wojciech Bochnak",
           "slug": "wojciech-bochnak",
           "club": "KO",
-          "frekwencja": 95.2,
-          "aktywnosc": 82.0,
+          "frekwencja": 95.5,
+          "aktywnosc": 83.2,
           "zgodnosc_z_klubem": 99.8,
-          "votes_za": 787,
+          "votes_za": 871,
           "votes_przeciw": 13,
           "votes_wstrzymal": 0,
-          "votes_brak": 111,
+          "votes_brak": 112,
           "votes_nieobecny": 0,
-          "votes_total": 976,
+          "votes_total": 1062,
           "rebellion_count": 2,
           "rebellions": [
             {
@@ -4419,16 +4846,16 @@
           "name": "Łukasz Lach",
           "slug": "ukasz-lach",
           "club": "PiS",
-          "frekwencja": 95.2,
-          "aktywnosc": 83.7,
-          "zgodnosc_z_klubem": 95.6,
-          "votes_za": 695,
-          "votes_przeciw": 41,
-          "votes_wstrzymal": 81,
-          "votes_brak": 60,
+          "frekwencja": 95.5,
+          "aktywnosc": 84.2,
+          "zgodnosc_z_klubem": 95.9,
+          "votes_za": 766,
+          "votes_przeciw": 43,
+          "votes_wstrzymal": 85,
+          "votes_brak": 68,
           "votes_nieobecny": 0,
-          "votes_total": 976,
-          "rebellion_count": 36,
+          "votes_total": 1062,
+          "rebellion_count": 37,
           "rebellions": [
             {
               "session": "2024-11-07",
@@ -4603,6 +5030,12 @@
               "topic": "Zmiana porządku obrad 9 Zdjęcie z porządku obrad uchwały w sprawie ustalenia wysokości diet Radnych Sejmiku Województwa Dolnośląskiego",
               "their_vote": "wstrzymal_sie",
               "club_majority": "za"
+            },
+            {
+              "session": "2026-04-29",
+              "topic": "Wniosek formalny. Przełożenie obrad do kolejnego terminu sesji Sejmiku",
+              "their_vote": "za",
+              "club_majority": "przeciw"
             },
             {
               "session": "2026-03-26",

@@ -1049,7 +1049,7 @@ async function init() {
       return;
     }
     if (path.startsWith('/profile/')) {
-      const slug = path.replace('/profile/', '');
+      const slug = path.replace('/profile/', '').replace(/\/$/, '');
       const profile = PROFILES.profiles.find(p => p.slug === slug);
       if (profile) {
         selectKadencjaQuiet(initialKid);
@@ -1083,7 +1083,7 @@ async function init() {
     }
     if (path.startsWith('/vote/')) {
       selectKadencjaQuiet(initialKid);
-      const vid = path.replace('/vote/', '');
+      const vid = path.replace('/vote/', '').replace(/\/$/, '');
       showVote(vid);
       navigateTo(toCanonicalPath(path), true);
       return;
@@ -1099,7 +1099,7 @@ async function init() {
     }
     if (path.startsWith('/session/')) {
       selectKadencjaQuiet(initialKid);
-      const snum = decodeURIComponent(path.replace('/session/', ''));
+      const snum = decodeURIComponent(path.replace('/session/', '').replace(/\/$/, ''));
       showSession(snum);
       navigateTo(toCanonicalPath(path), true);
       return;
@@ -1571,7 +1571,8 @@ function showMain() {
 function _lpNf(n){ return String(n==null?0:n).replace(/\B(?=(\d{3})+(?!\d))/g,' '); }
 function _lpDate(d){ var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(d||''); return m?m[3]+'.'+m[2]+'.'+m[1]:(d||''); }
 function _lpMY(d){ var m=/^(\d{4})-(\d{2})/.exec(d||''); return m?m[2]+'.'+m[1]:''; }
-function _lpBadge(club){ if(!club||club==='?')return ''; return '<span class="lp-badge" style="background:'+clubBg(club)+';color:'+clubColor(club)+'">'+esc(club)+'</span>'; }
+function _lpEsc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function _lpBadge(club){ if(!club||club==='?')return ''; return '<span class="lp-badge" style="background:'+clubBg(club)+';color:'+clubColor(club)+'">'+_lpEsc(club)+'</span>'; }
 function _lpGo(tab){ hideAllViews(); document.getElementById('app').style.display='block'; activateTab(tab); navigateTo(mainPath(tab), true); window.scrollTo(0,0); }
 // Katalog tłumaczeń landingu dla locale miasta (wstrzyknięty build-time z
 // landing_strings.catalog(locale)). _t klucz, _tf z podstawieniem {param}.
@@ -1581,16 +1582,26 @@ function _tf(k,o){ var s=_t(k); for(var p in o){ s=s.split('{'+p+'}').join(o[p])
 function _hl(s){ return s.replace(/\[\[(.+?)\]\]/,'<span class="hl">$1</span>'); }
 
 function _landingStats(){
-  var votes=(K&&K.votes)||[], cs=(K&&K.councilors)||[], ss=(K&&K.sessions)||[];
+  var votes=(K&&K._landingVotes)||[], cs=(K&&K.councilors)||[], ss=(K&&K.sessions)||[];
   function diff(v){ var c=v.counts||{}; return Math.abs((c.za||0)-(c.przeciw||0)); }
   var contested=votes.filter(function(v){ var c=v.counts||{}; return (c.przeciw||0)>0 && diff(v)<10; });
   var active=cs.slice().sort(function(a,b){ return (b.aktywnosc||0)-(a.aktywnosc||0) || (b.votes_total||0)-(a.votes_total||0); })[0];
   var rebel=cs.filter(function(c){return (c.rebellion_count||0)>0;}).sort(function(a,b){ return (b.rebellion_count||0)-(a.rebellion_count||0); })[0];
   var real=votes.filter(function(v){ return ((v.counts||{}).przeciw||0)>0; });
   var topVote=real.slice().sort(function(a,b){ var da=Math.abs((a.counts.za||0)-(a.counts.przeciw||0)), db=Math.abs((b.counts.za||0)-(b.counts.przeciw||0)); return da-db || ((b.counts.za+b.counts.przeciw)-(a.counts.za+a.counts.przeciw)); })[0];
-  var byDate={}, d2n={}; ss.forEach(function(s){ if(s.date)d2n[s.date]=s.number; });
-  votes.forEach(function(v){ var d=v.session_date||''; if(!d)return; if(!byDate[d])byDate[d]={votes:0,contested:0,number:(v.session_number!=null?v.session_number:d2n[d])}; byDate[d].votes++; if(contested.indexOf(v)>-1)byDate[d].contested++; });
-  var activity=Object.keys(byDate).sort().map(function(d){ return {date:d,number:byDate[d].number,votes:byDate[d].votes,contested:byDate[d].contested}; });
+  // Aktivität: bazą są sesje (K.sessions ma vote_count + date + number),
+  // bo głosy per-vote (K._landingVotes) dociągane są leniwie i bywają puste.
+  // Nakładka "sporne" per data dochodzi z votes, gdy już dostępne.
+  var contestedByDate={}; contested.forEach(function(v){ var d=v.session_date||''; if(d)contestedByDate[d]=(contestedByDate[d]||0)+1; });
+  var activity;
+  if(ss.length){
+    activity=ss.filter(function(x){return x.date;})
+      .map(function(x){ return {date:x.date, number:x.number, votes:(x.vote_count||0), contested:(contestedByDate[x.date]||0)}; })
+      .sort(function(p,q){ return (p.date||'').localeCompare(q.date||''); });
+  } else {
+    var byDate={}; votes.forEach(function(v){ var d=v.session_date||''; if(!d)return; if(!byDate[d])byDate[d]={votes:0,contested:0,number:v.session_number}; byDate[d].votes++; if(contested.indexOf(v)>-1)byDate[d].contested++; });
+    activity=Object.keys(byDate).sort().map(function(d){ return {date:d,number:byDate[d].number,votes:byDate[d].votes,contested:byDate[d].contested}; });
+  }
   var recent=real.slice().sort(function(a,b){ return (b.session_date||'').localeCompare(a.session_date||''); }).slice(0,5);
   return { tv:(K.total_votes!=null?K.total_votes:votes.length), tc:(K.total_councilors!=null?K.total_councilors:cs.length),
            ts:(K.total_sessions!=null?K.total_sessions:ss.length), contested:contested.length,
@@ -1599,34 +1610,40 @@ function _landingStats(){
 
 function renderLandingHTML(){
   var s=_landingStats(), gen='Mecklenburg-Vorpommerns';
-  var label=(K&&K.label)?String(K.label).replace('Wahlperiode ','').replace('–',' / '):'';
+  var loaded=!!(K&&K._landingVotesLoaded);
+  var label=(K&&K.label)?String(K.label).replace(/Wahlperiode\s+/i,'').replace(/[–-]/g,' / '):'';
+  // Słowo "kadencja"/"term" tylko jeśli label go jeszcze nie zawiera (label
+  // bywa "IX kadencja (2024 / 2029)" albo gołe "2022 / 2026").
+  var termw=_t('term_word');
+  var termPart=label ? (' · '+((termw && label.toLowerCase().indexOf(termw.toLowerCase())>-1) ? label : (termw+' '+label))) : '';
+  var contestedTxt=loaded ? _lpNf(s.contested) : '…';
   var a=s.active, r=s.rebel, tv=s.topVote, vm=tv?Math.abs((tv.counts.za||0)-(tv.counts.przeciw||0)):0;
   var rows=s.recent.map(function(v){ var c=v.counts||{}, za=c.za||0, prz=c.przeciw||0, ws=c.wstrzymal_sie||0, tot=Math.max(za+prz+ws,1);
-    return '<tr><td style="font-weight:600">'+voteLink(v.id, esc(v.topic||''))+'</td><td class="mu">'+_lpDate(v.session_date)+'</td>'+
+    return '<tr><td style="font-weight:600">'+voteLink(v.id, _lpEsc(v.topic||''))+'</td><td class="mu">'+_lpDate(v.session_date)+'</td>'+
       '<td style="text-align:right;color:var(--green);font-weight:600">'+za+'</td><td style="text-align:right;color:var(--red);font-weight:600">'+prz+'</td><td style="text-align:right" class="mu">'+ws+'</td>'+
       '<td style="padding-left:16px"><div style="display:flex;gap:1px;height:14px"><div style="width:'+(za/tot*100).toFixed(0)+'%;background:var(--green);opacity:.85"></div><div style="width:'+(prz/tot*100).toFixed(0)+'%;background:var(--red);opacity:.85"></div><div style="width:'+(ws/tot*100).toFixed(0)+'%;background:var(--yellow);opacity:.85"></div></div></td></tr>'; }).join('');
   var maxV=s.activity.reduce(function(x,e){ return Math.max(x,e.votes||0); },0)||1;
   var bars=s.activity.map(function(e){ var h1=Math.round((e.votes||0)/maxV*64), h2=Math.round((e.contested||0)/maxV*64),
       inner='<div style="position:absolute;bottom:0;width:100%;height:'+h1+'px;background:var(--accent);opacity:.6;border-radius:1px 1px 0 0"></div><div style="position:absolute;bottom:0;width:100%;height:'+h2+'px;background:var(--red);opacity:.6;border-radius:1px 1px 0 0"></div>',
       st='flex:1;position:relative;height:64px;display:block';
-    return e.number!=null ? '<a href="/session/'+encodeURIComponent(e.number)+'/" onclick="event.preventDefault();showSession(\''+e.number+'\')" title="'+esc(e.date||'')+'" style="'+st+'">'+inner+'</a>' : '<div style="'+st+'">'+inner+'</div>'; }).join('');
+    return e.number!=null ? '<a href="/session/'+encodeURIComponent(e.number)+'/" onclick="event.preventDefault();showSession(\''+e.number+'\')" title="'+_lpEsc(e.date||'')+'" style="'+st+'">'+inner+'</a>' : '<div style="'+st+'">'+inner+'</div>'; }).join('');
   var ax=s.activity.length?('<span>'+_lpMY(s.activity[0].date)+'</span><span>'+_lpMY(s.activity[s.activity.length-1].date)+'</span>'):'';
   function nav(tab,tk,dk){ return '<a class="lp-navcard" href="#" onclick="event.preventDefault();_lpGo(\''+tab+'\')"><div class="nk">'+_t(tk)+' <span class="ar">&rarr;</span></div><div class="nd">'+_t(dk)+'</div></a>'; }
   return ''+
-  '<section class="lp-hero"><div class="lp-eyebrow">'+_tf('hero_eyebrow',{name:gen})+(label?' · '+_t('term_word')+' '+label:'')+'</div>'+
+  '<section class="lp-hero"><div class="lp-eyebrow">'+_tf('hero_eyebrow',{name:gen})+termPart+'</div>'+
     '<h1 class="lp-h1">'+_hl(_t('hero_title'))+'</h1>'+
-    '<p class="lp-insight">'+_tf('insight_full',{name:gen,votes:_lpNf(s.tv),contested:_lpNf(s.contested)})+'</p>'+
+    '<p class="lp-insight">'+_tf('insight_full',{name:gen,votes:_lpNf(s.tv),contested:contestedTxt})+'</p>'+
     '<div class="lp-cta"><a class="lp-btn lp-btn-p" href="/councillors/" onclick="event.preventDefault();_lpGo(\'ranking\')">'+_t('cta_check_votes')+'</a>'+
     '<a class="lp-btn lp-btn-g" href="#" onclick="event.preventDefault();_lpGo(\'votes\')">'+_t('cta_all_votes')+'</a></div></section>'+
   '<section class="lp-sec"><h2>'+_t('sec_numbers_h2')+'</h2><div class="lp-sub">'+_t('sec_numbers_sub')+'</div><div class="lp-stats">'+
     '<div class="lp-card lp-stat"><div class="v">'+_lpNf(s.tv)+'</div><div class="l">'+_t('stat_votes_label')+'</div></div>'+
     '<div class="lp-card lp-stat"><div class="v">'+s.tc+'</div><div class="l">'+_t('stat_councilors_label')+'</div></div>'+
-    '<div class="lp-card lp-stat"><div class="v">'+_lpNf(s.contested)+'</div><div class="l">'+_t('stat_contested_label')+'</div></div>'+
+    '<div class="lp-card lp-stat"><div class="v">'+contestedTxt+'</div><div class="l">'+_t('stat_contested_label')+'</div></div>'+
     '<div class="lp-card lp-stat"><div class="v">'+s.ts+'</div><div class="l">'+_t('stat_sessions_label')+'</div></div></div></section>'+
   (a?('<section class="lp-sec"><h2>'+_t('sec_highlights_h2')+'</h2><div class="lp-sub">'+_t('sec_highlights_sub')+'</div><div class="lp-hl">'+
     '<div class="lp-hcard"><div><div class="lp-tag">'+_t('hl_active_tag')+'</div><div class="lp-name">'+profileLink(a.name)+'</div><div class="lp-hsub">'+_t('hl_active_sub')+'</div>'+_lpBadge(a.club)+'</div><div class="lp-num"><span>'+Math.round(a.aktywnosc||0)+'</span><small>'+_t('hl_active_unit')+'</small></div></div>'+
     (r?('<div class="lp-hcard"><div><div class="lp-tag">'+_t('hl_rebel_tag')+'</div><div class="lp-name">'+profileLink(r.name)+'</div><div class="lp-hsub">'+_t('hl_rebel_sub')+'</div>'+_lpBadge(r.club)+'</div><div class="lp-num"><span>'+(r.rebellion_count||0)+'</span><small>'+_t('hl_rebel_unit')+'</small></div></div>'):'')+
-    (tv?('<div class="lp-hcard"><div><div class="lp-tag">'+_t('hl_vote_tag')+'</div><div class="lp-name">'+voteLink(tv.id, esc(tv.topic||''))+'</div><div class="lp-hsub">'+_lpDate(tv.session_date)+' · '+_tf('vote_margin',{n:vm})+'</div></div><div class="lp-num"><span>'+(tv.counts.za||0)+':'+(tv.counts.przeciw||0)+'</span><small>'+_t('hl_vote_unit')+'</small></div></div>'):'')+
+    (tv?('<div class="lp-hcard"><div><div class="lp-tag">'+_t('hl_vote_tag')+'</div><div class="lp-name">'+voteLink(tv.id, _lpEsc(tv.topic||''))+'</div><div class="lp-hsub">'+_lpDate(tv.session_date)+' · '+_tf('vote_margin',{n:vm})+'</div></div><div class="lp-num"><span>'+(tv.counts.za||0)+':'+(tv.counts.przeciw||0)+'</span><small>'+_t('hl_vote_unit')+'</small></div></div>'):'')+
     '</div></section>'):'')+
   (s.activity.length?('<section class="lp-sec"><h2>'+_t('sec_activity_h2')+'</h2><div class="lp-sub">'+_t('sec_activity_sub')+'</div><div class="lp-card"><div class="lp-spark">'+bars+'</div><div class="lp-axis">'+ax+'</div><div style="display:flex;gap:16px;font-size:.78rem"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--accent)"></span><span class="mu">'+_t('legend_votes')+'</span></span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--red)"></span><span class="mu">'+_t('legend_contested')+'</span></span></div></div></section>'):'')+
   (rows?('<section class="lp-sec"><h2>'+_t('sec_contested_h2')+'</h2><div class="lp-sub">'+_t('sec_contested_sub')+'</div><div class="lp-card"><table><thead><tr><th>'+_t('th_vote')+'</th><th>'+_t('th_date')+'</th><th style="text-align:right">'+_t('th_for')+'</th><th style="text-align:right">'+_t('th_against')+'</th><th style="text-align:right">'+_t('th_abstain')+'</th><th style="padding-left:16px">'+_t('th_split')+'</th></tr></thead><tbody>'+rows+'</tbody></table></div></section>'):'')+
@@ -1653,6 +1670,38 @@ function showLanding(){
   setTitle('');
   setOgMeta({ title: BASE_TITLE, description: 'Radoskop. Offenes Monitoring des Landtags Mecklenburg-Vorpommern. Namentliche Abstimmungen, Fraktionsdisziplin, Anwesenheit der Abgeordneten.', url: 'https://mv.radoskop.eu/' });
   window.scrollTo(0,0);
+  // Progressive enhancement: dociągnij pełne głosy (sporne/topVote/tabela),
+  // których K nie zawiera w payloadzie kadencji, potem przerysuj landing.
+  _ensureLandingVotes();
+}
+
+// Sekcje "sporne" i "kontrowersyjne głosowanie" potrzebują danych per-głos,
+// a kadencja przychodzi bez K.votes (ładowane leniwie). Dociągamy je raz,
+// stronicowo, cache na K. Po sukcesie przerysowujemy landing, jeśli wciąż widoczny.
+async function _ensureLandingVotes(){
+  if(!K || K._landingVotesLoaded || K._landingVotesLoading) return;
+  if(typeof API_BASE==='undefined' || !K.id){ return; }
+  K._landingVotesLoading = true;
+  try {
+    var all=[], page=1, totalPages=1;
+    do {
+      var resp = await fetch(API_BASE + '/kadencja/' + K.id + '/votes?per_page=500&page=' + page);
+      if(!resp.ok) break;
+      var data = await resp.json();
+      (data.items||[]).forEach(function(v){ all.push(v); });
+      totalPages = data.total_pages || 1;
+      page++;
+    } while (page <= totalPages && page <= 40);
+    K._landingVotes = all; // osobny klucz, nie koliduje z porównywarką radnych (K.votes)
+    K._landingVotesLoaded = true;
+  } catch(e) {
+    K._landingVotesLoaded = true; // degraduj cicho — sekcje bez danych zostają ukryte
+  }
+  K._landingVotesLoading = false;
+  var lv=document.getElementById('landing-view');
+  if(lv && lv.style.display!=='none' && (location.pathname==='/'||location.pathname==='')){
+    try { lv.innerHTML=renderLandingHTML(); } catch(e){}
+  }
 }
 
 function render() {
@@ -4546,7 +4595,7 @@ window.addEventListener('popstate', async () => {
     activateTab('ranking'); _popstateActive = false; return;
   }
   if (path.startsWith('/profile/')) {
-    const slug = path.replace('/profile/', '');
+    const slug = path.replace('/profile/', '').replace(/\/$/, '');
     const profile = PROFILES && PROFILES.profiles.find(p => p.slug === slug);
     if (profile) { showProfile(profile.name); _popstateActive = false; return; }
   }
@@ -4568,7 +4617,7 @@ window.addEventListener('popstate', async () => {
     return;
   }
   if (path.startsWith('/vote/')) {
-    const vid = path.replace('/vote/', '');
+    const vid = path.replace('/vote/', '').replace(/\/$/, '');
     showVote(vid);
     _popstateActive = false;
     return;
@@ -4580,7 +4629,7 @@ window.addEventListener('popstate', async () => {
     return;
   }
   if (path.startsWith('/session/')) {
-    const snum = decodeURIComponent(path.replace('/session/', ''));
+    const snum = decodeURIComponent(path.replace('/session/', '').replace(/\/$/, ''));
     showSession(snum);
     _popstateActive = false;
     return;
@@ -4981,7 +5030,7 @@ document.addEventListener('keydown', (e) => {
 <script>
 // Sejmik: definicje klubów i mapowanie radny -> klub.
 const SEJMIK_CLUBS = {"SPD": {"color": "#dc2626", "bg": "rgba(220,38,38,0.12)", "avatar_bg": "#b91c1c"}, "CDU": {"color": "#0f172a", "bg": "rgba(15,23,42,0.12)", "avatar_bg": "#1e293b"}, "AfD": {"color": "#0ea5e9", "bg": "rgba(14,165,233,0.12)", "avatar_bg": "#0369a1"}, "Die Linke": {"color": "#7c2d92", "bg": "rgba(124,45,146,0.12)", "avatar_bg": "#6b21a8"}, "BÜNDNIS 90/DIE GRÜNEN": {"color": "#16a34a", "bg": "rgba(22,163,74,0.12)", "avatar_bg": "#15803d"}, "Gruppe der FDP": {"color": "#facc15", "bg": "rgba(250,204,21,0.18)", "avatar_bg": "#ca8a04"}, "fraktionslos": {"color": "#64748b", "bg": "rgba(100,116,139,0.12)", "avatar_bg": "#475569"}};
-const SEJMIK_CLUB_OF = {"Thomas Würdisch": "SPD", "Heiko Miraß": "SPD", "Martina Tegtmeier": "SPD", "Andreas Butzki": "SPD", "Nikolaus Kramer": "AfD", "Monique Wölk": "SPD", "Sandy van Baal": "fraktionslos", "Eva Maria Schneider-Gärtner": "fraktionslos", "Thomas Krüger": "SPD", "Wolfgang Waldmüller": "CDU", "Stephan J. Reuken": "AfD", "Sabine Enseleit": "CDU", "Anne Shepley": "BÜNDNIS 90/DIE GRÜNEN", "Steffi Pulz-Debler": "Die Linke", "Rainer Albrecht": "SPD", "Tilo Gundlack": "SPD", "Jeannine Rösler": "Die Linke", "Christian Pegel": "SPD", "Philipp da Cunha": "SPD", "Christian Winter": "SPD", "Thomas de Jesus-Fernandes": "AfD", "Petra Federau": "AfD", "Henning Foerster": "Die Linke", "Patrick Dahlemann": "SPD", "Nils Saemann": "SPD", "Constanze Oehlrich": "BÜNDNIS 90/DIE GRÜNEN", "Franz-Robert Liskow": "CDU", "Enrico Schult": "AfD", "Harry Glawe": "CDU", "Harald Terpe": "BÜNDNIS 90/DIE GRÜNEN", "Elke-Annette Schmidt": "Die Linke", "Thomas Diener": "CDU", "David Wulff": "Gruppe der FDP", "Mandy Pfeifer": "SPD", "Jens Schulze-Wiehenbrauk": "AfD", "Jens-Holger Schneider": "AfD", "Dirk Bruhn": "Die Linke", "Sebastian Ehlers": "CDU", "Sylva Rahm-Präger": "SPD", "Michel-Friedrich Schiefler": "SPD", "Falko Beitz": "SPD", "Dirk Stamer": "SPD", "Marcel Falk": "SPD", "Katy Hoffmeister": "CDU", "Christine Klingohr": "SPD", "Julian Barlen": "SPD", "Ann Christin von Allwörden": "CDU", "Jan-Phillip Tadsen": "AfD", "Beatrix Hegenkötter": "SPD", "Thore Stein": "AfD", "Torsten Koplin": "Die Linke", "Hannes Damm": "BÜNDNIS 90/DIE GRÜNEN", "Torsten Renz": "CDU", "Anna-Konstanze Schröder": "SPD", "Horst Förster": "AfD", "Dagmar Kaselitz": "SPD", "Christian Brade": "SPD", "Martin Schmidt": "AfD", "Stefanie Drese": "SPD", "Nadine Julitz": "SPD", "Marc Reinhardt": "CDU", "René Domke": "Gruppe der FDP", "Daniel Trepsdorf": "Die Linke", "Daniel Peters": "CDU", "Robert Northoff": "SPD", "Christian Albrecht": "Die Linke", "Michael Noetzel": "Die Linke", "Grit Schmelzer": "SPD", "Till Backhaus": "SPD", "Ralf Mucha": "SPD", "Christiane Berg": "CDU", "Manuela Schwesig": "SPD", "Paul-Joachim Timm": "AfD", "Jutta Wegner": "BÜNDNIS 90/DIE GRÜNEN", "Birgit Hesse": "SPD", "Barbara Becker-Hornickel": "Gruppe der FDP", "Beate Schlupp": "CDU", "Bettina Martin": "SPD", "Michael Meister": "AfD"};
+const SEJMIK_CLUB_OF = {"Wolfgang Waldmüller": "CDU", "Paul-Joachim Timm": "AfD", "Horst Förster": "AfD", "Daniel Peters": "CDU", "Grit Schmelzer": "SPD", "Birgit Hesse": "SPD", "Monique Wölk": "SPD", "Stephan J. Reuken": "AfD", "Barbara Becker-Hornickel": "Gruppe der FDP", "Philipp da Cunha": "SPD", "Marc Reinhardt": "CDU", "Harald Terpe": "BÜNDNIS 90/DIE GRÜNEN", "Rainer Albrecht": "SPD", "Franz-Robert Liskow": "CDU", "Dagmar Kaselitz": "SPD", "Martin Schmidt": "AfD", "Thomas Diener": "CDU", "Petra Federau": "AfD", "Sylva Rahm-Präger": "SPD", "Thomas Krüger": "SPD", "Julian Barlen": "SPD", "Marcel Falk": "SPD", "René Domke": "Gruppe der FDP", "Thomas Würdisch": "SPD", "Sebastian Ehlers": "CDU", "Robert Northoff": "SPD", "Thomas de Jesus-Fernandes": "AfD", "Henning Foerster": "Die Linke", "Martina Tegtmeier": "SPD", "Jan-Phillip Tadsen": "AfD", "Bettina Martin": "SPD", "Dirk Bruhn": "Die Linke", "Daniel Trepsdorf": "Die Linke", "Ralf Mucha": "SPD", "Jens-Holger Schneider": "AfD", "Steffi Pulz-Debler": "Die Linke", "Jutta Wegner": "BÜNDNIS 90/DIE GRÜNEN", "Katy Hoffmeister": "CDU", "Thore Stein": "AfD", "Michael Meister": "AfD", "Elke-Annette Schmidt": "Die Linke", "Beatrix Hegenkötter": "SPD", "Falko Beitz": "SPD", "Christiane Berg": "CDU", "Hannes Damm": "BÜNDNIS 90/DIE GRÜNEN", "Stefanie Drese": "SPD", "Nikolaus Kramer": "AfD", "Sandy van Baal": "fraktionslos", "Michel-Friedrich Schiefler": "SPD", "Tilo Gundlack": "SPD", "Christian Winter": "SPD", "Nils Saemann": "SPD", "David Wulff": "Gruppe der FDP", "Christine Klingohr": "SPD", "Christian Albrecht": "Die Linke", "Till Backhaus": "SPD", "Heiko Miraß": "SPD", "Enrico Schult": "AfD", "Michael Noetzel": "Die Linke", "Eva Maria Schneider-Gärtner": "fraktionslos", "Jens Schulze-Wiehenbrauk": "AfD", "Harry Glawe": "CDU", "Mandy Pfeifer": "SPD", "Anna-Konstanze Schröder": "SPD", "Manuela Schwesig": "SPD", "Constanze Oehlrich": "BÜNDNIS 90/DIE GRÜNEN", "Torsten Renz": "CDU", "Christian Brade": "SPD", "Torsten Koplin": "Die Linke", "Christian Pegel": "SPD", "Nadine Julitz": "SPD", "Patrick Dahlemann": "SPD", "Anne Shepley": "BÜNDNIS 90/DIE GRÜNEN", "Sabine Enseleit": "CDU", "Ann Christin von Allwörden": "CDU", "Dirk Stamer": "SPD", "Andreas Butzki": "SPD", "Beate Schlupp": "CDU", "Jeannine Rösler": "Die Linke"};
 // Globalna mapa nazwisko -> klub (template miasta używa, jeśli
 // councilors[].club nie jest ustawione w data.json).
 window.clubAssignments = SEJMIK_CLUB_OF;
