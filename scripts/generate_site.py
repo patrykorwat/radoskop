@@ -141,36 +141,32 @@ def apply_english_paths(html: str) -> str:
     Strict path-pattern replacements (nie surowe '/profil/'), żeby nie
     złapać przypadkiem fragmentu nazwy zmiennej albo CSS class.
     """
-    # /profil/ — w URL contextach
-    html = html.replace("path.startsWith('/profil/')", "path.startsWith('/profile/')")
-    html = html.replace("path.replace('/profil/', '')", "path.replace('/profile/', '')")
+    # KRYTYCZNE: NIE konwertujemy tu sprawdzeń ścieżki WEWNĘTRZNEJ w JS
+    # (path.startsWith('/profil/'), path === '/budzet', path.replace('/sesja/','')
+    # itd.). `path` w init()/popstate() pochodzi z toInternalPath(), który mapuje
+    # angielski URL na polski slug wewnętrzny (profile→profil, session→sesja,
+    # vote→glosowanie...). Branche routingu są więc po polsku i MUSZĄ takie
+    # zostać — inaczej deep-link na refresh nie pasuje i leci fallback na
+    # /councillors/ (regresja: profile/sesje/głosowania padały po wejściu z URL).
+    # Konwertujemy WYŁĄCZNIE ścieżki EMITOWANE: href, navigateTo, return w
+    # mainPath, {{SITE_URL}}/OG, TAB_SLUGS, sitemap.
+
+    # /profil/ — emit only (sprawdzenia path.startsWith/replace zostają polskie)
     html = html.replace("'href=\"/profil/'", "'href=\"/profile/'")
     html = html.replace("navigateTo('/profil/'", "navigateTo('/profile/'")
     html = html.replace("{{SITE_URL}}/profil/", "{{SITE_URL}}/profile/")
     html = html.replace("src=\"{{SITE_URL}}/profil/", "src=\"{{SITE_URL}}/profile/")
 
-    # /aktualnosci/
-    html = html.replace(
-        "path === '/aktualnosci' || path === '/aktualnosci/'",
-        "path === '/news' || path === '/news/'",
-    )
+    # /aktualnosci/ — emit only
     html = html.replace("href=\"/aktualnosci/\"", "href=\"/news/\"")
     html = html.replace("// /aktualnosci/", "// /news/")
 
-    # /budzet/
-    html = html.replace(
-        "path === '/budzet' || path === '/budzet/'",
-        "path === '/budget' || path === '/budget/'",
-    )
+    # /budzet/ — emit only (mainPath return)
     html = html.replace("if (tab === 'budget') return '/budzet/';",
                         "if (tab === 'budget') return '/budget/';")
 
-    # /interpelacje/ (URL path only — NIE klucz w TAB_SLUGS ani 'interpelacje' w
-    # `tab === 'interpelacje'` checkach, bo to identyfikator JS, nie path)
-    html = html.replace(
-        "path === '/interpelacje' || path === '/interpelacje/'",
-        "path === '/interpellations' || path === '/interpellations/'",
-    )
+    # /interpelacje/ — emit only (mainPath return; 'interpelacje' jako klucz JS
+    # w tab === '...' to identyfikator, nie path, zostaje bez zmian)
     html = html.replace("if (tab === 'interpelacje') return '/interpelacje/';",
                         "if (tab === 'interpelacje') return '/interpellations/';")
 
@@ -182,56 +178,32 @@ def apply_english_paths(html: str) -> str:
     # konwencja backendu, dotyka tylko data_api.py, nie SEO. Slug url_slug
     # (np. "komisja-zdrowia") zostaje jak w danych BIP bo to identyfikator
     # lokalny per kraj — w DE byłby "ausschuss-gesundheit" itd.
-    html = html.replace(
-        "path === '/komisje' || path === '/komisje/'",
-        "path === '/commissions' || path === '/commissions/'",
-    )
     html = html.replace("if (tab === 'komisje') return '/komisje/';",
                         "if (tab === 'komisje') return '/commissions/';")
-    html = html.replace("path.startsWith('/komisja/')", "path.startsWith('/commission/')")
-    html = html.replace("path.replace('/komisja/', '')", "path.replace('/commission/', '')")
     html = html.replace("navigateTo('/komisja/'", "navigateTo('/commission/'")
     # HTML linki w template literals (komisje grid cards): href="/komisja/${...}/"
     html = html.replace('href="/komisja/', 'href="/commission/')
     # OG meta canonical url: '{{SITE_URL}}/komisja/' + slug + '/'
     html = html.replace("{{SITE_URL}}/komisja/", "{{SITE_URL}}/commission/")
 
-    # /kadencja/ — tylko URL paths, NIE API_BASE+'/kadencja/...'
-    html = html.replace("path.startsWith('/kadencja/')", "path.startsWith('/term/')")
-    html = html.replace("path.replace('/kadencja/', '')", "path.replace('/term/', '')")
+    # /kadencja/ — emit only (mainPath return). API_BASE+'/kadencja/...' zostaje.
     html = html.replace("return '/kadencja/' + kadSlug", "return '/term/' + kadSlug")
     # Komentarz w mainPath()
     html = html.replace("typu /kadencja/ix/undefined", "typu /term/ix/undefined")
 
-    # /glosowanie/
-    html = html.replace(
-        "path === '/glosowanie' || path === '/glosowanie/'",
-        "path === '/vote' || path === '/vote/'",
-    )
-    html = html.replace("path.startsWith('/glosowanie/')", "path.startsWith('/vote/')")
-    html = html.replace("path.replace('/glosowanie/', '')", "path.replace('/vote/', '')")
+    # /glosowanie/ — emit only
     html = html.replace("navigateTo('/glosowanie/'", "navigateTo('/vote/'")
     html = html.replace("'href=\"/glosowanie/'", "'href=\"/vote/'")
     html = html.replace("{{SITE_URL}}/glosowanie/", "{{SITE_URL}}/vote/")
     html = html.replace("// /glosowanie/", "// /vote/")
 
-    # /sesja/
-    html = html.replace(
-        "path === '/sesja' || path === '/sesja/'",
-        "path === '/session' || path === '/session/'",
-    )
-    html = html.replace("path.startsWith('/sesja/')", "path.startsWith('/session/')")
-    html = html.replace("path.replace('/sesja/', '')", "path.replace('/session/', '')")
+    # /sesja/ — emit only
     html = html.replace("navigateTo('/sesja/'", "navigateTo('/session/'")
     html = html.replace("'href=\"/sesja/'", "'href=\"/session/'")
     html = html.replace("{{SITE_URL}}/sesja/", "{{SITE_URL}}/session/")
     html = html.replace("// /sesja/", "// /session/")
 
-    # /raporty/ + sub-paths
-    html = html.replace(
-        "path === '/raporty' || path === '/raporty/'",
-        "path === '/reports' || path === '/reports/'",
-    )
+    # /raporty/ + sub-paths — emit only
     html = html.replace("href=\"/raporty/\"", "href=\"/reports/\"")
     html = html.replace("'href=\"/raporty/radny/'", "'href=\"/reports/councillor/'")
     html = html.replace("'href=\"/raporty/klub/'", "'href=\"/reports/club/'")
@@ -274,8 +246,6 @@ def apply_english_paths(html: str) -> str:
     # /druk/ — strona druku (treść + procedowanie w komisjach). URL-facing
     # path: /druk/ → /bill/. API endpoint (API_BASE + '/druk/...') zostaje
     # po polsku jak inne API endpointy — dotyka tylko backend, nie SEO.
-    html = html.replace("path.startsWith('/druk/')", "path.startsWith('/bill/')")
-    html = html.replace("path.replace('/druk/', '')", "path.replace('/bill/', '')")
     html = html.replace(
         "navigateTo('/druk/' + kadSlug + '/' + encodeURIComponent(drukId) + '/')",
         "navigateTo('/bill/' + kadSlug + '/' + encodeURIComponent(drukId) + '/')",
@@ -306,14 +276,9 @@ def apply_english_paths(html: str) -> str:
         '<a href="/regulamin/"',
         '<a href="/terms/"',
     )
-    html = html.replace(
-        "path === '/polityka-prywatnosci' || path === '/polityka-prywatnosci/'",
-        "path === '/privacy' || path === '/privacy/'",
-    )
-    html = html.replace(
-        "path === '/regulamin' || path === '/regulamin/'",
-        "path === '/terms' || path === '/terms/'",
-    )
+    # Uwaga: sprawdzenia path === '/polityka-prywatnosci' / '/regulamin' NIE
+    # konwertujemy (path jest po toInternalPath = polski). Konwertujemy tylko
+    # <a href> wyżej.
 
     return html
 
