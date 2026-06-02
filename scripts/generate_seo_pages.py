@@ -444,14 +444,12 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                 f"Sesja {session_number}, {session_date}."
             )
 
-            og_img = f"{site_url}/{SLUG['vote']}/{vid}/og.png"
-            og_img_path = docs / SLUG["vote"] / vid / "og.png"
-            if not og_img_path.exists():
-                og_img_legacy = docs / "glosowanie" / vid / "og.png"
-                if og_img_legacy.exists():
-                    og_img_path = og_img_legacy
-                else:
-                    og_img = None
+            # Wspólny obrazek OG dla wszystkich głosowań miasta (jeden
+            # /og-votes.png zamiast jednego PNG na głosowanie). generate_og_images.py
+            # generuje go raz na miasto. Fallback None gdy jeszcze nie istnieje.
+            og_img = f"{site_url}/og-votes.png"
+            if not (docs / "og-votes.png").exists():
+                og_img = None
 
             body = (
                 f"<h1>{esc(topic or f'Glosowanie {vid}')}</h1>\n"

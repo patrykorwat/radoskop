@@ -326,6 +326,43 @@ def generate_councillor_image(profile, kadencja_data, city_name, site_url, clubs
     img.save(str(output_path), "PNG", optimize=True)
 
 
+# Lokalizowany podtytuł dla WSPÓLNEGO obrazka OG głosowań (jeden na miasto
+# zamiast jednego na głosowanie). Fallback EN dla locale spoza mapy.
+_VOTES_OG_LABEL = {
+    "pl": "Imienne głosowania radnych",
+    "de": "Namentliche Abstimmungen",
+    "cs": "Jmenovitá hlasování zastupitelů",
+    "sk": "Menovité hlasovania poslancov",
+    "nl": "Hoofdelijke stemmingen",
+    "hu": "Név szerinti szavazások",
+    "lt": "Vardiniai tarybos balsavimai",
+    "lv": "Deputātu vārdiskie balsojumi",
+    "et": "Nimelised hääletused",
+    "da": "Navnlige afstemninger",
+    "fr": "Votes nominatifs du conseil",
+    "uk": "Поіменні голосування депутатів",
+    "en": "Roll-call council votes",
+}
+
+
+def generate_city_votes_image(city_name, site_url, label, output_path):
+    """Jeden WSPÓLNY obrazek OG dla wszystkich stron głosowań miasta. Brand +
+    nazwa miasta + lokalizowany podtytuł. Zastępuje dziesiątki tysięcy
+    per-głosowanie PNG-ów (te są rzadko udostępniane pojedynczo)."""
+    img = Image.new("RGB", (W, H), BG_DARK)
+    draw = ImageDraw.Draw(img)
+    # akcentowa kreska u góry
+    draw.rectangle([0, 0, W, 8], fill=ACCENT)
+    title = f"Radoskop {city_name}"
+    tw = draw.textlength(title, font=FONT_STAT_VALUE)
+    draw.text(((W - tw) / 2, 250), title, fill=WHITE, font=FONT_STAT_VALUE)
+    sw = draw.textlength(label, font=FONT_SUBTITLE)
+    draw.text(((W - sw) / 2, 320), label, fill=MUTED, font=FONT_SUBTITLE)
+    draw_brand(draw, city_name, site_url)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    img.save(str(output_path), "PNG", optimize=True)
+
+
 def parse_hex(hex_str):
     """Parse #RRGGBB to (R, G, B) tuple."""
     hex_str = hex_str.lstrip("#")
@@ -402,33 +439,22 @@ def process_city(city_dir: Path, force=False):
 
     print(f"  {councillor_count} councillor OG images")
 
-    # ── Vote images ──
-    # Load full kadencja files for vote details
-    vote_count = 0
-    for k in kadencje:
-        kid = k.get("id", "")
-        kad_file = docs / f"kadencja-{kid}.json"
-        if not kad_file.exists():
-            continue
-
-        with open(kad_file, "r", encoding="utf-8") as f:
-            kad_data = json.load(f)
-
-        for vote in kad_data.get("votes", []):
-            vid = vote.get("id", "")
-            if not vid:
-                continue
-            out = docs / vote_slug / vid / "og.png"
-            if out.exists() and not force:
-                vote_count += 1
-                continue
-            try:
-                generate_vote_image(vote, city_name, site_url, out)
-                vote_count += 1
-            except Exception as e:
-                print(f"  ERROR vote {vid}: {e}")
-
-    print(f"  {vote_count} vote OG images")
+    # ── Vote image (WSPÓLNY, jeden na miasto) ──
+    # Dawniej generowaliśmy jeden PNG na KAŻDE głosowanie (dziesiątki tysięcy
+    # plików na S3). Pojedyncze głosowania są rzadko udostępniane społecznościowo,
+    # a og:image nie wpływa na ranking Google (to tylko podgląd social). Więc
+    # wszystkie strony /vote/{id}/ wskazują teraz na jeden /og-votes.png miasta
+    # (patrz generate_seo_pages.py). Per-głosowanie funkcja generate_vote_image
+    # zostaje w module na wypadek powrotu, ale nie jest wołana w pętli.
+    locale = (config.get("locale") or "pl").lower()
+    label = _VOTES_OG_LABEL.get(locale, _VOTES_OG_LABEL["en"])
+    votes_og = docs / "og-votes.png"
+    if not votes_og.exists() or force:
+        try:
+            generate_city_votes_image(city_name, site_url, label, votes_og)
+        except Exception as e:
+            print(f"  ERROR votes OG: {e}")
+    print(f"  1 shared vote OG image (was per-vote)")
 
 
 def main():
