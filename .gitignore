@@ -18,9 +18,12 @@ cities/*/cache/
 cities/*/data/
 cities/*/pdfs/
 
-# Sejmiki: cache lokalne (PDFy, HTML, snapshoty BIP) zostają na NAS, nie do
-# gita. docs/ zostają w repo do momentu uruchomienia deployu sejmików do S3.
+# Sejmiki: jak miasta. docs/ to wygenerowany output scrape'u, trwała kopia
+# żyje w s3://radoskop-public/{slug}/ przez deploy_all_s3.py. Repo trzyma tylko
+# kod i config; cache lokalne (PDFy, HTML, snapshoty BIP) zostają na NAS.
+assemblies/*/docs/
 assemblies/*/.cache/
+assemblies/*/cache/
 assemblies/*/data/
 assemblies/*/pdfs/
 

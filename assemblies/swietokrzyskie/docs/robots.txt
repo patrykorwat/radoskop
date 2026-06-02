@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://swietokrzyskie.radoskop.pl/sitemap.xml

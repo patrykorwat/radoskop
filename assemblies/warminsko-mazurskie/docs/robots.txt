@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://warminsko-mazurskie.radoskop.pl/sitemap.xml
