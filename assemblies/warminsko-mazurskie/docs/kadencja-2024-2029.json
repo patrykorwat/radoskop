@@ -1,7 +1,7 @@
 {
   "id": "2024-2029",
   "label": "VII kadencja (2024-2029)",
-  "scraped_at": "2026-06-02T08:08:38.334195+00:00",
+  "scraped_at": "2026-06-02T14:38:16.562190+00:00",
   "sessions": [
     {
       "date": "2026-04-28",
@@ -139,39 +139,6 @@
         "Łukasz Kochan"
       ],
       "attendee_count": 27,
-      "speakers": []
-    },
-    {
-      "date": "2025-10-28",
-      "number": "XVIII",
-      "vote_count": 16,
-      "attendees": [
-        "Anna Piątek",
-        "Bogdan Bartnicki",
-        "Bogusław Wisowaty",
-        "Bogusława Orzechowska",
-        "Bożenna Ulewicz",
-        "Elżbieta Ruda",
-        "Ewa Wiśniewska",
-        "Jan Bobek",
-        "Jarosław Słoma",
-        "Katarzyna Sobiech",
-        "Marcin Kazimierczuk",
-        "Marcin Kuchciński",
-        "Marek Chyl",
-        "Maria Bąkowska",
-        "Patryk Kozłowski",
-        "Paweł Warot",
-        "Piotr Andruszkiewicz",
-        "Piotr Soćko",
-        "Rafał Wilczek",
-        "Robert Turlej",
-        "Tadeusz Politewicz",
-        "Tadeusz Sobierajski",
-        "Zbigniew Homza",
-        "Łukasz Kochan"
-      ],
-      "attendee_count": 24,
       "speakers": []
     },
     {
@@ -719,8 +686,8 @@
       "speakers": []
     }
   ],
-  "total_sessions": 20,
-  "total_votes": 497,
+  "total_sessions": 19,
+  "total_votes": 481,
   "total_councilors": 30,
   "councilors": [
     {
@@ -728,14 +695,14 @@
       "slug": "anna-piatek",
       "club": "PiS",
       "frekwencja": 100.0,
-      "aktywnosc": 97.4,
-      "zgodnosc_z_klubem": 99.0,
-      "votes_za": 338,
+      "aktywnosc": 98.1,
+      "zgodnosc_z_klubem": 98.9,
+      "votes_za": 330,
       "votes_przeciw": 55,
-      "votes_wstrzymal": 91,
+      "votes_wstrzymal": 87,
       "votes_brak": 0,
       "votes_nieobecny": 0,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 5,
       "rebellions": [
         {
@@ -774,15 +741,15 @@
       "name": "Bernadeta Hordejuk",
       "slug": "bernadeta-hordejuk",
       "club": "KO",
-      "frekwencja": 95.0,
-      "aktywnosc": 89.5,
+      "frekwencja": 100.0,
+      "aktywnosc": 92.5,
       "zgodnosc_z_klubem": 98.2,
       "votes_za": 426,
       "votes_przeciw": 16,
       "votes_wstrzymal": 3,
       "votes_brak": 0,
-      "votes_nieobecny": 23,
-      "votes_total": 497,
+      "votes_nieobecny": 7,
+      "votes_total": 481,
       "rebellion_count": 8,
       "rebellions": [
         {
@@ -840,14 +807,14 @@
       "slug": "bogdan-bartnicki",
       "club": "TD",
       "frekwencja": 100.0,
-      "aktywnosc": 98.4,
+      "aktywnosc": 99.2,
       "zgodnosc_z_klubem": 99.2,
-      "votes_za": 471,
+      "votes_za": 459,
       "votes_przeciw": 16,
       "votes_wstrzymal": 2,
       "votes_brak": 0,
-      "votes_nieobecny": 4,
-      "votes_total": 497,
+      "votes_nieobecny": 0,
+      "votes_total": 481,
       "rebellion_count": 4,
       "rebellions": [
         {
@@ -881,14 +848,14 @@
       "slug": "bogusaw-wisowaty",
       "club": "TD",
       "frekwencja": 100.0,
-      "aktywnosc": 98.2,
-      "zgodnosc_z_klubem": 98.4,
-      "votes_za": 466,
+      "aktywnosc": 98.1,
+      "zgodnosc_z_klubem": 98.3,
+      "votes_za": 450,
       "votes_przeciw": 20,
       "votes_wstrzymal": 2,
       "votes_brak": 0,
       "votes_nieobecny": 2,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 8,
       "rebellions": [
         {
@@ -946,14 +913,14 @@
       "slug": "bogusawa-orzechowska",
       "club": "PiS",
       "frekwencja": 100.0,
-      "aktywnosc": 97.0,
-      "zgodnosc_z_klubem": 96.5,
-      "votes_za": 321,
+      "aktywnosc": 96.9,
+      "zgodnosc_z_klubem": 96.4,
+      "votes_za": 309,
       "votes_przeciw": 60,
-      "votes_wstrzymal": 101,
+      "votes_wstrzymal": 97,
       "votes_brak": 0,
       "votes_nieobecny": 0,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 17,
       "rebellions": [
         {
@@ -1065,15 +1032,15 @@
       "slug": "bozenna-ulewicz",
       "club": "PiS",
       "frekwencja": 100.0,
-      "aktywnosc": 96.0,
-      "zgodnosc_z_klubem": 90.1,
-      "votes_za": 302,
+      "aktywnosc": 95.8,
+      "zgodnosc_z_klubem": 90.0,
+      "votes_za": 291,
       "votes_przeciw": 58,
-      "votes_wstrzymal": 117,
+      "votes_wstrzymal": 112,
       "votes_brak": 0,
       "votes_nieobecny": 0,
-      "votes_total": 497,
-      "rebellion_count": 47,
+      "votes_total": 481,
+      "rebellion_count": 46,
       "rebellions": [
         {
           "session": "2024-05-07",
@@ -1280,12 +1247,6 @@
           "club_majority": "za"
         },
         {
-          "session": "2025-10-28",
-          "topic": "",
-          "their_vote": "wstrzymal_sie",
-          "club_majority": "za"
-        },
-        {
           "session": "2025-11-25",
           "topic": "",
           "their_vote": "wstrzymal_sie",
@@ -1366,12 +1327,12 @@
       "frekwencja": 100.0,
       "aktywnosc": 99.4,
       "zgodnosc_z_klubem": 100.0,
-      "votes_za": 473,
+      "votes_za": 457,
       "votes_przeciw": 21,
       "votes_wstrzymal": 0,
       "votes_brak": 0,
       "votes_nieobecny": 0,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 0,
       "rebellions": []
     },
@@ -1380,14 +1341,14 @@
       "slug": "ewa-wisniewska",
       "club": "PiS",
       "frekwencja": 100.0,
-      "aktywnosc": 97.4,
-      "zgodnosc_z_klubem": 97.1,
-      "votes_za": 333,
+      "aktywnosc": 97.9,
+      "zgodnosc_z_klubem": 97.0,
+      "votes_za": 324,
       "votes_przeciw": 56,
-      "votes_wstrzymal": 95,
+      "votes_wstrzymal": 91,
       "votes_brak": 0,
       "votes_nieobecny": 0,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 14,
       "rebellions": [
         {
@@ -1480,15 +1441,15 @@
       "name": "Jan Bobek",
       "slug": "jan-bobek",
       "club": "TD",
-      "frekwencja": 90.0,
-      "aktywnosc": 85.7,
-      "zgodnosc_z_klubem": 94.1,
-      "votes_za": 393,
+      "frekwencja": 89.5,
+      "aktywnosc": 85.2,
+      "zgodnosc_z_klubem": 93.9,
+      "votes_za": 377,
       "votes_przeciw": 12,
       "votes_wstrzymal": 21,
       "votes_brak": 0,
       "votes_nieobecny": 46,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 25,
       "rebellions": [
         {
@@ -1648,14 +1609,14 @@
       "slug": "jarosaw-soma",
       "club": "KO",
       "frekwencja": 100.0,
-      "aktywnosc": 98.0,
+      "aktywnosc": 97.9,
       "zgodnosc_z_klubem": 97.5,
-      "votes_za": 455,
+      "votes_za": 439,
       "votes_przeciw": 27,
       "votes_wstrzymal": 5,
       "votes_brak": 0,
       "votes_nieobecny": 4,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 12,
       "rebellions": [
         {
@@ -1736,15 +1697,15 @@
       "name": "Katarzyna Królak",
       "slug": "katarzyna-krolak",
       "club": "KO",
-      "frekwencja": 10.0,
-      "aktywnosc": 17.9,
+      "frekwencja": 10.5,
+      "aktywnosc": 18.5,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 81,
       "votes_przeciw": 8,
       "votes_wstrzymal": 0,
       "votes_brak": 0,
       "votes_nieobecny": 32,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 0,
       "rebellions": []
     },
@@ -1755,12 +1716,12 @@
       "frekwencja": 100.0,
       "aktywnosc": 99.6,
       "zgodnosc_z_klubem": 100.0,
-      "votes_za": 474,
+      "votes_za": 458,
       "votes_przeciw": 21,
       "votes_wstrzymal": 0,
       "votes_brak": 0,
       "votes_nieobecny": 0,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 0,
       "rebellions": []
     },
@@ -1768,15 +1729,15 @@
       "name": "Magdalena Lewkowicz",
       "slug": "magdalena-lewkowicz",
       "club": "KO",
-      "frekwencja": 25.0,
-      "aktywnosc": 32.2,
+      "frekwencja": 26.3,
+      "aktywnosc": 33.3,
       "zgodnosc_z_klubem": 100.0,
       "votes_za": 153,
       "votes_przeciw": 7,
       "votes_wstrzymal": 0,
       "votes_brak": 0,
       "votes_nieobecny": 1,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 0,
       "rebellions": []
     },
@@ -1785,14 +1746,14 @@
       "slug": "marcin-kazimierczuk",
       "club": "PiS",
       "frekwencja": 100.0,
-      "aktywnosc": 92.0,
+      "aktywnosc": 91.7,
       "zgodnosc_z_klubem": 98.9,
-      "votes_za": 315,
+      "votes_za": 303,
       "votes_przeciw": 52,
-      "votes_wstrzymal": 90,
+      "votes_wstrzymal": 86,
       "votes_brak": 0,
       "votes_nieobecny": 0,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 5,
       "rebellions": [
         {
@@ -1832,14 +1793,14 @@
       "slug": "marcin-kuchcinski",
       "club": "KO",
       "frekwencja": 100.0,
-      "aktywnosc": 97.8,
+      "aktywnosc": 97.7,
       "zgodnosc_z_klubem": 100.0,
-      "votes_za": 465,
+      "votes_za": 449,
       "votes_przeciw": 21,
       "votes_wstrzymal": 0,
       "votes_brak": 0,
       "votes_nieobecny": 0,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 0,
       "rebellions": []
     },
@@ -1850,12 +1811,12 @@
       "frekwencja": 100.0,
       "aktywnosc": 99.6,
       "zgodnosc_z_klubem": 99.6,
-      "votes_za": 472,
+      "votes_za": 456,
       "votes_przeciw": 22,
       "votes_wstrzymal": 1,
       "votes_brak": 0,
       "votes_nieobecny": 0,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 2,
       "rebellions": [
         {
@@ -1879,12 +1840,12 @@
       "frekwencja": 100.0,
       "aktywnosc": 99.4,
       "zgodnosc_z_klubem": 99.6,
-      "votes_za": 474,
+      "votes_za": 458,
       "votes_przeciw": 19,
       "votes_wstrzymal": 1,
       "votes_brak": 0,
       "votes_nieobecny": 0,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 2,
       "rebellions": [
         {
@@ -1905,15 +1866,15 @@
       "name": "Małgorzata Kopiczko",
       "slug": "magorzata-kopiczko",
       "club": "PiS",
-      "frekwencja": 5.0,
-      "aktywnosc": 10.3,
+      "frekwencja": 5.3,
+      "aktywnosc": 10.6,
       "zgodnosc_z_klubem": 98.0,
       "votes_za": 37,
       "votes_przeciw": 7,
       "votes_wstrzymal": 7,
       "votes_brak": 0,
       "votes_nieobecny": 0,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 1,
       "rebellions": [
         {
@@ -1928,15 +1889,15 @@
       "name": "Patryk Kozłowski",
       "slug": "patryk-kozowski",
       "club": "PiS",
-      "frekwencja": 95.0,
-      "aktywnosc": 84.7,
+      "frekwencja": 94.7,
+      "aktywnosc": 85.0,
       "zgodnosc_z_klubem": 99.0,
-      "votes_za": 301,
+      "votes_za": 293,
       "votes_przeciw": 47,
-      "votes_wstrzymal": 73,
+      "votes_wstrzymal": 69,
       "votes_brak": 0,
       "votes_nieobecny": 32,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 4,
       "rebellions": [
         {
@@ -1970,15 +1931,15 @@
       "slug": "pawe-warot",
       "club": "PiS",
       "frekwencja": 100.0,
-      "aktywnosc": 92.4,
-      "zgodnosc_z_klubem": 96.9,
-      "votes_za": 305,
+      "aktywnosc": 92.1,
+      "zgodnosc_z_klubem": 97.1,
+      "votes_za": 294,
       "votes_przeciw": 58,
-      "votes_wstrzymal": 96,
+      "votes_wstrzymal": 91,
       "votes_brak": 0,
       "votes_nieobecny": 4,
-      "votes_total": 497,
-      "rebellion_count": 14,
+      "votes_total": 481,
+      "rebellion_count": 13,
       "rebellions": [
         {
           "session": "2024-05-07",
@@ -2041,12 +2002,6 @@
           "club_majority": "za"
         },
         {
-          "session": "2025-10-28",
-          "topic": "",
-          "their_vote": "wstrzymal_sie",
-          "club_majority": "za"
-        },
-        {
           "session": "2025-11-25",
           "topic": "",
           "their_vote": "wstrzymal_sie",
@@ -2072,14 +2027,14 @@
       "club": "PiS",
       "frekwencja": 100.0,
       "aktywnosc": 98.8,
-      "zgodnosc_z_klubem": 90.8,
-      "votes_za": 358,
+      "zgodnosc_z_klubem": 90.7,
+      "votes_za": 345,
       "votes_przeciw": 42,
-      "votes_wstrzymal": 91,
+      "votes_wstrzymal": 88,
       "votes_brak": 0,
       "votes_nieobecny": 0,
-      "votes_total": 497,
-      "rebellion_count": 45,
+      "votes_total": 481,
+      "rebellion_count": 44,
       "rebellions": [
         {
           "session": "2024-05-07",
@@ -2316,12 +2271,6 @@
           "club_majority": "przeciw"
         },
         {
-          "session": "2025-10-28",
-          "topic": "",
-          "their_vote": "za",
-          "club_majority": "wstrzymal_sie"
-        },
-        {
           "session": "2025-11-25",
           "topic": "",
           "their_vote": "za",
@@ -2357,15 +2306,15 @@
       "name": "Piotr Soćko",
       "slug": "piotr-socko",
       "club": "PiS",
-      "frekwencja": 95.0,
-      "aktywnosc": 94.0,
+      "frekwencja": 94.7,
+      "aktywnosc": 93.8,
       "zgodnosc_z_klubem": 98.9,
-      "votes_za": 323,
+      "votes_za": 311,
       "votes_przeciw": 57,
-      "votes_wstrzymal": 87,
+      "votes_wstrzymal": 83,
       "votes_brak": 0,
       "votes_nieobecny": 24,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 5,
       "rebellions": [
         {
@@ -2404,15 +2353,15 @@
       "name": "Rafał Wilczek",
       "slug": "rafa-wilczek",
       "club": "TD",
-      "frekwencja": 95.0,
-      "aktywnosc": 93.8,
+      "frekwencja": 94.7,
+      "aktywnosc": 93.6,
       "zgodnosc_z_klubem": 99.1,
-      "votes_za": 445,
+      "votes_za": 429,
       "votes_przeciw": 17,
       "votes_wstrzymal": 4,
       "votes_brak": 0,
       "votes_nieobecny": 22,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 4,
       "rebellions": [
         {
@@ -2448,12 +2397,12 @@
       "frekwencja": 100.0,
       "aktywnosc": 99.2,
       "zgodnosc_z_klubem": 99.8,
-      "votes_za": 472,
+      "votes_za": 456,
       "votes_przeciw": 20,
       "votes_wstrzymal": 1,
       "votes_brak": 0,
       "votes_nieobecny": 0,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 1,
       "rebellions": [
         {
@@ -2468,15 +2417,15 @@
       "name": "Sylwia Jaskulska",
       "slug": "sylwia-jaskulska",
       "club": "TD",
-      "frekwencja": 95.0,
-      "aktywnosc": 96.4,
+      "frekwencja": 100.0,
+      "aktywnosc": 99.6,
       "zgodnosc_z_klubem": 99.6,
       "votes_za": 459,
       "votes_przeciw": 20,
       "votes_wstrzymal": 0,
       "votes_brak": 0,
-      "votes_nieobecny": 16,
-      "votes_total": 497,
+      "votes_nieobecny": 0,
+      "votes_total": 481,
       "rebellion_count": 2,
       "rebellions": [
         {
@@ -2497,15 +2446,15 @@
       "name": "Tadeusz Politewicz",
       "slug": "tadeusz-politewicz",
       "club": "KO",
-      "frekwencja": 85.0,
-      "aktywnosc": 84.3,
+      "frekwencja": 84.2,
+      "aktywnosc": 83.8,
       "zgodnosc_z_klubem": 100.0,
-      "votes_za": 399,
+      "votes_za": 383,
       "votes_przeciw": 20,
       "votes_wstrzymal": 0,
       "votes_brak": 0,
       "votes_nieobecny": 77,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 0,
       "rebellions": []
     },
@@ -2516,12 +2465,12 @@
       "frekwencja": 100.0,
       "aktywnosc": 99.6,
       "zgodnosc_z_klubem": 99.8,
-      "votes_za": 473,
+      "votes_za": 457,
       "votes_przeciw": 22,
       "votes_wstrzymal": 0,
       "votes_brak": 0,
       "votes_nieobecny": 0,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 1,
       "rebellions": [
         {
@@ -2536,15 +2485,15 @@
       "name": "Teresa Astramowicz-Leyk",
       "slug": "teresa-astramowicz-leyk",
       "club": "KO",
-      "frekwencja": 95.0,
-      "aktywnosc": 90.7,
+      "frekwencja": 100.0,
+      "aktywnosc": 93.8,
       "zgodnosc_z_klubem": 94.2,
       "votes_za": 417,
       "votes_przeciw": 16,
       "votes_wstrzymal": 18,
       "votes_brak": 0,
-      "votes_nieobecny": 19,
-      "votes_total": 497,
+      "votes_nieobecny": 3,
+      "votes_total": 481,
       "rebellion_count": 26,
       "rebellions": [
         {
@@ -2709,15 +2658,15 @@
       "name": "Zbigniew Homza",
       "slug": "zbigniew-homza",
       "club": "KO",
-      "frekwencja": 95.0,
-      "aktywnosc": 94.6,
-      "zgodnosc_z_klubem": 98.1,
-      "votes_za": 450,
+      "frekwencja": 94.7,
+      "aktywnosc": 94.4,
+      "zgodnosc_z_klubem": 98.0,
+      "votes_za": 434,
       "votes_przeciw": 16,
       "votes_wstrzymal": 4,
       "votes_brak": 0,
       "votes_nieobecny": 22,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 9,
       "rebellions": [
         {
@@ -2780,15 +2729,15 @@
       "name": "Łukasz Kochan",
       "slug": "ukasz-kochan",
       "club": "PiS",
-      "frekwencja": 95.0,
-      "aktywnosc": 91.8,
-      "zgodnosc_z_klubem": 98.7,
-      "votes_za": 318,
+      "frekwencja": 94.7,
+      "aktywnosc": 91.5,
+      "zgodnosc_z_klubem": 98.6,
+      "votes_za": 306,
       "votes_przeciw": 53,
-      "votes_wstrzymal": 85,
+      "votes_wstrzymal": 81,
       "votes_brak": 0,
       "votes_nieobecny": 30,
-      "votes_total": 497,
+      "votes_total": 481,
       "rebellion_count": 6,
       "rebellions": [
         {
@@ -23648,849 +23597,7 @@
       "voted_at": "2025-09-23T13:26:00"
     },
     {
-      "id": "2025-10-28_393",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=1",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 16,
-        "przeciw": 0,
-        "wstrzymal_sie": 10,
-        "brak_glosu": 1,
-        "nieobecni": 3
-      },
-      "named_votes": {
-        "za": [
-          2,
-          3,
-          6,
-          8,
-          9,
-          11,
-          14,
-          15,
-          16,
-          22,
-          23,
-          25,
-          26,
-          28
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [
-          0,
-          4,
-          5,
-          7,
-          13,
-          18,
-          19,
-          20,
-          21,
-          29
-        ],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T12:17:00"
-    },
-    {
-      "id": "2025-10-28_394",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=2",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 15,
-        "przeciw": 0,
-        "wstrzymal_sie": 11,
-        "brak_glosu": 0,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          2,
-          3,
-          6,
-          8,
-          9,
-          11,
-          14,
-          15,
-          16,
-          22,
-          23,
-          25,
-          26,
-          28
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [
-          0,
-          4,
-          5,
-          7,
-          13,
-          18,
-          19,
-          20,
-          21,
-          29
-        ],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T12:28:00"
-    },
-    {
-      "id": "2025-10-28_395",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=3",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 15,
-        "przeciw": 0,
-        "wstrzymal_sie": 11,
-        "brak_glosu": 0,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          2,
-          3,
-          6,
-          8,
-          9,
-          11,
-          14,
-          15,
-          16,
-          22,
-          23,
-          25,
-          26,
-          28
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [
-          0,
-          4,
-          5,
-          7,
-          13,
-          18,
-          19,
-          20,
-          21,
-          29
-        ],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T12:29:00"
-    },
-    {
-      "id": "2025-10-28_396",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=4",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 26,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 0,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          0,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          11,
-          13,
-          14,
-          15,
-          16,
-          18,
-          19,
-          20,
-          21,
-          22,
-          23,
-          25,
-          26,
-          28,
-          29
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T12:30:00"
-    },
-    {
-      "id": "2025-10-28_397",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=5",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 26,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 0,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          0,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          11,
-          13,
-          14,
-          15,
-          16,
-          18,
-          19,
-          20,
-          21,
-          22,
-          23,
-          25,
-          26,
-          28,
-          29
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T12:31:00"
-    },
-    {
-      "id": "2025-10-28_398",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=6",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 26,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 0,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          0,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          11,
-          13,
-          14,
-          15,
-          16,
-          18,
-          19,
-          20,
-          21,
-          22,
-          23,
-          25,
-          26,
-          28,
-          29
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T12:31:00"
-    },
-    {
-      "id": "2025-10-28_399",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=7",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 26,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 0,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          0,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          11,
-          13,
-          14,
-          15,
-          16,
-          18,
-          19,
-          20,
-          21,
-          22,
-          23,
-          25,
-          26,
-          28,
-          29
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T12:32:00"
-    },
-    {
-      "id": "2025-10-28_400",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=8",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 17,
-        "przeciw": 0,
-        "wstrzymal_sie": 9,
-        "brak_glosu": 0,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          2,
-          3,
-          6,
-          8,
-          9,
-          11,
-          14,
-          15,
-          16,
-          20,
-          22,
-          23,
-          25,
-          26,
-          28
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [
-          0,
-          4,
-          5,
-          7,
-          13,
-          18,
-          19,
-          21,
-          29
-        ],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T12:37:00"
-    },
-    {
-      "id": "2025-10-28_401",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=9",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 26,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 0,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          0,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          11,
-          13,
-          14,
-          15,
-          16,
-          18,
-          19,
-          20,
-          21,
-          22,
-          23,
-          25,
-          26,
-          28,
-          29
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T12:38:00"
-    },
-    {
-      "id": "2025-10-28_402",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=10",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 26,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 0,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          0,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          11,
-          13,
-          14,
-          15,
-          16,
-          18,
-          19,
-          20,
-          21,
-          22,
-          23,
-          25,
-          26,
-          28,
-          29
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T12:39:00"
-    },
-    {
-      "id": "2025-10-28_403",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=11",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 26,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 0,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          0,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          11,
-          13,
-          14,
-          15,
-          16,
-          18,
-          19,
-          20,
-          21,
-          22,
-          23,
-          25,
-          26,
-          28,
-          29
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T12:39:00"
-    },
-    {
-      "id": "2025-10-28_404",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=12",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 26,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 0,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          0,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          11,
-          13,
-          14,
-          15,
-          16,
-          18,
-          19,
-          20,
-          21,
-          22,
-          23,
-          25,
-          26,
-          28,
-          29
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T12:40:00"
-    },
-    {
-      "id": "2025-10-28_405",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=13",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 21,
-        "przeciw": 0,
-        "wstrzymal_sie": 2,
-        "brak_glosu": 3,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          3,
-          4,
-          6,
-          7,
-          8,
-          9,
-          11,
-          13,
-          14,
-          15,
-          16,
-          20,
-          21,
-          22,
-          23,
-          25,
-          26,
-          28,
-          29
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [
-          5,
-          19
-        ],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          2,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T14:34:00"
-    },
-    {
-      "id": "2025-10-28_406",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=14",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 22,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 4,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          3,
-          4,
-          5,
-          6,
-          8,
-          9,
-          11,
-          13,
-          14,
-          15,
-          16,
-          19,
-          20,
-          21,
-          22,
-          23,
-          25,
-          26,
-          28,
-          29
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          2,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T15:00:00"
-    },
-    {
-      "id": "2025-10-28_407",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=15",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 22,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 4,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          3,
-          4,
-          5,
-          6,
-          8,
-          9,
-          11,
-          13,
-          14,
-          15,
-          16,
-          19,
-          20,
-          21,
-          22,
-          23,
-          25,
-          26,
-          28,
-          29
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          2,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T15:01:00"
-    },
-    {
-      "id": "2025-10-28_408",
-      "session_date": "2025-10-28",
-      "session_number": "XVIII",
-      "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22304/f8bfcca55e0c8d18cd2c68f675d05b9acb809c59.html#page=16",
-      "topic": "",
-      "druk": null,
-      "resolution": null,
-      "counts": {
-        "za": 22,
-        "przeciw": 0,
-        "wstrzymal_sie": 0,
-        "brak_glosu": 4,
-        "nieobecni": 4
-      },
-      "named_votes": {
-        "za": [
-          3,
-          4,
-          5,
-          6,
-          8,
-          9,
-          11,
-          13,
-          14,
-          15,
-          16,
-          19,
-          20,
-          21,
-          22,
-          23,
-          25,
-          26,
-          28,
-          29
-        ],
-        "przeciw": [],
-        "wstrzymal_sie": [],
-        "brak_glosu": [],
-        "nieobecni": [
-          1,
-          2,
-          24,
-          27
-        ]
-      },
-      "voted_at": "2025-10-28T15:02:00"
-    },
-    {
-      "id": "2025-11-25_409",
+      "id": "2025-11-25_393",
       "session_date": "2025-11-25",
       "session_number": "XIX",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22305/5079a0ee050e4d4805c07e291b6085eef28c886c.html#page=1",
@@ -24538,7 +23645,7 @@
       "voted_at": "2025-11-25T14:00:00"
     },
     {
-      "id": "2025-11-25_410",
+      "id": "2025-11-25_394",
       "session_date": "2025-11-25",
       "session_number": "XIX",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22305/5079a0ee050e4d4805c07e291b6085eef28c886c.html#page=2",
@@ -24588,7 +23695,7 @@
       "voted_at": "2025-11-25T14:00:00"
     },
     {
-      "id": "2025-11-25_411",
+      "id": "2025-11-25_395",
       "session_date": "2025-11-25",
       "session_number": "XIX",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22305/5079a0ee050e4d4805c07e291b6085eef28c886c.html#page=3",
@@ -24639,7 +23746,7 @@
       "voted_at": "2025-11-25T14:01:00"
     },
     {
-      "id": "2025-11-25_412",
+      "id": "2025-11-25_396",
       "session_date": "2025-11-25",
       "session_number": "XIX",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22305/5079a0ee050e4d4805c07e291b6085eef28c886c.html#page=4",
@@ -24690,7 +23797,7 @@
       "voted_at": "2025-11-25T14:02:00"
     },
     {
-      "id": "2025-11-25_413",
+      "id": "2025-11-25_397",
       "session_date": "2025-11-25",
       "session_number": "XIX",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22305/5079a0ee050e4d4805c07e291b6085eef28c886c.html#page=5",
@@ -24743,7 +23850,7 @@
       "voted_at": "2025-11-25T14:03:00"
     },
     {
-      "id": "2025-11-25_414",
+      "id": "2025-11-25_398",
       "session_date": "2025-11-25",
       "session_number": "XIX",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22305/5079a0ee050e4d4805c07e291b6085eef28c886c.html#page=6",
@@ -24796,7 +23903,7 @@
       "voted_at": "2025-11-25T14:04:00"
     },
     {
-      "id": "2025-11-25_415",
+      "id": "2025-11-25_399",
       "session_date": "2025-11-25",
       "session_number": "XIX",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22305/5079a0ee050e4d4805c07e291b6085eef28c886c.html#page=7",
@@ -24847,7 +23954,7 @@
       "voted_at": "2025-11-25T14:04:00"
     },
     {
-      "id": "2025-11-25_416",
+      "id": "2025-11-25_400",
       "session_date": "2025-11-25",
       "session_number": "XIX",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22305/5079a0ee050e4d4805c07e291b6085eef28c886c.html#page=8",
@@ -24898,7 +24005,7 @@
       "voted_at": "2025-11-25T14:05:00"
     },
     {
-      "id": "2025-11-25_417",
+      "id": "2025-11-25_401",
       "session_date": "2025-11-25",
       "session_number": "XIX",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22305/5079a0ee050e4d4805c07e291b6085eef28c886c.html#page=9",
@@ -24950,7 +24057,7 @@
       "voted_at": "2025-11-25T14:05:00"
     },
     {
-      "id": "2025-11-25_418",
+      "id": "2025-11-25_402",
       "session_date": "2025-11-25",
       "session_number": "XIX",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22305/5079a0ee050e4d4805c07e291b6085eef28c886c.html#page=10",
@@ -25002,7 +24109,7 @@
       "voted_at": "2025-11-25T14:07:00"
     },
     {
-      "id": "2025-11-25_419",
+      "id": "2025-11-25_403",
       "session_date": "2025-11-25",
       "session_number": "XIX",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/22305/5079a0ee050e4d4805c07e291b6085eef28c886c.html#page=11",
@@ -25051,7 +24158,7 @@
       "voted_at": "2025-11-25T14:30:00"
     },
     {
-      "id": "2026-02-17_420",
+      "id": "2026-02-17_404",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=1",
@@ -25105,7 +24212,7 @@
       "voted_at": "2026-02-17T12:52:00"
     },
     {
-      "id": "2026-02-17_421",
+      "id": "2026-02-17_405",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=2",
@@ -25159,7 +24266,7 @@
       "voted_at": "2026-02-17T12:55:00"
     },
     {
-      "id": "2026-02-17_422",
+      "id": "2026-02-17_406",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=3",
@@ -25212,7 +24319,7 @@
       "voted_at": "2026-02-17T12:56:00"
     },
     {
-      "id": "2026-02-17_423",
+      "id": "2026-02-17_407",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=4",
@@ -25265,7 +24372,7 @@
       "voted_at": "2026-02-17T12:57:00"
     },
     {
-      "id": "2026-02-17_424",
+      "id": "2026-02-17_408",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=5",
@@ -25318,7 +24425,7 @@
       "voted_at": "2026-02-17T12:58:00"
     },
     {
-      "id": "2026-02-17_425",
+      "id": "2026-02-17_409",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=6",
@@ -25371,7 +24478,7 @@
       "voted_at": "2026-02-17T12:58:00"
     },
     {
-      "id": "2026-02-17_426",
+      "id": "2026-02-17_410",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=7",
@@ -25424,7 +24531,7 @@
       "voted_at": "2026-02-17T12:59:00"
     },
     {
-      "id": "2026-02-17_427",
+      "id": "2026-02-17_411",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=8",
@@ -25478,7 +24585,7 @@
       "voted_at": "2026-02-17T13:03:00"
     },
     {
-      "id": "2026-02-17_428",
+      "id": "2026-02-17_412",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=9",
@@ -25532,7 +24639,7 @@
       "voted_at": "2026-02-17T13:04:00"
     },
     {
-      "id": "2026-02-17_429",
+      "id": "2026-02-17_413",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=10",
@@ -25585,7 +24692,7 @@
       "voted_at": "2026-02-17T13:05:00"
     },
     {
-      "id": "2026-02-17_430",
+      "id": "2026-02-17_414",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=11",
@@ -25638,7 +24745,7 @@
       "voted_at": "2026-02-17T13:06:00"
     },
     {
-      "id": "2026-02-17_431",
+      "id": "2026-02-17_415",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=12",
@@ -25691,7 +24798,7 @@
       "voted_at": "2026-02-17T13:07:00"
     },
     {
-      "id": "2026-02-17_432",
+      "id": "2026-02-17_416",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=13",
@@ -25744,7 +24851,7 @@
       "voted_at": "2026-02-17T13:08:00"
     },
     {
-      "id": "2026-02-17_433",
+      "id": "2026-02-17_417",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=14",
@@ -25797,7 +24904,7 @@
       "voted_at": "2026-02-17T13:09:00"
     },
     {
-      "id": "2026-02-17_434",
+      "id": "2026-02-17_418",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=15",
@@ -25851,7 +24958,7 @@
       "voted_at": "2026-02-17T13:09:00"
     },
     {
-      "id": "2026-02-17_435",
+      "id": "2026-02-17_419",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=16",
@@ -25896,7 +25003,7 @@
       "voted_at": "2026-02-17T13:15:00"
     },
     {
-      "id": "2026-02-17_436",
+      "id": "2026-02-17_420",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=17",
@@ -25949,7 +25056,7 @@
       "voted_at": "2026-02-17T13:18:00"
     },
     {
-      "id": "2026-02-17_437",
+      "id": "2026-02-17_421",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=18",
@@ -26001,7 +25108,7 @@
       "voted_at": "2026-02-17T13:20:00"
     },
     {
-      "id": "2026-02-17_438",
+      "id": "2026-02-17_422",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=19",
@@ -26055,7 +25162,7 @@
       "voted_at": "2026-02-17T13:21:00"
     },
     {
-      "id": "2026-02-17_439",
+      "id": "2026-02-17_423",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=20",
@@ -26109,7 +25216,7 @@
       "voted_at": "2026-02-17T13:22:00"
     },
     {
-      "id": "2026-02-17_440",
+      "id": "2026-02-17_424",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=21",
@@ -26163,7 +25270,7 @@
       "voted_at": "2026-02-17T13:22:00"
     },
     {
-      "id": "2026-02-17_441",
+      "id": "2026-02-17_425",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=22",
@@ -26217,7 +25324,7 @@
       "voted_at": "2026-02-17T13:23:00"
     },
     {
-      "id": "2026-02-17_442",
+      "id": "2026-02-17_426",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=23",
@@ -26271,7 +25378,7 @@
       "voted_at": "2026-02-17T13:23:00"
     },
     {
-      "id": "2026-02-17_443",
+      "id": "2026-02-17_427",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=24",
@@ -26323,7 +25430,7 @@
       "voted_at": "2026-02-17T13:39:00"
     },
     {
-      "id": "2026-02-17_444",
+      "id": "2026-02-17_428",
       "session_date": "2026-02-17",
       "session_number": "XXI",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23615/24fc1cd4120a4739e8d42689c606c52c9315c0d7.html#page=25",
@@ -26373,7 +25480,7 @@
       "voted_at": "2026-02-17T13:39:00"
     },
     {
-      "id": "2026-03-31_445",
+      "id": "2026-03-31_429",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=1",
@@ -26426,7 +25533,7 @@
       "voted_at": "2026-03-31T12:22:00"
     },
     {
-      "id": "2026-03-31_446",
+      "id": "2026-03-31_430",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=2",
@@ -26480,7 +25587,7 @@
       "voted_at": "2026-03-31T12:23:00"
     },
     {
-      "id": "2026-03-31_447",
+      "id": "2026-03-31_431",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=3",
@@ -26534,7 +25641,7 @@
       "voted_at": "2026-03-31T12:24:00"
     },
     {
-      "id": "2026-03-31_448",
+      "id": "2026-03-31_432",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=4",
@@ -26587,7 +25694,7 @@
       "voted_at": "2026-03-31T12:24:00"
     },
     {
-      "id": "2026-03-31_449",
+      "id": "2026-03-31_433",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=5",
@@ -26641,7 +25748,7 @@
       "voted_at": "2026-03-31T12:26:00"
     },
     {
-      "id": "2026-03-31_450",
+      "id": "2026-03-31_434",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=6",
@@ -26694,7 +25801,7 @@
       "voted_at": "2026-03-31T12:26:00"
     },
     {
-      "id": "2026-03-31_451",
+      "id": "2026-03-31_435",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=7",
@@ -26747,7 +25854,7 @@
       "voted_at": "2026-03-31T12:27:00"
     },
     {
-      "id": "2026-03-31_452",
+      "id": "2026-03-31_436",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=8",
@@ -26801,7 +25908,7 @@
       "voted_at": "2026-03-31T12:29:00"
     },
     {
-      "id": "2026-03-31_453",
+      "id": "2026-03-31_437",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=9",
@@ -26854,7 +25961,7 @@
       "voted_at": "2026-03-31T12:29:00"
     },
     {
-      "id": "2026-03-31_454",
+      "id": "2026-03-31_438",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=10",
@@ -26907,7 +26014,7 @@
       "voted_at": "2026-03-31T12:30:00"
     },
     {
-      "id": "2026-03-31_455",
+      "id": "2026-03-31_439",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=11",
@@ -26960,7 +26067,7 @@
       "voted_at": "2026-03-31T12:30:00"
     },
     {
-      "id": "2026-03-31_456",
+      "id": "2026-03-31_440",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=12",
@@ -27011,7 +26118,7 @@
       "voted_at": "2026-03-31T12:31:00"
     },
     {
-      "id": "2026-03-31_457",
+      "id": "2026-03-31_441",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=13",
@@ -27064,7 +26171,7 @@
       "voted_at": "2026-03-31T12:32:00"
     },
     {
-      "id": "2026-03-31_458",
+      "id": "2026-03-31_442",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=14",
@@ -27116,7 +26223,7 @@
       "voted_at": "2026-03-31T12:32:00"
     },
     {
-      "id": "2026-03-31_459",
+      "id": "2026-03-31_443",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=15",
@@ -27170,7 +26277,7 @@
       "voted_at": "2026-03-31T12:34:00"
     },
     {
-      "id": "2026-03-31_460",
+      "id": "2026-03-31_444",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=16",
@@ -27223,7 +26330,7 @@
       "voted_at": "2026-03-31T12:34:00"
     },
     {
-      "id": "2026-03-31_461",
+      "id": "2026-03-31_445",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=17",
@@ -27276,7 +26383,7 @@
       "voted_at": "2026-03-31T12:35:00"
     },
     {
-      "id": "2026-03-31_462",
+      "id": "2026-03-31_446",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=18",
@@ -27329,7 +26436,7 @@
       "voted_at": "2026-03-31T12:36:00"
     },
     {
-      "id": "2026-03-31_463",
+      "id": "2026-03-31_447",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=19",
@@ -27382,7 +26489,7 @@
       "voted_at": "2026-03-31T12:38:00"
     },
     {
-      "id": "2026-03-31_464",
+      "id": "2026-03-31_448",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=20",
@@ -27434,7 +26541,7 @@
       "voted_at": "2026-03-31T12:45:00"
     },
     {
-      "id": "2026-03-31_465",
+      "id": "2026-03-31_449",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=21",
@@ -27486,7 +26593,7 @@
       "voted_at": "2026-03-31T12:46:00"
     },
     {
-      "id": "2026-03-31_466",
+      "id": "2026-03-31_450",
       "session_date": "2026-03-31",
       "session_number": "XXII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23616/9a359338c14ca31fb2152b1b9119a5259596c42f.html#page=22",
@@ -27538,7 +26645,7 @@
       "voted_at": "2026-03-31T12:49:00"
     },
     {
-      "id": "2026-04-28_467",
+      "id": "2026-04-28_451",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=1",
@@ -27592,7 +26699,7 @@
       "voted_at": "2026-04-28T13:25:00"
     },
     {
-      "id": "2026-04-28_468",
+      "id": "2026-04-28_452",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=2",
@@ -27646,7 +26753,7 @@
       "voted_at": "2026-04-28T13:25:00"
     },
     {
-      "id": "2026-04-28_469",
+      "id": "2026-04-28_453",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=3",
@@ -27700,7 +26807,7 @@
       "voted_at": "2026-04-28T13:27:00"
     },
     {
-      "id": "2026-04-28_470",
+      "id": "2026-04-28_454",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=4",
@@ -27754,7 +26861,7 @@
       "voted_at": "2026-04-28T13:28:00"
     },
     {
-      "id": "2026-04-28_471",
+      "id": "2026-04-28_455",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=5",
@@ -27808,7 +26915,7 @@
       "voted_at": "2026-04-28T13:29:00"
     },
     {
-      "id": "2026-04-28_472",
+      "id": "2026-04-28_456",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=6",
@@ -27862,7 +26969,7 @@
       "voted_at": "2026-04-28T13:34:00"
     },
     {
-      "id": "2026-04-28_473",
+      "id": "2026-04-28_457",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=7",
@@ -27915,7 +27022,7 @@
       "voted_at": "2026-04-28T13:36:00"
     },
     {
-      "id": "2026-04-28_474",
+      "id": "2026-04-28_458",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=8",
@@ -27968,7 +27075,7 @@
       "voted_at": "2026-04-28T13:36:00"
     },
     {
-      "id": "2026-04-28_475",
+      "id": "2026-04-28_459",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=9",
@@ -28021,7 +27128,7 @@
       "voted_at": "2026-04-28T13:37:00"
     },
     {
-      "id": "2026-04-28_476",
+      "id": "2026-04-28_460",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=10",
@@ -28074,7 +27181,7 @@
       "voted_at": "2026-04-28T13:38:00"
     },
     {
-      "id": "2026-04-28_477",
+      "id": "2026-04-28_461",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=11",
@@ -28127,7 +27234,7 @@
       "voted_at": "2026-04-28T13:39:00"
     },
     {
-      "id": "2026-04-28_478",
+      "id": "2026-04-28_462",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=12",
@@ -28180,7 +27287,7 @@
       "voted_at": "2026-04-28T13:40:00"
     },
     {
-      "id": "2026-04-28_479",
+      "id": "2026-04-28_463",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=13",
@@ -28233,7 +27340,7 @@
       "voted_at": "2026-04-28T13:40:00"
     },
     {
-      "id": "2026-04-28_480",
+      "id": "2026-04-28_464",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=14",
@@ -28286,7 +27393,7 @@
       "voted_at": "2026-04-28T13:41:00"
     },
     {
-      "id": "2026-04-28_481",
+      "id": "2026-04-28_465",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=15",
@@ -28338,7 +27445,7 @@
       "voted_at": "2026-04-28T13:42:00"
     },
     {
-      "id": "2026-04-28_482",
+      "id": "2026-04-28_466",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=16",
@@ -28391,7 +27498,7 @@
       "voted_at": "2026-04-28T13:42:00"
     },
     {
-      "id": "2026-04-28_483",
+      "id": "2026-04-28_467",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=17",
@@ -28445,7 +27552,7 @@
       "voted_at": "2026-04-28T13:43:00"
     },
     {
-      "id": "2026-04-28_484",
+      "id": "2026-04-28_468",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=18",
@@ -28498,7 +27605,7 @@
       "voted_at": "2026-04-28T13:44:00"
     },
     {
-      "id": "2026-04-28_485",
+      "id": "2026-04-28_469",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=19",
@@ -28551,7 +27658,7 @@
       "voted_at": "2026-04-28T13:45:00"
     },
     {
-      "id": "2026-04-28_486",
+      "id": "2026-04-28_470",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=20",
@@ -28603,7 +27710,7 @@
       "voted_at": "2026-04-28T13:45:00"
     },
     {
-      "id": "2026-04-28_487",
+      "id": "2026-04-28_471",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=21",
@@ -28654,7 +27761,7 @@
       "voted_at": "2026-04-28T13:46:00"
     },
     {
-      "id": "2026-04-28_488",
+      "id": "2026-04-28_472",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=22",
@@ -28707,7 +27814,7 @@
       "voted_at": "2026-04-28T13:50:00"
     },
     {
-      "id": "2026-04-28_489",
+      "id": "2026-04-28_473",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=23",
@@ -28760,7 +27867,7 @@
       "voted_at": "2026-04-28T13:50:00"
     },
     {
-      "id": "2026-04-28_490",
+      "id": "2026-04-28_474",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=24",
@@ -28812,7 +27919,7 @@
       "voted_at": "2026-04-28T13:52:00"
     },
     {
-      "id": "2026-04-28_491",
+      "id": "2026-04-28_475",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=25",
@@ -28864,7 +27971,7 @@
       "voted_at": "2026-04-28T13:53:00"
     },
     {
-      "id": "2026-04-28_492",
+      "id": "2026-04-28_476",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=26",
@@ -28917,7 +28024,7 @@
       "voted_at": "2026-04-28T13:56:00"
     },
     {
-      "id": "2026-04-28_493",
+      "id": "2026-04-28_477",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=27",
@@ -28969,7 +28076,7 @@
       "voted_at": "2026-04-28T13:58:00"
     },
     {
-      "id": "2026-04-28_494",
+      "id": "2026-04-28_478",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=28",
@@ -29023,7 +28130,7 @@
       "voted_at": "2026-04-28T14:18:00"
     },
     {
-      "id": "2026-04-28_495",
+      "id": "2026-04-28_479",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=29",
@@ -29076,7 +28183,7 @@
       "voted_at": "2026-04-28T14:24:00"
     },
     {
-      "id": "2026-04-28_496",
+      "id": "2026-04-28_480",
       "session_date": "2026-04-28",
       "session_number": "XXIII",
       "source_url": "https://bip.warmia.mazury.pl/attachment/informacja/23617/890ef26c15f2b4d3fec6fe7b5f1a80562a37933e.html#page=30",
@@ -29233,19 +28340,14 @@
   ],
   "similarity_bottom": [
     {
-      "a": "Katarzyna Królak",
-      "b": "Małgorzata Kopiczko",
-      "score": 60.8
+      "a": "Paweł Warot",
+      "b": "Tadeusz Politewicz",
+      "score": 60.5
     },
     {
-      "a": "Elżbieta Ruda",
-      "b": "Małgorzata Kopiczko",
-      "score": 60.8
-    },
-    {
-      "a": "Bernadeta Hordejuk",
-      "b": "Małgorzata Kopiczko",
-      "score": 60.8
+      "a": "Bogusława Orzechowska",
+      "b": "Rafał Wilczek",
+      "score": 60.5
     },
     {
       "a": "Bogusława Orzechowska",
@@ -29253,14 +28355,9 @@
       "score": 60.5
     },
     {
-      "a": "Bogusław Wisowaty",
-      "b": "Bożenna Ulewicz",
-      "score": 59.9
-    },
-    {
-      "a": "Bogdan Bartnicki",
-      "b": "Bożenna Ulewicz",
-      "score": 59.7
+      "a": "Bogusława Orzechowska",
+      "b": "Tadeusz Politewicz",
+      "score": 60.4
     },
     {
       "a": "Magdalena Lewkowicz",
@@ -29268,44 +28365,19 @@
       "score": 59.6
     },
     {
+      "a": "Bogusław Wisowaty",
+      "b": "Bożenna Ulewicz",
+      "score": 59.6
+    },
+    {
+      "a": "Bogdan Bartnicki",
+      "b": "Bożenna Ulewicz",
+      "score": 59.5
+    },
+    {
       "a": "Bożenna Ulewicz",
       "b": "Maria Bąkowska",
-      "score": 59.4
-    },
-    {
-      "a": "Bożenna Ulewicz",
-      "b": "Marek Chyl",
       "score": 59.0
-    },
-    {
-      "a": "Bożenna Ulewicz",
-      "b": "Tadeusz Politewicz",
-      "score": 58.9
-    },
-    {
-      "a": "Bożenna Ulewicz",
-      "b": "Robert Turlej",
-      "score": 58.9
-    },
-    {
-      "a": "Bożenna Ulewicz",
-      "b": "Zbigniew Homza",
-      "score": 58.8
-    },
-    {
-      "a": "Bożenna Ulewicz",
-      "b": "Katarzyna Sobiech",
-      "score": 58.8
-    },
-    {
-      "a": "Bożenna Ulewicz",
-      "b": "Jarosław Słoma",
-      "score": 58.8
-    },
-    {
-      "a": "Bożenna Ulewicz",
-      "b": "Elżbieta Ruda",
-      "score": 58.8
     },
     {
       "a": "Bożenna Ulewicz",
@@ -29314,13 +28386,43 @@
     },
     {
       "a": "Bożenna Ulewicz",
-      "b": "Tadeusz Sobierajski",
-      "score": 58.6
+      "b": "Marek Chyl",
+      "score": 58.7
     },
     {
       "a": "Bożenna Ulewicz",
-      "b": "Marcin Kuchciński",
-      "score": 58.0
+      "b": "Zbigniew Homza",
+      "score": 58.5
+    },
+    {
+      "a": "Bożenna Ulewicz",
+      "b": "Robert Turlej",
+      "score": 58.5
+    },
+    {
+      "a": "Bożenna Ulewicz",
+      "b": "Katarzyna Sobiech",
+      "score": 58.5
+    },
+    {
+      "a": "Bożenna Ulewicz",
+      "b": "Elżbieta Ruda",
+      "score": 58.5
+    },
+    {
+      "a": "Bożenna Ulewicz",
+      "b": "Tadeusz Politewicz",
+      "score": 58.4
+    },
+    {
+      "a": "Bożenna Ulewicz",
+      "b": "Jarosław Słoma",
+      "score": 58.4
+    },
+    {
+      "a": "Bożenna Ulewicz",
+      "b": "Tadeusz Sobierajski",
+      "score": 58.3
     },
     {
       "a": "Bożenna Ulewicz",
@@ -29329,8 +28431,13 @@
     },
     {
       "a": "Bożenna Ulewicz",
+      "b": "Marcin Kuchciński",
+      "score": 57.6
+    },
+    {
+      "a": "Bożenna Ulewicz",
       "b": "Rafał Wilczek",
-      "score": 57.8
+      "score": 57.4
     }
   ],
   "councilor_index": [

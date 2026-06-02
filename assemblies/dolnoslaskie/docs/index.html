@@ -1017,8 +1017,8 @@ async function init() {
     // URL-e są angielskie; router dopasowuje na polskich tokenach → normalizuj.
     const path = toInternalPath(routePath());
     let initialKid = defaultKid;
-    if (path.startsWith('/term/')) {
-      const parts = path.replace('/term/', '').split('/');
+    if (path.startsWith('/kadencja/')) {
+      const parts = path.replace('/kadencja/', '').split('/');
       const kid = SLUG_KADS[parts[0]];
       if (kid) initialKid = kid;
     }
@@ -1047,8 +1047,8 @@ async function init() {
       navigateTo('/councillors/', true);
       return;
     }
-    if (path.startsWith('/profile/')) {
-      const slug = path.replace('/profile/', '').replace(/\/$/, '');
+    if (path.startsWith('/profil/')) {
+      const slug = path.replace('/profil/', '').replace(/\/$/, '');
       const profile = PROFILES.profiles.find(p => p.slug === slug);
       if (profile) {
         selectKadencjaQuiet(initialKid);
@@ -1057,7 +1057,7 @@ async function init() {
         return;
       }
     }
-    if (path === '/vote' || path === '/vote/') {
+    if (path === '/glosowanie' || path === '/glosowanie/') {
       // /vote/ bez ID → przekierowanie do najnowszego głosowania
       // z ostatniej sesji aktualnej kadencji. (Wcześniej showVote('')
       // wywalał stronę "Nie znaleziono głosowania" co Google Ads
@@ -1080,14 +1080,14 @@ async function init() {
       }
       return;
     }
-    if (path.startsWith('/vote/')) {
+    if (path.startsWith('/glosowanie/')) {
       selectKadencjaQuiet(initialKid);
-      const vid = path.replace('/vote/', '').replace(/\/$/, '');
+      const vid = path.replace('/glosowanie/', '').replace(/\/$/, '');
       showVote(vid);
       navigateTo(toCanonicalPath(path), true);
       return;
     }
-    if (path === '/session' || path === '/session/') {
+    if (path === '/sesja' || path === '/sesja/') {
       // /session/ bez numeru → lista sesji aktualnej kadencji.
       // (Wcześniej showSession('') wywalał stronę "Nie znaleziono sesji",
       // co Google Ads oznaczał jako Destination not working.)
@@ -1096,19 +1096,19 @@ async function init() {
       navigateTo(toCanonicalPath(path), true);
       return;
     }
-    if (path.startsWith('/session/')) {
+    if (path.startsWith('/sesja/')) {
       selectKadencjaQuiet(initialKid);
-      const snum = decodeURIComponent(path.replace('/session/', '').replace(/\/$/, ''));
+      const snum = decodeURIComponent(path.replace('/sesja/', '').replace(/\/$/, ''));
       showSession(snum);
       navigateTo(toCanonicalPath(path), true);
       return;
     }
-    if (path === '/privacy' || path === '/privacy/') {
+    if (path === '/polityka-prywatnosci' || path === '/polityka-prywatnosci/') {
       showPrivacy();
       navigateTo(toCanonicalPath(path), true);
       return;
     }
-    if (path === '/terms' || path === '/terms/') {
+    if (path === '/regulamin' || path === '/regulamin/') {
       showTerms();
       navigateTo(toCanonicalPath(path), true);
       return;
@@ -1118,7 +1118,7 @@ async function init() {
       navigateTo(toCanonicalPath(path), true);
       return;
     }
-    if (path === '/reports' || path === '/reports/') {
+    if (path === '/raporty' || path === '/raporty/') {
       showReports();
       navigateTo(toCanonicalPath(path), true);
       return;
@@ -1134,27 +1134,27 @@ async function init() {
       location.replace('https://radoskop.eu/business/' + search);
       return;
     }
-    if (path === '/interpellations' || path === '/interpellations/') {
+    if (path === '/interpelacje' || path === '/interpelacje/') {
       selectKadencjaQuiet(initialKid);
       activateTab('interpelacje');
       navigateTo(toCanonicalPath(path), true);
       return;
     }
-    if (path === '/commissions' || path === '/commissions/') {
+    if (path === '/komisje' || path === '/komisje/') {
       selectKadencjaQuiet(initialKid);
       activateTab('komisje');
       navigateTo(toCanonicalPath(path), true);
       return;
     }
-    if (path.startsWith('/commission/')) {
+    if (path.startsWith('/komisja/')) {
       selectKadencjaQuiet(initialKid);
-      const slug = decodeURIComponent(path.replace('/commission/', '').replace(/\/$/, ''));
+      const slug = decodeURIComponent(path.replace('/komisja/', '').replace(/\/$/, ''));
       showKomisja(slug);
       return;
     }
-    if (path.startsWith('/bill/')) {
+    if (path.startsWith('/druk/')) {
       // Format: /druk/{kadSlug}/{drukId}/
-      const parts = path.replace('/bill/', '').replace(/\/$/, '').split('/');
+      const parts = path.replace('/druk/', '').replace(/\/$/, '').split('/');
       if (parts.length >= 2 && parts[0] && parts[1]) {
         const kadSlug = parts[0];
         const did = decodeURIComponent(parts[1]);
@@ -1164,7 +1164,7 @@ async function init() {
         return;
       }
     }
-    if (path === '/news' || path === '/news/') {
+    if (path === '/aktualnosci' || path === '/aktualnosci/') {
       // /news/ to statyczna strona z listą wpisów (SEO content
       // wstrzyknięty przez generate_feed.py). Nie ładujemy SPA appki —
       // pokazujemy treść i kończymy init bez przekierowywania.
@@ -1174,14 +1174,14 @@ async function init() {
       navigateTo(toCanonicalPath(path), true);
       return;
     }
-    if (path === '/budget' || path === '/budget/') {
+    if (path === '/budzet' || path === '/budzet/') {
       selectKadencjaQuiet(initialKid);
       activateTab('budget');
       navigateTo(toCanonicalPath(path), true);
       return;
     }
-    if (path.startsWith('/term/')) {
-      const parts = path.replace('/term/', '').split('/');
+    if (path.startsWith('/kadencja/')) {
+      const parts = path.replace('/kadencja/', '').split('/');
       const kid = SLUG_KADS[parts[0]];
       const tab = SLUG_TABS[parts[1]] || DEFAULT_TAB;
       if (kid) {
@@ -4593,12 +4593,12 @@ window.addEventListener('popstate', async () => {
     hideAllViews(); document.getElementById('app').style.display = 'block';
     activateTab('ranking'); _popstateActive = false; return;
   }
-  if (path.startsWith('/profile/')) {
-    const slug = path.replace('/profile/', '').replace(/\/$/, '');
+  if (path.startsWith('/profil/')) {
+    const slug = path.replace('/profil/', '').replace(/\/$/, '');
     const profile = PROFILES && PROFILES.profiles.find(p => p.slug === slug);
     if (profile) { showProfile(profile.name); _popstateActive = false; return; }
   }
-  if (path === '/vote' || path === '/vote/') {
+  if (path === '/glosowanie' || path === '/glosowanie/') {
     // /vote/ bez ID → najnowsze głosowanie z aktualnej kadencji.
     try {
       const resp = await fetch(API_BASE + '/kadencja/' + currentKid + '/votes?per_page=1');
@@ -4615,30 +4615,30 @@ window.addEventListener('popstate', async () => {
     _popstateActive = false;
     return;
   }
-  if (path.startsWith('/vote/')) {
-    const vid = path.replace('/vote/', '').replace(/\/$/, '');
+  if (path.startsWith('/glosowanie/')) {
+    const vid = path.replace('/glosowanie/', '').replace(/\/$/, '');
     showVote(vid);
     _popstateActive = false;
     return;
   }
-  if (path === '/session' || path === '/session/') {
+  if (path === '/sesja' || path === '/sesja/') {
     // /session/ bez numeru → lista sesji aktualnej kadencji.
     activateTab('sessions');
     _popstateActive = false;
     return;
   }
-  if (path.startsWith('/session/')) {
-    const snum = decodeURIComponent(path.replace('/session/', '').replace(/\/$/, ''));
+  if (path.startsWith('/sesja/')) {
+    const snum = decodeURIComponent(path.replace('/sesja/', '').replace(/\/$/, ''));
     showSession(snum);
     _popstateActive = false;
     return;
   }
-  if (path === '/privacy' || path === '/privacy/') {
+  if (path === '/polityka-prywatnosci' || path === '/polityka-prywatnosci/') {
     showPrivacy();
     _popstateActive = false;
     return;
   }
-  if (path === '/terms' || path === '/terms/') {
+  if (path === '/regulamin' || path === '/regulamin/') {
     showTerms();
     _popstateActive = false;
     return;
@@ -4648,13 +4648,13 @@ window.addEventListener('popstate', async () => {
     _popstateActive = false;
     return;
   }
-  if (path === '/reports' || path === '/reports/') {
+  if (path === '/raporty' || path === '/raporty/') {
     showReports();
     _popstateActive = false;
     return;
   }
-  if (path.startsWith('/commission/')) {
-    const slug = decodeURIComponent(path.replace('/commission/', '').replace(/\/$/, ''));
+  if (path.startsWith('/komisja/')) {
+    const slug = decodeURIComponent(path.replace('/komisja/', '').replace(/\/$/, ''));
     showKomisja(slug);
     _popstateActive = false;
     return;
@@ -4662,19 +4662,19 @@ window.addEventListener('popstate', async () => {
   // Main page tab/kadencja paths
   hideAllViews();
   document.getElementById('app').style.display = 'block';
-  if (path === '/commissions' || path === '/commissions/') {
+  if (path === '/komisje' || path === '/komisje/') {
     activateTab('komisje');
-  } else if (path === '/interpellations' || path === '/interpellations/') {
+  } else if (path === '/interpelacje' || path === '/interpelacje/') {
     activateTab('interpelacje');
-  } else if (path === '/news' || path === '/news/') {
+  } else if (path === '/aktualnosci' || path === '/aktualnosci/') {
     // Powrót na /aktualnosci/ przez back/forward — SPA nie reloaduje strony,
     // ale strona aktualnosci to oddzielny dokument. Wymuszamy reload.
     location.reload();
     return;
-  } else if (path === '/budget' || path === '/budget/') {
+  } else if (path === '/budzet' || path === '/budzet/') {
     activateTab('budget');
-  } else if (path.startsWith('/term/')) {
-    const parts = path.replace('/term/', '').split('/');
+  } else if (path.startsWith('/kadencja/')) {
+    const parts = path.replace('/kadencja/', '').split('/');
     const kid = SLUG_KADS[parts[0]];
     const tab = SLUG_TABS[parts[1]] || 'ranking';
     if (kid && kid !== currentKid) {
