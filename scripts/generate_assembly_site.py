@@ -130,10 +130,12 @@ def generate_club_css(clubs: dict[str, Any]) -> str:
 def generate_club_js(clubs: dict[str, Any]) -> str:
     names = list(clubs.keys())
     if not clubs:
+        # clubClass domknięte — szablon nie dokleja już `}` po {{CLUB_JS}}
+        # (zmiana przy splicie assetów; spójne z generate_site.py).
         return (
             "function clubColor(club) {\n  return 'var(--muted)';\n}\n"
             "function clubBg(club) {\n  return '#374151';\n}\n"
-            "function clubClass(club) {\n  return 'club-unknown';"
+            "function clubClass(club) {\n  return 'club-unknown';\n}"
         )
 
     chain = " : ".join(
@@ -151,7 +153,7 @@ def generate_club_js(clubs: dict[str, Any]) -> str:
     names_js = "[" + ",".join(f"'{n}'" for n in names) + "]"
     club_class = (
         f"function clubClass(club) {{\n"
-        f"  return {names_js}.includes(club) ? `club-${{club}}` : 'club-unknown';"
+        f"  return {names_js}.includes(club) ? `club-${{club}}` : 'club-unknown';\n}}"
     )
     return f"{club_color}\n{club_bg}\n{club_class}"
 
