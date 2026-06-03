@@ -1082,25 +1082,30 @@ def main() -> int:
         log(f"\n✗ Zero głosowań, nie nadpisuję {args.output}")
         return 1
 
-    # Zaktualizuj club_assignments w config.json na podstawie zebranych frakcji.
-    # build_assembly_metrics.py czyta frakcje właśnie z config["club_assignments"],
-    # więc bez tego wszyscy posłowie mają klub "?".
-    config_path = args.output.parent.parent / "config.json"
-    if config_path.is_file() and kadencja.get("councilor_index"):
+    # Zapisz club_assignments do docs/ (S3-only, gitignored), NIE do config.json.
+    # Roster to dane ze scrape, nie konfiguracja — wpisywanie go do commitowanego
+    # config.json churniło plik przy każdym runie. build_assembly_metrics.py i
+    # generate_assembly_site.py czytają club_assignments z docs/ z overlayem
+    # ręcznego seedu z config (config wygrywa = ręczne korekty mają priorytet).
+    docs_dir = args.output.parent
+    ca_path = docs_dir / "club_assignments.json"
+    new_assignments = kadencja.get("_club_assignments", {})
+    if new_assignments:
+        existing_live: dict = {}
+        if ca_path.exists():
+            try:
+                with ca_path.open(encoding="utf-8") as f:
+                    existing_live = json.load(f) or {}
+            except Exception:
+                existing_live = {}
+        merged = {**existing_live, **new_assignments}  # świeży scrape wygrywa w pliku live
         try:
-            with config_path.open(encoding="utf-8") as f:
-                cfg = json.load(f)
-            # Poszerzaj istniejące przypisania (nie kasuj ręcznych poprawek).
-            existing = cfg.get("club_assignments", {})
-            new_assignments = kadencja.get("_club_assignments", {})
-            if new_assignments:
-                merged = {**new_assignments, **existing}  # existing wygrywa
-                cfg["club_assignments"] = merged
-                with config_path.open("w", encoding="utf-8") as f:
-                    json.dump(cfg, f, ensure_ascii=False, indent=2)
-                log(f"  Zaktualizowano club_assignments ({len(merged)} posłów) w config.json")
+            docs_dir.mkdir(parents=True, exist_ok=True)
+            with ca_path.open("w", encoding="utf-8") as f:
+                json.dump(merged, f, ensure_ascii=False, indent=2)
+            log(f"  Zapisano club_assignments ({len(merged)} posłów) do docs/club_assignments.json (S3-only)")
         except Exception as e:
-            log(f"  WARN: nie można zaktualizować config.json: {e}")
+            log(f"  WARN: nie można zapisać club_assignments.json: {e}")
 
     save_split_output(kadencja, args.output)
 

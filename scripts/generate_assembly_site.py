@@ -433,8 +433,18 @@ def main() -> int:
 
     # Dorzuć JS-ową mapę klubowości (template miasta nie ma placeholdera
     # na to, więc wstrzykujemy przed </body>).
+    # club_assignments: docs/club_assignments.json (S3-only, pisane przez
+    # scraper) z overlayem ręcznego seedu z config (config wygrywa).
+    _live_ca: dict = {}
+    _ca_path = Path(args.output) / "club_assignments.json"
+    if _ca_path.exists():
+        try:
+            _live_ca = json.loads(_ca_path.read_text(encoding="utf-8")) or {}
+        except Exception:
+            _live_ca = {}
+    _club_assignments = {**_live_ca, **(cfg.get("club_assignments") or {})}
     clubs_js = _generate_clubs_data_js(
-        cfg.get("clubs", {}), cfg.get("club_assignments", {})
+        cfg.get("clubs", {}), _club_assignments
     )
     inject = f"<script>\n{clubs_js}\n</script>\n</body>"
     if "</body>" in html:

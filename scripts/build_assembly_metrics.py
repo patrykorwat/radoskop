@@ -251,10 +251,25 @@ def compute_similarity_pairs(
 # Build wszystkich plików
 # ---------------------------------------------------------------------------
 
+def _load_club_assignments(docs: Path, config: dict) -> dict:
+    """club_assignments z docs/club_assignments.json (S3-only, pisane przez
+    scraper) z overlayem ręcznego seedu z config.json. Config wygrywa, więc
+    ręczne korekty mają priorytet. Sejmiki bez pliku live działają jak dawniej
+    (czytają tylko config)."""
+    live: dict = {}
+    f = docs / "club_assignments.json"
+    if f.exists():
+        try:
+            live = load_json(f) or {}
+        except Exception:
+            live = {}
+    return {**live, **(config.get("club_assignments") or {})}
+
+
 def build_metrics(assembly_dir: Path) -> dict[str, Path]:
     docs = assembly_dir / "docs"
     config = load_json(assembly_dir / "config.json")
-    club_of = config.get("club_assignments", {})
+    club_of = _load_club_assignments(docs, config)
 
     kadencja_files = sorted(docs.glob("kadencja-*.json"))
     if not kadencja_files:
