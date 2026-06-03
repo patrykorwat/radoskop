@@ -54,7 +54,16 @@
 {{AKTUALNOSCI_BUTTON}}
         </div>
       </div>
-      <div class="kadencja-bar" id="kadencja-bar"></div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <label id="city-compare-control" style="display:none;align-items:center;gap:6px;font-size:0.85rem;color:var(--muted)">
+          <span>Porównaj z:</span>
+          <select id="city-compare-select" onchange="openCityCompare(this.value)"
+            style="padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:0.85rem;font-family:inherit;cursor:pointer">
+            <option value="">wybierz miasto…</option>
+          </select>
+        </label>
+        <div class="kadencja-bar" id="kadencja-bar"></div>
+      </div>
     </div>
 
     <div id="tab-ranking" class="section">
@@ -139,6 +148,9 @@
 
   <!-- Compare view -->
   <div id="compare-view" style="display:none"></div>
+
+  <!-- City comparison view (capability based) -->
+  <div id="city-compare-view" style="display:none"></div>
 
   <!-- Vote detail view -->
   <div id="vote-view" style="display:none"></div>
@@ -453,6 +465,8 @@ async function init() {
     document.querySelectorAll('#seo-content').forEach(function(e){ e.remove(); });
     document.getElementById('app').style.display = 'block';
     renderKadencjaBar();
+    // Porównywarka miast: best-effort, nie blokuje renderu strony.
+    loadCityCompareIndex();
     // Deep links
     // Strona główna "/" → widok landingu (renderowany z danych kadencji).
     if (path === '/' || path === '') {
@@ -696,6 +710,7 @@ function hideAllViews() {
   var _lv = document.getElementById('landing-view'); if (_lv) _lv.style.display = 'none';
   document.getElementById('profile-view').style.display = 'none';
   document.getElementById('compare-view').style.display = 'none';
+  var _ccv = document.getElementById('city-compare-view'); if (_ccv) _ccv.style.display = 'none';
   document.getElementById('vote-view').style.display = 'none';
   document.getElementById('session-view').style.display = 'none';
   document.getElementById('reports-view').style.display = 'none';
@@ -3841,6 +3856,127 @@ function showCompare() {
     });
   }
   const bar = document.getElementById('compare-bar'); if (bar) bar.style.display = 'none';
+}
+
+// ── Porównywarka miast (capability based) ────────────────────────────
+// Widok miasta pozwala porównać się z innym miastem z droplisty. Nie filtruje
+// par: renderuje moduły analiz, gdzie każdy moduł deklaruje, jakich zdolności
+// (capabilities) potrzebuje. Zdolność miasta jest wykryta automatycznie w
+// build_compare_index.py z dostępnych danych. compare-index.json pobierany
+// same-origin (kopiowany do docs/ każdego miasta przez run_pipeline).
+let CITY_COMPARE = null;        // pełny compare-index.json
+let CITY_COMPARE_SELF = null;   // rekord bieżącego miasta
+
+function ccNum(n){ return (n==null)?'n/d':Number(n).toLocaleString('pl-PL'); }
+function ccPct(n){ return (n==null)?'n/d':(Number(n).toLocaleString('pl-PL',{maximumFractionDigits:1})+'%'); }
+function ccDec(n){ return (n==null)?'n/d':Number(n).toLocaleString('pl-PL',{maximumFractionDigits:1}); }
+function ccMoneyM(n,cur){ return (n==null)?'n/d':((n/1e6).toLocaleString('pl-PL',{maximumFractionDigits:0})+' mln '+(cur||'')).trim(); }
+function ccMoney(n,cur){ return (n==null)?'n/d':(Math.round(n).toLocaleString('pl-PL')+' '+(cur||'')).trim(); }
+
+function capIntersection(a,b){ const bs=new Set(b.capabilities||[]); return (a.capabilities||[]).filter(x=>bs.has(x)); }
+function ccGet(rec,mod,key){ const m=(rec.metrics||{})[mod]||{}; return (key in m)?m[key]:null; }
+
+// Wiersz porównania: etykieta + dwie wartości + proporcjonalny pasek magnitudy.
+// drawBar=false dla wartości nieporównywalnych liniowo (np. różne waluty).
+function ccMetric(label, va, vb, fmt, drawBar){
+  const fa=(va==null)?'n/d':fmt(va), fb=(vb==null)?'n/d':fmt(vb);
+  let barHtml='';
+  if(drawBar!==false && typeof va==='number' && typeof vb==='number' && (va+vb)>0){
+    const wa=Math.round(va/(va+vb)*100);
+    barHtml=`<div class="cc-bar"><div class="cc-bar-a" style="width:${wa}%"></div><div class="cc-bar-b" style="width:${100-wa}%"></div></div>`;
+  } else { barHtml='<div class="cc-bar"></div>'; }
+  const big=(typeof va==='number'&&typeof vb==='number')?(va>vb?'a':(vb>va?'b':'')):'';
+  return `<div class="cc-metric"><div class="cc-metric-label">${label}</div><div class="cc-metric-vals">`
+    +`<span class="cc-val ${big==='a'?'cc-big':''}">${fa}</span>${barHtml}<span class="cc-val ${big==='b'?'cc-big':''}">${fb}</span></div></div>`;
+}
+
+const CITY_COMPARE_MODULES = [
+  { id:'voting_activity', requires:['voting_activity'], label:'Aktywność głosowań',
+    render:(a,b)=> ccMetric('Sesje', ccGet(a,'voting_activity','sessions'), ccGet(b,'voting_activity','sessions'), ccNum)
+      + ccMetric('Głosowania', ccGet(a,'voting_activity','votes'), ccGet(b,'voting_activity','votes'), ccNum)
+      + ccMetric('Głosowań na sesję', ccGet(a,'voting_activity','votes_per_session'), ccGet(b,'voting_activity','votes_per_session'), ccDec) },
+  { id:'attendance', requires:['attendance'], label:'Frekwencja',
+    render:(a,b)=> ccMetric('Średnia frekwencja', ccGet(a,'attendance','avg_frekwencja'), ccGet(b,'attendance','avg_frekwencja'), ccPct) },
+  { id:'club_cohesion', requires:['club_cohesion'], label:'Dyscyplina klubowa',
+    render:(a,b)=> ccMetric('Średnia zgodność z klubem', ccGet(a,'club_cohesion','avg_zgodnosc'), ccGet(b,'club_cohesion','avg_zgodnosc'), ccPct)
+      + ((ccGet(a,'club_cohesion','avg_rebellions')!=null && ccGet(b,'club_cohesion','avg_rebellions')!=null)
+        ? ccMetric('Średnio głosów wbrew klubowi', ccGet(a,'club_cohesion','avg_rebellions'), ccGet(b,'club_cohesion','avg_rebellions'), ccDec) : '') },
+  { id:'council_composition', requires:['council_composition'], label:'Skład rady',
+    render:(a,b)=> ccMetric('Liczba radnych', ccGet(a,'council_composition','councilors'), ccGet(b,'council_composition','councilors'), ccNum)
+      + ccMetric('Liczba klubów', ccGet(a,'council_composition','num_clubs'), ccGet(b,'council_composition','num_clubs'), ccNum)
+      + ccMetric('Udział największego klubu', ccGet(a,'council_composition','largest_club_share'), ccGet(b,'council_composition','largest_club_share'), ccPct) },
+  { id:'demographics', requires:['demographics'], label:'Skala',
+    render:(a,b)=> ccMetric('Populacja', ccGet(a,'demographics','population'), ccGet(b,'demographics','population'), ccNum)
+      + ((ccGet(a,'demographics','councilors_per_100k')!=null && ccGet(b,'demographics','councilors_per_100k')!=null)
+        ? ccMetric('Radnych na 100 tys. mieszk.', ccGet(a,'demographics','councilors_per_100k'), ccGet(b,'demographics','councilors_per_100k'), ccDec) : '')
+      + ((ccGet(a,'demographics','votes_per_100k')!=null && ccGet(b,'demographics','votes_per_100k')!=null)
+        ? ccMetric('Głosowań na 100 tys. mieszk.', ccGet(a,'demographics','votes_per_100k'), ccGet(b,'demographics','votes_per_100k'), ccDec) : '') },
+  { id:'budget', requires:['budget'], label:'Budżet',
+    render:(a,b)=>{
+      const ca=ccGet(a,'budget','currency')||'', cb=ccGet(b,'budget','currency')||'';
+      const sameCur=ca===cb;
+      const ya=ccGet(a,'budget','year'), yb=ccGet(b,'budget','year');
+      let html='';
+      if(!sameCur) html+=`<p class="cc-note">Waluty różne (${ca} vs ${cb}) — porównanie poglądowe, bez przeliczania kursem. Najbardziej miarodajny jest wydatek per capita.</p>`;
+      html+=`<div class="cc-metric"><div class="cc-metric-label">Rok</div><div class="cc-metric-vals"><span class="cc-val">${ya||'n/d'}${ccGet(a,'budget','estimated')?' (szac.)':''}</span><div class="cc-bar"></div><span class="cc-val">${yb||'n/d'}${ccGet(b,'budget','estimated')?' (szac.)':''}</span></div></div>`;
+      html+=ccMetric('Wydatki per capita', ccGet(a,'budget','per_capita_expenditure'), ccGet(b,'budget','per_capita_expenditure'), (n)=>ccMoney(n, n===ccGet(a,'budget','per_capita_expenditure')?ca:cb), sameCur);
+      html+=ccMetric('Wydatki ogółem', ccGet(a,'budget','expenditure'), ccGet(b,'budget','expenditure'), (n)=>ccMoneyM(n, n===ccGet(a,'budget','expenditure')?ca:cb), sameCur);
+      html+=ccMetric('Dochody ogółem', ccGet(a,'budget','revenue'), ccGet(b,'budget','revenue'), (n)=>ccMoneyM(n, n===ccGet(a,'budget','revenue')?ca:cb), sameCur);
+      const ta=ccGet(a,'budget','top_categories')||[], tb=ccGet(b,'budget','top_categories')||[];
+      if(ta.length||tb.length){
+        const fmtCats=(t)=> t.length? t.map(c=>`${c.name}: ${ccPct(c.share)}`).join('<br>') : 'n/d';
+        html+=`<div class="cc-metric"><div class="cc-metric-label">Główne działy (udział wydatków)</div><div class="cc-metric-vals"><span class="cc-val cc-val-multi">${fmtCats(ta)}</span><div class="cc-bar"></div><span class="cc-val cc-val-multi">${fmtCats(tb)}</span></div></div>`;
+      }
+      return html;
+    } },
+];
+
+async function loadCityCompareIndex(){
+  try{
+    const resp=await fetch('/compare-index.json',{cache:'no-cache'});
+    if(!resp.ok) return;
+    const idx=await resp.json();
+    if(!idx || !Array.isArray(idx.cities)) return;
+    CITY_COMPARE=idx;
+    CITY_COMPARE_SELF=idx.cities.find(c=>c.slug===CITY_SLUG)||null;
+    if(!CITY_COMPARE_SELF) return;
+    const others=idx.cities.filter(c=>c.slug!==CITY_SLUG && capIntersection(CITY_COMPARE_SELF,c).length>0);
+    if(others.length===0) return;
+    others.sort((x,y)=>x.name.localeCompare(y.name,'pl'));
+    const sel=document.getElementById('city-compare-select');
+    if(!sel) return;
+    others.forEach(c=>{ const o=document.createElement('option'); o.value=c.slug; o.textContent=c.name; sel.appendChild(o); });
+    document.getElementById('city-compare-control').style.display='inline-flex';
+  }catch(e){}
+}
+
+function openCityCompare(slug){
+  if(!slug || !CITY_COMPARE || !CITY_COMPARE_SELF) return;
+  const other=CITY_COMPARE.cities.find(c=>c.slug===slug);
+  if(other) renderCityCompare(CITY_COMPARE_SELF, other);
+}
+
+function renderCityCompare(a,b){
+  hideAllViews();
+  const view=document.getElementById('city-compare-view');
+  view.style.display='block';
+  const caps=capIntersection(a,b);
+  const mods=CITY_COMPARE_MODULES.filter(m=>m.requires.every(r=>caps.includes(r)));
+  const skipped=CITY_COMPARE_MODULES.filter(m=>!m.requires.every(r=>caps.includes(r)));
+  let html=`<button class="profile-back" onclick="showMain()">← Strona główna</button>
+    <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:6px">${a.name} vs ${b.name}</h2>
+    <p style="color:var(--muted);font-size:0.85rem;margin-bottom:20px">Porównywane są tylko obszary, dla których oba miasta mają dane. Lewa kolumna: ${a.name}. Prawa: ${b.name}.</p>`;
+  if(mods.length===0){
+    html+=`<p style="color:var(--muted)">Te miasta nie mają wspólnego zestawu danych do porównania.</p>`;
+  } else {
+    mods.forEach(m=>{ html+=`<div class="section cc-module"><h2>${m.label}</h2>${m.render(a,b)}</div>`; });
+  }
+  if(skipped.length){
+    html+=`<div class="cc-note" style="margin-top:16px">Niedostępne dla tej pary: ${skipped.map(m=>m.label).join(', ')}. Powód: brak odpowiednich danych w przynajmniej jednym z miast.</div>`;
+  }
+  view.innerHTML=html;
+  const sel=document.getElementById('city-compare-select'); if(sel) sel.value='';
+  window.scrollTo(0,0);
 }
 
 // ── Card download & embed ────────────────────────────────────────────

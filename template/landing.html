@@ -213,7 +213,10 @@ footer a { color:var(--accent); text-decoration:none; }
     <h2>Aktywność w czasie</h2>
     <div class="subtitle">Liczba głosowań na sesjach i ile z nich było spornych.</div>
     <div class="card">
-      <div id="sparkbars" style="display:flex; align-items:flex-end; gap:3px; height:70px; margin-bottom:10px;"></div>
+      <div style="display:flex; gap:8px; margin-bottom:10px;">
+        <div id="sparkaxis" style="display:flex; flex-direction:column; justify-content:space-between; align-items:flex-end; height:70px; font-size:.66rem; line-height:1; color:var(--muted); min-width:20px;"></div>
+        <div id="sparkbars" style="flex:1; display:flex; align-items:flex-end; gap:3px; height:70px; border-left:1px solid var(--border); padding-left:6px;"></div>
+      </div>
       <div style="display:flex; gap:16px; font-size:.78rem;">
         <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:9px;height:9px;border-radius:2px;background:var(--accent);"></span><span class="mu">głosowania</span></span>
         <span style="display:inline-flex; align-items:center; gap:6px;"><span style="width:9px;height:9px;border-radius:2px;background:var(--red);"></span><span class="mu">sporne</span></span>
@@ -359,7 +362,22 @@ function toggleTheme(){
   var votes = (window.RADOSKOP_ACTIVITY && window.RADOSKOP_ACTIVITY.votes) || [48,62,38,71,55,89,44,67,92,58,75,81,68,95,52,78,61,84,47,73,88,65,79,56,83,70,94,59,86,42];
   var disp  = (window.RADOSKOP_ACTIVITY && window.RADOSKOP_ACTIVITY.contested) || [8,12,6,15,9,18,7,14,19,11,16,20,13,22,10,17,12,21,8,15,18,13,17,10,19,14,23,11,20,7];
   var box = document.getElementById('sparkbars');
-  var maxV = Math.max.apply(null, votes);
+  function niceMax(v){
+    if(v<=0) return 1;
+    var pow = Math.pow(10, Math.floor(Math.log10(v)));
+    var n = v/pow;
+    var step = n<=1?1:(n<=2?2:(n<=5?5:10));
+    return step*pow;
+  }
+  var maxV = niceMax(Math.max.apply(null, votes));
+  var axis = document.getElementById('sparkaxis');
+  if(axis){
+    [maxV, maxV/2, 0].forEach(function(t){
+      var lab = document.createElement('div');
+      lab.textContent = Math.round(t);
+      axis.appendChild(lab);
+    });
+  }
   votes.forEach(function(v,i){
     var wrap = document.createElement('div');
     wrap.style.cssText = 'flex:1;position:relative;height:70px;';

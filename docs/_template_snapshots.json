@@ -2,81 +2,81 @@
   "amsterdam": {
     "error": null,
     "kind": "city",
-    "sha256": "7ccedfb1c649ed215ab4dc90d008308276a2999e61c67391f3adc9bc8a10e068"
+    "sha256": "f779bb2dcce6e245a78baef4c8fc1c17063ec623a08dbadf794599ccbf44aeaa"
   },
   "berlin": {
     "error": null,
     "kind": "city",
-    "sha256": "7cabedce2d1b646d7becd6373c33c5ceba432e2834b82766a87b5fe3c3f25e86"
+    "sha256": "528c64c215ce7d146a38908348f628d2522677690b362a68678018f8e1f604c7"
   },
   "bratislava": {
     "error": null,
     "kind": "city",
-    "sha256": "05a35629a0d1e94d878f2ca807cee7c26296ad5414d4ef5030f82ac3a7fbfe4c"
+    "sha256": "eaf3a2ad0fae07b47ad4c216c569b2c4be334d8fb087ee524023df0e23d6aa25"
   },
   "budapest": {
     "error": null,
     "kind": "city",
-    "sha256": "2413e730ce991e43abf6680534b40948df7b856c6efc7197dba352510a90749b"
+    "sha256": "6fd179b92dd21c57ee4f1c278eb3048e235f7ba595a1eb1ea7ea47986e906761"
   },
   "copenhagen": {
     "error": null,
     "kind": "city",
-    "sha256": "4e54aad6a9482b8b176dd6290c793a1891418a72e6e0d78534cbdc8d2ca17eec"
+    "sha256": "a1f60a0f90c12c6e8336c1fe37a767047d4ac6156992fa5987b80307d32f728f"
   },
   "katowice": {
     "error": null,
     "kind": "city",
-    "sha256": "8d8199138aa623cce752283defd022916d98fd07f07da9242edf57d1a1ba73f6"
+    "sha256": "6295eaa03b7f8d63ffd7366de5bb5933523da2076500fb824bb7dc12c2d5710f"
   },
   "kyiv": {
     "error": null,
     "kind": "city",
-    "sha256": "5e6834bc57fe56ae4dfb488e26ec134ea1ab915d811451b489e554d2a58b6875"
+    "sha256": "476e5178258527c880734788dd9847702590614703ca937fe9fc828f858d9a71"
   },
   "landtag-mv": {
     "error": null,
     "kind": "assembly",
-    "sha256": "c029d4aa6c8512f131f5a16a6b872f541f456a42e1a0293b88c44c80cf2dfa60"
+    "sha256": "b85bf456d5b9721482145fbae59e467283d1a8ae78e8d8b7b648322b9480f6ad"
   },
   "mazowieckie": {
     "error": null,
     "kind": "assembly",
-    "sha256": "559ecfa9fb5bdb72a093fd634a3f80c90ad81f8f40b1bdc62caf048ea5fb99f2"
+    "sha256": "0336d61ca97a072a712a9594858aad5ea54629dd46312361f5349f4701ca35bf"
   },
   "paris": {
     "error": null,
     "kind": "city",
-    "sha256": "ee29f6a2e5cc65908a26832142a4b2071a4cf041ddf565423290ff66db0fc1f5"
+    "sha256": "a8543009f0071d0cfde8156b915ea13c985356a9b040b4d2f98be92f68a0f949"
   },
   "praha": {
     "error": null,
     "kind": "city",
-    "sha256": "bf86f6badd1d34c53ceeb411b6be158b5f558ca70f725fd1fda82e347fc23281"
+    "sha256": "93a95c47b24330be452e1d44c66ef33e118e7bcef3635d7cd20b22fa7cac50d7"
   },
   "riga": {
     "error": null,
     "kind": "city",
-    "sha256": "0f85a2a78f321373639764d9574bf95733fbfb9ebcd85ab3019d7d9cd7a5ba4c"
+    "sha256": "57060eaa8474d38cf6177c2d3ba86b0e7bcb0dda594a0ae723ea8579ede66b65"
   },
   "schwerin": {
     "error": null,
     "kind": "city",
-    "sha256": "3d02d91e61f2a761ff8725cc06d9f7734be4a9d9bda11a137bcb809a57ae96da"
+    "sha256": "168544b45411874ab1eb16f52b4628435169027709040e501d05ab4b323feb92"
   },
   "tallinn": {
     "error": null,
     "kind": "city",
-    "sha256": "f2285c9052428e05dc6c681a76f9a9172cb76f4eabbb3b28eb7da6a5a4225d65"
+    "sha256": "b0b590a1f3de74c6e55a72731f1f0e66f828e827a1d1d6fcb9712ec3d3a0c807"
   },
   "vilnius": {
     "error": null,
     "kind": "city",
-    "sha256": "e152586284b05dc3e460096982914b3fce455199045621d16314846ad7d5cba8"
+    "sha256": "896b9bfe6c9ac1a9f154f86376a68b4598301b9a8d09e7cc97b5155144d20279"
   },
   "wroclaw": {
     "error": null,
     "kind": "city",
-    "sha256": "c8c32ef082ed264d1cf64247b852048863caef119a7ba4dd1c18bbe646afa1f8"
+    "sha256": "c7d1088c2b3e80d054ee6935b894c73b0ab0d271fc5ddb7852a19298692012ed"
   }
 }
