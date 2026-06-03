@@ -26,6 +26,7 @@ import json
 import os
 import sys
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
@@ -44,22 +45,58 @@ SUBJECT_REVENUE_TOTAL = "P2693"       # Dochody budżetu ogółem (grupa dochod�
 # Preferujemy wariant zmiennej dla miast na prawach powiatu.
 PREFER_N1 = "gminy łącznie z miastami na prawach powiatu"
 
+# Throttling. BDL bez klucza ma niski limit (pierwszy run dostał 429 na 71/101
+# miast). Trzymamy minimalny odstęp między requestami w obrębie procesu i
+# poważny backoff na 429 z poszanowaniem Retry-After. BDL_CLIENT_ID (darmowy
+# klucz, nagłówek X-ClientId) mocno podnosi limit — ustaw w secrets/.env.
+_MIN_INTERVAL = float(os.environ.get("BDL_MIN_INTERVAL", "0.5"))
+_last_req_at = [0.0]
 
-def _req(path: str, params: Dict[str, Any]) -> Any:
-    params = {**params, "format": "json"}
-    url = f"{BDL_BASE}/{path}?{urllib.parse.urlencode(params)}"
+
+def _throttle() -> None:
+    gap = time.monotonic() - _last_req_at[0]
+    if gap < _MIN_INTERVAL:
+        time.sleep(_MIN_INTERVAL - gap)
+    _last_req_at[0] = time.monotonic()
+
+
+def _req(path: str, params: Any) -> Any:
+    # doseq=True: pozwala na wielokrotne var-id w jednym zapytaniu (batch).
+    qs = urllib.parse.urlencode({**params, "format": "json"}, doseq=True)
+    url = f"{BDL_BASE}/{path}?{qs}"
     req = urllib.request.Request(url, headers={"Accept": "application/json"})
     client_id = os.environ.get("BDL_CLIENT_ID")
     if client_id:
         req.add_header("X-ClientId", client_id)
-    for attempt in range(4):
+    last_exc: Optional[Exception] = None
+    for attempt in range(6):
+        _throttle()
         try:
             with urllib.request.urlopen(req, timeout=30) as resp:
                 return json.loads(resp.read().decode("utf-8"))
+        except urllib.error.HTTPError as e:  # noqa: PERF203
+            last_exc = e
+            if e.code in (429, 503):
+                retry_after = e.headers.get("Retry-After") if e.headers else None
+                try:
+                    wait = float(retry_after) if retry_after else 0.0
+                except ValueError:
+                    wait = 0.0
+                wait = max(wait, 4.0 * (2 ** attempt))  # 4,8,16,32,64,128s
+                if attempt == 5:
+                    raise
+                time.sleep(min(wait, 120.0))
+            else:
+                if attempt >= 2:
+                    raise
+                time.sleep(2.0 * (attempt + 1))
         except Exception as e:  # noqa: BLE001
-            if attempt == 3:
+            last_exc = e
+            if attempt == 5:
                 raise
-            time.sleep(1.5 * (attempt + 1))
+            time.sleep(2.0 * (attempt + 1))
+    if last_exc:
+        raise last_exc
     return None
 
 
@@ -116,19 +153,46 @@ def _pick_total_variable(variables: List[Dict[str, Any]]) -> Optional[int]:
     return sorted(zl, key=score, reverse=True)[0]["id"]
 
 
+def _parse_series_values(series: Dict[str, Any]) -> Dict[int, float]:
+    out: Dict[int, float] = {}
+    for v in series.get("values") or []:
+        # attrId 0 zwykle = brak danych (val 0 nic nie znaczy). Bierzemy tylko
+        # wartości z atrybutem != 0 (dana faktyczna).
+        if v.get("attrId", 0) == 0 and (v.get("val") or 0) == 0:
+            continue
+        try:
+            out[int(v["year"])] = float(v["val"])
+        except (KeyError, TypeError, ValueError):
+            continue
+    return out
+
+
 def _by_unit_values(unit_id: str, var_id: int) -> Dict[int, float]:
     data = _req(f"data/by-unit/{unit_id}", {"var-id": var_id, "page-size": 60})
     out: Dict[int, float] = {}
     for series in (data or {}).get("results") or []:
-        for v in series.get("values") or []:
-            # attrId 0 zwykle = brak danych (val 0 nic nie znaczy). Bierzemy
-            # tylko wartości z atrybutem != 0 (dana faktyczna).
-            if v.get("attrId", 0) == 0 and (v.get("val") or 0) == 0:
-                continue
-            try:
-                out[int(v["year"])] = float(v["val"])
-            except (KeyError, TypeError, ValueError):
-                continue
+        out.update(_parse_series_values(series))
+    return out
+
+
+def _by_unit_values_multi(unit_id: str, var_ids: List[int]) -> Dict[int, Dict[int, float]]:
+    """Pobiera wiele zmiennych dla jednostki w JEDNYM zapytaniu (batch var-id).
+
+    Drastycznie tnie liczbę requestów (kluczowe wobec limitu 429 BDL). API
+    zwraca results[] z polem id per zmienna; dla zmiennych których nie ma w
+    odpowiedzi (gdyby batch nie był wspierany) robimy fallback pojedynczo.
+    """
+    out: Dict[int, Dict[int, float]] = {}
+    if not var_ids:
+        return out
+    data = _req(f"data/by-unit/{unit_id}", {"var-id": var_ids, "page-size": 60})
+    for series in (data or {}).get("results") or []:
+        vid = series.get("id")
+        if vid is not None:
+            out[int(vid)] = _parse_series_values(series)
+    missing = [v for v in var_ids if v not in out]
+    for vid in missing:
+        out[vid] = _by_unit_values(unit_id, vid)
     return out
 
 
@@ -151,8 +215,11 @@ def build_budget(unit_id: str, max_years: int = 8) -> Dict[str, Any]:
     rev_vars = _list_variables(SUBJECT_REVENUE_TOTAL)
     rev_var = _pick_total_variable(rev_vars)
 
-    exp_by_year = _by_unit_values(unit_id, exp_var) if exp_var else {}
-    rev_by_year = _by_unit_values(unit_id, rev_var) if rev_var else {}
+    # Totale wydatków i dochodów w jednym batchu (2 zmienne, 1 request).
+    total_ids = [v for v in (exp_var, rev_var) if v]
+    total_data = _by_unit_values_multi(unit_id, total_ids)
+    exp_by_year = total_data.get(exp_var, {}) if exp_var else {}
+    rev_by_year = total_data.get(rev_var, {}) if rev_var else {}
 
     years = sorted(set(exp_by_year) | set(rev_by_year))[-max_years:]
     totals = []
@@ -167,13 +234,15 @@ def build_budget(unit_id: str, max_years: int = 8) -> Dict[str, Any]:
             "estimated": False,
         })
 
-    # 2) Kategorie: wydatki wg działów (P2920) — każda zmienna to jeden dział
+    # 2) Kategorie: wydatki wg działów (P2920) — każda zmienna to jeden dział.
+    # Wszystkie działy w jednym batchu var-id zamiast ~17 osobnych requestów.
     div_vars = [v for v in _list_variables(SUBJECT_EXPENDITURE_BY_DIVISION)
                 if v.get("measureUnitName") == "zł" and PREFER_N1 in (v.get("n1") or "")]
+    name_by_id = {v["id"]: _clean_division_name(v) for v in div_vars}
+    div_data = _by_unit_values_multi(unit_id, [v["id"] for v in div_vars])
     categories: Dict[str, List[Dict[str, Any]]] = {}
-    for var in div_vars:
-        name = _clean_division_name(var)
-        vals = _by_unit_values(unit_id, var["id"])
+    for vid, vals in div_data.items():
+        name = name_by_id.get(vid, "Inne")
         for y, amount in vals.items():
             if y not in years:
                 continue
