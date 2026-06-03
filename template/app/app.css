@@ -474,6 +474,15 @@ footer a { color:var(--accent); text-decoration:none; }
 .cc-bar-a { background:var(--accent); }
 .cc-bar-b { background:#94a3b8; }
 .cc-note { font-size:0.82rem; color:var(--muted); background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:10px 12px; line-height:1.5; }
+/* City comparison search (skaluje się do setek miast) */
+.cc-search input { width:100%; box-sizing:border-box; padding:11px 14px; border:1px solid var(--border); border-radius:10px; background:var(--surface); color:var(--text); font-size:0.95rem; font-family:inherit; }
+.cc-search input:focus { outline:none; border-color:var(--accent); }
+.cc-search-results { margin-top:8px; max-height:300px; overflow-y:auto; display:flex; flex-direction:column; gap:2px; }
+.cc-search-item { display:flex; align-items:baseline; justify-content:space-between; gap:12px; width:100%; text-align:left; padding:10px 12px; border:none; border-radius:8px; background:transparent; color:var(--text); font-size:0.92rem; font-family:inherit; cursor:pointer; }
+.cc-search-item:hover { background:var(--surface); }
+.cc-search-name { font-weight:500; }
+.cc-search-meta { color:var(--muted); font-size:0.8rem; white-space:nowrap; }
+.cc-search-empty { color:var(--muted); font-size:0.88rem; padding:10px 12px; }
 @media (max-width:560px){ .cc-metric-vals { grid-template-columns:1fr 1.2fr 1fr; gap:6px; } .cc-val { font-size:0.85rem; } }
 
 /* Share buttons */

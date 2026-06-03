@@ -54,16 +54,7 @@
 {{AKTUALNOSCI_BUTTON}}
         </div>
       </div>
-      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-        <label id="city-compare-control" style="display:none;align-items:center;gap:6px;font-size:0.85rem;color:var(--muted)">
-          <span>Porównaj z:</span>
-          <select id="city-compare-select" onchange="openCityCompare(this.value)"
-            style="padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:0.85rem;font-family:inherit;cursor:pointer">
-            <option value="">wybierz miasto…</option>
-          </select>
-        </label>
-        <div class="kadencja-bar" id="kadencja-bar"></div>
-      </div>
+      <div class="kadencja-bar" id="kadencja-bar"></div>
     </div>
 
     <div id="tab-ranking" class="section">
@@ -1092,6 +1083,7 @@ function renderLandingHTML(){
     nav('interpelacje','nav_interp_title','nav_interp_desc')+
     nav('budget','nav_budget_title','nav_budget_desc')+
     nav('komisje','nav_committees_title','nav_committees_desc')+'</div></section>'+
+  _landingCompareSection()+
   '<section class="lp-sec"><div class="lp-band"><h3>'+_t('cta_final_h3')+'</h3><p>'+_t('cta_final_p')+'</p><div class="lp-cta" style="justify-content:center"><a class="lp-btn lp-btn-p" href="/councillors/" onclick="event.preventDefault();_lpGo(\'ranking\')">'+_t('cta_final_primary')+'</a></div></div></section>';
 }
 
@@ -3939,15 +3931,55 @@ async function loadCityCompareIndex(){
     if(!idx || !Array.isArray(idx.cities)) return;
     CITY_COMPARE=idx;
     CITY_COMPARE_SELF=idx.cities.find(c=>c.slug===CITY_SLUG)||null;
-    if(!CITY_COMPARE_SELF) return;
-    const others=idx.cities.filter(c=>c.slug!==CITY_SLUG && capIntersection(CITY_COMPARE_SELF,c).length>0);
-    if(others.length===0) return;
-    others.sort((x,y)=>x.name.localeCompare(y.name,'pl'));
-    const sel=document.getElementById('city-compare-select');
-    if(!sel) return;
-    others.forEach(c=>{ const o=document.createElement('option'); o.value=c.slug; o.textContent=c.name; sel.appendChild(o); });
-    document.getElementById('city-compare-control').style.display='inline-flex';
+    // Sekcja porównania na landingu renderuje się dopiero gdy CITY_COMPARE jest
+    // załadowany. Fetch jest async i może skończyć po pierwszym renderze landingu,
+    // więc jeśli landing jest właśnie widoczny — przerysuj go raz.
+    const lv=document.getElementById('landing-view');
+    if(lv && lv.style.display!=='none' && (location.pathname==='/'||location.pathname==='')){
+      try{ lv.innerHTML=renderLandingHTML(); }catch(e){}
+    }
   }catch(e){}
+}
+
+// Miasta porównywalne: inne niż bieżące i mające wspólną przynajmniej jedną
+// zdolność (capability) z bieżącym miastem.
+function ccComparableCities(){
+  if(!CITY_COMPARE || !CITY_COMPARE_SELF) return [];
+  return CITY_COMPARE.cities
+    .filter(c=>c.slug!==CITY_SLUG && capIntersection(CITY_COMPARE_SELF,c).length>0)
+    .sort((a,b)=>a.name.localeCompare(b.name,'pl'));
+}
+
+// Sekcja landingu: wyszukiwarka miast (skaluje się do setek miast inaczej niż
+// dropdown). Zwraca pusty string, gdy brak miast do porównania.
+function _landingCompareSection(){
+  if(ccComparableCities().length===0) return '';
+  var self=(CITY_COMPARE_SELF&&CITY_COMPARE_SELF.name)?_lpEsc(CITY_COMPARE_SELF.name):'to miasto';
+  return '<section class="lp-sec"><h2>Porównaj z innym miastem</h2>'+
+    '<div class="lp-sub">Zestaw '+self+' z dowolnym innym miastem. Pokazujemy tylko obszary, dla których oba mają dane.</div>'+
+    '<div class="lp-card cc-search">'+
+      '<input type="text" autocomplete="off" placeholder="Wpisz nazwę miasta…" '+
+        'oninput="ccSearchInput(this)" onfocus="ccSearchInput(this)">'+
+      '<div class="cc-search-results"></div>'+
+    '</div></section>';
+}
+
+function ccSearchInput(input){
+  // Kontener wyników znajdujemy względem inputu (nie po globalnym id), bo
+  // wyszukiwarka żyje i w landingu, i w widoku porównania jednocześnie.
+  var box=(input && input.parentNode) ? input.parentNode.querySelector('.cc-search-results') : null;
+  if(!box) return;
+  var q=((input && input.value) || '').trim().toLowerCase();
+  var list=ccComparableCities();
+  if(q) list=list.filter(function(c){ return c.name.toLowerCase().indexOf(q)>-1; });
+  if(list.length===0){ box.innerHTML='<div class="cc-search-empty">Brak pasujących miast</div>'; return; }
+  box.innerHTML=list.slice(0,80).map(function(c){
+    var sub=[c.voivodeship||'', (c.country&&c.country!=='pl')?c.country.toUpperCase():''].filter(Boolean).join(' · ');
+    return '<button type="button" class="cc-search-item" onclick="openCityCompare(\''+c.slug+'\')">'+
+      '<span class="cc-search-name">'+_lpEsc(c.name)+'</span>'+
+      (sub?'<span class="cc-search-meta">'+_lpEsc(sub)+'</span>':'')+
+    '</button>';
+  }).join('');
 }
 
 function openCityCompare(slug){
@@ -3963,8 +3995,11 @@ function renderCityCompare(a,b){
   const caps=capIntersection(a,b);
   const mods=CITY_COMPARE_MODULES.filter(m=>m.requires.every(r=>caps.includes(r)));
   const skipped=CITY_COMPARE_MODULES.filter(m=>!m.requires.every(r=>caps.includes(r)));
-  let html=`<button class="profile-back" onclick="showMain()">← Strona główna</button>
-    <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:6px">${a.name} vs ${b.name}</h2>
+  let html=`<button class="profile-back" onclick="(typeof showLanding==='function'?showLanding():showMain())">← Strona główna</button>
+    <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:6px">${a.name} vs ${b.name}</h2>`;
+  html+=`<div class="cc-search" style="margin-bottom:18px"><input type="text" autocomplete="off" placeholder="Zmień miasto…"
+    oninput="ccSearchInput(this)" onfocus="ccSearchInput(this)"><div class="cc-search-results"></div></div>`;
+  html+=`
     <p style="color:var(--muted);font-size:0.85rem;margin-bottom:20px">Porównywane są tylko obszary, dla których oba miasta mają dane. Lewa kolumna: ${a.name}. Prawa: ${b.name}.</p>`;
   if(mods.length===0){
     html+=`<p style="color:var(--muted)">Te miasta nie mają wspólnego zestawu danych do porównania.</p>`;
