@@ -495,33 +495,6 @@ def compact_named_votes(output):
     return output
 
 
-    try:
-        pix = page.get_pixmap(dpi=300)
-        tmp = tempfile.mktemp(suffix='.png')
-        pix.save(tmp)
-        result = subprocess.run(
-            ['tesseract', tmp, '-', '-l', 'eng+pol'],
-            capture_output=True, text=True, timeout=60,
-        )
-        os.unlink(tmp)
-        if result.returncode != 0:
-            # Fallback to eng only if pol not available
-            pix.save(tmp + '2.png')
-            result = subprocess.run(
-                ['tesseract', tmp + '2.png', '-', '-l', 'eng'],
-                capture_output=True, text=True, timeout=60,
-            )
-            try:
-                os.unlink(tmp + '2.png')
-            except Exception:
-                pass
-        return result.stdout
-    except Exception as e:
-        print(f"    BŁĄD OCR: {e}")
-        return ""
-
-
-
 def save_split_output(output, out_path):
     """Save output as split files: data.json (index) + kadencja-{id}.json per kadencja."""
     import json as _json

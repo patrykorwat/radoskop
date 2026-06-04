@@ -1150,6 +1150,28 @@ def _run_offline(args):
 # Main
 # ---------------------------------------------------------------------------
 
+def compact_named_votes(output):
+    """Convert named_votes from string arrays to indexed format for smaller JSON."""
+    for kad in output.get("kadencje", []):
+        names = set()
+        for v in kad.get("votes", []):
+            nv = v.get("named_votes", {})
+            for cat_names in nv.values():
+                for n in cat_names:
+                    if isinstance(n, str):
+                        names.add(n)
+        if not names:
+            continue
+        index = sorted(names, key=lambda n: n.split()[-1] + " " + n)
+        name_to_idx = {n: i for i, n in enumerate(index)}
+        kad["councilor_index"] = index
+        for v in kad.get("votes", []):
+            nv = v.get("named_votes", {})
+            for cat in nv:
+                nv[cat] = sorted(name_to_idx[n] for n in nv[cat] if isinstance(n, str) and n in name_to_idx)
+    return output
+
+
 def main():
     parser = argparse.ArgumentParser(description="Scraper Rady Miasta Wrocławia (BIP)")
     parser.add_argument("--output", default="docs/data.json", help="Plik wyjściowy")
@@ -1271,28 +1293,6 @@ def main():
                     d.close()
                     print(f"  Tekst PDF (500 znaków):\n{txt}")
         return
-
-
-def compact_named_votes(output):
-    """Convert named_votes from string arrays to indexed format for smaller JSON."""
-    for kad in output.get("kadencje", []):
-        names = set()
-        for v in kad.get("votes", []):
-            nv = v.get("named_votes", {})
-            for cat_names in nv.values():
-                for n in cat_names:
-                    if isinstance(n, str):
-                        names.add(n)
-        if not names:
-            continue
-        index = sorted(names, key=lambda n: n.split()[-1] + " " + n)
-        name_to_idx = {n: i for i, n in enumerate(index)}
-        kad["councilor_index"] = index
-        for v in kad.get("votes", []):
-            nv = v.get("named_votes", {})
-            for cat in nv:
-                nv[cat] = sorted(name_to_idx[n] for n in nv[cat] if isinstance(n, str) and n in name_to_idx)
-    return output
 
     # 2. Fetch PDFs and parse votes for each session
     print(f"\n[2/{total_steps}] Pobieranie protokołów i głosowań ({len(all_sessions)} sesji)...")

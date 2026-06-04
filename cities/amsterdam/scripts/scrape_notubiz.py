@@ -60,6 +60,13 @@ DEFAULT_TIMEOUT = 60
 RETRY_COUNT = 3
 SLEEP_BETWEEN_CALLS = 0.3
 
+# Amsterdam publikuje imienne głosowania z dużym opóźnieniem (tygodnie po sesji).
+# Strony vergadering są cache'owane bezterminowo, więc świeżo dopublikowane głosy
+# nigdy nie trafiłyby do danych przy ponownym uruchomieniu (stary, pusty cache wygrywa).
+# Dlatego dla sesji z ostatnich N dni omijamy cache i pobieramy stronę na nowo.
+# Starsze sesje są stabilne i zostają w cache.
+RECENT_REFRESH_DAYS = 180
+
 CATEGORIES = ("za", "przeciw", "wstrzymal_sie", "brak_glosu", "nieobecni")
 
 # CSS class na HTML -> kategoria Radoskop.
@@ -375,7 +382,37 @@ def fetch_vergadering(
     """Pobierz i sparsuj stronę vergadering. Zwraca listę głosowań."""
     base = config.get("notubiz_raadsinformatie_base", "https://amsterdam.raadsinformatie.nl")
     url = f"{base}/vergadering/{meeting['id']}"
-    html = http_get(url, cache_dir)
+
+    # Amsterdam dopublikowuje imienne głosowania tygodnie po sesji, a cache jest
+    # bezterminowy — więc świeżo dopublikowane głosy nigdy by się nie pojawiły.
+    # Dla sesji z ostatnich RECENT_REFRESH_DAYS dni omijamy cache, ale TYLKO jeśli
+    # zapisana wersja jest pusta (brak bloków głosowań). Strona, która ma już
+    # głosy, jest stabilna (głosów się nie cofa), więc zostaje w cache — to
+    # oszczędza pobierania wielkich, gotowych stron przy każdym uruchomieniu.
+    use_cache = True
+    try:
+        md = datetime.strptime(meeting["date"], "%Y-%m-%d").date()
+        age_days = (datetime.now(timezone.utc).date() - md).days
+        if age_days < RECENT_REFRESH_DAYS:
+            cached = ""
+            if cache_dir:
+                cf = cache_dir / f"{_cache_key(url)}.html"
+                if cf.is_file():
+                    cached = cf.read_text(encoding="utf-8", errors="replace")
+            # Brak cache lub cache bez głosów → pobierz świeżo.
+            if 'id="voting_' not in cached:
+                use_cache = False
+    except (ValueError, KeyError):
+        pass
+
+    html = http_get(url, cache_dir, use_cache=use_cache)
+
+    # Jeśli dopiero co pobraliśmy stronę z głosami (bypass cache), zapisz ją do
+    # cache — strona jest już stabilna, więc kolejne uruchomienia ją pominą.
+    if not use_cache and cache_dir and 'id="voting_' in html:
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        (cache_dir / f"{_cache_key(url)}.html").write_text(html, encoding="utf-8")
+
     blocks = parse_voting_blocks(html, meeting["id"], meeting["date"], config)
     return blocks
 

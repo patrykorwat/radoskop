@@ -1015,6 +1015,28 @@ def build_sessions(sessions_raw: list[dict], all_votes: list[dict]) -> list[dict
 # Main
 # ---------------------------------------------------------------------------
 
+def compact_named_votes(output):
+    """Convert named_votes from string arrays to indexed format for smaller JSON."""
+    for kad in output.get("kadencje", []):
+        names = set()
+        for v in kad.get("votes", []):
+            nv = v.get("named_votes", {})
+            for cat_names in nv.values():
+                for n in cat_names:
+                    if isinstance(n, str):
+                        names.add(n)
+        if not names:
+            continue
+        index = sorted(names, key=lambda n: n.split()[-1] + " " + n)
+        name_to_idx = {n: i for i, n in enumerate(index)}
+        kad["councilor_index"] = index
+        for v in kad.get("votes", []):
+            nv = v.get("named_votes", {})
+            for cat in nv:
+                nv[cat] = sorted(name_to_idx[n] for n in nv[cat] if isinstance(n, str) and n in name_to_idx)
+    return output
+
+
 def main():
     parser = argparse.ArgumentParser(description="Scraper Rady Miasta Gdyni (BIP)")
     parser.add_argument("--output", default="docs/data.json", help="Plik wyjściowy")
@@ -1041,28 +1063,6 @@ def main():
         for f in glob.glob(str(PDF_DIR / "*.pdf")):
             Path(f).unlink()
         print(f"  Wyczyszczono cache PDF: {PDF_DIR}")
-
-
-def compact_named_votes(output):
-    """Convert named_votes from string arrays to indexed format for smaller JSON."""
-    for kad in output.get("kadencje", []):
-        names = set()
-        for v in kad.get("votes", []):
-            nv = v.get("named_votes", {})
-            for cat_names in nv.values():
-                for n in cat_names:
-                    if isinstance(n, str):
-                        names.add(n)
-        if not names:
-            continue
-        index = sorted(names, key=lambda n: n.split()[-1] + " " + n)
-        name_to_idx = {n: i for i, n in enumerate(index)}
-        kad["councilor_index"] = index
-        for v in kad.get("votes", []):
-            nv = v.get("named_votes", {})
-            for cat in nv:
-                nv[cat] = sorted(name_to_idx[n] for n in nv[cat] if isinstance(n, str) and n in name_to_idx)
-    return output
 
     print("=== Radoskop Scraper: Rada Miasta Gdyni (BIP) ===")
     print(f"Źródło: {BIP_BASE}")

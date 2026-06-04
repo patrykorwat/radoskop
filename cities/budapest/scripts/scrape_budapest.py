@@ -396,6 +396,66 @@ def normalize_result(result_native: str, result_map: dict[str, str]) -> str:
     return result_native
 
 
+_HONORIFICS = {"dr", "dr.", "prof", "prof.", "ifj", "ifj.", "id", "id.", "özv", "özv."}
+
+
+def _strip_honorifics(name: str) -> str:
+    parts = name.split()
+    while parts and parts[0].lower() in _HONORIFICS:
+        parts = parts[1:]
+    return " ".join(parts)
+
+
+def _name_key(name: str) -> str:
+    """Klucz tożsamości radnego odporny na artefakty pdftotext.
+
+    Usuwa tytuł grzecznościowy ("dr." raz jest raz nie) ORAZ wszystkie spacje
+    (pdftotext bywa wstawia spację w środku nazwiska: "Szanis zło" =
+    "Szaniszło", albo skleja). Casefold dla różnic wielkości liter. Dwie różne
+    osoby nie różnią się tylko spacjami/tytułem, więc łączenie po tym kluczu
+    jest bezpieczne. Nieregularne przypadki (zgarbione litery, dodatkowy człon)
+    obsługuje config["name_aliases"].
+    """
+    return re.sub(r"\s+", "", _strip_honorifics(name)).casefold()
+
+
+def build_canonical_map(
+    blocks: list[dict[str, Any]],
+    aliases: dict[str, str],
+) -> dict[str, str]:
+    """Mapa surowa_nazwa -> kanoniczna_nazwa.
+
+    Najpierw stosuje jawne aliasy z configu, potem grupuje warianty po
+    _name_key i wybiera najczęstszą surową formę jako kanoniczną (np.
+    "Ordas Eszter" wygrywa nad rzadszym "dr. Ordas Eszter").
+    """
+    from collections import Counter
+    freq: Counter = Counter()
+    for b in blocks:
+        for name, _cat, _frak in b["members"]:
+            freq[aliases.get(name, name)] += 1
+    groups: dict[str, list[str]] = defaultdict(list)
+    for name in freq:
+        groups[_name_key(name)].append(name)
+    canon_of_target: dict[str, str] = {}
+    for _key, names in groups.items():
+        # Kanoniczna = najczęstsza forma; przy remisie wybierz bez tytułu
+        # ("Ordas Eszter" > "dr. Ordas Eszter") i krótszą, deterministycznie.
+        best = max(
+            names,
+            key=lambda n: (freq[n], _strip_honorifics(n) == n, -len(n), n),
+        )
+        for n in names:
+            canon_of_target[n] = best
+    # Złóż: surowa -> (alias) -> kanoniczna grupy.
+    result: dict[str, str] = {}
+    raw_names = {name for b in blocks for name, _c, _f in b["members"]}
+    for raw in raw_names:
+        target = aliases.get(raw, raw)
+        result[raw] = canon_of_target.get(target, target)
+    return result
+
+
 def build_kadencja(
     blocks: list[dict[str, Any]],
     config: dict[str, Any],
@@ -412,11 +472,17 @@ def build_kadencja(
         if b.get("session_date") and (not start_date or b["session_date"] >= start_date)
     ]
 
-    # Zbiór radnych w kadencji.
+    # Kanonikalizacja nazwisk: pdftotext bywa niespójny (spacja w środku
+    # nazwiska, tytuł "dr." raz jest raz nie, czasem zgarbione litery), co
+    # nadmuchiwało councilor_index (40 zamiast ~33 realnych + rotacja). Łączymy
+    # warianty tego samego radnego; nieregularne z config["name_aliases"].
+    canon = build_canonical_map(kad_blocks, config.get("name_aliases", {}))
+
+    # Zbiór radnych w kadencji (po kanonikalizacji).
     all_names: set[str] = set()
     for b in kad_blocks:
         for name, _cat, _frak in b["members"]:
-            all_names.add(name)
+            all_names.add(canon.get(name, name))
     councilor_index = sorted(all_names)
     name_to_idx = {n: i for i, n in enumerate(councilor_index)}
 
@@ -426,8 +492,9 @@ def build_kadencja(
     for b in sorted(kad_blocks, key=lambda x: x.get("session_date", "")):
         for name, _cat, frak in b["members"]:
             if frak:
-                club_by_name[name] = frak
-                last_date_by_name[name] = b.get("session_date", "")
+                cname = canon.get(name, name)
+                club_by_name[cname] = frak
+                last_date_by_name[cname] = b.get("session_date", "")
 
     votes_flat: list[dict[str, Any]] = []
     sessions_meta: dict[str, dict[str, Any]] = {}
@@ -436,10 +503,12 @@ def build_kadencja(
         date = b["session_date"]
         counts = {c: 0 for c in CATEGORIES}
         named_idx: dict[str, list[int]] = {c: [] for c in CATEGORIES}
+        seen_idx: set[int] = set()
         for name, cat, _frak in b["members"]:
-            idx = name_to_idx.get(name)
-            if idx is None:
+            idx = name_to_idx.get(canon.get(name, name))
+            if idx is None or idx in seen_idx:
                 continue
+            seen_idx.add(idx)
             counts[cat] += 1
             named_idx[cat].append(idx)
 
@@ -471,7 +540,7 @@ def build_kadencja(
         # Obecność: radny obecny na sesji jeśli choć raz głosował inaczej niż Távol.
         for name, cat, _frak in b["members"]:
             if cat != "nieobecni":
-                sess["attendees"].add(name)
+                sess["attendees"].add(canon.get(name, name))
 
     sessions: list[dict[str, Any]] = []
     for date, sess in sessions_meta.items():
@@ -624,7 +693,21 @@ def main() -> int:
         )
         all_clubs.update(built["club_by_name"])
 
+    # club_assignments.json: radny -> slug klubu (z kolumny Frakció).
+    # build_assembly_metrics.py czyta kluby WŁAŚNIE stąd (_load_club_assignments
+    # merge'uje docs/club_assignments.json z config["club_assignments"]).
+    # Frakció drukowane w PDF (np. "TISZA PÁRT", "FIDESZ-KDNP") jest 1:1 kluczem
+    # w config["clubs"], więc nazwa frakcji służy bezpośrednio jako slug.
+    # Bez tego pliku każdy radny dostawał "NZ" → 0% przypisanych klubów.
+    club_assignments_path = args.docs / "club_assignments.json"
+    with open(club_assignments_path, "w", encoding="utf-8") as f:
+        json.dump(all_clubs, f, ensure_ascii=False, indent=2)
+    print(f"[budapest] wrote club_assignments.json: {len(all_clubs)} radnych",
+          file=sys.stderr)
+
     # profiles.json: radny -> {name, club}. Klub z kolumny Frakció.
+    # (build_assembly_metrics nadpisze ten plik pełnymi profilami; trzymamy go
+    # jako fallback gdy post-processing się nie wykona.)
     profiles = {name: {"name": name, "club": club} for name, club in all_clubs.items()}
     profiles_path = args.docs / "profiles.json"
     with open(profiles_path, "w", encoding="utf-8") as f:

@@ -67,6 +67,10 @@
     "Elvetve": "ODRZUCONE",
     "Elnapolva": "ODROCZONE"
   },
+  "name_aliases": {
+    "Rádiós Béla": "Radics Béla",
+    "Porcher Áron Somerville": "Porcher Áron"
+  },
   "clubs": {
     "TISZA PÁRT": {
       "name": "Tisza Párt",

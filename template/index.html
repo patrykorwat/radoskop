@@ -1230,7 +1230,7 @@ function renderCouncilorTable() {
       <td><span class="club ${clubClass(c.club)}">${(c.club && c.club !== '?') ? c.club : 'Niezrzeszeni'}</span></td>
       <td>${pctBar(c.frekwencja)}</td>
       <td>${pctBar(c.aktywnosc)}</td>
-      <td>${(!c.club || c.club === '?' || c.club === 'Niezrzeszeni') ? '<span style="color:var(--muted)">n/d</span>' : pctBar(c.zgodnosc_z_klubem)}</td>
+      <td>${(!c.club || c.club === '?' || c.club === 'Niezrzeszeni') ? '<span style="color:var(--muted)">n/d</span>' : c.zgodnosc_z_klubem + '%'}</td>
       <td>${c.votes_za}</td>
       <td>${c.votes_przeciw > 0 ? `<span class="pill pill-przeciw">${c.votes_przeciw}</span>` : '0'}</td>
       <td>${c.votes_wstrzymal > 0 ? `<span class="pill pill-wstrzymal">${c.votes_wstrzymal}</span>` : '0'}</td>
@@ -1447,7 +1447,7 @@ function showProfile(name) {
               <div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:5px">Aktywność</div>
             </div>
             ${kd.club === 'Niezrzeszeni' ? '' : `<div style="text-align:center;min-width:70px">
-              <div style="font-size:1.7rem;font-weight:700;line-height:1;color:${_kpiColor(kd.zgodnosc_z_klubem)}">${kd.zgodnosc_z_klubem}%</div>
+              <div style="font-size:1.7rem;font-weight:700;line-height:1">${kd.zgodnosc_z_klubem}%</div>
               <div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:5px">Zgodność z klubem</div>
             </div>`}
           </div>
@@ -1492,15 +1492,18 @@ function showProfile(name) {
         if (s.indexOf('.') !== -1) s = s.replace(/0+$/, '').replace(/\.$/, '');
         return `Top ${s.replace('.', ',')}% radnych`;
       }
-      function _metricCol(label, value, pct, blurred) {
+      function _metricCol(label, value, pct, blurred, neutral) {
         // Jedna jasna wartość na metrykę: czysta odznaka "Top X%" (styl
         // OnlyFans). Bez paska — wcześniej pasek pokazywał surową wartość, co
         // kłóciło się wizualnie z percentylem obok. Kolor koduje pozycję
         // (zielony = czubek, czerwony = dół stawki). Param value niewykorzystany.
+        // neutral=true: bez skali zielony/czerwony — używane dla zgodności z
+        // klubem, bo Radoskop nie ocenia dyscypliny klubowej jako dobrej/złej.
         const blurStyle = blurred ? 'filter:blur(4px);pointer-events:none;user-select:none;' : '';
+        const color = neutral ? 'var(--text)' : _barColor(pct);
         return `<div style="${blurStyle}">
           <div style="font-size:0.78rem;color:var(--muted);text-transform:uppercase;margin-bottom:6px">${label}</div>
-          <div style="font-size:1.15rem;font-weight:700;color:${_barColor(pct)};line-height:1.15">${_rankLabel(pct)}</div>
+          <div style="font-size:1.15rem;font-weight:700;color:${color};line-height:1.15">${_rankLabel(pct)}</div>
         </div>`;
       }
 
@@ -1513,10 +1516,10 @@ function showProfile(name) {
 
       const lockedCols = isLoggedIn
         ? _metricCol('Frekwencja na sesjach', kd.frekwencja, pFrek, false)
-          + _metricCol('Zgodność z klubem', kd.zgodnosc_z_klubem, pZgod, false)
+          + _metricCol('Zgodność z klubem', kd.zgodnosc_z_klubem, pZgod, false, true)
         : `<div style="position:relative;grid-column:span 2;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;border-radius:8px;overflow:hidden">
             ${_metricCol('Frekwencja na sesjach', kd.frekwencja, pFrek, true)}
-            ${_metricCol('Zgodność z klubem', kd.zgodnosc_z_klubem, pZgod, true)}
+            ${_metricCol('Zgodność z klubem', kd.zgodnosc_z_klubem, pZgod, true, true)}
             ${overlayHtml}
            </div>`;
 
@@ -3792,7 +3795,7 @@ function showCompare() {
       <div style="display:grid;gap:8px">
         <div>Frekwencja: ${pctBar(c.frekwencja)}</div>
         <div>Aktywność: ${pctBar(c.aktywnosc)}</div>
-        <div>Zgodność z klubem: ${c.club === 'Niezrzeszeni' ? '<span style="color:var(--muted)">n/d</span>' : pctBar(c.zgodnosc_z_klubem)}</div>
+        <div>Zgodność z klubem: ${c.club === 'Niezrzeszeni' ? '<span style="color:var(--muted)">n/d</span>' : c.zgodnosc_z_klubem + '%'}</div>
         <div style="display:flex;gap:6px;margin-top:4px">
           <span class="pill pill-za">Za: ${c.votes_za}</span>
           <span class="pill pill-przeciw">Przeciw: ${c.votes_przeciw}</span>
@@ -4080,7 +4083,7 @@ function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
   const metrics = [
     {label:'Frekwencja',value:frek+'%',color:frek>=90?'#22c55e':frek>=70?'#eab308':'#ef4444'},
     {label:'Aktywność',value:akt+'%',color:akt>=90?'#22c55e':akt>=70?'#eab308':'#ef4444'},
-    {label:'Zgodność z klubem',value:zgod+'%',color:zgod>=90?'#22c55e':zgod>=70?'#eab308':'#ef4444'},
+    {label:'Zgodność z klubem',value:zgod+'%',color:'#e4e4e7'},
   ];
   metrics.forEach((m,i) => {
     const x=30+i*180, y=120;
