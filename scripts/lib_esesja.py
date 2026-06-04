@@ -260,7 +260,22 @@ def load_previous_votes_by_date(kadencja_file: Path) -> dict[tuple[str, str], li
         # Older runs stored full names, newer runs store compact int indexes;
         # decompact transparently so callers always see name strings.
         v_copy = dict(v)
-        v_copy["named_votes"] = _decompact_named_votes(nv, index)
+        decompacted = _decompact_named_votes(nv, index)
+        # Sanityzacja nazwisk z poprzednich runów: scrape'y sprzed fixa
+        # 2026-05-30 zapisały nazwiska z doklejonym tokenem głosu
+        # ("Czerner Marian (WSTRZYMAŁ(A) SIĘ)"), przez co Racibórz miał 65
+        # "radnych" zamiast 22. Fix w _scrape_single_vote czyści tylko ŚWIEŻE
+        # scrape'y, a incremental cache wiecznie odtwarzał zatrute nazwy dla
+        # starych sesji. Czyścimy więc przy ładowaniu cache tym samym regexem
+        # (no-op dla czystych nazw) — miasta eSesja samonaprawiają się przy
+        # zwykłym runie, bez --full.
+        v_copy["named_votes"] = {
+            cat: [
+                re.sub(r"\s+", " ", re.sub(r"\s*\(.*\)\s*$", "", n)).strip()
+                for n in names
+            ]
+            for cat, names in decompacted.items()
+        }
         by_session.setdefault((date, number), []).append(v_copy)
     return by_session
 

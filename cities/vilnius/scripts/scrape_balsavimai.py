@@ -261,6 +261,16 @@ def build_kadencja(
     """
     kadencje = config.get("kadencje", {})
 
+    # Aliasy nazwisk: źródło bywa zapisuje tę samą osobę różnie między sesjami
+    # (np. "Algirdas Jovaiša" w 2025-09 vs "Algirdas Eugenijus Jovaiša" później),
+    # co dublowało radnego w councilor_index. Mapę trzyma config["name_aliases"]
+    # (wariant -> forma kanoniczna = ta używana przez vilnius.lt / club_assignments).
+    aliases: dict[str, str] = config.get("name_aliases", {}) or {}
+
+    def _narys(b: dict[str, str]) -> str:
+        n = (b.get("narys") or "").strip()
+        return aliases.get(n, n)
+
     # Pierwszy przelot: zbierz wszystkich radnych w tej kadencji.
     all_narys: set[str] = set()
     sessions_meta: dict[tuple[str, str], dict[str, Any]] = {}
@@ -276,7 +286,7 @@ def build_kadencja(
         balsavimo_id = k.get("balsavimo_id")
         balsas_rows = balsas_by_vote.get(balsavimo_id, []) if balsavimo_id else []
         for b in balsas_rows:
-            n = (b.get("narys") or "").strip()
+            n = _narys(b)
             if n:
                 all_narys.add(n)
 
@@ -295,7 +305,7 @@ def build_kadencja(
         if balsavimo_id:
             sessions_meta[key]["vote_ids"].append(balsavimo_id)
         for b in balsas_rows:
-            n = (b.get("narys") or "").strip()
+            n = _narys(b)
             if n:
                 sessions_meta[key]["attendees"].add(n)
 
@@ -317,7 +327,7 @@ def build_kadencja(
         named_votes_idx: dict[str, list[int]] = {c: [] for c in CATEGORIES}
 
         for b in balsas_rows:
-            narys = (b.get("narys") or "").strip()
+            narys = _narys(b)
             if not narys or narys not in name_to_idx:
                 continue
             cat = VOTE_TEXT_TO_CATEGORY.get(b.get("balsas", ""))

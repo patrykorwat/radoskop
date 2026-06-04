@@ -9,6 +9,7 @@
   "bip_url": "https://bip.um.walbrzych.pl/",
   "bip_name": "BIP Wałbrzych",
   "esesja_url": "https://walbrzych.esesja.pl",
+  "scrape_note": "Głosowania z REJESTRU UCHWAŁ BIP (bip.um.walbrzych.pl/uchwaly/2970, IX kadencja): per-uchwała załącznik 'głosowanie' = PDF generowany przez eSesja z warstwą tekstową. Portal walbrzych.esesja.pl jest MARTWY (zawiera tylko kwiecień 2025: Sesja XIV + komisje). Wymaga pdftotext (poppler-utils).",
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "walbrzych.radoskop.pl",
