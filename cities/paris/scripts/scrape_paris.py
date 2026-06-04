@@ -51,6 +51,13 @@ from lib_faction_votes import make_faction_vote  # noqa: E402
 
 KADENCJA_ID = "2026-2032"
 
+
+def load_config() -> dict:
+    """Wczytaj config.json miasta (cities/paris/config.json)."""
+    with open(CITY_DIR / "config.json", encoding="utf-8") as f:
+        return json.load(f)
+
+
 # ---------------------------------------------------------------------------
 # Radni kadencji 2026-2032 (źródło: Wikipedia + paris.fr, stan 2026-03-29)
 # Slug: imię-nazwisko z normalizacją znaków diakrytycznych.
@@ -853,21 +860,58 @@ def _write_manifest(out_dir: Path, votes: list[dict], sessions_done: int) -> Non
         {"name": p["name"], "slug": p["slug"], "club": p["club"]}
         for p in profiles_data["profiles"]
     ]
+    # Kadencja bieżąca (2026-2032): roster z _COUNCILLORS_2026, głosy z PV.
+    kadencje_list = [{
+        "id": KADENCJA_ID,
+        "label": _config_kadencja_label(),
+        "total_votes": len(votes),
+        "total_sessions": sessions_done,
+        "total_councilors": len(councillors),
+        "councilors": councillors,
+    }]
+
+    # Poprzednie mandatury: po wyborach III.2026 nowa kadencja nie ma jeszcze
+    # opublikowanych głosowań, ale stary plik kadencja-{id}.json (np. 2020-2026)
+    # zostaje na dysku/S3. Dokładamy go do manifestu, żeby przełącznik kadencji
+    # pozwalał wrócić do poprzedniej (kompletnej) mandatury. Bieżąca pozostaje
+    # default. Stary plik czytany as-is (jego votes/sessions/councilors).
+    try:
+        cfg_kad = load_config().get("kadencje", {})
+    except Exception:
+        cfg_kad = {}
+    for kid, kdef in sorted(cfg_kad.items(), reverse=True):
+        if kid == KADENCJA_ID:
+            continue
+        kfile = out_dir / f"kadencja-{kid}.json"
+        if not kfile.exists():
+            continue
+        try:
+            kdata = json.loads(kfile.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        kvotes = kdata.get("votes", []) or []
+        ksessions = kdata.get("total_sessions")
+        if ksessions is None:
+            ksessions = len({v.get("session_date") for v in kvotes if v.get("session_date")})
+        kcouncilors = kdata.get("councilors", []) or []
+        kadencje_list.append({
+            "id": kid,
+            "label": kdef.get("label", kid),
+            "total_votes": len(kvotes),
+            "total_sessions": ksessions,
+            "total_councilors": len(kcouncilors),
+            "councilors": kcouncilors,
+        })
+
     data_payload = {
         "scraped_at": now,
         "generated": True,
         "default_kadencja": KADENCJA_ID,
         "vote_mode": "show_of_hands",
-        "kadencje": [{
-            "id": KADENCJA_ID,
-            "label": _config_kadencja_label(),
-            "total_votes": len(votes),
-            "total_sessions": sessions_done,
-            "total_councilors": len(councillors),
-            "councilors": councillors,
-        }],
+        "kadencje": kadencje_list,
     }
-    if not votes:
+    # _status=no_data tylko gdy ŻADNA kadencja (bieżąca ani archiwalna) nie ma głosów.
+    if not votes and not any(k["total_votes"] for k in kadencje_list):
         data_payload["_status"] = "no_data"
     (out_dir / "data.json").write_text(
         json.dumps(data_payload, ensure_ascii=False, indent=2), encoding="utf-8"

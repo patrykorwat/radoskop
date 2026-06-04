@@ -233,6 +233,56 @@ def parse_zip_votes(raw_zip: bytes) -> list[dict[str, Any]]:
     return votes
 
 
+def _name_key(name: str) -> str:
+    """Klucz tożsamości radnego odporny na warianty zapisu DPName.
+
+    DPName ma format "Прізвище І. П." ale źródło jest niespójne: bywa
+    podwójna spacja ("Омельченко  О. О."), brak spacji po kropce inicjału
+    ("Ільницький С.В." vs "Ільницький С. В."). Usunięcie WSZYSTKICH spacji +
+    casefold łączy te warianty. Dwie różne osoby nie różnią się tylko spacjami
+    (inicjały po-batькові zostają, więc "Левін В. І." != "Левін О. І.").
+    Literówki w nazwisku (Домагальський/Домогальський) obsługuje name_aliases.
+    """
+    return re.sub(r"\s+", "", name).casefold()
+
+
+def build_canonical_map(
+    all_votes: list[dict[str, Any]],
+    aliases: dict[str, str],
+) -> dict[str, str]:
+    """Mapa surowy_DPName -> kanoniczny_DPName.
+
+    Stosuje jawne aliasy z configu, grupuje warianty po _name_key, kanoniczna
+    = najczęstsza forma (remis: dłuższa/spacjowana, potem leksykalnie).
+    """
+    from collections import Counter
+    freq: Counter = Counter()
+    for v in all_votes:
+        for dp in v["dp_list"]:
+            n = dp.get("DPName", "").strip()
+            if n and n != ". .. ..":
+                freq[aliases.get(n, n)] += 1
+    groups: dict[str, list[str]] = defaultdict(list)
+    for n in freq:
+        groups[_name_key(n)].append(n)
+    canon_of_target: dict[str, str] = {}
+    for _key, names in groups.items():
+        best = max(names, key=lambda n: (freq[n], len(n), n))
+        # Forma wyświetlana: pojedyncze spacje (źródło bywa daje "Прізвище  І.П.").
+        best_display = re.sub(r"\s+", " ", best).strip()
+        for n in names:
+            canon_of_target[n] = best_display
+    result: dict[str, str] = {}
+    raw_names = {
+        dp.get("DPName", "").strip()
+        for v in all_votes for dp in v["dp_list"]
+    }
+    for r in raw_names:
+        target = aliases.get(r, r)
+        result[r] = canon_of_target.get(target, target)
+    return result
+
+
 def build_kadencja(
     all_votes: list[dict[str, Any]],
     config: dict[str, Any],
@@ -246,13 +296,22 @@ def build_kadencja(
     if not kv:
         return None
 
-    # Zbierz wszystkich radnych
+    # Kanonikalizacja DPName: źródło zapisuje to samo nazwisko na kilka sposobów
+    # (podwójne spacje, "С.В." vs "С. В."), co nadmuchiwało councilor_index
+    # (265 zamiast 120 mandatów + rotacja). Łączymy warianty; literówki nazwisk
+    # z config["name_aliases"].
+    canon = build_canonical_map(kv, config.get("name_aliases", {}))
+
+    def _cn(raw: str) -> str:
+        return canon.get(raw, raw)
+
+    # Zbierz wszystkich radnych (po kanonikalizacji)
     all_names: set[str] = set()
     for v in kv:
         for dp in v["dp_list"]:
             name = dp.get("DPName", "").strip()
             if name and name != ". .. ..":
-                all_names.add(name)
+                all_names.add(_cn(name))
 
     councilor_index = sorted(all_names)
     name_to_idx: dict[str, int] = {n: i for i, n in enumerate(councilor_index)}
@@ -271,7 +330,7 @@ def build_kadencja(
                 name = dp.get("DPName", "").strip()
                 golos = dp.get("DPGolos", "").strip()
                 if name and name != ". .. .." and golos != ABSENT_TOKEN:
-                    present.add(name)
+                    present.add(_cn(name))
         attendees = sorted(present)
         sessions_out.append({
             "date": date_str,
@@ -299,11 +358,12 @@ def build_kadencja(
                 continue
             bucket = "nieobecni" if cat == "nieobecny" else cat
             counts[bucket] += 1
-            if name and name in name_to_idx:
-                named_votes_idx[bucket].append(name_to_idx[name])
+            cname = _cn(name)
+            if cname and cname in name_to_idx:
+                named_votes_idx[bucket].append(name_to_idx[cname])
 
         for bucket in named_votes_idx:
-            named_votes_idx[bucket].sort()
+            named_votes_idx[bucket] = sorted(set(named_votes_idx[bucket]))
 
         vote_id = f"{city_slug}_{v['date']}_{v['agenda_no']}_{v['zip_filename'].replace('.json', '')}"
 
@@ -423,12 +483,15 @@ def main() -> int:
             except OSError:
                 pass
 
+    all_council_names: set[str] = set()
     for kid in kadencje_to_build:
         print(f"[kyiv] budowanie kadencja-{kid}", file=sys.stderr)
         built = build_kadencja(all_votes, config, kid)
         if built is None or not built.get("votes"):
             print(f"[kyiv] skip kadencja-{kid}: 0 głosowań", file=sys.stderr)
             continue
+
+        all_council_names.update(built["councilor_index"])
 
         out_path = args.docs / f"kadencja-{kid}.json"
         with open(out_path, "w", encoding="utf-8") as f:
@@ -439,6 +502,28 @@ def main() -> int:
             f"{len(built['sessions'])} sesji, "
             f"{len(built['votes'])} głosowań, "
             f"{len(built['councilor_index'])} radnych",
+            file=sys.stderr,
+        )
+
+    # club_assignments z faction_roster (kmr.gov.ua, lista wg фракцій).
+    # Głosy nie zawierają frakcji, a kmr.gov.ua/profiles jest JS + WAF, więc
+    # roster trzymamy w config (nazwiska w formacie "Прізвище І. П."). Dopasowanie
+    # do nazw z głosowań odporne na spacje/kropki przez _name_key. Piszemy
+    # docs/club_assignments.json (build_assembly_metrics czyta stąd kluby).
+    roster = config.get("faction_roster", {})
+    if roster and all_council_names:
+        roster_by_key = {_name_key(k): v for k, v in roster.items()}
+        assignments: dict[str, str] = {}
+        for name in sorted(all_council_names):
+            slug = roster_by_key.get(_name_key(name))
+            if slug:
+                assignments[name] = slug
+        ca_path = args.docs / "club_assignments.json"
+        with open(ca_path, "w", encoding="utf-8") as f:
+            json.dump(assignments, f, ensure_ascii=False, indent=2)
+        print(
+            f"[kyiv] napisano club_assignments.json: "
+            f"{len(assignments)}/{len(all_council_names)} radnych z klubem",
             file=sys.stderr,
         )
 
