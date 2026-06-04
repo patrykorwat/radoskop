@@ -592,11 +592,13 @@ async function init() {
       }
     }
     if (path === '/aktualnosci' || path === '/aktualnosci/') {
-      // /aktualnosci/ to statyczna strona z listą wpisów (SEO content
-      // wstrzyknięty przez generate_feed.py). Nie ładujemy SPA appki —
-      // pokazujemy treść i kończymy init bez przekierowywania.
+      // /news/ to statyczna strona z listą wpisów (treść wstrzyknięta przez
+      // generate_feed.py jako #news-content — OSOBNY id, bo #seo-content jest
+      // kasowany wyżej w init). Nie ładujemy dashboardu SPA: chowamy #app,
+      // pokazujemy news i kończymy init bez przekierowywania.
       document.getElementById('loading').style.display = 'none';
-      const sc = document.getElementById('seo-content');
+      document.getElementById('app').style.display = 'none';
+      const sc = document.getElementById('news-content');
       if (sc) sc.style.display = 'block';
       navigateTo(toCanonicalPath(path), true);
       return;
@@ -718,14 +720,15 @@ const SLUG_KADS = Object.fromEntries(Object.entries(KAD_SLUGS).map(([k,v])=>[v,k
 // <link canonical> i sitemap). Router wewnętrznie używa polskich tokenów, więc
 // normalizujemy wejściowy path EN→PL przed dopasowaniem (toInternalPath), a
 // emitujemy PL→EN (toCanonicalPath, mainPath). Stare polskie URL-e (bookmarki,
-// historia) dalej działają — toInternalPath jest dla nich no-op, a w pasku
+// historia) dalej działają, toInternalPath jest dla nich no-op, a w pasku
 // adresu zostają przepisane na angielski kanon. Slugi taba w /term/{kad}/{tab}/
-// też tłumaczone (votes/sessions). /druk/, /impressum/ NIE migrowane (brak
-// angielskiego kanonu w workerze).
+// też tłumaczone (votes/sessions). /impressum/ NIE migrowane (brak angielskiego
+// kanonu w workerze). Druk MA kanon angielski /bill/ (worker, sitemap, OG),
+// więc bill↔druk jest w mapie: wejściowe /bill/ → /druk/ (handler), emisja /druk/ → /bill/.
 const EN_TO_PL_SLUG = {
   vote:'glosowanie', session:'sesja', profile:'profil', reports:'raporty',
   interpellations:'interpelacje', commissions:'komisje', commission:'komisja',
-  budget:'budzet', term:'kadencja', news:'aktualnosci',
+  budget:'budzet', term:'kadencja', news:'aktualnosci', bill:'druk',
   privacy:'polityka-prywatnosci', terms:'regulamin',
 };
 const PL_TO_EN_SLUG = Object.fromEntries(Object.entries(EN_TO_PL_SLUG).map(([k,v])=>[v,k]));
@@ -2179,7 +2182,7 @@ async function renderVotesTable() {
       const c = v.counts || {};
       html += `<tr class="vote-row" onclick="showVote('${v.id || ''}')">
         <td style="color:var(--muted);width:30px">${i+1}</td>
-        <td>${catPill(v.category || categorizeVote(v.topic, v.item_kind))} ${v.topic ? v.topic.substring(0,120) : '?'}${v.druk ? ` <a href="/druk/${KAD_SLUGS[currentKid]||currentKid}/${v.druk}/" onclick="event.preventDefault();event.stopPropagation();showDruk(${v.druk},'${currentKid}')" style="color:var(--muted);text-decoration:none">(druk ${v.druk})</a>` : ''}</td>
+        <td>${catPill(v.category || categorizeVote(v.topic, v.item_kind))} ${v.topic ? v.topic.substring(0,120) : '?'}${v.druk ? ` <a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${v.druk}/" onclick="event.preventDefault();event.stopPropagation();showDruk(${v.druk},'${currentKid}')" style="color:var(--muted);text-decoration:none">(druk ${v.druk})</a>` : ''}</td>
         <td><span class="pill pill-za">${c.za||0}</span></td>
         <td>${c.przeciw ? `<span class="pill pill-przeciw">${c.przeciw}</span>` : '0'}</td>
         <td>${c.wstrzymal_sie ? `<span class="pill pill-wstrzymal">${c.wstrzymal_sie}</span>` : '0'}</td>
@@ -2503,7 +2506,7 @@ async function showVote(voteId) {
       <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessKey ? sessionLink(sessKey, 'Sesja ' + sessLabel + ' · ' + (vote.session_date || ''), ' style="color:var(--muted)"') : (vote.session_date ? 'Sesja · ' + vote.session_date : '')}</div>
       <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
       ${vote.summary ? `<p style="color:var(--text);margin-top:8px;font-size:0.95rem;line-height:1.6;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px">${vote.summary}</p>` : ''}
-      ${vote.druk ? `<div style="margin-top:4px"><a class="name-link" href="/druk/${KAD_SLUGS[voteKid]||voteKid}/${vote.druk}/" onclick="event.preventDefault();showDruk(${vote.druk},'${voteKid}')">Druk ${vote.druk} →</a></div>` : ''}
+      ${vote.druk ? `<div style="margin-top:4px"><a class="name-link" href="/bill/${KAD_SLUGS[voteKid]||voteKid}/${vote.druk}/" onclick="event.preventDefault();showDruk(${vote.druk},'${voteKid}')">Druk ${vote.druk} →</a></div>` : ''}
       ${vote.resolution ? `<div style="color:var(--muted)">Uchwała: ${vote.resolution}</div>` : ''}
       ${vote.source_url ? `<div style="margin-top:6px"><a href="${vote.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół głosowania (BIP) ↗</a></div>` : ''}
       <div style="margin-top:12px">
@@ -2529,7 +2532,8 @@ async function showVote(voteId) {
 // showDruk — strona druku z treścią przez API premium i commission timeline.
 // Endpoint: GET API_BASE + '/kadencja/{kadId}/druk/{drukId}' (credentials: include)
 // Pliki źródłowe: radoskop/cities/{city}/druki/{kadId}/{drukId}.json (poza docs/)
-// URL strony: /druk/{kadSlug}/{drukId}/ → np. /bill/ix/123/
+// URL strony (kanon angielski): /bill/{kadSlug}/{drukId}/ → np. /bill/ix/123/
+// Wejściowe /bill/ tłumaczy toInternalPath na /druk/ (handler routera).
 async function showDruk(drukId, kadId) {
   drukId = String(drukId);
   kadId = kadId || currentKid;
@@ -2543,9 +2547,9 @@ async function showDruk(drukId, kadId) {
   const kadSlug = KAD_SLUGS[kadId] || kadId;
   setOgMeta({
     title: 'Druk ' + drukId + ' – Radoskop {{CITY_NAME}}',
-    url: '{{SITE_URL}}/druk/' + kadSlug + '/' + encodeURIComponent(drukId) + '/'
+    url: '{{SITE_URL}}/bill/' + kadSlug + '/' + encodeURIComponent(drukId) + '/'
   });
-  navigateTo('/druk/' + kadSlug + '/' + encodeURIComponent(drukId) + '/');
+  navigateTo('/bill/' + kadSlug + '/' + encodeURIComponent(drukId) + '/');
   setTitle('Druk ' + drukId);
 
   // Fetch przez API premium (credentials: include = session cookie).
@@ -3244,7 +3248,7 @@ async function showKomisja(slug) {
       // Każdy druk linkuje do swojej strony (showDruk), niezależnie od tego
       // czy mamy zmapowane głosowanie. Gdy jest głosowanie, dokładamy ikonę
       // wyniku ✓/✗ przy numerze.
-      return `<a href="/druk/${KAD_SLUGS[currentKid]||currentKid}/${encodeURIComponent(dStr)}/" onclick="event.preventDefault();showDruk(${dStr},'${currentKid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
+      return `<a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${encodeURIComponent(dStr)}/" onclick="event.preventDefault();showDruk(${dStr},'${currentKid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
     }).join('');
     const links = [];
     if (m.page_url) links.push(`<a href="${m.page_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none">↗ BIP</a>`);
@@ -3850,14 +3854,14 @@ function showCompare() {
   const bar = document.getElementById('compare-bar'); if (bar) bar.style.display = 'none';
 }
 
-// ── Porównywarka miast (capability based) ────────────────────────────
-// Widok miasta pozwala porównać się z innym miastem z droplisty. Nie filtruje
-// par: renderuje moduły analiz, gdzie każdy moduł deklaruje, jakich zdolności
-// (capabilities) potrzebuje. Zdolność miasta jest wykryta automatycznie w
-// build_compare_index.py z dostępnych danych. compare-index.json pobierany
-// same-origin (kopiowany do docs/ każdego miasta przez run_pipeline).
-let CITY_COMPARE = null;        // pełny compare-index.json
-let CITY_COMPARE_SELF = null;   // rekord bieżącego miasta
+// ── Porównywarka miast (capability based, Premium) ───────────────────
+// Funkcja Premium. Logika i metryki żyją za API (data_api): free tier dostaje
+// listę porównywalnych miast + capabilities (do wyszukiwarki) z /compare, a
+// pełne metryki obu miast tylko z /compare/<other> za subskrypcją (402 bez).
+// Moduł deklaruje, jakich zdolności (capabilities) potrzebuje; render pokazuje
+// tylko obszary wspólne dla obu miast.
+let CITY_COMPARE = null;        // {modules, cities:[public], tier} z /compare
+let CITY_COMPARE_SELF = null;   // rekord bieżącego miasta (public, bez metryk)
 
 function ccNum(n){ return (n==null)?'n/d':Number(n).toLocaleString('pl-PL'); }
 function ccPct(n){ return (n==null)?'n/d':(Number(n).toLocaleString('pl-PL',{maximumFractionDigits:1})+'%'); }
@@ -3925,12 +3929,16 @@ const CITY_COMPARE_MODULES = [
 
 async function loadCityCompareIndex(){
   try{
-    const resp=await fetch('/compare-index.json',{cache:'no-cache'});
+    // Free tier: lista porównywalnych miast + capabilities (bez metryk).
+    // Metryki są za Premium i przychodzą z /compare/<other>. credentials:include
+    // wysyła cookie sesji, żeby tier był znany (premium widzi to samo, ale klik
+    // w miasto nie trafia na paywall).
+    const resp=await fetch(API_BASE+'/compare',{credentials:'include'});
     if(!resp.ok) return;
-    const idx=await resp.json();
-    if(!idx || !Array.isArray(idx.cities)) return;
-    CITY_COMPARE=idx;
-    CITY_COMPARE_SELF=idx.cities.find(c=>c.slug===CITY_SLUG)||null;
+    const data=await resp.json();
+    if(!data || !data.available || !Array.isArray(data.cities)) return;
+    CITY_COMPARE={modules:data.modules||[], cities:data.cities, tier:data.tier};
+    CITY_COMPARE_SELF=data.self||null;
     // Sekcja porównania na landingu renderuje się dopiero gdy CITY_COMPARE jest
     // załadowany. Fetch jest async i może skończyć po pierwszym renderze landingu,
     // więc jeśli landing jest właśnie widoczny — przerysuj go raz.
@@ -3982,10 +3990,50 @@ function ccSearchInput(input){
   }).join('');
 }
 
-function openCityCompare(slug){
-  if(!slug || !CITY_COMPARE || !CITY_COMPARE_SELF) return;
-  const other=CITY_COMPARE.cities.find(c=>c.slug===slug);
-  if(other) renderCityCompare(CITY_COMPARE_SELF, other);
+async function openCityCompare(slug){
+  if(!slug) return;
+  hideAllViews();
+  var view=document.getElementById('city-compare-view');
+  view.style.display='block';
+  view.innerHTML='<button class="profile-back" onclick="(typeof showLanding===\'function\'?showLanding():showMain())">← Strona główna</button>'+
+    '<p style="color:var(--muted);padding:20px 0">Ładowanie porównania…</p>';
+  window.scrollTo(0,0);
+  try{
+    // Metryki porównania są Premium: endpoint zwraca 402 bez aktywnej subskrypcji.
+    var resp=await fetch(API_BASE+'/compare/'+encodeURIComponent(slug),{credentials:'include'});
+    if(resp.status===402){ renderCityComparePaywall(slug); return; }
+    if(!resp.ok){
+      view.innerHTML='<button class="profile-back" onclick="(typeof showLanding===\'function\'?showLanding():showMain())">← Strona główna</button>'+
+        '<p style="color:var(--muted);padding:20px 0">Nie udało się wczytać porównania.</p>';
+      return;
+    }
+    var data=await resp.json();
+    if(!data || !data.a || !data.b){ renderCityComparePaywall(slug); return; }
+    renderCityCompare(data.a, data.b);
+  }catch(e){
+    view.innerHTML='<button class="profile-back" onclick="(typeof showLanding===\'function\'?showLanding():showMain())">← Strona główna</button>'+
+      '<p style="color:var(--muted);padding:20px 0">Nie udało się wczytać porównania.</p>';
+  }
+}
+
+// Paywall: free tier widzi z czym mógłby porównać (teaser modułów z capabilities,
+// bez wartości) i CTA do Business. Wartości nie są nigdy wysyłane bez subskrypcji.
+function renderCityComparePaywall(slug){
+  hideAllViews();
+  var view=document.getElementById('city-compare-view');
+  view.style.display='block';
+  var other=((CITY_COMPARE&&CITY_COMPARE.cities)||[]).find(function(c){return c.slug===slug;});
+  var oname=other?other.name:slug;
+  var sname=(CITY_COMPARE_SELF&&CITY_COMPARE_SELF.name)||'to miasto';
+  var caps=(CITY_COMPARE_SELF&&other)?capIntersection(CITY_COMPARE_SELF, other):[];
+  var mods=CITY_COMPARE_MODULES.filter(function(m){return m.requires.every(function(r){return caps.indexOf(r)>-1;});});
+  var teaser=mods.length?('<div class="cc-paywall-teaser">Porównalibyśmy: '+mods.map(function(m){return m.label;}).join(', ')+'.</div>'):'';
+  view.innerHTML='<button class="profile-back" onclick="(typeof showLanding===\'function\'?showLanding():showMain())">← Strona główna</button>'+
+    '<h2 style="font-size:1.3rem;font-weight:600;margin-bottom:6px">'+_lpEsc(sname)+' vs '+_lpEsc(oname)+'</h2>'+
+    teaser+
+    '<div class="cc-paywall"><p>Porównywarka miast jest częścią pakietu Business.</p>'+
+    '<button class="auth-btn" onclick="showBusiness({from:\'city_compare\',city:\''+slug+'\'})">Odblokuj porównywarkę</button></div>';
+  window.scrollTo(0,0);
 }
 
 function renderCityCompare(a,b){
@@ -4348,10 +4396,40 @@ function _renderAuthHeader() {
 // Pull /me przy load, niezależnie od cache (cache może być nieaktualny).
 // Razem refreshujemy też subscription status, żeby gating Business był
 // spójny po login/logout/initial load.
+// Auto bridge sesji cross TLD. Na .radoskop.pl cookie sesji jest pierwszorzędne
+// dopiero po bridge z .radoskop.eu (tam user się loguje i kupuje Business).
+// Gdy /me na .pl zwraca 401, robimy JEDEN cichy probe: top level redirect na
+// radoskop.eu/?bridge_to=<bieżący URL>&probe=1. Apex .eu z sesją mintuje token
+// i przez api.radoskop.pl/bridge-exchange ustawia cookie .pl, po czym wraca na
+// bieżący URL już zalogowany. Bez sesji .eu apex wraca po cichu (probe=1, bez
+// modala logowania). Guard w sessionStorage daje jeden przelot na sesję
+// przeglądarki, więc nie ma pętli ani powtórek. Tylko .pl; na .eu cookie jest
+// first party i /me działa bez bridge.
+function _maybeAutoBridge() {
+  const host = location.hostname;
+  const onPl = host === 'radoskop.pl' || host.endsWith('.radoskop.pl');
+  if (!onPl) return false;
+  try {
+    if (sessionStorage.getItem('radoskop_bridge_probed') === '1') return false;
+    sessionStorage.setItem('radoskop_bridge_probed', '1');
+  } catch (e) {
+    // Brak sessionStorage (tryb prywatny): nie próbujemy, żeby nie zapętlić.
+    return false;
+  }
+  location.replace('https://radoskop.eu/?bridge_to='
+    + encodeURIComponent(location.href) + '&probe=1');
+  return true;
+}
+
 async function _refreshAuth() {
   try {
     const r = await fetch(AUTH_API + '/me', { credentials: 'include' });
-    if (!r.ok) { _setAuthUser(null); BUSINESS_ACTIVE = false; _komisjeListCache = null; return; }
+    if (!r.ok) {
+      // Brak sesji .pl: spróbuj raz zbridgeować sesję z .eu. Jeśli redirect
+      // ruszył, przerywamy (strona wczyta się od nowa po powrocie).
+      if (_maybeAutoBridge()) return;
+      _setAuthUser(null); BUSINESS_ACTIVE = false; _komisjeListCache = null; return;
+    }
     const data = await r.json();
     _setAuthUser(data.user || null);
   } catch (e) {

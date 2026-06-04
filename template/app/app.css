@@ -483,6 +483,9 @@ footer a { color:var(--accent); text-decoration:none; }
 .cc-search-name { font-weight:500; }
 .cc-search-meta { color:var(--muted); font-size:0.8rem; white-space:nowrap; }
 .cc-search-empty { color:var(--muted); font-size:0.88rem; padding:10px 12px; }
+.cc-paywall-teaser { color:var(--muted); font-size:0.9rem; margin:10px 0 16px; }
+.cc-paywall { margin-top:8px; padding:20px; background:rgba(99,102,241,0.06); border:1px solid var(--border); border-radius:10px; text-align:center; }
+.cc-paywall p { margin:0 0 12px; color:var(--text); }
 @media (max-width:560px){ .cc-metric-vals { grid-template-columns:1fr 1.2fr 1fr; gap:6px; } .cc-val { font-size:0.85rem; } }
 
 /* Share buttons */

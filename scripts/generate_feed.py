@@ -278,6 +278,18 @@ def generate_html_page(items, main_html, city_name, city_gen, site_url, max_item
     body = "\n".join(body_parts)
 
     h = main_html
+    # Wytnij homepage'owy blok SEO ({{SEO_CONTENT}} = <section id="seo-content">…)
+    # zaszyty w index.html dla "/". Na /news/ jego treść (landing miasta) nie ma
+    # sensu, a id="seo-content" kolidowałoby z naszym blokiem. Mirror logiki z
+    # generate_seo_pages.make_page. Strona główna zachowuje swój blok (nie idzie tędy).
+    h = re.sub(
+        r'<section id="seo-content">.*?</section>\s*'
+        r'<script>var _sc=document\.getElementById\("seo-content"\);'
+        r'if\(_sc\)_sc\.style\.display="none";</script>\s*',
+        '',
+        h,
+        flags=re.S,
+    )
     h = re.sub(r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{canonical}">', h)
     h = re.sub(r'<title>[^<]*</title>', f'<title>{esc(title)} &mdash; Radoskop {esc(city_name)}</title>', h)
     h = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{esc(desc)}">', h)
@@ -291,8 +303,11 @@ def generate_html_page(items, main_html, city_name, city_gen, site_url, max_item
     if 'application/atom+xml' not in h:
         h = h.replace('</head>', f'{rss_link}\n</head>')
 
-    seo_block = f'\n<div id="seo-content" style="padding:20px;max-width:800px;margin:0 auto">\n{body}\n</div>\n'
-    hide_script = '<script>var sc=document.getElementById("seo-content");if(sc)sc.style.display="none";</script>\n'
+    # WAŻNE: osobny id="news-content", NIE "seo-content". init() w template/index.html
+    # robi querySelectorAll('#seo-content').forEach(remove) zanim branch /news/ pokaże
+    # treść — gdyby news był pod seo-content, zostałby skasowany i strona byłaby pusta.
+    seo_block = f'\n<div id="news-content" style="padding:20px;max-width:800px;margin:0 auto">\n{body}\n</div>\n'
+    hide_script = '<script>var sc=document.getElementById("news-content");if(sc)sc.style.display="none";</script>\n'
     h = h.replace('<div id="loading">', seo_block + hide_script + '<div id="loading">')
 
     return h
