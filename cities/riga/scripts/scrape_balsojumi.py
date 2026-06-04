@@ -676,6 +676,18 @@ def main() -> int:
             file=sys.stderr,
         )
 
+    # club_assignments.json: radny -> slug klubu (z deputati_2025_2029.json).
+    # build_assembly_metrics.py (post) czyta kluby WŁAŚNIE stąd
+    # (_load_club_assignments merge docs/club_assignments.json + config) i
+    # NADPISUJE profiles.json własnymi profilami. Bez tego pliku każdy radny
+    # dostawał "NZ" → 0% przypisanych klubów. Klucze = nazwiska z deputati =
+    # councilor_index, więc dopasowanie 1:1.
+    ca_path = args.docs / "club_assignments.json"
+    with open(ca_path, "w", encoding="utf-8") as f:
+        json.dump(club_assignments, f, ensure_ascii=False, indent=2)
+    print(f"[riga] wrote club_assignments.json: {len(club_assignments)} radnych",
+          file=sys.stderr)
+
     profiles = build_profiles(club_assignments)
     profiles_path = args.docs / "profiles.json"
     with open(profiles_path, "w", encoding="utf-8") as f:
