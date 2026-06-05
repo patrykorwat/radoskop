@@ -193,6 +193,12 @@ def generate_atom(items, city_name, city_gen, site_url, max_items=100):
         if entry_id in seen_ids:
             entry_id = item["url"] + "#" + item["type"] + "_" + item["date"]
         if entry_id in seen_ids:
+            # Wciaz kolizja: np. dwie interpelacje tego samego radnego z tego
+            # samego dnia (wspolny URL profilu). Rozrozniamy hashem tytulu.
+            import hashlib as _hl
+            tslug = _hl.md5(item.get("title", "").encode("utf-8")).hexdigest()[:8]
+            entry_id = item["url"] + "#" + item["type"] + "_" + item["date"] + "_" + tslug
+        if entry_id in seen_ids:
             continue
         seen_ids.add(entry_id)
 
@@ -385,11 +391,15 @@ def process_city(city_dir: Path):
             slugs["profile"], slugs["interpelacje"],
         ))
 
-    # Deduplicate by URL + type
+    # Deduplicate by URL + type + title. Title musi byc w kluczu: interpelacje
+    # tego samego radnego z tego samego dnia linkuja do JEDNEGO profilu, wiec
+    # klucz url+type sklejal je w jedna pozycje (Sopot 2026-06-05: bot policzyl
+    # 2 z 3 interpelacji). Prawdziwe duplikaty (ta sama pozycja z dwoch plikow
+    # kadencji) maja identyczny tytul, wiec nadal odpadaja.
     seen = set()
     unique_items = []
     for item in all_items:
-        key = item["url"] + "|" + item["type"]
+        key = item["url"] + "|" + item["type"] + "|" + item.get("title", "")
         if key not in seen:
             seen.add(key)
             unique_items.append(item)
