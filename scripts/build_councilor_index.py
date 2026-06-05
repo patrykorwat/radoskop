@@ -45,12 +45,8 @@ def discover_city_dirs(workspace: Path) -> list[tuple[str, Path, dict]]:
     return out
 
 
-def slugify(name: str) -> str:
-    s = unicodedata.normalize("NFD", name.lower())
-    s = re.sub(r"[̀-ͯ]", "", s)
-    s = s.replace("ł", "l").replace("Ł", "L")
-    s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
-    return s
+# Kanoniczny slugifier wspólny dla całego projektu — patrz lib_slug.py.
+from lib_slug import make_slug as slugify  # noqa: E402
 
 
 def get_slug(name: str, profiles_data: dict | None) -> str:

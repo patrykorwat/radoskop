@@ -370,10 +370,10 @@ def parse_session_votes(zip_bytes: bytes, sess: dict, debug: bool = False) -> li
 # Build output (format jak olsztyn/czestochowa — zweryfikowany w verify_city)
 # ---------------------------------------------------------------------------
 
-def slugify(name: str) -> str:
-    repl = str.maketrans("ąćęłńóśźżĄĆĘŁŃÓŚŹŻ", "acelnoszzacelnoszz")
-    s = name.translate(repl).lower().strip()
-    return re.sub(r"[^a-z0-9]+", "-", s).strip("-")
+# Kanoniczny slugifier wspólny dla całego projektu — patrz
+# radoskop/scripts/lib_slug.py (identyczne wyniki dla polskich nazwisk).
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_slug import make_slug as slugify  # noqa: E402
 
 
 def build_profiles(votes: list[dict]) -> list[dict]:

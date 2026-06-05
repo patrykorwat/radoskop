@@ -138,12 +138,15 @@ def normalize_name(full: str) -> str:
     return " ".join(out)
 
 
+# Kanoniczny slugifier wspólny dla całego projektu — patrz
+# radoskop/scripts/lib_slug.py (czeskie diakrytyki dekomponują się w NFKD,
+# wynik identyczny ze starą wersją — zweryfikowane na żywych profilach).
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_slug import make_slug as _lib_make_slug  # noqa: E402
+
+
 def slugify(name: str) -> str:
-    nfkd = unicodedata.normalize("NFKD", name)
-    ascii_only = nfkd.encode("ascii", "ignore").decode("ascii")
-    s = re.sub(r"[^\w\s\-]", "", ascii_only.lower())
-    s = re.sub(r"[\s_]+", "-", s).strip("-")
-    return s or "councilor"
+    return _lib_make_slug(name) or "councilor"
 
 
 def parse_date_iso(czech_dt: str) -> str | None:

@@ -50,13 +50,15 @@ ROMAN_TO_ARABIC = {
 }
 
 
+# Kanoniczny slugifier wspólny dla całego projektu — patrz lib_slug.py.
+# Poprzednia wersja (NFKD + ascii-ignore) wycinała ł (NFKD nie dekomponuje
+# ł/Ł): "Jarosław" → "jarosaw". Bug live w sejmikach do 2026-06-05; stare
+# slugi ratuje _redirects/profiles.json emitowane niżej + 301 w workerze.
+from lib_slug import legacy_nfkd_slug, legacy_table_slug, make_slug as _lib_make_slug  # noqa: E402
+
+
 def make_slug(name: str) -> str:
-    """Polski slug: 'Adam Kowalski' -> 'adam-kowalski'."""
-    nfkd = unicodedata.normalize("NFKD", name)
-    ascii_only = nfkd.encode("ascii", "ignore").decode("ascii")
-    s = re.sub(r"[^\w\s\-]", "", ascii_only.lower())
-    s = re.sub(r"[\s_]+", "-", s).strip("-")
-    return s or "radny"
+    return _lib_make_slug(name) or "radny"
 
 
 def now_iso() -> str:
@@ -371,6 +373,23 @@ def build_metrics(assembly_dir: Path) -> dict[str, Path]:
         "profiles": profiles,
         "total": len(profiles),
     })
+
+    # _redirects/profiles.json: mapa starych slugów (NFKD gubił ł:
+    # jarosaw-rabczenko → jaroslaw-rabczenko; wariant tabelowy bez kolapsu
+    # separatorów) na kanoniczne. Worker robi 301 gdy S3 nie ma strony —
+    # ten sam mechanizm co miasta (generate_seo_pages.py sekcja 11).
+    profile_redirects = {}
+    for p in profiles:
+        slug = p.get("slug", "")
+        name = p.get("name", "")
+        if not slug or not name:
+            continue
+        for legacy in (legacy_nfkd_slug(name), legacy_table_slug(name)):
+            if legacy and legacy != slug:
+                profile_redirects[legacy] = slug
+    redirects_dir = docs / "_redirects"
+    redirects_dir.mkdir(parents=True, exist_ok=True)
+    write_json(redirects_dir / "profiles.json", profile_redirects)
 
     return {
         "data": data_path,

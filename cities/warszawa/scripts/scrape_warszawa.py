@@ -512,6 +512,99 @@ def process_session_docx(session: dict, docx_dir: Path) -> list[dict]:
     return votes
 
 
+# Kanoniczny slugifier wspólny dla całego projektu (radoskop/scripts/
+# lib_slug.py): NFKD + overrides dla znaków bez dekompozycji (ł). Stare
+# seedy profiles.json miały slugi z czystego NFKD, które wycinało ł
+# (Paweł Lech → pawe-lech); merge_stats_to_profiles normalizuje slugi
+# przy każdym runie, a stare URL-e ratuje _redirects/profiles.json.
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_slug import make_slug  # noqa: E402
+
+
+KLUBY_URL = "https://um.warszawa.pl/waw/radawarszawy/-/kluby-radnych-2"
+# Krótkie etykiety klubów jak w dotychczasowych danych (dopasowanie po
+# prefiksie pełnej nazwy ze strony, np. "Lewica – Miasto Jest Nasze –
+# Wspólne Jutro" → "Lewica").
+CLUB_SHORT_PREFIXES = [
+    ("Koalicja Obywatelska", "KO"),
+    ("Prawo i Sprawiedliwość", "PiS"),
+    ("Lewica", "Lewica"),
+]
+
+
+def _name_key(name: str) -> frozenset:
+    """Klucz dopasowania nazwiska niewrażliwy na kolejność tokenów.
+
+    Strona klubów miesza szyk: KO/PiS listują "Nazwisko Imię", Lewica
+    "Imię Nazwisko". Profile mają "Imię Nazwisko"."""
+    return frozenset(t for t in re.split(r"[\s,]+", name.strip().lower()) if t)
+
+
+def scrape_clubs() -> dict:
+    """Aktualne przypisanie klubowe z oficjalnej strony Rady m.st. Warszawy.
+
+    Jedyne źródło prawdy dla klubów (feedback: klub ZAWSZE wg bieżącej listy
+    BIP, nie komitetu wyborczego; brak klubu = Niezrzeszeni). Strona ma
+    nagłówki <strong>"Klub X"</strong> / "Niezrzeszeni" i listy <li>
+    "Nazwisko Imię – funkcja w klubie".
+
+    Zwraca {frozenset(tokeny nazwiska): {"club": short, "club_full": full}}.
+    Pusta mapa przy błędzie fetch/parse — caller wtedy NIE rusza klubów.
+    """
+    try:
+        import requests
+        resp = requests.get(
+            KLUBY_URL, timeout=30,
+            headers={"User-Agent": "Mozilla/5.0 (Radoskop scraper)"},
+        )
+        resp.raise_for_status()
+        html_text = resp.text
+    except Exception as exc:
+        print(f"  UWAGA: nie udało się pobrać strony klubów ({exc}) — kluby bez zmian")
+        return {}
+
+    soup = BeautifulSoup(html_text, "lxml")
+    clubs: dict = {}
+    current = None
+    for el in soup.find_all(["strong", "b", "li"]):
+        text = el.get_text(" ", strip=True).replace("\xa0", " ").strip()
+        if not text:
+            continue
+        if el.name in ("strong", "b"):
+            m = re.match(r"^Klub\s+(.+)$", text)
+            if m:
+                full = re.sub(r"\s+", " ", m.group(1)).strip()
+                short = next(
+                    (s for pref, s in CLUB_SHORT_PREFIXES if full.startswith(pref)),
+                    full,
+                )
+                current = {"club": short, "club_full": full}
+            elif text.lower().startswith("niezrzeszen"):
+                current = {"club": "Niezrzeszeni", "club_full": None}
+            continue
+        if current is None:
+            continue
+        # <li> radnego: utnij funkcję klubową po myślniku. Pozycje spoza list
+        # radnych (nawigacja przed sekcją klubów odpada przez current=None,
+        # newsy/stopka za sekcją odpadają na cyfrach, pojedynczych tokenach
+        # i tokenach z małej litery; resztki i tak nie zmatchują nazwisk).
+        name = re.split(r"\s+[–—-]\s+", text)[0].strip()
+        tokens = name.split()
+        if not name or len(name) > 60 or len(tokens) < 2:
+            continue
+        if any(ch.isdigit() for ch in name):
+            continue
+        if not all(t[0].isupper() for t in tokens):
+            continue
+        clubs[_name_key(name)] = current
+    if clubs:
+        counts: dict = {}
+        for v in clubs.values():
+            counts[v["club"]] = counts.get(v["club"], 0) + 1
+        print(f"  Kluby z BIP: {counts}")
+    return clubs
+
+
 def load_profiles(profiles_path: str) -> dict:
     """Wczytaj profiles.json z mapowaniem radny → klub.
 
@@ -893,10 +986,12 @@ def build_kadencja_output(kid: str, sessions: list[dict], all_votes: list[dict],
     }
 
 
-def merge_stats_to_profiles(profiles_path: str, output: dict):
+def merge_stats_to_profiles(profiles_path: str, output: dict, bip_clubs: dict | None = None):
     """Merge voting + activity stats from data.json councilors into profiles.json.
 
     Template reads profile data from profiles.json, so stats must be there.
+    Dodatkowo: normalizuje slugi (stare seedy gubiły ł) i nadpisuje klub
+    bieżącej kadencji wg oficjalnej listy BIP (bip_clubs ze scrape_clubs).
     """
     path = Path(profiles_path)
     if not path.exists():
@@ -906,11 +1001,15 @@ def merge_stats_to_profiles(profiles_path: str, output: dict):
     with open(path, encoding="utf-8") as f:
         profiles = json.load(f)
 
-    # Build lookup: (kadencja_id, name) -> councilor stats
+    current_kid = output.get("default_kadencja")
+
+    # Build lookup: (kadencja_id, name) -> councilor stats.
+    # .get: stuby historycznych kadencji i split data.json index nie mają
+    # councilors — wtedy merge tylko normalizuje slugi i kluby.
     stats: dict[tuple[str, str], dict] = {}
     for kad in output["kadencje"]:
         kid = kad["id"]
-        for c in kad["councilors"]:
+        for c in kad.get("councilors", []):
             stats[(kid, c["name"])] = c
 
     updated = 0
@@ -920,12 +1019,33 @@ def merge_stats_to_profiles(profiles_path: str, output: dict):
         name_kadencje.setdefault(name, set()).add(kid)
 
     for p in profiles.get("profiles", []):
+        # Normalizacja sluga: stare seedy używały NFKD bez transliteracji,
+        # które wycina ł (Paweł Lech → pawe-lech). Stare URL-e ratuje
+        # redirect map _redirects/profiles.json (generate_seo_pages.py).
+        _good_slug = make_slug(p.get("name", ""))
+        if _good_slug and p.get("slug") != _good_slug:
+            print(f"  Slug: {p.get('slug')} -> {_good_slug}")
+            p["slug"] = _good_slug
+
         if "kadencje" not in p:
             p["kadencje"] = {}
         # Add missing kadencje for this person
         for kid in name_kadencje.get(p["name"], set()):
             if kid not in p["kadencje"]:
                 p["kadencje"][kid] = {}
+
+        # Klub bieżącej kadencji ZAWSZE wg oficjalnej listy BIP. Kadencje
+        # historyczne zostają nietknięte (przypisanie z epoki).
+        if bip_clubs and current_kid and current_kid in p["kadencje"]:
+            _hit = bip_clubs.get(_name_key(p["name"]))
+            if _hit:
+                _entry = p["kadencje"][current_kid]
+                if _entry.get("club") != _hit["club"]:
+                    _entry["club"] = _hit["club"]
+                if _hit["club_full"]:
+                    _entry["club_full"] = _hit["club_full"]
+                elif "club_full" in _entry:
+                    del _entry["club_full"]
 
         for kid, entry in p["kadencje"].items():
             c = stats.get((kid, p["name"]))
@@ -1043,6 +1163,20 @@ def main():
                         else:
                             elapsed = time.time() - _t0
                             print(f"\n[skip] Lista sesji identyczna z poprzednim runem ({len(all_sessions)} sesji, signature matched). data.json zachowane.")
+                            # Kluby i slugi odświeżamy też przy skipie —
+                            # zmiana przynależności klubowej nie tworzy
+                            # nowej sesji, więc bez tego czekałaby na
+                            # następny pełny scrape. data.json z dysku
+                            # służy tylko za index kadencji (merge bez
+                            # statystyk normalizuje slugi i kluby).
+                            try:
+                                with open(out_path_pre, encoding="utf-8") as f:
+                                    _existing_out = json.load(f)
+                                merge_stats_to_profiles(
+                                    args.profiles, _existing_out, scrape_clubs()
+                                )
+                            except Exception as exc:
+                                print(f"  [skip] refresh profili nieudany: {exc}")
                             print(f"=== Timing ===\n  scrape_session_list: {elapsed:.1f}s (cumulative, skipped reszta)")
                             return
             except Exception as exc:
@@ -1157,6 +1291,22 @@ def main():
         if profiles:
             print(f"  Załadowano profile: {len(profiles)} radnych")
 
+        # Kluby z oficjalnej strony Rady PRZED budową statystyk, żeby
+        # zgodność z klubem / rebelie / club_majority liczyły się na
+        # aktualnym przypisaniu (np. Paweł Lech od 2026 niezrzeszony,
+        # profiles.json miał zamrożone "KO" z seeda).
+        bip_clubs = scrape_clubs()
+        if bip_clubs:
+            _changed = 0
+            for _pname, _prof in profiles.items():
+                _hit = bip_clubs.get(_name_key(_pname))
+                if _hit and _prof.get("club") != _hit["club"]:
+                    print(f"  Klub: {_pname}: {_prof.get('club')} -> {_hit['club']}")
+                    _prof["club"] = _hit["club"]
+                    _changed += 1
+            if _changed:
+                print(f"  Zaktualizowano kluby {_changed} radnych wg BIP")
+
         # Grupuj sesje i głosowania per kadencja (sortuj od najstarszej)
         kadencje_output = []
         target_kadencje_sorted = sorted(target_kadencje, key=lambda k: KADENCJE[k]["start"])
@@ -1227,7 +1377,7 @@ def main():
             print(f"  {kad['id']}: {len(kad['sessions'])} sesji, {total_v} głosowań ({named_v} z wynikami imiennymi), {len(kad['councilors'])} radnych")
 
         # Merge voting + activity stats into profiles.json
-        merge_stats_to_profiles(args.profiles, output)
+        merge_stats_to_profiles(args.profiles, output, bip_clubs)
         _mark("merge_profiles")
 
         # Timing breakdown

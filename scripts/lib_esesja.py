@@ -91,17 +91,12 @@ def parse_polish_date(text: str) -> str | None:
     return f"{year}-{month:02d}-{day:02d}"
 
 
-def make_slug(name: str) -> str:
-    replacements = {
-        "ą": "a", "ć": "c", "ę": "e", "ł": "l", "ń": "n",
-        "ó": "o", "ś": "s", "ź": "z", "ż": "z",
-        "Ą": "A", "Ć": "C", "Ę": "E", "Ł": "L", "Ń": "N",
-        "Ó": "O", "Ś": "S", "Ź": "Z", "Ż": "Z",
-    }
-    slug = name.lower()
-    for pl, asc in replacements.items():
-        slug = slug.replace(pl, asc)
-    return slug.replace(" ", "-").replace("'", "")
+# Kanoniczny slugifier wspólny dla całego projektu (NFKD + overrides dla
+# znaków bez dekompozycji kanonicznej jak ł) — patrz lib_slug.py. Stara
+# tabela PL dawała identyczne wyniki dla polskich nazwisk, ale nie
+# kolabowała separatorów ("Mazur- Kałuża" → podwójny dywiz w slugu); stare
+# warianty ratuje _redirects/profiles.json + 301 w workerze.
+from lib_slug import make_slug  # noqa: E402, F401
 
 
 def build_name_lookup(councilors: dict[str, str]) -> dict[str, str]:

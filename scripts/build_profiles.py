@@ -579,19 +579,8 @@ WIKI_BY_KADENCJA = {
 }
 
 
-def make_slug(name):
-    """Create URL-safe slug from Polish name."""
-    replacements = {
-        'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n',
-        'ó': 'o', 'ś': 's', 'ź': 'z', 'ż': 'z',
-        'Ą': 'A', 'Ć': 'C', 'Ę': 'E', 'Ł': 'L', 'Ń': 'N',
-        'Ó': 'O', 'Ś': 'S', 'Ź': 'Z', 'Ż': 'Z',
-    }
-    slug = name.lower()
-    for pl, ascii_c in replacements.items():
-        slug = slug.replace(pl, ascii_c)
-    slug = slug.replace(' ', '-').replace("'", "")
-    return slug
+# Kanoniczny slugifier wspólny dla całego projektu — patrz lib_slug.py.
+from lib_slug import make_slug  # noqa: E402, F401
 
 
 def load_activity_data(activity_path):

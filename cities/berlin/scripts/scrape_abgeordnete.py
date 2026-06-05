@@ -53,12 +53,16 @@ def http_get(url: str, timeout: int = 30) -> str:
         return resp.read().decode("utf-8", errors="replace")
 
 
+# Kanoniczny slugifier wspólny dla całego projektu — patrz
+# radoskop/scripts/lib_slug.py. Poprzednia wersja (czyste NFKD) wycinała
+# ß bez transliteracji (Meißner → meiner); stare slugi ratuje
+# _redirects/profiles.json + 301 w workerze.
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_slug import make_slug as _lib_make_slug  # noqa: E402
+
+
 def slugify(name: str) -> str:
-    nfkd = unicodedata.normalize("NFKD", name)
-    ascii_only = nfkd.encode("ascii", "ignore").decode("ascii")
-    s = re.sub(r"[^\w\s\-]", "", ascii_only.lower())
-    s = re.sub(r"[\s_]+", "-", s).strip("-")
-    return s or "abgeordnet"
+    return _lib_make_slug(name) or "abgeordnet"
 
 
 def map_fraktion(fraktion_text: str) -> str:

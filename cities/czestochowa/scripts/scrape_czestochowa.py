@@ -588,11 +588,10 @@ def _parse_vote_table(table: list[list], session: SessionMeta, vote_idx: int) ->
 # Build output
 # ---------------------------------------------------------------------------
 
-def slugify(name: str) -> str:
-    repl = str.maketrans("ąćęłńóśźżĄĆĘŁŃÓŚŹŻ", "acelnoszzacelnoszz")
-    s = name.translate(repl).lower().strip()
-    s = re.sub(r"[^a-z0-9]+", "-", s).strip("-")
-    return s
+# Kanoniczny slugifier wspólny dla całego projektu — patrz
+# radoskop/scripts/lib_slug.py (identyczne wyniki dla polskich nazwisk).
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_slug import make_slug as slugify  # noqa: E402
 
 
 def build_profiles(votes: list[dict]) -> list[dict]:

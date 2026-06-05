@@ -36,6 +36,10 @@ import json
 import re
 from pathlib import Path
 
+# Repliki historycznych slugify do mapy redirectów stary→kanoniczny
+# (_redirects/profiles.json, czyta ją worker) — patrz lib_slug.py.
+from lib_slug import legacy_nfkd_slug, legacy_table_slug
+
 
 def esc(text):
     """HTML-escape text for safe embedding."""
@@ -943,6 +947,29 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
     with open(redirects_dir / "vote_offsets.json", "w", encoding="utf-8") as f:
         json.dump(vote_offsets, f, ensure_ascii=False, separators=(",", ":"))
     print(f"  _redirects/vote_offsets.json: {len(vote_offsets)} dat")
+
+    # ════════════════════════════════════════════
+    # 11. Mapa starych slugów profili (_redirects/profiles.json)
+    # ════════════════════════════════════════════
+    # {stary_slug: kanoniczny_slug} dla nazwisk, gdzie którykolwiek z
+    # historycznych slugify dawał inny wynik niż obecny lib_slug.make_slug:
+    # wariant NFKD gubił ł (Warszawa, sejmiki, berlińskie ß), wariant
+    # tabelowy nie kolabował separatorów (Kielce: "Mazur- Kałuża" →
+    # podwójny dywiz). Worker robi 301 na /profile/{stary}/ gdy S3 nie ma
+    # strony.
+    profile_redirects = {}
+    for p in profiles:
+        name = p.get("name", "")
+        slug = p.get("slug", "")
+        if not name or not slug:
+            continue
+        for legacy in (legacy_nfkd_slug(name), legacy_table_slug(name)):
+            if legacy and legacy != slug:
+                profile_redirects[legacy] = slug
+    with open(redirects_dir / "profiles.json", "w", encoding="utf-8") as f:
+        json.dump(profile_redirects, f, ensure_ascii=False, separators=(",", ":"))
+    if profile_redirects:
+        print(f"  _redirects/profiles.json: {len(profile_redirects)} slugów")
 
 
 def main():

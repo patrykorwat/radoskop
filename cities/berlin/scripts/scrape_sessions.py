@@ -130,12 +130,15 @@ def pdftotext(pdf: Path, txt: Path) -> bool:
         return False
 
 
+# Kanoniczny slugifier wspólny dla całego projektu — patrz
+# radoskop/scripts/lib_slug.py (musi dawać identyczne slugi co
+# scrape_abgeordnete.py, inaczej rozjadą się profile i głosy).
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_slug import make_slug as _lib_make_slug  # noqa: E402
+
+
 def slugify(name: str) -> str:
-    nfkd = unicodedata.normalize("NFKD", name)
-    ascii_only = nfkd.encode("ascii", "ignore").decode("ascii")
-    s = re.sub(r"[^\w\s\-]", "", ascii_only.lower())
-    s = re.sub(r"[\s_]+", "-", s).strip("-")
-    return s or "abgeordnet"
+    return _lib_make_slug(name) or "abgeordnet"
 
 
 def normalize_name(raw: str) -> str:
