@@ -32,17 +32,17 @@
   "kyiv": {
     "error": null,
     "kind": "city",
-    "sha256": "f31b38f2087b81363605d522b72c5ddfc93ea09f1364462bedba58a454d402f8"
+    "sha256": "8563d71e81c2e2e72296d92ce0e5b888e1801943fdb432cec61f7980348ba201"
   },
   "landtag-mv": {
     "error": null,
     "kind": "assembly",
-    "sha256": "2ef8aaea8b78e479f1d7ce3a7d6c9be4c14b5d6851bdb809611145485c33c983"
+    "sha256": "4f7b8750a0eec0402c77bc204a3b251ec0c7adf94d2a70a9000f0a878752811f"
   },
   "mazowieckie": {
     "error": null,
     "kind": "assembly",
-    "sha256": "83beb2f1edf98d9f086248df15efbcd9872703ac1df42515d5f80f59ea6d1425"
+    "sha256": "64070f2d04964ce3435f34246ae2fe293bf98813077093a95c7b22de881a27a6"
   },
   "paris": {
     "error": null,

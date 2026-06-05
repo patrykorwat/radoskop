@@ -623,6 +623,11 @@ async function init() {
         return;
       }
     }
+    // Fall-through: path nie pasuje do żadnego route'a (śmieciowy URL,
+    // nieistniejący profil, stary format). Worker i tak zwrócił 200 z
+    // fallback index.html, więc oznaczamy noindex — bez tego Google
+    // indeksował każdy junk URL jako alternate strony głównej.
+    setRobotsIndexable(false);
     selectKadencja(initialKid);
   } catch(e) {
     document.getElementById('loading').textContent = 'Błąd ładowania danych: ' + e.message;
@@ -696,6 +701,7 @@ function activateTab(tabName) {
   if (tabName === 'interpelacje') renderInterpelacje();
   if (tabName === 'komisje') renderKomisjeList();
   setTitle(TAB_TITLES[tabName] || '');
+  setCanonicalPath(mainPath(tabName));
 }
 
 function hideAllViews() {
@@ -802,6 +808,39 @@ function setOgMeta(opts) {
   // Meta description
   var desc = document.querySelector('meta[name="description"]');
   if (desc && d) desc.setAttribute('content', d);
+  // Prawidłowy widok = indeksowalny. Zdejmuje noindex ustawiony wcześniej
+  // przez widok "nie znaleziono" (SPA nie przeładowuje dokumentu).
+  setRobotsIndexable(true);
+}
+
+// Soft-404 dla SPA. Worker serwuje fallback index.html ze statusem 200 i
+// canonical strony głównej dla KAŻDEGO nieistniejącego patha, więc Google
+// klasyfikował takie URL-e jako "Alternate page with proper canonical tag"
+// (GSC, narastająco od 2026-05). Widoki "nie znaleziono" dostają meta
+// robots noindex (Googlebot renderuje JS, honoruje meta dodane client-side),
+// a prawidłowe widoki zdejmują go w setOgMeta/setCanonicalPath.
+function setRobotsIndexable(indexable) {
+  var el = document.querySelector('meta[name="robots"]');
+  if (indexable) {
+    if (el) el.remove();
+    return;
+  }
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute('name', 'robots');
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', 'noindex');
+}
+
+// Lekki wariant setOgMeta dla widoków tabów: aktualizuje tylko canonical
+// (na kanoniczny path z mainPath) i zdejmuje noindex. Bez tego canonical
+// zostawał z szablonu (strona główna) i /budget/, /interpellations/,
+// /commissions/, /term/{kad}/{tab}/ lądowały w GSC jako alternate.
+function setCanonicalPath(path) {
+  var can = document.querySelector('link[rel="canonical"]');
+  if (can) can.setAttribute('href', '{{SITE_URL}}' + path);
+  setRobotsIndexable(true);
 }
 
 function mainPath(tab, kid) {
@@ -2399,6 +2438,7 @@ async function showVote(voteId) {
       + '<p style="margin:0"><a href="/vote/" style="color:var(--text)">Zobacz aktualne głosowania →</a></p>'
       + '</div>';
     setTitle('Głosowanie niedostępne');
+    setRobotsIndexable(false);
     return;
   }
 
@@ -2615,7 +2655,10 @@ async function loadDrukEntry(druk) {
   const key = String(druk);
   if (DRUK_CACHE.has(key)) return DRUK_CACHE.get(key);
   try {
-    const resp = await fetch(API_BASE + '/druk/' + encodeURIComponent(key));
+    // credentials: include — cookie sesji decyduje o tier (Business widzi
+    // pełną listę komisji, free top 3). CORS allow-credentials jest po
+    // stronie checkout_server (regex subdomen radoskop.pl/.eu).
+    const resp = await fetch(API_BASE + '/druk/' + encodeURIComponent(key), { credentials: 'include' });
     if (!resp.ok) {
       DRUK_CACHE.set(key, null);
       return null;
@@ -2692,7 +2735,7 @@ async function renderCommissionTimeline(druk, container) {
     <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-top:0.5px solid var(--border);background:rgba(99,102,241,0.04)">
       <div style="font-size:11px;color:var(--muted);min-width:78px;padding-left:0">...</div>
       <div style="flex:1;font-size:13px;color:var(--text)">
-        Łącznie <strong style="font-weight:500">${csTotal} komisji</strong> w pipeline — pełna lista z opiniami w Premium
+        Łącznie <strong style="font-weight:500">${csTotal} komisji</strong> w pipeline. Pełna lista w pakiecie Business
       </div>
       <a href="https://radoskop.eu/business/?from=commission_timeline_hidden&druk=${encodeURIComponent(druk)}"
          onclick="event.preventDefault();trackEvent('click_business_cta',{location:'commission_timeline_hidden',druk:'${druk}',hidden:${csHidden}});showBusiness({from:'commission_timeline_hidden',druk:'${druk}'})"
@@ -2810,6 +2853,7 @@ async function showSession(sessionNumber) {
       + '<p style="margin:0"><a href="/session/" style="color:var(--text)">Zobacz aktualne sesje →</a></p>'
       + '</div>';
     setTitle('Sesja niedostępna');
+    setRobotsIndexable(false);
     return;
   }
 
@@ -3177,7 +3221,7 @@ async function renderKomisjeList() {
          <span>Wszystkie komisje pokazują pełne archiwum posiedzeń z porządkami, protokołami i głosowaniami druków.</span>
        </div>`
     : `<div style="margin-top:24px;padding:16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px;color:var(--text)">
-         Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport JSON) dostępna w pakiecie Business.
+         Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport CSV/JSON) dostępna w pakiecie Business.
          <a href="https://radoskop.eu/pricing/"
             onclick="trackEvent('click_business_komisja_cta',{location:'komisje_list'})"
             style="color:var(--accent);margin-left:6px;text-decoration:none">Zobacz cennik ↗</a>
@@ -3220,6 +3264,8 @@ async function showKomisja(slug) {
       + '</p>'
       + '<p style="margin:20px 0"><a href="/" style="color:var(--text);font-weight:600">Wróć na stronę główną →</a></p>'
       + '</div>';
+    setTitle('Komisja niedostępna');
+    setRobotsIndexable(false);
     return;
   }
 
@@ -3274,19 +3320,23 @@ async function showKomisja(slug) {
   let bannerHtml = '';
   if (BUSINESS_ACTIVE) {
     const exportUrl = API_BASE + '/komisja/' + encodeURIComponent(slug) + '/export.json';
+    const exportCsvUrl = API_BASE + '/komisja/' + encodeURIComponent(slug) + '/export.csv';
     bannerHtml = `
       <div style="margin-top:16px;padding:14px 16px;background:rgba(34,197,94,0.08);border-left:3px solid var(--green);font-size:13px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
         <span style="color:var(--green);font-weight:600">✓ Business aktywny.</span>
         <span>Pełne archiwum ${meetingsTotal} posiedzeń z porządkami i głosowaniami druków.</span>
+        <a href="${exportCsvUrl}" download
+           onclick="trackEvent('click_export_csv',{slug:'${slug}'})"
+           style="margin-left:auto;background:var(--accent);color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;text-decoration:none">Eksportuj CSV ↓</a>
         <a href="${exportUrl}" download
            onclick="trackEvent('click_export_json',{slug:'${slug}'})"
-           style="margin-left:auto;background:var(--accent);color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;text-decoration:none">Eksportuj JSON ↓</a>
+           style="background:var(--accent);color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;text-decoration:none">Eksportuj JSON ↓</a>
       </div>
     `;
   } else if (meetingsHidden > 0) {
     bannerHtml = `
       <div style="margin-top:16px;padding:14px 16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px">
-        Łącznie <strong style="font-weight:500">${meetingsTotal} posiedzeń</strong> w archiwum, pokazane ${meetingsTop.length}. Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport JSON) w pakiecie Business.
+        Łącznie <strong style="font-weight:500">${meetingsTotal} posiedzeń</strong> w archiwum, pokazane ${meetingsTop.length}. Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport CSV/JSON) w pakiecie Business.
         <a href="https://radoskop.eu/pricing/"
            onclick="trackEvent('click_business_komisja_cta',{location:'komisja_detail',slug:'${slug}',hidden:${meetingsHidden}})"
            style="color:var(--accent);margin-left:6px;text-decoration:none">Zobacz cennik ↗</a>
