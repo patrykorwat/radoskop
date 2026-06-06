@@ -389,7 +389,7 @@ class EsesjaScraper:
         councilors: dict | None = None,
         delay: float = 1.0,
         default_kadencja: str | None = None,
-        name_order: str = "as_is",
+        name_order: str = "swap_surname_first",
     ):
         self.base_url = base_url.rstrip("/")
         self.sessions_url = f"{self.base_url}/glosowania"
@@ -477,8 +477,20 @@ class EsesjaScraper:
         parts = raw.split()
         if len(parts) < 2:
             return raw
-        # Ostatni token to imię, reszta to nazwisko (może być złożone).
-        return f"{parts[-1]} {' '.join(parts[:-1])}"
+        # eSesja podaje "NAZWISKO Imię [Imię2]": pierwszy token to nazwisko
+        # (złożone nazwiska są łączone dywizem, więc to nadal jeden token),
+        # reszta to imiona. Bierzemy nazwisko z przodu i przenosimy na koniec,
+        # zachowując kolejność imion. Dzięki temu radny z dwoma imionami
+        # ("Chmielewski Adam Łukasz") wychodzi poprawnie jako
+        # "Adam Łukasz Chmielewski", a nie "Łukasz Chmielewski Adam".
+        swapped = parts[1:] + [parts[0]]
+        # Część instancji eSesja zwraca nazwisko WERSALIKAMI ("BRÓZDA Sebastian").
+        # Po swapie zostałoby "Sebastian BRÓZDA" — wciąż wygląda na zepsute.
+        # Normalizujemy tylko tokeny pisane w całości wielkimi literami; tokeny
+        # już o mieszanej wielkości ("Dobrowolska-Cylwik") zostają nietknięte.
+        # str.title() poprawnie obsługuje dywiz ("CZAJA-DOROSZUK" -> "Czaja-Doroszuk").
+        norm = [t.title() if t.isupper() and len(t) >= 2 else t for t in swapped]
+        return " ".join(norm)
 
     # -- Club resolution ---------------------------------------------------
 

@@ -38,7 +38,7 @@ from pathlib import Path
 
 # Repliki historycznych slugify do mapy redirectów stary→kanoniczny
 # (_redirects/profiles.json, czyta ją worker) — patrz lib_slug.py.
-from lib_slug import legacy_nfkd_slug, legacy_table_slug
+from lib_slug import legacy_nfkd_slug, legacy_table_slug, legacy_surname_first_slug
 
 
 def esc(text):
@@ -963,7 +963,11 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         slug = p.get("slug", "")
         if not name or not slug:
             continue
-        for legacy in (legacy_nfkd_slug(name), legacy_table_slug(name)):
+        for legacy in (
+            legacy_nfkd_slug(name),
+            legacy_table_slug(name),
+            legacy_surname_first_slug(name),
+        ):
             if legacy and legacy != slug:
                 profile_redirects[legacy] = slug
     with open(redirects_dir / "profiles.json", "w", encoding="utf-8") as f:

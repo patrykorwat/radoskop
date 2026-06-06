@@ -69,3 +69,24 @@ def legacy_table_slug(name: str) -> str:
     redirectów — takie slugi siedzą w indeksie (np. Kielce)."""
     slug = str(name or "").lower().translate(_PL_TABLE)
     return slug.replace(" ", "-").replace("'", "")
+
+
+def legacy_surname_first_slug(name: str) -> str:
+    """Slug ze STAREJ kolejności "Nazwisko Imię" — z czasów gdy EsesjaScraper
+    miał name_order="as_is" (do 2026-06-06) i zostawiał kolejność ze źródła.
+    Bierze kanoniczną nazwę "Imię [Imię2] Nazwisko" i odtwarza slug, jaki
+    miała strona przed swapem: nazwisko (ostatni token) wraca na przód, reszta
+    bez zmian, potem make_slug. "Sylwia Bielawska" → "bielawska-sylwia";
+    "Adam Łukasz Chmielewski" → "chmielewski-adam-lukasz". Tylko do
+    _redirects/profiles.json — żeby URL-e radnych z indeksu Google dostały
+    301 zamiast 404 po przejściu miast eSesja na "Imię Nazwisko".
+
+    Zwraca "" dla jednoczłonowych nazw (nie ma czego odwracać). Dla nazw już
+    poprawnych w obu kierunkach (np. miasta nie-eSesja) wynik jest po prostu
+    innym slugiem tej samej osoby — wpis jest inertny, bo taki URL nigdy nie
+    istniał w indeksie i worker 301-uje tylko przy braku strony na S3."""
+    parts = str(name or "").split()
+    if len(parts) < 2:
+        return ""
+    reordered = [parts[-1]] + parts[:-1]
+    return make_slug(" ".join(reordered))
