@@ -317,7 +317,11 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
 
     sitemap_entries = []
 
-    # Statyczna lista radnych (/councillors/) gdy miasto ma landing.
+    # Lista radnych (/councillors/) gdy miasto ma landing. Od 2026-06-06 to
+    # NIE jest statyczna strona (build_landing.py wycofany, orphan w S3
+    # kasowany przez deploy --delete) — URL obsługuje SPA fallback workera,
+    # router SPA mapuje /councillors/ na tab ranking. Wpis w sitemap zostaje,
+    # bo Googlebot wykonuje JS.
     if config.get("landing_enabled"):
         sitemap_entries.append({
             "loc": f"{site_url}/councillors/",

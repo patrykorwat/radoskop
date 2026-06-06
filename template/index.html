@@ -7,6 +7,7 @@
 <nav class="topbar" aria-label="Główna nawigacja">
   <a class="topbar-logo" href="/" onclick="if(window.showLanding){event.preventDefault();showLanding();}">Rado<span>skop</span> {{CITY_NAME}}</a>
   <div class="topbar-nav">
+    <a href="/" onclick="if(window.showLanding){event.preventDefault();showLanding();}">Strona główna</a>
     <a href="https://radoskop.eu/reports/">Raporty</a>
     <a href="https://radoskop.eu/business/">Business</a>
   </div>
@@ -1052,8 +1053,11 @@ function _hl(s){ return s.replace(/\[\[(.+?)\]\]/,'<span class="hl">$1</span>');
 
 function _landingStats(){
   var votes=(K&&K._landingVotes)||[], cs=(K&&K.councilors)||[], ss=(K&&K.sessions)||[];
-  function diff(v){ var c=v.counts||{}; return Math.abs((c.za||0)-(c.przeciw||0)); }
-  var contested=votes.filter(function(v){ var c=v.counts||{}; return (c.przeciw||0)>0 && diff(v)<10; });
+  // Sporne = strona mniejszościowa (za albo przeciw) ma >= 1/3 głosów
+  // rozstrzygających (za+przeciw). Próg względny: skaluje się z wielkością
+  // rady, w przeciwieństwie do dawnego |za-przeciw|<10, który w małych
+  // radach przepuszczał np. 10:1, a w dużych ucinał realne spory.
+  var contested=votes.filter(function(v){ var c=v.counts||{}, za=c.za||0, prz=c.przeciw||0, m=Math.min(za,prz); return m>0 && m*3>=(za+prz); });
   var active=cs.slice().sort(function(a,b){ return (b.aktywnosc||0)-(a.aktywnosc||0) || (b.votes_total||0)-(a.votes_total||0); })[0];
   var rebel=cs.filter(function(c){return (c.rebellion_count||0)>0;}).sort(function(a,b){ return (b.rebellion_count||0)-(a.rebellion_count||0); })[0];
   var real=votes.filter(function(v){ return ((v.counts||{}).przeciw||0)>0; });
@@ -1071,7 +1075,7 @@ function _landingStats(){
     var byDate={}; votes.forEach(function(v){ var d=v.session_date||''; if(!d)return; if(!byDate[d])byDate[d]={votes:0,contested:0,number:v.session_number}; byDate[d].votes++; if(contested.indexOf(v)>-1)byDate[d].contested++; });
     activity=Object.keys(byDate).sort().map(function(d){ return {date:d,number:byDate[d].number,votes:byDate[d].votes,contested:byDate[d].contested}; });
   }
-  var recent=real.slice().sort(function(a,b){ return (b.session_date||'').localeCompare(a.session_date||''); }).slice(0,5);
+  var recent=contested.slice().sort(function(a,b){ return (b.session_date||'').localeCompare(a.session_date||''); }).slice(0,5);
   return { tv:(K.total_votes!=null?K.total_votes:votes.length), tc:(K.total_councilors!=null?K.total_councilors:cs.length),
            ts:(K.total_sessions!=null?K.total_sessions:ss.length), contested:contested.length,
            active:active, rebel:rebel, topVote:topVote, activity:activity, recent:recent };

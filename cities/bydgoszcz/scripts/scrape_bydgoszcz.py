@@ -512,9 +512,19 @@ def _parse_single_page(page_text: str, url: str) -> dict | None:
     for i, line in enumerate(lines):
         stripped = line.strip()
         if re.match(r'^\d+\.\s+', stripped) and 'Sesja' not in stripped:
-            # Likely an agenda item title
+            # Likely an agenda item title. Długie tytuły w PDF-ach eSesja
+            # zawijają się na kolejne wiersze; trzeba je skleić aż do pola
+            # "Typ głosowania", inaczej tytuł urywa się w pół zdania.
             if i > 0 and lines[i - 1].strip().isdigit():
-                result["vote_title"] = stripped
+                title = stripped
+                for cont in lines[i + 1:i + 12]:
+                    c = cont.strip()
+                    if not c or c.startswith('Typ głosowania'):
+                        break
+                    # Zawijanie z dywizem (np. "Kujawsko-\nPomorskiemu")
+                    # łączymy bez spacji; pozostałe wiersze ze spacją.
+                    title = title + c if title.endswith('-') else title + ' ' + c
+                result["vote_title"] = re.sub(r'\s+', ' ', title).strip()
                 break
 
     # Parse voting table: sequence of (row_number, name, vote) triplets
