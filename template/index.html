@@ -9,8 +9,8 @@
   <div class="topbar-nav">
     <a href="/" onclick="if(window.showLanding){event.preventDefault();showLanding();}">Strona główna</a>
     <a href="https://radoskop.eu/reports/">Raporty</a>
-    <a href="https://radoskop.eu/pro/">Pro</a>
-    <a href="https://radoskop.eu/pricing/">Cennik</a>
+    <a href="https://radoskop.eu/pro/" class="nav-sales">Pro</a>
+    <a href="https://radoskop.eu/pricing/" class="nav-sales">Cennik</a>
   </div>
   <div class="topbar-actions">
     <button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
@@ -4473,6 +4473,8 @@ function _renderAuthHeader() {
   const btn = document.getElementById('auth-login-btn');
   const chip = document.getElementById('user-chip');
   if (!btn || !chip) return;
+  // linki sprzedażowe (Pro, Cennik) znikają użytkownikom z aktywnym Pro
+  document.querySelectorAll('.topbar-nav .nav-sales').forEach(function(a){ a.style.display = (_authUser && _authUser.pro) ? 'none' : ''; });
   if (_authUser) {
     btn.style.display = 'none';
     chip.style.display = 'inline-flex';
