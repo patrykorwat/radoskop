@@ -26,7 +26,7 @@ STRINGS: dict[str, dict[str, str]] = {
     "nav_reports": {"pl": "Raporty", "en": "Reports", "de": "Berichte", "cs": "Reporty",
                     "nl": "Rapporten", "sk": "Reporty", "fr": "Rapports", "da": "Rapporter",
                     "hu": "Jelentések", "uk": "Звіти", "lt": "Ataskaitos", "lv": "Pārskati", "et": "Aruanded"},
-    "nav_business": {"pl": "Business", "en": "Business"},
+    "nav_business": {"pl": "Pro", "en": "Pro"},
     "theme_toggle": {"pl": "Motyw", "en": "Theme", "de": "Thema", "cs": "Motiv", "nl": "Thema",
                      "sk": "Motív", "fr": "Thème", "da": "Tema", "hu": "Téma", "uk": "Тема",
                      "lt": "Tema", "lv": "Motīvs", "et": "Teema"},

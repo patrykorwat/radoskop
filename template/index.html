@@ -9,7 +9,7 @@
   <div class="topbar-nav">
     <a href="/" onclick="if(window.showLanding){event.preventDefault();showLanding();}">Strona główna</a>
     <a href="https://radoskop.eu/reports/">Raporty</a>
-    <a href="https://radoskop.eu/business/">Business</a>
+    <a href="https://radoskop.eu/pro/">Pro</a>
     <a href="https://radoskop.eu/pricing/">Cennik</a>
   </div>
   <div class="topbar-actions">
@@ -215,7 +215,7 @@
       <a href="{{ROOT_URL}}">Radoskop</a> · <a href="{{ROOT_URL}}#cities">wszystkie miasta</a> · <a href="https://x.com/radoskop" target="_blank" rel="noopener me">X (Twitter)</a>
     </div>
     <div style="margin-bottom:12px">
-      <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/pricing/">Cennik</a> · <a href="https://radoskop.eu/business/">Business</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">Regulamin</a>{{IMPRESSUM_FOOTER_LINK}}
+      <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/pricing/">Cennik</a> · <a href="https://radoskop.eu/pro/">Pro</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">Regulamin</a>{{IMPRESSUM_FOOTER_LINK}}
     </div>
     <div style="color:var(--muted);font-size:0.75rem">
       Dane źródłowe: <a href="{{BIP_URL}}" target="_blank">{{BIP_NAME}}</a> · Kod: <a href="{{GITHUB_URL}}" target="_blank">GitHub</a> (AGPL-3.0) · Polecane: <a href="https://www.tygodniksejmowy.pl/" target="_blank" rel="noopener">Tygodnik Sejmowy</a>
@@ -553,14 +553,14 @@ async function init() {
       return;
     }
     if (path === '/business' || path === '/business/' || path === '/premium' || path === '/premium/') {
-      // Business offer hostowany jest jako jedna kanoniczna strona na apex
-      // międzynarodowym radoskop.eu/business/. Per-city subdomena nie ma
+      // Pro offer hostowany jest jako jedna kanoniczna strona na apex
+      // międzynarodowym radoskop.eu/pro/. Per-city subdomena nie ma
       // własnej oferty, przekierowujemy z zachowaniem ?from/druk/komisja
       // w query string. Stary slug /premium/ też tutaj wpada (rebrand
       // 2026-05-13). Worker robi 301 na poziomie edge, ten SPA fallback
       // łapie tylko gdy worker by minął.
       var search = location.search || '';
-      location.replace('https://radoskop.eu/business/' + search);
+      location.replace('https://radoskop.eu/pro/' + search);
       return;
     }
     if (path === '/interpelacje' || path === '/interpelacje/') {
@@ -1000,14 +1000,14 @@ function showPrivacy() {
   location.assign('https://radoskop.eu/privacy/' + suffix);
 }
 
-// --- Business landing page ---
-// Single canonical URL: https://radoskop.eu/business/. Per-city subdomeny
+// --- Pro landing page ---
+// Single canonical URL: https://radoskop.eu/pro/. Per-city subdomeny
 // (i radoskop.pl apex) NIE mają własnej oferty. Wszystko leci na .eu, gdzie
 // też siedzi auth/account/paywall infrastructure. Funkcja zostawiona jako
-// alias, linki z CTA wołają showBusiness({...}) i dostają redirect na apex
+// alias, linki z CTA wołają showPro({...}) i dostają redirect na apex
 // .eu z zachowanym query string. Worker robi 301 na poziomie edge dla
 // Googlebota, ten SPA fallback łapie gdy user kliknie CTA bez full page reload.
-function showBusiness(opts) {
+function showPro(opts) {
   opts = opts || {};
   trackEvent('click_business_redirect_to_apex', { from: opts.from || '', druk: opts.druk || '', komisja: opts.komisja || '' });
   var qs = [];
@@ -1015,10 +1015,10 @@ function showBusiness(opts) {
   if (opts.druk) qs.push('druk=' + encodeURIComponent(opts.druk));
   if (opts.komisja) qs.push('komisja=' + encodeURIComponent(opts.komisja));
   var search = qs.length ? '?' + qs.join('&') : '';
-  location.assign('https://radoskop.eu/business/' + search);
+  location.assign('https://radoskop.eu/pro/' + search);
 }
 // Backward-compat alias (jeśli stary kod jeszcze gdzieś zostawił showPremium)
-var showPremium = showBusiness;
+var showPremium = showPro;
 
 // --- Terms of service page ---
 // Single canonical URL: https://radoskop.eu/terms/. Cała treść regulaminu
@@ -2669,7 +2669,7 @@ async function showDruk(drukId, kadId) {
         <p>${entry.tresc_preview}...</p>
         <div class="druk-paywall">
           <p style="margin:0 0 12px;color:var(--muted);font-size:0.9rem">Pełna treść dostępna w pakiecie Premium.</p>
-          <button class="auth-btn" onclick="showBusiness({from:'druk_content',druk:'${drukId}'})">Odblokuj Premium</button>
+          <button class="auth-btn" onclick="showPro({from:'druk_content',druk:'${drukId}'})">Odblokuj Premium</button>
         </div>
       </div>`;
   } else {
@@ -2699,7 +2699,7 @@ async function loadDrukEntry(druk) {
   const key = String(druk);
   if (DRUK_CACHE.has(key)) return DRUK_CACHE.get(key);
   try {
-    // credentials: include — cookie sesji decyduje o tier (Business widzi
+    // credentials: include — cookie sesji decyduje o tier (Pro widzi
     // pełną listę komisji, free top 3). CORS allow-credentials jest po
     // stronie checkout_server (regex subdomen radoskop.pl/.eu).
     const resp = await fetch(API_BASE + '/druk/' + encodeURIComponent(key), { credentials: 'include' });
@@ -2779,10 +2779,10 @@ async function renderCommissionTimeline(druk, container) {
     <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-top:0.5px solid var(--border);background:rgba(99,102,241,0.04)">
       <div style="font-size:11px;color:var(--muted);min-width:78px;padding-left:0">...</div>
       <div style="flex:1;font-size:13px;color:var(--text)">
-        Łącznie <strong style="font-weight:500">${csTotal} komisji</strong> w pipeline. Pełna lista w pakiecie Business
+        Łącznie <strong style="font-weight:500">${csTotal} komisji</strong> w pipeline. Pełna lista w pakiecie Pro
       </div>
-      <a href="https://radoskop.eu/business/?from=commission_timeline_hidden&druk=${encodeURIComponent(druk)}"
-         onclick="event.preventDefault();trackEvent('click_business_cta',{location:'commission_timeline_hidden',druk:'${druk}',hidden:${csHidden}});showBusiness({from:'commission_timeline_hidden',druk:'${druk}'})"
+      <a href="https://radoskop.eu/pro/?from=commission_timeline_hidden&druk=${encodeURIComponent(druk)}"
+         onclick="event.preventDefault();trackEvent('click_business_cta',{location:'commission_timeline_hidden',druk:'${druk}',hidden:${csHidden}});showPro({from:'commission_timeline_hidden',druk:'${druk}'})"
          style="font-size:12px;color:var(--accent);text-decoration:none">Zapytaj o pełną analizę ↗</a>
     </div>
   ` : '';
@@ -2828,8 +2828,8 @@ async function renderCommissionTimeline(druk, container) {
       ${sessionRow}
       <div style="font-size:12px;color:var(--muted);margin-top:12px;padding-top:12px;border-top:0.5px solid var(--border)">
         ${ctaCopy}
-        <a href="https://radoskop.eu/business/?from=commission_timeline&druk=${encodeURIComponent(druk)}"
-           onclick="event.preventDefault();trackEvent('click_business_cta',{location:'commission_timeline',druk:'${druk}',status:'${status}',commissions:${csTotal}});showBusiness({from:'commission_timeline',druk:'${druk}'})"
+        <a href="https://radoskop.eu/pro/?from=commission_timeline&druk=${encodeURIComponent(druk)}"
+           onclick="event.preventDefault();trackEvent('click_business_cta',{location:'commission_timeline',druk:'${druk}',status:'${status}',commissions:${csTotal}});showPro({from:'commission_timeline',druk:'${druk}'})"
            style="color:var(--accent);margin-left:4px;text-decoration:none">Dowiedz się więcej ↗</a>
       </div>
     </div>
@@ -3133,7 +3133,7 @@ async function showSession(sessionNumber) {
 // Free tier: lista komisji ze statystykami (meetings, drafts_total, drafts_voted,
 // median_lead_time_days, last_meeting_date). Pełne posiedzenia są dostępne
 // w detalu komisji (showKomisja), gdzie API gateuje top N + hidden teaser.
-// Premium (Business sub): pełna procedura komisyjna druku, bez teasera,
+// Premium (Pro sub): pełna procedura komisyjna druku, bez teasera,
 // plus przycisk eksportu JSON. Flag BUSINESS_ACTIVE setowany przez
 // refreshSubscriptionStatus() przy starcie i po login/logout.
 let _komisjeListCache = null;
@@ -3261,11 +3261,11 @@ async function renderKomisjeList() {
 
   const businessBanner = BUSINESS_ACTIVE
     ? `<div style="margin-top:24px;padding:14px 16px;background:rgba(34,197,94,0.08);border-left:3px solid var(--green);font-size:13px;color:var(--text);display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-         <span style="font-weight:600;color:var(--green)">✓ Business aktywny.</span>
+         <span style="font-weight:600;color:var(--green)">✓ Pro aktywny.</span>
          <span>Wszystkie komisje pokazują pełne archiwum posiedzeń z porządkami, protokołami i głosowaniami druków.</span>
        </div>`
     : `<div style="margin-top:24px;padding:16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px;color:var(--text)">
-         Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport CSV/JSON) dostępna w pakiecie Business.
+         Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport CSV/JSON) dostępna w pakiecie Pro.
          <a href="https://radoskop.eu/pricing/"
             onclick="trackEvent('click_business_komisja_cta',{location:'komisje_list'})"
             style="color:var(--accent);margin-left:6px;text-decoration:none">Zobacz cennik ↗</a>
@@ -3367,7 +3367,7 @@ async function showKomisja(slug) {
     const exportCsvUrl = API_BASE + '/komisja/' + encodeURIComponent(slug) + '/export.csv';
     bannerHtml = `
       <div style="margin-top:16px;padding:14px 16px;background:rgba(34,197,94,0.08);border-left:3px solid var(--green);font-size:13px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
-        <span style="color:var(--green);font-weight:600">✓ Business aktywny.</span>
+        <span style="color:var(--green);font-weight:600">✓ Pro aktywny.</span>
         <span>Pełne archiwum ${meetingsTotal} posiedzeń z porządkami i głosowaniami druków.</span>
         <a href="${exportCsvUrl}" download
            onclick="trackEvent('click_export_csv',{slug:'${slug}'})"
@@ -3380,7 +3380,7 @@ async function showKomisja(slug) {
   } else if (meetingsHidden > 0) {
     bannerHtml = `
       <div style="margin-top:16px;padding:14px 16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px">
-        Łącznie <strong style="font-weight:500">${meetingsTotal} posiedzeń</strong> w archiwum, pokazane ${meetingsTop.length}. Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport CSV/JSON) w pakiecie Business.
+        Łącznie <strong style="font-weight:500">${meetingsTotal} posiedzeń</strong> w archiwum, pokazane ${meetingsTop.length}. Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport CSV/JSON) w pakiecie Pro.
         <a href="https://radoskop.eu/pricing/"
            onclick="trackEvent('click_business_komisja_cta',{location:'komisja_detail',slug:'${slug}',hidden:${meetingsHidden}})"
            style="color:var(--accent);margin-left:6px;text-decoration:none">Zobacz cennik ↗</a>
@@ -4114,7 +4114,7 @@ async function openCityCompare(slug){
 }
 
 // Paywall: free tier widzi z czym mógłby porównać (teaser modułów z capabilities,
-// bez wartości) i CTA do Business. Wartości nie są nigdy wysyłane bez subskrypcji.
+// bez wartości) i CTA do Pro. Wartości nie są nigdy wysyłane bez subskrypcji.
 function renderCityComparePaywall(slug){
   hideAllViews();
   var view=document.getElementById('city-compare-view');
@@ -4128,8 +4128,8 @@ function renderCityComparePaywall(slug){
   view.innerHTML='<button class="profile-back" onclick="(typeof showLanding===\'function\'?showLanding():showMain())">← Strona główna</button>'+
     '<h2 style="font-size:1.3rem;font-weight:600;margin-bottom:6px">'+_lpEsc(sname)+' vs '+_lpEsc(oname)+'</h2>'+
     teaser+
-    '<div class="cc-paywall"><p>Porównywarka miast jest częścią pakietu Business.</p>'+
-    '<button class="auth-btn" onclick="showBusiness({from:\'city_compare\',city:\''+slug+'\'})">Odblokuj porównywarkę</button></div>';
+    '<div class="cc-paywall"><p>Porównywarka miast jest częścią pakietu Pro.</p>'+
+    '<button class="auth-btn" onclick="showPro({from:\'city_compare\',city:\''+slug+'\'})">Odblokuj porównywarkę</button></div>';
   window.scrollTo(0,0);
 }
 
@@ -4492,10 +4492,10 @@ function _renderAuthHeader() {
 }
 
 // Pull /me przy load, niezależnie od cache (cache może być nieaktualny).
-// Razem refreshujemy też subscription status, żeby gating Business był
+// Razem refreshujemy też subscription status, żeby gating Pro był
 // spójny po login/logout/initial load.
 // Auto bridge sesji cross TLD. Na .radoskop.pl cookie sesji jest pierwszorzędne
-// dopiero po bridge z .radoskop.eu (tam user się loguje i kupuje Business).
+// dopiero po bridge z .radoskop.eu (tam user się loguje i kupuje Pro).
 // Gdy /me na .pl zwraca 401, robimy JEDEN cichy probe: top level redirect na
 // radoskop.eu/?bridge_to=<bieżący URL>&probe=1. Apex .eu z sesją mintuje token
 // i przez api.radoskop.pl/bridge-exchange ustawia cookie .pl, po czym wraca na
