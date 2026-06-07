@@ -912,10 +912,49 @@ function profileSlug(name) {
 }
 
 // Event tracking via Umami (cookieless, no consent required).
+// script.js ładuje się async, więc eventy z bootu strony (np. pierwszy
+// view_tab) trafiałyby w pustkę. Bufor trzyma je do załadowania trackera,
+// flush co 400ms przez max 20s, potem rezygnujemy (np. adblock).
+var _umamiQueue = [];
+function _umamiReady() {
+  return typeof umami !== 'undefined' && typeof umami.track === 'function';
+}
 function trackEvent(eventName, params) {
-  if (typeof umami !== 'undefined' && typeof umami.track === 'function') {
+  if (_umamiReady()) {
     umami.track(eventName, params || {});
+  } else {
+    _umamiQueue.push([eventName, params || {}]);
   }
+}
+(function() {
+  var tries = 0;
+  var iv = setInterval(function() {
+    tries++;
+    if (_umamiReady()) {
+      _umamiQueue.splice(0).forEach(function(e) { umami.track(e[0], e[1]); });
+      clearInterval(iv);
+    } else if (tries > 50) {
+      clearInterval(iv);
+    }
+  }, 400);
+})();
+
+// trackEvent + krótkie czekanie na wysyłkę. Do eventów tuż przed
+// window.location.href (logout, google login), gdzie nawigacja
+// ubiłaby fetch trackera. Max 400ms, potem idziemy dalej.
+function trackEventBeforeNav(eventName, params) {
+  return new Promise(function(resolve) {
+    var done = setTimeout(resolve, 400);
+    try {
+      if (_umamiReady()) {
+        Promise.resolve(umami.track(eventName, params || {})).then(function() {
+          clearTimeout(done); resolve();
+        }, function() { clearTimeout(done); resolve(); });
+      } else {
+        clearTimeout(done); resolve();
+      }
+    } catch (e) { clearTimeout(done); resolve(); }
+  });
 }
 
 // Build link elements via string concatenation so crawlers
@@ -4405,7 +4444,8 @@ const AUTH_API = (window.RADOSKOP_AUTH_API || _API_HOST) + '/api/auth';
 // może mieć sesję np. po Google login). Apex .eu z parametrem bridge_to
 // minuje HMAC token i odsyła na api.radoskop.pl/bridge-exchange które
 // ustawia cookie .radoskop.pl, po czym 302 z powrotem na docelowy URL.
-function _bridgeLogin() {
+async function _bridgeLogin() {
+  await trackEventBeforeNav('login_start', { method: 'bridge' });
   const bridgeUrl = 'https://radoskop.eu/?bridge_to=' + encodeURIComponent(window.location.href);
   window.location.href = bridgeUrl;
 }
@@ -4504,6 +4544,7 @@ async function _refreshAuth() {
 let _authMode = 'login';
 
 function openAuthModal(mode) {
+  trackEvent('open_auth_modal', { mode: mode || 'login' });
   setAuthMode(mode || 'login');
   document.getElementById('auth-error').style.display = 'none';
   document.getElementById('auth-success').style.display = 'none';
@@ -4579,8 +4620,10 @@ async function submitAuth(ev) {
     _setAuthUser(data.user);
     closeAuthModal();
     if (_authMode === 'signup') {
+      trackEvent('signup_success', { method: 'password' });
       _showBanner('Konto utworzone. Sprawdź skrzynkę, żeby potwierdzić e-mail.');
     } else {
+      trackEvent('login_success', { method: 'password' });
       _showBanner('Zalogowano jako ' + data.user.email);
     }
   } catch (e) {
@@ -4604,12 +4647,31 @@ function _authErrorMessage(data, mode) {
   }
 }
 
-function googleLogin() {
-  const returnTo = encodeURIComponent(window.location.href);
+async function googleLogin() {
+  await trackEventBeforeNav('login_start', { method: 'google' });
+  // Marker glogin=1 w return_to: po powrocie z OAuth strzelamy login_success
+  // (detekcja niżej) i czyścimy parametr z URL.
+  const u = new URL(window.location.href);
+  u.searchParams.set('glogin', '1');
+  const returnTo = encodeURIComponent(u.toString());
   window.location.href = AUTH_API + '/google/start?return_to=' + returnTo;
 }
 
+// Powrót z Google OAuth (marker doklejony w googleLogin powyżej).
+(function() {
+  try {
+    const u = new URL(window.location.href);
+    if (u.searchParams.get('glogin') === '1') {
+      trackEvent('login_success', { method: 'google' });
+      u.searchParams.delete('glogin');
+      const qs = u.searchParams.toString();
+      history.replaceState(null, '', u.pathname + (qs ? '?' + qs : '') + u.hash);
+    }
+  } catch (e) {}
+})();
+
 async function doLogout() {
+  await trackEventBeforeNav('logout', {});
   // 1. Local logout na bieżącej TLD (.pl)
   try {
     await fetch(AUTH_API + '/logout', { method: 'POST', credentials: 'include' });
