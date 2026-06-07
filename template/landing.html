@@ -141,16 +141,8 @@ footer a { color:var(--accent); text-decoration:none; }
 </head>
 <body>
 
-<nav class="topbar" aria-label="Główna nawigacja">
-  <a class="topbar-logo" href="{{SITE_URL}}/">Rado<span>skop</span> {{CITY_NAME}}</a>
-  <div class="topbar-nav">
-    <a href="https://radoskop.eu/reports/">Raporty</a>
-    <a href="https://radoskop.eu/business/">Business</a>
-  </div>
-  <div class="topbar-actions">
-    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw">Motyw</button>
-  </div>
-</nav>
+<script>window.RK_TOPBAR={logoHref:'{{SITE_URL}}/',logoSuffix:'{{CITY_NAME}}'};</script>
+<script src="https://radoskop.eu/assets/topbar.js"></script>
 
 <div class="container">
 
