@@ -74,12 +74,6 @@ def generate_vote_items(kad_data, city_name, site_url, vote_slug="vote"):
             "title": title,
             "summary": f"Wynik: {result} (za {za}, przeciw {przeciw}, wstrzym. {wstrzym}). Sesja {snum}.",
             "url": f"{site_url}/{vote_slug}/{vid}/",
-            # Liczniki dla bota X/Bluesky: wybór najbardziej spornego nowego
-            # głosowania do dedykowanego posta (link na stronę /notable/).
-            "za": za,
-            "przeciw": przeciw,
-            "wstrzym": wstrzym,
-            "active": (za or 0) + (przeciw or 0) + (wstrzym or 0),
         })
 
     return items

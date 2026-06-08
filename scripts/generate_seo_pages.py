@@ -31,22 +31,10 @@ Usage:
 """
 
 import argparse
-import datetime
 import html
 import json
 import re
 from pathlib import Path
-
-# "Głośne głosowania" (sporne): per-miasto strona evergreen /notable/ zbierająca
-# ostatnie sporne głosowania. Definicja spornego spójna z landingiem
-# (różnica za−przeciw < 10). Stanowi cel linkowania dla botów X/Bluesky i daje
-# Google sygnał świeżości plus mocne linkowanie wewnętrzne do stron /vote/.
-NOTABLE_SLUG = "notable"
-NOTABLE_MARGIN = 10        # |za − przeciw| <= 10 → sporne
-NOTABLE_MIN_ACTIVE = 10    # min oddanych głosów, żeby wynik był znaczący
-NOTABLE_WINDOW_DAYS = 30   # okno "ostatnie"; fallback do najnowszych gdy za mało
-NOTABLE_MIN_SHOW = 5       # poniżej tylu w oknie → pokaż najnowsze sporne w ogóle
-NOTABLE_MAX = 40           # twardy limit pozycji na stronie
 
 # Repliki historycznych slugify do mapy redirectów stary→kanoniczny
 # (_redirects/profiles.json, czyta ją worker) — patrz lib_slug.py.
@@ -471,7 +459,6 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
     # 2. Vote pages (per kadencja)
     # ════════════════════════════════════════════
     vote_count = 0
-    contested_votes = []  # zbierane w pętli niżej → strona /notable/
     # Mapa data → rzymski numer sesji. Po migracji ID głosowań z formatu
     # DATA_NNN na DATA_RZYMSKI_NNN (np. 2024-12-18_011 → 2024-12-18_VII_011)
     # stare permalinki z indeksu Google nie pasują do nowych ID i dają
@@ -656,74 +643,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
 
             sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.5"})
 
-            # Kwalifikacja do /notable/: realny sprzeciw i wynik na styk.
-            _active = za + przeciw + wstrzymal
-            if przeciw > 0 and _active >= NOTABLE_MIN_ACTIVE and abs(za - przeciw) <= NOTABLE_MARGIN:
-                contested_votes.append({
-                    "url": canonical, "topic": topic, "result": result,
-                    "za": za, "przeciw": przeciw, "wstrzymal": wstrzymal,
-                    "date": session_date, "margin": abs(za - przeciw),
-                })
-
     print(f"  {vote_count} vote pages")
-
-    # ════════════════════════════════════════════
-    # 2b. Notable / contested votes page (/notable/)
-    # ════════════════════════════════════════════
-    # Evergreen strona "Głośne głosowania" — ostatnie sporne głosowania z
-    # ostatnich NOTABLE_WINDOW_DAYS dni; fallback do najnowszych spornych w
-    # ogóle gdy w oknie jest ich mniej niż NOTABLE_MIN_SHOW (małe miasta).
-    if contested_votes:
-        today = datetime.date.today()
-        cutoff = today - datetime.timedelta(days=NOTABLE_WINDOW_DAYS)
-
-        def _pdate(s):
-            try:
-                return datetime.date.fromisoformat(str(s)[:10])
-            except (ValueError, TypeError):
-                return None
-
-        for cv in contested_votes:
-            cv["_date"] = _pdate(cv["date"])
-
-        in_window = [c for c in contested_votes if c["_date"] and c["_date"] >= cutoff]
-        pool = in_window if len(in_window) >= NOTABLE_MIN_SHOW else contested_votes
-        # Najnowsze pierwsze; przy równej dacie najpierw najbardziej sporne.
-        pool = sorted(
-            pool,
-            key=lambda c: (-(c["_date"].toordinal() if c["_date"] else 0), c["margin"]),
-        )[:NOTABLE_MAX]
-
-        items_html = []
-        for c in pool:
-            _topic = (c["topic"] or "").strip() or "Glosowanie"
-            items_html.append(
-                f"<li><a href=\"{c['url']}\">{esc(_topic[:160])}</a>"
-                f" — {c['result']} (za {c['za']}, przeciw {c['przeciw']},"
-                f" wstrzymalo sie {c['wstrzymal']})</li>"
-            )
-
-        canonical = f"{site_url}/{NOTABLE_SLUG}/"
-        title = f"Glosne glosowania – Radoskop {city_name}"
-        desc = (
-            f"Ostatnie sporne glosowania Rady Miasta {city_gen} — tam gdzie rada "
-            f"byla najbardziej podzielona. Wyniki i imienne glosy radnych."
-        )
-        notable_body = (
-            f"<h1>Glosne glosowania – {esc(city_name)}</h1>\n"
-            f"<p>Glosowania, w ktorych Rada Miasta {esc(city_gen)} byla najbardziej "
-            f"podzielona (roznica miedzy za i przeciw nie wieksza niz {NOTABLE_MARGIN}).</p>\n"
-            "<ol>\n" + "\n".join(items_html) + "\n</ol>\n"
-            f"<p><a href=\"{site_url}/\">Radoskop {esc(city_name)}</a></p>\n"
-        )
-        notable_crumbs = _breadcrumb([
-            (f"Radoskop {city_name}", f"{site_url}/"),
-            ("Glosne glosowania", canonical),
-        ])
-        page = make_page(main_html, canonical, title, desc, extra_body=notable_body, jsonld=notable_crumbs)
-        _maybe_write_page(out / NOTABLE_SLUG / "index.html", page)
-        sitemap_entries.append({"loc": canonical, "changefreq": "daily", "priority": "0.8"})
-        print(f"  1 notable page ({len(pool)} contested votes)")
 
     # ════════════════════════════════════════════
     # 3. Session pages

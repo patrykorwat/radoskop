@@ -692,6 +692,41 @@ PL_TO_DE: list[tuple[str, str]] = [
     # Meta keywords (niewidoczne, ale niech będą DE)
     (", landtag, radni, głosowania, frekwencja, samorząd, monitoring, transparentność",
      ", Landtag, Abgeordnete, Abstimmungen, Anwesenheit, Selbstverwaltung, Monitoring, Transparenz"),
+
+    # ── Czwarta partia 2026-06-08: sesje, paginacja, \\u-escaped ─────
+    # Wiersz tabeli sesji (results_pending) — pełna fraza
+    ("Wyniki głosowań jeszcze nieopublikowane", "Ergebnisse noch nicht veröffentlicht"),
+    ("Strona sesji w BIP", "Sitzungsseite im BIP"),
+    # Paginacja
+    ("Strona ", "Seite "),
+    (" z ", " von "),
+    (" głosowań)", " Abstimmungen)"),
+    (" pozycji)", " Einträge)"),
+    ("Poprzednie", "Vorherige"),
+    ("Poprzednia", "Vorherige"),
+    # Słowa-liczniki (małe litery, mid-template)
+    ("radny/a", "Abgeordnete:r"),
+    ("radnych", "Abgeordnete"),
+    ("'miasto'", "'Stadt'"),
+    ("'miasta'", "'Städte'"),
+    ("'miast'", "'Städte'"),
+    # Fallback "brak" (puste wartości) — tylko formy w cudzysłowie/tagu
+    (">brak<", ">keine<"),
+    ("'brak'", "'keine'"),
+    # Stringi z \\u-escape (apply_locale nie złapie ich przez realne znaki PL)
+    ("Nast\\u0119pne", "Weiter"),
+    ("g\\u0142osowa\\u0144", "Abstimmungen"),
+    ("wyst\\u0105pie\\u0144", "Wortmeldungen"),
+
+    # ── Piąta partia 2026-06-08: ostatnie widoczne resztki ──────────
+    ("Uwaga: profil zawiera tylko ", "Hinweis: Das Profil enthält nur "),
+    ("Posiedzenia", "Sitzungen"),
+    ("Zobacz cennik ↗", "Preise ansehen ↗"),
+    # Tekst share/og z głosami (anchored przecinkiem+spacją, nie rusza
+    # kluczy obiektów ani klas CSS .pill-przeciw)
+    (", przeciw ", ", dagegen "),
+    (", wstrzym. ", ", enthalten "),
+    ("'to miasto'", "'diese Stadt'"),
 ]
 
 

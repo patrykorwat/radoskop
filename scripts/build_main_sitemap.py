@@ -64,33 +64,11 @@ def write_sitemap_index(out_path: Path, cities: list[tuple[str, dict]], today: s
     out_path.write_text("\n".join(parts) + "\n", encoding="utf-8")
 
 
-def _discover_notable(docs_dir: Path) -> list[tuple[str, str, str]]:
-    """Strony 'Głośne głosowania' wygenerowane przez generate_notable.py.
-
-    Skanuje docs/notable/: index + każdy katalog tygodnia z index.html.
-    Zwraca (loc, priority, changefreq). Pusta lista gdy katalogu nie ma.
-    """
-    out: list[tuple[str, str, str]] = []
-    notable = docs_dir / "notable"
-    if not notable.is_dir():
-        return out
-    if (notable / "index.html").is_file():
-        out.append(("https://radoskop.pl/notable/", "0.8", "daily"))
-    weeks = sorted(
-        (d.name for d in notable.iterdir()
-         if d.is_dir() and (d / "index.html").is_file()),
-        reverse=True,
-    )
-    for wk in weeks:
-        out.append((f"https://radoskop.pl/notable/{wk}/", "0.6", "weekly"))
-    return out
-
-
-def write_apex_sitemap(out_path: Path, today: str, docs_dir: Path | None = None) -> None:
+def write_apex_sitemap(out_path: Path, today: str) -> None:
     """Small urlset for the apex pages: home + the cities directory anchor."""
     parts = ['<?xml version="1.0" encoding="UTF-8"?>']
     parts.append('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
-    urls = [
+    for loc, prio, freq in [
         ("https://radoskop.pl/", "1.0", "daily"),
         ("https://radoskop.pl/#cities", "0.8", "daily"),
         ("https://radoskop.pl/#councilors", "0.7", "weekly"),
@@ -100,10 +78,7 @@ def write_apex_sitemap(out_path: Path, today: str, docs_dir: Path | None = None)
         # jest hostowana kanonicznie pod https://radoskop.eu/business/, a
         # radoskop.pl/business/ oraz radoskop.pl/premium/ tylko 301 redirect
         # przez worker. Sitemap dla .eu lista /business/ osobno.
-    ]
-    if docs_dir is not None:
-        urls.extend(_discover_notable(docs_dir))
-    for loc, prio, freq in urls:
+    ]:
         parts.append("  <url>")
         parts.append(f"    <loc>{loc}</loc>")
         parts.append(f"    <lastmod>{today}</lastmod>")
@@ -139,7 +114,7 @@ def main() -> int:
     print(f"discovered: {len(cities)} cities", file=sys.stderr)
 
     write_sitemap_index(out_dir / "sitemap.xml", cities, today)
-    write_apex_sitemap(out_dir / "sitemap-main.xml", today, docs_dir=out_dir)
+    write_apex_sitemap(out_dir / "sitemap-main.xml", today)
 
     print(f"wrote {out_dir / 'sitemap.xml'} (index, {len(cities) + 1} sitemap refs)", file=sys.stderr)
     print(f"wrote {out_dir / 'sitemap-main.xml'} (apex urlset)", file=sys.stderr)
