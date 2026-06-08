@@ -2281,7 +2281,7 @@ async function renderVotesTable() {
       const c = v.counts || {};
       html += `<tr class="vote-row" onclick="showVote('${v.id || ''}')">
         <td style="color:var(--muted);width:30px">${i+1}</td>
-        <td>${catPill(v.category || categorizeVote(v.topic, v.item_kind))} ${v.topic ? v.topic.substring(0,120) : '?'}${v.druk ? ` <a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${v.druk}/" onclick="event.preventDefault();event.stopPropagation();showDruk(${v.druk},'${currentKid}')" style="color:var(--muted);text-decoration:none">(druk ${v.druk})</a>` : ''}</td>
+        <td>${catPill(v.category || categorizeVote(v.topic, v.item_kind))} ${v.topic ? v.topic.substring(0,120) : '?'}${v.druk ? ` <a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${drukSlug(String(v.druk))}/" onclick="event.preventDefault();event.stopPropagation();showDruk('${String(v.druk)}','${currentKid}')" style="color:var(--muted);text-decoration:none">(druk ${v.druk})</a>` : ''}</td>
         <td><span class="pill pill-za">${c.za||0}</span></td>
         <td>${c.przeciw ? `<span class="pill pill-przeciw">${c.przeciw}</span>` : '0'}</td>
         <td>${c.wstrzymal_sie ? `<span class="pill pill-wstrzymal">${c.wstrzymal_sie}</span>` : '0'}</td>
@@ -2606,7 +2606,7 @@ async function showVote(voteId) {
       <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessKey ? sessionLink(sessKey, 'Sesja ' + sessLabel + ' · ' + (vote.session_date || ''), ' style="color:var(--muted)"') : (vote.session_date ? 'Sesja · ' + vote.session_date : '')}</div>
       <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
       ${vote.summary ? `<p style="color:var(--text);margin-top:8px;font-size:0.95rem;line-height:1.6;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px">${vote.summary}</p>` : ''}
-      ${vote.druk ? `<div style="margin-top:4px"><a class="name-link" href="/bill/${KAD_SLUGS[voteKid]||voteKid}/${vote.druk}/" onclick="event.preventDefault();showDruk(${vote.druk},'${voteKid}')">Druk ${vote.druk} →</a></div>` : ''}
+      ${vote.druk ? `<div style="margin-top:4px"><a class="name-link" href="/bill/${KAD_SLUGS[voteKid]||voteKid}/${drukSlug(String(vote.druk))}/" onclick="event.preventDefault();showDruk('${String(vote.druk)}','${voteKid}')">Druk ${vote.druk} →</a></div>` : ''}
       ${vote.resolution ? `<div style="color:var(--muted)">Uchwała: ${vote.resolution}</div>` : ''}
       ${vote.source_url ? `<div style="margin-top:6px"><a href="${vote.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół głosowania (BIP) ↗</a></div>` : ''}
       <div style="margin-top:12px">
@@ -2634,10 +2634,20 @@ async function showVote(voteId) {
 // Pliki źródłowe: radoskop/cities/{city}/druki/{kadId}/{drukId}.json (poza docs/)
 // URL strony (kanon angielski): /bill/{kadSlug}/{drukId}/ → np. /bill/ix/123/
 // Wejściowe /bill/ tłumaczy toInternalPath na /druk/ (handler routera).
+// drukSlug — identyfikator druku bezpieczny dla URL i klucza S3. Numery
+// druków bywają niealfanumeryczne: Wrocław '830/26' (ukośnik rozbija ścieżkę
+// SPA i routing Flask), Kraków '1321-R'. Musi być spójny z druk_slug() w
+// scrapers/druki/scrape_druki.py i lookupem w data_api.py.
+//   '830/26' -> '830-26', '1321-R' -> '1321-R', '1605' -> '1605'
+function drukSlug(d) {
+  return String(d == null ? '' : d).trim().replace(/[^A-Za-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
 async function showDruk(drukId, kadId) {
   drukId = String(drukId);
+  const drukKey = drukSlug(drukId);  // do URL/API; drukId zostaje do wyświetlenia
   kadId = kadId || currentKid;
-  trackEvent('view_druk', { druk: drukId, kadencja: kadId });
+  trackEvent('view_druk', { druk: drukKey, kadencja: kadId });
 
   hideAllViews();
   const view = document.getElementById('druk-view');
@@ -2647,9 +2657,9 @@ async function showDruk(drukId, kadId) {
   const kadSlug = KAD_SLUGS[kadId] || kadId;
   setOgMeta({
     title: 'Druk ' + drukId + ' – Radoskop {{CITY_NAME}}',
-    url: '{{SITE_URL}}/bill/' + kadSlug + '/' + encodeURIComponent(drukId) + '/'
+    url: '{{SITE_URL}}/bill/' + kadSlug + '/' + drukKey + '/'
   });
-  navigateTo('/bill/' + kadSlug + '/' + encodeURIComponent(drukId) + '/');
+  navigateTo('/bill/' + kadSlug + '/' + drukKey + '/');
   setTitle('Druk ' + drukId);
 
   // Fetch przez API premium (credentials: include = session cookie).
@@ -2660,7 +2670,7 @@ async function showDruk(drukId, kadId) {
   let entry = null;
   try {
     const resp = await fetch(
-      API_BASE + '/kadencja/' + encodeURIComponent(kadId) + '/druk/' + encodeURIComponent(drukId),
+      API_BASE + '/kadencja/' + encodeURIComponent(kadId) + '/druk/' + encodeURIComponent(drukKey),
       { credentials: 'include' }
     );
     if (resp.ok) entry = await resp.json();
@@ -2682,7 +2692,7 @@ async function showDruk(drukId, kadId) {
         <p>${entry.tresc_preview}...</p>
         <div class="druk-paywall">
           <p style="margin:0 0 12px;color:var(--muted);font-size:0.9rem">Pełna treść dostępna w pakiecie Premium.</p>
-          <button class="auth-btn" onclick="showPro({from:'druk_content',druk:'${drukId}'})">Odblokuj Premium</button>
+          <button class="auth-btn" onclick="showPro({from:'druk_content',druk:'${drukKey}'})">Odblokuj Premium</button>
         </div>
       </div>`;
   } else {
@@ -2697,7 +2707,7 @@ async function showDruk(drukId, kadId) {
     <div id="druk-commission-timeline"></div>
   `;
 
-  renderCommissionTimeline(Number(drukId), document.getElementById('druk-commission-timeline'));
+  renderCommissionTimeline(drukKey, document.getElementById('druk-commission-timeline'));
   window.scrollTo(0, 0);
 }
 
@@ -3354,7 +3364,7 @@ async function showKomisja(slug) {
       // Każdy druk linkuje do swojej strony (showDruk), niezależnie od tego
       // czy mamy zmapowane głosowanie. Gdy jest głosowanie, dokładamy ikonę
       // wyniku ✓/✗ przy numerze.
-      return `<a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${encodeURIComponent(dStr)}/" onclick="event.preventDefault();showDruk(${dStr},'${currentKid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
+      return `<a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${drukSlug(String(dStr))}/" onclick="event.preventDefault();showDruk('${String(dStr)}','${currentKid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
     }).join('');
     const links = [];
     if (m.page_url) links.push(`<a href="${m.page_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none">↗ BIP</a>`);
