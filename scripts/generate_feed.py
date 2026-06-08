@@ -128,9 +128,14 @@ def generate_interpelacje_items(interpelacje, city_name, site_url, profiles_by_n
         typ_label = "Interpelacja" if typ == "interpelacja" else "Zapytanie"
 
         slug = get_slug(radny, profiles_by_name) if radny else ""
-        # Link to councillor profile if available, otherwise to interpelacje tab
+        # Link wprost do taba "Aktywność" profilu radnego (interpelacje i
+        # zapytania), żeby czytelnik z posta na X/Bluesky trafił od razu na
+        # listę jego interpelacji, a nie na zakładkę główną. ?tab=activity
+        # zamiast osobnego segmentu ścieżki: trafia w prerenderowaną stronę
+        # /profile/{slug}/ (canonical zostaje czysty), bez ryzyka soft-404 w GSC.
+        # Bez profilu (nazwisko nierozpoznane) — ogólny tab interpelacji miasta.
         if slug and radny in profiles_by_name:
-            url = f"{site_url}/{profile_slug}/{slug}/"
+            url = f"{site_url}/{profile_slug}/{slug}/?tab=activity"
         else:
             url = f"{site_url}/{interpelacje_slug}/"
 

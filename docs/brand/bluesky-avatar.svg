@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000">
+  <defs>
+    <linearGradient id="ind" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5b53f0"/>
+      <stop offset="100%" stop-color="#4338ca"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="1000" fill="url(#ind)"/>
+  <text x="500" y="500" font-family="Liberation Sans, DejaVu Sans, sans-serif" font-size="640" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="central">R</text>
+</svg>

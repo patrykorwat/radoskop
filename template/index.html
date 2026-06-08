@@ -481,7 +481,7 @@ async function init() {
       const profile = PROFILES.profiles.find(p => p.slug === slug);
       if (profile) {
         selectKadencjaQuiet(initialKid);
-        showProfile(profile.name);
+        showProfile(profile.name, _profileTabFromQuery());
         navigateTo(toCanonicalPath(path), true);
         return;
       }
@@ -1347,7 +1347,16 @@ function switchProfileTab(tab) {
   });
 }
 
-function showProfile(name) {
+// Tab profilu z query (?tab=activity), używany przy deep-linkach np. z
+// feedu/postów social. Tylko whitelist tabów profilu; inne wartości ignorujemy.
+function _profileTabFromQuery() {
+  try {
+    const t = new URLSearchParams(location.search).get('tab');
+    return (t && ['main', 'votes', 'activity'].includes(t)) ? t : null;
+  } catch (e) { return null; }
+}
+
+function showProfile(name, initialTab) {
   const profile = findProfile(name);
   if (!profile) return;
 
@@ -2084,6 +2093,10 @@ function showProfile(name) {
   };
 
   renderProfileDetail(activeKid);
+  // renderProfileDetail ustawia innerHTML synchronicznie (brak await przed
+  // wstawieniem szkieletu), więc tab można przełączyć od razu po wywołaniu.
+  // Treść interpelacji doczytuje się async do już widocznego #profile-tab-activity.
+  if (initialTab) switchProfileTab(initialTab);
   window.scrollTo(0, 0);
 }
 
@@ -4326,7 +4339,7 @@ window.addEventListener('popstate', async () => {
   if (path.startsWith('/profil/')) {
     const slug = path.replace('/profil/', '').replace(/\/$/, '');
     const profile = PROFILES && PROFILES.profiles.find(p => p.slug === slug);
-    if (profile) { showProfile(profile.name); _popstateActive = false; return; }
+    if (profile) { showProfile(profile.name, _profileTabFromQuery()); _popstateActive = false; return; }
   }
   if (path === '/glosowanie' || path === '/glosowanie/') {
     // /glosowanie/ bez ID → najnowsze głosowanie z aktualnej kadencji.
