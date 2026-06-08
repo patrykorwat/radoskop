@@ -141,6 +141,11 @@ def generate_interpelacje_items(interpelacje, city_name, site_url, profiles_by_n
 
         items.append({
             "type": "interpelacja",
+            # Podtyp rozróżnia interpelację od zapytania (art. 24 ustawy o
+            # samorządzie gminnym to dwa odrębne wnioski radnego). type zostaje
+            # "interpelacja" dla kompatybilności konsumentów feedu; subtype niesie
+            # właściwy rodzaj, żeby bot mógł je policzyć i nazwać osobno.
+            "subtype": typ,
             "date": date,
             "title": f"{typ_label}: {przedmiot[:100]}" if przedmiot else f"{typ_label} ({radny})",
             "summary": f"{radny}. {przedmiot[:150]}" if przedmiot else radny,

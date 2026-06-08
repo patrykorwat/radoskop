@@ -46,7 +46,44 @@ def esc(text):
     return html.escape(str(text), quote=True)
 
 
-def make_page(main_html, canonical_url, title, description, og_image=None, extra_body=""):
+def _jsonld_script(objs):
+    """Render one or more schema.org objects as a <script type=ld+json>.
+
+    Przyjmuje dict albo listę dictów. Lista >1 elementu trafia jako top-level
+    JSON array (dozwolone w JSON-LD). '<' jest escapowane na \\u003c, żeby
+    nazwa zawierająca '</script>' nie wybiła nas z bloku skryptu.
+    """
+    if not objs:
+        return ""
+    if isinstance(objs, dict):
+        objs = [objs]
+    payload = json.dumps(
+        objs if len(objs) > 1 else objs[0],
+        ensure_ascii=False, separators=(",", ":"),
+    ).replace("<", "\\u003c")
+    return f'<script type="application/ld+json">{payload}</script>\n'
+
+
+def _breadcrumb(items):
+    """Build a BreadcrumbList from [(name, url_or_None), ...].
+
+    Ostatni element (bieżąca strona) może mieć url=None — Google tego nie
+    wymaga. Elementy pośrednie powinny mieć url, inaczej crumb jest bezużyteczny.
+    """
+    elements = []
+    for i, (name, url) in enumerate(items, 1):
+        el = {"@type": "ListItem", "position": i, "name": name}
+        if url:
+            el["item"] = url
+        elements.append(el)
+    return {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": elements,
+    }
+
+
+def make_page(main_html, canonical_url, title, description, og_image=None, extra_body="", jsonld=None):
     """Create a page variant with unique SEO tags and optional body content."""
     h = main_html
 
@@ -141,6 +178,11 @@ def make_page(main_html, canonical_url, title, description, og_image=None, extra
             '<div id="loading">',
             seo_block + hide_script + '<div id="loading">'
         )
+
+    # Per-page structured data (Person / BreadcrumbList). Wstrzykiwane przed
+    # </head>, niezależnie od sitewide WebApplication JSON-LD z head.html.
+    if jsonld:
+        h = h.replace('</head>', _jsonld_script(jsonld) + '</head>', 1)
 
     return h
 
@@ -380,7 +422,32 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             f"<p><a href=\"{site_url}/\">Radoskop {esc(city_name)}</a></p>\n"
         )
 
-        page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body)
+        # Structured data: Person (radny) + breadcrumb. To jest główny zysk
+        # SEO dla wyszukiwań nazwiskiem radnego — pomaga Google rozpoznać encję
+        # i pokazać breadcrumb w wynikach.
+        person = {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": name,
+            "url": canonical,
+            "jobTitle": "radny miejski",
+            "memberOf": {
+                "@type": "GovernmentOrganization",
+                "name": f"Rada Miasta {city_gen}",
+            },
+        }
+        if og_img:
+            person["image"] = og_img
+        _club_norm = (club_full or "").strip().lower()
+        if club_full and _club_norm not in ("niezrzeszeni", "niezrzeszony", "niezrzeszona", "?", ""):
+            person["affiliation"] = {"@type": "Organization", "name": club_full}
+        crumbs = _breadcrumb([
+            (f"Radoskop {city_name}", f"{site_url}/"),
+            (f"Radni {city_gen}", f"{site_url}/{SLUG['profile']}/"),
+            (name, canonical),
+        ])
+
+        page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body, jsonld=[person, crumbs])
         _maybe_write_page(out / SLUG["profile"] / slug / "index.html", page)
         profile_count += 1
 
@@ -566,7 +633,11 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                 + f"<p><a href=\"{site_url}/\">Radoskop {esc(city_name)}</a></p>\n"
             )
 
-            page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body)
+            crumbs = _breadcrumb([
+                (f"Radoskop {city_name}", f"{site_url}/"),
+                ((topic[:90] or f"Glosowanie {vid}"), canonical),
+            ])
+            page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body, jsonld=crumbs)
             _maybe_write_page(out / SLUG["vote"] / vid / "index.html", page)
             vote_count += 1
 
@@ -649,7 +720,11 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                 + f"<p><a href=\"{site_url}/\">Radoskop {esc(city_name)}</a></p>\n"
             )
 
-            page = make_page(main_html, canonical, title, desc, extra_body=body)
+            crumbs = _breadcrumb([
+                (f"Radoskop {city_name}", f"{site_url}/"),
+                (f"Sesja {snum}", canonical),
+            ])
+            page = make_page(main_html, canonical, title, desc, extra_body=body, jsonld=crumbs)
             _maybe_write_page(out / SLUG["session"] / snum / "index.html", page)
             session_count += 1
 
@@ -787,7 +862,12 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             if club_parts:
                 term_body += "<p>Kluby: " + ", ".join(club_parts) + "</p>\n"
 
-        page = make_page(main_html, canonical, title, desc, extra_body=term_body)
+        term_crumbs = _breadcrumb([
+            (f"Radoskop {city_name}", f"{site_url}/"),
+            (f"Kadencje Rady Miasta {city_gen}", f"{site_url}/{SLUG['term']}/"),
+            (f"Kadencja {kid}", canonical),
+        ])
+        page = make_page(main_html, canonical, title, desc, extra_body=term_body, jsonld=term_crumbs)
         _maybe_write_page(out / SLUG["term"] / kslug / "index.html", page)
 
         sitemap_entries.append({"loc": canonical, "changefreq": "weekly", "priority": "0.8"})
@@ -797,9 +877,16 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             tab_title = f"{tab_name}, kadencja {kid} \u2013 Radoskop {city_name}"
             tab_desc = f"{tab_name} Rady Miasta {city_gen}, kadencja {kid}."
 
+            tab_crumbs = _breadcrumb([
+                (f"Radoskop {city_name}", f"{site_url}/"),
+                (f"Kadencje Rady Miasta {city_gen}", f"{site_url}/{SLUG['term']}/"),
+                (f"Kadencja {kid}", canonical),
+                (tab_name, tab_canonical),
+            ])
             tab_page = make_page(
                 main_html, tab_canonical, tab_title, tab_desc,
                 extra_body=_tab_body(tab_slug, kid, kad_data),
+                jsonld=tab_crumbs,
             )
             _maybe_write_page(out / SLUG["term"] / kslug / tab_slug / "index.html", tab_page)
             kad_count += 1
@@ -816,7 +903,11 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         title = f"Budzet {city_gen} \u2013 Radoskop {city_name}"
         desc = f"Analiza budzetu miasta {city_gen}. Wydatki, dochody i inwestycje miejskie."
 
-        page = make_page(main_html, canonical, title, desc)
+        budget_crumbs = _breadcrumb([
+            (f"Radoskop {city_name}", f"{site_url}/"),
+            (f"Budzet {city_gen}", canonical),
+        ])
+        page = make_page(main_html, canonical, title, desc, jsonld=budget_crumbs)
         _maybe_write_page(out / SLUG["budget"] / "index.html", page)
         sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.8"})
         print(f"  1 budget page")
@@ -832,7 +923,11 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         if (out / dirname).is_dir() or (docs / dirname).is_dir() or profiles:
             canonical = f"{site_url}/{dirname}/"
             title = f"{title_part} \u2013 Radoskop {city_name}"
-            page = make_page(main_html, canonical, title, desc_part)
+            dir_crumbs = _breadcrumb([
+                (f"Radoskop {city_name}", f"{site_url}/"),
+                (title_part, canonical),
+            ])
+            page = make_page(main_html, canonical, title, desc_part, jsonld=dir_crumbs)
             _maybe_write_page(d / "index.html", page)
             sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": prio})
 
@@ -865,7 +960,11 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
     reports_canonical = f"{site_url}/{SLUG['reports']}/"
     reports_title = f"Raporty PDF \u2013 Radoskop {city_name}"
     reports_desc = f"Szczeg\u00f3\u0142owe raporty PDF z analiz\u0105 pracy radnych, klub\u00f3w i rady miasta {city_gen}. Frekwencja, g\u0142osowania, rebelie."
-    reports_page = make_page(main_html, reports_canonical, reports_title, reports_desc)
+    reports_crumbs = _breadcrumb([
+        (f"Radoskop {city_name}", f"{site_url}/"),
+        ("Raporty PDF", reports_canonical),
+    ])
+    reports_page = make_page(main_html, reports_canonical, reports_title, reports_desc, jsonld=reports_crumbs)
     _maybe_write_page(out / SLUG["reports"] / "index.html", reports_page)
     sitemap_entries.append({"loc": reports_canonical, "changefreq": "weekly", "priority": "0.6"})
 
