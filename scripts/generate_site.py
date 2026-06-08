@@ -894,11 +894,17 @@ def externalize_assets(html: str, output_dir: Path, asset_base: str = "/assets",
 
 
 def generate_robots(config: dict) -> str:
-    """Generate robots.txt."""
+    """Generate robots.txt.
+
+    NIE blokujemy /*.json — SPA (homepage, listy radnych/interpelacji/budżetu)
+    renderuje treść client-side z data.json/export.json/profiles.json, więc
+    Googlebot musi móc je pobrać, inaczej renderuje thin content ("Ładowanie
+    danych..."). Same pliki JSON nie są indeksowane jako strony bo worker
+    ustawia na nich x-robots-tag: noindex (patrz cloudflare/worker.js).
+    """
     return (
         f"User-agent: *\n"
         f"Allow: /\n"
-        f"Disallow: /*.json$\n"
         f"Disallow: /*?p=\n"
         f"\n"
         f"Sitemap: {config['site_url']}/sitemap.xml\n"
