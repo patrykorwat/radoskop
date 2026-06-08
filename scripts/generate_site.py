@@ -1199,6 +1199,20 @@ def main():
         with open(output_dir / "CNAME", "w") as f:
             f.write(config["cname"] + "\n")
 
+    # Domyślna karta OG miasta (1200×630) dla stron bez własnego dynamicznego
+    # OG: strona główna, lista interpelacji, sesje (fallback w workerze).
+    # head.html wskazuje na {{SITE_URL}}/og.png. Deterministyczna per domena,
+    # więc nie churnuje przy regeneracji. PIL w try/except — brak biblioteki
+    # nie wywala generacji strony.
+    try:
+        from generate_og_images import render_city_card
+        _og_name = config.get("city_name") or config.get("voivodeship_name", "")
+        _og_domain = (config["site_url"].replace("https://", "")
+                      .replace("http://", "").rstrip("/"))
+        render_city_card(_og_name, _og_domain, output_dir / "og.png")
+    except Exception as e:
+        print(f"  [og.png] pominięto: {e}")
+
     print(f"Generated site for {config.get('city_name') or config.get('voivodeship_name', '?')}:")
     print(f"  index.html  → {output_dir / 'index.html'}")
     print(f"  404.html    → {output_dir / '404.html'}")
