@@ -3731,7 +3731,7 @@ async function renderInterpelacje() {
   });
 }
 
-let budgetChartTrend = null, budgetChartCat = null;
+let budgetChartTrend = null, budgetChartCat = null, budgetChartCofog = null;
 
 function renderBudget() {
   const B = window.BUDGET;
@@ -3790,6 +3790,10 @@ function renderBudget() {
           <div class="metric-value" style="color:var(--red);font-size:1.4rem">${fmt(totals.deficit)}</div>
           <div class="metric-label">Deficyt${est}</div>
         </div>
+        ${totals.debt != null ? `<div class="metric-card">
+          <div class="metric-value" style="color:var(--yellow);font-size:1.4rem">${fmt(totals.debt)}</div>
+          <div class="metric-label">Zadłużenie${est}</div>
+        </div>` : ''}
       </div>`;
       if (totals.estimated) {
         dhtml += `<div style="background:rgba(202,138,4,0.08);border:1px solid rgba(202,138,4,0.25);border-radius:8px;padding:12px 16px;margin-top:-8px;margin-bottom:16px;font-size:0.85rem;color:var(--text)">
@@ -3824,6 +3828,16 @@ function renderBudget() {
             }).join('')}</tbody></table>
           </div>
         </div>`;
+    }
+
+    // COFOG: struktura funkcjonalna tego miasta vs średnia jego klasy (benchmark
+    // rówieśniczy z cofog_peers, wstrzyknięty do budget.json jako cofog_peer).
+    const cofY = (B.cofog || {})[yStr] || [];
+    if (cofY.length > 0 && B.cofog_peer && B.cofog_peer.functions) {
+      const klassLabel = B.cofog_peer.class === 'grodzki' ? 'miast na prawach powiatu' : 'gmin miejskich';
+      dhtml += `<h2>Wydatki wg funkcji na tle innych ${klassLabel}</h2>
+        <p style="color:var(--muted);font-size:0.85rem;margin-top:-8px">Udział funkcji (klasyfikacja COFOG) w wydatkach ${year}, w porównaniu ze średnią ${B.cofog_peer.n_cities} ${klassLabel} (te same dane sprawozdawcze).</p>
+        <div style="max-width:660px;margin-bottom:24px"><canvas id="budget-cofog-chart"></canvas></div>`;
     }
 
     // Budget votes for this year
@@ -3880,6 +3894,34 @@ function renderBudget() {
             plugins: {
               legend: { position: 'bottom', labels: { color: '#4b5563', padding: 10, font: { size: 11 } } },
               tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${ctx.parsed.toFixed(0)} mln PLN` } }
+            }
+          }
+        });
+      }
+    }
+
+    // COFOG comparison bar chart (poziomy): to miasto vs średnia klasy.
+    if (cofY.length > 0 && B.cofog_peer && B.cofog_peer.functions) {
+      const peerF = B.cofog_peer.functions;
+      const rows = cofY.slice().sort((a, b) => b.pct - a.pct);
+      const labels = rows.map(r => r.name.length > 26 ? r.name.slice(0, 24) + '…' : r.name);
+      const cityVals = rows.map(r => r.pct);
+      const peerVals = rows.map(r => peerF[r.code] != null ? peerF[r.code] : 0);
+      if (budgetChartCofog) budgetChartCofog.destroy();
+      const cc = document.getElementById('budget-cofog-chart');
+      if (cc) {
+        budgetChartCofog = new Chart(cc.getContext('2d'), {
+          type: 'bar',
+          data: { labels, datasets: [
+            { label: 'To miasto', data: cityVals, backgroundColor: '#4f46e5' },
+            { label: 'Średnia klasy', data: peerVals, backgroundColor: '#cbd5e1' }
+          ] },
+          options: {
+            indexAxis: 'y', responsive: true,
+            scales: { x: { ticks: { callback: v => v + '%', color: '#6b7280' } }, y: { ticks: { color: '#4b5563', font: { size: 11 } } } },
+            plugins: {
+              legend: { position: 'bottom', labels: { color: '#4b5563', font: { size: 11 } } },
+              tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.x.toFixed(1)}%` } }
             }
           }
         });

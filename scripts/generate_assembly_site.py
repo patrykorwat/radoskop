@@ -234,7 +234,7 @@ def generate_sitemap(config: dict[str, Any], has_oversight: bool = False) -> str
     if has_oversight:
         extra = (
             f'  <url>\n'
-            f'    <loc>{site_url}/oversight/</loc>\n'
+            f'    <loc>{site_url}/division/</loc>\n'
             f'    <lastmod>{today}</lastmod>\n'
             f'    <changefreq>monthly</changefreq>\n'
             f'    <priority>0.5</priority>\n'
@@ -284,16 +284,18 @@ def _osc(s: Any) -> str:
 
 
 def generate_oversight_button(cfg: dict[str, Any], tree: dict[str, Any]) -> str:
-    """Link nawigacji do podstrony Nadzór administracyjny.
+    """Link nawigacji do podstrony Podział administracyjny.
 
     Tylko dla polskich sejmików, których kod TERYT województwa jest w drzewie i
     ma powiaty. Land DE (MV) nie ma drzewa powiatów, więc nic nie zwraca.
+    Uwaga nazewnictwa: NIE "nadzór" — sejmik nie sprawuje nadzoru nad JST (to
+    wojewoda i RIO). Strona pokazuje podział terytorialny regionu.
     """
     code = cfg.get("teryt")
     if not code or code not in tree or not tree[code].get("powiaty"):
         return ""
-    return ('        <a href="/oversight/" class="tab" '
-            'style="text-decoration:none">Nadzór administracyjny</a>')
+    return ('        <a href="/division/" class="tab" '
+            'style="text-decoration:none">Podział administracyjny</a>')
 
 
 def build_oversight_html(woj: dict[str, Any], coverage: dict[str, Any],
@@ -339,9 +341,9 @@ def build_oversight_html(woj: dict[str, Any], coverage: dict[str, Any],
 
     return f"""<!doctype html><html lang="pl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nadzór administracyjny — {_osc(rada)}</title>
+<title>Podział administracyjny — {_osc(rada)}</title>
 <meta name="description" content="Podział administracyjny województwa {_osc(wname)}: powiaty i gminy. Radoskop.">
-<link rel="canonical" href="{_osc(site_url)}/oversight/">
+<link rel="canonical" href="{_osc(site_url)}/division/">
 <style>
   :root{{--accent:#4f46e5;--amber:#b45309;--muted:#6b7280;--border:#e5e7eb;--text:#111;--bg:#fff;}}
   *{{box-sizing:border-box;}}
@@ -372,9 +374,10 @@ def build_oversight_html(woj: dict[str, Any], coverage: dict[str, Any],
 </style></head><body>
 <div class="top"><a href="/">← {_osc(rada)}</a></div>
 <div class="wrap">
-<h1>Nadzór administracyjny</h1>
-<p class="lead">Struktura podziału terytorialnego województwa {_osc(wname)}: powiaty i gminy
-w regionie. Jednostki monitorowane przez Radoskop są podlinkowane.</p>
+<h1>Podział administracyjny</h1>
+<p class="lead">Powiaty i gminy w województwie {_osc(wname)}. Jednostki monitorowane przez
+Radoskop są podlinkowane. Nadzór nad nimi sprawują wojewoda i regionalna izba
+obrachunkowa, nie sejmik.</p>
 <div class="stats">
   <span><b>{len(ziemskie)}</b> powiatów ziemskich</span>
   <span><b>{len(grodzkie)}</b> miast na prawach powiatu</span>
@@ -595,11 +598,11 @@ def main() -> int:
     _has_oversight = bool(_woj_code and _woj_code in _tree
                           and _tree[_woj_code].get("powiaty"))
     if _has_oversight:
-        _odir = output_dir / "oversight"
+        _odir = output_dir / "division"
         _odir.mkdir(parents=True, exist_ok=True)
         (_odir / "index.html").write_text(
             build_oversight_html(_tree[_woj_code], _cov, cfg), encoding="utf-8")
-        print(f"  napisano oversight/index.html ({_tree[_woj_code]['name']})")
+        print(f"  napisano division/index.html ({_tree[_woj_code]['name']})")
     (output_dir / "sitemap.xml").write_text(
         generate_sitemap(cfg, has_oversight=_has_oversight), encoding="utf-8")
     (output_dir / "robots.txt").write_text(generate_robots(cfg), encoding="utf-8")

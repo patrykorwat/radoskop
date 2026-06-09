@@ -34,6 +34,9 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib_dzial_cofog import COFOG_LABELS, map_to_cofog  # noqa: E402
+
 API = "https://bestia-api.mf.gov.pl"
 HERE = Path(__file__).resolve().parent.parent
 PAGE_LIMIT = 100  # twardy max API (200+ -> HTTP 400)
@@ -69,16 +72,32 @@ def num(s) -> float:
 
 
 def resolve_unit(teryt: str) -> dict | None:
-    """Zwraca {const_id, nazwa, wk, pk, gk} jednostki BeSTi@ dla kodu TERYT."""
+    """Zwraca {const_id, nazwa, wk, pk, gk} jednostki BeSTi@ dla kodu TERYT.
+
+    Wiele jednostek dzieli ten sam kod wk/pk/gk (np. związek gmin z kodem siedziby).
+    Dlatego pobieramy kandydatów i wybieramy WŁAŚCIWY samorząd:
+    - grodzki: gk=00, pt=2 (miasto na prawach powiatu), odsiewa związki (pt 7/8),
+    - gmina: gt = rodzaj z TERYT (1 miejska/2 wiejska/3 miejsko-wiejska), z wykluczeniem
+      związków (gt=Z). Bez tego Bochnia łapała "Związek Gmin Dolnego Dorzecza Raby".
+    """
     if not teryt or len(teryt) < 6:
         return None
-    wk, pk, gk = teryt[0:2], teryt[2:4], teryt[4:6]
+    wk, pk, gk0 = teryt[0:2], teryt[2:4], teryt[4:6]
+    rodzaj = teryt[6] if len(teryt) >= 7 else ""
     grodzki = pk.isdigit() and int(pk) >= 61
-    filt = {"jednostka-wk": wk, "jednostka-pk": pk, "jednostka-gk": "00" if grodzki else gk}
+    filt = {"jednostka-wk": wk, "jednostka-pk": pk, "jednostka-gk": "00" if grodzki else gk0}
     if grodzki:
-        filt["jednostka-pt"] = "2"  # miasto na prawach powiatu (odsiewa związki)
+        filt["jednostka-pt"] = "2"  # miasto na prawach powiatu
+    elif rodzaj:
+        # Filtr po typie gminy odsiewa związki (gt=Z) dzielące ten sam kod (np.
+        # związek z kodem siedziby Bochni). Miasto w gminie miejsko-wiejskiej
+        # (rodzaj 4) sprawozdaje się jako gmina MW (gt=3).
+        filt["jednostka-gt"] = "3" if rodzaj == "4" else rodzaj
     j = api_get("/api/sprawozdania", filt, limit=5)
     rows = (j or {}).get("data") or []
+    if not rows:  # fallback bez filtra typu
+        filt.pop("jednostka-gt", None)
+        rows = (api_get("/api/sprawozdania", filt, limit=5) or {}).get("data") or []
     if not rows:
         return None
     r = rows[0]
@@ -143,6 +162,33 @@ def debt_total(const_id: str, rok: str) -> float | None:
     return None
 
 
+def aggregate_rb28s(const_id: str, rok: str) -> tuple[dict, dict, dict]:
+    """Jeden przebieg po rocznym Rb-28S: sumuje wydatki wykonane po DZIALE
+    (kategorie) i po funkcji COFOG (mapując każdy wiersz po dział+rozdział)."""
+    tot = {"ww": 0.0, "pl": 0.0}
+    by_dzial: dict[str, float] = {}
+    by_cofog: dict[str, float] = {}
+    page, pages = 1, 1
+    while page <= pages and page <= 80:
+        j = api_get("/api/pozycje-rb28s",
+                    {"jednostka-const-id": const_id, "okres-rok": rok, "okres-okres": "4"},
+                    fields="dzial,rozdzial,ww,pl", page=page)
+        if not j:
+            break
+        pages = j["paging"]["totalPages"]
+        for x in j.get("data", []):
+            w = num(x.get("ww"))
+            tot["ww"] += w
+            tot["pl"] += num(x.get("pl"))
+            by_dzial[x.get("dzial")] = by_dzial.get(x.get("dzial"), 0.0) + w
+            gf = map_to_cofog(x.get("dzial"), x.get("rozdzial"))
+            if gf:
+                by_cofog[gf] = by_cofog.get(gf, 0.0) + w
+        page += 1
+        time.sleep(0.05)
+    return tot, by_dzial, by_cofog
+
+
 def dzialy_names() -> dict[str, str]:
     out: dict[str, str] = {}
     page = 1
@@ -171,8 +217,9 @@ def build_budget(teryt: str, years_n: int) -> dict | None:
 
     totals = []
     categories: dict[str, list] = {}
+    cofog: dict[str, list] = {}
     for y in years:
-        exp_tot, exp_by_dz = sum_report("/api/pozycje-rb28s", cid, y, ["ww", "pl"], group_key="dzial")
+        exp_tot, exp_by_dz, exp_by_cofog = aggregate_rb28s(cid, y)
         rev_tot, _ = sum_report("/api/pozycje-rb27s", cid, y, ["dw", "pl"])
         debt = debt_total(cid, y)
         revenue, expenditure = rev_tot["dw"], exp_tot["ww"]
@@ -191,6 +238,12 @@ def build_budget(teryt: str, years_n: int) -> dict | None:
                 for d, v in exp_by_dz.items() if v]
         cats.sort(key=lambda c: -(c["amount"] or 0))
         categories[str(y)] = cats
+        # COFOG: udziały funkcji w wydatkach (% liczone do wydatków ogółem).
+        cof = [{"code": gf, "name": COFOG_LABELS.get(gf, gf), "amount": round(v, 2),
+                "pct": round(v / expenditure * 100, 1) if expenditure else None}
+               for gf, v in exp_by_cofog.items() if v]
+        cof.sort(key=lambda c: -(c["amount"] or 0))
+        cofog[str(y)] = cof
         print(f"  {y}: dochody {revenue/1e6:.0f} mln, wydatki {expenditure/1e6:.0f} mln, "
               f"deficyt {(revenue-expenditure)/1e6:.0f} mln, dług "
               f"{debt/1e6:.0f} mln" if debt is not None else
@@ -203,6 +256,7 @@ def build_budget(teryt: str, years_n: int) -> dict | None:
         "currency": "zł",
         "totals": totals,
         "categories": categories,
+        "cofog": cofog,
     }
 
 
