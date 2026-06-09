@@ -42,11 +42,11 @@ STRINGS: dict[str, dict[str, str]] = {
                      "fr": "Conseil municipal de {name}", "da": "Byråd {name}",
                      "hu": "{name} városi tanács", "uk": "Міська рада {name}",
                      "lt": "{name} miesto taryba", "lv": "{name} pilsētas dome", "et": "{name} linnavolikogu"},
-    # Wariant dla assembly (sejmik PL / Landtag DE). Nakładany przez
-    # catalog(..., assembly=True) na klucz bazowy. {name} = dopełniacz
-    # ("Pomorskiego" / "Mecklenburg-Vorpommerns").
-    "hero_eyebrow_assembly": {"pl": "Sejmik Województwa {name}", "en": "{name} Regional Assembly",
-                              "de": "Landtag {name}"},
+    # Warianty per samorzad_type (nakładane przez catalog(..., samorzad_type=...)
+    # na klucz bazowy; baza = miasto). {name} = dopełniacz ("Pomorskiego" /
+    # "Mecklenburg-Vorpommerns").
+    "hero_eyebrow_wojewodztwo": {"pl": "Sejmik Województwa {name}", "en": "{name} Regional Assembly"},
+    "hero_eyebrow_land": {"de": "Landtag {name}", "en": "{name} State Parliament"},
     "term_word": {"pl": "kadencja", "en": "term", "de": "Wahlperiode", "cs": "volební období",
                   "nl": "termijn", "sk": "volebné obdobie", "fr": "mandature", "da": "valgperiode",
                   "hu": "ciklus", "uk": "каденція", "lt": "kadencija", "lv": "sasaukums", "et": "koosseis"},
@@ -58,8 +58,8 @@ STRINGS: dict[str, dict[str, str]] = {
                    "hu": "Így működik a [[városi tanács]].", "uk": "Як працює [[міська рада]].",
                    "lt": "Kaip veikia [[miesto taryba]].", "lv": "Kā strādā [[pilsētas dome]].",
                    "et": "Kuidas töötab [[linnavolikogu]]."},
-    "hero_title_assembly": {"pl": "Tak działa [[sejmik województwa]].", "en": "How the [[regional assembly]] works.",
-                            "de": "So arbeitet der [[Landtag]]."},
+    "hero_title_wojewodztwo": {"pl": "Tak działa [[sejmik województwa]].", "en": "How the [[regional assembly]] works."},
+    "hero_title_land": {"de": "So arbeitet der [[Landtag]].", "en": "How the [[state parliament]] works."},
     "cta_check_votes": {"pl": "Sprawdź, jak głosują radni", "en": "See how councillors vote",
                         "de": "Sehen, wie Ratsmitglieder abstimmen", "cs": "Jak hlasují zastupitelé",
                         "nl": "Zie hoe raadsleden stemmen", "sk": "Ako hlasujú poslanci",
@@ -74,11 +74,12 @@ STRINGS: dict[str, dict[str, str]] = {
                      "en": "This term, {name} councillors have cast <strong>{votes} votes</strong>. <strong>{contested}</strong> were contested.",
                      "de": "In dieser Wahlperiode haben die Ratsmitglieder von {name} bereits <strong>{votes} Stimmen</strong> abgegeben. <strong>{contested}</strong> waren umstritten.",
                      "cs": "V tomto volebním období zastupitelé {name} odevzdali už <strong>{votes} hlasů</strong>. Sporných bylo <strong>{contested}</strong>."},
-    # Wariant assembly bez {name} — dopełniacz przekazywany przez renderer jest
+    # Warianty bez {name} — dopełniacz przekazywany przez renderer jest
     # capitalizowany ("Pomorskiego") i nie pasuje do "radni województwa ...".
-    "insight_full_assembly": {"pl": "W tej kadencji radni sejmiku oddali już <strong>{votes} głosów</strong>. Spornych było <strong>{contested}</strong>.",
-                              "en": "This term, the assembly has cast <strong>{votes} votes</strong>. <strong>{contested}</strong> were contested.",
-                              "de": "In dieser Wahlperiode hat der Landtag bereits <strong>{votes} Stimmen</strong> abgegeben. <strong>{contested}</strong> waren umstritten."},
+    "insight_full_wojewodztwo": {"pl": "W tej kadencji radni sejmiku oddali już <strong>{votes} głosów</strong>. Spornych było <strong>{contested}</strong>.",
+                                 "en": "This term, the assembly has cast <strong>{votes} votes</strong>. <strong>{contested}</strong> were contested."},
+    "insight_full_land": {"de": "In dieser Wahlperiode hat der Landtag bereits <strong>{votes} Stimmen</strong> abgegeben. <strong>{contested}</strong> waren umstritten.",
+                          "en": "This term, the parliament has cast <strong>{votes} votes</strong>. <strong>{contested}</strong> were contested."},
     "insight_light": {"pl": "Rada {name} liczy <strong>{n}</strong> radnych. Sprawdź ich pełną listę i kluby.",
                       "en": "The {name} council has <strong>{n}</strong> members. See the full list and clubs.",
                       "de": "Der Rat von {name} hat <strong>{n}</strong> Mitglieder. Sehen Sie die vollständige Liste und Fraktionen.",
@@ -254,9 +255,10 @@ STRINGS: dict[str, dict[str, str]] = {
                         "en": "City spending and how each councillor voted on the money.",
                         "de": "Ausgaben der Stadt und wie über das Geld abgestimmt wurde.",
                         "cs": "Výdaje města a jak kdo hlasoval o penězích."},
-    "nav_budget_desc_assembly": {"pl": "Wydatki województwa i to, kto jak głosował nad pieniędzmi.",
-                                 "en": "Regional spending and how each councillor voted on the money.",
-                                 "de": "Ausgaben des Landes und wie über das Geld abgestimmt wurde."},
+    "nav_budget_desc_wojewodztwo": {"pl": "Wydatki województwa i to, kto jak głosował nad pieniędzmi.",
+                                    "en": "Regional spending and how each councillor voted on the money."},
+    "nav_budget_desc_land": {"de": "Ausgaben des Landes und wie über das Geld abgestimmt wurde.",
+                             "en": "State spending and how each member voted on the money."},
     "nav_committees_title": {"pl": "Komisje", "en": "Committees", "de": "Ausschüsse", "cs": "Komise", "nl": "Commissies",
                              "sk": "Komisie", "fr": "Commissions", "da": "Udvalg", "hu": "Bizottságok", "uk": "Комісії",
                              "lt": "Komitetai", "lv": "Komitejas", "et": "Komisjonid"},
@@ -372,24 +374,33 @@ STRINGS: dict[str, dict[str, str]] = {
 }
 
 
-def catalog(locale: str, assembly: bool = False) -> dict[str, str]:
+# Typy samorządu, dla których istnieją warianty `<key>_<type>`. Baza katalogu
+# (bez sufiksu) to miasto, więc "miasto" celowo nie ma sufiksów i nie nakłada
+# nic. Lista służy tylko do oddzielenia kluczy-wariantów od kluczy bazowych
+# przy budowie katalogu (żeby warianty nie wyciekały jako osobne wpisy).
+SAMORZAD_TYPES = ("wojewodztwo", "land")
+
+
+def catalog(locale: str, samorzad_type: str = "miasto") -> dict[str, str]:
     """Zwróć słownik key -> tekst dla locale, fallback locale -> en -> pl.
 
-    assembly=True: po zbudowaniu katalogu bazowego nakłada warianty
-    `<key>_assembly` (sejmik PL / Landtag DE) na klucz bazowy `<key>`.
-    Dzięki temu renderLandingHTML/build_seo_content czytają te same klucze
-    (hero_title, hero_eyebrow, insight_full, nav_budget_desc), a treść jest
-    poprawna dla assembly bez gałęzi w rendererze.
+    samorzad_type != "miasto": po zbudowaniu katalogu bazowego (= miasto)
+    nakłada warianty `<key>_<samorzad_type>` na klucz bazowy `<key>`. Renderer
+    i build_seo_content czytają zawsze te same klucze (hero_title, hero_eyebrow,
+    insight_full, nav_budget_desc...), a treść jest poprawna dla danego typu
+    bez gałęzi w rendererze. Dodanie nowego typu = nowe wpisy `<key>_<type>`
+    plus pozycja w SAMORZAD_TYPES, bez zmian w kodzie wołającym.
     """
     loc = (locale or "pl").lower()
+    suffixes = tuple("_" + t for t in SAMORZAD_TYPES)
     out = {}
     for key, variants in STRINGS.items():
-        if key.endswith("_assembly"):
+        if key.endswith(suffixes):
             continue
         out[key] = variants.get(loc) or variants.get("en") or variants.get("pl") or key
-    if assembly:
+    if samorzad_type and samorzad_type != "miasto":
         for base_key in list(out.keys()):
-            variants = STRINGS.get(base_key + "_assembly")
+            variants = STRINGS.get(f"{base_key}_{samorzad_type}")
             if variants:
                 out[base_key] = (variants.get(loc) or variants.get("en")
                                  or variants.get("pl") or out[base_key])

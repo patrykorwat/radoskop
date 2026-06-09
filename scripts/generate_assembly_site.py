@@ -360,7 +360,8 @@ def main() -> int:
     # "{{CITY_SLUG}}" i alerty nie znajdują match'u.
     assembly_slug = cfg.get("voivodeship_slug") or cfg.get("slug") or cfg_path.parent.name
 
-    _lcat_asm = landing_catalog((cfg.get("locale") or "pl").lower(), assembly=True)
+    _lcat_asm = landing_catalog((cfg.get("locale") or "pl").lower(),
+                                samorzad_type=samorzad_kind)
     replacements = {
         "{{CAT_RULES_JS}}": _cat_rules_js,
         # Sejmiki/landy nie używają disclaimera per-radny — wszystkie polskie
