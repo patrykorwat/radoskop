@@ -40,5 +40,6 @@
     "max_session_number": 30,
     "note": "Lubelskie BIP nie publikuje indeksu sesji VII kadencji. Pattern URL PDF wykryto z document_id=2295475 (XXI sesja). Enumerujemy rzymskimi I-XXX i sprawdzamy first bytes (%PDF-) żeby odsiać 404 (HTTP 200 z error page)."
   },
-  "clubs": {}
+  "clubs": {},
+  "teryt": "06"
 }

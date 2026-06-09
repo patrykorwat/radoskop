@@ -41,5 +41,6 @@
     "protokoly_menu_id": 433527,
     "attachment_download_template": "{base}/e,pobierz,get.html?id={attachment_id}"
   },
-  "clubs": {}
+  "clubs": {},
+  "teryt": "12"
 }

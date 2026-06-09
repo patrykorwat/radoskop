@@ -43,5 +43,6 @@
     "ocr_lang_preferred": "pol",
     "note": "Skanowane PDFy, 1 strona = 1 głosowanie. Format Lp/Nazwisko/Decyzja w 2-kolumnowej tabeli. Wymaga tesseract-ocr-pol dla 90%+ accuracy (eng pack daje ~25%)."
   },
-  "clubs": {}
+  "clubs": {},
+  "teryt": "04"
 }

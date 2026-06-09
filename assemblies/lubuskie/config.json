@@ -42,5 +42,6 @@
     "ocr_lang_preferred": "pol",
     "note": "PDF imiennych wykazów ~18MB skanu per sesja. /958/ to 'Imienne wykazy głosowań', /962/ to 'Protokoły sesji' (narracyjne, nie używamy)."
   },
-  "clubs": {}
+  "clubs": {},
+  "teryt": "08"
 }

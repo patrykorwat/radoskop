@@ -342,6 +342,12 @@ def build(download: bool, src_dir: Path | None, write_teryt: bool = False,
             continue
         if code:
             cov_woj[code] = {"name": a.get("voivodeship_name"), "url": a.get("site_url", "")}
+            # Wpisz kod TERYT województwa do configu sejmiku (klucz do filtrowania
+            # teryt_tree w podstronie "Nadzór administracyjny"). Tylko PL.
+            if write_teryt and st == "wojewodztwo" and a.get("teryt") != code:
+                a["teryt"] = code
+                acfg.write_text(json.dumps(a, ensure_ascii=False, indent=2) + "\n",
+                                encoding="utf-8")
 
     # Coverage kluczowane generycznym poziomem (region/district/local), nie
     # polskimi nazwami, żeby mapa była wielokrajowa.

@@ -40,5 +40,6 @@
     "ssl_verify": false,
     "note": "Cert SSL na bip.sejmik.kielce.pl jest broken (CERTIFICATE_VERIFY_FAILED), trzeba bypass na poziomie scrapera"
   },
-  "clubs": {}
+  "clubs": {},
+  "teryt": "26"
 }

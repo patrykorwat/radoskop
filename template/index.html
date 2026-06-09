@@ -3182,11 +3182,44 @@ async function refreshSubscriptionStatus() {
 // slugify_council() z backendu (scrapers/komisje/config.py) żeby link
 // trafiał w ten sam url_slug którego używa /komisja/{slug}. Najpierw
 // odcinamy rolę w nawiasie ("Komisja X (przewodniczący)" → "Komisja X").
-const _KOMISJA_PL_MAP = {'ł':'l','ą':'a','ę':'e','ó':'o','ś':'s','ż':'z','ź':'z','ć':'c','ń':'n'};
+// Transliteracja PL + nordyckich/germańskich znaków. Bez tego litery spoza
+// [a-z0-9] (np. duńskie ø/æ/å w nazwach udvalg) wpadały w regex [^a-z0-9]+
+// jako "-", produkując pokraczne slugi typu "b-rne-og-ungdomsudvalget" dla
+// "Børne- og Ungdomsudvalget". Mapujemy je na konwencjonalne odpowiedniki
+// (ø→oe, æ→ae, å→aa, ...) żeby slug był czytelny i stabilny.
+const _KOMISJA_PL_MAP = {
+  'ł':'l','ą':'a','ę':'e','ó':'o','ś':'s','ż':'z','ź':'z','ć':'c','ń':'n',
+  'ø':'oe','æ':'ae','å':'aa','ä':'ae','ö':'oe','ü':'ue','ß':'ss',
+  'á':'a','é':'e','í':'i','ú':'u','à':'a','è':'e','ô':'o','ç':'c'
+};
 function komisjaSlugFromLabel(label) {
+  const base = String(label || '').replace(/\s*\([^)]*\)\s*$/, '').trim().toLowerCase();
+  const tr = base.replace(/[^a-z0-9]/g, ch => (ch in _KOMISJA_PL_MAP) ? _KOMISJA_PL_MAP[ch] : '-');
+  return tr.replace(/-+/g, '-').replace(/^-+|-+$/g, '');
+}
+// Stary algorytm (bez mapy nordyckiej) — slugi sprzed fixa są już zaindeksowane
+// i linkowane na zewnątrz, więc rozpoznajemy je dla przekierowania na kanon.
+function komisjaSlugLegacy(label) {
   const base = String(label || '').replace(/\s*\([^)]*\)\s*$/, '').trim().toLowerCase();
   const tr = base.replace(/[łąęóśżźćń]/g, ch => _KOMISJA_PL_MAP[ch] || ch);
   return tr.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+function komisjaSlugMatches(label, slug) {
+  return komisjaSlugFromLabel(label) === slug || komisjaSlugLegacy(label) === slug;
+}
+// Etykieta komisji odtworzona ze slugu na podstawie PROFILES (bez API).
+function komisjaLabelFromSlug(slug, kid) {
+  if (!PROFILES || !PROFILES.profiles) return '';
+  for (const p of PROFILES.profiles) {
+    const kd = p.kadencje && p.kadencje[kid];
+    if (!kd || !Array.isArray(kd.komisje)) continue;
+    for (const k of kd.komisje) {
+      if (komisjaSlugMatches(k, slug)) {
+        return String(k).replace(/\s*\([^)]*\)\s*$/, '').trim();
+      }
+    }
+  }
+  return '';
 }
 
 // Rola radnego w komisji wyłuskana z nawiasu na końcu labela.
@@ -3204,7 +3237,7 @@ function komisjaMembers(commissionSlug, kid) {
     const kd = p.kadencje && p.kadencje[kid];
     if (!kd || !Array.isArray(kd.komisje)) return;
     kd.komisje.forEach(k => {
-      if (komisjaSlugFromLabel(k) === commissionSlug) {
+      if (komisjaSlugMatches(k, commissionSlug)) {
         out.push({ name: p.name, slug: p.slug, club: kd.club || '', role: komisjaRoleFromLabel(k) });
       }
     });
@@ -3304,6 +3337,63 @@ async function renderKomisjeList() {
   `;
 }
 
+// Strona komisji oparta wyłącznie o skład z PROFILES (bez danych proceduralnych
+// z API). Używana dla miast roster/faction (np. Kopenhaga), gdzie udvalg mają
+// członków, ale nie ma archiwum posiedzeń/druków.
+function renderKomisjaRoster(view, slug, members) {
+  const label = komisjaLabelFromSlug(slug, currentKid) || slug;
+  // Slug kanoniczny (po transliteracji); jeśli wejście było starym/pokracznym
+  // slugiem, przepisujemy pasek adresu bez dorzucania wpisu do historii.
+  const canonicalSlug = (() => {
+    for (const p of (PROFILES && PROFILES.profiles) || []) {
+      const kd = p.kadencje && p.kadencje[currentKid];
+      if (!kd || !Array.isArray(kd.komisje)) continue;
+      for (const k of kd.komisje) {
+        if (komisjaSlugMatches(k, slug)) return komisjaSlugFromLabel(k);
+      }
+    }
+    return slug;
+  })();
+  if (canonicalSlug !== slug) {
+    navigateTo('/commission/' + encodeURIComponent(canonicalSlug) + '/', true);
+  }
+
+  setTitle(label);
+  setRobotsIndexable(true);
+  setOgMeta({
+    title: label + ' – Radoskop {{CITY_NAME}}',
+    description: `Skład komisji: ${members.length} ${members.length === 1 ? 'członek' : 'członków'}.`,
+    url: '{{SITE_URL}}/commission/' + encodeURIComponent(canonicalSlug) + '/'
+  });
+
+  const membersHtml = members.map(m => {
+    const roleBadge = m.role
+      ? `<span style="font-size:11px;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:1px 7px;border-radius:999px;margin-left:6px">${m.role}</span>`
+      : '';
+    return `<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-top:0.5px solid var(--border)">
+      <span class="club ${clubClass(m.club)}">${(m.club && m.club !== '?') ? m.club : 'Niezrzeszeni'}</span>
+      ${profileLink(m.name)}${roleBadge}
+    </div>`;
+  }).join('');
+
+  view.innerHTML = `
+    <button class="profile-back" onclick="backFromKomisja()">← Komisje</button>
+    <div style="margin-bottom:24px">
+      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${label}</h2>
+    </div>
+    <div class="profile-metrics" style="margin-bottom:24px">
+      <div class="metric-card">
+        <div class="metric-value">${members.length}</div>
+        <div class="metric-label">Członków</div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Skład komisji (${members.length})</h2>
+      ${membersHtml}
+    </div>
+  `;
+}
+
 async function showKomisja(slug) {
   if (!slug) { showMain(); return; }
   trackEvent('view_komisja_detail', {slug: slug});
@@ -3322,6 +3412,14 @@ async function showKomisja(slug) {
 
   const commission = envelope && envelope.commission;
   if (!envelope || envelope.available === false || !commission) {
+    // Brak procedury komisyjnej w API (miasta faction/roster jak Kopenhaga nie
+    // mają backendu komisji), ale PROFILES może znać skład udvalg. Zamiast
+    // ślepego "niedostępna" pokazujemy listę członków z profili.
+    const rosterMembers = komisjaMembers(slug, currentKid);
+    if (rosterMembers.length) {
+      renderKomisjaRoster(view, slug, rosterMembers);
+      return;
+    }
     view.innerHTML = '<button class="profile-back" onclick="backFromKomisja()">← Komisje</button>'
       + '<div style="padding:40px;max-width:560px;margin:0 auto">'
       + '<h2 style="margin:0 0 12px">Komisja niedostępna</h2>'

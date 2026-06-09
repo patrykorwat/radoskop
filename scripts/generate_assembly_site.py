@@ -266,6 +266,116 @@ def _generate_clubs_data_js(clubs: dict[str, Any], assignments: dict[str, str]) 
 # Main
 # ---------------------------------------------------------------------------
 
+def _osc(s: Any) -> str:
+    s = str(s if s is not None else "")
+    return (s.replace("&", "&amp;").replace("<", "&lt;")
+            .replace(">", "&gt;").replace('"', "&quot;"))
+
+
+def generate_oversight_button(cfg: dict[str, Any], tree: dict[str, Any]) -> str:
+    """Link nawigacji do podstrony Nadzór administracyjny.
+
+    Tylko dla polskich sejmików, których kod TERYT województwa jest w drzewie i
+    ma powiaty. Land DE (MV) nie ma drzewa powiatów, więc nic nie zwraca.
+    """
+    code = cfg.get("teryt")
+    if not code or code not in tree or not tree[code].get("powiaty"):
+        return ""
+    return ('        <a href="/oversight/" class="tab" '
+            'style="text-decoration:none">Nadzór administracyjny</a>')
+
+
+def build_oversight_html(woj: dict[str, Any], coverage: dict[str, Any],
+                         cfg: dict[str, Any]) -> str:
+    """Standalone strona: drzewo powiatów i gmin województwa (teryt_tree),
+    miasta na prawach powiatu wyróżnione, jednostki monitorowane podlinkowane."""
+    cov_local = coverage.get("local", {})
+    cov_district = coverage.get("district", {})
+    site_url = cfg.get("site_url", "").rstrip("/")
+    rada = cfg.get("rada_name", "Sejmik")
+    wname = woj["name"]
+
+    def gmina_li(g: dict) -> str:
+        ent = cov_local.get(g["teryt"])
+        nm = (f'<a href="{_osc(ent["url"])}">{_osc(g["name"])}</a> '
+              '<span class="badge rad">Radoskop</span>') if ent else _osc(g["name"])
+        return (f'<li><span class="gmina">{nm}</span> '
+                f'<span class="rodz">{_osc(g.get("rodzaj", ""))}</span></li>')
+
+    def powiat_block(p: dict) -> str:
+        grodzki = p.get("grodzki")
+        nm = p["name"].replace("powiat ", "") if grodzki else p["name"]
+        typ = "miasto na prawach powiatu" if grodzki else "powiat"
+        ents = cov_district.get(p["teryt"]) or []
+        cov_link = ""
+        if ents:
+            links = ", ".join(f'<a href="{_osc(e["url"])}">{_osc(e["name"])}</a>'
+                              for e in ents)
+            cov_link = f' <span class="badge rad">Radoskop: {links}</span>'
+        gminy = sorted(p["gminy"].values(), key=lambda g: g["name"])
+        gm = "".join(gmina_li(g) for g in gminy)
+        cls = "powiat grodzki" if grodzki else "powiat"
+        return (f'<details class="{cls}"><summary>'
+                f'<span class="pnm">{_osc(nm)}</span>'
+                f'<span class="ptyp">{_osc(typ)}</span>'
+                f'<span class="cnt">{len(gminy)} gmin</span>{cov_link}</summary>'
+                f'<ul class="gminy">{gm}</ul></details>')
+
+    pw = list(woj["powiaty"].values())
+    grodzkie = sorted((p for p in pw if p.get("grodzki")), key=lambda p: p["name"])
+    ziemskie = sorted((p for p in pw if not p.get("grodzki")), key=lambda p: p["name"])
+    total_gmin = sum(len(p["gminy"]) for p in pw)
+
+    return f"""<!doctype html><html lang="pl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nadzór administracyjny — {_osc(rada)}</title>
+<meta name="description" content="Podział administracyjny województwa {_osc(wname)}: powiaty i gminy. Radoskop.">
+<link rel="canonical" href="{_osc(site_url)}/oversight/">
+<style>
+  :root{{--accent:#4f46e5;--amber:#b45309;--muted:#6b7280;--border:#e5e7eb;--text:#111;--bg:#fff;}}
+  *{{box-sizing:border-box;}}
+  body{{margin:0;font:15px/1.5 system-ui,-apple-system,sans-serif;color:var(--text);background:var(--bg);}}
+  .top{{border-bottom:1px solid var(--border);padding:10px 18px;}}
+  .top a{{color:var(--accent);text-decoration:none;font-size:.86rem;}}
+  .wrap{{max-width:860px;margin:0 auto;padding:22px 18px 60px;}}
+  h1{{font-size:1.5rem;margin:.2rem 0 .4rem;}}
+  .lead{{color:var(--muted);margin:0 0 18px;}}
+  .stats{{display:flex;gap:18px;flex-wrap:wrap;font-size:.88rem;margin:0 0 22px;}}
+  .stats b{{color:var(--text);}} .stats span{{color:var(--muted);}}
+  h2{{font-size:1.05rem;margin:26px 0 10px;border-bottom:1px solid var(--border);padding-bottom:6px;}}
+  details.powiat{{border:1px solid var(--border);border-radius:9px;margin:7px 0;padding:2px 12px;}}
+  details.grodzki{{border-color:rgba(180,83,9,.45);background:rgba(245,158,11,.05);}}
+  summary{{cursor:pointer;display:flex;align-items:center;gap:10px;padding:9px 2px;list-style:none;}}
+  summary::-webkit-details-marker{{display:none;}}
+  .pnm{{font-weight:600;}}
+  .ptyp{{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;}}
+  details.grodzki .ptyp{{color:var(--amber);font-weight:700;}}
+  .cnt{{font-size:.78rem;color:var(--muted);margin-left:auto;}}
+  .badge{{font-size:.7rem;padding:2px 7px;border-radius:999px;}}
+  .badge.rad{{background:rgba(79,70,229,.12);color:var(--accent);font-weight:600;}}
+  ul.gminy{{margin:0 0 10px;padding:4px 0 4px 4px;list-style:none;columns:2;column-gap:26px;}}
+  ul.gminy li{{break-inside:avoid;padding:2px 0;font-size:.9rem;border-bottom:1px dotted var(--border);}}
+  .gmina a{{color:var(--accent);text-decoration:none;}} .gmina a:hover{{text-decoration:underline;}}
+  .rodz{{font-size:.72rem;color:var(--muted);}}
+  @media(max-width:560px){{ul.gminy{{columns:1;}}}}
+</style></head><body>
+<div class="top"><a href="/">← {_osc(rada)}</a></div>
+<div class="wrap">
+<h1>Nadzór administracyjny</h1>
+<p class="lead">Struktura podziału terytorialnego województwa {_osc(wname)}: powiaty i gminy
+w regionie. Jednostki monitorowane przez Radoskop są podlinkowane.</p>
+<div class="stats">
+  <span><b>{len(ziemskie)}</b> powiatów ziemskich</span>
+  <span><b>{len(grodzkie)}</b> miast na prawach powiatu</span>
+  <span><b>{total_gmin}</b> gmin</span>
+</div>
+<h2>Miasta na prawach powiatu ({len(grodzkie)})</h2>
+{''.join(powiat_block(p) for p in grodzkie)}
+<h2>Powiaty ziemskie ({len(ziemskie)})</h2>
+{''.join(powiat_block(p) for p in ziemskie)}
+</div></body></html>"""
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Generate Radoskop sejmik site")
     parser.add_argument("--config", required=True)
@@ -298,6 +408,13 @@ def main() -> int:
         return 1
 
     repo_root = Path(__file__).resolve().parent.parent
+    # Drzewo + pokrycie jednostek do podstrony Nadzór administracyjny (opcjonalne).
+    _units = repo_root / "docs" / "units"
+    try:
+        _tree = json.loads((_units / "teryt_tree.json").read_text(encoding="utf-8"))
+        _cov = json.loads((_units / "coverage.json").read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        _tree, _cov = {}, {}
     template_path = (
         Path(args.template).resolve()
         if args.template
@@ -382,7 +499,8 @@ def main() -> int:
         "{{CLUB_CSS}}": generate_club_css(cfg.get("clubs", {})),
         "{{CLUB_JS}}": generate_club_js(cfg.get("clubs", {})),
         "{{BUDGET_NOTE}}": cfg.get("budget_note", ""),
-        "{{AKTUALNOSCI_BUTTON}}": generate_aktualnosci_button(Path(args.output)),
+        "{{AKTUALNOSCI_BUTTON}}": (generate_aktualnosci_button(Path(args.output))
+                                   + generate_oversight_button(cfg, _tree)),
         # Apex domain — PL na .pl, DE na .eu (sister TLD)
         "{{ROOT_HOST}}": root_host,
         "{{ROOT_URL}}": root_url,
@@ -460,6 +578,15 @@ def main() -> int:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     (output_dir / "index.html").write_text(html, encoding="utf-8")
+    # Podstrona Nadzór administracyjny (osobny dokument, jak /news/). Tylko PL
+    # sejmik z kodem TERYT obecnym w drzewie. Land DE pomijamy.
+    _woj_code = cfg.get("teryt")
+    if _woj_code and _woj_code in _tree and _tree[_woj_code].get("powiaty"):
+        _odir = output_dir / "oversight"
+        _odir.mkdir(parents=True, exist_ok=True)
+        (_odir / "index.html").write_text(
+            build_oversight_html(_tree[_woj_code], _cov, cfg), encoding="utf-8")
+        print(f"  napisano oversight/index.html ({_tree[_woj_code]['name']})")
     (output_dir / "sitemap.xml").write_text(generate_sitemap(cfg), encoding="utf-8")
     (output_dir / "robots.txt").write_text(generate_robots(cfg), encoding="utf-8")
     if cfg.get("cname"):
