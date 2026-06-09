@@ -2640,7 +2640,7 @@ async function showVote(voteId) {
 // scrapers/druki/scrape_druki.py i lookupem w data_api.py.
 //   '830/26' -> '830-26', '1321-R' -> '1321-R', '1605' -> '1605'
 function drukSlug(d) {
-  return String(d == null ? '' : d).trim().replace(/[^A-Za-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  return String(d == null ? '' : d).trim().replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 }
 
 async function showDruk(drukId, kadId) {

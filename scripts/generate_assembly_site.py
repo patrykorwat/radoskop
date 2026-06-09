@@ -360,7 +360,7 @@ def main() -> int:
     # "{{CITY_SLUG}}" i alerty nie znajdują match'u.
     assembly_slug = cfg.get("voivodeship_slug") or cfg.get("slug") or cfg_path.parent.name
 
-    _lcat_asm = landing_catalog((cfg.get("locale") or "pl").lower())
+    _lcat_asm = landing_catalog((cfg.get("locale") or "pl").lower(), assembly=True)
     replacements = {
         "{{CAT_RULES_JS}}": _cat_rules_js,
         # Sejmiki/landy nie używają disclaimera per-radny — wszystkie polskie
@@ -395,10 +395,10 @@ def main() -> int:
         "{{COUNCILOR_ROSTER_MODE}}": "false",
         "{{LANDING_I18N}}": json.dumps(_lcat_asm, ensure_ascii=False),
         # SEO fallback dla "/" — eyebrow = rada_name (sejmik/Landtag, nie rada
-        # miasta); htitle pominięty bo katalog hero_title dotyczy rady miasta.
+        # miasta). htitle bierze z katalogu, który dla assembly ma już wariant
+        # sejmikowy (catalog(..., assembly=True) nakłada hero_title_assembly).
         "{{SEO_CONTENT}}": build_seo_content(
-            _lcat_asm, city_gen, eyebrow_override=cfg.get("rada_name", ""),
-            htitle_override=""),
+            _lcat_asm, city_gen, eyebrow_override=cfg.get("rada_name", "")),
         # Sejmiki/landy mają radnych (Abgeordnete też), więc HAS_COUNCILORS=true.
         # Bez tego template ma {{...}} leftover w renderze.
         "{{HAS_COUNCILORS}}": "false" if cfg.get("has_councilorless") else "true",
