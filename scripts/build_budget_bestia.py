@@ -40,6 +40,10 @@ from lib_dzial_cofog import COFOG_LABELS, map_to_cofog  # noqa: E402
 API = "https://bestia-api.mf.gov.pl"
 HERE = Path(__file__).resolve().parent.parent
 PAGE_LIMIT = 100  # twardy max API (200+ -> HTTP 400)
+# KRYTYCZNE: bez tego API zwraca wiersze ze WSZYSTKICH wersji/korekt sprawozdania,
+# a sumowanie ich zawyża kwoty ~2x. "najnowsze" zwęża do aktualnej wersji.
+# Zweryfikowane: Rb-28S Gdańsk 2024 z filtrem = 5546 mln = Rb-NDS WYDATKI OGÓŁEM.
+NEWEST = {"sprawozdanie-najnowsze": "true"}
 
 
 def api_get(path: str, filters: dict[str, str], *, fields: str = "",
@@ -93,6 +97,7 @@ def resolve_unit(teryt: str) -> dict | None:
         # związek z kodem siedziby Bochni). Miasto w gminie miejsko-wiejskiej
         # (rodzaj 4) sprawozdaje się jako gmina MW (gt=3).
         filt["jednostka-gt"] = "3" if rodzaj == "4" else rodzaj
+    filt.update(NEWEST)
     j = api_get("/api/sprawozdania", filt, limit=5)
     rows = (j or {}).get("data") or []
     if not rows:  # fallback bez filtra typu
@@ -112,7 +117,7 @@ def annual_years(const_id: str, kod: str, n: int) -> list[str]:
     while page <= pages and page <= 30:
         j = api_get("/api/sprawozdania",
                     {"jednostka-const-id": const_id, "typ-sprawozdania-kod": kod,
-                     "okres-okres": "4"}, fields="okres-rok", page=page)
+                     "okres-okres": "4", **NEWEST}, fields="okres-rok", page=page)
         if not j:
             break
         pages = j["paging"]["totalPages"]
@@ -132,7 +137,7 @@ def sum_report(path: str, const_id: str, rok: str, value_keys: list[str],
     page, pages = 1, 1
     while page <= pages and page <= 80:
         j = api_get(path, {"jednostka-const-id": const_id, "okres-rok": rok,
-                           "okres-okres": "4"}, fields=fields, page=page)
+                           "okres-okres": "4", **NEWEST}, fields=fields, page=page)
         if not j:
             break
         pages = j["paging"]["totalPages"]
@@ -154,12 +159,71 @@ def debt_total(const_id: str, rok: str) -> float | None:
     bo to podwójne liczenie. Bierzemy wprost wiersz E.
     """
     j = api_get("/api/pozycje-rbztd",
-                {"jednostka-const-id": const_id, "okres-rok": rok, "okres-okres": "4"},
+                {"jednostka-const-id": const_id, "okres-rok": rok, "okres-okres": "4", **NEWEST},
                 fields="symbol,z", limit=100)
     for x in (j or {}).get("data", []):
         if x.get("symbol") == "E":
             return round(num(x.get("z")), 2)
     return None
+
+
+def ndsv(const_id: str, rok: str, okres: str) -> dict | None:
+    """Podsumowanie budżetu z Rb-NDS dla okresu (1-4 kwartał, 4=roczne).
+
+    Wiersze: A=dochody ogółem, B=wydatki ogółem, C=wynik (nadwyżka+/deficyt-).
+    Jedno małe zapytanie zamiast sumowania Rb-27S/Rb-28S. Pola w=wykonanie, p=plan.
+    """
+    j = api_get("/api/pozycje-rbnds",
+                {"jednostka-const-id": const_id, "okres-rok": rok, "okres-okres": okres, **NEWEST},
+                fields="symbol,p,w", limit=100)
+    rows = (j or {}).get("data") or []
+    if not rows:
+        return None
+    by: dict[str, dict] = {}
+    for x in rows:
+        by.setdefault(x.get("symbol"), x)
+    A, B, C = by.get("A"), by.get("B"), by.get("C")
+    if not B:
+        return None
+    return {
+        "revenue": round(num(A["w"]), 2) if A else None,
+        "expenditure": round(num(B["w"]), 2),
+        "deficit": round(num(C["w"]), 2) if C else None,
+        "revenue_plan": round(num(A["p"]), 2) if A else None,
+        "expenditure_plan": round(num(B["p"]), 2),
+    }
+
+
+def latest_quarter_year(const_id: str) -> str | None:
+    """Najnowszy rok, dla którego jest JAKIEKOLWIEK sprawozdanie Rb-NDS (także
+    bieżący, niepełny). Dzięki temu realizacja pokazuje najświeższe dane (np. po
+    Q1), nie czeka na zamknięcie roku."""
+    j = api_get("/api/sprawozdania",
+                {"jednostka-const-id": const_id, "typ-sprawozdania-kod": "Rb-NDS", **NEWEST},
+                fields="okres-rok", limit=100)
+    yrs = [x.get("okres-rok") for x in (j or {}).get("data", []) if x.get("okres-rok")]
+    return max(yrs) if yrs else None
+
+
+def quarterly_execution(const_id: str, rok: str) -> list[dict]:
+    """Realizacja budżetu narastająco po kwartałach (Q1-Q4) danego roku."""
+    out = []
+    for q in ("1", "2", "3", "4"):
+        v = ndsv(const_id, rok, q)
+        if not v:
+            continue
+        out.append({
+            "q": int(q),
+            "revenue": v["revenue"],
+            "expenditure": v["expenditure"],
+            "revenue_plan": v["revenue_plan"],
+            "expenditure_plan": v["expenditure_plan"],
+            "revenue_exec_pct": round(v["revenue"] / v["revenue_plan"] * 100, 1)
+            if v.get("revenue_plan") and v.get("revenue") is not None else None,
+            "expenditure_exec_pct": round(v["expenditure"] / v["expenditure_plan"] * 100, 1)
+            if v["expenditure_plan"] else None,
+        })
+    return out
 
 
 def aggregate_rb28s(const_id: str, rok: str) -> tuple[dict, dict, dict]:
@@ -171,7 +235,7 @@ def aggregate_rb28s(const_id: str, rok: str) -> tuple[dict, dict, dict]:
     page, pages = 1, 1
     while page <= pages and page <= 80:
         j = api_get("/api/pozycje-rb28s",
-                    {"jednostka-const-id": const_id, "okres-rok": rok, "okres-okres": "4"},
+                    {"jednostka-const-id": const_id, "okres-rok": rok, "okres-okres": "4", **NEWEST},
                     fields="dzial,rozdzial,ww,pl", page=page)
         if not j:
             break
@@ -219,19 +283,24 @@ def build_budget(teryt: str, years_n: int) -> dict | None:
     categories: dict[str, list] = {}
     cofog: dict[str, list] = {}
     for y in years:
-        exp_tot, exp_by_dz, exp_by_cofog = aggregate_rb28s(cid, y)
-        rev_tot, _ = sum_report("/api/pozycje-rb27s", cid, y, ["dw", "pl"])
+        nds = ndsv(cid, y, "4")  # dochody/wydatki/deficyt z Rb-NDS (autorytatywne)
+        if not nds:
+            continue
+        _, exp_by_dz, exp_by_cofog = aggregate_rb28s(cid, y)  # do kategorii + COFOG
         debt = debt_total(cid, y)
-        revenue, expenditure = rev_tot["dw"], exp_tot["ww"]
+        revenue, expenditure = nds["revenue"], nds["expenditure"]
+        deficit = nds["deficit"] if nds["deficit"] is not None else (
+            (revenue - expenditure) if revenue is not None else None)
         totals.append({
             "year": y,
-            "revenue": round(revenue, 2),
-            "expenditure": round(expenditure, 2),
-            "deficit": round(revenue - expenditure, 2),
+            "revenue": revenue,
+            "expenditure": expenditure,
+            "deficit": deficit,
             "debt": debt,
-            "revenue_plan": round(rev_tot["pl"], 2),
-            "expenditure_plan": round(exp_tot["pl"], 2),
-            "expenditure_exec_pct": round(expenditure / exp_tot["pl"] * 100, 1) if exp_tot["pl"] else None,
+            "revenue_plan": nds["revenue_plan"],
+            "expenditure_plan": nds["expenditure_plan"],
+            "expenditure_exec_pct": round(expenditure / nds["expenditure_plan"] * 100, 1)
+            if nds["expenditure_plan"] else None,
             "estimated": False,
         })
         cats = [{"name": dz_names.get(d, d), "amount": round(v, 2)}
@@ -244,19 +313,26 @@ def build_budget(teryt: str, years_n: int) -> dict | None:
                for gf, v in exp_by_cofog.items() if v]
         cof.sort(key=lambda c: -(c["amount"] or 0))
         cofog[str(y)] = cof
-        print(f"  {y}: dochody {revenue/1e6:.0f} mln, wydatki {expenditure/1e6:.0f} mln, "
-              f"deficyt {(revenue-expenditure)/1e6:.0f} mln, dług "
-              f"{debt/1e6:.0f} mln" if debt is not None else
-              f"  {y}: dochody {revenue/1e6:.0f} mln, wydatki {expenditure/1e6:.0f} mln, "
-              f"deficyt {(revenue-expenditure)/1e6:.0f} mln")
+        print(f"  {y}: dochody {(revenue or 0)/1e6:.0f} mln, wydatki {expenditure/1e6:.0f} mln, "
+              f"deficyt {(deficit or 0)/1e6:.0f} mln, dług {(debt or 0)/1e6:.0f} mln")
+
+    # Realizacja narastająco po kwartałach z NAJŚWIEŻSZEGO roku z danymi (też
+    # bieżący, niepełny — pokazujemy ile kwartałów jest dostępnych).
+    execution = {}
+    exec_year = latest_quarter_year(cid) or (years[-1] if years else None)
+    if exec_year:
+        q = quarterly_execution(cid, exec_year)
+        if q:
+            execution = {"year": exec_year, "quarters": q, "quarters_count": len(q)}
 
     return {
         "scraped_at": datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "source": f"BeSTi@ MF (jednostka {unit['nazwa']}, sprawozdania Rb-27S/Rb-28S/Rb-Z)",
+        "source": f"BeSTi@ MF (jednostka {unit['nazwa']}, sprawozdania Rb-NDS/Rb-28S/Rb-Z)",
         "currency": "zł",
         "totals": totals,
         "categories": categories,
         "cofog": cofog,
+        "execution": execution,
     }
 
 

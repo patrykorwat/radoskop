@@ -54,6 +54,9 @@ def main() -> int:
     acc: dict[str, dict[str, list[float]]] = {"grodzki": {}, "gmina": {}}
     used: dict[str, list[str]] = {"grodzki": [], "gmina": []}
     years: list[str] = []
+    # Agregat łączny po wszystkich miastach (najnowszy rok każdego).
+    agg = {"revenue": 0.0, "expenditure": 0.0, "debt": 0.0, "n": 0}
+    agg_years: list[str] = []
 
     for cfg_path in sorted(CITIES.glob("*/config.json")):
         try:
@@ -72,6 +75,15 @@ def main() -> int:
             budget = json.loads(bpath.read_text(encoding="utf-8"))
         except Exception:
             continue
+        # Agregat: najnowszy rok z totals.
+        tt = budget.get("totals") or []
+        if tt:
+            lt = max(tt, key=lambda t: t.get("year", ""))
+            agg["revenue"] += lt.get("revenue") or 0
+            agg["expenditure"] += lt.get("expenditure") or 0
+            agg["debt"] += lt.get("debt") or 0
+            agg["n"] += 1
+            agg_years.append(lt.get("year", ""))
         lc = latest_cofog(budget)
         if not lc:
             continue
@@ -124,6 +136,23 @@ def main() -> int:
             except Exception:
                 pass
     print(f"wstrzyknięto cofog_peer do {wrote} budżetów")
+
+    # Agregat łączny (landing): suma po monitorowanych miastach.
+    totals_out = {
+        "generated": out["generated"],
+        "n_cities": agg["n"],
+        "year_range": (f"{min(agg_years)}–{max(agg_years)}"
+                       if agg_years and min(agg_years) != max(agg_years)
+                       else (agg_years[0] if agg_years else None)),
+        "revenue": round(agg["revenue"], 2),
+        "expenditure": round(agg["expenditure"], 2),
+        "deficit": round(agg["revenue"] - agg["expenditure"], 2),
+        "debt": round(agg["debt"], 2),
+    }
+    (OUT.parent / "budget_totals.json").write_text(
+        json.dumps(totals_out, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"agregat: {agg['n']} miast, wydatki {agg['expenditure']/1e9:.1f} mld, "
+          f"deficyt {(agg['revenue']-agg['expenditure'])/1e9:.2f} mld, dług {agg['debt']/1e9:.1f} mld")
     return 0
 
 
