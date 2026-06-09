@@ -38,3 +38,8 @@ docs/interpelacje-index.json
 docs/compare-index.json
 docs/sitemap.xml
 docs/sitemap-main.xml
+# Jednostki administracyjne (docs/units/): stały asset generowany lokalnie przez
+# scripts/build_units.py (mapshaper), odświeżany ~raz na rok. ŚWIADOMIE tracked,
+# bo NAS go nie regeneruje a musi mieć pliki do deployu. Wyjątek: surowy cache.
+.units_src/
+docs/units/_src/

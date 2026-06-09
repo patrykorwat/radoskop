@@ -58,5 +58,6 @@
   "disabled": true,
   "disabled_reason": "eSesja https://pyskowice.esesja.pl/glosowania zwraca 0 sesji (audit 2026-05-19). Miasto prawdopodobnie nie używa eSesja do publikacji imiennych głosowań albo używa innej platformy.",
   "disabled_date": "2026-05-19",
-  "disabled_audit_category": "empty_no_data"
+  "disabled_audit_category": "empty_no_data",
+  "teryt": "2405021"
 }

@@ -76,5 +76,6 @@
   "disabled": true,
   "disabled_reason": "eSesja https://krasnik.esesja.pl publikuje tylko archiwalne sesje kadencji 2018-2024 (max rok 2020, łącznie 1 sesji), brak nowej kadencji 2024-2029. Audit 2026-05-19. Sprawdzić alternatywne źródło (BIP statyczny, własna platforma).",
   "disabled_date": "2026-05-19",
-  "disabled_audit_category": "old_only"
+  "disabled_audit_category": "old_only",
+  "teryt": "0607011"
 }

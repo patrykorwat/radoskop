@@ -36,5 +36,6 @@
   "budget_note": "Miasto Gdańsk nie publikuje pełnych danych budżetowych w formacie otwartym (CSV, JSON, API). Dane z BIP dostępne są wyłącznie jako skany PDF, co utrudnia ich przetwarzanie. Pełniejsze dane dostępne od 2022 roku.",
   "samorzad_type": "miasto",
   "rada_name": "Rada Miasta Gdańska",
-  "rada_name_genitive": "Rady Miasta Gdańska"
+  "rada_name_genitive": "Rady Miasta Gdańska",
+  "teryt": "2261011"
 }

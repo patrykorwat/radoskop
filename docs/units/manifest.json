@@ -1,0 +1,28 @@
+{
+  "default_label": "Miasta",
+  "join_property": "code",
+  "levels": [
+    {
+      "key": "local",
+      "label": "Gminy",
+      "file": "local.geojson",
+      "color": "#4f46e5"
+    },
+    {
+      "key": "district",
+      "label": "Powiaty",
+      "file": "district.geojson",
+      "color": "#4f46e5"
+    },
+    {
+      "key": "region",
+      "label": "Regiony",
+      "file": "region.geojson",
+      "color": "#0d9488"
+    }
+  ],
+  "countries": [
+    "PL",
+    "DE"
+  ]
+}
