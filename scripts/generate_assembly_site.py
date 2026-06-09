@@ -227,9 +227,19 @@ def generate_ga_snippet(_legacy_ga_id: str = "") -> str:
     )
 
 
-def generate_sitemap(config: dict[str, Any]) -> str:
+def generate_sitemap(config: dict[str, Any], has_oversight: bool = False) -> str:
     site_url = config.get("site_url", "").rstrip("/")
     today = datetime.now(tz=timezone.utc).strftime("%Y-%m-%d")
+    extra = ""
+    if has_oversight:
+        extra = (
+            f'  <url>\n'
+            f'    <loc>{site_url}/oversight/</loc>\n'
+            f'    <lastmod>{today}</lastmod>\n'
+            f'    <changefreq>monthly</changefreq>\n'
+            f'    <priority>0.5</priority>\n'
+            f'  </url>\n'
+        )
     return (
         f'<?xml version="1.0" encoding="UTF-8"?>\n'
         f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
@@ -239,6 +249,7 @@ def generate_sitemap(config: dict[str, Any]) -> str:
         f'    <changefreq>daily</changefreq>\n'
         f'    <priority>1.0</priority>\n'
         f'  </url>\n'
+        f'{extra}'
         f'</urlset>\n'
     )
 
@@ -581,13 +592,16 @@ def main() -> int:
     # Podstrona Nadzór administracyjny (osobny dokument, jak /news/). Tylko PL
     # sejmik z kodem TERYT obecnym w drzewie. Land DE pomijamy.
     _woj_code = cfg.get("teryt")
-    if _woj_code and _woj_code in _tree and _tree[_woj_code].get("powiaty"):
+    _has_oversight = bool(_woj_code and _woj_code in _tree
+                          and _tree[_woj_code].get("powiaty"))
+    if _has_oversight:
         _odir = output_dir / "oversight"
         _odir.mkdir(parents=True, exist_ok=True)
         (_odir / "index.html").write_text(
             build_oversight_html(_tree[_woj_code], _cov, cfg), encoding="utf-8")
         print(f"  napisano oversight/index.html ({_tree[_woj_code]['name']})")
-    (output_dir / "sitemap.xml").write_text(generate_sitemap(cfg), encoding="utf-8")
+    (output_dir / "sitemap.xml").write_text(
+        generate_sitemap(cfg, has_oversight=_has_oversight), encoding="utf-8")
     (output_dir / "robots.txt").write_text(generate_robots(cfg), encoding="utf-8")
     if cfg.get("cname"):
         (output_dir / "CNAME").write_text(cfg["cname"] + "\n", encoding="utf-8")
