@@ -3742,8 +3742,23 @@ function renderBudget() {
   const years = B.totals.map(t => t.year);
   const latestYear = years[years.length - 1];
 
+  // Licznik całkowitego zadłużenia miasta (najnowszy rok z danymi o długu).
+  const _debtT = B.totals.filter(t => t.debt != null).slice(-1)[0];
+  const debtBanner = _debtT ? `
+    <div class="debt-counter">
+      <div class="debt-counter-label">Całkowite zadłużenie miasta</div>
+      <div class="debt-counter-value" id="debt-counter" data-target="${_debtT.debt}">0&nbsp;zł</div>
+      <div class="debt-counter-sub">stan na koniec ${_debtT.year}</div>
+    </div>
+    <style>
+      .debt-counter{background:linear-gradient(135deg,rgba(180,83,9,0.08),rgba(245,158,11,0.04));border:1px solid rgba(180,83,9,0.3);border-radius:12px;padding:16px 20px;margin-bottom:20px;}
+      .debt-counter-label{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;}
+      .debt-counter-value{font-size:2rem;font-weight:800;color:#b45309;line-height:1.1;margin:4px 0;font-variant-numeric:tabular-nums;}
+      .debt-counter-sub{font-size:.8rem;color:var(--muted);}
+    </style>` : '';
+
   // Static shell: year selector at top + placeholders for dynamic content
-  let html = `
+  let html = debtBanner + `
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap">
       <span style="font-weight:600">Rok budżetowy:</span>
       <div class="kadencja-bar" id="budget-year-bar">
@@ -3760,6 +3775,21 @@ function renderBudget() {
       Dane 2022–${latestYear} na podstawie uchwalonych budżetów.
     </div>`;
   container.innerHTML = html;
+
+  // Animowane odliczanie licznika długu.
+  (function(){
+    const el = document.getElementById('debt-counter');
+    if (!el) return;
+    const target = parseFloat(el.getAttribute('data-target')) || 0;
+    const t0 = performance.now(), dur = 1100;
+    function step(now){
+      const p = Math.min((now - t0) / dur, 1);
+      const v = target * (1 - Math.pow(1 - p, 3));
+      el.innerHTML = Math.round(v).toLocaleString('pl-PL') + '&nbsp;zł';
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  })();
 
   // --- Year detail renderer ---
   function renderYearDetail(year) {
@@ -3941,32 +3971,35 @@ function renderBudget() {
       }
     }
 
-    // Realizacja kwartalna: słupki z % planu wykonanego narastająco.
+    // Realizacja kwartalna: słupki = wykonanie narastająco (mln zł), linie = plan.
     if (showExec) {
       const qs = exec.quarters.slice().sort((a, b) => a.q - b.q);
+      const mln = v => v != null ? v / 1e6 : null;
       if (budgetChartExec) budgetChartExec.destroy();
       const ec = document.getElementById('budget-exec-chart');
       if (ec) {
         budgetChartExec = new Chart(ec.getContext('2d'), {
-          type: 'bar',
           data: {
             labels: qs.map(q => 'Q' + q.q),
             datasets: [
-              { label: 'Dochody (% planu)', data: qs.map(q => q.revenue_exec_pct), backgroundColor: '#15803d' },
-              { label: 'Wydatki (% planu)', data: qs.map(q => q.expenditure_exec_pct), backgroundColor: '#4f46e5' }
+              { type: 'bar', label: 'Dochody wykonane', data: qs.map(q => mln(q.revenue)), backgroundColor: '#15803d', order: 2 },
+              { type: 'bar', label: 'Wydatki wykonane', data: qs.map(q => mln(q.expenditure)), backgroundColor: '#4f46e5', order: 2 },
+              { type: 'line', label: 'Plan dochodów', data: qs.map(q => mln(q.revenue_plan)), borderColor: '#15803d', borderDash: [5, 3], pointRadius: 0, fill: false, order: 1 },
+              { type: 'line', label: 'Plan wydatków', data: qs.map(q => mln(q.expenditure_plan)), borderColor: '#4f46e5', borderDash: [5, 3], pointRadius: 0, fill: false, order: 1 }
             ]
           },
           options: {
             responsive: true,
-            scales: { y: { beginAtZero: true, max: 100, ticks: { callback: v => v + '%', color: '#6b7280' } }, x: { ticks: { color: '#4b5563' } } },
+            scales: { y: { beginAtZero: true, ticks: { callback: v => v + ' mln', color: '#6b7280' } }, x: { ticks: { color: '#4b5563' } } },
             plugins: {
               legend: { position: 'bottom', labels: { color: '#4b5563', font: { size: 11 } } },
               tooltip: { callbacks: { label: (ctx) => {
                 const q = qs[ctx.dataIndex];
-                const isRev = ctx.datasetIndex === 0;
+                const isRev = ctx.dataset.label.indexOf('ochod') >= 0;
                 const pct = isRev ? q.revenue_exec_pct : q.expenditure_exec_pct;
-                const amt = isRev ? q.revenue : q.expenditure;
-                return ctx.dataset.label + ': ' + (pct != null ? pct.toFixed(1) + '%' : '—') + (amt != null ? ' (' + (amt / 1e6).toFixed(0) + ' mln zł)' : '');
+                const isPlan = ctx.dataset.label.indexOf('Plan') === 0;
+                return ctx.dataset.label + ': ' + Math.round(ctx.parsed.y) + ' mln zł'
+                  + (!isPlan && pct != null ? ' (' + pct.toFixed(0) + '% planu)' : '');
               } } }
             }
           }
@@ -4013,6 +4046,12 @@ function renderBudget() {
           borderColor: 'rgba(239,68,68,0.7)',
           backgroundColor: 'rgba(239,68,68,0.05)',
           fill: true, tension: 0.3, pointRadius: 4, borderDash: [5, 3],
+        }, {
+          label: 'Zadłużenie',
+          data: B.totals.map(t => t.debt != null ? t.debt / 1e9 : null),
+          borderColor: 'rgba(180,83,9,0.8)',
+          backgroundColor: 'rgba(245,158,11,0.08)',
+          fill: false, tension: 0.3, pointRadius: 4, borderDash: [2, 2],
         }]
       },
       options: {

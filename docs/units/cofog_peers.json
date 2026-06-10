@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-09T21:18:11Z",
+  "generated": "2026-06-10T06:08:36Z",
   "method": "nieważona średnia udziałów COFOG po miastach klasy, najnowszy rok każdego miasta",
   "year_range": "2025–2025",
   "classes": {
@@ -8,7 +8,7 @@
       "functions": {
         "GF01": {
           "name": "Administracja i usługi ogólne",
-          "pct_mean": 9.9,
+          "pct_mean": 10.0,
           "pct_median": 9.5,
           "n": 3
         },
@@ -20,7 +20,7 @@
         },
         "GF03": {
           "name": "Bezpieczeństwo i porządek publiczny",
-          "pct_mean": 2.3,
+          "pct_mean": 2.4,
           "pct_median": 2.4,
           "n": 3
         },
@@ -32,14 +32,14 @@
         },
         "GF05": {
           "name": "Ochrona środowiska",
-          "pct_mean": 7.3,
-          "pct_median": 6.7,
+          "pct_mean": 7.2,
+          "pct_median": 6.5,
           "n": 3
         },
         "GF06": {
           "name": "Gospodarka mieszkaniowa i komunalna",
-          "pct_mean": 12.1,
-          "pct_median": 8.0,
+          "pct_mean": 12.0,
+          "pct_median": 7.8,
           "n": 3
         },
         "GF07": {
@@ -56,13 +56,13 @@
         },
         "GF09": {
           "name": "Edukacja",
-          "pct_mean": 29.5,
+          "pct_mean": 28.9,
           "pct_median": 25.6,
           "n": 3
         },
         "GF10": {
           "name": "Ochrona socjalna",
-          "pct_mean": 13.3,
+          "pct_mean": 13.2,
           "pct_median": 13.4,
           "n": 3
         }
