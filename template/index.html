@@ -1367,26 +1367,41 @@ function showProfile(name, initialTab) {
   navigateTo('/profile/' + profile.slug + '/');
   var _pk = profile.kadencje[Object.keys(profile.kadencje).pop()] || {};
   // Title/meta sp\u00f3jne ze statycznym prerenderem (generate_seo_pages.py):
-  // nazwisko z przodu + obietnica tre\u015bci g\u0142osowa\u0144, bezp\u0142ciowo, miasto w
-  // dope\u0142niaczu. Wygrywa klik na zapytanie nazwiskiem polityka.
+  // nazwisko z przodu + obietnica tre\u015bci g\u0142osowa\u0144. Wygrywa klik na zapytanie
+  // nazwiskiem polityka.
+  //
+  // Fraza rady: 'Rada Miasta {{CITY_GENITIVE}}' to klucz katalogu apply_locale
+  // (t\u0142umaczy si\u0119 na obce locale) i jest przechwytywana przez _assembly_transform
+  // na sejmikach ("Rada Miasta" \u2192 "Sejmik Wojew\u00f3dztwa", DE \u2192 "Landtag"). Trzymamy
+  // j\u0105 w mianowniku, bo transform odmiany lokatywnej ("w Radzie Miasta") da\u0142by
+  // b\u0142\u0119dny celownik "w Sejmikowi".
+  //
+  // Polskie frazy marketingowe ('jak g\u0142osuje', 'Zapis g\u0142osowa\u0144', ...) NIE s\u0105 w
+  // katalogu, wi\u0119c na obcych locale zosta\u0142yby po polsku \u2014 dlatego pe\u0142n\u0105 kopi\u0119
+  // dajemy tylko gdy lang=pl (miasta PL + sejmiki). Reszta dostaje rzeczowy
+  // fallback z\u0142o\u017cony z fraz t\u0142umaczonych.
+  var _council = 'Rada Miasta {{CITY_GENITIVE}}';
+  var _isPl = (document.documentElement.lang || 'pl').toLowerCase() === 'pl';
   var _clubShort = (_pk.club || '').trim();
   var _clubNone = ['','niezrzeszony','niezrzeszona','niezrzeszeni','?','brak','-'].indexOf(_clubShort.toLowerCase()) !== -1;
   var _clubParen = _clubNone ? '' : ' (' + _clubShort + ')';
   var _hasVd = _pk.has_voting_data;
-  var _profTitle = _hasVd
-    ? profile.name + _clubParen + ' \u2013 jak g\u0142osuje w Radzie {{CITY_GENITIVE}}'
-    : profile.name + _clubParen + ' \u2013 Rada Miasta {{CITY_GENITIVE}}';
-  document.title = _profTitle;
-  var _profDesc;
-  if (_hasVd) {
+  var _profTitle, _profDesc;
+  if (_isPl && _hasVd) {
+    _profTitle = profile.name + _clubParen + ' \u2013 jak g\u0142osuje, ' + _council;
     var _vt = _pk.votes_total || ((_pk.votes_za||0)+(_pk.votes_przeciw||0)+(_pk.votes_wstrzymal||0));
-    _profDesc = 'Zapis g\u0142osowa\u0144: ' + profile.name + _clubParen + ', Rada Miasta {{CITY_GENITIVE}}. '
+    _profDesc = 'Zapis g\u0142osowa\u0144: ' + profile.name + _clubParen + ', ' + _council + '. '
       + _vt + ' g\u0142osowa\u0144, frekwencja ' + (_pk.frekwencja||0).toFixed(0) + '%, zgodno\u015b\u0107 z klubem ' + (_pk.zgodnosc_z_klubem||0).toFixed(0) + '%'
       + (_pk.rebellion_count ? ', ' + _pk.rebellion_count + ' razy wbrew klubowi' : '')
       + '. Sprawd\u017a pe\u0142n\u0105 aktywno\u015b\u0107 i przynale\u017cno\u015b\u0107 klubow\u0105.';
   } else {
-    _profDesc = profile.name + _clubParen + ' \u2013 Rada Miasta {{CITY_GENITIVE}}. Sk\u0142ad rady, kluby i aktywno\u015b\u0107 radnych w serwisie Radoskop.';
+    // Obce locale lub brak danych g\u0142osowa\u0144: tylko frazy z katalogu i liczby.
+    _profTitle = profile.name + _clubParen + ' \u2013 ' + _council;
+    _profDesc = profile.name + _clubParen + '. '
+      + (_hasVd ? 'Frekwencja ' + (_pk.frekwencja||0).toFixed(0) + '%. ' : '')
+      + _council + '.';
   }
+  document.title = _profTitle;
   setOgMeta({
     title: _profTitle,
     description: _profDesc,

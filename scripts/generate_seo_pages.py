@@ -426,18 +426,27 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                                      "niezrzeszeni", "?", "brak", "-")
         club_paren = f" ({club_short})" if not club_is_none else ""
 
+        # is_pl: polskie miasta (i sejmiki) dostaj\u0105 pe\u0142n\u0105 sprzeda\u017cow\u0105 kopi\u0119.
+        # Obce lokalizacje (nl/cs/de/...) NIE przechodz\u0105 przez apply_locale na
+        # tym etapie (wstrzykujemy gotowe stringi do ju\u017c-zlokalizowanego
+        # main_html), wi\u0119c nowe polskie frazy marketingowe by tam zosta\u0142y po
+        # polsku. Dla non-pl trzymamy si\u0119 rzeczowych fraz z katalogu i2n
+        # ("Rada Miasta {gen}" t\u0142umaczy si\u0119 per-locale w main_html; tu zostaj\u0105
+        # rzeczownik + liczby), bez "jak g\u0142osuje"/"Zapis g\u0142osowa\u0144".
+        is_pl = locale == "pl"
+
         # Title: nazwisko z przodu (prze\u017cyje uci\u0119cie w SERP), obietnica tre\u015bci
         # kt\u00f3rej szuka pytaj\u0105cy o polityka ("jak g\u0142osuje" \u2014 bezp\u0142ciowo, brak pola
-        # p\u0142ci), miasto w dope\u0142niaczu dla trafno\u015bci. Bije generyczne
-        # "Nazwisko, KO \u2013 Radoskop Miasto".
-        if has_vd:
-            title = f"{name}{club_paren} \u2013 jak g\u0142osuje w Radzie {city_gen}"
+        # p\u0142ci), rada w mianowniku "Rada Miasta {gen}" (na sejmikach
+        # _assembly_transform zamienia to na "Sejmik Wojew\u00f3dztwa {gen}").
+        if has_vd and is_pl:
+            title = f"{name}{club_paren} \u2013 jak g\u0142osuje, Rada Miasta {city_gen}"
         else:
             title = f"{name}{club_paren} \u2013 Rada Miasta {city_gen}"
 
         # Description: konkretne liczby (renderuj\u0105 si\u0119 w SERP i nap\u0119dzaj\u0105 klik),
         # bezp\u0142ciowo, nazwisko w mianowniku (bez wymuszania odmiany imienia).
-        if has_vd:
+        if has_vd and is_pl:
             bits = [
                 f"{votes_total} g\u0142osowa\u0144",
                 f"frekwencja {frekwencja:.0f}%",
@@ -449,6 +458,11 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                 f"Zapis g\u0142osowa\u0144: {name}{club_paren}, Rada Miasta {city_gen}. "
                 + ", ".join(bits)
                 + ". Sprawd\u017a pe\u0142n\u0105 aktywno\u015b\u0107 i przynale\u017cno\u015b\u0107 klubow\u0105."
+            )
+        elif has_vd:
+            desc = (
+                f"{name}{club_paren}, Rada Miasta {city_gen}. "
+                f"Frekwencja {frekwencja:.0f}%, zgodno\u015b\u0107 z klubem {zgodnosc:.0f}%."
             )
         else:
             desc = (
