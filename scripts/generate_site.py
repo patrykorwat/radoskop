@@ -397,13 +397,17 @@ def generate_aktualnosci_button(output_dir: Path, locale: str = "pl") -> str:
 
     Po migracji 2026-05 URL slug to zawsze /news/, niezależnie od locale.
     Label przycisku zostaje zlokalizowany ("Aktualności" w PL, lokalny
-    odpowiednik w innych) — apply_locale go podmienia.
+    odpowiednik w innych). UWAGA: ten przycisk wchodzi przez placeholder
+    {{AKTUALNOSCI_BUTTON}} podstawiany PO apply_locale (patrz pętla
+    replacements), więc globalny przebieg apply_locale go nie dotyka.
+    Dlatego etykietę tłumaczymy tutaj, lokalnie, dla locale miasta.
     """
     if not has_activity_data(output_dir):
         return ""
     # tab-secondary klasa: na mobile/tablet ukryte do czasu kliknięcia
     # "Więcej". Na desktop pokazane normalnie obok pozostałych tabów.
-    return '        <a href="/news/" class="tab tab-secondary" style="text-decoration:none">Aktualności</a>'
+    label = apply_locale("Aktualności", locale)
+    return f'        <a href="/news/" class="tab tab-secondary" style="text-decoration:none">{label}</a>'
 
 
 def generate_ga_snippet(_legacy_ga_id: str = "") -> str:

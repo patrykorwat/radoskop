@@ -1365,11 +1365,31 @@ function showProfile(name, initialTab) {
   const view = document.getElementById('profile-view');
   view.style.display = 'block';
   navigateTo('/profile/' + profile.slug + '/');
-  setTitle(profile.name);
   var _pk = profile.kadencje[Object.keys(profile.kadencje).pop()] || {};
+  // Title/meta sp\u00f3jne ze statycznym prerenderem (generate_seo_pages.py):
+  // nazwisko z przodu + obietnica tre\u015bci g\u0142osowa\u0144, bezp\u0142ciowo, miasto w
+  // dope\u0142niaczu. Wygrywa klik na zapytanie nazwiskiem polityka.
+  var _clubShort = (_pk.club || '').trim();
+  var _clubNone = ['','niezrzeszony','niezrzeszona','niezrzeszeni','?','brak','-'].indexOf(_clubShort.toLowerCase()) !== -1;
+  var _clubParen = _clubNone ? '' : ' (' + _clubShort + ')';
+  var _hasVd = _pk.has_voting_data;
+  var _profTitle = _hasVd
+    ? profile.name + _clubParen + ' \u2013 jak g\u0142osuje w Radzie {{CITY_GENITIVE}}'
+    : profile.name + _clubParen + ' \u2013 Rada Miasta {{CITY_GENITIVE}}';
+  document.title = _profTitle;
+  var _profDesc;
+  if (_hasVd) {
+    var _vt = _pk.votes_total || ((_pk.votes_za||0)+(_pk.votes_przeciw||0)+(_pk.votes_wstrzymal||0));
+    _profDesc = 'Zapis g\u0142osowa\u0144: ' + profile.name + _clubParen + ', Rada Miasta {{CITY_GENITIVE}}. '
+      + _vt + ' g\u0142osowa\u0144, frekwencja ' + (_pk.frekwencja||0).toFixed(0) + '%, zgodno\u015b\u0107 z klubem ' + (_pk.zgodnosc_z_klubem||0).toFixed(0) + '%'
+      + (_pk.rebellion_count ? ', ' + _pk.rebellion_count + ' razy wbrew klubowi' : '')
+      + '. Sprawd\u017a pe\u0142n\u0105 aktywno\u015b\u0107 i przynale\u017cno\u015b\u0107 klubow\u0105.';
+  } else {
+    _profDesc = profile.name + _clubParen + ' \u2013 Rada Miasta {{CITY_GENITIVE}}. Sk\u0142ad rady, kluby i aktywno\u015b\u0107 radnych w serwisie Radoskop.';
+  }
   setOgMeta({
-    title: profile.name + ' \u2013 Radoskop {{CITY_NAME}}',
-    description: profile.name + ', ' + (_pk.club_full || _pk.club || '') + '. Frekwencja ' + (_pk.frekwencja||0).toFixed(0) + '%, aktywnosc ' + (_pk.aktywnosc||0).toFixed(0) + '%.',
+    title: _profTitle,
+    description: _profDesc,
     url: '{{SITE_URL}}/profile/' + profile.slug + '/',
     image: '{{SITE_URL}}/profile/' + profile.slug + '/og.png'
   });

@@ -83,6 +83,23 @@ def _breadcrumb(items):
     }
 
 
+def _strlist(v):
+    """Coerce roles/komisje (lista str lub dict) na listę napisów. Odporne na
+    None, mieszane typy i dicty bez nazwy."""
+    out = []
+    if isinstance(v, list):
+        for it in v:
+            if isinstance(it, str):
+                s = it.strip()
+            elif isinstance(it, dict):
+                s = (it.get("name") or it.get("label") or it.get("title") or "").strip()
+            else:
+                s = str(it).strip()
+            if s:
+                out.append(s)
+    return out
+
+
 def make_page(main_html, canonical_url, title, description, og_image=None, extra_body="", jsonld=None):
     """Create a page variant with unique SEO tags and optional body content."""
     h = main_html
@@ -392,13 +409,52 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         votes_wstrzymal = kad.get("votes_wstrzymal", 0)
 
         canonical = f"{site_url}/{SLUG['profile']}/{slug}/"
-        title = f"{name}, {club} \u2013 Radoskop {city_name}"
-        desc = (
-            f"{name}, klub {club_full}. "
-            f"Frekwencja {frekwencja:.0f}%, aktywnosc {aktywnosc:.0f}%, "
-            f"zgodnosc z klubem {zgodnosc:.0f}%. "
-            f"Rada Miasta {city_gen}."
-        )
+
+        # Dodatkowe pola pod SEO/CTR (mog\u0105 nie istnie\u0107 w starszych profiles.json).
+        has_vd = bool(kad.get("has_voting_data"))
+        votes_total = kad.get("votes_total") or (votes_za + votes_przeciw + votes_wstrzymal)
+        rebellion = kad.get("rebellion_count") or 0
+        perc_fr = kad.get("percentile_frekwencja")
+        tier_label = kad.get("percentile_tier_label") or ""
+        roles = _strlist(kad.get("roles"))
+        komisje = _strlist(kad.get("komisje"))
+        okreg = kad.get("okr\u0119g")
+
+        club_short = (club or "").strip()
+        _club_low = club_short.lower()
+        club_is_none = _club_low in ("", "niezrzeszony", "niezrzeszona",
+                                     "niezrzeszeni", "?", "brak", "-")
+        club_paren = f" ({club_short})" if not club_is_none else ""
+
+        # Title: nazwisko z przodu (prze\u017cyje uci\u0119cie w SERP), obietnica tre\u015bci
+        # kt\u00f3rej szuka pytaj\u0105cy o polityka ("jak g\u0142osuje" \u2014 bezp\u0142ciowo, brak pola
+        # p\u0142ci), miasto w dope\u0142niaczu dla trafno\u015bci. Bije generyczne
+        # "Nazwisko, KO \u2013 Radoskop Miasto".
+        if has_vd:
+            title = f"{name}{club_paren} \u2013 jak g\u0142osuje w Radzie {city_gen}"
+        else:
+            title = f"{name}{club_paren} \u2013 Rada Miasta {city_gen}"
+
+        # Description: konkretne liczby (renderuj\u0105 si\u0119 w SERP i nap\u0119dzaj\u0105 klik),
+        # bezp\u0142ciowo, nazwisko w mianowniku (bez wymuszania odmiany imienia).
+        if has_vd:
+            bits = [
+                f"{votes_total} g\u0142osowa\u0144",
+                f"frekwencja {frekwencja:.0f}%",
+                f"zgodno\u015b\u0107 z klubem {zgodnosc:.0f}%",
+            ]
+            if rebellion:
+                bits.append(f"{rebellion} razy wbrew klubowi")
+            desc = (
+                f"Zapis g\u0142osowa\u0144: {name}{club_paren}, Rada Miasta {city_gen}. "
+                + ", ".join(bits)
+                + ". Sprawd\u017a pe\u0142n\u0105 aktywno\u015b\u0107 i przynale\u017cno\u015b\u0107 klubow\u0105."
+            )
+        else:
+            desc = (
+                f"{name}{club_paren} \u2013 Rada Miasta {city_gen}. "
+                f"Sk\u0142ad rady, kluby i aktywno\u015b\u0107 radnych w serwisie Radoskop."
+            )
 
         og_img = f"{site_url}/{SLUG['profile']}/{slug}/og.png"
         # OG image cache lookup: pierwsze sprawdzamy now\u0105 \u015bcie\u017ck\u0119 (locale-aware),
@@ -412,15 +468,45 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             else:
                 og_img = None
 
-        body = (
-            f"<h1>{esc(name)}</h1>\n"
-            f"<p>Klub: {esc(club_full)}</p>\n"
-            f"<p>Frekwencja: {frekwencja:.0f}% · "
-            f"Aktywnosc: {aktywnosc:.0f}% · "
-            f"Zgodnosc z klubem: {zgodnosc:.0f}%</p>\n"
-            f"<p>Za: {votes_za} · Przeciw: {votes_przeciw} · Wstrzymal sie: {votes_wstrzymal}</p>\n"
-            f"<p><a href=\"{site_url}/\">Radoskop {esc(city_name)}</a></p>\n"
+        # Body widoczne dla crawlera (chowane po hydratacji). Unikalny, faktyczny
+        # tekst per radny + opisowe linki wewnętrzne — podbija trafność encji dla
+        # zapytań nazwiskiem i rozprowadza link equity na zakładkę aktywności.
+        body_parts = [f"<h1>{esc(name)}{esc(club_paren)}</h1>"]
+        intro = f"{esc(name)} zasiada w Radzie Miasta {esc(city_gen)}"
+        if club_full and not club_is_none:
+            intro += f", klub {esc(club_full)}"
+        if okreg:
+            intro += f", okręg {esc(str(okreg))}"
+        intro += "."
+        body_parts.append(f"<p>{intro}</p>")
+        if roles:
+            body_parts.append(f"<p>Funkcje: {esc(', '.join(roles))}.</p>")
+        if has_vd:
+            body_parts.append(
+                f"<p>Frekwencja na sesjach: {frekwencja:.0f}%. "
+                f"Zgodność głosowań z klubem: {zgodnosc:.0f}%. "
+                f"Aktywność: {aktywnosc:.0f}%.</p>"
+            )
+            if perc_fr is not None and tier_label:
+                body_parts.append(
+                    f"<p>Frekwencja wyższa niż u {perc_fr}% radnych "
+                    f"w miastach kategorii {esc(tier_label)}.</p>"
+                )
+            vline = (
+                f"Zarejestrowane głosowania: {votes_total}, w tym "
+                f"za {votes_za}, przeciw {votes_przeciw}, wstrzymane {votes_wstrzymal}."
+            )
+            if rebellion:
+                vline += f" Liczba głosów niezgodnych z klubem: {rebellion}."
+            body_parts.append(f"<p>{vline}</p>")
+        if komisje:
+            body_parts.append(f"<p>Komisje: {esc(', '.join(komisje))}.</p>")
+        body_parts.append(
+            f"<p>Zobacz <a href=\"{canonical}?tab=activity\">głosowania i interpelacje: {esc(name)}</a>, "
+            f"<a href=\"{site_url}/{SLUG['profile']}/\">wszystkich radnych {esc(city_gen)}</a> oraz "
+            f"<a href=\"{site_url}/\">aktualne dane Rady Miasta {esc(city_gen)}</a>.</p>"
         )
+        body = "\n".join(body_parts) + "\n"
 
         # Structured data: Person (radny) + breadcrumb. To jest główny zysk
         # SEO dla wyszukiwań nazwiskiem radnego — pomaga Google rozpoznać encję
