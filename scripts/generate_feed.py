@@ -25,6 +25,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 
+from lib_session_summary import session_votes, summarize_session
+
 
 def esc(text):
     return html.escape(str(text), quote=True)
@@ -80,32 +82,54 @@ def generate_vote_items(kad_data, city_name, site_url, vote_slug="vote"):
 
 
 def generate_session_items(kad_data, city_name, site_url, session_slug="session"):
-    """Generate a feed item for every session."""
+    """Generate a feed item for every session.
+
+    UWAGA: title musi zostać w formacie "Sesja {snum} Rady Miasta {city}" —
+    dedup bota X/Bluesky ma tytuł w kluczu (url+type+title); zmiana tytułu
+    wszystkich historycznych sesji spowodowałaby ich ponowne opostowanie.
+    Wzbogacamy wyłącznie summary (podsumowanie posesyjne 2026-06-10).
+    """
     items = []
-    # Build vote counts per session
-    votes_per_session = {}
-    for v in kad_data.get("votes", []):
-        snum = v.get("session_number", "")
-        votes_per_session[snum] = votes_per_session.get(snum, 0) + 1
+    all_votes = kad_data.get("votes", []) or []
+    councilors = kad_data.get("councilors", []) or []
 
     for s in kad_data.get("sessions", []):
         snum = s.get("number", "")
         sdate = s.get("date", "")
-        vote_count = s.get("vote_count", 0) or votes_per_session.get(snum, 0)
-        attendee_count = s.get("attendee_count", 0)
-
         if not sdate:
             continue
 
+        sess_votes = session_votes(s, all_votes)
+        summary = summarize_session(s, sess_votes, councilors)
+        vote_count = summary["vote_count"] or s.get("vote_count", 0)
+        attendee_count = summary["attendee_count"] or s.get("attendee_count", 0)
+
         parts = [f"{vote_count} glosowan"]
+        if sess_votes:
+            parts.append(f"{summary['passed']} przyjetych")
+            if summary["contested_count"]:
+                parts.append(f"{summary['contested_count']} spornych")
         if attendee_count:
             parts.append(f"{attendee_count} obecnych")
+
+        summary_text = ", ".join(parts) + "."
+        # Najbardziej sporne głosowanie jako zajawka — to jest haczyk
+        # newsowy dla czytelnika feedu i posta bota.
+        if summary["contested"]:
+            _top = summary["contested"][0]
+            _topic = clean_topic(_top.get("topic", ""))
+            _c = _top.get("counts", {}) or {}
+            if _topic:
+                summary_text += (
+                    f" Najbardziej sporne: {_topic[:120]}"
+                    f" (za {_c.get('za', 0)}, przeciw {_c.get('przeciw', 0)})."
+                )
 
         items.append({
             "type": "session",
             "date": sdate,
             "title": f"Sesja {snum} Rady Miasta {city_name}",
-            "summary": ", ".join(parts) + ".",
+            "summary": summary_text,
             "url": f"{site_url}/{session_slug}/{snum}/",
         })
 
@@ -414,8 +438,10 @@ def process_city(city_dir: Path):
             seen.add(key)
             unique_items.append(item)
 
-    # Sort by date desc
-    unique_items.sort(key=lambda x: x["date"], reverse=True)
+    # Sort by date desc; w obrębie tej samej daty podsumowanie sesji nad
+    # pojedynczymi głosowaniami, żeby w aktualnościach i feedzie news sesji
+    # był nad szumem (True > False, reverse podnosi sesję na górę).
+    unique_items.sort(key=lambda x: (x["date"], x["type"] == "session"), reverse=True)
 
     vote_count = sum(1 for i in unique_items if i["type"] == "vote")
     session_count = sum(1 for i in unique_items if i["type"] == "session")

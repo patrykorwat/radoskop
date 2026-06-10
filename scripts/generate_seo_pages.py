@@ -39,6 +39,10 @@ from pathlib import Path
 # Repliki historycznych slugify do mapy redirectów stary→kanoniczny
 # (_redirects/profiles.json, czyta ją worker) — patrz lib_slug.py.
 from lib_slug import legacy_nfkd_slug, legacy_table_slug, legacy_surname_first_slug
+from lib_session_summary import (
+    session_votes, summarize_session, valid_session_number,
+)
+from datetime import date as _date
 
 
 def esc(text):
@@ -746,9 +750,18 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
     print(f"  {vote_count} vote pages")
 
     # ════════════════════════════════════════════
-    # 3. Session pages
+    # 3. Session pages (podsumowania posesyjne)
     # ════════════════════════════════════════════
+    # Pełne podsumowanie sesji (2026-06-10): statystyki, najbardziej sporne
+    # głosowania, nieobecni radni, nawigacja poprzednia/następna sesja,
+    # JSON-LD Article. Heurystyka spornych współdzielona z frontendem przez
+    # lib_session_summary.py. Strona ma działać jako samodzielny, cytowalny
+    # news ("co uchwaliła rada") dla mediów i Google Discover.
+    profile_slug_by_name = {
+        p.get("name", ""): p.get("slug", "") for p in profiles
+    }
     session_count = 0
+    today = _date.today()
     for k in kadencje:
         kid = k.get("id", "")
         kad_file = docs / f"kadencja-{kid}.json"
@@ -758,47 +771,117 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         with open(kad_file, "r", encoding="utf-8") as f:
             kad_data = json.load(f)
 
-        # Lista głosowań per sesja: unikalna treść strony sesji (wcześniej
-        # body to były 3 linijki i Google klastrował strony sesji jako
-        # duplikaty wybierając własny canonical).
-        _votes_by_date: dict[str, list] = {}
-        for _v in kad_data.get("votes", []) or []:
-            _votes_by_date.setdefault(_v.get("session_date", ""), []).append(_v)
+        all_votes = kad_data.get("votes", []) or []
+        councilors = kad_data.get("councilors", []) or []
 
+        # Sesje z poprawnym numerem, chronologicznie — do linków
+        # poprzednia/następna. Guard numeru jak dotychczas (przeniesiony do
+        # lib_session_summary.valid_session_number): zepsuta ekstrakcja ze
+        # scrape'a nie może wyprodukować brzydkiego URL-a, który utknie w
+        # Google index.
+        ordered_sessions = []
         for s in kad_data.get("sessions", []):
             snum = s.get("number", "")
             if not snum:
                 continue
-            # Guard: number powinien być krótkim identyfikatorem (rzymski
-            # numer "XXIII", numer arabski "23", albo data ISO "2024-05-07").
-            # Jeśli zawiera spacje, słowo "Sesja", "Rada", "Miast" albo jest
-            # dłuższy niż 30 znaków, scrape miał problem z ekstrakcją —
-            # nie generujemy SEO page, bo brzydki URL utknie w Google index.
-            snum_str = str(snum).strip()
-            if len(snum_str) > 30 or " " in snum_str:
-                print(f"  skipping invalid session number: {snum_str!r}")
+            if not valid_session_number(snum):
+                print(f"  skipping invalid session number: {str(snum).strip()!r}")
                 continue
-            lower = snum_str.lower()
-            if any(bad in lower for bad in ("sesja", "rada", "miast", "rady")):
-                print(f"  skipping suspicious session number: {snum_str!r}")
-                continue
+            ordered_sessions.append(s)
+        ordered_sessions.sort(key=lambda s: (s.get("date") or "", str(s.get("number") or "")))
 
+        for si, s in enumerate(ordered_sessions):
+            snum = str(s.get("number")).strip()
             sdate = s.get("date", "")
-            vote_cnt = s.get("vote_count", 0)
-            attendee_cnt = s.get("attendee_count", 0)
+            sess_votes = session_votes(s, all_votes)
+            summary = summarize_session(s, sess_votes, councilors)
+            vote_cnt = summary["vote_count"] or s.get("vote_count", 0)
+            attendee_cnt = summary["attendee_count"] or s.get("attendee_count", 0)
 
             canonical = f"{site_url}/{SLUG['session']}/{snum}/"
-            title = f"Sesja {snum} ({sdate}) \u2013 Radoskop {city_name}"
-            desc = (
-                f"Sesja {snum} Rady Miasta {city_gen}, {sdate}. "
-                f"{vote_cnt} glosowan, {attendee_cnt} obecnych radnych."
-            )
+            title = f"Sesja {snum} ({sdate}) – Radoskop {city_name}"
+            if sess_votes:
+                desc = (
+                    f"Sesja {snum} Rady Miasta {city_gen}, {sdate}: "
+                    f"{vote_cnt} głosowań, {summary['passed']} przyjętych, "
+                    f"{summary['contested_count']} spornych, "
+                    f"{attendee_cnt} obecnych radnych. Imienne wyniki głosowań."
+                )
+            else:
+                desc = (
+                    f"Sesja {snum} Rady Miasta {city_gen}, {sdate}. "
+                    f"{vote_cnt} glosowan, {attendee_cnt} obecnych radnych."
+                )
 
-            votes_html = ""
-            _sess_votes = _votes_by_date.get(sdate, [])
-            if _sess_votes:
+            body_parts = [f"<h1>Sesja {esc(snum)} Rady Miasta {esc(city_gen)}</h1>"]
+
+            if sess_votes:
+                # Notacja dwukropkowa zamiast pełnych zdań — liczby polskie
+                # wymagałyby odmiany liczebnikowej (42 rozstrzygnięcia vs
+                # 45 rozstrzygnięć), której nie chcemy liczyć per wartość.
+                intro = (
+                    f"Sesja {esc(snum)} Rady Miasta {esc(city_gen)} odbyła się "
+                    f"{esc(sdate)}. Radni głosowali {vote_cnt} razy. "
+                    f"Wyniki przyjęte: {summary['passed']}, "
+                    f"odrzucone: {summary['rejected']}, "
+                    f"jednogłośne: {summary['unanimous']}"
+                )
+                if summary["contested_count"]:
+                    intro += (
+                        f", sporne (wyraźnie podzielona rada): "
+                        f"{summary['contested_count']}"
+                    )
+                intro += "."
+                body_parts.append(f"<p>{intro}</p>")
+                obecni_line = f"Obecnych radnych: {attendee_cnt}."
+                if summary["absent"]:
+                    obecni_line += f" Nieobecnych: {len(summary['absent'])}."
+                body_parts.append(f"<p>{obecni_line}</p>")
+            else:
+                body_parts.append(f"<p>Data: {esc(sdate)}</p>")
+                body_parts.append(
+                    f"<p>Glosowan: {vote_cnt} · Obecnych: {attendee_cnt}</p>"
+                )
+
+            # Najbardziej sporne głosowania (top 5 wg udziału mniejszości).
+            if summary["contested"]:
                 _items = []
-                for _v in _sess_votes:
+                for _v in summary["contested"][:5]:
+                    _vid = _v.get("id", "")
+                    _vt = (_v.get("topic") or "").strip() or f"Glosowanie {_vid}"
+                    _c = _v.get("counts", {}) or {}
+                    _items.append(
+                        f"<li><a href=\"{site_url}/{SLUG['vote']}/{_vid}/\">{esc(_vt[:140])}</a>"
+                        f" (za {_c.get('za', 0)}, przeciw {_c.get('przeciw', 0)},"
+                        f" wstrzymało się {_c.get('wstrzymal_sie', 0)})</li>"
+                    )
+                body_parts.append(
+                    "<h2>Najbardziej sporne głosowania</h2>\n<ol>\n"
+                    + "\n".join(_items) + "\n</ol>"
+                )
+
+            # Nieobecni z linkami do profili (tylko rozpoznane nazwiska).
+            if summary["absent"]:
+                _abs_parts = []
+                for _n in summary["absent"]:
+                    _ps = profile_slug_by_name.get(_n)
+                    if _ps:
+                        _abs_parts.append(
+                            f"<a href=\"{site_url}/{SLUG['profile']}/{_ps}/\">{esc(_n)}</a>"
+                        )
+                    else:
+                        _abs_parts.append(esc(_n))
+                body_parts.append(
+                    f"<h2>Nieobecni radni ({len(summary['absent'])})</h2>\n"
+                    "<p>" + ", ".join(_abs_parts) + "</p>"
+                )
+
+            # Pełna lista głosowań — unikalna treść strony sesji (wcześniej
+            # body to były 3 linijki i Google klastrował strony sesji jako
+            # duplikaty wybierając własny canonical).
+            if sess_votes:
+                _items = []
+                for _v in sess_votes:
                     _vid = _v.get("id", "")
                     _vt = (_v.get("topic") or "").strip() or f"Glosowanie {_vid}"
                     _c = _v.get("counts", {}) or {}
@@ -807,28 +890,84 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                         f" (za {_c.get('za', 0)}, przeciw {_c.get('przeciw', 0)},"
                         f" wstrzymalo sie {_c.get('wstrzymal_sie', 0)})</li>"
                     )
-                votes_html = (
+                body_parts.append(
                     "<h2>Glosowania na tej sesji</h2>\n<ol>\n"
-                    + "\n".join(_items) + "\n</ol>\n"
+                    + "\n".join(_items) + "\n</ol>"
                 )
 
-            body = (
-                f"<h1>Sesja {esc(snum)}</h1>\n"
-                f"<p>Data: {esc(sdate)}</p>\n"
-                f"<p>Glosowan: {vote_cnt} · Obecnych: {attendee_cnt}</p>\n"
-                + votes_html
-                + f"<p><a href=\"{site_url}/\">Radoskop {esc(city_name)}</a></p>\n"
-            )
+            # Nawigacja poprzednia/następna sesja + powrót.
+            nav_parts = []
+            if si > 0:
+                _p = ordered_sessions[si - 1]
+                nav_parts.append(
+                    f"<a href=\"{site_url}/{SLUG['session']}/{_p['number']}/\">"
+                    f"Poprzednia sesja ({esc(str(_p['number']))}, {esc(_p.get('date', ''))})</a>"
+                )
+            if si + 1 < len(ordered_sessions):
+                _n = ordered_sessions[si + 1]
+                nav_parts.append(
+                    f"<a href=\"{site_url}/{SLUG['session']}/{_n['number']}/\">"
+                    f"Następna sesja ({esc(str(_n['number']))}, {esc(_n.get('date', ''))})</a>"
+                )
+            nav_parts.append(f"<a href=\"{site_url}/\">Radoskop {esc(city_name)}</a>")
+            body_parts.append("<p>" + " · ".join(nav_parts) + "</p>")
 
-            crumbs = _breadcrumb([
+            body = "\n".join(body_parts) + "\n"
+
+            # Karta OG sesji (generate_og_images.py, render_session_card).
+            og_img = f"{site_url}/{SLUG['session']}/{snum}/og.png"
+            og_img_path = docs / SLUG["session"] / snum / "og.png"
+            if not og_img_path.exists():
+                og_img = None
+
+            jsonld = []
+            # Article tylko dla sesji z głosowaniami — podsumowanie jest
+            # wtedy realnym newsem z datą publikacji.
+            if sess_votes and sdate:
+                article = {
+                    "@context": "https://schema.org",
+                    "@type": "Article",
+                    "headline": (
+                        f"Sesja {snum} Rady Miasta {city_gen}: "
+                        f"{vote_cnt} głosowań, {summary['contested_count']} spornych"
+                    ),
+                    "datePublished": sdate,
+                    "dateModified": sdate,
+                    "mainEntityOfPage": canonical,
+                    "author": {"@type": "Organization", "name": "Radoskop",
+                               "url": "https://radoskop.pl"},
+                    "publisher": {"@type": "Organization", "name": "Radoskop",
+                                  "url": "https://radoskop.pl"},
+                }
+                if og_img:
+                    article["image"] = og_img
+                jsonld.append(article)
+            jsonld.append(_breadcrumb([
                 (f"Radoskop {city_name}", f"{site_url}/"),
                 (f"Sesja {snum}", canonical),
-            ])
-            page = make_page(main_html, canonical, title, desc, extra_body=body, jsonld=crumbs)
+            ]))
+
+            page = make_page(main_html, canonical, title, desc, og_image=og_img,
+                             extra_body=body, jsonld=jsonld)
             _maybe_write_page(out / SLUG["session"] / snum / "index.html", page)
             session_count += 1
 
-            sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.5"})
+            # Świeże sesje (90 dni) dostają wyższy priorytet i changefreq —
+            # to one są newsem; archiwalne zostają na 0.5/monthly. lastmod
+            # tylko dla poprawnych dat ISO.
+            recent = False
+            try:
+                recent = (today - _date.fromisoformat(sdate)).days <= 90
+            except (ValueError, TypeError):
+                pass
+            entry = {
+                "loc": canonical,
+                "changefreq": "weekly" if recent else "monthly",
+                "priority": "0.8" if recent else "0.5",
+            }
+            if re.match(r"^\d{4}-\d{2}-\d{2}$", sdate or ""):
+                entry["lastmod"] = sdate
+            sitemap_entries.append(entry)
 
     print(f"  {session_count} session pages")
 
@@ -1097,9 +1236,15 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         f'  <url>\n    <loc>{site_url}/</loc>\n    <changefreq>weekly</changefreq>\n    <priority>1.0</priority>\n  </url>',
     ]
     for entry in sitemap_entries:
+        # lastmod opcjonalny (na razie tylko strony sesji — data sesji).
+        lastmod = (
+            f'    <lastmod>{entry["lastmod"]}</lastmod>\n'
+            if entry.get("lastmod") else ""
+        )
         sitemap_lines.append(
             f'  <url>\n    <loc>{entry["loc"]}</loc>\n'
-            f'    <changefreq>{entry["changefreq"]}</changefreq>\n'
+            + lastmod
+            + f'    <changefreq>{entry["changefreq"]}</changefreq>\n'
             f'    <priority>{entry["priority"]}</priority>\n  </url>'
         )
     sitemap_lines.append('</urlset>')

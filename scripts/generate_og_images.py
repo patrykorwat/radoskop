@@ -22,6 +22,8 @@ import textwrap
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
+from lib_session_summary import session_votes, summarize_session, valid_session_number
+
 # ── Dimensions ──────────────────────────────────────────
 W, H = 1200, 630
 PADDING = 48
@@ -284,6 +286,108 @@ def generate_vote_image(vote, city_name, site_url, output_path):
     img.save(str(output_path), "PNG", optimize=True)
 
 
+# ── Session OG Image ───────────────────────────────────
+
+def generate_session_image(session, summary, city_name, city_gen, site_url, output_path):
+    """Karta OG podsumowania sesji (1200x630), ciemny motyw jak karta vote.
+
+    `summary` to wynik lib_session_summary.summarize_session. Generowana
+    tylko dla sesji z głosowaniami (vote_count > 0).
+    """
+    img = Image.new("RGB", (W, H), BG_DARK)
+    draw = ImageDraw.Draw(img)
+
+    snum = str(session.get("number") or "").strip()
+    sdate = session.get("date", "")
+    totals = summary.get("totals") or {}
+    za = totals.get("za", 0)
+    przeciw = totals.get("przeciw", 0)
+    wstrzymal = totals.get("wstrzymal_sie", 0)
+    total = za + przeciw + wstrzymal
+
+    # ── Header ──
+    y = PADDING
+    draw.text((PADDING, y), "Podsumowanie sesji", fill=MUTED, font=FONT_SMALL)
+    y += 30
+    header = f"Sesja {snum} · {sdate}" if sdate else f"Sesja {snum}"
+    draw.text((PADDING, y), header, fill=WHITE, font=FONT_TITLE)
+    y += 50
+    draw.text((PADDING, y), f"Rada Miasta {city_gen}", fill=MUTED, font=FONT_SUBTITLE)
+    y += 50
+
+    # ── Zbiorczy pasek za/przeciw/wstrzymał ──
+    bar_y = y
+    bar_h = 48
+    bar_w = W - 2 * PADDING
+    draw_rounded_rect(draw, (PADDING, bar_y, W - PADDING, bar_y + bar_h), 8, BG_CARD)
+    if total > 0:
+        segments = [
+            (za, GREEN, f"Za {za}"),
+            (przeciw, RED, f"Przeciw {przeciw}"),
+            (wstrzymal, YELLOW, f"Wstrzym. {wstrzymal}"),
+        ]
+        x = PADDING
+        for count, color, label in segments:
+            if count == 0:
+                continue
+            seg_w = max(int(bar_w * count / total), 2)
+            draw_rounded_rect(draw, (x, bar_y, x + seg_w, bar_y + bar_h), 0, color)
+            label_w = draw.textlength(label, font=FONT_BAR_LABEL)
+            if label_w < seg_w - 10:
+                lx = x + (seg_w - label_w) / 2
+                draw.text((lx, bar_y + 13), label, fill=WHITE, font=FONT_BAR_LABEL)
+            x += seg_w
+    y = bar_y + bar_h + 14
+    draw.text((PADDING, y), "Suma głosów imiennych na sesji", fill=MUTED, font=FONT_SMALL)
+    y += 44
+
+    # ── Stats row ──
+    stats = [
+        (str(summary.get("vote_count", 0)), "Głosowań", ACCENT),
+        (str(summary.get("passed", 0)), "Przyjętych", GREEN),
+        (str(summary.get("rejected", 0)), "Odrzuconych", RED),
+        (str(summary.get("contested_count", 0)), "Spornych", YELLOW),
+        (str(summary.get("attendee_count", 0)), "Obecnych", GRAY),
+    ]
+    stat_w = (W - 2 * PADDING) // len(stats)
+    for i, (val, label, color) in enumerate(stats):
+        sx = PADDING + i * stat_w
+        draw.text((sx, y), val, fill=color, font=FONT_STAT_VALUE)
+        draw.text((sx, y + 52), label, fill=MUTED, font=FONT_STAT_LABEL)
+    y += 100
+
+    # ── Zajawka: najbardziej sporne głosowanie ──
+    contested = summary.get("contested") or []
+    if contested:
+        top = contested[0]
+        topic = (top.get("topic") or "").replace(";", "").strip()
+        c = top.get("counts") or {}
+        if topic:
+            card_y0 = y
+            card_y1 = min(y + 130, H - PADDING - 60)
+            draw_rounded_rect(draw, (PADDING, card_y0, W - PADDING, card_y1), 10, BG_CARD)
+            tx = PADDING + 20
+            ty = card_y0 + 16
+            draw.text((tx, ty), "Najbardziej sporne głosowanie", fill=YELLOW, font=FONT_STAT_LABEL)
+            ty += 28
+            for line in wrap_text(topic, FONT_TOPIC_SM, W - 2 * PADDING - 40, draw, max_lines=2):
+                draw.text((tx, ty), line, fill=WHITE, font=FONT_TOPIC_SM)
+                ty += 26
+            draw.text(
+                (tx, ty + 4),
+                f"za {c.get('za', 0)} · przeciw {c.get('przeciw', 0)}"
+                f" · wstrzymało się {c.get('wstrzymal_sie', 0)}",
+                fill=MUTED, font=FONT_SMALL,
+            )
+
+    # ── Brand ──
+    draw_brand(draw, city_name, site_url)
+    draw.line([(PADDING, H - PADDING - 50), (W - PADDING, H - PADDING - 50)], fill=BORDER, width=1)
+
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    img.save(str(output_path), "PNG", optimize=True)
+
+
 # ── Councillor OG Image ───────────────────────────────
 
 def generate_councillor_image(profile, kadencja_data, city_name, site_url, clubs_config, output_path):
@@ -435,6 +539,7 @@ def process_city(city_dir: Path, force=False):
         config = json.load(f)
 
     city_name = config["city_name"]
+    city_gen = config.get("city_genitive", city_name)
     site_url = config["site_url"].rstrip("/")
     clubs = config.get("clubs", {})
 
@@ -443,6 +548,7 @@ def process_city(city_dir: Path, force=False):
     # generate_seo_pages.py). Po migracji 2026-05 zawsze angielskie slugi.
     profile_slug = "profile"
     vote_slug = "vote"
+    session_slug = "session"
 
     # Load profiles
     profiles_path = docs / "profiles.json"
@@ -501,6 +607,56 @@ def process_city(city_dir: Path, force=False):
                 print(f"  ERROR vote {vid}: {e}")
 
     print(f"  {vote_count} vote OG images")
+
+    # ── Session images ──
+    # Karty tylko dla sesji z głosowaniami. Skip-if-exists ma wyjątek:
+    # miasta z opóźnioną publikacją głosów (Olsztyn 2-5 dni, Amsterdam
+    # tygodnie) dosyłają głosowania po fakcie — sidecar og.json trzyma
+    # vote_count, z którym kartę wygenerowano; przy zmianie regenerujemy.
+    session_count = 0
+    for k in kadencje:
+        kid = k.get("id", "")
+        kad_file = docs / f"kadencja-{kid}.json"
+        if not kad_file.exists():
+            continue
+
+        with open(kad_file, "r", encoding="utf-8") as f:
+            kad_data = json.load(f)
+
+        all_votes = kad_data.get("votes", []) or []
+        councilors = kad_data.get("councilors", []) or []
+
+        for s in kad_data.get("sessions", []):
+            snum = str(s.get("number") or "").strip()
+            if not snum or not valid_session_number(snum):
+                continue
+            sess_votes = session_votes(s, all_votes)
+            if not sess_votes:
+                continue
+            summary = summarize_session(s, sess_votes, councilors)
+
+            out = docs / session_slug / snum / "og.png"
+            meta_path = docs / session_slug / snum / "og.json"
+            if out.exists() and not force:
+                prev_count = None
+                if meta_path.exists():
+                    try:
+                        with open(meta_path, "r", encoding="utf-8") as f:
+                            prev_count = json.load(f).get("vote_count")
+                    except Exception:
+                        prev_count = None
+                if prev_count == summary["vote_count"]:
+                    session_count += 1
+                    continue
+            try:
+                generate_session_image(s, summary, city_name, city_gen, site_url, out)
+                with open(meta_path, "w", encoding="utf-8") as f:
+                    json.dump({"vote_count": summary["vote_count"]}, f)
+                session_count += 1
+            except Exception as e:
+                print(f"  ERROR session {snum}: {e}")
+
+    print(f"  {session_count} session OG images")
 
 
 def main():

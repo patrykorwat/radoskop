@@ -104,12 +104,15 @@ STRINGS: dict[str, dict[str, str]] = {
                               "nl": "gevolgde raadsleden", "sk": "sledovaných poslancov", "fr": "élus suivis",
                               "da": "overvågede rådsmedlemmer", "hu": "figyelt képviselő", "uk": "депутатів під наглядом",
                               "lt": "stebimų narių", "lv": "uzraudzīto deputātu", "et": "jälgitavat liiget"},
-    "stat_contested_label": {"pl": "głosowań spornych (różnica &lt; 10)", "en": "contested votes (margin &lt; 10)",
-                             "de": "umstrittene Abstimmungen (Differenz &lt; 10)", "cs": "sporných hlasování (rozdíl &lt; 10)",
-                             "nl": "verdeelde stemmingen (&lt; 10)", "sk": "sporných hlasovaní (&lt; 10)",
-                             "fr": "votes serrés (écart &lt; 10)", "da": "tætte afstemninger (&lt; 10)",
-                             "hu": "szoros szavazás (&lt; 10)", "uk": "спірних голосувань (&lt; 10)",
-                             "lt": "ginčytinų (&lt; 10)", "lv": "strīdīgi (&lt; 10)", "et": "tasavägiseid (&lt; 10)"},
+    # Opis bez "(różnica < 10)" — stary tekst nie zgadzał się z faktyczną
+    # heurystyką spornych (mniejszość >= 1/3 sumy za+przeciw, patrz
+    # lib_session_summary.py i filtr contested w template/index.html).
+    "stat_contested_label": {"pl": "głosowań spornych (podzielona rada)", "en": "contested votes (split council)",
+                             "de": "umstrittene Abstimmungen (gespaltener Rat)", "cs": "sporných hlasování (rozdělená rada)",
+                             "nl": "verdeelde stemmingen", "sk": "sporných hlasovaní",
+                             "fr": "votes serrés", "da": "tætte afstemninger",
+                             "hu": "szoros szavazás", "uk": "спірних голосувань",
+                             "lt": "ginčytinų balsavimų", "lv": "strīdīgi balsojumi", "et": "tasavägiseid hääletusi"},
     "stat_sessions_label": {"pl": "sesji w archiwum", "en": "sessions archived", "de": "Sitzungen im Archiv",
                             "cs": "zasedání v archivu", "nl": "vergaderingen", "sk": "zasadnutí",
                             "fr": "séances archivées", "da": "møder i arkivet", "hu": "ülés az archívumban",
