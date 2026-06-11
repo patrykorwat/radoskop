@@ -9,8 +9,8 @@
   <div class="topbar-nav">
     <a href="/" onclick="if(window.showLanding){event.preventDefault();showLanding();}">Strona główna</a>
     <a href="https://radoskop.eu/reports/">Raporty</a>
-    <a href="https://radoskop.eu/pro/" class="nav-sales">Pro</a>
-    <a href="https://radoskop.eu/pricing/" class="nav-sales">Cennik</a>
+    <a href="https://radoskop.eu/pro/{{SALES_QS}}" class="nav-sales">Pro</a>
+    <a href="https://radoskop.eu/pricing/{{SALES_QS}}" class="nav-sales">Cennik</a>
   </div>
   <div class="topbar-actions">
     <button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
@@ -215,7 +215,7 @@
       <a href="{{ROOT_URL}}">Radoskop</a> · <a href="{{ROOT_URL}}#cities">wszystkie miasta</a> · <a href="https://x.com/radoskop" target="_blank" rel="noopener me">X (Twitter)</a>
     </div>
     <div style="margin-bottom:12px">
-      <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/pricing/">Cennik</a> · <a href="https://radoskop.eu/pro/">Pro</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">Regulamin</a>{{IMPRESSUM_FOOTER_LINK}}
+      <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/pricing/{{SALES_QS}}">Cennik</a> · <a href="https://radoskop.eu/pro/{{SALES_QS}}">Pro</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">Regulamin</a>{{IMPRESSUM_FOOTER_LINK}}
     </div>
     <div style="color:var(--muted);font-size:0.75rem">
       Dane źródłowe: <a href="{{BIP_URL}}" target="_blank">{{BIP_NAME}}</a> · Kod: <a href="{{GITHUB_URL}}" target="_blank">GitHub</a> (AGPL-3.0) · Polecane: <a href="https://www.tygodniksejmowy.pl/" target="_blank" rel="noopener">Tygodnik Sejmowy</a>
@@ -560,6 +560,7 @@ async function init() {
       // 2026-05-13). Worker robi 301 na poziomie edge, ten SPA fallback
       // łapie tylko gdy worker by minął.
       var search = location.search || '';
+      search += salesLangQs(!!search);
       location.replace('https://radoskop.eu/pro/' + search);
       return;
     }
@@ -1014,8 +1015,19 @@ function showPro(opts) {
   if (opts.from) qs.push('from=' + encodeURIComponent(opts.from));
   if (opts.druk) qs.push('druk=' + encodeURIComponent(opts.druk));
   if (opts.komisja) qs.push('komisja=' + encodeURIComponent(opts.komisja));
+  if (salesLangQs(false)) qs.push('lang=en');
   var search = qs.length ? '?' + qs.join('&') : '';
   location.assign('https://radoskop.eu/pro/' + search);
+}
+
+// Query param wersji językowej dla linków sprzedażowych (pro/pricing) na
+// apexie .eu. Miasta non-PL linkują do angielskiej wersji (?lang=en).
+// Locale czytamy z <html lang>, jak w showPrivacy/showTerms; statyczne
+// linki nav/footer dostają to samo przez placeholder {{SALES_QS}}.
+function salesLangQs(hasQuery) {
+  var lang = (document.documentElement.lang || 'pl').toLowerCase();
+  if (lang === 'pl') return '';
+  return (hasQuery ? '&' : '?') + 'lang=en';
 }
 // Backward-compat alias (jeśli stary kod jeszcze gdzieś zostawił showPremium)
 var showPremium = showPro;
@@ -2717,7 +2729,7 @@ async function showDruk(drukId, kadId) {
   if (entry && entry.tresc) {
     // Premium: pelna tresc + link do PDF na S3
     const localCopyLink = entry.source_url
-      ? `<div style="margin-top:12px"><a href="${entry.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">&#8599; Lokalna kopia dokumentu</a></div>`
+      ? `<div style="margin-top:12px"><a href="${entry.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">&#8599; Dokument źródłowy</a></div>`
       : '';
     contentHtml = `<div class="druk-tresc"><p>${entry.tresc}</p>${localCopyLink}</div>`;
   } else if (entry && entry.tresc_preview) {
@@ -2726,10 +2738,16 @@ async function showDruk(drukId, kadId) {
       <div class="druk-tresc">
         <p>${entry.tresc_preview}...</p>
         <div class="druk-paywall">
-          <p style="margin:0 0 12px;color:var(--muted);font-size:0.9rem">Pełna treść dostępna w pakiecie Premium.</p>
-          <button class="auth-btn" onclick="showPro({from:'druk_content',druk:'${drukKey}'})">Odblokuj Premium</button>
+          <p style="margin:0 0 12px;color:var(--muted);font-size:0.9rem">Pełna treść dostępna w pakiecie Pro.</p>
+          <button class="auth-btn" onclick="showPro({from:'druk_content',druk:'${drukKey}'})">Odblokuj Pro</button>
         </div>
       </div>`;
+  } else if (entry) {
+    // Plik druku istnieje, ale treść jest pusta: BIP tego miasta nie
+    // publikuje treści druków w maszynowym źródle (np. Gdańsk, scraper
+    // bierze tylko tytuł z topic głosowania). Nie obiecujemy "jeszcze",
+    // bo treść z tego źródła nigdy nie przyjdzie.
+    contentHtml = '<p style="color:var(--muted)">BIP tego miasta nie udostępnia treści druków w formie elektronicznej.</p>';
   } else {
     contentHtml = '<p style="color:var(--muted)">Treść druku nie jest jeszcze dostępna.</p>';
   }
@@ -2820,17 +2838,27 @@ async function renderCommissionTimeline(druk, container) {
     return;
   }
 
-  // Lista komisji (top 3 w free tier)
-  const rows = cs.map(c => `
+  // Lista komisji (top 3 w free tier). Nazwa komisji linkuje do
+  // wewnętrznego widoku /commission/{slug}/ (showKomisja fetchuje z API,
+  // działa niezależnie od taba), link BIP zostaje jako źródło.
+  const rows = cs.map(c => {
+    const kSlug = c.url_slug || '';
+    const kSlugEsc = kSlug.replace(/'/g, "\\'");
+    const kLabel = c.label || 'Komisja';
+    const labelHtml = kSlug
+      ? `<a href="/commission/${encodeURIComponent(kSlug)}/" onclick="event.preventDefault();showKomisja('${kSlugEsc}')" style="color:var(--text);text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:3px">${kLabel}</a>`
+      : kLabel;
+    return `
     <div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-top:0.5px solid var(--border)">
       <div style="font-size:11px;color:var(--accent);min-width:78px;padding-top:2px;font-family:var(--font-mono,monospace)">${c.date || ''}</div>
       <div style="flex:1">
-        <div style="font-size:13px;font-weight:500;color:var(--text)">${c.label || 'Komisja'}</div>
+        <div style="font-size:13px;font-weight:500;color:var(--text)">${labelHtml}</div>
         <div style="font-size:12px;color:var(--muted);margin-top:2px">Druk procedowany na posiedzeniu komisji</div>
       </div>
       ${c.url ? `<a href="${c.url}" target="_blank" rel="noopener" style="font-size:12px;color:var(--accent);text-decoration:none;padding-top:2px">↗ BIP</a>` : ''}
     </div>
-  `).join('');
+  `;
+  }).join('');
 
   // Teaser dla pozostałych komisji ukrytych za paywallem
   const hiddenTeaser = csHidden > 0 ? `
@@ -2839,7 +2867,7 @@ async function renderCommissionTimeline(druk, container) {
       <div style="flex:1;font-size:13px;color:var(--text)">
         Łącznie <strong style="font-weight:500">${csTotal} komisji</strong> w pipeline. Pełna lista w pakiecie Pro
       </div>
-      <a href="https://radoskop.eu/pro/?from=commission_timeline_hidden&druk=${encodeURIComponent(druk)}"
+      <a href="https://radoskop.eu/pro/?from=commission_timeline_hidden&druk=${encodeURIComponent(druk)}${salesLangQs(true)}"
          onclick="event.preventDefault();trackEvent('click_business_cta',{location:'commission_timeline_hidden',druk:'${druk}',hidden:${csHidden}});showPro({from:'commission_timeline_hidden',druk:'${druk}'})"
          style="font-size:12px;color:var(--accent);text-decoration:none">Zapytaj o pełną analizę ↗</a>
     </div>
@@ -2864,14 +2892,18 @@ async function renderCommissionTimeline(druk, container) {
     </div>
   ` : '';
 
-  // CTA dostosowane do statusu
+  // CTA dostosowane do statusu. Tylko funkcje, które istnieją (audyt
+  // 2026-06-05): bez opinii komisji i alertów, branding Pro (rename
+  // 2026-06-07, landing radoskop.eu/pro/).
   let ctaCopy;
   if (status === 'voted_without_commission') {
-    ctaCopy = 'Premium: alerty na druki w trybie pilnym, analiza dlaczego pominęły komisję, monitoring branżowy.';
+    ctaCopy = 'Pakiet Pro: oznaczenia trybu pilnego, pełna procedura komisyjna i eksport CSV/JSON. Analizy przypadków na zamówienie.';
   } else if (status === 'in_commission') {
-    ctaCopy = 'Premium: powiadomienie gdy druk trafi na sesję, pełne porządki obrad, opinie komisji.';
+    ctaCopy = 'Pakiet Pro: pełna lista posiedzeń komisji i mapowanie druków na głosowania, zanim druk trafi na sesję.';
   } else {
-    ctaCopy = 'Premium: pełne porządki obrad, protokoły, opinie komisji, alerty na nowe druki w pipeline.';
+    // Bez "treści druków": w miastach bez maszynowego źródła treści
+    // (np. Gdańsk) obietnica stałaby obok komunikatu o jej braku.
+    ctaCopy = 'Pakiet Pro: pełna procedura komisyjna, mapowanie druków na głosowania, eksport CSV/JSON i porównywarka miast.';
   }
 
   container.innerHTML = `
@@ -2886,7 +2918,7 @@ async function renderCommissionTimeline(druk, container) {
       ${sessionRow}
       <div style="font-size:12px;color:var(--muted);margin-top:12px;padding-top:12px;border-top:0.5px solid var(--border)">
         ${ctaCopy}
-        <a href="https://radoskop.eu/pro/?from=commission_timeline&druk=${encodeURIComponent(druk)}"
+        <a href="https://radoskop.eu/pro/?from=commission_timeline&druk=${encodeURIComponent(druk)}${salesLangQs(true)}"
            onclick="event.preventDefault();trackEvent('click_business_cta',{location:'commission_timeline',druk:'${druk}',status:'${status}',commissions:${csTotal}});showPro({from:'commission_timeline',druk:'${druk}'})"
            style="color:var(--accent);margin-left:4px;text-decoration:none">Dowiedz się więcej ↗</a>
       </div>
@@ -3357,7 +3389,7 @@ async function renderKomisjeList() {
        </div>`
     : `<div style="margin-top:24px;padding:16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px;color:var(--text)">
          Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport CSV/JSON) dostępna w pakiecie Pro.
-         <a href="https://radoskop.eu/pricing/"
+         <a href="https://radoskop.eu/pricing/${salesLangQs(false)}"
             onclick="trackEvent('click_business_komisja_cta',{location:'komisje_list'})"
             style="color:var(--accent);margin-left:6px;text-decoration:none">Zobacz cennik ↗</a>
        </div>`;
@@ -3537,7 +3569,7 @@ async function showKomisja(slug) {
     bannerHtml = `
       <div style="margin-top:16px;padding:14px 16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px">
         Łącznie <strong style="font-weight:500">${meetingsTotal} posiedzeń</strong> w archiwum, pokazane ${meetingsTop.length}. Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport CSV/JSON) w pakiecie Pro.
-        <a href="https://radoskop.eu/pricing/"
+        <a href="https://radoskop.eu/pricing/${salesLangQs(false)}"
            onclick="trackEvent('click_business_komisja_cta',{location:'komisja_detail',slug:'${slug}',hidden:${meetingsHidden}})"
            style="color:var(--accent);margin-left:6px;text-decoration:none">Zobacz cennik ↗</a>
       </div>

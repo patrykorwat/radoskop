@@ -637,33 +637,64 @@ def build_impressum_html(config: dict, country: str) -> tuple[str, str]:
         link = ' · <a href="/impressum/" onclick="event.preventDefault();showImpressum()">Impressum</a>'
         return _esc_js_string(body), link
 
-    # Czech (cs) lub inne kraje na .eu — wersja angielska z czeskim
-    # nagłówkiem i czeskimi referencjami prawnymi.
+    # Czech (cz) — czeski nagłówek i czeskie referencje prawne.
+    if country == "cz":
+        body = (
+            '<div style="max-width:800px;margin:0 auto;padding:20px 0">'
+            '<button class="profile-back" onclick="showMain()">← Domů</button>'
+            '<h1 style="font-size:1.5rem;margin:20px 0 10px">Provozovatel / Imprint</h1>'
+            '<p style="color:var(--muted);margin-bottom:20px">Identifikace provozovatele dle §6 zákona č. 480/2004 Sb. o některých službách informační společnosti.</p>'
+
+            '<h2 style="font-size:1.1rem;margin:24px 0 8px">Provozovatel</h2>'
+            f'<p>{name}<br>{addr_html}</p>'
+
+            '<h2 style="font-size:1.1rem;margin:24px 0 8px">Kontakt</h2>'
+            f'<p>E-mail: <a href="mailto:{email}">{email}</a>{phone_line}</p>'
+
+            f'{vat_line}'
+
+            '<h2 style="font-size:1.1rem;margin:24px 0 8px">Odpovědnost za obsah</h2>'
+            '<p>Data o zastupitelích pochází výhradně z oficiálních veřejných zdrojů (opendata Praha, hlasování Magistrátu hl. m. Prahy). '
+            'Žádosti o opravu údajů vyřizujeme do 7 pracovních dnů od ověření proti zdrojovému dokumentu.</p>'
+
+            '<h2 style="font-size:1.1rem;margin:24px 0 8px">Ochrana osobních údajů</h2>'
+            '<p>Informace o zpracování osobních údajů naleznete v '
+            '<a href="/privacy/" onclick="event.preventDefault();showPrivacy()">Zásadách ochrany osobních údajů</a>.</p>'
+
+            '</div>'
+        )
+        link = ' · <a href="/impressum/" onclick="event.preventDefault();showImpressum()">Provozovatel</a>'
+        return _esc_js_string(body), link
+
+    # Pozostałe kraje na .eu (lt, dk, fr, nl, hu, ua, ...) — neutralna
+    # wersja angielska. Wcześniej te miasta dostawały czeski wariant
+    # ("Provozovatel" + §6 zákona 480/2004 Sb.), co na np. Wilnie było
+    # mylące i językowo, i prawnie.
     body = (
         '<div style="max-width:800px;margin:0 auto;padding:20px 0">'
-        '<button class="profile-back" onclick="showMain()">← Domů</button>'
-        '<h1 style="font-size:1.5rem;margin:20px 0 10px">Provozovatel / Imprint</h1>'
-        '<p style="color:var(--muted);margin-bottom:20px">Identifikace provozovatele dle §6 zákona č. 480/2004 Sb. o některých službách informační společnosti.</p>'
+        '<button class="profile-back" onclick="showMain()">← Home</button>'
+        '<h1 style="font-size:1.5rem;margin:20px 0 10px">Imprint / Operator</h1>'
+        '<p style="color:var(--muted);margin-bottom:20px">Identification of the operator of this website.</p>'
 
-        '<h2 style="font-size:1.1rem;margin:24px 0 8px">Provozovatel</h2>'
+        '<h2 style="font-size:1.1rem;margin:24px 0 8px">Operator</h2>'
         f'<p>{name}<br>{addr_html}</p>'
 
-        '<h2 style="font-size:1.1rem;margin:24px 0 8px">Kontakt</h2>'
+        '<h2 style="font-size:1.1rem;margin:24px 0 8px">Contact</h2>'
         f'<p>E-mail: <a href="mailto:{email}">{email}</a>{phone_line}</p>'
 
         f'{vat_line}'
 
-        '<h2 style="font-size:1.1rem;margin:24px 0 8px">Odpovědnost za obsah</h2>'
-        '<p>Data o zastupitelích pochází výhradně z oficiálních veřejných zdrojů (opendata Praha, hlasování Magistrátu hl. m. Prahy). '
-        'Žádosti o opravu údajů vyřizujeme do 7 pracovních dnů od ověření proti zdrojovému dokumentu.</p>'
+        '<h2 style="font-size:1.1rem;margin:24px 0 8px">Responsibility for content</h2>'
+        '<p>Data about council members comes exclusively from official public sources (council minutes, open data published by the municipality). '
+        'Requests for data correction are processed within 7 working days after verification against the source document.</p>'
 
-        '<h2 style="font-size:1.1rem;margin:24px 0 8px">Ochrana osobních údajů</h2>'
-        '<p>Informace o zpracování osobních údajů naleznete v '
-        '<a href="/privacy/" onclick="event.preventDefault();showPrivacy()">Zásadách ochrany osobních údajů</a>.</p>'
+        '<h2 style="font-size:1.1rem;margin:24px 0 8px">Personal data</h2>'
+        '<p>Information about the processing of personal data is available in the '
+        '<a href="/privacy/" onclick="event.preventDefault();showPrivacy()">Privacy policy</a>.</p>'
 
         '</div>'
     )
-    link = ' · <a href="/impressum/" onclick="event.preventDefault();showImpressum()">Provozovatel</a>'
+    link = ' · <a href="/impressum/" onclick="event.preventDefault();showImpressum()">Imprint</a>'
     return _esc_js_string(body), link
 
 
@@ -1054,6 +1085,10 @@ def main():
         "{{IMPRESSUM_HTML}}": impressum_html,
         "{{IMPRESSUM_FOOTER_LINK}}": impressum_footer_link,
         "{{PRESSEKODEX_NOTICE}}": pressekodex_notice,
+        # Linki sprzedażowe (Pro/Cennik) — miasta non-PL kierują na
+        # angielską wersję stron apexu (?lang=en, jak terms/privacy).
+        # JS-owe linki robią to w runtime przez salesLangQs() z <html lang>.
+        "{{SALES_QS}}": "" if config.get("locale", "pl").lower() == "pl" else "?lang=en",
     }
 
     locale = config.get("locale", "pl")

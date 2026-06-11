@@ -544,6 +544,9 @@ def main() -> int:
         "{{IMPRESSUM_HTML}}": "",
         "{{IMPRESSUM_FOOTER_LINK}}": "",
         "{{PRESSEKODEX_NOTICE}}": "",
+        # Linki sprzedażowe (Pro/Cennik) — non-PL na angielską wersję
+        # stron apexu (?lang=en), spójnie z generate_site.py.
+        "{{SALES_QS}}": "" if cfg.get("locale", "pl").lower() == "pl" else "?lang=en",
     }
 
     # Lokalizacja UI dla landów spoza Polski (Landtag MV → de).

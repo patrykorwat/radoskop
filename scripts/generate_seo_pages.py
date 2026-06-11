@@ -43,6 +43,61 @@ from lib_session_summary import (
     session_votes, summarize_session, valid_session_number,
 )
 from datetime import date as _date
+from i18n import apply_locale
+
+
+# ── Lokalizacja prerendera dla miast nie-PL (2026-06-11) ─────────────
+# Strony SEO (profile/vote/session/term/budget) wstrzykują polskie frazy
+# do już zlokalizowanego main_html, więc np. vilnius.radoskop.eu/vote/...
+# pokazywał "Sesja", "Wynik: przyjete", "Jak glosowali radni" po polsku.
+# Dla locale != "pl" title/description/extra_body przechodzą przez
+# _localize_seo: najpierw normalizacja ASCII→PL (frazy prerendera są
+# celowo pisane bez diakrytyków i nie matchowałyby kluczy i18n), potem
+# apply_locale na katalogu danego locale. Dla "pl" zero zmian — output
+# bajt w bajt jak dotychczas.
+_SEO_ASCII_TO_PL = [
+    ("Jak glosowali radni", "Jak głosowali radni"),
+    ("Imienne glosy radnych", "Imienne głosy radnych"),
+    ("Glosowania na tej sesji", "Głosowania na tej sesji"),
+    ("Wstrzymali sie", "Wstrzymali się"),
+    ("wstrzymalo sie", "wstrzymało się"),
+    ("Wstrzymal sie", "Wstrzymał się"),
+    ("wstrzymal sie", "wstrzymał się"),
+    ("wstrzymane", "wstrzymało się"),
+    ("Brak glosu", "Brak głosu"),
+    ("Glosowanie", "Głosowanie"),
+    ("glosowanie", "głosowanie"),
+    ("Glosowania", "Głosowania"),
+    ("glosowania", "głosowania"),
+    ("Glosowan", "Głosowań"),
+    ("glosowan", "głosowań"),
+    ("przyjete", "przyjęte"),
+    ("Uchwala", "Uchwała"),
+    ("Budzet", "Budżet"),
+    ("budzetu", "budżetu"),
+    ("aktywnosc", "aktywność"),
+]
+# Ustawiane per-miasto w process_city. Dynamiczne pary obsługują frazy
+# z odmienioną nazwą miasta ("Rady Miasta Vilniaus"), których nie da się
+# trzymać w statycznym katalogu i18n.
+_SEO_PRERENDER_LOCALE = "pl"
+_SEO_DYNAMIC_PAIRS: list = []
+
+
+def _localize_seo(text):
+    """Tłumaczy frazę prerendera na locale bieżącego miasta.
+
+    No-op dla locale "pl" (i pustych wartości) — polskie miasta zachowują
+    dotychczasowy output co do bajta.
+    """
+    if not text or _SEO_PRERENDER_LOCALE == "pl":
+        return text
+    out = text
+    for a, b in _SEO_DYNAMIC_PAIRS:
+        out = out.replace(a, b)
+    for a, b in _SEO_ASCII_TO_PL:
+        out = re.sub(rf"(?<!\w){re.escape(a)}(?!\w)", b, out)
+    return apply_locale(out, _SEO_PRERENDER_LOCALE)
 
 
 def esc(text):
@@ -106,6 +161,10 @@ def _strlist(v):
 
 def make_page(main_html, canonical_url, title, description, og_image=None, extra_body="", jsonld=None):
     """Create a page variant with unique SEO tags and optional body content."""
+    # Lokalizacja fraz prerendera dla miast nie-PL (no-op dla "pl").
+    title = _localize_seo(title)
+    description = _localize_seo(description)
+    extra_body = _localize_seo(extra_body)
     h = main_html
 
     # Usuń homepage'owy blok SEO ({{SEO_CONTENT}} = <section id="seo-content">…)
@@ -326,6 +385,26 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
     city_gen = config["city_genitive"]
     locale = (config.get("locale") or "pl").lower()
 
+    # Konfiguracja _localize_seo dla tego miasta. Frazy z odmienioną nazwą
+    # ("Rady Miasta Vilniaus") tłumaczymy dynamicznie przez klucz katalogowy
+    # "Rada Miasta {{CITY_GENITIVE}}", w którym locale może przestawić szyk
+    # (np. lt: "{{CITY_GENITIVE}} miesto savivaldybės taryba").
+    global _SEO_PRERENDER_LOCALE, _SEO_DYNAMIC_PAIRS
+    _SEO_PRERENDER_LOCALE = locale
+    if locale != "pl":
+        council = (
+            apply_locale("Rada Miasta {{CITY_GENITIVE}}", locale)
+            .replace("{{CITY_GENITIVE}}", city_gen)
+            .replace("{{CITY_NAME}}", city_name)
+        )
+        _SEO_DYNAMIC_PAIRS = [
+            (f"Radzie Miasta {city_gen}", council),
+            (f"Rady Miasta {city_gen}", council),
+            (f"Rada Miasta {city_gen}", council),
+        ]
+    else:
+        _SEO_DYNAMIC_PAIRS = []
+
     # Path slug map. Po migracji 2026-05 wszystkie miasta używają
     # angielskich slugów dla URL paths. Mapping musi zgadzać się z
     # apply_english_paths() w generate_site.py i PATH_REDIRECTS w
@@ -490,40 +569,75 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         # tekst per radny + opisowe linki wewnętrzne — podbija trafność encji dla
         # zapytań nazwiskiem i rozprowadza link equity na zakładkę aktywności.
         body_parts = [f"<h1>{esc(name)}{esc(club_paren)}</h1>"]
-        intro = f"{esc(name)} zasiada w Radzie Miasta {esc(city_gen)}"
-        if club_full and not club_is_none:
-            intro += f", klub {esc(club_full)}"
-        if okreg:
-            intro += f", okręg {esc(str(okreg))}"
-        intro += "."
-        body_parts.append(f"<p>{intro}</p>")
-        if roles:
-            body_parts.append(f"<p>Funkcje: {esc(', '.join(roles))}.</p>")
-        if has_vd:
-            body_parts.append(
-                f"<p>Frekwencja na sesjach: {frekwencja:.0f}%. "
-                f"Zgodność głosowań z klubem: {zgodnosc:.0f}%. "
-                f"Aktywność: {aktywnosc:.0f}%.</p>"
-            )
-            if perc_fr is not None and tier_label:
+        if is_pl:
+            intro = f"{esc(name)} zasiada w Radzie Miasta {esc(city_gen)}"
+            if club_full and not club_is_none:
+                intro += f", klub {esc(club_full)}"
+            if okreg:
+                intro += f", okręg {esc(str(okreg))}"
+            intro += "."
+            body_parts.append(f"<p>{intro}</p>")
+            if roles:
+                body_parts.append(f"<p>Funkcje: {esc(', '.join(roles))}.</p>")
+            if has_vd:
                 body_parts.append(
-                    f"<p>Frekwencja wyższa niż u {perc_fr}% radnych "
-                    f"w miastach kategorii {esc(tier_label)}.</p>"
+                    f"<p>Frekwencja na sesjach: {frekwencja:.0f}%. "
+                    f"Zgodność głosowań z klubem: {zgodnosc:.0f}%. "
+                    f"Aktywność: {aktywnosc:.0f}%.</p>"
                 )
-            vline = (
-                f"Zarejestrowane głosowania: {votes_total}, w tym "
-                f"za {votes_za}, przeciw {votes_przeciw}, wstrzymane {votes_wstrzymal}."
+                if perc_fr is not None and tier_label:
+                    body_parts.append(
+                        f"<p>Frekwencja wyższa niż u {perc_fr}% radnych "
+                        f"w miastach kategorii {esc(tier_label)}.</p>"
+                    )
+                vline = (
+                    f"Zarejestrowane głosowania: {votes_total}, w tym "
+                    f"za {votes_za}, przeciw {votes_przeciw}, wstrzymane {votes_wstrzymal}."
+                )
+                if rebellion:
+                    vline += f" Liczba głosów niezgodnych z klubem: {rebellion}."
+                body_parts.append(f"<p>{vline}</p>")
+            if komisje:
+                body_parts.append(f"<p>Komisje: {esc(', '.join(komisje))}.</p>")
+            body_parts.append(
+                f"<p>Zobacz <a href=\"{canonical}?tab=activity\">głosowania i interpelacje: {esc(name)}</a>, "
+                f"<a href=\"{site_url}/{SLUG['profile']}/\">wszystkich radnych {esc(city_gen)}</a> oraz "
+                f"<a href=\"{site_url}/\">aktualne dane Rady Miasta {esc(city_gen)}</a>.</p>"
             )
-            if rebellion:
-                vline += f" Liczba głosów niezgodnych z klubem: {rebellion}."
-            body_parts.append(f"<p>{vline}</p>")
-        if komisje:
-            body_parts.append(f"<p>Komisje: {esc(', '.join(komisje))}.</p>")
-        body_parts.append(
-            f"<p>Zobacz <a href=\"{canonical}?tab=activity\">głosowania i interpelacje: {esc(name)}</a>, "
-            f"<a href=\"{site_url}/{SLUG['profile']}/\">wszystkich radnych {esc(city_gen)}</a> oraz "
-            f"<a href=\"{site_url}/\">aktualne dane Rady Miasta {esc(city_gen)}</a>.</p>"
-        )
+        else:
+            # Non-PL: rzeczowe frazy etykietowe zamiast polskiej prozy —
+            # wszystkie etykiety mają klucze w katalogach i18n, a _localize_seo
+            # tłumaczy je w make_page. Pomijamy linijkę percentyla, bo
+            # tier_label przyjeżdża z danych po polsku.
+            intro = f"{esc(name)} – Rada Miasta {esc(city_gen)}"
+            if club_full and not club_is_none:
+                intro += f". Klub: {esc(club_full)}"
+            if okreg:
+                intro += f". Okręg wyborczy: {esc(str(okreg))}"
+            intro += "."
+            body_parts.append(f"<p>{intro}</p>")
+            if roles:
+                body_parts.append(f"<p>Funkcje: {esc(', '.join(roles))}.</p>")
+            if has_vd:
+                body_parts.append(
+                    f"<p>Frekwencja: {frekwencja:.0f}%. "
+                    f"Zgodność z klubem: {zgodnosc:.0f}%. "
+                    f"Aktywność: {aktywnosc:.0f}%.</p>"
+                )
+                vline = (
+                    f"Głosowania: {votes_total}. Za: {votes_za} · "
+                    f"Przeciw: {votes_przeciw} · Wstrzymał się: {votes_wstrzymal}."
+                )
+                if rebellion:
+                    vline += f" Głosy wbrew klubowi: {rebellion}."
+                body_parts.append(f"<p>{vline}</p>")
+            if komisje:
+                body_parts.append(f"<p>Komisje: {esc(', '.join(komisje))}.</p>")
+            body_parts.append(
+                f"<p><a href=\"{canonical}?tab=activity\">{esc(name)}: Głosowania · Interpelacje</a> · "
+                f"<a href=\"{site_url}/{SLUG['profile']}/\">Profile radnych</a> · "
+                f"<a href=\"{site_url}/\">Radoskop {esc(city_name)}</a></p>"
+            )
         body = "\n".join(body_parts) + "\n"
 
         # Structured data: Person (radny) + breadcrumb. To jest główny zysk
