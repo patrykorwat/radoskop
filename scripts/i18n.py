@@ -18,6 +18,10 @@ from __future__ import annotations
 # trafień (np. "Sesje" trafiło by w "Sesje rady" gdybyśmy najpierw zamienili
 # słowo, a potem frazę).
 PL_TO_EN: list[tuple[str, str]] = [
+    ("Przekrój głosowań", "Voting breakdown"),
+    ("Jak głosowały kluby", "How clubs voted"),
+    ("jednomyślnych", "unanimous"),
+    ("Wstrzymało się", "Abstained"),
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Mapa dostępności z monitorowanymi miastami", "Coverage map with monitored cities"),
     ("Mapa dostępności", "Coverage map"),
@@ -548,6 +552,10 @@ PL_TO_EN: list[tuple[str, str]] = [
 
 
 PL_TO_DE: list[tuple[str, str]] = [
+    ("Przekrój głosowań", "Abstimmungsübersicht"),
+    ("Jak głosowały kluby", "Wie die Fraktionen abstimmten"),
+    ("jednomyślnych", "einstimmig"),
+    ("Wstrzymało się", "Enthalten"),
     # ── Głosowania frakcyjne (regiony bez głosowań imiennych) ────────
     ("W tym regionie głosowania imienne (per radny) nie są publicznie protokołowane. Pokazujemy wynik w rozbiciu na frakcje, zgodnie z oficjalnym protokołem.",
      "In dieser Region werden namentliche Abstimmungen (pro Abgeordneten) nicht öffentlich protokolliert. Wir zeigen das Ergebnis nach Fraktionen, gemäß dem offiziellen Protokoll."),
@@ -1103,6 +1111,10 @@ PL_TO_DE: list[tuple[str, str]] = [
 # strukturę PL_TO_DE — apply_locale i tak sortuje po długości DESC, więc
 # kolejność wpisów nie wpływa na poprawność.
 PL_TO_FR: list[tuple[str, str]] = [
+    ("Przekrój głosowań", "Aperçu des votes"),
+    ("Jak głosowały kluby", "Comment les groupes ont voté"),
+    ("jednomyślnych", "à l'unanimité"),
+    ("Wstrzymało się", "Abstention"),
     # ── Votes par groupe (régions sans vote nominal) ─────────────────
     ("W tym regionie głosowania imienne (per radny) nie są publicznie protokołowane. Pokazujemy wynik w rozbiciu na frakcje, zgodnie z oficjalnym protokołem.",
      "Dans cette région, les votes nominaux (par élu) ne sont pas consignés publiquement. Nous présentons le résultat par groupe, conformément au procès-verbal officiel."),
@@ -1559,6 +1571,10 @@ PL_TO_FR: list[tuple[str, str]] = [
 # bez głosowania). To region docelowy dla widoku frakcyjnego analogicznie
 # do Paryża.
 PL_TO_DA: list[tuple[str, str]] = [
+    ("Przekrój głosowań", "Afstemningsoversigt"),
+    ("Jak głosowały kluby", "Sådan stemte grupperne"),
+    ("jednomyślnych", "enstemmige"),
+    ("Wstrzymało się", "Undlod"),
     # ── Afstemning per gruppe (regioner uden navneopråb) ─────────────
     ("W tym regionie głosowania imienne (per radny) nie są publicznie protokołowane. Pokazujemy wynik w rozbiciu na frakcje, zgodnie z oficjalnym protokołem.",
      "I denne region føres der ikke offentligt protokol over navnlige afstemninger (per medlem). Vi viser resultatet fordelt på partier i overensstemmelse med det officielle referat."),
@@ -2009,6 +2025,10 @@ PL_TO_DA: list[tuple[str, str]] = [
 
 
 PL_TO_CS: list[tuple[str, str]] = [
+    ("Przekrój głosowań", "Přehled hlasování"),
+    ("Jak głosowały kluby", "Jak hlasovaly kluby"),
+    ("jednomyślnych", "jednomyslných"),
+    ("Wstrzymało się", "Zdrželo se"),
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Mapa dostępności z monitorowanymi miastami", "Mapa pokrytí se sledovanými městy"),
     ("Mapa dostępności", "Mapa pokrytí"),
@@ -2473,6 +2493,10 @@ PL_TO_CS: list[tuple[str, str]] = [
 #   - Liczebność: większość rzeczowników odmienia się przez przypadki, my
 #     trzymamy się mianownika i dopełniacza zgodnie z polskim oryginałem.
 PL_TO_LT: list[tuple[str, str]] = [
+    ("Przekrój głosowań", "Balsavimų apžvalga"),
+    ("Jak głosowały kluby", "Kaip balsavo frakcijos"),
+    ("jednomyślnych", "vienbalsių"),
+    ("Wstrzymało się", "Susilaikė"),
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Mapa dostępności z monitorowanymi miastami", "Aprėpties žemėlapis su stebimais miestais"),
     ("Mapa dostępności", "Aprėpties žemėlapis"),
@@ -2934,6 +2958,10 @@ PL_TO_LT: list[tuple[str, str]] = [
 
 
 PL_TO_SK: list[tuple[str, str]] = [
+    ("Przekrój głosowań", "Prehľad hlasovaní"),
+    ("Jak głosowały kluby", "Ako hlasovali kluby"),
+    ("jednomyślnych", "jednomyseľných"),
+    ("Wstrzymało się", "Zdržalo sa"),
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Mapa dostępności z monitorowanymi miastami", "Mapa pokrytia s monitorovanými mestami"),
     ("Mapa dostępności", "Mapa pokrytia"),
@@ -3383,6 +3411,10 @@ PL_TO_SK: list[tuple[str, str]] = [
 
 
 PL_TO_ET: list[tuple[str, str]] = [
+    ("Przekrój głosowań", "Hääletuste ülevaade"),
+    ("Jak głosowały kluby", "Kuidas fraktsioonid hääletasid"),
+    ("jednomyślnych", "ühehäälset"),
+    ("Wstrzymało się", "Erapooletu"),
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Mapa dostępności z monitorowanymi miastami", "Jälgitavate linnade katvuskaart"),
     ("Mapa dostępności", "Katvuskaart"),
@@ -3848,6 +3880,10 @@ PL_TO_ET: list[tuple[str, str]] = [
 
 
 PL_TO_LV: list[tuple[str, str]] = [
+    ("Przekrój głosowań", "Balsojumu pārskats"),
+    ("Jak głosowały kluby", "Kā balsoja frakcijas"),
+    ("jednomyślnych", "vienprātīgu"),
+    ("Wstrzymało się", "Atturējās"),
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Mapa dostępności z monitorowanymi miastami", "Karte ar uzraudzītajām pilsētām"),
     ("Mapa dostępności", "Pieejamības karte"),
@@ -4342,6 +4378,10 @@ PL_TO_LV: list[tuple[str, str]] = [
 
 
 PL_TO_NL: list[tuple[str, str]] = [
+    ("Przekrój głosowań", "Stemoverzicht"),
+    ("Jak głosowały kluby", "Hoe fracties stemden"),
+    ("jednomyślnych", "unaniem"),
+    ("Wstrzymało się", "Onthouding"),
     # Nawigacja i taby
     ("Mapa dostępności z monitorowanymi miastami", "Kaart met gemonitorde steden"),
     ("Mapa dostępności", "Dekkingskaart"),
@@ -4833,6 +4873,10 @@ PL_TO_NL: list[tuple[str, str]] = [
 # realiów węgierskiego samorządu: képviselő=radny, frakció=klub,
 # közgyűlés/ülés=sesja, szavazás=głosowanie.
 PL_TO_HU: list[tuple[str, str]] = [
+    ("Przekrój głosowań", "Szavazási áttekintés"),
+    ("Jak głosowały kluby", "Hogyan szavaztak a frakciók"),
+    ("jednomyślnych", "egyhangú"),
+    ("Wstrzymało się", "Tartózkodott"),
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Mapa dostępności z monitorowanymi miastami", "Térkép a megfigyelt városokkal"),
     ("Mapa dostępności", "Lefedettségi térkép"),
@@ -5320,6 +5364,10 @@ PL_TO_HU: list[tuple[str, str]] = [
 
 
 PL_TO_UK: list[tuple[str, str]] = [
+    ("Przekrój głosowań", "Огляд голосувань"),
+    ("Jak głosowały kluby", "Як голосували фракції"),
+    ("jednomyślnych", "одноголосних"),
+    ("Wstrzymało się", "Утрималися"),
     # ── Nawigacja i taby ─────────────────────────────────────────────
     ("Mapa dostępności z monitorowanymi miastami", "Карта покриття з відстежуваними містами"),
     ("Mapa dostępności", "Карта покриття"),

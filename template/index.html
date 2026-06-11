@@ -2941,6 +2941,72 @@ function backFromVote() {
   document.getElementById('tab-votes').style.display = 'block';
 }
 
+// Przekrojowe statystyki sesji: frekwencja, jednomyślne vs sporne głosowania,
+// rozkład głosów per klub (z named_votes zmapowanych przez clubMap). Daje
+// obraz zachowania całej rady, nie tylko listę pojedynczych głosowań.
+function renderSessionCrosscut(votes, clubMap, presentCount, absentCount) {
+  if (!votes || !votes.length) return '';
+
+  // Jednomyślne (bez przeciw i wstrzymań) vs sporne.
+  let unanimous = 0, contested = 0;
+  votes.forEach(v => {
+    const c = v.counts || {};
+    if ((c.przeciw || 0) === 0 && (c.wstrzymal_sie || 0) === 0) unanimous++;
+    else contested++;
+  });
+
+  const totalCouncilors = presentCount + absentCount;
+  const attPct = totalCouncilors ? Math.round((presentCount / totalCouncilors) * 100) : null;
+
+  // Agregacja głosów per klub z named_votes (gdy dostępne).
+  const agg = {};
+  votes.forEach(v => {
+    const nv = v.named_votes || {};
+    ['za', 'przeciw', 'wstrzymal_sie'].forEach(cat => {
+      (nv[cat] || []).forEach(name => {
+        const cl = clubMap[name] || '?';
+        (agg[cl] = agg[cl] || { za: 0, przeciw: 0, wstrzymal_sie: 0 })[cat]++;
+      });
+    });
+  });
+  const clubs = Object.keys(agg)
+    .map(cl => { const a = agg[cl]; return { cl, ...a, tot: a.za + a.przeciw + a.wstrzymal_sie }; })
+    .filter(c => c.tot > 0)
+    .sort((a, b) => b.tot - a.tot);
+  const maxTot = clubs.length ? Math.max(...clubs.map(c => c.tot)) : 0;
+
+  let summary = `<div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px;font-size:0.82rem;color:var(--muted)">`;
+  if (attPct != null) summary += `<span>frekwencja <strong style="color:var(--text);font-weight:600">${attPct}%</strong></span>`;
+  summary += `<span><strong style="color:var(--text);font-weight:600">${unanimous}</strong> jednomyślnych</span>`;
+  summary += `<span><strong style="color:var(--text);font-weight:600">${contested}</strong> spornych</span></div>`;
+
+  let clubsHtml = '';
+  if (clubs.length) {
+    const legend = `<div style="display:flex;gap:14px;font-size:0.72rem;color:var(--muted);margin-bottom:10px">
+      <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--green);margin-right:4px"></span>Za</span>
+      <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--red);margin-right:4px"></span>Przeciw</span>
+      <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--yellow);margin-right:4px"></span>Wstrzymało się</span>
+    </div>`;
+    clubsHtml = `<div style="font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:10px">Jak głosowały kluby</div>${legend}` + clubs.map(c => {
+      const w = Math.max((c.tot / maxTot) * 100, 4);
+      const zaW = c.tot ? (c.za / c.tot) * 100 : 0;
+      const prW = c.tot ? (c.przeciw / c.tot) * 100 : 0;
+      const wsW = c.tot ? (c.wstrzymal_sie / c.tot) * 100 : 0;
+      return `<div style="display:grid;grid-template-columns:96px 1fr auto;gap:10px;align-items:center;padding:5px 0">
+        <span class="club ${clubClass(c.cl)}">${c.cl === '?' ? 'Niezrzeszeni' : c.cl}</span>
+        <div style="display:flex;height:16px;width:${w}%;min-width:40px;border-radius:4px;overflow:hidden;background:var(--surface)">
+          ${c.za ? `<div title="Za ${c.za}" style="width:${zaW}%;background:var(--green)"></div>` : ''}
+          ${c.przeciw ? `<div title="Przeciw ${c.przeciw}" style="width:${prW}%;background:var(--red)"></div>` : ''}
+          ${c.wstrzymal_sie ? `<div title="Wstrzymało się ${c.wstrzymal_sie}" style="width:${wsW}%;background:var(--yellow)"></div>` : ''}
+        </div>
+        <span style="font-size:11px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums">${c.za}/${c.przeciw}/${c.wstrzymal_sie}</span>
+      </div>`;
+    }).join('');
+  }
+
+  return `<div class="section"><h2>Przekrój głosowań</h2>${summary}${clubsHtml}</div>`;
+}
+
 async function showSession(sessionNumber) {
   // Guard: pusty argument prowadziłby do '/sesja//' czyli rozbitej nawigacji.
   // Wracamy zamiast tego do strony głównej.
@@ -3085,6 +3151,11 @@ async function showSession(sessionNumber) {
         <div class="metric-label">Nieobecnych</div>
       </div>
     </div>`;
+
+  // Przekrojowe statystyki: frekwencja, jednomyślne vs sporne, rozkład klubów.
+  if (hasVoteRecords) {
+    html += renderSessionCrosscut(sessionVotes, clubMap, present.size, absent.length);
+  }
 
   // Speakers
   if (sess.speakers && sess.speakers.length > 0) {
@@ -3461,6 +3532,82 @@ function renderKomisjaRoster(view, slug, members) {
   `;
 }
 
+// Przekrojowe statystyki komisji: rozkład statusów druków, aktywność
+// posiedzeń w czasie, najdłużej procedowane druki. Wszystko z danych
+// agregatowych API (publiczne, dostępne w obu tier). Zwraca HTML sekcji
+// albo pusty string gdy brak danych.
+function renderKomisjaAnalytics(commission) {
+  const s = commission.stats || {};
+  const blocks = [];
+
+  // 1. Rozkład statusów: zwotowane vs w toku (druki które przeszły komisję).
+  const voted = s.drafts_voted || 0;
+  const inProg = s.drafts_in_commission || 0;
+  const statusTotal = voted + inProg;
+  if (statusTotal > 0) {
+    const votedPct = Math.round((voted / statusTotal) * 100);
+    const inProgPct = 100 - votedPct;
+    blocks.push(`
+      <div style="margin-bottom:22px">
+        <div style="font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px">Rozkład statusów druków</div>
+        <div style="display:flex;height:22px;border-radius:6px;overflow:hidden;background:var(--surface)">
+          ${voted > 0 ? `<div title="Zwotowane: ${voted}" style="width:${votedPct}%;background:var(--green);min-width:2px"></div>` : ''}
+          ${inProg > 0 ? `<div title="W toku: ${inProg}" style="width:${inProgPct}%;background:var(--yellow);min-width:2px"></div>` : ''}
+        </div>
+        <div style="display:flex;gap:16px;margin-top:8px;font-size:0.78rem;color:var(--muted)">
+          <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--green);margin-right:5px"></span>Zwotowane ${voted}</span>
+          <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--yellow);margin-right:5px"></span>W toku ${inProg}</span>
+        </div>
+      </div>`);
+  }
+
+  // 2. Aktywność w czasie: posiedzenia per miesiąc (ostatnie 18 mies.).
+  const byMonth = (commission.meetings_by_month || []).slice(-18);
+  if (byMonth.length > 1) {
+    const maxCount = Math.max(...byMonth.map(m => m.count));
+    const bars = byMonth.map(m => {
+      const h = Math.max((m.count / maxCount) * 100, 6);
+      const yr = m.month.slice(2, 4);
+      const mo = m.month.slice(5, 7);
+      return `<div title="${m.month}: ${m.count} posiedzeń" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0">
+        <div style="width:100%;display:flex;align-items:flex-end;height:70px">
+          <div style="width:100%;height:${h}%;background:var(--accent);border-radius:3px 3px 0 0;opacity:0.8"></div>
+        </div>
+        <span style="font-size:9px;color:var(--muted);white-space:nowrap">${mo}.${yr}</span>
+      </div>`;
+    }).join('');
+    blocks.push(`
+      <div style="margin-bottom:22px">
+        <div style="font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:10px">Aktywność w czasie</div>
+        <div style="display:flex;gap:3px;align-items:flex-end">${bars}</div>
+      </div>`);
+  }
+
+  // 3. Najdłużej procedowane druki: top wg lead time (od komisji do sesji).
+  const topLead = commission.top_lead_time_drafts || [];
+  if (topLead.length > 0) {
+    const rows = topLead.map(d => {
+      const days = d.lead_time_days;
+      const daysStr = days + (days === 1 ? ' dzień' : ' dni');
+      const icon = d.passed === true ? ' <span style="color:var(--green)">✓</span>' : d.passed === false ? ' <span style="color:var(--red)">✗</span>' : '';
+      const titleHtml = d.title ? `<span style="font-size:13px;color:var(--text);line-height:1.4">${d.title}</span>` : '';
+      return `<a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${drukSlug(String(d.number))}/" onclick="event.preventDefault();showDruk('${String(d.number)}','${currentKid}')" style="display:flex;gap:10px;align-items:baseline;padding:7px 0;border-top:0.5px solid var(--border);text-decoration:none">
+        <span style="font-size:12px;color:var(--accent);background:rgba(99,102,241,0.08);padding:1px 6px;border-radius:4px;white-space:nowrap">druk ${d.number}${icon}</span>
+        <span style="flex:1;min-width:0">${titleHtml}</span>
+        <span style="font-size:12px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums">${daysStr}</span>
+      </a>`;
+    }).join('');
+    blocks.push(`
+      <div style="margin-bottom:4px">
+        <div style="font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">Najdłużej procedowane druki</div>
+        ${rows}
+      </div>`);
+  }
+
+  if (!blocks.length) return '';
+  return `<div class="section"><h2>Statystyki komisji</h2>${blocks.join('')}</div>`;
+}
+
 async function showKomisja(slug) {
   if (!slug) { showMain(); return; }
   trackEvent('view_komisja_detail', {slug: slug});
@@ -3521,15 +3668,18 @@ async function showKomisja(slug) {
   // taki sam JSON bez tego pola, więc druki zostają niewklikalnymi badge'ami.
   const meetingsHtml = meetingsTop.map(m => {
     const dv = m.drafts_votes || {};
+    const dt = m.drafts_titles || {};
     const drafts = (m.drafts || []).map(d => {
       const dStr = String(d);
       const info = dv[dStr];
-      const baseStyle = 'color:var(--accent);font-size:12px;background:rgba(99,102,241,0.08);padding:1px 6px;border-radius:4px;margin-right:4px;display:inline-block;margin-bottom:2px';
+      const title = dt[dStr] || '';
+      const numStyle = 'color:var(--accent);font-size:12px;background:rgba(99,102,241,0.08);padding:1px 6px;border-radius:4px;white-space:nowrap';
       const passedIcon = (info && info.passed === true) ? ' <span style="color:var(--green)">✓</span>' : (info && info.passed === false) ? ' <span style="color:var(--red)">✗</span>' : '';
       // Każdy druk linkuje do swojej strony (showDruk), niezależnie od tego
-      // czy mamy zmapowane głosowanie. Gdy jest głosowanie, dokładamy ikonę
-      // wyniku ✓/✗ przy numerze.
-      return `<a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${drukSlug(String(dStr))}/" onclick="event.preventDefault();showDruk('${String(dStr)}','${currentKid}')" style="${baseStyle};text-decoration:none">druk ${dStr}${passedIcon}</a>`;
+      // czy mamy zmapowane głosowanie. Numer + tytuł projektu (gdy znany) +
+      // ikona wyniku ✓/✗ przy numerze gdy druk był głosowany.
+      const titleHtml = title ? `<span style="font-size:13px;line-height:1.4;color:var(--text)">${title}</span>` : '';
+      return `<a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${drukSlug(String(dStr))}/" onclick="event.preventDefault();showDruk('${String(dStr)}','${currentKid}')" style="display:flex;gap:8px;align-items:baseline;padding:3px 0;text-decoration:none"><span style="${numStyle}">druk ${dStr}${passedIcon}</span>${titleHtml}</a>`;
     }).join('');
     const links = [];
     if (m.page_url) links.push(`<a href="${m.page_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none">↗ BIP</a>`);
@@ -3597,6 +3747,19 @@ async function showKomisja(slug) {
        </div>`
     : '';
 
+  // Skuteczność: % przyjętych spośród zwotowanych (przyjęte + odrzucone).
+  const passed = s.drafts_passed || 0;
+  const rejected = s.drafts_rejected || 0;
+  const decided = passed + rejected;
+  const skutecznoscCard = decided > 0
+    ? `<div class="metric-card">
+        <div class="metric-value">${Math.round((passed / decided) * 100)}%</div>
+        <div class="metric-label">Skuteczność</div>
+      </div>`
+    : '';
+
+  const analyticsHtml = renderKomisjaAnalytics(commission);
+
   view.innerHTML = `
     <button class="profile-back" onclick="backFromKomisja()">← Komisje</button>
     <div style="margin-bottom:24px">
@@ -3623,7 +3786,9 @@ async function showKomisja(slug) {
         <div class="metric-value">${leadDisplay}</div>
         <div class="metric-label">Mediana lead time</div>
       </div>
+      ${skutecznoscCard}
     </div>
+    ${analyticsHtml}
     ${skladHtml}
     <div class="section">
       <h2>Posiedzenia ${meetingsTotal > meetingsTop.length ? `(${meetingsTop.length} z ${meetingsTotal})` : `(${meetingsTotal})`}</h2>
