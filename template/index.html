@@ -2752,11 +2752,31 @@ async function showDruk(drukId, kadId) {
     contentHtml = '<p style="color:var(--muted)">Treść druku nie jest jeszcze dostępna.</p>';
   }
 
+  // Opinie komisji (np. Kraków): nazwa komisji + wynik (Pozytywna/Negatywna)
+  // + data + link do PDF opinii w BIP. Dane publiczne, w obu tier.
+  const opinie = (entry && entry.opinie) || [];
+  const opinieHtml = opinie.length ? `
+    <div class="section">
+      <h2>Opinie komisji (${opinie.length})</h2>
+      ${opinie.map(o => {
+        const w = (o.wynik || '').toLowerCase();
+        const color = w.startsWith('pozyt') ? 'var(--green)' : w.startsWith('negat') ? 'var(--red)' : 'var(--muted)';
+        const link = o.pdf_url ? `<a href="${o.pdf_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none;white-space:nowrap">↗ PDF</a>` : '';
+        return `<div style="display:flex;gap:10px;align-items:baseline;padding:8px 0;border-top:0.5px solid var(--border)">
+          <span style="flex:1;min-width:0">${o.komisja || 'Komisja'}</span>
+          ${o.wynik ? `<span style="color:${color};font-weight:600;font-size:0.85rem;white-space:nowrap">${o.wynik}</span>` : ''}
+          ${o.data ? `<span style="color:var(--muted);font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums">${o.data}</span>` : ''}
+          ${link}
+        </div>`;
+      }).join('')}
+    </div>` : '';
+
   view.innerHTML = `
     <button class="profile-back" onclick="history.back()">← Wróć</button>
     <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0;margin-bottom:4px">${tytul}</h2>
     <div style="color:var(--muted);font-size:0.85rem;margin-bottom:16px">Druk nr ${drukId}</div>
     ${contentHtml}
+    ${opinieHtml}
     <div id="druk-commission-timeline"></div>
   `;
 
@@ -3425,6 +3445,10 @@ async function renderKomisjeList() {
   const totalMeetings = commissions.reduce((s, c) => s + ((c.stats || {}).meetings || 0), 0);
   const totalDrafts = commissions.reduce((s, c) => s + ((c.stats || {}).drafts_total || 0), 0);
   const totalInCommission = commissions.reduce((s, c) => s + ((c.stats || {}).drafts_in_commission || 0), 0);
+  const totalPassed = commissions.reduce((s, c) => s + ((c.stats || {}).drafts_passed || 0), 0);
+  const totalRejected = commissions.reduce((s, c) => s + ((c.stats || {}).drafts_rejected || 0), 0);
+  const totalDecided = totalPassed + totalRejected;
+  const totalSkutecznosc = totalDecided > 0 ? Math.round((totalPassed / totalDecided) * 100) : null;
 
   const cards = commissions.map(c => {
     const s = c.stats || {};
@@ -3434,6 +3458,22 @@ async function renderKomisjeList() {
     const inCommission = s.drafts_in_commission || 0;
     const inCommissionBadge = inCommission > 0
       ? `<span style="font-size:11px;color:var(--yellow);background:rgba(202,138,4,0.12);padding:2px 8px;border-radius:999px">${inCommission} w toku</span>`
+      : '';
+    // Skuteczność: % przyjętych spośród rozstrzygniętych (przyjęte + odrzucone).
+    const passed = s.drafts_passed || 0;
+    const rejected = s.drafts_rejected || 0;
+    const decided = passed + rejected;
+    const skutecznosc = decided > 0 ? Math.round((passed / decided) * 100) : null;
+    const skutecznoscBar = skutecznosc != null
+      ? `<div class="komisja-card-skutecznosc">
+           <div style="display:flex;justify-content:space-between;font-size:0.72rem;margin-bottom:4px">
+             <span style="color:var(--muted)">Skuteczność</span>
+             <span style="color:var(--text);font-weight:600">${skutecznosc}% <span style="color:var(--muted);font-weight:400">(${passed}/${decided})</span></span>
+           </div>
+           <div style="height:6px;background:var(--surface);border-radius:3px;overflow:hidden">
+             <div style="width:${skutecznosc}%;height:100%;background:var(--green)"></div>
+           </div>
+         </div>`
       : '';
     const esc = (c.url_slug || '').replace(/'/g, "\\'");
     return `
@@ -3448,6 +3488,7 @@ async function renderKomisjeList() {
           <div><span class="komisja-stat-value">${s.drafts_voted || 0}</span><span class="komisja-stat-label">zwotowanych</span></div>
           <div><span class="komisja-stat-value">${leadDisplay}</span><span class="komisja-stat-label">mediana lead time</span></div>
         </div>
+        ${skutecznoscBar}
         ${last ? `<div class="komisja-card-last">Ostatnie posiedzenie: ${last}</div>` : ''}
       </a>
     `;
@@ -3468,7 +3509,7 @@ async function renderKomisjeList() {
   container.innerHTML = `
     <div style="margin-bottom:20px">
       <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)">Komisje rady</h2>
-      <p style="color:var(--muted);font-size:0.9rem">${commissions.length} komisji, ${totalMeetings} posiedzeń, ${totalDrafts} druków w procedowaniu${totalInCommission > 0 ? `, w tym ${totalInCommission} w toku` : ''}.</p>
+      <p style="color:var(--muted);font-size:0.9rem">${commissions.length} komisji, ${totalMeetings} posiedzeń, ${totalDrafts} druków w procedowaniu${totalInCommission > 0 ? `, w tym ${totalInCommission} w toku` : ''}${totalSkutecznosc != null ? `. Skuteczność rady: ${totalSkutecznosc}% przyjętych` : ''}.</p>
     </div>
     <div class="komisje-grid">${cards}</div>
     ${businessBanner}

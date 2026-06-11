@@ -1,0 +1,149 @@
+{
+  "landing_enabled": true,
+  "city_name": "Klaipėda",
+  "city_genitive": "Klaipėdos",
+  "country": "lt",
+  "country_name": "Lietuva",
+  "locale": "lt",
+  "site_title": "Radoskop Klaipėda. Kaip balsuoja Klaipėdos tarybos nariai?",
+  "site_url": "https://klaipeda.radoskop.eu",
+  "site_description": "Radoskop. Atviras Klaipėdos miesto savivaldybės tarybos veiklos stebėjimas. Tarybos narių dalyvavimas ir balsavimai.",
+  "site_description_short": "Atviras Klaipėdos tarybos veiklos stebėjimas. Dalyvavimas ir balsavimai.",
+  "bip_url": "https://posedziai.klaipeda.lt/",
+  "bip_name": "posedziai.klaipeda.lt",
+  "bip_kind": "klaipeda_posedziai_api",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "klaipeda.radoskop.eu",
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "samorzad_type": "miasto",
+  "rada_name": "Klaipėdos miesto savivaldybės taryba",
+  "rada_name_genitive": "Klaipėdos miesto savivaldybės tarybos",
+  "councilor_count": 31,
+  "kadencja_active": "2023-2027",
+  "kadencje": {
+    "2023-2027": {
+      "label": "2023–2027 m. kadencija",
+      "start": "2023-04-01"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "komisje_public": false,
+  "komisje_premium": false,
+  "has_interpelacje": false,
+  "has_stenogram": false,
+  "has_voting_data": true,
+  "has_speaker_activity": false,
+  "scrape_status": "active",
+  "scrape": {
+    "runner": "run.sh",
+    "post": "assembly_metrics"
+  },
+  "currency": "€",
+  "posedziai_api_base": "https://posedziai.klaipeda.lt/api",
+  "posedziai_meeting_type_id": -1,
+  "vote_code_map": {
+    "1": "za",
+    "2": "przeciw",
+    "3": "wstrzymal_sie",
+    "0": "brak_glosu"
+  },
+  "result_text_map": {
+    "Pritarė": "PRZYJETE",
+    "Pritarta": "PRZYJETE",
+    "Priėmė": "PRZYJETE",
+    "Nepritarė": "ODRZUCONE",
+    "Nepritarta": "ODRZUCONE",
+    "Nepriėmė": "ODRZUCONE",
+    "Atidėjo": "ODROCZONE",
+    "Atidėta": "ODROCZONE"
+  },
+  "ui_strings_lt": {
+    "rada": "Taryba",
+    "radni": "Tarybos nariai",
+    "radny": "Tarybos narys",
+    "frekwencja": "Dalyvavimas",
+    "glosowania": "Balsavimai",
+    "klub": "Frakcija",
+    "kluby": "Frakcijos",
+    "sesja": "Posėdis",
+    "sesje": "Posėdžiai",
+    "kadencja": "Kadencija",
+    "za": "Už",
+    "przeciw": "Prieš",
+    "wstrzymal_sie": "Susilaikė",
+    "brak_glosu": "Nebalsavo",
+    "nieobecni": "Nedalyvavę",
+    "przyjete": "Priimta",
+    "odrzucone": "Atmesta",
+    "odroczone": "Atidėta",
+    "search": "Ieškoti",
+    "details": "Detaliau",
+    "about": "Apie projektą"
+  },
+  "clubs": {
+    "IK": {
+      "name": "Visuomeninis rinkimų komitetas „Ištikimi Klaipėdai“",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "LT": {
+      "name": "Partija „Laisvė ir teisingumas“",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)",
+      "avatar_bg": "#075985"
+    },
+    "LVZS": {
+      "name": "Lietuvos valstiečių ir žaliųjų sąjunga",
+      "color": "#15803d",
+      "bg": "rgba(21,128,61,0.12)",
+      "avatar_bg": "#14532d"
+    },
+    "LSDP": {
+      "name": "Lietuvos socialdemokratų partija",
+      "color": "#dc2626",
+      "bg": "rgba(220,38,38,0.12)",
+      "avatar_bg": "#991b1b"
+    },
+    "TS-LKD": {
+      "name": "Tėvynės sąjunga – Lietuvos krikščionys demokratai",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "LRLS": {
+      "name": "Lietuvos Respublikos liberalų sąjūdis",
+      "color": "#ffb300",
+      "bg": "rgba(255,179,0,0.12)",
+      "avatar_bg": "#b88600"
+    },
+    "NZ": {
+      "name": "Nepriklausantis / Mišri frakcija",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "name_aliases": {},
+  "club_assignments": {
+    "Arvydas Vaitkus": "IK",
+    "Vidmantas Dambrauskas": "IK",
+    "Arūnas Tuma": "IK",
+    "Rimantas Taraškevičius": "IK",
+    "Tomas Juočys": "IK",
+    "Jolanta Skrabulienė": "IK",
+    "Kęstutis Bartininkas": "LT",
+    "Vidas Karolis": "LT",
+    "Henrikas Galinauskas": "LT",
+    "Monika Žvinklytė": "LT"
+  }
+}

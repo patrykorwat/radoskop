@@ -90,6 +90,7 @@ canvas { max-height:760px; }
 .komisja-card-stats > div { display:flex; flex-direction:column; }
 .komisja-stat-value { font-size:1.1rem; font-weight:700; color:var(--text); }
 .komisja-stat-label { font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; margin-top:2px; }
+.komisja-card-skutecznosc { margin-bottom:12px; }
 .komisja-card-last { font-size:0.75rem; color:var(--muted); padding-top:8px; border-top:1px solid var(--border); }
 .filter-bar { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
 .filter-btn { padding:4px 12px; border-radius:6px; border:1px solid var(--border); background:transparent; color:var(--muted); cursor:pointer; font-size:0.8rem; }
