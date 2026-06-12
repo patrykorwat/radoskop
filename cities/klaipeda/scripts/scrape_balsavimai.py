@@ -40,6 +40,11 @@ Praga, Tallinn). councilor_index = sorted unikalne nazwiska, named_votes
 trzyma INDEKSY do tej listy. build_assembly_metrics.py liczy z tego
 profile, frekwencję i zgodność z klubem.
 
+Cache: per posiedzenie w .cache/meetings/{id}.json. Zamknięte posiedzenia
+z głosami nie są pobierane ponownie. Świeże posiedzenie (młodsze niż
+RADOSKOP_KLAIPEDA_REFRESH_DAYS, domyślnie 180 dni) bez głosów w cache jest
+refetchowane, bo portal może publikować balsavimy z opóźnieniem.
+
 Komitety (KOMITETO POSĖDIS) NIE są tu obsługiwane - jeśli kiedyś trzeba,
 lecą przez osobny scraper w radoskop-premium/scrapers/komisje/ (patrz
 feedback_komisje_location).
@@ -55,6 +60,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 import time
 from collections import defaultdict
@@ -84,7 +90,11 @@ USER_AGENT = (
 DEFAULT_TIMEOUT = 45
 # Grzeczność wobec portalu między requestami. Override przez
 # RADOSKOP_KLAIPEDA_PAUSE (np. 0 do szybkich testów lokalnych).
-REQUEST_PAUSE = float(__import__("os").environ.get("RADOSKOP_KLAIPEDA_PAUSE", "0.15"))
+REQUEST_PAUSE = float(os.environ.get("RADOSKOP_KLAIPEDA_PAUSE", "0.15"))
+# Posiedzenie młodsze niż tyle dni, które w cache ma zero głosów, jest
+# pobierane ponownie (głosy bywają publikowane z opóźnieniem). Starsze
+# posiedzenia są zamknięte i payload z cache jest używany bezterminowo.
+REFRESH_DAYS = float(os.environ.get("RADOSKOP_KLAIPEDA_REFRESH_DAYS", "180"))
 
 # Mapowanie kodu głosu (participantVote) na wewnętrzny schemat Radoskop.
 # Źródło: getVoteNumberByString w bundlu main.js portalu posedziai.klaipeda.lt.
@@ -218,6 +228,19 @@ def fetch_meeting_payload(api_base: str, meeting: dict) -> dict:
     return {"meeting": meeting, "questions": enriched}
 
 
+def payload_vote_count(payload: dict) -> int:
+    """Liczba punktów porządku z głosami imiennymi w payloadzie."""
+    return sum(1 for item in payload.get("questions", []) if item.get("votes"))
+
+
+def meeting_age_days(meeting: dict) -> float:
+    """Wiek posiedzenia w dniach względem teraz. Brak daty traktuj jako stare."""
+    ms = meeting.get("happenedFrom")
+    if not ms:
+        return float("inf")
+    return (time.time() - ms / 1000) / 86400
+
+
 def load_or_fetch(
     api_base: str,
     cache: Path,
@@ -227,18 +250,43 @@ def load_or_fetch(
     earliest_start: str,
     max_meetings: int | None = None,
 ) -> list[dict]:
-    """Zwraca listę payloadów posiedzeń (typu tarybos). Cache w .cache/meetings_raw.json.
+    """Zwraca listę payloadów posiedzeń (typu tarybos). Cache per posiedzenie
+    w .cache/meetings/{id}.json.
+
+    Zamknięte posiedzenie z głosami nie zmienia się, więc raz pobrany payload
+    jest reużywany bezterminowo. Wyjątek: posiedzenie młodsze niż REFRESH_DAYS
+    dni, którego payload w cache nie ma żadnych głosów, jest pobierane ponownie
+    (wzorzec jak w scrape_notubiz.py dla Amsterdamu, gdzie głosy pojawiają się
+    z opóźnieniem). Lista posiedzeń jest zawsze pobierana świeża, jest tania
+    (jedna strona na ~150 posiedzeń) i wykrywa nowe plenarki.
 
     Posiedzenia przed `earliest_start` (najwcześniejszy start kadencji z config)
     są pomijane PRZED pobieraniem questions/votes - portal trzyma historię od
     2011, ale roll-call (per-radny) jest tylko dla bieżącej kadencji, a pliki
     kadencja-*.json i tak budują się wyłącznie z dat ze skonfigurowanych kadencji.
     """
-    cache_file = cache / "meetings_raw.json"
-    if skip_fetch and cache_file.exists():
-        print("[klaipeda] using cache", file=sys.stderr)
-        with open(cache_file, "r", encoding="utf-8") as f:
-            return json.load(f)
+    meetings_cache = cache / "meetings"
+    legacy_file = cache / "meetings_raw.json"
+
+    if skip_fetch:
+        cached_files = sorted(meetings_cache.glob("*.json")) if meetings_cache.is_dir() else []
+        if cached_files:
+            payloads = []
+            for fp in cached_files:
+                with open(fp, "r", encoding="utf-8") as f:
+                    payloads.append(json.load(f))
+            payloads.sort(
+                key=lambda p: p.get("meeting", {}).get("happenedFrom") or 0,
+                reverse=True,
+            )
+            print(f"[klaipeda] using cache ({len(payloads)} posiedzeń)",
+                  file=sys.stderr)
+            return payloads
+        if legacy_file.exists():
+            print("[klaipeda] using legacy cache (meetings_raw.json)",
+                  file=sys.stderr)
+            with open(legacy_file, "r", encoding="utf-8") as f:
+                return json.load(f)
 
     print("[klaipeda] fetch meetings list", file=sys.stderr)
     meetings = fetch_all_meetings(api_base, max_pages=max_pages)
@@ -256,15 +304,48 @@ def load_or_fetch(
         file=sys.stderr,
     )
 
+    meetings_cache.mkdir(parents=True, exist_ok=True)
     payloads: list[dict] = []
+    reused = fetched = 0
     for i, m in enumerate(in_range, 1):
-        print(f"[klaipeda] meeting {i}/{len(in_range)}: {m.get('meetingName')}",
-              file=sys.stderr)
-        payloads.append(fetch_meeting_payload(api_base, m))
+        cache_file = meetings_cache / f"{m['id']}.json"
+        payload: dict | None = None
+        if cache_file.exists():
+            try:
+                with open(cache_file, "r", encoding="utf-8") as f:
+                    payload = json.load(f)
+            except (OSError, json.JSONDecodeError) as exc:
+                print(f"[klaipeda] WARN: bad cache {cache_file.name}: {exc}",
+                      file=sys.stderr)
+                payload = None
+        if payload is not None and payload_vote_count(payload) == 0 \
+                and meeting_age_days(m) < REFRESH_DAYS:
+            print(
+                f"[klaipeda] meeting {i}/{len(in_range)}: "
+                f"{m.get('meetingName')} (cache bez głosów, refetch)",
+                file=sys.stderr,
+            )
+            payload = None
+        if payload is None:
+            print(f"[klaipeda] meeting {i}/{len(in_range)}: {m.get('meetingName')}",
+                  file=sys.stderr)
+            payload = fetch_meeting_payload(api_base, m)
+            with open(cache_file, "w", encoding="utf-8") as f:
+                json.dump(payload, f, ensure_ascii=False)
+            fetched += 1
+        else:
+            payload["meeting"] = m  # świeże meta z listy bez ruszania questions
+            reused += 1
+        payloads.append(payload)
 
-    cache.mkdir(parents=True, exist_ok=True)
-    with open(cache_file, "w", encoding="utf-8") as f:
-        json.dump(payloads, f, ensure_ascii=False)
+    print(f"[klaipeda] cache: {reused} z cache, {fetched} pobranych",
+          file=sys.stderr)
+    if legacy_file.exists():
+        try:
+            legacy_file.unlink()
+            print("[klaipeda] removed legacy meetings_raw.json", file=sys.stderr)
+        except OSError:
+            pass
     return payloads
 
 
