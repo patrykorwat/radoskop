@@ -1188,7 +1188,18 @@ function renderLandingHTML(){
 function showLanding(){
   hideAllViews();
   var lv=document.getElementById('landing-view');
-  if(!lv){ showMain(); return; }
+  // Stare/niespójne prerendery SEO (np. /councillors/ sprzed przejścia na
+  // "landing jako /") nie mają kontenera #landing-view. Wcześniej showLanding
+  // robił wtedy showMain() = lista radnych, więc "Strona główna" lądowała na
+  // liście radnych zamiast na landingu. Tworzymy kontener w locie zamiast
+  // degradować do listy radnych (bez przeładowania, brak ryzyka pętli).
+  if(!lv){
+    lv=document.createElement('div');
+    lv.id='landing-view';
+    var app=document.getElementById('app');
+    if(app && app.parentNode){ app.parentNode.insertBefore(lv, app); }
+    else { document.body.appendChild(lv); }
+  }
   lv.style.display='block';
   try { lv.innerHTML=renderLandingHTML(); }
   catch(e){ lv.style.display='none'; showMain(); activateTab('ranking'); return; }

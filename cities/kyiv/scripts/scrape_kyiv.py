@@ -414,58 +414,100 @@ def main() -> int:
     ckan_timeout = int(config.get("ckan_timeout", 30))
     cache_index = args.cache / "resources.json"
     all_votes_cache = args.cache / "all_votes.json"
+    zips_dir = args.cache / "zips"
+    zips_dir.mkdir(parents=True, exist_ok=True)
+    manifest_path = args.cache / "zip_manifest.json"
 
-    # Lista zasobów z CKAN
-    if args.skip_fetch and cache_index.exists():
-        print("[kyiv] using cached resource list", file=sys.stderr)
-        with open(cache_index, encoding="utf-8") as f:
-            resources = json.load(f)
-    else:
-        try:
-            resources = ckan_list_resources(dataset_id, timeout=ckan_timeout)
-        except RuntimeError as exc:
-            print(f"[kyiv] BŁĄD discovery: {exc}", file=sys.stderr)
-            print("[kyiv] data.gov.ua niedostępne — pomiń scrape", file=sys.stderr)
-            return 1
-        with open(cache_index, "w", encoding="utf-8") as f:
-            json.dump(resources, f, ensure_ascii=False, indent=2)
-
-    # Filtruj do JSON/ZIP zasobów (pomijaj PDF, XLSX, stare zasoby pre-2023)
-    zip_resources = [
-        r for r in resources
-        if r.get("url", "").endswith(".zip")
-        and r.get("format", "").lower() in ("json, zip", "jason, zip", "zip", "json,zip")
-    ]
-    print(f"[kyiv] {len(zip_resources)} zasobów ZIP do przetworzenia", file=sys.stderr)
-
-    # Pobierz i sparsuj wszystkie ZIPy
+    # Tryb w pełni offline: użyj zagregowanego all_votes.json bez dotykania sieci.
     if args.skip_fetch and all_votes_cache.exists():
-        print("[kyiv] using cached all_votes", file=sys.stderr)
+        print("[kyiv] using cached all_votes (offline)", file=sys.stderr)
         with open(all_votes_cache, encoding="utf-8") as f:
             all_votes = json.load(f)
+        print(f"[kyiv] {len(all_votes)} głosowań łącznie", file=sys.stderr)
     else:
+        # Lista zasobów z CKAN (tania — jeden request).
+        if args.skip_fetch and cache_index.exists():
+            print("[kyiv] using cached resource list", file=sys.stderr)
+            with open(cache_index, encoding="utf-8") as f:
+                resources = json.load(f)
+        else:
+            try:
+                resources = ckan_list_resources(dataset_id, timeout=ckan_timeout)
+            except RuntimeError as exc:
+                print(f"[kyiv] BŁĄD discovery: {exc}", file=sys.stderr)
+                print("[kyiv] data.gov.ua niedostępne — pomiń scrape", file=sys.stderr)
+                return 1
+            with open(cache_index, "w", encoding="utf-8") as f:
+                json.dump(resources, f, ensure_ascii=False, indent=2)
+
+        # Filtruj do JSON/ZIP zasobów (pomijaj PDF, XLSX, stare zasoby pre-2023)
+        zip_resources = [
+            r for r in resources
+            if r.get("url", "").endswith(".zip")
+            and r.get("format", "").lower() in ("json, zip", "jason, zip", "zip", "json,zip")
+        ]
+        print(f"[kyiv] {len(zip_resources)} zasobów ZIP do przetworzenia", file=sys.stderr)
+
+        # Cache inkrementalny: ZIPy to per-sesyjne archiwa, historyczne są
+        # NIEZMIENNE (last_modified z 2022). Bez tego pipeline ściągał codziennie
+        # wszystkie 48 archiwów (~25 min). Klucz świeżości = id + last_modified
+        # zasobu CKAN; pobieramy tylko nowe/zmienione, resztę czytamy z dysku.
+        # ZIP nazwany stabilnym resource id (kolejność zasobów bywa zmienna).
+        manifest: dict[str, str] = {}
+        if manifest_path.exists():
+            try:
+                with open(manifest_path, encoding="utf-8") as f:
+                    manifest = json.load(f)
+            except (OSError, json.JSONDecodeError):
+                manifest = {}
+
+        def _fresh_key(res: dict[str, Any]) -> str:
+            return str(
+                res.get("last_modified")
+                or res.get("revision_id")
+                or res.get("size")
+                or ""
+            )
+
         all_votes: list[dict[str, Any]] = []
+        fetched = reused = skipped = 0
         for i, res in enumerate(zip_resources, 1):
             url = res["url"]
             name = res.get("name", url)
-            zip_cache = args.cache / f"zip_{i:03d}.zip"
-            if zip_cache.exists() and args.skip_fetch:
+            rid = res.get("id") or re.sub(r"\W+", "_", url)[-60:]
+            fresh = _fresh_key(res)
+            zip_cache = zips_dir / f"{rid}.zip"
+
+            cache_ok = zip_cache.exists() and (
+                manifest.get(rid) == fresh or args.skip_fetch
+            )
+            if cache_ok:
                 raw = zip_cache.read_bytes()
+                reused += 1
             else:
-                print(f"[kyiv] [{i}/{len(zip_resources)}] {name[:60]}", file=sys.stderr)
+                print(f"[kyiv] [{i}/{len(zip_resources)}] pobieram {name[:55]}", file=sys.stderr)
                 try:
                     raw = http_get(url, timeout=ZIP_TIMEOUT)
-                    zip_cache.write_bytes(raw)
                 except RuntimeError as exc:
                     print(f"  WARN: skip ZIP: {exc}", file=sys.stderr)
+                    skipped += 1
                     continue
-            votes = parse_zip_votes(raw)
-            all_votes.extend(votes)
+                zip_cache.write_bytes(raw)
+                manifest[rid] = fresh
+                fetched += 1
 
+            all_votes.extend(parse_zip_votes(raw))
+
+        with open(manifest_path, "w", encoding="utf-8") as f:
+            json.dump(manifest, f, ensure_ascii=False, indent=2)
         with open(all_votes_cache, "w", encoding="utf-8") as f:
             json.dump(all_votes, f, ensure_ascii=False, indent=2)
 
-    print(f"[kyiv] {len(all_votes)} głosowań łącznie", file=sys.stderr)
+        print(
+            f"[kyiv] ZIP cache: {reused} z dysku, {fetched} pobrane, {skipped} pominięte",
+            file=sys.stderr,
+        )
+        print(f"[kyiv] {len(all_votes)} głosowań łącznie", file=sys.stderr)
 
     kadencje_to_build = (
         [args.kadencja_id]
