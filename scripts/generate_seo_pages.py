@@ -440,6 +440,30 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
     city_slug = city_dir.name
     _enrich_profiles_with_percentiles(profiles, city_slug, city_dir)
 
+    # Interpelacje (zapytania radnych) — zasila zakładkę interpelacji realną,
+    # unikalną treścią. Zapotrzebowanie w Search Console jest realne
+    # ("interpelacje {miasto}", "interpelacje radnych {miasto}"), a strona
+    # rankowała ~7–9 z pustym body (sam nagłówek) i zerowym CTR. Plik
+    # docs/interpelacje.json jest gitignored, ale istnieje lokalnie w czasie
+    # generacji. Dwa kształty (lista albo {"items": [...]}), oba obsłużone.
+    interp_items = []
+    interp_path = docs / "interpelacje.json"
+    if interp_path.exists():
+        try:
+            with open(interp_path, "r", encoding="utf-8") as f:
+                _iraw = json.load(f)
+            if isinstance(_iraw, list):
+                interp_items = _iraw
+            elif isinstance(_iraw, dict):
+                interp_items = _iraw.get("interpelacje") or _iraw.get("items") or []
+        except Exception:
+            interp_items = []
+    # Mapa nazwisko → slug profilu dla linków wewnętrznych z listy interpelacji.
+    _profile_slug_by_name = {
+        (p.get("name") or "").strip(): p.get("slug", "")
+        for p in profiles if p.get("name") and p.get("slug")
+    }
+
     # Load data.json for kadencje index
     kadencje = []
     data_path = docs / "data.json"
@@ -1109,6 +1133,40 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
     def _tab_body(tab_slug, kid, kad_data):
         heading = TAB_NAMES.get(tab_slug, tab_slug)
         head_html = f"<h1>{esc(heading)}, kadencja {esc(kid)}</h1>\n"
+        # Interpelacje korzystają z danych miejskich (interp_items), nie z
+        # kadencja-*.json — obsługujemy je PRZED strażnikiem `if not kad_data`,
+        # żeby zakładka miała treść nawet gdy plik kadencji jest niedostępny.
+        if tab_slug == SLUG["tab_interpelacje"]:
+            if not interp_items:
+                return head_html
+            def _idate(it):
+                return it.get("data_wplywu") or it.get("data") or ""
+            recent = sorted(interp_items, key=_idate, reverse=True)[:50]
+            lead = (
+                f"<p>Interpelacje i zapytania radnych {esc(city_gen)}: "
+                f"{len(interp_items)} pism, najnowsze poniżej. "
+                f"Każde prowadzi do profilu autora z pełnym zapisem aktywności.</p>\n"
+            )
+            items = []
+            for it in recent:
+                topic = (it.get("przedmiot") or it.get("temat") or it.get("topic") or "").strip()
+                topic = " ".join(topic.split())[:140] or "Interpelacja"
+                author = (it.get("radny") or it.get("autor") or "").strip()
+                date = _idate(it)
+                typ = (it.get("typ") or "").lower()
+                kind = "Zapytanie" if typ.startswith("z") else "Interpelacja"
+                aslug = _profile_slug_by_name.get(author, "")
+                if author and aslug:
+                    author_html = (
+                        f"<a href=\"{site_url}/{SLUG['profile']}/{aslug}/\">{esc(author)}</a>"
+                    )
+                else:
+                    author_html = esc(author) if author else ""
+                meta = " · ".join(x for x in (author_html, esc(date)) if x)
+                items.append(
+                    f"<li>{kind}: {esc(topic)}" + (f" — {meta}" if meta else "") + "</li>"
+                )
+            return head_html + lead + "<ul>\n" + "\n".join(items) + "\n</ul>\n"
         if not kad_data:
             return head_html
         councilors = kad_data.get("councilors") or []
@@ -1119,13 +1177,24 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             club = (c.get("club") or "").strip()
             return f" ({esc(club)})" if club and club != "?" else ""
 
+        def _cname(c):
+            # Nazwisko jako link do profilu (gdy znamy slug) — rozprowadza
+            # link equity z list kadencji na strony profili i wiąże URL profilu
+            # z frazą-nazwiskiem (główny typ zapytań w Search Console). Slug z
+            # danych councilora albo z mapy nazwisko→slug (profiles.json).
+            name = c.get("name", "")
+            cslug = c.get("slug") or _profile_slug_by_name.get((name or "").strip(), "")
+            if name and cslug:
+                return f"<a href=\"{site_url}/{SLUG['profile']}/{cslug}/\">{esc(name)}</a>"
+            return esc(name)
+
         if tab_slug == "ranking":
             ranked = sorted(
                 (c for c in councilors if isinstance(c, dict)),
                 key=lambda c: (c.get("aktywnosc") or 0), reverse=True,
             )
             items = [
-                f"<li>{esc(c.get('name', ''))}{_cl(c)}: aktywnosc "
+                f"<li>{_cname(c)}{_cl(c)}: aktywnosc "
                 f"{(c.get('aktywnosc') or 0):.0f}%, frekwencja "
                 f"{(c.get('frekwencja') or 0):.0f}%</li>"
                 for c in ranked
@@ -1133,7 +1202,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             return head_html + "<ol>\n" + "\n".join(items) + "\n</ol>\n"
         if tab_slug == SLUG["tab_profiles"]:
             items = [
-                f"<li>{esc(c.get('name', ''))}{_cl(c)}</li>"
+                f"<li>{_cname(c)}{_cl(c)}</li>"
                 for c in sorted(
                     (c for c in councilors if isinstance(c, dict)),
                     key=lambda c: c.get("name", ""),
@@ -1229,6 +1298,21 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             tab_canonical = f"{site_url}/{SLUG['term']}/{kslug}/{tab_slug}/"
             tab_title = f"{tab_name}, kadencja {kid} \u2013 Radoskop {city_name}"
             tab_desc = f"{tab_name} Rady Miasta {city_gen}, kadencja {kid}."
+            # Interpelacje: tytu\u0142 prowadzony s\u0142owem kluczowym pod realne
+            # zapytania ("interpelacje radnych {miasto}"), opis z liczb\u0105 pism.
+            if tab_slug == SLUG["tab_interpelacje"]:
+                tab_title = f"Interpelacje radnych {city_gen} \u2013 Radoskop {city_name}"
+                if interp_items:
+                    tab_desc = (
+                        f"Interpelacje i zapytania radnych {city_gen}: "
+                        f"{len(interp_items)} pism z wyszukiwark\u0105 po autorze i temacie. "
+                        f"Pe\u0142ny zapis aktywno\u015bci Rady Miasta {city_gen}."
+                    )
+                else:
+                    tab_desc = (
+                        f"Interpelacje i zapytania radnych {city_gen}. "
+                        f"Pe\u0142ny zapis aktywno\u015bci Rady Miasta {city_gen} w serwisie Radoskop."
+                    )
 
             tab_crumbs = _breadcrumb([
                 (f"Radoskop {city_name}", f"{site_url}/"),
