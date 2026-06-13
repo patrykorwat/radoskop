@@ -25,7 +25,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 
-from lib_session_summary import session_votes, summarize_session
+from lib_session_summary import session_votes, summarize_session, best_session_fact
 
 
 def esc(text):
@@ -93,14 +93,32 @@ def generate_session_items(kad_data, city_name, site_url, session_slug="session"
     all_votes = kad_data.get("votes", []) or []
     councilors = kad_data.get("councilors", []) or []
 
+    # Pre-pass: policz podsumowania + rekordy kadencji raz, do hooków social.
+    # term_closest_margin = najciaśniejsze sporne głosowanie w kadencji,
+    # term_max_vote_count = najwięcej głosowań na jednej sesji. Dzięki temu
+    # bot może powiedzieć "najciaśniej w kadencji" / "najwięcej głosowań".
+    _sessions = []
+    _closest_margin = None
+    _max_votes = 0
     for s in kad_data.get("sessions", []):
+        if not s.get("date"):
+            continue
+        sv = session_votes(s, all_votes)
+        summ = summarize_session(s, sv, councilors)
+        _sessions.append((s, sv, summ))
+        if summ["vote_count"] > _max_votes:
+            _max_votes = summ["vote_count"]
+        for cv in summ.get("contested") or []:
+            cc = cv.get("counts") or {}
+            margin = abs((cc.get("za", 0) or 0) - (cc.get("przeciw", 0) or 0))
+            if _closest_margin is None or margin < _closest_margin:
+                _closest_margin = margin
+    _ctx = {"term_closest_margin": _closest_margin, "term_max_vote_count": _max_votes}
+
+    for s, sess_votes, summary in _sessions:
         snum = s.get("number", "")
         sdate = s.get("date", "")
-        if not sdate:
-            continue
 
-        sess_votes = session_votes(s, all_votes)
-        summary = summarize_session(s, sess_votes, councilors)
         vote_count = summary["vote_count"] or s.get("vote_count", 0)
         attendee_count = summary["attendee_count"] or s.get("attendee_count", 0)
 
@@ -125,13 +143,20 @@ def generate_session_items(kad_data, city_name, site_url, session_slug="session"
                     f" (za {_c.get('za', 0)}, przeciw {_c.get('przeciw', 0)})."
                 )
 
-        items.append({
+        item = {
             "type": "session",
             "date": sdate,
             "title": f"Sesja {snum} Rady Miasta {city_name}",
             "summary": summary_text,
             "url": f"{site_url}/{session_slug}/{snum}/",
-        })
+        }
+        # Hook social: najmocniejszy fakt sesji (knife-edge/odrzucenie/frekwencja),
+        # deterministyczny z liczb. Bot X/Bluesky renderuje z niego chwytliwy
+        # nagłówek zamiast changelogu. None => bot zostaje przy zwykłym tytule.
+        hook = best_session_fact(s, summary, _ctx)
+        if hook:
+            item["hook"] = hook
+        items.append(item)
 
     return items
 
@@ -173,6 +198,11 @@ def generate_interpelacje_items(interpelacje, city_name, site_url, profiles_by_n
             "date": date,
             "title": f"{typ_label}: {przedmiot[:100]}" if przedmiot else f"{typ_label} ({radny})",
             "summary": f"{radny}. {przedmiot[:150]}" if przedmiot else radny,
+            # radny + przedmiot wprost (poza title/summary), żeby bot mógł
+            # wyróżnić jeden wniosek tematem zamiast samego changelogu liczby.
+            # przedmiot to słowa radnego (faktyczne), więc bezpieczne, bez LLM.
+            "radny": radny,
+            "przedmiot": przedmiot,
             "url": url,
         })
 
