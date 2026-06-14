@@ -1,45 +1,47 @@
 #!/usr/bin/env python3
 """Scraper głosowań Sejmiku Województwa Lubuskiego, kadencja 2024-2029.
 
-BIP lubuski (bip.lubuskie.pl) publikuje imienne wykazy głosowań VII kadencji
-pod URL `/958/VII_kadencja__282024-2029_29/`. Każda sesja ma osobny PDF
-skanowany ~18MB. Format jest podobny do kujawsko-pomorskiego: 1 strona
-PDF = 1 głosowanie z tabelą Lp/Nazwisko/Decyzja.
+BIP lubuski (bip.lubuskie.pl) publikuje per-sesja PDF "Imienny wykaz głosowań
+radnych" pod `/958/VII_kadencja__282024-2029_29/`. PDF jest SKANEM (brak
+warstwy tekstowej), wymaga OCR z polskim packiem tesseract-ocr-pol.
 
-Struktura indeksu:
-  href=".../system/pobierz.php?plik={N}_sesja_Sejmiku_DD.MM.YYYY_-_Imienny_wykaz_glosowan_radnych.pdf&id={hash}"
+Format (po OCR): 1 sesja = wiele głosowań, każde zaczyna się od "Wyniki
+głosowania". Blok głosowania:
+  Wyniki głosowania
+  Sesja: ... / Punkt obrad: ... / Nazwa głosowania: {topic}
+  Data głosowania: DD.MM.YYYY HH:MM
+  Za: N  Przeciw: N  Wstrzymało się: N  Nieobecni: N  Uprawnionych: N
+  Lp. Imię i nazwisko Głos Data i czas oddania głosu
+  1 Imię Nazwisko Za DD.MM.YYYY HH:MM
+  ... (tabela JEDNOkolumnowa, 1 wiersz = 1 radny)
 
-Wymaga OCR z polish pack. Używamy `parse_voting_pdf_per_page`.
+NIE używamy `parse_voting_pdf_per_page` (to parser DWUkolumnowy kuj-pom).
+Lubuski jest jednokolumnowy z odrębnym nagłówkiem zbiorczym.
 
-UWAGA wydajności: PDFy są ~18MB, każda sesja ma 100-200 stron skanu.
-OCR jednej sesji to ~10-15 minut. 20 sesji = 3-5 godzin pełnego scrape.
-Cache jest tutaj kluczowy.
+Model dokładności: liczby zbiorcze z nagłówka (Za/Przeciw/Wstrzymało) OCR-ują
+się czysto i są AUTORYTATYWNE (pole `counts`). Imienna atrybucja (`named_votes`)
+pochodzi z OCR tabeli i bywa o 1-3 wiersze krótsza (skan gubi pojedyncze
+linie); nazwiska korygujemy do rosteru przez dopasowanie rozmyte.
 
-Output: kadencja-2024-2029.json zgodne ze schemą innych sejmików.
+Output: schemat indeksowy (councilor_index + top-level votes), identyczny z
+assemblies/dolnoslaskie i zachodniopomorskie, czytany przez build_assembly_metrics.py.
 """
-
 from __future__ import annotations
 
 import argparse
+import difflib
 import json
+import os
 import re
 import ssl
 import sys
 import time
+from collections import Counter
 from hashlib import md5
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
-
-
-SCRIPT_DIR = Path(__file__).resolve().parent
-RADOSKOP_SCRIPTS = SCRIPT_DIR.parent.parent.parent / "scripts"
-if str(RADOSKOP_SCRIPTS) not in sys.path:
-    sys.path.insert(0, str(RADOSKOP_SCRIPTS))
-
-from lib_voting_pdf_table import parse_voting_pdf_per_page, validate_parsed  # noqa: E402
-
 
 BASE = "https://bip.lubuskie.pl"
 INDEX_URL = f"{BASE}/958/VII_kadencja__282024-2029_29/"
@@ -50,14 +52,23 @@ USER_AGENT = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
     "Radoskop/1.0 (+https://radoskop.pl)"
 )
-DEFAULT_TIMEOUT = 120  # Większy timeout bo PDFy są duże
+DEFAULT_TIMEOUT = 120
 SLEEP_BETWEEN = 0.1
+OCR_DPI = int(os.environ.get("LUBUSKIE_OCR_DPI", "300"))
 
-# Sslcontext z bypass na wypadek problemów z cert (precaution)
 SSL_CTX = ssl.create_default_context()
 SSL_CTX.check_hostname = False
 SSL_CTX.verify_mode = ssl.CERT_NONE
 
+ROMAN_TO_ARABIC = {r: i for i, r in enumerate(
+    ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII",
+     "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX", "XXI", "XXII",
+     "XXIII", "XXIV", "XXV", "XXVI", "XXVII", "XXVIII", "XXIX", "XXX"], start=1)}
+
+
+# ---------------------------------------------------------------------------
+# HTTP
+# ---------------------------------------------------------------------------
 
 def fetch(url: str, *, cache_dir: Path | None = None, suffix: str = ".bin") -> bytes:
     cache_path = None
@@ -86,30 +97,19 @@ def fetch_html(url: str, *, cache_dir: Path | None = None) -> str:
 # Discovery
 # ---------------------------------------------------------------------------
 
-
 def discover_session_pdfs(cache_dir: Path | None = None) -> list[dict[str, Any]]:
-    """Zwraca listę sesji z URL do PDF + datą + numerem rzymskim.
-
-    Each: {"session_number", "date_iso", "pdf_url"}
-    """
     body = fetch_html(INDEX_URL, cache_dir=cache_dir)
-
-    # Pattern URL: ...plik={N}_sesja_Sejmiku_DD.MM.YYYY_-_Imienny_wykaz_glosowan_radnych.pdf
-    # gdzie {N} to rzymski albo zniekształcone unicode
     pattern = re.compile(
-        r'href="([^"]*?pobierz\.php\?plik=([IVXLCDM]+)_sesja_Sejmiku_'
-        r'(\d{2})\.(\d{2})\.(\d{4})[^"]*?Imienny_wykaz_glosowan[^"]*?)"',
+        r'href="([^"]*?pobierz\.php\?plik=([IVXLCDM]+)_sesja_Sejmiku[_\s]*'
+        r'(\d{2})\.(\d{2})\.(\d{4})[^"]*?[Ii]mienny[^"]*?)"',
         re.IGNORECASE,
     )
-    sessions = []
-    seen = set()
+    sessions, seen = [], set()
     for href, roman, dd, mm, yyyy in pattern.findall(body):
         if href in seen:
             continue
         seen.add(href)
-        pdf_url = href if href.startswith("http") else BASE + href
-        # HTML encoded &amp; → &
-        pdf_url = pdf_url.replace("&amp;", "&")
+        pdf_url = (href if href.startswith("http") else BASE + href).replace("&amp;", "&")
         sessions.append({
             "session_number": roman.upper(),
             "date_iso": f"{yyyy}-{int(mm):02d}-{int(dd):02d}",
@@ -119,106 +119,274 @@ def discover_session_pdfs(cache_dir: Path | None = None) -> list[dict[str, Any]]
 
 
 # ---------------------------------------------------------------------------
-# Main
+# OCR
 # ---------------------------------------------------------------------------
 
+def ocr_pdf(pdf_path: Path, cache_key: str, cache_dir: Path | None) -> list[str]:
+    """OCR PDF do listy tekstów stron. Cache'owane jako {key}.ocr.json."""
+    if cache_dir:
+        ocr_cache = cache_dir / f"{cache_key}.ocr.json"
+        if ocr_cache.is_file():
+            return json.loads(ocr_cache.read_text(encoding="utf-8"))
+    from pdf2image import convert_from_path
+    import pytesseract
+    lang = "pol"
+    try:
+        if "pol" not in set(pytesseract.get_languages(config="")):
+            lang = "eng"
+    except Exception:
+        lang = "eng"
+    images = convert_from_path(str(pdf_path), dpi=OCR_DPI)
+    texts = [pytesseract.image_to_string(im, lang=lang, config="--psm 4") for im in images]
+    if cache_dir:
+        (cache_dir / f"{cache_key}.ocr.json").write_text(
+            json.dumps(texts, ensure_ascii=False), encoding="utf-8")
+    return texts
+
+
+# ---------------------------------------------------------------------------
+# Parsowanie OCR (format jednokolumnowy lubuski)
+# ---------------------------------------------------------------------------
+
+_DEC = r'(Zza|ZA|Za|za|Przeciw|przeciw|Wstrzyma\S*\s*si\S*|Nieobecn\w*)'
+_ROW = re.compile(
+    r'([A-ZĄĆĘŁŃÓŚŹŻ][A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ\.\-]+'
+    r'(?:\s+[A-ZĄĆĘŁŃÓŚŹŻ][A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ\.\-]+){1,2})\s+' + _DEC +
+    r'\s*[\|\.]?\s*\d{2}\.\d{2}\.\d{4}'
+)
+
+
+def _deckey(tok: str) -> str | None:
+    t = tok.lower().replace(" ", "")
+    if t.startswith("wstrzyma"):
+        return "wstrzymal_sie"
+    if t.startswith("nieobecn"):
+        return "nieobecni"
+    if t in ("za", "zza"):
+        return "za"
+    if t.startswith("przeciw"):
+        return "przeciw"
+    return None
+
+
+def parse_session_votes(page_texts: list[str]) -> list[dict[str, Any]]:
+    """Zwraca listę głosowań z sesji: counts (z nagłówka, autorytatywne) +
+    surowe named_votes (nazwiska z OCR, do późniejszej korekty rosterem)."""
+    full = "\n".join(page_texts)
+    blocks = re.split(r"Wyniki g[łl]osowania", full)[1:]
+    votes = []
+    for b in blocks:
+        counts = {}
+        for key, pat in (("za", r"Za:\s*(\d+)"),
+                         ("przeciw", r"Przeciw:\s*(\d+)"),
+                         ("wstrzymal_sie", r"Wstrzyma\S*\s*si\S*:\s*(\d+)"),
+                         ("nieobecni", r"Nieobecni:\s*(\d+)")):
+            m = re.search(pat, b)
+            counts[key] = int(m.group(1)) if m else 0
+        counts["brak_glosu"] = 0
+        m = re.search(r"Uprawnionych:\s*(\d+)", b)
+        uprawnionych = int(m.group(1)) if m else None
+        if counts["za"] == 0 and counts["przeciw"] == 0 and counts["wstrzymal_sie"] == 0 \
+                and uprawnionych is None:
+            continue  # nie wygląda na blok głosowania
+
+        m = re.search(r"Nazwa g[łl]osowania:\s*(.+?)(?:Data g[łl]osowania|Miejsce:)", b, re.S)
+        topic = re.sub(r"\s+", " ", m.group(1)).strip() if m else ""
+        m = re.search(r"Data g[łl]osowania:\s*(\d{2})\.(\d{2})\.(\d{4})\s*(\d{1,2}:\d{2})?", b)
+        voted_at = None
+        if m:
+            voted_at = f"{m.group(3)}-{m.group(2)}-{m.group(1)}" + (f" {m.group(4)}" if m.group(4) else "")
+
+        raw = []  # (name, decision_key)
+        for nm, dec in _ROW.findall(b):
+            k = _deckey(dec)
+            if k:
+                raw.append((re.sub(r"\s+", " ", nm).strip(), k))
+        votes.append({
+            "counts": counts,            # autorytatywne (nagłówek)
+            "uprawnionych": uprawnionych,
+            "topic": topic[:300],
+            "voted_at": voted_at,
+            "raw_named": raw,            # do korekty rosterem
+        })
+    return votes
+
+
+def build_roster(all_sessions_votes: list[list[dict]], min_freq: int = 6) -> list[str]:
+    freq = Counter()
+    for sv in all_sessions_votes:
+        for v in sv:
+            for nm, _ in v["raw_named"]:
+                if 2 <= len(nm.split()) <= 3:
+                    freq[nm] += 1
+    cand = [n for n, c in freq.most_common() if c >= min_freq]
+    roster: list[str] = []
+    for n in cand:
+        if not difflib.get_close_matches(n, roster, n=1, cutoff=0.9):
+            roster.append(n)
+    return roster
+
+
+def correct_named(raw: list[tuple[str, str]], roster: list[str]) -> dict[str, list[str]]:
+    out = {k: [] for k in ("za", "przeciw", "wstrzymal_sie", "brak_glosu", "nieobecni")}
+    seen = set()
+    for nm, k in raw:
+        m = difflib.get_close_matches(nm, roster, n=1, cutoff=0.8)
+        canon = m[0] if m else None
+        if canon and canon not in seen:
+            seen.add(canon)
+            out[k].append(canon)
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Schemat indeksowy (jak dolnoslaskie/zachodniopomorskie)
+# ---------------------------------------------------------------------------
+
+def build_councilor_index(votes: list[dict]) -> tuple[list[str], dict[str, int]]:
+    seen: set[str] = set()
+    for v in votes:
+        for names in v["named_votes"].values():
+            seen.update(names)
+    s = sorted(seen)
+    return s, {n: i for i, n in enumerate(s)}
+
+
+def vote_to_indexed(v: dict, name_to_idx: dict[str, int]) -> dict:
+    return {
+        "id": f"{v['session_date']}_{v['vote_seq']}",
+        "session_date": v["session_date"],
+        "session_number": v["session_number"],
+        "source_url": v["source_url"],
+        "topic": v["topic"] or "Głosowanie",
+        "druk": None,
+        "resolution": None,
+        "counts": v["counts"],
+        "named_votes": {cat: sorted(name_to_idx[n] for n in names if n in name_to_idx)
+                        for cat, names in v["named_votes"].items()},
+        "voted_at": v.get("voted_at"),
+    }
+
+
+def aggregate_sessions(votes: list[dict]) -> list[dict]:
+    by_date: dict[str, dict] = {}
+    for v in votes:
+        d = v["session_date"]
+        sess = by_date.setdefault(d, {
+            "date": d, "number": v["session_number"], "vote_count": 0,
+            "attendees": set(), "attendee_count": 0, "speakers": [],
+        })
+        sess["vote_count"] += 1
+        for cat in ("za", "przeciw", "wstrzymal_sie", "brak_glosu"):
+            sess["attendees"].update(v["named_votes"].get(cat, []))
+    out = []
+    for d in sorted(by_date, reverse=True):
+        s = by_date[d]
+        s["attendees"] = sorted(s["attendees"])
+        s["attendee_count"] = len(s["attendees"])
+        out.append(s)
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Build
+# ---------------------------------------------------------------------------
 
 def build_kadencja(cache_dir: Path | None = None,
                    limit_sessions: int | None = None) -> dict[str, Any]:
     print("==> Discovering session PDFs...", file=sys.stderr)
     sessions = discover_session_pdfs(cache_dir=cache_dir)
-    print(f"==> Found {len(sessions)} sesji VII kadencji", file=sys.stderr)
-
+    print(f"==> Found {len(sessions)} sesji", file=sys.stderr)
     if limit_sessions:
         sessions = sessions[:limit_sessions]
 
-    out_sessions = []
-    all_councilors: set[str] = set()
-    total_votes = 0
-
+    parsed_sessions = []  # (meta, [votes])
     for sess in sessions:
-        print(f"\n=> Sesja {sess['session_number']} ({sess['date_iso']})", file=sys.stderr)
-
+        print(f"=> Sesja {sess['session_number']} ({sess['date_iso']}) OCR...", file=sys.stderr)
         try:
-            pdf_data = fetch(sess["pdf_url"], cache_dir=cache_dir, suffix=".pdf")
+            pdf_bytes = fetch(sess["pdf_url"], cache_dir=cache_dir, suffix=".pdf")
         except Exception as e:
-            print(f"  WARN: download {sess['session_number']}: {e}", file=sys.stderr)
+            print(f"   WARN download: {e}", file=sys.stderr)
             continue
-
-        tmp_pdf = (cache_dir or Path("/tmp")) / f"_lubu_{sess['session_number']}.pdf"
-        tmp_pdf.parent.mkdir(parents=True, exist_ok=True)
-        tmp_pdf.write_bytes(pdf_data)
-
+        key = md5(sess["pdf_url"].encode()).hexdigest()
+        tmp = (cache_dir or Path("/tmp")) / f"{key}.pdf"
+        tmp.parent.mkdir(parents=True, exist_ok=True)
+        tmp.write_bytes(pdf_bytes)
         try:
-            parsed = parse_voting_pdf_per_page(tmp_pdf)
-            ok, fail, _ = validate_parsed(parsed)
-            print(f"   votes={parsed['vote_count']}, walidacja={ok}/{parsed['vote_count']}",
-                  file=sys.stderr)
-            for v in parsed["votes"]:
-                for cat in ("za", "przeciw", "wstrzymal_sie", "brak_glosu", "nieobecni"):
-                    for name in v.get("named_votes", {}).get(cat, []):
-                        all_councilors.add(name)
-            total_votes += parsed["vote_count"]
-            out_sessions.append({
-                "session_number": parsed.get("number_roman") or sess["session_number"],
-                "date": sess["date_iso"],
-                "votes": parsed["votes"],
-                "vote_count": parsed["vote_count"],
-                "source_url": sess["pdf_url"],
-            })
+            page_texts = ocr_pdf(tmp, key, cache_dir)
+            votes = parse_session_votes(page_texts)
         except Exception as e:
-            print(f"  WARN: parse {sess['session_number']}: {e}", file=sys.stderr)
-        finally:
-            if not cache_dir:
-                tmp_pdf.unlink(missing_ok=True)
+            print(f"   WARN OCR/parse: {e}", file=sys.stderr)
+            continue
+        print(f"   {len(votes)} głosowań", file=sys.stderr)
+        parsed_sessions.append((sess, votes))
+
+    # Roster z całej kadencji (bootstrap z OCR) + korekta nazwisk.
+    roster = build_roster([v for _, v in parsed_sessions])
+    print(f"==> Roster (bootstrap z OCR): {len(roster)} radnych", file=sys.stderr)
+
+    all_votes = []
+    mism = 0
+    for sess, votes in parsed_sessions:
+        for seq, v in enumerate(votes):
+            named = correct_named(v["raw_named"], roster)
+            # liczba przypisanych aktywnych vs nagłówek (kontrola jakości OCR)
+            for cat in ("za", "przeciw", "wstrzymal_sie"):
+                if len(named[cat]) != v["counts"][cat]:
+                    mism += 1
+                    break
+            all_votes.append({
+                "session_date": sess["date_iso"],
+                "session_number": sess["session_number"],
+                "vote_seq": seq,
+                "source_url": sess["pdf_url"],
+                "topic": v["topic"],
+                "voted_at": v["voted_at"],
+                "counts": v["counts"],          # nagłówek = autorytatywne
+                "named_votes": named,           # atrybucja OCR (best-effort)
+            })
+
+    councilors, name_to_idx = build_councilor_index(all_votes)
+    indexed = [vote_to_indexed(v, name_to_idx) for v in all_votes]
+    sessions_agg = aggregate_sessions(all_votes)
 
     return {
-        "kadencja": KADENCJA_ID,
-        "kadencja_label": KADENCJA_LABEL,
-        "councilors": sorted(all_councilors),
-        "total_councilors": len(all_councilors),
-        "sessions": out_sessions,
-        "total_sessions": len(out_sessions),
-        "total_votes": total_votes,
-        "scraped_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "id": KADENCJA_ID,
+        "label": KADENCJA_LABEL,
+        "scraped_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
+        "sessions": sessions_agg,
+        "total_sessions": len(sessions_agg),
+        "total_votes": len(indexed),
+        "total_councilors": len(councilors),
+        "councilors": [],
+        "votes": indexed,
+        "similarity_top": [],
+        "similarity_bottom": [],
+        "councilor_index": councilors,
+        "ocr_attribution_mismatches": mism,
         "source": INDEX_URL,
-        "ocr_warning": (
-            "Skanowane PDF ~18MB/sesja. Wymaga `tesseract-ocr-pol` na NAS. "
-            "Pełny scrape 20 sesji = ~3-5h, cache absolutnie konieczny."
-        ),
     }
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Scrape Sejmik Województwa Lubuskiego")
-    parser.add_argument("--cache", type=Path, default=Path(".cache/lubuskie"))
-    parser.add_argument("--output", "-o", type=Path,
-                        default=Path("docs/kadencja-2024-2029.json"))
-    parser.add_argument("--limit", type=int, default=None,
-                        help="Limit sesji (debug)")
-    args = parser.parse_args()
-
+    ap = argparse.ArgumentParser(description="Scrape Sejmik Województwa Lubuskiego (skan+OCR)")
+    ap.add_argument("--cache", type=Path, default=Path(".cache/lubuskie"))
+    ap.add_argument("--output", "-o", type=Path, default=Path("docs/kadencja-2024-2029.json"))
+    ap.add_argument("--limit", type=int, default=None)
+    args = ap.parse_args()
     args.cache.mkdir(parents=True, exist_ok=True)
     args.output.parent.mkdir(parents=True, exist_ok=True)
 
-    kadencja = build_kadencja(cache_dir=args.cache, limit_sessions=args.limit)
-
-    # Guard: jeśli OCR/parse zwrócił 0 sesji (typowo brak tesseract-ocr-pol
-    # albo pdf2image w image), nie nadpisuj istniejącego pliku zerowymi
-    # danymi. Lepiej zostawić stary dobry kadencja-2024-2029.json i pozwolić
-    # downstream'om (build_assembly_metrics, deploy) działać dalej na nim.
-    if kadencja["total_sessions"] == 0 and args.output.exists():
-        print(f"\n✗ Zero sesji — pomijam zapis {args.output} (zostaje poprzednia wersja)", file=sys.stderr)
-        print("  Sprawdź czy NAS ma tesseract-ocr-pol + pdf2image + pytesseract.", file=sys.stderr)
+    kad = build_kadencja(cache_dir=args.cache, limit_sessions=args.limit)
+    if kad["total_votes"] == 0 and args.output.exists():
+        print("\n✗ Zero głosowań — pomijam zapis (zostaje poprzednia wersja).", file=sys.stderr)
+        print("  Sprawdź tesseract-ocr-pol + pdf2image na NAS.", file=sys.stderr)
         return 1
-
     with args.output.open("w", encoding="utf-8") as f:
-        json.dump(kadencja, f, ensure_ascii=False, indent=2)
-
-    print(f"\n✓ Saved {args.output}", file=sys.stderr)
-    print(f"  Sesji: {kadencja['total_sessions']}", file=sys.stderr)
-    print(f"  Głosowań: {kadencja['total_votes']}", file=sys.stderr)
-    print(f"  Radnych: {kadencja['total_councilors']}", file=sys.stderr)
+        json.dump(kad, f, ensure_ascii=False, indent=2)
+    print(f"\n✓ Saved {args.output}: {kad['total_sessions']} sesji / "
+          f"{kad['total_votes']} głosowań / {kad['total_councilors']} radnych / "
+          f"OCR-mismatch {kad['ocr_attribution_mismatches']}", file=sys.stderr)
     return 0
 
 

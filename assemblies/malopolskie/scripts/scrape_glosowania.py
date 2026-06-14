@@ -20,16 +20,28 @@ Endpointy Madkom REST API (te same co pomorski):
 Treść docx jest identyczna z eSesja PDF standard, więc używamy
 `lib_voting_pdf_table.parse_voting_docx`.
 
-Output: kadencja-2024-2029.json zgodne ze schemą innych sejmików:
+Output: kadencja-2024-2029.json w STANDARDOWEJ schemie sejmików (czytanej
+przez build_assembly_metrics.py + frontend SPA):
   {
-    "kadencja": "2024-2029",
-    "councilors": [...],
+    "id": "2024-2029",
+    "councilor_index": ["Imię Nazwisko", ...],   # posortowane, unikalne
+    "votes": [{                                    # PŁASKA lista
+        "id", "session_date", "session_number", "topic", "counts",
+        "named_votes": {kategoria: [indeksy do councilor_index]},
+        "voted_at", "source_url", "druk", "resolution"
+    }, ...],
     "sessions": [{
-        "session_number": "XXIX",
-        "date": "2026-04-27",
-        "votes": [{vote_index, topic, counts, named_votes, ...}, ...]
-    }]
+        "number": "XXIX", "date": "2026-04-27", "vote_count": 25,
+        "attendees": [...], "attendee_count": 39, "speakers": []
+    }],
+    "councilors": []   # statystyki dolicza build_assembly_metrics.py
   }
+
+UWAGA HISTORYCZNA: wcześniej scraper emitował nietypową schemę (klucz
+`session_number`, votes zagnieżdżone w sesji, councilors jako nazwiska bez
+councilor_index). build_assembly_metrics czyta `votes`/`councilor_index`/
+`sessions[].number`/`attendees`, więc liczył 0 radnych a strona
+/term/.../sessions/ renderowała się pusto.
 """
 
 from __future__ import annotations
