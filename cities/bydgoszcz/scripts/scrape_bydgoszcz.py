@@ -553,6 +553,45 @@ def _parse_single_page(page_text: str, url: str) -> dict | None:
     return result if result["session_date"] else None
 
 
+# Generyczne etykiety eSesja dla głosowań proceduralnych pod punktem porządku
+# (wnioski/autopoprawki) nie mają opisu — PDF nazywa je "Głosowanie N". Jeśli w
+# tej samej sesji ten punkt ma osobne głosowanie z realnym opisem (np.
+# "5. Uchwalenie porządku obrad."), podpinamy ten opis, żeby tytuł nie był
+# semantycznie pusty (było "5. Głosowanie 1".."5. Głosowanie 15").
+_GENERIC_VOTE_LABEL_RE = re.compile(r'^Głosowanie\s+\d+\.?$')
+
+
+def _split_agenda_title(title: str | None) -> tuple[str | None, str]:
+    """'5. Uchwalenie porządku obrad.' → ('5', 'Uchwalenie porządku obrad.')."""
+    m = re.match(r'^(\d+)\.\s*(.*)$', title or '')
+    if m:
+        return m.group(1), m.group(2).strip()
+    return None, (title or '').strip()
+
+
+def _enrich_generic_titles(records: list[dict]) -> None:
+    """In-place: 'N. Głosowanie K' → '{N}. {opis punktu} (głosowanie K)'.
+
+    Mapuje numer punktu porządku → opisowy tytuł (z głosowań tego punktu, które
+    mają realny opis), potem nadpisuje generyczne głosowania proceduralne tego
+    punktu. Punkty bez opisowego rodzeństwa (np. samotne "2. Głosowanie 1")
+    zostają bez zmian. Separator w nawiasie, bez dywizu/myślnika celowo.
+    """
+    point_desc: dict[str, str] = {}
+    for r in records:
+        pt, label = _split_agenda_title(r.get("vote_title"))
+        if pt and label and not _GENERIC_VOTE_LABEL_RE.match(label):
+            if pt not in point_desc or len(label) > len(point_desc[pt]):
+                point_desc[pt] = label
+    for r in records:
+        pt, label = _split_agenda_title(r.get("vote_title"))
+        if pt and _GENERIC_VOTE_LABEL_RE.match(label):
+            base = point_desc.get(pt)
+            if base:
+                n = re.search(r'(\d+)', label).group(1)
+                r["vote_title"] = f"{pt}. {base.rstrip(' .')} (głosowanie {n})"
+
+
 def parse_voting_pdf(pdf_data: bytes, url: str) -> list[dict]:
     """Parse a PDF with voting results. Returns a list of vote records (one per page).
 
@@ -573,6 +612,8 @@ def parse_voting_pdf(pdf_data: bytes, url: str) -> list[dict]:
         if record:
             records.append(record)
 
+    # Wzbogacenie generycznych tytułów per sesja (jeden PDF = jedna sesja).
+    _enrich_generic_titles(records)
     return records
 
 

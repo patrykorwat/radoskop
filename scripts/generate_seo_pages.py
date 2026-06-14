@@ -142,6 +142,36 @@ def _breadcrumb(items):
     }
 
 
+def _faqpage(qa):
+    """Build FAQPage JSON-LD from [(question, answer_text), ...].
+
+    UWAGA: Google wymaga, żeby ta sama treść Q&A była też widoczna w body
+    strony (inaczej structured-data-only FAQ łamie wytyczne). Wołać razem z
+    _faq_html na tym samym zestawie. FAQ rich result został wycofany dla
+    komercji, ale utrzymany dla domen rządowych/obywatelskich, więc tu jest
+    bezpieczny."""
+    return {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": q,
+                "acceptedAnswer": {"@type": "Answer", "text": a},
+            }
+            for q, a in qa
+        ],
+    }
+
+
+def _faq_html(qa, heading="Najczęstsze pytania"):
+    """Widoczny odpowiednik _faqpage — ten sam zestaw Q&A w HTML."""
+    parts = [f"<h2>{esc(heading)}</h2>"]
+    for q, a in qa:
+        parts.append(f"<h3>{esc(q)}</h3>\n<p>{esc(a)}</p>")
+    return "\n".join(parts) + "\n"
+
+
 def _strlist(v):
     """Coerce roles/komisje (lista str lub dict) na listę napisów. Odporne na
     None, mieszane typy i dicty bez nazwy."""
@@ -680,6 +710,15 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         }
         if og_img:
             person["image"] = og_img
+        # hasOccupation + knowsAbout wzmacniają encytyzację (Google rozpoznaje
+        # osobę-byt) bez nowych danych: occupation z roli radnego, knowsAbout z
+        # komisji w których zasiada.
+        person["hasOccupation"] = {
+            "@type": "Occupation",
+            "name": f"Radny Rady Miasta {city_gen}",
+        }
+        if komisje:
+            person["knowsAbout"] = komisje
         _club_norm = (club_full or "").strip().lower()
         if club_full and _club_norm not in ("niezrzeszeni", "niezrzeszony", "niezrzeszona", "?", ""):
             person["affiliation"] = {"@type": "Organization", "name": club_full}
@@ -971,7 +1010,48 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                 (f"Radoskop {city_name}", f"{site_url}/"),
                 ((topic[:90] or f"Glosowanie {vid}"), canonical),
             ])
-            page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body, jsonld=crumbs)
+
+            # Dataset: każde głosowanie to maszynowo czytelny zbiór danych
+            # (wyniki + imienne głosy). Daje odkrywalność w Google Dataset
+            # Search — kanał ruchu od dziennikarzy/analityków. distribution
+            # wskazuje na publiczny plik kadencji (JSON), w którym ten głos
+            # realnie siedzi. JSON-LD nie przechodzi przez _localize_seo, więc
+            # ramka jest po polsku dla wszystkich miast — spójnie z blokiem
+            # Person.
+            dataset = {
+                "@context": "https://schema.org",
+                "@type": "Dataset",
+                "name": f"Wyniki głosowania: {(topic[:90] or vid)}"
+                        + (f" ({session_date})" if session_date else ""),
+                "description": (
+                    f"Imienne wyniki głosowania Rady Miasta {city_gen}. "
+                    f"Za: {za}, przeciw: {przeciw}, wstrzymało się: {wstrzymal}. "
+                    f"Wynik: {result}. {sess_label}."
+                ),
+                "url": canonical,
+                "isAccessibleForFree": True,
+                "creator": {
+                    "@type": "GovernmentOrganization",
+                    "name": f"Rada Miasta {city_gen}",
+                },
+                "variableMeasured": [
+                    "Liczba głosów za",
+                    "Liczba głosów przeciw",
+                    "Liczba głosów wstrzymujących się",
+                    "Imienne głosy radnych",
+                ],
+                "distribution": [{
+                    "@type": "DataDownload",
+                    "encodingFormat": "application/json",
+                    "contentUrl": f"{site_url}/kadencja-{kid}.json",
+                }],
+            }
+            if session_date:
+                dataset["temporalCoverage"] = session_date
+            if og_img:
+                dataset["image"] = og_img
+
+            page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body, jsonld=[dataset, crumbs])
             _maybe_write_page(out / SLUG["vote"] / vid / "index.html", page)
             vote_count += 1
 
@@ -1381,7 +1461,43 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             (f"Kadencje Rady Miasta {city_gen}", f"{site_url}/{SLUG['term']}/"),
             (f"Kadencja {kid}", canonical),
         ])
-        page = make_page(main_html, canonical, title, desc, extra_body=term_body, jsonld=term_crumbs)
+
+        # FAQ tylko dla polskich lokalizacji — odpowiedzi to pełna polska proza
+        # bez kluczy i18n, więc na miastach non-PL zostałyby po polsku. Strona
+        # bazowa kadencji to hub o niskiej kardynalności (jedna per miasto per
+        # kadencja), więc stały explainer Q&A jest tu na temat i nie dubluje
+        # się masowo. Treść jest też widoczna w body (wymóg Google).
+        term_jsonld = [term_crumbs]
+        if locale == "pl":
+            term_faq = [
+                (
+                    f"Czym jest kadencja {kid} Rady Miasta {city_gen}?",
+                    f"To okres pracy radnych wybranych w wyborach samorządowych. "
+                    f"Radoskop zbiera w jednym miejscu sesje, głosowania i aktywność "
+                    f"radnych {city_gen} w tej kadencji.",
+                ),
+                (
+                    "Co oznacza frekwencja radnego?",
+                    "Frekwencja to udział radnego w głosowaniach imiennych w stosunku "
+                    "do wszystkich zarejestrowanych głosowań w kadencji.",
+                ),
+                (
+                    "Co to jest zgodność głosowań z klubem?",
+                    "To odsetek głosowań, w których radny głosował tak samo jak "
+                    "większość jego klubu. Niska wartość oznacza częste głosowanie "
+                    "wbrew klubowi.",
+                ),
+                (
+                    "Skąd pochodzą dane na Radoskopie?",
+                    "Dane pochodzą z oficjalnych źródeł publicznych: Biuletynów "
+                    "Informacji Publicznej, protokołów sesji i imiennych wyników "
+                    "głosowań udostępnianych przez urzędy.",
+                ),
+            ]
+            term_body += _faq_html(term_faq)
+            term_jsonld.append(_faqpage(term_faq))
+
+        page = make_page(main_html, canonical, title, desc, extra_body=term_body, jsonld=term_jsonld)
         _maybe_write_page(out / SLUG["term"] / kslug / "index.html", page)
 
         sitemap_entries.append({"loc": canonical, "changefreq": "weekly", "priority": "0.8"})

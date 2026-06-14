@@ -233,15 +233,15 @@ def apply_english_paths(html: str) -> str:
         "  var reportType = typeMap[urlType] || urlType;",
     )
 
-    # TAB_SLUGS: zmiana tylko wartości (URL slugów), klucze obiektu zostają.
-    # 2026-05: tab `profiles` usunięty (duplikat rankingu), `similarity` też
-    # już dawniej usunięty. Aktualny shape: 6 tabsów (5 sekcji + komisje).
-    html = html.replace(
-        "{ranking:'ranking',sessions:'sesje',votes:'glosowania',komisje:'komisje',"
-        "interpelacje:'interpelacje',budget:'budzet'}",
-        "{ranking:'ranking',sessions:'sessions',votes:'votes',komisje:'commissions',"
-        "interpelacje:'interpellations',budget:'budget'}",
-    )
+    # TAB_SLUGS: NIE konwertować wartości. Wartości TAB_SLUGS (polskie: sesje,
+    # glosowania, komisje, interpelacje, budzet) budują SLUG_TABS = odwrotność,
+    # używaną do DOPASOWANIA ścieżki wewnętrznej. toInternalPath() mapuje URL
+    # angielski na polski slug (EN_TO_PL_TAB: sessions→sesje, votes→glosowania),
+    # więc SLUG_TABS musi być kluczowane po polsku, inaczej tab nie rozwiązuje
+    # się i /term/{kad}/{tab}/ wpada w fallthrough → navigateTo(/councillors/).
+    # Emisja URL slugów idzie OSOBNO przez TAB_SLUGS_EN (sessions/votes), którego
+    # ta funkcja nie dotyka. Dawna podmiana wartości łamała routing wszystkich
+    # /term/ deep-linków na każdym mieście (bug znaleziony 2026-06-14).
 
     # /druk/ — strona druku (treść + procedowanie w komisjach). URL-facing
     # path: /druk/ → /bill/. API endpoint (API_BASE + '/druk/...') zostaje

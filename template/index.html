@@ -13,7 +13,7 @@
     <a href="https://radoskop.eu/pricing/{{SALES_QS}}" class="nav-sales">Cennik</a>
   </div>
   <div class="topbar-actions">
-    <button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
+    <button class="auth-btn" id="auth-login-btn" data-umami-event="login-open" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
     <div class="user-chip" id="user-chip" style="display:none">
       <button id="user-chip-link" onclick="goToProfile()" aria-label="Moje konto" title="Moje konto" style="background:none;border:none;padding:0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:inherit;font:inherit;">
         <span class="user-avatar" id="user-avatar" title=""></span>
@@ -215,7 +215,7 @@
       <a href="{{ROOT_URL}}">Radoskop</a> · <a href="{{ROOT_URL}}#cities">wszystkie miasta</a> · <a href="https://x.com/radoskop" target="_blank" rel="noopener me">X (Twitter)</a>
     </div>
     <div style="margin-bottom:12px">
-      <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/pricing/{{SALES_QS}}">Cennik</a> · <a href="https://radoskop.eu/pro/{{SALES_QS}}">Pro</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">Regulamin</a>{{IMPRESSUM_FOOTER_LINK}}
+      <a href="https://radoskop.eu/reports/" data-umami-event="sales-reports">Raporty</a> · <a href="https://radoskop.eu/pricing/{{SALES_QS}}" data-umami-event="sales-pricing">Cennik</a> · <a href="https://radoskop.eu/pro/{{SALES_QS}}" data-umami-event="sales-pro">Pro</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">Regulamin</a>{{IMPRESSUM_FOOTER_LINK}}
     </div>
     <div style="color:var(--muted);font-size:0.75rem">
       Dane źródłowe: <a href="{{BIP_URL}}" target="_blank">{{BIP_NAME}}</a> · Kod: <a href="{{GITHUB_URL}}" target="_blank">GitHub</a> (AGPL-3.0) · Polecane: <a href="https://www.tygodniksejmowy.pl/" target="_blank" rel="noopener">Tygodnik Sejmowy</a>
@@ -1496,7 +1496,7 @@ function showProfile(name, initialTab) {
             onclick="toggleCouncilorAlert('${_alertCitySlug}','${_alertCouncilorSlug}','${_alertCouncilorName.replace(/'/g,"\'")}')"
           >🔔 Obserwuj radnego</button>`
         : `<button class="auth-btn" style="font-size:0.82rem;padding:5px 12px;white-space:nowrap"
-            onclick="window.location.href='${AUTH_FRONTEND}/?bridge_to='+encodeURIComponent(window.location.href)+'&unlock=alerts'">
+            onclick="trackEventBeforeNav('login-unlock',{unlock:'alerts'}).then(function(){window.location.href='${AUTH_FRONTEND}/?bridge_to='+encodeURIComponent(window.location.href)+'&unlock=alerts'})">
             🔔 Zaloguj, by obserwować
           </button>`;
       _profileCards.push(`<div class="section" style="margin-bottom:0;padding:12px 14px">
@@ -1670,7 +1670,7 @@ function showProfile(name, initialTab) {
       // Pojedynczy CTA bez listy feature pills, mniej hałasu, jaśniejszy akcja.
       const overlayHtml = isLoggedIn ? '' : `
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:8px;background:color-mix(in srgb,var(--bg) 60%,transparent)">
-          <button class="auth-btn" style="font-size:0.88rem;padding:8px 20px" onclick="window.location.href='${loginUrl}'">Zaloguj, by zobaczyć więcej</button>
+          <button class="auth-btn" style="font-size:0.88rem;padding:8px 20px" onclick="trackEventBeforeNav('login-unlock',{unlock:'comparison'}).then(function(){window.location.href='${loginUrl}'})">Zaloguj, by zobaczyć więcej</button>
         </div>`;
 
       const lockedCols = isLoggedIn
