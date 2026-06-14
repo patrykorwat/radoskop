@@ -570,12 +570,16 @@ def _split_agenda_title(title: str | None) -> tuple[str | None, str]:
 
 
 def _enrich_generic_titles(records: list[dict]) -> None:
-    """In-place: 'N. Głosowanie K' → '{N}. {opis punktu} (głosowanie K)'.
+    """In-place: czyści tytuły głosowań w obrębie jednej sesji.
 
-    Mapuje numer punktu porządku → opisowy tytuł (z głosowań tego punktu, które
-    mają realny opis), potem nadpisuje generyczne głosowania proceduralne tego
-    punktu. Punkty bez opisowego rodzeństwa (np. samotne "2. Głosowanie 1")
-    zostają bez zmian. Separator w nawiasie, bez dywizu/myślnika celowo.
+    1. Zdejmuje wiodący numer punktu porządku ("4. Uchwalenie..." → "Uchwalenie
+       ..."). eSesja wkleja go w tytuł, a w listach SPA daje to podwójną
+       numerację ("1. 4. Uchwalenie...") i wygląda jak literówka.
+    2. Generyczne głosowania proceduralne ("Głosowanie K") podpina pod opisowy
+       tytuł tego samego punktu, jeśli istnieje ("Uchwalenie porządku obrad
+       (głosowanie K)"). Mapowanie po numerze punktu robione PRZED zdjęciem
+       prefiksu. Punkty bez opisowego rodzeństwa (samotne "Głosowanie K")
+       zostają jako goła etykieta. Separator w nawiasie, bez myślnika celowo.
     """
     point_desc: dict[str, str] = {}
     for r in records:
@@ -585,11 +589,17 @@ def _enrich_generic_titles(records: list[dict]) -> None:
                 point_desc[pt] = label
     for r in records:
         pt, label = _split_agenda_title(r.get("vote_title"))
-        if pt and _GENERIC_VOTE_LABEL_RE.match(label):
+        if pt is None:
+            continue  # tytuł bez numeru punktu — zostaw bez zmian
+        if _GENERIC_VOTE_LABEL_RE.match(label):
             base = point_desc.get(pt)
             if base:
                 n = re.search(r'(\d+)', label).group(1)
-                r["vote_title"] = f"{pt}. {base.rstrip(' .')} (głosowanie {n})"
+                r["vote_title"] = f"{base.rstrip(' .')} (głosowanie {n})"
+            else:
+                r["vote_title"] = label  # samotne "Głosowanie K"
+        else:
+            r["vote_title"] = label  # zdjęty prefiks numeru punktu
 
 
 def parse_voting_pdf(pdf_data: bytes, url: str) -> list[dict]:

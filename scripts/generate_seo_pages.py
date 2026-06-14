@@ -728,7 +728,19 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             (name, canonical),
         ])
 
-        page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body, jsonld=[person, crumbs])
+        # ProfilePage jako typ nadrzędny — Google preferuje go dla stron-wizytówek
+        # osób publicznych (mainEntity → Person), lepsza encytyzacja niż samo
+        # Person. dateModified sygnalizuje świeżość (przeciwko nieświeżym
+        # prerenderom). Person traci własny @context, bo jest teraz zagnieżdżony.
+        person.pop("@context", None)
+        profile_page = {
+            "@context": "https://schema.org",
+            "@type": "ProfilePage",
+            "dateModified": _date.today().isoformat(),
+            "mainEntity": person,
+        }
+
+        page = make_page(main_html, canonical, title, desc, og_image=og_img, extra_body=body, jsonld=[profile_page, crumbs])
         _maybe_write_page(out / SLUG["profile"] / slug / "index.html", page)
         profile_count += 1
 
@@ -821,6 +833,19 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             str(s.get("number")) for s in kad_data.get("sessions", [])
             if s.get("number")
         }
+
+        # Indeks numer sesji → [(vid, topic), ...] do linkowania sąsiednich
+        # głosowań (variation-to-variation). Każda strona głosowania linkuje do
+        # pozostałych z tej samej sesji, co rozprowadza link equity i leczy
+        # "Discovered/Crawled – currently not indexed" w GSC.
+        _session_vote_index: dict[str, list[tuple[str, str]]] = {}
+        for _v in kad_data.get("votes", []):
+            _vsn = str(_v.get("session_number") or "")
+            _vvid = _v.get("id", "")
+            if _vsn and _vvid:
+                _session_vote_index.setdefault(_vsn, []).append(
+                    (_vvid, (_v.get("topic", "") or "").strip())
+                )
 
         for vote in kad_data.get("votes", []):
             vid = vote.get("id", "")
@@ -992,6 +1017,25 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             )
             nav_html = "<p>" + " · ".join(nav_links) + "</p>\n"
 
+            # Sąsiednie głosowania z tej samej sesji (variation-to-variation).
+            siblings_html = ""
+            _sibs = [
+                (_svid, _stopic) for (_svid, _stopic)
+                in _session_vote_index.get(str(session_number), [])
+                if _svid != vid
+            ][:8]
+            if _sibs:
+                _sib_items = "".join(
+                    f'<li><a href="{site_url}/{SLUG["vote"]}/{_svid}/">'
+                    f"{esc(_stopic[:80] or _svid)}</a></li>\n"
+                    for _svid, _stopic in _sibs
+                )
+                siblings_html = (
+                    "<h2>Inne glosowania z tej sesji</h2>\n<ul>\n"
+                    + _sib_items
+                    + "</ul>\n"
+                )
+
             body = (
                 f"<h1>{esc(topic or f'Glosowanie {vid}')}</h1>\n"
                 f"<p>{esc(sess_label)}"
@@ -1002,6 +1046,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                 + ref_html
                 + club_html
                 + nv_html
+                + siblings_html
                 + nav_html
                 + f"<p><a href=\"{site_url}/\">Radoskop {esc(city_name)}</a></p>\n"
             )

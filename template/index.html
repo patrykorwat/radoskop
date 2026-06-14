@@ -3777,12 +3777,40 @@ async function showKomisja(slug) {
       </div>
     `;
   } else if (meetingsHidden > 0) {
+    // Teaser z rozmyciem zamiast samego tekstu: pokazujemy szkielet ukrytych
+    // posiedzeń (realna struktura wiersza), żeby było widać że dane istnieją i
+    // mają właściwy kształt. UWAGA: to są wiersze-atrapy generowane na froncie,
+    // backend free tier NIE wysyła ukrytych posiedzeń — blur jest prezentacją,
+    // nie zabezpieczeniem, a prawdziwe wartości nie opuszczają serwera.
+    const _ghostRows = Math.max(1, Math.min(meetingsHidden, 4));
+    const _ghostRow = `
+      <div style="padding:14px 0;border-top:0.5px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px">
+          <span style="font-weight:500;font-family:var(--font-mono,monospace)">2025-00-00</span>
+          <span style="color:var(--muted);font-size:12px">0 druków</span>
+        </div>
+        <div style="margin-top:4px">
+          <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0">
+            <span style="color:var(--accent);font-size:12px;background:rgba(99,102,241,0.08);padding:1px 6px;border-radius:4px">druk 000</span>
+            <span style="font-size:13px;color:var(--text)">Projekt uchwały w sprawie zmiany porządku obrad komisji</span>
+          </div>
+          <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0">
+            <span style="color:var(--accent);font-size:12px;background:rgba(99,102,241,0.08);padding:1px 6px;border-radius:4px">druk 000</span>
+            <span style="font-size:13px;color:var(--text)">Opiniowanie projektu budżetu i wniosków radnych</span>
+          </div>
+        </div>
+      </div>`;
+    const _ghosts = Array.from({length: _ghostRows}).map(() => _ghostRow).join('');
     bannerHtml = `
-      <div style="margin-top:16px;padding:14px 16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px">
-        Łącznie <strong style="font-weight:500">${meetingsTotal} posiedzeń</strong> w archiwum, pokazane ${meetingsTop.length}. Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport CSV/JSON) w pakiecie Pro.
-        <a href="https://radoskop.eu/pricing/${salesLangQs(false)}"
-           onclick="trackEvent('click_business_komisja_cta',{location:'komisja_detail',slug:'${slug}',hidden:${meetingsHidden}})"
-           style="color:var(--accent);margin-left:6px;text-decoration:none">Zobacz cennik ↗</a>
+      <div style="position:relative;margin-top:8px">
+        <div aria-hidden="true" style="filter:blur(5px);pointer-events:none;user-select:none;opacity:0.85">${_ghosts}</div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;background:linear-gradient(to bottom,color-mix(in srgb,var(--bg) 35%,transparent),color-mix(in srgb,var(--bg) 80%,transparent))">
+          <div style="font-weight:600;font-size:15px;margin-bottom:4px">Jeszcze ${meetingsHidden} posiedzeń w archiwum</div>
+          <div style="color:var(--muted);font-size:13px;max-width:440px;margin-bottom:14px">Pełna procedura komisyjna: wszystkie posiedzenia, mapowanie druk → głosowanie i eksport CSV/JSON.</div>
+          <a href="https://radoskop.eu/pricing/${salesLangQs(false)}"
+             onclick="trackEvent('click_business_komisja_cta',{location:'komisja_detail_blur',slug:'${slug}',hidden:${meetingsHidden}})"
+             style="background:var(--accent);color:#fff;padding:9px 20px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none">Odblokuj pełne dane ↗</a>
+        </div>
       </div>
     `;
   }
