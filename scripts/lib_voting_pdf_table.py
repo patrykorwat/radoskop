@@ -57,9 +57,25 @@ Usage:
 
 from __future__ import annotations
 
+import hashlib
+import os
 import re
 from pathlib import Path
 from typing import Any
+
+
+def _ocr_cache_dir(pdf_path: str | Path) -> Path:
+    """Katalog cache OCR obok PDF (w .cache/{slug}/ocr/)."""
+    return Path(pdf_path).parent / "ocr"
+
+
+def _pdf_md5(pdf_path: str | Path) -> str:
+    """Content-addressed klucz dokumentu (odporny na zmianę nazwy pliku)."""
+    h = hashlib.md5()
+    with open(pdf_path, "rb") as f:
+        for chunk in iter(lambda: f.read(65536), b""):
+            h.update(chunk)
+    return h.hexdigest()
 
 
 # ---------------------------------------------------------------------------
@@ -749,10 +765,31 @@ def parse_voting_pdf_per_page(pdf_path: str | Path) -> dict[str, Any]:
         except Exception:
             lang = "eng"
 
-        images = convert_from_path(str(pdf_path), dpi=250)
-        pages_text = []
-        for img in images:
-            pages_text.append(pytesseract.image_to_string(img, lang=lang))
+        # Cache OCR na dysk, wznawialny per strona. Tesseract jest CPU-bound,
+        # a bez cache każdy przebieg pipeline'u OCR-ował wszystko od zera
+        # (kujawsko-pomorskie / zachodniopomorskie ginęły na twardym
+        # timeoucie i nie zapisywały nic — pętla zer). Teraz strona raz
+        # zOCR-owana jest czytana z dysku, a kolejny przebieg renderuje tylko
+        # brakujące strony. Klucz = md5 treści PDF + indeks strony + dpi + lang,
+        # więc zmiana PDF unieważnia cache automatycznie.
+        dpi = int(os.environ.get("ASSEMBLY_OCR_DPI", "250"))
+        cache_dir = _ocr_cache_dir(pdf_path)
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        doc_key = _pdf_md5(pdf_path)
+        n_pages = len(pages_text)
+        ocr_texts: list[str] = []
+        for idx in range(n_pages):
+            cpath = cache_dir / f"{doc_key}.p{idx}.dpi{dpi}.{lang}.txt"
+            if cpath.is_file():
+                ocr_texts.append(cpath.read_text(encoding="utf-8"))
+                continue
+            imgs = convert_from_path(
+                str(pdf_path), dpi=dpi, first_page=idx + 1, last_page=idx + 1
+            )
+            txt = pytesseract.image_to_string(imgs[0], lang=lang) if imgs else ""
+            cpath.write_text(txt, encoding="utf-8")
+            ocr_texts.append(txt)
+        pages_text = ocr_texts
 
     # Per strona = 1 głosowanie
     votes = []
