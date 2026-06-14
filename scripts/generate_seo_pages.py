@@ -189,6 +189,14 @@ def _strlist(v):
     return out
 
 
+def _iso_or_none(s):
+    """Zwraca s jeśli to data ISO YYYY-MM-DD, inaczej None. Daty porównujemy
+    leksykograficznie (ISO to umożliwia), więc max() działa wprost."""
+    if isinstance(s, str) and re.match(r"^\d{4}-\d{2}-\d{2}$", s):
+        return s
+    return None
+
+
 def make_page(main_html, canonical_url, title, description, og_image=None, extra_body="", jsonld=None):
     """Create a page variant with unique SEO tags and optional body content."""
     # Lokalizacja fraz prerendera dla miast nie-PL (no-op dla "pl").
@@ -461,10 +469,13 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
 
     # Load profiles
     profiles = []
+    profiles_scraped_at = None
     profiles_path = docs / "profiles.json"
     if profiles_path.exists():
         with open(profiles_path, "r", encoding="utf-8") as f:
-            profiles = json.load(f).get("profiles", [])
+            _pdata = json.load(f)
+        profiles = _pdata.get("profiles", [])
+        profiles_scraped_at = _pdata.get("scraped_at")
 
     # Enrich profiles with cross-city percentile data (if available).
     city_slug = city_dir.name
@@ -523,6 +534,60 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             "loc": f"{site_url}/councillors/",
             "changefreq": "weekly", "priority": "0.9",
         })
+
+    # Per-radny data ostatniej aktywności (dla ProfilePage dateModified).
+    # Źródła: najnowsza sesja w której radny figuruje w named_votes (głosował
+    # lub był odnotowany) oraz najnowsza interpelacja/zapytanie autora. To daje
+    # uczciwy sygnał świeżości zamiast daty builda i nie powoduje codziennego
+    # re-uploadu treściowo identycznych stron (data zmienia się tylko gdy radny
+    # ma nową aktywność). Komisje pominięte — brak per-radny dat w danych
+    # prerendera (dane komisji są osobnym, premium torem).
+    _last_activity_by_name: dict[str, str] = {}
+
+    def _bump_activity(nm, d):
+        d = _iso_or_none(d)
+        if not nm or not d:
+            return
+        nm = nm.strip()
+        cur = _last_activity_by_name.get(nm)
+        if cur is None or d > cur:
+            _last_activity_by_name[nm] = d
+
+    for _k in kadencje:
+        _kid = _k.get("id", "")
+        _kf = docs / f"kadencja-{_kid}.json"
+        if not _kf.exists():
+            continue
+        try:
+            with open(_kf, "r", encoding="utf-8") as _f:
+                _kd = json.load(_f)
+        except Exception:
+            continue
+        _roster = []
+        for _c in _kd.get("councilors") or []:
+            if isinstance(_c, dict):
+                _roster.append((_c.get("name", "") or "").strip())
+            else:
+                _roster.append(str(_c).strip())
+        for _v in _kd.get("votes", []):
+            _sd = _iso_or_none(_v.get("session_date", ""))
+            if not _sd:
+                continue
+            _nv = _v.get("named_votes") or {}
+            if not isinstance(_nv, dict):
+                continue
+            for _lst in _nv.values():
+                if not isinstance(_lst, list):
+                    continue
+                for _x in _lst:
+                    if isinstance(_x, int) and 0 <= _x < len(_roster):
+                        _bump_activity(_roster[_x], _sd)
+                    elif isinstance(_x, str):
+                        _bump_activity(_x, _sd)
+
+    for _it in interp_items:
+        _au = (_it.get("radny") or _it.get("autor") or "")
+        _bump_activity(_au, _it.get("data_wplywu") or _it.get("data") or "")
 
     # ════════════════════════════════════════════
     # 1. Profile pages
@@ -730,13 +795,27 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
 
         # ProfilePage jako typ nadrzędny — Google preferuje go dla stron-wizytówek
         # osób publicznych (mainEntity → Person), lepsza encytyzacja niż samo
-        # Person. dateModified sygnalizuje świeżość (przeciwko nieświeżym
-        # prerenderom). Person traci własny @context, bo jest teraz zagnieżdżony.
+        # Person. Person traci własny @context, bo jest teraz zagnieżdżony.
         person.pop("@context", None)
+        # dateModified z realnej daty danych radnego (ostatnia sesja/głosowanie
+        # lub interpelacja), nie z daty builda. rebellions dorzucają datę gdy
+        # named_votes nie objęły radnego. Fallback: scraped_at miasta, a w
+        # ostateczności data builda. Dzięki temu strona zmienia treść tylko przy
+        # realnej zmianie danych (brak codziennego churnu S3).
+        date_modified = _last_activity_by_name.get(name.strip())
+        for _rb in (kad.get("rebellions") or []):
+            _rd = _iso_or_none(_rb.get("session") if isinstance(_rb, dict) else None)
+            if _rd and (date_modified is None or _rd > date_modified):
+                date_modified = _rd
+        if not date_modified:
+            date_modified = (
+                _iso_or_none((profiles_scraped_at or "")[:10])
+                or _date.today().isoformat()
+            )
         profile_page = {
             "@context": "https://schema.org",
             "@type": "ProfilePage",
-            "dateModified": _date.today().isoformat(),
+            "dateModified": date_modified,
             "mainEntity": person,
         }
 
