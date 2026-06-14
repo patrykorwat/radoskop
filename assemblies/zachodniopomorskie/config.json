@@ -1,0 +1,91 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "wojewodztwo",
+  "voivodeship_slug": "zachodniopomorskie",
+  "voivodeship_name": "zachodniopomorskie",
+  "voivodeship_genitive": "zachodniopomorskiego",
+  "capital": "Szczecin",
+  "rada_name": "Sejmik Województwa Zachodniopomorskiego",
+  "rada_name_genitive": "Sejmiku Województwa Zachodniopomorskiego",
+  "site_title": "Radoskop Sejmik Zachodniopomorskie. Jak głosują radni?",
+  "site_url": "https://zachodniopomorskie.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Sejmiku Województwa Zachodniopomorskiego. Frekwencja, głosowania i aktywność radnych wojewódzkich.",
+  "site_description_short": "Otwarte narzędzie monitoringu Sejmiku Województwa Zachodniopomorskiego.",
+  "bip_url": "https://bip.wzp.pl/",
+  "bip_name": "BIP Urząd Marszałkowski Województwa Zachodniopomorskiego",
+  "bip_kind": "zachodniopomorskie_bip_pdf_wydruk",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zachodniopomorskie.radoskop.pl",
+  "councilor_count": 30,
+  "kadencja_active": "2024-2029",
+  "teryt": "32",
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "active",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Bańkowska Anna": "KO",
+    "Fedeńczak Adam": "KO",
+    "Geblewicz Olgierd": "KO",
+    "Hołub-Kowalik Małgorzata": "KO",
+    "Kalina Teresa": "KO",
+    "Kołodziejska-Motyl Krystyna Elżbieta": "KO",
+    "Kubisa Maria": "KO",
+    "Miszke Magdalena": "KO",
+    "Niedzielski Andrzej": "KO",
+    "Nowak Anna": "KO",
+    "Nycz Artur": "KO",
+    "Siwek Karolina": "KO",
+    "Smoleńska Beata": "KO",
+    "Żmurkiewicz Janusz": "KO",
+    "Żyłkowska Jagoda": "KO",
+    "Carewicz Henryk": "PiS",
+    "Chojnacka Joanna": "PiS",
+    "Dobrzyński Leszek": "PiS",
+    "Duklanowski Leszek": "PiS",
+    "Kostrzewa Joanna": "PiS",
+    "Kurzawa Agnieszka": "PiS",
+    "Niburski Rafał": "PiS",
+    "Nieckarz Krzysztof": "PiS",
+    "Wójcik Tomasz": "PiS",
+    "Wójtowicz Elżbieta": "PiS",
+    "Jach Michał": "PiS",
+    "Subocz Marek": "PiS",
+    "Kopczyńska Elżbieta": "NZ",
+    "Przepióra Marcin": "NZ",
+    "Simiński Damian": "NZ",
+    "Szwajlik Sebastian": "NZ",
+    "Wziątek Stanisław": "NZ"
+  }
+}

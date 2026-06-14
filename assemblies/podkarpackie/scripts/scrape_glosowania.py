@@ -55,7 +55,13 @@ from urllib.request import Request, urlopen
 
 
 BASE = "https://bip.podkarpackie.pl"
-LISTING_ROOT = f"{BASE}/sejmik-2/imienne-wykazy-glosowan"
+LISTING_ROOT = f"{BASE}/sejmik/imienne-wykazy-glosowan"
+# Stary BIP (sesje I..XXVIII VII kadencji) przeniesiony na subdomenę archiwum,
+# zachowuje starą strukturę URL /sejmik-2/ + PDFy w /images/res/. Nowe sesje
+# (od ~XXIV) żyją na głównym BIP w CMS govarticle z załącznikami przez
+# /component/govarticle?task=article.downloadAttachment.
+ARCHIVE_BASE = "https://archiwumbip.podkarpackie.pl"
+ARCHIVE_LISTING = f"{ARCHIVE_BASE}/sejmik-2/imienne-wykazy-glosowan"
 KADENCJA_ID = "2024-2029"
 KADENCJA_LABEL = "VII kadencja (2024-2029)"
 USER_AGENT = "Mozilla/5.0 Radoskop/1.0"
@@ -101,63 +107,112 @@ def fetch_text(url: str, cache_dir: Path | None) -> str:
 # ---------------------------------------------------------------------------
 
 ROMAN_RE = re.compile(r"\b([IVXLCDM]+)\s+sesja\b", re.I)
+# Slug nowego BIP: "xxix-sesja-...-vii-kadencja-z-dnia-2026-05-25"
+NEW_SLUG_RE = re.compile(
+    r"/sejmik/imienne-wykazy-glosowan/([ivxlcdm]+)-sesja-[^\"?]*?(?:z-dnia-(\d{4}-\d{2}-\d{2}))?$",
+    re.I,
+)
+
+
+def _add_session(sessions: list[dict], seen_romans: set[str], roman: str,
+                 url: str, source: str, date: str = "") -> bool:
+    """Dodaj sesję jeśli roman jeszcze niewidziany. Nowy BIP ma priorytet
+    nad archiwum (te same sesje XXIV..XXVIII są w obu miejscach)."""
+    roman = roman.upper()
+    if not roman or roman in seen_romans:
+        return False
+    seen_romans.add(roman)
+    sessions.append({"url": url, "roman": roman, "source": source, "date": date})
+    return True
 
 
 def discover_sessions(cache_dir: Path | None) -> list[dict]:
-    """Crawl listingu + paginacji (?start=N) → lista sesji z URL podstron.
+    """Złóż listę sesji VII kadencji z dwóch źródeł:
 
-    Każda sesja ma link typu:
-      /sejmik-2/imienne-wykazy-glosowan/7827-xxviii-sesja-...
+    1. Główny BIP (CMS govarticle) — najnowsze sesje, slug bez numerycznego
+       ID, np. /sejmik/imienne-wykazy-glosowan/xxix-sesja-...-z-dnia-2026-05-25
+    2. Archiwum (stara struktura) — sesje I..XXVIII, slug z ID, np.
+       /sejmik-2/imienne-wykazy-glosowan/7827-xxviii-sesja-...
+
+    Dedup po numerze rzymskim sesji; nowy BIP wygrywa przy nakładce.
     """
     sessions: list[dict] = []
-    seen_paths: set[str] = set()
-    # Paginacja co 10 (z probe widać "1 2 3 4 ... 10" na dole)
-    for start in range(0, 200, 10):  # bezpieczna granica 20 stron
+    seen_romans: set[str] = set()
+
+    # --- Źródło 1: nowy BIP (zwykle jedna strona, brak paginacji) ---
+    for start in range(0, 200, 10):
         url = LISTING_ROOT if start == 0 else f"{LISTING_ROOT}?start={start}"
         try:
             text = fetch_text(url, cache_dir)
         except Exception:
             break
-        # Linki do sesji
-        page_sessions = re.findall(
+        added = 0
+        seen_on_page: set[str] = set()
+        for path in re.findall(
+            r'href="(/sejmik/imienne-wykazy-glosowan/[a-z][^"?]*)"', text
+        ):
+            if path in seen_on_page:
+                continue
+            seen_on_page.add(path)
+            m = NEW_SLUG_RE.search(path)
+            if not m or "vii-kadencj" not in path.lower():
+                continue
+            if _add_session(sessions, seen_romans, m.group(1),
+                            f"{BASE}{path}", "new", m.group(2) or ""):
+                added += 1
+        if added == 0:
+            break
+
+    # --- Źródło 2: archiwum (paginacja ?start=N co 10) ---
+    for start in range(0, 300, 10):
+        url = ARCHIVE_LISTING if start == 0 else f"{ARCHIVE_LISTING}?start={start}"
+        try:
+            text = fetch_text(url, cache_dir)
+        except Exception:
+            break
+        added = 0
+        for path, title in re.findall(
             r'href="(/sejmik-2/imienne-wykazy-glosowan/\d+-[^"]+)"[^>]*>([^<]+)</a>',
             text,
-        )
-        added = 0
-        for path, title in page_sessions:
-            if path in seen_paths:
-                continue
-            seen_paths.add(path)
-            # Filtr na VII kadencję (2024-2029) — pomiń starsze
+        ):
             if "VII kadencj" not in title:
                 continue
             roman_m = ROMAN_RE.search(title)
-            sessions.append({
-                "url": f"{BASE}{path}",
-                "title": title.strip(),
-                "roman": roman_m.group(1).upper() if roman_m else "",
-            })
-            added += 1
-        if added == 0:
+            if roman_m and _add_session(
+                sessions, seen_romans, roman_m.group(1),
+                f"{ARCHIVE_BASE}{path}", "archive"
+            ):
+                added += 1
+        if added == 0 and start > 0:
             break
+
     return sessions
 
 
-def discover_pdfs(session_url: str, cache_dir: Path | None) -> list[str]:
-    """Z per-sesja podstrony zbierz URL-e do PDFów per głosowanie.
+def discover_pdfs(session: dict, cache_dir: Path | None) -> list[str]:
+    """Z per-sesja podstrony zbierz absolutne URL-e PDFów per głosowanie.
 
-    HTML zawiera paths relative do BASE (np. /images/res/...). Normalizuj
-    do absolute URL.
+    Nowy BIP: załączniki przez /component/govarticle?task=article.downloadAttachment.
+    Archiwum: statyczne PDFy w /images/res/um/ks/.
     """
-    text = fetch_text(session_url, cache_dir)
-    raw_paths = re.findall(
-        r'href="((?:https?://bip\.podkarpackie\.pl)?/images/res/um/ks/[^"]+\.pdf)"',
-        text,
-    )
-    seen = set()
-    out = []
+    text = fetch_text(session["url"], cache_dir)
+    seen: set[str] = set()
+    out: list[str] = []
+    if session.get("source") == "new":
+        host = BASE
+        raw_paths = re.findall(
+            r'href="(/component/govarticle\?task=article\.downloadAttachment&(?:amp;)?id=\d+(?:&(?:amp;)?version=\d+)?)"',
+            text,
+        )
+    else:
+        host = ARCHIVE_BASE
+        raw_paths = re.findall(
+            r'href="((?:https?://[^"]*)?/images/res/um/ks/[^"]+\.pdf)"',
+            text,
+        )
     for p in raw_paths:
-        full = p if p.startswith("http") else f"{BASE}{p}"
+        p = p.replace("&amp;", "&")
+        full = p if p.startswith("http") else f"{host}{p}"
         if full not in seen:
             seen.add(full)
             out.append(full)
@@ -189,7 +244,18 @@ def _load_known_councilors() -> set[str]:
         return set()
 
 
+def _norm(s: str) -> str:
+    """Normalizuj do dopasowania: małe litery, ł→l, bez znaków diakrytycznych.
+    PDF BIP bywa niespójny (np. 'Fijolek' vs config 'Fijołek')."""
+    import unicodedata
+    s = s.replace("ł", "l").replace("Ł", "L")
+    s = unicodedata.normalize("NFKD", s)
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    return s.lower().strip()
+
+
 _KNOWN: set[str] = set()
+_KNOWN_NORM: dict[str, str] = {}
 
 
 def parse_voting_pdf(pdf_bytes: bytes, source_url: str) -> dict | None:
@@ -255,25 +321,32 @@ def parse_voting_pdf(pdf_bytes: bytes, source_url: str) -> dict | None:
         # Normalizuj — pypdf często wstawia \n między tokenami
         # Każdy radny: "Lp.\nImię Nazwisko\nGŁOS" lub jedna linia
         # Strategia: szukaj wzorca {Imię Nazwisko} + {GŁOS} dla każdej znanej osoby
-        global _KNOWN
+        global _KNOWN, _KNOWN_NORM
         if not _KNOWN:
             _KNOWN = _load_known_councilors()
-        # Flatten
-        flat = re.sub(r"\s+", " ", details).strip()
+            _KNOWN_NORM = {_norm(n): n for n in _KNOWN}
+        # Flatten + normalizuj diakrytyki (dopasowanie odporne na 'ł', NFKD)
+        flat = _norm(re.sub(r"\s+", " ", details).strip())
+        labels_norm = sorted(
+            ((_norm(l), CAT_TO_KEY[l]) for l in VOTE_LABELS),
+            key=lambda x: -len(x[0]),
+        )
         # Match: każde znane "Imię Nazwisko" plus następujący GŁOS
         # (pomiń liczby Lp., dwukropki, kropki)
-        for name in sorted(_KNOWN, key=lambda n: -len(n)):
-            # Znajdź wszystkie wystąpienia name w tekście
-            for m in re.finditer(re.escape(name) + r"\s+([A-ZŁŚĘÓŃŻŹ\s]+?)(?=\s+\d+\.|\s+[A-ZŁŚĄĘĆŃÓŻŹ][a-złśąęćńóżź]|$)", flat):
+        for name_norm, canon in sorted(_KNOWN_NORM.items(), key=lambda kv: -len(kv[0])):
+            for m in re.finditer(
+                re.escape(name_norm) + r"\s+([a-z\s]+?)(?=\s+\d|\s+[a-z]+\s+[a-z]+|$)",
+                flat,
+            ):
                 vote_text = m.group(1).strip()
                 # Match na jedną z kategorii (longest first)
                 matched_cat = None
-                for label in sorted(VOTE_LABELS, key=lambda x: -len(x)):
-                    if vote_text.startswith(label):
-                        matched_cat = CAT_TO_KEY.get(label)
+                for label_norm, cat in labels_norm:
+                    if vote_text.startswith(label_norm):
+                        matched_cat = cat
                         break
-                if matched_cat and name not in names_by_cat[matched_cat]:
-                    names_by_cat[matched_cat].append(name)
+                if matched_cat and canon not in names_by_cat[matched_cat]:
+                    names_by_cat[matched_cat].append(canon)
                     break  # match per name
 
     return {
@@ -362,7 +435,7 @@ def main() -> int:
     all_votes = []
     for i, sess in enumerate(sessions, 1):
         try:
-            pdfs = discover_pdfs(sess["url"], cache)
+            pdfs = discover_pdfs(sess, cache)
         except Exception as exc:
             print(f"  [{i}/{len(sessions)}] {sess['roman']}: ERR {exc}")
             continue

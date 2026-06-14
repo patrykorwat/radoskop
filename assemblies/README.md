@@ -9,6 +9,7 @@ Drugi poziom samorządu pokrywany przez Radoskop, obok rad miejskich. Każdy sej
 | `mazowieckie` | https://www.mazovia.pl/pl/bip/sejmik/ | Warszawa | 51 | DZIAŁA (głosowania + interpelacje) | Mazovia BIP + PDFy eSesji |
 | `dolnoslaskie` | https://bip.umwd.dolnyslask.pl/ | Wrocław | 36 | TBD | TBD (przypuszczalnie BIP statyczny) |
 | `pomorskie` | https://bip.pomorskie.eu/ | Gdańsk | 33 | BLOCKED — wymaga Playwright | React SPA, Madkom CMS |
+| `zachodniopomorskie` | https://bip.wzp.pl/ | Szczecin | 30 | DZIAŁA (głosowania) | BIP Drupal + PDF wydruk eSesja (warstwa tekstowa, bez OCR) |
 
 ### Notatki o pomorskim BIP
 
