@@ -93,17 +93,21 @@ def select_cities(
 ) -> list[tuple[str, dict]]:
     """Filtruj wg domeny.
 
-    domain == 'eu': TYLKO miasta zagraniczne (.eu) i z pominięciem disabled
-        (ich subdomeny 404, np. rostock — nie wolno wskazywać w sitemapie).
-    domain == 'pl': zachowanie historyczne — wszystkie miasta (PL + .eu),
-        bez zmian, żeby nie ruszać usługi radoskop.pl niezwiązanej z
-        raportowanym problemem .eu.
+    W obu trybach miasta z `disabled: true` są POMIJANE — ich subdomeny
+    zwracają 404, a wskazywanie ich w sitemapie truje raport pokrycia GSC
+    (w usłudze radoskop.pl widać je jako "1 error / 18 URLs").
+
+    domain == 'eu': dodatkowo TYLKO miasta zagraniczne (.eu); miasta PL są
+        pomijane, bo należą do usługi radoskop.pl.
+    domain == 'pl': wszystkie niezdezaktywowane miasta (PL + .eu) — cross-host
+        jest OK w usłudze Domain.
     """
     selected: list[tuple[str, dict]] = []
     for slug, config in cities:
-        if domain == "eu":
-            if config.get("disabled") or not is_eu(config):
-                continue
+        if config.get("disabled"):
+            continue
+        if domain == "eu" and not is_eu(config):
+            continue
         selected.append((slug, config))
     return selected
 
