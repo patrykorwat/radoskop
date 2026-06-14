@@ -1359,7 +1359,7 @@ function renderCouncilorTable() {
 }
 
 
-function switchProfileTab(tab) {
+function switchProfileTab(tab, source) {
   ['main', 'votes', 'activity'].forEach(t => {
     const el = document.getElementById('profile-tab-' + t);
     if (el) el.style.display = t === tab ? '' : 'none';
@@ -1368,6 +1368,15 @@ function switchProfileTab(tab) {
     const tabs = ['main', 'votes', 'activity'];
     btn.classList.toggle('active', tabs[i] === tab);
   });
+  // Umami: które karty profilu klikają userzy. source rozróżnia klik użytkownika
+  // ('click') od programowego ustawienia taba przy deep-linku ('deeplink',
+  // ?tab=activity z feedu/postów), które i tak liczy się jako view_profile.
+  var _slug = '';
+  try {
+    var _m = location.pathname.match(/\/profile\/([^/]+)\//);
+    if (_m) _slug = decodeURIComponent(_m[1]);
+  } catch (e) {}
+  trackEvent('profile_tab', {tab_name: tab, profile_slug: _slug, source: source || 'click'});
 }
 
 // Tab profilu z query (?tab=activity), używany przy deep-linkach np. z
@@ -2154,7 +2163,7 @@ function showProfile(name, initialTab) {
   // renderProfileDetail ustawia innerHTML synchronicznie (brak await przed
   // wstawieniem szkieletu), więc tab można przełączyć od razu po wywołaniu.
   // Treść interpelacji doczytuje się async do już widocznego #profile-tab-activity.
-  if (initialTab) switchProfileTab(initialTab);
+  if (initialTab) switchProfileTab(initialTab, 'deeplink');
   window.scrollTo(0, 0);
 }
 
