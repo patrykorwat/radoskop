@@ -101,6 +101,7 @@ def summarize_session(session: dict, votes: list, councilors: list | None = None
     passed = rejected = unanimous = 0
     contested = []
     rejected_votes = []
+    max_abstention = None   # głosowanie z największą liczbą wstrzymujących się
 
     for v in votes or []:
         c = v.get("counts") or {}
@@ -119,6 +120,11 @@ def summarize_session(session: dict, votes: list, councilors: list | None = None
             unanimous += 1
         if is_contested(c):
             contested.append(v)
+        if wstrzymal > 0 and (
+            max_abstention is None
+            or wstrzymal > ((max_abstention.get("counts") or {}).get("wstrzymal_sie", 0) or 0)
+        ):
+            max_abstention = v
 
     contested.sort(key=lambda v: minority_share(v.get("counts") or {}), reverse=True)
 
@@ -150,6 +156,7 @@ def summarize_session(session: dict, votes: list, councilors: list | None = None
         "contested": contested,
         "contested_count": len(contested),
         "rejected_votes": rejected_votes,
+        "max_abstention": max_abstention,
         "totals": totals,
         "attendee_count": attendee_count,
         "absent": absent,
@@ -190,9 +197,16 @@ def rank_session_facts(session: dict, summary: dict, context: dict | None = None
     contested_count = summary.get("contested_count", 0) or 0
 
     # 1) Głosowanie na styk (knife-edge) — najmocniejszy hook.
+    # Dwie odmiany dostają własny, mocniejszy emocjonalnie nagłówek:
+    #   tie      = remis (za == przeciw), projekt przepada bez większości,
+    #   one_vote = różnica jednego głosu (margin == 1).
+    # Próg total_cast >= 10 odcina przypadkowe 1:1/2:1 z braku kworum.
     if contested:
         top = contested[0]
         c = top.get("counts") or {}
+        za = c.get("za", 0) or 0
+        przeciw = c.get("przeciw", 0) or 0
+        total_cast = za + przeciw
         share = minority_share(c)              # 0.33..0.5
         margin = _abs_margin(c)
         score = 60 + (share - 0.33) * 200      # ~60 przy 1/3, ~94 przy 50/50
@@ -200,9 +214,15 @@ def rank_session_facts(session: dict, summary: dict, context: dict | None = None
         is_record = term_closest is not None and margin <= term_closest
         if is_record:
             score += 25
-        facts.append({"kind": "knife_edge", "score": round(score, 2), "data": {
+        if total_cast >= 10 and margin == 0 and za > 0:
+            kind, score = "tie", max(score, 100.0)
+        elif total_cast >= 10 and margin == 1:
+            kind, score = "one_vote", max(score, 96.0)
+        else:
+            kind = "knife_edge"
+        facts.append({"kind": kind, "score": round(score, 2), "data": {
             "topic": (top.get("topic") or "").replace(";", "").strip(),
-            "za": c.get("za", 0) or 0, "przeciw": c.get("przeciw", 0) or 0,
+            "za": za, "przeciw": przeciw,
             "wstrzymal_sie": c.get("wstrzymal_sie", 0) or 0,
             "margin": margin, "is_term_closest": is_record,
         }})
@@ -236,6 +256,19 @@ def rank_session_facts(session: dict, summary: dict, context: dict | None = None
     if contested_count >= 3:
         facts.append({"kind": "contested_volume", "score": 35,
                       "data": {"contested_count": contested_count}})
+
+    # 6) Masowe wstrzymanie się — co najmniej 5 radnych i >=1/4 oddanych głosów
+    #    nie zajęło stanowiska.
+    ma = summary.get("max_abstention")
+    if ma:
+        c = ma.get("counts") or {}
+        w = c.get("wstrzymal_sie", 0) or 0
+        cast = (c.get("za", 0) or 0) + (c.get("przeciw", 0) or 0) + w
+        if w >= 5 and cast and w * 4 >= cast:
+            facts.append({"kind": "abstention", "score": 48, "data": {
+                "topic": (ma.get("topic") or "").replace(";", "").strip(),
+                "wstrzymal_sie": w,
+            }})
 
     facts.sort(key=lambda f: f["score"], reverse=True)
     return facts

@@ -21,20 +21,56 @@ def test_summarize_collects_rejected_votes():
 
 
 def test_knife_edge_wins():
-    votes = [_vote(12, 11, topic="Plan zagospodarowania"), _vote(20, 0)]
+    # różnica 2 głosów => zwykły knife_edge (margin 1 byłby one_vote)
+    votes = [_vote(13, 11, topic="Plan zagospodarowania"), _vote(20, 0)]
     s = L.summarize_session({}, votes, None)
     f = L.best_session_fact({}, s)
     assert f["kind"] == "knife_edge"
-    assert f["data"]["za"] == 12 and f["data"]["przeciw"] == 11
+    assert f["data"]["za"] == 13 and f["data"]["przeciw"] == 11
 
 
 def test_knife_edge_term_record_bonus():
-    votes = [_vote(12, 11, topic="Plan")]
+    votes = [_vote(13, 11, topic="Plan")]
     s = L.summarize_session({}, votes, None)
     base = L.best_session_fact({}, s)
-    rec = L.best_session_fact({}, s, {"term_closest_margin": 1})
+    rec = L.best_session_fact({}, s, {"term_closest_margin": 2})
     assert rec["data"]["is_term_closest"] is True
     assert rec["score"] > base["score"]
+
+
+def test_one_vote_margin_wins():
+    # różnica jednego głosu => osobny, mocniejszy hook one_vote
+    votes = [_vote(12, 11, topic="Plan zagospodarowania")]
+    s = L.summarize_session({}, votes, None)
+    f = L.best_session_fact({}, s)
+    assert f["kind"] == "one_vote"
+    assert f["data"]["margin"] == 1
+
+
+def test_tie_deadlock_wins():
+    # remis => hook tie, bije zwykły knife_edge
+    votes = [_vote(11, 11, topic="Budżet"), _vote(13, 11)]
+    s = L.summarize_session({}, votes, None)
+    f = L.best_session_fact({}, s)
+    assert f["kind"] == "tie"
+    assert f["data"]["za"] == 11 and f["data"]["przeciw"] == 11
+
+
+def test_tiny_tie_not_dramatized():
+    # 1:1 (brak kworum) nie wchodzi w tie/one_vote — total_cast < 10
+    votes = [_vote(1, 1, topic="Drobiazg")]
+    s = L.summarize_session({}, votes, None)
+    f = L.best_session_fact({}, s)
+    assert f is None or f["kind"] == "knife_edge"
+
+
+def test_abstention_hook():
+    # 8 wstrzymujących się przy 25 oddanych => hook abstention
+    votes = [_vote(15, 2, wstrzymal=8, topic="Uchwała"), _vote(20, 0)]
+    s = L.summarize_session({}, votes, None)
+    f = L.best_session_fact({}, s)
+    assert f["kind"] == "abstention"
+    assert f["data"]["wstrzymal_sie"] == 8
 
 
 def test_rejection_only():
