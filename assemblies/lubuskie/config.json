@@ -42,6 +42,54 @@
     "ocr_lang_preferred": "pol",
     "note": "PDF imiennych wykazów ~18MB skanu per sesja. /958/ to 'Imienne wykazy głosowań', /962/ to 'Protokoły sesji' (narracyjne, nie używamy)."
   },
-  "clubs": {},
-  "teryt": "08"
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga (PSL/Polska 2050)",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    }
+  },
+  "teryt": "08",
+  "club_assignments": {
+    "Marcin Jabłoński": "KO",
+    "Sebastian Ciemnoczołowski": "KO",
+    "Anna Synowiec": "KO",
+    "Grzegorz Potęga": "KO",
+    "Hubert Harasimowicz": "KO",
+    "Jerzy Wierchowicz": "KO",
+    "Tomasz Gierczak": "KO",
+    "Irena Osos": "KO",
+    "Leszek Turczyniak": "KO",
+    "Jarosław Dowhan": "KO",
+    "Alicja Makarska": "KO",
+    "Sławomir Kotylak": "KO",
+    "Małgorzata Paluch-Słowińska": "KO",
+    "Paweł Giza": "KO",
+    "Elżbieta Płonka": "PiS",
+    "Zofia Dajczak": "PiS",
+    "Bogusław Motowidełko": "PiS",
+    "Roman Jabłoński": "PiS",
+    "Jacek Kurzępa": "PiS",
+    "Tadeusz Ardelli": "PiS",
+    "Zbigniew Kościk": "PiS",
+    "Jakub Ast": "PiS",
+    "Małgorzata Gośniowska-Kola": "PiS",
+    "Andrzej Wieczorek": "PiS",
+    "Marek Halasz": "TD",
+    "Zbigniew Kołodziej": "TD",
+    "Edward Fedko": "TD",
+    "Anna Chinalska": "TD",
+    "Tomasz Siemiński": "TD",
+    "Elżbieta Olga Polak": "TD"
+  }
 }

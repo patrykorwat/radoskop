@@ -149,11 +149,25 @@ def ocr_pdf(pdf_path: Path, cache_key: str, cache_dir: Path | None) -> list[str]
 # ---------------------------------------------------------------------------
 
 _DEC = r'(Zza|ZA|Za|za|Przeciw|przeciw|Wstrzyma\S*\s*si\S*|Nieobecn\w*)'
-_ROW = re.compile(
-    r'([A-ZĄĆĘŁŃÓŚŹŻ][A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ\.\-]+'
-    r'(?:\s+[A-ZĄĆĘŁŃÓŚŹŻ][A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ\.\-]+){1,2})\s+' + _DEC +
-    r'\s*[\|\.]?\s*\d{2}\.\d{2}\.\d{4}'
-)
+# Wiersz tabeli imiennej: nazwisko (od wielkiej litery) + decyzja. Znacznik
+# czasu jest OPCJONALNY — skan często gubi go w OCR, a wiersze "Nieobecny"
+# nie mają go w ogóle. Wcześniejsza wersja wymagała "DD.MM.YYYY" po decyzji,
+# co zaniżało recall atrybucji do ~60% na dpi150 (np. 202/416 głosów radnego).
+# Sklejamy whitespace bloku i czytamy pary nazwisko+decyzja → ~93%.
+_TS = re.compile(r"\d{1,2}\.\d{1,2}\.\d{4}\s*\d{0,2}:?\d{0,2}")
+_NAME_DEC = re.compile(r'([A-ZĄĆĘŁŃÓŚŹŻ][^\d]{2,45}?)\s+' + _DEC + r'\b')
+
+
+def _clean_name(name: str) -> str:
+    """Czyści nazwisko po OCR: zostawia tylko tokeny od wielkiej litery,
+    obcina śmieci ('mm', 'sz', '|', '.') wcięte między nazwisko a decyzję."""
+    name = re.sub(r"[\s\|\-—_.:,;\"']+", " ", name).strip()
+    toks = name.split()
+    while toks and (len(toks[-1]) <= 1 or not toks[-1][:1].isupper()):
+        toks.pop()
+    while toks and (len(toks[0]) <= 1 or not toks[0][:1].isupper()):
+        toks.pop(0)
+    return " ".join(toks)
 
 
 def _deckey(tok: str) -> str | None:
@@ -197,11 +211,19 @@ def parse_session_votes(page_texts: list[str]) -> list[dict[str, Any]]:
         if m:
             voted_at = f"{m.group(3)}-{m.group(2)}-{m.group(1)}" + (f" {m.group(4)}" if m.group(4) else "")
 
+        # Tabela imienna jest w sekcji "podsumowanie szczegółowe"; sekcja
+        # "zbiorcze" wyżej ma "Za: N" itp. (podsumowania, nie wiersze).
+        # Sklejamy whitespace (skan łamie wiersze i wcina śmieci OCR między
+        # nazwisko a decyzję), wycinamy znaczniki czasu, czytamy pary.
+        i = b.lower().find("szczegó")
+        body = b[i:] if i >= 0 else b
+        flat = re.sub(r"\s+", " ", _TS.sub(" ", body))
         raw = []  # (name, decision_key)
-        for nm, dec in _ROW.findall(b):
+        for nm, dec in _NAME_DEC.findall(flat):
             k = _deckey(dec)
-            if k:
-                raw.append((re.sub(r"\s+", " ", nm).strip(), k))
+            name = _clean_name(nm)
+            if k and 2 <= len(name.split()) <= 3 and not any(c.isdigit() for c in name):
+                raw.append((name, k))
         votes.append({
             "counts": counts,            # autorytatywne (nagłówek)
             "uprawnionych": uprawnionych,
@@ -212,17 +234,36 @@ def parse_session_votes(page_texts: list[str]) -> list[dict[str, Any]]:
     return votes
 
 
-def build_roster(all_sessions_votes: list[list[dict]], min_freq: int = 6) -> list[str]:
+SEED_ROSTER = [
+    # KO (14)
+    "Marcin Jabłoński", "Sebastian Ciemnoczołowski", "Anna Synowiec",
+    "Grzegorz Potęga", "Hubert Harasimowicz", "Jerzy Wierchowicz",
+    "Tomasz Gierczak", "Irena Osos", "Leszek Turczyniak", "Jarosław Dowhan",
+    "Alicja Makarska", "Sławomir Kotylak", "Małgorzata Paluch-Słowińska",
+    "Paweł Giza",
+    # PiS (10)
+    "Elżbieta Płonka", "Zofia Dajczak", "Bogusław Motowidełko",
+    "Roman Jabłoński", "Jacek Kurzępa", "Tadeusz Ardelli", "Zbigniew Kościk",
+    "Jakub Ast", "Małgorzata Gośniowska-Kola", "Andrzej Wieczorek",
+    # TD (6)
+    "Marek Halasz", "Zbigniew Kołodziej", "Edward Fedko", "Anna Chinalska",
+    "Tomasz Siemiński", "Elżbieta Olga Polak",
+]
+
+
+def build_roster(all_sessions_votes: list[list[dict]], min_freq: int = 8) -> list[str]:
+    """Seed oficjalnym składem (stabilizuje councilor_index = klucze
+    config.club_assignments) + dorzucenie częstych nazwisk z OCR nie pasujących
+    do seedu (np. zmiana mandatu w trakcie kadencji)."""
+    roster = list(SEED_ROSTER)
     freq = Counter()
     for sv in all_sessions_votes:
         for v in sv:
             for nm, _ in v["raw_named"]:
                 if 2 <= len(nm.split()) <= 3:
                     freq[nm] += 1
-    cand = [n for n, c in freq.most_common() if c >= min_freq]
-    roster: list[str] = []
-    for n in cand:
-        if not difflib.get_close_matches(n, roster, n=1, cutoff=0.9):
+    for n, c in freq.most_common():
+        if c >= min_freq and not difflib.get_close_matches(n, roster, n=1, cutoff=0.82):
             roster.append(n)
     return roster
 
