@@ -59,6 +59,13 @@ KADENCJE = {
 
 DELAY = 1.0
 CACHE_DIR = None  # Set in main()
+# OCR tuning. DPI niżej niż 300 znacząco przyspiesza Tesseract bez utraty
+# jakości na drukowanych raportach. Timeout wyższy niż 60s, bo na słabym CPU
+# (NAS) strona potrafi liczyć się dłużej — lepiej dokończyć niż stracić głos.
+# Wynik jest cache'owany na dysk, więc koszt płacony jest raz.
+OCR_DPI = int(os.environ.get("SOPOT_OCR_DPI", "220"))
+OCR_TIMEOUT = int(os.environ.get("SOPOT_OCR_TIMEOUT", "180"))
+OCR_THREADS = os.environ.get("SOPOT_OCR_THREADS", str(os.cpu_count() or 4))
 KNOWN_COUNCILORS: set[str] = set()
 COUNCILOR_CANONICAL: dict[str, str] = {}
 
@@ -444,30 +451,64 @@ def _parse_votes_docx(filepath: Path, att: dict) -> list[dict]:
     return _parse_votes_text(text, att)
 
 
-def _ocr_page(page) -> str:
-    """OCR a single PDF page using Tesseract via pixmap rendering."""
-    import subprocess
-    import tempfile
-    import os
+def _ocr_cache_path(page):
+    """Build a stable on-disk cache path for an OCR'd page.
 
-    pix = page.get_pixmap(dpi=300)
+    Key = nazwa pliku PDF + numer strony + DPI. Dzięki temu OCR liczy się
+    raz, a kolejne przebiegi pipeline'u (NAS) czytają gotowy tekst.
+    """
+    if not CACHE_DIR:
+        return None
+    try:
+        doc_name = Path(page.parent.name).name
+        page_no = page.number
+    except Exception:
+        return None
+    key = f"{doc_name}.p{page_no}.dpi{OCR_DPI}.txt"
+    return Path(CACHE_DIR) / "ocr" / key
+
+
+def _ocr_page(page) -> str:
+    """OCR a single PDF page using Tesseract via pixmap rendering.
+
+    Wynik jest cache'owany na dysk; Tesseract dostaje wszystkie rdzenie
+    (OMP_THREAD_LIMIT) i tryb LSTM (--oem 1), co skraca czas na stronę.
+    """
+    import tempfile
+
+    cache_path = _ocr_cache_path(page)
+    if cache_path and cache_path.exists():
+        try:
+            return cache_path.read_text(encoding="utf-8")
+        except Exception:
+            pass
+
+    pix = page.get_pixmap(dpi=OCR_DPI)
     with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmp:
         tmp_path = tmp.name
         pix.save(tmp_path)
 
+    env = dict(os.environ)
+    env["OMP_THREAD_LIMIT"] = str(OCR_THREADS)
     try:
         result = subprocess.run(
-            ["tesseract", tmp_path, "stdout", "-l", "pol", "--psm", "6"],
+            ["tesseract", tmp_path, "stdout", "-l", "pol",
+             "--psm", "6", "--oem", "1"],
             capture_output=True,
             text=True,
-            timeout=60,
+            timeout=OCR_TIMEOUT,
+            env=env,
         )
-        return result.stdout
+        text = result.stdout
+        if cache_path and text.strip():
+            cache_path.parent.mkdir(parents=True, exist_ok=True)
+            cache_path.write_text(text, encoding="utf-8")
+        return text
     except FileNotFoundError:
         print("    UWAGA: tesseract nie jest zainstalowany, pomijam OCR")
         return ""
     except subprocess.TimeoutExpired:
-        print("    UWAGA: timeout OCR")
+        print(f"    UWAGA: timeout OCR (>{OCR_TIMEOUT}s, strona {getattr(page, 'number', '?')})")
         return ""
     finally:
         os.unlink(tmp_path)
