@@ -735,14 +735,17 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         # jako duplikaty ("Duplicate, Google chose different canonical than
         # user" w GSC, narastająco od 2026-05). Imienna rozpiska jest
         # unikalna per głosowanie i to jest właściwa treść strony.
-        _cnames: list[str] = []
+        # Roster jako pary (nazwisko, klub) — pozwala rozbić głosy per klub
+        # i linkować nazwiska do profili. _cnames zostaje dla zgodności.
+        _council_entries: list[tuple[str, str]] = []
         for _c in kad_data.get("councilors") or []:
             if isinstance(_c, dict):
-                _nm = _c.get("name", "") or ""
+                _nm = (_c.get("name", "") or "").strip()
                 _cl = (_c.get("club") or "").strip()
-                _cnames.append(f"{_nm} ({_cl})" if _cl and _cl != "?" else _nm)
+                _council_entries.append((_nm, _cl if _cl and _cl != "?" else ""))
             else:
-                _cnames.append(str(_c))
+                _council_entries.append((str(_c), ""))
+        _cnames = [f"{n} ({c})" if c else n for (n, c) in _council_entries]
 
         def _nv_names(lst):
             # Miasta faction-mode trzymają w named_votes inne struktury niż
@@ -757,6 +760,28 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                 elif isinstance(_x, str):
                     resolved.append(_x)
             return resolved
+
+        def _nv_entries(lst):
+            # Jak _nv_names, ale zwraca pary (nazwisko, klub) — do rozbicia
+            # klubowego i linków do profili.
+            if not isinstance(lst, list):
+                return []
+            out: list[tuple[str, str]] = []
+            for _x in lst:
+                if isinstance(_x, int):
+                    if 0 <= _x < len(_council_entries):
+                        out.append(_council_entries[_x])
+                elif isinstance(_x, str):
+                    out.append((_x, ""))
+            return out
+
+        # Slug kadencji + zbiór realnych numerów sesji (dla bezpiecznych
+        # linków wewnętrznych — linkujemy do strony sesji tylko gdy istnieje).
+        _kslug = KAD_SLUGS.get(kid, kid)
+        _session_numbers = {
+            str(s.get("number")) for s in kad_data.get("sessions", [])
+            if s.get("number")
+        }
 
         for vote in kad_data.get("votes", []):
             vid = vote.get("id", "")
@@ -823,8 +848,10 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             title = f"{title_text}{title_suffix} \u2013 Radoskop {city_name}"
             desc = (
                 f"Glosowanie: {topic[:120]}. "
-                f"Wynik: za {za}, przeciw {przeciw}, wstrzymal sie {wstrzymal}. "
-                f"{sess_label}. Imienne glosy radnych."
+                f"Wynik: {result} (za {za}, przeciw {przeciw}, "
+                f"wstrzymal sie {wstrzymal}). "
+                f"{sess_label}, Radoskop {city_name}. "
+                f"Imienne glosy radnych i rozbicie klubowe."
             )
 
             og_img = f"{site_url}/{SLUG['vote']}/{vid}/og.png"
@@ -836,24 +863,69 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                 else:
                     og_img = None
 
-            # Imienna rozpiska głosów — unikalny, merytoryczny content per
-            # strona (anty-duplikat + realna wartość: kto jak głosował).
+            # Imienna rozpiska głosów + rozbicie klubowe + linki wewnętrzne —
+            # unikalny, merytoryczny content per strona. Każda strona różni się
+            # teraz pełną rozpiską imienną (z linkami do profili), tabelą głosów
+            # per klub i linkami do sesji/listy głosowań, co eliminuje
+            # klastrowanie "Duplicate canonical" i wzmacnia graf linków pod
+            # "Crawled/Discovered – currently not indexed" w GSC.
             nv = vote.get("named_votes") or {}
+            _choices = (
+                ("za", "Za"),
+                ("przeciw", "Przeciw"),
+                ("wstrzymal_sie", "Wstrzymali sie"),
+                ("brak_glosu", "Brak glosu"),
+                ("nieobecni", "Nieobecni"),
+            )
+
+            # Rozbicie głosów per klub (unikalne per głosowanie).
+            club_tally: dict[str, dict[str, int]] = {}
+            if isinstance(nv, dict):
+                for _ckey, _ in _choices:
+                    for _nm, _cl in _nv_entries(nv.get(_ckey)):
+                        _club = _cl or "Niezrzeszeni"
+                        _row = club_tally.setdefault(_club, {})
+                        _row[_ckey] = _row.get(_ckey, 0) + 1
+            club_html = ""
+            if len(club_tally) > 1:
+                _rows = ""
+                for _club in sorted(club_tally):
+                    _t = club_tally[_club]
+                    _rows += (
+                        f"<tr><td>{esc(_club)}</td>"
+                        f"<td>{_t.get('za', 0)}</td>"
+                        f"<td>{_t.get('przeciw', 0)}</td>"
+                        f"<td>{_t.get('wstrzymal_sie', 0)}</td></tr>\n"
+                    )
+                club_html = (
+                    "<h2>Jak glosowaly kluby</h2>\n"
+                    "<table><thead><tr><th>Klub</th><th>Za</th>"
+                    "<th>Przeciw</th><th>Wstrzymali sie</th></tr></thead>\n"
+                    f"<tbody>\n{_rows}</tbody></table>\n"
+                )
+
+            # Imienna rozpiska z linkami do profili radnych.
             nv_html = ""
             if isinstance(nv, dict):
-                for _nkey, _nlabel in (
-                    ("za", "Za"),
-                    ("przeciw", "Przeciw"),
-                    ("wstrzymal_sie", "Wstrzymali sie"),
-                    ("brak_glosu", "Brak glosu"),
-                    ("nieobecni", "Nieobecni"),
-                ):
-                    _names = _nv_names(nv.get(_nkey))
-                    if _names:
-                        nv_html += (
-                            f"<h3>{_nlabel} ({len(_names)})</h3>\n"
-                            "<p>" + ", ".join(esc(n) for n in _names) + "</p>\n"
-                        )
+                for _nkey, _nlabel in _choices:
+                    _entries = _nv_entries(nv.get(_nkey))
+                    if not _entries:
+                        continue
+                    _parts = []
+                    for _nm, _cl in _entries:
+                        _disp = esc(_nm + (f" ({_cl})" if _cl else ""))
+                        _ps = _profile_slug_by_name.get(_nm.strip())
+                        if _ps:
+                            _parts.append(
+                                f'<a href="{site_url}/{SLUG["profile"]}/{_ps}/">'
+                                f"{_disp}</a>"
+                            )
+                        else:
+                            _parts.append(_disp)
+                    nv_html += (
+                        f"<h3>{_nlabel} ({len(_entries)})</h3>\n"
+                        "<p>" + ", ".join(_parts) + "</p>\n"
+                    )
             if nv_html:
                 nv_html = "<h2>Jak glosowali radni</h2>\n" + nv_html
 
@@ -863,15 +935,35 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             if vote.get("druk"):
                 ref_html += f"<p>Druk: {esc(str(vote['druk']))}</p>\n"
 
+            # Linki wewnętrzne: sesja (tylko gdy strona sesji istnieje), pełna
+            # lista głosowań kadencji, profile radnych.
+            nav_links = []
+            if session_number and str(session_number) in _session_numbers:
+                nav_links.append(
+                    f'<a href="{site_url}/{SLUG["session"]}/'
+                    f'{esc(str(session_number))}/">'
+                    f"Cala sesja {esc(str(session_number))}</a>"
+                )
+            nav_links.append(
+                f'<a href="{site_url}/{SLUG["term"]}/{_kslug}/'
+                f'{SLUG["tab_votes"]}/">Wszystkie glosowania</a>'
+            )
+            nav_links.append(
+                f'<a href="{site_url}/{SLUG["profile"]}/">Profile radnych</a>'
+            )
+            nav_html = "<p>" + " · ".join(nav_links) + "</p>\n"
+
             body = (
                 f"<h1>{esc(topic or f'Glosowanie {vid}')}</h1>\n"
                 f"<p>{esc(sess_label)}"
                 + (f" · Glosowanie nr {esc(vote_no)}" if vote_no else "")
                 + "</p>\n"
-                f"<p>Wynik: <strong>{result}</strong></p>\n"
-                f"<p>Za: {za} · Przeciw: {przeciw} · Wstrzymal sie: {wstrzymal}</p>\n"
+                f"<p>Wynik: <strong>{result}</strong> — za {za}, "
+                f"przeciw {przeciw}, wstrzymalo sie {wstrzymal}.</p>\n"
                 + ref_html
+                + club_html
                 + nv_html
+                + nav_html
                 + f"<p><a href=\"{site_url}/\">Radoskop {esc(city_name)}</a></p>\n"
             )
 
