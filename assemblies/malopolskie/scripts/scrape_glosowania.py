@@ -244,52 +244,115 @@ def parse_session_docxs(
 # ---------------------------------------------------------------------------
 
 
+# Kategorie głosu (nieobecni = nieobecny; reszta = obecny).
+_VOTE_CATS = ("za", "przeciw", "wstrzymal_sie", "brak_glosu", "nieobecni")
+# Obecny na sesji = oddał głos w jakiejkolwiek kategorii poza nieobecni.
+_PRESENT_CATS = ("za", "przeciw", "wstrzymal_sie", "brak_glosu")
+
+
 def build_kadencja(cache_dir: Path | None = None,
                    limit_sessions: int | None = None) -> dict[str, Any]:
+    """Buduje plik kadencji w STANDARDOWEJ schemie sejmików, czytanej przez
+    build_assembly_metrics.py i frontend SPA:
+
+      - `councilor_index`: posortowana lista unikalnych nazwisk
+      - `votes`: PŁASKA lista głosowań; `named_votes` to {kategoria: [indeksy]}
+        wskazujące do councilor_index (nie nazwiska)
+      - `sessions`: {number, date, vote_count, attendees, attendee_count,
+        speakers} — klucz `number` (nie `session_number`!), z listą obecnych
+        do liczenia frekwencji
+
+    Wcześniej scraper emitował nietypową schemę (session_number + zagnieżdżone
+    votes + councilors jako nazwiska bez councilor_index), przez co
+    build_assembly_metrics liczyło 0 radnych, a strona /term/.../sessions/
+    renderowała się pusta. Patrz git blame / pamięć projektu.
+    """
     sessions = discover_sessions(cache_dir=cache_dir)
     if limit_sessions:
         sessions = sessions[:limit_sessions]
 
-    out_sessions = []
-    all_councilors: set[str] = set()
-    total_votes = 0
-
+    # Pass 1: pobierz i sparsuj wszystkie głosowania (named_votes = nazwiska),
+    # zbierz pełen zbiór radnych do indeksu.
+    parsed: list[tuple[dict[str, Any], list[dict[str, Any]]]] = []
+    name_set: set[str] = set()
     for sess in sessions:
         print(f"\n=> Sesja {sess['session_number']} ({sess['date']}) "
               f"art={sess['article_id']}", file=sys.stderr)
-
         attachments = discover_session_attachments(
             sess["article_id"], cache_dir=cache_dir
         )
         print(f"   docx attachments: {len(attachments)}", file=sys.stderr)
-
         votes = parse_session_docxs(attachments, cache_dir=cache_dir)
-
-        # Zbieraj nazwiska
         for v in votes:
-            for cat in ("za", "przeciw", "wstrzymal_sie", "brak_glosu", "nieobecni"):
+            for cat in _VOTE_CATS:
                 for name in v.get("named_votes", {}).get(cat, []):
-                    all_councilors.add(name)
+                    name_set.add(name)
+        parsed.append((sess, votes))
 
+    councilor_index = sorted(name_set)
+    name_to_idx = {n: i for i, n in enumerate(councilor_index)}
+
+    # Pass 2: spłaszcz do top-level votes (indeksy) + zbuduj sesje z obecnością.
+    top_votes: list[dict[str, Any]] = []
+    out_sessions: list[dict[str, Any]] = []
+    seq = 0
+    for sess, votes in parsed:
+        attendees: set[str] = set()
+        for v in votes:
+            named_idx = {
+                cat: sorted(
+                    name_to_idx[n]
+                    for n in v.get("named_votes", {}).get(cat, [])
+                    if n in name_to_idx
+                )
+                for cat in _VOTE_CATS
+            }
+            for cat in _PRESENT_CATS:
+                for n in v.get("named_votes", {}).get(cat, []):
+                    attendees.add(n)
+            att_id = v.get("source_attachment_id")
+            top_votes.append({
+                "id": f"{sess['date']}_{seq}",
+                "session_date": sess["date"],
+                "session_number": sess["session_number"],
+                "source_url": (
+                    f"{BASE}/e,pobierz,get.html?id={att_id}" if att_id else ""
+                ),
+                "topic": v.get("topic", ""),
+                "druk": None,
+                "resolution": None,
+                "counts": v.get("counts", {}),
+                "named_votes": named_idx,
+                "voted_at": v.get("voted_at", ""),
+            })
+            seq += 1
         out_sessions.append({
-            "session_number": sess["session_number"],
+            "number": sess["session_number"],
             "date": sess["date"],
-            "title": sess["title"],
-            "article_id": sess["article_id"],
-            "votes": votes,
             "vote_count": len(votes),
+            "attendees": sorted(attendees),
+            "attendee_count": len(attendees),
+            "speakers": [],
         })
-        total_votes += len(votes)
+
+    # Sesje chronologicznie malejąco (najnowsza pierwsza) — listing Madkom
+    # bywa nieuporządkowany.
+    out_sessions.sort(key=lambda s: (s.get("date") or "", s.get("number") or ""),
+                      reverse=True)
 
     return {
-        "kadencja": KADENCJA_ID,
-        "kadencja_label": KADENCJA_LABEL,
-        "councilors": sorted(all_councilors),
-        "total_councilors": len(all_councilors),
+        "id": KADENCJA_ID,
+        "label": KADENCJA_LABEL,
+        "councilors": [],
+        "councilor_index": councilor_index,
         "sessions": out_sessions,
+        "votes": top_votes,
         "total_sessions": len(out_sessions),
-        "total_votes": total_votes,
-        "scraped_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "total_votes": len(top_votes),
+        "total_councilors": len(councilor_index),
+        "similarity_top": [],
+        "similarity_bottom": [],
+        "scraped_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "source": f"{BASE}/api/menu/{WYNIKI_GLOSOWAN_MENU_ID}",
     }
 

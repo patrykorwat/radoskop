@@ -781,6 +781,45 @@ class EsesjaScraper:
                     / s["votes_total"] * 100, 1
                 )
 
+        # Zgodność z klubem + bunty. Liczone tak jak build_assembly_metrics
+        # (flat-schema sejmiki): per głosowanie większość klubu z aktywnych
+        # głosów (za/przeciw/wstrzymal_sie), bunt = głos wbrew większości
+        # swojego klubu, zgodnosc = (aktywne - bunty) / aktywne. Radni bez
+        # rozpoznanego klubu (resolve_club == "") nie mają większości, więc nie
+        # buntują się i mają 100%.
+        active_count: dict[str, int] = defaultdict(int)
+        for vote in all_votes:
+            decision_of: dict[str, str] = {}
+            for cat in ("za", "przeciw", "wstrzymal_sie"):
+                for name in vote["named_votes"].get(cat, []):
+                    decision_of[name] = cat
+            club_dec: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
+            for name, dec in decision_of.items():
+                club = stats[name]["club"]
+                if club:
+                    club_dec[club][dec] += 1
+            club_major = {
+                club: max(dc.items(), key=lambda kv: kv[1])[0]
+                for club, dc in club_dec.items() if dc
+            }
+            for name, dec in decision_of.items():
+                active_count[name] += 1
+                club = stats[name]["club"]
+                if club in club_major and dec != club_major[club]:
+                    stats[name]["rebellion_count"] += 1
+                    stats[name]["rebellions"].append({
+                        "session": vote.get("session_date"),
+                        "topic": (vote.get("topic") or "")[:200],
+                        "their_vote": dec,
+                        "club_majority": club_major[club],
+                    })
+        for name, s in stats.items():
+            active = active_count.get(name, 0)
+            if active > 0:
+                s["zgodnosc_z_klubem"] = round(
+                    (active - s["rebellion_count"]) / active * 100, 1
+                )
+
         result = []
         for name, s in sorted(stats.items()):
             if name in existing_profiles:

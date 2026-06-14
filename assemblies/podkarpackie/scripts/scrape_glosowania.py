@@ -114,30 +114,28 @@ NEW_SLUG_RE = re.compile(
 )
 
 
-def _add_session(sessions: list[dict], seen_romans: set[str], roman: str,
-                 url: str, source: str, date: str = "") -> bool:
-    """Dodaj sesję jeśli roman jeszcze niewidziany. Nowy BIP ma priorytet
-    nad archiwum (te same sesje XXIV..XXVIII są w obu miejscach)."""
-    roman = roman.upper()
-    if not roman or roman in seen_romans:
-        return False
-    seen_romans.add(roman)
-    sessions.append({"url": url, "roman": roman, "source": source, "date": date})
-    return True
-
-
 def discover_sessions(cache_dir: Path | None) -> list[dict]:
-    """Złóż listę sesji VII kadencji z dwóch źródeł:
+    """Złóż listę stron-sesji VII kadencji z dwóch źródeł:
 
     1. Główny BIP (CMS govarticle) — najnowsze sesje, slug bez numerycznego
        ID, np. /sejmik/imienne-wykazy-glosowan/xxix-sesja-...-z-dnia-2026-05-25
     2. Archiwum (stara struktura) — sesje I..XXVIII, slug z ID, np.
        /sejmik-2/imienne-wykazy-glosowan/7827-xxviii-sesja-...
 
-    Dedup po numerze rzymskim sesji; nowy BIP wygrywa przy nakładce.
+    UWAGA: slug nowego BIP bywa błędnie podpisany (strona 'xxviii-...' serwuje
+    PDFy XXVII sesji). Dlatego NIE deduplikujemy tu po numerze — zbieramy każdą
+    stronę (dedup tylko po dokładnym URL), a faktyczny numer sesji i dedup
+    głosowań robimy z treści PDF (patrz main()).
     """
     sessions: list[dict] = []
-    seen_romans: set[str] = set()
+    seen_urls: set[str] = set()
+
+    def add(url: str, roman: str, source: str):
+        if url in seen_urls:
+            return False
+        seen_urls.add(url)
+        sessions.append({"url": url, "roman": roman.upper(), "source": source})
+        return True
 
     # --- Źródło 1: nowy BIP (zwykle jedna strona, brak paginacji) ---
     for start in range(0, 200, 10):
@@ -147,18 +145,13 @@ def discover_sessions(cache_dir: Path | None) -> list[dict]:
         except Exception:
             break
         added = 0
-        seen_on_page: set[str] = set()
-        for path in re.findall(
+        for path in dict.fromkeys(re.findall(
             r'href="(/sejmik/imienne-wykazy-glosowan/[a-z][^"?]*)"', text
-        ):
-            if path in seen_on_page:
-                continue
-            seen_on_page.add(path)
+        )):
             m = NEW_SLUG_RE.search(path)
             if not m or "vii-kadencj" not in path.lower():
                 continue
-            if _add_session(sessions, seen_romans, m.group(1),
-                            f"{BASE}{path}", "new", m.group(2) or ""):
+            if add(f"{BASE}{path}", m.group(1), "new"):
                 added += 1
         if added == 0:
             break
@@ -178,10 +171,7 @@ def discover_sessions(cache_dir: Path | None) -> list[dict]:
             if "VII kadencj" not in title:
                 continue
             roman_m = ROMAN_RE.search(title)
-            if roman_m and _add_session(
-                sessions, seen_romans, roman_m.group(1),
-                f"{ARCHIVE_BASE}{path}", "archive"
-            ):
+            if add(f"{ARCHIVE_BASE}{path}", roman_m.group(1) if roman_m else "", "archive"):
                 added += 1
         if added == 0 and start > 0:
             break
@@ -223,7 +213,7 @@ def discover_pdfs(session: dict, cache_dir: Path | None) -> list[str]:
 # Parse PDF
 # ---------------------------------------------------------------------------
 
-VOTE_LABELS = ["ZA", "PRZECIW", "WSTRZYMUJĘ SIĘ", "WSTRZYMUJE SIĘ", "NIEOBECNY", "NIEOBECNA", "BRAK GŁOSU"]
+VOTE_LABELS = ["ZA", "PRZECIW", "WSTRZYMUJĘ SIĘ", "WSTRZYMUJE SIĘ", "NIEOBECNY", "NIEOBECNA", "BRAK GŁOSU", "OBECNY", "OBECNA"]
 CAT_TO_KEY = {
     "ZA": "za", "PRZECIW": "przeciw",
     "WSTRZYMUJĘ SIĘ": "wstrzymal_sie",
@@ -231,6 +221,13 @@ CAT_TO_KEY = {
     "NIEOBECNY": "nieobecni",
     "NIEOBECNA": "nieobecni",
     "BRAK GŁOSU": "brak_glosu",
+    # "Obecni niegłosujący" w nagłówku, ale w tabeli imiennej radny obecny i
+    # niegłosujący ma w kolumnie Głos token "OBECNY"/"OBECNA" (nie "BRAK GŁOSU").
+    # Bez tego mapowania ci radni byli gubieni (named brak_glosu=0 vs nagłówek N).
+    # Bezpieczne mimo że "OBECNY" to podłańcuch "NIEOBECNY": dopasowanie przez
+    # startswith z sortowaniem longest-first, a "nieobecny" nie zaczyna się od "obecny".
+    "OBECNY": "brak_glosu",
+    "OBECNA": "brak_glosu",
 }
 
 
@@ -285,6 +282,13 @@ def parse_voting_pdf(pdf_bytes: bytes, source_url: str) -> dict | None:
         lines = [l.strip() for l in text.split("\n") if l.strip()]
         if len(lines) > 1:
             topic = lines[1][:200]
+
+    # Numer sesji (rzymski) — WPROST z treści PDF, bo slug nowego BIP bywa
+    # błędnie podpisany (np. strona 'xxviii-...' serwuje PDFy XXVII sesji).
+    session_roman = ""
+    m = re.search(r"([IVXLCDM]+)\s+sesja\s+Sejmiku\s+Województwa\s+Podkarpackiego", text, re.I)
+    if m:
+        session_roman = m.group(1).upper()
 
     # Data głosowania
     voted_at = ""
@@ -352,6 +356,7 @@ def parse_voting_pdf(pdf_bytes: bytes, source_url: str) -> dict | None:
     return {
         "session_date": session_date,
         "voted_at": voted_at,
+        "session_roman": session_roman,
         "topic": topic,
         "counts": counts,
         "named_votes": names_by_cat,
@@ -449,11 +454,34 @@ def main() -> int:
                 continue
             v = parse_voting_pdf(pdf_bytes, pdf_url)
             if v and v["session_date"]:
-                v["session_roman"] = sess["roman"]
+                # Numer sesji bierzemy z treści PDF (slug bywa mylny);
+                # fallback na numer ze slug/tytułu listingu.
+                if not v.get("session_roman"):
+                    v["session_roman"] = sess["roman"]
                 all_votes.append(v)
 
     if args.dry_run:
         return 0
+
+    # Dedup głosowań: ta sama uchwała trafia i do nowego BIP, i do archiwum
+    # (nakładające się sesje XXIV..XXVIII). Klucz = czas głosowania + temat +
+    # rozkład głosów; odporny na różne źródła/URL-e tego samego głosowania.
+    deduped: list[dict] = []
+    seen_keys: set = set()
+    for v in all_votes:
+        key = (
+            v["voted_at"],
+            v["session_roman"],
+            re.sub(r"\s+", " ", v["topic"]).strip().lower()[:120],
+            tuple(sorted(v["counts"].items())),
+        )
+        if key in seen_keys:
+            continue
+        seen_keys.add(key)
+        deduped.append(v)
+    if len(deduped) != len(all_votes):
+        print(f"  Dedup: {len(all_votes)} → {len(deduped)} głosowań (usunięto nakładki nowy BIP/archiwum)")
+    all_votes = deduped
 
     print(f"\n[3/3] Buduj output z {len(all_votes)} głosowań...")
     councilors, name_to_idx = build_councilor_index(all_votes)
