@@ -822,18 +822,29 @@ class EsesjaScraper:
 
         result = []
         for name, s in sorted(stats.items()):
-            if name in existing_profiles:
-                s.update({k: v for k, v in existing_profiles[name].items() if k not in s or not s[k]})
+            # existing_profiles (load_profiles) jest kluczowane nazwą wyświetlaną
+            # = znormalizowaną (s["name"]). stats jest kluczowane nazwą surową.
+            # Szukamy po znormalizowanej, inaczej dla miast ze swapem nazwisk
+            # wzbogacenie z poprzedniego runu (activity itd.) nigdy się nie łączy.
+            disp = s.get("name") or name
+            prof = existing_profiles.get(disp) or existing_profiles.get(name)
+            if prof:
+                s.update({k: v for k, v in prof.items() if k not in s or not s[k]})
             result.append(s)
         return result
 
-    @staticmethod
-    def compute_similarity(all_votes: list[dict], councilors: list[dict]) -> tuple[list, list]:
+    def compute_similarity(self, all_votes: list[dict], councilors: list[dict]) -> tuple[list, list]:
+        # WAŻNE: nazwiska w głosach są surowe ("Nazwisko Imię"), a roster
+        # (name_to_club, klucz c["name"]) jest po _normalize_name ("Imię
+        # Nazwisko"). Bez normalizacji tutaj klucze wektorów nie składają się z
+        # rosterem: club_a/club_b wychodziły "?" dla wszystkich par, a nazwiska
+        # par były w odwrotnym formacie niż reszta serwisu.
         name_to_club = {c["name"]: c.get("club", "?") for c in councilors}
         vectors: dict[str, dict] = defaultdict(dict)
         for v in all_votes:
             for cat in ["za", "przeciw", "wstrzymal_sie"]:
-                for name in v["named_votes"].get(cat, []):
+                for raw in v["named_votes"].get(cat, []):
+                    name = self._normalize_name(raw)
                     vectors[name][v["id"]] = cat
 
         names = sorted(vectors.keys())
