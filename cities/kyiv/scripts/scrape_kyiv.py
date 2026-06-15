@@ -45,14 +45,11 @@ import io
 import json
 import re
 import sys
-import time
 import zipfile
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
-from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 CITY_DIR = SCRIPT_DIR.parent
@@ -60,10 +57,11 @@ DEFAULT_CONFIG = CITY_DIR / "config.json"
 DEFAULT_DOCS = CITY_DIR / "docs"
 DEFAULT_CACHE = CITY_DIR / ".cache"
 
-USER_AGENT = (
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-)
+RADOSKOP_SCRIPTS = CITY_DIR.parent.parent / "scripts"
+sys.path.insert(0, str(RADOSKOP_SCRIPTS))
+
+from lib_ua_http import http_get, ckan_resources_with_cache  # noqa: E402
+
 DEFAULT_TIMEOUT = 60
 ZIP_TIMEOUT = 180
 
@@ -85,32 +83,6 @@ RESULT_REJECTED_RE = re.compile(r"РІШЕННЯ\s+НЕ\s+ПРИЙНЯТО|НЕ\
 
 # Wzorzec daty z nazwy pliku: YYMMDD_N.json
 FILENAME_DATE_RE = re.compile(r"^(\d{2})(\d{2})(\d{2})_(\d+)\.json$")
-
-
-def http_get(url: str, timeout: int = DEFAULT_TIMEOUT) -> bytes:
-    req = Request(url, headers={"User-Agent": USER_AGENT, "Accept": "*/*"})
-    last_err: Exception | None = None
-    for attempt in range(3):
-        try:
-            with urlopen(req, timeout=timeout) as resp:
-                return resp.read()
-        except (HTTPError, URLError, TimeoutError) as exc:
-            last_err = exc
-            wait = 2 ** attempt
-            print(f"  retry {attempt + 1}/3 after {wait}s ({exc})", file=sys.stderr)
-            time.sleep(wait)
-    raise RuntimeError(f"Failed after 3 attempts: {last_err}")
-
-
-def ckan_list_resources(dataset_id: str, timeout: int = 30) -> list[dict[str, str]]:
-    """Zwraca listę zasobów z CKAN data.gov.ua dla podanego dataset_id."""
-    url = f"https://data.gov.ua/api/3/action/package_show?id={dataset_id}"
-    print(f"  CKAN API {url}", file=sys.stderr)
-    raw = http_get(url, timeout=timeout)
-    pkg = json.loads(raw)
-    if not pkg.get("success"):
-        raise RuntimeError(f"CKAN error: {pkg}")
-    return pkg["result"]["resources"]
 
 
 def map_vote(token: str) -> str | None:
@@ -425,20 +397,20 @@ def main() -> int:
             all_votes = json.load(f)
         print(f"[kyiv] {len(all_votes)} głosowań łącznie", file=sys.stderr)
     else:
-        # Lista zasobów z CKAN (tania — jeden request).
-        if args.skip_fetch and cache_index.exists():
-            print("[kyiv] using cached resource list", file=sys.stderr)
-            with open(cache_index, encoding="utf-8") as f:
-                resources = json.load(f)
-        else:
-            try:
-                resources = ckan_list_resources(dataset_id, timeout=ckan_timeout)
-            except RuntimeError as exc:
-                print(f"[kyiv] BŁĄD discovery: {exc}", file=sys.stderr)
-                print("[kyiv] data.gov.ua niedostępne — pomiń scrape", file=sys.stderr)
-                return 1
-            with open(cache_index, "w", encoding="utf-8") as f:
-                json.dump(resources, f, ensure_ascii=False, indent=2)
+        # Lista zasobów z CKAN (tania — jeden request). Przy 403/timeout
+        # spada na dyskowy cache resources.json zamiast ubijać run: ZIPy i tak
+        # są zwykle już w cache, więc da się dokończyć z ostatniej znanej listy.
+        resources, stale = ckan_resources_with_cache(
+            dataset_id,
+            cache_path=cache_index,
+            skip_fetch=args.skip_fetch,
+            timeout=ckan_timeout,
+            label="kyiv",
+        )
+        if resources is None:
+            return 1
+        if stale:
+            print("[kyiv] UWAGA: lista zasobów z cache (data.gov.ua odrzuciło żądanie)", file=sys.stderr)
 
         # Filtruj do JSON/ZIP zasobów (pomijaj PDF, XLSX, stare zasoby pre-2023)
         zip_resources = [

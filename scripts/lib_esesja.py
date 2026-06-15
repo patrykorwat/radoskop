@@ -854,8 +854,7 @@ class EsesjaScraper:
         pairs.sort(key=lambda x: x["score"], reverse=True)
         return pairs[:20], pairs[-20:][::-1]
 
-    @staticmethod
-    def build_sessions(sessions_raw: list[dict], all_votes: list[dict]) -> list[dict]:
+    def build_sessions(self, sessions_raw: list[dict], all_votes: list[dict]) -> list[dict]:
         votes_by_date: dict[str, list[dict]] = defaultdict(list)
         for v in all_votes:
             votes_by_date[v["session_date"]].append(v)
@@ -863,10 +862,23 @@ class EsesjaScraper:
         for s in sessions_raw:
             date = s["date"]
             session_votes = votes_by_date.get(date, [])
+            # WAŻNE: nazwiska normalizujemy tym samym _normalize_name co roster
+            # (build_councilors). Inaczej obecni są surowi ("Nazwisko Imię"), a
+            # roster po swapie ("Imię Nazwisko") — przecięcie zbiorów daje zero
+            # trafień i absent = cały roster (fałszywe "X z Y ław pustych").
             attendees: set[str] = set()
+            absent_marked: set[str] = set()
             for v in session_votes:
                 for cat in ["za", "przeciw", "wstrzymal_sie", "brak_glosu"]:
-                    attendees.update(v["named_votes"].get(cat, []))
+                    for n in v["named_votes"].get(cat, []):
+                        attendees.add(self._normalize_name(n))
+                for n in v["named_votes"].get("nieobecni", []):
+                    absent_marked.add(self._normalize_name(n))
+            # Obecność wygrywa: kto choć raz głosował/był w quorum, nie jest
+            # nieobecny, nawet jeśli pojedyncze głosowanie minął. To też wyklucza
+            # byłych radnych z innych sesji — bierzemy tylko nieobecnych
+            # zarejestrowanych przez samą radę dla TEJ sesji.
+            absent = sorted(absent_marked - attendees)
             # eSesja's session listing typically doesn't expose a stable number.
             # Without a fallback the per-city template generates /sesja// links.
             # Use date as the URL slug — every session has one.
@@ -877,6 +889,7 @@ class EsesjaScraper:
                 "vote_count": len(session_votes),
                 "attendee_count": len(attendees),
                 "attendees": sorted(attendees),
+                "absent_names": absent,
                 "speakers": [],
             })
         return sorted(result, key=lambda x: x["date"])

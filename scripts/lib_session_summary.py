@@ -15,6 +15,25 @@ Konsumenci:
 
 from __future__ import annotations
 
+import unicodedata
+
+
+def canonical_name(raw: str) -> str:
+    """Klucz porównawczy nazwiska odporny na drift formatu.
+
+    Składanie obecnych z rosterem przez surowy string jest kruche: różnica
+    wielkości liter, ogonków, spacji albo kolejności "Imię Nazwisko" vs
+    "Nazwisko Imię" daje zero trafień i absent = cały roster (fałszywe
+    "X z Y ław pustych", Przemyśl 2026-06-15). Kanonikalizujemy: bez ogonków,
+    lower, tokeny posortowane, więc kolejność i wielkość liter nie grają roli.
+    """
+    if not raw:
+        return ""
+    s = unicodedata.normalize("NFKD", str(raw))
+    s = "".join(ch for ch in s if not unicodedata.combining(ch))
+    tokens = [t for t in s.lower().replace(".", " ").split() if t]
+    return " ".join(sorted(tokens))
+
 
 def is_contested(counts: dict) -> bool:
     """Sporne: mniejszość (za vs przeciw) niezerowa i >= 1/3 sumy obu stron."""
@@ -136,17 +155,34 @@ def summarize_session(session: dict, votes: list, councilors: list | None = None
     # Brak attendees nie znaczy, że wszyscy byli nieobecni (lekcja z fallbacku
     # results_pending w SPA).
     absent: list[str] = []
-    if councilors and attendees and not results_pending:
-        present = set(attendees)
-        names = set()
-        for c in councilors:
-            if isinstance(c, dict):
-                n = (c.get("name") or "").strip()
+    if not results_pending and attendees:
+        # Preferuj jawny rejestr nieobecnych z samej sesji (eSesja kategoria
+        # "nieobecni"). To źródło rady, w tym samym formacie co obecni, i nie
+        # zawiera byłych radnych z innych sesji. Roster służy tylko jako filtr.
+        explicit_absent = session.get("absent_names")
+        if explicit_absent:
+            if councilors:
+                roster = {canonical_name(c.get("name") if isinstance(c, dict) else c)
+                          for c in councilors}
+                roster.discard("")
+                absent = sorted(n for n in explicit_absent
+                                if canonical_name(n) in roster)
             else:
-                n = str(c).strip()
-            if n:
-                names.add(n)
-        absent = sorted(n for n in names if n not in present)
+                absent = sorted(explicit_absent)
+        elif councilors:
+            # Fallback dla adapterów bez listy nieobecnych: różnica roster minus
+            # obecni, ale po kluczu kanonicznym (odporne na kolejność/ogonki).
+            present = {canonical_name(a) for a in attendees}
+            present.discard("")
+            seen: set[str] = set()
+            for c in councilors:
+                n = (c.get("name") if isinstance(c, dict) else c) or ""
+                n = str(n).strip()
+                key = canonical_name(n)
+                if n and key and key not in present and key not in seen:
+                    seen.add(key)
+                    absent.append(n)
+            absent.sort()
 
     return {
         "vote_count": len(votes or []) or (session.get("vote_count") or 0),
@@ -242,7 +278,12 @@ def rank_session_facts(session: dict, summary: dict, context: dict | None = None
     if attendee_count and absent:
         total_known = attendee_count + len(absent)
         share = len(absent) / total_known if total_known else 0.0
-        if share >= 0.20:
+        # Strażnik kworum: sesja, która wyprodukowała ważne głosowania, MIAŁA
+        # kworum (>50% obecnych), więc absent < 50%. Udział >= 0.5 to sygnatura
+        # zepsutego dopasowania nazwisk (obecni nie złożyli się z rosterem), nie
+        # realna frekwencja — nie publikujemy (Przemyśl 2026-06-15: 28 z 50).
+        broken = vote_count > 0 and share >= 0.5
+        if 0.20 <= share < 0.5 and not broken:
             facts.append({"kind": "absence", "score": round(40 + share * 60, 2), "data": {
                 "absent": len(absent), "total": total_known,
             }})

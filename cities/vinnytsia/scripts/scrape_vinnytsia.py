@@ -38,13 +38,10 @@ import io
 import json
 import re
 import sys
-import time
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
-from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 CITY_DIR = SCRIPT_DIR.parent
@@ -52,10 +49,10 @@ DEFAULT_CONFIG = CITY_DIR / "config.json"
 DEFAULT_DOCS = CITY_DIR / "docs"
 DEFAULT_CACHE = CITY_DIR / ".cache"
 
-USER_AGENT = (
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
-    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-)
+RADOSKOP_SCRIPTS = CITY_DIR.parent.parent / "scripts"
+sys.path.insert(0, str(RADOSKOP_SCRIPTS))
+
+from lib_ua_http import http_get, ckan_resources_with_cache  # noqa: E402
 
 CATEGORIES = ("za", "przeciw", "wstrzymal_sie", "brak_glosu", "nieobecni")
 
@@ -64,34 +61,6 @@ SESSION_RES_RE = re.compile(
     r"convocation-(\d+)-session-(\d+)-date-(\d{4}-\d{2}-\d{2})",
     re.IGNORECASE,
 )
-
-CKAN_BASE = "https://data.gov.ua"
-
-
-def http_get(url: str, timeout: int = 60) -> bytes:
-    req = Request(url, headers={"User-Agent": USER_AGENT, "Accept": "*/*"})
-    last_err: Exception | None = None
-    for attempt in range(3):
-        try:
-            with urlopen(req, timeout=timeout) as resp:
-                return resp.read()
-        except (HTTPError, URLError, TimeoutError) as exc:
-            last_err = exc
-            wait = 2 ** attempt
-            print(f"  retry {attempt + 1}/3 after {wait}s ({exc})", file=sys.stderr)
-            time.sleep(wait)
-    raise RuntimeError(f"Failed after 3 attempts: {last_err}")
-
-
-def ckan_list_resources(dataset_id: str, timeout: int = 30) -> list[dict[str, str]]:
-    url = f"{CKAN_BASE}/api/3/action/package_show?id={dataset_id}"
-    print(f"  CKAN API {url}", file=sys.stderr)
-    raw = http_get(url, timeout=timeout)
-    pkg = json.loads(raw)
-    if not pkg.get("success"):
-        raise RuntimeError(f"CKAN error: {pkg}")
-    return pkg["result"]["resources"]
-
 
 def decode_csv(raw: bytes) -> str:
     """Próbuje UTF-8 z BOM, potem cp1251."""
@@ -269,18 +238,17 @@ def main() -> int:
     ckan_timeout = int(config.get("ckan_timeout", 30))
     cache_index = args.cache / "resources.json"
 
-    if args.skip_fetch and cache_index.exists():
-        with open(cache_index, encoding="utf-8") as f:
-            resources = json.load(f)
-    else:
-        try:
-            resources = ckan_list_resources(dataset_id, timeout=ckan_timeout)
-        except RuntimeError as exc:
-            print(f"[vinnytsia] BŁĄD discovery: {exc}", file=sys.stderr)
-            print("[vinnytsia] data.gov.ua niedostępne — pomiń scrape", file=sys.stderr)
-            return 1
-        with open(cache_index, "w", encoding="utf-8") as f:
-            json.dump(resources, f, ensure_ascii=False)
+    resources, stale = ckan_resources_with_cache(
+        dataset_id,
+        cache_path=cache_index,
+        skip_fetch=args.skip_fetch,
+        timeout=ckan_timeout,
+        label="vinnytsia",
+    )
+    if resources is None:
+        return 1
+    if stale:
+        print("[vinnytsia] UWAGA: lista zasobów z cache (data.gov.ua odrzuciło żądanie)", file=sys.stderr)
 
     # Filtruj zasoby sesji
     session_resources = [

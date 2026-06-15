@@ -91,6 +91,45 @@ def test_absence_when_no_votes_drama():
     assert f["kind"] == "absence" and f["data"]["absent"] == 7
 
 
+def test_canonical_name_order_and_diacritics_insensitive():
+    assert L.canonical_name("Jan Kowalski") == L.canonical_name("KOWALSKI Jan")
+    assert L.canonical_name("Łucja Żółć") == L.canonical_name("żółć łucja")
+    assert L.canonical_name("") == ""
+
+
+def test_absence_name_format_drift_still_matches():
+    # Regresja Przemyśl: roster po swapie "Imię Nazwisko", obecni surowo
+    # "NAZWISKO Imię". Stare porównanie surowych stringów dawało zero trafień
+    # i absent = cały roster. Kanoniczny klucz musi je złożyć.
+    councilors = [{"name": "Jan Kowalski"}, {"name": "Anna Nowak"}, {"name": "Piotr Lis"}]
+    attendees = ["KOWALSKI Jan", "NOWAK Anna"]   # Lis nieobecny
+    session = {"attendees": attendees, "attendee_count": 2}
+    s = L.summarize_session(session, [_vote(2, 0)], councilors)
+    assert s["absent"] == ["Piotr Lis"]
+
+
+def test_absence_explicit_names_excludes_former_councillors():
+    # absent_names z samej sesji (eSesja "nieobecni"). Były radny spoza rostera
+    # nie może trafić do nieobecnych aktualnej sesji.
+    councilors = [{"name": "Jan Kowalski"}, {"name": "Anna Nowak"}, {"name": "Piotr Lis"}]
+    session = {"attendees": ["Jan Kowalski", "Anna Nowak"], "attendee_count": 2,
+               "absent_names": ["Piotr Lis", "Były Radny"]}
+    s = L.summarize_session(session, [_vote(2, 0)], councilors)
+    assert s["absent"] == ["Piotr Lis"]
+
+
+def test_absence_quorum_guard_suppresses_broken_match():
+    # Dokładny scenariusz fałszywego tweeta: 22 obecnych, roster 28, zero
+    # trafień (inny format) => absent 28, share 0.56. Sesja miała ważne
+    # głosowanie, więc miała kworum: udział >= 0.5 jest niemożliwy => brak hooka.
+    councilors = [{"name": f"R{i}"} for i in range(28)]
+    attendees = [f"P{i}" for i in range(22)]
+    session = {"attendees": attendees, "attendee_count": 22}
+    s = L.summarize_session(session, [_vote(20, 2)], councilors)
+    f = L.best_session_fact(session, s)
+    assert f is None or f["kind"] != "absence"
+
+
 def test_boring_session_fallback_none():
     votes = [_vote(20, 0), _vote(19, 0)]
     s = L.summarize_session({"attendee_count": 20}, votes, None)
