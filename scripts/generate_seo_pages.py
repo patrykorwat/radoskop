@@ -1376,8 +1376,8 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                         f"Sesja {snum} Rady Miasta {city_gen}: "
                         f"{vote_cnt} głosowań, {summary['contested_count']} spornych"
                     ),
-                    "datePublished": sdate,
-                    "dateModified": sdate,
+                    "datePublished": _iso_datetime(sdate),
+                    "dateModified": _iso_datetime(sdate),
                     "mainEntityOfPage": canonical,
                     "author": {"@type": "Organization", "name": "Radoskop",
                                "url": "https://radoskop.pl"},
