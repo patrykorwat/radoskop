@@ -89,7 +89,7 @@ def build_seo_content(cat: dict, name: str, eyebrow_override: str = "",
         ("/councillors/", cat.get("nav_councilors_title", "")),
         ("/interpellations/", cat.get("nav_interp_title", "")),
         ("/budget/", cat.get("nav_budget_title", "")),
-        ("/committees/", cat.get("nav_committees_title", "")),
+        ("/commissions/", cat.get("nav_committees_title", "")),
     ]
     nav = "".join(f'<a href="{h}">{t}</a>' for h, t in links if t)
     para = " ".join(p for p in (htitle, desc) if p)
