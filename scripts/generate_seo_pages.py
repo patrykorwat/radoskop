@@ -197,6 +197,17 @@ def _iso_or_none(s):
     return None
 
 
+def _iso_datetime(s):
+    """ProfilePage.dateModified wymaga pełnego datetime ISO 8601 (z godziną i
+    strefą), nie samej daty. Dla 'YYYY-MM-DD' Google zgłasza 'Invalid datetime
+    value' (date-only jest OK dla Article, ale nie dla ProfilePage). Doklejamy
+    stałą porę (południe UTC): wartość zostaje deterministyczna (brak churnu S3)
+    i nie przesuwa dnia kalendarzowego względem strefy Polski (+1/+2)."""
+    if isinstance(s, str) and re.match(r"^\d{4}-\d{2}-\d{2}$", s):
+        return f"{s}T12:00:00+00:00"
+    return s
+
+
 def make_page(main_html, canonical_url, title, description, og_image=None, extra_body="", jsonld=None):
     """Create a page variant with unique SEO tags and optional body content."""
     # Lokalizacja fraz prerendera dla miast nie-PL (no-op dla "pl").
@@ -815,7 +826,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         profile_page = {
             "@context": "https://schema.org",
             "@type": "ProfilePage",
-            "dateModified": date_modified,
+            "dateModified": _iso_datetime(date_modified),
             "mainEntity": person,
         }
 
