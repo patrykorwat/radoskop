@@ -648,39 +648,47 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         # rzeczownik + liczby), bez "jak g\u0142osuje"/"Zapis g\u0142osowa\u0144".
         is_pl = locale == "pl"
 
-        # Title: nazwisko z przodu (prze\u017cyje uci\u0119cie w SERP), obietnica tre\u015bci
-        # kt\u00f3rej szuka pytaj\u0105cy o polityka ("jak g\u0142osuje" \u2014 bezp\u0142ciowo, brak pola
-        # p\u0142ci), rada w mianowniku "Rada Miasta {gen}" (na sejmikach
-        # _assembly_transform zamienia to na "Sejmik Wojew\u00f3dztwa {gen}").
+        # Tytuł: nazwisko z przodu (przeżyje ucięcie w SERP), fraza intencji
+        # "jak głosuje" (główny typ zapytań o polityka), miasto jako
+        # "Rada Miasta {gen}" w mianowniku, którą _assembly_transform zamienia
+        # na "Sejmik Województwa {gen}", więc zostaje nietknięta. Bezpłciowo
+        # (brak pola płci), separator bez myślnika.
         if has_vd and is_pl:
-            title = f"{name}{club_paren} \u2013 jak g\u0142osuje, Rada Miasta {city_gen}"
+            title = f"{name}{club_paren}, Rada Miasta {city_gen}: jak głosuje"
         else:
-            title = f"{name}{club_paren} \u2013 Rada Miasta {city_gen}"
+            title = f"{name}{club_paren}, Rada Miasta {city_gen}"
 
-        # Description: konkretne liczby (renderuj\u0105 si\u0119 w SERP i nap\u0119dzaj\u0105 klik),
-        # bezp\u0142ciowo, nazwisko w mianowniku (bez wymuszania odmiany imienia).
+        # Opis: konkretne liczby renderują się w SERP i napędzają klik.
+        # Kolejność pod CTR: liczba głosowań, frekwencja, potem najmocniejszy
+        # hook, czyli głosy wbrew klubowi gdy występują, inaczej zgodność z
+        # klubem. Zamyka realna wartość (imienne głosy, interpelacje) i sygnał
+        # źródła (protokoły BIP) zamiast pustego "Sprawdź...". Polski tekst
+        # tylko dla is_pl, żeby nie wstrzykiwać go na zlokalizowane strony .eu.
         if has_vd and is_pl:
-            bits = [
-                f"{votes_total} g\u0142osowa\u0144",
-                f"frekwencja {frekwencja:.0f}%",
-                f"zgodno\u015b\u0107 z klubem {zgodnosc:.0f}%",
-            ]
-            if rebellion:
-                bits.append(f"{rebellion} razy wbrew klubowi")
+            hook = (
+                f"{rebellion} razy wbrew klubowi" if rebellion
+                else f"zgodność z klubem {zgodnosc:.0f}%"
+            )
             desc = (
-                f"Zapis g\u0142osowa\u0144: {name}{club_paren}, Rada Miasta {city_gen}. "
-                + ", ".join(bits)
-                + ". Sprawd\u017a pe\u0142n\u0105 aktywno\u015b\u0107 i przynale\u017cno\u015b\u0107 klubow\u0105."
+                f"{name}{club_paren}, Rada Miasta {city_gen}. "
+                f"{votes_total} głosowań, frekwencja {frekwencja:.0f}%, {hook}. "
+                f"Imienne głosy i interpelacje z protokołów BIP."
             )
         elif has_vd:
             desc = (
                 f"{name}{club_paren}, Rada Miasta {city_gen}. "
-                f"Frekwencja {frekwencja:.0f}%, zgodno\u015b\u0107 z klubem {zgodnosc:.0f}%."
+                f"Frekwencja {frekwencja:.0f}%, zgodność z klubem {zgodnosc:.0f}%."
+            )
+        elif is_pl:
+            desc = (
+                f"{name}{club_paren}, Rada Miasta {city_gen}. "
+                f"Klub, aktywność na sesjach i głosowania. "
+                f"Dane z oficjalnych protokołów BIP."
             )
         else:
             desc = (
-                f"{name}{club_paren} \u2013 Rada Miasta {city_gen}. "
-                f"Sk\u0142ad rady, kluby i aktywno\u015b\u0107 radnych w serwisie Radoskop."
+                f"{name}{club_paren}, Rada Miasta {city_gen}. "
+                f"Skład rady, kluby i aktywność radnych w serwisie Radoskop."
             )
 
         og_img = f"{site_url}/{SLUG['profile']}/{slug}/og.png"
