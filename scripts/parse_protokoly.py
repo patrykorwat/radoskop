@@ -281,6 +281,9 @@ def extract_statements(text):
             statements.append({
                 "speaker": sm["resolved"],
                 "raw_name": sm["raw_name"],
+                # Pełna treść wypowiedzi (do stenogramu); text_preview zostaje
+                # dla zgodności wstecz z konsumentami liczącymi tylko podgląd.
+                "text": speech_text,
                 "text_preview": speech_text[:300] + ("..." if len(speech_text) > 300 else ""),
                 "word_count": word_count,
                 "char_count": len(speech_text),

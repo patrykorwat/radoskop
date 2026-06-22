@@ -135,6 +135,7 @@ def pdftotext(pdf: Path, txt: Path) -> bool:
 # scrape_abgeordnete.py, inaczej rozjadą się profile i głosy).
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
 from lib_slug import make_slug as _lib_make_slug  # noqa: E402
+from lib_stenogram import build_transcript, write_transcript  # noqa: E402
 
 
 def slugify(name: str) -> str:
@@ -226,6 +227,7 @@ def parse_plenarprotokoll(text: str, names_db: dict[str, str]) -> dict[str, Any]
     out: dict[str, Any] = {
         "date": parse_german_date(text[:3000]),
         "speakers": {},  # name → {turns, words, fraktion}
+        "turns": [],     # uporządkowane wypowiedzi z pełną treścią (stenogram)
         "total_words": 0,
         "drucksachen": [],  # (Drucksache 19/XXXX)
     }
@@ -250,6 +252,15 @@ def parse_plenarprotokoll(text: str, names_db: dict[str, str]) -> dict[str, Any]
         )
 
         word_count = len(re.findall(r"\b\w+\b", chunk_clean))
+        # Tekst wypowiedzi do stenogramu: pdftotext zostawia łamania kolumn,
+        # zbijamy białe znaki w pojedyncze spacje.
+        speech = re.sub(r"\s+", " ", chunk_clean).strip()
+        out["turns"].append({
+            "name": name,
+            "fraktion": fraktion,
+            "text": speech,
+            "words": word_count,
+        })
 
         if name not in out["speakers"]:
             out["speakers"][name] = {
@@ -340,6 +351,13 @@ def build_kadencja(
             {"name": n, "club": d["fraktion"], "statements": d["turns"], "words": d["words"]}
             for n, d in sorted(valid_speakers.items(), key=lambda x: -x[1]["words"])
         ]
+        # Tury do stenogramu — tylko mówcy z listy abgeordnetów (jak speakers_arr),
+        # żeby odsiać śmieci z pdftotext. _turns jest zdejmowane w main po zapisie.
+        valid_names = set(valid_speakers.keys())
+        session_turns = [
+            {"name": t["name"], "club": t.get("fraktion"), "text": t["text"], "words": t["words"]}
+            for t in parsed["turns"] if t["name"] in valid_names
+        ]
         sessions_out.append({
             "date": parsed["date"],
             "number": num.split("/")[-1],
@@ -352,6 +370,7 @@ def build_kadencja(
             "drucksachen": parsed["drucksachen"],
             "statements": sum(sp["statements"] for sp in speakers_arr),
             "total_words": parsed["total_words"],
+            "_turns": session_turns,
         })
 
         # Aggregate per speaker (kadencja-level)
@@ -437,6 +456,25 @@ def main() -> int:
 
     output_path = Path(args.output) if args.output else DEFAULT_DOCS / f"kadencja-{kadencja_id}.json"
     output_path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Stenogramy: zapis pełnych tur per sesja do transcripts/{kid}/{num}.json,
+    # zdjęcie _turns z sesji i ustawienie has_transcript przed dumpem kadencji.
+    _club_lookup = {c["name"]: c.get("club") for c in out["councilors"]}
+    _written = 0
+    for sd in out["sessions"]:
+        turns = sd.pop("_turns", None)
+        if not turns:
+            continue
+        meta = {"city": "berlin", "city_name": "Berlin", "kadencja": kadencja_id,
+                "session_number": sd["number"], "date": sd.get("date"),
+                "source_url": sd.get("source_url")}
+        tr = build_transcript(meta, turns, _club_lookup)
+        write_transcript(output_path.parent, kadencja_id, sd["number"], tr)
+        sd["has_transcript"] = True
+        sd["transcript_word_count"] = tr["stats"]["total_words"]
+        _written += 1
+    print(f"[plpr] stenogramy zapisane: {_written}", file=sys.stderr)
+
     output_path.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
 
     # Zamiast wywoływać build_assembly_metrics (które robi votes-based metryki),

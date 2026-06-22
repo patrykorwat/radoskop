@@ -17,7 +17,12 @@ Format wyjścia:
 """
 
 import re
+import sys
 from pathlib import Path
+
+# Wspólny model stenogramów (agregacja tur) z radoskop/scripts.
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_stenogram import aggregate_speakers  # noqa: E402
 
 # Prefiksy ról do usunięcia (zostawiamy samo imię i nazwisko)
 ROLE_PREFIXES = [
@@ -64,17 +69,69 @@ def count_words(text: str) -> int:
     return len(text.split())
 
 
-def parse_docx(path: str) -> list[dict]:
-    """Parsuj transkrypcję DOCX — wykrywaj pogrubione etykiety mówców."""
+# Wzorzec PDF: linia zaczynająca się od roli/tytułu + nazwisko + ":"
+_PDF_SPEAKER_RE = re.compile(
+    r"^((?:Przewodnicząc[ay]|Wiceprzewodnicząc[ay]|Prezydent|Zastępc[ay] Prezydenta|"
+    r"Sekretarz|Skarbnik|Radn[ay]|Dyrektor(?:ka)?|Naczelnik(?:czka)?|Burmistrz(?:yni)?|"
+    r"Zastępc[ay] (?:Dyrektor|Burmistrz)|Stołeczn[a-z]+ Konserwator|"
+    r"Pełnomocni[a-z]+|Komendant[a-z]*|Rzeczni[a-z]+)"
+    r"[^:]{3,80}:)\s*(.*)$",
+    re.MULTILINE
+)
+
+
+def _build_full_names(names) -> dict:
+    """Mapa nazwisko → pełne 'Imię Nazwisko' (z nie-skróconych wariantów)."""
+    full_names = {}
+    for name in names:
+        parts = name.split()
+        if len(parts) >= 2 and not parts[0].endswith("."):
+            full_names[parts[-1]] = name
+    return full_names
+
+
+def _resolve_name(name: str, full_names: dict) -> str:
+    """Sprowadź wariant mówcy do nazwiska kanonicznego.
+
+    Te same reguły co dawne _merge_speakers, ale per pojedyncza nazwa, żeby
+    móc je nałożyć na każdą turę przed agregacją.
+    """
+    parts = name.split()
+    # Skrót imienia: "E. Malinowska-Grupińska" → "Ewa Malinowska-Grupińska"
+    if len(parts) >= 2 and parts[0].endswith(".") and parts[-1] in full_names:
+        target = full_names[parts[-1]]
+        if target != name:
+            return target
+    # Resztki ról (mała litera na początku lub frazy urzędowe) → wyłuskaj nazwisko
+    if name and (name[0].islower() or
+                 any(x in name for x in ["obowiązki", "Państwa", "Społecznych",
+                                          "Obywatelskich", "Przestrzennego",
+                                          "Prawny Biura", "Projektów"])):
+        m = re.search(
+            r"([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+(?:[- ][A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+)+)$",
+            name)
+        if m:
+            return m.group(1)
+    return name
+
+
+def _raw_turns_docx(path: str) -> list[dict]:
+    """Uporządkowane surowe tury z DOCX: [{name, text}] (przed scalaniem nazw)."""
     from docx import Document
     doc = Document(path)
 
-    speakers = {}  # name -> {"statements": int, "words": int}
-    current_speaker = None
-    current_words = 0
+    turns: list[dict] = []
+    current_name = None
+    current_parts: list[str] = []
+
+    def flush():
+        if current_name is not None:
+            turns.append({
+                "name": current_name,
+                "text": " ".join(p for p in current_parts if p).strip(),
+            })
 
     for para in doc.paragraphs:
-        # Szukaj pogrubionych fragmentów kończących się ":"
         bold_text = ""
         rest_text = ""
         found_colon = False
@@ -84,7 +141,6 @@ def parse_docx(path: str) -> list[dict]:
                 bold_text += run.text
                 if ":" in run.text:
                     found_colon = True
-                    # Część po ":" to już tekst wypowiedzi
                     parts = run.text.split(":", 1)
                     bold_text = bold_text[: bold_text.rfind(":")] if ":" in bold_text else bold_text
                     rest_text += parts[1] if len(parts) > 1 else ""
@@ -93,91 +149,21 @@ def parse_docx(path: str) -> list[dict]:
 
         bold_text = bold_text.strip()
 
-        # Czy to nowy mówca?
         if bold_text and found_colon and len(bold_text) > 5:
-            # Zamknij poprzedniego mówcę
-            if current_speaker:
-                speakers[current_speaker]["words"] += current_words
-
-            name = extract_name(bold_text)
-            current_speaker = name
-            current_words = count_words(rest_text)
-
-            if name not in speakers:
-                speakers[name] = {"statements": 0, "words": 0}
-            speakers[name]["statements"] += 1
+            flush()
+            current_name = extract_name(bold_text)
+            current_parts = [rest_text.strip()]
         else:
-            # Kontynuacja wypowiedzi
             full_text = (bold_text + " " + rest_text).strip() if bold_text else rest_text.strip()
-            current_words += count_words(full_text)
+            if current_name is not None:
+                current_parts.append(full_text)
 
-    # Zamknij ostatniego mówcę
-    if current_speaker:
-        speakers[current_speaker]["words"] += current_words
-
-    speakers = _merge_speakers(speakers)
-
-    # Konwertuj na posortowaną listę
-    result = [
-        {"name": name, "statements": data["statements"], "words": data["words"]}
-        for name, data in speakers.items()
-        if data["statements"] > 0
-    ]
-    result.sort(key=lambda x: x["words"], reverse=True)
-    return result
+    flush()
+    return turns
 
 
-def _merge_speakers(speakers: dict) -> dict:
-    """Połącz warianty tego samego mówcy (skróty imion, resztki ról)."""
-    # 1. Mapuj skróty → pełne imiona (np. "E. Malinowska" → "Ewa Malinowska")
-    full_names = {}  # nazwisko → pełne imię+nazwisko
-    for name in speakers:
-        parts = name.split()
-        if len(parts) >= 2 and not parts[0].endswith("."):
-            surname = parts[-1]
-            full_names[surname] = name
-
-    merged = {}
-    for name, data in speakers.items():
-        parts = name.split()
-        # Skrót imienia: "E. Malinowska-Grupińska"
-        if len(parts) >= 2 and parts[0].endswith(".") and parts[-1] in full_names:
-            target = full_names[parts[-1]]
-            if target != name:
-                if target not in merged:
-                    merged[target] = {"statements": 0, "words": 0}
-                merged[target]["statements"] += data["statements"]
-                merged[target]["words"] += data["words"]
-                continue
-        # Filtruj resztki ról (zaczynają się małą literą lub zawierają "obowiązki", "Państwa")
-        if (name[0].islower() or
-            any(x in name for x in ["obowiązki", "Państwa", "Społecznych", "Obywatelskich",
-                                     "Przestrzennego", "Prawny Biura", "Projektów"])):
-            # To resztka roli — spróbuj wyłuskać nazwisko na końcu
-            # Szukaj ostatniego "Imię Nazwisko" w ciągu
-            name_match = re.search(r"([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+(?:[- ][A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+)+)$", name)
-            if name_match:
-                clean = name_match.group(1)
-                if clean not in merged:
-                    merged[clean] = {"statements": 0, "words": 0}
-                merged[clean]["statements"] += data["statements"]
-                merged[clean]["words"] += data["words"]
-                continue
-
-        if name not in merged:
-            merged[name] = {"statements": 0, "words": 0}
-        merged[name]["statements"] += data["statements"]
-        merged[name]["words"] += data["words"]
-
-    return merged
-
-
-def parse_pdf(path: str) -> list[dict]:
-    """Parsuj transkrypcję PDF — fallback gdy brak DOCX.
-
-    Używa PyMuPDF (fitz) zamiast pdftotext — nie wymaga systemowego binarki.
-    Instalacja: pip install pymupdf
-    """
+def _raw_turns_pdf(path: str) -> list[dict]:
+    """Uporządkowane surowe tury z PDF: [{name, text}] (przed scalaniem nazw)."""
     try:
         import fitz  # PyMuPDF
     except ImportError:
@@ -192,55 +178,60 @@ def parse_pdf(path: str) -> list[dict]:
         text += page.get_text("text") + "\n"
     doc.close()
 
-    # Wzorzec: linia zaczynająca się od roli/tytułu + nazwisko + ":"
-    speaker_re = re.compile(
-        r"^((?:Przewodnicząc[ay]|Wiceprzewodnicząc[ay]|Prezydent|Zastępc[ay] Prezydenta|"
-        r"Sekretarz|Skarbnik|Radn[ay]|Dyrektor(?:ka)?|Naczelnik(?:czka)?|Burmistrz(?:yni)?|"
-        r"Zastępc[ay] (?:Dyrektor|Burmistrz)|Stołeczn[a-z]+ Konserwator|"
-        r"Pełnomocni[a-z]+|Komendant[a-z]*|Rzeczni[a-z]+)"
-        r"[^:]{3,80}:)\s*(.*)$",
-        re.MULTILINE
-    )
-
-    speakers = {}
-    segments = []
-
-    # Znajdź wszystkie wystąpienia mówców
-    for m in speaker_re.finditer(text):
-        segments.append((m.start(), m.group(1), m.group(2)))
-
+    segments = [(m.start(), m.group(1), m.group(2)) for m in _PDF_SPEAKER_RE.finditer(text)]
+    turns = []
     for i, (pos, label, first_line) in enumerate(segments):
         name = extract_name(normalize_ws(label))
-        # Tekst do następnego mówcy
         end_pos = segments[i + 1][0] if i + 1 < len(segments) else len(text)
         speech = first_line + " " + text[pos + len(label) + len(first_line):end_pos]
-        words = count_words(speech)
+        turns.append({"name": name, "text": normalize_ws(speech)})
+    return turns
 
-        if name not in speakers:
-            speakers[name] = {"statements": 0, "words": 0}
-        speakers[name]["statements"] += 1
-        speakers[name]["words"] += words
 
-    speakers = _merge_speakers(speakers)
+def parse_turns(path: str) -> list[dict]:
+    """Uporządkowane tury z pełną treścią: [{name, text, words}] (DOCX/PDF)."""
+    p = Path(path)
+    if p.suffix.lower() == ".docx":
+        raw = _raw_turns_docx(path)
+    elif p.suffix.lower() == ".pdf":
+        raw = _raw_turns_pdf(path)
+    else:
+        raise ValueError(f"Nieobsługiwany format: {p.suffix}")
 
-    result = [
-        {"name": name, "statements": data["statements"], "words": data["words"]}
-        for name, data in speakers.items()
-        if data["statements"] > 0
+    full_names = _build_full_names({t["name"] for t in raw})
+    out = []
+    for t in raw:
+        name = _resolve_name(t["name"], full_names)
+        text = (t["text"] or "").strip()
+        out.append({"name": name, "text": text, "words": count_words(text)})
+    return out
+
+
+def parse_docx(path: str) -> list[dict]:
+    """Agregat mówców z DOCX (zgodny wstecz): [{name, statements, words}]."""
+    return [
+        {"name": s["name"], "statements": s["statements"], "words": s["words"]}
+        for s in aggregate_speakers(parse_turns(path)) if s["statements"] > 0
     ]
-    result.sort(key=lambda x: x["words"], reverse=True)
-    return result
+
+
+def parse_pdf(path: str) -> list[dict]:
+    """Agregat mówców z PDF (zgodny wstecz): [{name, statements, words}]."""
+    return [
+        {"name": s["name"], "statements": s["statements"], "words": s["words"]}
+        for s in aggregate_speakers(parse_turns(path)) if s["statements"] > 0
+    ]
 
 
 def parse_transcript(path: str) -> list[dict]:
-    """Parsuj transkrypcję — auto-detect DOCX/PDF."""
+    """Parsuj transkrypcję — auto-detect DOCX/PDF (agregat mówców)."""
     p = Path(path)
-    if p.suffix.lower() == ".docx":
-        return parse_docx(path)
-    elif p.suffix.lower() == ".pdf":
-        return parse_pdf(path)
-    else:
-        raise ValueError(f"Nieobsługiwany format: {p.suffix}")
+    if p.suffix.lower() in (".docx", ".pdf"):
+        return [
+            {"name": s["name"], "statements": s["statements"], "words": s["words"]}
+            for s in aggregate_speakers(parse_turns(path)) if s["statements"] > 0
+        ]
+    raise ValueError(f"Nieobsługiwany format: {p.suffix}")
 
 
 if __name__ == "__main__":

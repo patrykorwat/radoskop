@@ -292,7 +292,15 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Scrape & download RMG session protocols from BIP")
     parser.add_argument("--scrape-only", action="store_true", help="Only discover URLs, don't download")
     parser.add_argument("--known-only", action="store_true", help="Only use known URLs, skip BIP scraping")
+    parser.add_argument("--out", default=None,
+                        help="Katalog docelowy PDF-ów (domyślnie protokoly/ w repo). "
+                             "NAS używa scratch poza repo, żeby PDF nie trafiały na S3.")
     args = parser.parse_args()
+
+    # Override katalogu wyjściowego (NAS scratch). Reszta kodu używa PROTOKOLY_DIR.
+    if args.out:
+        PROTOKOLY_DIR = Path(args.out)
+        PROTOKOLY_DIR.mkdir(parents=True, exist_ok=True)
 
     if args.known_only:
         protocols = KNOWN_URLS

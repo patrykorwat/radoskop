@@ -42,6 +42,7 @@ from lib_slug import legacy_nfkd_slug, legacy_table_slug, legacy_surname_first_s
 from lib_session_summary import (
     session_votes, summarize_session, valid_session_number,
 )
+from lib_stenogram import safe_session_id
 from datetime import date as _date
 from i18n import apply_locale
 
@@ -1007,14 +1008,39 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                 else f" ({session_date})"
             ) if session_date else ""
             title_text = topic[:70] if topic else f"Glosowanie {vid}"
-            title = f"{title_text}{title_suffix} \u2013 Radoskop {city_name}"
-            desc = (
-                f"Glosowanie: {topic[:120]}. "
-                f"Wynik: {result} (za {za}, przeciw {przeciw}, "
-                f"wstrzymal sie {wstrzymal}). "
-                f"{sess_label}, Radoskop {city_name}. "
-                f"Imienne glosy radnych i rozbicie klubowe."
-            )
+            if is_pl:
+                # PL nie przechodzi przez _localize_seo (no-op), więc piszemy od
+                # razu z diakrytykami. Wynik (przyjęte/odrzucone) jako hook na
+                # początku klamry, bo to pierwsze o co pyta czytelnik. Naprawia
+                # też podwójną kropkę (topic kończący się "." plus ". ").
+                result_pl = {"przyjete": "przyjęte", "odrzucone": "odrzucone",
+                             "remis": "remis"}.get(result, result)
+                _tt = topic[:70].rstrip(" .;,") if topic else f"Głosowanie {vid}"
+                _vmeta = ", ".join(x for x in (
+                    result_pl, session_date,
+                    (f"głosowanie {vote_no}" if vote_no else ""),
+                ) if x)
+                title = (
+                    f"{_tt} ({_vmeta}) · Radoskop {city_name}" if _vmeta
+                    else f"{_tt} · Radoskop {city_name}"
+                )
+                _tc = topic[:110].rstrip(" .;,") if topic else ""
+                _lead = f"Głosowanie: {_tc}. " if _tc else ""
+                desc = (
+                    f"{_lead}Wynik: {result_pl}, za {za}, przeciw {przeciw}, "
+                    f"wstrzymało się {wstrzymal}. "
+                    f"{sess_label}, Radoskop {city_name}. "
+                    f"Imienne głosy i rozbicie klubowe."
+                )
+            else:
+                title = f"{title_text}{title_suffix} – Radoskop {city_name}"
+                desc = (
+                    f"Glosowanie: {topic[:120]}. "
+                    f"Wynik: {result} (za {za}, przeciw {przeciw}, "
+                    f"wstrzymal sie {wstrzymal}). "
+                    f"{sess_label}, Radoskop {city_name}. "
+                    f"Imienne glosy radnych i rozbicie klubowe."
+                )
 
             og_img = f"{site_url}/{SLUG['vote']}/{vid}/og.png"
             og_img_path = docs / SLUG["vote"] / vid / "og.png"
@@ -1252,7 +1278,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             attendee_cnt = summary["attendee_count"] or s.get("attendee_count", 0)
 
             canonical = f"{site_url}/{SLUG['session']}/{snum}/"
-            title = f"Sesja {snum} ({sdate}) – Radoskop {city_name}"
+            title = f"Sesja {snum} Rady Miasta {city_gen} ({sdate})"
             if sess_votes:
                 desc = (
                     f"Sesja {snum} Rady Miasta {city_gen}, {sdate}: "
@@ -1348,6 +1374,13 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                     + "\n".join(_items) + "\n</ol>"
                 )
 
+            # Link do pełnego stenogramu wypowiedzi (jeśli sesja go ma).
+            if s.get("has_transcript"):
+                body_parts.append(
+                    f"<p><a href=\"{site_url}/{SLUG['session']}/{snum}/transcript/\">"
+                    f"Pełny stenogram sesji {esc(snum)} — kto przejął sesję</a></p>"
+                )
+
             # Nawigacja poprzednia/następna sesja + powrót.
             nav_parts = []
             if si > 0:
@@ -1421,6 +1454,70 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             if re.match(r"^\d{4}-\d{2}-\d{2}$", sdate or ""):
                 entry["lastmod"] = sdate
             sitemap_entries.append(entry)
+
+            # ── Strona pełnego stenogramu (gdy sesja ma transcript) ──
+            # Pełny tekst debaty = unikalna, cytowalna treść (duża wartość SEO).
+            # Frazy PL przechodzą przez make_page → _localize_seo (Berlin → DE).
+            if s.get("has_transcript"):
+                _tr_file = docs / "transcripts" / kid / f"{safe_session_id(snum)}.json"
+                _tr = None
+                if _tr_file.exists():
+                    try:
+                        with open(_tr_file, encoding="utf-8") as _tf:
+                            _tr = json.load(_tf)
+                    except Exception:
+                        _tr = None
+                if _tr and _tr.get("turns"):
+                    _t_canon = f"{site_url}/{SLUG['session']}/{snum}/transcript/"
+                    _st = _tr.get("stats", {}) or {}
+                    _topsp = _st.get("top_speaker") or {}
+                    _t_title = f"Stenogram sesji {snum} Rady Miasta {city_gen} ({sdate})"
+                    _t_desc = (
+                        f"Pelny zapis wypowiedzi z sesji {snum} Rady Miasta {city_gen}, "
+                        f"{sdate}: {_st.get('speaker_count', 0)} mowcow, "
+                        f"{_st.get('total_statements', 0)} wypowiedzi, "
+                        f"{_st.get('total_words', 0)} slow."
+                    )
+                    _tb = [f"<h1>Stenogram — Sesja {esc(snum)} Rady Miasta {esc(city_gen)}</h1>"]
+                    _tb.append(
+                        f"<p>Pełny zapis wypowiedzi z sesji {esc(snum)}, {esc(sdate)}.</p>"
+                    )
+                    if _topsp.get("name"):
+                        _share = round((_topsp.get("share") or 0) * 100)
+                        _tb.append(
+                            "<h2>Kto przejął sesję</h2>\n<p>"
+                            f"Najwięcej mówił: {esc(_topsp['name'])} ({_share}% słów). "
+                            f"Mówców: {_st.get('speaker_count', 0)}, "
+                            f"wypowiedzi: {_st.get('total_statements', 0)}.</p>"
+                        )
+                    _tb.append("<h2>Pełny zapis</h2>")
+                    for _t in _tr["turns"]:
+                        _nm = esc(_t.get("name", ""))
+                        _ps = profile_slug_by_name.get(_t.get("name", ""))
+                        _who = (
+                            f"<a href=\"{site_url}/{SLUG['profile']}/{_ps}/\">{_nm}</a>"
+                            if _ps else _nm
+                        )
+                        _role = _t.get("role")
+                        _hd = _who + (f" — {esc(_role)}" if _role else "")
+                        _tb.append(f"<h3>{_hd}</h3>\n<p>{esc(_t.get('text', ''))}</p>")
+                    _tb.append(
+                        f"<p><a href=\"{canonical}\">Sesja {esc(snum)}</a> · "
+                        f"<a href=\"{site_url}/\">Radoskop {esc(city_name)}</a></p>"
+                    )
+                    _t_body = "\n".join(_tb) + "\n"
+                    _t_jsonld = [_breadcrumb([
+                        (f"Radoskop {city_name}", f"{site_url}/"),
+                        (f"Sesja {snum}", canonical),
+                        ("Stenogram", _t_canon),
+                    ])]
+                    _t_page = make_page(main_html, _t_canon, _t_title, _t_desc,
+                                        og_image=og_img, extra_body=_t_body, jsonld=_t_jsonld)
+                    _maybe_write_page(
+                        out / SLUG["session"] / snum / "transcript" / "index.html", _t_page)
+                    session_count += 1
+                    sitemap_entries.append(
+                        {"loc": _t_canon, "changefreq": "monthly", "priority": "0.5"})
 
     print(f"  {session_count} session pages")
 

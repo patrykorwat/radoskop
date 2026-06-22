@@ -454,6 +454,79 @@ def build_kadencja_data(kadencja_def, sessions, clubs):
 
 # ── Main ──────────────────────────────────────────────────────────────
 
+def _derive_city(out_dir: str) -> tuple[str, str]:
+    """Zgadnij (slug, ładna_nazwa) miasta ze ścieżki .../cities/{slug}/docs."""
+    parts = os.path.abspath(out_dir).split(os.sep)
+    if "cities" in parts:
+        slug = parts[parts.index("cities") + 1]
+        return slug, slug.replace("-", " ").title()
+    return "gdansk", "Gdańsk"
+
+
+def write_protokol_transcripts(kadencje, data_dir, out_dir):
+    """Zapisz pełne stenogramy z protokołów (Gdańsk) do transcripts/{kid}/{num}.json.
+
+    Czyta {data_dir}/protokoly/all_protokoly.json (statements z pełnym `text`),
+    grupuje tury po dacie i dopasowuje do sesji każdej kadencji. Ustawia
+    has_transcript + transcript_word_count na sesjach (przed dumpem kadencja-*).
+    No-op dla miast bez protokołów.
+    """
+    proto_path = os.path.join(data_dir, "protokoly", "all_protokoly.json")
+    if not os.path.exists(proto_path):
+        return 0
+    from lib_stenogram import build_transcript, write_transcript
+
+    with open(proto_path, encoding="utf-8") as f:
+        protos = json.load(f)
+
+    turns_map: dict[str, list[dict]] = {}
+    src_map: dict[str, str] = {}
+    for p in protos:
+        date = p.get("date")
+        if not date:
+            continue
+        turns = []
+        for s in p.get("statements", []):
+            text = (s.get("text") or s.get("text_preview") or "").strip()
+            if not text:
+                continue
+            turns.append({
+                "name": s.get("speaker") or s.get("raw_name") or "",
+                "text": text,
+                "words": s.get("word_count") or len(text.split()),
+            })
+        if turns:
+            turns_map[date] = turns
+            if p.get("source_url"):
+                src_map[date] = p["source_url"]
+
+    if not turns_map:
+        return 0
+
+    city, city_name = _derive_city(out_dir)
+    written = 0
+    for kdata in kadencje:
+        kid = kdata["id"]
+        club_lookup = {c["name"]: c.get("club") for c in kdata.get("councilors", [])}
+        for sd in kdata.get("sessions", []):
+            turns = turns_map.get(sd.get("date"))
+            if not turns:
+                continue
+            meta = {"city": city, "city_name": city_name, "kadencja": kid,
+                    "session_number": sd.get("number"), "date": sd.get("date")}
+            if src_map.get(sd.get("date")):
+                meta["source_url"] = src_map[sd["date"]]
+            tr = build_transcript(meta, turns, club_lookup)
+            write_transcript(out_dir, kid, sd.get("number"), tr)
+            sd["has_transcript"] = True
+            sd["transcript_word_count"] = tr["stats"]["total_words"]
+            written += 1
+
+    if written:
+        print(f"  Stenogramy (protokoły): {written} → {out_dir}/transcripts/")
+    return written
+
+
 def main():
     data_dir = sys.argv[1] if len(sys.argv) > 1 else "data"
     out_file = "dashboard/data.json"
@@ -500,6 +573,11 @@ def main():
 
     out_dir = os.path.dirname(out_file) or "."
     os.makedirs(out_dir, exist_ok=True)
+
+    # Stenogramy z protokołów (Gdańsk) — przed dumpem, by has_transcript trafił
+    # do data.json i kadencja-*.json. No-op gdy brak protokołów.
+    write_protokol_transcripts(kadencje, data_dir, out_dir)
+
     with open(out_file, 'w', encoding='utf-8') as f:
         json.dump(dashboard, f, ensure_ascii=False, indent=2)
 

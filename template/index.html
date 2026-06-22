@@ -152,6 +152,9 @@
   <!-- Session detail view -->
   <div id="session-view" style="display:none"></div>
 
+  <!-- Transcript (stenogram) detail view -->
+  <div id="transcript-view" style="display:none"></div>
+
   <!-- Impressum / provider identification view (only shown for DE/CS instances) -->
   <div id="impressum-view" style="display:none"></div>
 
@@ -526,6 +529,15 @@ async function init() {
       navigateTo(toCanonicalPath(path), true);
       return;
     }
+    if (path.startsWith('/sesja/') && /\/stenogram\/?$/.test(path)) {
+      // Strona pełnego stenogramu: /session/{n}/transcript/ (wewn. /sesja/{n}/stenogram/)
+      selectKadencjaQuiet(initialKid);
+      const snum = decodeURIComponent(
+        path.replace('/sesja/', '').replace(/\/?stenogram\/?$/, '').replace(/\/$/, ''));
+      showTranscript(snum);
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
     if (path.startsWith('/sesja/')) {
       selectKadencjaQuiet(initialKid);
       const snum = decodeURIComponent(path.replace('/sesja/', '').replace(/\/$/, ''));
@@ -716,6 +728,7 @@ function hideAllViews() {
   var _ccv = document.getElementById('city-compare-view'); if (_ccv) _ccv.style.display = 'none';
   document.getElementById('vote-view').style.display = 'none';
   document.getElementById('session-view').style.display = 'none';
+  var _tv = document.getElementById('transcript-view'); if (_tv) _tv.style.display = 'none';
   document.getElementById('reports-view').style.display = 'none';
   document.getElementById('druk-view').style.display = 'none';
 }
@@ -752,6 +765,8 @@ function toInternalPath(path) {
   const seg = path.split('/');                 // '/term/ix/votes' -> ['','term','ix','votes']
   if (seg[1] && EN_TO_PL_SLUG[seg[1]]) seg[1] = EN_TO_PL_SLUG[seg[1]];
   if (seg[1] === 'kadencja' && seg[3] && EN_TO_PL_TAB[seg[3]]) seg[3] = EN_TO_PL_TAB[seg[3]];
+  // Podstrona stenogramu: /session/{n}/transcript/ → /sesja/{n}/stenogram/
+  if (seg[1] === 'sesja' && seg[3] === 'transcript') seg[3] = 'stenogram';
   return seg.join('/');
 }
 
@@ -760,6 +775,8 @@ function toCanonicalPath(path) {
   const seg = path.split('/');
   if (seg[1] && PL_TO_EN_SLUG[seg[1]]) seg[1] = PL_TO_EN_SLUG[seg[1]];
   if (seg[1] === 'term' && seg[3] && PL_TO_EN_TAB[seg[3]]) seg[3] = PL_TO_EN_TAB[seg[3]];
+  // Podstrona stenogramu: /sesja/{n}/stenogram/ → /session/{n}/transcript/
+  if (seg[1] === 'session' && seg[3] === 'stenogram') seg[3] = 'transcript';
   let out = seg.join('/');
   if (out !== '/' && !out.endsWith('/')) out += '/';
   return out;
@@ -958,6 +975,24 @@ function trackEventBeforeNav(eventName, params) {
       }
     } catch (e) { clearTimeout(done); resolve(); }
   });
+}
+
+// Escape wolnego tekstu (treść wypowiedzi ze stenogramów z PDF) przed
+// wstawieniem do innerHTML. Nazwiska radnych są kontrolowane, ale tekst
+// wypowiedzi nie — bez tego znaki < > & psują layout / wstrzykują markup.
+function htmlEscape(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// Kanon nazwiska po stronie klienta — odpowiednik lib_session_summary.canonical_name
+// (bez ogonków, lower, tokeny posortowane). Do dopasowania mówcy w stenogramie
+// do radnego mimo różnic formatu/kolejności "Imię Nazwisko".
+function _canonName(s) {
+  return String(s == null ? '' : s)
+    .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase().replace(/\./g, ' ').split(/\s+/).filter(Boolean).sort().join(' ');
 }
 
 // Build link elements via string concatenation so crawlers
@@ -1731,6 +1766,32 @@ function showProfile(name, initialTab) {
         </div>`;
       }
       _activityTabBody += `</div>`;
+
+      // Wypowiedzi na sesjach: skróty z rozwijaniem + deep-link do stenogramu.
+      // Treść doczytywana leniwie z API stenogramu po kliknięciu (lekka zakładka).
+      if (act.sessions && act.sessions.length) {
+        const _nameAttr = profile.name.replace(/'/g, "\\'");
+        const _sorted = act.sessions.slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        _activityTabBody += `<div class="section"><h2>Wypowiedzi na sesjach</h2>
+          <p style="font-size:0.82rem;color:var(--muted);margin-bottom:6px">Skróty wypowiedzi z protokołów. Rozwiń fragment lub przejdź do pełnego stenogramu sesji.</p>`;
+        _activityTabBody += _sorted.map((s, idx) => {
+          const sn = (s.session == null ? '' : String(s.session));
+          const cid = 'prof-spk-' + kid + '-' + idx;
+          const snEsc = sn.replace(/'/g, "\\'");
+          const btn = sn
+            ? `<button data-target="${cid}" onclick="_loadProfileSpeeches('${snEsc}','${_nameAttr}','${kid}',this)" style="background:none;border:1px solid var(--border);border-radius:6px;padding:3px 10px;color:var(--accent);font-size:0.78rem;cursor:pointer;white-space:nowrap">Pokaż wypowiedzi ↓</button>`
+            : '';
+          return `<div style="padding:8px 0;border-bottom:1px solid var(--border)">
+            <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap">
+              <span style="font-size:0.88rem">${sn ? 'Sesja ' + htmlEscape(sn) + ' · ' : ''}${htmlEscape(s.date || '')}
+                <span style="color:var(--muted);font-size:0.8rem">· ${s.statements} wyp. · ${(s.words || 0).toLocaleString('pl')} słów</span></span>
+              ${btn}
+            </div>
+            <div id="${cid}" style="display:none;margin-top:4px"></div>
+          </div>`;
+        }).join('');
+        _activityTabBody += `</div>`;
+      }
     }
 
     // Okręg + Komisje przeniesione do _profileCards w prawej kolumnie
@@ -3048,6 +3109,239 @@ function renderSessionCrosscut(votes, clubMap, presentCount, absentCount) {
   return `<div class="section"><h2>Przekrój głosowań</h2>${summary}${clubsHtml}</div>`;
 }
 
+// Filtr stenogramu po mówcy (global, wołany z <select onchange>).
+function _filterTranscript(name) {
+  document.querySelectorAll('#transcript-view .steno-turn').forEach(function(el) {
+    el.style.display = (!name || el.getAttribute('data-name') === name) ? '' : 'none';
+  });
+}
+
+// Deep-link #turn-N: przewiń i podświetl wypowiedź (z profilu/feedu).
+function _highlightHashTurn() {
+  var m = (location.hash || '').match(/^#turn-(\d+)$/);
+  if (!m) return;
+  var el = document.getElementById('turn-' + m[1]);
+  if (!el) return;
+  el.scrollIntoView({behavior: 'smooth', block: 'center'});
+  el.style.transition = 'background 0.4s';
+  el.style.background = 'rgba(99,102,241,0.12)';
+  setTimeout(function() { el.style.background = ''; }, 2600);
+}
+
+async function showTranscript(sessionNumber, targetSeq) {
+  if (!sessionNumber) { showMain(); return; }
+  trackEvent('view_transcript', {session_number: sessionNumber});
+
+  hideAllViews();
+  const view = document.getElementById('transcript-view');
+  view.style.display = 'block';
+  view.innerHTML = '<p style="padding:40px;color:var(--muted)">Ładowanie stenogramu…</p>';
+  navigateTo('/session/' + encodeURIComponent(sessionNumber) + '/transcript/');
+
+  // Fetch transcript: bieżąca kadencja, potem pozostałe (deep-link z archiwum).
+  let tr = null;
+  const kids = [currentKid].concat(RAW.kadencje.map(k => k.id).filter(id => id !== currentKid));
+  for (const kid of kids) {
+    try {
+      const resp = await fetch(API_BASE + '/kadencja/' + kid + '/session/'
+        + encodeURIComponent(sessionNumber) + '/transcript');
+      if (resp.ok) { tr = await resp.json(); break; }
+    } catch (e) { /* try next */ }
+  }
+
+  const sessLabelEsc = sessionNumber.replace(/'/g, "\\'");
+  if (!tr || !tr.turns || !tr.turns.length) {
+    view.innerHTML = '<button class="profile-back" onclick="showSession(\'' + sessLabelEsc + '\')">← Sesja '
+      + htmlEscape(sessionNumber) + '</button>'
+      + '<div style="padding:24px 0;max-width:560px">'
+      + '<h2 style="margin:0 0 12px">Stenogram niedostępny</h2>'
+      + '<p style="color:var(--muted)">Dla tej sesji nie opublikowano jeszcze stenogramu wypowiedzi.</p>'
+      + '</div>';
+    setTitle('Stenogram niedostępny');
+    setRobotsIndexable(false);
+    return;
+  }
+
+  const dateStr = tr.date || '';
+  const stats = tr.stats || {};
+  const enc = encodeURIComponent(sessionNumber);
+  const pct = v => (v == null ? '—' : (Math.round(v * 1000) / 10).toLocaleString('pl') + '%');
+
+  setTitle('Stenogram — Sesja ' + sessionNumber + (dateStr ? ' (' + dateStr + ')' : ''));
+  setRobotsIndexable(true);
+  setOgMeta({
+    title: 'Stenogram sesji ' + sessionNumber + (dateStr ? ' (' + dateStr + ')' : '') + ' – Radoskop {{CITY_NAME}}',
+    description: 'Pełny zapis wypowiedzi z sesji ' + sessionNumber + '. '
+      + (stats.speaker_count || 0) + ' mówców, ' + (stats.total_statements || 0) + ' wypowiedzi, '
+      + (stats.total_words || 0) + ' słów.',
+    url: '{{SITE_URL}}/session/' + enc + '/transcript/',
+    image: '{{SITE_URL}}/session/' + enc + '/og.png'
+  });
+
+  // Mapa klubów z bieżącej kadencji; baked tr.turns[].club jako fallback.
+  const clubMap = {};
+  (K.councilors || []).forEach(co => { clubMap[co.name] = co.club; });
+  const clubOf = (name, fallback) => clubMap[name] || fallback || '?';
+
+  const top = stats.top_speaker;
+  const longest = stats.longest_monolog;
+
+  // Panel "Kto przejął sesję" — neutralne metryki, bez interpretacji.
+  let html = '<button class="profile-back" onclick="showSession(\'' + sessLabelEsc + '\')">← Sesja '
+    + htmlEscape(sessionNumber) + '</button>'
+    + '<div style="margin:12px 0 20px">'
+    + '<h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">Stenogram — Sesja '
+    + htmlEscape(sessionNumber) + (dateStr ? ' · ' + htmlEscape(dateStr) : '') + '</h2>'
+    + (tr.source_url ? '<div style="margin-top:6px"><a href="' + htmlEscape(tr.source_url)
+        + '" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Stenogram źródłowy (BIP) ↗</a></div>' : '')
+    + '<div style="margin-top:12px">'
+    + shareBar('Stenogram sesji ' + sessionNumber + ' – Radoskop {{CITY_NAME}}',
+        'Kto przejął sesję ' + sessionNumber + '? Pełny zapis wypowiedzi i statystyki.',
+        '{{SITE_URL}}/session/' + enc + '/transcript/', 'transcript-share')
+    + '</div></div>';
+
+  html += '<div class="section"><h2>Kto przejął sesję</h2><div class="profile-metrics">';
+  if (top) {
+    html += '<div class="metric-card"><div class="metric-value" style="font-size:1.05rem">'
+      + htmlEscape(top.name) + '</div><div class="metric-label">Najwięcej mówił · ' + pct(top.share) + ' słów</div></div>';
+  }
+  html += '<div class="metric-card"><div class="metric-value">' + pct(stats.top3_share)
+    + '</div><div class="metric-label">Udział 3 czołowych mówców</div></div>';
+  if (longest) {
+    html += '<div class="metric-card"><div class="metric-value">' + (longest.words || 0).toLocaleString('pl')
+      + '</div><div class="metric-label">Najdłuższa wypowiedź · ' + htmlEscape(longest.name || '') + '</div></div>';
+  }
+  html += '<div class="metric-card"><div class="metric-value">' + (stats.speaker_count || 0)
+    + '</div><div class="metric-label">Mówców</div></div>'
+    + '<div class="metric-card"><div class="metric-value">' + (stats.total_statements || 0).toLocaleString('pl')
+    + '</div><div class="metric-label">Wypowiedzi</div></div>'
+    + '<div class="metric-card"><div class="metric-value">' + (stats.total_words || 0).toLocaleString('pl')
+    + '</div><div class="metric-label">Słów łącznie</div></div>'
+    + '</div>';
+
+  // Ranking udziału mówców (paski jak w widoku sesji).
+  const speakers = (tr.speakers || []).slice();
+  if (speakers.length) {
+    const maxWords = speakers[0].words || 1;
+    html += '<div class="speakers-grid" style="margin-top:14px">';
+    const TOP_VIS = 8;
+    html += speakers.map((sp, idx) => {
+      const cl = clubOf(sp.name, sp.club);
+      const barPct = Math.max((sp.words / maxWords) * 100, 2);
+      const color = (typeof clubColor === 'function') ? clubColor(cl) : 'var(--accent)';
+      const hiddenCls = idx >= TOP_VIS ? ' hidden' : '';
+      return '<div class="speaker-bar' + hiddenCls + '"><span class="speaker-name">'
+        + '<span class="club ' + clubClass(cl) + '">' + cl + '</span>' + profileLink(sp.name) + '</span>'
+        + '<div class="speaker-bar-track"><div class="speaker-bar-fill" style="width:' + barPct + '%;background:' + color + '"></div></div>'
+        + '<span class="speaker-meta"><strong>' + (sp.words || 0).toLocaleString('pl') + '</strong> słów · ' + pct(sp.share) + '</span></div>';
+    }).join('');
+    if (speakers.length > TOP_VIS) {
+      html += '<button class="show-more-speakers" onclick="this.parentElement.querySelectorAll(\'.speaker-bar.hidden\').forEach(el=>el.classList.remove(\'hidden\'));this.remove();">Pokaż pozostałych ' + (speakers.length - TOP_VIS) + ' mówców ↓</button>';
+    }
+    html += '</div></div>';
+  }
+
+  // Filtr po mówcy + pełne tury.
+  let filterOpts = '<option value="">Wszyscy mówcy (' + tr.turns.length + ' wypowiedzi)</option>';
+  filterOpts += speakers.map(sp => '<option value="' + htmlEscape(sp.name) + '">' + htmlEscape(sp.name)
+    + ' (' + sp.statements + ')</option>').join('');
+  html += '<div class="section"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">'
+    + '<h2 style="margin:0;border:none;padding:0">Pełny zapis</h2>'
+    + '<select onchange="_filterTranscript(this.value)" style="margin-left:auto;padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:0.85rem;max-width:280px">'
+    + filterOpts + '</select></div>';
+
+  html += '<div class="steno-list">';
+  html += tr.turns.map(t => {
+    const cl = clubOf(t.name, t.club);
+    const color = (typeof clubColor === 'function') ? clubColor(cl) : 'var(--accent)';
+    return '<div class="steno-turn" id="turn-' + t.seq + '" data-name="' + htmlEscape(t.name)
+      + '" style="padding:12px 0;border-bottom:1px solid var(--border)">'
+      + '<div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px">'
+      + '<span style="width:3px;align-self:stretch;background:' + color + ';border-radius:2px"></span>'
+      + '<span class="club ' + clubClass(cl) + '">' + cl + '</span>'
+      + '<strong>' + profileLink(t.name) + '</strong>'
+      + (t.role ? '<span style="font-size:0.78rem;color:var(--muted)">' + htmlEscape(t.role) + '</span>' : '')
+      + '<a href="/session/' + enc + '/transcript/#turn-' + t.seq + '" onclick="event.preventDefault();location.hash=\'turn-' + t.seq + '\';_highlightHashTurn()" style="margin-left:auto;font-size:0.74rem;color:var(--muted);text-decoration:none">#' + (t.seq + 1) + ' · ' + (t.words || 0) + ' słów</a>'
+      + '</div>'
+      + '<p style="margin:0;font-size:0.92rem;line-height:1.6;color:var(--text);white-space:pre-wrap">' + htmlEscape(t.text) + '</p>'
+      + '</div>';
+  }).join('');
+  html += '</div></div>';
+
+  view.innerHTML = html;
+  window.scrollTo(0, 0);
+  if (targetSeq != null) { try { location.hash = 'turn-' + targetSeq; } catch (e) {} }
+  setTimeout(_highlightHashTurn, 120);
+}
+
+// Lazy-load wypowiedzi danej osoby z sesji w zakładce Aktywność profilu.
+// Skróty z rozwijaniem + deep-link do pełnego stenogramu (#turn-N).
+async function _loadProfileSpeeches(sessionNumber, personName, kid, btn) {
+  const box = document.getElementById(btn.getAttribute('data-target'));
+  if (!box) return;
+  if (box.getAttribute('data-loaded') === '1') { // toggle widoczności
+    box.style.display = box.style.display === 'none' ? '' : 'none';
+    return;
+  }
+  box.style.display = '';
+  box.innerHTML = '<span style="color:var(--muted);font-size:0.82rem">Ładowanie…</span>';
+
+  const kids = [kid || currentKid].concat(RAW.kadencje.map(k => k.id).filter(id => id !== (kid || currentKid)));
+  let tr = null;
+  for (const k of kids) {
+    try {
+      const resp = await fetch(API_BASE + '/kadencja/' + k + '/session/'
+        + encodeURIComponent(sessionNumber) + '/transcript');
+      if (resp.ok) { tr = await resp.json(); break; }
+    } catch (e) { /* next */ }
+  }
+  box.setAttribute('data-loaded', '1');
+
+  if (!tr || !tr.turns) {
+    box.innerHTML = '<span style="color:var(--muted);font-size:0.82rem">Stenogram tej sesji jest niedostępny.</span>';
+    return;
+  }
+  const want = _canonName(personName);
+  const mine = tr.turns.filter(t => _canonName(t.name) === want);
+  if (!mine.length) {
+    box.innerHTML = '<span style="color:var(--muted);font-size:0.82rem">Brak dopasowanych wypowiedzi w stenogramie.</span>';
+    return;
+  }
+  const enc = encodeURIComponent(sessionNumber);
+  const snEsc = sessionNumber.replace(/'/g, "\\'");
+  box.innerHTML = mine.map(t => {
+    const full = (t.text || '').trim();
+    const short = full.length > 280 ? full.slice(0, 280).replace(/\s+\S*$/, '') + '…' : full;
+    const needsToggle = full.length > 280;
+    const link = '<a href="/session/' + enc + '/transcript/#turn-' + t.seq
+      + '" onclick="event.preventDefault();showTranscript(\'' + snEsc + '\',' + t.seq + ')" '
+      + 'style="font-size:0.76rem;color:var(--accent);text-decoration:none;white-space:nowrap">w stenogramie →</a>';
+    const toggle = needsToggle
+      ? '<button onclick="_toggleExcerpt(this)" style="background:none;border:none;color:var(--accent);font-size:0.76rem;cursor:pointer;padding:0">rozwiń</button>'
+      : '';
+    return '<div class="excerpt-item" style="padding:8px 0;border-top:1px solid var(--border)">'
+      + '<div style="display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:2px">'
+      + '<span style="font-size:0.72rem;color:var(--muted)">' + (t.words || 0) + ' słów</span>'
+      + '<span style="display:flex;gap:12px;align-items:center">' + toggle + link + '</span></div>'
+      + '<div class="excerpt-short" style="font-size:0.86rem;line-height:1.5;color:var(--text)">' + htmlEscape(short) + '</div>'
+      + '<div class="excerpt-full" style="display:none;font-size:0.86rem;line-height:1.5;color:var(--text);white-space:pre-wrap">' + htmlEscape(full) + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+// Przełącz skrót/pełną treść wypowiedzi w zakładce Aktywność.
+function _toggleExcerpt(btn) {
+  const wrap = btn.closest('.excerpt-item');
+  if (!wrap) return;
+  const sh = wrap.querySelector('.excerpt-short');
+  const fu = wrap.querySelector('.excerpt-full');
+  if (!sh || !fu) return;
+  const showFull = fu.style.display === 'none';
+  fu.style.display = showFull ? '' : 'none';
+  sh.style.display = showFull ? 'none' : '';
+  btn.textContent = showFull ? 'zwiń' : 'rozwiń';
+}
+
 async function showSession(sessionNumber) {
   // Guard: pusty argument prowadziłby do '/sesja//' czyli rozbitej nawigacji.
   // Wracamy zamiast tego do strony głównej.
@@ -3217,6 +3511,7 @@ async function showSession(sessionNumber) {
         <span><strong style="color:var(--text);font-weight:500">${totalWords.toLocaleString('pl')}</strong> słów</span>
         <span>mediana <strong style="color:var(--text);font-weight:500">${medianWords.toLocaleString('pl')}</strong></span>
       </div>
+      ${sess.has_transcript ? `<div style="margin-bottom:12px"><a href="/session/${encodeURIComponent(sessionNumber)}/transcript/" onclick="event.preventDefault();showTranscript('${sessionNumber.replace(/'/g, "\\'")}')" style="display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--accent);text-decoration:none">📄 Pełny stenogram — kto przejął sesję →</a></div>` : ''}
       <div class="speakers-grid">`;
     const SPEAKERS_TOP_VISIBLE = 10;
     html += speakers.map((sp, idx) => {
@@ -4924,6 +5219,13 @@ window.addEventListener('popstate', async () => {
   if (path === '/sesja' || path === '/sesja/') {
     // /sesja/ bez numeru → lista sesji aktualnej kadencji.
     activateTab('sessions');
+    _popstateActive = false;
+    return;
+  }
+  if (path.startsWith('/sesja/') && /\/stenogram\/?$/.test(path)) {
+    const snum = decodeURIComponent(
+      path.replace('/sesja/', '').replace(/\/?stenogram\/?$/, '').replace(/\/$/, ''));
+    showTranscript(snum);
     _popstateActive = false;
     return;
   }

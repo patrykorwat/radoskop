@@ -20,7 +20,12 @@ Format wyjścia:
 """
 
 import re
+import sys
 from pathlib import Path
+
+# Wspólny model stenogramów (agregacja tur, dominacja) z radoskop/scripts.
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_stenogram import aggregate_speakers  # noqa: E402
 
 
 def normalize_ws(s: str) -> str:
@@ -183,17 +188,13 @@ def build_profiles_lookup(profiles_data: dict) -> dict:
     return lookup
 
 
-def parse_pdf(path: str, profiles_lookup: dict = None) -> list[dict]:
-    """Parse Kraków stenogram PDF.
-
-    Uses pdfplumber for text extraction, then regex to find speaker turns.
-    """
+def _extract_pdf_text(path: str) -> str:
+    """Wyciągnij tekst PDF + usuń nagłówki stron i numery stron."""
     try:
         import pdfplumber
     except ImportError:
         raise RuntimeError("Zainstaluj pdfplumber: pip install pdfplumber")
 
-    # Extract text from all pages
     text = ""
     with pdfplumber.open(path) as pdf:
         for page in pdf.pages:
@@ -202,8 +203,7 @@ def parse_pdf(path: str, profiles_lookup: dict = None) -> list[dict]:
                 text += page_text + "\n"
 
     if not text.strip():
-        print(f"  UWAGA: Pusty tekst PDF: {path}")
-        return []
+        return ""
 
     # Remove page headers (repeated on every page)
     # Pattern: "XLVI SESJA RADY MIASTA KRAKOWA\n25 lutego 2026 r.\n"
@@ -213,41 +213,59 @@ def parse_pdf(path: str, profiles_lookup: dict = None) -> list[dict]:
     )
     # Remove page numbers (standalone digits on a line)
     text = re.sub(r'^\s*\d{1,3}\s*$', '', text, flags=re.MULTILINE)
+    return text
 
-    # Find all speaker turns
-    speakers = {}
-    segments = []
 
-    for m in SPEAKER_RE.finditer(text):
-        segments.append((m.start(), m.end(), m.group(1)))
+def _role_from_label(label: str) -> str:
+    """Rola z etykiety mówcy: część przed '– p.' / 'Pan' / 'Pani'."""
+    m = re.search(r'^(.*?)\s+(?:–\s+p\.|Pan\s+|Pani\s+)', normalize_ws(label))
+    return m.group(1).strip() if m else ""
 
+
+def parse_pdf_turns(path: str, profiles_lookup: dict = None) -> list[dict]:
+    """Parse Kraków stenogram PDF → uporządkowane tury z pełną treścią.
+
+    Zwraca [{"name", "text", "words", "role"}] w kolejności padania wypowiedzi.
+    """
+    text = _extract_pdf_text(path)
+    if not text:
+        print(f"  UWAGA: Pusty tekst PDF: {path}")
+        return []
+
+    segments = [(m.start(), m.end(), m.group(1)) for m in SPEAKER_RE.finditer(text)]
     if not segments:
         print(f"  UWAGA: Nie znaleziono mówców w {path}")
         return []
 
+    turns = []
     for i, (start, end, label) in enumerate(segments):
         name = extract_name_krakow(label, profiles_lookup)
-
-        # Speech text: from end of this label to start of next speaker
-        speech_start = end
         speech_end = segments[i + 1][0] if i + 1 < len(segments) else len(text)
-        speech = text[speech_start:speech_end].strip()
+        speech = text[end:speech_end].strip()
+        turns.append({
+            "name": name,
+            "role": _role_from_label(label),
+            "text": speech,
+            "words": len(speech.split()),
+        })
+    return turns
 
-        words = len(speech.split())
 
-        if name not in speakers:
-            speakers[name] = {"statements": 0, "words": 0}
-        speakers[name]["statements"] += 1
-        speakers[name]["words"] += words
-
-    # Convert to sorted list
-    result = [
-        {"name": name, "statements": data["statements"], "words": data["words"]}
-        for name, data in speakers.items()
-        if data["statements"] > 0
+def parse_pdf(path: str, profiles_lookup: dict = None) -> list[dict]:
+    """Agregat mówców (zgodny wstecz): [{"name", "statements", "words"}]."""
+    turns = parse_pdf_turns(path, profiles_lookup)
+    return [
+        {"name": s["name"], "statements": s["statements"], "words": s["words"]}
+        for s in aggregate_speakers(turns) if s["statements"] > 0
     ]
-    result.sort(key=lambda x: x["words"], reverse=True)
-    return result
+
+
+def parse_turns(path: str, profiles_lookup: dict = None) -> list[dict]:
+    """Uporządkowane tury — tylko PDF (Kraków)."""
+    p = Path(path)
+    if p.suffix.lower() == ".pdf":
+        return parse_pdf_turns(path, profiles_lookup)
+    raise ValueError(f"Nieobsługiwany format: {p.suffix} (Kraków używa PDF)")
 
 
 def parse_transcript(path: str, profiles_lookup: dict = None) -> list[dict]:

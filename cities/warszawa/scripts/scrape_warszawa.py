@@ -28,6 +28,9 @@ from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 
+# Wspólne liby z radoskop/scripts (lib_stenogram) dostępne w całym module.
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+
 try:
     from bs4 import BeautifulSoup
 except ImportError:
@@ -436,8 +439,12 @@ def download_docx(url: str, dest: Path) -> bool:
 
 
 def process_session_transcript(session: dict, transcript_dir: Path) -> list[dict]:
-    """Pobierz i sparsuj transkrypcję stenogramu sesji."""
-    from parse_stenogram import parse_transcript
+    """Pobierz i sparsuj transkrypcję stenogramu sesji → uporządkowane tury.
+
+    Zwraca [{"name", "text", "words"}] (pełne tury); agregat mówców liczy
+    wywołujący przez lib_stenogram.aggregate_speakers.
+    """
+    from parse_stenogram import parse_turns
 
     url = find_transcript_url(session)
     if not url:
@@ -455,10 +462,10 @@ def process_session_transcript(session: dict, transcript_dir: Path) -> list[dict
         print(f"    Transkrypcja cached: {path.name}")
 
     try:
-        speakers = parse_transcript(str(path))
-        total_words = sum(s["words"] for s in speakers)
-        print(f"    Stenogram: {len(speakers)} mówców, {total_words} słów")
-        return speakers
+        turns = parse_turns(str(path))
+        total_words = sum(t["words"] for t in turns)
+        print(f"    Stenogram: {len(turns)} tur, {total_words} słów")
+        return turns
     except Exception as e:
         print(f"    BŁĄD parsowania stenogramu: {e}")
         return []
@@ -911,6 +918,30 @@ def assign_kadencja(session_date: str) -> str | None:
     return None
 
 
+def _write_warszawa_transcripts(kad_out: dict, session_turns: dict, out_dir, kid: str) -> int:
+    """Zapisz stenogramy Warszawy do transcripts/{kid}/{num}.json + has_transcript."""
+    from lib_stenogram import build_transcript, write_transcript
+
+    club_lookup = {c["name"]: c.get("club") for c in kad_out.get("councilors", [])}
+    written = 0
+    for sd in kad_out.get("sessions", []):
+        turns = session_turns.get(sd.get("date"))
+        if not turns:
+            continue
+        meta = {"city": "warszawa", "city_name": "Warszawa", "kadencja": kid,
+                "session_number": sd.get("number"), "date": sd.get("date")}
+        if sd.get("source_url"):
+            meta["source_url"] = sd["source_url"]
+        tr = build_transcript(meta, turns, club_lookup)
+        write_transcript(out_dir, kid, sd.get("number"), tr)
+        sd["has_transcript"] = True
+        sd["transcript_word_count"] = tr["stats"]["total_words"]
+        written += 1
+    if written:
+        print(f"  Stenogramy zapisane: {written} → {out_dir}/transcripts/{kid}/")
+    return written
+
+
 def build_kadencja_output(kid: str, sessions: list[dict], all_votes: list[dict],
                           profiles: dict, session_speakers: dict[str, list] = None) -> dict:
     """Zbuduj output jednej kadencji."""
@@ -1241,13 +1272,17 @@ def main():
                 print("UWAGA: Nie znaleziono głosowań. Użyj --explore żeby zbadać strukturę strony sesji.")
                 sys.exit(1)
 
-        # 3. Pobierz transkrypcje stenogramów
-        transcript_dir = Path(args.output).parent / "transcript_cache"
+        # 3. Pobierz transkrypcje stenogramów. Cache DOCX/PDF w scratch (obok
+        # cache HTML), NIE w docs/ — inaczej deploy zsynchronizowałby je na S3.
+        transcript_dir = (Path(args.cache_dir).parent / "transcript_cache"
+                          if getattr(args, "cache_dir", None)
+                          else Path(args.output).parent / "transcript_cache")
         transcript_dir.mkdir(parents=True, exist_ok=True)
 
         step = "[2/2]" if args.only_transcripts else "[3/4]"
         print(f"\n{step} Pobieranie transkrypcji stenogramów...")
-        session_speakers: dict[str, list[dict]] = {}  # session_date -> speakers
+        session_speakers: dict[str, list[dict]] = {}  # session_date -> speakers (agregat)
+        session_turns: dict[str, list[dict]] = {}      # session_date -> tury (pełna treść)
         # Debug: sprawdź pierwszą sesję pod kątem transkrypcji
         if all_sessions:
             s0 = all_sessions[0]
@@ -1279,10 +1314,15 @@ def main():
                 print(f"    Pierwsze 10 linków na stronie:")
                 for href, text in all_links[:10]:
                     print(f"      [{text[:60]}] -> {href[-80:]}")
+        from lib_stenogram import aggregate_speakers
         for session in all_sessions:
-            speakers = process_session_transcript(session, transcript_dir)
-            if speakers:
-                session_speakers[session["date"]] = speakers
+            turns = process_session_transcript(session, transcript_dir)
+            if turns:
+                session_turns[session["date"]] = turns
+                session_speakers[session["date"]] = [
+                    {"name": s["name"], "statements": s["statements"], "words": s["words"]}
+                    for s in aggregate_speakers(turns)
+                ]
         print(f"  Transkrypcje: {len(session_speakers)}/{len(all_sessions)} sesji")
 
         # 4. Buduj output per kadencja
@@ -1318,6 +1358,8 @@ def main():
                 print(f"  Kadencja {kid}: brak głosowań — pomijam")
                 continue
             kad_out = build_kadencja_output(kid, k_sessions, k_votes, profiles, session_speakers)
+            if session_turns:
+                _write_warszawa_transcripts(kad_out, session_turns, Path(args.output).parent, kid)
             kadencje_output.append(kad_out)
 
         default_kid = target_kadencje[0]

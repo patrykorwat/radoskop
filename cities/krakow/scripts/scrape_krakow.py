@@ -34,6 +34,9 @@ from itertools import combinations
 from pathlib import Path
 from urllib.parse import parse_qs, urljoin, urlparse
 
+# Wspólne liby z radoskop/scripts (lib_stenogram) dostępne w całym module.
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+
 try:
     from bs4 import BeautifulSoup
 except ImportError:
@@ -801,14 +804,19 @@ def download_stenogram(doc_id: str, cache_dir: Path) -> Path | None:
 
 
 def process_transcripts(stenogram_links: dict[str, str], cache_dir: Path,
-                        profiles_lookup: dict) -> dict[str, list[dict]]:
+                        profiles_lookup: dict) -> tuple[dict[str, list[dict]], dict[str, list[dict]]]:
     """Download and parse all stenogram PDFs.
 
-    Returns: {session_date: [{"name": ..., "statements": N, "words": M}, ...]}
+    Returns (session_speakers, session_turns):
+      session_speakers: {date: [{"name", "statements", "words"}, ...]}  (agregat)
+      session_turns:    {date: [{"name", "text", "words", "role"}, ...]} (pełne tury)
     """
-    from parse_stenogram import parse_transcript, build_profiles_lookup
+    from parse_stenogram import parse_turns
+    from lib_stenogram import aggregate_speakers
 
     session_speakers: dict[str, list[dict]] = {}
+    session_turns: dict[str, list[dict]] = {}
+    exact = (profiles_lookup or {}).get("_exact", {})
 
     for date, doc_id in sorted(stenogram_links.items()):
         print(f"\n  Stenogram {date} (doc_id={doc_id})")
@@ -817,16 +825,56 @@ def process_transcripts(stenogram_links: dict[str, str], cache_dir: Path,
             continue
 
         try:
-            speakers = parse_transcript(str(pdf_path), profiles_lookup)
+            turns = parse_turns(str(pdf_path), profiles_lookup)
+            speakers = aggregate_speakers(turns)
             total_words = sum(s["words"] for s in speakers)
-            councilor_count = sum(1 for s in speakers if s["name"] in profiles_lookup.get("_exact", {}))
-            print(f"    Sparsowano: {len(speakers)} mówców ({councilor_count} radnych), {total_words} słów")
-            if speakers:
-                session_speakers[date] = speakers
+            councilor_count = sum(1 for s in speakers if s["name"] in exact)
+            print(f"    Sparsowano: {len(turns)} tur, {len(speakers)} mówców "
+                  f"({councilor_count} radnych), {total_words} słów")
+            if turns:
+                session_turns[date] = turns
+                session_speakers[date] = [
+                    {"name": s["name"], "statements": s["statements"], "words": s["words"]}
+                    for s in speakers
+                ]
         except Exception as e:
             print(f"    BŁĄD parsowania: {e}")
 
-    return session_speakers
+    return session_speakers, session_turns
+
+
+def write_session_transcripts(sessions_data: list[dict], session_turns: dict[str, list[dict]],
+                              out_dir, kid: str, councilors: list[dict],
+                              stenogram_links: dict[str, str] | None = None) -> int:
+    """Zapisz pełne stenogramy per sesja do docs/transcripts/{kid}/{num}.json.
+
+    Ustawia sd["has_transcript"] i sd["transcript_word_count"] na sesjach.
+    """
+    from lib_stenogram import build_transcript, write_transcript
+
+    club_lookup = {c["name"]: c.get("club") for c in councilors}
+    written = 0
+    for sd in sessions_data:
+        turns = session_turns.get(sd["date"])
+        if not turns:
+            continue
+        meta = {
+            "city": "krakow", "city_name": "Kraków", "kadencja": kid,
+            "session_number": sd["number"], "date": sd["date"],
+        }
+        doc_id = (stenogram_links or {}).get(sd["date"])
+        if doc_id:
+            meta["source_url"] = (
+                f"https://www.bip.krakow.pl/plik.php?zid={doc_id}&wer=0&new=t&mode=shw"
+            )
+        tr = build_transcript(meta, turns, club_lookup)
+        write_transcript(out_dir, kid, sd["number"], tr)
+        sd["has_transcript"] = True
+        sd["transcript_word_count"] = tr["stats"]["total_words"]
+        written += 1
+
+    print(f"  Stenogramy zapisane: {written} → {out_dir}/transcripts/{kid}/")
+    return written
 
 
 def integrate_activity(councilors: list[dict], sessions_data: list[dict],
@@ -1003,15 +1051,20 @@ def main():
             with open(profiles_path, encoding="utf-8") as f:
                 profiles_lookup = build_profiles_lookup(json.load(f))
 
-        cache_dir = out_path.parent / "transcript_cache"
+        # Cache PDF stenogramów w scratch (obok cache HTML), NIE w docs/ —
+        # inaczej deploy zsynchronizowałby PDF-y na S3. Fallback: obok output.
+        cache_dir = (Path(args.cache_dir).parent / "transcript_cache"
+                     if args.cache_dir else out_path.parent / "transcript_cache")
         cache_dir.mkdir(parents=True, exist_ok=True)
 
         print(f"\n[2/2] Pobieranie i parsowanie stenogramów...")
-        session_speakers = process_transcripts(steno_links, cache_dir, profiles_lookup)
+        session_speakers, session_turns = process_transcripts(steno_links, cache_dir, profiles_lookup)
 
         # Integrate into existing data
         for kad in existing["kadencje"]:
             integrate_activity(kad["councilors"], kad["sessions"], session_speakers)
+            write_session_transcripts(kad["sessions"], session_turns, out_path.parent,
+                                      kad["id"], kad["councilors"], steno_links)
 
         existing["generated"] = datetime.now().isoformat()
         save_split_output(existing, out_path)
@@ -1092,6 +1145,8 @@ def main():
 
     # 3. Transcripts (optional)
     session_speakers: dict[str, list[dict]] = {}
+    session_turns: dict[str, list[dict]] = {}
+    steno_links: dict[str, str] = {}
     if args.transcripts:
         print(f"\n[3/{total_steps}] Pobieranie stenogramów...")
         steno_links = scrape_stenogram_links()
@@ -1104,9 +1159,11 @@ def main():
             with open(profiles_path, encoding="utf-8") as f:
                 profiles_lookup = build_profiles_lookup(json.load(f))
 
-        cache_dir = Path(args.output).parent / "transcript_cache"
+        # Cache PDF stenogramów w scratch (obok cache HTML), NIE w docs/.
+        cache_dir = (Path(args.cache_dir).parent / "transcript_cache"
+                     if args.cache_dir else Path(args.output).parent / "transcript_cache")
         cache_dir.mkdir(parents=True, exist_ok=True)
-        session_speakers = process_transcripts(steno_links, cache_dir, profiles_lookup)
+        session_speakers, session_turns = process_transcripts(steno_links, cache_dir, profiles_lookup)
         print(f"  Transkrypcje: {len(session_speakers)}/{len(all_sessions)} sesji")
 
     # Build output
@@ -1131,6 +1188,9 @@ def main():
     # Integrate transcript activity data
     if session_speakers:
         integrate_activity(councilors, sessions_data, session_speakers)
+    if session_turns:
+        write_session_transcripts(sessions_data, session_turns, Path(args.output).parent,
+                                  kid, councilors, steno_links)
 
     kad_output = {
         "id": kid,
