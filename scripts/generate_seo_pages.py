@@ -1378,7 +1378,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             if s.get("has_transcript"):
                 body_parts.append(
                     f"<p><a href=\"{site_url}/{SLUG['session']}/{snum}/transcript/\">"
-                    f"Pełny stenogram sesji {esc(snum)} — kto przejął sesję</a></p>"
+                    f"Pełny stenogram sesji {esc(snum)}</a></p>"
                 )
 
             # Nawigacja poprzednia/następna sesja + powrót.
@@ -1485,7 +1485,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                     if _topsp.get("name"):
                         _share = round((_topsp.get("share") or 0) * 100)
                         _tb.append(
-                            "<h2>Kto przejął sesję</h2>\n<p>"
+                            "<p>"
                             f"Najwięcej mówił: {esc(_topsp['name'])} ({_share}% słów). "
                             f"Mówców: {_st.get('speaker_count', 0)}, "
                             f"wypowiedzi: {_st.get('total_statements', 0)}.</p>"

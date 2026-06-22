@@ -3186,7 +3186,7 @@ async function showTranscript(sessionNumber, targetSeq) {
   const top = stats.top_speaker;
   const longest = stats.longest_monolog;
 
-  // Panel "Kto przejął sesję" — neutralne metryki, bez interpretacji.
+  // Panel dominacji: neutralne metryki udziału mówców, bez interpretacji.
   let html = '<button class="profile-back" onclick="showSession(\'' + sessLabelEsc + '\')">← Sesja '
     + htmlEscape(sessionNumber) + '</button>'
     + '<div style="margin:12px 0 20px">'
@@ -3196,11 +3196,11 @@ async function showTranscript(sessionNumber, targetSeq) {
         + '" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Stenogram źródłowy (BIP) ↗</a></div>' : '')
     + '<div style="margin-top:12px">'
     + shareBar('Stenogram sesji ' + sessionNumber + ' – Radoskop {{CITY_NAME}}',
-        'Kto przejął sesję ' + sessionNumber + '? Pełny zapis wypowiedzi i statystyki.',
+        'Pełny zapis wypowiedzi z sesji ' + sessionNumber + ' i statystyki udziału mówców.',
         '{{SITE_URL}}/session/' + enc + '/transcript/', 'transcript-share')
     + '</div></div>';
 
-  html += '<div class="section"><h2>Kto przejął sesję</h2><div class="profile-metrics">';
+  html += '<div class="section"><div class="profile-metrics">';
   if (top) {
     html += '<div class="metric-card"><div class="metric-value" style="font-size:1.05rem">'
       + htmlEscape(top.name) + '</div><div class="metric-label">Najwięcej mówił · ' + pct(top.share) + ' słów</div></div>';
@@ -3511,7 +3511,7 @@ async function showSession(sessionNumber) {
         <span><strong style="color:var(--text);font-weight:500">${totalWords.toLocaleString('pl')}</strong> słów</span>
         <span>mediana <strong style="color:var(--text);font-weight:500">${medianWords.toLocaleString('pl')}</strong></span>
       </div>
-      ${sess.has_transcript ? `<div style="margin-bottom:12px"><a href="/session/${encodeURIComponent(sessionNumber)}/transcript/" onclick="event.preventDefault();showTranscript('${sessionNumber.replace(/'/g, "\\'")}')" style="display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--accent);text-decoration:none">📄 Pełny stenogram — kto przejął sesję →</a></div>` : ''}
+      ${sess.has_transcript ? `<div style="margin-bottom:12px"><a href="/session/${encodeURIComponent(sessionNumber)}/transcript/" onclick="event.preventDefault();showTranscript('${sessionNumber.replace(/'/g, "\\'")}')" style="display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--accent);text-decoration:none">📄 Pełny stenogram sesji →</a></div>` : ''}
       <div class="speakers-grid">`;
     const SPEAKERS_TOP_VISIBLE = 10;
     html += speakers.map((sp, idx) => {

@@ -8,7 +8,7 @@ Ten moduł jest jednym źródłem przejścia z uporządkowanych TUR (pełna tre�
 wypowiedzi w kolejności padania) na:
 
   * agregat mówców (zgodny wstecz z dotychczasowym `sess.speakers`),
-  * statystyki dominacji ("kto przejął sesję"),
+  * statystyki dominacji (udział mówców w dyskusji),
   * pełny obiekt stenogramu zapisywany per sesja (docs/transcripts/...),
   * skróty wypowiedzi danej osoby (zakładka Aktywność w profilu).
 
@@ -129,7 +129,7 @@ def aggregate_speakers(turns: Iterable[dict], club_lookup: dict | None = None) -
 
 
 def dominance_stats(turns: Iterable[dict]) -> dict:
-    """Policz "kto przejął sesję" — panel wielometryczny.
+    """Policz dominację w dyskusji (udział mówców) — panel wielometryczny.
 
     Liczone PO WSZYSTKICH mówcach (radni, przewodniczący, prezydent, urzędnicy),
     bo dominację w debacie potrafi przejąć rola spoza rady.
