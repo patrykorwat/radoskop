@@ -704,6 +704,7 @@ function activateTab(tabName) {
   if (!tabName || tabName === 'undefined' || tabName === 'null' || !allTabs.includes(tabName)) {
     tabName = DEFAULT_TAB;
   }
+  // Track tab click/navigation event for Umami analytics
   trackEvent('view_tab', {tab_name: tabName});
   currentTab = tabName;
   document.querySelectorAll('.tab').forEach(t => {
@@ -5183,6 +5184,24 @@ function copyShareLink(encodedUrl, btnId) {
 window.addEventListener('popstate', async () => {
   _popstateActive = true;
   const path = toInternalPath(routePath());
+  
+  // Track page view for SPA navigation
+  // Extract meaningful page type from path for Umami analytics
+  let pageType = 'landing';
+  if (path.startsWith('/profil/')) pageType = 'profile';
+  else if (path.startsWith('/glosowanie/')) pageType = 'vote';
+  else if (path.startsWith('/sesja/')) pageType = 'session';
+  else if (path.startsWith('/komisja/')) pageType = 'commission';
+  else if (path === '/budzet' || path === '/budzet/') pageType = 'budget';
+  else if (path === '/interpelacje' || path === '/interpelacje/') pageType = 'interpellations';
+  else if (path === '/komisje' || path === '/komisje/') pageType = 'commissions';
+  else if (path.startsWith('/kadencja/')) {
+    const parts = path.replace('/kadencja/', '').split('/');
+    const tab = parts[1] || 'ranking';
+    pageType = 'tab_' + (SLUG_TABS[tab] || tab);
+  }
+  trackEvent('page_view', {page_type: pageType, path: location.pathname});
+  
   if (path === '/' || path === '') { showLanding(); _popstateActive = false; return; }
   if (path === '/councillors' || path === '/councillors/') {
     hideAllViews(); document.getElementById('app').style.display = 'block';
