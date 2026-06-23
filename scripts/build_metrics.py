@@ -355,6 +355,14 @@ def _extract_pairs(matrix, n, reverse):
     return pairs[:n]
 
 
+# Katalog danych wejściowych (sys.argv[1] w main). Używany do odnalezienia
+# protokoly/activity.json — ścieżka MUSI być bezwzględna względem data_dir, bo
+# pipeline NAS uruchamia build_metrics z innego cwd (scratch poza repo), a stary
+# relatywny "data/protokoly/activity.json" tam nie istniał → Gdańsk gubił
+# statystyki mówców (Aktywność mówców na sesji była pusta).
+_DATA_DIR = "data"
+
+
 def build_kadencja_data(kadencja_def, sessions, clubs):
     """Build complete dashboard data for one kadencja."""
 
@@ -363,8 +371,9 @@ def build_kadencja_data(kadencja_def, sessions, clubs):
 
     # Load speaking activity data for per-session breakdown
     activity_file = os.path.join(os.path.dirname(sessions[0].get("_data_dir", "")) or "data", "protokoly", "activity.json")
-    # Try standard path
-    for try_path in [activity_file, "data/protokoly/activity.json",
+    # Try standard path; data_dir-based path PIERWSZY (robust na cwd NAS-a).
+    for try_path in [os.path.join(_DATA_DIR, "protokoly", "activity.json"),
+                     activity_file, "data/protokoly/activity.json",
                      os.path.join(os.path.dirname(out_file) if 'out_file' in dir() else '', '..', 'data', 'protokoly', 'activity.json')]:
         if os.path.exists(try_path):
             with open(try_path, 'r', encoding='utf-8') as f:
@@ -529,6 +538,8 @@ def write_protokol_transcripts(kadencje, data_dir, out_dir):
 
 def main():
     data_dir = sys.argv[1] if len(sys.argv) > 1 else "data"
+    global _DATA_DIR
+    _DATA_DIR = data_dir
     out_file = "dashboard/data.json"
     if "--out" in sys.argv:
         idx = sys.argv.index("--out")
