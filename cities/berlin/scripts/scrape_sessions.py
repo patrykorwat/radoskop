@@ -507,7 +507,10 @@ def main() -> int:
         for sp in sess.get("speakers", []):
             sessions_by_speaker.setdefault(sp["name"], []).append({
                 "date": sess["date"],
-                "session": sess.get("session") or sess.get("number"),
+                # Numer zgodny z trasą /session/{number}/ i kluczem stenogramu
+                # (sess["number"], np. "45"), a nie pełny "19/45" — inaczej
+                # deep-link "Pokaż wypowiedzi" w profilu trafiał w 404.
+                "session": sess.get("number") or sess.get("session"),
                 "statements": sp["statements"],
                 "words": sp["words"],
             })
