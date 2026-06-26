@@ -1199,8 +1199,16 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                 ),
                 "url": canonical,
                 "isAccessibleForFree": True,
+                # license: dane udostępniamy na CC BY 4.0 (spójnie z raportami
+                # publicznymi i plikami CSV Radoskopu); kod pozostaje na AGPL.
+                # Google Dataset wymaga URL konkretnej wersji licencji.
+                "license": "https://creativecommons.org/licenses/by/4.0/",
+                # creator: Google akceptuje wyłącznie Person lub Organization.
+                # GovernmentOrganization to podtyp schema.org, ale walidator
+                # Dataset zgłasza go jako "Invalid object type for field creator",
+                # więc używamy bazowego Organization.
                 "creator": {
-                    "@type": "GovernmentOrganization",
+                    "@type": "Organization",
                     "name": f"Rada Miasta {city_gen}",
                 },
                 "variableMeasured": [
