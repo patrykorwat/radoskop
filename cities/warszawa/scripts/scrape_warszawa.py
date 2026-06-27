@@ -61,6 +61,12 @@ STABLE_AGE_DAYS = 2
 # zmienia gdy docx pojawia się później, więc pusta sesja zostawała pusta na
 # zawsze. Powyżej okna sesja z 0 głosami jest traktowana jak trwale pusta.
 PENDING_RESULTS_WINDOW_DAYS = 30
+# Okno (dni od daty sesji), w którym BIP może jeszcze dorzucić stenogram.
+# Stenogram to drugi tor — pojawia się PÓŹNIEJ niż docx z wynikami (czasem
+# kilka tygodni). Sesja może więc mieć już głosowania (nie jest pending-empty)
+# i istnieć w data.json (nie jest "discovered-missing"), a wciąż nie mieć
+# transkrypcji. Bez osobnego okna skip-if-unchanged utrwaliłby brak stenogramu.
+TRANSCRIPT_RESULTS_WINDOW_DAYS = 45
 
 # HTML disk cache - kluczowy speedup dla warszawa, bo każdy fetch przez
 # Playwright kosztuje 3-30s (browser navigate + wait_for_networkidle + wait_for_selector).
@@ -133,6 +139,106 @@ def _has_pending_empty_session(out_path: "Path") -> bool:
             except (ValueError, TypeError):
                 continue
             if (now - dt).days <= PENDING_RESULTS_WINDOW_DAYS:
+                return True
+    return False
+
+
+def _saved_session_dates(out_path: "Path"):
+    """Zbiór dat sesji obecnych w zapisanych kadencja-*.json (index ma stub'y).
+
+    None gdy odczyt się nie powiódł — wtedy wołający robi pełny scrape (bezpiecz
+    niej niż utrwalić lukę).
+    """
+    try:
+        index = json.loads(out_path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
+    dates: set[str] = set()
+    for stub in index.get("kadencje", []):
+        kid = stub.get("id")
+        if not kid:
+            continue
+        kad_path = out_path.parent / f"kadencja-{kid}.json"
+        if not kad_path.exists():
+            continue
+        try:
+            kad = json.loads(kad_path.read_text(encoding="utf-8"))
+        except Exception:
+            return None
+        for s in kad.get("sessions", []):
+            d = s.get("date")
+            if d:
+                dates.add(d)
+    return dates
+
+
+def _discovered_sessions_missing(out_path: "Path", sessions: list[dict]) -> bool:
+    """True gdy któraś odkryta sesja (z datą) NIE występuje w zapisanym data.json.
+
+    Łapie pułapkę skip-if-unchanged: sesja pojawia się na liście BIP zanim ma
+    opublikowane wyniki, zostaje odkryta (więc wchodzi do signature), ale nie
+    trafia do data.json. `_has_pending_empty_session` jej NIE ratuje, bo szuka
+    tylko sesji 0-głosów JUŻ obecnych w data.json, nie brakujących. Bez tego
+    skip blokuje taką sesję na zawsze (Warszawa VI.2026: XXXVI/XXXVII/XXXVIII/
+    XXXIX w signature, brak w opublikowanym data.json). assign_kadencja filtruje
+    daty spoza znanych kadencji, żeby nie wymuszać pełnego scrape w kółko.
+    """
+    saved = _saved_session_dates(out_path)
+    if saved is None:
+        return True
+    for s in sessions:
+        d = s.get("date")
+        if d and assign_kadencja(d) and d not in saved:
+            return True
+    return False
+
+
+def _within_transcript_window(date_str: str | None) -> bool:
+    """True gdy data sesji jest stable (>= STABLE_AGE_DAYS) i nie starsza niż
+    TRANSCRIPT_RESULTS_WINDOW_DAYS — czyli w oknie, w którym stenogram może
+    jeszcze dojść. Świeże sesje (< 2 dni) i tak są pobierane fresh osobno."""
+    if not date_str:
+        return False
+    try:
+        dt = datetime.strptime(date_str, "%Y-%m-%d")
+    except (ValueError, TypeError):
+        return False
+    age = (datetime.now() - dt).days
+    return STABLE_AGE_DAYS <= age <= TRANSCRIPT_RESULTS_WINDOW_DAYS
+
+
+def _has_pending_transcript(out_path: "Path") -> bool:
+    """True gdy zapisane data.json ma sesję z głosowaniami, ale BEZ stenogramu,
+    wciąż w oknie publikacji transkrypcji.
+
+    Stenogram dochodzi później niż wyniki głosowań (drugi tor BIP). Taka sesja
+    przechodzi `_has_pending_empty_session` (ma głosy) i `_discovered_sessions
+    _missing` (jest w data.json), więc bez tego sprawdzenia skip-if-unchanged
+    utrwaliłby brak transkrypcji. Gate na vote_count>0: czekamy na stenogram
+    tylko dla sesji, które realnie się odbyły (puste/odwołane łapie pending
+    -empty). Błąd odczytu => True (bezpieczniej pełny scrape).
+    """
+    try:
+        index = json.loads(out_path.read_text(encoding="utf-8"))
+    except Exception:
+        return True
+    for stub in index.get("kadencje", []):
+        kid = stub.get("id")
+        if not kid:
+            continue
+        kad_path = out_path.parent / f"kadencja-{kid}.json"
+        if not kad_path.exists():
+            continue
+        try:
+            kad = json.loads(kad_path.read_text(encoding="utf-8"))
+        except Exception:
+            return True
+        for s in kad.get("sessions", []):
+            if s.get("has_transcript"):
+                continue
+            if s.get("vote_count", 0) <= 0:
+                continue
+            if _within_transcript_window(s.get("date")):
                 return True
     return False
 
@@ -373,6 +479,23 @@ def _cached_html_has_docx(url: str) -> bool:
     return ("wyniki_glosowania" in cached) and (".docx" in cached.lower())
 
 
+def _cached_html_has_transcript(url: str) -> bool:
+    """Czy cached HTML strony sesji zawiera link do stenogramu.
+
+    Pattern jak find_transcript_url: "transkrypcja"/"stenogram". Stenogram
+    dochodzi później niż docx, więc bez tej inwalidacji pierwszy cache (z docxem
+    ale bez stenogramu) zostawał permanentny i transkrypcja nigdy nie wchodziła.
+    """
+    cache_file = _cache_path(url)
+    if not cache_file or not cache_file.exists():
+        return False
+    try:
+        cached = cache_file.read_text(encoding="utf-8").lower()
+    except Exception:
+        return False
+    return ("transkrypcja" in cached) or ("stenogram" in cached)
+
+
 def _get_session_soup(session: dict):
     """Pobierz i zcachuj stronę sesji (unikamy podwójnego fetcha w obrębie runu).
 
@@ -389,6 +512,12 @@ def _get_session_soup(session: dict):
     if url not in _session_soup_cache:
         is_stable = _is_session_stable(session.get("date"))
         if is_stable and not _cached_html_has_docx(url):
+            is_stable = False
+        # Stenogram dochodzi później niż docx — jeśli sesja jest w oknie
+        # publikacji transkrypcji, a cache jej nie ma, wymuś fresh, żeby
+        # zobaczyć nowy link. Po pierwszym fetchu z linkiem cache znów hituje.
+        if is_stable and _within_transcript_window(session.get("date")) \
+                and not _cached_html_has_transcript(url):
             is_stable = False
         _session_soup_cache[url] = fetch(url, wait_for="article, .portlet-body", use_cache=is_stable)
     return _session_soup_cache[url]
@@ -1222,6 +1351,10 @@ def main():
                         # skipuj — inaczej pusta sesja zostaje pusta na zawsze.
                         if _has_pending_empty_session(out_path_pre):
                             print("\n[skip-check] Signature matched, ale jest sesja z 0 głosami w oknie publikacji wyników — pełny scrape żeby dociągnąć docx.")
+                        elif _discovered_sessions_missing(out_path_pre, all_sessions):
+                            print("\n[skip-check] Signature matched, ale odkryta sesja nie istnieje w data.json — pełny scrape żeby ją dobudować.")
+                        elif _has_pending_transcript(out_path_pre):
+                            print("\n[skip-check] Signature matched, ale sesja z głosowaniami nie ma jeszcze stenogramu (okno publikacji) — pełny scrape żeby dociągnąć transkrypcję.")
                         else:
                             elapsed = time.time() - _t0
                             print(f"\n[skip] Lista sesji identyczna z poprzednim runem ({len(all_sessions)} sesji, signature matched). data.json zachowane.")
