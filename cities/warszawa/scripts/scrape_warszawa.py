@@ -1578,6 +1578,10 @@ def main():
 
         print(f"\nGotowe! Zapisano do {out_path}")
         for kad in output["kadencje"]:
+            # Stub historycznej kadencji (tylko id+label, bez sessions/votes/
+            # councilors — patrz save_split_output) nie wchodzi do podsumowania.
+            if kad.get("sessions") is None or "votes" not in kad:
+                continue
             total_v = len(kad["votes"])
             named_v = sum(1 for v in kad["votes"] if sum(len(nv) for nv in v["named_votes"].values()) > 0)
             print(f"  {kad['id']}: {len(kad['sessions'])} sesji, {total_v} głosowań ({named_v} z wynikami imiennymi), {len(kad['councilors'])} radnych")
