@@ -1249,6 +1249,14 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
     }
     session_count = 0
     today = _date.today()
+    # Mapa redirectów sesji: stary slug oparty na dacie → kanoniczny numer.
+    # Sesje, których numeru nie dało się wyciągnąć ze scrape'a (np. Warszawa
+    # przed naprawą ekstrakcji), miały URL /session/{data}/. Po naprawie
+    # kanoniczny URL to /session/{numer}/ (rzymski), a stare data-slugi z
+    # indeksu Google trzeba 301-ować. {data: numer}; daty z kolizją (dwie
+    # sesje jednego dnia z różnymi numerami) pomijamy — niejednoznaczne.
+    session_date_to_number: dict[str, str] = {}
+    session_date_conflict: set[str] = set()
     for k in kadencje:
         kid = k.get("id", "")
         kad_file = docs / f"kadencja-{kid}.json"
@@ -1280,6 +1288,15 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         for si, s in enumerate(ordered_sessions):
             snum = str(s.get("number")).strip()
             sdate = s.get("date", "")
+
+            # Zbierz data→numer dla mapy redirectów. Tylko gdy numer NIE jest
+            # samą datą — wtedy slug i tak był datą i nie ma czego przekierować.
+            if sdate and snum and snum != sdate:
+                prev = session_date_to_number.get(sdate)
+                if prev is not None and prev != snum:
+                    session_date_conflict.add(sdate)
+                else:
+                    session_date_to_number[sdate] = snum
             sess_votes = session_votes(s, all_votes)
             summary = summarize_session(s, sess_votes, councilors)
             vote_cnt = summary["vote_count"] or s.get("vote_count", 0)
@@ -1927,6 +1944,22 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         + (f" ({len(vote_id_roman_conflict)} pominiętych przez kolizję)"
            if vote_id_roman_conflict else "")
     )
+
+    # Mapa redirectów sesji (_redirects/sessions.json): stary /session/{data}/
+    # → kanoniczny /session/{numer}/. Worker 301-uje przy trafieniu na
+    # data-slug. Daty z kolizją (dwie sesje jednego dnia) pomijamy.
+    session_redirect_map = {
+        d: r for d, r in sorted(session_date_to_number.items())
+        if d not in session_date_conflict
+    }
+    with open(redirects_dir / "sessions.json", "w", encoding="utf-8") as f:
+        json.dump(session_redirect_map, f, ensure_ascii=False, separators=(",", ":"))
+    if session_redirect_map:
+        print(
+            f"  _redirects/sessions.json: {len(session_redirect_map)} dat"
+            + (f" ({len(session_date_conflict)} pominiętych przez kolizję)"
+               if session_date_conflict else "")
+        )
 
     # ════════════════════════════════════════════
     # 10. Mapa offsetów globalnej numeracji (_redirects/vote_offsets.json)

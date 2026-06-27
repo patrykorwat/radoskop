@@ -225,6 +225,26 @@ def fetch(url: str, wait_for: str = "li.search-entry-list-item", save_as: str = 
     return BeautifulSoup(html, "lxml")
 
 
+def parse_session_url(href: str) -> tuple[str, str]:
+    """Wyciągnij numer rzymski i datę ze sluga URL sesji.
+
+    BIP Warszawy renderuje numer rzymski w slugu friendly-URL, nawet gdy
+    highlight na liście zawiera tytuł rubryki ("Sesja rady miasta") zamiast
+    numeru. Wzór: .../-/xxxvi-sesja-rady-m-st-warszawy-z-2026-06-11
+    Zwraca (NUMER_RZYMSKI_UPPER, DATA_ISO); puste stringi gdy brak.
+    """
+    slug = href.rstrip("/").rsplit("/", 1)[-1]
+    number = ""
+    m = re.match(r"^([ivxlcdm]+)-sesja\b", slug, re.IGNORECASE)
+    if m:
+        number = m.group(1).upper()
+    date = ""
+    m2 = re.search(r"(\d{4}-\d{2}-\d{2})", slug)
+    if m2:
+        date = m2.group(1)
+    return number, date
+
+
 def scrape_session_list_all(oldest_start: str, max_pages: int = 0) -> list[dict]:
     """Pobierz paginowaną listę sesji z BIP (wszystkie kadencje od oldest_start)."""
     sessions = []
@@ -292,6 +312,17 @@ def scrape_session_list_all(oldest_start: str, max_pages: int = 0) -> list[dict]
                     m2 = re.search(r"\b([IVXLCDM]{2,})\b", raw_number)
                     if m2:
                         number = m2.group(1)
+
+            # Fallback ze sluga URL: numer rzymski (i data) siedzą w friendly-URL
+            # sesji (/-/xxxvi-sesja-...-z-2026-06-11) nawet gdy highlight oddał
+            # tytuł rubryki zamiast numeru. To jedyne stabilne źródło numeru —
+            # bez tego number zostawał pusty i pipeline fallbackował na datę,
+            # przez co kolumna "Nr" w tabeli sesji dublowała kolumnę "Data".
+            url_number, url_date = parse_session_url(href)
+            if not number:
+                number = url_number
+            if not date:
+                date = url_date
 
             if date and date < kadencja_start:
                 print(f"  Pominięto sesję {number or raw_number} ({date}) — przed {oldest_start}")
