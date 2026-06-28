@@ -503,7 +503,7 @@ def main() -> int:
     # Per-radny seria sesji (do wykresu aktywności na profilu): dla każdego
     # sesji w której zabrał głos zapisujemy {date, session, statements, words}.
     sessions_by_speaker: dict[str, list[dict[str, Any]]] = {}
-    for sess in sessions_out:
+    for sess in out["sessions"]:
         for sp in sess.get("speakers", []):
             sessions_by_speaker.setdefault(sp["name"], []).append({
                 "date": sess["date"],
