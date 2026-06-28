@@ -123,7 +123,20 @@ def discover_session_pdfs(cache_dir: Path | None = None) -> list[dict[str, Any]]
 # ---------------------------------------------------------------------------
 
 def ocr_pdf(pdf_path: Path, cache_key: str, cache_dir: Path | None) -> list[str]:
-    """OCR PDF do listy tekstów stron. Cache'owane jako {key}.ocr.json."""
+    """OCR PDF do listy tekstów stron.
+
+    Cache wznawialny PER STRONA: każda strona zapisywana osobno do
+    {key}.ocr.pages/page_NNNN.txt zaraz po OCR, a strony już zcache'owane są
+    pomijane przy kolejnym przebiegu. Dzięki temu ubicie procesu na timeoucie
+    nie traci postępu — następny run dolicza tylko brakujące strony, więc nawet
+    pojedyncza duża sesja (kilkadziesiąt skanów) domyka się przez kilka runów
+    zamiast restartować od zera. Po komplecie scalamy do {key}.ocr.json
+    (jednoplikowy szybki odczyt przy następnych runach).
+
+    Strony renderujemy pojedynczo (first/last_page), żeby restart nie
+    rasteryzował ponownie już zrobionych stron; gdy pdfinfo niedostępne,
+    fallback rasteryzuje cały PDF naraz, ale wciąż cache'uje per strona.
+    """
     if cache_dir:
         ocr_cache = cache_dir / f"{cache_key}.ocr.json"
         if ocr_cache.is_file():
@@ -136,8 +149,47 @@ def ocr_pdf(pdf_path: Path, cache_key: str, cache_dir: Path | None) -> list[str]
             lang = "eng"
     except Exception:
         lang = "eng"
-    images = convert_from_path(str(pdf_path), dpi=OCR_DPI)
-    texts = [pytesseract.image_to_string(im, lang=lang, config="--psm 4") for im in images]
+
+    page_dir = (cache_dir / f"{cache_key}.ocr.pages") if cache_dir else None
+    if page_dir:
+        page_dir.mkdir(parents=True, exist_ok=True)
+
+    def _page_path(i: int) -> Path | None:
+        return (page_dir / f"page_{i:04d}.txt") if page_dir else None
+
+    def _ocr_one(image, i: int, total: int | None) -> str:
+        pf = _page_path(i)
+        if pf and pf.is_file():
+            return pf.read_text(encoding="utf-8")
+        txt = pytesseract.image_to_string(image, lang=lang, config="--psm 4")
+        if pf:
+            pf.write_text(txt, encoding="utf-8")
+        suffix = f"/{total}" if total else ""
+        print(f"   OCR strona {i + 1}{suffix}", file=sys.stderr)
+        return txt
+
+    n_pages: int | None = None
+    try:
+        from pdf2image import pdfinfo_from_path
+        n_pages = int(pdfinfo_from_path(str(pdf_path))["Pages"])
+    except Exception:
+        n_pages = None
+
+    texts: list[str] = []
+    if n_pages is not None:
+        for i in range(n_pages):
+            pf = _page_path(i)
+            if pf and pf.is_file():
+                texts.append(pf.read_text(encoding="utf-8"))
+                continue
+            imgs = convert_from_path(str(pdf_path), dpi=OCR_DPI,
+                                     first_page=i + 1, last_page=i + 1)
+            texts.append(_ocr_one(imgs[0], i, n_pages) if imgs else "")
+    else:
+        images = convert_from_path(str(pdf_path), dpi=OCR_DPI)
+        for i, im in enumerate(images):
+            texts.append(_ocr_one(im, i, len(images)))
+
     if cache_dir:
         (cache_dir / f"{cache_key}.ocr.json").write_text(
             json.dumps(texts, ensure_ascii=False), encoding="utf-8")
@@ -334,12 +386,70 @@ def aggregate_sessions(votes: list[dict]) -> list[dict]:
 # ---------------------------------------------------------------------------
 
 def build_kadencja(cache_dir: Path | None = None,
-                   limit_sessions: int | None = None) -> dict[str, Any]:
+                   limit_sessions: int | None = None,
+                   output_path: Path | None = None) -> dict[str, Any]:
     print("==> Discovering session PDFs...", file=sys.stderr)
     sessions = discover_session_pdfs(cache_dir=cache_dir)
     print(f"==> Found {len(sessions)} sesji", file=sys.stderr)
     if limit_sessions:
         sessions = sessions[:limit_sessions]
+
+    def _assemble(parsed: list) -> dict[str, Any]:
+        # Roster z dotychczas zparsowanych sesji (bootstrap z OCR) + korekta.
+        roster = build_roster([v for _, v in parsed])
+        all_votes = []
+        mism = 0
+        for sess, votes in parsed:
+            for seq, v in enumerate(votes):
+                named = correct_named(v["raw_named"], roster)
+                # liczba przypisanych aktywnych vs nagłówek (jakość OCR)
+                for cat in ("za", "przeciw", "wstrzymal_sie"):
+                    if len(named[cat]) != v["counts"][cat]:
+                        mism += 1
+                        break
+                all_votes.append({
+                    "session_date": sess["date_iso"],
+                    "session_number": sess["session_number"],
+                    "vote_seq": seq,
+                    "source_url": sess["pdf_url"],
+                    "topic": v["topic"],
+                    "voted_at": v["voted_at"],
+                    "counts": v["counts"],          # nagłówek = autorytatywne
+                    "named_votes": named,           # atrybucja OCR (best-effort)
+                })
+        councilors, name_to_idx = build_councilor_index(all_votes)
+        indexed = [vote_to_indexed(v, name_to_idx) for v in all_votes]
+        sessions_agg = aggregate_sessions(all_votes)
+        return {
+            "id": KADENCJA_ID,
+            "label": KADENCJA_LABEL,
+            "scraped_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
+            "sessions": sessions_agg,
+            "total_sessions": len(sessions_agg),
+            "total_votes": len(indexed),
+            "total_councilors": len(councilors),
+            "councilors": [],
+            "votes": indexed,
+            "similarity_top": [],
+            "similarity_bottom": [],
+            "councilor_index": councilors,
+            "ocr_attribution_mismatches": mism,
+            "source": INDEX_URL,
+        }
+
+    def _flush(parsed: list) -> None:
+        # Zapis przyrostowy po KAŻDEJ sesji: ubicie na timeoucie nie traci sesji
+        # już zOCR-owanych, a jedna gruba sesja nie blokuje publikacji reszty.
+        # Nie nadpisujemy dobrego pliku zerami (guard total_votes). Atomowo.
+        if output_path is None or not parsed:
+            return
+        kad = _assemble(parsed)
+        if kad["total_votes"] == 0:
+            return
+        tmp = output_path.with_suffix(output_path.suffix + ".tmp")
+        tmp.write_text(json.dumps(kad, ensure_ascii=False, indent=2),
+                       encoding="utf-8")
+        tmp.replace(output_path)
 
     parsed_sessions = []  # (meta, [votes])
     for sess in sessions:
@@ -361,52 +471,9 @@ def build_kadencja(cache_dir: Path | None = None,
             continue
         print(f"   {len(votes)} głosowań", file=sys.stderr)
         parsed_sessions.append((sess, votes))
+        _flush(parsed_sessions)
 
-    # Roster z całej kadencji (bootstrap z OCR) + korekta nazwisk.
-    roster = build_roster([v for _, v in parsed_sessions])
-    print(f"==> Roster (bootstrap z OCR): {len(roster)} radnych", file=sys.stderr)
-
-    all_votes = []
-    mism = 0
-    for sess, votes in parsed_sessions:
-        for seq, v in enumerate(votes):
-            named = correct_named(v["raw_named"], roster)
-            # liczba przypisanych aktywnych vs nagłówek (kontrola jakości OCR)
-            for cat in ("za", "przeciw", "wstrzymal_sie"):
-                if len(named[cat]) != v["counts"][cat]:
-                    mism += 1
-                    break
-            all_votes.append({
-                "session_date": sess["date_iso"],
-                "session_number": sess["session_number"],
-                "vote_seq": seq,
-                "source_url": sess["pdf_url"],
-                "topic": v["topic"],
-                "voted_at": v["voted_at"],
-                "counts": v["counts"],          # nagłówek = autorytatywne
-                "named_votes": named,           # atrybucja OCR (best-effort)
-            })
-
-    councilors, name_to_idx = build_councilor_index(all_votes)
-    indexed = [vote_to_indexed(v, name_to_idx) for v in all_votes]
-    sessions_agg = aggregate_sessions(all_votes)
-
-    return {
-        "id": KADENCJA_ID,
-        "label": KADENCJA_LABEL,
-        "scraped_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
-        "sessions": sessions_agg,
-        "total_sessions": len(sessions_agg),
-        "total_votes": len(indexed),
-        "total_councilors": len(councilors),
-        "councilors": [],
-        "votes": indexed,
-        "similarity_top": [],
-        "similarity_bottom": [],
-        "councilor_index": councilors,
-        "ocr_attribution_mismatches": mism,
-        "source": INDEX_URL,
-    }
+    return _assemble(parsed_sessions)
 
 
 def main() -> int:
@@ -418,7 +485,8 @@ def main() -> int:
     args.cache.mkdir(parents=True, exist_ok=True)
     args.output.parent.mkdir(parents=True, exist_ok=True)
 
-    kad = build_kadencja(cache_dir=args.cache, limit_sessions=args.limit)
+    kad = build_kadencja(cache_dir=args.cache, limit_sessions=args.limit,
+                         output_path=args.output)
     if kad["total_votes"] == 0 and args.output.exists():
         print("\n✗ Zero głosowań — pomijam zapis (zostaje poprzednia wersja).", file=sys.stderr)
         print("  Sprawdź tesseract-ocr-pol + pdf2image na NAS.", file=sys.stderr)

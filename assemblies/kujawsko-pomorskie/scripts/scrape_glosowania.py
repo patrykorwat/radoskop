@@ -135,7 +135,8 @@ def discover_session_pdfs(cache_dir: Path | None = None) -> list[dict[str, Any]]
 
 
 def build_kadencja(cache_dir: Path | None = None,
-                   limit_sessions: int | None = None) -> dict[str, Any]:
+                   limit_sessions: int | None = None,
+                   output_path: Path | None = None) -> dict[str, Any]:
     print("==> Discovering session PDFs...", file=sys.stderr)
     sessions = discover_session_pdfs(cache_dir=cache_dir)
     print(f"==> Found {len(sessions)} sesji VII kadencji", file=sys.stderr)
@@ -147,6 +148,34 @@ def build_kadencja(cache_dir: Path | None = None,
     all_councilors: set[str] = set()
     total_votes = 0
 
+    def _assemble() -> dict[str, Any]:
+        return {
+            "kadencja": KADENCJA_ID,
+            "kadencja_label": KADENCJA_LABEL,
+            "councilors": sorted(all_councilors),
+            "total_councilors": len(all_councilors),
+            "sessions": out_sessions,
+            "total_sessions": len(out_sessions),
+            "total_votes": total_votes,
+            "scraped_at": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "source": INDEX_URL,
+            "ocr_warning": (
+                "Skanowane PDF, accuracy zależy od polish tesseract pack. "
+                "Zainstaluj `tesseract-ocr-pol` (apt) na NAS dla ~90% accuracy."
+            ),
+        }
+
+    def _flush() -> None:
+        # Zapis przyrostowy po KAŻDEJ sesji: ubicie procesu na timeoucie nie
+        # traci już zparsowanych sesji, a jedna wolna sesja (gruby skan OCR) nie
+        # blokuje publikacji pozostałych. Atomowo: temp + replace.
+        if output_path is None or not out_sessions:
+            return
+        tmp = output_path.with_suffix(output_path.suffix + ".tmp")
+        tmp.write_text(json.dumps(_assemble(), ensure_ascii=False, indent=2),
+                       encoding="utf-8")
+        tmp.replace(output_path)
+
     for sess in sessions:
         print(f"\n=> Sesja {sess['session_number']}", file=sys.stderr)
 
@@ -156,48 +185,57 @@ def build_kadencja(cache_dir: Path | None = None,
             print(f"  WARN: download {sess['session_number']}: {e}", file=sys.stderr)
             continue
 
-        tmp_pdf = (cache_dir or Path("/tmp")) / f"_kp_{sess['session_number']}.pdf"
-        tmp_pdf.parent.mkdir(parents=True, exist_ok=True)
-        tmp_pdf.write_bytes(pdf_data)
+        # Cache parsowania per sesja, kluczowany TREŚCIĄ PDF (jak cache OCR), żeby
+        # ukończone sesje wczytywały się natychmiast i cały budżet kolejnego runu
+        # szedł na front (nieukończoną, grubą sesję) zamiast na re-parsowanie.
+        sess_cache = None
+        if cache_dir:
+            sess_cache = cache_dir / (md5(pdf_data).hexdigest() + ".session.json")
+        parsed_session = None
+        if sess_cache and sess_cache.is_file():
+            try:
+                parsed_session = json.loads(sess_cache.read_text(encoding="utf-8"))
+                print(f"   (cache) votes={parsed_session['vote_count']}", file=sys.stderr)
+            except Exception:
+                parsed_session = None
 
-        try:
-            parsed = parse_voting_pdf_per_page(tmp_pdf)
-            ok, fail, _ = validate_parsed(parsed)
-            print(f"   votes={parsed['vote_count']}, walidacja={ok}/{parsed['vote_count']}",
-                  file=sys.stderr)
-            for v in parsed["votes"]:
-                for cat in ("za", "przeciw", "wstrzymal_sie", "brak_glosu", "nieobecni"):
-                    for name in v.get("named_votes", {}).get(cat, []):
-                        all_councilors.add(name)
-            total_votes += parsed["vote_count"]
-            out_sessions.append({
-                "session_number": parsed.get("number_roman") or sess["session_number"],
-                "date": parsed["date"],
-                "votes": parsed["votes"],
-                "vote_count": parsed["vote_count"],
-                "source_url": sess["pdf_url"],
-            })
-        except Exception as e:
-            print(f"  WARN: parse {sess['session_number']}: {e}", file=sys.stderr)
-        finally:
-            if not cache_dir:
-                tmp_pdf.unlink(missing_ok=True)
+        if parsed_session is None:
+            tmp_pdf = (cache_dir or Path("/tmp")) / f"_kp_{sess['session_number']}.pdf"
+            tmp_pdf.parent.mkdir(parents=True, exist_ok=True)
+            tmp_pdf.write_bytes(pdf_data)
+            try:
+                parsed = parse_voting_pdf_per_page(tmp_pdf)
+                ok, fail, _ = validate_parsed(parsed)
+                print(f"   votes={parsed['vote_count']}, walidacja={ok}/{parsed['vote_count']}",
+                      file=sys.stderr)
+                parsed_session = {
+                    "session_number": parsed.get("number_roman") or sess["session_number"],
+                    "date": parsed["date"],
+                    "votes": parsed["votes"],
+                    "vote_count": parsed["vote_count"],
+                    "source_url": sess["pdf_url"],
+                }
+                if sess_cache:
+                    sess_cache.write_text(
+                        json.dumps(parsed_session, ensure_ascii=False),
+                        encoding="utf-8")
+            except Exception as e:
+                print(f"  WARN: parse {sess['session_number']}: {e}", file=sys.stderr)
+                continue
+            finally:
+                if not cache_dir:
+                    tmp_pdf.unlink(missing_ok=True)
 
-    return {
-        "kadencja": KADENCJA_ID,
-        "kadencja_label": KADENCJA_LABEL,
-        "councilors": sorted(all_councilors),
-        "total_councilors": len(all_councilors),
-        "sessions": out_sessions,
-        "total_sessions": len(out_sessions),
-        "total_votes": total_votes,
-        "scraped_at": time.strftime("%Y-%m-%d %H:%M:%S"),
-        "source": INDEX_URL,
-        "ocr_warning": (
-            "Skanowane PDF, accuracy zależy od polish tesseract pack. "
-            "Zainstaluj `tesseract-ocr-pol` (apt) na NAS dla ~90% accuracy."
-        ),
-    }
+        for v in parsed_session["votes"]:
+            for cat in ("za", "przeciw", "wstrzymal_sie", "brak_glosu", "nieobecni"):
+                for name in v.get("named_votes", {}).get(cat, []):
+                    all_councilors.add(name)
+        total_votes += parsed_session["vote_count"]
+        out_sessions.append(parsed_session)
+        _flush()
+
+    _flush()
+    return _assemble()
 
 
 def main() -> int:
@@ -212,7 +250,8 @@ def main() -> int:
     args.cache.mkdir(parents=True, exist_ok=True)
     args.output.parent.mkdir(parents=True, exist_ok=True)
 
-    kadencja = build_kadencja(cache_dir=args.cache, limit_sessions=args.limit)
+    kadencja = build_kadencja(cache_dir=args.cache, limit_sessions=args.limit,
+                              output_path=args.output)
 
     # Guard: jeśli OCR/parse zwrócił 0 sesji (typowo brak tesseract-ocr-pol
     # albo pdf2image w image), nie nadpisuj istniejącego pliku zerowymi
