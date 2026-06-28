@@ -5,10 +5,14 @@ Aggregates data from all Radoskop city deployments and generates a cross-city co
 
 import json
 import os
+import sys
 from datetime import datetime
 from pathlib import Path
 from collections import defaultdict
 from typing import Dict, List, Any
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from lib_clubs import club_has_line  # noqa: E402
 
 
 def get_city_name_from_dir(dirname: str) -> str:
@@ -243,8 +247,13 @@ def build_cross_city_json(base_path: Path, output_path: Path):
     top_frekwencja = sorted_by_frekwencja[:20]
     bottom_frekwencja = sorted_by_frekwencja[-20:]
 
-    # Get top rebellion (most rebellions)
-    sorted_by_rebellion = sorted(all_councilors, key=lambda x: x['rebellion_count'], reverse=True)
+    # Get top rebellion (most rebellions). Niezrzeszeni / bez klubu nie mają
+    # linii klubowej, więc ich rebellion_count (jeśli stare dane go nadmuchały)
+    # nie może trafiać do rankingu buntowników.
+    sorted_by_rebellion = sorted(
+        (c for c in all_councilors if club_has_line(c.get('club'))),
+        key=lambda x: x['rebellion_count'], reverse=True,
+    )
     top_rebellion = sorted_by_rebellion[:20]
 
     # Build clubs cross-city data

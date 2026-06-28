@@ -28,6 +28,9 @@ from collections import Counter, defaultdict
 from datetime import datetime
 from itertools import combinations
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_clubs import club_has_line  # noqa: E402
 try:
     import requests
 except ImportError:
@@ -612,7 +615,7 @@ def compute_club_majority(vote: dict, profiles: dict) -> dict[str, str]:
     for cat in ["za", "przeciw", "wstrzymal_sie"]:
         for name in vote["named_votes"].get(cat, []):
             club = lookup_profile(name, profiles).get("club", "?")
-            if club != "?":
+            if club_has_line(club):
                 club_votes[club][cat] += 1
 
     majority = {}

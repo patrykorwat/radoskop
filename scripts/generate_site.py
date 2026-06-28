@@ -1238,6 +1238,12 @@ def main():
         with open(output_dir / "CNAME", "w") as f:
             f.write(config["cname"] + "\n")
 
+    # Spółki: statyczny plik dla zakładki "Spółki" (jeśli zbudowany przez
+    # build_spolki.py). Frontend pokazuje zakładkę tylko gdy ten plik istnieje.
+    _spolki_src = config_path.parent / "docs" / "spolki.json"
+    if _spolki_src.exists():
+        shutil.copy2(_spolki_src, output_dir / "spolki.json")
+
     # Domyślna karta OG miasta (1200×630) dla stron bez własnego dynamicznego
     # OG: strona główna, lista interpelacji, sesje (fallback w workerze).
     # head.html wskazuje na {{SITE_URL}}/og.png. Deterministyczna per domena,

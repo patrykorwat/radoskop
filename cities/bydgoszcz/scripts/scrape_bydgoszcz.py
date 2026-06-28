@@ -28,6 +28,9 @@ from collections import Counter, defaultdict
 from datetime import datetime
 from itertools import combinations
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_clubs import club_has_line  # noqa: E402
 from urllib.parse import urljoin, urlparse
 
 try:
@@ -636,7 +639,7 @@ def _compute_club_majority(vote_record: dict) -> dict:
     club_votes = defaultdict(lambda: defaultdict(int))
     for name, info in vote_record.get("votes", {}).items():
         club = COUNCILOR_LOOKUP.get(name, "")
-        if club and info["vote"] not in ("nieobecny",):
+        if club_has_line(club) and info["vote"] not in ("nieobecny",):
             club_votes[club][info["vote"]] += 1
     result = {}
     for club, cats in club_votes.items():
@@ -765,7 +768,7 @@ def build_data_json(voting_records: list[dict]) -> dict:
             cat = {"za": "za", "przeciw": "przeciw", "wstrzymal_sie": "wstrzymal_sie"}.get(v)
             if cat:
                 club = c["club"]
-                if club and club != "Niezrzeszeni" and club in club_majority:
+                if club_has_line(club) and club in club_majority:
                     if cat == club_majority[club]:
                         c["votes_with_club"] += 1
                     else:

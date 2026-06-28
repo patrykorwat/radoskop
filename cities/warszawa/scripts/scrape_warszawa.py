@@ -30,6 +30,7 @@ from pathlib import Path
 
 # Wspólne liby z radoskop/scripts (lib_stenogram) dostępne w całym module.
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_clubs import club_has_line  # noqa: E402
 
 try:
     from bs4 import BeautifulSoup
@@ -815,7 +816,9 @@ def compute_club_majority(vote: dict, profiles: dict) -> dict[str, str]:
     for cat in ["za", "przeciw", "wstrzymal_sie"]:
         for name in vote["named_votes"].get(cat, []):
             club = profiles.get(name, {}).get("club", "?")
-            if club != "?":
+            # Niezrzeszeni nie są klubem z linią — nie liczymy dla nich
+            # "większości", bo to bukiet niezależnych bez wspólnego stanowiska.
+            if club_has_line(club):
                 club_votes[club][cat] += 1
 
     majority = {}
@@ -912,7 +915,9 @@ def build_councilors(all_votes: list[dict], sessions: list[dict], profiles: dict
 def _check_rebellion(councilor: dict, vote_cat: str, club_majority: dict, vote: dict):
     """Sprawdź czy radny głosował inaczej niż większość klubu."""
     club = councilor["club"]
-    if club == "?" or club not in club_majority:
+    # Niezrzeszeni / bez klubu nie mają linii klubowej — bunt jest dla nich
+    # bez sensu (Paweł Lech jako niezrzeszony pokazywał 419 "razy wbrew").
+    if not club_has_line(club) or club not in club_majority:
         return
     majority_cat = club_majority[club]
     if vote_cat == majority_cat:

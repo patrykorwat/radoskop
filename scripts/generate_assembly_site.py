@@ -618,6 +618,13 @@ def main() -> int:
         import shutil as _sh
         _sh.copy2(spa_404, output_dir / "404.html")
 
+    # Spółki: statyczny plik dla zakładki "Spółki" (jeśli zbudowany). Frontend
+    # pokazuje zakładkę tylko gdy ten plik istnieje.
+    _spolki_src = cfg_path.parent / "docs" / "spolki.json"
+    if _spolki_src.is_file():
+        import shutil as _sh2
+        _sh2.copy2(_spolki_src, output_dir / "spolki.json")
+
     print(f"Wygenerowano stronę sejmiku: {output_dir}/index.html ({len(html)} B)")
     return 0
 

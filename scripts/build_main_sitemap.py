@@ -123,6 +123,13 @@ def write_sitemap_index(
     parts.append(f"    <loc>{apex}/sitemap-main.xml</loc>")
     parts.append(f"    <lastmod>{today}</lastmod>")
     parts.append("  </sitemap>")
+    # Krajowy rejestr spółek — strony /company/{krs}/ żyją tylko na radoskop.pl
+    # (build_national_spolki.py → docs/companies-sitemap.xml).
+    if domain == "pl":
+        parts.append("  <sitemap>")
+        parts.append(f"    <loc>{apex}/companies-sitemap.xml</loc>")
+        parts.append(f"    <lastmod>{today}</lastmod>")
+        parts.append("  </sitemap>")
     # Per-city sitemaps
     for slug, config in cities:
         fallback = f"https://{slug}.radoskop.{'eu' if domain == 'eu' else 'pl'}"

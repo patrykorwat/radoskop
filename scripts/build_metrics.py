@@ -11,6 +11,7 @@ import json
 import sys
 import os
 from collections import defaultdict
+from lib_clubs import club_has_line
 
 
 # ── Kadencja definitions ──────────────────────────────────────────────
@@ -246,7 +247,9 @@ def build_councilor_metrics(sessions, clubs):
             club_votes = defaultdict(lambda: defaultdict(int))
             for n, v_type in councilor_vote.items():
                 club = clubs.get(n, "?")
-                if v_type in ("za", "przeciw", "wstrzymal_sie"):
+                # Niezrzeszeni / bez klubu nie mają linii — pomijamy w
+                # liczeniu większości, więc nie pojawią się w club_majorities.
+                if v_type in ("za", "przeciw", "wstrzymal_sie") and club_has_line(club):
                     club_votes[club][v_type] += 1
 
             club_majorities = {}

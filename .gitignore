@@ -38,6 +38,13 @@ docs/interpelacje-index.json
 docs/compare-index.json
 docs/sitemap.xml
 docs/sitemap-main.xml
+# Krajowy rejestr spółek — generowany przez build_national_spolki.py z per-city
+# spolki.json. Output (strony spółek + indeks + sitemap) leci na s3 _main, repo
+# nie śledzi każdej regeneracji.
+docs/company/
+docs/companies/
+docs/companies.json
+docs/companies-sitemap.xml
 # Jednostki administracyjne (docs/units/): stały asset generowany lokalnie przez
 # scripts/build_units.py (mapshaper), odświeżany ~raz na rok. ŚWIADOMIE tracked,
 # bo NAS go nie regeneruje a musi mieć pliki do deployu. Wyjątek: surowy cache.

@@ -74,6 +74,7 @@ except ImportError:
 # emit byte-for-byte identical JSON shapes.
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
+from lib_clubs import club_has_line  # noqa: E402
 from lib_esesja import (  # noqa: E402
     parse_polish_date,
     make_slug,
@@ -311,7 +312,7 @@ class BipScraper(ABC):
             )
             for name, cat in councilor_vote.items():
                 club = stats[name].get("club") or self.resolve_club(name)
-                if not club or club == "?":
+                if not club_has_line(club):
                     continue
                 club_tally[club][cat] += 1
 
@@ -327,7 +328,7 @@ class BipScraper(ABC):
             # Per radny: zgodność z majority swojego klubu.
             for name, their_cat in councilor_vote.items():
                 club = stats[name].get("club") or self.resolve_club(name)
-                if not club or club == "?":
+                if not club_has_line(club):
                     continue
                 majority = club_majority.get(club)
                 if not majority:

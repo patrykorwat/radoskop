@@ -30,6 +30,9 @@ from collections import Counter, defaultdict
 from datetime import datetime
 from itertools import combinations
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_clubs import club_has_line  # noqa: E402
 from urllib.parse import urljoin
 
 try:
@@ -863,7 +866,7 @@ def compute_club_agreement(all_votes: list[dict], name_to_club: dict) -> dict:
 
         for name, vote_cat in voters.items():
             club = name_to_club.get(name)
-            if not club:
+            if not club_has_line(club):
                 continue
 
             if name not in agreement:
@@ -904,7 +907,7 @@ def compute_rebellions(all_votes: list[dict], name_to_club: dict) -> dict:
 
         for name, vote_cat in voters.items():
             club = name_to_club.get(name)
-            if not club:
+            if not club_has_line(club):
                 continue
 
             club_votes = {}

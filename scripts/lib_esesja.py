@@ -97,6 +97,7 @@ def parse_polish_date(text: str) -> str | None:
 # kolabowała separatorów ("Mazur- Kałuża" → podwójny dywiz w slugu); stare
 # warianty ratuje _redirects/profiles.json + 301 w workerze.
 from lib_slug import make_slug  # noqa: E402, F401
+from lib_clubs import club_has_line  # noqa: E402
 
 
 def build_name_lookup(councilors: dict[str, str]) -> dict[str, str]:
@@ -796,7 +797,9 @@ class EsesjaScraper:
             club_dec: dict[str, dict[str, int]] = defaultdict(lambda: defaultdict(int))
             for name, dec in decision_of.items():
                 club = stats[name]["club"]
-                if club:
+                # Niezrzeszeni (kod "NZ" / literał) i bez klubu nie mają linii —
+                # nie liczymy dla nich większości, więc nie buntują się.
+                if club_has_line(club):
                     club_dec[club][dec] += 1
             club_major = {
                 club: max(dc.items(), key=lambda kv: kv[1])[0]

@@ -55,6 +55,7 @@ ROMAN_TO_ARABIC = {
 # ł/Ł): "Jarosław" → "jarosaw". Bug live w sejmikach do 2026-06-05; stare
 # slugi ratuje _redirects/profiles.json emitowane niżej + 301 w workerze.
 from lib_slug import legacy_nfkd_slug, legacy_table_slug, make_slug as _lib_make_slug  # noqa: E402
+from lib_clubs import club_has_line  # noqa: E402
 
 
 def make_slug(name: str) -> str:
@@ -135,7 +136,8 @@ def compute_councilor_metrics(
             if decision in ("nieobecni", "brak_glosu"):
                 continue
             club = club_of.get(idx[i])
-            if club:
+            # Niezrzeszeni (kod "NZ") / bez klubu nie mają linii klubowej.
+            if club_has_line(club):
                 club_decisions[club][decision] += 1
         club_majority: dict[str, str] = {}
         for club, dec_count in club_decisions.items():

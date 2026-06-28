@@ -54,6 +54,7 @@
         <div class="tab-tier tab-tier--secondary">
           <button class="tab tab-secondary" data-tab="interpelacje">Interpelacje</button>
           <button class="tab tab-secondary" data-tab="sessions">Sesje</button>
+          <button class="tab tab-secondary" id="tab-btn-spolki" data-tab="spolki" style="display:none">Spółki</button>
 {{AKTUALNOSCI_BUTTON}}
         </div>
       </div>
@@ -133,6 +134,10 @@
 
     <div id="tab-budget" class="section" style="display:none">
       <div id="budget-content"></div>
+    </div>
+
+    <div id="tab-spolki" class="section" style="display:none">
+      <div id="spolki-content"></div>
     </div>
 
   </div>
@@ -464,6 +469,8 @@ async function init() {
     renderKadencjaBar();
     // Porównywarka miast: best-effort, nie blokuje renderu strony.
     loadCityCompareIndex();
+    // Tab Spółki: pokaż przycisk tylko gdy istnieje /spolki.json dla jednostki.
+    initSpolkiTab();
     // Deep links
     // Strona główna "/" → widok landingu (renderowany z danych kadencji).
     if (path === '/' || path === '') {
@@ -589,6 +596,12 @@ async function init() {
       navigateTo(toCanonicalPath(path), true);
       return;
     }
+    if (path === '/spolki' || path === '/spolki/') {
+      selectKadencjaQuiet(initialKid);
+      activateTab('spolki');
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
     if (path.startsWith('/komisja/')) {
       selectKadencjaQuiet(initialKid);
       const slug = decodeURIComponent(path.replace('/komisja/', '').replace(/\/$/, ''));
@@ -699,7 +712,7 @@ async function selectKadencja(kid) {
 }
 
 function activateTab(tabName) {
-  const allTabs = ['ranking','sessions','votes','komisje','interpelacje','budget'];
+  const allTabs = ['ranking','sessions','votes','komisje','interpelacje','budget','spolki'];
   // Guard: invalid tabName cofamy do ranking, żeby nie zostawić currentTab jako undefined.
   if (!tabName || tabName === 'undefined' || tabName === 'null' || !allTabs.includes(tabName)) {
     tabName = DEFAULT_TAB;
@@ -714,9 +727,10 @@ function activateTab(tabName) {
     const el = document.getElementById('tab-'+t);
     if (el) el.style.display = (t === tabName) ? 'block' : 'none';
   });
-  document.getElementById('kadencja-bar').style.display = (tabName === 'budget' || tabName === 'interpelacje' || tabName === 'komisje') ? 'none' : '';
+  document.getElementById('kadencja-bar').style.display = (tabName === 'budget' || tabName === 'interpelacje' || tabName === 'komisje' || tabName === 'spolki') ? 'none' : '';
   if (tabName === 'interpelacje') renderInterpelacje();
   if (tabName === 'komisje') renderKomisjeList();
+  if (tabName === 'spolki') renderSpolki();
   setTitle(TAB_TITLES[tabName] || '');
   setCanonicalPath(mainPath(tabName));
 }
@@ -735,7 +749,7 @@ function hideAllViews() {
 }
 
 let currentTab = (typeof DEFAULT_TAB !== 'undefined') ? DEFAULT_TAB : 'ranking';
-const TAB_SLUGS = {ranking:'ranking',sessions:'sesje',votes:'glosowania',komisje:'komisje',interpelacje:'interpelacje',budget:'budzet'};
+const TAB_SLUGS = {ranking:'ranking',sessions:'sesje',votes:'glosowania',komisje:'komisje',interpelacje:'interpelacje',budget:'budzet',spolki:'spolki'};
 const SLUG_TABS = Object.fromEntries(Object.entries(TAB_SLUGS).map(([k,v])=>[v,k]));
 const KAD_SLUGS = {'2018-2024':'viii','2024-2029':'ix'};
 const SLUG_KADS = Object.fromEntries(Object.entries(KAD_SLUGS).map(([k,v])=>[v,k]));
@@ -752,6 +766,7 @@ const SLUG_KADS = Object.fromEntries(Object.entries(KAD_SLUGS).map(([k,v])=>[v,k
 const EN_TO_PL_SLUG = {
   vote:'glosowanie', session:'sesja', profile:'profil', reports:'raporty',
   interpellations:'interpelacje', commissions:'komisje', commission:'komisja',
+  companies:'spolki',
   budget:'budzet', term:'kadencja', news:'aktualnosci', bill:'druk',
   privacy:'polityka-prywatnosci', terms:'regulamin',
 };
@@ -759,7 +774,7 @@ const PL_TO_EN_SLUG = Object.fromEntries(Object.entries(EN_TO_PL_SLUG).map(([k,v
 const EN_TO_PL_TAB = {votes:'glosowania', sessions:'sesje', ranking:'ranking'};
 const PL_TO_EN_TAB = Object.fromEntries(Object.entries(EN_TO_PL_TAB).map(([k,v])=>[v,k]));
 // Internal tab → angielski slug URL (emisja w mainPath).
-const TAB_SLUGS_EN = {ranking:'ranking', sessions:'sessions', votes:'votes'};
+const TAB_SLUGS_EN = {ranking:'ranking', sessions:'sessions', votes:'votes', spolki:'companies'};
 
 function toInternalPath(path) {
   if (!path || path === '/') return path || '/';
@@ -784,7 +799,7 @@ function toCanonicalPath(path) {
 }
 
 const BASE_TITLE = '{{SITE_TITLE}}';
-const TAB_TITLES = {ranking:'Ranking radnych',sessions:'Sesje',votes:'Głosowania',komisje:'Komisje',interpelacje:'Interpelacje',budget:'Budżet'};
+const TAB_TITLES = {ranking:'Ranking radnych',sessions:'Sesje',votes:'Głosowania',komisje:'Komisje',interpelacje:'Interpelacje',budget:'Budżet',spolki:'Spółki'};
 function setTitle(subtitle) {
   document.title = subtitle ? subtitle + ' \u2013 ' + BASE_TITLE : BASE_TITLE;
 }
@@ -870,7 +885,7 @@ function mainPath(tab, kid) {
   kid = kid || currentKid;
   // Guard: jeśli tab/kid puste albo literal "undefined"/"null", użyj defaults.
   // Zapobiega URL-om typu /kadencja/ix/undefined/.
-  const validTabs = ['ranking','sessions','votes','komisje','interpelacje','budget'];
+  const validTabs = ['ranking','sessions','votes','komisje','interpelacje','budget','spolki'];
   if (!tab || tab === 'undefined' || tab === 'null' || !validTabs.includes(tab)) {
     tab = 'ranking';
   }
@@ -881,6 +896,7 @@ function mainPath(tab, kid) {
   if (tab === 'budget') return '/budget/';
   if (tab === 'interpelacje') return '/interpellations/';
   if (tab === 'komisje') return '/commissions/';
+  if (tab === 'spolki') return '/companies/';
   const kadSlug = KAD_SLUGS[kid] || kid;
   const tabSlug = TAB_SLUGS_EN[tab] || tab;
   if (tab === 'ranking' && kid === defaultKid) return '/councillors/';
@@ -994,6 +1010,19 @@ function _canonName(s) {
   return String(s == null ? '' : s)
     .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
     .toLowerCase().replace(/\./g, ' ').split(/\s+/).filter(Boolean).sort().join(' ');
+}
+
+// Czy klub ma linię klubową (whip)? Niezrzeszeni mają kanoniczny KOD "NZ"
+// (configy miast, Berlin fraktionslos→NZ, Kopenhaga Løsgængere→NZ), Warszawa
+// literał "Niezrzeszeni", nieznany = "?"/"-"/pusty. Sprawdzamy kod, nie
+// tłumaczenie — hardcode "Niezrzeszeni" nie działa dla miast zagranicznych.
+// Bez linii klubowej "głos wbrew klubowi" / zgodność z klubem nie mają sensu.
+function clubHasLine(club){
+  if(!club) return false;
+  var c=String(club).trim().toLowerCase();
+  if(c===''||c==='?'||c==='-'||c==='n/d'||c==='nz'||c==='brak') return false;
+  if(c.indexOf('niezrzesz')===0) return false;
+  return true;
 }
 
 // Build link elements via string concatenation so crawlers
@@ -1148,7 +1177,9 @@ function _landingStats(){
   // radach przepuszczał np. 10:1, a w dużych ucinał realne spory.
   var contested=votes.filter(function(v){ var c=v.counts||{}, za=c.za||0, prz=c.przeciw||0, m=Math.min(za,prz); return m>0 && m*3>=(za+prz); });
   var active=cs.slice().sort(function(a,b){ return (b.aktywnosc||0)-(a.aktywnosc||0) || (b.votes_total||0)-(a.votes_total||0); })[0];
-  var rebel=cs.filter(function(c){return (c.rebellion_count||0)>0;}).sort(function(a,b){ return (b.rebellion_count||0)-(a.rebellion_count||0); })[0];
+  // Niezrzeszeni / bez klubu nie mają linii klubowej, więc "głos wbrew klubowi"
+  // jest dla nich bez sensu (jak n/d w tabeli i profilu). Wyklucz ich z highlightu.
+  var rebel=cs.filter(function(c){return (c.rebellion_count||0)>0 && clubHasLine(c.club);}).sort(function(a,b){ return (b.rebellion_count||0)-(a.rebellion_count||0); })[0];
   var real=votes.filter(function(v){ return ((v.counts||{}).przeciw||0)>0; });
   var topVote=real.slice().sort(function(a,b){ var da=Math.abs((a.counts.za||0)-(a.counts.przeciw||0)), db=Math.abs((b.counts.za||0)-(b.counts.przeciw||0)); return da-db || ((b.counts.za+b.counts.przeciw)-(a.counts.za+a.counts.przeciw)); })[0];
   // Aktywność: bazą są sesje (K.sessions ma vote_count + date + number),
@@ -1187,8 +1218,9 @@ function renderLandingHTML(){
   var maxV=s.activity.reduce(function(x,e){ return Math.max(x,e.votes||0); },0)||1;
   var bars=s.activity.map(function(e){ var h1=Math.round((e.votes||0)/maxV*64), h2=Math.round((e.contested||0)/maxV*64),
       inner='<div style="position:absolute;bottom:0;width:100%;height:'+h1+'px;background:var(--accent);opacity:.6;border-radius:1px 1px 0 0"></div><div style="position:absolute;bottom:0;width:100%;height:'+h2+'px;background:var(--red);opacity:.6;border-radius:1px 1px 0 0"></div>',
-      st='flex:1;position:relative;height:64px;display:block';
-    return e.number!=null ? '<a href="/session/'+encodeURIComponent(e.number)+'/" onclick="event.preventDefault();showSession(\''+e.number+'\')" title="'+_lpEsc(e.date||'')+'" style="'+st+'">'+inner+'</a>' : '<div style="'+st+'">'+inner+'</div>'; }).join('');
+      st='flex:1;position:relative;height:64px;display:block',
+      ttl=_lpEsc((e.date||'')+' · '+(e.votes||0)+' '+_t('legend_votes')+' · '+(e.contested||0)+' '+_t('legend_contested'));
+    return e.number!=null ? '<a href="/session/'+encodeURIComponent(e.number)+'/" onclick="event.preventDefault();showSession(\''+e.number+'\')" title="'+ttl+'" style="'+st+'">'+inner+'</a>' : '<div title="'+ttl+'" style="'+st+'">'+inner+'</div>'; }).join('');
   var ax=s.activity.length?('<span>'+_lpMY(s.activity[0].date)+'</span><span>'+_lpMY(s.activity[s.activity.length-1].date)+'</span>'):'';
   function nav(tab,tk,dk){ return '<a class="lp-navcard" href="#" onclick="event.preventDefault();_lpGo(\''+tab+'\')"><div class="nk">'+_t(tk)+' <span class="ar">&rarr;</span></div><div class="nd">'+_t(dk)+'</div></a>'; }
   return ''+
@@ -1207,7 +1239,7 @@ function renderLandingHTML(){
     (r?('<div class="lp-hcard"><div><div class="lp-tag">'+_t('hl_rebel_tag')+'</div><div class="lp-name">'+profileLink(r.name)+'</div><div class="lp-hsub">'+_t('hl_rebel_sub')+'</div>'+_lpBadge(r.club)+'</div><div class="lp-num"><span>'+(r.rebellion_count||0)+'</span><small>'+_t('hl_rebel_unit')+'</small></div></div>'):'')+
     (tv?('<div class="lp-hcard"><div><div class="lp-tag">'+_t('hl_vote_tag')+'</div><div class="lp-name">'+voteLink(tv.id, _lpEsc(tv.topic||''))+'</div><div class="lp-hsub">'+_lpDate(tv.session_date)+' · '+_tf('vote_margin',{n:vm})+'</div></div><div class="lp-num"><span>'+(tv.counts.za||0)+':'+(tv.counts.przeciw||0)+'</span><small>'+_t('hl_vote_unit')+'</small></div></div>'):'')+
     '</div></section>'):'')+
-  (s.activity.length?('<section class="lp-sec"><h2>'+_t('sec_activity_h2')+'</h2><div class="lp-sub">'+_t('sec_activity_sub')+'</div><div class="lp-card"><div class="lp-spark">'+bars+'</div><div class="lp-axis">'+ax+'</div><div style="display:flex;gap:16px;font-size:.78rem"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--accent)"></span><span class="mu">'+_t('legend_votes')+'</span></span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--red)"></span><span class="mu">'+_t('legend_contested')+'</span></span></div></div></section>'):'')+
+  (s.activity.length?('<section class="lp-sec"><h2>'+_t('sec_activity_h2')+'</h2><div class="lp-sub">'+_t('sec_activity_sub')+'</div><div class="lp-card"><div style="display:flex;gap:8px;align-items:flex-start"><div style="display:flex;flex-direction:column;justify-content:space-between;height:64px;font-size:.68rem;color:var(--muted);text-align:right;flex:0 0 auto" aria-hidden="true"><span>'+maxV+'</span><span>'+Math.round(maxV/2)+'</span><span>0</span></div><div style="flex:1;min-width:0"><div class="lp-spark">'+bars+'</div><div class="lp-axis">'+ax+'</div></div></div><div style="display:flex;gap:16px;font-size:.78rem"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--accent)"></span><span class="mu">'+_t('legend_votes')+'</span></span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--red)"></span><span class="mu">'+_t('legend_contested')+'</span></span></div></div></section>'):'')+
   (rows?('<section class="lp-sec"><h2>'+_t('sec_contested_h2')+'</h2><div class="lp-sub">'+_t('sec_contested_sub')+'</div><div class="lp-card"><table><thead><tr><th>'+_t('th_vote')+'</th><th>'+_t('th_date')+'</th><th style="text-align:right">'+_t('th_for')+'</th><th style="text-align:right">'+_t('th_against')+'</th><th style="text-align:right">'+_t('th_abstain')+'</th><th style="padding-left:16px">'+_t('th_split')+'</th></tr></thead><tbody>'+rows+'</tbody></table></div></section>'):'')+
   '<section class="lp-sec"><h2>'+_t('sec_all_h2')+'</h2><div class="lp-sub">'+_t('sec_all_sub')+'</div>'+
     '<div class="lp-navlabel">'+_t('nav_label_main')+'</div><div class="lp-nav">'+
@@ -1373,12 +1405,12 @@ function renderCouncilorTable() {
       <td><span class="club ${clubClass(c.club)}">${(c.club && c.club !== '?') ? c.club : 'Niezrzeszeni'}</span></td>
       <td>${pctBar(c.frekwencja)}</td>
       <td>${pctBar(c.aktywnosc)}</td>
-      <td>${(!c.club || c.club === '?' || c.club === 'Niezrzeszeni') ? '<span style="color:var(--muted)">n/d</span>' : c.zgodnosc_z_klubem + '%'}</td>
+      <td>${!clubHasLine(c.club) ? '<span style="color:var(--muted)">n/d</span>' : c.zgodnosc_z_klubem + '%'}</td>
       <td>${c.votes_za}</td>
       <td>${c.votes_przeciw > 0 ? `<span class="pill pill-przeciw">${c.votes_przeciw}</span>` : '0'}</td>
       <td>${c.votes_wstrzymal > 0 ? `<span class="pill pill-wstrzymal">${c.votes_wstrzymal}</span>` : '0'}</td>
       <td>${c.votes_brak ?? 0}</td>
-      <td>${(!c.club || c.club === '?' || c.club === 'Niezrzeszeni') ? '<span style="color:var(--muted)">n/d</span>' : (c.rebellion_count > 0 ? `<span class="pill pill-przeciw">${c.rebellion_count}</span>` : '0')}</td>
+      <td>${!clubHasLine(c.club) ? '<span style="color:var(--muted)">n/d</span>' : (c.rebellion_count > 0 ? `<span class="pill pill-przeciw">${c.rebellion_count}</span>` : '0')}</td>
     </tr>`;
   }).join('');
 
@@ -1642,7 +1674,7 @@ function showProfile(name, initialTab) {
               <div style="font-size:1.7rem;font-weight:700;line-height:1;color:${_kpiColor(kd.aktywnosc)}">${kd.aktywnosc}%</div>
               <div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:5px">Aktywność</div>
             </div>
-            ${kd.club === 'Niezrzeszeni' ? '' : `<div style="text-align:center;min-width:70px">
+            ${!clubHasLine(kd.club) ? '' : `<div style="text-align:center;min-width:70px">
               <div style="font-size:1.7rem;font-weight:700;line-height:1">${kd.zgodnosc_z_klubem}%</div>
               <div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:5px">Zgodność z klubem</div>
             </div>`}
@@ -1855,7 +1887,7 @@ function showProfile(name, initialTab) {
       })();
     }
 
-    if (hasVotes && kd.rebellion_count > 0 && kd.club !== 'Niezrzeszeni') {
+    if (hasVotes && kd.rebellion_count > 0 && clubHasLine(kd.club)) {
       const rebs = kd.rebellions || [];
       const REBS_PER_PAGE = 20;
       const rebPages = Math.ceil(rebs.length / REBS_PER_PAGE) || 1;
@@ -4351,6 +4383,58 @@ async function renderInterpelacje() {
 
 let budgetChartTrend = null, budgetChartCat = null, budgetChartCofog = null, budgetChartExec = null;
 
+/* ===== Spółki: organy spółek z udziałem jednostki — fakty z KRS/MSiG ===== */
+let _spolkiCache = null;
+async function _loadSpolki() {
+  if (_spolkiCache !== null) return _spolkiCache;
+  try {
+    const r = await fetch(location.origin + '/spolki.json', {cache:'no-store'});
+    _spolkiCache = r.ok ? await r.json() : {companies:[]};
+  } catch (e) { _spolkiCache = {companies:[]}; }
+  return _spolkiCache;
+}
+async function initSpolkiTab() {
+  const d = await _loadSpolki();
+  if (d && d.companies && d.companies.length) {
+    const btn = document.getElementById('tab-btn-spolki');
+    if (btn) btn.style.display = '';
+  }
+}
+function _spDate(od){ if(!od) return ''; const p=String(od).split('-'); return p.length===3 ? p[2]+'.'+p[1]+'.'+p[0] : String(od); }
+function _spYears(od){ if(!od) return ''; const d=new Date(od); if(isNaN(d)) return ''; const y=Math.max(0,(Date.now()-d.getTime())/(365.25*864e5)); return y.toFixed(1)+' lat'; }
+function _spEsc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+async function renderSpolki() {
+  const el = document.getElementById('spolki-content');
+  if (!el) return;
+  const d = await _loadSpolki();
+  const cos = (d && d.companies) || [];
+  if (!cos.length) { el.innerHTML = '<p style="color:var(--muted);padding:20px 0">Brak danych o spółkach dla tej jednostki.</p>'; return; }
+  const intro = '<p style="color:var(--muted);margin:0 0 16px;max-width:760px">Spółki z udziałem jednostki oraz skład ich organów (zarząd, rada nadzorcza) wraz z okresem zasiadania. Dane z oficjalnych rejestrów: KRS (odpis pełny) i Monitor Sądowy i Gospodarczy. Skład organów to fakty z rejestru.' + (d.generated_at ? ' Stan na ' + _spEsc(d.generated_at) + '.' : '') + '</p>';
+  const cards = cos.map(function(co){
+    const owners = (co.owners||[]).map(o=>'<span style="font-size:11px;padding:3px 9px;border-radius:999px;background:var(--surface,#f1f5f9);border:1px solid var(--border,#e2e8f0);color:var(--muted)">'+_spEsc(o)+'</span>').join(' ');
+    let organs = '';
+    [['zarząd','zarzad'],['rada nadzorcza','rada_nadzorcza']].forEach(function(pair){
+      const mem = (co[pair[1]]||[]);
+      if (!mem.length) return;
+      organs += '<div style="margin-top:10px"><div style="font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:6px">'+pair[0]+'</div>';
+      mem.forEach(function(m){
+        const nm = _spEsc(m.name || m.rola || '—');
+        const note = m.note ? ' <span style="color:var(--muted);font-size:12px">('+_spEsc(m.note)+')</span>' : '';
+        const when = m.od ? ('od '+_spDate(m.od)+(_spYears(m.od)?' · '+_spYears(m.od):'')) : '';
+        organs += '<div style="display:flex;justify-content:space-between;gap:10px;padding:6px 8px;border-radius:8px;background:var(--surface,#f8fafc);margin-bottom:5px"><span style="font-weight:600">'+nm+note+'</span><span style="color:var(--muted);font-size:12px;white-space:nowrap">'+_spEsc(when)+'</span></div>';
+      });
+      organs += '</div>';
+    });
+    if (!organs) organs = '<p style="color:var(--muted);font-size:13px;margin-top:8px">Skład organów: do uzupełnienia (odpis pełny KRS + MSiG).</p>';
+    const krsLink = co.krs ? '<div style="color:var(--muted);font-size:12px;margin-bottom:8px">KRS '+_spEsc(co.krs)+'</div>' : '';
+    const titleHtml = co.krs
+      ? '<a href="https://radoskop.pl/company/'+encodeURIComponent(co.krs)+'/" style="color:inherit;text-decoration:none">'+_spEsc(co.name)+'</a>'
+      : _spEsc(co.name);
+    return '<div style="border:1px solid var(--border,#e2e8f0);border-radius:14px;padding:16px;margin-bottom:12px"><h3 style="margin:0 0 4px;font-size:16px">'+titleHtml+'</h3>'+krsLink+(owners?'<div style="margin-bottom:6px">'+owners+'</div>':'')+organs+'</div>';
+  }).join('');
+  el.innerHTML = intro + cards;
+}
+
 function renderBudget() {
   const B = window.BUDGET;
   if (!B || !B.totals || !B.totals.length) return;
@@ -4755,7 +4839,7 @@ function showCompare() {
       <div style="display:grid;gap:8px">
         <div>Frekwencja: ${pctBar(c.frekwencja)}</div>
         <div>Aktywność: ${pctBar(c.aktywnosc)}</div>
-        <div>Zgodność z klubem: ${c.club === 'Niezrzeszeni' ? '<span style="color:var(--muted)">n/d</span>' : c.zgodnosc_z_klubem + '%'}</div>
+        <div>Zgodność z klubem: ${!clubHasLine(c.club) ? '<span style="color:var(--muted)">n/d</span>' : c.zgodnosc_z_klubem + '%'}</div>
         <div style="display:flex;gap:6px;margin-top:4px">
           <span class="pill pill-za">Za: ${c.votes_za}</span>
           <span class="pill pill-przeciw">Przeciw: ${c.votes_przeciw}</span>
@@ -5195,6 +5279,7 @@ window.addEventListener('popstate', async () => {
   else if (path === '/budzet' || path === '/budzet/') pageType = 'budget';
   else if (path === '/interpelacje' || path === '/interpelacje/') pageType = 'interpellations';
   else if (path === '/komisje' || path === '/komisje/') pageType = 'commissions';
+  else if (path === '/spolki' || path === '/spolki/') pageType = 'companies';
   else if (path.startsWith('/kadencja/')) {
     const parts = path.replace('/kadencja/', '').split('/');
     const tab = parts[1] || 'ranking';
@@ -5294,6 +5379,8 @@ window.addEventListener('popstate', async () => {
     return;
   } else if (path === '/budzet' || path === '/budzet/') {
     activateTab('budget');
+  } else if (path === '/spolki' || path === '/spolki/') {
+    activateTab('spolki');
   } else if (path.startsWith('/kadencja/')) {
     const parts = path.replace('/kadencja/', '').split('/');
     const kid = SLUG_KADS[parts[0]];

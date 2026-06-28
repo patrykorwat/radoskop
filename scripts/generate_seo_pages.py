@@ -43,6 +43,7 @@ from lib_session_summary import (
     session_votes, summarize_session, valid_session_number,
 )
 from lib_stenogram import safe_session_id
+from lib_clubs import club_has_line
 from datetime import date as _date
 from i18n import apply_locale
 
@@ -467,6 +468,8 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         "term": "term",
         "budget": "budget",
         "reports": "reports",
+        "companies": "companies",
+        "company": "company",
         "tab_profiles": "councillors",
         "tab_sessions": "sessions",
         "tab_votes": "votes",
@@ -635,9 +638,10 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         okreg = kad.get("okr\u0119g")
 
         club_short = (club or "").strip()
-        _club_low = club_short.lower()
-        club_is_none = _club_low in ("", "niezrzeszony", "niezrzeszona",
-                                     "niezrzeszeni", "?", "brak", "-")
+        # club_is_none = brak realnego klubu z linią (niezrzeszony/„NZ"/nieznany).
+        # Wspólny helper rozpoznaje też kod „NZ" miast zagranicznych, nie tylko
+        # polski literał „Niezrzeszeni".
+        club_is_none = not club_has_line(club_short)
         club_paren = f" ({club_short})" if not club_is_none else ""
 
         # is_pl: polskie miasta (i sejmiki) dostaj\u0105 pe\u0142n\u0105 sprzeda\u017cow\u0105 kopi\u0119.
@@ -666,10 +670,14 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         # źródła (protokoły BIP) zamiast pustego "Sprawdź...". Polski tekst
         # tylko dla is_pl, żeby nie wstrzykiwać go na zlokalizowane strony .eu.
         if has_vd and is_pl:
-            hook = (
-                f"{rebellion} razy wbrew klubowi" if rebellion
-                else f"zgodność z klubem {zgodnosc:.0f}%"
-            )
+            # Niezrzeszeni nie mają linii klubowej — ani "wbrew klubowi", ani
+            # "zgodność z klubem" nie ma dla nich sensu; hook = aktywność.
+            if club_is_none:
+                hook = f"aktywność {aktywnosc:.0f}%"
+            elif rebellion:
+                hook = f"{rebellion} razy wbrew klubowi"
+            else:
+                hook = f"zgodność z klubem {zgodnosc:.0f}%"
             desc = (
                 f"{name}{club_paren}, Rada Miasta {city_gen}. "
                 f"{votes_total} głosowań, frekwencja {frekwencja:.0f}%, {hook}. "
@@ -733,7 +741,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                     f"Zarejestrowane głosowania: {votes_total}, w tym "
                     f"za {votes_za}, przeciw {votes_przeciw}, wstrzymane {votes_wstrzymal}."
                 )
-                if rebellion:
+                if rebellion and not club_is_none:
                     vline += f" Liczba głosów niezgodnych z klubem: {rebellion}."
                 body_parts.append(f"<p>{vline}</p>")
             if komisje:
@@ -767,7 +775,7 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                     f"Głosowania: {votes_total}. Za: {votes_za} · "
                     f"Przeciw: {votes_przeciw} · Wstrzymał się: {votes_wstrzymal}."
                 )
-                if rebellion:
+                if rebellion and not club_is_none:
                     vline += f" Głosy wbrew klubowi: {rebellion}."
                 body_parts.append(f"<p>{vline}</p>")
             if komisje:
@@ -1821,6 +1829,41 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         _maybe_write_page(out / SLUG["budget"] / "index.html", page)
         sitemap_entries.append({"loc": canonical, "changefreq": "monthly", "priority": "0.8"})
         print(f"  1 budget page")
+
+    # ════════════════════════════════════════════
+    # 5b. Spółki — zakładka /companies/ + strona per spółka /company/{krs}/
+    # ════════════════════════════════════════════
+    spolki_path = docs / "spolki.json"
+    if spolki_path.exists():
+        try:
+            _spjson = json.loads(spolki_path.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            _spjson = {}
+        spolki = _spjson.get("companies", []) if isinstance(_spjson, dict) else []
+        if spolki:
+            companies_canonical = f"{site_url}/{SLUG['companies']}/"
+            tab_title = f"Spółki z udziałem {city_gen} – Radoskop {city_name}"
+            tab_desc = (f"Spółki z udziałem {city_gen} oraz skład ich organów "
+                        f"(zarząd, rada nadzorcza). Dane z KRS i Monitora Sądowego i Gospodarczego.")
+            li = []
+            for co in spolki:
+                nm = esc(co.get("name", ""))
+                krs = esc(str(co.get("krs", "")))
+                cu = f"https://radoskop.pl/{SLUG['company']}/{krs}/"
+                li.append(f'<li><a href="{cu}">{nm}</a> (KRS {krs})</li>')
+            tab_body = f"<h1>{esc(tab_title)}</h1><p>{esc(tab_desc)}</p><ul>{''.join(li)}</ul>"
+            tab_crumbs = _breadcrumb([
+                (f"Radoskop {city_name}", f"{site_url}/"),
+                (f"Spółki z udziałem {city_gen}", companies_canonical),
+            ])
+            page = make_page(main_html, companies_canonical, tab_title, tab_desc,
+                             extra_body=tab_body, jsonld=tab_crumbs)
+            _maybe_write_page(out / SLUG["companies"] / "index.html", page)
+            sitemap_entries.append({"loc": companies_canonical, "changefreq": "monthly", "priority": "0.6"})
+            # Strony pojedynczych spółek są KRAJOWE (radoskop.pl/company/{krs}/),
+            # bo jedna spółka pojawia się u wielu jednostek (np. Port Lotniczy
+            # Gdańsk u miasta i u województwa). Generuje je build_national_spolki.py.
+            print(f"  1 zakładka /companies/ ({len(spolki)} spółek; strony spółek krajowo na radoskop.pl)")
 
     # ════════════════════════════════════════════
     # 6. Catch-all directory pages
