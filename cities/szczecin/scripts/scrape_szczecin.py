@@ -111,45 +111,61 @@ DELAY = 0.3  # politeness sleep przed HTTP, cache hits pomijają
 # Źródło: BIP Szczecin (bip.um.szczecin.pl/chapter_50591.asp)
 # 33 radnych: 21x KO, 7x PiS, 5x OK
 COUNCILORS = {
-    # KO - Koalicja Obywatelska (19 radnych)
-    "Abramowicz Elżbieta": "KO",
-    "Bartnik Paweł": "KO",
-    "Biskupski Marcin": "KO",
-    "Bohuń Maria": "KO",
-    "Dorżynkiewicz Wojciech": "KO",
-    "Gieryga Mateusz": "KO",
-    "Gródecka Szwajkiewicz Dorota": "KO",
-    "Herczyński Roman": "KO",
-    "Jasińska Ewa": "KO",
-    "Jeleniewska Zuzanna": "KO",
-    "Kaup Stanisław": "KO",
-    "Kępka Wojciech": "KO",
-    "Milewska Ilona": "KO",
-    "Pańka Urszula": "KO",
-    "Posłuszny Jan": "KO",
-    "Radziwinowicz Andrzej": "KO",
-    "Rogaczewska Wiktoria": "KO",
-    "Schneider Maria": "KO",
-    "Słowik Przemysław": "KO",
-    "Tyszler Łukasz": "KO",
-    "Wleklak Małgorzata": "KO",
+    # KO - Koalicja Obywatelska
+    "Elżbieta Abramowicz": "KO",
+    "Paweł Bartnik": "KO",
+    "Marcin Biskupski": "KO",
+    "Maria Bohuń": "KO",
+    "Wojciech Dorżynkiewicz": "KO",
+    "Mateusz Gieryga": "KO",
+    "Dorota Gródecka-Szwajkiewicz": "KO",
+    "Roman Herczyński": "KO",
+    "Ewa Jasińska": "KO",
+    "Zuzanna Jeleniewska": "KO",
+    "Stanisław Kaup": "KO",
+    "Wojciech Kępka": "KO",
+    "Ilona Milewska": "KO",
+    "Urszula Pańka": "KO",
+    "Jan Posłuszny": "KO",
+    "Andrzej Radziwinowicz": "KO",
+    "Wiktoria Rogaczewska": "KO",
+    "Maria Schneider": "KO",
+    "Przemysław Słowik": "KO",
+    "Łukasz Tyszler": "KO",
+    "Małgorzata Wleklak": "KO",
 
     # PiS - Prawo i Sprawiedliwość (7 radnych)
-    "Chabior Marek": "PiS",
-    "Duklanowski Marek": "PiS",
-    "Kopeć Maciej": "PiS",
-    "Pawlicki Marcin": "PiS",
-    "Romianowski Krzysztof": "PiS",
-    "Smoliński Dariusz": "PiS",
-    "Szałabawka Julia": "PiS",
+    "Marek Chabior": "PiS",
+    "Marek Duklanowski": "PiS",
+    "Maciej Kopeć": "PiS",
+    "Marcin Pawlicki": "PiS",
+    "Krzysztof Romianowski": "PiS",
+    "Dariusz Smoliński": "PiS",
+    "Julia Szałabawka": "PiS",
 
     # OK - OK Polska (5 radnych)
-    "Balicka Jolanta": "OK",
-    "Jerzyk Henryk": "OK",
-    "Kęsik Piotr": "OK",
-    "Kolbowicz Marek": "OK",
-    "Łażewska Renata": "OK",
+    "Jolanta Balicka": "OK",
+    "Henryk Jerzyk": "OK",
+    "Piotr Kęsik": "OK",
+    "Marek Kolbowicz": "OK",
+    "Renata Łażewska": "OK",
 }
+
+
+# eSesja Szczecina zwraca nazwę w kolejności "Nazwisko Imię" (czasem nazwisko
+# złożone z dwóch tokenów, np. "Gródecka Szwajkiewicz Dorota"). Kanonizujemy do
+# "Imię Nazwisko" z rostera BIP powyżej, dopasowując po ZBIORZE tokenów —
+# odpornie na kolejność, wielkość liter i dywiz w nazwisku złożonym. Dzięki temu
+# slug i wyświetlana nazwa są poprawne (np. "Chabior Marek" -> "Marek Chabior").
+def _name_tokens(s: str) -> frozenset:
+    return frozenset(t.casefold() for t in (s or "").replace("-", " ").split() if t)
+
+
+_COUNCILOR_BY_TOKENS = {_name_tokens(k): k for k in COUNCILORS}
+
+
+def canonical_name(name: str) -> str:
+    return _COUNCILOR_BY_TOKENS.get(_name_tokens(name), name)
 
 # Reusable HTTP session
 _session = None
@@ -548,7 +564,7 @@ def scrape_single_vote(url: str, session: dict, vote_idx: int, topic: str) -> di
         if not cat_key:
             continue
         for osoba in wim.find_all("div", class_="osobaa"):
-            name = osoba.get_text(strip=True)
+            name = canonical_name(osoba.get_text(strip=True))
             if name and len(name) > 2:
                 named_votes[cat_key].append(name)
 
@@ -556,7 +572,7 @@ def scrape_single_vote(url: str, session: dict, vote_idx: int, topic: str) -> di
     total_from_wim = sum(len(v) for v in named_votes.values())
     if total_from_wim == 0:
         for osoba in soup.find_all("div", class_="osobaa"):
-            name = osoba.get_text(strip=True)
+            name = canonical_name(osoba.get_text(strip=True))
             if not name or len(name) <= 2:
                 continue
             classes = osoba.get("class", [])
