@@ -1713,11 +1713,24 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                 f" Glosowan: {kad_data.get('total_votes', 0)}</p>\n"
             )
             clubs = kad_data.get("clubs") or {}
-            # clubs to dict {nazwa: liczba_radnych}; lista jako fallback.
+            # clubs bywa dict {nazwa: liczba} albo {nazwa: {members,
+            # members_list}} (np. Częstochowa); lista jako fallback.
+            def _club_count(v):
+                if isinstance(v, bool):
+                    return 0
+                if isinstance(v, int):
+                    return v
+                if isinstance(v, dict):
+                    m = v.get("members")
+                    if isinstance(m, int) and not isinstance(m, bool):
+                        return m
+                    ml = v.get("members_list")
+                    return len(ml) if isinstance(ml, list) else 0
+                return 0
             if isinstance(clubs, dict):
                 club_parts = [
-                    f"{esc(n)} ({cnt})" for n, cnt in sorted(
-                        clubs.items(), key=lambda kv: -kv[1]
+                    f"{esc(n)} ({_club_count(cnt)})" for n, cnt in sorted(
+                        clubs.items(), key=lambda kv: -_club_count(kv[1])
                     ) if n and n != "?"
                 ]
             else:
