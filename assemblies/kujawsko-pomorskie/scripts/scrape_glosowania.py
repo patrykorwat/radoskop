@@ -24,10 +24,12 @@ Output: kadencja-2024-2029.json zgodne ze schemą innych sejmików.
 from __future__ import annotations
 
 import argparse
+import difflib
 import json
 import re
 import sys
 import time
+import unicodedata
 from hashlib import md5
 from pathlib import Path
 from typing import Any
@@ -54,6 +56,81 @@ USER_AGENT = (
 )
 DEFAULT_TIMEOUT = 60
 SLEEP_BETWEEN = 0.1
+
+
+# ---------------------------------------------------------------------------
+# Roster + korekta nazwisk z OCR (wzorem lubuskiego)
+# ---------------------------------------------------------------------------
+# OCR skanów daje dziesiątki wariantów tego samego nazwiska (literówki, urwane
+# znaki, brak diakrytyków, odwrócona kolejność imię/nazwisko), przez co surowa
+# lista "radnych" puchła do setek. Dopasowujemy każde nazwisko z OCR do
+# OFICJALNEGO składu Sejmiku VII kadencji (BIP, /13158/), a warianty nie
+# pasujące do nikogo odrzucamy. Źródło 1:1 z BIP, nie z agregatorów.
+#
+# 30 radnych obecnych + 2 z wygaszonym mandatem w trakcie kadencji (głosowali
+# na wczesnych sesjach), żeby ich głosy też trafiły do właściwej osoby.
+SEED_ROSTER = [
+    "Piotr Całbecki", "Michał Czepek", "Jacek Gajewski", "Marek Gralik",
+    "Wojciech Jaranowski", "Aneta Jędrzejewska", "Marcel Kałużny",
+    "Jarosław Katulski", "Radosław Kempinski", "Sławomir Kopyść",
+    "Ewa Kozanecka", "Katarzyna Stranz-Kaja", "Dariusz Kurzawa",
+    "Katarzyna Lubańska", "Józef Łyczak", "Anna Maćkowska", "Robert Malinowski",
+    "Anna Niewiadomska", "Zbigniew Ostrowski", "Elżbieta Piniewska",
+    "Leszek Pluciński", "Tadeusz Pogoda", "Przemysław Przybylski",
+    "Józef Ramlau", "Wojciech Szczęsny", "Przemysław Sznajdrowski",
+    "Jarosław Wenderlich", "Marek Witkowski", "Paweł Zgórzyński",
+    "Przemysław Ziemecki",
+    # mandat wygaszony w trakcie kadencji:
+    "Łukasz Krupa", "Jacek Woźny",
+]
+
+
+def _name_key(name: str) -> str:
+    """Klucz dopasowania: bez diakrytyków, małymi literami, tokeny ≥2 znaki
+    posortowane (odporne na kolejność imię/nazwisko i na śmieci OCR).
+
+    Uwaga: 'ł'/'Ł' NIE rozkłada się przez NFKD (to osobna litera, nie litera
+    bazowa + znak diakrytyczny), więc mapujemy je ręcznie na 'l' — inaczej
+    re.split tnie 'Całbecki' na 'ca'/'becki' i dopasowanie pada."""
+    s = name.lower().replace("ł", "l")
+    s = "".join(c for c in unicodedata.normalize("NFKD", s)
+                if not unicodedata.combining(c))
+    toks = [t for t in re.split(r"[^a-z0-9]+", s) if len(t) > 1]
+    return " ".join(sorted(toks))
+
+
+_ROSTER_BY_KEY = {_name_key(n): n for n in SEED_ROSTER}
+_ROSTER_KEYS = list(_ROSTER_BY_KEY.keys())
+_MATCH_CACHE: dict[str, str | None] = {}
+
+
+def _canonical_name(raw: str) -> str | None:
+    """Mapuje nazwisko z OCR na oficjalne z rostera (fuzzy); None = śmieć OCR."""
+    key = _name_key(raw)
+    if not key:
+        return None
+    if key in _MATCH_CACHE:
+        return _MATCH_CACHE[key]
+    canon = _ROSTER_BY_KEY.get(key)
+    if canon is None:
+        m = difflib.get_close_matches(key, _ROSTER_KEYS, n=1, cutoff=0.82)
+        canon = _ROSTER_BY_KEY[m[0]] if m else None
+    _MATCH_CACHE[key] = canon
+    return canon
+
+
+def correct_named_votes(named: dict[str, list[str]]) -> dict[str, list[str]]:
+    """Zamienia surowe nazwiska OCR na kanoniczne z rostera; odrzuca
+    niedopasowane i deduplikuje w obrębie kategorii."""
+    out = {k: [] for k in ("za", "przeciw", "wstrzymal_sie", "brak_glosu", "nieobecni")}
+    for cat in out:
+        seen = set()
+        for raw in named.get(cat, []):
+            canon = _canonical_name(raw)
+            if canon and canon not in seen:
+                seen.add(canon)
+                out[cat].append(canon)
+    return out
 
 
 def fetch(url: str, *, cache_dir: Path | None = None, suffix: str = ".bin") -> bytes:
@@ -226,9 +303,16 @@ def build_kadencja(cache_dir: Path | None = None,
                 if not cache_dir:
                     tmp_pdf.unlink(missing_ok=True)
 
+        # Korekta nazwisk z OCR do oficjalnego rostera. Robimy to po wczytaniu
+        # (cache trzyma surowe nazwiska, więc poprawka roster-a działa też dla
+        # sesji zcache'owanych i da się ją w przyszłości ulepszyć bez kasowania
+        # cache).
+        for v in parsed_session["votes"]:
+            v["named_votes"] = correct_named_votes(v.get("named_votes") or {})
+
         for v in parsed_session["votes"]:
             for cat in ("za", "przeciw", "wstrzymal_sie", "brak_glosu", "nieobecni"):
-                for name in v.get("named_votes", {}).get(cat, []):
+                for name in v["named_votes"][cat]:
                     all_councilors.add(name)
         total_votes += parsed_session["vote_count"]
         out_sessions.append(parsed_session)

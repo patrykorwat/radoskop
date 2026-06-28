@@ -43,6 +43,54 @@
     "ocr_lang_preferred": "pol",
     "note": "Skanowane PDFy, 1 strona = 1 głosowanie. Format Lp/Nazwisko/Decyzja w 2-kolumnowej tabeli. Wymaga tesseract-ocr-pol dla 90%+ accuracy (eng pack daje ~25%)."
   },
-  "clubs": {},
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga (PSL/Polska 2050)",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Piotr Całbecki": "KO",
+    "Michał Czepek": "KO",
+    "Jacek Gajewski": "KO",
+    "Jarosław Katulski": "KO",
+    "Sławomir Kopyść": "KO",
+    "Katarzyna Lubańska": "KO",
+    "Robert Malinowski": "KO",
+    "Anna Niewiadomska": "KO",
+    "Zbigniew Ostrowski": "KO",
+    "Elżbieta Piniewska": "KO",
+    "Leszek Pluciński": "KO",
+    "Tadeusz Pogoda": "KO",
+    "Katarzyna Stranz-Kaja": "KO",
+    "Wojciech Szczęsny": "KO",
+    "Marek Gralik": "PiS",
+    "Wojciech Jaranowski": "PiS",
+    "Marcel Kałużny": "PiS",
+    "Radosław Kempinski": "PiS",
+    "Ewa Kozanecka": "PiS",
+    "Józef Łyczak": "PiS",
+    "Anna Maćkowska": "PiS",
+    "Przemysław Przybylski": "PiS",
+    "Józef Ramlau": "PiS",
+    "Jarosław Wenderlich": "PiS",
+    "Marek Witkowski": "PiS",
+    "Aneta Jędrzejewska": "TD",
+    "Dariusz Kurzawa": "TD",
+    "Przemysław Sznajdrowski": "TD",
+    "Paweł Zgórzyński": "TD",
+    "Przemysław Ziemecki": "TD"
+  },
   "teryt": "04"
 }
