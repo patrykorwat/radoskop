@@ -366,6 +366,86 @@ _RAPORT_TOKEN = {
     "NIEOBECNA": "nieobecni",
 }
 
+# Nowszy format eSesja (BIP Częstochowy od sesji XXXIV, kwiecień 2026): nagłówek
+# zmienił się z "Głosowanie w sprawie ... godz. ... wyniki:" na
+#   "N. Głosowano [wniosek] w sprawie: <temat> - czas głosowania: <data>, HH:MM"
+# liczby w osobnej linii "Wyniki głosowania (...)\nZA: a, PRZECIW: b, ...",
+# a "Wyniki imienne:" grupuje nazwiska pod nagłówkami sekcji "ZA (a)", "PRZECIW (b)"
+# itd. (nazwiska po przecinku, WIELKIMI literami, BEZ tokenu w nawiasie).
+# Na końcu PDF dochodzi tabelka "Uczestnictwo w głosowaniach jawnych" oraz stopka
+# "Wygenerowano za pomocą app.esesja.pl <timestamp>" wstrzykiwana w środek listy.
+_GROUP_HEAD_RE = re.compile(
+    r"(ZA|PRZECIW|WSTRZYMUJĘ SIĘ|WSTRZYMUJE SIE|BRAK GŁOSU|BRAK GLOSU|"
+    r"NIEOBECNI|NIEOBECNY|NIEOBECNA)\s*\((\d+)\)"
+)
+_GROUPED_HEAD_RE = re.compile(r"(\d+)\.\s*Głosowano(?:\s+wniosek)?\s+w sprawie:")
+_GROUPED_COUNTS_RE = re.compile(
+    r"ZA:\s*(\d+),\s*PRZECIW:\s*(\d+),\s*WSTRZYMUJĘ SIĘ:\s*(\d+),\s*"
+    r"BRAK GŁOSU:\s*(\d+),\s*NIEOBECN[YI]:\s*(\d+)"
+)
+_GROUPED_FOOTER_RE = re.compile(
+    r"Wygenerowano za pomocą app\.esesja\.pl \d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}"
+)
+
+
+def _parse_grouped_raport_pdf(full_text: str, session: SessionMeta, debug: bool = False) -> list[dict]:
+    """Parser nowego formatu eSesja (grupowanie nazwisk pod 'ZA (a)' / 'PRZECIW (b)').
+
+    Liczy się ZGŁOSZONA liczba głosów (z linii 'ZA: a, PRZECIW: b, ...'), nazwiska
+    bierze z sekcji 'Wyniki imienne:'. Zweryfikowany na sesjach XXXIV–XXXVII 2026
+    (0 niezgodności reported vs imienne)."""
+    joined = re.sub(r"(?<=\w)-\s*\n\s*(?=\w)", "-", full_text)
+    flat = re.sub(r"\s+", " ", joined)
+    flat = _GROUPED_FOOTER_RE.sub(" ", flat)
+    heads = list(_GROUPED_HEAD_RE.finditer(flat))
+    if not heads:
+        return []
+    starts = [m.start() for m in heads] + [len(flat)]
+    votes: list[dict] = []
+    for i, m in enumerate(heads):
+        seg = flat[m.start():starts[i + 1]]
+        after = seg[m.end() - m.start():]
+        tm = re.match(r"\s*(.*?)\s*(?:-\s*czas głosowania:|Wyniki głosowania)", after, re.DOTALL)
+        topic = tm.group(1).strip(" .:-") if tm else ""
+
+        counts = {"za": 0, "przeciw": 0, "wstrzymal_sie": 0, "brak_glosu": 0, "nieobecni": 0}
+        cm = _GROUPED_COUNTS_RE.search(seg)
+        if cm:
+            cz, cp, cw, cb, cn = (int(x) for x in cm.groups())
+            counts = {"za": cz, "przeciw": cp, "wstrzymal_sie": cw, "brak_glosu": cb, "nieobecni": cn}
+
+        named = {"za": [], "przeciw": [], "wstrzymal_sie": [], "brak_glosu": [], "nieobecni": []}
+        # Odetnij końcową tabelkę frekwencji (gluje się z ostatnią sekcją głosowania).
+        body = seg.split("Uczestnictwo w głosowaniach jawnych", 1)[0]
+        if "Wyniki imienne:" in body:
+            body = body.split("Wyniki imienne:", 1)[1]
+            ghs = list(_GROUP_HEAD_RE.finditer(body))
+            gstarts = [g.start() for g in ghs] + [len(body)]
+            for j, g in enumerate(ghs):
+                key = _RAPORT_TOKEN.get(g.group(1).strip().upper())
+                if not key:
+                    continue
+                names_txt = body[g.end():gstarts[j + 1]]
+                for raw_name in names_txt.split(","):
+                    raw_name = raw_name.strip()
+                    if not raw_name:
+                        continue
+                    canonical = resolve_canonical_name(raw_name)
+                    if canonical:
+                        named[key].append(canonical)
+
+        vote_num = i + 1
+        num_part = f"_{session.number}" if getattr(session, "number", "") else ""
+        votes.append({
+            "id": f"{session.date}{num_part}_{vote_num:03d}",
+            "session_number": session.number,
+            "session_date": session.date,
+            "topic": topic[:300] if topic else f"Głosowanie nr {vote_num}",
+            "counts": counts,
+            "named_votes": named,
+        })
+    return votes
+
 
 def _parse_raport_pdf(full_text: str, session: SessionMeta, debug: bool = False) -> list[dict]:
     # Złącz dywizy rozbite końcem wiersza (np. "WOJTYSIAK-\nKOWALIK") i spłaszcz
@@ -423,7 +503,13 @@ def parse_voting_pdf(pdf_path: Path, session: SessionMeta, debug: bool = False) 
                 preview = full_text[:600].replace("\n", " | ")
                 print(f"      preview: {preview}")
 
-            votes = _parse_raport_pdf(full_text, session, debug=debug)
+            # Nowy format (XXXIV+, kwiecień 2026) najpierw, potem starszy raport
+            # inline (XXXII i wcześniej). Każdy zwraca [] gdy nie pasuje, więc
+            # kolejność jest bezpieczna.
+            votes = _parse_grouped_raport_pdf(full_text, session, debug=debug)
+
+            if not votes:
+                votes = _parse_raport_pdf(full_text, session, debug=debug)
 
             if not votes:
                 vote_idx = 0
