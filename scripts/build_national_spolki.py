@@ -62,7 +62,8 @@ def _collect(base: Path) -> dict:
                 continue
             rec = by_krs.setdefault(krs, {
                 "krs": krs, "name": co.get("name", ""),
-                "owners": [], "zarzad": [], "rada_nadzorcza": [], "units": [],
+                "owners": [], "zarzad": [], "rada_nadzorcza": [],
+                "historia": [], "units": [],
             })
             if co.get("name") and len(co["name"]) > len(rec["name"]):
                 rec["name"] = co["name"]
@@ -72,10 +73,51 @@ def _collect(base: Path) -> dict:
             for _, key in ORGANS:
                 if co.get(key) and not rec[key]:
                     rec[key] = co[key]
+            if co.get("historia") and not rec["historia"]:
+                rec["historia"] = co["historia"]
             u = {"name": unit_name, "url": unit_url}
             if u not in rec["units"]:
                 rec["units"].append(u)
     return by_krs
+
+
+def _person_index(companies: list[dict]) -> list[dict]:
+    """Osoby zasiadające w organach (zarząd/RN) więcej niż jednej spółki.
+
+    FAKT z rejestru, bez ocen prawnych. Klucz = pełne imię i nazwisko; wpisy bez
+    dociągniętego nazwiska (anonimizacja KRS) pomijamy, bo nie da się ich
+    powiązać. Dla każdej osoby: lista miejsc (spółka, KRS, organ, rola, data)."""
+    by_name: dict[str, dict] = {}
+    for rec in companies:
+        for label, key in ORGANS:
+            for m in rec.get(key) or []:
+                name = " ".join((m.get("name") or "").split())
+                if not name:
+                    continue
+                p = by_name.setdefault(name, {"name": name, "seats": [], "_krs": set()})
+                p["seats"].append({
+                    "company": rec["name"], "krs": rec["krs"], "organ": label,
+                    "rola": m.get("rola") or "", "od": m.get("od") or "",
+                })
+                p["_krs"].add(rec["krs"])
+    multi = [{"name": p["name"], "company_count": len(p["_krs"]), "seats": p["seats"]}
+             for p in by_name.values() if len(p["_krs"]) >= 2]
+    multi.sort(key=lambda x: (-x["company_count"], x["name"].lower()))
+    return multi
+
+
+def _links_by_name(multi: list[dict]) -> dict:
+    """name → lista {company, krs} (po jednej na spółkę) dla osób w ≥2 spółkach.
+    Używane do adnotacji „także w" na stronie pojedynczej spółki."""
+    out: dict[str, list[dict]] = {}
+    for p in multi:
+        seen, lst = set(), []
+        for s in p["seats"]:
+            if s["krs"] not in seen:
+                seen.add(s["krs"])
+                lst.append({"company": s["company"], "krs": s["krs"]})
+        out[p["name"]] = lst
+    return out
 
 
 # ── HTML ────────────────────────────────────────────────────────────────
@@ -120,7 +162,8 @@ Skład organów to fakty z rejestru. <a href="{HUB}/">radoskop.pl</a></p>
 </div></body></html>"""
 
 
-def _company_body(rec: dict) -> str:
+def _company_body(rec: dict, links_by_name: dict | None = None) -> str:
+    links_by_name = links_by_name or {}
     parts = [f'<div class="crumb"><a href="{HUB}/companies/">Spółki</a> ›</div>',
              f"<h1>{esc(rec['name'])}</h1>",
              f'<div class="krs">KRS {esc(rec["krs"])}</div>']
@@ -132,19 +175,73 @@ def _company_body(rec: dict) -> str:
             continue
         parts.append(f'<div class="ot">{esc(label)}</div>')
         for m in mem:
-            who = esc(m.get("name") or m.get("rola") or "—")
+            name = " ".join((m.get("name") or "").split())
+            who = esc(name or m.get("rola") or "—")
             note = f' <span class="tn">({esc(m["note"])})</span>' if m.get("note") else ""
+            # Powiązanie osobowe: ta sama osoba w organach innych spółek (fakt).
+            also = ""
+            others = [c for c in links_by_name.get(name, []) if c["krs"] != rec["krs"]]
+            if others:
+                lk = ", ".join(f'<a href="{HUB}/company/{esc(c["krs"])}/">{esc(c["company"])}</a>'
+                               for c in others)
+                also = f'<div class="tn">także w organach: {lk}</div>'
             od = m.get("od")
             when = ""
             if od:
                 when = "od " + _fmt(od) + (" · " + _years(od) if _years(od) else "")
-            parts.append(f'<div class="mem"><span>{who}{note}</span>'
+            parts.append(f'<div class="mem"><span>{who}{note}{also}</span>'
                          f'<span class="tn">{esc(when)}</span></div>')
+
+    # Pełna historia organów (odpis pełny KRS): aktualni + wykreśleni, z datami.
+    hist = rec.get("historia") or []
+    if hist:
+        parts.append('<div class="ot">Pełna historia organów</div>')
+        for okey, olabel in (("zarzad", "Zarząd"), ("rada_nadzorcza", "Rada nadzorcza")):
+            rows = [h for h in hist if h.get("organ") == okey]
+            if not rows:
+                continue
+            rows.sort(key=lambda h: (h.get("od") or ""), reverse=True)
+            n_anon = sum(1 for h in rows if not h.get("name"))
+            sub = f"{olabel} — {len(rows)} w historii"
+            if n_anon:
+                sub += f", {n_anon} bez pełnego nazwiska"
+            parts.append(f'<div class="tn" style="margin:10px 0 4px">{esc(sub)}</div>')
+            for h in rows:
+                who = esc(h.get("name") or h.get("inicjaly") or "—")
+                anon = "" if h.get("name") else ' <span class="tn">(inicjały — KRS anonimizuje JSON)</span>'
+                od = _fmt(h["od"]) if h.get("od") else "?"
+                end = "obecnie" if h.get("obecnie") else (_fmt(h["do"]) if h.get("do") else "—")
+                lata = f' · {h["lata"]} lat' if h.get("lata") is not None else ""
+                parts.append(f'<div class="mem"><span>{who}{anon}</span>'
+                             f'<span class="tn">{esc(od)} → {esc(end)}{esc(lata)}</span></div>')
+
     if rec["units"]:
         links = ", ".join(
             f'<a href="{esc(u["url"])}/companies/">{esc(u["name"])}</a>' if u["url"] else esc(u["name"])
             for u in rec["units"])
         parts.append(f'<div class="ot">Występuje w jednostkach</div><p>{links}</p>')
+    return "".join(parts)
+
+
+def _links_body(multi: list[dict]) -> str:
+    parts = [f'<div class="crumb"><a href="{HUB}/companies/">Spółki</a> › Powiązania</div>',
+             "<h1>Osoby w organach wielu spółek</h1>",
+             f'<p class="krs">{len(multi)} '
+             f'{"osoba zasiada" if len(multi) == 1 else "osób zasiada"} w zarządzie lub '
+             f'radzie nadzorczej więcej niż jednej spółki z udziałem samorządu. '
+             f'Zestawienie faktów z rejestru (KRS, MSiG) — bez ocen prawnych.</p>']
+    for p in multi:
+        parts.append(f'<div class="ot">{esc(p["name"])} · w {p["company_count"]} spółkach</div>')
+        for s in p["seats"]:
+            role = s["rola"] or s["organ"]
+            od = (" · od " + _fmt(s["od"])) if s["od"] else ""
+            parts.append(
+                f'<div class="mem"><span><a href="{HUB}/company/{esc(s["krs"])}/">'
+                f'{esc(s["company"])}</a> — {esc(role)}</span>'
+                f'<span class="tn">{esc(s["organ"])}{esc(od)}</span></div>')
+    if not multi:
+        parts.append('<p class="krs">Brak osób zasiadających w organach więcej niż '
+                     'jednej spółki w bieżących danych.</p>')
     return "".join(parts)
 
 
@@ -175,14 +272,21 @@ def main() -> int:
     companies = sorted(by_krs.values(), key=lambda r: r["name"].lower())
     today = _dt.date.today().isoformat()
 
+    # Powiązania osobowe: osoby w organach >1 spółki (fakt z rejestru).
+    multi = _person_index(companies)
+    links_by_name = _links_by_name(multi)
+
     # companies.json
     (out).mkdir(parents=True, exist_ok=True)
     (out / "companies.json").write_text(
         json.dumps({"generated_at": today, "companies": companies}, ensure_ascii=False, indent=2),
         encoding="utf-8")
+    (out / "companies-links.json").write_text(
+        json.dumps({"generated_at": today, "people": multi}, ensure_ascii=False, indent=2),
+        encoding="utf-8")
 
     # per-company pages
-    sitemap = [f"{HUB}/companies/"]
+    sitemap = [f"{HUB}/companies/", f"{HUB}/companies/powiazania/"]
     for rec in companies:
         cu = f"{HUB}/company/{rec['krs']}/"
         title = f"{rec['name']} – organy spółki – Radoskop"
@@ -190,11 +294,20 @@ def main() -> int:
                 f"i rady nadzorczej. Dane z KRS i Monitora Sądowego i Gospodarczego.")
         ld = {"@context": "https://schema.org", "@type": "Organization",
               "name": rec["name"], "identifier": f"KRS {rec['krs']}", "url": cu}
-        page = _page(title, desc, cu, _company_body(rec), ld)
+        page = _page(title, desc, cu, _company_body(rec, links_by_name), ld)
         d = out / "company" / rec["krs"]
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(page, encoding="utf-8")
         sitemap.append(cu)
+
+    # strona powiązań osobowych
+    links_page = _page(
+        "Osoby w organach wielu spółek – Radoskop",
+        "Osoby zasiadające w zarządach i radach nadzorczych więcej niż jednej spółki "
+        "z udziałem samorządu. Fakty z KRS i Monitora Sądowego i Gospodarczego.",
+        f"{HUB}/companies/powiazania/", _links_body(multi), None)
+    (out / "companies" / "powiazania").mkdir(parents=True, exist_ok=True)
+    (out / "companies" / "powiazania" / "index.html").write_text(links_page, encoding="utf-8")
 
     # national index
     items = []
@@ -202,9 +315,14 @@ def main() -> int:
         units = ", ".join(u["name"] for u in rec["units"])
         items.append(f'<a class="co" href="{HUB}/company/{rec["krs"]}/"><b>{esc(rec["name"])}</b>'
                      f'<span class="s">KRS {esc(rec["krs"])}{(" · " + esc(units)) if units else ""}</span></a>')
+    teaser = ""
+    if multi:
+        teaser = (f'<p><a href="{HUB}/companies/powiazania/"><b>Osoby w organach wielu spółek</b></a> — '
+                  f'{len(multi)} {"osoba zasiada" if len(multi) == 1 else "osób zasiada"} '
+                  f'w zarządzie lub radzie nadzorczej więcej niż jednej spółki.</p>')
     idx_body = (f"<h1>Spółki z udziałem samorządów</h1>"
                 f'<p class="krs">{len(companies)} spółek. Dane z KRS i MSiG, aktualizacja {today}.</p>'
-                + "".join(items))
+                + teaser + "".join(items))
     idx = _page("Spółki samorządowe – Radoskop", "Krajowy rejestr spółek z udziałem samorządów: "
                 "zarządy i rady nadzorcze. Dane z KRS i Monitora Sądowego i Gospodarczego.",
                 f"{HUB}/companies/", idx_body, None)
