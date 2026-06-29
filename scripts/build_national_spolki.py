@@ -171,24 +171,49 @@ def _also_html(name: str, rec_krs: str, links_by_name: dict) -> str:
 
 # ── HTML ────────────────────────────────────────────────────────────────
 
+# Paleta i font 1:1 z głównym serwisem (template/partials/theme_vars.css +
+# app/app.css), żeby apex wyglądał jak radoskop.eu. Motyw light/dark przez to
+# samo cookie radoskop_theme (cross-subdomain).
 _CSS = """
-:root{--bg:#f8f9fa;--card:#fff;--txt:#1a1d27;--muted:#5b6472;--line:#e2e8f0;--accent:#4f46e5;--surface:#f1f5f9}
-@media (prefers-color-scheme:dark){:root{--bg:#0f1117;--card:#171a22;--txt:#e4e4e7;--muted:#9aa3b2;--line:#2a2f3a;--accent:#818cf8;--surface:#1c212b}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.55 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
-.wrap{max-width:780px;margin:0 auto;padding:28px 18px 60px}a{color:var(--accent)}
+:root,[data-theme=light]{--bg:#f8f9fa;--surface:#fff;--border:#e2e5e9;--text:#1a1d27;--muted:#6b7280;--accent:#4f46e5;--green:#16a34a;--red:#dc2626}
+[data-theme=dark]{--bg:#0f1117;--surface:#1a1d27;--border:#2a2d3a;--text:#e4e4e7;--muted:#8b8d97;--accent:#6366f1;--green:#22c55e;--red:#ef4444}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.5}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.topbar{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.topbar-logo{font-size:1.05rem;font-weight:700;color:var(--text)}.topbar-logo span{color:var(--accent)}
+.topbar-nav{display:flex;gap:20px;flex-wrap:wrap}.topbar-nav a{font-size:.88rem;color:var(--muted)}.topbar-nav a:hover{color:var(--accent);text-decoration:none}
+.tt{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:4px 9px;cursor:pointer;font-size:.85rem}
+.wrap{max-width:780px;margin:0 auto;padding:24px 18px 40px}
 .crumb{font-size:13px;color:var(--muted);margin-bottom:14px}
 h1{font-size:23px;margin:0 0 6px}.krs{color:var(--muted);font-size:13px;margin-bottom:12px}
-.chip{display:inline-block;font-size:12px;padding:3px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--muted);margin:0 4px 4px 0}
+.chip{display:inline-block;font-size:12px;padding:3px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--border);color:var(--muted);margin:0 4px 4px 0}
 .ot{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:16px 0 6px}
-.mem{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:8px;background:var(--card);border:1px solid var(--line);margin-bottom:6px}
+.mem{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:8px;background:var(--surface);border:1px solid var(--border);margin-bottom:6px}
 .mem .tn{color:var(--muted);font-size:12px;white-space:nowrap}
-.co{display:block;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--card);margin-bottom:10px;text-decoration:none;color:inherit}
-.co b{display:block}.co .s{color:var(--muted);font-size:12px}
-.note{color:var(--muted);font-size:12px;margin-top:20px;border-top:1px solid var(--line);padding-top:12px}
+.co{display:block;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:var(--surface);margin-bottom:10px;text-decoration:none;color:inherit}
+.co:hover{border-color:var(--accent)}.co b{display:block}.co .s{color:var(--muted);font-size:12px}
+.note{color:var(--muted);font-size:12px;margin-top:20px;border-top:1px solid var(--border);padding-top:12px}
 .kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:4px 0 6px}
-.cell{background:var(--surface);border-radius:8px;padding:8px 10px}
+.cell{background:var(--bg);border-radius:8px;padding:8px 10px}
 .cell .ck{font-size:12px;color:var(--muted);margin-bottom:2px}
 .cell .cv{font-size:14px}
+footer{max-width:780px;margin:0 auto;padding:18px;color:var(--muted);font-size:12px;border-top:1px solid var(--border)}
+"""
+
+# Anti-FOUC: ustaw motyw z cookie radoskop_theme PRZED renderem (jak head.html).
+_THEME_JS = r"""try{var m=document.cookie.match(/(?:^|;\s*)radoskop_theme=([^;]+)/);var t=m?decodeURIComponent(m[1]):null;if(t!=='dark'&&t!=='light'){try{var s=localStorage.getItem('radoskop_theme');if(s==='dark'||s==='light')t=s;}catch(e){}}if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}"""
+
+# Toggle motywu + nawigacja klienta (pjax): klik w link spółki podmienia tylko
+# treść #app bez przeładowania. Progresywne — bez JS zwykłe linki działają, a
+# każda strona jest pełnym prerenderem (SEO bez zmian).
+_APP_JS = r"""
+function radoskopToggleTheme(){var d=document.documentElement;var t=d.getAttribute('data-theme')==='dark'?'light':'dark';d.setAttribute('data-theme',t);try{document.cookie='radoskop_theme='+t+';path=/;max-age=31536000;domain=.radoskop.pl';localStorage.setItem('radoskop_theme',t);}catch(e){}}
+(function(){var app=document.getElementById('app');if(!app)return;
+function internal(a){try{var u=new URL(a.href);return u.origin===location.origin&&/^\/(company|companies)(\/|$)/.test(u.pathname);}catch(e){return false;}}
+async function load(url,push){try{var r=await fetch(url);if(!r.ok){location.href=url;return;}var t=await r.text();var doc=new DOMParser().parseFromString(t,'text/html');var na=doc.getElementById('app');if(!na){location.href=url;return;}app.innerHTML=na.innerHTML;if(doc.title)document.title=doc.title;if(push)history.pushState({},'',url);window.scrollTo(0,0);}catch(e){location.href=url;}}
+document.addEventListener('click',function(e){var a=e.target.closest?e.target.closest('a'):null;if(!a||a.target||e.metaKey||e.ctrlKey||e.shiftKey||e.button)return;if(internal(a)){e.preventDefault();load(a.href,true);}});
+window.addEventListener('popstate',function(){load(location.href,false);});})();
 """
 
 
@@ -208,11 +233,21 @@ def _page(title: str, desc: str, canonical: str, body: str, jsonld: dict | None)
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:url" content="{esc(canonical)}">
 <meta property="og:type" content="website">
+<script>{_THEME_JS}</script>
 <style>{_CSS}</style>{ld}
-</head><body><div class="wrap">{body}
+</head><body>
+<header class="topbar">
+<a class="topbar-logo" href="https://radoskop.eu/">Rado<span>skop</span></a>
+<nav class="topbar-nav"><a href="https://radoskop.eu/">Strona główna</a><a href="{HUB}/companies/">Spółki</a></nav>
+<button class="tt" type="button" aria-label="Przełącz motyw" onclick="radoskopToggleTheme()">◐</button>
+</header>
+<main id="app" class="wrap">{body}
 <p class="note">Dane z oficjalnych rejestrów: KRS (odpis pełny) i Monitor Sądowy i Gospodarczy.
-Skład organów to fakty z rejestru. <a href="{HUB}/">radoskop.pl</a></p>
-</div></body></html>"""
+Skład organów to fakty z rejestru.</p>
+</main>
+<footer>Radoskop — otwarty monitoring samorządu. Dane z KRS i MSiG. <a href="https://radoskop.eu/">radoskop.eu</a></footer>
+<script>{_APP_JS}</script>
+</body></html>"""
 
 
 def _company_body(rec: dict, links_by_name: dict | None = None) -> str:
@@ -232,7 +267,7 @@ def _company_body(rec: dict, links_by_name: dict | None = None) -> str:
     if rec.get("regon"):
         info_cells.append(("REGON", _regon9(rec["regon"])))
     if rec.get("adres") or rec.get("siedziba"):
-        info_cells.append(("Siedziba", rec.get("adres") or rec.get("siedziba")))
+        info_cells.append(("Siedziba", _pl_title(rec.get("adres") or rec.get("siedziba"))))
     if info_cells:
         parts.append('<div class="ot">Dane podstawowe</div><div class="kv">'
                      + "".join(f'<div class="cell"><div class="ck">{esc(k)}</div>'
@@ -243,12 +278,12 @@ def _company_body(rec: dict, links_by_name: dict | None = None) -> str:
     if wsp:
         parts.append('<div class="ot">Struktura właścicielska</div>')
         for w in wsp:
-            ud = esc(w.get("udzialy") or "")
+            ud = esc(_delower(w.get("udzialy") or ""))
             ud_html = f'<div class="tn" style="white-space:normal">{ud}</div>' if ud else ""
-            parts.append(f'<div class="mem"><span>{esc(w.get("nazwa") or "—")}{ud_html}</span></div>')
+            parts.append(f'<div class="mem"><span>{esc(_pl_title(w.get("nazwa") or "—"))}{ud_html}</span></div>')
     elif rec["owners"]:
         parts.append('<div class="ot">Właściciele</div>')
-        parts.append("".join(f'<span class="chip">{esc(o)}</span>' for o in rec["owners"]))
+        parts.append("".join(f'<span class="chip">{esc(_pl_title(o))}</span>' for o in rec["owners"]))
 
     for label, key in ORGANS:
         mem = rec.get(key) or []
@@ -289,13 +324,19 @@ def _company_body(rec: dict, links_by_name: dict | None = None) -> str:
                 also = _also_html(h.get("name"), rec["krs"], links_by_name)
                 od = _fmt(h["od"]) if h.get("od") else "?"
                 end = "obecnie" if h.get("obecnie") else (_fmt(h["do"]) if h.get("do") else "—")
-                lata = f' · {h["lata"]} lat' if h.get("lata") is not None else ""
+                lata = (' · ' + _lata(h["lata"])) if h.get("lata") is not None else ""
                 parts.append(f'<div class="mem"><span>{who}{anon}{also}</span>'
                              f'<span class="tn">{esc(od)} → {esc(end)}{esc(lata)}</span></div>')
 
     if rec.get("pkd"):
+        pkd = rec["pkd"]
+        if " — " in pkd:
+            kod, opis = pkd.split(" — ", 1)
+            if opis.isupper():
+                opis = opis.capitalize()
+            pkd = f"{kod} — {opis}"
         parts.append('<div class="ot">Przedmiot działalności (PKD)</div>'
-                     f'<p style="margin:0 0 4px;font-size:14px">{esc(rec["pkd"])}</p>')
+                     f'<p style="margin:0 0 4px;font-size:14px">{esc(pkd)}</p>')
 
     if rec["units"]:
         links = ", ".join(
@@ -332,13 +373,50 @@ def _fmt(iso: str) -> str:
     return f"{p[2]}.{p[1]}.{p[0]}" if len(p) == 3 else str(iso)
 
 
+def _lata(val) -> str:
+    """'X,Y lat' z przecinkiem dziesiętnym (PL)."""
+    try:
+        return f"{float(val):.1f}".replace(".", ",") + " lat"
+    except (TypeError, ValueError):
+        return ""
+
+
 def _years(iso: str) -> str:
     try:
         d = _dt.date.fromisoformat(iso)
     except Exception:  # noqa: BLE001
         return ""
     days = (_dt.date.today() - d).days
-    return f"{days/365.25:.1f} lat" if days >= 0 else ""
+    return _lata(days / 365.25) if days >= 0 else ""
+
+
+_PL_LOWER = {"z", "i", "w", "o", "u", "od", "do", "na", "po", "za", "oraz",
+             "sp.", "o.o.", "z.o.o."}
+
+
+def _pl_title(s) -> str:
+    """ALL-CAPS z KRS (nazwa podmiotu, adres) → Forma Tytułowa, z drobnymi
+    wyjątkami PL i form prawnych (sp. z o.o., S.A.). Stringi już w mieszanej
+    wielkości liter zostawiamy bez zmian."""
+    s = str(s or "")
+    if not s or not s.isupper():
+        return s
+    out = []
+    for i, w in enumerate(s.title().split()):
+        lw = w.lower()
+        if lw in ("s.a.", "sa"):
+            out.append("S.A.")
+        elif i > 0 and lw in _PL_LOWER:
+            out.append(lw)
+        else:
+            out.append(w)
+    return " ".join(out)
+
+
+def _delower(s) -> str:
+    """ALL-CAPS opis (np. udziały) → małe litery."""
+    s = str(s or "")
+    return s.lower() if s.isupper() else s
 
 
 _FORMA = {
