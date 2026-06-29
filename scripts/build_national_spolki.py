@@ -88,42 +88,85 @@ def _collect(base: Path) -> dict:
 
 
 def _person_index(companies: list[dict]) -> list[dict]:
-    """Osoby zasiadające w organach (zarząd/RN) więcej niż jednej spółki.
+    """Osoby zasiadające w organach (zarząd/RN) więcej niż jednej spółki —
+    OBECNIE LUB W PRZESZŁOŚCI (z pełnej historii organów).
 
     FAKT z rejestru, bez ocen prawnych. Klucz = pełne imię i nazwisko; wpisy bez
     dociągniętego nazwiska (anonimizacja KRS) pomijamy, bo nie da się ich
-    powiązać. Dla każdej osoby: lista miejsc (spółka, KRS, organ, rola, data)."""
+    powiązać. Źródło: historia (aktualni + wykreśleni); gdy brak historii dla
+    spółki — bieżący skład. Każde miejsce: spółka, KRS, organ, okres, czy
+    obecnie."""
     by_name: dict[str, dict] = {}
+
+    def _add(name, rec, organ, od, do, obecnie):
+        name = " ".join((name or "").split())
+        if not name:
+            return
+        p = by_name.setdefault(name, {"name": name, "seats": [], "_seen": set(),
+                                      "_krs": set(), "_cur_krs": set()})
+        sig = (rec["krs"], organ, od or "")
+        if sig not in p["_seen"]:
+            p["_seen"].add(sig)
+            p["seats"].append({"company": rec["name"], "krs": rec["krs"],
+                               "organ": organ, "od": od or "", "do": do or "",
+                               "obecnie": bool(obecnie)})
+        elif obecnie:
+            for s in p["seats"]:
+                if (s["krs"], s["organ"], s["od"]) == sig:
+                    s["obecnie"] = True
+        p["_krs"].add(rec["krs"])
+        if obecnie:
+            p["_cur_krs"].add(rec["krs"])
+
     for rec in companies:
-        for label, key in ORGANS:
-            for m in rec.get(key) or []:
-                name = " ".join((m.get("name") or "").split())
-                if not name:
-                    continue
-                p = by_name.setdefault(name, {"name": name, "seats": [], "_krs": set()})
-                p["seats"].append({
-                    "company": rec["name"], "krs": rec["krs"], "organ": label,
-                    "rola": m.get("rola") or "", "od": m.get("od") or "",
-                })
-                p["_krs"].add(rec["krs"])
-    multi = [{"name": p["name"], "company_count": len(p["_krs"]), "seats": p["seats"]}
-             for p in by_name.values() if len(p["_krs"]) >= 2]
+        hist = rec.get("historia") or []
+        if hist:
+            for h in hist:
+                organ = "Zarząd" if h.get("organ") == "zarzad" else "Rada nadzorcza"
+                _add(h.get("name"), rec, organ, h.get("od"), h.get("do"), h.get("obecnie"))
+        else:
+            for label, key in ORGANS:
+                for m in rec.get(key) or []:
+                    _add(m.get("name"), rec, label, m.get("od"), None, True)
+
+    multi = []
+    for p in by_name.values():
+        if len(p["_krs"]) >= 2:
+            p["seats"].sort(key=lambda s: (s["od"] or ""), reverse=True)
+            multi.append({"name": p["name"], "company_count": len(p["_krs"]),
+                          "current_count": len(p["_cur_krs"]), "seats": p["seats"]})
     multi.sort(key=lambda x: (-x["company_count"], x["name"].lower()))
     return multi
 
 
 def _links_by_name(multi: list[dict]) -> dict:
-    """name → lista {company, krs} (po jednej na spółkę) dla osób w ≥2 spółkach.
-    Używane do adnotacji „także w" na stronie pojedynczej spółki."""
+    """name → lista {company, krs, current} (po jednej na spółkę) dla osób w ≥2
+    spółkach. current=True gdy osoba zasiada tam OBECNIE; inaczej relacja
+    historyczna. Używane do adnotacji „także w organach"."""
     out: dict[str, list[dict]] = {}
     for p in multi:
-        seen, lst = set(), []
+        by_krs: dict[str, dict] = {}
         for s in p["seats"]:
-            if s["krs"] not in seen:
-                seen.add(s["krs"])
-                lst.append({"company": s["company"], "krs": s["krs"]})
-        out[p["name"]] = lst
+            e = by_krs.setdefault(s["krs"], {"company": s["company"],
+                                             "krs": s["krs"], "current": False})
+            if s.get("obecnie"):
+                e["current"] = True
+        out[p["name"]] = list(by_krs.values())
     return out
+
+
+def _also_html(name: str, rec_krs: str, links_by_name: dict) -> str:
+    """„także w organach: …" — linki do innych spółek, w których osoba
+    zasiada(ła). Relacje wyłącznie historyczne oznaczone „(dawniej)"."""
+    name = " ".join((name or "").split())
+    others = [c for c in links_by_name.get(name, []) if c["krs"] != rec_krs]
+    if not others:
+        return ""
+    others.sort(key=lambda c: (not c.get("current"), c["company"].lower()))
+    lk = ", ".join(
+        f'<a href="{HUB}/company/{esc(c["krs"])}/">{esc(c["company"])}'
+        f'{"" if c.get("current") else " (dawniej)"}</a>' for c in others)
+    return f'<div class="tn">także w organach: {lk}</div>'
 
 
 # ── HTML ────────────────────────────────────────────────────────────────
@@ -216,13 +259,9 @@ def _company_body(rec: dict, links_by_name: dict | None = None) -> str:
             name = " ".join((m.get("name") or "").split())
             who = esc(name or m.get("rola") or "—")
             note = f' <span class="tn">({esc(m["note"])})</span>' if m.get("note") else ""
-            # Powiązanie osobowe: ta sama osoba w organach innych spółek (fakt).
-            also = ""
-            others = [c for c in links_by_name.get(name, []) if c["krs"] != rec["krs"]]
-            if others:
-                lk = ", ".join(f'<a href="{HUB}/company/{esc(c["krs"])}/">{esc(c["company"])}</a>'
-                               for c in others)
-                also = f'<div class="tn">także w organach: {lk}</div>'
+            # Powiązanie osobowe: ta sama osoba w organach innych spółek
+            # (obecnie lub historycznie) — fakt z rejestru.
+            also = _also_html(name, rec["krs"], links_by_name)
             od = m.get("od")
             when = ""
             if od:
@@ -247,10 +286,11 @@ def _company_body(rec: dict, links_by_name: dict | None = None) -> str:
             for h in rows:
                 who = esc(h.get("name") or h.get("inicjaly") or "—")
                 anon = "" if h.get("name") else ' <span class="tn">(inicjały — KRS anonimizuje JSON)</span>'
+                also = _also_html(h.get("name"), rec["krs"], links_by_name)
                 od = _fmt(h["od"]) if h.get("od") else "?"
                 end = "obecnie" if h.get("obecnie") else (_fmt(h["do"]) if h.get("do") else "—")
                 lata = f' · {h["lata"]} lat' if h.get("lata") is not None else ""
-                parts.append(f'<div class="mem"><span>{who}{anon}</span>'
+                parts.append(f'<div class="mem"><span>{who}{anon}{also}</span>'
                              f'<span class="tn">{esc(od)} → {esc(end)}{esc(lata)}</span></div>')
 
     if rec.get("pkd"):
@@ -275,12 +315,12 @@ def _links_body(multi: list[dict]) -> str:
     for p in multi:
         parts.append(f'<div class="ot">{esc(p["name"])} · w {p["company_count"]} spółkach</div>')
         for s in p["seats"]:
-            role = s["rola"] or s["organ"]
-            od = (" · od " + _fmt(s["od"])) if s["od"] else ""
+            od = _fmt(s["od"]) if s.get("od") else "?"
+            end = "obecnie" if s.get("obecnie") else (_fmt(s["do"]) if s.get("do") else "—")
             parts.append(
                 f'<div class="mem"><span><a href="{HUB}/company/{esc(s["krs"])}/">'
-                f'{esc(s["company"])}</a> — {esc(role)}</span>'
-                f'<span class="tn">{esc(s["organ"])}{esc(od)}</span></div>')
+                f'{esc(s["company"])}</a> — {esc(s["organ"])}</span>'
+                f'<span class="tn">{esc(od)} → {esc(end)}</span></div>')
     if not multi:
         parts.append('<p class="krs">Brak osób zasiadających w organach więcej niż '
                      'jednej spółki w bieżących danych.</p>')
