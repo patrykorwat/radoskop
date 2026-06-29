@@ -759,6 +759,23 @@ def _is_stable_session(session_date: str | None) -> bool:
         return False
 
 
+def _kadencja_start() -> str:
+    """Data startu aktywnej kadencji (ISO) z configu, np. '2026-03-29'.
+
+    To brama scrape'u: sesje sprzed tej daty należą do poprzedniej mandatury
+    (kompletny kadencja-2020-2026.json) i NIE są ponownie pobierane ani OCR-owane
+    do aktywnego pliku. Bez tego po wyborach III.2026 scrape przetwarzał cały
+    back-katalog comptes rendus co przebieg i ginął na timeoucie. Fallback:
+    1 stycznia roku z KADENCJA_ID."""
+    try:
+        s = load_config().get("kadencje", {}).get(KADENCJA_ID, {}).get("start")
+        if s:
+            return str(s)
+    except Exception:
+        pass
+    return f"{KADENCJA_ID[:4]}-01-01"
+
+
 def scrape(out_dir: Path, limit_sessions: int | None = None, cache_dir: Path | None = None) -> Path:
     """Pełny scrape: odkryj PV sommaire, sparsuj każdy, zbuduj kadencja-{id}.json.
 
@@ -789,13 +806,33 @@ def scrape(out_dir: Path, limit_sessions: int | None = None, cache_dir: Path | N
     if limit_sessions:
         urls = urls[:limit_sessions]
 
+    kadencja_start = _kadencja_start()
+
     all_votes: list[dict] = []
     sessions_done = 0
-    url_map_dirty = False
+
+    def _carry_existing(date_str: str) -> int:
+        """Przenieś głosy danej daty z istniejącego pliku aktywnej kadencji
+        (jeśli tam są). Zwraca liczbę dołożonych głosów."""
+        carry = existing_by_date.get(date_str) or []
+        if carry:
+            all_votes.extend(carry)
+        return len(carry)
 
     for url in urls:
-        # Sprawdź czy sesja jest już przetworzona i stabilna
         cached_date = url_map.get(url)
+
+        # 1) Znana sesja sprzed startu kadencji: NIE pobieramy/OCR-ujemy. Należy
+        #    do poprzedniej mandatury (osobny kadencja-2020-2026.json). Głosy
+        #    obecne w aktywnym pliku zachowujemy (carry-over, nie kasujemy).
+        if cached_date and cached_date < kadencja_start:
+            n = _carry_existing(cached_date)
+            if n:
+                sessions_done += 1
+            print(f"  [POMIN-HIST] {url}: sesja {cached_date} < {kadencja_start}", file=sys.stderr)
+            continue
+
+        # 2) Znana stabilna sesja aktywnej kadencji już sparsowana: reużyj z pliku.
         if cached_date and _is_stable_session(cached_date) and cached_date in existing_by_date:
             cached_votes = existing_by_date[cached_date]
             all_votes.extend(cached_votes)
@@ -803,9 +840,25 @@ def scrape(out_dir: Path, limit_sessions: int | None = None, cache_dir: Path | N
             print(f"  [CACHE] {url}: {len(cached_votes)} pozycji (sesja {cached_date})", file=sys.stderr)
             continue
 
+        # 3) Sesja nieznana lub aktywna do przetworzenia. Pobierz raz, sklasyfikuj
+        #    po dacie z TEKSTU (tanie) PRZED kosztownym OCR aneksów.
         pdf_path = None
         try:
             pdf_path = _download_pdf(url)
+            sd_probe = cached_date or extract_session_date(_pdf_text(pdf_path))
+
+            # Historyczna sesja odkryta pierwszy raz: zapisz w url_map (żeby
+            # następny run pominął bez pobierania) i pomiń OCR.
+            if sd_probe and sd_probe < kadencja_start:
+                url_map[url] = sd_probe
+                _save_url_map(out_dir, url_map)  # przyrostowo — przeżyje ubity run
+                n = _carry_existing(sd_probe)
+                if n:
+                    sessions_done += 1
+                print(f"  [POMIN-HIST] {url}: sesja {sd_probe} < {kadencja_start} (sklasyfikowana)", file=sys.stderr)
+                continue
+
+            # Aktywna kadencja (lub sesja bez wykrytej daty): pełny przebieg z OCR.
             results, sd = process_pv_file(pdf_path, cache_dir=cache_dir)
             votes = build_votes_from_pv_results(results, sd)
             all_votes.extend(votes)
@@ -814,9 +867,9 @@ def scrape(out_dir: Path, limit_sessions: int | None = None, cache_dir: Path | N
             n_ocr = sum(1 for v in votes if v.get("faction_votes_source") == "ocr")
             print(f"  {url}: {len(votes)} pozycji, {n_scrutin} scrutins, "
                   f"{n_ocr} z rozkładem OCR (sesja {sd})", file=sys.stderr)
-            if sd and sd not in url_map:
+            if sd:
                 url_map[url] = sd
-                url_map_dirty = True
+                _save_url_map(out_dir, url_map)  # przyrostowo
         except Exception as e:
             print(f"  POMINIĘTO {url}: {e}", file=sys.stderr)
         finally:
@@ -826,8 +879,8 @@ def scrape(out_dir: Path, limit_sessions: int | None = None, cache_dir: Path | N
                 except Exception:
                     pass
 
-    if url_map_dirty:
-        _save_url_map(out_dir, url_map)
+    # Zapis końcowy (idempotentny — w pętli zapisujemy przyrostowo).
+    _save_url_map(out_dir, url_map)
 
     payload = {
         "kadencja": KADENCJA_ID,
