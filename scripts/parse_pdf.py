@@ -21,6 +21,47 @@ from pathlib import Path
 # (OK (N votes, X/Y validated)) zostaje zawsze.
 VERBOSE = os.environ.get("RADOSKOP_PARSE_VERBOSE", "").strip() not in ("", "0", "false", "False")
 
+# Cache parsowania: PDF-y głosowań są niezmienne po publikacji (downloader
+# pomija istniejące), więc otwieranie ich pdfplumberem co przebieg (raz na test
+# "scanned", raz na pełny parse) to strata. Cache trzyma zwalidowaną sesję LUB
+# None (zapamiętany skip: scanned/empty), kluczowany po (mtime, rozmiar).
+# Trafienie omija oba otwarcia pdfplumber. Wymuś re-parse: RADOSKOP_NOCACHE=1.
+_NOCACHE = os.environ.get("RADOSKOP_NOCACHE", "").strip() not in ("", "0", "false", "False")
+_CACHE_SUBDIR = ".parse_cache"
+
+
+def _file_sig(path):
+    """Sygnatura pliku do invalidacji cache: mtime (sekundy) + rozmiar."""
+    st = os.stat(path)
+    return f"{int(st.st_mtime)}:{st.st_size}"
+
+
+def _cache_load(cache_dir, basename, sig):
+    """Zwraca (hit, payload). payload bywa None (zapamiętany skip)."""
+    if _NOCACHE:
+        return False, None
+    cf = os.path.join(cache_dir, basename + ".cache.json")
+    try:
+        with open(cf, encoding="utf-8") as f:
+            entry = json.load(f)
+    except (OSError, ValueError):
+        return False, None
+    if entry.get("sig") != sig:
+        return False, None
+    return True, entry.get("payload")
+
+
+def _cache_store(cache_dir, basename, sig, payload):
+    """Zapis atomowy (tmp + replace), błędy I/O nie wywalają parsowania."""
+    cf = os.path.join(cache_dir, basename + ".cache.json")
+    tmp = cf + ".tmp"
+    try:
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump({"sig": sig, "payload": payload}, f, ensure_ascii=False)
+        os.replace(tmp, cf)
+    except OSError:
+        pass
+
 
 def parse_voting_pdf(pdf_path):
     """Parse a single eSesja voting protocol PDF into structured data."""
@@ -346,6 +387,10 @@ def batch_parse(input_path, output_dir):
     else:
         pdf_files = sorted(glob.glob(os.path.join(input_path, "*.pdf")))
 
+    cache_dir = os.path.join(output_dir, _CACHE_SUBDIR)
+    os.makedirs(cache_dir, exist_ok=True)
+    cached_hits = 0
+
     all_sessions = []
     skipped = 0
     for pdf_file in pdf_files:
@@ -358,6 +403,24 @@ def batch_parse(input_path, output_dir):
             skipped += 1
             continue
 
+        # Cache: trafienie omija oba otwarcia pdfplumber. payload None =
+        # zapamiętany skip (scanned/empty); dict = zwalidowana sesja + ok/fail.
+        sig = _file_sig(pdf_file)
+        hit, payload = _cache_load(cache_dir, basename, sig)
+        if hit:
+            cached_hits += 1
+            if payload is None:
+                print(f"Skipping (scanned, cached): {basename}")
+                skipped += 1
+                continue
+            session = payload["session"]
+            ok, fail = payload.get("ok", 0), payload.get("fail", 0)
+            suffix = f", {fail} warn" if fail else ""
+            print(f"Parsing: {basename} ... cached "
+                  f"({session['vote_count']} votes, {ok}/{ok+fail} validated{suffix})")
+            all_sessions.append(session)
+            continue
+
         # Quick text check — skip scanned PDFs
         try:
             with pdfplumber.open(pdf_file) as _pdf:
@@ -368,6 +431,7 @@ def batch_parse(input_path, output_dir):
                         sample += _t
                 if len(sample) < 100:
                     print(f"Skipping (scanned): {basename}")
+                    _cache_store(cache_dir, basename, sig, None)
                     skipped += 1
                     continue
         except Exception:
@@ -385,12 +449,18 @@ def batch_parse(input_path, output_dir):
             if errors and VERBOSE:
                 for e in errors:
                     print(f"  WARNING: {e}")
+            # Cache'ujemy zwalidowaną sesję (validate mutuje in-place), żeby
+            # wynik z cache był identyczny z tym co ląduje w session_*.json.
+            _cache_store(cache_dir, basename, sig,
+                         {"session": session, "ok": ok, "fail": fail})
             all_sessions.append(session)
         except Exception as e:
             print(f"FAILED: {e}")
 
     if skipped:
         print(f"\nSkipped {skipped} files (empty/scanned/invalid)")
+    if cached_hits:
+        print(f"Cache: {cached_hits} z {len(pdf_files)} plików wzięte z cache")
 
     # Save individual session JSONs
     for session in all_sessions:

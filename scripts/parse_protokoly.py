@@ -23,6 +23,48 @@ from collections import defaultdict
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Cache parsowania: protokoły są niezmienne po publikacji (downloader pomija
+# istniejące pliki), więc re-ekstrakcja tekstu pdfplumberem co przebieg to
+# czysta strata. Cache trzyma wynik parse_protocol per plik, kluczowany po
+# (mtime, rozmiar). Trafienie omija extract_text_from_pdf. Wymuś re-parse
+# zmienną RADOSKOP_NOCACHE=1 (np. po zmianie logiki parsera).
+_NOCACHE = os.environ.get("RADOSKOP_NOCACHE", "").strip() not in ("", "0", "false", "False")
+_CACHE_SUBDIR = ".parse_cache"
+
+
+def _file_sig(path):
+    """Sygnatura pliku do invalidacji cache: mtime (sekundy) + rozmiar."""
+    st = os.stat(path)
+    return f"{int(st.st_mtime)}:{st.st_size}"
+
+
+def _cache_load(cache_dir, basename, sig):
+    """Zwraca (hit, payload). payload bywa None (zapamiętany skip)."""
+    if _NOCACHE:
+        return False, None
+    cf = os.path.join(cache_dir, basename + ".cache.json")
+    try:
+        with open(cf, encoding="utf-8") as f:
+            entry = json.load(f)
+    except (OSError, ValueError):
+        return False, None
+    if entry.get("sig") != sig:
+        return False, None
+    return True, entry.get("payload")
+
+
+def _cache_store(cache_dir, basename, sig, payload):
+    """Zapis atomowy (tmp + replace), błędy I/O nie wywalają parsowania."""
+    cf = os.path.join(cache_dir, basename + ".cache.json")
+    tmp = cf + ".tmp"
+    try:
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump({"sig": sig, "payload": payload}, f, ensure_ascii=False)
+        os.replace(tmp, cf)
+    except OSError:
+        pass
+
+
 # All known councilor names (both kadencje) for matching
 KNOWN_COUNCILORS = {
     # VIII kadencja (2018-2024)
@@ -374,18 +416,30 @@ def batch_parse(input_path, output_dir):
 
     print(f"Found {len(pdf_files)} protocol PDFs to parse\n")
 
+    cache_dir = os.path.join(output_dir, _CACHE_SUBDIR)
+    os.makedirs(cache_dir, exist_ok=True)
+    cached_hits = 0
+
     all_protocols = []
     for pdf_file in pdf_files:
         basename = os.path.basename(pdf_file)
         print(f"Parsing: {basename} ... ", end="")
 
         try:
-            result = parse_protocol(pdf_file)
+            sig = _file_sig(pdf_file)
+            hit, result = _cache_load(cache_dir, basename, sig)
+            if hit:
+                cached_hits += 1
+            else:
+                result = parse_protocol(pdf_file)
+                _cache_store(cache_dir, basename, sig, result)
+
             if result is None:
-                print("SKIP (too short)")
+                print("cached SKIP (too short)" if hit else "SKIP (too short)")
                 continue
 
-            print(f"OK ({result['statement_count']} statements, "
+            tag = "cached" if hit else "OK"
+            print(f"{tag} ({result['statement_count']} statements, "
                   f"{result['unique_speakers']} speakers)")
 
             # Show top speakers
@@ -420,7 +474,8 @@ def batch_parse(input_path, output_dir):
     with open(activity_path, 'w', encoding='utf-8') as f:
         json.dump(activity, f, ensure_ascii=False, indent=2)
 
-    print(f"\nTotal: {len(all_protocols)} protocols parsed")
+    print(f"\nTotal: {len(all_protocols)} protocols parsed "
+          f"({cached_hits} z cache, {len(pdf_files) - cached_hits} sparsowanych)")
     print(f"  {sum(p['statement_count'] for p in all_protocols)} statements extracted")
     print(f"Saved to: {output_dir}")
     print(f"Activity stats: {activity_path}")
