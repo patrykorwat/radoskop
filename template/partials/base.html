@@ -41,8 +41,6 @@
     <a href="https://radoskop.eu/pro/">{{ t.nav_business }}</a>
   </div>
   <div class="topbar-actions">
-    <button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
-    <div class="user-chip" id="user-chip" style="display:none"><button id="user-chip-link" onclick="goToProfile()" aria-label="Moje konto" title="Moje konto" style="background:none;border:none;padding:0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:inherit;font:inherit"><span class="user-avatar" id="user-avatar"></span><span id="user-name" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span></button><button class="user-logout" onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj">×</button></div>
     <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="{{ t.aria_theme }}">{{ t.theme_toggle }}</button>
   </div>
 </nav>
@@ -52,7 +50,16 @@
 {% block footer %}{% endblock %}
 </div>
 
-<script>{% include "app/chrome.js" %}</script>
+<script>
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  var next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('radoskop_theme', next); } catch(e) {}
+  var host = location.hostname.replace(/^[^.]+\./,'.');
+  document.cookie = 'radoskop_theme=' + next + ';path=/;max-age=31536000;domain=' + host;
+}
+</script>
 {% block scripts %}{% endblock %}
 </body>
 </html>

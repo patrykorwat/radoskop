@@ -235,19 +235,57 @@
 </div>
 
 <script>
-// --- Wspólny chrome (motyw + pasek logowania) z app/chrome.js ---
-// JEDNO źródło prawdy współdzielone ze stronami spółek i base.html. chrome.js
-// definiuje globalnie radoskopGetCookie/radoskopSetCookie/getTheme/applyTheme/
-// toggleTheme oraz cały auth (AUTH_API, AUTH_FRONTEND, _bridgeLogin,
-// _setAuthUser, _renderAuthHeader, _maybeAutoBridge, _refreshAuth, doLogout,
-// goToProfile, window._authUser) i sam wykonuje applyTheme(getTheme()) + /me.
-// Hooki rozszerzają wspólny chrome o zachowania SPA (wykresy, gating Pro):
-window.onThemeChange = function () { if (typeof K !== 'undefined' && K) render(); };
-window.onAuthUser = function (u) {
-  if (typeof refreshSubscriptionStatus === 'function') refreshSubscriptionStatus();
-  if (!u) { try { _komisjeListCache = null; } catch (e) {} }  // gating: wyczyść cache Pro po wylogowaniu
-};
-{% include "app/chrome.js" %}
+// --- Cross-subdomain cookie helpers ---
+// Theme + cookie consent must persist across {slug}.radoskop.{pl|eu} AND
+// the root, so we set Domain=.radoskop.pl OR .radoskop.eu zależnie od TLD
+// hosta. Local fallback (e.g. dev on localhost) drops Domain attribute.
+function _radoskopCookieDomain() {
+  var m = location.hostname.match(/(?:^|\.)radoskop\.(pl|eu)$/i);
+  return m ? '; Domain=.radoskop.' + m[1] : '';
+}
+function radoskopGetCookie(name) {
+  var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)'));
+  return m ? decodeURIComponent(m[1]) : null;
+}
+function radoskopSetCookie(name, value, daysToLive) {
+  var d = new Date(); d.setTime(d.getTime() + (daysToLive || 365) * 86400000);
+  var secure = location.protocol === 'https:' ? '; Secure' : '';
+  document.cookie = name + '=' + encodeURIComponent(value)
+    + '; expires=' + d.toUTCString()
+    + '; path=/; SameSite=Lax' + secure
+    + _radoskopCookieDomain();
+}
+
+// Theme management (shared across all radoskop.{pl,eu} subdomains)
+function getTheme() {
+  // Cookie first (cross-subdomain). LocalStorage second (legacy fallback —
+  // pages migrated from old per-origin storage). System pref last.
+  var c = radoskopGetCookie('radoskop_theme');
+  if (c === 'dark' || c === 'light') return c;
+  try { const s = localStorage.getItem('radoskop_theme'); if (s) return s; } catch(e) {}
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const icon = document.getElementById('theme-icon');
+  const label = document.getElementById('theme-label');
+  if (icon) icon.textContent = theme === 'light' ? '🌙' : '☀️';
+  if (label) label.textContent = theme === 'light' ? 'Ciemny' : 'Jasny';
+  // Update Chart.js defaults
+  const s = getComputedStyle(document.documentElement);
+  Chart.defaults.color = s.getPropertyValue('--chart-text').trim() || '#4b5563';
+  Chart.defaults.borderColor = s.getPropertyValue('--chart-border').trim() || 'rgba(0,0,0,0.08)';
+}
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  const next = current === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+  radoskopSetCookie('radoskop_theme', next, 365);
+  // Best-effort: also drop legacy local copy so it doesn't override on next visit.
+  try { localStorage.removeItem('radoskop_theme'); } catch(e) {}
+  if (K) render();
+}
+applyTheme(getTheme());
 
 // API configuration
 const CITY_SLUG = location.hostname.split('.')[0] || 'sopot';
@@ -5376,11 +5414,109 @@ init();
 // frontend fetchuje api.radoskop.eu z credentials:include, przeglądarka dokleja
 // cookie automatycznie bo target host kończy się na .radoskop.eu.
 
-// --- Auth/chrome: przeniesione do app/chrome.js (JEDNO źródło) ---
-// AUTH_API, AUTH_FRONTEND, _bridgeLogin, _setAuthUser, _renderAuthHeader,
-// _maybeAutoBridge, _refreshAuth oraz window._authUser pochodzą teraz z
-// app/chrome.js (wpięte na górze skryptu). Gating Pro odświeża hook
-// window.onAuthUser (definiowany przy includzie chrome.js).
+// /me lokalny: api.radoskop.pl (cookie .radoskop.pl po bridge / signup .pl).
+// Cross-TLD cookies blokowane przez Firefox Total Cookie Protection, Safari ITP,
+// Chrome Privacy Sandbox, więc pytamy backend o sesję na BIEŻĄCEJ TLD.
+const AUTH_API = (window.RADOSKOP_AUTH_API || _API_HOST) + '/api/auth';
+
+// Token bridge: gdy user nie ma sesji na .pl, otwieramy radoskop.eu (gdzie
+// może mieć sesję np. po Google login). Apex .eu z parametrem bridge_to
+// minuje HMAC token i odsyła na api.radoskop.pl/bridge-exchange które
+// ustawia cookie .radoskop.pl, po czym 302 z powrotem na docelowy URL.
+async function _bridgeLogin() {
+  await trackEventBeforeNav('login_start', { method: 'bridge' });
+  const bridgeUrl = 'https://radoskop.eu/?bridge_to=' + encodeURIComponent(window.location.href);
+  window.location.href = bridgeUrl;
+}
+const AUTH_FRONTEND = window.RADOSKOP_AUTH_FRONTEND || 'https://radoskop.eu';
+
+// Cache user info w sessionStorage żeby przy reload nie czekać na /me przed
+// pokazaniem chipa. Walidacja przez /me dzieje się asynchronicznie i podmienia.
+let _authUser = null;
+try {
+  const cached = sessionStorage.getItem('radoskop_user');
+  if (cached) _authUser = JSON.parse(cached);
+} catch (e) {}
+
+function _setAuthUser(user) {
+  _authUser = user;
+  try {
+    if (user) sessionStorage.setItem('radoskop_user', JSON.stringify(user));
+    else sessionStorage.removeItem('radoskop_user');
+  } catch (e) {}
+  _renderAuthHeader();
+}
+
+function _renderAuthHeader() {
+  const btn = document.getElementById('auth-login-btn');
+  const chip = document.getElementById('user-chip');
+  if (!btn || !chip) return;
+  // linki sprzedażowe (Pro, Cennik) znikają użytkownikom z aktywnym Pro
+  document.querySelectorAll('.topbar-nav .nav-sales').forEach(function(a){ a.style.display = (_authUser && _authUser.pro) ? 'none' : ''; });
+  if (_authUser) {
+    btn.style.display = 'none';
+    chip.style.display = 'inline-flex';
+    const av = document.getElementById('user-avatar');
+    av.textContent = (_authUser.email || '?')[0].toUpperCase();
+    av.title = _authUser.email;
+    const nameEl = document.getElementById('user-name');
+    const dn = _authUser.display_name && _authUser.display_name.trim()
+      ? _authUser.display_name.trim()
+      : (_authUser.email || '').split('@')[0];
+    nameEl.textContent = dn;
+    nameEl.title = _authUser.email;
+  } else {
+    btn.style.display = '';
+    chip.style.display = 'none';
+  }
+}
+
+// Pull /me przy load, niezależnie od cache (cache może być nieaktualny).
+// Razem refreshujemy też subscription status, żeby gating Pro był
+// spójny po login/logout/initial load.
+// Auto bridge sesji cross TLD. Na .radoskop.pl cookie sesji jest pierwszorzędne
+// dopiero po bridge z .radoskop.eu (tam user się loguje i kupuje Pro).
+// Gdy /me na .pl zwraca 401, robimy JEDEN cichy probe: top level redirect na
+// radoskop.eu/?bridge_to=<bieżący URL>&probe=1. Apex .eu z sesją mintuje token
+// i przez api.radoskop.pl/bridge-exchange ustawia cookie .pl, po czym wraca na
+// bieżący URL już zalogowany. Bez sesji .eu apex wraca po cichu (probe=1, bez
+// modala logowania). Guard w sessionStorage daje jeden przelot na sesję
+// przeglądarki, więc nie ma pętli ani powtórek. Tylko .pl; na .eu cookie jest
+// first party i /me działa bez bridge.
+function _maybeAutoBridge() {
+  const host = location.hostname;
+  const onPl = host === 'radoskop.pl' || host.endsWith('.radoskop.pl');
+  if (!onPl) return false;
+  try {
+    if (sessionStorage.getItem('radoskop_bridge_probed') === '1') return false;
+    sessionStorage.setItem('radoskop_bridge_probed', '1');
+  } catch (e) {
+    // Brak sessionStorage (tryb prywatny): nie próbujemy, żeby nie zapętlić.
+    return false;
+  }
+  location.replace('https://radoskop.eu/?bridge_to='
+    + encodeURIComponent(location.href) + '&probe=1');
+  return true;
+}
+
+async function _refreshAuth() {
+  try {
+    const r = await fetch(AUTH_API + '/me', { credentials: 'include' });
+    if (!r.ok) {
+      // Brak sesji .pl: spróbuj raz zbridgeować sesję z .eu. Jeśli redirect
+      // ruszył, przerywamy (strona wczyta się od nowa po powrocie).
+      if (_maybeAutoBridge()) return;
+      _setAuthUser(null); BUSINESS_ACTIVE = false; _komisjeListCache = null; return;
+    }
+    const data = await r.json();
+    _setAuthUser(data.user || null);
+  } catch (e) {
+    // Network error: zostaw cache jak był, /me retry przy następnym razie.
+  }
+  if (typeof refreshSubscriptionStatus === 'function') {
+    await refreshSubscriptionStatus();
+  }
+}
 
 // ----------------------------------------------------------------------------
 // Modal otwieranie/zamykanie + tab switch
@@ -5515,7 +5651,57 @@ async function googleLogin() {
   } catch (e) {}
 })();
 
-// doLogout() i goToProfile() przeniesione do app/chrome.js (jedno źródło).
+async function doLogout() {
+  await trackEventBeforeNav('logout', {});
+  // 1. Local logout na bieżącej TLD (.pl)
+  try {
+    await fetch(AUTH_API + '/logout', { method: 'POST', credentials: 'include' });
+  } catch (e) {}
+  _setAuthUser(null);
+  // 2. Cross-TLD logout: top-level nav na radoskop.eu z ?logout_remote=1
+  // żeby też wyczyścić sesję .eu (cookie partycjonowane, nie dostępne
+  // z fetch z .pl). Po wylogowaniu .eu odbija z powrotem na current URL.
+  const returnTo = encodeURIComponent(window.location.href);
+  window.location.href = 'https://radoskop.eu/?logout_remote=1&return_to=' + returnTo;
+}
+
+// Przejście do strony "Moje konto" zalogowanego usera.
+//
+// Profile page żyje na radoskop.eu/profile/. Z subdomeny miasta .pl
+// user ma sesję na .radoskop.pl (cookie partycjonowane per TLD), więc
+// proste window.location na .eu zgubiłoby login. Mintujemy bridge token
+// na bieżącej domenie, redirektujemy na api.radoskop.eu/bridge-exchange
+// który tworzy sesję .eu i odsyła na /profile/.
+async function goToProfile() {
+  const profileUrl = 'https://radoskop.eu/profile/';
+  // Jeśli już jesteśmy na .eu, nie trzeba bridge'ować
+  if (window.location.hostname.endsWith('.radoskop.eu') || window.location.hostname === 'radoskop.eu') {
+    window.location.href = profileUrl;
+    return;
+  }
+  try {
+    const r = await fetch(AUTH_API + '/bridge-token', { credentials: 'include' });
+    if (!r.ok) {
+      // Brak sesji albo bridge wyłączony — fallback: zwykły redirect
+      // (user dostanie modal logowania na .eu jeśli nie ma cookie)
+      window.location.href = profileUrl;
+      return;
+    }
+    const data = await r.json();
+    const token = data.token;
+    if (!token) {
+      window.location.href = profileUrl;
+      return;
+    }
+    // Exchange na .eu, return_to to /profile/
+    const exchangeUrl = 'https://api.radoskop.eu/api/auth/bridge-exchange'
+      + '?token=' + encodeURIComponent(token)
+      + '&return_to=' + encodeURIComponent(profileUrl);
+    window.location.href = exchangeUrl;
+  } catch (e) {
+    window.location.href = profileUrl;
+  }
+}
 
 async function forgotPassword() {
   const email = (document.getElementById('auth-email').value || '').trim().toLowerCase();
