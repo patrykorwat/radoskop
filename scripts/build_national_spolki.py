@@ -183,7 +183,12 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .topbar{position:sticky;top:0;z-index:100;background:var(--surface);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .topbar-logo{font-size:1.05rem;font-weight:700;color:var(--text)}.topbar-logo span{color:var(--accent)}
 .topbar-nav{display:flex;gap:20px;flex-wrap:wrap}.topbar-nav a{font-size:.88rem;color:var(--muted)}.topbar-nav a:hover{color:var(--accent);text-decoration:none}
-.tt{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:4px 9px;cursor:pointer;font-size:.85rem}
+.topbar-actions{display:flex;gap:6px;align-items:center}
+.auth-btn{background:var(--accent);color:#fff;border:none;border-radius:8px;padding:6px 14px;cursor:pointer;font-size:.85rem;font-weight:500}.auth-btn:hover{opacity:.9}
+.user-chip{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:4px 10px 4px 4px;font-size:.85rem;color:var(--text)}
+.user-chip .user-avatar{width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:600}
+.user-chip .user-logout{background:none;border:none;color:var(--muted);cursor:pointer;padding:0 2px;font-size:1rem;line-height:1}.user-chip .user-logout:hover{color:var(--accent)}
+.theme-toggle{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;cursor:pointer;color:var(--muted);font-size:.85rem;display:inline-flex;align-items:center;gap:4px}.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
 .wrap{max-width:780px;margin:0 auto;padding:24px 18px 40px}
 .crumb{font-size:13px;color:var(--muted);margin-bottom:14px}
 h1{font-size:23px;margin:0 0 6px}.krs{color:var(--muted);font-size:13px;margin-bottom:12px}
@@ -198,17 +203,26 @@ h1{font-size:23px;margin:0 0 6px}.krs{color:var(--muted);font-size:13px;margin-b
 .cell{background:var(--bg);border-radius:8px;padding:8px 10px}
 .cell .ck{font-size:12px;color:var(--muted);margin-bottom:2px}
 .cell .cv{font-size:14px}
-footer{max-width:780px;margin:0 auto;padding:18px;color:var(--muted);font-size:12px;border-top:1px solid var(--border)}
+footer{text-align:center;padding:40px 18px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--border);margin-top:40px}footer a{color:var(--accent)}
+@media(max-width:768px){.topbar{padding:8px 12px;gap:8px;flex-wrap:wrap}.topbar-nav{gap:14px;order:3;flex-basis:100%;justify-content:center}}
 """
 
 # Anti-FOUC: ustaw motyw z cookie radoskop_theme PRZED renderem (jak head.html).
 _THEME_JS = r"""try{var m=document.cookie.match(/(?:^|;\s*)radoskop_theme=([^;]+)/);var t=m?decodeURIComponent(m[1]):null;if(t!=='dark'&&t!=='light'){try{var s=localStorage.getItem('radoskop_theme');if(s==='dark'||s==='light')t=s;}catch(e){}}if(!t)t=(window.matchMedia&&matchMedia('(prefers-color-scheme:dark)').matches)?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){}"""
 
-# Toggle motywu + nawigacja klienta (pjax): klik w link spółki podmienia tylko
-# treść #app bez przeładowania. Progresywne — bez JS zwykłe linki działają, a
-# każda strona jest pełnym prerenderem (SEO bez zmian).
+# Wspólny chrome (motyw + pasek logowania) z KANONICZNEGO template/app/chrome.js
+# — jedno źródło z głównym serwisem, zamiast własnej kopii. Brak pliku → pusty
+# string (strona degraduje łagodnie, treść i tak jest prerenderem).
+try:
+    _CHROME_JS = (Path(__file__).resolve().parent.parent
+                  / "template" / "app" / "chrome.js").read_text(encoding="utf-8")
+except Exception:  # noqa: BLE001
+    _CHROME_JS = ""
+
+# Nawigacja klienta (pjax): klik w link spółki podmienia tylko treść #app bez
+# przeładowania. Progresywne — bez JS zwykłe linki działają, a każda strona to
+# pełny prerender (SEO bez zmian). Toggle motywu/auth są w _CHROME_JS.
 _APP_JS = r"""
-function radoskopToggleTheme(){var d=document.documentElement;var t=d.getAttribute('data-theme')==='dark'?'light':'dark';d.setAttribute('data-theme',t);try{document.cookie='radoskop_theme='+t+';path=/;max-age=31536000;domain=.radoskop.pl';localStorage.setItem('radoskop_theme',t);}catch(e){}}
 (function(){var app=document.getElementById('app');if(!app)return;
 function internal(a){try{var u=new URL(a.href);return u.origin===location.origin&&/^\/(company|companies)(\/|$)/.test(u.pathname);}catch(e){return false;}}
 async function load(url,push){try{var r=await fetch(url);if(!r.ok){location.href=url;return;}var t=await r.text();var doc=new DOMParser().parseFromString(t,'text/html');var na=doc.getElementById('app');if(!na){location.href=url;return;}app.innerHTML=na.innerHTML;if(doc.title)document.title=doc.title;if(push)history.pushState({},'',url);window.scrollTo(0,0);}catch(e){location.href=url;}}
@@ -236,16 +250,24 @@ def _page(title: str, desc: str, canonical: str, body: str, jsonld: dict | None)
 <script>{_THEME_JS}</script>
 <style>{_CSS}</style>{ld}
 </head><body>
-<header class="topbar">
+<nav class="topbar" aria-label="Główna nawigacja">
 <a class="topbar-logo" href="https://radoskop.eu/">Rado<span>skop</span></a>
-<nav class="topbar-nav"><a href="https://radoskop.eu/">Strona główna</a><a href="{HUB}/companies/">Spółki</a></nav>
-<button class="tt" type="button" aria-label="Przełącz motyw" onclick="radoskopToggleTheme()">◐</button>
-</header>
+<div class="topbar-nav"><a href="https://radoskop.eu/">Strona główna</a><a href="{HUB}/companies/">Spółki</a><a href="https://radoskop.eu/planning/">Planowanie</a><a href="https://radoskop.eu/reports/">Raporty</a><a href="https://radoskop.eu/pro/" class="nav-sales">Pro</a><a href="https://radoskop.eu/pricing/" class="nav-sales">Cennik</a></div>
+<div class="topbar-actions">
+<button class="auth-btn" id="auth-login-btn" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
+<div class="user-chip" id="user-chip" style="display:none"><button id="user-chip-link" onclick="goToProfile()" aria-label="Moje konto" title="Moje konto" style="background:none;border:none;padding:0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:inherit;font:inherit"><span class="user-avatar" id="user-avatar"></span><span id="user-name" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span></button><button class="user-logout" onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj">×</button></div>
+<button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny">◐</button>
+</div></nav>
 <main id="app" class="wrap">{body}
 <p class="note">Dane z oficjalnych rejestrów: KRS (odpis pełny) i Monitor Sądowy i Gospodarczy.
 Skład organów to fakty z rejestru.</p>
 </main>
-<footer>Radoskop — otwarty monitoring samorządu. Dane z KRS i MSiG. <a href="https://radoskop.eu/">radoskop.eu</a></footer>
+<footer>
+<div style="margin-bottom:12px"><a href="https://radoskop.eu/">Radoskop</a> · <a href="https://radoskop.eu/#cities">wszystkie miasta</a> · <a href="https://x.com/radoskop" target="_blank" rel="noopener me">X (Twitter)</a> · <a href="https://bsky.app/profile/radoskop.bsky.social" target="_blank" rel="noopener me">Bluesky</a></div>
+<div style="margin-bottom:12px"><a href="https://radoskop.eu/planning/">Planowanie</a> · <a href="https://radoskop.eu/reports/">Raporty</a> · <a href="https://radoskop.eu/pricing/">Cennik</a> · <a href="https://radoskop.eu/pro/">Pro</a> · <a href="https://radoskop.eu/privacy/">Polityka prywatności</a> · <a href="https://radoskop.eu/terms/">Regulamin</a></div>
+<div style="font-size:.75rem">Dane źródłowe: KRS i Monitor Sądowy i Gospodarczy · Kod otwarty (AGPL-3.0)</div>
+</footer>
+<script>{_CHROME_JS}</script>
 <script>{_APP_JS}</script>
 </body></html>"""
 
