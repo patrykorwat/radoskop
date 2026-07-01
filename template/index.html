@@ -4526,7 +4526,7 @@ async function renderLandingSpolki(){
     var val=hasKap ? (_spKapFmt(c.kapital)||'—') : (_spSeats(c)+' os.');
     var sub=[]; if(c.forma_prawna) sub.push(_spForma(c.forma_prawna)); sub.push(_spPlOsoby(_spSeats(c))+' w organach');
     var w=Math.round(metric(c)/max*100);
-    var nm=c.krs ? '<a href="https://radoskop.pl/company/'+encodeURIComponent(c.krs)+'/" style="color:inherit;text-decoration:none">'+_spEsc(c.name)+'</a>' : _spEsc(c.name);
+    var nm=c.krs ? '<a href="https://radoskop.pl/company/'+encodeURIComponent(c.krs)+'/" data-umami-event="landing-spolka" style="color:inherit;text-decoration:none">'+_spEsc(c.name)+'</a>' : _spEsc(c.name);
     return '<div style="padding:10px 0;border-top:1px solid var(--border)">'+
       '<div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><span style="font-weight:600">'+nm+'</span><span style="font-weight:600;white-space:nowrap">'+_spEsc(val)+'</span></div>'+
       '<div style="margin-top:6px;height:6px;background:var(--border);border-radius:999px;overflow:hidden"><div style="width:'+w+'%;height:100%;background:var(--accent)"></div></div>'+

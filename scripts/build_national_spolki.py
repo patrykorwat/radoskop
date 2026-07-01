@@ -32,6 +32,12 @@ from pathlib import Path
 HUB = "https://radoskop.pl"
 ORGANS = (("Zarząd", "zarzad"), ("Rada nadzorcza", "rada_nadzorcza"))
 
+# Tracker Umami — te same wartości co generate_site.generate_ga_snippet
+# (stats.radoskop.pl). Strony spółek to standalone HTML poza base.html/SPA,
+# więc snippet trzeba wstrzyknąć tutaj osobno.
+_UMAMI = ('<script async defer data-website-id="792c059f-c77e-4b4e-ad9c-31f4a7d5cfe4" '
+          'src="https://stats.radoskop.pl/script.js"></script>')
+
 
 def esc(s) -> str:
     return html.escape(str(s if s is not None else ""))
@@ -248,7 +254,7 @@ def _page(title: str, desc: str, canonical: str, body: str, jsonld: dict | None)
 <meta property="og:url" content="{esc(canonical)}">
 <meta property="og:type" content="website">
 <script>{_THEME_JS}</script>
-<style>{_CSS}</style>{ld}
+<style>{_CSS}</style>{ld}{_UMAMI}
 </head><body>
 <nav class="topbar" aria-label="Główna nawigacja">
 <a class="topbar-logo" href="https://radoskop.eu/">Rado<span>skop</span></a>
