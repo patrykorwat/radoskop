@@ -1241,6 +1241,7 @@ function renderLandingHTML(){
     '</div></section>'):'')+
   (s.activity.length?('<section class="lp-sec"><h2>'+_t('sec_activity_h2')+'</h2><div class="lp-sub">'+_t('sec_activity_sub')+'</div><div class="lp-card"><div style="display:flex;gap:8px;align-items:flex-start"><div style="display:flex;flex-direction:column;justify-content:space-between;height:64px;font-size:.68rem;color:var(--muted);text-align:right;flex:0 0 auto" aria-hidden="true"><span>'+maxV+'</span><span>'+Math.round(maxV/2)+'</span><span>0</span></div><div style="flex:1;min-width:0"><div class="lp-spark">'+bars+'</div><div class="lp-axis">'+ax+'</div></div></div><div style="display:flex;gap:16px;font-size:.78rem"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--accent)"></span><span class="mu">'+_t('legend_votes')+'</span></span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--red)"></span><span class="mu">'+_t('legend_contested')+'</span></span></div></div></section>'):'')+
   (rows?('<section class="lp-sec"><h2>'+_t('sec_contested_h2')+'</h2><div class="lp-sub">'+_t('sec_contested_sub')+'</div><div class="lp-card"><table><thead><tr><th>'+_t('th_vote')+'</th><th>'+_t('th_date')+'</th><th style="text-align:right">'+_t('th_for')+'</th><th style="text-align:right">'+_t('th_against')+'</th><th style="text-align:right">'+_t('th_abstain')+'</th><th style="padding-left:16px">'+_t('th_split')+'</th></tr></thead><tbody>'+rows+'</tbody></table></div></section>'):'')+
+  '<div id="lp-spolki"></div>'+
   '<section class="lp-sec"><h2>'+_t('sec_all_h2')+'</h2><div class="lp-sub">'+_t('sec_all_sub')+'</div>'+
     '<div class="lp-navlabel">'+_t('nav_label_main')+'</div><div class="lp-nav">'+
     nav('ranking','nav_councilors_title','nav_councilors_desc')+
@@ -1276,6 +1277,7 @@ function showLanding(){
   setTitle('');
   setOgMeta({ title: BASE_TITLE, description: '{{SITE_DESCRIPTION}}', url: '{{SITE_URL}}/' });
   window.scrollTo(0,0);
+  try { renderLandingSpolki(); } catch(e) {}
   // Progressive enhancement: dociągnij pełne głosy (sporne/topVote/tabela),
   // których K nie zawiera w payloadzie kadencji, potem przerysuj landing.
   _ensureLandingVotes();
@@ -1306,7 +1308,7 @@ async function _ensureLandingVotes(){
   K._landingVotesLoading = false;
   var lv=document.getElementById('landing-view');
   if(lv && lv.style.display!=='none' && (location.pathname==='/'||location.pathname==='')){
-    try { lv.innerHTML=renderLandingHTML(); } catch(e){}
+    try { lv.innerHTML=renderLandingHTML(); renderLandingSpolki(); } catch(e){}
   }
 }
 
@@ -4433,6 +4435,131 @@ async function renderSpolki() {
     return '<div style="border:1px solid var(--border,#e2e8f0);border-radius:14px;padding:16px;margin-bottom:12px"><h3 style="margin:0 0 4px;font-size:16px">'+titleHtml+'</h3>'+krsLink+(owners?'<div style="margin-bottom:6px">'+owners+'</div>':'')+organs+'</div>';
   }).join('');
   el.innerHTML = intro + cards;
+}
+
+// --- Landing: bloki "Spółki miejskie" + "Kto zebrał najwięcej stanowisk" ---
+// Fakty z rejestru (KRS + MSiG), bez ocen. Odporne na starszy spolki.json bez
+// kapital/forma/historia (degradują do liczby miejsc w organach). Wpięte pod
+// sekcję spornych na landingu; chowają się, gdy jednostka nie ma spółek.
+function _spForma(s){
+  var m={'SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ':'spółka z o.o.','SPÓŁKA AKCYJNA':'spółka akcyjna','PROSTA SPÓŁKA AKCYJNA':'prosta spółka akcyjna'};
+  var k=String(s||'').trim().toUpperCase();
+  return m[k] || String(s||'').toLowerCase();
+}
+function _spKapNum(k){
+  if(!k) return null;
+  var raw=String(k.wartosc||'').replace(/\s/g,'').replace(/\./g,'').replace(',','.');
+  var n=parseFloat(raw); return isFinite(n)?n:null;
+}
+function _spKapFmt(k){
+  var n=_spKapNum(k); if(n===null) return '';
+  var cur=String((k&&k.waluta)||'PLN').toUpperCase();
+  var s=Math.round(n).toLocaleString('pl-PL').replace(/ /g,' ');
+  return s+' '+(cur==='PLN'?'zł':cur);
+}
+function _spLata(od){ var y=_spYears(od); return y?y.replace('.',','):''; }
+function _spPlSpolki(n){ var d=n%10, dd=n%100; if(n===1) return '1 spółka'; return (d>=2&&d<=4&&!(dd>=12&&dd<=14))? n+' spółki' : n+' spółek'; }
+function _spPlOsoby(n){ var d=n%10, dd=n%100; if(n===1) return '1 osoba'; return (d>=2&&d<=4&&!(dd>=12&&dd<=14))? n+' osoby' : n+' osób'; }
+function _spSeats(c){ return (c.zarzad||[]).length+(c.rada_nadzorcza||[]).length; }
+function _spPersonIndex(cos){
+  var by={};
+  function add(name,co,organ,od,obecnie){
+    name=String(name||'').split(/\s+/).join(' ').trim();
+    if(!name) return;
+    var p=by[name]||(by[name]={name:name,krs:{},cur:{},z:0,r:0,seen:{}});
+    var isZ=(organ==='zarzad'||organ==='Zarząd');
+    var sig=(co.krs||'')+'|'+(isZ?'z':'r')+'|'+(od||'');
+    if(!p.seen[sig]){ p.seen[sig]=1; if(isZ)p.z++; else p.r++; }
+    p.krs[co.krs||'']=1; if(obecnie) p.cur[co.krs||'']=1;
+  }
+  cos.forEach(function(co){
+    var h=co.historia||[];
+    if(h.length){ h.forEach(function(e){ add(e.name,co,e.organ,e.od,e.obecnie); }); }
+    else {
+      (co.zarzad||[]).forEach(function(m){ add(m.name,co,'zarzad',m.od,true); });
+      (co.rada_nadzorcza||[]).forEach(function(m){ add(m.name,co,'rada_nadzorcza',m.od,true); });
+    }
+  });
+  var out=Object.keys(by).map(function(k){ var p=by[k];
+    return {name:p.name, count:Object.keys(p.krs).length, current:Object.keys(p.cur).length, z:p.z, r:p.r}; });
+  out.sort(function(a,b){ return b.count-a.count || (b.z+b.r)-(a.z+a.r) || a.name.localeCompare(b.name,'pl'); });
+  return out;
+}
+function _spRoles(p){
+  var parts=[];
+  if(p.z) parts.push(p.z===1?'zarząd':(p.z+'× zarząd'));
+  if(p.r) parts.push(p.r===1?'rada nadzorcza':(p.r+'× rada nadzorcza'));
+  return parts.join(' · ');
+}
+function _spLastChange(cos){
+  var best=null;
+  cos.forEach(function(co){
+    var h=co.historia||[];
+    var arr = h.length ? h.map(function(e){ return {od:e.od,co:co.name}; })
+      : (co.zarzad||[]).concat(co.rada_nadzorcza||[]).map(function(m){ return {od:m.od,co:co.name}; });
+    arr.forEach(function(e){ if(e.od && (!best||e.od>best.od)) best=e; });
+  });
+  return best;
+}
+function _spLongestTenure(cos){
+  var best=null;
+  cos.forEach(function(co){
+    (co.zarzad||[]).concat(co.rada_nadzorcza||[]).forEach(function(m){
+      if(m.od && (!best||m.od<best.od)) best={od:m.od,name:m.name,co:co.name};
+    });
+  });
+  return best;
+}
+async function renderLandingSpolki(){
+  var host=document.getElementById('lp-spolki');
+  if(!host) return;
+  var d=await _loadSpolki();
+  var cos=(d&&d.companies)||[];
+  if(!cos.length){ host.innerHTML=''; return; }
+
+  var hasKap=cos.some(function(c){ return _spKapNum(c.kapital)!=null; });
+  var metric=function(c){ return hasKap ? (_spKapNum(c.kapital)||0) : _spSeats(c); };
+  var sorted=cos.slice().sort(function(a,b){ return metric(b)-metric(a); });
+  var max=metric(sorted[0])||1;
+  var totalSeats=cos.reduce(function(x,c){ return x+_spSeats(c); },0);
+  var coRows=sorted.map(function(c){
+    var val=hasKap ? (_spKapFmt(c.kapital)||'—') : (_spSeats(c)+' os.');
+    var sub=[]; if(c.forma_prawna) sub.push(_spForma(c.forma_prawna)); sub.push(_spPlOsoby(_spSeats(c))+' w organach');
+    var w=Math.round(metric(c)/max*100);
+    var nm=c.krs ? '<a href="https://radoskop.pl/company/'+encodeURIComponent(c.krs)+'/" style="color:inherit;text-decoration:none">'+_spEsc(c.name)+'</a>' : _spEsc(c.name);
+    return '<div style="padding:10px 0;border-top:1px solid var(--border)">'+
+      '<div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><span style="font-weight:600">'+nm+'</span><span style="font-weight:600;white-space:nowrap">'+_spEsc(val)+'</span></div>'+
+      '<div style="margin-top:6px;height:6px;background:var(--border);border-radius:999px;overflow:hidden"><div style="width:'+w+'%;height:100%;background:var(--accent)"></div></div>'+
+      '<div style="font-size:.8rem;color:var(--muted);margin-top:4px">'+_spEsc(sub.join(' · '))+'</div></div>';
+  }).join('');
+  var kapCard = hasKap ? ('<div class="lp-card lp-stat"><div class="v" style="font-size:1.5rem">'+_spEsc(_spKapFmt({wartosc:String(cos.reduce(function(x,c){return x+(_spKapNum(c.kapital)||0);},0)),waluta:'PLN'}))+'</div><div class="l">Łączny kapitał</div></div>') : '';
+  var sec1='<section class="lp-sec"><h2>Spółki miejskie</h2><div class="lp-sub">Spółki z udziałem miasta i skład ich organów. Dane z KRS i Monitora Sądowego i Gospodarczego.</div>'+
+    '<div class="lp-stats" style="margin-bottom:14px"><div class="lp-card lp-stat"><div class="v">'+cos.length+'</div><div class="l">Spółek miejskich</div></div>'+
+    '<div class="lp-card lp-stat"><div class="v">'+totalSeats+'</div><div class="l">Miejsc w organach</div></div>'+kapCard+'</div>'+
+    '<div class="lp-card" style="padding-top:0">'+coRows+'</div></section>';
+
+  var idx=_spPersonIndex(cos);
+  var sec2='';
+  if(idx.length){
+    var top=idx.slice(0,6); var pmax=top[0].count||1;
+    var pRows=top.map(function(p,i){
+      var w=Math.round(p.count/pmax*100);
+      var histNote=(p.current===0)?' <span style="color:var(--muted);font-weight:400">(dawniej)</span>':'';
+      return '<div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-top:'+(i===0?'0':'1px')+' solid var(--border)">'+
+        '<span style="width:24px;height:24px;border-radius:50%;background:'+(i===0?'var(--accent)':'var(--border)')+';color:'+(i===0?'#fff':'var(--muted)')+';font-size:.8rem;display:flex;align-items:center;justify-content:center;flex:none">'+(i+1)+'</span>'+
+        '<div style="flex:1;min-width:0"><div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><span style="font-weight:600">'+_spEsc(p.name)+histNote+'</span><span style="font-weight:600;white-space:nowrap">'+_spEsc(_spPlSpolki(p.count))+'</span></div>'+
+        '<div style="margin-top:6px;height:6px;background:var(--border);border-radius:999px;overflow:hidden"><div style="width:'+w+'%;height:100%;background:var(--accent)"></div></div>'+
+        '<div style="font-size:.8rem;color:var(--muted);margin-top:4px">'+_spEsc(_spRoles(p))+'</div></div></div>';
+    }).join('');
+    var lc=_spLastChange(cos), lt=_spLongestTenure(cos), cards='';
+    if(lc){ cards+='<div class="lp-card lp-stat"><div class="v" style="font-size:1.3rem">'+_spEsc(_spDate(lc.od))+'</div><div class="l">Ostatnia zmiana w organach · '+_spEsc(lc.co)+'</div></div>'; }
+    if(lt){ cards+='<div class="lp-card lp-stat"><div class="v" style="font-size:1.3rem">'+_spEsc(_spLata(lt.od))+'</div><div class="l">Najdłuższy staż'+(lt.name?' · '+_spEsc(lt.name):'')+'</div></div>'; }
+    sec2='<section class="lp-sec"><h2>Kto zebrał najwięcej stanowisk</h2><div class="lp-sub">Osoby zasiadające w organach spółek miejskich. Fakt z rejestru: liczba miejsc, bez ocen.</div>'+
+      '<div class="lp-card" style="padding-top:0;margin-bottom:14px">'+pRows+'</div>'+
+      (cards?('<div class="lp-stats">'+cards+'</div>'):'')+'</section>';
+  }
+
+  host.innerHTML=sec1+sec2;
 }
 
 function renderBudget() {
