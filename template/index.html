@@ -4538,7 +4538,7 @@ async function renderLandingSpolki(){
     '<div class="lp-card lp-stat"><div class="v">'+totalSeats+'</div><div class="l">Miejsc w organach</div></div>'+kapCard+'</div>'+
     '<div class="lp-card" style="padding-top:0">'+coRows+'</div></section>';
 
-  var idx=_spPersonIndex(cos);
+  var idx=_spPersonIndex(cos).filter(function(p){ return p.count>=2; });
   var sec2='';
   if(idx.length){
     var top=idx.slice(0,6); var pmax=top[0].count||1;
@@ -4554,7 +4554,7 @@ async function renderLandingSpolki(){
     var lc=_spLastChange(cos), lt=_spLongestTenure(cos), cards='';
     if(lc){ cards+='<div class="lp-card lp-stat"><div class="v" style="font-size:1.3rem">'+_spEsc(_spDate(lc.od))+'</div><div class="l">Ostatnia zmiana w organach · '+_spEsc(lc.co)+'</div></div>'; }
     if(lt){ cards+='<div class="lp-card lp-stat"><div class="v" style="font-size:1.3rem">'+_spEsc(_spLata(lt.od))+'</div><div class="l">Najdłuższy staż'+(lt.name?' · '+_spEsc(lt.name):'')+'</div></div>'; }
-    sec2='<section class="lp-sec"><h2>Kto zebrał najwięcej stanowisk</h2><div class="lp-sub">Osoby zasiadające w organach spółek miejskich. Fakt z rejestru: liczba miejsc, bez ocen.</div>'+
+    sec2='<section class="lp-sec"><h2>Osoby w organach wielu spółek</h2><div class="lp-sub">Osoby zasiadające w organach więcej niż jednej spółki miejskiej. Fakt z rejestru: liczba miejsc, bez ocen. Dane z KRS i MSiG.</div>'+
       '<div class="lp-card" style="padding-top:0;margin-bottom:14px">'+pRows+'</div>'+
       (cards?('<div class="lp-stats">'+cards+'</div>'):'')+'</section>';
   }
