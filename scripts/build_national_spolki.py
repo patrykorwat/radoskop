@@ -200,8 +200,10 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 h1{font-size:23px;margin:0 0 6px}.krs{color:var(--muted);font-size:13px;margin-bottom:12px}
 .chip{display:inline-block;font-size:12px;padding:3px 10px;border-radius:999px;background:var(--bg);border:1px solid var(--border);color:var(--muted);margin:0 4px 4px 0}
 .ot{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:16px 0 6px}
-.mem{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:8px;background:var(--surface);border:1px solid var(--border);margin-bottom:6px}
-.mem .tn{color:var(--muted);font-size:12px;white-space:nowrap}
+.mem{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:8px 10px;border-radius:8px;background:var(--surface);border:1px solid var(--border);margin-bottom:6px}
+.mem>span:first-child{flex:1;min-width:0;overflow-wrap:break-word}
+.mem .tn{color:var(--muted);font-size:12px}
+.mem>.tn{white-space:nowrap;flex-shrink:0;text-align:right}
 .co{display:block;padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:var(--surface);margin-bottom:10px;text-decoration:none;color:inherit}
 .co:hover{border-color:var(--accent)}.co b{display:block}.co .s{color:var(--muted);font-size:12px}
 .note{color:var(--muted);font-size:12px;margin-top:20px;border-top:1px solid var(--border);padding-top:12px}
