@@ -1278,17 +1278,28 @@ function showLanding(){
   setOgMeta({ title: BASE_TITLE, description: '{{SITE_DESCRIPTION}}', url: '{{SITE_URL}}/' });
   window.scrollTo(0,0);
   try { renderLandingSpolki(); } catch(e) {}
-  // Progressive enhancement: dociągnij pełne głosy (sporne/topVote/tabela),
-  // których K nie zawiera w payloadzie kadencji, potem przerysuj landing.
-  _ensureLandingVotes();
+  // Progressive enhancement: dociągnij staty radnych (sporne/topVote/wbrew
+  // klubowi/tabela), których K nie zawiera w payloadzie kadencji, potem
+  // przerysuj landing.
+  _loadRadniStats();
 }
 
-// Sekcje "sporne" i "kontrowersyjne głosowanie" potrzebują danych per-głos,
-// a kadencja przychodzi bez K.votes (ładowane leniwie). Dociągamy je raz,
-// stronicowo, cache na K. Po sukcesie przerysowujemy landing, jeśli wciąż widoczny.
-async function _ensureLandingVotes(){
-  if(!K || K._landingVotesLoaded || K._landingVotesLoading) return;
-  if(typeof API_BASE==='undefined' || !K.id){ return; }
+// Dedykowany loader statów radnych na landing (odpowiednik _loadSpolki dla
+// spółek). Sekcje "sporne", "kontrowersyjne głosowanie" i "wbrew klubowi"
+// potrzebują danych per-głos, a kadencja przychodzi bez K.votes (ładowane
+// leniwie). Loader dociąga je raz, stronicowo, cache na K; liczy i cache'uje
+// podsumowanie (_radniStatsCache) niezależnie od tego, co akurat renderuje UI,
+// i zwraca je. Po doładowaniu przerysowuje landing, jeśli wciąż widoczny.
+let _radniStatsCache = null;
+async function _loadRadniStats(){
+  if(!K) return _radniStatsCache;
+  // Dane per-głos już są (albo trwa ich pobieranie) — policz/oddaj cache.
+  if(K._landingVotesLoaded) return (_radniStatsCache = _landingStats());
+  if(K._landingVotesLoading) return _radniStatsCache;
+  if(typeof API_BASE==='undefined' || !K.id){
+    K._landingVotesLoaded = true;
+    return (_radniStatsCache = _landingStats());
+  }
   K._landingVotesLoading = true;
   try {
     var all=[], page=1, totalPages=1;
@@ -1306,10 +1317,12 @@ async function _ensureLandingVotes(){
     K._landingVotesLoaded = true; // degraduj cicho — sekcje bez danych zostają ukryte
   }
   K._landingVotesLoading = false;
+  _radniStatsCache = _landingStats();
   var lv=document.getElementById('landing-view');
   if(lv && lv.style.display!=='none' && (location.pathname==='/'||location.pathname==='')){
     try { lv.innerHTML=renderLandingHTML(); renderLandingSpolki(); } catch(e){}
   }
+  return _radniStatsCache;
 }
 
 function render() {
@@ -5118,7 +5131,11 @@ async function loadCityCompareIndex(){
     // więc jeśli landing jest właśnie widoczny — przerysuj go raz.
     const lv=document.getElementById('landing-view');
     if(lv && lv.style.display!=='none' && (location.pathname==='/'||location.pathname==='')){
-      try{ lv.innerHTML=renderLandingHTML(); }catch(e){}
+      // Re-render landingu gubił blok "Spółki miejskie": renderLandingHTML
+      // odtwarza pusty placeholder #lp-spolki, a wypełnia go dopiero async
+      // renderLandingSpolki. Bez tego wywołania blok znika, gdy /compare
+      // doładuje się po pierwszym renderze. (Zgodnie z re-renderem w 1311.)
+      try{ lv.innerHTML=renderLandingHTML(); renderLandingSpolki(); }catch(e){}
     }
   }catch(e){}
 }
