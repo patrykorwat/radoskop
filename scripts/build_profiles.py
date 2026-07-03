@@ -141,12 +141,16 @@ COUNCILORS_X = {
         "notes": "",
     },
     "Sylwia Cisoń": {
-        "club": "KO", "club_full": "bezpartyjna (zawieszona w klubie KO od 14.09.2025)",
+        # Zawieszona w prawach członka klubu KO od 14.09.2025 → aktualnie
+        # niezrzeszona. Pill = aktualna przynależność (nie komitet wyborczy).
+        # club_full puste, by prerender SEO nie tworzył fałszywej afiliacji
+        # Organization z opisowego tekstu; kontekst zawieszenia w notes.
+        "club": "Niezrzeszona", "club_full": "",
         "okręg": 6,
         "okręg_dzielnice": "Żabianka-Wejhera-Jelitkowo-Tysiąclecia, Oliwa, Osowa, Matarnia, Kokoszki",
         "roles": [],
         "komisje": ["Komisja Kultury (wiceprzewodnicząca)"],
-        "notes": "Zawieszona w prawach członka klubu radnych KO od 14.09.2025.",
+        "notes": "Bezpartyjna. Zawieszona w prawach członka klubu radnych KO od 14.09.2025 (wybrana z listy KO).",
     },
     # WdG
     "Jolanta Banach": {

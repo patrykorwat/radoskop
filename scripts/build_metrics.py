@@ -59,7 +59,11 @@ CLUBS_BY_KADENCJA = {
     "2024-2029": {
         # KO (wg Wikipedii: Kluby Radnych IX kadencji)
         "Agnieszka Bartków": "KO", "Łukasz Bejm": "KO", "Kamila Błaszczyk": "KO",
-        "Sylwia Cisoń": "KO", "Żaneta Geryk": "KO",
+        # Sylwia Cisoń zawieszona w prawach członka klubu KO od 14.09.2025 →
+        # niezrzeszona. Klub musi pokazywać AKTUALNĄ przynależność, nie komitet
+        # wyborczy. "Niezrzeszona" (rdzeń "niezrzesz") wypada z linii klubowej
+        # przez club_has_line, więc zgodność/bunt liczone jako n/d.
+        "Sylwia Cisoń": "Niezrzeszona", "Żaneta Geryk": "KO",
         "Anna Golędzinowska": "KO", "Michał Hajduk": "KO",
         "Beata Jankowiak": "KO", "Krystian Kłos": "KO",
         "Andrzej Kowalczys": "KO", "Marcin Mickun": "KO",
