@@ -28,6 +28,7 @@ import os
 import re
 import sys
 import time
+from datetime import date
 
 try:
     import requests
@@ -143,6 +144,36 @@ def parse_date(raw):
     if m:
         return raw[:10]
     return raw
+
+
+_ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}$")
+
+
+def guard_future_wplywu(rec, today=None):
+    """Chroni przed datą wpływu w przyszłości (literówka roku w BIP, np. 2029 zamiast 2026).
+
+    Rok końca kadencji (2024–2029) bywa mylnie wpisany do daty wpływu przez urzędnika.
+    Data w przyszłości psuje sortowanie: interpelacja ląduje na szczycie /news/, RSS
+    oraz bota (feed sortuje malejąco po dacie). Poprawnego roku NIE zgadujemy
+    (zasada danych 1:1). Kolejność fallbacku:
+      1. data_wplywu, jeśli ISO i nie później niż dziś, zostaje bez zmian,
+      2. data_odpowiedzi, jeśli ISO i nie później niż dziś,
+      3. data scrapowania (dziś).
+    Surowa wartość z BIP trafia do data_wplywu_bip (audyt). Zwraca True gdy podmieniono.
+    """
+    today = today or date.today().isoformat()
+    raw = rec.get("data_wplywu", "") or ""
+    if not _ISO_DATE.match(raw):
+        return False  # pusta lub nie-ISO (np. tekst polski) — nie ruszamy
+    if raw <= today:
+        return False  # sensowna data
+    rec["data_wplywu_bip"] = raw
+    odp = rec.get("data_odpowiedzi", "") or ""
+    if _ISO_DATE.match(odp) and odp <= today:
+        rec["data_wplywu"] = odp
+    else:
+        rec["data_wplywu"] = today
+    return True
 
 
 def extract_radny(soup):
@@ -338,6 +369,16 @@ def scrape(kadencje, output_path, fetch_details=True, debug=False):
         rec.setdefault("tresc_url", "")
         rec.setdefault("odpowiedz_url", "")
         rec.setdefault("nr_sprawy", "")
+
+    # Strażnik dat wpływu w przyszłości (literówka roku w BIP)
+    _today = date.today().isoformat()
+    _future = [rec for rec in all_records if guard_future_wplywu(rec, _today)]
+    if _future:
+        print(f"\nUWAGA: {len(_future)} interpelacji z datą wpływu w przyszłości "
+              f"(BIP), podmieniono na fallback (surowa wartość w data_wplywu_bip):")
+        for rec in _future[:10]:
+            print(f"    {rec.get('data_wplywu_bip','')} -> {rec['data_wplywu']} "
+                  f"[{rec.get('radny','')}: {(rec.get('przedmiot','') or '')[:50]}]")
 
     # Sort by newest first
     all_records.sort(

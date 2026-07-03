@@ -21,7 +21,7 @@ import argparse
 import html
 import json
 import re
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 
@@ -161,14 +161,44 @@ def generate_session_items(kad_data, city_name, site_url, session_slug="session"
     return items
 
 
+_ISO_DATE = re.compile(r"\d{4}-\d{2}-\d{2}$")
+
+
+def effective_interp_date(ip, today):
+    """Sensowna data interpelacji do feedu, chroniąca przed datą w przyszłości.
+
+    BIP bywa z literówką roku (np. 2029 zamiast 2026 — rok końca kadencji w etykiecie),
+    co wrzucało wpis na sam szczyt /news/, RSS i bota (sort malejąco po dacie).
+    Poprawnego roku NIE zgadujemy (dane 1:1). Kolejność: data_wplywu jeśli ISO i nie
+    późniejsza niż dziś, inaczej data_odpowiedzi jeśli sensowna, inaczej dziś (data
+    generowania). Zwraca (date, raw_future) — raw_future to surowa przyszła wartość
+    (do logu) albo None.
+    """
+    raw = ip.get("data_wplywu", "") or ""
+    if not _ISO_DATE.match(raw):
+        return raw, None  # pusta lub nie-ISO — zostaw jak jest (feed pomija puste)
+    if raw <= today:
+        return raw, None
+    odp = ip.get("data_odpowiedzi", "") or ""
+    if _ISO_DATE.match(odp) and odp <= today:
+        return odp, raw
+    return today, raw
+
+
 def generate_interpelacje_items(interpelacje, city_name, site_url, profiles_by_name,
                                  profile_slug="profile", interpelacje_slug="interpellations"):
     """Generate a feed item for every interpelacja."""
     items = []
+    today = date.today().isoformat()
+    future_flagged = []
     for ip in interpelacje:
-        date = ip.get("data_wplywu", "")
-        if not date:
+        date_str, raw_future = effective_interp_date(ip, today)
+        if not date_str:
             continue
+        if raw_future:
+            future_flagged.append((raw_future, date_str, ip.get("radny", ""),
+                                   ip.get("przedmiot", "")))
+        date = date_str
 
         radny = ip.get("radny", "")
         przedmiot = ip.get("przedmiot", "")
@@ -205,6 +235,12 @@ def generate_interpelacje_items(interpelacje, city_name, site_url, profiles_by_n
             "przedmiot": przedmiot,
             "url": url,
         })
+
+    if future_flagged:
+        print(f"  UWAGA: {len(future_flagged)} interpelacji z datą wpływu w "
+              f"przyszłości (BIP), użyto fallback:")
+        for raw_future, used, radny, przedmiot in future_flagged[:10]:
+            print(f"    {raw_future} -> {used} [{radny}: {(przedmiot or '')[:50]}]")
 
     return items
 
