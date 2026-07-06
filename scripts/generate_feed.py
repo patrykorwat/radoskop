@@ -198,8 +198,6 @@ def generate_interpelacje_items(interpelacje, city_name, site_url, profiles_by_n
         if raw_future:
             future_flagged.append((raw_future, date_str, ip.get("radny", ""),
                                    ip.get("przedmiot", "")))
-        date = date_str
-
         radny = ip.get("radny", "")
         przedmiot = ip.get("przedmiot", "")
         typ = ip.get("typ", "interpelacja")
@@ -225,7 +223,7 @@ def generate_interpelacje_items(interpelacje, city_name, site_url, profiles_by_n
             # "interpelacja" dla kompatybilności konsumentów feedu; subtype niesie
             # właściwy rodzaj, żeby bot mógł je policzyć i nazwać osobno.
             "subtype": typ,
-            "date": date,
+            "date": date_str,
             "title": f"{typ_label}: {przedmiot[:100]}" if przedmiot else f"{typ_label} ({radny})",
             "summary": f"{radny}. {przedmiot[:150]}" if przedmiot else radny,
             # radny + przedmiot wprost (poza title/summary), żeby bot mógł
