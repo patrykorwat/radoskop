@@ -215,7 +215,10 @@ def _is_session_older_than(date_str: str | None, days: int = 2) -> bool:
     return (_dt2.now() - dt).days >= days
 
 
-def load_previous_votes_by_date(kadencja_file: Path) -> dict[tuple[str, str], list[dict]]:
+def load_previous_votes_by_date(
+    kadencja_file: Path,
+    normalize=None,
+) -> dict[tuple[str, str], list[dict]]:
     """Read the previously-saved kadencja JSON and index votes by (date, session_number).
 
     Returned dict can be indexed in `EsesjaScraper.run()` /
@@ -227,6 +230,14 @@ def load_previous_votes_by_date(kadencja_file: Path) -> dict[tuple[str, str], li
     collapsed two sessions on the same date into one bucket and each scrape
     run doubled the votes for that date (Radom 2025-03-31 grew to 36*1024
     over 10 runs). Callers must look up with the matching tuple.
+
+    `normalize`: opcjonalny normalizer nazwisk (np. EsesjaScraper._normalize_name).
+    Pliki sprzed fixa 2026-07-06 mają named_votes surowe ("Nazwisko Imię"),
+    a roster po swapie, przez co strony głosowań pokazywały odwrócone
+    nazwiska i klub "?". Nowe pliki mają flagę `names_normalized` i głosy
+    w formie kanonicznej "Imię Nazwisko". Stare leczymy jednorazowo przy
+    ładowaniu. Flaga jest konieczna, bo swap nie jest idempotentny:
+    zastosowany drugi raz odwróciłby nazwisko z powrotem.
     """
     p = Path(kadencja_file)
     if not p.exists():
@@ -236,6 +247,8 @@ def load_previous_votes_by_date(kadencja_file: Path) -> dict[tuple[str, str], li
             kad = json.load(f)
     except Exception:
         return {}
+    if kad.get("names_normalized"):
+        normalize = None
     index = kad.get("councilor_index") or []
     by_session: dict[tuple[str, str], list[dict]] = {}
     seen_ids: set[tuple[str, str, str]] = set()
@@ -265,11 +278,12 @@ def load_previous_votes_by_date(kadencja_file: Path) -> dict[tuple[str, str], li
         # starych sesji. Czyścimy więc przy ładowaniu cache tym samym regexem
         # (no-op dla czystych nazw) — miasta eSesja samonaprawiają się przy
         # zwykłym runie, bez --full.
+        def _clean(n: str) -> str:
+            n = re.sub(r"\s+", " ", re.sub(r"\s*\(.*\)\s*$", "", n)).strip()
+            return normalize(n) if normalize else n
+
         v_copy["named_votes"] = {
-            cat: [
-                re.sub(r"\s+", " ", re.sub(r"\s*\(.*\)\s*$", "", n)).strip()
-                for n in names
-            ]
+            cat: [_clean(n) for n in names]
             for cat, names in decompacted.items()
         }
         by_session.setdefault((date, number), []).append(v_copy)
@@ -757,10 +771,14 @@ class EsesjaScraper:
             "has_voting_data": True, "has_activity_data": False,
         })
 
+        # named_votes są już w formie kanonicznej "Imię Nazwisko" (run()
+        # normalizuje świeże głosy, loader leczy cache). NIE wolno tu wołać
+        # _normalize_name drugi raz: swap nie jest idempotentny i odwróciłby
+        # nazwiska z powrotem.
         for vote in all_votes:
             for cat, names in vote["named_votes"].items():
                 for name in names:
-                    stats[name]["name"] = self._normalize_name(name)
+                    stats[name]["name"] = name
                     stats[name]["club"] = self.resolve_club(name)
                     stats[name]["votes_total"] += 1
                     if cat == "za":
@@ -837,17 +855,15 @@ class EsesjaScraper:
         return result
 
     def compute_similarity(self, all_votes: list[dict], councilors: list[dict]) -> tuple[list, list]:
-        # WAŻNE: nazwiska w głosach są surowe ("Nazwisko Imię"), a roster
-        # (name_to_club, klucz c["name"]) jest po _normalize_name ("Imię
-        # Nazwisko"). Bez normalizacji tutaj klucze wektorów nie składają się z
-        # rosterem: club_a/club_b wychodziły "?" dla wszystkich par, a nazwiska
-        # par były w odwrotnym formacie niż reszta serwisu.
+        # named_votes są kanoniczne "Imię Nazwisko" (normalizacja w run() +
+        # leczenie cache w loaderze), więc klucze wektorów składają się z
+        # rosterem (name_to_club, klucz c["name"]) bez dodatkowego swapu.
+        # NIE wolno tu wołać _normalize_name: nie jest idempotentne.
         name_to_club = {c["name"]: c.get("club", "?") for c in councilors}
         vectors: dict[str, dict] = defaultdict(dict)
         for v in all_votes:
             for cat in ["za", "przeciw", "wstrzymal_sie"]:
-                for raw in v["named_votes"].get(cat, []):
-                    name = self._normalize_name(raw)
+                for name in v["named_votes"].get(cat, []):
                     vectors[name][v["id"]] = cat
 
         names = sorted(vectors.keys())
@@ -876,18 +892,19 @@ class EsesjaScraper:
         for s in sessions_raw:
             date = s["date"]
             session_votes = votes_by_date.get(date, [])
-            # WAŻNE: nazwiska normalizujemy tym samym _normalize_name co roster
-            # (build_councilors). Inaczej obecni są surowi ("Nazwisko Imię"), a
-            # roster po swapie ("Imię Nazwisko") — przecięcie zbiorów daje zero
-            # trafień i absent = cały roster (fałszywe "X z Y ław pustych").
+            # named_votes są kanoniczne "Imię Nazwisko" (normalizacja w run()
+            # + leczenie cache w loaderze), zgodne z rosterem build_councilors.
+            # NIE wolno tu wołać _normalize_name (brak idempotencji): podwójny
+            # swap dałby zero trafień z rosterem i absent = cały roster
+            # (fałszywe "X z Y ław pustych").
             attendees: set[str] = set()
             absent_marked: set[str] = set()
             for v in session_votes:
                 for cat in ["za", "przeciw", "wstrzymal_sie", "brak_glosu"]:
                     for n in v["named_votes"].get(cat, []):
-                        attendees.add(self._normalize_name(n))
+                        attendees.add(n)
                 for n in v["named_votes"].get("nieobecni", []):
-                    absent_marked.add(self._normalize_name(n))
+                    absent_marked.add(n)
             # Obecność wygrywa: kto choć raz głosował/był w quorum, nie jest
             # nieobecny, nawet jeśli pojedyncze głosowanie minął. To też wyklucza
             # byłych radnych z innych sesji — bierzemy tylko nieobecnych
@@ -944,7 +961,9 @@ class EsesjaScraper:
         prev_votes_by_date: dict[tuple[str, str], list[dict]] = {}
         if not force_full:
             kad_file = Path(output_path).parent / f"kadencja-{self.default_kadencja}.json"
-            prev_votes_by_date = load_previous_votes_by_date(kad_file)
+            prev_votes_by_date = load_previous_votes_by_date(
+                kad_file, normalize=self._normalize_name
+            )
             if prev_votes_by_date:
                 print(
                     f"  Cache: {sum(len(v) for v in prev_votes_by_date.values())} "
@@ -971,6 +990,19 @@ class EsesjaScraper:
             else:
                 print(f"  [{i+1}/{len(sessions)}] Sesja {session['id']} ({session['date']})")
                 fresh = self.scrape_votes_from_session(session)
+                # Kanoniczna forma "Imię Nazwisko" już przy zapisie, nie przy
+                # odczycie. Jedno miejsce dla obu ścieżek: _scrape_single_vote
+                # oraz override'y subklas (Wałbrzych buduje named_votes z
+                # PDF-ów). Wcześniej named_votes szły do pliku surowe
+                # ("Nazwisko Imię"), a roster po swapie, więc strony głosowań
+                # (SPA, prerender, data_api club_map) pokazywały odwrócone
+                # nazwiska i klub "?" dla wszystkich radnych.
+                for v in fresh:
+                    nv = v.get("named_votes") or {}
+                    v["named_votes"] = {
+                        cat: [self._normalize_name(n) for n in names]
+                        for cat, names in nv.items()
+                    }
                 all_votes.extend(fresh)
                 fresh_count += len(fresh)
         # Defensive dedup by (date, number, id). Cleans historical duplicates
@@ -1010,6 +1042,10 @@ class EsesjaScraper:
         kad_output = {
             "id": kid,
             "label": self.kadencje[kid]["label"],
+            # named_votes w formie kanonicznej "Imię Nazwisko". Loader
+            # (load_previous_votes_by_date) pomija leczenie swapem gdy flaga
+            # jest ustawiona; bez niej podwójny swap odwracałby nazwiska.
+            "names_normalized": True,
             "clubs": {club: count for club, count in sorted(club_counts.items())},
             "sessions": sessions_data,
             "total_sessions": len(sessions_data),
