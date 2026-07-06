@@ -118,6 +118,10 @@ def _cache_path(url: str) -> Path | None:
 
 _BIP_UNAVAILABLE = "Chwilowy brak dostępu do wybranych informacji"
 
+# Czy ostatnie wywołanie fetch() zwróciło stronę z cache (bez HTTP).
+# Pozwala callerom odróżnić świeżą odpowiedź od potencjalnie starej kopii.
+_last_fetch_from_cache = False
+
 
 def fetch(url: str, use_cache: bool = True) -> BeautifulSoup:
     """Fetch a page (with disk cache) and return BeautifulSoup.
@@ -129,11 +133,14 @@ def fetch(url: str, use_cache: bool = True) -> BeautifulSoup:
     cache (i istniejący wpis w cache z taką odpowiedzią jest ignorowany),
     żeby tymczasowa niedostępność nie trwale zatruwała cache.
     """
+    global _last_fetch_from_cache
+    _last_fetch_from_cache = False
     cache_file = _cache_path(url) if use_cache else None
     if cache_file and cache_file.exists() and cache_file.stat().st_size > 100:
         content = cache_file.read_text(encoding="utf-8")
         if _BIP_UNAVAILABLE not in content:
             # Cache hit — bez HTTP, bez sleep
+            _last_fetch_from_cache = True
             return BeautifulSoup(content, "lxml")
         # Stary cache zawiera "brak dostępu" — usuń i refetchuj
         print(f"  Cache zawiera 'brak dostępu', usuwam i refetchuję: {url}")
@@ -320,6 +327,35 @@ def scrape_session_votes_links(session: dict) -> list[dict]:
 # ---------------------------------------------------------------------------
 
 def scrape_vote_detail(vote_url: str, session: dict, vote_idx: int) -> dict | None:
+    """Fetch + parse strony głosowania, z ochroną przed zatrutym cache.
+
+    BIP Krakowa potrafi opublikować wyniki imienne kilka dni po sesji,
+    czyli już po tym jak STABLE_AGE_DAYS zapisał do cache wersję bez
+    wyników. Gdy strona z cache nie ma głosów imiennych, usuwamy wpis
+    i refetchujemy raz. Analogia do guardu "brak dostępu" w fetch().
+    """
+    is_stable = _is_session_stable(session.get("date", ""))
+    soup = fetch(vote_url, use_cache=is_stable)
+    from_cache = _last_fetch_from_cache
+    vote = _parse_vote_detail(soup, vote_url, session, vote_idx)
+
+    if vote is None and from_cache:
+        cache_file = _cache_path(vote_url)
+        if cache_file is not None and cache_file.exists():
+            print(f"    Cache bez głosów imiennych, usuwam i refetchuję: {vote_url}")
+            try:
+                cache_file.unlink()
+            except Exception:
+                pass
+            soup = fetch(vote_url, use_cache=True)
+            vote = _parse_vote_detail(soup, vote_url, session, vote_idx)
+
+    if vote is None:
+        print(f"    UWAGA: Brak głosów imiennych na {vote_url}")
+    return vote
+
+
+def _parse_vote_detail(soup: BeautifulSoup, vote_url: str, session: dict, vote_idx: int) -> dict | None:
     """Parse a vote detail page.
 
     BIP Kraków HTML structure (all in one block, <br>-separated):
@@ -335,9 +371,6 @@ def scrape_vote_detail(vote_url: str, session: dict, vote_idx: int) -> dict | No
 
     Stabilne głosowania (sesja > 7 dni temu) używają cache HTML.
     """
-    is_stable = _is_session_stable(session.get("date", ""))
-    soup = fetch(vote_url, use_cache=is_stable)
-
     # --- Topic from <h2> ---
     topic = ""
     druk = None
@@ -483,7 +516,7 @@ def scrape_vote_detail(vote_url: str, session: dict, vote_idx: int) -> dict | No
 
     total_named = sum(len(v) for v in named_votes.values())
     if total_named == 0:
-        print(f"    UWAGA: Brak głosów imiennych na {vote_url}")
+        # Komunikat UWAGA wypisuje wrapper scrape_vote_detail (po retry).
         return None
 
     # Session number in vote_id avoids collisions when two sessions share a
