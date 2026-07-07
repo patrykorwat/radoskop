@@ -32,7 +32,40 @@
   },
   "has_budget": false,
   "has_komisje": false,
-  "scrape_status": "pending",
-  "clubs": {},
-  "club_assignments": {}
+  "scrape_status": "active",
+  "clubs": {
+    "Niezrzeszeni": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Agata Zabielska": "Niezrzeszeni",
+    "Andrzej Wisiński": "Niezrzeszeni",
+    "Anna Bartosiewicz": "Niezrzeszeni",
+    "Barbara Chadaj": "Niezrzeszeni",
+    "Danuta Bosek": "Niezrzeszeni",
+    "Dariusz Szustek": "Niezrzeszeni",
+    "Henryk Lipiec": "Niezrzeszeni",
+    "Ilona Ochmańska": "Niezrzeszeni",
+    "Jacek Krzyszczak": "Niezrzeszeni",
+    "Janusz Kozioł": "Niezrzeszeni",
+    "Jerzy Kędra": "Niezrzeszeni",
+    "Karol Ciołek": "Niezrzeszeni",
+    "Krzysztof Głuchowski": "Niezrzeszeni",
+    "Krzysztof Szczęśniak": "Niezrzeszeni",
+    "Krzysztof Woliński": "Niezrzeszeni",
+    "Longin Kajka": "Niezrzeszeni",
+    "Lucjan Szekalis": "Niezrzeszeni",
+    "Maciej Cybulski": "Niezrzeszeni",
+    "Przemysław Suchodolski": "Niezrzeszeni",
+    "Sławomir Rzymowski": "Niezrzeszeni",
+    "Tomasz Kruk": "Niezrzeszeni",
+    "Urszula Chruściel": "Niezrzeszeni",
+    "Wojciech Szczygieł": "Niezrzeszeni",
+    "Włodzimierz Wolski": "Niezrzeszeni"
+  },
+  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
+  "clubs_deferred": true
 }

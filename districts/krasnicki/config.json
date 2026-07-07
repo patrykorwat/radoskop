@@ -32,7 +32,38 @@
   },
   "has_budget": false,
   "has_komisje": false,
-  "scrape_status": "pending",
-  "clubs": {},
-  "club_assignments": {}
+  "scrape_status": "active",
+  "clubs": {
+    "Niezrzeszeni": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Lenart": "Niezrzeszeni",
+    "Andrzej Cieśla": "Niezrzeszeni",
+    "Andrzej Maj": "Niezrzeszeni",
+    "Andrzej Rolla": "Niezrzeszeni",
+    "Damian Kowalski": "Niezrzeszeni",
+    "Edyta Dudzińska": "Niezrzeszeni",
+    "Eugeniusz Pelak": "Niezrzeszeni",
+    "Henryk Flis": "Niezrzeszeni",
+    "Jacek Dubiel": "Niezrzeszeni",
+    "Józef Wojtaszek": "Niezrzeszeni",
+    "Karol Rychlewski": "Niezrzeszeni",
+    "Krzysztof Babisz": "Niezrzeszeni",
+    "Krzysztof Skórski": "Niezrzeszeni",
+    "Marek Kołtun": "Niezrzeszeni",
+    "Mariusz Socha": "Niezrzeszeni",
+    "Michał Stawiarski": "Niezrzeszeni",
+    "Paweł Kudrel": "Niezrzeszeni",
+    "Stefan Stachula": "Niezrzeszeni",
+    "Sylwia Piętal": "Niezrzeszeni",
+    "Tadeusz Dziurda": "Niezrzeszeni",
+    "Zbigniew Dżugaj": "Niezrzeszeni",
+    "Zbigniew Gawdzik": "Niezrzeszeni"
+  },
+  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
+  "clubs_deferred": true
 }

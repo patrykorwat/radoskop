@@ -32,7 +32,45 @@
   },
   "has_budget": false,
   "has_komisje": false,
-  "scrape_status": "pending",
-  "clubs": {},
-  "club_assignments": {}
+  "scrape_status": "active",
+  "clubs": {
+    "Niezrzeszeni": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Kondziołka": "Niezrzeszeni",
+    "Andrzej Łukasiak": "Niezrzeszeni",
+    "Aneta Legierska-Bujok": "Niezrzeszeni",
+    "Beata Macura": "Niezrzeszeni",
+    "Christian Jaworski": "Niezrzeszeni",
+    "Czesław Chrapek": "Niezrzeszeni",
+    "Danuta Łabaj": "Niezrzeszeni",
+    "Florian Sikora": "Niezrzeszeni",
+    "Grzegorz Konieczny": "Niezrzeszeni",
+    "Janina Żagan": "Niezrzeszeni",
+    "Janusz Juroszek": "Niezrzeszeni",
+    "Jarosław Bodak": "Niezrzeszeni",
+    "Jerzy Pilch": "Niezrzeszeni",
+    "Krystian Kukuczka": "Niezrzeszeni",
+    "Leszek Bujok": "Niezrzeszeni",
+    "Lilla Salachna-Brzoza": "Niezrzeszeni",
+    "Marcin Ślęk": "Niezrzeszeni",
+    "Mariola Rojek": "Niezrzeszeni",
+    "Michał Rudzicki": "Niezrzeszeni",
+    "Mieczysław Szczurek": "Niezrzeszeni",
+    "Mirosław Staniek": "Niezrzeszeni",
+    "Monika Wałach-Kaczmarzyk": "Niezrzeszeni",
+    "Piotr Gmuzdek": "Niezrzeszeni",
+    "Piotr Rucki": "Niezrzeszeni",
+    "Renata Michnik": "Niezrzeszeni",
+    "Sonia Krzempek": "Niezrzeszeni",
+    "Stanisław Kubicius": "Niezrzeszeni",
+    "Stanisław Malina": "Niezrzeszeni",
+    "Tomasz Dyrda": "Niezrzeszeni"
+  },
+  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
+  "clubs_deferred": true
 }

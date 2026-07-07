@@ -32,7 +32,40 @@
   },
   "has_budget": false,
   "has_komisje": false,
-  "scrape_status": "pending",
-  "clubs": {},
-  "club_assignments": {}
+  "scrape_status": "active",
+  "clubs": {
+    "Niezrzeszeni": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Adamczuk": "Niezrzeszeni",
+    "Ala Kołodziejczyk": "Niezrzeszeni",
+    "Aleksandra Martyna": "Niezrzeszeni",
+    "Andrzej Kondrat": "Niezrzeszeni",
+    "Andrzej Mazurkiewicz": "Niezrzeszeni",
+    "Anna Bajaka": "Niezrzeszeni",
+    "Antoni Skura": "Niezrzeszeni",
+    "Dariusz Śliwiński": "Niezrzeszeni",
+    "Hanna Michel": "Niezrzeszeni",
+    "Jacek Masłowski": "Niezrzeszeni",
+    "Jacek Sobczyński": "Niezrzeszeni",
+    "Jan Słomiany": "Niezrzeszeni",
+    "Janusz Nawój": "Niezrzeszeni",
+    "Jarosław Śliwiński": "Niezrzeszeni",
+    "Jerzy Marucha": "Niezrzeszeni",
+    "Jerzy Sobczuk": "Niezrzeszeni",
+    "Konrad Dziuba": "Niezrzeszeni",
+    "Krzysztof Rusztyn": "Niezrzeszeni",
+    "Maria Loc-Oczkoś": "Niezrzeszeni",
+    "Małgorzata Soboń": "Niezrzeszeni",
+    "Piotr Palikot": "Niezrzeszeni",
+    "Piotr Zawiślak": "Niezrzeszeni",
+    "Stanisław Grześko": "Niezrzeszeni",
+    "Sławomir Kugiel": "Niezrzeszeni"
+  },
+  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
+  "clubs_deferred": true
 }

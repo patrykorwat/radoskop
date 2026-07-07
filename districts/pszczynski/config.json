@@ -32,7 +32,40 @@
   },
   "has_budget": false,
   "has_komisje": false,
-  "scrape_status": "pending",
-  "clubs": {},
-  "club_assignments": {}
+  "scrape_status": "active",
+  "clubs": {
+    "Niezrzeszeni": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Aleksander Malcher": "Niezrzeszeni",
+    "Barbara Bandoła": "Niezrzeszeni",
+    "Beata Rozmus": "Niezrzeszeni",
+    "Bronisław Śmieja": "Niezrzeszeni",
+    "Damian Cieszewski": "Niezrzeszeni",
+    "Edyta Waleczek": "Niezrzeszeni",
+    "Grzegorz Nogły": "Niezrzeszeni",
+    "Grzegorz Wanot": "Niezrzeszeni",
+    "Jacek Sodzawiczny": "Niezrzeszeni",
+    "Krystian Szostak": "Niezrzeszeni",
+    "Maciej Tomczykiewicz": "Niezrzeszeni",
+    "Marcela Kanafek-Lewandowska": "Niezrzeszeni",
+    "Marek Lucjan": "Niezrzeszeni",
+    "Michał Pudełko": "Niezrzeszeni",
+    "Paweł Sadza": "Niezrzeszeni",
+    "Przemysław Sawicki": "Niezrzeszeni",
+    "Rafał Wróbel": "Niezrzeszeni",
+    "Roman Bańczyk": "Niezrzeszeni",
+    "Ryszard Ziobro": "Niezrzeszeni",
+    "Teresa Sochacka-Kabut": "Niezrzeszeni",
+    "Waldemar Lipus": "Niezrzeszeni",
+    "Wiesław Konieczny": "Niezrzeszeni",
+    "Wojciech Lala": "Niezrzeszeni",
+    "Zdzisław Grygier": "Niezrzeszeni"
+  },
+  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
+  "clubs_deferred": true
 }

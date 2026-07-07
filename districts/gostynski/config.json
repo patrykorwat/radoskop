@@ -32,7 +32,37 @@
   },
   "has_budget": false,
   "has_komisje": false,
-  "scrape_status": "pending",
-  "clubs": {},
-  "club_assignments": {}
+  "scrape_status": "active",
+  "clubs": {
+    "Niezrzeszeni": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Damian Walczak": "Niezrzeszeni",
+    "Dominik Jankowiak": "Niezrzeszeni",
+    "Grzegorz Marszałek": "Niezrzeszeni",
+    "Hubert Łapawa": "Niezrzeszeni",
+    "Maciej Maciejewski": "Niezrzeszeni",
+    "Maciej Malczyk": "Niezrzeszeni",
+    "Marcin Krawiec": "Niezrzeszeni",
+    "Michał Listwoń": "Niezrzeszeni",
+    "Mikołaj Rogala": "Niezrzeszeni",
+    "Mikołaj Wojtyczka": "Niezrzeszeni",
+    "Monika Gorynia": "Niezrzeszeni",
+    "Monika Strugała": "Niezrzeszeni",
+    "Piotr Curyk": "Niezrzeszeni",
+    "Piotr Kogut": "Niezrzeszeni",
+    "Robert Marcinkowski": "Niezrzeszeni",
+    "Sebastian Czwojda": "Niezrzeszeni",
+    "Sebastian Nowak": "Niezrzeszeni",
+    "Tadeusz Pawlak": "Niezrzeszeni",
+    "Tomasz Bem": "Niezrzeszeni",
+    "Tomasz Gruetzmacher": "Niezrzeszeni",
+    "Tomasz Skibicki": "Niezrzeszeni"
+  },
+  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
+  "clubs_deferred": true
 }

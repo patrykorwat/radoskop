@@ -32,7 +32,43 @@
   },
   "has_budget": false,
   "has_komisje": false,
-  "scrape_status": "pending",
-  "clubs": {},
-  "club_assignments": {}
+  "scrape_status": "active",
+  "clubs": {
+    "Niezrzeszeni": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Kłapeć": "Niezrzeszeni",
+    "Anna Kot": "Niezrzeszeni",
+    "Beata Gajur": "Niezrzeszeni",
+    "Dariusz Krakowiak": "Niezrzeszeni",
+    "Dorota Kozak": "Niezrzeszeni",
+    "Edyta Dobek": "Niezrzeszeni",
+    "Grzegorz Kozioł": "Niezrzeszeni",
+    "Iwona Pulińska": "Niezrzeszeni",
+    "Karolina Poleszak": "Niezrzeszeni",
+    "Katarzyna Sokołowska": "Niezrzeszeni",
+    "Konrad Banach": "Niezrzeszeni",
+    "Krzysztof Chmielik": "Niezrzeszeni",
+    "Krzysztof Kozieł": "Niezrzeszeni",
+    "Magdalena Kostruba": "Niezrzeszeni",
+    "Marcin Olszak": "Niezrzeszeni",
+    "Mateusz Winiarski": "Niezrzeszeni",
+    "Piotr Sawicki": "Niezrzeszeni",
+    "Sylwia Chochoł-Skocz": "Niezrzeszeni",
+    "Sylwia Pisarek-Piotrowska": "Niezrzeszeni",
+    "Teresa Chwała": "Niezrzeszeni",
+    "Tomasz Szpakowski": "Niezrzeszeni",
+    "Urszula Paździor": "Niezrzeszeni",
+    "Wiesław Dobrzyński": "Niezrzeszeni",
+    "Zdzisław Antoń": "Niezrzeszeni",
+    "Zenon Madzelan": "Niezrzeszeni",
+    "Zofia Ptasznik": "Niezrzeszeni",
+    "Zofia Sieńko": "Niezrzeszeni"
+  },
+  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
+  "clubs_deferred": true
 }

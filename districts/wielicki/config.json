@@ -32,7 +32,41 @@
   },
   "has_budget": false,
   "has_komisje": false,
-  "scrape_status": "pending",
-  "clubs": {},
-  "club_assignments": {}
+  "scrape_status": "active",
+  "clubs": {
+    "Niezrzeszeni": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Adam Kociołek": "Niezrzeszeni",
+    "Agnieszka Szczepaniak": "Niezrzeszeni",
+    "Aleksandra Ślusarek": "Niezrzeszeni",
+    "Aneta Rybicka-Kajtoch": "Niezrzeszeni",
+    "Anna Polańska": "Niezrzeszeni",
+    "Beata Chorobik": "Niezrzeszeni",
+    "Edyta Trojańska-Urbanik": "Niezrzeszeni",
+    "Ewa Ptasznik": "Niezrzeszeni",
+    "Henryk Gawor": "Niezrzeszeni",
+    "Jacek Juszkiewicz": "Niezrzeszeni",
+    "Jadwiga Skoczek": "Niezrzeszeni",
+    "Janusz Chlebda": "Niezrzeszeni",
+    "Karol Szybiński": "Niezrzeszeni",
+    "Katarzyna Ciężarek": "Niezrzeszeni",
+    "Klaudia Wojakowska-Grochot": "Niezrzeszeni",
+    "Magdalena Kot": "Niezrzeszeni",
+    "Marek Burda": "Niezrzeszeni",
+    "Paweł Drabik": "Niezrzeszeni",
+    "Piotr Nowak": "Niezrzeszeni",
+    "Piotr Ptak": "Niezrzeszeni",
+    "Roman Ptak": "Niezrzeszeni",
+    "Roman Wcisło": "Niezrzeszeni",
+    "Stanisław Kyrc": "Niezrzeszeni",
+    "Tomasz Broniowski": "Niezrzeszeni",
+    "Łukasz Sadkiewicz": "Niezrzeszeni"
+  },
+  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
+  "clubs_deferred": true
 }

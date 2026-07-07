@@ -32,7 +32,41 @@
   },
   "has_budget": false,
   "has_komisje": false,
-  "scrape_status": "pending",
-  "clubs": {},
-  "club_assignments": {}
+  "scrape_status": "active",
+  "clubs": {
+    "Niezrzeszeni": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Adam Markowski": "Niezrzeszeni",
+    "Adam Morzyk": "Niezrzeszeni",
+    "Andrzej Goldsztajn": "Niezrzeszeni",
+    "Andrzej Kubat": "Niezrzeszeni",
+    "Anetta Ujma": "Niezrzeszeni",
+    "Bogusław Gawron": "Niezrzeszeni",
+    "Bożena Lara": "Niezrzeszeni",
+    "Daniel Hadrian": "Niezrzeszeni",
+    "Edyta Wierzbińska": "Niezrzeszeni",
+    "Elżbieta Łągiewka": "Niezrzeszeni",
+    "Eryk Łęgowik": "Niezrzeszeni",
+    "Grażyna Knapik": "Niezrzeszeni",
+    "Gwidon Jelonek": "Niezrzeszeni",
+    "Ignacy Palutek": "Niezrzeszeni",
+    "Jan Miarzyński": "Niezrzeszeni",
+    "Jerzy Socha": "Niezrzeszeni",
+    "Krzysztof Smela": "Niezrzeszeni",
+    "Maciej Janowski": "Niezrzeszeni",
+    "Magdalena Brewczyńska-Jeziak": "Niezrzeszeni",
+    "Marianna Dziura": "Niezrzeszeni",
+    "Mieczysław Chudzik": "Niezrzeszeni",
+    "Monika Kosielak": "Niezrzeszeni",
+    "Robert Knysak": "Niezrzeszeni",
+    "Robert Nowak": "Niezrzeszeni",
+    "Teresa Pala": "Niezrzeszeni"
+  },
+  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
+  "clubs_deferred": true
 }

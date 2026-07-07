@@ -32,7 +32,42 @@
   },
   "has_budget": false,
   "has_komisje": false,
-  "scrape_status": "pending",
-  "clubs": {},
-  "club_assignments": {}
+  "scrape_status": "active",
+  "clubs": {
+    "Niezrzeszeni": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Adam Wronka": "Niezrzeszeni",
+    "Andrzej Abako": "Niezrzeszeni",
+    "Andrzej Moszczyński": "Niezrzeszeni",
+    "Anna Klewiado": "Niezrzeszeni",
+    "Anna Stokłos": "Niezrzeszeni",
+    "Artur Wrochna": "Niezrzeszeni",
+    "Elżbieta Michalska": "Niezrzeszeni",
+    "Grzegorz Drozdowski": "Niezrzeszeni",
+    "Jacek Szydło": "Niezrzeszeni",
+    "Janusz Radziszewski": "Niezrzeszeni",
+    "Jarosław Wolak": "Niezrzeszeni",
+    "Joanna Michalska-Reda": "Niezrzeszeni",
+    "Krystyna Starekonto": "Niezrzeszeni",
+    "Krystyna Szter": "Niezrzeszeni",
+    "Krzysztof Kamiński": "Niezrzeszeni",
+    "Marcin Frączek": "Niezrzeszeni",
+    "Marcin Politewicz": "Niezrzeszeni",
+    "Marian Piwcewicz": "Niezrzeszeni",
+    "Mariusz Olkowski": "Niezrzeszeni",
+    "Martyna Sontowska": "Niezrzeszeni",
+    "Mirosław Szostek": "Niezrzeszeni",
+    "Mirosława Jasińska": "Niezrzeszeni",
+    "Ryszard Płoski": "Niezrzeszeni",
+    "Waldemar Jodko": "Niezrzeszeni",
+    "Zbigniew Czabrycki": "Niezrzeszeni",
+    "Łukasz Śmietanko": "Niezrzeszeni"
+  },
+  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
+  "clubs_deferred": true
 }

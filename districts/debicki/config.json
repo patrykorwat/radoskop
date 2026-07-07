@@ -32,7 +32,41 @@
   },
   "has_budget": false,
   "has_komisje": false,
-  "scrape_status": "pending",
-  "clubs": {},
-  "club_assignments": {}
+  "scrape_status": "active",
+  "clubs": {
+    "Niezrzeszeni": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "- Kałek Monika Rojek": "Niezrzeszeni",
+    "Adam Kaczor": "Niezrzeszeni",
+    "Agnieszka Żurek": "Niezrzeszeni",
+    "Aleksander Reguła": "Niezrzeszeni",
+    "Anna Mazur": "Niezrzeszeni",
+    "Barbara Srebro": "Niezrzeszeni",
+    "Daniel Wójcik": "Niezrzeszeni",
+    "Ewelina Kuś": "Niezrzeszeni",
+    "Grzegorz Stec": "Niezrzeszeni",
+    "Grzegorz Świder": "Niezrzeszeni",
+    "Krzysztof Krawiec": "Niezrzeszeni",
+    "Krzysztof Lipczyński": "Niezrzeszeni",
+    "Krzysztof Pękala": "Niezrzeszeni",
+    "Leszek Żyłka": "Niezrzeszeni",
+    "Marek Jaskółka": "Niezrzeszeni",
+    "Mateusz Domaradzki": "Niezrzeszeni",
+    "Michał Maziarka": "Niezrzeszeni",
+    "Paweł Ciszczoń": "Niezrzeszeni",
+    "Piotr Chęciek": "Niezrzeszeni",
+    "Robert Mazur": "Niezrzeszeni",
+    "Sławomir Łanucha": "Niezrzeszeni",
+    "Tomasz Lesiak": "Niezrzeszeni",
+    "Wiesław Broda": "Niezrzeszeni",
+    "Władysław Bielawa": "Niezrzeszeni",
+    "Łukasz Paluch": "Niezrzeszeni"
+  },
+  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
+  "clubs_deferred": true
 }

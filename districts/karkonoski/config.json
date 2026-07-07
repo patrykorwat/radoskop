@@ -32,7 +32,35 @@
   },
   "has_budget": false,
   "has_komisje": false,
-  "scrape_status": "pending",
-  "clubs": {},
-  "club_assignments": {}
+  "scrape_status": "active",
+  "clubs": {
+    "Niezrzeszeni": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Lemiszewska": "Niezrzeszeni",
+    "Agnieszka Małgorzata Bojko": "Niezrzeszeni",
+    "Alina Ewa Sudoł-Kornalewicz": "Niezrzeszeni",
+    "Artur Górnicki": "Niezrzeszeni",
+    "Artur Ryszard Smolarek": "Niezrzeszeni",
+    "Bogdan Kamiński": "Niezrzeszeni",
+    "Danuta Krysińska": "Niezrzeszeni",
+    "Edyta Bielecka": "Niezrzeszeni",
+    "Eugeniusz Andrzej Kleśta": "Niezrzeszeni",
+    "Grzegorz Dariusz Truchanowicz": "Niezrzeszeni",
+    "Grzegorz Rybarczyk": "Niezrzeszeni",
+    "Jarosław Kotliński": "Niezrzeszeni",
+    "Julia Elżbieta Maczek": "Niezrzeszeni",
+    "Kinga Joanna Nowak": "Niezrzeszeni",
+    "Krzysztof Andrzej Wiśniewski": "Niezrzeszeni",
+    "Mirosław Górecki": "Niezrzeszeni",
+    "Robert Zapora": "Niezrzeszeni",
+    "Sławomir Celt": "Niezrzeszeni",
+    "Zbigniew Piątek": "Niezrzeszeni"
+  },
+  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
+  "clubs_deferred": true
 }
