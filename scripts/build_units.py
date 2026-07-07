@@ -41,6 +41,7 @@ DOCS_DIR = RADOSKOP_DIR / "docs"
 UNITS_DIR = DOCS_DIR / "units"
 CITIES_DIR = RADOSKOP_DIR / "cities"
 ASSEMBLIES_DIR = RADOSKOP_DIR / "assemblies"
+DISTRICTS_DIR = RADOSKOP_DIR / "districts"
 # Cache surowych plików PRG trzymamy POZA docs/, bo deploy_main_s3.py mirroruje
 # całe docs/ rekursywnie na S3. Surowe 17 MB nie ma trafiać na portal.
 SRC_CACHE = RADOSKOP_DIR / ".units_src"
@@ -165,8 +166,13 @@ def build(download: bool, src_dir: Path | None, write_teryt: bool = False,
     UNITS_DIR.mkdir(parents=True, exist_ok=True)
     ms = find_mapshaper() if simplify else None
     if simplify and not ms:
-        print("UWAGA: mapshaper nie znaleziony, warstwy zostaną w pełnym rozmiarze "
-              "(npm install mapshaper albo MAPSHAPER_BIN=...).")
+        # Twardy błąd zamiast ostrzeżenia: nieuproszczone district/local
+        # ważą 2 do 5 MB i po deployu spowalniają mapę dostępności dla
+        # wszystkich. Kto naprawdę chce pełnej geometrii, ma --no-simplify.
+        sys.exit("BŁĄD: mapshaper nie znaleziony, a uproszczenie jest wymagane. "
+                 "Zainstaluj (npm install mapshaper; scripts/node_modules "
+                 "wystarczy) albo wskaż binarkę przez MAPSHAPER_BIN=... . "
+                 "Świadome pominięcie uproszczenia: --no-simplify.")
 
     def layer_path(key: str) -> Path:
         if src_dir:
@@ -348,6 +354,26 @@ def build(download: bool, src_dir: Path | None, write_teryt: bool = False,
                 a["teryt"] = code
                 acfg.write_text(json.dumps(a, ensure_ascii=False, indent=2) + "\n",
                                 encoding="utf-8")
+
+    # Pokrycie rad powiatów: districts/*/config.json ze scrape_status=active.
+    # Kod TERYT jest wprost w configu (scaffold_district pisze go z master
+    # CSV), bez dopasowywania po nazwie. Wpis rady powiatu idzie na POCZĄTEK
+    # listy danego powiatu, przed miastami leżącymi w jego granicach, bo na
+    # warstwie "Powiaty" to rada powiatu jest jednostką tego poziomu.
+    districts_cov = 0
+    if DISTRICTS_DIR.is_dir():
+        for dcfg in sorted(DISTRICTS_DIR.glob("*/config.json")):
+            d = json.loads(dcfg.read_text(encoding="utf-8"))
+            if d.get("disabled") or d.get("scrape_status", "active") != "active":
+                continue
+            code = d.get("teryt")
+            if not code:
+                continue
+            entry = {"name": d.get("rada_name") or dcfg.parent.name,
+                     "url": d.get("site_url", "")}
+            cov_powiat.setdefault(code, []).insert(0, entry)
+            districts_cov += 1
+    print(f"  rady powiatów w coverage: {districts_cov}")
 
     # Coverage kluczowane generycznym poziomem (region/district/local), nie
     # polskimi nazwami, żeby mapa była wielokrajowa.
