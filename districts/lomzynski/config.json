@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "lomzynski",
+  "teryt": "2007",
+  "district_name": "łomżyński",
+  "district_genitive": "łomżyńskiego",
+  "seat_city": "Łomża",
+  "voivodeship_slug": "podlaskie",
+  "rada_name": "Rada Powiatu Łomżyńskiego",
+  "rada_name_genitive": "Rady Powiatu Łomżyńskiego",
+  "site_title": "Radoskop Powiat Łomżyński. Jak głosują radni?",
+  "site_url": "https://lomzynski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Łomżyńskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Łomżyńskiego.",
+  "bip_url": "https://powiatlomzynski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Łomżyńskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatlomzynski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lomzynski.radoskop.pl",
+  "councilor_count": 17,
+  "population": 49496,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

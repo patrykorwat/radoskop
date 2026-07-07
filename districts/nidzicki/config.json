@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "nidzicki",
+  "teryt": "2811",
+  "district_name": "nidzicki",
+  "district_genitive": "nidzickiego",
+  "seat_city": "Nidzica",
+  "voivodeship_slug": "warminsko-mazurskie",
+  "rada_name": "Rada Powiatu Nidzickiego",
+  "rada_name_genitive": "Rady Powiatu Nidzickiego",
+  "site_title": "Radoskop Powiat Nidzicki. Jak głosują radni?",
+  "site_url": "https://nidzicki.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Nidzickiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Nidzickiego.",
+  "bip_url": "https://powiatnidzicki.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Nidzickiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatnidzicki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "nidzicki.radoskop.pl",
+  "councilor_count": 15,
+  "population": 30207,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

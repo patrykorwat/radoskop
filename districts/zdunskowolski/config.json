@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "zdunskowolski",
+  "teryt": "1019",
+  "district_name": "zduńskowolski",
+  "district_genitive": "zduńskowolskiego",
+  "seat_city": "Zduńska Wola",
+  "voivodeship_slug": "lodzkie",
+  "rada_name": "Rada Powiatu Zduńskowolskiego",
+  "rada_name_genitive": "Rady Powiatu Zduńskowolskiego",
+  "site_title": "Radoskop Powiat Zduńskowolski. Jak głosują radni?",
+  "site_url": "https://zdunskowolski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Zduńskowolskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Zduńskowolskiego.",
+  "bip_url": "https://powiatzdunskowolski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Zduńskowolskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatzdunskowolski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zdunskowolski.radoskop.pl",
+  "councilor_count": 19,
+  "population": 62876,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

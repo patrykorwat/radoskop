@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "chrzanowski",
+  "teryt": "1203",
+  "district_name": "chrzanowski",
+  "district_genitive": "chrzanowskiego",
+  "seat_city": "Chrzanów",
+  "voivodeship_slug": "malopolskie",
+  "rada_name": "Rada Powiatu Chrzanowskiego",
+  "rada_name_genitive": "Rady Powiatu Chrzanowskiego",
+  "site_title": "Radoskop Powiat Chrzanowski. Jak głosują radni?",
+  "site_url": "https://chrzanowski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Chrzanowskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Chrzanowskiego.",
+  "bip_url": "https://powiatchrzanowski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Chrzanowskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatchrzanowski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "chrzanowski.radoskop.pl",
+  "councilor_count": 23,
+  "population": 117756,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

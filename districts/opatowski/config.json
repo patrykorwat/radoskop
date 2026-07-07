@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "opatowski",
+  "teryt": "2606",
+  "district_name": "opatowski",
+  "district_genitive": "opatowskiego",
+  "seat_city": "Opatów",
+  "voivodeship_slug": "swietokrzyskie",
+  "rada_name": "Rada Powiatu Opatowskiego",
+  "rada_name_genitive": "Rady Powiatu Opatowskiego",
+  "site_title": "Radoskop Powiat Opatowski. Jak głosują radni?",
+  "site_url": "https://opatowski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Opatowskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Opatowskiego.",
+  "bip_url": "https://powiatopatowski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Opatowskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatopatowski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "opatowski.radoskop.pl",
+  "councilor_count": 17,
+  "population": 47876,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

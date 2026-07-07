@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "grodziski-wielkopolski",
+  "teryt": "3005",
+  "district_name": "grodziski",
+  "district_genitive": "grodziskiego",
+  "seat_city": "Grodzisk Wielkopolski",
+  "voivodeship_slug": "wielkopolskie",
+  "rada_name": "Rada Powiatu Grodziskiego",
+  "rada_name_genitive": "Rady Powiatu Grodziskiego",
+  "site_title": "Radoskop Powiat Grodziski. Jak głosują radni?",
+  "site_url": "https://grodziski-wielkopolski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Grodziskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Grodziskiego.",
+  "bip_url": "https://powiatgrodziski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Grodziskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatgrodziski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "grodziski-wielkopolski.radoskop.pl",
+  "councilor_count": 17,
+  "population": 51541,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

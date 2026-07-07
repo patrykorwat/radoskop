@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "wolowski",
+  "teryt": "0222",
+  "district_name": "wołowski",
+  "district_genitive": "wołowskiego",
+  "seat_city": "Wołów",
+  "voivodeship_slug": "dolnoslaskie",
+  "rada_name": "Rada Powiatu Wołowskiego",
+  "rada_name_genitive": "Rady Powiatu Wołowskiego",
+  "site_title": "Radoskop Powiat Wołowski. Jak głosują radni?",
+  "site_url": "https://wolowski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Wołowskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Wołowskiego.",
+  "bip_url": "https://powiatwolowski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Wołowskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatwolowski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wolowski.radoskop.pl",
+  "councilor_count": 17,
+  "population": 45112,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

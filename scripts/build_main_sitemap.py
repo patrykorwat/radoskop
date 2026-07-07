@@ -63,6 +63,28 @@ APEX_PAGES = {
 APEX_BASE = {"pl": "https://radoskop.pl", "eu": "https://radoskop.eu"}
 
 
+def discover_districts(workspace: Path) -> list[tuple[str, dict]]:
+    """(slug, config) rad powiatów: tylko scrape_status=="active".
+
+    Scaffoldy pending (przed onboardingiem) nie mają strony na S3, więc
+    wpis w sitemapie robiłby 404 i truł raport pokrycia GSC, dokładnie
+    jak kiedyś disabled miasta."""
+    out: list[tuple[str, dict]] = []
+    base = workspace / "radoskop" / "districts"
+    if not base.is_dir():
+        return out
+    for d in sorted(base.iterdir()):
+        cfg_path = d / "config.json"
+        if not (d.is_dir() and cfg_path.exists()):
+            continue
+        with cfg_path.open(encoding="utf-8") as f:
+            cfg = json.load(f)
+        if cfg.get("scrape_status", "active") != "active":
+            continue
+        out.append((d.name, cfg))
+    return out
+
+
 def discover_cities(workspace: Path) -> list[tuple[str, dict]]:
     """List (slug, config) for every city in monorepo, fallback siblings."""
     out: list[tuple[str, dict]] = []
@@ -183,13 +205,16 @@ def main() -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
 
     today = datetime.utcnow().strftime("%Y-%m-%d")
-    all_cities = discover_cities(workspace)
+    # Miasta + aktywne rady powiatów przez ten sam select: powiaty mają
+    # site_url na radoskop.pl, więc wchodzą do indeksu przy domain=pl,
+    # a przy domain=eu is_eu()==False je pomija, tak jak miasta PL.
+    all_cities = discover_cities(workspace) + discover_districts(workspace)
     cities = select_cities(all_cities, args.domain)
     skipped = len(all_cities) - len(cities)
     print(f"workspace: {workspace}", file=sys.stderr)
     print(
-        f"domain={args.domain}: {len(cities)} miast w indeksie "
-        f"(pominięto {skipped} disabled/innej domeny)",
+        f"domain={args.domain}: {len(cities)} jednostek w indeksie "
+        f"(pominięto {skipped} disabled/pending/innej domeny)",
         file=sys.stderr,
     )
 

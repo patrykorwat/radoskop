@@ -69,7 +69,30 @@ def transform_template_for_assembly(html: str, kind: str = "wojewodztwo") -> str
         przypadki: Rada Miasta → Sejmik Województwa.
     kind='land': niemiecki Landtag (jednolicie "Landtag" we wszystkich
         przypadkach po polsku, bo w niemieckim brak odmiany do uzbrojenia).
+    kind='powiat': polska rada powiatu. "Rada" zostaje, zmienia się tylko
+        człon "Miasta" → "Powiatu" (dopełniacz w każdej frazie), więc
+        odmiany przypadków przechodzą naturalnie (Radzie Miasta → Radzie
+        Powiatu). CITY_GENITIVE = przymiotnik powiatu w dopełniaczu
+        ("Tatrzańskiego"), fraza "Rada Powiatu {{CITY_GENITIVE}}" składa
+        się poprawnie.
     """
+    if kind == "powiat":
+        replacements = [
+            ("Rada Miasta", "Rada Powiatu"),
+            ("rada miasta", "rada powiatu"),
+            ("Rady Miasta", "Rady Powiatu"),
+            ("rady miasta", "rady powiatu"),
+            ("Radzie Miasta", "Radzie Powiatu"),
+            ("Radę Miasta", "Radę Powiatu"),
+            ("Radą Miasta", "Radą Powiatu"),
+            # "radni Miasta {{CITY_GENITIVE}}" → "radni Powiatu Tatrzańskiego"
+            ("radni Miasta", "radni Powiatu"),
+            ("radnych Miasta", "radnych Powiatu"),
+            ("radnymi Miasta", "radnymi Powiatu"),
+        ]
+        for old, new in replacements:
+            html = html.replace(old, new)
+        return html
     if kind == "land":
         # Wszystkie polskie odmiany "Rada Miasta" idą na "Landtag", bez
         # odmieniania (Landtag w niemieckim się nie odmienia). Plus odmiana
@@ -412,7 +435,7 @@ def main() -> int:
     # Sejmik wojewódzki (PL) plus Landtag niemiecki (DE) używają tego samego
     # renderera SPA. Land to też assembly poziomu regionalnego, schemat
     # kadencja/sesje/głosowania jest identyczny. Dla miast użyj generate_site.py.
-    accepted = {"wojewodztwo", "land"}
+    accepted = {"wojewodztwo", "land", "powiat"}
     if cfg.get("samorzad_type") not in accepted:
         print(
             f"ERROR: samorzad_type='{cfg.get('samorzad_type')}', "
@@ -449,8 +472,15 @@ def main() -> int:
     # template_assembly/.
     template = transform_template_for_assembly(template, kind=samorzad_kind)
 
-    voiv_name = (cfg.get("voivodeship_name") or cfg.get("voivodeship_slug") or "").strip()
-    voiv_gen = cfg.get("voivodeship_genitive", "").strip()
+    # Powiat trzyma nazwę w district_name/district_genitive (przymiotnik
+    # lowercase: "tatrzański"/"tatrzańskiego"), sejmik w voivodeship_*.
+    # Dalej wspólna ścieżka: capitalize w gałęzi else niżej.
+    if samorzad_kind == "powiat":
+        voiv_name = (cfg.get("district_name") or cfg.get("slug") or "").strip()
+        voiv_gen = cfg.get("district_genitive", "").strip()
+    else:
+        voiv_name = (cfg.get("voivodeship_name") or cfg.get("voivodeship_slug") or "").strip()
+        voiv_gen = cfg.get("voivodeship_genitive", "").strip()
 
     if samorzad_kind == "land":
         # Niemiecki land: voivodeship_name jest już własną nazwą
@@ -460,6 +490,17 @@ def main() -> int:
         # poprawnie (Mecklenburg-Vorpommerns).
         city_name = voiv_name
         city_gen = voiv_gen or voiv_name
+    elif samorzad_kind == "powiat":
+        # Przymiotniki powiatów bywają wieloczłonowe ("warszawski zachodni",
+        # "bieruńsko-lędziński"). W nazwie organu każdy człon jest
+        # kapitalizowany ("Rada Powiatu Warszawskiego Zachodniego",
+        # "Bieruńsko-Lędzińskiego"), więc kapitalizacja per słowo i per
+        # człon dywizowy, nie .capitalize() całości.
+        def _cap_powiat(s: str) -> str:
+            return " ".join("-".join(p[:1].upper() + p[1:] for p in w.split("-"))
+                            for w in s.split())
+        city_name = _cap_powiat(voiv_name)
+        city_gen = _cap_powiat(voiv_gen)
     else:
         # Template miasta oczekuje CITY_NAME i CITY_GENITIVE w formie nazwy
         # własnej (capitalized: "Gdańsk", "Gdańska"). W naszym configu sejmika
@@ -489,7 +530,12 @@ def main() -> int:
     # tak jak w generate_site.py (template wspólny). JS subscribe-na-alerty
     # wysyła ten slug do backendu — bez substytucji DB dostaje literał
     # "{{CITY_SLUG}}" i alerty nie znajdują match'u.
-    assembly_slug = cfg.get("voivodeship_slug") or cfg.get("slug") or cfg_path.parent.name
+    # Powiat: własny slug PRZED voivodeship_slug, bo voivodeship_slug w jego
+    # configu to rodzic w hierarchii (np. malopolskie), nie tożsamość.
+    if samorzad_kind == "powiat":
+        assembly_slug = cfg.get("slug") or cfg_path.parent.name
+    else:
+        assembly_slug = cfg.get("voivodeship_slug") or cfg.get("slug") or cfg_path.parent.name
 
     _lcat_asm = landing_catalog((cfg.get("locale") or "pl").lower(),
                                 samorzad_type=samorzad_kind)
@@ -625,7 +671,9 @@ def main() -> int:
         import shutil as _sh2
         _sh2.copy2(_spolki_src, output_dir / "spolki.json")
 
-    print(f"Wygenerowano stronę sejmiku: {output_dir}/index.html ({len(html)} B)")
+    _kind_label = {"wojewodztwo": "sejmiku", "land": "landtagu",
+                   "powiat": "rady powiatu"}.get(samorzad_kind, samorzad_kind)
+    print(f"Wygenerowano stronę {_kind_label}: {output_dir}/index.html ({len(html)} B)")
     return 0
 
 

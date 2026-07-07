@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "dzierzoniowski",
+  "teryt": "0202",
+  "district_name": "dzierżoniowski",
+  "district_genitive": "dzierżoniowskiego",
+  "seat_city": "Dzierżoniów",
+  "voivodeship_slug": "dolnoslaskie",
+  "rada_name": "Rada Powiatu Dzierżoniowskiego",
+  "rada_name_genitive": "Rady Powiatu Dzierżoniowskiego",
+  "site_title": "Radoskop Powiat Dzierżoniowski. Jak głosują radni?",
+  "site_url": "https://dzierzoniowski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Dzierżoniowskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Dzierżoniowskiego.",
+  "bip_url": "https://powiatdzierzoniowski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Dzierżoniowskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatdzierzoniowski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "dzierzoniowski.radoskop.pl",
+  "councilor_count": 21,
+  "population": 93863,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

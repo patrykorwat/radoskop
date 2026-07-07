@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "lubanski",
+  "teryt": "0210",
+  "district_name": "lubański",
+  "district_genitive": "lubańskiego",
+  "seat_city": "Lubań",
+  "voivodeship_slug": "dolnoslaskie",
+  "rada_name": "Rada Powiatu Lubańskiego",
+  "rada_name_genitive": "Rady Powiatu Lubańskiego",
+  "site_title": "Radoskop Powiat Lubański. Jak głosują radni?",
+  "site_url": "https://lubanski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Lubańskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Lubańskiego.",
+  "bip_url": "https://powiatlubanski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Lubańskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatlubanski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lubanski.radoskop.pl",
+  "councilor_count": 17,
+  "population": 50909,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

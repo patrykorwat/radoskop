@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "wegrowski",
+  "teryt": "1433",
+  "district_name": "węgrowski",
+  "district_genitive": "węgrowskiego",
+  "seat_city": "Węgrów",
+  "voivodeship_slug": "mazowieckie",
+  "rada_name": "Rada Powiatu Węgrowskiego",
+  "rada_name_genitive": "Rady Powiatu Węgrowskiego",
+  "site_title": "Radoskop Powiat Węgrowski. Jak głosują radni?",
+  "site_url": "https://wegrowski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Węgrowskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Węgrowskiego.",
+  "bip_url": "https://powiatwegrowski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Węgrowskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatwegrowski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wegrowski.radoskop.pl",
+  "councilor_count": 19,
+  "population": 61472,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

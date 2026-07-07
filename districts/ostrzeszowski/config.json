@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "ostrzeszowski",
+  "teryt": "3018",
+  "district_name": "ostrzeszowski",
+  "district_genitive": "ostrzeszowskiego",
+  "seat_city": "Ostrzeszów",
+  "voivodeship_slug": "wielkopolskie",
+  "rada_name": "Rada Powiatu Ostrzeszowskiego",
+  "rada_name_genitive": "Rady Powiatu Ostrzeszowskiego",
+  "site_title": "Radoskop Powiat Ostrzeszowski. Jak głosują radni?",
+  "site_url": "https://ostrzeszowski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Ostrzeszowskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Ostrzeszowskiego.",
+  "bip_url": "https://powiatostrzeszowski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Ostrzeszowskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatostrzeszowski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ostrzeszowski.radoskop.pl",
+  "councilor_count": 17,
+  "population": 54319,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

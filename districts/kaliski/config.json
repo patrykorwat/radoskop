@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "kaliski",
+  "teryt": "3007",
+  "district_name": "kaliski",
+  "district_genitive": "kaliskiego",
+  "seat_city": "Kalisz",
+  "voivodeship_slug": "wielkopolskie",
+  "rada_name": "Rada Powiatu Kaliskiego",
+  "rada_name_genitive": "Rady Powiatu Kaliskiego",
+  "site_title": "Radoskop Powiat Kaliski. Jak głosują radni?",
+  "site_url": "https://kaliski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Kaliskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Kaliskiego.",
+  "bip_url": "https://powiatkaliski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Kaliskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatkaliski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kaliski.radoskop.pl",
+  "councilor_count": 21,
+  "population": 81950,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

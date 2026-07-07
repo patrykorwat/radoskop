@@ -50,3 +50,8 @@ docs/companies-sitemap.xml
 # bo NAS go nie regeneruje a musi mieć pliki do deployu. Wyjątek: surowy cache.
 .units_src/
 docs/units/_src/
+districts/*/docs/
+districts/*/.cache/
+districts/*/cache/
+districts/*/data/
+districts/*/pdfs/

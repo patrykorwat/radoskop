@@ -43,6 +43,51 @@
   window.radoskopGetCookie = getCookie;
   window.radoskopSetCookie = setCookie;
 
+  /* Umami Distinct ID. Anonim dostaje losowy ID w cookie radoskop_did na
+     domenie nadrzędnej (wspólne dla wszystkich subdomen danej TLD), TTL
+     krótki (2 dni), żeby skleić wizytę w obrębie kilku dni bez trwałego
+     profilowania (tak deklaruje polityka prywatności). Po zalogowaniu
+     nadpisujemy przez "u:" + public_id z /me (hook w setAuthUser).
+     identify() czeka aż async script.js trackera się załaduje, ten sam
+     wzorzec co bufory eventów w SPA. Kopie tej logiki: SPA
+     template/index.html, docs_eu/assets/topbar.js, docs_eu/index.html. */
+  var _idPending = null, _idTimer = null;
+  function _umamiIdentifiable() {
+    return typeof umami !== "undefined" && typeof umami.identify === "function";
+  }
+  function identifyUmami(id) {
+    if (!id) return;
+    _idPending = id;
+    if (_umamiIdentifiable()) {
+      try { umami.identify(_idPending); } catch (e) {}
+      _idPending = null;
+      return;
+    }
+    if (_idTimer) return;
+    var tries = 0;
+    _idTimer = setInterval(function () {
+      tries++;
+      if (_umamiIdentifiable()) {
+        clearInterval(_idTimer); _idTimer = null;
+        if (_idPending) { try { umami.identify(_idPending); } catch (e) {} _idPending = null; }
+      } else if (tries > 50) {
+        clearInterval(_idTimer); _idTimer = null;
+      }
+    }, 400);
+  }
+  window._rkIdentify = identifyUmami;
+  function anonDistinctId() {
+    var id = getCookie("radoskop_did");
+    if (!id) {
+      id = (window.crypto && typeof crypto.randomUUID === "function")
+        ? crypto.randomUUID()
+        : Date.now().toString(36) + "." + Math.random().toString(36).slice(2, 12);
+      setCookie("radoskop_did", id, 2);
+    }
+    return id;
+  }
+  window._rkAnonId = anonDistinctId;
+
   function getTheme() {
     var c = getCookie("radoskop_theme");
     if (c === "dark" || c === "light") return c;
@@ -107,6 +152,7 @@
       if (u) sessionStorage.setItem("radoskop_user", JSON.stringify(u));
       else sessionStorage.removeItem("radoskop_user");
     } catch (e) {}
+    identifyUmami(u && u.id ? "u:" + u.id : anonDistinctId());
     renderAuth();
     if (typeof window.onAuthUser === "function") { try { window.onAuthUser(u); } catch (e) {} }
   }
@@ -160,6 +206,7 @@
 
   applyTheme(getTheme());
   renderAuth();
+  identifyUmami(user && user.id ? "u:" + user.id : anonDistinctId());
   // Konsument może odroczyć auto /me (window.RADOSKOP_DEFER_CHROME=true) i sam
   // zawołać window._refreshAuth() w swoim init. Domyślnie odświeżamy od razu.
   if (!window.RADOSKOP_DEFER_CHROME) window._refreshAuth();

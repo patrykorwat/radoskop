@@ -976,6 +976,59 @@ function trackEvent(eventName, params) {
   }, 400);
 })();
 
+// Umami Distinct ID: anonim dostaje losowy ID w cookie radoskop_did na
+// domenie nadrzędnej (wspólne dla wszystkich subdomen danej TLD), TTL krótki
+// (2 dni), żeby skleić wizytę w obrębie kilku dni bez trwałego profilowania
+// (tak deklaruje polityka prywatności). Po zalogowaniu nadpisujemy przez
+// "u:" + public_id z /me (hook w _setAuthUser). identify() czeka na
+// załadowanie async script.js jak bufor eventów wyżej. Kopie tej logiki:
+// template/app/chrome.js (strony spółek), docs_eu/assets/topbar.js,
+// docs_eu/index.html.
+var _rkIdPending = null, _rkIdTimer = null;
+function _rkIdentifiable() {
+  return typeof umami !== 'undefined' && typeof umami.identify === 'function';
+}
+function _rkIdentify(id) {
+  if (!id) return;
+  _rkIdPending = id;
+  if (_rkIdentifiable()) {
+    try { umami.identify(_rkIdPending); } catch (e) {}
+    _rkIdPending = null;
+    return;
+  }
+  if (_rkIdTimer) return;
+  var _rkTries = 0;
+  _rkIdTimer = setInterval(function() {
+    _rkTries++;
+    if (_rkIdentifiable()) {
+      clearInterval(_rkIdTimer); _rkIdTimer = null;
+      if (_rkIdPending) { try { umami.identify(_rkIdPending); } catch (e) {} _rkIdPending = null; }
+    } else if (_rkTries > 50) {
+      clearInterval(_rkIdTimer); _rkIdTimer = null;
+    }
+  }, 400);
+}
+function _rkCookieDomain() {
+  var h = location.hostname;
+  if (h.indexOf('radoskop.pl') !== -1) return '; domain=.radoskop.pl';
+  if (h.indexOf('radoskop.eu') !== -1) return '; domain=.radoskop.eu';
+  return '';
+}
+function _rkAnonId() {
+  try {
+    var m = document.cookie.match(/(?:^|;\s*)radoskop_did=([^;]+)/);
+    if (m) return decodeURIComponent(m[1]);
+    var id = (window.crypto && typeof crypto.randomUUID === 'function')
+      ? crypto.randomUUID()
+      : Date.now().toString(36) + '.' + Math.random().toString(36).slice(2, 12);
+    var secure = location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = 'radoskop_did=' + encodeURIComponent(id)
+      + '; path=/; max-age=172800; SameSite=Lax' + secure + _rkCookieDomain();
+    return id;
+  } catch (e) { return null; }
+}
+_rkIdentify(_rkAnonId());
+
 // trackEvent + krótkie czekanie na wysyłkę. Do eventów tuż przed
 // window.location.href (logout, google login), gdzie nawigacja
 // ubiłaby fetch trackera. Max 400ms, potem idziemy dalej.
@@ -5588,6 +5641,10 @@ function _setAuthUser(user) {
     if (user) sessionStorage.setItem('radoskop_user', JSON.stringify(user));
     else sessionStorage.removeItem('radoskop_user');
   } catch (e) {}
+  // Umami Distinct ID: zalogowany "u:" + public_id, wylogowany wraca na anon.
+  if (typeof _rkIdentify === 'function') {
+    _rkIdentify(user && user.id ? 'u:' + user.id : _rkAnonId());
+  }
   _renderAuthHeader();
 }
 

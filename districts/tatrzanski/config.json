@@ -1,0 +1,65 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "tatrzanski",
+  "teryt": "1217",
+  "district_name": "tatrzański",
+  "district_genitive": "tatrzańskiego",
+  "seat_city": "Zakopane",
+  "voivodeship_slug": "malopolskie",
+  "rada_name": "Rada Powiatu Tatrzańskiego",
+  "rada_name_genitive": "Rady Powiatu Tatrzańskiego",
+  "site_title": "Radoskop Powiat Tatrzański. Jak głosują radni?",
+  "site_url": "https://tatrzanski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Tatrzańskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Tatrzańskiego.",
+  "bip_url": "https://powiattatrzanski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Tatrzańskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiattatrzanski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "tatrzanski.radoskop.pl",
+  "councilor_count": 19,
+  "population": 66346,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "active",
+  "clubs": {
+    "Niezrzeszeni": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)"
+    }
+  },
+  "club_assignments": {
+    "Andrzej Skupień": "Niezrzeszeni",
+    "Bogusława Stępień": "Niezrzeszeni",
+    "Bronisława Wrona": "Niezrzeszeni",
+    "Elżbieta Agata Wojtowicz": "Niezrzeszeni",
+    "Janusz Pawlikowski": "Niezrzeszeni",
+    "Lesław Chowaniec": "Niezrzeszeni",
+    "Maciej Krzeptowski": "Niezrzeszeni",
+    "Marta Nędza-Kubiniec": "Niezrzeszeni",
+    "Paweł Mickowski": "Niezrzeszeni",
+    "Paweł Para": "Niezrzeszeni",
+    "Piotr Bąk": "Niezrzeszeni",
+    "Robert Chowaniec": "Niezrzeszeni",
+    "Stanisław Tomala": "Niezrzeszeni",
+    "Stanisław Łukaszczyk": "Niezrzeszeni",
+    "Tomasz Dzierżęga": "Niezrzeszeni",
+    "Wawrzyniec Bystrzycki": "Niezrzeszeni",
+    "Wiesław Lenard": "Niezrzeszeni",
+    "Władysław Filar": "Niezrzeszeni",
+    "Łukasz Dorula": "Niezrzeszeni"
+  },
+  "clubs_source": "brak klubów: strona powiatu (powiat.tatry.pl) i portal eSesja nie publikuja przynaleznosci klubowej radnych, stan 2026-07-07"
+}

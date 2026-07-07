@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "obornicki",
+  "teryt": "3016",
+  "district_name": "obornicki",
+  "district_genitive": "obornickiego",
+  "seat_city": "Oborniki",
+  "voivodeship_slug": "wielkopolskie",
+  "rada_name": "Rada Powiatu Obornickiego",
+  "rada_name_genitive": "Rady Powiatu Obornickiego",
+  "site_title": "Radoskop Powiat Obornicki. Jak głosują radni?",
+  "site_url": "https://obornicki.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Obornickiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Obornickiego.",
+  "bip_url": "https://powiatobornicki.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Obornickiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatobornicki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "obornicki.radoskop.pl",
+  "councilor_count": 17,
+  "population": 58657,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

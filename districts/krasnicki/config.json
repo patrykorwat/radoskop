@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "krasnicki",
+  "teryt": "0607",
+  "district_name": "kraśnicki",
+  "district_genitive": "kraśnickiego",
+  "seat_city": "Kraśnik",
+  "voivodeship_slug": "lubelskie",
+  "rada_name": "Rada Powiatu Kraśnickiego",
+  "rada_name_genitive": "Rady Powiatu Kraśnickiego",
+  "site_title": "Radoskop Powiat Kraśnicki. Jak głosują radni?",
+  "site_url": "https://krasnicki.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Kraśnickiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Kraśnickiego.",
+  "bip_url": "https://powiatkrasnicki.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Kraśnickiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatkrasnicki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "krasnicki.radoskop.pl",
+  "councilor_count": 21,
+  "population": 88198,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

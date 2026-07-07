@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "sieradzki",
+  "teryt": "1014",
+  "district_name": "sieradzki",
+  "district_genitive": "sieradzkiego",
+  "seat_city": "Sieradz",
+  "voivodeship_slug": "lodzkie",
+  "rada_name": "Rada Powiatu Sieradzkiego",
+  "rada_name_genitive": "Rady Powiatu Sieradzkiego",
+  "site_title": "Radoskop Powiat Sieradzki. Jak głosują radni?",
+  "site_url": "https://sieradzki.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Sieradzkiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Sieradzkiego.",
+  "bip_url": "https://powiatsieradzki.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Sieradzkiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatsieradzki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sieradzki.radoskop.pl",
+  "councilor_count": 23,
+  "population": 110665,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

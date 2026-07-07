@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "hajnowski",
+  "teryt": "2005",
+  "district_name": "hajnowski",
+  "district_genitive": "hajnowskiego",
+  "seat_city": "Hajnówka",
+  "voivodeship_slug": "podlaskie",
+  "rada_name": "Rada Powiatu Hajnowskiego",
+  "rada_name_genitive": "Rady Powiatu Hajnowskiego",
+  "site_title": "Radoskop Powiat Hajnowski. Jak głosują radni?",
+  "site_url": "https://hajnowski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Hajnowskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Hajnowskiego.",
+  "bip_url": "https://powiathajnowski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Hajnowskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiathajnowski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "hajnowski.radoskop.pl",
+  "councilor_count": 15,
+  "population": 38237,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

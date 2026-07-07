@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "koszalinski",
+  "teryt": "3209",
+  "district_name": "koszaliński",
+  "district_genitive": "koszalińskiego",
+  "seat_city": "Koszalin",
+  "voivodeship_slug": "zachodniopomorskie",
+  "rada_name": "Rada Powiatu Koszalińskiego",
+  "rada_name_genitive": "Rady Powiatu Koszalińskiego",
+  "site_title": "Radoskop Powiat Koszaliński. Jak głosują radni?",
+  "site_url": "https://koszalinski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Koszalińskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Koszalińskiego.",
+  "bip_url": "https://koszalinski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Koszalińskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://koszalinski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "koszalinski.radoskop.pl",
+  "councilor_count": 19,
+  "population": 64359,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

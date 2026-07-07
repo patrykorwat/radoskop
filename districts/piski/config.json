@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "piski",
+  "teryt": "2816",
+  "district_name": "piski",
+  "district_genitive": "piskiego",
+  "seat_city": "Pisz",
+  "voivodeship_slug": "warminsko-mazurskie",
+  "rada_name": "Rada Powiatu Piskiego",
+  "rada_name_genitive": "Rady Powiatu Piskiego",
+  "site_title": "Radoskop Powiat Piski. Jak głosują radni?",
+  "site_url": "https://piski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Piskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Piskiego.",
+  "bip_url": "https://powiatpiski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Piskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatpiski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "piski.radoskop.pl",
+  "councilor_count": 17,
+  "population": 51550,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

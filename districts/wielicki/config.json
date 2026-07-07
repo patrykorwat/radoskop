@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "wielicki",
+  "teryt": "1219",
+  "district_name": "wielicki",
+  "district_genitive": "wielickiego",
+  "seat_city": "Wieliczka",
+  "voivodeship_slug": "malopolskie",
+  "rada_name": "Rada Powiatu Wielickiego",
+  "rada_name_genitive": "Rady Powiatu Wielickiego",
+  "site_title": "Radoskop Powiat Wielicki. Jak głosują radni?",
+  "site_url": "https://wielicki.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Wielickiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Wielickiego.",
+  "bip_url": "https://powiatwielicki.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Wielickiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatwielicki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wielicki.radoskop.pl",
+  "councilor_count": 27,
+  "population": 145276,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

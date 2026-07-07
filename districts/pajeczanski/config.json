@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "pajeczanski",
+  "teryt": "1009",
+  "district_name": "pajęczański",
+  "district_genitive": "pajęczańskiego",
+  "seat_city": "Pajęczno",
+  "voivodeship_slug": "lodzkie",
+  "rada_name": "Rada Powiatu Pajęczańskiego",
+  "rada_name_genitive": "Rady Powiatu Pajęczańskiego",
+  "site_title": "Radoskop Powiat Pajęczański. Jak głosują radni?",
+  "site_url": "https://pajeczanski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Pajęczańskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Pajęczańskiego.",
+  "bip_url": "https://powiatpajeczanski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Pajęczańskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatpajeczanski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pajeczanski.radoskop.pl",
+  "councilor_count": 17,
+  "population": 48086,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

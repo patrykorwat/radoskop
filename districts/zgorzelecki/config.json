@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "zgorzelecki",
+  "teryt": "0225",
+  "district_name": "zgorzelecki",
+  "district_genitive": "zgorzeleckiego",
+  "seat_city": "Zgorzelec",
+  "voivodeship_slug": "dolnoslaskie",
+  "rada_name": "Rada Powiatu Zgorzeleckiego",
+  "rada_name_genitive": "Rady Powiatu Zgorzeleckiego",
+  "site_title": "Radoskop Powiat Zgorzelecki. Jak głosują radni?",
+  "site_url": "https://zgorzelecki.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Zgorzeleckiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Zgorzeleckiego.",
+  "bip_url": "https://powiatzgorzelecki.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Zgorzeleckiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatzgorzelecki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zgorzelecki.radoskop.pl",
+  "councilor_count": 21,
+  "population": 84337,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

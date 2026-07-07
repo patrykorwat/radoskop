@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "nowodworski-pomorski",
+  "teryt": "2210",
+  "district_name": "nowodworski",
+  "district_genitive": "nowodworskiego",
+  "seat_city": "Nowy Dwór Gdański",
+  "voivodeship_slug": "pomorskie",
+  "rada_name": "Rada Powiatu Nowodworskiego",
+  "rada_name_genitive": "Rady Powiatu Nowodworskiego",
+  "site_title": "Radoskop Powiat Nowodworski. Jak głosują radni?",
+  "site_url": "https://nowodworski-pomorski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Nowodworskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Nowodworskiego.",
+  "bip_url": "https://powiatnowodworski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Nowodworskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatnowodworski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "nowodworski-pomorski.radoskop.pl",
+  "councilor_count": 15,
+  "population": 33392,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

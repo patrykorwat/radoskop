@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "pszczynski",
+  "teryt": "2410",
+  "district_name": "pszczyński",
+  "district_genitive": "pszczyńskiego",
+  "seat_city": "Pszczyna",
+  "voivodeship_slug": "slaskie",
+  "rada_name": "Rada Powiatu Pszczyńskiego",
+  "rada_name_genitive": "Rady Powiatu Pszczyńskiego",
+  "site_title": "Radoskop Powiat Pszczyński. Jak głosują radni?",
+  "site_url": "https://pszczynski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Pszczyńskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Pszczyńskiego.",
+  "bip_url": "https://powiatpszczynski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Pszczyńskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatpszczynski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pszczynski.radoskop.pl",
+  "councilor_count": 23,
+  "population": 110722,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

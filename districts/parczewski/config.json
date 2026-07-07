@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "parczewski",
+  "teryt": "0613",
+  "district_name": "parczewski",
+  "district_genitive": "parczewskiego",
+  "seat_city": "Parczew",
+  "voivodeship_slug": "lubelskie",
+  "rada_name": "Rada Powiatu Parczewskiego",
+  "rada_name_genitive": "Rady Powiatu Parczewskiego",
+  "site_title": "Radoskop Powiat Parczewski. Jak głosują radni?",
+  "site_url": "https://parczewski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Parczewskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Parczewskiego.",
+  "bip_url": "https://powiatparczew.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Parczewskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatparczew.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "parczewski.radoskop.pl",
+  "councilor_count": 15,
+  "population": 31832,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

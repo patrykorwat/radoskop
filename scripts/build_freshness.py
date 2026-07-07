@@ -90,6 +90,14 @@ LEVELS: list[dict[str, Any]] = [
         "name_field": "rada_name",
         "meta_csv": "assemblies-meta.csv",
     },
+    {
+        "id": "district",
+        "label": "Rady powiatów",
+        "subdir": "districts",
+        "samorzad_type": "powiat",
+        "name_field": "rada_name",
+        "meta_csv": "districts-meta.csv",
+    },
 ]
 
 
@@ -262,6 +270,14 @@ def build_unit_entry(unit_dir: Path, level: dict[str, Any], meta: dict[str, Any]
     if level["id"] == "city":
         entry["voivodeship"] = meta.get("voivodeship")
         entry["population"] = parse_int(meta.get("population"))
+    elif level["id"] == "district":
+        # Powiat: voivodeship = rodzic w hierarchii (kolumna voivodeship
+        # w districts-meta.csv, fallback na config), capital = siedziba
+        # starostwa (seat_city).
+        entry["voivodeship"] = meta.get("voivodeship") or cfg.get("voivodeship_slug")
+        entry["capital"] = meta.get("capital") or cfg.get("seat_city")
+        entry["population"] = parse_int(meta.get("population")) or cfg.get("population")
+        entry["councilor_count"] = parse_int(meta.get("councilor_count")) or cfg.get("councilor_count")
     else:
         entry["voivodeship"] = meta.get("name") or unit_dir.name
         entry["capital"] = meta.get("capital") or cfg.get("capital")
@@ -352,9 +368,11 @@ def main() -> int:
 
     cities = sum(1 for u in manifest["units"] if u["level"] == "city")
     assemblies = sum(1 for u in manifest["units"] if u["level"] == "assembly")
+    districts = sum(1 for u in manifest["units"] if u["level"] == "district")
     print(
         f"build_freshness: zapisano {output} "
-        f"({cities} miast, {assemblies} sejmików, {len(SOURCES)} źródeł)"
+        f"({cities} miast, {assemblies} sejmików, {districts} rad powiatów, "
+        f"{len(SOURCES)} źródeł)"
     )
     return 0
 

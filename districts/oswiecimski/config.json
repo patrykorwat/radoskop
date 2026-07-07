@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "oswiecimski",
+  "teryt": "1213",
+  "district_name": "oświęcimski",
+  "district_genitive": "oświęcimskiego",
+  "seat_city": "Oświęcim",
+  "voivodeship_slug": "malopolskie",
+  "rada_name": "Rada Powiatu Oświęcimskiego",
+  "rada_name_genitive": "Rady Powiatu Oświęcimskiego",
+  "site_title": "Radoskop Powiat Oświęcimski. Jak głosują radni?",
+  "site_url": "https://oswiecimski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Oświęcimskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Oświęcimskiego.",
+  "bip_url": "https://powiatoswiecimski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Oświęcimskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatoswiecimski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "oswiecimski.radoskop.pl",
+  "councilor_count": 27,
+  "population": 147678,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "zamojski",
+  "teryt": "0620",
+  "district_name": "zamojski",
+  "district_genitive": "zamojskiego",
+  "seat_city": "Zamość",
+  "voivodeship_slug": "lubelskie",
+  "rada_name": "Rada Powiatu Zamojskiego",
+  "rada_name_genitive": "Rady Powiatu Zamojskiego",
+  "site_title": "Radoskop Powiat Zamojski. Jak głosują radni?",
+  "site_url": "https://zamojski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Zamojskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Zamojskiego.",
+  "bip_url": "https://powiatzamosc.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Zamojskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatzamosc.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zamojski.radoskop.pl",
+  "councilor_count": 23,
+  "population": 100017,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

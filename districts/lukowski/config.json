@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "lukowski",
+  "teryt": "0611",
+  "district_name": "łukowski",
+  "district_genitive": "łukowskiego",
+  "seat_city": "Łuków",
+  "voivodeship_slug": "lubelskie",
+  "rada_name": "Rada Powiatu Łukowskiego",
+  "rada_name_genitive": "Rady Powiatu Łukowskiego",
+  "site_title": "Radoskop Powiat Łukowski. Jak głosują radni?",
+  "site_url": "https://lukowski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Łukowskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Łukowskiego.",
+  "bip_url": "https://powiatlukowski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Łukowskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatlukowski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lukowski.radoskop.pl",
+  "councilor_count": 23,
+  "population": 100230,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

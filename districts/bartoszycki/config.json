@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "bartoszycki",
+  "teryt": "2801",
+  "district_name": "bartoszycki",
+  "district_genitive": "bartoszyckiego",
+  "seat_city": "Bartoszyce",
+  "voivodeship_slug": "warminsko-mazurskie",
+  "rada_name": "Rada Powiatu Bartoszyckiego",
+  "rada_name_genitive": "Rady Powiatu Bartoszyckiego",
+  "site_title": "Radoskop Powiat Bartoszycki. Jak głosują radni?",
+  "site_url": "https://bartoszycki.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Bartoszyckiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Bartoszyckiego.",
+  "bip_url": "https://powiatbartoszycki.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Bartoszyckiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatbartoszycki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "bartoszycki.radoskop.pl",
+  "councilor_count": 17,
+  "population": 52001,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

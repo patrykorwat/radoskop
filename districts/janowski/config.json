@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "janowski",
+  "teryt": "0605",
+  "district_name": "janowski",
+  "district_genitive": "janowskiego",
+  "seat_city": "Janów Lubelski",
+  "voivodeship_slug": "lubelskie",
+  "rada_name": "Rada Powiatu Janowskiego",
+  "rada_name_genitive": "Rady Powiatu Janowskiego",
+  "site_title": "Radoskop Powiat Janowski. Jak głosują radni?",
+  "site_url": "https://janowski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Janowskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Janowskiego.",
+  "bip_url": "https://janowski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Janowskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://janowski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "janowski.radoskop.pl",
+  "councilor_count": 17,
+  "population": 42260,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

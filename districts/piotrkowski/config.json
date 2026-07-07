@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "piotrkowski",
+  "teryt": "1010",
+  "district_name": "piotrkowski",
+  "district_genitive": "piotrkowskiego",
+  "seat_city": "Piotrków Trybunalski",
+  "voivodeship_slug": "lodzkie",
+  "rada_name": "Rada Powiatu Piotrkowskiego",
+  "rada_name_genitive": "Rady Powiatu Piotrkowskiego",
+  "site_title": "Radoskop Powiat Piotrkowski. Jak głosują radni?",
+  "site_url": "https://piotrkowski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Piotrkowskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Piotrkowskiego.",
+  "bip_url": "https://powiatpiotrkowski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Piotrkowskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatpiotrkowski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "piotrkowski.radoskop.pl",
+  "councilor_count": 21,
+  "population": 89717,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

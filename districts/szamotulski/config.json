@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "szamotulski",
+  "teryt": "3024",
+  "district_name": "szamotulski",
+  "district_genitive": "szamotulskiego",
+  "seat_city": "Szamotuły",
+  "voivodeship_slug": "wielkopolskie",
+  "rada_name": "Rada Powiatu Szamotulskiego",
+  "rada_name_genitive": "Rady Powiatu Szamotulskiego",
+  "site_title": "Radoskop Powiat Szamotulski. Jak głosują radni?",
+  "site_url": "https://szamotulski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Szamotulskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Szamotulskiego.",
+  "bip_url": "https://powiatszamotulski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Szamotulskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatszamotulski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "szamotulski.radoskop.pl",
+  "councilor_count": 21,
+  "population": 91631,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

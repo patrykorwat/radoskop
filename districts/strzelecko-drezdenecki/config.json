@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "strzelecko-drezdenecki",
+  "teryt": "0806",
+  "district_name": "strzelecko-drezdenecki",
+  "district_genitive": "strzelecko-drezdeneckiego",
+  "seat_city": "Strzelce Krajeńskie",
+  "voivodeship_slug": "lubuskie",
+  "rada_name": "Rada Powiatu Strzelecko-Drezdeneckiego",
+  "rada_name_genitive": "Rady Powiatu Strzelecko-Drezdeneckiego",
+  "site_title": "Radoskop Powiat Strzelecko-Drezdenecki. Jak głosują radni?",
+  "site_url": "https://strzelecko-drezdenecki.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Strzelecko-Drezdeneckiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Strzelecko-Drezdeneckiego.",
+  "bip_url": "https://powiatstrzeleckodrezdenecki.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Strzelecko-Drezdeneckiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatstrzeleckodrezdenecki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "strzelecko-drezdenecki.radoskop.pl",
+  "councilor_count": 17,
+  "population": 46204,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

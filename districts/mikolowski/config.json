@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "mikolowski",
+  "teryt": "2408",
+  "district_name": "mikołowski",
+  "district_genitive": "mikołowskiego",
+  "seat_city": "Mikołów",
+  "voivodeship_slug": "slaskie",
+  "rada_name": "Rada Powiatu Mikołowskiego",
+  "rada_name_genitive": "Rady Powiatu Mikołowskiego",
+  "site_title": "Radoskop Powiat Mikołowski. Jak głosują radni?",
+  "site_url": "https://mikolowski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Mikołowskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Mikołowskiego.",
+  "bip_url": "https://powiatmikolowski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Mikołowskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatmikolowski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "mikolowski.radoskop.pl",
+  "councilor_count": 23,
+  "population": 100019,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

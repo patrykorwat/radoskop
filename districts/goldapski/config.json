@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "goldapski",
+  "teryt": "2818",
+  "district_name": "gołdapski",
+  "district_genitive": "gołdapskiego",
+  "seat_city": "Gołdap",
+  "voivodeship_slug": "warminsko-mazurskie",
+  "rada_name": "Rada Powiatu Gołdapskiego",
+  "rada_name_genitive": "Rady Powiatu Gołdapskiego",
+  "site_title": "Radoskop Powiat Gołdapski. Jak głosują radni?",
+  "site_url": "https://goldapski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Gołdapskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Gołdapskiego.",
+  "bip_url": "https://powiatgoldap.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Gołdapskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatgoldap.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "goldapski.radoskop.pl",
+  "councilor_count": 15,
+  "population": 24612,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

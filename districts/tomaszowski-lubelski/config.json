@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "tomaszowski-lubelski",
+  "teryt": "0618",
+  "district_name": "tomaszowski",
+  "district_genitive": "tomaszowskiego",
+  "seat_city": "Tomaszów Lubelski",
+  "voivodeship_slug": "lubelskie",
+  "rada_name": "Rada Powiatu Tomaszowskiego",
+  "rada_name_genitive": "Rady Powiatu Tomaszowskiego",
+  "site_title": "Radoskop Powiat Tomaszowski. Jak głosują radni?",
+  "site_url": "https://tomaszowski-lubelski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Tomaszowskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Tomaszowskiego.",
+  "bip_url": "https://powiattomaszowski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Tomaszowskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiattomaszowski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "tomaszowski-lubelski.radoskop.pl",
+  "councilor_count": 19,
+  "population": 76155,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

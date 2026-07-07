@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "cieszynski",
+  "teryt": "2403",
+  "district_name": "cieszyński",
+  "district_genitive": "cieszyńskiego",
+  "seat_city": "Cieszyn",
+  "voivodeship_slug": "slaskie",
+  "rada_name": "Rada Powiatu Cieszyńskiego",
+  "rada_name_genitive": "Rady Powiatu Cieszyńskiego",
+  "site_title": "Radoskop Powiat Cieszyński. Jak głosują radni?",
+  "site_url": "https://cieszynski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Cieszyńskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Cieszyńskiego.",
+  "bip_url": "https://powiatcieszynski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Cieszyńskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatcieszynski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "cieszynski.radoskop.pl",
+  "councilor_count": 29,
+  "population": 173694,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

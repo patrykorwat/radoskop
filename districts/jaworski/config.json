@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "jaworski",
+  "teryt": "0205",
+  "district_name": "jaworski",
+  "district_genitive": "jaworskiego",
+  "seat_city": "Jawor",
+  "voivodeship_slug": "dolnoslaskie",
+  "rada_name": "Rada Powiatu Jaworskiego",
+  "rada_name_genitive": "Rady Powiatu Jaworskiego",
+  "site_title": "Radoskop Powiat Jaworski. Jak głosują radni?",
+  "site_url": "https://jaworski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Jaworskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Jaworskiego.",
+  "bip_url": "https://powiatjaworski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Jaworskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatjaworski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "jaworski.radoskop.pl",
+  "councilor_count": 17,
+  "population": 46822,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

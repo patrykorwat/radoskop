@@ -47,6 +47,7 @@ STRINGS: dict[str, dict[str, str]] = {
     # "Mecklenburg-Vorpommerns").
     "hero_eyebrow_wojewodztwo": {"pl": "Sejmik Województwa {name}", "en": "{name} Regional Assembly"},
     "hero_eyebrow_land": {"de": "Landtag {name}", "en": "{name} State Parliament"},
+    "hero_eyebrow_powiat": {"pl": "Rada Powiatu {name}", "en": "{name} County Council"},
     "term_word": {"pl": "kadencja", "en": "term", "de": "Wahlperiode", "cs": "volební období",
                   "nl": "termijn", "sk": "volebné obdobie", "fr": "mandature", "da": "valgperiode",
                   "hu": "ciklus", "uk": "каденція", "lt": "kadencija", "lv": "sasaukums", "et": "koosseis"},
@@ -60,6 +61,7 @@ STRINGS: dict[str, dict[str, str]] = {
                    "et": "Kuidas töötab [[linnavolikogu]]."},
     "hero_title_wojewodztwo": {"pl": "Tak działa [[sejmik województwa]].", "en": "How the [[regional assembly]] works."},
     "hero_title_land": {"de": "So arbeitet der [[Landtag]].", "en": "How the [[state parliament]] works."},
+    "hero_title_powiat": {"pl": "Tak działa [[rada powiatu]].", "en": "How the [[county council]] works."},
     "cta_check_votes": {"pl": "Sprawdź, jak głosują radni", "en": "See how councillors vote",
                         "de": "Sehen, wie Ratsmitglieder abstimmen", "cs": "Jak hlasují zastupitelé",
                         "nl": "Zie hoe raadsleden stemmen", "sk": "Ako hlasujú poslanci",
@@ -80,6 +82,8 @@ STRINGS: dict[str, dict[str, str]] = {
                                  "en": "This term, the assembly has cast <strong>{votes} votes</strong>. <strong>{contested}</strong> were contested."},
     "insight_full_land": {"de": "In dieser Wahlperiode hat der Landtag bereits <strong>{votes} Stimmen</strong> abgegeben. <strong>{contested}</strong> waren umstritten.",
                           "en": "This term, the parliament has cast <strong>{votes} votes</strong>. <strong>{contested}</strong> were contested."},
+    "insight_full_powiat": {"pl": "W tej kadencji radni powiatu oddali już <strong>{votes} głosów</strong>. Spornych było <strong>{contested}</strong>.",
+                            "en": "This term, the county council has cast <strong>{votes} votes</strong>. <strong>{contested}</strong> were contested."},
     "insight_light": {"pl": "Rada {name} liczy <strong>{n}</strong> radnych. Sprawdź ich pełną listę i kluby.",
                       "en": "The {name} council has <strong>{n}</strong> members. See the full list and clubs.",
                       "de": "Der Rat von {name} hat <strong>{n}</strong> Mitglieder. Sehen Sie die vollständige Liste und Fraktionen.",
@@ -262,6 +266,8 @@ STRINGS: dict[str, dict[str, str]] = {
                                     "en": "Regional spending and how each councillor voted on the money."},
     "nav_budget_desc_land": {"de": "Ausgaben des Landes und wie über das Geld abgestimmt wurde.",
                              "en": "State spending and how each member voted on the money."},
+    "nav_budget_desc_powiat": {"pl": "Wydatki powiatu i to, kto jak głosował nad pieniędzmi.",
+                               "en": "County spending and how each councillor voted on the money."},
     "nav_committees_title": {"pl": "Komisje", "en": "Committees", "de": "Ausschüsse", "cs": "Komise", "nl": "Commissies",
                              "sk": "Komisie", "fr": "Commissions", "da": "Udvalg", "hu": "Bizottságok", "uk": "Комісії",
                              "lt": "Komitetai", "lv": "Komitejas", "et": "Komisjonid"},
@@ -381,7 +387,7 @@ STRINGS: dict[str, dict[str, str]] = {
 # (bez sufiksu) to miasto, więc "miasto" celowo nie ma sufiksów i nie nakłada
 # nic. Lista służy tylko do oddzielenia kluczy-wariantów od kluczy bazowych
 # przy budowie katalogu (żeby warianty nie wyciekały jako osobne wpisy).
-SAMORZAD_TYPES = ("wojewodztwo", "land")
+SAMORZAD_TYPES = ("wojewodztwo", "land", "powiat")
 
 
 def catalog(locale: str, samorzad_type: str = "miasto") -> dict[str, str]:

@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "sulecinski",
+  "teryt": "0807",
+  "district_name": "sulęciński",
+  "district_genitive": "sulęcińskiego",
+  "seat_city": "Sulęcin",
+  "voivodeship_slug": "lubuskie",
+  "rada_name": "Rada Powiatu Sulęcińskiego",
+  "rada_name_genitive": "Rady Powiatu Sulęcińskiego",
+  "site_title": "Radoskop Powiat Sulęciński. Jak głosują radni?",
+  "site_url": "https://sulecinski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Sulęcińskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Sulęcińskiego.",
+  "bip_url": "https://powiatsulecin.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Sulęcińskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatsulecin.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sulecinski.radoskop.pl",
+  "councilor_count": 15,
+  "population": 33191,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

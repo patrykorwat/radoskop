@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "rawicki",
+  "teryt": "3022",
+  "district_name": "rawicki",
+  "district_genitive": "rawickiego",
+  "seat_city": "Rawicz",
+  "voivodeship_slug": "wielkopolskie",
+  "rada_name": "Rada Powiatu Rawickiego",
+  "rada_name_genitive": "Rady Powiatu Rawickiego",
+  "site_title": "Radoskop Powiat Rawicki. Jak głosują radni?",
+  "site_url": "https://rawicki.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Rawickiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Rawickiego.",
+  "bip_url": "https://powiatrawicki.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Rawickiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatrawicki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "rawicki.radoskop.pl",
+  "councilor_count": 17,
+  "population": 58338,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}

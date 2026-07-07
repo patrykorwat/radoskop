@@ -1,0 +1,38 @@
+{
+  "landing_enabled": true,
+  "samorzad_type": "powiat",
+  "tier": "district",
+  "slug": "nakielski",
+  "teryt": "0410",
+  "district_name": "nakielski",
+  "district_genitive": "nakielskiego",
+  "seat_city": "Nakło nad Notecią",
+  "voivodeship_slug": "kujawsko-pomorskie",
+  "rada_name": "Rada Powiatu Nakielskiego",
+  "rada_name_genitive": "Rady Powiatu Nakielskiego",
+  "site_title": "Radoskop Powiat Nakielski. Jak głosują radni?",
+  "site_url": "https://nakielski.radoskop.pl",
+  "site_description": "Radoskop. Otwarte narzędzie monitoringu Rady Powiatu Nakielskiego. Frekwencja, głosowania i aktywność radnych powiatowych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Powiatu Nakielskiego.",
+  "bip_url": "https://powiatnakielski.esesja.pl",
+  "bip_name": "Portal eSesja Powiatu Nakielskiego",
+  "bip_kind": "esesja_static",
+  "esesja_url": "https://powiatnakielski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "nakielski.radoskop.pl",
+  "councilor_count": 21,
+  "population": 82435,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "VII kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "scrape_status": "pending",
+  "clubs": {},
+  "club_assignments": {}
+}
