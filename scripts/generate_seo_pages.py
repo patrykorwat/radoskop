@@ -89,11 +89,21 @@ _SEO_DYNAMIC_PAIRS: list = []
 def _localize_seo(text):
     """Tłumaczy frazę prerendera na locale bieżącego miasta.
 
-    No-op dla locale "pl" (i pustych wartości) — polskie miasta zachowują
-    dotychczasowy output co do bajta.
+    Dla locale "pl": no-op dla miast (puste pary, output co do bajta jak
+    dotąd). Sejmiki i rady powiatów ustawiają jednak _SEO_DYNAMIC_PAIRS
+    z transformacją "Rada Miasta {gen}" na "Sejmik Województwa {gen}" /
+    "Rada Powiatu {gen}", więc pary aplikują się też po polsku (bez
+    apply_locale i bez tablicy ASCII).
     """
-    if not text or _SEO_PRERENDER_LOCALE == "pl":
+    if not text:
         return text
+    if _SEO_PRERENDER_LOCALE == "pl":
+        if not _SEO_DYNAMIC_PAIRS:
+            return text
+        out = text
+        for a, b in _SEO_DYNAMIC_PAIRS:
+            out = out.replace(a, b)
+        return out
     out = text
     for a, b in _SEO_DYNAMIC_PAIRS:
         out = out.replace(a, b)
@@ -312,8 +322,16 @@ def make_page(main_html, canonical_url, title, description, og_image=None, extra
 
     # Per-page structured data (Person / BreadcrumbList). Wstrzykiwane przed
     # </head>, niezależnie od sitewide WebApplication JSON-LD z head.html.
+    # Pary _SEO_DYNAMIC_PAIRS także tutaj, ale TYLKO dla locale pl:
+    # JSON-LD niesie frazy "Rada Miasta {gen}" (memberOf) i "radny
+    # miejski", które sejmiki/powiaty transformują; dla miast PL pary są
+    # puste (no-op). Dla nie-PL zostawiamy bajt w bajt jak dotąd, bo
+    # apply_locale na serializowanym JSON mógłby uszkodzić strukturę.
     if jsonld:
-        h = h.replace('</head>', _jsonld_script(jsonld) + '</head>', 1)
+        script = _jsonld_script(jsonld)
+        if _SEO_PRERENDER_LOCALE == "pl":
+            script = _localize_seo(script)
+        h = h.replace('</head>', script + '</head>', 1)
 
     return h
 
@@ -432,6 +450,36 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         return
 
     site_url = config["site_url"].rstrip("/")
+
+    # Sejmiki (assemblies/) i rady powiatów (districts/) nie mają pól
+    # city_name/city_genitive. Syntezujemy je tak, żeby frazy szablonów
+    # "Radoskop {city_name}" i "Rada Miasta {city_gen}" po transformacji
+    # parami (_SEO_DYNAMIC_PAIRS niżej) składały się poprawnie:
+    #   powiat:      city_gen = "Powiatu Tatrzańskiego"
+    #                => "Rada Miasta Powiatu Tatrzańskiego"
+    #                => para => "Rada Powiatu Tatrzańskiego"
+    #   wojewodztwo: city_gen = "Województwa Łódzkiego"
+    #                => para => "Sejmik Województwa Łódzkiego"
+    samorzad_type = (config.get("samorzad_type") or "miasto").lower()
+    if samorzad_type == "land":
+        print(f"  Skipping {city_dir.name}: samorzad_type=land "
+              "(prerender SEO landtagów nieobsługiwany)")
+        return
+
+    def _cap_unit(s: str) -> str:
+        # Kapitalizacja per słowo i człon dywizowy ("warszawski zachodni"
+        # => "Warszawski Zachodni", "bieruńsko-lędziński" => "Bieruńsko-
+        # Lędziński"), spójna z generate_assembly_site.
+        return " ".join("-".join(p[:1].upper() + p[1:] for p in w.split("-"))
+                        for w in (s or "").split())
+
+    if samorzad_type == "powiat":
+        config.setdefault("city_name", f"Powiat {_cap_unit(config.get('district_name', ''))}")
+        config.setdefault("city_genitive", f"Powiatu {_cap_unit(config.get('district_genitive', ''))}")
+    elif samorzad_type == "wojewodztwo":
+        config.setdefault("city_name", f"Sejmik {_cap_unit(config.get('voivodeship_name', ''))}")
+        config.setdefault("city_genitive", f"Województwa {_cap_unit(config.get('voivodeship_genitive', ''))}")
+
     city_name = config["city_name"]
     city_gen = config["city_genitive"]
     locale = (config.get("locale") or "pl").lower()
@@ -452,6 +500,41 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             (f"Radzie Miasta {city_gen}", council),
             (f"Rady Miasta {city_gen}", council),
             (f"Rada Miasta {city_gen}", council),
+        ]
+    elif samorzad_type == "powiat":
+        # Kolejność: NAJPIERW frazy z członem "Powiatu" (żeby goła para
+        # "Rada Miasta" nie zrobiła "Rada Powiatu Powiatu ..."), potem
+        # gołe odmiany i lowercase (meta keywords).
+        _SEO_DYNAMIC_PAIRS = [
+            ("Radzie Miasta Powiatu", "Radzie Powiatu"),
+            ("Radą Miasta Powiatu", "Radą Powiatu"),
+            ("Radę Miasta Powiatu", "Radę Powiatu"),
+            ("Rady Miasta Powiatu", "Rady Powiatu"),
+            ("Rada Miasta Powiatu", "Rada Powiatu"),
+            ("Radzie Miasta", "Radzie Powiatu"),
+            ("Radą Miasta", "Radą Powiatu"),
+            ("Radę Miasta", "Radę Powiatu"),
+            ("Rady Miasta", "Rady Powiatu"),
+            ("Rada Miasta", "Rada Powiatu"),
+            ("rady miasta", "rady powiatu"),
+            ("rada miasta", "rada powiatu"),
+            ("radny miejski", "radny powiatowy"),
+        ]
+    elif samorzad_type == "wojewodztwo":
+        _SEO_DYNAMIC_PAIRS = [
+            ("Radzie Miasta Województwa", "Sejmikowi Województwa"),
+            ("Radą Miasta Województwa", "Sejmikiem Województwa"),
+            ("Radę Miasta Województwa", "Sejmik Województwa"),
+            ("Rady Miasta Województwa", "Sejmiku Województwa"),
+            ("Rada Miasta Województwa", "Sejmik Województwa"),
+            ("Radzie Miasta", "Sejmikowi Województwa"),
+            ("Radą Miasta", "Sejmikiem Województwa"),
+            ("Radę Miasta", "Sejmik Województwa"),
+            ("Rady Miasta", "Sejmiku Województwa"),
+            ("Rada Miasta", "Sejmik Województwa"),
+            ("rady miasta", "sejmiku województwa"),
+            ("rada miasta", "sejmik województwa"),
+            ("radny miejski", "radny wojewódzki"),
         ]
     else:
         _SEO_DYNAMIC_PAIRS = []
@@ -1953,6 +2036,13 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         with open(main_html_path, "w", encoding="utf-8") as f:
             f.write(main_html)
         print(f"  Fixed main canonical")
+
+    # Podstrona podziału administracyjnego (sejmiki, generowana przez
+    # generate_assembly_site do docs/division/). Bez tego wpisu bogata
+    # sitemapa nadpisująca 2-URL wersję assembly gubiłaby /division/.
+    if (docs / "division" / "index.html").exists():
+        sitemap_entries.append({"loc": f"{site_url}/division/",
+                                "changefreq": "monthly", "priority": "0.5"})
 
     # ════════════════════════════════════════════
     # 8. Generate sitemap.xml
