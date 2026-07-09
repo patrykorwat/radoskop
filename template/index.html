@@ -989,6 +989,7 @@ function _rkIdentifiable() {
   return typeof umami !== 'undefined' && typeof umami.identify === 'function';
 }
 function _rkIdentify(id) {
+  return; // SEO
   if (!id) return;
   _rkIdPending = id;
   if (_rkIdentifiable()) {
