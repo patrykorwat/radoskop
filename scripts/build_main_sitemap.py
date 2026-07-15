@@ -23,6 +23,11 @@ Dwie domeny, dwie usługi GSC (sc-domain:radoskop.pl, sc-domain:radoskop.eu):
       `radoskop-premium/docs_eu/sitemap.xml`, shipowany na
       s3://radoskop-public/_main_intl/ → https://radoskop.eu/sitemap.xml.
 
+Plus `urllist.xml` generowany w tym samym katalogu — płaski urlset bez
+< sitemapindex> i odwołań do subdomen. Dla domen gdzie GSC przez
+Cloudflare nie potrafi przetworzyć sitemap index, zgłosić w GSC osobno
+jako `urllist.xml`.
+
 W obu trybach miasta z `disabled: true` w config.json są POMIJANE — ich
 subdomeny zwracają 404, a wskazywanie ich w sitemapie truje raport
 pokrycia (np. rostock.radoskop.eu).
@@ -36,6 +41,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 from xml.sax.saxutils import escape
+import xml.etree.ElementTree as ET
 
 
 # Apex pages per domena (urlset w sitemap-main.xml). /auth/ celowo pominięte.
@@ -179,6 +185,130 @@ def write_apex_sitemap(out_path: Path, domain: str, today: str) -> None:
     out_path.write_text("\n".join(parts) + "\n", encoding="utf-8")
 
 
+_SITEMAP_NS = "http://www.sitemaps.org/schemas/sitemap/0.9"
+
+
+def _city_docs_dir(workspace: Path, slug: str) -> Path | None:
+    """Znajdź katalog docs/ dla danego sluga."""
+    for base in ("cities", "districts"):
+        d = workspace / "radoskop" / base / slug / "docs"
+        if d.is_dir():
+            return d
+    # Legacy: radoskop-{slug}/docs/
+    d = workspace / f"radoskop-{slug}" / "docs"
+    if d.is_dir():
+        return d
+    return None
+
+
+def _parse_city_sitemap(docs_dir: Path) -> list[dict]:
+    """Wczytaj urlset z per-city sitemap.xml.
+
+    Zwraca listę {loc, lastmod?, changefreq?, priority?}.
+    """
+    path = docs_dir / "sitemap.xml"
+    if not path.is_file():
+        return []
+    try:
+        tree = ET.parse(path)
+    except Exception:
+        return []
+    root = tree.getroot()
+    urls: list[dict] = []
+    for u in root.findall(f"{{{_SITEMAP_NS}}}url"):
+        loc_el = u.find(f"{{{_SITEMAP_NS}}}loc")
+        if loc_el is None or not loc_el.text:
+            continue
+        entry: dict = {"loc": loc_el.text}
+        for tag in ("lastmod", "changefreq", "priority"):
+            el = u.find(f"{{{_SITEMAP_NS}}}{tag}")
+            if el is not None and el.text:
+                entry[tag] = el.text
+        urls.append(entry)
+    return urls
+
+
+def write_flat_urllist(
+    out_path: Path,
+    cities: list[tuple[str, dict]],
+    domain: str,
+    today: str,
+    workspace: Path | None,
+) -> int:
+    """Generuj płaski urllist.xml — jeden urlset z WSZYSTKIMI URL-ami.
+
+    Google Search Console (Domain property) na radoskop.eu nie potrafi
+    przetworzyć <sitemapindex> z odwołaniami do subdomen przez Cloudflare.
+    Ten plik omija ten problem: zawiera bezpośrednio wszystkie URL-e bez
+    referencji do subdomen. Zgłoszony jako osobna sitemap w GSC.
+
+    Zwraca liczbę URL-i.
+    """
+    all_urls: list[dict] = []
+
+    # Apex pages (np. /, /pro/, /business/)
+    for loc, prio, freq in APEX_PAGES[domain]:
+        all_urls.append({
+            "loc": loc, "changefreq": freq, "priority": prio, "lastmod": today,
+        })
+
+    # companies-sitemap.xml (tylko .pl)
+    if domain == "pl" and workspace is not None:
+        spolki_sm = workspace / "radoskop" / "docs" / "companies-sitemap.xml"
+        if spolki_sm.is_file():
+            try:
+                tree = ET.parse(spolki_sm)
+                root = tree.getroot()
+                for u in root.findall(f"{{{_SITEMAP_NS}}}url"):
+                    loc_el = u.find(f"{{{_SITEMAP_NS}}}loc")
+                    if loc_el is not None and loc_el.text:
+                        all_urls.append({"loc": loc_el.text})
+            except Exception:
+                print("  WARNING: failed to parse companies-sitemap.xml", file=sys.stderr)
+
+    # Per-city URLs — wczytaj z lokalnych sitemap.xml
+    for slug, config in cities:
+        docs_dir = _city_docs_dir(workspace, slug) if workspace else None
+        if docs_dir is None:
+            print(f"  WARNING: no docs dir for {slug}, skipping flat urllist", file=sys.stderr)
+            continue
+        city_urls = _parse_city_sitemap(docs_dir)
+        if not city_urls:
+            print(f"  WARNING: no sitemap.xml in {docs_dir}, skipping", file=sys.stderr)
+            continue
+        # Filtruj tylko URL-e należące do tej domeny
+        site_url = (config.get("site_url") or f"https://{slug}.radoskop.{'eu' if domain == 'eu' else 'pl'}").rstrip("/")
+        city_urls = [u for u in city_urls if u["loc"].startswith(site_url)]
+        all_urls.extend(city_urls)
+
+    # Dedup by loc
+    seen: set[str] = set()
+    deduped: list[dict] = []
+    for u in all_urls:
+        if u["loc"] not in seen:
+            seen.add(u["loc"])
+            deduped.append(u)
+
+    # Generuj XML
+    parts = ['<?xml version="1.0" encoding="UTF-8"?>']
+    parts.append(f'<urlset xmlns="{_SITEMAP_NS}">')
+    for e in deduped:
+        parts.append("  <url>")
+        parts.append(f'    <loc>{escape(e["loc"])}</loc>')
+        if "lastmod" in e:
+            parts.append(f'    <lastmod>{e["lastmod"]}</lastmod>')
+        if "changefreq" in e:
+            parts.append(f'    <changefreq>{e["changefreq"]}</changefreq>')
+        if "priority" in e:
+            parts.append(f'    <priority>{e["priority"]}</priority>')
+        parts.append("  </url>")
+    parts.append("</urlset>")
+    parts.append("")
+
+    out_path.write_text("\n".join(parts), encoding="utf-8")
+    return len(deduped)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         description="Build apex sitemap.xml index for radoskop.pl / radoskop.eu"
@@ -220,6 +350,12 @@ def main() -> int:
 
     write_sitemap_index(out_dir / "sitemap.xml", cities, args.domain, today)
     write_apex_sitemap(out_dir / "sitemap-main.xml", args.domain, today)
+
+    # Płaski urllist.xml — dla domen, gdzie <sitemapindex> z subdomenami
+    # nie działa w GSC przez Cloudflare. Jeden urlset, wszystkie URL-e.
+    urllist_path = out_dir / "urllist.xml"
+    n_urls = write_flat_urllist(urllist_path, cities, args.domain, today, workspace)
+    print(f"wrote {urllist_path} (flat urlset, {n_urls} URLs)", file=sys.stderr)
 
     print(f"wrote {out_dir / 'sitemap.xml'} (index, {len(cities) + 1} sitemap refs)", file=sys.stderr)
     print(f"wrote {out_dir / 'sitemap-main.xml'} (apex urlset)", file=sys.stderr)
