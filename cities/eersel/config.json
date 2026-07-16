@@ -37,5 +37,6 @@
   ],
   "voting_display": "councillor",
   "has_named_votes": true,
-  "province": "Noord-Brabant"
+  "province": "Noord-Brabant",
+  "disabled": true
 }

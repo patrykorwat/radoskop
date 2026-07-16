@@ -37,5 +37,6 @@
   ],
   "voting_display": "councillor",
   "has_named_votes": true,
-  "province": "Utrecht"
+  "province": "Utrecht",
+  "disabled": true
 }
