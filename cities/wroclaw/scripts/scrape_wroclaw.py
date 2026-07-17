@@ -1062,6 +1062,7 @@ def _run_offline(args):
             vote = {
                 "id": vote_id,
                 "source_url": f"file://{pdf_path}",
+                "source_page_url": info.get("url", ""),
                 "session_date": info["date"],
                 "session_number": info["number"],
                 "topic": vote_data["topic"],
@@ -1325,6 +1326,7 @@ def main():
                 vote = {
                     "id": vote_id,
                     "source_url": pdf_link["url"],
+                    "source_page_url": session.get("url", ""),
                     "session_date": session["date"],
                     "session_number": session["number"],
                     "topic": vote_data["topic"],
