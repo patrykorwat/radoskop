@@ -138,8 +138,6 @@ def select_cities(
             continue
         selected.append((slug, config))
     return selected
-
-
 def write_sitemap_index(
     out_path: Path, cities: list[tuple[str, dict]], domain: str, today: str
 ) -> None:
@@ -289,10 +287,44 @@ def write_flat_urllist(
             seen.add(u["loc"])
             deduped.append(u)
 
-    # Generuj XML
-    parts = ['<?xml version="1.0" encoding="UTF-8"?>']
-    parts.append(f'<urlset xmlns="{_SITEMAP_NS}">')
+    # Generuj XML z paginacją (Google limit: 50 000 URLi na plik)
+    MAX_URLS = 50000
+    parts: list[list[dict]] = []
+    batch: list[dict] = []
     for e in deduped:
+        batch.append(e)
+        if len(batch) >= MAX_URLS:
+            parts.append(batch)
+            batch = []
+    if batch:
+        parts.append(batch)
+
+    base = out_path.with_stem(out_path.stem.replace("urllist", "")) if out_path.stem != "urllist" else out_path.parent
+    stem = out_path.stem  # "urllist"
+
+    if len(parts) == 1:
+        # Pojedynczy plik, bez paginacji
+        _write_urlset(out_path, parts[0])
+        n = len(parts[0])
+    else:
+        # Sitemap index + urllist1.xml, urllist2.xml, …
+        index_parts = []
+        for i, batch in enumerate(parts, 1):
+            part_path = out_path.with_name(f"{stem}{i}.xml")
+            _write_urlset(part_path, batch)
+            index_parts.append({
+                "loc": f"https://radoskop.eu/{part_path.name}",
+                "lastmod": today,
+            })
+        _write_sitemapindex(out_path, index_parts)
+        n = len(deduped)
+
+    return n
+
+def _write_urlset(path: Path, urls: list[dict]) -> None:
+    parts = ['<?xml version="1.0" encoding="UTF-8"?>']
+    parts.append('<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">')
+    for e in urls:
         parts.append("  <url>")
         parts.append(f'    <loc>{escape(e["loc"])}</loc>')
         if "lastmod" in e:
@@ -304,9 +336,20 @@ def write_flat_urllist(
         parts.append("  </url>")
     parts.append("</urlset>")
     parts.append("")
+    path.write_text("\n".join(parts), encoding="utf-8")
 
-    out_path.write_text("\n".join(parts), encoding="utf-8")
-    return len(deduped)
+def _write_sitemapindex(path: Path, refs: list[dict]) -> None:
+    parts = ['<?xml version="1.0" encoding="UTF-8"?>']
+    parts.append('<sitemapindex xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">')
+    for r in refs:
+        parts.append("  <sitemap>")
+        parts.append(f'    <loc>{escape(r["loc"])}</loc>')
+        if "lastmod" in r:
+            parts.append(f'    <lastmod>{r["lastmod"]}</lastmod>')
+        parts.append("  </sitemap>")
+    parts.append("</sitemapindex>")
+    parts.append("")
+    path.write_text("\n".join(parts), encoding="utf-8")
 
 
 def main() -> int:

@@ -38,5 +38,5 @@
   "voting_display": "faction",
   "has_named_votes": false,
   "province": "Zuid-Holland",
-  "disabled": true
+  "scrape_disabled": true
 }

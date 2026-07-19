@@ -38,5 +38,5 @@
   "voting_display": "councillor",
   "has_named_votes": true,
   "province": "Noord-Holland",
-  "disabled": true
+  "scrape_disabled": true
 }
