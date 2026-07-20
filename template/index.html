@@ -3836,7 +3836,7 @@ async function renderKomisjeList() {
   if (!_komisjeListCache) {
     container.innerHTML = '<p style="color:var(--muted);padding:20px 0">Ładowanie komisji...</p>';
     try {
-      const resp = await fetch(API_BASE + '/komisje');
+      const resp = await fetch(API_BASE + '/komisje', { credentials: 'include' });
       if (!resp.ok) {
         container.innerHTML = '<p style="color:var(--muted);padding:20px 0">Dane o komisjach nie są jeszcze dostępne dla tego miasta.</p>';
         return;
@@ -4079,7 +4079,7 @@ async function showKomisja(slug) {
 
   let envelope = null;
   try {
-    const resp = await fetch(API_BASE + '/komisja/' + encodeURIComponent(slug));
+    const resp = await fetch(API_BASE + '/komisja/' + encodeURIComponent(slug), { credentials: 'include' });
     if (resp.ok) envelope = await resp.json();
   } catch (e) { /* fallthrough */ }
 
