@@ -332,21 +332,7 @@ let _interpPage = 1;
 let _interpKad = null;
 
 // Vote categories — auto-classification by topic keywords
-const VOTE_CATS = {
-  budzet:       { label: "Budżet",           order: 1 },
-  inwestycje:   { label: "Inwestycje",       order: 2 },
-  planowanie:   { label: "Planowanie",        order: 3 },
-  nieruchomosci:{ label: "Nieruchomości",     order: 4 },
-  transport:    { label: "Transport",         order: 5 },
-  oswiata:      { label: "Oświata",           order: 6 },
-  zdrowie:      { label: "Zdrowie/Społeczne", order: 7 },
-  srodowisko:   { label: "Środowisko",        order: 8 },
-  kultura:      { label: "Kultura",           order: 9 },
-  skarga:       { label: "Skargi/Petycje",    order: 10 },
-  nazwy:        { label: "Nazwy",             order: 11 },
-  procedura:    { label: "Proceduralne",      order: 12 },
-  inne:         { label: "Inne",              order: 13 },
-};
+const VOTE_CATS = {{VOTE_CATS_LABELS_JS}};
 // Reguły kategoryzacji per język wstrzykiwane przez generate_site.py /
 // generate_assembly_site.py z radoskop/scripts/vote_categories.py.
 // Dla miast PL to polskie keyword, dla zagranicznych (LT/SK/DE/LV/CS/ET)
@@ -1894,6 +1880,48 @@ function showProfile(name, initialTab) {
         }).join('');
         _activityTabBody += `</div>`;
       }
+    } else if (hasVotes && K && K.sessions) {
+      // Fallback dla miast bez danych stenogramów (NL): pokaż aktywność głosowań
+      const _isNl = (document.documentElement.lang || 'pl').toLowerCase() === 'nl';
+      const _sessions = K.sessions || [];
+      const _totalVotes = kd.votes_total || 0;
+      _activityTabBody = `<div class="section">
+        <h2>${_isNl ? 'Stemactiviteit in vergaderingen' : 'Aktywność głosowań na sesjach'}</h2>
+        <div class="profile-metrics">
+          <div class="metric-card">
+            <div class="metric-value" style="color:var(--blue)">${_sessions.length}</div>
+            <div class="metric-label">${_isNl ? 'Vergaderingen' : 'Sesji'}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" style="color:var(--green)">${_totalVotes}</div>
+            <div class="metric-label">${_isNl ? 'Stemmen totaal' : 'Głosowań łącznie'}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">${_totalVotes > 0 ? Math.round(_totalVotes / _sessions.length) : 0}</div>
+            <div class="metric-label">${_isNl ? 'Gem. stemmen/vergadering' : 'Śr. głosowań/sesję'}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" style="color:${kd.zgodnosc_z_klubem >= 50 ? 'var(--green)' : 'var(--red)'}">${Math.round(kd.zgodnosc_z_klubem || 0)}%</div>
+            <div class="metric-label">${_isNl ? 'Fractiediscipline' : 'Zgodność z klubem'}</div>
+          </div>
+        </div>
+      </div>`;
+
+      // Lista sesji z liczbą głosowań
+      if (_sessions.length > 0) {
+        const _sortedSessions = _sessions.slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        _activityTabBody += `<div class="section"><h2>${_isNl ? 'Overzicht vergaderingen' : 'Przegląd sesji'}</h2>
+          <p style="font-size:0.82rem;color:var(--muted);margin-bottom:6px">${_isNl ? 'Aantal stemmingen per vergadering' : 'Liczba głosowań na poszczególnych sesjach'}</p>`;
+        _activityTabBody += _sortedSessions.map(s => {
+          const sn = s.number || s.date || '';
+          const vc = s.vote_count || 0;
+          return `<div style="padding:8px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:0.88rem">${s.label || htmlEscape(s.date || '')}</span>
+            <span style="font-size:0.82rem;color:var(--muted)">${vc} ${_isNl ? 'stemmingen' : 'głosowań'}</span>
+          </div>`;
+        }).join('');
+        _activityTabBody += `</div>`;
+      }
     }
 
     // Okręg + Komisje przeniesione do _profileCards w prawej kolumnie
@@ -1905,14 +1933,19 @@ function showProfile(name, initialTab) {
     // profile-header (patrz _profileActionsHtml). Tu zostaje tylko
     // sekcja "W mediach" + news fetch IIFE.
     if (hasVotes) {
-      // "W mediach" section
+      // "W mediach" section — locale-aware header
+      const _isNl = (document.documentElement.lang || 'pl').toLowerCase() === 'nl';
+      const _newsSectionTitle = _isNl ? 'In de media' : 'W mediach';
+      const _newsSectionDesc = _isNl ? 'Recente vermeldingen in pers en op internet' : 'Ostatnie wzmianki w prasie i internecie';
+      const _newsLoading = _isNl ? 'Laden...' : 'Wczytywanie...';
+      const _newsEmpty = _isNl ? 'Geen resultaten in Google News.' : 'Brak wyników w Google News.';
       const _newsApiBase = _API_HOST;
       const _newsQ = encodeURIComponent(profile.name + ' {{CITY_NAME}}');
       html += `<div class="section">
-        <h2>W mediach</h2>
-        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:12px">Ostatnie wzmianki w prasie i internecie</p>
+        <h2>${_newsSectionTitle}</h2>
+        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:12px">${_newsSectionDesc}</p>
         <div id="news-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px">
-          <div style="color:var(--muted);font-size:0.85rem">Wczytywanie...</div>
+          <div style="color:var(--muted);font-size:0.85rem">${_newsLoading}</div>
         </div>
         <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
           <a href="https://www.google.com/search?q=${_newsQ}&tbm=nws" target="_blank" rel="noopener"
@@ -1936,11 +1969,12 @@ function showProfile(name, initialTab) {
             if (!container) return;
             const items = data.items || [];
             if (!items.length) {
-              container.innerHTML = '<div style="color:var(--muted);font-size:0.85rem">Brak wyników w Google News.</div>';
+              container.innerHTML = `<div style="color:var(--muted);font-size:0.85rem">${_newsEmpty}</div>`;
               return;
             }
             container.innerHTML = items.map(it => {
-              const dateStr = it.published ? new Date(it.published).toLocaleDateString('pl-PL', {day:'numeric',month:'short',year:'numeric'}) : '';
+              const _dateLocale = _isNl ? 'nl-NL' : 'pl-PL';
+              const dateStr = it.published ? new Date(it.published).toLocaleDateString(_dateLocale, {day:'numeric',month:'short',year:'numeric'}) : '';
               return `<a href="${it.url}" target="_blank" rel="noopener"
                 style="display:block;padding:10px 12px;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);background:var(--surface);transition:border-color 0.15s"
                 onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
@@ -1951,7 +1985,7 @@ function showProfile(name, initialTab) {
           })
           .catch(() => {
             const container = document.getElementById('news-list');
-            if (container) container.innerHTML = '<div style="color:var(--muted);font-size:0.85rem">Nie udało się załadować wyników.</div>';
+            if (container) container.innerHTML = `<div style="color:var(--muted);font-size:0.85rem">${_isNl ? 'Kon resultaten niet laden.' : 'Nie udało się załadować wyników.'}</div>`;
           });
       })();
     }

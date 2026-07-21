@@ -1028,8 +1028,9 @@ def main():
 
     # Reguły kategoryzacji per locale (litewskie dla Wilna, słowackie dla
     # Bratysławy itd.). Fallback PL gdy locale nieobsługiwany.
-    from vote_categories import generate_cat_rules_js
+    from vote_categories import generate_cat_rules_js, generate_vote_cats_labels_js
     _cat_rules_js = generate_cat_rules_js(config.get("locale", "pl"))
+    _vote_cats_labels_js = generate_vote_cats_labels_js(config.get("locale", "pl"))
 
     # City slug = nazwa katalogu cities/{slug}/. Używany w JS template'cie
     # do {{CITY_SLUG}} (frontend wysyła go w POST do /api/admin/dispatch-*
@@ -1043,6 +1044,7 @@ def main():
         or config.get("voivodeship_genitive") or config.get("voivodeship_name", "")
     replacements = {
         "{{CAT_RULES_JS}}": _cat_rules_js,
+        "{{VOTE_CATS_LABELS_JS}}": _vote_cats_labels_js,
         "{{KIND_CATS_JS}}": _build_kind_cats_js(config),
         "{{VOTE_CATS_EXTRA_JS}}": _build_vote_cats_extra_js(config),
         "{{VOTE_DATA_DISCLAIMER}}": vote_disclaimer_html,

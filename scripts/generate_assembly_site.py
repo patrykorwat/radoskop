@@ -523,8 +523,9 @@ def main() -> int:
         default_sub_apex = "radoskop.pl"
 
     # Reguły kategoryzacji per locale. Polskie sejmiki → pl, Landtag MV → de.
-    from vote_categories import generate_cat_rules_js
+    from vote_categories import generate_cat_rules_js, generate_vote_cats_labels_js
     _cat_rules_js = generate_cat_rules_js(cfg.get("locale", "pl"))
+    _vote_cats_labels_js = generate_vote_cats_labels_js(cfg.get("locale", "pl"))
 
     # Assembly slug = katalog assemblies/{slug}/. Mappuje na {{CITY_SLUG}}
     # tak jak w generate_site.py (template wspólny). JS subscribe-na-alerty
@@ -541,6 +542,7 @@ def main() -> int:
                                 samorzad_type=samorzad_kind)
     replacements = {
         "{{CAT_RULES_JS}}": _cat_rules_js,
+        "{{VOTE_CATS_LABELS_JS}}": _vote_cats_labels_js,
         # Sejmiki/landy nie używają disclaimera per-radny — wszystkie polskie
         # sejmiki mają imienne głosowania, Landtag MV ma per-Abgeordneten.
         # Placeholder pusty żeby template nie miał {{...}} leftover.

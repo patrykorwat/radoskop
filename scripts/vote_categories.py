@@ -171,6 +171,42 @@ CAT_RULES_BY_LOCALE: dict[str, list[tuple[str, str]]] = {
     ],
 }
 
+# ── Etykiety kategorii głosowań per język ──────────────────────────
+# Używane w VOTE_CATS na froncie. Klucze kategorii są stałe (budzet,
+# inwestycje, ...), etykiety zależą od locale.
+VOTE_CATS_LABELS_BY_LOCALE: dict[str, dict[str, str]] = {
+    "pl": {
+        "budzet": "Budżet",
+        "inwestycje": "Inwestycje",
+        "planowanie": "Planowanie",
+        "nieruchomosci": "Nieruchomości",
+        "transport": "Transport",
+        "oswiata": "Oświata",
+        "zdrowie": "Zdrowie/Społeczne",
+        "srodowisko": "Środowisko",
+        "kultura": "Kultura",
+        "skarga": "Skargi/Petycje",
+        "nazwy": "Nazwy",
+        "procedura": "Proceduralne",
+        "inne": "Inne",
+    },
+    "nl": {
+        "budzet": "Begroting",
+        "inwestycje": "Investeringen",
+        "planowanie": "Planning",
+        "nieruchomosci": "Vastgoed",
+        "transport": "Verkeer",
+        "oswiata": "Onderwijs",
+        "zdrowie": "Gezondheid/Sociaal",
+        "srodowisko": "Milieu",
+        "kultura": "Cultuur",
+        "skarga": "Klachten/Petities",
+        "nazwy": "Benamingen",
+        "procedura": "Procedureel",
+        "inne": "Overig",
+    },
+}
+
 
 def generate_cat_rules_js(locale: str) -> str:
     """Zwróć JS array literal `[[cat, /regex/i], ...]` dla danego locale.
@@ -187,6 +223,23 @@ def generate_cat_rules_js(locale: str) -> str:
         safe = pattern.replace("/", r"\/")
         lines.append(f"  ['{cat}', /{safe}/i],")
     return "[\n" + "\n".join(lines) + "\n]"
+
+
+def generate_vote_cats_labels_js(locale: str) -> str:
+    """Zwróć JS object literal z etykietami VOTE_CATS dla danego locale.
+
+    Fallback do PL jeśli locale nieobsługiwany.
+    """
+    labels = VOTE_CATS_LABELS_BY_LOCALE.get((locale or "pl").lower(), VOTE_CATS_LABELS_BY_LOCALE["pl"])
+    # Kolejność: budzet=1, inwestycje=2, ..., inne=13
+    order = ["budzet", "inwestycje", "planowanie", "nieruchomosci", "transport",
+             "oswiata", "zdrowie", "srodowisko", "kultura", "skarga", "nazwy",
+             "procedura", "inne"]
+    lines = []
+    for i, cat in enumerate(order, 1):
+        label = labels.get(cat, cat)
+        lines.append(f"  {cat}: {{label: \"{label}\", order: {i}}},")
+    return "{\n" + "\n".join(lines) + "\n}"
 
 
 if __name__ == "__main__":
