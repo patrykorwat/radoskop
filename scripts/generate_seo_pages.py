@@ -1067,8 +1067,19 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             wstrzymal = counts.get("wstrzymal_sie", 0)
             session_date = vote.get("session_date", "")
             session_number = vote.get("session_number", "")
+            vote_mode = vote.get("vote_mode", "")
 
-            if za > przeciw:
+            # For show_of_hands/faction votes, counts are all zero — use the
+            # source ``result`` field instead of comparing za/przeciw.
+            if vote_mode in ("show_of_hands", "faction"):
+                raw_result = (vote.get("result") or "").lower().strip()
+                if raw_result in ("adopté", "adopté à l'unanimité"):
+                    result = "przyjete"
+                elif raw_result in ("rejeté", "retiré", "ajourné"):
+                    result = "odrzucone"
+                else:
+                    result = "remis"
+            elif za > przeciw:
                 result = "przyjete"
             elif przeciw > za:
                 result = "odrzucone"
