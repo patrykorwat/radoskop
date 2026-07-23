@@ -114,7 +114,6 @@ def build_index(workspace: Path) -> list[list]:
     for slug, city_dir in cities:
         items = load_interpelacje(city_dir)
         if not items:
-            print(f"  {slug}: 0 interpelacji", file=sys.stderr)
             continue
         slug_map = load_profile_slug_map(city_dir)
         added = 0
@@ -143,7 +142,6 @@ def build_index(workspace: Path) -> list[list]:
                 radny_slug,
             ])
             added += 1
-        print(f"  {slug}: {added} interpelacji/zapytań", file=sys.stderr)
     # Najnowsze na górze
     index.sort(key=lambda e: (e[3], e[1], e[5]), reverse=True)
     return index

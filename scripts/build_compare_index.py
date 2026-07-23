@@ -286,8 +286,6 @@ def main() -> None:
     n = len(out["cities"])
     caps = sorted({c for r in out["cities"] for c in r["capabilities"]})
     print(f"compare-index: {n} miast, capability spotykane: {caps}")
-    for r in out["cities"]:
-        print(f"  {r['slug']:<12} {','.join(r['capabilities'])}")
     print(f"Zapisano: {args.out}")
 
 

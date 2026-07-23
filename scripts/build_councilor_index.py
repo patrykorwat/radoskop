@@ -101,7 +101,6 @@ def build_index(workspace: Path) -> list[dict]:
                 pass
 
         councilors = collect_councilors(city_dir)
-        print(f"  {slug}: {len(councilors)} radnych", file=sys.stderr)
 
         for c in councilors:
             name = c.get("name") or ""

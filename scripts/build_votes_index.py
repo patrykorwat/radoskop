@@ -98,7 +98,6 @@ def build_index(workspace: Path) -> list[list]:
     for slug, city_dir in cities:
         votes = load_city_votes(city_dir)
         if not votes:
-            print(f"  {slug}: 0 votes", file=sys.stderr)
             continue
         added = 0
         for v in votes:
@@ -119,7 +118,6 @@ def build_index(workspace: Path) -> list[list]:
                 wstrz,
             ])
             added += 1
-        print(f"  {slug}: {added} votes", file=sys.stderr)
     return index
 
 
