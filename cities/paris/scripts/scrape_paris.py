@@ -882,12 +882,33 @@ def scrape(out_dir: Path, limit_sessions: int | None = None, cache_dir: Path | N
     # Zapis końcowy (idempotentny — w pętli zapisujemy przyrostowo).
     _save_url_map(out_dir, url_map)
 
+    # Zbuduj listę sesji z unikalnych dat
+    session_dates: dict[str, dict] = {}
+    for v in all_votes:
+        sd = v.get("session_date")
+        if sd and sd not in session_dates:
+            session_dates[sd] = {
+                "date": sd,
+                "number": v.get("session_number"),
+            }
+    sessions_list = sorted(session_dates.values(), key=lambda s: s["date"])
+
+    # Radni z profilu
+    now = datetime.now(tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    profiles_data = _build_profiles(now)
+    councilors_list = [
+        {"name": p["name"], "slug": p["slug"], "club": p.get("club")}
+        for p in profiles_data.get("profiles", [])
+    ]
+
     payload = {
         "kadencja": KADENCJA_ID,
         "source": COMPTES_RENDUS_URL,
         "generated_by": "scrape_paris.py --scrape",
         "vote_mode": "show_of_hands",
         "total_sessions": sessions_done,
+        "sessions": sessions_list,
+        "councilors": councilors_list,
         "votes": all_votes,
     }
     with open(out_file, "w", encoding="utf-8") as f:
