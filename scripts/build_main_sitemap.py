@@ -125,16 +125,18 @@ def select_cities(
     zwracają 404, a wskazywanie ich w sitemapie truje raport pokrycia GSC
     (w usłudze radoskop.pl widać je jako "1 error / 18 URLs").
 
-    domain == 'eu': dodatkowo TYLKO miasta zagraniczne (.eu); miasta PL są
-        pomijane, bo należą do usługi radoskop.pl.
-    domain == 'pl': wszystkie niezdezaktywowane miasta (PL + .eu) — cross-host
-        jest OK w usłudze Domain.
+    domain == 'eu': TYLKO miasta zagraniczne (.eu); miasta PL pomijane.
+    domain == 'pl': TYLKO miasta polskie (.pl); miasta .eu pomijane, bo
+        Worker redirectuje je na .eu, co GSC raportuje jako "Page with
+        redirect" (ok. 7k+ błędów na radoskop.pl).
     """
     selected: list[tuple[str, dict]] = []
     for slug, config in cities:
         if config.get("disabled"):
             continue
         if domain == "eu" and not is_eu(config):
+            continue
+        if domain == "pl" and is_eu(config):
             continue
         selected.append((slug, config))
     return selected

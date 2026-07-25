@@ -622,16 +622,11 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
 
     sitemap_entries = []
 
-    # Lista radnych (/councillors/) gdy miasto ma landing. Od 2026-06-06 to
-    # NIE jest statyczna strona (build_landing.py wycofany, orphan w S3
-    # kasowany przez deploy --delete) — URL obsługuje SPA fallback workera,
-    # router SPA mapuje /councillors/ na tab ranking. Wpis w sitemap zostaje,
-    # bo Googlebot wykonuje JS.
-    if config.get("landing_enabled"):
-        sitemap_entries.append({
-            "loc": f"{site_url}/councillors/",
-            "changefreq": "weekly", "priority": "0.9",
-        })
+    # Lista radnych (/councillors/) — SPA fallback, canonical ustawiany
+    # dynamicznie przez JS. Nie dodajemy do sitemapa, bo Googlebot bez JS
+    # widzi canonical→homepage (Alternate/duplicate w GSC). Poszczególne
+    # profile radnych są już w sitemapie.
+    # (wyłączone 2026-07 — patrz GSC: 727 Alternate canonical + 2879 Duplicate)
 
     # Per-radny data ostatniej aktywności (dla ProfilePage dateModified).
     # Źródła: najnowsza sesja w której radny figuruje w named_votes (głosował
