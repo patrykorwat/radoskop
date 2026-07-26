@@ -42,7 +42,6 @@
   "has_stenogram": false,
   "has_voting_data": true,
   "has_speaker_activity": false,
-  "scrape_status": "active",
   "scrape": {
     "runner": "run.sh",
     "post": "assembly_metrics",
@@ -263,5 +262,6 @@
     "Mylène Tabernal": "NZ",
     "Diego Demaree": "PvdD",
     "Tijmen van Wijngaarden": "SP"
-  }
+  },
+  "scrape_disabled": true
 }

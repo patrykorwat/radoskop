@@ -42,7 +42,6 @@
   "has_stenogram": false,
   "has_voting_data": true,
   "has_speaker_activity": false,
-  "scrape_status": "active",
   "scrape": {
     "runner": "run.sh",
     "post": "assembly_metrics",
@@ -249,5 +248,6 @@
     "A. Taj": "GL",
     "Jim  Haijen": "SP",
     "H. Kacha": "PvdA"
-  }
+  },
+  "scrape_disabled": true
 }
