@@ -283,12 +283,27 @@ def apply_english_paths(html: str) -> str:
     return html
 
 
+def _css_class(name: str) -> str:
+    """Sanitize a club name for use as a CSS class."""
+    import re
+    s = name.lower().strip()
+    s = re.sub(r"[^a-z0-9_-]", "-", s)
+    s = re.sub(r"-+", "-", s)
+    return s.strip("-")
+
+
 def generate_club_css(clubs: dict) -> str:
     """Generate CSS classes for clubs."""
     lines = []
     for name, cfg in clubs.items():
-        lines.append(f".club-{name} {{ background:{cfg['bg']}; color:{cfg['color']}; }}")
+        cls = _css_class(name)
+        lines.append(f".club-{cls} {{ background:{cfg['bg']}; color:{cfg['color']}; }}")
     return "\n".join(lines)
+
+
+def _js_str(s: str) -> str:
+    """Escape a string for use in single-quoted JS string literals."""
+    return s.replace("\\", "\\\\").replace("'", "\\'")
 
 
 def generate_club_js(clubs: dict) -> str:
@@ -307,18 +322,25 @@ def generate_club_js(clubs: dict) -> str:
 
     # clubColor — uses color_var if available, falls back to color
     chain = " : ".join(
-        f"club === '{n}' ? '{c.get('color_var', c['color'])}'"
+        f"club === '{_js_str(n)}' ? '{c.get('color_var', c['color'])}'"
         for n, c in clubs.items()
     )
     club_color = f"function clubColor(club) {{\n  return {chain} : 'var(--muted)';\n}}"
 
     # clubBg
-    chain_bg = " : ".join(f"club === '{n}' ? '{c['avatar_bg']}'" for n, c in clubs.items())
+    chain_bg = " : ".join(f"club === '{_js_str(n)}' ? '{c['avatar_bg']}'" for n, c in clubs.items())
     club_bg = f"function clubBg(club) {{\n  return {chain_bg} : '#374151';\n}}"
 
-    # clubClass
-    names_js = "[" + ",".join(f"'{n}'" for n in names) + "]"
-    club_class = f"function clubClass(club) {{\n  return {names_js}.includes(club) ? `club-${{club}}` : 'club-unknown';\n}}"
+    # clubClass — build a lookup object for sanitized CSS class names
+    cls_map = "{" + ",".join(
+        f"'{_js_str(n)}':'{_css_class(n)}'" for n in names
+    ) + "}"
+    club_class = (
+        f"var _clubCls={cls_map};\n"
+        f"function clubClass(club) {{\n"
+        f"  return _clubCls[club] ? 'club-'+_clubCls[club] : 'club-unknown';\n"
+        f"}}"
+    )
 
     return f"{club_color}\n{club_bg}\n{club_class}"
 
