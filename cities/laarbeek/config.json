@@ -37,6 +37,63 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 5,
   "province": "Noord-Brabant",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "ABL": {
+      "name": "ABL",
+      "color": "hsl(325, 65%, 55%)",
+      "bg": "hsla(325, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(325, 50%, 35%)"
+    },
+    "Algemeen Belang Laarbeek": {
+      "name": "Algemeen Belang Laarbeek",
+      "color": "hsl(159, 65%, 55%)",
+      "bg": "hsla(159, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(159, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "De Werkgroep": {
+      "name": "De Werkgroep",
+      "color": "hsl(93, 65%, 55%)",
+      "bg": "hsla(93, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(93, 50%, 35%)"
+    },
+    "Fractie Ouderen Appèl/ Hart voor Laarbeek": {
+      "name": "Fractie Ouderen Appèl/ Hart voor Laarbeek",
+      "color": "hsl(63, 65%, 55%)",
+      "bg": "hsla(63, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(63, 50%, 35%)"
+    },
+    "PNL": {
+      "name": "PNL",
+      "color": "hsl(208, 65%, 55%)",
+      "bg": "hsla(208, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(208, 50%, 35%)"
+    },
+    "PRO": {
+      "name": "PRO",
+      "color": "hsl(200, 65%, 55%)",
+      "bg": "hsla(200, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(200, 50%, 35%)"
+    },
+    "Partij Nieuw Laarbeek": {
+      "name": "Partij Nieuw Laarbeek",
+      "color": "hsl(93, 65%, 55%)",
+      "bg": "hsla(93, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(93, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    }
+  }
 }

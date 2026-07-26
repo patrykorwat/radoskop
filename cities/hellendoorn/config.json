@@ -37,6 +37,63 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 25,
   "province": "Overijssel",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie": {
+      "name": "ChristenUnie",
+      "color": "hsl(252, 65%, 55%)",
+      "bg": "hsla(252, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(252, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "Lokaal Hellendoorn": {
+      "name": "Lokaal Hellendoorn",
+      "color": "hsl(211, 65%, 55%)",
+      "bg": "hsla(211, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(211, 50%, 35%)"
+    },
+    "Noaberschop Partij": {
+      "name": "Noaberschop Partij",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "Samen Hellendoorn": {
+      "name": "Samen Hellendoorn",
+      "color": "hsl(263, 65%, 55%)",
+      "bg": "hsla(263, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(263, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

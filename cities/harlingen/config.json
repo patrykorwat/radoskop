@@ -37,6 +37,81 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 6,
   "province": "Fryslân",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Fractie Ligthart": {
+      "name": "Fractie Ligthart",
+      "color": "hsl(210, 65%, 55%)",
+      "bg": "hsla(210, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(210, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "HOOP": {
+      "name": "HOOP",
+      "color": "hsl(321, 65%, 55%)",
+      "bg": "hsla(321, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(321, 50%, 35%)"
+    },
+    "Harlinger Belang": {
+      "name": "Harlinger Belang",
+      "color": "hsl(301, 65%, 55%)",
+      "bg": "hsla(301, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(301, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "PvdA-Groenlinks": {
+      "name": "PvdA-Groenlinks",
+      "color": "hsl(246, 65%, 55%)",
+      "bg": "hsla(246, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(246, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    },
+    "Wad'n Partij": {
+      "name": "Wad'n Partij",
+      "color": "hsl(229, 65%, 55%)",
+      "bg": "hsla(229, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(229, 50%, 35%)"
+    },
+    "Wad'n Partij Harlingen": {
+      "name": "Wad'n Partij Harlingen",
+      "color": "hsl(63, 65%, 55%)",
+      "bg": "hsla(63, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(63, 50%, 35%)"
+    }
+  }
 }

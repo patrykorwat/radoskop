@@ -37,6 +37,111 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 35,
   "province": "Utrecht",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "Amersfoort voor Vrijheid": {
+      "name": "Amersfoort voor Vrijheid",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "Amersfoort2014": {
+      "name": "Amersfoort2014",
+      "color": "hsl(155, 65%, 55%)",
+      "bg": "hsla(155, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(155, 50%, 35%)"
+    },
+    "Beter Amersfoort": {
+      "name": "Beter Amersfoort",
+      "color": "hsl(288, 65%, 55%)",
+      "bg": "hsla(288, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(288, 50%, 35%)"
+    },
+    "Burger Partij Amersfoort": {
+      "name": "Burger Partij Amersfoort",
+      "color": "hsl(122, 65%, 55%)",
+      "bg": "hsla(122, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(122, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie": {
+      "name": "ChristenUnie",
+      "color": "hsl(252, 65%, 55%)",
+      "bg": "hsla(252, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(252, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "DENK": {
+      "name": "DENK",
+      "color": "hsl(87, 65%, 55%)",
+      "bg": "hsla(87, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(87, 50%, 35%)"
+    },
+    "Forum voor Democratie": {
+      "name": "Forum voor Democratie",
+      "color": "hsl(86, 65%, 55%)",
+      "bg": "hsla(86, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(86, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "KeiHart voor Amersfoort": {
+      "name": "KeiHart voor Amersfoort",
+      "color": "hsl(201, 65%, 55%)",
+      "bg": "hsla(201, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(201, 50%, 35%)"
+    },
+    "PRO": {
+      "name": "PRO",
+      "color": "hsl(200, 65%, 55%)",
+      "bg": "hsla(200, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(200, 50%, 35%)"
+    },
+    "Partij voor de Dieren": {
+      "name": "Partij voor de Dieren",
+      "color": "hsl(19, 65%, 55%)",
+      "bg": "hsla(19, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(19, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "SP": {
+      "name": "SP",
+      "color": "hsl(129, 65%, 55%)",
+      "bg": "hsla(129, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(129, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

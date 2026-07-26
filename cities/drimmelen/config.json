@@ -37,6 +37,63 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 21,
   "province": "Noord-Brabant",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CAB": {
+      "name": "CAB",
+      "color": "hsl(203, 65%, 55%)",
+      "bg": "hsla(203, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(203, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "Combinatie Algemeen Belang": {
+      "name": "Combinatie Algemeen Belang",
+      "color": "hsl(146, 65%, 55%)",
+      "bg": "hsla(146, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(146, 50%, 35%)"
+    },
+    "Fractie Ad Buijs": {
+      "name": "Fractie Ad Buijs",
+      "color": "hsl(121, 65%, 55%)",
+      "bg": "hsla(121, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(121, 50%, 35%)"
+    },
+    "Groen Drimmelen (VP/D66)": {
+      "name": "Groen Drimmelen (VP/D66)",
+      "color": "hsl(168, 65%, 55%)",
+      "bg": "hsla(168, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(168, 50%, 35%)"
+    },
+    "Lijst Harry Bakker": {
+      "name": "Lijst Harry Bakker",
+      "color": "hsl(53, 65%, 55%)",
+      "bg": "hsla(53, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(53, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "SAMEN Drimmelen": {
+      "name": "SAMEN Drimmelen",
+      "color": "hsl(222, 65%, 55%)",
+      "bg": "hsla(222, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(222, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

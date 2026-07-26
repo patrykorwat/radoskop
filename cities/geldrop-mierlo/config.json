@@ -37,6 +37,93 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 22,
   "province": "Noord-Brabant",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "DGG": {
+      "name": "DGG",
+      "color": "hsl(270, 65%, 55%)",
+      "bg": "hsla(270, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(270, 50%, 35%)"
+    },
+    "DPM": {
+      "name": "DPM",
+      "color": "hsl(152, 65%, 55%)",
+      "bg": "hsla(152, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(152, 50%, 35%)"
+    },
+    "Gemeentebelangen Aa en Hunze": {
+      "name": "Gemeentebelangen Aa en Hunze",
+      "color": "hsl(1, 65%, 55%)",
+      "bg": "hsla(1, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(1, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "GroenLinks / PvdA": {
+      "name": "GroenLinks / PvdA",
+      "color": "hsl(222, 65%, 55%)",
+      "bg": "hsla(222, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(222, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "PRO Geldrop-Mierlo": {
+      "name": "PRO Geldrop-Mierlo",
+      "color": "hsl(149, 65%, 55%)",
+      "bg": "hsla(149, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(149, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "SAMEN": {
+      "name": "SAMEN",
+      "color": "hsl(209, 65%, 55%)",
+      "bg": "hsla(209, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(209, 50%, 35%)"
+    },
+    "Sociaal Geldrop-Mierlo": {
+      "name": "Sociaal Geldrop-Mierlo",
+      "color": "hsl(312, 65%, 55%)",
+      "bg": "hsla(312, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(312, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    },
+    "Wij zijn Geldrop-Mierlo | VVD": {
+      "name": "Wij zijn Geldrop-Mierlo | VVD",
+      "color": "hsl(189, 65%, 55%)",
+      "bg": "hsla(189, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(189, 50%, 35%)"
+    }
+  }
 }

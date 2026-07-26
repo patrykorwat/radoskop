@@ -37,6 +37,75 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 19,
   "province": "Zeeland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "Algemeen Belang Groot Hulst": {
+      "name": "Algemeen Belang Groot Hulst",
+      "color": "hsl(128, 65%, 55%)",
+      "bg": "hsla(128, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(128, 50%, 35%)"
+    },
+    "Bouwen van Onderop": {
+      "name": "Bouwen van Onderop",
+      "color": "hsl(201, 65%, 55%)",
+      "bg": "hsla(201, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(201, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Forum voor Democratie": {
+      "name": "Forum voor Democratie",
+      "color": "hsl(86, 65%, 55%)",
+      "bg": "hsla(86, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(86, 50%, 35%)"
+    },
+    "Fractie Eckhardt": {
+      "name": "Fractie Eckhardt",
+      "color": "hsl(333, 65%, 55%)",
+      "bg": "hsla(333, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(333, 50%, 35%)"
+    },
+    "Fractie Willaert": {
+      "name": "Fractie Willaert",
+      "color": "hsl(9, 65%, 55%)",
+      "bg": "hsla(9, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(9, 50%, 35%)"
+    },
+    "Groot Hontenisse - Hulst": {
+      "name": "Groot Hontenisse - Hulst",
+      "color": "hsl(98, 65%, 55%)",
+      "bg": "hsla(98, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(98, 50%, 35%)"
+    },
+    "HulstPLUS": {
+      "name": "HulstPLUS",
+      "color": "hsl(2, 65%, 55%)",
+      "bg": "hsla(2, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(2, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

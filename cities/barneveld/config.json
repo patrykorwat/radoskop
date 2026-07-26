@@ -37,6 +37,69 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 3,
   "province": "Gelderland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "BBB": {
+      "name": "BBB",
+      "color": "hsl(213, 65%, 55%)",
+      "bg": "hsla(213, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(213, 50%, 35%)"
+    },
+    "Burger Initiatief": {
+      "name": "Burger Initiatief",
+      "color": "hsl(151, 65%, 55%)",
+      "bg": "hsla(151, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(151, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie": {
+      "name": "ChristenUnie",
+      "color": "hsl(252, 65%, 55%)",
+      "bg": "hsla(252, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(252, 50%, 35%)"
+    },
+    "College": {
+      "name": "College",
+      "color": "hsl(53, 65%, 55%)",
+      "bg": "hsla(53, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(53, 50%, 35%)"
+    },
+    "Lid Bos": {
+      "name": "Lid Bos",
+      "color": "hsl(83, 65%, 55%)",
+      "bg": "hsla(83, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(83, 50%, 35%)"
+    },
+    "Lokaal Belang": {
+      "name": "Lokaal Belang",
+      "color": "hsl(256, 65%, 55%)",
+      "bg": "hsla(256, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(256, 50%, 35%)"
+    },
+    "PRO'98": {
+      "name": "PRO'98",
+      "color": "hsl(52, 65%, 55%)",
+      "bg": "hsla(52, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(52, 50%, 35%)"
+    },
+    "SGP": {
+      "name": "SGP",
+      "color": "hsl(11, 65%, 55%)",
+      "bg": "hsla(11, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(11, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

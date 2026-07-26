@@ -37,6 +37,63 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 29,
   "province": "Flevoland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie": {
+      "name": "ChristenUnie",
+      "color": "hsl(252, 65%, 55%)",
+      "bg": "hsla(252, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(252, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Dronten Sociaal": {
+      "name": "Dronten Sociaal",
+      "color": "hsl(232, 65%, 55%)",
+      "bg": "hsla(232, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(232, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "Leefbaar Dronten": {
+      "name": "Leefbaar Dronten",
+      "color": "hsl(118, 65%, 55%)",
+      "bg": "hsla(118, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(118, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

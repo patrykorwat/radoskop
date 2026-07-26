@@ -37,6 +37,117 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 5,
   "province": "Limburg",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "50PLUS": {
+      "name": "50PLUS",
+      "color": "hsl(270, 65%, 55%)",
+      "bg": "hsla(270, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(270, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Forum voor Democratie": {
+      "name": "Forum voor Democratie",
+      "color": "hsl(86, 65%, 55%)",
+      "bg": "hsla(86, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(86, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "Liberale Partij Maastricht": {
+      "name": "Liberale Partij Maastricht",
+      "color": "hsl(304, 65%, 55%)",
+      "bg": "hsla(304, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(304, 50%, 35%)"
+    },
+    "M:OED": {
+      "name": "M:OED",
+      "color": "hsl(171, 65%, 55%)",
+      "bg": "hsla(171, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(171, 50%, 35%)"
+    },
+    "MAASTRICHT van NU": {
+      "name": "MAASTRICHT van NU",
+      "color": "hsl(296, 65%, 55%)",
+      "bg": "hsla(296, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(296, 50%, 35%)"
+    },
+    "PVV": {
+      "name": "PVV",
+      "color": "hsl(241, 65%, 55%)",
+      "bg": "hsla(241, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(241, 50%, 35%)"
+    },
+    "Partij Veilig Maastricht": {
+      "name": "Partij Veilig Maastricht",
+      "color": "hsl(349, 65%, 55%)",
+      "bg": "hsla(349, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(349, 50%, 35%)"
+    },
+    "Partij voor de Dieren": {
+      "name": "Partij voor de Dieren",
+      "color": "hsl(19, 65%, 55%)",
+      "bg": "hsla(19, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(19, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "SAB": {
+      "name": "SAB",
+      "color": "hsl(94, 65%, 55%)",
+      "bg": "hsla(94, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(94, 50%, 35%)"
+    },
+    "SP": {
+      "name": "SP",
+      "color": "hsl(129, 65%, 55%)",
+      "bg": "hsla(129, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(129, 50%, 35%)"
+    },
+    "SPM": {
+      "name": "SPM",
+      "color": "hsl(75, 65%, 55%)",
+      "bg": "hsla(75, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(75, 50%, 35%)"
+    },
+    "Senioren StadsPartij Maastricht": {
+      "name": "Senioren StadsPartij Maastricht",
+      "color": "hsl(17, 65%, 55%)",
+      "bg": "hsla(17, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(17, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    },
+    "Volt": {
+      "name": "Volt",
+      "color": "hsl(9, 65%, 55%)",
+      "bg": "hsla(9, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(9, 50%, 35%)"
+    }
+  }
 }

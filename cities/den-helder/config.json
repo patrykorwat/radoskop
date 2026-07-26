@@ -37,6 +37,117 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 32,
   "province": "Noord-Holland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "50PLUS": {
+      "name": "50PLUS",
+      "color": "hsl(270, 65%, 55%)",
+      "bg": "hsla(270, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(270, 50%, 35%)"
+    },
+    "Behoorlijk Bestuur": {
+      "name": "Behoorlijk Bestuur",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    },
+    "Behoorlijk Bestuur v D-H & Julianadorp": {
+      "name": "Behoorlijk Bestuur v D-H & Julianadorp",
+      "color": "hsl(130, 65%, 55%)",
+      "bg": "hsla(130, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(130, 50%, 35%)"
+    },
+    "Behoorlijk Bestuur voor DH&J": {
+      "name": "Behoorlijk Bestuur voor DH&J",
+      "color": "hsl(325, 65%, 55%)",
+      "bg": "hsla(325, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(325, 50%, 35%)"
+    },
+    "Beter voor Den Helder": {
+      "name": "Beter voor Den Helder",
+      "color": "hsl(90, 65%, 55%)",
+      "bg": "hsla(90, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(90, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie": {
+      "name": "ChristenUnie",
+      "color": "hsl(252, 65%, 55%)",
+      "bg": "hsla(252, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(252, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Forum voor Democratie": {
+      "name": "Forum voor Democratie",
+      "color": "hsl(86, 65%, 55%)",
+      "bg": "hsla(86, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(86, 50%, 35%)"
+    },
+    "Fractie Nanning": {
+      "name": "Fractie Nanning",
+      "color": "hsl(296, 65%, 55%)",
+      "bg": "hsla(296, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(296, 50%, 35%)"
+    },
+    "Fractie Pastoor": {
+      "name": "Fractie Pastoor",
+      "color": "hsl(219, 65%, 55%)",
+      "bg": "hsla(219, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(219, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "PVV": {
+      "name": "PVV",
+      "color": "hsl(241, 65%, 55%)",
+      "bg": "hsla(241, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(241, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "SP": {
+      "name": "SP",
+      "color": "hsl(129, 65%, 55%)",
+      "bg": "hsla(129, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(129, 50%, 35%)"
+    },
+    "Samen Actief": {
+      "name": "Samen Actief",
+      "color": "hsl(260, 65%, 55%)",
+      "bg": "hsla(260, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(260, 50%, 35%)"
+    },
+    "Stadspartij Den Helder": {
+      "name": "Stadspartij Den Helder",
+      "color": "hsl(223, 65%, 55%)",
+      "bg": "hsla(223, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(223, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

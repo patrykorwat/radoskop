@@ -37,6 +37,117 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 6,
   "province": "Drenthe",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "50PLUS": {
+      "name": "50PLUS",
+      "color": "hsl(270, 65%, 55%)",
+      "bg": "hsla(270, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(270, 50%, 35%)"
+    },
+    "Assen Centraal": {
+      "name": "Assen Centraal",
+      "color": "hsl(251, 65%, 55%)",
+      "bg": "hsla(251, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(251, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie": {
+      "name": "ChristenUnie",
+      "color": "hsl(252, 65%, 55%)",
+      "bg": "hsla(252, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(252, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Forum Voor Democratie": {
+      "name": "Forum Voor Democratie",
+      "color": "hsl(119, 65%, 55%)",
+      "bg": "hsla(119, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(119, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "Leefbaar Assen": {
+      "name": "Leefbaar Assen",
+      "color": "hsl(111, 65%, 55%)",
+      "bg": "hsla(111, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(111, 50%, 35%)"
+    },
+    "Lijst Homan": {
+      "name": "Lijst Homan",
+      "color": "hsl(24, 65%, 55%)",
+      "bg": "hsla(24, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(24, 50%, 35%)"
+    },
+    "Lijst Van Brakel": {
+      "name": "Lijst Van Brakel",
+      "color": "hsl(79, 65%, 55%)",
+      "bg": "hsla(79, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(79, 50%, 35%)"
+    },
+    "Onafhankelijk": {
+      "name": "Onafhankelijk",
+      "color": "hsl(290, 65%, 55%)",
+      "bg": "hsla(290, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(290, 50%, 35%)"
+    },
+    "PRO": {
+      "name": "PRO",
+      "color": "hsl(200, 65%, 55%)",
+      "bg": "hsla(200, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(200, 50%, 35%)"
+    },
+    "PVV": {
+      "name": "PVV",
+      "color": "hsl(241, 65%, 55%)",
+      "bg": "hsla(241, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(241, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "SP": {
+      "name": "SP",
+      "color": "hsl(129, 65%, 55%)",
+      "bg": "hsla(129, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(129, 50%, 35%)"
+    },
+    "Stadspartij PLOP": {
+      "name": "Stadspartij PLOP",
+      "color": "hsl(234, 65%, 55%)",
+      "bg": "hsla(234, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(234, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    },
+    "Wethouder": {
+      "name": "Wethouder",
+      "color": "hsl(345, 65%, 55%)",
+      "bg": "hsla(345, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(345, 50%, 35%)"
+    }
+  }
 }

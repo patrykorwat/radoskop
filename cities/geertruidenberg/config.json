@@ -37,6 +37,87 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 15,
   "province": "Noord-Brabant",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "Fractie Broeders-Hooijmaijers": {
+      "name": "Fractie Broeders-Hooijmaijers",
+      "color": "hsl(115, 65%, 55%)",
+      "bg": "hsla(115, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(115, 50%, 35%)"
+    },
+    "Gemeente Belangen": {
+      "name": "Gemeente Belangen",
+      "color": "hsl(288, 65%, 55%)",
+      "bg": "hsla(288, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(288, 50%, 35%)"
+    },
+    "Gemeentebelangen": {
+      "name": "Gemeentebelangen",
+      "color": "hsl(261, 65%, 55%)",
+      "bg": "hsla(261, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(261, 50%, 35%)"
+    },
+    "Igor van Nunen": {
+      "name": "Igor van Nunen",
+      "color": "hsl(174, 65%, 55%)",
+      "bg": "hsla(174, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(174, 50%, 35%)"
+    },
+    "Keerpunt '74": {
+      "name": "Keerpunt '74",
+      "color": "hsl(341, 65%, 55%)",
+      "bg": "hsla(341, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(341, 50%, 35%)"
+    },
+    "Keerpunt74": {
+      "name": "Keerpunt74",
+      "color": "hsl(233, 65%, 55%)",
+      "bg": "hsla(233, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(233, 50%, 35%)"
+    },
+    "Lokaal+": {
+      "name": "Lokaal+",
+      "color": "hsl(67, 65%, 55%)",
+      "bg": "hsla(67, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(67, 50%, 35%)"
+    },
+    "Morgen!": {
+      "name": "Morgen!",
+      "color": "hsl(199, 65%, 55%)",
+      "bg": "hsla(199, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(199, 50%, 35%)"
+    },
+    "Onafhankelijk": {
+      "name": "Onafhankelijk",
+      "color": "hsl(290, 65%, 55%)",
+      "bg": "hsla(290, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(290, 50%, 35%)"
+    },
+    "Sociale Volks Partij": {
+      "name": "Sociale Volks Partij",
+      "color": "hsl(190, 65%, 55%)",
+      "bg": "hsla(190, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(190, 50%, 35%)"
+    },
+    "Sociale Volkspartij": {
+      "name": "Sociale Volkspartij",
+      "color": "hsl(270, 65%, 55%)",
+      "bg": "hsla(270, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(270, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

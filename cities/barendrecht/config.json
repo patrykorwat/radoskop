@@ -37,6 +37,93 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 28,
   "province": "Zuid-Holland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "Barendrechts Belang": {
+      "name": "Barendrechts Belang",
+      "color": "hsl(182, 65%, 55%)",
+      "bg": "hsla(182, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(182, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "EVB": {
+      "name": "EVB",
+      "color": "hsl(241, 65%, 55%)",
+      "bg": "hsla(241, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(241, 50%, 35%)"
+    },
+    "Echt voor Barendrecht": {
+      "name": "Echt voor Barendrecht",
+      "color": "hsl(144, 65%, 55%)",
+      "bg": "hsla(144, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(144, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "Joris Modderman": {
+      "name": "Joris Modderman",
+      "color": "hsl(79, 65%, 55%)",
+      "bg": "hsla(79, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(79, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "Rene Schuurman": {
+      "name": "Rene Schuurman",
+      "color": "hsl(219, 65%, 55%)",
+      "bg": "hsla(219, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(219, 50%, 35%)"
+    },
+    "SGP-ChristenUnie": {
+      "name": "SGP-ChristenUnie",
+      "color": "hsl(47, 65%, 55%)",
+      "bg": "hsla(47, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(47, 50%, 35%)"
+    },
+    "SGP/ChristenUnie": {
+      "name": "SGP/ChristenUnie",
+      "color": "hsl(161, 65%, 55%)",
+      "bg": "hsla(161, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(161, 50%, 35%)"
+    },
+    "Samen voor Barendrecht": {
+      "name": "Samen voor Barendrecht",
+      "color": "hsl(145, 65%, 55%)",
+      "bg": "hsla(145, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(145, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

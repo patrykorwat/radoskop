@@ -37,6 +37,87 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 10,
   "province": "Noord-Brabant",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "CRB": {
+      "name": "CRB",
+      "color": "hsl(78, 65%, 55%)",
+      "bg": "hsla(78, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(78, 50%, 35%)"
+    },
+    "Centrumrechts Bernheze": {
+      "name": "Centrumrechts Bernheze",
+      "color": "hsl(45, 65%, 55%)",
+      "bg": "hsla(45, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(45, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Gemeenteraad": {
+      "name": "Gemeenteraad",
+      "color": "hsl(337, 65%, 55%)",
+      "bg": "hsla(337, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(337, 50%, 35%)"
+    },
+    "Lokaal": {
+      "name": "Lokaal",
+      "color": "hsl(256, 65%, 55%)",
+      "bg": "hsla(256, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(256, 50%, 35%)"
+    },
+    "Maatschappij en Bestuur": {
+      "name": "Maatschappij en Bestuur",
+      "color": "hsl(225, 65%, 55%)",
+      "bg": "hsla(225, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(225, 50%, 35%)"
+    },
+    "ONS Bernheze": {
+      "name": "ONS Bernheze",
+      "color": "hsl(285, 65%, 55%)",
+      "bg": "hsla(285, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(285, 50%, 35%)"
+    },
+    "Progressief Bernheze": {
+      "name": "Progressief Bernheze",
+      "color": "hsl(178, 65%, 55%)",
+      "bg": "hsla(178, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(178, 50%, 35%)"
+    },
+    "Rekenkamer": {
+      "name": "Rekenkamer",
+      "color": "hsl(333, 65%, 55%)",
+      "bg": "hsla(333, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(333, 50%, 35%)"
+    },
+    "Ruimte en Leefbaarheid": {
+      "name": "Ruimte en Leefbaarheid",
+      "color": "hsl(186, 65%, 55%)",
+      "bg": "hsla(186, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(186, 50%, 35%)"
+    },
+    "SP": {
+      "name": "SP",
+      "color": "hsl(129, 65%, 55%)",
+      "bg": "hsla(129, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(129, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

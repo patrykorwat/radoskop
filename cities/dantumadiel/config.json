@@ -37,6 +37,75 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 3,
   "province": "Fryslân",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "BBB Dantumadiel": {
+      "name": "BBB Dantumadiel",
+      "color": "hsl(60, 65%, 55%)",
+      "bg": "hsla(60, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(60, 50%, 35%)"
+    },
+    "CDA Dantumadiel": {
+      "name": "CDA Dantumadiel",
+      "color": "hsl(3, 65%, 55%)",
+      "bg": "hsla(3, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(3, 50%, 35%)"
+    },
+    "ChristenUnie": {
+      "name": "ChristenUnie",
+      "color": "hsl(252, 65%, 55%)",
+      "bg": "hsla(252, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(252, 50%, 35%)"
+    },
+    "ChristenUnie Dantumadiel": {
+      "name": "ChristenUnie Dantumadiel",
+      "color": "hsl(132, 65%, 55%)",
+      "bg": "hsla(132, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(132, 50%, 35%)"
+    },
+    "Dantumadiel": {
+      "name": "Dantumadiel",
+      "color": "hsl(130, 65%, 55%)",
+      "bg": "hsla(130, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(130, 50%, 35%)"
+    },
+    "FNP": {
+      "name": "FNP",
+      "color": "hsl(262, 65%, 55%)",
+      "bg": "hsla(262, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(262, 50%, 35%)"
+    },
+    "FNP Dantumadiel": {
+      "name": "FNP Dantumadiel",
+      "color": "hsl(236, 65%, 55%)",
+      "bg": "hsla(236, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(236, 50%, 35%)"
+    },
+    "Gemeentebelangen Dantumadiel": {
+      "name": "Gemeentebelangen Dantumadiel",
+      "color": "hsl(73, 65%, 55%)",
+      "bg": "hsla(73, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(73, 50%, 35%)"
+    },
+    "Onafhankelijk": {
+      "name": "Onafhankelijk",
+      "color": "hsl(290, 65%, 55%)",
+      "bg": "hsla(290, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(290, 50%, 35%)"
+    },
+    "SGP": {
+      "name": "SGP",
+      "color": "hsl(11, 65%, 55%)",
+      "bg": "hsla(11, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(11, 50%, 35%)"
+    },
+    "Sociaal Links": {
+      "name": "Sociaal Links",
+      "color": "hsl(67, 65%, 55%)",
+      "bg": "hsla(67, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(67, 50%, 35%)"
+    }
+  }
 }

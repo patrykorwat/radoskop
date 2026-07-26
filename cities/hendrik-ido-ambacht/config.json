@@ -37,6 +37,75 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 21,
   "province": "Zuid-Holland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "E.V.A.": {
+      "name": "E.V.A.",
+      "color": "hsl(107, 65%, 55%)",
+      "bg": "hsla(107, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(107, 50%, 35%)"
+    },
+    "Gemeente Belangen": {
+      "name": "Gemeente Belangen",
+      "color": "hsl(288, 65%, 55%)",
+      "bg": "hsla(288, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(288, 50%, 35%)"
+    },
+    "PRO": {
+      "name": "PRO",
+      "color": "hsl(200, 65%, 55%)",
+      "bg": "hsla(200, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(200, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "Realistisch Ambacht": {
+      "name": "Realistisch Ambacht",
+      "color": "hsl(335, 65%, 55%)",
+      "bg": "hsla(335, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(335, 50%, 35%)"
+    },
+    "SGP/CU": {
+      "name": "SGP/CU",
+      "color": "hsl(320, 65%, 55%)",
+      "bg": "hsla(320, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(320, 50%, 35%)"
+    },
+    "SGP/ChristenUnie": {
+      "name": "SGP/ChristenUnie",
+      "color": "hsl(161, 65%, 55%)",
+      "bg": "hsla(161, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(161, 50%, 35%)"
+    },
+    "SGP/Christenunie": {
+      "name": "SGP/Christenunie",
+      "color": "hsl(78, 65%, 55%)",
+      "bg": "hsla(78, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(78, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

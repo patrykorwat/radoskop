@@ -37,6 +37,45 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 48,
   "province": "Limburg",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "Beeselse Lijst": {
+      "name": "Beeselse Lijst",
+      "color": "hsl(99, 65%, 55%)",
+      "bg": "hsla(99, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(99, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "College": {
+      "name": "College",
+      "color": "hsl(53, 65%, 55%)",
+      "bg": "hsla(53, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(53, 50%, 35%)"
+    },
+    "Griffie": {
+      "name": "Griffie",
+      "color": "hsl(52, 65%, 55%)",
+      "bg": "hsla(52, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(52, 50%, 35%)"
+    },
+    "Samen Verder Beesel": {
+      "name": "Samen Verder Beesel",
+      "color": "hsl(33, 65%, 55%)",
+      "bg": "hsla(33, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(33, 50%, 35%)"
+    },
+    "VLP": {
+      "name": "VLP",
+      "color": "hsl(124, 65%, 55%)",
+      "bg": "hsla(124, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(124, 50%, 35%)"
+    }
+  }
 }

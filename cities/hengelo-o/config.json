@@ -37,6 +37,105 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 36,
   "province": "Overijssel",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "50PLUS": {
+      "name": "50PLUS",
+      "color": "hsl(270, 65%, 55%)",
+      "bg": "hsla(270, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(270, 50%, 35%)"
+    },
+    "ANDERS!": {
+      "name": "ANDERS!",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "BurgerBelangen": {
+      "name": "BurgerBelangen",
+      "color": "hsl(302, 65%, 55%)",
+      "bg": "hsla(302, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(302, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie": {
+      "name": "ChristenUnie",
+      "color": "hsl(252, 65%, 55%)",
+      "bg": "hsla(252, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(252, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Forum voor Democratie": {
+      "name": "Forum voor Democratie",
+      "color": "hsl(86, 65%, 55%)",
+      "bg": "hsla(86, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(86, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "Hengelose Burgers": {
+      "name": "Hengelose Burgers",
+      "color": "hsl(288, 65%, 55%)",
+      "bg": "hsla(288, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(288, 50%, 35%)"
+    },
+    "LokaalHengelo": {
+      "name": "LokaalHengelo",
+      "color": "hsl(265, 65%, 55%)",
+      "bg": "hsla(265, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(265, 50%, 35%)"
+    },
+    "PVV": {
+      "name": "PVV",
+      "color": "hsl(241, 65%, 55%)",
+      "bg": "hsla(241, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(241, 50%, 35%)"
+    },
+    "Pro Hengelo": {
+      "name": "Pro Hengelo",
+      "color": "hsl(354, 65%, 55%)",
+      "bg": "hsla(354, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(354, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "SP": {
+      "name": "SP",
+      "color": "hsl(129, 65%, 55%)",
+      "bg": "hsla(129, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(129, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

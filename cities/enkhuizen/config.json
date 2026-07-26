@@ -37,6 +37,75 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 17,
   "province": "Noord-Holland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Enkhuizen Vooruit!": {
+      "name": "Enkhuizen Vooruit!",
+      "color": "hsl(65, 65%, 55%)",
+      "bg": "hsla(65, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(65, 50%, 35%)"
+    },
+    "HEA": {
+      "name": "HEA",
+      "color": "hsl(123, 65%, 55%)",
+      "bg": "hsla(123, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(123, 50%, 35%)"
+    },
+    "Het Enkhuizer Alternatief": {
+      "name": "Het Enkhuizer Alternatief",
+      "color": "hsl(323, 65%, 55%)",
+      "bg": "hsla(323, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(323, 50%, 35%)"
+    },
+    "Nieuw Enkhuizen": {
+      "name": "Nieuw Enkhuizen",
+      "color": "hsl(315, 65%, 55%)",
+      "bg": "hsla(315, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(315, 50%, 35%)"
+    },
+    "Piratenpartij": {
+      "name": "Piratenpartij",
+      "color": "hsl(6, 65%, 55%)",
+      "bg": "hsla(6, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(6, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "SGP": {
+      "name": "SGP",
+      "color": "hsl(11, 65%, 55%)",
+      "bg": "hsla(11, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(11, 50%, 35%)"
+    },
+    "SP": {
+      "name": "SP",
+      "color": "hsl(129, 65%, 55%)",
+      "bg": "hsla(129, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(129, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

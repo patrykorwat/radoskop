@@ -37,6 +37,105 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 37,
   "province": "Noord-Brabant",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "50PLUS": {
+      "name": "50PLUS",
+      "color": "hsl(270, 65%, 55%)",
+      "bg": "hsla(270, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(270, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "DENK": {
+      "name": "DENK",
+      "color": "hsl(87, 65%, 55%)",
+      "bg": "hsla(87, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(87, 50%, 35%)"
+    },
+    "Forum voor Democratie": {
+      "name": "Forum voor Democratie",
+      "color": "hsl(86, 65%, 55%)",
+      "bg": "hsla(86, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(86, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "Helder Helmond": {
+      "name": "Helder Helmond",
+      "color": "hsl(358, 65%, 55%)",
+      "bg": "hsla(358, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(358, 50%, 35%)"
+    },
+    "Lokaal Sterk": {
+      "name": "Lokaal Sterk",
+      "color": "hsl(350, 65%, 55%)",
+      "bg": "hsla(350, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(350, 50%, 35%)"
+    },
+    "Lokaal sterk": {
+      "name": "Lokaal sterk",
+      "color": "hsl(130, 65%, 55%)",
+      "bg": "hsla(130, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(130, 50%, 35%)"
+    },
+    "Mi Hellemonders": {
+      "name": "Mi Hellemonders",
+      "color": "hsl(182, 65%, 55%)",
+      "bg": "hsla(182, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(182, 50%, 35%)"
+    },
+    "PRO": {
+      "name": "PRO",
+      "color": "hsl(200, 65%, 55%)",
+      "bg": "hsla(200, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(200, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "SP": {
+      "name": "SP",
+      "color": "hsl(129, 65%, 55%)",
+      "bg": "hsla(129, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(129, 50%, 35%)"
+    },
+    "Samen 0492": {
+      "name": "Samen 0492",
+      "color": "hsl(103, 65%, 55%)",
+      "bg": "hsla(103, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(103, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

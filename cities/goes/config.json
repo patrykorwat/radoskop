@@ -37,6 +37,69 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 27,
   "province": "Zeeland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "BVNL": {
+      "name": "BVNL",
+      "color": "hsl(168, 65%, 55%)",
+      "bg": "hsla(168, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(168, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie/SGP": {
+      "name": "ChristenUnie/SGP",
+      "color": "hsl(158, 65%, 55%)",
+      "bg": "hsla(158, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(158, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Nieuw Goes": {
+      "name": "Nieuw Goes",
+      "color": "hsl(245, 65%, 55%)",
+      "bg": "hsla(245, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(245, 50%, 35%)"
+    },
+    "PRO": {
+      "name": "PRO",
+      "color": "hsl(200, 65%, 55%)",
+      "bg": "hsla(200, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(200, 50%, 35%)"
+    },
+    "Partij voor Goes": {
+      "name": "Partij voor Goes",
+      "color": "hsl(313, 65%, 55%)",
+      "bg": "hsla(313, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(313, 50%, 35%)"
+    },
+    "PvdA/GroenLinks": {
+      "name": "PvdA/GroenLinks",
+      "color": "hsl(337, 65%, 55%)",
+      "bg": "hsla(337, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(337, 50%, 35%)"
+    },
+    "SGP/CU": {
+      "name": "SGP/CU",
+      "color": "hsl(320, 65%, 55%)",
+      "bg": "hsla(320, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(320, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

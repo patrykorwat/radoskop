@@ -37,6 +37,45 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 15,
   "province": "Noord-Holland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Groen Laren": {
+      "name": "Groen Laren",
+      "color": "hsl(234, 65%, 55%)",
+      "bg": "hsla(234, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(234, 50%, 35%)"
+    },
+    "Larens Behoud": {
+      "name": "Larens Behoud",
+      "color": "hsl(357, 65%, 55%)",
+      "bg": "hsla(357, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(357, 50%, 35%)"
+    },
+    "Liberaal Laren": {
+      "name": "Liberaal Laren",
+      "color": "hsl(314, 65%, 55%)",
+      "bg": "hsla(314, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(314, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

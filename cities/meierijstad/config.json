@@ -37,6 +37,81 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 8,
   "province": "Noord-Brabant",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Forum voor Democratie": {
+      "name": "Forum voor Democratie",
+      "color": "hsl(86, 65%, 55%)",
+      "bg": "hsla(86, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(86, 50%, 35%)"
+    },
+    "Gemeentebelang Meierijstad": {
+      "name": "Gemeentebelang Meierijstad",
+      "color": "hsl(62, 65%, 55%)",
+      "bg": "hsla(62, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(62, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "HIER": {
+      "name": "HIER",
+      "color": "hsl(311, 65%, 55%)",
+      "bg": "hsla(311, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(311, 50%, 35%)"
+    },
+    "Hart": {
+      "name": "Hart",
+      "color": "hsl(341, 65%, 55%)",
+      "bg": "hsla(341, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(341, 50%, 35%)"
+    },
+    "Lokaal Meierijstad": {
+      "name": "Lokaal Meierijstad",
+      "color": "hsl(140, 65%, 55%)",
+      "bg": "hsla(140, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(140, 50%, 35%)"
+    },
+    "PRO Meierijstad": {
+      "name": "PRO Meierijstad",
+      "color": "hsl(174, 65%, 55%)",
+      "bg": "hsla(174, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(174, 50%, 35%)"
+    },
+    "SP": {
+      "name": "SP",
+      "color": "hsl(129, 65%, 55%)",
+      "bg": "hsla(129, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(129, 50%, 35%)"
+    },
+    "Socialistische Partij": {
+      "name": "Socialistische Partij",
+      "color": "hsl(257, 65%, 55%)",
+      "bg": "hsla(257, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(257, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

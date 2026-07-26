@@ -37,6 +37,69 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 11,
   "province": "Noord-Holland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Forum voor Democratie": {
+      "name": "Forum voor Democratie",
+      "color": "hsl(86, 65%, 55%)",
+      "bg": "hsla(86, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(86, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "Hart voor Heemskerk": {
+      "name": "Hart voor Heemskerk",
+      "color": "hsl(128, 65%, 55%)",
+      "bg": "hsla(128, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(128, 50%, 35%)"
+    },
+    "Heemskerk Lokaal": {
+      "name": "Heemskerk Lokaal",
+      "color": "hsl(155, 65%, 55%)",
+      "bg": "hsla(155, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(155, 50%, 35%)"
+    },
+    "Liberaal Heemskerk": {
+      "name": "Liberaal Heemskerk",
+      "color": "hsl(6, 65%, 55%)",
+      "bg": "hsla(6, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(6, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

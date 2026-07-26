@@ -37,6 +37,57 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 5,
   "province": "Gelderland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "BBB-HMV": {
+      "name": "BBB-HMV",
+      "color": "hsl(258, 65%, 55%)",
+      "bg": "hsla(258, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(258, 50%, 35%)"
+    },
+    "BoerBurgerBondgenoot/HMV": {
+      "name": "BoerBurgerBondgenoot/HMV",
+      "color": "hsl(181, 65%, 55%)",
+      "bg": "hsla(181, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(181, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie": {
+      "name": "ChristenUnie",
+      "color": "hsl(252, 65%, 55%)",
+      "bg": "hsla(252, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(252, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "GemeenteBelangen": {
+      "name": "GemeenteBelangen",
+      "color": "hsl(225, 65%, 55%)",
+      "bg": "hsla(225, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(225, 50%, 35%)"
+    },
+    "Progressieve Partij - GroenLinks-PvdA": {
+      "name": "Progressieve Partij - GroenLinks-PvdA",
+      "color": "hsl(355, 65%, 55%)",
+      "bg": "hsla(355, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(355, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

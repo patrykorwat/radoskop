@@ -37,6 +37,45 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 21,
   "province": "Zuid-Holland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "Leefbaar Krimpen": {
+      "name": "Leefbaar Krimpen",
+      "color": "hsl(272, 65%, 55%)",
+      "bg": "hsla(272, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(272, 50%, 35%)"
+    },
+    "SGP": {
+      "name": "SGP",
+      "color": "hsl(11, 65%, 55%)",
+      "bg": "hsla(11, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(11, 50%, 35%)"
+    },
+    "Samen voor Krimpen": {
+      "name": "Samen voor Krimpen",
+      "color": "hsl(119, 65%, 55%)",
+      "bg": "hsla(119, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(119, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

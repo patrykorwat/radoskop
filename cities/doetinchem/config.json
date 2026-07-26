@@ -37,6 +37,93 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 32,
   "province": "Gelderland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "BBB": {
+      "name": "BBB",
+      "color": "hsl(213, 65%, 55%)",
+      "bg": "hsla(213, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(213, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie-SGP": {
+      "name": "ChristenUnie-SGP",
+      "color": "hsl(152, 65%, 55%)",
+      "bg": "hsla(152, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(152, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Forum voor Democratie": {
+      "name": "Forum voor Democratie",
+      "color": "hsl(86, 65%, 55%)",
+      "bg": "hsla(86, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(86, 50%, 35%)"
+    },
+    "GemeenteBelangen Doetinchem": {
+      "name": "GemeenteBelangen Doetinchem",
+      "color": "hsl(75, 65%, 55%)",
+      "bg": "hsla(75, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(75, 50%, 35%)"
+    },
+    "GemeenteBelangenDoetinchem": {
+      "name": "GemeenteBelangenDoetinchem",
+      "color": "hsl(2, 65%, 55%)",
+      "bg": "hsla(2, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(2, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "Lokaal Belang Doetinchem": {
+      "name": "Lokaal Belang Doetinchem",
+      "color": "hsl(157, 65%, 55%)",
+      "bg": "hsla(157, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(157, 50%, 35%)"
+    },
+    "PRO": {
+      "name": "PRO",
+      "color": "hsl(200, 65%, 55%)",
+      "bg": "hsla(200, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(200, 50%, 35%)"
+    },
+    "Partij voor Lokaal Maatwerk": {
+      "name": "Partij voor Lokaal Maatwerk",
+      "color": "hsl(64, 65%, 55%)",
+      "bg": "hsla(64, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(64, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

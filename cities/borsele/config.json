@@ -37,6 +37,57 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 15,
   "province": "Zeeland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "Beter Borsele": {
+      "name": "Beter Borsele",
+      "color": "hsl(87, 65%, 55%)",
+      "bg": "hsla(87, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(87, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Lokale Partij Borsele": {
+      "name": "Lokale Partij Borsele",
+      "color": "hsl(311, 65%, 55%)",
+      "bg": "hsla(311, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(311, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "SGP/ChristenUnie": {
+      "name": "SGP/ChristenUnie",
+      "color": "hsl(161, 65%, 55%)",
+      "bg": "hsla(161, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(161, 50%, 35%)"
+    },
+    "SGP/Christenunie": {
+      "name": "SGP/Christenunie",
+      "color": "hsl(78, 65%, 55%)",
+      "bg": "hsla(78, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(78, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

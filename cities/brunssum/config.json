@@ -37,6 +37,63 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 2,
   "province": "Limburg",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "BBB Lijst Palmen": {
+      "name": "BBB Lijst Palmen",
+      "color": "hsl(173, 65%, 55%)",
+      "bg": "hsla(173, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(173, 50%, 35%)"
+    },
+    "Jo Palmen": {
+      "name": "Jo Palmen",
+      "color": "hsl(261, 65%, 55%)",
+      "bg": "hsla(261, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(261, 50%, 35%)"
+    },
+    "Lijst Arts Brunssum": {
+      "name": "Lijst Arts Brunssum",
+      "color": "hsl(272, 65%, 55%)",
+      "bg": "hsla(272, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(272, 50%, 35%)"
+    },
+    "Lijst Borger": {
+      "name": "Lijst Borger",
+      "color": "hsl(272, 65%, 55%)",
+      "bg": "hsla(272, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(272, 50%, 35%)"
+    },
+    "Lijst Brunssum Lokaal": {
+      "name": "Lijst Brunssum Lokaal",
+      "color": "hsl(264, 65%, 55%)",
+      "bg": "hsla(264, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(264, 50%, 35%)"
+    },
+    "PAK": {
+      "name": "PAK",
+      "color": "hsl(143, 65%, 55%)",
+      "bg": "hsla(143, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(143, 50%, 35%)"
+    },
+    "PvdA Brunssum": {
+      "name": "PvdA Brunssum",
+      "color": "hsl(219, 65%, 55%)",
+      "bg": "hsla(219, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(219, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    },
+    "VVD Brunssum": {
+      "name": "VVD Brunssum",
+      "color": "hsl(253, 65%, 55%)",
+      "bg": "hsla(253, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(253, 50%, 35%)"
+    }
+  }
 }

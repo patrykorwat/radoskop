@@ -37,6 +37,87 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 26,
   "province": "Limburg",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "BVNL": {
+      "name": "BVNL",
+      "color": "hsl(168, 65%, 55%)",
+      "bg": "hsla(168, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(168, 50%, 35%)"
+    },
+    "Belang van Horst aan de Maas": {
+      "name": "Belang van Horst aan de Maas",
+      "color": "hsl(353, 65%, 55%)",
+      "bg": "hsla(353, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(353, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66+GroenLinks": {
+      "name": "D66+GroenLinks",
+      "color": "hsl(346, 65%, 55%)",
+      "bg": "hsla(346, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(346, 50%, 35%)"
+    },
+    "Doen!": {
+      "name": "Doen!",
+      "color": "hsl(65, 65%, 55%)",
+      "bg": "hsla(65, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(65, 50%, 35%)"
+    },
+    "Essentie": {
+      "name": "Essentie",
+      "color": "hsl(359, 65%, 55%)",
+      "bg": "hsla(359, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(359, 50%, 35%)"
+    },
+    "Fractie Hart voor HadM": {
+      "name": "Fractie Hart voor HadM",
+      "color": "hsl(355, 65%, 55%)",
+      "bg": "hsla(355, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(355, 50%, 35%)"
+    },
+    "Perspectief HadM": {
+      "name": "Perspectief HadM",
+      "color": "hsl(236, 65%, 55%)",
+      "bg": "hsla(236, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(236, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "SP": {
+      "name": "SP",
+      "color": "hsl(129, 65%, 55%)",
+      "bg": "hsla(129, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(129, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    },
+    "Vur Iederien": {
+      "name": "Vur Iederien",
+      "color": "hsl(6, 65%, 55%)",
+      "bg": "hsla(6, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(6, 50%, 35%)"
+    },
+    "leef": {
+      "name": "leef",
+      "color": "hsl(226, 65%, 55%)",
+      "bg": "hsla(226, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(226, 50%, 35%)"
+    }
+  }
 }

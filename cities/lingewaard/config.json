@@ -37,6 +37,99 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 17,
   "province": "Gelderland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "B06": {
+      "name": "B06",
+      "color": "hsl(44, 65%, 55%)",
+      "bg": "hsla(44, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(44, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Forum voor Democratie": {
+      "name": "Forum voor Democratie",
+      "color": "hsl(86, 65%, 55%)",
+      "bg": "hsla(86, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(86, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "LBL": {
+      "name": "LBL",
+      "color": "hsl(43, 65%, 55%)",
+      "bg": "hsla(43, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(43, 50%, 35%)"
+    },
+    "Lingewaard.NU-B06": {
+      "name": "Lingewaard.NU-B06",
+      "color": "hsl(292, 65%, 55%)",
+      "bg": "hsla(292, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(292, 50%, 35%)"
+    },
+    "Lingewaard.NU.B06": {
+      "name": "Lingewaard.NU.B06",
+      "color": "hsl(12, 65%, 55%)",
+      "bg": "hsla(12, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(12, 50%, 35%)"
+    },
+    "Lokaal Belang Lingewaard": {
+      "name": "Lokaal Belang Lingewaard",
+      "color": "hsl(84, 65%, 55%)",
+      "bg": "hsla(84, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(84, 50%, 35%)"
+    },
+    "PRO Lingewaard": {
+      "name": "PRO Lingewaard",
+      "color": "hsl(320, 65%, 55%)",
+      "bg": "hsla(320, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(320, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "SP": {
+      "name": "SP",
+      "color": "hsl(129, 65%, 55%)",
+      "bg": "hsla(129, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(129, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    },
+    "lingewaard.NU": {
+      "name": "lingewaard.NU",
+      "color": "hsl(248, 65%, 55%)",
+      "bg": "hsla(248, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(248, 50%, 35%)"
+    }
+  }
 }

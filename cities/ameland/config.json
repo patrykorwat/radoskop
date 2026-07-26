@@ -37,6 +37,7 @@
   ],
   "voting_display": "councillor",
   "has_named_votes": true,
+  "councilor_count": 0,
   "province": "Fryslân",
   "scrape_disabled": true
 }

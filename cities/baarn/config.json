@@ -37,6 +37,69 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 21,
   "province": "Utrecht",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "50PLUS": {
+      "name": "50PLUS",
+      "color": "hsl(270, 65%, 55%)",
+      "bg": "hsla(270, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(270, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie": {
+      "name": "ChristenUnie",
+      "color": "hsl(252, 65%, 55%)",
+      "bg": "hsla(252, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(252, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "Lijst Mylou Deurloo": {
+      "name": "Lijst Mylou Deurloo",
+      "color": "hsl(271, 65%, 55%)",
+      "bg": "hsla(271, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(271, 50%, 35%)"
+    },
+    "Lijst Schouten": {
+      "name": "Lijst Schouten",
+      "color": "hsl(302, 65%, 55%)",
+      "bg": "hsla(302, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(302, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    },
+    "VoorBaarn": {
+      "name": "VoorBaarn",
+      "color": "hsl(76, 65%, 55%)",
+      "bg": "hsla(76, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(76, 50%, 35%)"
+    }
+  }
 }

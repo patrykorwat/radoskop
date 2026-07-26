@@ -37,6 +37,45 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 16,
   "province": "Limburg",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "BRUG-M": {
+      "name": "BRUG-M",
+      "color": "hsl(159, 65%, 55%)",
+      "bg": "hsla(159, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(159, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "Het Origineel": {
+      "name": "Het Origineel",
+      "color": "hsl(270, 65%, 55%)",
+      "bg": "hsla(270, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(270, 50%, 35%)"
+    },
+    "Lokaal DNA": {
+      "name": "Lokaal DNA",
+      "color": "hsl(119, 65%, 55%)",
+      "bg": "hsla(119, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(119, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

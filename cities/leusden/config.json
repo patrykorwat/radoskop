@@ -37,6 +37,69 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 23,
   "province": "Utrecht",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie/SGP": {
+      "name": "ChristenUnie/SGP",
+      "color": "hsl(158, 65%, 55%)",
+      "bg": "hsla(158, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(158, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "Leusden Vooruit": {
+      "name": "Leusden Vooruit",
+      "color": "hsl(269, 65%, 55%)",
+      "bg": "hsla(269, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(269, 50%, 35%)"
+    },
+    "LeusdenVooruit": {
+      "name": "LeusdenVooruit",
+      "color": "hsl(301, 65%, 55%)",
+      "bg": "hsla(301, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(301, 50%, 35%)"
+    },
+    "Lokaal Belangrijk": {
+      "name": "Lokaal Belangrijk",
+      "color": "hsl(155, 65%, 55%)",
+      "bg": "hsla(155, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(155, 50%, 35%)"
+    },
+    "Pro Leusden": {
+      "name": "Pro Leusden",
+      "color": "hsl(13, 65%, 55%)",
+      "bg": "hsla(13, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(13, 50%, 35%)"
+    },
+    "Sociaal Leusden": {
+      "name": "Sociaal Leusden",
+      "color": "hsl(133, 65%, 55%)",
+      "bg": "hsla(133, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(133, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

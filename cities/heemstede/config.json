@@ -37,6 +37,75 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 7,
   "province": "Noord-Holland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "HBB": {
+      "name": "HBB",
+      "color": "hsl(50, 65%, 55%)",
+      "bg": "hsla(50, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(50, 50%, 35%)"
+    },
+    "Heemsteeds Burger Belang": {
+      "name": "Heemsteeds Burger Belang",
+      "color": "hsl(188, 65%, 55%)",
+      "bg": "hsla(188, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(188, 50%, 35%)"
+    },
+    "Lijst Post- van Zon": {
+      "name": "Lijst Post- van Zon",
+      "color": "hsl(187, 65%, 55%)",
+      "bg": "hsla(187, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(187, 50%, 35%)"
+    },
+    "PRO Heemstede": {
+      "name": "PRO Heemstede",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "Samen Sterk Heemstede": {
+      "name": "Samen Sterk Heemstede",
+      "color": "hsl(328, 65%, 55%)",
+      "bg": "hsla(328, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(328, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

@@ -37,6 +37,147 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 11,
   "province": "Noord-Holland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "CDA (4 zetels)": {
+      "name": "CDA (4 zetels)",
+      "color": "hsl(160, 65%, 55%)",
+      "bg": "hsla(160, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(160, 50%, 35%)"
+    },
+    "ChristenUnie (1 zetel)": {
+      "name": "ChristenUnie (1 zetel)",
+      "color": "hsl(136, 65%, 55%)",
+      "bg": "hsla(136, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(136, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "D66 (6 zetels)": {
+      "name": "D66 (6 zetels)",
+      "color": "hsl(228, 65%, 55%)",
+      "bg": "hsla(228, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(228, 50%, 35%)"
+    },
+    "Democraten Hilversum": {
+      "name": "Democraten Hilversum",
+      "color": "hsl(355, 65%, 55%)",
+      "bg": "hsla(355, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(355, 50%, 35%)"
+    },
+    "Democraten Hilversum (5 zetels)": {
+      "name": "Democraten Hilversum (5 zetels)",
+      "color": "hsl(23, 65%, 55%)",
+      "bg": "hsla(23, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(23, 50%, 35%)"
+    },
+    "Fractie Durlacher (1 zetel)": {
+      "name": "Fractie Durlacher (1 zetel)",
+      "color": "hsl(164, 65%, 55%)",
+      "bg": "hsla(164, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(164, 50%, 35%)"
+    },
+    "Fractie Van de Linde (1 zetel)": {
+      "name": "Fractie Van de Linde (1 zetel)",
+      "color": "hsl(217, 65%, 55%)",
+      "bg": "hsla(217, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(217, 50%, 35%)"
+    },
+    "Fractie Zaabat (1 zetel)": {
+      "name": "Fractie Zaabat (1 zetel)",
+      "color": "hsl(359, 65%, 55%)",
+      "bg": "hsla(359, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(359, 50%, 35%)"
+    },
+    "Griffie": {
+      "name": "Griffie",
+      "color": "hsl(52, 65%, 55%)",
+      "bg": "hsla(52, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(52, 50%, 35%)"
+    },
+    "GroenLinks": {
+      "name": "GroenLinks",
+      "color": "hsl(153, 65%, 55%)",
+      "bg": "hsla(153, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(153, 50%, 35%)"
+    },
+    "GroenLinks (3 zetels)": {
+      "name": "GroenLinks (3 zetels)",
+      "color": "hsl(305, 65%, 55%)",
+      "bg": "hsla(305, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(305, 50%, 35%)"
+    },
+    "Hart voor Hilversum": {
+      "name": "Hart voor Hilversum",
+      "color": "hsl(215, 65%, 55%)",
+      "bg": "hsla(215, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(215, 50%, 35%)"
+    },
+    "Hart voor Hilversum (6 zetels)": {
+      "name": "Hart voor Hilversum (6 zetels)",
+      "color": "hsl(47, 65%, 55%)",
+      "bg": "hsla(47, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(47, 50%, 35%)"
+    },
+    "OpStand (1 zetel)": {
+      "name": "OpStand (1 zetel)",
+      "color": "hsl(94, 65%, 55%)",
+      "bg": "hsla(94, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(94, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "PvdA (1 zetel)": {
+      "name": "PvdA (1 zetel)",
+      "color": "hsl(245, 65%, 55%)",
+      "bg": "hsla(245, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(245, 50%, 35%)"
+    },
+    "SP (2 zetels)": {
+      "name": "SP (2 zetels)",
+      "color": "hsl(239, 65%, 55%)",
+      "bg": "hsla(239, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(239, 50%, 35%)"
+    },
+    "Sociaal-Conservatieve Beweging (1 zetel)": {
+      "name": "Sociaal-Conservatieve Beweging (1 zetel)",
+      "color": "hsl(311, 65%, 55%)",
+      "bg": "hsla(311, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(311, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    },
+    "VVD (4 zetels)": {
+      "name": "VVD (4 zetels)",
+      "color": "hsl(239, 65%, 55%)",
+      "bg": "hsla(239, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(239, 50%, 35%)"
+    },
+    "college": {
+      "name": "college",
+      "color": "hsl(344, 65%, 55%)",
+      "bg": "hsla(344, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(344, 50%, 35%)"
+    }
+  }
 }

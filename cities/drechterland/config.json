@@ -37,6 +37,57 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 19,
   "province": "Noord-Holland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "GBD": {
+      "name": "GBD",
+      "color": "hsl(299, 65%, 55%)",
+      "bg": "hsla(299, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(299, 50%, 35%)"
+    },
+    "Gemeentebelangen Drechterland": {
+      "name": "Gemeentebelangen Drechterland",
+      "color": "hsl(182, 65%, 55%)",
+      "bg": "hsla(182, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(182, 50%, 35%)"
+    },
+    "PDL": {
+      "name": "PDL",
+      "color": "hsl(313, 65%, 55%)",
+      "bg": "hsla(313, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(313, 50%, 35%)"
+    },
+    "Progressief Drechterland": {
+      "name": "Progressief Drechterland",
+      "color": "hsl(150, 65%, 55%)",
+      "bg": "hsla(150, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(150, 50%, 35%)"
+    },
+    "SPD": {
+      "name": "SPD",
+      "color": "hsl(229, 65%, 55%)",
+      "bg": "hsla(229, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(229, 50%, 35%)"
+    },
+    "Senioren Partij Drechterland": {
+      "name": "Senioren Partij Drechterland",
+      "color": "hsl(79, 65%, 55%)",
+      "bg": "hsla(79, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(79, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }
