@@ -3613,14 +3613,14 @@ async function showSession(sessionNumber) {
         <div class="metric-value" style="color:var(--red)">${rejected}</div>
         <div class="metric-label">Odrzuconych</div>
       </div>` : ''}
-      <div class="metric-card">
+      ${sess.attendees ? `<div class="metric-card">
         <div class="metric-value">${sess.attendee_count}</div>
         <div class="metric-label">Obecnych</div>
       </div>
       <div class="metric-card">
         <div class="metric-value" style="color:var(--muted)">${absent.length}</div>
         <div class="metric-label">Nieobecnych</div>
-      </div>
+      </div>` : ''}
     </div>`;
 
   // Przekrojowe statystyki: frekwencja, jednomyślne vs sporne, rozkład klubów.
@@ -3724,6 +3724,7 @@ async function showSession(sessionNumber) {
   html += `</div>`;
 
   // Attendance
+  if (sess.attendees) {
   html += `<div class="section">
     <h2>Obecni (${present.size})</h2>
     <div class="session-attendees">`;
@@ -3742,6 +3743,7 @@ async function showSession(sessionNumber) {
       html += `<div class="session-attendee session-absent"><span class="club ${clubClass(cl)}">${cl}</span> ${profileLink(n)}</div>`;
     });
     html += `</div></div>`;
+  }
   }
 
   view.innerHTML = html;
