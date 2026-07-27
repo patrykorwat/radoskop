@@ -37,6 +37,57 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 23,
   "province": "Overijssel",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie": {
+      "name": "ChristenUnie",
+      "color": "hsl(252, 65%, 55%)",
+      "bg": "hsla(252, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(252, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Gemeentebelangen": {
+      "name": "Gemeentebelangen",
+      "color": "hsl(261, 65%, 55%)",
+      "bg": "hsla(261, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(261, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "PvdA": {
+      "name": "PvdA",
+      "color": "hsl(338, 65%, 55%)",
+      "bg": "hsla(338, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(338, 50%, 35%)"
+    },
+    "Stand Organisatie": {
+      "name": "Stand Organisatie",
+      "color": "hsl(307, 65%, 55%)",
+      "bg": "hsla(307, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(307, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

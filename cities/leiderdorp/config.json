@@ -37,6 +37,57 @@
   ],
   "voting_display": "faction",
   "has_named_votes": false,
+  "councilor_count": 21,
   "province": "Zuid-Holland",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "clubs": {
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie-SGP": {
+      "name": "ChristenUnie-SGP",
+      "color": "hsl(152, 65%, 55%)",
+      "bg": "hsla(152, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(152, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "Lokale Partij Leiderdorp": {
+      "name": "Lokale Partij Leiderdorp",
+      "color": "hsl(211, 65%, 55%)",
+      "bg": "hsla(211, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(211, 50%, 35%)"
+    },
+    "Lokale Partij Leiderdorp LPL": {
+      "name": "Lokale Partij Leiderdorp LPL",
+      "color": "hsl(218, 65%, 55%)",
+      "bg": "hsla(218, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(218, 50%, 35%)"
+    },
+    "PRO": {
+      "name": "PRO",
+      "color": "hsl(200, 65%, 55%)",
+      "bg": "hsla(200, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(200, 50%, 35%)"
+    },
+    "PvdA/GroenLinks": {
+      "name": "PvdA/GroenLinks",
+      "color": "hsl(337, 65%, 55%)",
+      "bg": "hsla(337, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(337, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
 }

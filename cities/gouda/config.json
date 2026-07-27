@@ -65,6 +65,60 @@
       "bg": "hsla(205, 65%, 55%, 0.12)",
       "avatar_bg": "hsl(205, 50%, 35%)"
     },
+    "Fractie CDA": {
+      "name": "Fractie CDA",
+      "color": "hsl(261, 65%, 55%)",
+      "bg": "hsla(261, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(261, 50%, 35%)"
+    },
+    "Fractie CU": {
+      "name": "Fractie CU",
+      "color": "hsl(200, 65%, 55%)",
+      "bg": "hsla(200, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(200, 50%, 35%)"
+    },
+    "Fractie D66": {
+      "name": "Fractie D66",
+      "color": "hsl(253, 65%, 55%)",
+      "bg": "hsla(253, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(253, 50%, 35%)"
+    },
+    "Fractie G50+": {
+      "name": "Fractie G50+",
+      "color": "hsl(83, 65%, 55%)",
+      "bg": "hsla(83, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(83, 50%, 35%)"
+    },
+    "Fractie GL": {
+      "name": "Fractie GL",
+      "color": "hsl(235, 65%, 55%)",
+      "bg": "hsla(235, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(235, 50%, 35%)"
+    },
+    "Fractie PvdA": {
+      "name": "Fractie PvdA",
+      "color": "hsl(9, 65%, 55%)",
+      "bg": "hsla(9, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(9, 50%, 35%)"
+    },
+    "Fractie SGP": {
+      "name": "Fractie SGP",
+      "color": "hsl(126, 65%, 55%)",
+      "bg": "hsla(126, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(126, 50%, 35%)"
+    },
+    "Fractie SP": {
+      "name": "Fractie SP",
+      "color": "hsl(231, 65%, 55%)",
+      "bg": "hsla(231, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(231, 50%, 35%)"
+    },
+    "Fractie VVD": {
+      "name": "Fractie VVD",
+      "color": "hsl(345, 65%, 55%)",
+      "bg": "hsla(345, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(345, 50%, 35%)"
+    },
     "Gemeentebelangen Gouda": {
       "name": "Gemeentebelangen Gouda",
       "color": "hsl(290, 65%, 55%)",
