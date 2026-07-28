@@ -5993,5 +5993,11 @@ def apply_locale(html: str, locale: str) -> str:
     for pl, pattern, target in _locale_patterns(loc, d):
         if pl not in out:
             continue
-        out = pattern.sub(lambda _m, t=target: t, out)
+        def _replacer(_m, t=target):
+            """Escape apostrophes in replacement when inside single-quoted JS string."""
+            s, e = _m.start(), _m.end()
+            if s > 0 and e < len(_m.string) and _m.string[s-1] == "'" and _m.string[e:e+1] == "'":
+                return t.replace("'", "\\'")
+            return t
+        out = pattern.sub(_replacer, out)
     return out
