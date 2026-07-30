@@ -1,0 +1,43 @@
+{
+  "landing_enabled": true,
+  "city_name": "Gelsenkirchen",
+  "city_genitive": "Gelsenkirchen",
+  "country": "de",
+  "country_name": "Deutschland",
+  "locale": "de",
+  "site_title": "Radoskop Gelsenkirchen — Wie stimmen die Ratsmitglieder?",
+  "site_url": "https://gelsenkirchen.radoskop.eu",
+  "site_description": "Radoskop. Offenes Monitoring des Rates der Stadt Gelsenkirchen. Abstimmungen und Aktivität der Ratsmitglieder.",
+  "site_description_short": "Offenes Monitoring des Rates der Stadt Gelsenkirchen.",
+  "bip_url": "https://gelsenkirchen.de/",
+  "bip_name": "gelsenkirchen.de",
+  "bip_kind": "oparl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "gelsenkirchen.radoskop.eu",
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "samorzad_type": "miasto",
+  "rada_name": "Rat der Stadt Gelsenkirchen",
+  "rada_name_genitive": "des Rates der Stadt Gelsenkirchen",
+  "councilor_count": 0,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "Wahlperiode 2024–2029",
+      "start": "2024-06-01"
+    }
+  },
+  "has_voting_data": false,
+  "voting_mode": "unknown",
+  "scrape_disabled": true,
+  "province": "Nordrhein-Westfalen",
+  "population": 260000,
+  "disabled": true
+}

@@ -1,0 +1,46 @@
+{
+  "landing_enabled": true,
+  "city_name": "Bayern",
+  "city_genitive": "Bayerns",
+  "country": "de",
+  "country_name": "Deutschland",
+  "locale": "de",
+  "site_title": "Radoskop Bayern — Wie stimmen die Abgeordneten?",
+  "site_url": "https://bayern.radoskop.eu",
+  "site_description": "Radoskop. Offenes Monitoring des Bayerischer Landtag. Namentliche Abstimmungen und Aktivität der Abgeordneten.",
+  "site_description_short": "Offenes Monitoring des Bayerischer Landtag.",
+  "bip_url": "https://www.bayern.landtag.de/",
+  "bip_name": "landtag-bayern.de",
+  "bip_kind": "abgeordnetenwatch_de",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "bayern.radoskop.eu",
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "samorzad_type": "landtag",
+  "rada_name": "Bayerischer Landtag",
+  "rada_name_genitive": "des Bayerischen Landtags",
+  "councilor_count": 205,
+  "kadencja_active": "2023-2028",
+  "kadencje": {
+    "2023-2028": {
+      "label": "19. Wahlperiode (2023–2028)",
+      "start": "2023-10-08",
+      "wp": 19
+    }
+  },
+  "has_voting_data": true,
+  "voting_mode": "named",
+  "scrape_disabled": true,
+  "scrape": {
+    "aw_parliament_period": 149,
+    "aw_polls_endpoint": "https://www.abgeordnetenwatch.de/api/v2/polls?field_legislature=149",
+    "aw_open_data_poll": "https://www.abgeordnetenwatch.de/open-data/info/parliament_period/149/poll"
+  }
+}

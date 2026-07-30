@@ -1,20 +1,20 @@
 {
   "landing_enabled": true,
-  "city_name": "Rostock",
-  "city_genitive": "Rostock",
+  "city_name": "Duisburg",
+  "city_genitive": "Duisburg",
   "country": "de",
   "country_name": "Deutschland",
   "locale": "de",
-  "site_title": "Radoskop Rostock — Wie stimmen die Ratsmitglieder?",
-  "site_url": "https://rostock.radoskop.eu",
-  "site_description": "Radoskop. Offenes Monitoring des Rates der Stadt Rostock. Abstimmungen und Aktivität der Ratsmitglieder.",
-  "site_description_short": "Offenes Monitoring des Rates der Stadt Rostock.",
-  "bip_url": "https://rostock.de/",
-  "bip_name": "rostock.de",
+  "site_title": "Radoskop Duisburg — Wie stimmen die Ratsmitglieder?",
+  "site_url": "https://duisburg.radoskop.eu",
+  "site_description": "Radoskop. Offenes Monitoring des Rates der Stadt Duisburg. Abstimmungen und Aktivität der Ratsmitglieder.",
+  "site_description_short": "Offenes Monitoring des Rates der Stadt Duisburg.",
+  "bip_url": "https://duisburg.de/",
+  "bip_name": "duisburg.de",
   "bip_kind": "oparl",
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
-  "cname": "rostock.radoskop.eu",
+  "cname": "duisburg.radoskop.eu",
   "impressum": {
     "name": "Patryk Orwat",
     "address_lines": [
@@ -24,8 +24,8 @@
     "email": "patrykorwat@gmail.com"
   },
   "samorzad_type": "miasto",
-  "rada_name": "Rat der Stadt Rostock",
-  "rada_name_genitive": "des Rates der Stadt Rostock",
+  "rada_name": "Rat der Stadt Duisburg",
+  "rada_name_genitive": "des Rates der Stadt Duisburg",
   "councilor_count": 0,
   "kadencja_active": "2024-2029",
   "kadencje": {
@@ -37,7 +37,7 @@
   "has_voting_data": false,
   "voting_mode": "unknown",
   "scrape_disabled": true,
-  "province": "Mecklenburg-Vorpommern",
-  "population": 210000,
+  "province": "Nordrhein-Westfalen",
+  "population": 500000,
   "disabled": true
 }

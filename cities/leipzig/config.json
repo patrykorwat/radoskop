@@ -1,20 +1,20 @@
 {
   "landing_enabled": true,
-  "city_name": "Rostock",
-  "city_genitive": "Rostock",
+  "city_name": "Leipzig",
+  "city_genitive": "Leipzig",
   "country": "de",
   "country_name": "Deutschland",
   "locale": "de",
-  "site_title": "Radoskop Rostock — Wie stimmen die Ratsmitglieder?",
-  "site_url": "https://rostock.radoskop.eu",
-  "site_description": "Radoskop. Offenes Monitoring des Rates der Stadt Rostock. Abstimmungen und Aktivität der Ratsmitglieder.",
-  "site_description_short": "Offenes Monitoring des Rates der Stadt Rostock.",
-  "bip_url": "https://rostock.de/",
-  "bip_name": "rostock.de",
+  "site_title": "Radoskop Leipzig — Wie stimmen die Ratsmitglieder?",
+  "site_url": "https://leipzig.radoskop.eu",
+  "site_description": "Radoskop. Offenes Monitoring des Rates der Stadt Leipzig. Abstimmungen und Aktivität der Ratsmitglieder.",
+  "site_description_short": "Offenes Monitoring des Rates der Stadt Leipzig.",
+  "bip_url": "https://leipzig.de/",
+  "bip_name": "leipzig.de",
   "bip_kind": "oparl",
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
-  "cname": "rostock.radoskop.eu",
+  "cname": "leipzig.radoskop.eu",
   "impressum": {
     "name": "Patryk Orwat",
     "address_lines": [
@@ -24,8 +24,8 @@
     "email": "patrykorwat@gmail.com"
   },
   "samorzad_type": "miasto",
-  "rada_name": "Rat der Stadt Rostock",
-  "rada_name_genitive": "des Rates der Stadt Rostock",
+  "rada_name": "Rat der Stadt Leipzig",
+  "rada_name_genitive": "des Rates der Stadt Leipzig",
   "councilor_count": 0,
   "kadencja_active": "2024-2029",
   "kadencje": {
@@ -37,7 +37,7 @@
   "has_voting_data": false,
   "voting_mode": "unknown",
   "scrape_disabled": true,
-  "province": "Mecklenburg-Vorpommern",
-  "population": 210000,
+  "province": "Sachsen",
+  "population": 600000,
   "disabled": true
 }

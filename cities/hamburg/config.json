@@ -1,0 +1,46 @@
+{
+  "landing_enabled": true,
+  "city_name": "Hamburg",
+  "city_genitive": "Hamburgs",
+  "country": "de",
+  "country_name": "Deutschland",
+  "locale": "de",
+  "site_title": "Radoskop Hamburg — Wie stimmen die Abgeordneten?",
+  "site_url": "https://hamburg.radoskop.eu",
+  "site_description": "Radoskop. Offenes Monitoring des Hamburgische Bürgerschaft. Namentliche Abstimmungen und Aktivität der Abgeordneten.",
+  "site_description_short": "Offenes Monitoring des Hamburgische Bürgerschaft.",
+  "bip_url": "https://www.buergerschaft-hh.de/",
+  "bip_name": "landtag-hamburg.de",
+  "bip_kind": "abgeordnetenwatch_de",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "hamburg.radoskop.eu",
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "samorzad_type": "landtag",
+  "rada_name": "Hamburgische Bürgerschaft",
+  "rada_name_genitive": "der Hamburgischen Bürgerschaft",
+  "councilor_count": 123,
+  "kadencja_active": "2025-2030",
+  "kadencje": {
+    "2025-2030": {
+      "label": "22. Wahlperiode (2025–2030)",
+      "start": "2025-03-01",
+      "wp": 22
+    }
+  },
+  "has_voting_data": true,
+  "voting_mode": "named",
+  "scrape_disabled": true,
+  "scrape": {
+    "aw_parliament_period": 162,
+    "aw_polls_endpoint": "https://www.abgeordnetenwatch.de/api/v2/polls?field_legislature=162",
+    "aw_open_data_poll": "https://www.abgeordnetenwatch.de/open-data/info/parliament_period/162/poll"
+  }
+}

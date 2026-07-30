@@ -1,0 +1,46 @@
+{
+  "landing_enabled": true,
+  "city_name": "Hessen",
+  "city_genitive": "Hessens",
+  "country": "de",
+  "country_name": "Deutschland",
+  "locale": "de",
+  "site_title": "Radoskop Hessen — Wie stimmen die Abgeordneten?",
+  "site_url": "https://hessen.radoskop.eu",
+  "site_description": "Radoskop. Offenes Monitoring des Hessischer Landtag. Namentliche Abstimmungen und Aktivität der Abgeordneten.",
+  "site_description_short": "Offenes Monitoring des Hessischer Landtag.",
+  "bip_url": "https://www.landtag.hessen.de/",
+  "bip_name": "landtag-hessen.de",
+  "bip_kind": "abgeordnetenwatch_de",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "hessen.radoskop.eu",
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "samorzad_type": "landtag",
+  "rada_name": "Hessischer Landtag",
+  "rada_name_genitive": "des Hessischen Landtags",
+  "councilor_count": 137,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "21. Wahlperiode (2024–2029)",
+      "start": "2024-01-18",
+      "wp": 21
+    }
+  },
+  "has_voting_data": true,
+  "voting_mode": "named",
+  "scrape_disabled": true,
+  "scrape": {
+    "aw_parliament_period": 150,
+    "aw_polls_endpoint": "https://www.abgeordnetenwatch.de/api/v2/polls?field_legislature=150",
+    "aw_open_data_poll": "https://www.abgeordnetenwatch.de/open-data/info/parliament_period/150/poll"
+  }
+}

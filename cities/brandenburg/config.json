@@ -1,0 +1,46 @@
+{
+  "landing_enabled": true,
+  "city_name": "Brandenburg",
+  "city_genitive": "Brandenburgs",
+  "country": "de",
+  "country_name": "Deutschland",
+  "locale": "de",
+  "site_title": "Radoskop Brandenburg — Wie stimmen die Abgeordneten?",
+  "site_url": "https://brandenburg.radoskop.eu",
+  "site_description": "Radoskop. Offenes Monitoring des Landtag Brandenburg. Namentliche Abstimmungen und Aktivität der Abgeordneten.",
+  "site_description_short": "Offenes Monitoring des Landtag Brandenburg.",
+  "bip_url": "https://www.landtag.brandenburg.de/",
+  "bip_name": "landtag-brandenburg.de",
+  "bip_kind": "abgeordnetenwatch_de",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "brandenburg.radoskop.eu",
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "samorzad_type": "landtag",
+  "rada_name": "Landtag Brandenburg",
+  "rada_name_genitive": "des Landtags Brandenburg",
+  "councilor_count": 88,
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "8. Wahlperiode (2024–2029)",
+      "start": "2024-09-22",
+      "wp": 8
+    }
+  },
+  "has_voting_data": true,
+  "voting_mode": "named",
+  "scrape_disabled": true,
+  "scrape": {
+    "aw_parliament_period": 158,
+    "aw_polls_endpoint": "https://www.abgeordnetenwatch.de/api/v2/polls?field_legislature=158",
+    "aw_open_data_poll": "https://www.abgeordnetenwatch.de/open-data/info/parliament_period/158/poll"
+  }
+}
