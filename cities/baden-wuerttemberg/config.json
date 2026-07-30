@@ -39,9 +39,9 @@
   "voting_mode": "named",
   "scrape_disabled": false,
   "scrape": {
-    "aw_parliament_period": 165,
-    "aw_polls_endpoint": "https://www.abgeordnetenwatch.de/api/v2/polls?field_legislature=165",
-    "aw_open_data_poll": "https://www.abgeordnetenwatch.de/open-data/info/parliament_period/165/poll",
+    "aw_parliament_period": 126,
+    "aw_polls_endpoint": "https://www.abgeordnetenwatch.de/api/v2/polls?field_legislature=126",
+    "aw_open_data_poll": "https://www.abgeordnetenwatch.de/open-data/info/parliament_period/126/poll",
     "runner": "run.sh",
     "generate_site": true
   }
