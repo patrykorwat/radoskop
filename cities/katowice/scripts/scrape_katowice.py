@@ -276,25 +276,16 @@ def fetch_soup(http_session, url, use_cache: bool = True):
     return BeautifulSoup(resp.text, "html.parser")
 
 
-def fetch_session_list(http_session, debug=False):
-    """Fetch council session list from BIP Katowice.
+def _extract_sessions_from_soup(soup, debug=False):
+    """Extract session list from BeautifulSoup of BIP page.
 
-    BIP lists sessions as links: <a href="sesja.aspx?idt=XXX&menu=658">Sesja XXVI</a>
-    with text "z dnia YYYY-MM-DD" nearby.
-    We only take sessions from the current kadencja (2024-2029).
+    Supports multiple HTML structures:
+      1. Bootstrap accordion: <div class="col-md-2"><a href="sesja.aspx?idt=XXX">Sesja XXVI</a></div>
+         <div class="col-md-10">z dnia YYYY-MM-DD</div>
+      2. Flat list: <a href="sesja.aspx?idt=XXX">Sesja XXVI</a> z dnia YYYY-MM-DD
+      3. Table rows: <tr><td><a href="sesja.aspx?idt=XXX">Sesja XXVI</a></td><td>YYYY-MM-DD</td></tr>
     """
-    if debug:
-        print(f"[DEBUG] GET {BIP_SESSIONS} (no cache)")
-
-    try:
-        # Lista sesji ZAWSZE fresh - musimy wykrywać nowe sesje.
-        soup = fetch_soup(http_session, BIP_SESSIONS, use_cache=False)
-    except Exception as e:
-        print(f"  Blad pobierania listy sesji: {e}")
-        return []
-
     sessions = []
-    page_text = soup.get_text()
 
     for a in soup.find_all("a", href=True):
         href = a.get("href", "")
@@ -315,22 +306,49 @@ def fetch_session_list(http_session, debug=False):
         num_match = re.search(r'Sesja\s+([IVXLCDM]+)', text, re.IGNORECASE)
         number = num_match.group(1) if num_match else ""
 
-        # Find date: look for "z dnia YYYY-MM-DD" in surrounding text
+        # Find date: try multiple strategies
+        date_str = None
+
+        # Strategy 1: "z dnia YYYY-MM-DD" in parent text
         parent = a.parent
-        if not parent:
-            continue
-        parent_text = parent.get_text()
-        date_match = re.search(r'z\s+dnia\s+(\d{4}-\d{2}-\d{2})', parent_text)
-        if not date_match:
-            # Try broader context
-            grandparent = parent.parent
-            if grandparent:
-                gp_text = grandparent.get_text()
-                date_match = re.search(r'z\s+dnia\s+(\d{4}-\d{2}-\d{2})', gp_text)
-        if not date_match:
+        if parent:
+            parent_text = parent.get_text()
+            date_match = re.search(r'z\s+dnia\s+(\d{4}-\d{2}-\d{2})', parent_text)
+            if date_match:
+                date_str = date_match.group(1)
+
+        # Strategy 2: "z dnia YYYY-MM-DD" in grandparent text
+        if not date_str and parent and parent.parent:
+            gp_text = parent.parent.get_text()
+            date_match = re.search(r'z\s+dnia\s+(\d{4}-\d{2}-\d{2})', gp_text)
+            if date_match:
+                date_str = date_match.group(1)
+
+        # Strategy 3: "z dnia YYYY-MM-DD" anywhere in page near this link
+        if not date_str:
+            # Look in sibling elements
+            if parent:
+                for sibling in parent.find_next_siblings():
+                    sib_text = sibling.get_text()
+                    date_match = re.search(r'z\s+dnia\s+(\d{4}-\d{2}-\d{2})', sib_text)
+                    if date_match:
+                        date_str = date_match.group(1)
+                        break
+
+        # Strategy 4: YYYY-MM-DD date in sibling or nearby text (no "z dnia" prefix)
+        if not date_str and parent:
+            for sibling in parent.find_next_siblings():
+                sib_text = sibling.get_text()
+                date_match = re.search(r'(\d{4}-\d{2}-\d{2})', sib_text)
+                if date_match:
+                    date_str = date_match.group(1)
+                    break
+
+        if not date_str:
+            if debug:
+                print(f"    [DEBUG] Brak daty dla {text} (href={href})")
             continue
 
-        date_str = date_match.group(1)
         session_url = href
         if not session_url.startswith("http"):
             session_url = f"{BIP_BASE}/RadaMiasta/Sesje/{session_url}"
@@ -343,10 +361,71 @@ def fetch_session_list(http_session, debug=False):
             "number": number,
         })
 
+    return sessions
+
+
+def fetch_session_list(http_session, debug=False):
+    """Fetch council session list from BIP Katowice.
+
+    BIP lists sessions as links: <a href="sesja.aspx?idt=XXX&menu=658">Sesja XXVI</a>
+    with text "z dnia YYYY-MM-DD" nearby.
+    We only take sessions from the current kadencja (2024-2029).
+
+    Falls back to alternative URLs if the primary one fails.
+    """
+    # Lista URL-i do wyprobowania (pierwszy to oryginalny BIP_SESSIONS)
+    urls_to_try = [
+        BIP_SESSIONS,
+        f"{BIP_BASE}/RadaMiasta/Sesje/default.aspx",
+        f"{BIP_BASE}/RadaMiasta/Sesje/",
+    ]
+
+    all_sessions = []
+    last_error = None
+
+    for url_idx, url in enumerate(urls_to_try):
+        if debug:
+            print(f"[DEBUG] Proba {url_idx + 1}: GET {url} (no cache)")
+
+        try:
+            soup = fetch_soup(http_session, url, use_cache=False)
+        except Exception as e:
+            last_error = str(e)
+            if debug:
+                print(f"  [DEBUG] Blad: {e}")
+            continue
+
+        sessions = _extract_sessions_from_soup(soup, debug=debug)
+
+        if sessions:
+            all_sessions = sessions
+            if debug:
+                print(f"[DEBUG] URL {url}: znaleziono {len(sessions)} sesji")
+            break
+        elif debug:
+            print(f"[DEBUG] URL {url}: 0 sesji, probuje nastepny URL")
+
+    if not all_sessions and last_error:
+        print(f"  Blad pobierania listy sesji: {last_error}")
+        if debug:
+            # Print page snippet for diagnosis
+            try:
+                soup = fetch_soup(http_session, BIP_SESSIONS, use_cache=False)
+                print(f"[DEBUG] Strona ma {len(soup.get_text())} znakow")
+                # Find any links that might be session-related
+                for a in soup.find_all("a", href=True):
+                    href = a.get("href", "")
+                    text = a.get_text(strip=True)
+                    if "sesja" in href.lower() or "sesja" in text.lower() or "sesji" in text.lower():
+                        print(f"  [DEBUG] Link: text='{text[:60]}' href='{href[:80]}'")
+            except Exception:
+                pass
+        return []
+
     # Deduplicate by idt
     seen = set()
     unique = []
-    for s in sessions:
+    for s in all_sessions:
         if s["idt"] not in seen:
             seen.add(s["idt"])
             unique.append(s)
@@ -1114,8 +1193,30 @@ def scrape(output_path, profiles_path, debug=False, max_sessions=0, pdf_dir=None
     session_list = fetch_session_list(http_session, debug=debug)
 
     if not session_list:
-        print("BLAD: Nie znaleziono sesji")
-        sys.exit(1)
+        # Fallback: próbuj odtworzyć listę sesji z state cache
+        if state and len(state) > 0:
+            print("  BLAD: Nie znaleziono sesji na BIP — próbuje odtworzyc z state cache...")
+            session_list = []
+            for idt, cached in sorted(state.items()):
+                if not isinstance(cached, dict):
+                    continue
+                date = cached.get("date", "")
+                number = cached.get("number", "")
+                title = cached.get("title", f"Sesja {number} ({date})")
+                url = cached.get("url", "")
+                if date and idt:
+                    session_list.append({
+                        "date": date,
+                        "url": url,
+                        "idt": idt,
+                        "title": title,
+                        "number": number,
+                    })
+            session_list.sort(key=lambda x: x["date"])
+            print(f"  Odtworzono {len(session_list)} sesji z state cache")
+        else:
+            print("BLAD: Nie znaleziono sesji")
+            sys.exit(1)
 
     print(f"  Znaleziono: {len(session_list)} sesji")
 
