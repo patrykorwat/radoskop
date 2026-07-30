@@ -36,11 +36,13 @@
   },
   "has_voting_data": true,
   "voting_mode": "unknown",
-  "scrape_disabled": true,
+  "scrape_disabled": false,
   "province": "Sachsen-Anhalt",
   "population": 230000,
   "scrape": {
     "sessionnet_base_url": "https://ratsinfo.magdeburg.de",
-    "sessionnet_type": "SessionNet"
+    "sessionnet_type": "SessionNet",
+    "runner": "run.sh",
+    "generate_site": true
   }
 }

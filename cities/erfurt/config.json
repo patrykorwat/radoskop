@@ -36,11 +36,13 @@
   },
   "has_voting_data": true,
   "voting_mode": "unknown",
-  "scrape_disabled": true,
+  "scrape_disabled": false,
   "province": "Thüringen",
   "population": 214000,
   "scrape": {
     "sessionnet_base_url": "https://buergerinfo.erfurt.de",
-    "sessionnet_type": "SessionNet"
+    "sessionnet_type": "SessionNet",
+    "runner": "run.sh",
+    "generate_site": true
   }
 }
