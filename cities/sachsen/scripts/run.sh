@@ -11,7 +11,7 @@ cd "$CITY_DIR"
 echo "[$(basename $CITY_DIR)] scrape_aw_landtag.py"
 python3 "$PREMIUM_DIR/scripts/scrape_aw_landtag.py" --city-dir "$CITY_DIR"
 
-echo "[$(basename $CITY_DIR] generate_site.py"
+echo "[$(basename $CITY_DIR) generate_site.py"
 python3 "$PREMIUM_DIR/../radoskop/scripts/generate_site.py" \
   --config "$CITY_DIR/config.json" \
   --output "$CITY_DIR/docs/"
