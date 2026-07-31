@@ -31,8 +31,15 @@
   "kadencje": {
     "2022-2027": {
       "label": "17. Wahlperiode (2022–2027)",
-      "start": "2022-04-25",
-      "wp": 17
+      "start": "2022-04-01",
+      "wp": 17,
+      "aw_parliament_period": 137
+    },
+    "2017-2022": {
+      "label": "16. Wahlperiode (2017–2022)",
+      "start": "2017-04-01",
+      "wp": 16,
+      "aw_parliament_period": 113
     }
   },
   "has_voting_data": true,

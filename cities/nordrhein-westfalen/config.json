@@ -32,7 +32,14 @@
     "2022-2027": {
       "label": "18. Wahlperiode (2022–2027)",
       "start": "2022-06-01",
-      "wp": 18
+      "wp": 18,
+      "aw_parliament_period": 139
+    },
+    "2017-2022": {
+      "label": "17. Wahlperiode (2017–2022)",
+      "start": "2017-06-01",
+      "wp": 17,
+      "aw_parliament_period": 109
     }
   },
   "has_voting_data": true,

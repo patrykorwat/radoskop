@@ -30,9 +30,16 @@
   "kadencja_active": "2023-2028",
   "kadencje": {
     "2023-2028": {
-      "label": "21. Wahlperiode (2023–2027)",
+      "label": "21. Wahlperiode (2023–2028)",
       "start": "2023-06-01",
-      "wp": 21
+      "wp": 21,
+      "aw_parliament_period": 146
+    },
+    "2019-2023": {
+      "label": "20. Wahlperiode (2019–2023)",
+      "start": "2019-06-01",
+      "wp": 20,
+      "aw_parliament_period": 118
     }
   },
   "has_voting_data": true,

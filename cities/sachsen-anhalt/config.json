@@ -31,8 +31,15 @@
   "kadencje": {
     "2021-2026": {
       "label": "8. Wahlperiode (2021–2026)",
-      "start": "2021-07-01",
-      "wp": 8
+      "start": "2021-06-01",
+      "wp": 8,
+      "aw_parliament_period": 131
+    },
+    "2016-2021": {
+      "label": "7. Wahlperiode (2016–2021)",
+      "start": "2016-06-01",
+      "wp": 7,
+      "aw_parliament_period": 114
     }
   },
   "has_voting_data": true,

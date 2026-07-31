@@ -31,8 +31,15 @@
   "kadencje": {
     "2024-2029": {
       "label": "8. Wahlperiode (2024–2029)",
-      "start": "2024-09-22",
-      "wp": 8
+      "start": "2024-09-01",
+      "wp": 8,
+      "aw_parliament_period": 158
+    },
+    "2019-2024": {
+      "label": "7. Wahlperiode (2019–2024)",
+      "start": "2019-09-01",
+      "wp": 7,
+      "aw_parliament_period": 120
     }
   },
   "has_voting_data": true,

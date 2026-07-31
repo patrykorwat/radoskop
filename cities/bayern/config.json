@@ -31,8 +31,15 @@
   "kadencje": {
     "2023-2028": {
       "label": "19. Wahlperiode (2023–2028)",
-      "start": "2023-10-08",
-      "wp": 19
+      "start": "2023-10-01",
+      "wp": 19,
+      "aw_parliament_period": 149
+    },
+    "2018-2023": {
+      "label": "18. Wahlperiode (2018–2023)",
+      "start": "2018-10-01",
+      "wp": 18,
+      "aw_parliament_period": 115
     }
   },
   "has_voting_data": true,
