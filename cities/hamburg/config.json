@@ -32,7 +32,14 @@
     "2025-2030": {
       "label": "22. Wahlperiode (2025–2030)",
       "start": "2025-03-01",
-      "wp": 22
+      "wp": 22,
+      "aw_parliament_period": 162
+    },
+    "2020-2025": {
+      "label": "21. Wahlperiode (2020–2025)",
+      "start": "2020-03-01",
+      "wp": 21,
+      "aw_parliament_period": 122
     }
   },
   "has_voting_data": true,
