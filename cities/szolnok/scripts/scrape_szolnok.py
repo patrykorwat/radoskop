@@ -287,23 +287,28 @@ def http_get_text(url: str, cache_dir: Path | None) -> str:
     raise RuntimeError(f"GET failed after {RETRY_COUNT} attempts: {last_err}")
 
 
-def get_archive_years(cache: Path | None) -> list[int]:
-    """Pobiera listę lat dostępnych w archiwum."""
+def get_archive_years(cache: Path | None) -> list[tuple[int, str]]:
+    """Pobiera listę lat i URL-i dostępnych w archiwum.
+
+    Zwraca listę (year, url) posortowaną malejąco po roku.
+    """
     url = f"{ARCHIVE_BASE}/kozgyulesi-jegyzokonyvek-m306.html"
     html = http_get_text(url, cache)
-    years: list[int] = []
-    for m in re.finditer(r"Közgyűlési jegyzőkönyvek (\d{4})", html):
-        year = int(m.group(1))
-        if year not in years:
-            years.append(year)
-    return sorted(years, reverse=True)
+    years: list[tuple[int, str]] = []
+    for m in re.finditer(
+        r'href="(kozgyulesi-jegyzokonyvek-(\d{4})-n\d+\.html)"',
+        html,
+    ):
+        year_url = m.group(1)
+        year = int(m.group(2))
+        if year not in [y for y, _ in years]:
+            years.append((year, f"{ARCHIVE_BASE}/{year_url}"))
+    return sorted(years, key=lambda x: x[0], reverse=True)
 
 
-def get_archive_pdfs(year: int, cache: Path | None) -> list[dict[str, str]]:
+def get_archive_pdfs(year_url: str, cache: Path | None) -> list[dict[str, str]]:
     """Pobiera listę PDF-ów dla danego roku z archiwum."""
-    # URL pattern: kozgyulesi-jegyzokonyvek-{year}-n{id}.html
-    url = f"{ARCHIVE_BASE}/kozgyulesi-jegyzokonyvek-{year}-n12698.html"
-    html = http_get_text(url, cache)
+    html = http_get_text(year_url, cache)
 
     pdfs: list[dict[str, str]] = []
     for m in re.finditer(
@@ -311,8 +316,7 @@ def get_archive_pdfs(year: int, cache: Path | None) -> list[dict[str, str]]:
         html,
     ):
         pdf_url = urljoin("https://www.szolnok.hu", m.group(1))
-        # Extract date from filename or surrounding text
-        pdfs.append({"url": pdf_url, "year": str(year)})
+        pdfs.append({"url": pdf_url})
     return pdfs
 
 
@@ -565,13 +569,13 @@ def main() -> int:
 
     # Pobierz listę lat z archiwum
     print(f"[szolnok] GET lista lat z archiwum", file=sys.stderr)
-    years = get_archive_years(cache)
-    print(f"[szolnok] lata: {years}", file=sys.stderr)
+    year_urls = get_archive_years(cache)
+    print(f"[szolnok] lata: {[y for y, _ in year_urls]}", file=sys.stderr)
 
     # Pobierz listę PDF-ów
     all_pdfs: list[dict[str, str]] = []
-    for year in years:
-        pdfs = get_archive_pdfs(year, cache)
+    for year, year_url in year_urls:
+        pdfs = get_archive_pdfs(year_url, cache)
         all_pdfs.extend(pdfs)
         print(f"[szolnok] {year}: {len(pdfs)} PDF-ów", file=sys.stderr)
 
