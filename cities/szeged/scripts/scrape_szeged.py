@@ -344,29 +344,35 @@ def get_sessions_from_api(api_base: str, year: int, cache: Path | None) -> list[
 
     sessions: dict[str, dict[str, Any]] = {}
     for item in resp.get("list", []):
-        files = item.get("files", {})
-        if not files:
-            continue
-        label = item.get("label", "")
-        # Extract date from label like "Közgyűlés / 2026-06-26"
-        date_m = re.search(r"(\d{4})-(\d{2})-(\d{2})", label)
-        if not date_m:
-            continue
-        date = f"{date_m.group(1)}-{date_m.group(2)}-{date_m.group(3)}"
+        # Items with type "multiple-dropdown-items" have a nested "list"
+        sub_items = item.get("list", [])
+        if not sub_items:
+            sub_items = [item]
 
-        # Parse file info: filename.pdf¤uuid¤type
-        nyilt = files.get("nyilt", "")
-        parts = nyilt.split("¤")
-        if len(parts) >= 2:
-            guid = parts[1]
-            ules_id = item.get("name", "")
-            if date not in sessions:
-                sessions[date] = {
-                    "date": date,
-                    "title": label,
-                    "guid": guid,
-                    "ules_id": ules_id,
-                }
+        for sub in sub_items:
+            files = sub.get("files", {})
+            if not files:
+                continue
+            label = sub.get("label", item.get("label", ""))
+            # Extract date from label like "Közgyűlés / 2026-06-26"
+            date_m = re.search(r"(\d{4})-(\d{2})-(\d{2})", label)
+            if not date_m:
+                continue
+            date = f"{date_m.group(1)}-{date_m.group(2)}-{date_m.group(3)}"
+
+            # Parse file info: filename.pdf¤uuid¤type
+            nyilt = files.get("nyilt", "")
+            parts = nyilt.split("¤")
+            if len(parts) >= 2:
+                guid = parts[1]
+                ules_id = sub.get("name", "")
+                if date not in sessions:
+                    sessions[date] = {
+                        "date": date,
+                        "title": label,
+                        "guid": guid,
+                        "ules_id": ules_id,
+                    }
     return sorted(sessions.values(), key=lambda s: s["date"])
 
 
