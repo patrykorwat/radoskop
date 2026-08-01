@@ -619,7 +619,10 @@ def main() -> int:
     title_filter = config.get("session_title_filter", "Közgyűlés")
 
     print(f"[budapest] GET lista sesji", file=sys.stderr)
-    list_html = http_get_text(list_url, html_cache)
+    # Lista sesji NIE jest cachowana — zmienia się częściej niż PDFy.
+    # Cache HTML-a spowodowałby, że nowe sesje byłyby niewidoczne aż do
+    # ręcznego czyszczenia .cache/html/.
+    list_html = http_get_text(list_url, None)
     sessions = parse_session_list(list_html, base, title_filter)
     print(f"[budapest] {len(sessions)} sesji z jegyzőkönyv", file=sys.stderr)
 

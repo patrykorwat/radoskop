@@ -459,7 +459,7 @@ def scrape(
     for pg in range(0, 20):  # bezpieczny limit, normalnie max 2-3 strony
         sep = "&" if "?" in landing_url else "?"
         page_url = f"{landing_url}{sep}page={pg}"
-        landing_html = cached_fetch(page_url, cache_dir, f"landing_p{pg}")
+        landing_html = fetch_url(page_url)
         page_sessions = parse_session_list(landing_html, base_url)
         new_in_page = 0
         for s in page_sessions:
