@@ -1,0 +1,117 @@
+{
+  "landing_enabled": true,
+  "city_name": "De Fryske Marren",
+  "city_genitive": "De Fryske Marren",
+  "country": "nl",
+  "country_name": "Nederland",
+  "locale": "nl",
+  "site_title": "Radoskop De Fryske Marren. Raadsinformatie en stemgedrag.",
+  "site_url": "https://de-fryske-marren.radoskop.eu",
+  "site_description": "Radoskop. Open inzicht in de gemeenteraad van De Fryske Marren, Fryslân. Stemmingen en activiteit van raadsleden.",
+  "site_description_short": "Open inzicht in de gemeenteraad van De Fryske Marren.",
+  "bip_url": "https://raadkijker.nl/gemeente/1940",
+  "bip_name": "RaadKijker",
+  "bip_kind": "raadkijker_nl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "de-fryske-marren.radoskop.eu",
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "samorzad_type": "miasto",
+  "rada_name": "Gemeenteraad De Fryske Marren",
+  "rada_name_genitive": "Gemeenteraad De Fryske Marren",
+  "kadencja_active": "2026-2027",
+  "kadencja_terms": [
+    {
+      "id": "2026-2027",
+      "label": "2026–2027",
+      "start": "2026-01-01",
+      "end": "2027-12-31"
+    }
+  ],
+  "voting_display": "faction",
+  "has_named_votes": false,
+  "councilor_count": 30,
+  "province": "Fryslân",
+  "scrape_disabled": true,
+  "clubs": {
+    "BBB": {
+      "name": "BBB",
+      "color": "hsl(213, 65%, 55%)",
+      "bg": "hsla(213, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(213, 50%, 35%)"
+    },
+    "Burgerpartij DFM": {
+      "name": "Burgerpartij DFM",
+      "color": "hsl(126, 65%, 55%)",
+      "bg": "hsla(126, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(126, 50%, 35%)"
+    },
+    "CDA": {
+      "name": "CDA",
+      "color": "hsl(15, 65%, 55%)",
+      "bg": "hsla(15, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(15, 50%, 35%)"
+    },
+    "ChristenUnie": {
+      "name": "ChristenUnie",
+      "color": "hsl(252, 65%, 55%)",
+      "bg": "hsla(252, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(252, 50%, 35%)"
+    },
+    "D66": {
+      "name": "D66",
+      "color": "hsl(205, 65%, 55%)",
+      "bg": "hsla(205, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(205, 50%, 35%)"
+    },
+    "FNP": {
+      "name": "FNP",
+      "color": "hsl(262, 65%, 55%)",
+      "bg": "hsla(262, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(262, 50%, 35%)"
+    },
+    "Forum voor Democratie": {
+      "name": "Forum voor Democratie",
+      "color": "hsl(86, 65%, 55%)",
+      "bg": "hsla(86, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(86, 50%, 35%)"
+    },
+    "GroenLinks-PvdA": {
+      "name": "GroenLinks-PvdA",
+      "color": "hsl(27, 65%, 55%)",
+      "bg": "hsla(27, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(27, 50%, 35%)"
+    },
+    "Kleurrijk Fryske Marren": {
+      "name": "Kleurrijk Fryske Marren",
+      "color": "hsl(119, 65%, 55%)",
+      "bg": "hsla(119, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(119, 50%, 35%)"
+    },
+    "NCPN": {
+      "name": "NCPN",
+      "color": "hsl(219, 65%, 55%)",
+      "bg": "hsla(219, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(219, 50%, 35%)"
+    },
+    "PRO": {
+      "name": "PRO",
+      "color": "hsl(200, 65%, 55%)",
+      "bg": "hsla(200, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(200, 50%, 35%)"
+    },
+    "VVD": {
+      "name": "VVD",
+      "color": "hsl(101, 65%, 55%)",
+      "bg": "hsla(101, 65%, 55%, 0.12)",
+      "avatar_bg": "hsl(101, 50%, 35%)"
+    }
+  }
+}
