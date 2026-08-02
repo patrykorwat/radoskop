@@ -1343,7 +1343,7 @@ def _search_and_update_ktomaco(
     if not new_profiles:
         return
     print(f"  [ktomaco] Szukam {len(new_profiles)} radnych na ktomaco.pl...")
-    _pattern = _re.compile(r'/osoba/([a-z0-9-]+--[a-f0-9-]+)/')
+    _pattern = _re.compile(r'/osoba/([a-z0-9-]+--[a-f0-9-]+)')
     _found = 0
     for p in new_profiles:
         slug = p.get("slug", "")
