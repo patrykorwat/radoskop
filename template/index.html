@@ -1601,6 +1601,17 @@ function showProfile(name, initialTab) {
       _profileCards.push(`<div class="section" style="margin-bottom:0;padding:12px 14px">${_mandateBody}</div>`);
     }
 
+    // ktomaco.pl — link do oświadczeń majątkowych (jeśli skonfigurowane)
+    const _ktomacoSlug = {{KTOMCO_MAP}}[profile.slug];
+    if ({{KTOMCO_URL}} && _ktomacoSlug) {
+      _profileCards.push(`<div class="section" style="margin-bottom:0;padding:12px 14px">
+        <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;font-weight:500">Oświadczenia majątkowe</div>
+        <a href="{{KTOMCO_URL}}${encodeURIComponent(_ktomacoSlug)}/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--accent);text-decoration:none;font-weight:500">
+          <span style="font-size:1rem">💰</span> Sprawdź na ktomaco.pl
+        </a>
+      </div>`);
+    }
+
     // alertBtnHtml zadeklarowane w outer scope (let) bo używamy go zarówno
     // w środku if(hasVotes) jak i w template literal niżej (przy renderowaniu
     // inline button obok h2 z nazwiskiem). const w bloku rzucał ReferenceError.

@@ -575,6 +575,17 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
         profiles = _pdata.get("profiles", [])
         profiles_scraped_at = _pdata.get("scraped_at")
 
+    # ktomaco.pl mapping: slug radnego → slug ktomaco
+    ktomaco_url = config.get("ktomaco_url", "") or ""
+    ktomaco_map: dict[str, str] = {}
+    if ktomaco_url:
+        ktomaco_path = docs / "ktomaco.json"
+        if ktomaco_path.exists():
+            try:
+                ktomaco_map = json.loads(ktomaco_path.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                pass
+
     # Enrich profiles with cross-city percentile data (if available).
     city_slug = city_dir.name
     _enrich_profiles_with_percentiles(profiles, city_slug, city_dir)
@@ -824,6 +835,13 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                 body_parts.append(f"<p>{vline}</p>")
             if komisje:
                 body_parts.append(f"<p>Komisje: {esc(', '.join(komisje))}.</p>")
+            # ktomaco.pl — link do oświadczeń majątkowych (PL)
+            _kt_slug = ktomaco_map.get(slug)
+            if ktomaco_url and _kt_slug:
+                body_parts.append(
+                    f'<p><a href="{ktomaco_url}{esc(_kt_slug)}/" target="_blank" rel="noopener">'
+                    f'Oświadczenia majątkowe: {esc(name)}</a> — dane z ktomaco.pl.</p>'
+                )
             body_parts.append(
                 f"<p>Zobacz <a href=\"{canonical}?tab=activity\">głosowania i interpelacje: {esc(name)}</a>, "
                 f"<a href=\"{site_url}/{SLUG['profile']}/\">wszystkich radnych {esc(city_gen)}</a> oraz "
@@ -858,6 +876,13 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                 body_parts.append(f"<p>{vline}</p>")
             if komisje:
                 body_parts.append(f"<p>Komisje: {esc(', '.join(komisje))}.</p>")
+            # ktomaco.pl — link do oświadczeń majątkowych (non-PL)
+            _kt_slug = ktomaco_map.get(slug)
+            if ktomaco_url and _kt_slug:
+                body_parts.append(
+                    f'<p><a href="{ktomaco_url}{esc(_kt_slug)}/" target="_blank" rel="noopener">'
+                    f'Financial declarations: {esc(name)}</a> — ktomaco.pl.</p>'
+                )
             body_parts.append(
                 f"<p><a href=\"{canonical}?tab=activity\">{esc(name)}: Głosowania · Interpelacje</a> · "
                 f"<a href=\"{site_url}/{SLUG['profile']}/\">Profile radnych</a> · "

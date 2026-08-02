@@ -1064,6 +1064,11 @@ def main():
     _lcat = landing_catalog((config.get("locale") or "pl").lower())
     _seo_name = config.get("city_genitive") or config.get("city_name") \
         or config.get("voivodeship_genitive") or config.get("voivodeship_name", "")
+    # ktomaco.pl — auto-setup dla polskich miast
+    _country = (config.get("country") or "pl").lower()
+    _ktomaco_url = config.get("ktomaco_url", "") or ""
+    if not _ktomaco_url and _country == "pl":
+        _ktomaco_url = "https://ktomaco.pl/osoba/"
     replacements = {
         "{{CAT_RULES_JS}}": _cat_rules_js,
         "{{VOTE_CATS_LABELS_JS}}": _vote_cats_labels_js,
@@ -1113,7 +1118,33 @@ def main():
         # angielską wersję stron apexu (?lang=en, jak terms/privacy).
         # JS-owe linki robią to w runtime przez salesLangQs() z <html lang>.
         "{{SALES_QS}}": "" if config.get("locale", "pl").lower() == "pl" else "?lang=en",
+        # ktomaco.pl — link do oświadczeń majątkowych na profilu radnego.
+        # Dla polskich miast (country="pl" lub brak) ustawiamy automatycznie.
+        "{{KTOMCO_URL}}": _ktomaco_url,
     }
+
+    # ktomaco.json — mapa slug radnego → slug ktomaco
+    # Automatycznie generowana dla polskich miast przy pierwszym uruchomieniu.
+    ktomaco_path = Path(args.output) / "ktomaco.json"
+    ktomaco_map: dict[str, str] = {}
+    if _ktomaco_url:
+        if ktomaco_path.exists():
+            try:
+                ktomaco_map = json.loads(ktomaco_path.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                pass
+        # Auto-generuj mapę jeśli brak — szukaj radnych, których jeszcze nie ma
+        profiles_path = Path(args.output) / "profiles.json"
+        if profiles_path.exists() and _country == "pl":
+            try:
+                _pdata = json.loads(profiles_path.read_text(encoding="utf-8"))
+                _profiles = _pdata.get("profiles", [])
+                _new = [p for p in _profiles if p.get("slug") and p["slug"] not in ktomaco_map]
+                if _new:
+                    _search_and_update_ktomaco(_new, ktomaco_map, ktomaco_path)
+            except (json.JSONDecodeError, OSError):
+                pass
+    replacements["{{KTOMCO_MAP}}"] = json.dumps(ktomaco_map, ensure_ascii=False)
 
     locale = config.get("locale", "pl")
 
@@ -1290,6 +1321,70 @@ def main():
     print(f"  robots.txt  → {output_dir / 'robots.txt'}")
     if config.get("cname"):
         print(f"  CNAME       → {output_dir / 'CNAME'}")
+
+
+# ── ktomaco.pl auto-mapping ──────────────────────────────────────────────
+
+import re as _re
+import time as _time
+import urllib.parse as _urlparse
+import urllib.request as _urlreq
+
+_KTOMCO_SEARCH_URL = "https://ktomaco.pl/osoby?q={q}"
+_KTOMCO_DELAY = 0.5  # sekund między requestami
+
+
+def _search_and_update_ktomaco(
+    new_profiles: list[dict],
+    ktomaco_map: dict[str, str],
+    ktomaco_path: Path,
+) -> None:
+    """Search ktomaco.pl for unmapped councilors and update the mapping file."""
+    if not new_profiles:
+        return
+    print(f"  [ktomaco] Szukam {len(new_profiles)} radnych na ktomaco.pl...")
+    _pattern = _re.compile(r'/osoba/([a-z0-9-]+--[a-f0-9-]+)/')
+    _found = 0
+    for p in new_profiles:
+        slug = p.get("slug", "")
+        name = p.get("name", "")
+        if not slug or not name:
+            continue
+        q = _urlparse.quote(name)
+        url = _KTOMCO_SEARCH_URL.format(q=q)
+        try:
+            req = _urlreq.Request(
+                url,
+                headers={"User-Agent": "Radoskop/1.0 (ktomaco mapping; info@radoskop.eu)"},
+            )
+            with _urlreq.urlopen(req, timeout=10) as resp:
+                html = resp.read().decode("utf-8", errors="replace")
+        except Exception:
+            continue
+        matches = _pattern.findall(html)
+        if matches:
+            # Wybierz najlepsze dopasowanie po tokenach nazwiska
+            _name_norm = name.lower().replace(" ", "-").translate(
+                str.maketrans("ąćęłńóśźż", "acelnoszz")
+            )
+            _name_tokens = set(_name_norm.split("-"))
+            _best, _best_score = None, 0
+            for m in matches:
+                _slug_name = m.split("--")[0]
+                _score = len(_name_tokens & set(_slug_name.split("-")))
+                if _score > _best_score:
+                    _best_score = _score
+                    _best = m
+            if _best:
+                ktomaco_map[slug] = _best
+                _found += 1
+        _time.sleep(_KTOMCO_DELAY)
+    # Zapisz mapę
+    ktomaco_path.write_text(
+        json.dumps(ktomaco_map, indent=2, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    print(f"  [ktomaco] Znaleziono {_found}, zapisano do {ktomaco_path}")
 
 
 if __name__ == "__main__":
