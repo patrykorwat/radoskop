@@ -22,6 +22,10 @@ import re
 import unicodedata
 
 # Litery bez dekompozycji kanonicznej w Unicode — jawna transliteracja.
+# Ukraińska cyrylica (KMU 2010): А→A, Б→B, В→V, Г→H, Ґ→G, Д→D, Е→E,
+# Є→Ye, Ж→Zh, З→Z, И→Y, І→I, Ї→Yi, Й→Y, К→K, Л→L, М→M, Н→N, О→O,
+# П→P, Р→R, С→S, Т→T, У→U, Ф→F, Х→Kh, Ц→Ts, Ч→Ch, Ш→Sh, Щ→Shch,
+# Ь→'', Ю→Yu, Я→Ya. Rosyjska: Ё→Yo, Ъ→'', Ы→Y, Э→E.
 _OVERRIDES = str.maketrans({
     "ł": "l", "Ł": "L",
     "ß": "ss",
@@ -31,6 +35,45 @@ _OVERRIDES = str.maketrans({
     "œ": "oe", "Œ": "OE",
     "þ": "th", "Þ": "Th",
     "ð": "d", "Ð": "D",
+    # Ukraińska cyrylica
+    "А": "A", "а": "a",
+    "Б": "B", "б": "b",
+    "В": "V", "в": "v",
+    "Г": "H", "г": "h",
+    "Ґ": "G", "ґ": "g",
+    "Д": "D", "д": "d",
+    "Е": "E", "е": "e",
+    "Є": "Ye", "є": "ye",
+    "Ж": "Zh", "ж": "zh",
+    "З": "Z", "з": "z",
+    "И": "Y", "и": "y",
+    "І": "I", "і": "i",
+    "Ї": "Yi", "ї": "yi",
+    "Й": "Y", "й": "y",
+    "К": "K", "к": "k",
+    "Л": "L", "л": "l",
+    "М": "M", "м": "m",
+    "Н": "N", "н": "n",
+    "О": "O", "о": "o",
+    "П": "P", "п": "p",
+    "Р": "R", "р": "r",
+    "С": "S", "с": "s",
+    "Т": "T", "т": "t",
+    "У": "U", "у": "u",
+    "Ф": "F", "ф": "f",
+    "Х": "Kh", "х": "kh",
+    "Ц": "Ts", "ц": "ts",
+    "Ч": "Ch", "ч": "ch",
+    "Ш": "Sh", "ш": "sh",
+    "Щ": "Shch", "щ": "shch",
+    "Ь": "",   "ь": "",
+    "Ю": "Yu", "ю": "yu",
+    "Я": "Ya", "я": "ya",
+    # Rosyjska cyrylica (dodatkowe litery)
+    "Ё": "Yo", "ё": "yo",
+    "Ъ": "",   "ъ": "",
+    "Ы": "Y",  "ы": "y",
+    "Э": "E",  "э": "e",
 })
 
 
@@ -40,7 +83,9 @@ def make_slug(name: str) -> str:
     s = unicodedata.normalize("NFKD", s)
     s = "".join(ch for ch in s if not unicodedata.combining(ch))
     # Po overrides + dekompozycji zostają już tylko znaki spoza znanych
-    # alfabetów (cyrylica, CJK) — wycinamy jak historyczne implementacje.
+    # alfabetów (CJK, arabski, emoji) — wycinamy jak historyczne implementacje.
+    # Cyrylica jest transliterowana przez _OVERRIDES (ukraińska KMU 2010,
+    # rosyjska), więc trafia do ASCII przed tym krokiem.
     s = s.encode("ascii", "ignore").decode("ascii").lower()
     s = re.sub(r"[^a-z0-9\s\-]", "", s)
     # Kolaps separatorów łapie też " - " w nazwiskach

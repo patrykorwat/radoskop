@@ -325,8 +325,13 @@ def build_metrics(assembly_dir: Path) -> dict[str, Path]:
         # has_voting_data, has_activity_data). Bez nich profile renderują
         # się pusto, bo template robi defensywne checks na kd.X.
         clubs_meta = config.get("clubs", {}) or {}
+        seen_slugs: set[str] = set()
         for c in councilors:
             slug = c["slug"]
+            if slug in seen_slugs:
+                print(f"  UWAGA: duplikat sluga '{slug}' dla '{c['name']}' — pomijam", file=sys.stderr)
+                continue
+            seen_slugs.add(slug)
             entry = profiles_by_slug.setdefault(slug, {
                 "name": c["name"], "slug": slug, "kadencje": {},
             })

@@ -975,7 +975,7 @@ function _rkIdentifiable() {
   return typeof umami !== 'undefined' && typeof umami.identify === 'function';
 }
 function _rkIdentify(id) {
-  return; // SEO
+  return;
   if (!id) return;
   _rkIdPending = id;
   if (_rkIdentifiable()) {
@@ -1603,7 +1603,7 @@ function showProfile(name, initialTab) {
 
     // ktomaco.pl — link do oświadczeń majątkowych (jeśli skonfigurowane)
     const _ktomacoSlug = {{KTOMCO_MAP}}[profile.slug];
-    if ({{KTOMCO_URL}} && _ktomacoSlug) {
+    if ("{{KTOMCO_URL}}" && _ktomacoSlug) {
       _profileCards.push(`<div class="section" style="margin-bottom:0;padding:12px 14px">
         <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;font-weight:500">Oświadczenia majątkowe</div>
         <a href="{{KTOMCO_URL}}${encodeURIComponent(_ktomacoSlug)}/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--accent);text-decoration:none;font-weight:500">
