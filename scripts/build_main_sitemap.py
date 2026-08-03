@@ -290,8 +290,9 @@ def write_flat_urllist(
             seen.add(u["loc"])
             deduped.append(u)
 
-    # Generuj XML z paginacją (Google limit: 50 000 URLi na plik)
-    MAX_URLS = 50000
+    # Generuj XML z paginacją (Google limit: 50 000 URLi na plik,
+    # ale dzielimy na paczki po 10 000 dla wygody GSC i manageable plików)
+    MAX_URLS = 10000
     parts: list[list[dict]] = []
     batch: list[dict] = []
     for e in deduped:
@@ -316,7 +317,7 @@ def write_flat_urllist(
             part_path = out_path.with_name(f"{stem}{i}.xml")
             _write_urlset(part_path, batch)
             index_parts.append({
-                "loc": f"https://radoskop.eu/{part_path.name}",
+                "loc": f"{APEX_BASE[domain]}/{part_path.name}",
                 "lastmod": today,
             })
         _write_sitemapindex(out_path, index_parts)
