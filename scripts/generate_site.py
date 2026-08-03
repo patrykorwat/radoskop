@@ -1141,7 +1141,7 @@ def main():
                 _profiles = _pdata.get("profiles", [])
                 _new = [p for p in _profiles if p.get("slug") and p["slug"] not in ktomaco_map]
                 if _new:
-                    _search_and_update_ktomaco(_new, ktomaco_map, ktomaco_path)
+                    _search_and_update_ktomaco(_new, ktomaco_map, ktomaco_path, config.get("city_name", ""))
             except (json.JSONDecodeError, OSError):
                 pass
     replacements["{{KTOMCO_MAP}}"] = json.dumps(ktomaco_map, ensure_ascii=False)
@@ -1338,12 +1338,16 @@ def _search_and_update_ktomaco(
     new_profiles: list[dict],
     ktomaco_map: dict[str, str],
     ktomaco_path: Path,
+    city_name: str = "",
 ) -> None:
-    """Search ktomaco.pl for unmapped councilors and update the mapping file."""
+    """Search ktomaco.pl for unmapped councilors and update the mapping file.
+    Verifies that the found person's city matches the Radoskop city.
+    """
     if not new_profiles:
         return
     print(f"  [ktomaco] Szukam {len(new_profiles)} radnych na ktomaco.pl...")
     _pattern = _re.compile(r'/osoba/([a-z0-9-]+--[a-f0-9-]+)')
+    _city_pattern = _re.compile(r'"addressLocality":"([^"]+)"')
     _found = 0
     for p in new_profiles:
         slug = p.get("slug", "")
@@ -1368,13 +1372,37 @@ def _search_and_update_ktomaco(
                 str.maketrans("ąćęłńóśźż", "acelnoszz")
             )
             _name_tokens = set(_name_norm.split("-"))
-            _best, _best_score = None, 0
+            _candidates = []
             for m in matches:
                 _slug_name = m.split("--")[0]
                 _score = len(_name_tokens & set(_slug_name.split("-")))
-                if _score > _best_score:
-                    _best_score = _score
-                    _best = m
+                _candidates.append((_score, m))
+            # Sortuj malejąco po score
+            _candidates.sort(key=lambda x: x[0], reverse=True)
+            _best = None
+            for _score, m in _candidates:
+                # Sprawdź czy miasto się zgadza (jeśli mamy city_name)
+                if city_name:
+                    try:
+                        _prof_req = _urlreq.Request(
+                            f"https://ktomaco.pl/osoba/{m}/",
+                            headers={"User-Agent": "Radoskop/1.0 (ktomaco mapping; info@radoskop.eu)"},
+                        )
+                        with _urlreq.urlopen(_prof_req, timeout=10) as _resp:
+                            _prof_html = _resp.read().decode("utf-8", errors="replace")
+                        _city_match = _city_pattern.search(_prof_html)
+                        if _city_match:
+                            _kt_city = _city_match.group(1).strip().lower()
+                            _radoskop_city = city_name.strip().lower()
+                            # Normalizuj: usuń "miasto stołeczne" itp.
+                            _kt_city_norm = _kt_city.replace("miasto stołeczne ", "").strip()
+                            _radoskop_city_norm = _radoskop_city.replace("miasto stołeczne ", "").strip()
+                            if _kt_city_norm != _radoskop_city_norm:
+                                continue  # nie to miasto, spróbuj następnego kandydata
+                    except Exception:
+                        pass  # nie udało się zweryfikować — zaakceptuj mimo to
+                _best = m
+                break
             if _best:
                 ktomaco_map[slug] = _best
                 _found += 1
