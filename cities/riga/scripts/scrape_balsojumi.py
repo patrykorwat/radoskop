@@ -439,7 +439,11 @@ def build_kadencja(
             "_note": "agregat z PDF protokołu (skan), per-radny vote attribution niedostępne",
         })
 
-        sess = sessions_meta.setdefault(date, {
+        # Klucz: (date, meeting_id) — Rīgas dome czasem ma DWIE sesje tego
+        # samego dnia (np. 14. i 15. sēde 2026-01-14). setdefault po samej
+        # dacie nadpisywałoby metadane drugiej sesji metadanymi pierwszej.
+        _skey = (date, rv["meeting_id"])
+        sess = sessions_meta.setdefault(_skey, {
             "date": date,
             "number": meeting_number_from_title(meeting.get("title", "")),
             "title": meeting.get("title", "") or f"Rīgas domes sēde {date}",
@@ -451,10 +455,10 @@ def build_kadencja(
         sess["vote_ids"].append(vote_id)
 
     sessions: list[dict[str, Any]] = []
-    for date, sess in sessions_meta.items():
+    for _skey, sess in sessions_meta.items():
         attendees_list = sorted(sess["attendees"])
         sessions.append({
-            "date": date,
+            "date": sess["date"],
             "number": sess["number"],
             "title": sess["title"],
             "start": sess["start"],
