@@ -5998,7 +5998,19 @@ def apply_locale(html: str, locale: str) -> str:
         def _replacer(_m, t=target):
             """Escape apostrophes in replacement when inside single-quoted JS string."""
             s, e = _m.start(), _m.end()
-            if s > 0 and e < len(_m.string) and _m.string[s-1] == "'" and _m.string[e:e+1] == "'":
+            # Scan backwards from match to detect if we're inside a single-quoted
+            # JS string. The old check only caught matches directly between two
+            # quotes (e.g. 'Wróć'), but missed matches inside a larger string
+            # like '<p>Wróć na stronę główną →</p>' where surrounding chars are
+            # > and space. We limit the scan to the current line to avoid false
+            # positives from other JS strings in the full HTML. Count unescaped
+            # single quotes before the match — odd count means we're inside a
+            # single-quoted string.
+            before = _m.string[:s]
+            last_nl = before.rfind('\n')
+            line_before = before[last_nl + 1:] if last_nl >= 0 else before
+            cleaned = line_before.replace("\\'", "")
+            if cleaned.count("'") % 2 == 1:
                 return t.replace("'", "\\'")
             return t
         out = pattern.sub(_replacer, out)
