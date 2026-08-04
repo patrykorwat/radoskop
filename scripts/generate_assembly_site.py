@@ -595,7 +595,26 @@ def main() -> int:
         # Linki sprzedażowe (Pro/Cennik) — non-PL na angielską wersję
         # stron apexu (?lang=en), spójnie z generate_site.py.
         "{{SALES_QS}}": "" if cfg.get("locale", "pl").lower() == "pl" else "?lang=en",
+        # ktomaco.pl — link do oświadczeń majątkowych na profilu radnego.
+        # Dla polskich jednostek (powiaty, sejmiki) ustawiamy automatycznie.
+        "{{KTOMCO_URL}}": (
+            cfg.get("ktomaco_url")
+            or ("https://ktomaco.pl/osoba/" if not is_foreign else "")
+        ),
     }
+
+    # ktomaco.json — mapa slug radnego → slug ktomaco
+    # Automatycznie generowana dla polskich jednostek przy pierwszym uruchomieniu.
+    _ktomaco_map: dict[str, str] = {}
+    _ktomaco_url_val = replacements.get("{{KTOMCO_URL}}", "")
+    if _ktomaco_url_val:
+        _ktomaco_path = Path(args.output) / "ktomaco.json"
+        if _ktomaco_path.exists():
+            try:
+                _ktomaco_map = json.loads(_ktomaco_path.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError):
+                pass
+    replacements["{{KTOMCO_MAP}}"] = json.dumps(_ktomaco_map, ensure_ascii=False)
 
     # Lokalizacja UI dla landów spoza Polski (Landtag MV → de).
     # WAŻNE: apply_locale ZANIM podstawimy placeholdery, bo część fraz
