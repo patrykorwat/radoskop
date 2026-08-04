@@ -175,6 +175,20 @@ def _also_html(name: str, rec_krs: str, links_by_name: dict) -> str:
     return f'<div class="tn">także w organach: {lk}</div>'
 
 
+def _ktomaco_link(name: str | None, ktomaco_map: dict[str, str]) -> str:
+    """HTML dla linku do ktomaco.pl — oświadczenia majątkowe."""
+    if not name or not ktomaco_map:
+        return ""
+    name_norm = " ".join(name.strip().split()).lower()
+    kt_slug = ktomaco_map.get(name_norm)
+    if not kt_slug:
+        return ""
+    return (f' <a href="https://ktomaco.pl/osoba/{esc(kt_slug)}/" '
+            f'target="_blank" rel="noopener" '
+            f'style="color:var(--accent);font-size:11px;white-space:nowrap">'
+            f'💰 oświadczenia</a>')
+
+
 # ── HTML ────────────────────────────────────────────────────────────────
 
 # Paleta i font 1:1 z głównym serwisem (template/partials/theme_vars.css +
@@ -280,8 +294,11 @@ Skład organów to fakty z rejestru.</p>
 </body></html>"""
 
 
-def _company_body(rec: dict, links_by_name: dict | None = None) -> str:
+def _company_body(rec: dict, links_by_name: dict | None = None,
+                  ktomaco_map: dict[str, str] | None = None) -> str:
     links_by_name = links_by_name or {}
+    ktomaco_map = ktomaco_map or {}
+    KTOMCO_BASE = "https://ktomaco.pl/osoba"
     parts = [f'<div class="crumb"><a href="{HUB}/companies/">Spółki</a> ›</div>',
              f"<h1>{esc(rec['name'])}</h1>",
              f'<div class="krs">KRS {esc(rec["krs"])}</div>']
@@ -327,11 +344,12 @@ def _company_body(rec: dict, links_by_name: dict | None = None) -> str:
             # Powiązanie osobowe: ta sama osoba w organach innych spółek
             # (obecnie lub historycznie) — fakt z rejestru.
             also = _also_html(name, rec["krs"], links_by_name)
+            _kt = _ktomaco_link(name, ktomaco_map)
             od = m.get("od")
             when = ""
             if od:
                 when = "od " + _fmt(od) + (" · " + _years(od) if _years(od) else "")
-            parts.append(f'<div class="mem"><span>{who}{note}{also}</span>'
+            parts.append(f'<div class="mem"><span>{who}{note}{also}{_kt}</span>'
                          f'<span class="tn">{esc(when)}</span></div>')
 
     # Pełna historia organów (odpis pełny KRS): aktualni + wykreśleni, z datami.
@@ -352,10 +370,11 @@ def _company_body(rec: dict, links_by_name: dict | None = None) -> str:
                 who = esc(h.get("name") or h.get("inicjaly") or "—")
                 anon = "" if h.get("name") else ' <span class="tn">(inicjały — KRS anonimizuje JSON)</span>'
                 also = _also_html(h.get("name"), rec["krs"], links_by_name)
+                _kt_hist = _ktomaco_link(h.get("name"), ktomaco_map)
                 od = _fmt(h["od"]) if h.get("od") else "?"
                 end = "obecnie" if h.get("obecnie") else (_fmt(h["do"]) if h.get("do") else "—")
                 lata = (' · ' + _lata(h["lata"])) if h.get("lata") is not None else ""
-                parts.append(f'<div class="mem"><span>{who}{anon}{also}</span>'
+                parts.append(f'<div class="mem"><span>{who}{anon}{also}{_kt_hist}</span>'
                              f'<span class="tn">{esc(od)} → {esc(end)}{esc(lata)}</span></div>')
 
     if rec.get("pkd"):
@@ -492,6 +511,28 @@ def main() -> int:
     multi = _person_index(companies)
     links_by_name = _links_by_name(multi)
 
+    # Krajowa mapa ktomaco.pl — agreguj z wszystkich miast
+    ktomaco_map: dict[str, str] = {}
+    for kt_path in sorted(args.base.glob("cities/*/docs/ktomaco.json")):
+        try:
+            _m = json.loads(kt_path.read_text(encoding="utf-8"))
+            for _radoskop_slug, _kt_slug in _m.items():
+                # Znajdź nazwisko radnego z profiles.json
+                _prof_path = kt_path.parent / "profiles.json"
+                if _prof_path.exists():
+                    try:
+                        _pd = json.loads(_prof_path.read_text(encoding="utf-8"))
+                        for _p in _pd.get("profiles", []):
+                            if _p.get("slug") == _radoskop_slug:
+                                _name = " ".join((_p.get("name") or "").split()).lower()
+                                if _name:
+                                    ktomaco_map[_name] = _kt_slug
+                                break
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+
     # companies.json
     (out).mkdir(parents=True, exist_ok=True)
     (out / "companies.json").write_text(
@@ -510,7 +551,7 @@ def main() -> int:
                 f"i rady nadzorczej. Dane z KRS i Monitora Sądowego i Gospodarczego.")
         ld = {"@context": "https://schema.org", "@type": "Organization",
               "name": rec["name"], "identifier": f"KRS {rec['krs']}", "url": cu}
-        page = _page(title, desc, cu, _company_body(rec, links_by_name), ld)
+        page = _page(title, desc, cu, _company_body(rec, links_by_name, ktomaco_map), ld)
         d = out / "company" / rec["krs"]
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(page, encoding="utf-8")
