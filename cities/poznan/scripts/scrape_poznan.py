@@ -58,29 +58,30 @@ DELAY = 1.0
 # Nazwiska w formacie "Imię Nazwisko" -- jak w profiles.json
 # Źródło: PDF-y głosowań z BIP + oficjalna lista radnych
 COUNCILORS = {
-    # KO - Koalicja Obywatelska
-    "Przemysław Alexandrowicz": "KO", "Magdalena Antolczyk": "KO",
-    "Zuzanna Bartel": "KO", "Dorota Bonk-Hammermeister": "KO",
-    "Wojciech Chudy": "KO", "Zbigniew Czerwiński": "KO",
-    "Monika Danelska": "KO", "Małgorzata Dudzic-Biskupska": "KO",
-    "Grzegorz Ganowicz": "KO", "Ewa Jemielity": "KO",
-    "Grzegorz Jura": "KO", "Tomasz Lewandowski": "KO",
-    "Maria Lisiecka-Pawełczak": "KO", "Łukasz Mikuła": "KO",
-    "Halina Owsianna": "KO", "Katarzyna Pampuch": "KO",
+    # KO - Klub Radnych Koalicji Obywatelskiej
+    # Źródło: Wikipedia (Rada Miasta Poznania, IX kadencja 2024-2029)
+    "Magdalena Antolczyk": "KO", "Zuzanna Bartel": "KO",
+    "Wojciech Chudy": "KO", "Monika Danelska": "KO",
+    "Małgorzata Dudzic-Biskupska": "KO", "Grzegorz Ganowicz": "KO",
+    "Bartłomiej Ignaszewski": "KO", "Grzegorz Jura": "KO",
+    "Wojciech Kręglewski": "KO", "Justyna Kuberka": "KO",
+    "Paweł Matuszak": "KO", "Marta Mazurek": "KO",
+    "Łukasz Mikuła": "KO", "Katarzyna Pampuch": "KO",
+    "Andrzej Prendke": "KO", "Andrzej Rataj": "KO",
     "Marcin Ruta": "KO", "Marek Sternalski": "KO",
-    # PiS
-    "Bartłomiej Ignaszewski": "PiS", "Wojciech Kręglewski": "PiS",
-    "Paweł Matuszak": "PiS", "Przemysław Plewiński": "PiS",
-    "Andrzej Prendke": "PiS", "Sara Szynkowska vel Sęk": "PiS",
-    # Lewica
-    "Łukasz Kapustka": "Lewica", "Justyna Kuberka": "Lewica",
-    "Marta Mazurek": "Lewica", "Klaudia Strzelecka": "Lewica",
-    # TD - Trzecia Droga
-    "Andrzej Rataj": "TD", "Mateusz Rozmiarek": "TD",
-    "Adam Szabelski": "TD",
-    # Niezrzeszeni / inne
-    "Tomasz Stachowiak": "?", "Tomasz Wierzbicki": "?",
-    "Małgorzata Woźniak": "?",
+    "Tomasz Stachowiak": "KO", "Tomasz Wierzbicki": "KO",
+    "Małgorzata Woźniak": "KO",
+    # PiS - Klub Radnych Prawa i Sprawiedliwości
+    "Przemysław Alexandrowicz": "PiS", "Zbigniew Czerwiński": "PiS",
+    "Ewa Jemielity": "PiS", "Mateusz Rozmiarek": "PiS",
+    "Klaudia Strzelecka": "PiS", "Sara Szynkowska vel Sęk": "PiS",
+    # Lewica Polska 2050
+    "Dorota Bonk-Hammermeister": "Lewica Polska 2050",
+    "Łukasz Kapustka": "Lewica Polska 2050",
+    "Tomasz Lewandowski": "Lewica Polska 2050",
+    "Halina Owsianna": "Lewica Polska 2050",
+    "Przemysław Plewiński": "Lewica Polska 2050",
+    "Adam Szabelski": "Lewica Polska 2050",
 }
 
 # Reusable HTTP session

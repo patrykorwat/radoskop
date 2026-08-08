@@ -22,15 +22,10 @@
       "bg": "rgba(168,85,247,0.12)",
       "avatar_bg": "#6d28d9"
     },
-    "Lewica": {
-      "color": "#dc2626",
-      "bg": "rgba(239,68,68,0.12)",
-      "avatar_bg": "#b91c1c"
-    },
-    "TD": {
-      "color": "#d97706",
-      "bg": "rgba(217,119,6,0.12)",
-      "avatar_bg": "#b45309"
+    "Lewica Polska 2050": {
+      "color": "#e11d48",
+      "bg": "rgba(225,29,72,0.12)",
+      "avatar_bg": "#be123c"
     }
   },
   "kadencje": {
