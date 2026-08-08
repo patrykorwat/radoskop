@@ -34,31 +34,46 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWS": {
+      "name": "KOMITET WYBORCZY WYBORCÓW SAMORZĄDOWA INICJATYWA 2024",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Aneta Bławat": "Niezrzeszeni",
-    "Bogusław Włodarczyk": "Niezrzeszeni",
-    "Bożena Kornacka": "Niezrzeszeni",
-    "Grzegorz Kaptur": "Niezrzeszeni",
-    "Hubert Gawlik": "Niezrzeszeni",
-    "Joanna Michałek": "Niezrzeszeni",
-    "Kazimierz Żółtek": "Niezrzeszeni",
-    "Maciej Wolański": "Niezrzeszeni",
-    "Marcin Grudnik": "Niezrzeszeni",
-    "Marcin Majcher": "Niezrzeszeni",
-    "Marcin Wróblewski": "Niezrzeszeni",
-    "Małgorzata Jalowska": "Niezrzeszeni",
-    "Mikołaj Szczygieł": "Niezrzeszeni",
-    "Rafał Schab": "Niezrzeszeni",
-    "Tomasz Staniek": "Niezrzeszeni",
-    "Wacław Rodek": "Niezrzeszeni",
-    "Wiesława Słowik": "Niezrzeszeni"
+    "Aneta Bławat": "KWWS",
+    "Bogusław Włodarczyk": "TD",
+    "Bożena Kornacka": "PiS",
+    "Grzegorz Kaptur": "PiS",
+    "Hubert Gawlik": "KWWS",
+    "Joanna Michałek": "PiS",
+    "Kazimierz Żółtek": "PiS",
+    "Maciej Wolański": "PiS",
+    "Marcin Grudnik": "PiS",
+    "Marcin Majcher": "KWWS",
+    "Marcin Wróblewski": "TD",
+    "Małgorzata Jalowska": "PiS",
+    "Mikołaj Szczygieł": "TD",
+    "Rafał Schab": "PiS",
+    "Tomasz Staniek": "PiS",
+    "Wacław Rodek": "KWWS",
+    "Wiesława Słowik": "TD"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

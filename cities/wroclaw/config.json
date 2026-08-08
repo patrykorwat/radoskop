@@ -22,10 +22,20 @@
       "bg": "rgba(168,85,247,0.12)",
       "avatar_bg": "#6d28d9"
     },
-    "Lewica": {
+    "Lewica Naprzód": {
       "color": "#dc2626",
       "bg": "rgba(239,68,68,0.12)",
       "avatar_bg": "#b91c1c"
+    },
+    "Naprawmy Przyszłość": {
+      "color": "#16a34a",
+      "bg": "rgba(34,197,94,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "Niezrzeszeni": {
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
     }
   },
   "kadencje": {

@@ -34,37 +34,62 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWN": {
+      "name": "KOMITET WYBORCZY WYBORCÓW NOWY POWIAT NOWA GMINA",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)"
+    },
+    "KWWZ": {
+      "name": "KOMITET WYBORCZY WYBORCÓW ZIEMIA KONECKA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Adrian Pękacz": "Niezrzeszeni",
-    "Aleksandra Śmietana": "Niezrzeszeni",
-    "Alina Gąszcz": "Niezrzeszeni",
-    "Anna Wajnberger": "Niezrzeszeni",
-    "Beata Zbróg": "Niezrzeszeni",
-    "Danuta Leśniewicz": "Niezrzeszeni",
-    "Dariusz Banasik": "Niezrzeszeni",
-    "Dariusz Okła": "Niezrzeszeni",
-    "Dorota Duda": "Niezrzeszeni",
-    "Ewa Lasota": "Niezrzeszeni",
-    "Grzegorz Jóźwik": "Niezrzeszeni",
-    "Grzegorz Piec": "Niezrzeszeni",
-    "Jarosław Staciwa": "Niezrzeszeni",
-    "Kamil Kubicki": "Niezrzeszeni",
-    "Krzysztof Jasiński": "Niezrzeszeni",
-    "Marian Domagała": "Niezrzeszeni",
-    "Mateusz Zając": "Niezrzeszeni",
-    "Michał Cichocki": "Niezrzeszeni",
-    "Paweł Pękala": "Niezrzeszeni",
-    "Robert Plech": "Niezrzeszeni",
-    "Wakat -": "Niezrzeszeni",
-    "Wiesław Skowron": "Niezrzeszeni",
-    "Łukasz Świerczyński": "Niezrzeszeni"
+    "Adrian Pękacz": "KWWZ",
+    "Aleksandra Śmietana": "PiS",
+    "Alina Gąszcz": "PiS",
+    "Anna Wajnberger": "TD",
+    "Beata Zbróg": "KWWZ",
+    "Danuta Leśniewicz": "PiS",
+    "Dariusz Banasik": "PiS",
+    "Dariusz Okła": "PiS",
+    "Dorota Duda": "TD",
+    "Ewa Lasota": "KO",
+    "Grzegorz Jóźwik": "PiS",
+    "Grzegorz Piec": "PiS",
+    "Jarosław Staciwa": "PiS",
+    "Kamil Kubicki": "PiS",
+    "Krzysztof Jasiński": "KWWZ",
+    "Marian Domagała": "PiS",
+    "Mateusz Zając": "KWWN",
+    "Michał Cichocki": "KO",
+    "Paweł Pękala": "KWWZ",
+    "Robert Plech": "KWWN",
+    "Wakat -": "NZ",
+    "Wiesław Skowron": "KWWN",
+    "Łukasz Świerczyński": "TD"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

@@ -34,33 +34,58 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWC": {
+      "name": "KOMITET WYBORCZY WYBORCÓW CHRZEŚCIJAŃSKO-LUDOWY",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "KWWJ": {
+      "name": "KOMITET WYBORCZY WYBORCÓW JEDNOŚĆ I WSPÓŁPRACA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "KWWR": {
+      "name": "KOMITET WYBORCZY WYBORCÓW RAZEM DLA POWIATU",
+      "color": "#0891b2",
+      "bg": "rgba(8,145,178,0.12)"
+    },
+    "KWWW": {
+      "name": "KOMITET WYBORCZY WYBORCÓW WSPÓLNOTA SAMORZĄDOWA RAZEM",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "- Jaroś Bożena Jolanta Jelska": "Niezrzeszeni",
-    "Adam Bojarzyński": "Niezrzeszeni",
-    "Ewa Puszko": "Niezrzeszeni",
-    "Janusz Wałuszko": "Niezrzeszeni",
-    "Jerzy Białomyzy": "Niezrzeszeni",
-    "Kazimierz Łabieniec": "Niezrzeszeni",
-    "Krzysztof Bach": "Niezrzeszeni",
-    "Krzysztof Krasiński": "Niezrzeszeni",
-    "Krzysztof Pawłowski": "Niezrzeszeni",
-    "Mariusz Stefanowicz": "Niezrzeszeni",
-    "Mateusz Adaszczyk": "Niezrzeszeni",
-    "Mieczysław Kazimierz Baszko": "Niezrzeszeni",
-    "Paweł Łabanowicz": "Niezrzeszeni",
-    "Piotr Karol Bujwicki": "Niezrzeszeni",
-    "Piotr Rećko": "Niezrzeszeni",
-    "Piotr Rygasiewicz": "Niezrzeszeni",
-    "Stanisław Kopciewski": "Niezrzeszeni",
-    "Tomasz Potapczyk": "Niezrzeszeni",
-    "Łukasz Owsiejko": "Niezrzeszeni"
+    "- Jaroś Bożena Jolanta Jelska": "PiS",
+    "Adam Bojarzyński": "KWWW",
+    "Ewa Puszko": "KWWC",
+    "Janusz Wałuszko": "KWWJ",
+    "Jerzy Białomyzy": "KWWW",
+    "Kazimierz Łabieniec": "KWWW",
+    "Krzysztof Bach": "KWWJ",
+    "Krzysztof Krasiński": "PiS",
+    "Krzysztof Pawłowski": "PiS",
+    "Mariusz Stefanowicz": "KWWR",
+    "Mateusz Adaszczyk": "KWWJ",
+    "Mieczysław Kazimierz Baszko": "KWWJ",
+    "Paweł Łabanowicz": "PiS",
+    "Piotr Karol Bujwicki": "KWWJ",
+    "Piotr Rećko": "PiS",
+    "Piotr Rygasiewicz": "KWWC",
+    "Stanisław Kopciewski": "PiS",
+    "Tomasz Potapczyk": "KWWW",
+    "Łukasz Owsiejko": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

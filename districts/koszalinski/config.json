@@ -34,33 +34,48 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWS": {
+      "name": "KOMITET WYBORCZY WYBORCÓW SILNY POWIAT KOSZALIŃSKI",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Agnieszka Iwona Ławrynowicz": "Niezrzeszeni",
-    "Andrzej Kaczanowicz": "Niezrzeszeni",
-    "Artur Bernard Dropko": "Niezrzeszeni",
-    "Barbara Koperska": "Niezrzeszeni",
-    "Bartłomiej Wilk": "Niezrzeszeni",
-    "Danuta Elżbieta Polechońska": "Niezrzeszeni",
-    "Dariusz Mirosław Kalinowski": "Niezrzeszeni",
-    "Elżbieta Góral": "Niezrzeszeni",
-    "Halina Zofia Sztreja": "Niezrzeszeni",
-    "Henryk Kuriata": "Niezrzeszeni",
-    "Irena Teresa Oleksy": "Niezrzeszeni",
-    "Kamil Sebastian Jesionowski": "Niezrzeszeni",
-    "Marek Mazik": "Niezrzeszeni",
-    "Marek Paweł Gil": "Niezrzeszeni",
-    "Mieczysława Sabina Brzoza": "Niezrzeszeni",
-    "Przemysław Jurewicz": "Niezrzeszeni",
-    "Ryszard Jan Sobczyński": "Niezrzeszeni",
-    "Tomasz Marcin Tesmer": "Niezrzeszeni",
-    "Zbigniew Tomasz Grabarek": "Niezrzeszeni"
+    "Agnieszka Iwona Ławrynowicz": "KWWS",
+    "Andrzej Kaczanowicz": "KO",
+    "Artur Bernard Dropko": "KWWS",
+    "Barbara Koperska": "KO",
+    "Bartłomiej Wilk": "KWWS",
+    "Danuta Elżbieta Polechońska": "KWWS",
+    "Dariusz Mirosław Kalinowski": "KO",
+    "Elżbieta Góral": "KWWS",
+    "Halina Zofia Sztreja": "PiS",
+    "Henryk Kuriata": "KO",
+    "Irena Teresa Oleksy": "NZ",
+    "Kamil Sebastian Jesionowski": "KWWS",
+    "Marek Mazik": "PiS",
+    "Marek Paweł Gil": "KO",
+    "Mieczysława Sabina Brzoza": "PiS",
+    "Przemysław Jurewicz": "PiS",
+    "Ryszard Jan Sobczyński": "PiS",
+    "Tomasz Marcin Tesmer": "KWWS",
+    "Zbigniew Tomasz Grabarek": "KWWS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

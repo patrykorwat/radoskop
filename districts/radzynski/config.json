@@ -34,32 +34,57 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWF": {
+      "name": "KOMITET WYBORCZY WYBORCÓW FORUM POWIATOWE",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "Konf": {
+      "name": "Konfederacja",
+      "color": "#0f172a",
+      "bg": "rgba(15,23,42,0.12)"
+    },
+    "KWWN": {
+      "name": "KOMITET WYBORCZY WYBORCÓW NASZ POWIAT",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)"
+    },
+    "KWWR": {
+      "name": "KOMITET WYBORCZY WYBORCÓW RADZYŃ MOJE MIASTO I MÓJ POWIAT",
+      "color": "#0891b2",
+      "bg": "rgba(8,145,178,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Alicja Maria Rosińska": "Niezrzeszeni",
-    "Alina Kryjak": "Niezrzeszeni",
-    "Anna Szymala": "Niezrzeszeni",
-    "Emil Oleśkiewicz": "Niezrzeszeni",
-    "Grzegorz Feliks Domański": "Niezrzeszeni",
-    "Grzegorz Gałecki": "Niezrzeszeni",
-    "Ireneusz Mroczek": "Niezrzeszeni",
-    "Iwona Chmielewska": "Niezrzeszeni",
-    "Lucjan Jan Kotwica": "Niezrzeszeni",
-    "Mirosław Bartoś": "Niezrzeszeni",
-    "Paweł Daniel Komoń": "Niezrzeszeni",
-    "Radosław Adam Sałata": "Niezrzeszeni",
-    "Robert Mazurek": "Niezrzeszeni",
-    "Szczepan Niebrzegowski": "Niezrzeszeni",
-    "Tadeusz Sławecki": "Niezrzeszeni",
-    "Tomasz Julian Stephan": "Niezrzeszeni",
-    "Zbigniew Smółko": "Niezrzeszeni",
-    "testradzyn test": "Niezrzeszeni"
+    "Alicja Maria Rosińska": "PiS",
+    "Alina Kryjak": "KWWF",
+    "Anna Szymala": "KWWN",
+    "Emil Oleśkiewicz": "KWWF",
+    "Grzegorz Feliks Domański": "PiS",
+    "Grzegorz Gałecki": "PiS",
+    "Ireneusz Mroczek": "KWWR",
+    "Iwona Chmielewska": "PiS",
+    "Lucjan Jan Kotwica": "NZ",
+    "Mirosław Bartoś": "KWWN",
+    "Paweł Daniel Komoń": "Konf",
+    "Radosław Adam Sałata": "PiS",
+    "Robert Mazurek": "PiS",
+    "Szczepan Niebrzegowski": "PiS",
+    "Tadeusz Sławecki": "KWWN",
+    "Tomasz Julian Stephan": "PiS",
+    "Zbigniew Smółko": "KWWF",
+    "testradzyn test": "NZ"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

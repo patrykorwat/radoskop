@@ -2005,8 +2005,8 @@ function showProfile(name, initialTab) {
       const rebs = kd.rebellions || [];
       const REBS_PER_PAGE = 20;
       const rebPages = Math.ceil(rebs.length / REBS_PER_PAGE) || 1;
-      const rebVoteLabel = (v) => ({za:'za',przeciw:'przeciw',wstrzymal_sie:isFemale(profile.name)?'wstrzymała się':'wstrzymał się'})[v]||v;
-      const rebClubLabel = (v) => ({za:'za',przeciw:'przeciw',wstrzymal_sie:'wstrzymał się'})[v]||v;
+      const rebVoteLabel = (v) => ({za:'Za',przeciw:'Przeciw',wstrzymal_sie:isFemale(profile.name)?'wstrzymała się':'wstrzymał się'})[v]||v;
+      const rebClubLabel = (v) => ({za:'Za',przeciw:'Przeciw',wstrzymal_sie:'wstrzymał się'})[v]||v;
 
       function renderRebPage(page) {
         const container = document.getElementById('rebellion-list');
@@ -2249,7 +2249,7 @@ function showProfile(name, initialTab) {
             // Fetch person votes from API async and render into placeholder
     if (hasVotes) {
       const profCatOrder = Object.keys(VOTE_CATS).sort((a,b) => (VOTE_CATS[a]?.order||99) - (VOTE_CATS[b]?.order||99));
-      const voteLabel = (v) => ({za:'za',przeciw:'przeciw',wstrzymal_sie:isFemale(profile.name)?'wstrzymała się':'wstrzymał się',brak_glosu:"brak głosu",nieobecny:isFemale(profile.name)?'nieobecna':'nieobecny'})[v]||v||'—';
+      const voteLabel = (v) => ({za:'Za',przeciw:'Przeciw',wstrzymal_sie:isFemale(profile.name)?'wstrzymała się':'wstrzymał się',brak_glosu:"brak głosu",nieobecny:isFemale(profile.name)?'nieobecna':'nieobecny'})[v]||v||'—';
       const votePillClass = (v) => ({za:'za',przeciw:'przeciw',wstrzymal_sie:'wstrzymal',brak_glosu:'wstrzymal',nieobecny:'wstrzymal'})[v]||'wstrzymal';
       let allPersonVotes = [];
       let profCatCounts = {};

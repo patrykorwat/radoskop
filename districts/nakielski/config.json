@@ -34,35 +34,55 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWR": {
+      "name": "KOMITET WYBORCZY WYBORCÓW RAZEM DLA POWIATU NAKIELSKIEGO",
+      "color": "#0891b2",
+      "bg": "rgba(8,145,178,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Adam Tchórzewski": "Niezrzeszeni",
-    "Aneta Skieresz": "Niezrzeszeni",
-    "Anna Duda-Nowicka": "Niezrzeszeni",
-    "Artur Michalak": "Niezrzeszeni",
-    "Bartosz Łyszczarz": "Niezrzeszeni",
-    "Beata Danielewska-Szymczak": "Niezrzeszeni",
-    "Edward Kominiak": "Niezrzeszeni",
-    "Ignacy Pogodziński": "Niezrzeszeni",
-    "Jacek Książek": "Niezrzeszeni",
-    "Jacek Osiński": "Niezrzeszeni",
-    "Jarosław Odrobiński": "Niezrzeszeni",
-    "Jarosław Warmke": "Niezrzeszeni",
-    "Krzysztof Błoński": "Niezrzeszeni",
-    "Krzysztof Napieralski": "Niezrzeszeni",
-    "Maciej Boinski": "Niezrzeszeni",
-    "Marek Kornalewicz": "Niezrzeszeni",
-    "Mariusz Skoczek": "Niezrzeszeni",
-    "Michał Dubkowski": "Niezrzeszeni",
-    "Ryszard Bagnerowski": "Niezrzeszeni",
-    "Tomasz Miłowski": "Niezrzeszeni",
-    "Zbigniew Sabaciński": "Niezrzeszeni"
+    "Adam Tchórzewski": "PiS",
+    "Aneta Skieresz": "KO",
+    "Anna Duda-Nowicka": "KO",
+    "Artur Michalak": "KO",
+    "Bartosz Łyszczarz": "KO",
+    "Beata Danielewska-Szymczak": "PiS",
+    "Edward Kominiak": "KWWR",
+    "Ignacy Pogodziński": "KWWR",
+    "Jacek Książek": "TD",
+    "Jacek Osiński": "KO",
+    "Jarosław Odrobiński": "PiS",
+    "Jarosław Warmke": "KWWR",
+    "Krzysztof Błoński": "KO",
+    "Krzysztof Napieralski": "PiS",
+    "Maciej Boinski": "KO",
+    "Marek Kornalewicz": "PiS",
+    "Mariusz Skoczek": "PiS",
+    "Michał Dubkowski": "KWWR",
+    "Ryszard Bagnerowski": "TD",
+    "Tomasz Miłowski": "TD",
+    "Zbigniew Sabaciński": "KWWR"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

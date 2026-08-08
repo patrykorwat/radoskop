@@ -34,31 +34,56 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWN": {
+      "name": "KOMITET WYBORCZY WYBORCÓW NOWY POWIAT",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)"
+    },
+    "KWWP": {
+      "name": "KOMITET WYBORCZY WYBORCÓW PONAD PODZIAŁAMI",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Andrzej Bajko": "Niezrzeszeni",
-    "Bogusław Kierus": "Niezrzeszeni",
-    "Dariusz Krysa": "Niezrzeszeni",
-    "Emilia Mohylak": "Niezrzeszeni",
-    "Grzegorz Rakiej": "Niezrzeszeni",
-    "Halina Sankowska": "Niezrzeszeni",
-    "Jolanta Con": "Niezrzeszeni",
-    "Leszek Nowak": "Niezrzeszeni",
-    "Mateusz Karkoszka": "Niezrzeszeni",
-    "Michał Huber": "Niezrzeszeni",
-    "Natalia Burdz": "Niezrzeszeni",
-    "Paweł Antczak": "Niezrzeszeni",
-    "Przemysław Staszak": "Niezrzeszeni",
-    "Radosław Świekatowski": "Niezrzeszeni",
-    "Rafał Szrama": "Niezrzeszeni",
-    "Sebastian Ruszczak": "Niezrzeszeni",
-    "Tadeusz Bednarczuk": "Niezrzeszeni"
+    "Andrzej Bajko": "KWWP",
+    "Bogusław Kierus": "TD",
+    "Dariusz Krysa": "KO",
+    "Emilia Mohylak": "TD",
+    "Grzegorz Rakiej": "KWWN",
+    "Halina Sankowska": "KWWN",
+    "Jolanta Con": "KO",
+    "Leszek Nowak": "PiS",
+    "Mateusz Karkoszka": "KWWN",
+    "Michał Huber": "KO",
+    "Natalia Burdz": "KO",
+    "Paweł Antczak": "PiS",
+    "Przemysław Staszak": "TD",
+    "Radosław Świekatowski": "KO",
+    "Rafał Szrama": "PiS",
+    "Sebastian Ruszczak": "KO",
+    "Tadeusz Bednarczuk": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

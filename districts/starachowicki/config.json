@@ -34,35 +34,50 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWTT": {
+      "name": "KOMITET WYBORCZY-TST-TWÓJ SAMORZĄD TERAZ",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "KWWM": {
+      "name": "KOMITET WYBORCZY WYBORCÓW MARKA MATERKA 2024",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Bożena Wrona": "Niezrzeszeni",
-    "Danuta Krępa": "Niezrzeszeni",
-    "Dariusz Stachowicz": "Niezrzeszeni",
-    "Hubert Michalski": "Niezrzeszeni",
-    "Iwona Koszarska-Zemła": "Niezrzeszeni",
-    "Jarosław Olech": "Niezrzeszeni",
-    "Jarosław Samela": "Niezrzeszeni",
-    "Joanna Żyśko": "Niezrzeszeni",
-    "Kinga Sawicka": "Niezrzeszeni",
-    "Konrad Kosiarski": "Niezrzeszeni",
-    "Marek Maciukajć": "Niezrzeszeni",
-    "Mirosław Wojciechowski": "Niezrzeszeni",
-    "Paweł Brzozowski": "Niezrzeszeni",
-    "Piotr Ambroszczyk": "Niezrzeszeni",
-    "Piotr Babicki": "Niezrzeszeni",
-    "Piotr Kruk": "Niezrzeszeni",
-    "Przemysław Czaja": "Niezrzeszeni",
-    "Rafał Lipiec": "Niezrzeszeni",
-    "Robert Sowula": "Niezrzeszeni",
-    "Stanisław Wojtan": "Niezrzeszeni",
-    "Sławomir Rymarczyk": "Niezrzeszeni"
+    "Bożena Wrona": "KWWM",
+    "Danuta Krępa": "PiS",
+    "Dariusz Stachowicz": "PiS",
+    "Hubert Michalski": "KWTT",
+    "Iwona Koszarska-Zemła": "KWTT",
+    "Jarosław Olech": "KWWM",
+    "Jarosław Samela": "KWTT",
+    "Joanna Żyśko": "KWTT",
+    "Kinga Sawicka": "KWTT",
+    "Konrad Kosiarski": "PiS",
+    "Marek Maciukajć": "KWWM",
+    "Mirosław Wojciechowski": "PiS",
+    "Paweł Brzozowski": "KWWM",
+    "Piotr Ambroszczyk": "KWWM",
+    "Piotr Babicki": "KWWM",
+    "Piotr Kruk": "KWWM",
+    "Przemysław Czaja": "PiS",
+    "Rafał Lipiec": "PiS",
+    "Robert Sowula": "KWWM",
+    "Stanisław Wojtan": "KWWM",
+    "Sławomir Rymarczyk": "KWWM"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

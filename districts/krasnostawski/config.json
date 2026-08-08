@@ -34,33 +34,53 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWT": {
+      "name": "KOMITET WYBORCZY WYBORCÓW TERESY HAŁAS „NIEZALEŻNI”",
+      "color": "#65a30d",
+      "bg": "rgba(101,163,13,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Andrzej Korkosz": "Niezrzeszeni",
-    "Andrzej Leńczuk": "Niezrzeszeni",
-    "Arkadiusz Danielak": "Niezrzeszeni",
-    "Edward Pluta": "Niezrzeszeni",
-    "Janusz Szpak": "Niezrzeszeni",
-    "Jolanta Strefner": "Niezrzeszeni",
-    "Krzysztof Gałan": "Niezrzeszeni",
-    "Lucjan Cichosz": "Niezrzeszeni",
-    "Marcin Lis": "Niezrzeszeni",
-    "Marcin Zając": "Niezrzeszeni",
-    "Marek Nieścior": "Niezrzeszeni",
-    "Marek Nowosadzki": "Niezrzeszeni",
-    "Marek Piwko": "Niezrzeszeni",
-    "Mariusz Frąc": "Niezrzeszeni",
-    "Piotr Jelonek": "Niezrzeszeni",
-    "Piotr Raczkowski": "Niezrzeszeni",
-    "Piotr Szewczyk": "Niezrzeszeni",
-    "Stanisław Repeć": "Niezrzeszeni",
-    "Witold Boruczenko": "Niezrzeszeni"
+    "Andrzej Korkosz": "TD",
+    "Andrzej Leńczuk": "PiS",
+    "Arkadiusz Danielak": "PiS",
+    "Edward Pluta": "PiS",
+    "Janusz Szpak": "TD",
+    "Jolanta Strefner": "KWWT",
+    "Krzysztof Gałan": "KO",
+    "Lucjan Cichosz": "PiS",
+    "Marcin Lis": "KO",
+    "Marcin Zając": "TD",
+    "Marek Nieścior": "PiS",
+    "Marek Nowosadzki": "TD",
+    "Marek Piwko": "KO",
+    "Mariusz Frąc": "KO",
+    "Piotr Jelonek": "KO",
+    "Piotr Raczkowski": "TD",
+    "Piotr Szewczyk": "PiS",
+    "Stanisław Repeć": "KWWT",
+    "Witold Boruczenko": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

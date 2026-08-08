@@ -34,42 +34,62 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWK": {
+      "name": "KOMITET WYBORCZY WYBORCÓW KOALICJA OBYWATELSKO-SAMORZĄDOW...",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "KWWP": {
+      "name": "KOMITET WYBORCZY WYBORCÓW POROZUMIENIE SAMORZĄDOWE POWIAT...",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Andrzej Luranc": "Niezrzeszeni",
-    "Andrzej Skrzypiński": "Niezrzeszeni",
-    "Aneta Tlałka": "Niezrzeszeni",
-    "Artur Mendyk": "Niezrzeszeni",
-    "Barbara Świąder-Skrzydło": "Niezrzeszeni",
-    "Bogusław Bartula": "Niezrzeszeni",
-    "Ewa Pawlusiak": "Niezrzeszeni",
-    "Grażyna Kopeć": "Niezrzeszeni",
-    "Jarosław Jurzak": "Niezrzeszeni",
-    "Jerzy Mieszczak": "Niezrzeszeni",
-    "Józef Szafran": "Niezrzeszeni",
-    "Katarzyna Bliźniak": "Niezrzeszeni",
-    "Kazimierz Homa": "Niezrzeszeni",
-    "Leszek Szuster": "Niezrzeszeni",
-    "Maciej Hejnowicz": "Niezrzeszeni",
-    "Marek Idzik": "Niezrzeszeni",
-    "Małgorzata Kotapka": "Niezrzeszeni",
-    "Paweł Kobielusz": "Niezrzeszeni",
-    "Piotr Śreniawski": "Niezrzeszeni",
-    "Roman Gancarczyk": "Niezrzeszeni",
-    "Sławomir Momot": "Niezrzeszeni",
-    "Teresa Jankowska": "Niezrzeszeni",
-    "Waldemar Klisiak": "Niezrzeszeni",
-    "Waldemar Łoziński": "Niezrzeszeni",
-    "Wojciech Bochenek": "Niezrzeszeni",
-    "Wojciech Kajdas": "Niezrzeszeni",
-    "Zbigniew Biernat": "Niezrzeszeni",
-    "Zbigniew Starzec": "Niezrzeszeni"
+    "Andrzej Luranc": "PiS",
+    "Andrzej Skrzypiński": "KO",
+    "Aneta Tlałka": "PiS",
+    "Artur Mendyk": "KO",
+    "Barbara Świąder-Skrzydło": "KO",
+    "Bogusław Bartula": "KWWP",
+    "Ewa Pawlusiak": "PiS",
+    "Grażyna Kopeć": "KO",
+    "Jarosław Jurzak": "PiS",
+    "Jerzy Mieszczak": "KWWP",
+    "Józef Szafran": "KWWP",
+    "Katarzyna Bliźniak": "KO",
+    "Kazimierz Homa": "KO",
+    "Leszek Szuster": "KO",
+    "Maciej Hejnowicz": "KO",
+    "Marek Idzik": "KO",
+    "Małgorzata Kotapka": "KO",
+    "Paweł Kobielusz": "KWWK",
+    "Piotr Śreniawski": "KWWK",
+    "Roman Gancarczyk": "NZ",
+    "Sławomir Momot": "PiS",
+    "Teresa Jankowska": "KWWP",
+    "Waldemar Klisiak": "PiS",
+    "Waldemar Łoziński": "PiS",
+    "Wojciech Bochenek": "PiS",
+    "Wojciech Kajdas": "KO",
+    "Zbigniew Biernat": "PiS",
+    "Zbigniew Starzec": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

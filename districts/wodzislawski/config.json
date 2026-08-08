@@ -34,41 +34,61 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWSW": {
+      "name": "KOMITET WYBORCZY STOWARZYSZENIE WSPÓLNOTA SAMORZĄDOWA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Andrzej Kania": "Niezrzeszeni",
-    "Arkadiusz Skowron": "Niezrzeszeni",
-    "Barbara Chrobok": "Niezrzeszeni",
-    "Barbara Magiera": "Niezrzeszeni",
-    "Czesława Somerlik": "Niezrzeszeni",
-    "Danuta Maćkowska": "Niezrzeszeni",
-    "Iwona Wajsman": "Niezrzeszeni",
-    "Jan Zemło": "Niezrzeszeni",
-    "Janusz Ballarin": "Niezrzeszeni",
-    "Joanna Rduch-Kaszuba": "Niezrzeszeni",
-    "Jolanta Górecka": "Niezrzeszeni",
-    "Krystyna Kuczera": "Niezrzeszeni",
-    "Leszek Bednorz": "Niezrzeszeni",
-    "Leszek Bizoń": "Niezrzeszeni",
-    "Marek Hawel": "Niezrzeszeni",
-    "Marek Rybarz": "Niezrzeszeni",
-    "Marek Tumułka": "Niezrzeszeni",
-    "Mateusz Jamioła": "Niezrzeszeni",
-    "Mirosław Andreczko": "Niezrzeszeni",
-    "Renata Glenc": "Niezrzeszeni",
-    "Robert Wala": "Niezrzeszeni",
-    "Roman Marcol": "Niezrzeszeni",
-    "Ryszard Zalewski": "Niezrzeszeni",
-    "Stefania Rodak": "Niezrzeszeni",
-    "Tadeusz Chrószcz": "Niezrzeszeni",
-    "Witold Mandrysz": "Niezrzeszeni",
-    "Wojciech Koźlik": "Niezrzeszeni"
+    "Andrzej Kania": "PiS",
+    "Arkadiusz Skowron": "KO",
+    "Barbara Chrobok": "KO",
+    "Barbara Magiera": "KWSW",
+    "Czesława Somerlik": "NZ",
+    "Danuta Maćkowska": "PiS",
+    "Iwona Wajsman": "NZ",
+    "Jan Zemło": "KWSW",
+    "Janusz Ballarin": "PiS",
+    "Joanna Rduch-Kaszuba": "PiS",
+    "Jolanta Górecka": "PiS",
+    "Krystyna Kuczera": "KO",
+    "Leszek Bednorz": "KO",
+    "Leszek Bizoń": "KWSW",
+    "Marek Hawel": "TD",
+    "Marek Rybarz": "KO",
+    "Marek Tumułka": "KO",
+    "Mateusz Jamioła": "NZ",
+    "Mirosław Andreczko": "PiS",
+    "Renata Glenc": "PiS",
+    "Robert Wala": "KWSW",
+    "Roman Marcol": "TD",
+    "Ryszard Zalewski": "PiS",
+    "Stefania Rodak": "KO",
+    "Tadeusz Chrószcz": "KO",
+    "Witold Mandrysz": "TD",
+    "Wojciech Koźlik": "NZ"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

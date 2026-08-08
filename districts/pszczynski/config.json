@@ -34,38 +34,58 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWL": {
+      "name": "KOMITET WYBORCZY WYBORCÓW LIGA SAMORZĄDOWA ZIEMI PSZCZYŃS...",
+      "color": "#0891b2",
+      "bg": "rgba(8,145,178,0.12)"
+    },
+    "KWWP": {
+      "name": "KOMITET WYBORCZY WYBORCÓW PSZCZYŃSKIE POROZUMIENIE SAMORZ...",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "KWWZ": {
+      "name": "KOMITET WYBORCZY WYBORCÓW ZIEMIA PSZCZYŃSKA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Aleksander Malcher": "Niezrzeszeni",
-    "Barbara Bandoła": "Niezrzeszeni",
-    "Beata Rozmus": "Niezrzeszeni",
-    "Bronisław Śmieja": "Niezrzeszeni",
-    "Damian Cieszewski": "Niezrzeszeni",
-    "Edyta Waleczek": "Niezrzeszeni",
-    "Grzegorz Nogły": "Niezrzeszeni",
-    "Grzegorz Wanot": "Niezrzeszeni",
-    "Jacek Sodzawiczny": "Niezrzeszeni",
-    "Krystian Szostak": "Niezrzeszeni",
-    "Maciej Tomczykiewicz": "Niezrzeszeni",
-    "Marcela Kanafek-Lewandowska": "Niezrzeszeni",
-    "Marek Lucjan": "Niezrzeszeni",
-    "Michał Pudełko": "Niezrzeszeni",
-    "Paweł Sadza": "Niezrzeszeni",
-    "Przemysław Sawicki": "Niezrzeszeni",
-    "Rafał Wróbel": "Niezrzeszeni",
-    "Roman Bańczyk": "Niezrzeszeni",
-    "Ryszard Ziobro": "Niezrzeszeni",
-    "Teresa Sochacka-Kabut": "Niezrzeszeni",
-    "Waldemar Lipus": "Niezrzeszeni",
-    "Wiesław Konieczny": "Niezrzeszeni",
-    "Wojciech Lala": "Niezrzeszeni",
-    "Zdzisław Grygier": "Niezrzeszeni"
+    "Aleksander Malcher": "PiS",
+    "Barbara Bandoła": "KWWZ",
+    "Beata Rozmus": "PiS",
+    "Bronisław Śmieja": "PiS",
+    "Damian Cieszewski": "KWWZ",
+    "Edyta Waleczek": "KWWP",
+    "Grzegorz Nogły": "KWWL",
+    "Grzegorz Wanot": "KWWZ",
+    "Jacek Sodzawiczny": "PiS",
+    "Krystian Szostak": "KWWP",
+    "Maciej Tomczykiewicz": "KWWL",
+    "Marcela Kanafek-Lewandowska": "PiS",
+    "Marek Lucjan": "PiS",
+    "Michał Pudełko": "KWWZ",
+    "Paweł Sadza": "KWWZ",
+    "Przemysław Sawicki": "KWWZ",
+    "Rafał Wróbel": "PiS",
+    "Roman Bańczyk": "KWWZ",
+    "Ryszard Ziobro": "NZ",
+    "Teresa Sochacka-Kabut": "PiS",
+    "Waldemar Lipus": "KWWP",
+    "Wiesław Konieczny": "PiS",
+    "Wojciech Lala": "KWWZ",
+    "Zdzisław Grygier": "KWWP"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

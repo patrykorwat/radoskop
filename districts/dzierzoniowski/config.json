@@ -34,35 +34,55 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "KWOB": {
+      "name": "KOMITET WYBORCZY OBYWATELSKI BLOK SAMORZĄDOWY",
+      "color": "#0891b2",
+      "bg": "rgba(8,145,178,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Andrzej Bolisęga": "Niezrzeszeni",
-    "Anetta Burek-Uchman": "Niezrzeszeni",
-    "Bernadetta Szczypka": "Niezrzeszeni",
-    "Damian Szachniewicz": "Niezrzeszeni",
-    "Dariusz Gortych": "Niezrzeszeni",
-    "Grażyna Król": "Niezrzeszeni",
-    "Grzegorz Kosowski": "Niezrzeszeni",
-    "Iwona Cegiełka": "Niezrzeszeni",
-    "Jacek Grzebieluch": "Niezrzeszeni",
-    "Janusz Szpot": "Niezrzeszeni",
-    "Jarosław Florczak": "Niezrzeszeni",
-    "Krzysztof Galiak": "Niezrzeszeni",
-    "Krzysztof Nawrot": "Niezrzeszeni",
-    "Maciej Rojek": "Niezrzeszeni",
-    "Marek Piorun": "Niezrzeszeni",
-    "Małgorzata Greiner": "Niezrzeszeni",
-    "Małgorzata Kuśmierek": "Niezrzeszeni",
-    "Norbert Warchoł": "Niezrzeszeni",
-    "Tomasz Mitraszewski": "Niezrzeszeni",
-    "Urszula Cieleban": "Niezrzeszeni",
-    "Łukasz Kresa": "Niezrzeszeni"
+    "Andrzej Bolisęga": "KO",
+    "Anetta Burek-Uchman": "KO",
+    "Bernadetta Szczypka": "TD",
+    "Damian Szachniewicz": "PiS",
+    "Dariusz Gortych": "PiS",
+    "Grażyna Król": "PiS",
+    "Grzegorz Kosowski": "KO",
+    "Iwona Cegiełka": "KO",
+    "Jacek Grzebieluch": "KO",
+    "Janusz Szpot": "PiS",
+    "Jarosław Florczak": "KWOB",
+    "Krzysztof Galiak": "KO",
+    "Krzysztof Nawrot": "KO",
+    "Maciej Rojek": "PiS",
+    "Marek Piorun": "KWOB",
+    "Małgorzata Greiner": "PiS",
+    "Małgorzata Kuśmierek": "KO",
+    "Norbert Warchoł": "KO",
+    "Tomasz Mitraszewski": "KO",
+    "Urszula Cieleban": "PiS",
+    "Łukasz Kresa": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

@@ -34,31 +34,56 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "KKWL": {
+      "name": "KOALICYJNY KOMITET WYBORCZY LEWICA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWB": {
+      "name": "KOMITET WYBORCZY WYBORCÓW BEZPARTYJNI+ SAMORZĄDOWCY LUBUSKIE",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Adam Radkiewicz": "Niezrzeszeni",
-    "Andrzej Karpezo": "Niezrzeszeni",
-    "Anna Górska": "Niezrzeszeni",
-    "Barbara Burzyńska": "Niezrzeszeni",
-    "Bogdan Hajkowicz": "Niezrzeszeni",
-    "Damian Utracki": "Niezrzeszeni",
-    "Dawid Magdulski": "Niezrzeszeni",
-    "Edyta Danicka": "Niezrzeszeni",
-    "Jan Hańbicki": "Niezrzeszeni",
-    "Krystian Pastuszak": "Niezrzeszeni",
-    "Leszek Bajon": "Niezrzeszeni",
-    "Maciej Błoński": "Niezrzeszeni",
-    "Patryk Rudziński": "Niezrzeszeni",
-    "Robert Włodek": "Niezrzeszeni",
-    "Ryszard Chustecki": "Niezrzeszeni",
-    "Sebastian Łukaszewicz": "Niezrzeszeni",
-    "Wiesław Kołosza": "Niezrzeszeni"
+    "Adam Radkiewicz": "PiS",
+    "Andrzej Karpezo": "KWWB",
+    "Anna Górska": "PiS",
+    "Barbara Burzyńska": "KO",
+    "Bogdan Hajkowicz": "KO",
+    "Damian Utracki": "KKWL",
+    "Dawid Magdulski": "KKWL",
+    "Edyta Danicka": "TD",
+    "Jan Hańbicki": "PiS",
+    "Krystian Pastuszak": "KWWB",
+    "Leszek Bajon": "KO",
+    "Maciej Błoński": "PiS",
+    "Patryk Rudziński": "KO",
+    "Robert Włodek": "KKWL",
+    "Ryszard Chustecki": "KO",
+    "Sebastian Łukaszewicz": "KKWL",
+    "Wiesław Kołosza": "KO"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

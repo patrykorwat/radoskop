@@ -79,13 +79,13 @@ MONTHS_PL = {
 }
 
 # Skład Rady Miasta Częstochowy IX kadencji (25 radnych) wg BIP
-# https://bip.czestochowa.pl/artykuly/71763/kluby-radnych (stan 2026-05-13).
+# https://bip.czestochowa.pl/artykuly/71763/kluby-radnych (stan 2026-08-08).
+# Uwaga: Łukasz Banaś (dawniej KO) od 30.10.2025 zawieszony i przeniesiony do NZ.
 # Format: "Imię Nazwisko" → kod klubu. PDF z BIP może podawać też w formie
 # "NAZWISKO Imię" (caps), normalizujemy w build_name_lookup().
 COUNCILORS: dict[str, str] = {
-    # KO — Koalicja Obywatelska (8)
+    # KO — Koalicja Obywatelska (7)
     "Joanna Rekwirewicz": "KO",
-    "Łukasz Banaś": "KO",
     "Marcin Biernat": "KO",
     "Barbara Gieroń": "KO",
     "Marcin Korzeniec": "KO",
@@ -109,7 +109,8 @@ COUNCILORS: dict[str, str] = {
     "Beata Struzik": "PiS",
     "Artur Warzocha": "PiS",
     "Piotr Wrona": "PiS",
-    # NZ (2)
+    # NZ — Radni niezrzeszeni (3)
+    "Łukasz Banaś": "NZ",
     "Krystyna Stefańska": "NZ",
     "Krzysztof Świerczyński": "NZ",
 }

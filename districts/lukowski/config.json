@@ -34,38 +34,58 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWPD": {
+      "name": "KOMITET WYBORCZY PRZYMIERZE DLA ZIEMI ŁUKOWSKIEJ",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)"
+    },
+    "KWWR": {
+      "name": "KOMITET WYBORCZY WYBORCÓW RAZEM PONAD PODZIAŁAMI DLA ZIEM...",
+      "color": "#0891b2",
+      "bg": "rgba(8,145,178,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Agata Zabielska": "Niezrzeszeni",
-    "Andrzej Wisiński": "Niezrzeszeni",
-    "Anna Bartosiewicz": "Niezrzeszeni",
-    "Barbara Chadaj": "Niezrzeszeni",
-    "Danuta Bosek": "Niezrzeszeni",
-    "Dariusz Szustek": "Niezrzeszeni",
-    "Henryk Lipiec": "Niezrzeszeni",
-    "Ilona Ochmańska": "Niezrzeszeni",
-    "Jacek Krzyszczak": "Niezrzeszeni",
-    "Janusz Kozioł": "Niezrzeszeni",
-    "Jerzy Kędra": "Niezrzeszeni",
-    "Karol Ciołek": "Niezrzeszeni",
-    "Krzysztof Głuchowski": "Niezrzeszeni",
-    "Krzysztof Szczęśniak": "Niezrzeszeni",
-    "Krzysztof Woliński": "Niezrzeszeni",
-    "Longin Kajka": "Niezrzeszeni",
-    "Lucjan Szekalis": "Niezrzeszeni",
-    "Maciej Cybulski": "Niezrzeszeni",
-    "Przemysław Suchodolski": "Niezrzeszeni",
-    "Sławomir Rzymowski": "Niezrzeszeni",
-    "Tomasz Kruk": "Niezrzeszeni",
-    "Urszula Chruściel": "Niezrzeszeni",
-    "Wojciech Szczygieł": "Niezrzeszeni",
-    "Włodzimierz Wolski": "Niezrzeszeni"
+    "Agata Zabielska": "KWWR",
+    "Andrzej Wisiński": "PiS",
+    "Anna Bartosiewicz": "NZ",
+    "Barbara Chadaj": "PiS",
+    "Danuta Bosek": "PiS",
+    "Dariusz Szustek": "PiS",
+    "Henryk Lipiec": "KWWR",
+    "Ilona Ochmańska": "KWPD",
+    "Jacek Krzyszczak": "PiS",
+    "Janusz Kozioł": "KWPD",
+    "Jerzy Kędra": "KWPD",
+    "Karol Ciołek": "KWPD",
+    "Krzysztof Głuchowski": "PiS",
+    "Krzysztof Szczęśniak": "KWPD",
+    "Krzysztof Woliński": "TD",
+    "Longin Kajka": "KWWR",
+    "Lucjan Szekalis": "KWWR",
+    "Maciej Cybulski": "KWWR",
+    "Przemysław Suchodolski": "PiS",
+    "Sławomir Rzymowski": "PiS",
+    "Tomasz Kruk": "TD",
+    "Urszula Chruściel": "PiS",
+    "Wojciech Szczygieł": "PiS",
+    "Włodzimierz Wolski": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

@@ -34,31 +34,51 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWN": {
+      "name": "KOMITET WYBORCZY WYBORCÓW „NIEZALEŻNI”",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)"
+    },
+    "KWWW": {
+      "name": "KOMITET WYBORCZY WYBORCÓW „WSPÓLNY POWIAT”",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Andrzej Gostołek": "Niezrzeszeni",
-    "Anna Jarczewska": "Niezrzeszeni",
-    "Bartosz Zasada": "Niezrzeszeni",
-    "Bogdan Wankiewicz": "Niezrzeszeni",
-    "Bożena Terefenko": "Niezrzeszeni",
-    "Danuta Kęsek": "Niezrzeszeni",
-    "Jan Grudziński": "Niezrzeszeni",
-    "Janusz Ciaś": "Niezrzeszeni",
-    "Janusz Różański": "Niezrzeszeni",
-    "Jerzy Goszczyński": "Niezrzeszeni",
-    "Jolanta Giłka": "Niezrzeszeni",
-    "Piotr Pierzyński": "Niezrzeszeni",
-    "Przemysław Maksymowicz": "Niezrzeszeni",
-    "Przemysław Stanisławski": "Niezrzeszeni",
-    "Sławomir Niewczas": "Niezrzeszeni",
-    "Tadeusz Wenio": "Niezrzeszeni",
-    "Wojciech Narel": "Niezrzeszeni"
+    "Andrzej Gostołek": "KO",
+    "Anna Jarczewska": "KWWN",
+    "Bartosz Zasada": "PiS",
+    "Bogdan Wankiewicz": "KO",
+    "Bożena Terefenko": "KO",
+    "Danuta Kęsek": "KO",
+    "Jan Grudziński": "KWWN",
+    "Janusz Ciaś": "PiS",
+    "Janusz Różański": "KWWW",
+    "Jerzy Goszczyński": "NZ",
+    "Jolanta Giłka": "KO",
+    "Piotr Pierzyński": "PiS",
+    "Przemysław Maksymowicz": "KWWN",
+    "Przemysław Stanisławski": "KWWW",
+    "Sławomir Niewczas": "KO",
+    "Tadeusz Wenio": "KO",
+    "Wojciech Narel": "KO"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

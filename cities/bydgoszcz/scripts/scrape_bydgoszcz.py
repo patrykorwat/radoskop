@@ -116,7 +116,7 @@ COUNCILORS = {
     "Mateusz Zwolak": "KO i Lewica",
     # Była radna (mandat wygasł 31.07.2024) — dla atrybucji głosów z 2024
     "Anna Mackiewicz": "KO i Lewica",
-    # Klub radnych Bydgoska Prawica (9)
+    # Klub radnych Bydgoska Prawica (8)
     "Wojciech Bielawa": "Bydgoska Prawica",
     "Paweł Bokiej": "Bydgoska Prawica",
     "Jędrzej Gralik": "Bydgoska Prawica",
@@ -125,8 +125,8 @@ COUNCILORS = {
     "Paweł Sieg": "Bydgoska Prawica",
     "Grażyna Szabelska": "Bydgoska Prawica",
     "Piotr Walczak": "Bydgoska Prawica",
-    "Katarzyna Zaczek": "Bydgoska Prawica",
-    # Niezrzeszeni — brak klubu wg BIP (4)
+    # Niezrzeszeni — brak klubu wg BIP (5)
+    "Katarzyna Zaczek": "Niezrzeszeni",
     "Joanna Czerska-Thomas": "Niezrzeszeni",
     "Radosław Ginther": "Niezrzeszeni",
     "Tomasz Hoppe": "Niezrzeszeni",

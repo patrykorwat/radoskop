@@ -34,29 +34,49 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWF": {
+      "name": "KOMITET WYBORCZY WYBORCÓW FORUM SAMORZĄDOWE POWIATU PARCZ...",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "KWWP": {
+      "name": "KOMITET WYBORCZY WYBORCÓW PRZYJAZNY POWIAT",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Adam Domański": "Niezrzeszeni",
-    "Adam Wiśniewski": "Niezrzeszeni",
-    "Adam Wróblewski": "Niezrzeszeni",
-    "Andrzej Turowski": "Niezrzeszeni",
-    "Aneta Szewczyk": "Niezrzeszeni",
-    "Artur Jaszczuk": "Niezrzeszeni",
-    "Artur Makówka": "Niezrzeszeni",
-    "Bartosz Hawryluk": "Niezrzeszeni",
-    "Elżbieta Grudzińska-Konczal": "Niezrzeszeni",
-    "Janusz Zieliński": "Niezrzeszeni",
-    "Kamil Deryło": "Niezrzeszeni",
-    "Piotr Denejko": "Niezrzeszeni",
-    "Rafał Sokołowski": "Niezrzeszeni",
-    "Samanta Lamczyk": "Niezrzeszeni",
-    "Sławomir Langa": "Niezrzeszeni"
+    "Adam Domański": "KWWF",
+    "Adam Wiśniewski": "TD",
+    "Adam Wróblewski": "PiS",
+    "Andrzej Turowski": "PiS",
+    "Aneta Szewczyk": "TD",
+    "Artur Jaszczuk": "KWWF",
+    "Artur Makówka": "PiS",
+    "Bartosz Hawryluk": "KWWP",
+    "Elżbieta Grudzińska-Konczal": "PiS",
+    "Janusz Zieliński": "TD",
+    "Kamil Deryło": "KWWP",
+    "Piotr Denejko": "KWWF",
+    "Rafał Sokołowski": "TD",
+    "Samanta Lamczyk": "KWWF",
+    "Sławomir Langa": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

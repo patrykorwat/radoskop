@@ -34,35 +34,60 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWF": {
+      "name": "KOMITET WYBORCZY WYBORCÓW FORUM POWIATU GOSTYŃSKIEGO",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "KWWS": {
+      "name": "KOMITET WYBORCZY WYBORCÓW SAMORZĄDOWA KOALICJA WSPÓŁPRACY...",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Damian Walczak": "Niezrzeszeni",
-    "Dominik Jankowiak": "Niezrzeszeni",
-    "Grzegorz Marszałek": "Niezrzeszeni",
-    "Hubert Łapawa": "Niezrzeszeni",
-    "Maciej Maciejewski": "Niezrzeszeni",
-    "Maciej Malczyk": "Niezrzeszeni",
-    "Marcin Krawiec": "Niezrzeszeni",
-    "Michał Listwoń": "Niezrzeszeni",
-    "Mikołaj Rogala": "Niezrzeszeni",
-    "Mikołaj Wojtyczka": "Niezrzeszeni",
-    "Monika Gorynia": "Niezrzeszeni",
-    "Monika Strugała": "Niezrzeszeni",
-    "Piotr Curyk": "Niezrzeszeni",
-    "Piotr Kogut": "Niezrzeszeni",
-    "Robert Marcinkowski": "Niezrzeszeni",
-    "Sebastian Czwojda": "Niezrzeszeni",
-    "Sebastian Nowak": "Niezrzeszeni",
-    "Tadeusz Pawlak": "Niezrzeszeni",
-    "Tomasz Bem": "Niezrzeszeni",
-    "Tomasz Gruetzmacher": "Niezrzeszeni",
-    "Tomasz Skibicki": "Niezrzeszeni"
+    "Damian Walczak": "KWWS",
+    "Dominik Jankowiak": "KWWF",
+    "Grzegorz Marszałek": "KWWS",
+    "Hubert Łapawa": "PiS",
+    "Maciej Maciejewski": "KWWF",
+    "Maciej Malczyk": "KWWF",
+    "Marcin Krawiec": "KWWF",
+    "Michał Listwoń": "KO",
+    "Mikołaj Rogala": "KWWF",
+    "Mikołaj Wojtyczka": "PiS",
+    "Monika Gorynia": "KWWS",
+    "Monika Strugała": "KWWS",
+    "Piotr Curyk": "TD",
+    "Piotr Kogut": "PiS",
+    "Robert Marcinkowski": "KWWS",
+    "Sebastian Czwojda": "KWWF",
+    "Sebastian Nowak": "KWWS",
+    "Tadeusz Pawlak": "KO",
+    "Tomasz Bem": "KWWS",
+    "Tomasz Gruetzmacher": "KWWS",
+    "Tomasz Skibicki": "KWWS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

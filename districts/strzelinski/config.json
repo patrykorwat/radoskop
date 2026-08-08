@@ -34,31 +34,51 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWI": {
+      "name": "KOMITET WYBORCZY WYBORCÓW INICJATYWA LOKALNA",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "KWWP": {
+      "name": "KOMITET WYBORCZY WYBORCÓW POWIAT 2030 PLUS",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Agnieszka Zawłocka": "Niezrzeszeni",
-    "Aleksander Skorupski": "Niezrzeszeni",
-    "Aleksander Ziółkowski": "Niezrzeszeni",
-    "Anna Horodyska": "Niezrzeszeni",
-    "Ewelina Andrzejewska-Bochnak": "Niezrzeszeni",
-    "Jacek Maćkówka": "Niezrzeszeni",
-    "Ludwik Hrycak": "Niezrzeszeni",
-    "Magdalena Krupa": "Niezrzeszeni",
-    "Magdalena Maksymiak": "Niezrzeszeni",
-    "Marek Warcholiński": "Niezrzeszeni",
-    "Mariusz Majewski": "Niezrzeszeni",
-    "Mateusz Geroń": "Niezrzeszeni",
-    "Norbert Raba": "Niezrzeszeni",
-    "Paweł Laszczyński": "Niezrzeszeni",
-    "Paweł Rogaliński": "Niezrzeszeni",
-    "Sylwia Korczyńska": "Niezrzeszeni",
-    "Wanda Misiewicz": "Niezrzeszeni"
+    "Agnieszka Zawłocka": "KWWP",
+    "Aleksander Skorupski": "PiS",
+    "Aleksander Ziółkowski": "KWWP",
+    "Anna Horodyska": "KO",
+    "Ewelina Andrzejewska-Bochnak": "KO",
+    "Jacek Maćkówka": "KO",
+    "Ludwik Hrycak": "KO",
+    "Magdalena Krupa": "KWWI",
+    "Magdalena Maksymiak": "PiS",
+    "Marek Warcholiński": "KWWP",
+    "Mariusz Majewski": "KWWP",
+    "Mateusz Geroń": "KO",
+    "Norbert Raba": "KWWI",
+    "Paweł Laszczyński": "PiS",
+    "Paweł Rogaliński": "KWWI",
+    "Sylwia Korczyńska": "KWWP",
+    "Wanda Misiewicz": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

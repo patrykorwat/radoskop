@@ -34,35 +34,60 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "KWKS": {
+      "name": "KOMITET WYBORCZY KOALICJA SAMORZĄDOWA OK SAMORZĄD",
+      "color": "#65a30d",
+      "bg": "rgba(101,163,13,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWB": {
+      "name": "KOMITET WYBORCZY WYBORCÓW BEATA HANYŻAK 2024",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Adam Woropaj": "Niezrzeszeni",
-    "Andrzej Żybura": "Niezrzeszeni",
-    "Beata Hanyżak": "Niezrzeszeni",
-    "Henryk Roszak": "Niezrzeszeni",
-    "Jacek Lichocki": "Niezrzeszeni",
-    "Karol Bartkowiak": "Niezrzeszeni",
-    "Magdalena Dąbrowska": "Niezrzeszeni",
-    "Michał Chojara": "Niezrzeszeni",
-    "Michał Karwacki": "Niezrzeszeni",
-    "Mirosław Wieczór": "Niezrzeszeni",
-    "Paweł Zagórski": "Niezrzeszeni",
-    "Ryszard Firlet": "Niezrzeszeni",
-    "Ryszard Paech": "Niezrzeszeni",
-    "Sylwia Zagórska": "Niezrzeszeni",
-    "Szymon Erenc": "Niezrzeszeni",
-    "Sławomir Chamczyk": "Niezrzeszeni",
-    "Sławomir Dyzert": "Niezrzeszeni",
-    "Sławomir Hazak": "Niezrzeszeni",
-    "Tomasz Runowski": "Niezrzeszeni",
-    "Włodzimierz Kuczyński": "Niezrzeszeni",
-    "Włodzimierz Malinowski": "Niezrzeszeni"
+    "Adam Woropaj": "KWWB",
+    "Andrzej Żybura": "KWWB",
+    "Beata Hanyżak": "KWWB",
+    "Henryk Roszak": "KO",
+    "Jacek Lichocki": "KWKS",
+    "Karol Bartkowiak": "KO",
+    "Magdalena Dąbrowska": "KWWB",
+    "Michał Chojara": "KO",
+    "Michał Karwacki": "KO",
+    "Mirosław Wieczór": "KWKS",
+    "Paweł Zagórski": "PiS",
+    "Ryszard Firlet": "KWWB",
+    "Ryszard Paech": "PiS",
+    "Sylwia Zagórska": "TD",
+    "Szymon Erenc": "KO",
+    "Sławomir Chamczyk": "PiS",
+    "Sławomir Dyzert": "TD",
+    "Sławomir Hazak": "PiS",
+    "Tomasz Runowski": "KWWB",
+    "Włodzimierz Kuczyński": "KO",
+    "Włodzimierz Malinowski": "KO"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

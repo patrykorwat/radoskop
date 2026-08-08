@@ -34,32 +34,57 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWB": {
+      "name": "KOMITET WYBORCZY WYBORCÓW BLIŻEJ MIESZKAŃCÓW",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "KWWE": {
+      "name": "KOMITET WYBORCZY WYBORCÓW EMILIANA BERY RAZEM",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "- Dębicka Joanna Piotrowicz": "Niezrzeszeni",
-    "Aneta Kucharzyk": "Niezrzeszeni",
-    "Anna Szymańska": "Niezrzeszeni",
-    "Artur Stachera": "Niezrzeszeni",
-    "Brygida Kaczkowska": "Niezrzeszeni",
-    "Dariusz Żelazek": "Niezrzeszeni",
-    "Grzegorz Urbanowski": "Niezrzeszeni",
-    "Jan Grygorcewicz": "Niezrzeszeni",
-    "Jarosław Wroński": "Niezrzeszeni",
-    "Marek Trela": "Niezrzeszeni",
-    "Mariusz Barański": "Niezrzeszeni",
-    "Małgorzata Stępień": "Niezrzeszeni",
-    "Pawlinow Maciej": "Niezrzeszeni",
-    "Piotr Pieniążek": "Niezrzeszeni",
-    "Stanisław Laskowski": "Niezrzeszeni",
-    "Sylwester Rudziec": "Niezrzeszeni",
-    "Tomasz Kleniuk": "Niezrzeszeni",
-    "Wioletta Drewniak": "Niezrzeszeni"
+    "- Dębicka Joanna Piotrowicz": "KWWE",
+    "Aneta Kucharzyk": "PiS",
+    "Anna Szymańska": "TD",
+    "Artur Stachera": "KWWB",
+    "Brygida Kaczkowska": "NZ",
+    "Dariusz Żelazek": "PiS",
+    "Grzegorz Urbanowski": "KO",
+    "Jan Grygorcewicz": "TD",
+    "Jarosław Wroński": "KO",
+    "Marek Trela": "PiS",
+    "Mariusz Barański": "KO",
+    "Małgorzata Stępień": "KO",
+    "Pawlinow Maciej": "KWWE",
+    "Piotr Pieniążek": "TD",
+    "Stanisław Laskowski": "TD",
+    "Sylwester Rudziec": "PiS",
+    "Tomasz Kleniuk": "KWWB",
+    "Wioletta Drewniak": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

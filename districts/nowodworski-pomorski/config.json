@@ -34,33 +34,33 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Aleksandra Szczurowska": "Niezrzeszeni",
-    "Andrzej Drewnowski": "Niezrzeszeni",
-    "Anna Małecka": "Niezrzeszeni",
-    "Bogdan Ruszkowski": "Niezrzeszeni",
-    "Bogumiła Szlaska": "Niezrzeszeni",
-    "Karolina Małek": "Niezrzeszeni",
-    "Katarzyna Kręźlewicz": "Niezrzeszeni",
-    "Krzysztof Kapusta": "Niezrzeszeni",
-    "Marcin Gągolewski": "Niezrzeszeni",
-    "Mirosława Ozdarska": "Niezrzeszeni",
-    "Monika Bratkowska": "Niezrzeszeni",
-    "Monika Nojbert": "Niezrzeszeni",
-    "Paweł Calak": "Niezrzeszeni",
-    "Piotr Osiński": "Niezrzeszeni",
-    "Rodryg Czyż": "Niezrzeszeni",
-    "Sebastian Kozak": "Niezrzeszeni",
-    "Sylwia Jabłońska": "Niezrzeszeni",
-    "Zbigniew Niezabitowski": "Niezrzeszeni",
-    "Zdzisław Szmytkowski": "Niezrzeszeni"
+    "Aleksandra Szczurowska": "NZ",
+    "Andrzej Drewnowski": "NZ",
+    "Anna Małecka": "NZ",
+    "Bogdan Ruszkowski": "NZ",
+    "Bogumiła Szlaska": "NZ",
+    "Karolina Małek": "NZ",
+    "Katarzyna Kręźlewicz": "NZ",
+    "Krzysztof Kapusta": "NZ",
+    "Marcin Gągolewski": "NZ",
+    "Mirosława Ozdarska": "NZ",
+    "Monika Bratkowska": "NZ",
+    "Monika Nojbert": "NZ",
+    "Paweł Calak": "NZ",
+    "Piotr Osiński": "NZ",
+    "Rodryg Czyż": "NZ",
+    "Sebastian Kozak": "NZ",
+    "Sylwia Jabłońska": "NZ",
+    "Zbigniew Niezabitowski": "NZ",
+    "Zdzisław Szmytkowski": "NZ"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl (reverted - names do not match teryt 2210)",
+  "clubs_deferred": false
 }

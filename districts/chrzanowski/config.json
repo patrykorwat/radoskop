@@ -34,37 +34,67 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "WPC": {
+      "name": "KWW Wspólny Powiat Chrzanowski",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)"
+    },
+    "TPZCh": {
+      "name": "KW Towarzystwa Przyjaciół Ziemi Chrzanowskiej",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "MGN": {
+      "name": "KWW Moja Gmina-Nasz Powiat",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Andrzej Jura": "Niezrzeszeni",
-    "Andrzej Zieliński": "Niezrzeszeni",
-    "Bartłomiej Gębala": "Niezrzeszeni",
-    "Bogdan Łabuzek": "Niezrzeszeni",
-    "Ewa Jędrysik": "Niezrzeszeni",
-    "Jan Rychlik": "Niezrzeszeni",
-    "Janusz Szczęśniak": "Niezrzeszeni",
-    "Krzysztof Kasperek": "Niezrzeszeni",
-    "Krzysztof Kozik": "Niezrzeszeni",
-    "Krzysztof Kurzański": "Niezrzeszeni",
-    "Leszek Kukla": "Niezrzeszeni",
-    "Lucyna Wentrys": "Niezrzeszeni",
-    "Maciej Nowak": "Niezrzeszeni",
-    "Marcin Kaszuba": "Niezrzeszeni",
-    "Mariusz Brzózka": "Niezrzeszeni",
-    "Michał Gawroński": "Niezrzeszeni",
-    "Patrycja Maciaszek": "Niezrzeszeni",
-    "Piotr Potocki": "Niezrzeszeni",
-    "Piotr Rembiecha": "Niezrzeszeni",
-    "Piotr Tyrański": "Niezrzeszeni",
-    "Ryszard Kosowski": "Niezrzeszeni",
-    "Włodzimierz Korczyński": "Niezrzeszeni",
-    "Łukasz Bieniek": "Niezrzeszeni"
+    "Marcin Kaszuba": "PiS",
+    "Jan Rychlik": "PiS",
+    "Michał Gawroński": "PiS",
+    "Krzysztof Kasperek": "PiS",
+    "Krzysztof Kozik": "PiS",
+    "Piotr Tyrański": "PiS",
+    "Janusz Szczęśniak": "PiS",
+    "Bogdan Łabuzek": "PiS",
+    "Leszek Kukla": "KO",
+    "Lucyna Wentrys": "KO",
+    "Maciej Nowak": "KO",
+    "Piotr Potocki": "KO",
+    "Andrzej Zieliński": "KO",
+    "Bartłomiej Gębala": "KO",
+    "Piotr Rembiecha": "KO",
+    "Ewa Jędrysik": "KO",
+    "Włodzimierz Korczyński": "KO",
+    "Mariusz Brzózka": "KO",
+    "Patrycja Maciaszek": "TD",
+    "Krzysztof Kurzański": "WPC",
+    "Ryszard Kosowski": "WPC",
+    "Łukasz Bieniek": "TPZCh",
+    "Andrzej Jura": "MGN"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip (TERYT 120300)",
+  "clubs_deferred": false
 }

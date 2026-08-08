@@ -67,11 +67,12 @@ KADENCJE = {
 
 DELAY = 1.0
 
-# Radni Łodzi IX kadencja (2024-2029) — 43 radnych
+# Radni Łodzi IX kadencja (2024-2029) — 37 radnych
 # Pobrane z: https://bip.uml.lodz.pl/wladze/rada-miejska-w-lodzi/ (club pages)
+# Zweryfikowano: 2026-08-08
 # Nazwy muszą dokładnie pasować do formy w PDF (Imię Nazwisko).
 COUNCILORS = {
-    # KO - Koalicja Obywatelska
+    # KO - Koalicja Obywatelska (23 radnych)
     "Tomasz Kacprzak": "KO",
     "Magdalena Gałkiewicz": "KO",
     "Maciej Rakowski": "KO",
@@ -86,33 +87,33 @@ COUNCILORS = {
     "Marcelina Hamczyk": "KO",
     "Marcin Hencz": "KO",
     "Bogusław Hubert": "KO",
-    "Karolina Kepka": "KO",
+    "Karolina Kępka": "KO",
     "Marcin Masłowski": "KO",
     "Robert Pawlak": "KO",
     "Marta Przywara": "KO",
     "Damian Raczkowski": "KO",
     "Paulina Setnik": "KO",
-    "Emilia Susnilo-Gruszka": "KO",
+    "Emilia Susniło-Gruszka": "KO",
     "Katarzyna Wachowska": "KO",
     "Maja Włodarczyk": "KO",
 
-    # Lewica
+    # Lewica (5 radnych)
     "Krzysztof Makowski": "Lewica",
+    "Tomasz Frączak": "Lewica",
     "Kamila Ścibor": "Lewica",
     "Agnieszka Wieteska": "Lewica",
     "Elżbieta Żuraw": "Lewica",
 
-    # PiS - Prawo i Sprawiedliwość
+    # PiS - Prawo i Sprawiedliwość (5 radnych)
     "Marcin Buchali": "PiS",
     "Tomasz Anielak": "PiS",
     "Sebastian Bulak": "PiS",
     "Piotr Cieplucha": "PiS",
-    "Radosław Marzec": "PiS",
     "Marek Michalik": "PiS",
-    "Włodzimierz Tomaszewski": "PiS",  # mandat wygaszony 21.06.2024
 
-    # Niezrzeszeni (Independent)
+    # Niezrzeszeni (Independent) — 4 radnych
     "Izabela Kaczmarska": "Niezrzeszeni",
+    "Radosław Marzec": "Niezrzeszeni",
     "Kosma Nykiel": "Niezrzeszeni",
     "Krzysztof Stasiak": "Niezrzeszeni",
 }

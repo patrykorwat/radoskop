@@ -34,29 +34,69 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWB": {
+      "name": "KOMITET WYBORCZY WYBORCÓW BEZPIECZNY I DOŚWIADCZONY POWIAT",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "KWWD": {
+      "name": "KOMITET WYBORCZY WYBORCÓW DIALOG I SZACUNEK",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)"
+    },
+    "KWWG": {
+      "name": "KOMITET WYBORCZY WYBORCÓW GOŁDAP-DOBRO WSPÓLNE",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "KWWN": {
+      "name": "KOMITET WYBORCZY WYBORCÓW NASZ POWIAT WSPÓŁPRACA I ROZWÓJ",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)"
+    },
+    "KWWP": {
+      "name": "KOMITET WYBORCZY WYBORCÓW PIOTRA BARTOSZUKA",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "KWWW": {
+      "name": "KOMITET WYBORCZY WYBORCÓW WSPÓLNIE DLA GOŁDAPI",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Andrzej Ciołek": "Niezrzeszeni",
-    "Anna Anetta Kozioł": "Niezrzeszeni",
-    "Anna Staroszczuk": "Niezrzeszeni",
-    "Anna Zyborowicz": "Niezrzeszeni",
-    "Grażyna Barbara Senda": "Niezrzeszeni",
-    "Jarosław Walc": "Niezrzeszeni",
-    "Jarosław Wiktor Dzienis": "Niezrzeszeni",
-    "Krzysztof Tomasz Kazaniecki": "Niezrzeszeni",
-    "Marzanna Marianna Wardziejewska": "Niezrzeszeni",
-    "Małgorzata Marianna Kuliś": "Niezrzeszeni",
-    "Paweł Artur Czyż": "Niezrzeszeni",
-    "Piotr Mościński": "Niezrzeszeni",
-    "Piotr Rant": "Niezrzeszeni",
-    "Stanisław Wójtowicz": "Niezrzeszeni",
-    "Władysław Biłas": "Niezrzeszeni"
+    "Andrzej Ciołek": "KWWB",
+    "Anna Anetta Kozioł": "KO",
+    "Anna Staroszczuk": "KWWP",
+    "Anna Zyborowicz": "KWWP",
+    "Grażyna Barbara Senda": "PiS",
+    "Jarosław Walc": "KWWG",
+    "Jarosław Wiktor Dzienis": "KWWN",
+    "Krzysztof Tomasz Kazaniecki": "KWWB",
+    "Marzanna Marianna Wardziejewska": "KWWP",
+    "Małgorzata Marianna Kuliś": "KWWD",
+    "Paweł Artur Czyż": "KWWD",
+    "Piotr Mościński": "KWWP",
+    "Piotr Rant": "KO",
+    "Stanisław Wójtowicz": "KWWP",
+    "Władysław Biłas": "KO"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

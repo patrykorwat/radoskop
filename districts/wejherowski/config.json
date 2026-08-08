@@ -34,44 +34,64 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWW": {
+      "name": "KOMITET WYBORCZY WYBORCÓW WSPÓLNY POWIAT GABRIELI LISIUS",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Alicja Skwarło": "Niezrzeszeni",
-    "Andrzej Soboń": "Niezrzeszeni",
-    "Anna Dąbrowicz": "Niezrzeszeni",
-    "Anna Jakubowska": "Niezrzeszeni",
-    "Anna Jamróz-Szadaj": "Niezrzeszeni",
-    "Arkadiusz Janor": "Niezrzeszeni",
-    "Daniel Hadam": "Niezrzeszeni",
-    "Danuta Milewczyk": "Niezrzeszeni",
-    "Ewa Pasieczna": "Niezrzeszeni",
-    "Gabriela Lisius": "Niezrzeszeni",
-    "Grzegorz Grinholc": "Niezrzeszeni",
-    "Halina Grzeszczuk": "Niezrzeszeni",
-    "Iwona Szczygieł": "Niezrzeszeni",
-    "Jacek Drewa": "Niezrzeszeni",
-    "Jacek Thiel": "Niezrzeszeni",
-    "Jolanta Król": "Niezrzeszeni",
-    "Kazimierz Bistroń": "Niezrzeszeni",
-    "Kinga Szczepankowska": "Niezrzeszeni",
-    "Krystyna Grubba": "Niezrzeszeni",
-    "Krzysztof Bober": "Niezrzeszeni",
-    "Krzysztof Krzemiński": "Niezrzeszeni",
-    "Marcin Drewa": "Niezrzeszeni",
-    "Marek Budnik": "Niezrzeszeni",
-    "Natasza Sobczak": "Niezrzeszeni",
-    "Piotr Pelcer": "Niezrzeszeni",
-    "Piotr Skurzyński": "Niezrzeszeni",
-    "Robert Siewert": "Niezrzeszeni",
-    "Tomasz Bujak": "Niezrzeszeni",
-    "Waldemar Kunz": "Niezrzeszeni",
-    "Witold Reclaf": "Niezrzeszeni"
+    "Alicja Skwarło": "KO",
+    "Andrzej Soboń": "KWWW",
+    "Anna Dąbrowicz": "KWWW",
+    "Anna Jakubowska": "PiS",
+    "Anna Jamróz-Szadaj": "KWWW",
+    "Arkadiusz Janor": "KWWW",
+    "Daniel Hadam": "KO",
+    "Danuta Milewczyk": "KWWW",
+    "Ewa Pasieczna": "KO",
+    "Gabriela Lisius": "KWWW",
+    "Grzegorz Grinholc": "KO",
+    "Halina Grzeszczuk": "NZ",
+    "Iwona Szczygieł": "KO",
+    "Jacek Drewa": "PiS",
+    "Jacek Thiel": "KWWW",
+    "Jolanta Król": "KO",
+    "Kazimierz Bistroń": "KWWW",
+    "Kinga Szczepankowska": "KO",
+    "Krystyna Grubba": "KO",
+    "Krzysztof Bober": "PiS",
+    "Krzysztof Krzemiński": "KO",
+    "Marcin Drewa": "PiS",
+    "Marek Budnik": "KO",
+    "Natasza Sobczak": "KO",
+    "Piotr Pelcer": "KO",
+    "Piotr Skurzyński": "PiS",
+    "Robert Siewert": "KO",
+    "Tomasz Bujak": "KWWW",
+    "Waldemar Kunz": "TD",
+    "Witold Reclaf": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

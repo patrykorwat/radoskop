@@ -34,32 +34,57 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "KKWL": {
+      "name": "KOALICYJNY KOMITET WYBORCZY LEWICA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWA": {
+      "name": "KOMITET WYBORCZY WYBORCÓW ALTERNATYWA WIOLETTY KASZAK",
+      "color": "#65a30d",
+      "bg": "rgba(101,163,13,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Andrzej Konopelski": "Niezrzeszeni",
-    "Aneta Kołuda": "Niezrzeszeni",
-    "Barbara Cieślak": "Niezrzeszeni",
-    "Bogdan Kwiatkowski": "Niezrzeszeni",
-    "Henryk Owczarek": "Niezrzeszeni",
-    "Izabela Kowalczyk": "Niezrzeszeni",
-    "Jerzy Kozubski": "Niezrzeszeni",
-    "Jolanta Kiłoczko": "Niezrzeszeni",
-    "Maciej Radomiak": "Niezrzeszeni",
-    "Magdalena Sieńko": "Niezrzeszeni",
-    "Małgorzata Buchajczyk": "Niezrzeszeni",
-    "Piotr Kamela": "Niezrzeszeni",
-    "Robert Adamczyk": "Niezrzeszeni",
-    "Stanisław Rydz": "Niezrzeszeni",
-    "Sławomir Przyłucki": "Niezrzeszeni",
-    "Wioletta Kaszak": "Niezrzeszeni",
-    "Wojciech Cheba": "Niezrzeszeni",
-    "admin choszczno": "Niezrzeszeni"
+    "Andrzej Konopelski": "KWWA",
+    "Aneta Kołuda": "KKWL",
+    "Barbara Cieślak": "PiS",
+    "Bogdan Kwiatkowski": "KWWA",
+    "Henryk Owczarek": "TD",
+    "Izabela Kowalczyk": "KKWL",
+    "Jerzy Kozubski": "KWWA",
+    "Jolanta Kiłoczko": "PiS",
+    "Maciej Radomiak": "KO",
+    "Magdalena Sieńko": "TD",
+    "Małgorzata Buchajczyk": "PiS",
+    "Piotr Kamela": "KO",
+    "Robert Adamczyk": "KO",
+    "Stanisław Rydz": "PiS",
+    "Sławomir Przyłucki": "TD",
+    "Wioletta Kaszak": "KWWA",
+    "Wojciech Cheba": "PiS",
+    "admin choszczno": "NZ"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

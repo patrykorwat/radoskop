@@ -34,33 +34,58 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWF": {
+      "name": "KOMITET WYBORCZY WYBORCÓW FORUM MIESZKAŃCÓW",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "KWWW": {
+      "name": "KOMITET WYBORCZY WYBORCÓW WSPÓLNY POWIAT NIŻAŃSKI",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "KWWZ": {
+      "name": "KOMITET WYBORCZY WYBORCÓW ZIEMIA NIŻAŃSKA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Adam Mach": "Niezrzeszeni",
-    "Alicja Habuda-Cichoń": "Niezrzeszeni",
-    "Andrzej Tofilski": "Niezrzeszeni",
-    "Benedykt Sudoł": "Niezrzeszeni",
-    "Błażej Borowiec": "Niezrzeszeni",
-    "Dariusz Łebko": "Niezrzeszeni",
-    "Gabriel Waliłko": "Niezrzeszeni",
-    "Jan Kowal": "Niezrzeszeni",
-    "Justyna Delekta": "Niezrzeszeni",
-    "Józef Sroka": "Niezrzeszeni",
-    "Karol Wołoszyn": "Niezrzeszeni",
-    "Lucjan Tabasz": "Niezrzeszeni",
-    "Magdalena Hasiak": "Niezrzeszeni",
-    "Małgorzata Kuś": "Niezrzeszeni",
-    "Robert Bednarz": "Niezrzeszeni",
-    "Roman Pokora": "Niezrzeszeni",
-    "Sylwester Daśko": "Niezrzeszeni",
-    "Tomasz Karaś": "Niezrzeszeni",
-    "Łukasz Chamot": "Niezrzeszeni"
+    "Adam Mach": "PiS",
+    "Alicja Habuda-Cichoń": "PiS",
+    "Andrzej Tofilski": "KWWZ",
+    "Benedykt Sudoł": "PiS",
+    "Błażej Borowiec": "TD",
+    "Dariusz Łebko": "PiS",
+    "Gabriel Waliłko": "KWWF",
+    "Jan Kowal": "KWWF",
+    "Justyna Delekta": "PiS",
+    "Józef Sroka": "PiS",
+    "Karol Wołoszyn": "KWWZ",
+    "Lucjan Tabasz": "PiS",
+    "Magdalena Hasiak": "KWWW",
+    "Małgorzata Kuś": "PiS",
+    "Robert Bednarz": "PiS",
+    "Roman Pokora": "PiS",
+    "Sylwester Daśko": "PiS",
+    "Tomasz Karaś": "KWWW",
+    "Łukasz Chamot": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

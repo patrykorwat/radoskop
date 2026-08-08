@@ -34,42 +34,67 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "KWMW": {
+      "name": "KOMITET WYBORCZY MAZOWIECKA WSPÓLNOTA SAMORZĄDOWA",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWD": {
+      "name": "KOMITET WYBORCZY WYBORCÓW DOBRO WSPÓLNE - ZIEMIA PRUSZKOWSKA",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Adrian Ejssymont": "Niezrzeszeni",
-    "Amanda Mitlejner": "Niezrzeszeni",
-    "Aneta Pawłowska": "Niezrzeszeni",
-    "Arkadiusz Wencel": "Niezrzeszeni",
-    "Artur Świercz": "Niezrzeszeni",
-    "Aurelia Zalewska": "Niezrzeszeni",
-    "Dorota Zglińska": "Niezrzeszeni",
-    "Ewa Borodzicz": "Niezrzeszeni",
-    "Ewa Rybka": "Niezrzeszeni",
-    "Grzegorz Mroczek": "Niezrzeszeni",
-    "Janusz Rajkowski": "Niezrzeszeni",
-    "Julia Burzec": "Niezrzeszeni",
-    "Kaja Rogulska": "Niezrzeszeni",
-    "Karolina Gawkowska": "Niezrzeszeni",
-    "Konrad Sipiera": "Niezrzeszeni",
-    "Krystian Durma": "Niezrzeszeni",
-    "Krzysztof Rymuza": "Niezrzeszeni",
-    "Maciej Kosiński": "Niezrzeszeni",
-    "Magdalena Beyer": "Niezrzeszeni",
-    "Marcin Rybicki": "Niezrzeszeni",
-    "Małgorzata Chmielewska": "Niezrzeszeni",
-    "Michał Kucharski": "Niezrzeszeni",
-    "Michał Pihowicz": "Niezrzeszeni",
-    "Mirosława Śliwińska": "Niezrzeszeni",
-    "Patryk Grabowski": "Niezrzeszeni",
-    "Paweł Siekierko": "Niezrzeszeni",
-    "Rafał Sieradzki": "Niezrzeszeni",
-    "Sławomir Walendowski": "Niezrzeszeni"
+    "Adrian Ejssymont": "KO",
+    "Amanda Mitlejner": "KO",
+    "Aneta Pawłowska": "PiS",
+    "Arkadiusz Wencel": "KO",
+    "Artur Świercz": "TD",
+    "Aurelia Zalewska": "PiS",
+    "Dorota Zglińska": "KO",
+    "Ewa Borodzicz": "PiS",
+    "Ewa Rybka": "PiS",
+    "Grzegorz Mroczek": "PiS",
+    "Janusz Rajkowski": "KO",
+    "Julia Burzec": "KO",
+    "Kaja Rogulska": "KO",
+    "Karolina Gawkowska": "KO",
+    "Konrad Sipiera": "PiS",
+    "Krystian Durma": "KWMW",
+    "Krzysztof Rymuza": "KWMW",
+    "Maciej Kosiński": "NZ",
+    "Magdalena Beyer": "PiS",
+    "Marcin Rybicki": "KO",
+    "Małgorzata Chmielewska": "KO",
+    "Michał Kucharski": "PiS",
+    "Michał Pihowicz": "KO",
+    "Mirosława Śliwińska": "KWMW",
+    "Patryk Grabowski": "KO",
+    "Paweł Siekierko": "KO",
+    "Rafał Sieradzki": "KO",
+    "Sławomir Walendowski": "KWWD"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

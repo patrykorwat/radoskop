@@ -34,31 +34,46 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KWSK": {
+      "name": "KOMITET WYBORCZY STOWARZYSZENIE KOALICJA BIELSKA",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWN": {
+      "name": "KOMITET WYBORCZY WYBORCÓW „NASZE PODLASIE”",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Adam Gołębiecki": "Niezrzeszeni",
-    "Adam Miron Łęczycki": "Niezrzeszeni",
-    "Agata Michałowska": "Niezrzeszeni",
-    "Anatol Wasiluk": "Niezrzeszeni",
-    "Andrzej Leszczyński": "Niezrzeszeni",
-    "Bożena Teresa Zwolińska": "Niezrzeszeni",
-    "Elżbieta Fionik": "Niezrzeszeni",
-    "Franciszek Rułka": "Niezrzeszeni",
-    "Jan Niewiński": "Niezrzeszeni",
-    "Jan Radkiewicz": "Niezrzeszeni",
-    "Maciej Bobel": "Niezrzeszeni",
-    "Maria Ryżyk": "Niezrzeszeni",
-    "Monika Dmitruk": "Niezrzeszeni",
-    "Patryk Wiktor Kosiński": "Niezrzeszeni",
-    "Piotr Bożko": "Niezrzeszeni",
-    "Sławomir Jerzy Snarski": "Niezrzeszeni",
-    "Zbigniew Jan Szpakowski": "Niezrzeszeni"
+    "Adam Gołębiecki": "KWWN",
+    "Adam Miron Łęczycki": "KWWN",
+    "Agata Michałowska": "PiS",
+    "Anatol Wasiluk": "KWWN",
+    "Andrzej Leszczyński": "KWWN",
+    "Bożena Teresa Zwolińska": "KWWN",
+    "Elżbieta Fionik": "KWSK",
+    "Franciszek Rułka": "PiS",
+    "Jan Niewiński": "PiS",
+    "Jan Radkiewicz": "PiS",
+    "Maciej Bobel": "KWWN",
+    "Maria Ryżyk": "KWSK",
+    "Monika Dmitruk": "KWWN",
+    "Patryk Wiktor Kosiński": "PiS",
+    "Piotr Bożko": "KWSK",
+    "Sławomir Jerzy Snarski": "KWWN",
+    "Zbigniew Jan Szpakowski": "KWWN"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

@@ -34,32 +34,62 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWB": {
+      "name": "KOMITET WYBORCZY WYBORCÓW BEZPARTYJNY POWIAT",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "KWWP": {
+      "name": "KOMITET WYBORCZY WYBORCÓW PONAD PODZIAŁAMI",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "KWWT": {
+      "name": "KOMITET WYBORCZY WYBORCÓW TOMASZA SZRAMY",
+      "color": "#65a30d",
+      "bg": "rgba(101,163,13,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Aleksandra Kulupa": "Niezrzeszeni",
-    "Anna Kłos": "Niezrzeszeni",
-    "Bogusław Janus": "Niezrzeszeni",
-    "Błażej Cisowski": "Niezrzeszeni",
-    "Katarzyna Woźniak": "Niezrzeszeni",
-    "Leszek Dąbrowski": "Niezrzeszeni",
-    "Liberska Magdalena": "Niezrzeszeni",
-    "Magdalena Krupczyńska": "Niezrzeszeni",
-    "Mariusz Drewicz": "Niezrzeszeni",
-    "Mariusz Nowacki": "Niezrzeszeni",
-    "Mateusz Daszkiewicz": "Niezrzeszeni",
-    "Piotr Desperak": "Niezrzeszeni",
-    "Renata Tomaszewska": "Niezrzeszeni",
-    "Robert Brdąkała": "Niezrzeszeni",
-    "Szymon Paczyński": "Niezrzeszeni",
-    "Waldemar Cyranek": "Niezrzeszeni",
-    "Zbigniew Nowak": "Niezrzeszeni",
-    "Zofia Kotecka": "Niezrzeszeni"
+    "Aleksandra Kulupa": "TD",
+    "Anna Kłos": "KWWB",
+    "Bogusław Janus": "TD",
+    "Błażej Cisowski": "TD",
+    "Katarzyna Woźniak": "KO",
+    "Leszek Dąbrowski": "PiS",
+    "Liberska Magdalena": "TD",
+    "Magdalena Krupczyńska": "KO",
+    "Mariusz Drewicz": "KO",
+    "Mariusz Nowacki": "KO",
+    "Mateusz Daszkiewicz": "PiS",
+    "Piotr Desperak": "KWWP",
+    "Renata Tomaszewska": "KWWB",
+    "Robert Brdąkała": "KO",
+    "Szymon Paczyński": "KO",
+    "Waldemar Cyranek": "KWWT",
+    "Zbigniew Nowak": "PiS",
+    "Zofia Kotecka": "KWWT"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

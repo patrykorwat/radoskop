@@ -34,43 +34,68 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWSB": {
+      "name": "KOMITET WYBORCZY STOWARZYSZENIE „BEZPARTYJNI SAMORZĄDOWCY”",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)"
+    },
+    "KWWM": {
+      "name": "KOMITET WYBORCZY WYBORCÓW MŁODZI DLA POWIATU CIESZYŃSKIEGO",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "KWWP": {
+      "name": "KOMITET WYBORCZY WYBORCÓW POROZUMIENIE DLA SAMORZĄDÓW",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "KWWS": {
+      "name": "KOMITET WYBORCZY WYBORCÓW SAMORZĄDOWCY POWIATU CIESZYŃSKIEGO",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Andrzej Kondziołka": "Niezrzeszeni",
-    "Andrzej Łukasiak": "Niezrzeszeni",
-    "Aneta Legierska-Bujok": "Niezrzeszeni",
-    "Beata Macura": "Niezrzeszeni",
-    "Christian Jaworski": "Niezrzeszeni",
-    "Czesław Chrapek": "Niezrzeszeni",
-    "Danuta Łabaj": "Niezrzeszeni",
-    "Florian Sikora": "Niezrzeszeni",
-    "Grzegorz Konieczny": "Niezrzeszeni",
-    "Janina Żagan": "Niezrzeszeni",
-    "Janusz Juroszek": "Niezrzeszeni",
-    "Jarosław Bodak": "Niezrzeszeni",
-    "Jerzy Pilch": "Niezrzeszeni",
-    "Krystian Kukuczka": "Niezrzeszeni",
-    "Leszek Bujok": "Niezrzeszeni",
-    "Lilla Salachna-Brzoza": "Niezrzeszeni",
-    "Marcin Ślęk": "Niezrzeszeni",
-    "Mariola Rojek": "Niezrzeszeni",
-    "Michał Rudzicki": "Niezrzeszeni",
-    "Mieczysław Szczurek": "Niezrzeszeni",
-    "Mirosław Staniek": "Niezrzeszeni",
-    "Monika Wałach-Kaczmarzyk": "Niezrzeszeni",
-    "Piotr Gmuzdek": "Niezrzeszeni",
-    "Piotr Rucki": "Niezrzeszeni",
-    "Renata Michnik": "Niezrzeszeni",
-    "Sonia Krzempek": "Niezrzeszeni",
-    "Stanisław Kubicius": "Niezrzeszeni",
-    "Stanisław Malina": "Niezrzeszeni",
-    "Tomasz Dyrda": "Niezrzeszeni"
+    "Andrzej Kondziołka": "KWWS",
+    "Andrzej Łukasiak": "PiS",
+    "Aneta Legierska-Bujok": "KWWP",
+    "Beata Macura": "KWSB",
+    "Christian Jaworski": "KWWM",
+    "Czesław Chrapek": "PiS",
+    "Danuta Łabaj": "KWWP",
+    "Florian Sikora": "PiS",
+    "Grzegorz Konieczny": "PiS",
+    "Janina Żagan": "KWWP",
+    "Janusz Juroszek": "PiS",
+    "Jarosław Bodak": "KWWP",
+    "Jerzy Pilch": "KWWP",
+    "Krystian Kukuczka": "KWWM",
+    "Leszek Bujok": "KWWP",
+    "Lilla Salachna-Brzoza": "KWWP",
+    "Marcin Ślęk": "KWWP",
+    "Mariola Rojek": "PiS",
+    "Michał Rudzicki": "PiS",
+    "Mieczysław Szczurek": "KWWS",
+    "Mirosław Staniek": "KWWS",
+    "Monika Wałach-Kaczmarzyk": "PiS",
+    "Piotr Gmuzdek": "PiS",
+    "Piotr Rucki": "KWWP",
+    "Renata Michnik": "PiS",
+    "Sonia Krzempek": "PiS",
+    "Stanisław Kubicius": "KWWS",
+    "Stanisław Malina": "KWWS",
+    "Tomasz Dyrda": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

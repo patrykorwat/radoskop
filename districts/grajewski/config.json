@@ -34,32 +34,62 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWD": {
+      "name": "KOMITET WYBORCZY WYBORCÓW DOBRY POWIAT",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)"
+    },
+    "KWWG": {
+      "name": "KOMITET WYBORCZY WYBORCÓW GRAJEWSKIE POROZUMIENIE SAMORZĄ...",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "KWWM": {
+      "name": "KOMITET WYBORCZY WYBORCÓW MACIEJA PAWŁA BEDNARKO",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Adam Stachelek": "Niezrzeszeni",
-    "Artur Kuczyński": "Niezrzeszeni",
-    "Bolesław Ruszczyk": "Niezrzeszeni",
-    "Ewelina Ajdyn": "Niezrzeszeni",
-    "Grzegorz Gardocki": "Niezrzeszeni",
-    "Grzegorz Robert Curyło": "Niezrzeszeni",
-    "Janusz Marian Marcinkiewicz": "Niezrzeszeni",
-    "Jolanta Barbara Ciechanowicz": "Niezrzeszeni",
-    "Józef Jurski": "Niezrzeszeni",
-    "Leszek Czyżewski": "Niezrzeszeni",
-    "Magdalena Szumska": "Niezrzeszeni",
-    "Marek Kostrzewski": "Niezrzeszeni",
-    "Maria Gwiazdowska": "Niezrzeszeni",
-    "Stanisław Adam Doliwa": "Niezrzeszeni",
-    "Sławomir Jan Ginel": "Niezrzeszeni",
-    "Tomasz Cebeliński": "Niezrzeszeni",
-    "Waldemar Remfeld": "Niezrzeszeni",
-    "Wojciech Dariusz Maleszewski": "Niezrzeszeni"
+    "Adam Stachelek": "KWWM",
+    "Artur Kuczyński": "KWWD",
+    "Bolesław Ruszczyk": "PiS",
+    "Ewelina Ajdyn": "TD",
+    "Grzegorz Gardocki": "KWWD",
+    "Grzegorz Robert Curyło": "KWWD",
+    "Janusz Marian Marcinkiewicz": "TD",
+    "Jolanta Barbara Ciechanowicz": "PiS",
+    "Józef Jurski": "PiS",
+    "Leszek Czyżewski": "TD",
+    "Magdalena Szumska": "PiS",
+    "Marek Kostrzewski": "KWWD",
+    "Maria Gwiazdowska": "PiS",
+    "Stanisław Adam Doliwa": "KO",
+    "Sławomir Jan Ginel": "PiS",
+    "Tomasz Cebeliński": "KWWG",
+    "Waldemar Remfeld": "PiS",
+    "Wojciech Dariusz Maleszewski": "TD"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

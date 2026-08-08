@@ -34,31 +34,51 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWB": {
+      "name": "KOMITET WYBORCZY WYBORCÓW BLOK SAMORZĄDOWY",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "KWWP": {
+      "name": "KOMITET WYBORCZY WYBORCÓW PRZYJAZNY POWIAT",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Andrzej Brocki": "Niezrzeszeni",
-    "Andrzej Dołęga": "Niezrzeszeni",
-    "Bogusław Postek": "Niezrzeszeni",
-    "Bożena Maria Bieńkowska": "Niezrzeszeni",
-    "Dariusz Wilga": "Niezrzeszeni",
-    "Dorota Zarejewska-Tęga": "Niezrzeszeni",
-    "Grzegorz Grabowski": "Niezrzeszeni",
-    "Jarosław Szmulski": "Niezrzeszeni",
-    "Klaudia Traczyk": "Niezrzeszeni",
-    "Krzysztof Adam Nieliwodzki": "Niezrzeszeni",
-    "Krzysztof Andrzej Iwulski": "Niezrzeszeni",
-    "Leszek Czarzasty": "Niezrzeszeni",
-    "Mariusz Szempliński": "Niezrzeszeni",
-    "Paweł Mostowy": "Niezrzeszeni",
-    "Renata Wenda": "Niezrzeszeni",
-    "Tadeusz Niestępski": "Niezrzeszeni",
-    "Zenon Szczepankowski": "Niezrzeszeni"
+    "Andrzej Brocki": "KWWB",
+    "Andrzej Dołęga": "PiS",
+    "Bogusław Postek": "KWWB",
+    "Bożena Maria Bieńkowska": "PiS",
+    "Dariusz Wilga": "TD",
+    "Dorota Zarejewska-Tęga": "KWWB",
+    "Grzegorz Grabowski": "KWWP",
+    "Jarosław Szmulski": "KWWP",
+    "Klaudia Traczyk": "PiS",
+    "Krzysztof Adam Nieliwodzki": "PiS",
+    "Krzysztof Andrzej Iwulski": "KWWB",
+    "Leszek Czarzasty": "KWWP",
+    "Mariusz Szempliński": "TD",
+    "Paweł Mostowy": "PiS",
+    "Renata Wenda": "PiS",
+    "Tadeusz Niestępski": "PiS",
+    "Zenon Szczepankowski": "TD"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

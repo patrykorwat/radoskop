@@ -34,35 +34,55 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "KWOP": {
+      "name": "KOMITET WYBORCZY OBYWATELSKIE POROZUMIENIE SAMORZĄDOWE",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Agnieszka Jasińska": "Niezrzeszeni",
-    "Anna Belt": "Niezrzeszeni",
-    "Bogdan Tarach": "Niezrzeszeni",
-    "Dorota Kortas": "Niezrzeszeni",
-    "Ewa Joachimiak": "Niezrzeszeni",
-    "Ewa Otlewska": "Niezrzeszeni",
-    "Grzegorz Goral": "Niezrzeszeni",
-    "Grzegorz Tomaszewski": "Niezrzeszeni",
-    "Iwona Manys": "Niezrzeszeni",
-    "Jan Omilian": "Niezrzeszeni",
-    "Kamil Górka": "Niezrzeszeni",
-    "Katarzyna Kaczmarek-Sławińska": "Niezrzeszeni",
-    "Marek Kuta": "Niezrzeszeni",
-    "Paweł Knapik": "Niezrzeszeni",
-    "Radosław Liczkowski": "Niezrzeszeni",
-    "Roman Witt": "Niezrzeszeni",
-    "Ryszard Dembek": "Niezrzeszeni",
-    "Stanisława Kuffel": "Niezrzeszeni",
-    "Tadeusz Fiedurek": "Niezrzeszeni",
-    "Tomasz Chiliński": "Niezrzeszeni",
-    "Urszula Kempińska-Czerwińska": "Niezrzeszeni"
+    "Agnieszka Jasińska": "TD",
+    "Anna Belt": "TD",
+    "Bogdan Tarach": "PiS",
+    "Dorota Kortas": "KO",
+    "Ewa Joachimiak": "KO",
+    "Ewa Otlewska": "KO",
+    "Grzegorz Goral": "PiS",
+    "Grzegorz Tomaszewski": "KWOP",
+    "Iwona Manys": "KO",
+    "Jan Omilian": "KO",
+    "Kamil Górka": "KWOP",
+    "Katarzyna Kaczmarek-Sławińska": "PiS",
+    "Marek Kuta": "KWOP",
+    "Paweł Knapik": "KO",
+    "Radosław Liczkowski": "TD",
+    "Roman Witt": "KWOP",
+    "Ryszard Dembek": "PiS",
+    "Stanisława Kuffel": "PiS",
+    "Tadeusz Fiedurek": "PiS",
+    "Tomasz Chiliński": "TD",
+    "Urszula Kempińska-Czerwińska": "KWOP"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

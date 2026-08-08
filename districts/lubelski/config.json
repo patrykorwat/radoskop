@@ -34,41 +34,56 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Andrzej Kłapeć": "Niezrzeszeni",
-    "Anna Kot": "Niezrzeszeni",
-    "Beata Gajur": "Niezrzeszeni",
-    "Dariusz Krakowiak": "Niezrzeszeni",
-    "Dorota Kozak": "Niezrzeszeni",
-    "Edyta Dobek": "Niezrzeszeni",
-    "Grzegorz Kozioł": "Niezrzeszeni",
-    "Iwona Pulińska": "Niezrzeszeni",
-    "Karolina Poleszak": "Niezrzeszeni",
-    "Katarzyna Sokołowska": "Niezrzeszeni",
-    "Konrad Banach": "Niezrzeszeni",
-    "Krzysztof Chmielik": "Niezrzeszeni",
-    "Krzysztof Kozieł": "Niezrzeszeni",
-    "Magdalena Kostruba": "Niezrzeszeni",
-    "Marcin Olszak": "Niezrzeszeni",
-    "Mateusz Winiarski": "Niezrzeszeni",
-    "Piotr Sawicki": "Niezrzeszeni",
-    "Sylwia Chochoł-Skocz": "Niezrzeszeni",
-    "Sylwia Pisarek-Piotrowska": "Niezrzeszeni",
-    "Teresa Chwała": "Niezrzeszeni",
-    "Tomasz Szpakowski": "Niezrzeszeni",
-    "Urszula Paździor": "Niezrzeszeni",
-    "Wiesław Dobrzyński": "Niezrzeszeni",
-    "Zdzisław Antoń": "Niezrzeszeni",
-    "Zenon Madzelan": "Niezrzeszeni",
-    "Zofia Ptasznik": "Niezrzeszeni",
-    "Zofia Sieńko": "Niezrzeszeni"
+    "Andrzej Kłapeć": "PiS",
+    "Anna Kot": "KO",
+    "Beata Gajur": "TD",
+    "Dariusz Krakowiak": "PiS",
+    "Dorota Kozak": "PiS",
+    "Edyta Dobek": "PiS",
+    "Grzegorz Kozioł": "PiS",
+    "Iwona Pulińska": "TD",
+    "Karolina Poleszak": "TD",
+    "Katarzyna Sokołowska": "TD",
+    "Konrad Banach": "TD",
+    "Krzysztof Chmielik": "PiS",
+    "Krzysztof Kozieł": "PiS",
+    "Magdalena Kostruba": "TD",
+    "Marcin Olszak": "PiS",
+    "Mateusz Winiarski": "TD",
+    "Piotr Sawicki": "KO",
+    "Sylwia Chochoł-Skocz": "PiS",
+    "Sylwia Pisarek-Piotrowska": "PiS",
+    "Teresa Chwała": "KO",
+    "Tomasz Szpakowski": "PiS",
+    "Urszula Paździor": "TD",
+    "Wiesław Dobrzyński": "PiS",
+    "Zdzisław Antoń": "PiS",
+    "Zenon Madzelan": "KO",
+    "Zofia Ptasznik": "PiS",
+    "Zofia Sieńko": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

@@ -34,38 +34,63 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWM": {
+      "name": "KOMITET WYBORCZY WYBORCÓW MARCINA WITKO",
+      "color": "#a16207",
+      "bg": "rgba(161,98,7,0.12)"
+    },
+    "KWWW": {
+      "name": "KOMITET WYBORCZY WYBORCÓW WSZYSCY RAZEM",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Alicja Zwolak-Plichta": "Niezrzeszeni",
-    "Cezary Żegota": "Niezrzeszeni",
-    "Danuta Mąkola": "Niezrzeszeni",
-    "Dariusz Kowalczyk": "Niezrzeszeni",
-    "Jarosław Feliński": "Niezrzeszeni",
-    "Kazimierz Mordaka": "Niezrzeszeni",
-    "Krzysztof Biskup": "Niezrzeszeni",
-    "Leon Karwat": "Niezrzeszeni",
-    "Lidia Jackow": "Niezrzeszeni",
-    "Marek Kociubiński": "Niezrzeszeni",
-    "Marek Kubiak": "Niezrzeszeni",
-    "Marek Olkiewicz": "Niezrzeszeni",
-    "Mariusz Strzępek": "Niezrzeszeni",
-    "Mariusz Węgrzynowski": "Niezrzeszeni",
-    "Martyna Wojciechowska": "Niezrzeszeni",
-    "Michał Jodłowski": "Niezrzeszeni",
-    "Paulina Socha": "Niezrzeszeni",
-    "Piotr Kagankiewicz": "Niezrzeszeni",
-    "Rafał Wolniewicz": "Niezrzeszeni",
-    "Szczepan Goska": "Niezrzeszeni",
-    "Sławomir Żegota": "Niezrzeszeni",
-    "Teodora Sowik": "Niezrzeszeni",
-    "Wacława Bąk": "Niezrzeszeni",
-    "Włodzimierz Justyna": "Niezrzeszeni"
+    "Alicja Zwolak-Plichta": "KO",
+    "Cezary Żegota": "KO",
+    "Danuta Mąkola": "NZ",
+    "Dariusz Kowalczyk": "TD",
+    "Jarosław Feliński": "PiS",
+    "Kazimierz Mordaka": "KO",
+    "Krzysztof Biskup": "KWWM",
+    "Leon Karwat": "KWWW",
+    "Lidia Jackow": "KO",
+    "Marek Kociubiński": "PiS",
+    "Marek Kubiak": "KWWM",
+    "Marek Olkiewicz": "PiS",
+    "Mariusz Strzępek": "KWWM",
+    "Mariusz Węgrzynowski": "PiS",
+    "Martyna Wojciechowska": "PiS",
+    "Michał Jodłowski": "KO",
+    "Paulina Socha": "PiS",
+    "Piotr Kagankiewicz": "KWWW",
+    "Rafał Wolniewicz": "TD",
+    "Szczepan Goska": "PiS",
+    "Sławomir Żegota": "KO",
+    "Teodora Sowik": "PiS",
+    "Wacława Bąk": "KWWM",
+    "Włodzimierz Justyna": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

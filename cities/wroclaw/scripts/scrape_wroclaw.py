@@ -68,10 +68,12 @@ KADENCJE = {
 DELAY = 0.3  # politeness sleep przed HTTP, cache hits pomijają
 
 # Radni Wrocławia IX kadencja (2024-2029)
-# Nazwy muszą dokładnie pasować do formy w PDF (Imię Nazwisko).
-# Źródło: PKW 2024 + BIP Wrocław (kluby radnych)
+# Źródło: BIP Wrocław (bip.um.wroc.pl/artykul/1187/73078/kluby-radnych)
+# Zweryfikowano: 2026-08-08 (BIP aktualizacja 10.07.2026)
+# Uwaga: Mateusz Żak (ex-KO) i Karolina Mrozowska (ex-PiS) — mandaty wygasłe,
+# zachowani dla atrybucji historycznych głosowań.
 COUNCILORS = {
-    # KO - Koalicja Obywatelska (23 radnych)
+    # KO - Koalicja Obywatelska (18 radnych)
     "Agnieszka Dusza": "KO",
     "Agnieszka Rybczak": "KO",
     "Dominika Kontecka": "KO",
@@ -80,38 +82,43 @@ COUNCILORS = {
     "Ewa Wrońska": "KO",
     "Igor Wójcik": "KO",
     "Izabela Duchnowska": "KO",
-    "Jakub Janas": "KO",
-    "Jakub Nowotarski": "KO",
     "Joanna Pieczyńska": "KO",
+    "Kacper Mędygrał": "KO",
     "Krzysztof Zalewski": "KO",
     "Maciej Zieliński": "KO",
     "Magdalena Razik-Trziszka": "KO",
     "Martyna Stachowiak": "KO",
     "Marzena Bogusz": "KO",
-    "Mateusz Żak": "KO",
-    "Piotr Uhle": "KO",
     "Robert Leszczyński": "KO",
-    "Robert Suligowski": "KO",
     "Sebastian Lorenc": "KO",
-    "Sławomir Czerwiński": "KO",
     "Tadeusz Grabarek": "KO",
-    # PiS - Prawo i Sprawiedliwość (8 mandatów; Mrozowska → Krzeszowiec ~IX.2025)
+    # Byli radni KO (mandaty wygasłe) — dla atrybucji historycznych głosowań
+    "Mateusz Żak": "KO",
+    # PiS - Prawo i Sprawiedliwość (8 radnych)
     "Andrzej Kilijanek": "PiS",
     "Dariusz Piwoński": "PiS",
     "Karolina Krzeszowiec": "PiS",
-    "Karolina Mrozowska": "PiS",
     "Michał Kurczewski": "PiS",
     "Robert Pieńkowski": "PiS",
     "Sławomir Śmigielski": "PiS",
     "Łukasz Kasztelowicz": "PiS",
     "Łukasz Olbert": "PiS",
-    # Lewica - KWW Jacek Sutryk Lewica i Samorządowcy (6 radnych)
-    "Anna Kołodziej": "Lewica",
-    "Bartłomiej Ciążyński": "Lewica",
-    "Dominik Kłosowski": "Lewica",
-    "Dorota Pędziwiatr": "Lewica",
-    "Jarosław Krauze": "Lewica",
-    "Robert Maślak": "Lewica",
+    # Byli radni PiS (mandaty wygasłe) — dla atrybucji historycznych głosowań
+    "Karolina Mrozowska": "PiS",
+    # Lewica Naprzód (7 radnych)
+    "Anna Kołodziej": "Lewica Naprzód",
+    "Bartłomiej Ciążyński": "Lewica Naprzód",
+    "Dominik Kłosowski": "Lewica Naprzód",
+    "Dorota Pędziwiatr": "Lewica Naprzód",
+    "Robert Maślak": "Lewica Naprzód",
+    "Robert Suligowski": "Lewica Naprzód",
+    "Sławomir Czerwiński": "Lewica Naprzód",
+    # Naprawmy Przyszłość (3 radnych)
+    "Jakub Janas": "Naprawmy Przyszłość",
+    "Jakub Nowotarski": "Naprawmy Przyszłość",
+    "Piotr Uhle": "Naprawmy Przyszłość",
+    # Niezrzeszeni (1 radny)
+    "Jarosław Krauze": "Niezrzeszeni",
 }
 
 # Reusable HTTP session

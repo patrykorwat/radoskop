@@ -34,38 +34,58 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWP": {
+      "name": "KOMITET WYBORCZY WYBORCÓW PRZYSZŁOŚĆ ZIEMI GLIWICKIEJ",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "KWWW": {
+      "name": "KOMITET WYBORCZY WYBORCÓW WSPÓLNIE DLA GMINY I POWIATU",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Adam Ostalecki": "Niezrzeszeni",
-    "Adam Sobierajski": "Niezrzeszeni",
-    "Adam Wojtowicz": "Niezrzeszeni",
-    "Agata Mosiądz-Kramorz": "Niezrzeszeni",
-    "Andrzej Frejno": "Niezrzeszeni",
-    "Andrzej Hosz": "Niezrzeszeni",
-    "Beata Antosik": "Niezrzeszeni",
-    "Dawid Puchalski": "Niezrzeszeni",
-    "Dawid Rams": "Niezrzeszeni",
-    "Ewa Jurczyga": "Niezrzeszeni",
-    "Ewa Waliczek": "Niezrzeszeni",
-    "Ginter Skowronek": "Niezrzeszeni",
-    "Grzegorz Sobierajski": "Niezrzeszeni",
-    "Jacek Awramienko": "Niezrzeszeni",
-    "Jarosław Gonciarz": "Niezrzeszeni",
-    "Krystyna Urbańska": "Niezrzeszeni",
-    "Krzysztof Stolarek": "Niezrzeszeni",
-    "Patrycja Fiegler": "Niezrzeszeni",
-    "Paweł Bryła": "Niezrzeszeni",
-    "Piotr Konwerski": "Niezrzeszeni",
-    "Piotr Piętak": "Niezrzeszeni",
-    "Teresa Szymońska": "Niezrzeszeni",
-    "Tomasz Dolata": "Niezrzeszeni",
-    "Łukasz Matuszewski": "Niezrzeszeni"
+    "Adam Ostalecki": "PiS",
+    "Adam Sobierajski": "PiS",
+    "Adam Wojtowicz": "KWWP",
+    "Agata Mosiądz-Kramorz": "KWWW",
+    "Andrzej Frejno": "KWWP",
+    "Andrzej Hosz": "KWWW",
+    "Beata Antosik": "KWWW",
+    "Dawid Puchalski": "KO",
+    "Dawid Rams": "KO",
+    "Ewa Jurczyga": "KWWW",
+    "Ewa Waliczek": "PiS",
+    "Ginter Skowronek": "KWWW",
+    "Grzegorz Sobierajski": "KWWW",
+    "Jacek Awramienko": "KO",
+    "Jarosław Gonciarz": "PiS",
+    "Krystyna Urbańska": "PiS",
+    "Krzysztof Stolarek": "KO",
+    "Patrycja Fiegler": "KO",
+    "Paweł Bryła": "KWWW",
+    "Piotr Konwerski": "KO",
+    "Piotr Piętak": "KO",
+    "Teresa Szymońska": "KO",
+    "Tomasz Dolata": "KWWW",
+    "Łukasz Matuszewski": "KO"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

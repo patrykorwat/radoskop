@@ -34,36 +34,51 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWŁ": {
+      "name": "KOMITET WYBORCZY WYBORCÓW ŁĄCZY NAS POWIAT KRAŚNICKI",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Agnieszka Lenart": "Niezrzeszeni",
-    "Andrzej Cieśla": "Niezrzeszeni",
-    "Andrzej Maj": "Niezrzeszeni",
-    "Andrzej Rolla": "Niezrzeszeni",
-    "Damian Kowalski": "Niezrzeszeni",
-    "Edyta Dudzińska": "Niezrzeszeni",
-    "Eugeniusz Pelak": "Niezrzeszeni",
-    "Henryk Flis": "Niezrzeszeni",
-    "Jacek Dubiel": "Niezrzeszeni",
-    "Józef Wojtaszek": "Niezrzeszeni",
-    "Karol Rychlewski": "Niezrzeszeni",
-    "Krzysztof Babisz": "Niezrzeszeni",
-    "Krzysztof Skórski": "Niezrzeszeni",
-    "Marek Kołtun": "Niezrzeszeni",
-    "Mariusz Socha": "Niezrzeszeni",
-    "Michał Stawiarski": "Niezrzeszeni",
-    "Paweł Kudrel": "Niezrzeszeni",
-    "Stefan Stachula": "Niezrzeszeni",
-    "Sylwia Piętal": "Niezrzeszeni",
-    "Tadeusz Dziurda": "Niezrzeszeni",
-    "Zbigniew Dżugaj": "Niezrzeszeni",
-    "Zbigniew Gawdzik": "Niezrzeszeni"
+    "Agnieszka Lenart": "TD",
+    "Andrzej Cieśla": "PiS",
+    "Andrzej Maj": "TD",
+    "Andrzej Rolla": "PiS",
+    "Damian Kowalski": "NZ",
+    "Edyta Dudzińska": "TD",
+    "Eugeniusz Pelak": "PiS",
+    "Henryk Flis": "PiS",
+    "Jacek Dubiel": "PiS",
+    "Józef Wojtaszek": "KWWŁ",
+    "Karol Rychlewski": "KWWŁ",
+    "Krzysztof Babisz": "KWWŁ",
+    "Krzysztof Skórski": "PiS",
+    "Marek Kołtun": "PiS",
+    "Mariusz Socha": "TD",
+    "Michał Stawiarski": "PiS",
+    "Paweł Kudrel": "PiS",
+    "Stefan Stachula": "TD",
+    "Sylwia Piętal": "PiS",
+    "Tadeusz Dziurda": "PiS",
+    "Zbigniew Dżugaj": "PiS",
+    "Zbigniew Gawdzik": "TD"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

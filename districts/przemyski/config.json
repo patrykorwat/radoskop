@@ -34,33 +34,63 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWSB": {
+      "name": "KOMITET WYBORCZY STOWARZYSZENIE „BEZPARTYJNI SAMORZĄDOWCY”",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)"
+    },
+    "KWWA": {
+      "name": "KOMITET WYBORCZY WYBORCÓW ALTERNATYWA",
+      "color": "#65a30d",
+      "bg": "rgba(101,163,13,0.12)"
+    },
+    "KWWS": {
+      "name": "KOMITET WYBORCZY WYBORCÓW STOWARZYSZENI DLA POWIATU",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)"
+    },
+    "KWWW": {
+      "name": "KOMITET WYBORCZY WYBORCÓW WSPÓLNOTA SAMORZĄDOWA ZIEMI PRZ...",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Agata Wiśniowska": "Niezrzeszeni",
-    "Andrzej Huk": "Niezrzeszeni",
-    "Arkadiusz Mazur": "Niezrzeszeni",
-    "Bożena Ryczan": "Niezrzeszeni",
-    "Jan Janusz": "Niezrzeszeni",
-    "Jan Pączek": "Niezrzeszeni",
-    "Kazimierz Kapłon": "Niezrzeszeni",
-    "Krystyna Raba-Opacka": "Niezrzeszeni",
-    "Krzysztof Kołodziejczyk": "Niezrzeszeni",
-    "Krzysztof Składowski": "Niezrzeszeni",
-    "Leszek Świdrak": "Niezrzeszeni",
-    "Lucjan Mielnikiewicz": "Niezrzeszeni",
-    "Mariusz Kurpyta": "Niezrzeszeni",
-    "Piotr Pękalski": "Niezrzeszeni",
-    "Renata Muszak": "Niezrzeszeni",
-    "Ryszard Gołębiowski": "Niezrzeszeni",
-    "Teresa Hałuszka": "Niezrzeszeni",
-    "Zbigniew Blecharczyk": "Niezrzeszeni",
-    "Zenon Wagiła": "Niezrzeszeni"
+    "Agata Wiśniowska": "KWWS",
+    "Andrzej Huk": "KWWA",
+    "Arkadiusz Mazur": "PiS",
+    "Bożena Ryczan": "PiS",
+    "Jan Janusz": "PiS",
+    "Jan Pączek": "TD",
+    "Kazimierz Kapłon": "PiS",
+    "Krystyna Raba-Opacka": "KWSB",
+    "Krzysztof Kołodziejczyk": "PiS",
+    "Krzysztof Składowski": "KWWW",
+    "Leszek Świdrak": "PiS",
+    "Lucjan Mielnikiewicz": "PiS",
+    "Mariusz Kurpyta": "PiS",
+    "Piotr Pękalski": "PiS",
+    "Renata Muszak": "TD",
+    "Ryszard Gołębiowski": "TD",
+    "Teresa Hałuszka": "PiS",
+    "Zbigniew Blecharczyk": "TD",
+    "Zenon Wagiła": "KWWS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

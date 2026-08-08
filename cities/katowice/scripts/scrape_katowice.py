@@ -130,7 +130,11 @@ STABLE_AGE_DAYS = 2  # sesje >=2 dni cache, bo vote data zwykle publikowany w 24
 # pola wymagane do skipu HTTP. Stary cache po bumpie zostanie pominięty.
 STATE_VERSION = 1
 
-# Placeholder for councilors with clubs — fill from profiles.json or manual list
+# Skład Rady Miasta Katowice IX kadencji (2024-2029)
+# Źródło: BIP Katowice (bip.katowice.eu) — Kluby radnych
+# Zweryfikowano: 2026-08-08 (BIP aktualizacja 03.07.2026)
+# Uwaga: Makowski, Biskupski, Kamiński, Kraus nie figurują na BIP (prawdop. mandaty wygasłe),
+# zachowani dla atrybucji historycznych głosowań.
 COUNCILORS = {
     # KO (Koalicja Obywatelska) - 14 members
     "Beata Bala": "KO",
@@ -138,7 +142,6 @@ COUNCILORS = {
     "Łukasz Borkowski": "KO",
     "Elżbieta Grodzka-Łopuszyńska": "KO",
     "Urszula Machowska": "KO",
-    "Jarosław Makowski": "KO",
     "Tomasz Maśnica": "KO",
     "Ewa Sadkowska": "KO",
     "Magdalena Skwarek": "KO",
@@ -147,18 +150,16 @@ COUNCILORS = {
     "Barbara Wnęk-Gabor": "KO",
     "Magdalena Wieczorek": "KO",
     "Adam Lejman-Gąska": "KO",
-    # PiS (Prawo i Sprawiedliwość) - 5 members
+    "Jacek Kalisz": "KO",
+    # Byli radni KO (mandaty wygasłe) — dla atrybucji historycznych głosowań
+    "Jarosław Makowski": "KO",
+    # PiS (Prawo i Sprawiedliwość) - 3 members
     "Leszek Piechota": "PiS",
     "Krystyna Panek": "PiS",
     "Piotr Pietrasz": "PiS",
-    "Mariusz Skiba": "PiS",
-    "Piotr Trząski": "PiS",
     # Forum Samorządowe i Marcin Krupa - 9 members
     "Agnieszka Piątek": "Forum",
-    "Jacek Kalisz": "Forum",
-    "Maciej Biskupski": "Forum",
     "Łukasz Hankus": "Forum",
-    "Dawid Kamiński": "Forum",
     "Barbara Mańdok": "Forum",
     "Borys Pronobis": "Forum",
     "Maria Ryś": "Forum",
@@ -166,7 +167,13 @@ COUNCILORS = {
     "Krzysztof Pieczyński": "Forum",
     "Roch Sobula": "Forum",
     "Damian Stępień": "Forum",
+    # Byli radni Forum (mandaty wygasłe) — dla atrybucji historycznych głosowań
+    "Maciej Biskupski": "Forum",
+    "Dawid Kamiński": "Forum",
     "Krzysztof Kraus": "Forum",
+    # Niezrzeszeni (2 radnych)
+    "Mariusz Skiba": "Niezrzeszeni",
+    "Piotr Trząski": "Niezrzeszeni",
 }
 
 

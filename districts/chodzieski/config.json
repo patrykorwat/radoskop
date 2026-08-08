@@ -34,31 +34,56 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "KWKS": {
+      "name": "KOMITET WYBORCZY KOALICJA SAMORZĄDOWA OK SAMORZĄD",
+      "color": "#65a30d",
+      "bg": "rgba(101,163,13,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWF": {
+      "name": "KOMITET WYBORCZY WYBORCÓW FORUM SAMORZĄDOWO LUDOWE",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "KWWZ": {
+      "name": "KOMITET WYBORCZY WYBORCÓW ZIEMIA CHODZIESKA",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Adrian Urbański": "Niezrzeszeni",
-    "Bartosz Burzyński": "Niezrzeszeni",
-    "Emil Gursz": "Niezrzeszeni",
-    "Jacek Pszczółka": "Niezrzeszeni",
-    "Jacek Łukaszczyk": "Niezrzeszeni",
-    "Julia Kołodziejewska": "Niezrzeszeni",
-    "Julian Hermaszczuk": "Niezrzeszeni",
-    "Kinga Buszkiewicz": "Niezrzeszeni",
-    "Magdalena Jankowska": "Niezrzeszeni",
-    "Magdalena Pytlak": "Niezrzeszeni",
-    "Marcin Kita": "Niezrzeszeni",
-    "Mariusz Witczuk": "Niezrzeszeni",
-    "Mateusz Krojenka": "Niezrzeszeni",
-    "Mirosław Juraszek": "Niezrzeszeni",
-    "Paulina Panek": "Niezrzeszeni",
-    "Stanisław Tadej": "Niezrzeszeni",
-    "Tomasz Kaczuba": "Niezrzeszeni"
+    "Adrian Urbański": "KO",
+    "Bartosz Burzyński": "KO",
+    "Emil Gursz": "KO",
+    "Jacek Pszczółka": "KWWF",
+    "Jacek Łukaszczyk": "KWKS",
+    "Julia Kołodziejewska": "PiS",
+    "Julian Hermaszczuk": "KWWZ",
+    "Kinga Buszkiewicz": "KWWF",
+    "Magdalena Jankowska": "KWWF",
+    "Magdalena Pytlak": "KO",
+    "Marcin Kita": "KO",
+    "Mariusz Witczuk": "KWWF",
+    "Mateusz Krojenka": "KWKS",
+    "Mirosław Juraszek": "KO",
+    "Paulina Panek": "KO",
+    "Stanisław Tadej": "PiS",
+    "Tomasz Kaczuba": "KWWF"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

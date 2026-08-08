@@ -34,35 +34,55 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWP": {
+      "name": "KOMITET WYBORCZY WYBORCÓW POWIAT BRZESKI",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "KWWS": {
+      "name": "KOMITET WYBORCZY WYBORCÓW STAROSTY ANDRZEJA POTĘPY",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Adam Garbacz": "Niezrzeszeni",
-    "Andrzej Potępa": "Niezrzeszeni",
-    "Anna Rogóż": "Niezrzeszeni",
-    "Danuta Karwala": "Niezrzeszeni",
-    "Edyta Cieśla": "Niezrzeszeni",
-    "Elżbieta Rysak": "Niezrzeszeni",
-    "Ewa Cierniak-Lambert": "Niezrzeszeni",
-    "Henryk Anioł": "Niezrzeszeni",
-    "Jacek Frankowski": "Niezrzeszeni",
-    "Jarosław Gurgul": "Niezrzeszeni",
-    "Jarosław Sorys": "Niezrzeszeni",
-    "Justyna Wójtowicz-Woda": "Niezrzeszeni",
-    "Katarzyna Ciochoń": "Niezrzeszeni",
-    "Kazimierz Brzyk": "Niezrzeszeni",
-    "Maciej Podobiński": "Niezrzeszeni",
-    "Natalia Siudut": "Niezrzeszeni",
-    "Olga Kwaśniak-Cieślik": "Niezrzeszeni",
-    "Zbigniew Ruszaj": "Niezrzeszeni",
-    "Zbigniew Stanuszek": "Niezrzeszeni",
-    "Łukasz Pasierb": "Niezrzeszeni",
-    "Łukasz Przybyło": "Niezrzeszeni"
+    "Adam Garbacz": "PiS",
+    "Andrzej Potępa": "KWWS",
+    "Anna Rogóż": "KWWS",
+    "Danuta Karwala": "PiS",
+    "Edyta Cieśla": "PiS",
+    "Elżbieta Rysak": "KWWP",
+    "Ewa Cierniak-Lambert": "KWWP",
+    "Henryk Anioł": "PiS",
+    "Jacek Frankowski": "KWWS",
+    "Jarosław Gurgul": "KWWS",
+    "Jarosław Sorys": "PiS",
+    "Justyna Wójtowicz-Woda": "PiS",
+    "Katarzyna Ciochoń": "KWWP",
+    "Kazimierz Brzyk": "KWWS",
+    "Maciej Podobiński": "KWWP",
+    "Natalia Siudut": "PiS",
+    "Olga Kwaśniak-Cieślik": "PiS",
+    "Zbigniew Ruszaj": "KWWS",
+    "Zbigniew Stanuszek": "PiS",
+    "Łukasz Pasierb": "KO",
+    "Łukasz Przybyło": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

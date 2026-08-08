@@ -34,35 +34,60 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWŁ": {
+      "name": "KOMITET WYBORCZY WYBORCÓW ,,ŁĄCZY NAS EŁK\"",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "KWWD": {
+      "name": "KOMITET WYBORCZY WYBORCÓW DOBRO WSPÓLNE 2024",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Ada Lewandowska": "Niezrzeszeni",
-    "Adam Bartoszewicz": "Niezrzeszeni",
-    "Andrzej Bezdziecki": "Niezrzeszeni",
-    "Andrzej Wiszowaty": "Niezrzeszeni",
-    "Dorota Grażyna Czepułkowska": "Niezrzeszeni",
-    "Emilia Górska": "Niezrzeszeni",
-    "Ewelina Truszkowska": "Niezrzeszeni",
-    "Faustyna Anna Gajewska": "Niezrzeszeni",
-    "Grzegorz Kacperski": "Niezrzeszeni",
-    "Igor Makal": "Niezrzeszeni",
-    "Krystian Krawczuk": "Niezrzeszeni",
-    "Krystyna Cegiełka": "Niezrzeszeni",
-    "Krzysztof Piłat": "Niezrzeszeni",
-    "Marek Chojnowski": "Niezrzeszeni",
-    "Mariusz Laskowski": "Niezrzeszeni",
-    "Michał Szyszło": "Niezrzeszeni",
-    "Natalia Piwko": "Niezrzeszeni",
-    "Robert Stanisław Dawidowski": "Niezrzeszeni",
-    "Sebastian Bolesław Kosiorek": "Niezrzeszeni",
-    "Tomasz Przekop": "Niezrzeszeni",
-    "Tomasz Stanisław Bartnik": "Niezrzeszeni"
+    "Ada Lewandowska": "KWWŁ",
+    "Adam Bartoszewicz": "PiS",
+    "Andrzej Bezdziecki": "KWWD",
+    "Andrzej Wiszowaty": "KWWD",
+    "Dorota Grażyna Czepułkowska": "KO",
+    "Emilia Górska": "KWWD",
+    "Ewelina Truszkowska": "PiS",
+    "Faustyna Anna Gajewska": "KWWD",
+    "Grzegorz Kacperski": "PiS",
+    "Igor Makal": "KWWŁ",
+    "Krystian Krawczuk": "KWWD",
+    "Krystyna Cegiełka": "PiS",
+    "Krzysztof Piłat": "KO",
+    "Marek Chojnowski": "KWWD",
+    "Mariusz Laskowski": "KWWD",
+    "Michał Szyszło": "KO",
+    "Natalia Piwko": "KO",
+    "Robert Stanisław Dawidowski": "KO",
+    "Sebastian Bolesław Kosiorek": "KWWŁ",
+    "Tomasz Przekop": "PiS",
+    "Tomasz Stanisław Bartnik": "TD"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

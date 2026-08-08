@@ -34,39 +34,59 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWN": {
+      "name": "KOMITET WYBORCZY WYBORCÓW NIEZALEŻNI - PO PROSTU",
+      "color": "#db2777",
+      "bg": "rgba(219,39,119,0.12)"
+    },
+    "KWWP": {
+      "name": "KOMITET WYBORCZY WYBORCÓW POROZUMIENIE SAMORZĄDOWE",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Adam Kociołek": "Niezrzeszeni",
-    "Agnieszka Szczepaniak": "Niezrzeszeni",
-    "Aleksandra Ślusarek": "Niezrzeszeni",
-    "Aneta Rybicka-Kajtoch": "Niezrzeszeni",
-    "Anna Polańska": "Niezrzeszeni",
-    "Beata Chorobik": "Niezrzeszeni",
-    "Edyta Trojańska-Urbanik": "Niezrzeszeni",
-    "Ewa Ptasznik": "Niezrzeszeni",
-    "Henryk Gawor": "Niezrzeszeni",
-    "Jacek Juszkiewicz": "Niezrzeszeni",
-    "Jadwiga Skoczek": "Niezrzeszeni",
-    "Janusz Chlebda": "Niezrzeszeni",
-    "Karol Szybiński": "Niezrzeszeni",
-    "Katarzyna Ciężarek": "Niezrzeszeni",
-    "Klaudia Wojakowska-Grochot": "Niezrzeszeni",
-    "Magdalena Kot": "Niezrzeszeni",
-    "Marek Burda": "Niezrzeszeni",
-    "Paweł Drabik": "Niezrzeszeni",
-    "Piotr Nowak": "Niezrzeszeni",
-    "Piotr Ptak": "Niezrzeszeni",
-    "Roman Ptak": "Niezrzeszeni",
-    "Roman Wcisło": "Niezrzeszeni",
-    "Stanisław Kyrc": "Niezrzeszeni",
-    "Tomasz Broniowski": "Niezrzeszeni",
-    "Łukasz Sadkiewicz": "Niezrzeszeni"
+    "Adam Kociołek": "KWWN",
+    "Agnieszka Szczepaniak": "KWWP",
+    "Aleksandra Ślusarek": "PiS",
+    "Aneta Rybicka-Kajtoch": "KO",
+    "Anna Polańska": "KO",
+    "Beata Chorobik": "PiS",
+    "Edyta Trojańska-Urbanik": "KWWP",
+    "Ewa Ptasznik": "KO",
+    "Henryk Gawor": "PiS",
+    "Jacek Juszkiewicz": "NZ",
+    "Jadwiga Skoczek": "PiS",
+    "Janusz Chlebda": "PiS",
+    "Karol Szybiński": "KWWP",
+    "Katarzyna Ciężarek": "PiS",
+    "Klaudia Wojakowska-Grochot": "KO",
+    "Magdalena Kot": "KWWP",
+    "Marek Burda": "PiS",
+    "Paweł Drabik": "KO",
+    "Piotr Nowak": "KWWP",
+    "Piotr Ptak": "KO",
+    "Roman Ptak": "KWWP",
+    "Roman Wcisło": "PiS",
+    "Stanisław Kyrc": "PiS",
+    "Tomasz Broniowski": "PiS",
+    "Łukasz Sadkiewicz": "KWWP"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

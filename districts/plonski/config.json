@@ -34,35 +34,60 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "KWMW": {
+      "name": "KOMITET WYBORCZY MAZOWIECKA WSPÓLNOTA SAMORZĄDOWA",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWWP": {
+      "name": "KOMITET WYBORCZY WYBORCÓW POROZUMIENIE SAMORZĄDOWE ZIEMI ...",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)"
+    },
+    "KWWR": {
+      "name": "KOMITET WYBORCZY WYBORCÓW RAZEM DLA SAMORZĄDU",
+      "color": "#0891b2",
+      "bg": "rgba(8,145,178,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Andrzej Różycki": "Niezrzeszeni",
-    "Andrzej Sokólski": "Niezrzeszeni",
-    "Andrzej Stolpa": "Niezrzeszeni",
-    "Artur Adamski": "Niezrzeszeni",
-    "Barbara Wdowiak": "Niezrzeszeni",
-    "Dariusz Umięcki": "Niezrzeszeni",
-    "Elżbieta Grodkiewicz": "Niezrzeszeni",
-    "Elżbieta Kuźniewska": "Niezrzeszeni",
-    "Elżbieta Wiśniewska": "Niezrzeszeni",
-    "Jacek Ryziński": "Niezrzeszeni",
-    "Jarosław Chyliński": "Niezrzeszeni",
-    "Jarosław Marciniak": "Niezrzeszeni",
-    "Krzysztof Kruszewski": "Niezrzeszeni",
-    "Krzysztof Wrzesiński": "Niezrzeszeni",
-    "Marianna Chybała": "Niezrzeszeni",
-    "Mariola Bugalska": "Niezrzeszeni",
-    "Patrycja Karwowska": "Niezrzeszeni",
-    "Patryk Sokołowski": "Niezrzeszeni",
-    "Paweł Koperski": "Niezrzeszeni",
-    "Paweł Krokwa": "Niezrzeszeni",
-    "Robert Adamski": "Niezrzeszeni"
+    "Andrzej Różycki": "TD",
+    "Andrzej Sokólski": "PiS",
+    "Andrzej Stolpa": "TD",
+    "Artur Adamski": "KWWR",
+    "Barbara Wdowiak": "PiS",
+    "Dariusz Umięcki": "KWMW",
+    "Elżbieta Grodkiewicz": "TD",
+    "Elżbieta Kuźniewska": "PiS",
+    "Elżbieta Wiśniewska": "KWWR",
+    "Jacek Ryziński": "TD",
+    "Jarosław Chyliński": "KWWP",
+    "Jarosław Marciniak": "PiS",
+    "Krzysztof Kruszewski": "KWMW",
+    "Krzysztof Wrzesiński": "PiS",
+    "Marianna Chybała": "PiS",
+    "Mariola Bugalska": "KWWP",
+    "Patrycja Karwowska": "PiS",
+    "Patryk Sokołowski": "PiS",
+    "Paweł Koperski": "TD",
+    "Paweł Krokwa": "TD",
+    "Robert Adamski": "PiS"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }

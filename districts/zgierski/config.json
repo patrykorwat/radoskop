@@ -34,43 +34,63 @@
   "has_komisje": false,
   "scrape_status": "active",
   "clubs": {
-    "Niezrzeszeni": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)"
+    },
+    "TD": {
+      "name": "Trzecia Droga",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)"
+    },
+    "KWSB": {
+      "name": "KOMITET WYBORCZY STOWARZYSZENIE „BEZPARTYJNI SAMORZĄDOWCY”",
+      "color": "#0284c7",
+      "bg": "rgba(2,132,199,0.12)"
+    },
+    "NZ": {
       "name": "Niezrzeszeni",
       "color": "#6b7280",
       "bg": "rgba(107,114,128,0.12)"
     }
   },
   "club_assignments": {
-    "Aleksander Sagalara": "Niezrzeszeni",
-    "Alicja Antczak": "Niezrzeszeni",
-    "Aneta Grzelak": "Niezrzeszeni",
-    "Antoni Matuszewski": "Niezrzeszeni",
-    "Barbara Polasińska": "Niezrzeszeni",
-    "Beata Świątczak": "Niezrzeszeni",
-    "Bogdan Jarota": "Niezrzeszeni",
-    "Bożena Palmowska": "Niezrzeszeni",
-    "Damian Tomasik": "Niezrzeszeni",
-    "Dominik Gabrysiak": "Niezrzeszeni",
-    "Edyta Strumian": "Niezrzeszeni",
-    "Ilona Zinser": "Niezrzeszeni",
-    "Iwona Dąbek": "Niezrzeszeni",
-    "Iwona Wieczorek": "Niezrzeszeni",
-    "Jerzy Sokół": "Niezrzeszeni",
-    "Joanna Mariankowska": "Niezrzeszeni",
-    "Justyna Romanow-Przybylak": "Niezrzeszeni",
-    "Karol Maśliński": "Niezrzeszeni",
-    "Kinga Banasik": "Niezrzeszeni",
-    "Leszek Potakowski": "Niezrzeszeni",
-    "Lidia Elert": "Niezrzeszeni",
-    "Mirosław Burzyński": "Niezrzeszeni",
-    "Radosław Zaborowski": "Niezrzeszeni",
-    "Rafał Antczak": "Niezrzeszeni",
-    "Rafał Mamiński": "Niezrzeszeni",
-    "Renata Papis": "Niezrzeszeni",
-    "Sebastian Dunin": "Niezrzeszeni",
-    "Tomasz Dominowski": "Niezrzeszeni",
-    "Włodzimierz Pietruszewski": "Niezrzeszeni"
+    "Aleksander Sagalara": "KO",
+    "Alicja Antczak": "PiS",
+    "Aneta Grzelak": "PiS",
+    "Antoni Matuszewski": "PiS",
+    "Barbara Polasińska": "KO",
+    "Beata Świątczak": "KWSB",
+    "Bogdan Jarota": "TD",
+    "Bożena Palmowska": "KO",
+    "Damian Tomasik": "KO",
+    "Dominik Gabrysiak": "PiS",
+    "Edyta Strumian": "KO",
+    "Ilona Zinser": "KO",
+    "Iwona Dąbek": "KO",
+    "Iwona Wieczorek": "PiS",
+    "Jerzy Sokół": "KO",
+    "Joanna Mariankowska": "TD",
+    "Justyna Romanow-Przybylak": "TD",
+    "Karol Maśliński": "NZ",
+    "Kinga Banasik": "NZ",
+    "Leszek Potakowski": "PiS",
+    "Lidia Elert": "KO",
+    "Mirosław Burzyński": "PiS",
+    "Radosław Zaborowski": "KO",
+    "Rafał Antczak": "PiS",
+    "Rafał Mamiński": "KO",
+    "Renata Papis": "KO",
+    "Sebastian Dunin": "KO",
+    "Tomasz Dominowski": "PiS",
+    "Włodzimierz Pietruszewski": "TD"
   },
-  "clubs_source": "fala 1: przypisania klubowe na poziomie powiatów odroczone (2026-07-07), wszyscy radni jako Niezrzeszeni do czasu uzupełnienia z BIP",
-  "clubs_deferred": true
+  "clubs_source": "PKW 2024: samorzad2024.pkw.gov.pl kandydaci_rady_powiatow_csv.zip",
+  "clubs_deferred": false
 }
