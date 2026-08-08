@@ -59,12 +59,14 @@ DELAY = 1.0
 # Źródło: PDF-y głosowań z BIP + oficjalna lista radnych
 COUNCILORS = {
     # KO - Klub Radnych Koalicji Obywatelskiej
-    # Źródło: Wikipedia (Rada Miasta Poznania, IX kadencja 2024-2029)
-    "Magdalena Antolczyk": "KO", "Zuzanna Bartel": "KO",
+    # Źródło: BIP Poznań (bip.poznan.pl) — profile indywidualne radnych
+    # Zweryfikowano: 2026-08-08
+    "Magdalena Antolczyk-Stawska": "KO", "Zuzanna Bartel": "KO",
     "Wojciech Chudy": "KO", "Monika Danelska": "KO",
     "Małgorzata Dudzic-Biskupska": "KO", "Grzegorz Ganowicz": "KO",
     "Bartłomiej Ignaszewski": "KO", "Grzegorz Jura": "KO",
     "Wojciech Kręglewski": "KO", "Justyna Kuberka": "KO",
+    "Maria Lisiecka-Pawełczak": "KO",
     "Paweł Matuszak": "KO", "Marta Mazurek": "KO",
     "Łukasz Mikuła": "KO", "Katarzyna Pampuch": "KO",
     "Andrzej Prendke": "KO", "Andrzej Rataj": "KO",
@@ -75,13 +77,13 @@ COUNCILORS = {
     "Przemysław Alexandrowicz": "PiS", "Zbigniew Czerwiński": "PiS",
     "Ewa Jemielity": "PiS", "Mateusz Rozmiarek": "PiS",
     "Klaudia Strzelecka": "PiS", "Sara Szynkowska vel Sęk": "PiS",
-    # Lewica Polska 2050
-    "Dorota Bonk-Hammermeister": "Lewica Polska 2050",
-    "Łukasz Kapustka": "Lewica Polska 2050",
-    "Tomasz Lewandowski": "Lewica Polska 2050",
-    "Halina Owsianna": "Lewica Polska 2050",
-    "Przemysław Plewiński": "Lewica Polska 2050",
-    "Adam Szabelski": "Lewica Polska 2050",
+    # Lewica Centrum (6 radnych)
+    "Dorota Bonk-Hammermeister": "Lewica Centrum",
+    "Łukasz Kapustka": "Lewica Centrum",
+    "Tomasz Lewandowski": "Lewica Centrum",
+    "Halina Owsianna": "Lewica Centrum",
+    "Przemysław Plewiński": "Lewica Centrum",
+    "Adam Szabelski": "Lewica Centrum",
 }
 
 # Reusable HTTP session
