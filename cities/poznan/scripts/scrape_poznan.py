@@ -587,12 +587,11 @@ def load_profiles(profiles_path: str) -> dict:
             result[name] = profile
             key_lookup[make_name_key(name)] = profile
 
-    # Also add COUNCILORS hardcoded dict entries
+    # Also add COUNCILORS hardcoded dict entries — nadpisują profiles.json
     for cname, club in COUNCILORS.items():
-        if cname not in result:
-            profile = {"name": cname, "club": club, "district": None}
-            result[cname] = profile
-            key_lookup[make_name_key(cname)] = profile
+        profile = {"name": cname, "club": club, "district": None}
+        result[cname] = profile
+        key_lookup[make_name_key(cname)] = profile
 
     # Store key_lookup for use in matching
     result["__key_lookup__"] = key_lookup
