@@ -1,125 +1,16 @@
-#!/usr/bin/env python3
-"""
-Scraper danych głosowań Rady Miasta Wrocławia.
+# Źródło: config.json → club_assignments (jedno źródło prawdy)
+def _load_councilors() -> dict[str, str]:
+    """Load club assignments from config.json (single source of truth)."""
+    config_path = Path(__file__).resolve().parent.parent / "config.json"
+    if config_path.is_file():
+        try:
+            cfg = json.loads(config_path.read_text(encoding="utf-8"))
+            return cfg.get("club_assignments", {}) or {}
+        except Exception:
+            pass
+    return {}
 
-Źródło: bip.um.wroc.pl
-BIP Wrocław to standardowy HTML — nie wymaga JavaScript.
-Używa requests + BeautifulSoup do scrapowania, PyMuPDF do PDF.
-
-Struktura BIP:
-  1. Lista sesji: https://bip.um.wroc.pl/artykuly/769/sesje-rady
-  2. Sesja (strona): /artykul/769/NNNNN/sesja-rady-miejskiej-wroclawia-nr-...
-  3. Wyniki głosowań (PDF): /attachments/download/NNNNN
-     — Każdy PDF to JEDNO głosowanie (nie protokół z wieloma głosowaniami!)
-     — Format: nagłówek z tematem + tabela "Lp. / Nazwisko i imię / Głos"
-     — Głosy: ZA, PRZECIW, WSTRZYMUJĘ SIĘ, NIEOBECNY/NIEOBECNA
-
-Użycie:
-    pip install requests beautifulsoup4 lxml pymupdf
-    python scrape_wroclaw.py [--output docs/data.json] [--profiles docs/profiles.json]
-"""
-
-import argparse
-import json
-import re
-import sys
-import time
-from collections import Counter, defaultdict
-from datetime import datetime
-from itertools import combinations
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
-from lib_clubs import club_has_line  # noqa: E402
-from urllib.parse import parse_qs, urljoin, urlparse
-
-try:
-    from bs4 import BeautifulSoup
-except ImportError:
-    print("Zainstaluj: pip install beautifulsoup4 lxml")
-    sys.exit(1)
-
-try:
-    import requests
-except ImportError:
-    print("Zainstaluj: pip install requests")
-    sys.exit(1)
-
-try:
-    import fitz
-except ImportError:
-    print("Zainstaluj: pip install pymupdf")
-    sys.exit(1)
-
-BIP_BASE = "https://bip.um.wroc.pl/"
-# BIP Wrocław ma osobne kategorie artykułów dla każdej kadencji:
-#   769 = VIII kadencja (2018-2024)
-#   1179 = IX kadencja (2024-2029)
-# Sprawdzamy obie + paginację
-SESSIONS_URLS = [
-    f"{BIP_BASE}artykuly/1179/sesje-rady",   # IX kadencja — główna
-    f"{BIP_BASE}artykuly/769/sesje-rady",     # VIII kadencja — fallback
-]
-
-KADENCJE = {
-    "2024-2029": {"label": "IX kadencja (2024–2029)", "start": "2024-05-07"},
-}
-
-DELAY = 0.3  # politeness sleep przed HTTP, cache hits pomijają
-
-# Radni Wrocławia IX kadencja (2024-2029)
-# Źródło: BIP Wrocław (bip.um.wroc.pl/artykul/1187/73078/kluby-radnych)
-# Zweryfikowano: 2026-08-08 (BIP aktualizacja 10.07.2026)
-# Uwaga: Mateusz Żak (ex-KO) i Karolina Mrozowska (ex-PiS) — mandaty wygasłe,
-# zachowani dla atrybucji historycznych głosowań.
-COUNCILORS = {
-    # KO - Koalicja Obywatelska (18 radnych)
-    "Agnieszka Dusza": "KO",
-    "Agnieszka Rybczak": "KO",
-    "Dominika Kontecka": "KO",
-    "Edyta Skuła": "KO",
-    "Ewa Wolak": "KO",
-    "Ewa Wrońska": "KO",
-    "Igor Wójcik": "KO",
-    "Izabela Duchnowska": "KO",
-    "Joanna Pieczyńska": "KO",
-    "Kacper Mędygrał": "KO",
-    "Krzysztof Zalewski": "KO",
-    "Maciej Zieliński": "KO",
-    "Magdalena Razik-Trziszka": "KO",
-    "Martyna Stachowiak": "KO",
-    "Marzena Bogusz": "KO",
-    "Robert Leszczyński": "KO",
-    "Sebastian Lorenc": "KO",
-    "Tadeusz Grabarek": "KO",
-    # Byli radni KO (mandaty wygasłe) — dla atrybucji historycznych głosowań
-    "Mateusz Żak": "KO",
-    # PiS - Prawo i Sprawiedliwość (8 radnych)
-    "Andrzej Kilijanek": "PiS",
-    "Dariusz Piwoński": "PiS",
-    "Karolina Krzeszowiec": "PiS",
-    "Michał Kurczewski": "PiS",
-    "Robert Pieńkowski": "PiS",
-    "Sławomir Śmigielski": "PiS",
-    "Łukasz Kasztelowicz": "PiS",
-    "Łukasz Olbert": "PiS",
-    # Byli radni PiS (mandaty wygasłe) — dla atrybucji historycznych głosowań
-    "Karolina Mrozowska": "PiS",
-    # Lewica Naprzód (7 radnych)
-    "Anna Kołodziej": "Lewica Naprzód",
-    "Bartłomiej Ciążyński": "Lewica Naprzód",
-    "Dominik Kłosowski": "Lewica Naprzód",
-    "Dorota Pędziwiatr": "Lewica Naprzód",
-    "Robert Maślak": "Lewica Naprzód",
-    "Robert Suligowski": "Lewica Naprzód",
-    "Sławomir Czerwiński": "Lewica Naprzód",
-    # Naprawmy Przyszłość (3 radnych)
-    "Jakub Janas": "Naprawmy Przyszłość",
-    "Jakub Nowotarski": "Naprawmy Przyszłość",
-    "Piotr Uhle": "Naprawmy Przyszłość",
-    # Niezrzeszeni (1 radny)
-    "Jarosław Krauze": "Niezrzeszeni",
-}
+COUNCILORS = _load_councilors()
 
 # Reusable HTTP session
 _session = None

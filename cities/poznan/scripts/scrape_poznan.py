@@ -56,35 +56,20 @@ DELAY = 1.0
 
 # Radni Poznania IX kadencja (34 radnych)
 # Nazwiska w formacie "Imię Nazwisko" -- jak w profiles.json
-# Źródło: PDF-y głosowań z BIP + oficjalna lista radnych
-COUNCILORS = {
-    # KO - Klub Radnych Koalicji Obywatelskiej
-    # Źródło: BIP Poznań (bip.poznan.pl) — profile indywidualne radnych
-    # Zweryfikowano: 2026-08-08
-    "Magdalena Antolczyk-Stawska": "KO", "Zuzanna Bartel": "KO",
-    "Wojciech Chudy": "KO", "Monika Danelska": "KO",
-    "Małgorzata Dudzic-Biskupska": "KO", "Grzegorz Ganowicz": "KO",
-    "Bartłomiej Ignaszewski": "KO", "Grzegorz Jura": "KO",
-    "Wojciech Kręglewski": "KO", "Justyna Kuberka": "KO",
-    "Maria Lisiecka-Pawełczak": "KO",
-    "Paweł Matuszak": "KO", "Marta Mazurek": "KO",
-    "Łukasz Mikuła": "KO", "Katarzyna Pampuch": "KO",
-    "Andrzej Prendke": "KO", "Andrzej Rataj": "KO",
-    "Marcin Ruta": "KO", "Marek Sternalski": "KO",
-    "Tomasz Stachowiak": "KO", "Tomasz Wierzbicki": "KO",
-    "Małgorzata Woźniak": "KO",
-    # PiS - Klub Radnych Prawa i Sprawiedliwości
-    "Przemysław Alexandrowicz": "PiS", "Zbigniew Czerwiński": "PiS",
-    "Ewa Jemielity": "PiS", "Mateusz Rozmiarek": "PiS",
-    "Klaudia Strzelecka": "PiS", "Sara Szynkowska vel Sęk": "PiS",
-    # Lewica Centrum (6 radnych)
-    "Dorota Bonk-Hammermeister": "Lewica Centrum",
-    "Łukasz Kapustka": "Lewica Centrum",
-    "Tomasz Lewandowski": "Lewica Centrum",
-    "Halina Owsianna": "Lewica Centrum",
-    "Przemysław Plewiński": "Lewica Centrum",
-    "Adam Szabelski": "Lewica Centrum",
-}
+# Źródło: config.json → club_assignments (jedno źródło prawdy)
+# Zweryfikowano: 2026-08-08 (BIP Poznań — profile indywidualne radnych)
+def _load_councilors() -> dict[str, str]:
+    """Load club assignments from config.json (single source of truth)."""
+    config_path = Path(__file__).resolve().parent.parent / "config.json"
+    if config_path.is_file():
+        try:
+            cfg = json.loads(config_path.read_text(encoding="utf-8"))
+            return cfg.get("club_assignments", {}) or {}
+        except Exception:
+            pass
+    return {}
+
+COUNCILORS = _load_councilors()
 
 # Reusable HTTP session
 _session = None

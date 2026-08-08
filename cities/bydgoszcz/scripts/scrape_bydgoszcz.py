@@ -1,137 +1,16 @@
-#!/usr/bin/env python3
-"""
-Scraper danych głosowań Rady Miasta Bydgoszczy.
+# Źródło: config.json → club_assignments (jedno źródło prawdy)
+def _load_councilors() -> dict[str, str]:
+    """Load club assignments from config.json (single source of truth)."""
+    config_path = Path(__file__).resolve().parent.parent / "config.json"
+    if config_path.is_file():
+        try:
+            cfg = json.loads(config_path.read_text(encoding="utf-8"))
+            return cfg.get("club_assignments", {}) or {}
+        except Exception:
+            pass
+    return {}
 
-UWAGA: Uruchom lokalnie — sandbox Cowork blokuje domeny.
-
-Źródło: bip.um.bydgoszcz.pl
-BIP Bydgoszcz to standardowy HTML — nie wymaga JavaScript.
-Używa requests + BeautifulSoup do scrapowania, PyMuPDF do PDF.
-
-Struktura BIP:
-  1. Lista imiennych wykazów głosowań: https://bip.um.bydgoszcz.pl/artykul/1211/5811/imienne-wykazy-glosowan-radnych-w-roku-2024-kadencja-2024-2029
-  2. Każdy link to PDF z wynikami głosowania dla jednej sesji
-  3. Format PDF: nagłówek z datą sesji + tabela "Lp. / Nazwisko i imię / Głos"
-  4. Głosy: ZA, PRZECIW, WSTRZYMUJĘ SIĘ, NIEOBECNY/NIEOBECNA
-
-Użycie:
-    pip install requests beautifulsoup4 lxml pymupdf
-    python scrape_bydgoszcz.py [--output docs/data.json] [--profiles docs/profiles.json]
-"""
-
-import argparse
-import json
-import re
-import sys
-import time
-from collections import Counter, defaultdict
-from datetime import datetime
-from itertools import combinations
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
-from lib_clubs import club_has_line  # noqa: E402
-from urllib.parse import urljoin, urlparse
-
-try:
-    from bs4 import BeautifulSoup
-except ImportError:
-    print("Zainstaluj: pip install beautifulsoup4 lxml")
-    sys.exit(1)
-
-try:
-    import requests
-except ImportError:
-    print("Zainstaluj: pip install requests")
-    sys.exit(1)
-
-try:
-    import fitz
-except ImportError:
-    print("Zainstaluj: pip install pymupdf")
-    sys.exit(1)
-
-
-# ---------------------------------------------------------------------------
-# Config
-# ---------------------------------------------------------------------------
-
-BIP_BASE = "https://bip.um.bydgoszcz.pl/"
-# Strona nadrzędna kategorii — linkuje do osobnych artykułów per ROK
-# ("...imienne-wykazy-glosowan-radnych-w-roku-{YYYY}-kadencja-{KAD}"). BIP
-# tworzy nowy artykuł co roku (2024→5811, 2025→7219, 2026→9839, ...), więc nie
-# da się zaszyć jednego URL — odkrywamy roczniki dynamicznie.
-VOTING_CATEGORY_URL = "https://bip.um.bydgoszcz.pl/artykuly/1211/imienne-wykazy-glosowan-radnych"
-KADENCJA_SLUG = "2024-2029"
-# Zachowane dla zgodności wstecznej / fallbacku, gdyby strona kategorii padła.
-VOTING_LIST_URL = "https://bip.um.bydgoszcz.pl/artykul/1211/5811/imienne-wykazy-glosowan-radnych-w-roku-2024-kadencja-2024-2029"
-
-KADENCJE = {
-    "2024-2029": {
-        "label": "IX kadencja (2024–2029)",
-        "start": "2024-05-07",
-    },
-}
-
-HEADERS = {
-    "User-Agent": "Radoskop/1.0 (https://bydgoszcz.radoskop.pl; kontakt@radoskop.pl)",
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-}
-
-DELAY = 0.5
-
-# Mapper numerów sesji na daty — uzupełnić na podstawie dostępnych danych
-# Format: "nr_sesji_roman" -> "2024-MM-DD"
-SESSION_DATES = {
-    # To be filled based on BIP data
-}
-
-# Skład Rady Miasta Bydgoszczy IX kadencji (2024-2029) — 28 mandatów.
-# WAŻNE: kod to AKTUALNY KLUB RADNYCH wg oficjalnej listy BIP
-# (bip.um.bydgoszcz.pl/artykul/1473/5809/kadencja-ix-2024-2029), NIE komitet
-# wyborczy. Przypisanie musi pozostać aktualne — aktualizuj wg tej strony przy
-# zmianach mandatów/klubów. Kluby: "KO i Lewica", "Bydgoska Prawica",
-# "Niezrzeszeni" (radni z "Klub radnych: -" lub "Niezrzeszony" w BIP).
-# Stan zweryfikowany 2026-05-30 (BIP akt. 20.01.2026 + PDF XXXI sesji):
-#   - Anna Mackiewicz: mandat wygasł 31.07.2024 (została wiceprezydentem);
-#     zachowana dla atrybucji głosów z 2024, w jej miejsce Aurelia Ratajczak.
-#   - Katarzyna Zaczek (Bydgoska Prawica) — mandat w trakcie kadencji.
-#   - Czerska-Thomas, Ginther, Hoppe, Dzakanowski są niezrzeszeni wg BIP.
-COUNCILORS = {
-    # Klub radnych Koalicja Obywatelska i Lewica (15)
-    "Monika Matowska": "KO i Lewica",
-    "Elżbieta Rusielewicz": "KO i Lewica",
-    "Kazimierz Drozd": "KO i Lewica",
-    "Lech Zagłoba-Zygler": "KO i Lewica",
-    "Janusz Czwojda": "KO i Lewica",
-    "Maria Gałęska": "KO i Lewica",
-    "Marek Jeleniewski": "KO i Lewica",
-    "Robert Kufel": "KO i Lewica",
-    "Jakub Mikołajczak": "KO i Lewica",
-    "Izabela Nowicka": "KO i Lewica",
-    "Aurelia Ratajczak": "KO i Lewica",
-    "Jan Szopiński": "KO i Lewica",
-    "Maciej Świątkowski": "KO i Lewica",
-    "Zdzisław Tylicki": "KO i Lewica",
-    "Mateusz Zwolak": "KO i Lewica",
-    # Była radna (mandat wygasł 31.07.2024) — dla atrybucji głosów z 2024
-    "Anna Mackiewicz": "KO i Lewica",
-    # Klub radnych Bydgoska Prawica (8)
-    "Wojciech Bielawa": "Bydgoska Prawica",
-    "Paweł Bokiej": "Bydgoska Prawica",
-    "Jędrzej Gralik": "Bydgoska Prawica",
-    "Michał Krzemkowski": "Bydgoska Prawica",
-    "Szymon Róg": "Bydgoska Prawica",
-    "Paweł Sieg": "Bydgoska Prawica",
-    "Grażyna Szabelska": "Bydgoska Prawica",
-    "Piotr Walczak": "Bydgoska Prawica",
-    # Niezrzeszeni — brak klubu wg BIP (5)
-    "Katarzyna Zaczek": "Niezrzeszeni",
-    "Joanna Czerska-Thomas": "Niezrzeszeni",
-    "Radosław Ginther": "Niezrzeszeni",
-    "Tomasz Hoppe": "Niezrzeszeni",
-    "Bogdan Dzakanowski": "Niezrzeszeni",
-}
+COUNCILORS = _load_councilors()
 
 MONTHS_PL = {
     "stycznia": 1, "luty": 2, "marca": 3, "kwietnia": 4,

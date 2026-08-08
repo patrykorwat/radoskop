@@ -1,122 +1,16 @@
-#!/usr/bin/env python3
-"""
-Scraper danych głosowań Rady Miasta Łodzi.
+# Źródło: config.json → club_assignments (jedno źródło prawdy)
+def _load_councilors() -> dict[str, str]:
+    """Load club assignments from config.json (single source of truth)."""
+    config_path = Path(__file__).resolve().parent.parent / "config.json"
+    if config_path.is_file():
+        try:
+            cfg = json.loads(config_path.read_text(encoding="utf-8"))
+            return cfg.get("club_assignments", {}) or {}
+        except Exception:
+            pass
+    return {}
 
-Źródło: bip.uml.lodz.pl
-BIP Łódź to standardowy HTML — nie wymaga JavaScript.
-Używa requests + BeautifulSoup do scrapowania, PyMuPDF do PDF.
-
-Struktura BIP Łódź:
-  1. Lista sesji: https://bip.uml.lodz.pl/wladze/rada-miejska-w-lodzi/wyniki-glosowan-z-sesji-rady-miejskiej-w-lodzi-ix-kadencji/
-  2. Sesja (strona): zawiera linki do PDF-ów z wynikami głosowań
-  3. Wyniki głosowań (PDF): /files/bip/public/BIP_MW_26/BRM_wyniki_glosowan_XXVII_20260226.pdf
-     — Każdy PDF to jedno głosowanie
-     — Format: nagłówek z tematem + tabela "Lp. / Nazwisko i imię / Głos"
-     — Głosy: ZA, PRZECIW, WSTRZYMUJĘ SIĘ, NIEOBECNY/NIEOBECNA
-
-UWAGA: Uruchom lokalnie — sandbox Cowork blokuje domeny
-
-Użycie:
-    pip install requests beautifulsoup4 lxml pymupdf
-    python scrape_lodz.py [--output docs/data.json] [--profiles docs/profiles.json]
-"""
-
-import argparse
-import json
-import re
-import sys
-import time
-from collections import Counter, defaultdict
-from datetime import datetime
-from itertools import combinations
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
-from lib_clubs import club_has_line  # noqa: E402
-from urllib.parse import urljoin
-
-try:
-    from bs4 import BeautifulSoup
-except ImportError:
-    print("Zainstaluj: pip install beautifulsoup4 lxml")
-    sys.exit(1)
-
-try:
-    import requests
-except ImportError:
-    print("Zainstaluj: pip install requests")
-    sys.exit(1)
-
-try:
-    import fitz
-except ImportError:
-    print("Zainstaluj: pip install pymupdf")
-    sys.exit(1)
-
-BIP_BASE = "https://bip.uml.lodz.pl/"
-
-# BIP Łódź URLs dla różnych kadencji
-SESSIONS_URLS = [
-    f"{BIP_BASE}wladze/rada-miejska-w-lodzi/wyniki-glosowan-z-sesji-rady-miejskiej-w-lodzi-ix-kadencji/",  # IX kadencja
-    f"{BIP_BASE}wladze/rada-miejska-w-lodzi/wyniki-glosowan-z-sesji-rady-miejskiej-w-lodzi-viii-kadencji/",  # VIII kadencja
-]
-
-KADENCJE = {
-    "2024-2029": {"label": "IX kadencja (2024–2029)", "start": "2024-05-07"},
-}
-
-DELAY = 1.0
-
-# Radni Łodzi IX kadencja (2024-2029) — 37 radnych
-# Pobrane z: https://bip.uml.lodz.pl/wladze/rada-miejska-w-lodzi/ (club pages)
-# Zweryfikowano: 2026-08-08
-# Nazwy muszą dokładnie pasować do formy w PDF (Imię Nazwisko).
-COUNCILORS = {
-    # KO - Koalicja Obywatelska (23 radnych)
-    "Tomasz Kacprzak": "KO",
-    "Magdalena Gałkiewicz": "KO",
-    "Maciej Rakowski": "KO",
-    "Mateusz Walasek": "KO",
-    "Beata Bilska": "KO",
-    "Joanna Budzińska": "KO",
-    "Ewa Bujnowicz-Zelt": "KO",
-    "Justyna Chojnacka-Duraj": "KO",
-    "Bartosz Domaszewicz": "KO",
-    "Piotr Frątczak": "KO",
-    "Marcin Gołaszewski": "KO",
-    "Marcelina Hamczyk": "KO",
-    "Marcin Hencz": "KO",
-    "Bogusław Hubert": "KO",
-    "Karolina Kępka": "KO",
-    "Marcin Masłowski": "KO",
-    "Robert Pawlak": "KO",
-    "Marta Przywara": "KO",
-    "Damian Raczkowski": "KO",
-    "Paulina Setnik": "KO",
-    "Emilia Susniło-Gruszka": "KO",
-    "Katarzyna Wachowska": "KO",
-    "Maja Włodarczyk": "KO",
-
-    # Lewica (5 radnych)
-    "Krzysztof Makowski": "Lewica",
-    "Tomasz Frączak": "Lewica",
-    "Kamila Ścibor": "Lewica",
-    "Agnieszka Wieteska": "Lewica",
-    "Elżbieta Żuraw": "Lewica",
-
-    # PiS - Prawo i Sprawiedliwość (5 radnych)
-    "Marcin Buchali": "PiS",
-    "Tomasz Anielak": "PiS",
-    "Sebastian Bulak": "PiS",
-    "Piotr Cieplucha": "PiS",
-    "Marek Michalik": "PiS",
-
-    # Niezrzeszeni (Independent) — 4 radnych
-    "Izabela Kaczmarska": "Niezrzeszeni",
-    "Radosław Marzec": "Niezrzeszeni",
-    "Kosma Nykiel": "Niezrzeszeni",
-    "Krzysztof Stasiak": "Niezrzeszeni",
-}
+COUNCILORS = _load_councilors()
 
 # Reusable HTTP session
 _session = None

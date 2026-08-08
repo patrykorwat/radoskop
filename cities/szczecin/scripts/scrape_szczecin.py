@@ -1,155 +1,16 @@
-#!/usr/bin/env python3
-"""
-Scraper danych głosowań Rady Miasta Szczecina.
+# Źródło: config.json → club_assignments (jedno źródło prawdy)
+def _load_councilors() -> dict[str, str]:
+    """Load club assignments from config.json (single source of truth)."""
+    config_path = Path(__file__).resolve().parent.parent / "config.json"
+    if config_path.is_file():
+        try:
+            cfg = json.loads(config_path.read_text(encoding="utf-8"))
+            return cfg.get("club_assignments", {}) or {}
+        except Exception:
+            pass
+    return {}
 
-Źródło: BIP Szczecin (bip.um.szczecin.pl)
-BIP Szczecin to standardowy HTML — nie wymaga JavaScript.
-Używa requests + BeautifulSoup do scrapowania.
-
-Struktura BIP:
-  1. Lista sesji: https://bip.um.szczecin.pl/chapter_50509 (sesje z wynikami głosowań)
-  2. Sesja (artykuł): /artykul/ID/sesja-nr-... (strona sesji)
-  3. Wyniki głosowań (tabele HTML): wbudowane w stronę sesji
-
-Krok 1: Pobierz listę sesji
-Krok 2: Dla każdej sesji — pobierz stronę i parsuj tabele głosowań
-Krok 3: Ekstraktuj wyniki imienne z tabel
-Krok 4: Zbuduj data.json w formacie Radoskop
-
-Użycie:
-    pip install requests beautifulsoup4 lxml
-    python scrape_szczecin.py [--output docs/data.json] [--profiles docs/profiles.json]
-
-UWAGA: Uruchom lokalnie — sandbox Cowork blokuje domeny
-"""
-
-import argparse
-import json
-import re
-import sys
-import time
-from collections import Counter, defaultdict
-from datetime import datetime
-from itertools import combinations
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
-from lib_clubs import club_has_line  # noqa: E402
-from urllib.parse import parse_qs, urljoin, urlparse
-
-try:
-    from bs4 import BeautifulSoup
-except ImportError:
-    print("Zainstaluj: pip install beautifulsoup4 lxml")
-    sys.exit(1)
-
-try:
-    import requests
-except ImportError:
-    print("Zainstaluj: pip install requests")
-    sys.exit(1)
-
-def compact_named_votes(output):
-    """Convert named_votes from string arrays to indexed format for smaller JSON."""
-    for kad in output.get("kadencje", []):
-        names = set()
-        for v in kad.get("votes", []):
-            nv = v.get("named_votes", {})
-            for cat_names in nv.values():
-                for n in cat_names:
-                    if isinstance(n, str):
-                        names.add(n)
-        if not names:
-            continue
-        index = sorted(names, key=lambda n: n.split()[-1] + " " + n)
-        name_to_idx = {n: i for i, n in enumerate(index)}
-        kad["councilor_index"] = index
-        for v in kad.get("votes", []):
-            nv = v.get("named_votes", {})
-            for cat in nv:
-                nv[cat] = sorted(name_to_idx[n] for n in nv[cat] if isinstance(n, str) and n in name_to_idx)
-    return output
-
-
-
-def save_split_output(output, out_path):
-    """Save output as split files: data.json (index) + kadencja-{id}.json per kadencja."""
-    import json as _json
-    from pathlib import Path as _Path
-    compact_named_votes(output)
-    out_path = _Path(out_path)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    stubs = []
-    for kad in output.get("kadencje", []):
-        kid = kad["id"]
-        stubs.append({"id": kid, "label": kad.get("label", f"Kadencja {kid}")})
-        kad_path = out_path.parent / f"kadencja-{kid}.json"
-        with open(kad_path, "w", encoding="utf-8") as f:
-            _json.dump(kad, f, ensure_ascii=False, separators=(",", ":"))
-    index = {
-        "generated": output.get("generated", ""),
-        "default_kadencja": output.get("default_kadencja", ""),
-        "kadencje": stubs,
-    }
-    with open(out_path, "w", encoding="utf-8") as f:
-        _json.dump(index, f, ensure_ascii=False, separators=(",", ":"))
-
-
-BIP_BASE = "https://bip.um.szczecin.pl/"
-SESSIONS_URL = f"{BIP_BASE}chapter_50509.asp?kadencja=IX"
-ESESJA_BASE = "https://szczecin.esesja.pl"
-ESESJA_ARCHIVE = f"{ESESJA_BASE}/glosowania"
-
-KADENCJE = {
-    "2024-2029": {"label": "IX kadencja (2024–2029)", "start": "2024-05-07"},
-}
-
-DELAY = 0.3  # politeness sleep przed HTTP, cache hits pomijają
-
-# Radni Szczecina IX kadencja (2024-2029)
-# Struktura: {imię + nazwisko: klub}
-# Źródło: BIP Szczecin (bip.um.szczecin.pl/chapter_50591.asp)
-# 33 radnych: 21x KO, 7x PiS, 5x OK
-COUNCILORS = {
-    # KO - Koalicja Obywatelska
-    "Elżbieta Abramowicz": "KO",
-    "Paweł Bartnik": "KO",
-    "Marcin Biskupski": "KO",
-    "Maria Bohuń": "KO",
-    "Wojciech Dorżynkiewicz": "KO",
-    "Mateusz Gieryga": "KO",
-    "Dorota Gródecka-Szwajkiewicz": "KO",
-    "Roman Herczyński": "KO",
-    "Ewa Jasińska": "KO",
-    "Zuzanna Jeleniewska": "KO",
-    "Stanisław Kaup": "KO",
-    "Wojciech Kępka": "KO",
-    "Ilona Milewska": "KO",
-    "Urszula Pańka": "KO",
-    "Jan Posłuszny": "KO",
-    "Andrzej Radziwinowicz": "KO",
-    "Wiktoria Rogaczewska": "KO",
-    "Maria Schneider": "KO",
-    "Przemysław Słowik": "KO",
-    "Łukasz Tyszler": "KO",
-    "Małgorzata Wleklak": "KO",
-
-    # PiS - Prawo i Sprawiedliwość (7 radnych)
-    "Marek Chabior": "PiS",
-    "Marek Duklanowski": "PiS",
-    "Maciej Kopeć": "PiS",
-    "Marcin Pawlicki": "PiS",
-    "Krzysztof Romianowski": "PiS",
-    "Dariusz Smoliński": "PiS",
-    "Julia Szałabawka": "PiS",
-
-    # OK - OK Polska (5 radnych)
-    "Jolanta Balicka": "OK",
-    "Henryk Jerzyk": "OK",
-    "Piotr Kęsik": "OK",
-    "Marek Kolbowicz": "OK",
-    "Renata Łażewska": "OK",
-}
+COUNCILORS = _load_councilors()
 
 
 # eSesja Szczecina zwraca nazwę w kolejności "Nazwisko Imię" (czasem nazwisko
