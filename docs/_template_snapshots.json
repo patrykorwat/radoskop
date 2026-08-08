@@ -27,7 +27,7 @@
   "katowice": {
     "error": null,
     "kind": "city",
-    "sha256": "26734da1a4c53ecc0f6a3da9458f8f43a0ffe5bd9d5248df5a1890562684d670"
+    "sha256": "3f79572bb2c45f62ce2e1f9892eddf4cdd5c34453659f6486cb39ceef000214a"
   },
   "kyiv": {
     "error": null,
@@ -37,12 +37,12 @@
   "landtag-mv": {
     "error": null,
     "kind": "assembly",
-    "sha256": "0550f27d1a850f3459824987623c6b1d54bac08a17d3390e59d11011b8528254"
+    "sha256": "d350bf3cf69a7cfbda003e9fa119bb84ca8996aeb98ece8dcc5b41b763ee5d02"
   },
   "mazowieckie": {
     "error": null,
     "kind": "assembly",
-    "sha256": "2adea177c6e96b7fddeac8d1dbb536f32299a05cbbb039f4f522edf09a79c97e"
+    "sha256": "2d52f9a8e2ce20d68a01766df92320ba4290874a46aa03f42717158df7f4ab86"
   },
   "paris": {
     "error": null,
@@ -77,6 +77,6 @@
   "wroclaw": {
     "error": null,
     "kind": "city",
-    "sha256": "d10f1a670e1ebf1f38aa34a5ce882294ec0276fed83f3290c23774092bdd442e"
+    "sha256": "43c44c189e73486b30365649f138cef25fcbd1fe8258b214a18ef02efcc245b7"
   }
 }
