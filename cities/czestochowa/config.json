@@ -42,5 +42,32 @@
   "samorzad_type": "miasto",
   "rada_name": "Rada Miasta Częstochowy",
   "rada_name_genitive": "Rady Miasta Częstochowy",
-  "teryt": "2464011"
+  "teryt": "2464011",
+  "club_assignments": {
+    "Joanna Rekwirewicz": "KO",
+    "Marcin Biernat": "KO",
+    "Barbara Gieroń": "KO",
+    "Marcin Korzeniec": "KO",
+    "Marcin Maranda": "KO",
+    "Marta Salwierak": "KO",
+    "Zofia Wojtysiak-Kowalik": "KO",
+    "Dariusz Kapinos": "Lewica",
+    "Zbigniew Niesmaczny": "Lewica",
+    "Tomasz Blukacz": "Lewica",
+    "Małgorzata Iżyńska": "Lewica",
+    "Ewa Lewandowska": "Lewica",
+    "Michał Lewandowski": "Lewica",
+    "Paweł Ruksza": "PiS",
+    "Monika Pohorecka-Całko": "PiS",
+    "Katarzyna Jastrzębska": "PiS",
+    "Robert Leciński": "PiS",
+    "Alan Piotrowski": "PiS",
+    "Karolina Stępień": "PiS",
+    "Beata Struzik": "PiS",
+    "Artur Warzocha": "PiS",
+    "Piotr Wrona": "PiS",
+    "Łukasz Banaś": "NZ",
+    "Krystyna Stefańska": "NZ",
+    "Krzysztof Świerczyński": "NZ"
+  }
 }

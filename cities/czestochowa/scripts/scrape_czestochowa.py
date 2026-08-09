@@ -83,37 +83,18 @@ MONTHS_PL = {
 # Uwaga: Łukasz Banaś (dawniej KO) od 30.10.2025 zawieszony i przeniesiony do NZ.
 # Format: "Imię Nazwisko" → kod klubu. PDF z BIP może podawać też w formie
 # "NAZWISKO Imię" (caps), normalizujemy w build_name_lookup().
-COUNCILORS: dict[str, str] = {
-    # KO — Koalicja Obywatelska (7)
-    "Joanna Rekwirewicz": "KO",
-    "Marcin Biernat": "KO",
-    "Barbara Gieroń": "KO",
-    "Marcin Korzeniec": "KO",
-    "Marcin Maranda": "KO",
-    "Marta Salwierak": "KO",
-    "Zofia Wojtysiak-Kowalik": "KO",
-    # Lewica (6)
-    "Dariusz Kapinos": "Lewica",
-    "Zbigniew Niesmaczny": "Lewica",
-    "Tomasz Blukacz": "Lewica",
-    "Małgorzata Iżyńska": "Lewica",
-    "Ewa Lewandowska": "Lewica",
-    "Michał Lewandowski": "Lewica",
-    # PiS (9)
-    "Paweł Ruksza": "PiS",
-    "Monika Pohorecka-Całko": "PiS",
-    "Katarzyna Jastrzębska": "PiS",
-    "Robert Leciński": "PiS",
-    "Alan Piotrowski": "PiS",
-    "Karolina Stępień": "PiS",
-    "Beata Struzik": "PiS",
-    "Artur Warzocha": "PiS",
-    "Piotr Wrona": "PiS",
-    # NZ — Radni niezrzeszeni (3)
-    "Łukasz Banaś": "NZ",
-    "Krystyna Stefańska": "NZ",
-    "Krzysztof Świerczyński": "NZ",
-}
+# Źródło: config.json → club_assignments (jedno źródło prawdy).
+def _load_councilors() -> dict[str, str]:
+    """Load club assignments from config.json (single source of truth)."""
+    config_path = Path(__file__).resolve().parent.parent / "config.json"
+    if config_path.is_file():
+        try:
+            return json.loads(config_path.read_text(encoding="utf-8")).get("club_assignments", {}) or {}
+        except Exception:
+            pass
+    return {}
+
+COUNCILORS: dict[str, str] = _load_councilors()
 
 
 # ---------------------------------------------------------------------------
