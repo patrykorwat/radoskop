@@ -53,6 +53,21 @@ except ImportError:
     sys.exit(1)
 
 BIP_BASE = "https://www.bip.krakow.pl/"
+
+
+# Radni Krakowa IX kadencja — kluby z config.json (jedno źródło prawdy).
+def _load_councilors() -> dict[str, str]:
+    """Load club assignments from config.json (single source of truth)."""
+    config_path = Path(__file__).resolve().parent.parent / "config.json"
+    if config_path.is_file():
+        try:
+            cfg = json.loads(config_path.read_text(encoding="utf-8"))
+            return cfg.get("club_assignments", {}) or {}
+        except Exception:
+            pass
+    return {}
+
+COUNCILORS = _load_councilors()
 SESSIONS_URL = f"{BIP_BASE}?bip_id=1&mmi=26527"
 
 KADENCJE = {
@@ -562,6 +577,10 @@ def load_profiles(profiles_path: str) -> dict:
                 "club": latest.get("club", "?"),
                 "district": latest.get("okręg"),
             }
+
+    # COUNCILORS z config.json nadpisują profiles.json (single source of truth).
+    for cname, club in COUNCILORS.items():
+        result[cname] = {"name": cname, "club": club, "district": None}
     return result
 
 
@@ -1003,7 +1022,9 @@ def merge_stats_to_profiles(profiles_path: str, output: dict):
                         "rebellion_count", "rebellions"]:
                 if key in c:
                     entry[key] = c[key]
-            if not entry.get("club") and c.get("club"):
+            # Klub z bieżących danych głosowań (config.json) nadpisuje starą
+            # wartość w profiles.json. Kadencje historyczne pozostają nietknięte.
+            if c.get("club"):
                 entry["club"] = c["club"]
             entry["has_voting_data"] = True
             entry["has_activity_data"] = c.get("has_activity_data", False)

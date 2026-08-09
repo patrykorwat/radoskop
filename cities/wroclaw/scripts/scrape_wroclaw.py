@@ -858,7 +858,10 @@ def merge_stats_to_profiles(profiles_path: str, output: dict):
                         "rebellion_count", "rebellions"]:
                 if key in c:
                     entry[key] = c[key]
-            if not entry.get("club") and c.get("club"):
+            # Klub z bieżących danych głosowań (config.json) nadpisuje starą
+            # wartość w profiles.json. Kadencje historyczne (poza output)
+            # pozostają nietknięte — c jest None dla (kid,name) ich nie dotyczących.
+            if c.get("club"):
                 entry["club"] = c["club"]
             entry["has_voting_data"] = True
             entry["has_activity_data"] = c.get("has_activity_data", False)
