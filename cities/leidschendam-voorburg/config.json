@@ -1,0 +1,43 @@
+{
+  "landing_enabled": true,
+  "city_name": "Leidschendam-Voorburg",
+  "city_genitive": "Leidschendam-Voorburg",
+  "country": "nl",
+  "country_name": "Nederland",
+  "locale": "nl",
+  "site_title": "Radoskop Leidschendam-Voorburg. Raadsinformatie en stemgedrag.",
+  "site_url": "https://leidschendam-voorburg.radoskop.eu",
+  "site_description": "Radoskop. Open inzicht in de gemeenteraad van Leidschendam-Voorburg, Zuid-Holland. Stemmingen en activiteit van raadsleden.",
+  "site_description_short": "Open inzicht in de gemeenteraad van Leidschendam-Voorburg.",
+  "bip_url": "https://raadkijker.nl/gemeente/1916",
+  "bip_name": "RaadKijker",
+  "bip_kind": "raadkijker_nl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "leidschendam-voorburg.radoskop.eu",
+  "impressum": {
+    "name": "Patryk Orwat",
+    "address_lines": [
+      "Przytulna 44/11",
+      "80-176 Gdańsk, Polska"
+    ],
+    "email": "patrykorwat@gmail.com"
+  },
+  "samorzad_type": "miasto",
+  "rada_name": "Gemeenteraad Leidschendam-Voorburg",
+  "rada_name_genitive": "Gemeenteraad Leidschendam-Voorburg",
+  "kadencja_active": "2026-2027",
+  "kadencja_terms": [
+    {
+      "id": "2026-2027",
+      "label": "2026–2027",
+      "start": "2026-01-01",
+      "end": "2027-12-31"
+    }
+  ],
+  "voting_display": "councillor",
+  "has_named_votes": true,
+  "councilor_count": 0,
+  "province": "Zuid-Holland",
+  "scrape_disabled": true
+}
