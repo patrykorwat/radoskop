@@ -4678,7 +4678,43 @@ async function renderLandingSpolki(){
 
 function renderBudget() {
   const B = window.BUDGET;
-  if (!B || !B.totals || !B.totals.length) return;
+  if (!B) return;
+  // Wolny tier — teaser (agregaty za 2 lata) + blokada; pełne dane w Pro
+  // (tel: /budget/compare: struktura COFOG, benchmark peer, trend, wskaźnik długu).
+  if (!B.totals) {
+    const container = document.getElementById('budget-content');
+    if (!container) return;
+    const rows = (B.summary || []).filter(t => t.year).sort((a, b) => a.year - b.year);
+    const fmtMoney = (n) => n == null ? '—' : Math.round(n).toLocaleString('pl-PL') + ' zł';
+    const fmtRow = (t) => `
+      <tr>
+        <td style="font-weight:600;padding:6px 8px">${t.year}</td>
+        <td style="padding:6px 8px">${fmtMoney(t.revenue)}</td>
+        <td style="padding:6px 8px">${fmtMoney(t.expenditure)}</td>
+        <td style="padding:6px 8px">${t.deficit == null ? '—' : (t.deficit < 0 ? '−' : '+') + fmtMoney(Math.abs(t.deficit))}</td>
+        <td style="padding:6px 8px">${fmtMoney(t.debt)}</td>
+      </tr>`;
+    container.innerHTML = `
+      <div style="border:1px solid var(--border);background:var(--soft);border-radius:12px;padding:16px 20px;margin-bottom:20px">
+        <div style="font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;margin-bottom:8px">Budżet miasta — przegląd (2 ostatnie lata)</div>
+        <table style="width:100%;border-collapse:collapse;font-size:.9rem">
+          <thead><tr style="color:var(--muted);text-align:left">
+            <th style="padding:6px 8px">Rok</th><th style="padding:6px 8px">Dochody</th><th style="padding:6px 8px">Wydatki</th><th style="padding:6px 8px">Deficyt</th><th style="padding:6px 8px">Dług</th>
+          </tr></thead>
+          <tbody>${rows.map(fmtRow).join('')}</tbody>
+        </table>
+      </div>
+      <div style="border:1px dashed var(--border);border-radius:12px;padding:20px;text-align:center">
+        <div style="font-weight:700;margin-bottom:6px">Pełna analiza budżetowa — pakiet Pro</div>
+        <div style="font-size:.85rem;color:var(--muted);margin-bottom:12px">
+          Struktura wydatków (COFOG), benchmark względem miast rówieśniczych,
+          trend wieloletni oraz porównywarka długu i wskaźnika zadłużenia.
+        </div>
+        <a href="https://radoskop.eu/pricing/" style="display:inline-block;background:var(--accent);color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600">Zobacz Pro</a>
+      </div>
+      <div style="color:var(--muted);font-size:.8rem;margin-top:16px">Źródło: BeSTi@ (Ministerstwo Finansów), sprawozdania Rb-27S / Rb-28S / Rb-Z.</div>`;
+    return;
+  }
   const container = document.getElementById('budget-content');
   const fmt = (n) => (n/1e9).toFixed(2).replace('.', ',') + ' mld';
   const fmtM = (n) => n >= 1e9 ? fmt(n) : (n/1e6).toFixed(0) + ' mln';
