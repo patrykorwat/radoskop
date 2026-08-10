@@ -1365,6 +1365,45 @@ async function _loadRadniStats(){
   return _radniStatsCache;
 }
 
+// Osadzenie dashboardu Superseta (BI) — SSO przez sesję Radoskopu.
+// /api/v1/bi/token wraca 402 dla free, token dla subskrybenta; każdy uprawniony
+// widzi wszystkie miasta (bez RLS). Sekcja ląduje w zakładce Budżet pod analizą.
+var _biEmbedded = false;
+async function embedBI() {
+  if (_biEmbedded) return;
+  _biEmbedded = true;  // próbuj raz na stronę (nie dubluj przy re-renderze)
+  var container = document.getElementById('budget-content');
+  if (!container) return;
+  var resp;
+  try { resp = await fetch(API_BASE + '/v1/bi/token', { credentials: 'include' }); }
+  catch (e) { return; }
+  if (resp.status === 402 || !resp.ok) return;  // free — bez sekcji BI
+  var c;
+  try { c = await resp.json(); } catch (e) { return; }
+  if (!c.token) return;
+
+  var host = document.createElement('div');
+  host.id = 'bi-superset';
+  host.style.cssText = 'margin-top:36px;border:1px solid var(--border);border-radius:12px;overflow:hidden;min-height:620px;';
+  var h = document.createElement('h2');
+  h.textContent = 'Raport BI — decyzje i plany gmin (wszystkie miasta)';
+  h.style.cssText = 'margin-bottom:12px';
+  container.appendChild(h);
+  container.appendChild(host);
+  try {
+    var mod = await import('https://cdn.jsdelivr.net/npm/@superset-ui/embedded-sdk@0.4.0/+esm');
+    await mod.embedDashboard({
+      id: c.dashboard_id,
+      supersetDomain: c.domain,
+      mountPoint: host,
+      fetchGuestToken: function () { return Promise.resolve(c.token); },
+      dashboardUiConfig: { hideTitle: true, hideTab: true }
+    });
+  } catch (e) {
+    host.innerHTML = '<div style="padding:20px;color:var(--muted)">Nie udało się załadować analizy BI.</div>';
+  }
+}
+
 function render() {
   renderClubFilter();
   renderCouncilorTable();
@@ -1372,6 +1411,7 @@ function render() {
   _votesPage = 1;
   renderVotesTable();
   renderBudget();
+  embedBI();
   bindTabs();
   bindSort();
 }
