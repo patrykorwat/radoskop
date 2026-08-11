@@ -37,12 +37,12 @@
   "landtag-mv": {
     "error": null,
     "kind": "assembly",
-    "sha256": "766aaff0b5d5fda0ad5a75d58321473a8b0fd5fbed3cf2b5dd0e260c02bddc68"
+    "sha256": "28d0c075352d0f669e62a490b6417c3690bcbdd36298f2c77f2e18f09a6fe846"
   },
   "mazowieckie": {
     "error": null,
     "kind": "assembly",
-    "sha256": "14c27292374cd83ae73616db842774359111f956c38a159b6dd33e5d35861891"
+    "sha256": "514c7aa39c315a551e518f9c2373203ff8cd34fa75433e0243e47bbe1284b72d"
   },
   "paris": {
     "error": null,
