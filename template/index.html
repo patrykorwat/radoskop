@@ -426,7 +426,7 @@ async function init() {
     const [dataResp, profResp, budgetResp] = await Promise.all([
       fetch(API_BASE + '/data'),
       fetch(API_BASE + '/profiles'),
-      fetch(API_BASE + '/budget'),
+      fetch(API_BASE + '/budget', { credentials: 'include' }),
     ]);
     RAW = await dataResp.json();
     PROFILES = await profResp.json();
