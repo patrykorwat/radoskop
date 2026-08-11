@@ -1375,7 +1375,7 @@ async function embedBI() {
   var container = document.getElementById('budget-content');
   if (!container) return;
   var resp;
-  try { resp = await fetch(API_BASE + '/v1/bi/token', { credentials: 'include' }); }
+  try { resp = await fetch(_API_HOST + '/api/v1/bi/token', { credentials: 'include' }); }
   catch (e) { return; }
   if (resp.status === 402 || !resp.ok) return;  // free — bez sekcji BI
   var c;
