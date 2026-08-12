@@ -1393,7 +1393,7 @@ async function embedBI() {
   try {
     var mod = await import('https://cdn.jsdelivr.net/npm/@superset-ui/embedded-sdk@0.4.0/+esm');
     await mod.embedDashboard({
-      id: c.dashboard_id,
+      id: c.embedded_uuid || c.dashboard_id,
       supersetDomain: c.domain,
       mountPoint: host,
       fetchGuestToken: function () { return Promise.resolve(c.token); },
