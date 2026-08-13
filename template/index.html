@@ -1384,7 +1384,12 @@ async function embedBI() {
 
   var host = document.createElement('div');
   host.id = 'bi-superset';
-  host.style.cssText = 'margin-top:36px;border:1px solid var(--border);border-radius:12px;overflow:hidden;min-height:620px;';
+  host.style.cssText = 'margin-top:36px;border:1px solid var(--border);border-radius:12px;overflow:hidden;width:100%;min-height:1080px;position:relative;';
+  // SDK @superset-ui/embedded-sdk@0.4.0 NIE ustawia rozmiaru iframe (domyślnie
+  // ~300x150) — wymuszamy wypełnienie hosta, żeby raport BI nie był 'okienkiem'.
+  var biStyle = document.createElement('style');
+  biStyle.textContent = '#bi-superset iframe{width:100% !important;height:100% !important;min-height:1080px;border:0;display:block}';
+  document.head.appendChild(biStyle);
   var h = document.createElement('h2');
   h.textContent = 'Raport BI — decyzje i plany gmin (wszystkie miasta)';
   h.style.cssText = 'margin-bottom:12px';
