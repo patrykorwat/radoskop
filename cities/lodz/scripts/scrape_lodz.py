@@ -1,3 +1,58 @@
+#!/usr/bin/env python3
+"""
+Scraper danych głosowań Rady Miasta Łodzi.
+
+Źródło: bip.uml.lodz.pl
+BIP Łódź to standardowy HTML — nie wymaga JavaScript.
+Używa requests + BeautifulSoup do scrapowania, PyMuPDF do PDF.
+
+Struktura BIP Łódź:
+  1. Lista sesji: https://bip.uml.lodz.pl/wladze/rada-miejska-w-lodzi/wyniki-glosowan-z-sesji-rady-miejskiej-w-lodzi-ix-kadencji/
+  2. Sesja (strona): zawiera linki do PDF-ów z wynikami głosowań
+  3. Wyniki głosowań (PDF): /files/bip/public/BIP_MW_26/BRM_wyniki_glosowan_XXVII_20260226.pdf
+     — Każdy PDF to jedno głosowanie
+     — Format: nagłówek z tematem + tabela "Lp. / Nazwisko i imię / Głos"
+     — Głosy: ZA, PRZECIW, WSTRZYMUJĘ SIĘ, NIEOBECNY/NIEOBECNA
+
+UWAGA: Uruchom lokalnie — sandbox Cowork blokuje domeny
+
+Użycie:
+    pip install requests beautifulsoup4 lxml pymupdf
+    python scrape_lodz.py [--output docs/data.json] [--profiles docs/profiles.json]
+"""
+
+import argparse
+import json
+import re
+import sys
+import time
+from collections import Counter, defaultdict
+from datetime import datetime
+from itertools import combinations
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_clubs import club_has_line  # noqa: E402
+from urllib.parse import urljoin
+
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    print("Zainstaluj: pip install beautifulsoup4 lxml")
+    sys.exit(1)
+
+try:
+    import requests
+except ImportError:
+    print("Zainstaluj: pip install requests")
+    sys.exit(1)
+
+try:
+    import fitz
+except ImportError:
+    print("Zainstaluj: pip install pymupdf")
+    sys.exit(1)
+
 # Źródło: config.json → club_assignments (jedno źródło prawdy)
 def _load_councilors() -> dict[str, str]:
     """Load club assignments from config.json (single source of truth)."""

@@ -1,3 +1,54 @@
+#!/usr/bin/env python3
+"""
+Scraper danych głosowań Rady Miasta Szczecina.
+
+Źródło: BIP Szczecin (bip.um.szczecin.pl)
+BIP Szczecin to standardowy HTML — nie wymaga JavaScript.
+Używa requests + BeautifulSoup do scrapowania.
+
+Struktura BIP:
+  1. Lista sesji: https://bip.um.szczecin.pl/chapter_50509 (sesje z wynikami głosowań)
+  2. Sesja (artykuł): /artykul/ID/sesja-nr-... (strona sesji)
+  3. Wyniki głosowań (tabele HTML): wbudowane w stronę sesji
+
+Krok 1: Pobierz listę sesji
+Krok 2: Dla każdej sesji — pobierz stronę i parsuj tabele głosowań
+Krok 3: Ekstraktuj wyniki imienne z tabel
+Krok 4: Zbuduj data.json w formacie Radoskop
+
+Użycie:
+    pip install requests beautifulsoup4 lxml
+    python scrape_szczecin.py [--output docs/data.json] [--profiles docs/profiles.json]
+
+UWAGA: Uruchom lokalnie — sandbox Cowork blokuje domeny
+"""
+
+import argparse
+import json
+import re
+import sys
+import time
+from collections import Counter, defaultdict
+from datetime import datetime
+from itertools import combinations
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_clubs import club_has_line  # noqa: E402
+from urllib.parse import parse_qs, urljoin, urlparse
+
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    print("Zainstaluj: pip install beautifulsoup4 lxml")
+    sys.exit(1)
+
+try:
+    import requests
+except ImportError:
+    print("Zainstaluj: pip install requests")
+    sys.exit(1)
+
 # Źródło: config.json → club_assignments (jedno źródło prawdy)
 def _load_councilors() -> dict[str, str]:
     """Load club assignments from config.json (single source of truth)."""

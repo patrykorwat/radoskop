@@ -1,3 +1,59 @@
+#!/usr/bin/env python3
+"""
+Scraper danych głosowań Rady Miasta Katowice.
+
+Źródło: BIP Katowice (bip.katowice.eu)
+Głosowania imienne Rady Miasta publikowane sa jako PDF na stronach sesji.
+
+Struktura BIP:
+  1. Lista sesji: https://bip.katowice.eu/RadaMiasta/Sesje/default.aspx?menu=658
+     Linki do sesji: sesja.aspx?idt=XXX&menu=658
+  2. Strona sesji: sesja.aspx?idt=XXX
+     Link "IMIENNE WYNIKI GŁOSOWAŃ" -> dokument.aspx?idr=YYY
+  3. Strona dokumentu: dokument.aspx?idr=YYY
+     Linki do PDF: /SiteAssets/.../Sesja NN, Glosowanie M, Data ....pdf
+  4. Kazdy PDF zawiera: temat glosowania, liste radnych, glos kazdego radnego
+
+UWAGA: Uruchom lokalnie.
+
+Użycie:
+    pip install requests beautifulsoup4 pdfplumber
+    python scrape_katowice.py [--output docs/data.json] [--profiles docs/profiles.json]
+"""
+
+import argparse
+import hashlib
+import io
+import json
+import re
+import sys
+import time
+from collections import Counter, defaultdict
+from datetime import datetime
+from itertools import combinations
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_clubs import club_has_line  # noqa: E402
+
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    print("Zainstaluj: pip install beautifulsoup4")
+    sys.exit(1)
+
+try:
+    import requests
+except ImportError:
+    print("Zainstaluj: pip install requests")
+    sys.exit(1)
+
+try:
+    import pdfplumber
+except ImportError:
+    print("Zainstaluj: pip install pdfplumber")
+    sys.exit(1)
+
 # Źródło: config.json → club_assignments (jedno źródło prawdy)
 def _load_councilors() -> dict[str, str]:
     """Load club assignments from config.json (single source of truth)."""
