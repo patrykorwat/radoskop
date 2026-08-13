@@ -50,6 +50,67 @@ except ImportError:
     print("Zainstaluj: pip install pymupdf")
     sys.exit(1)
 
+
+def compact_named_votes(output):
+    """Convert named_votes from string arrays to indexed format for smaller JSON."""
+    for kad in output.get("kadencje", []):
+        names = set()
+        for v in kad.get("votes", []):
+            nv = v.get("named_votes", {})
+            for cat_names in nv.values():
+                for n in cat_names:
+                    if isinstance(n, str):
+                        names.add(n)
+        if not names:
+            continue
+        index = sorted(names, key=lambda n: n.split()[-1] + " " + n)
+        name_to_idx = {n: i for i, n in enumerate(index)}
+        kad["councilor_index"] = index
+        for v in kad.get("votes", []):
+            nv = v.get("named_votes", {})
+            for cat in nv:
+                nv[cat] = sorted(name_to_idx[n] for n in nv[cat] if isinstance(n, str) and n in name_to_idx)
+    return output
+
+
+
+def save_split_output(output, out_path):
+    """Save output as split files: data.json (index) + kadencja-{id}.json per kadencja."""
+    import json as _json
+    from pathlib import Path as _Path
+    compact_named_votes(output)
+    out_path = _Path(out_path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    stubs = []
+    for kad in output.get("kadencje", []):
+        kid = kad["id"]
+        stubs.append({"id": kid, "label": kad.get("label", f"Kadencja {kid}")})
+        kad_path = out_path.parent / f"kadencja-{kid}.json"
+        with open(kad_path, "w", encoding="utf-8") as f:
+            _json.dump(kad, f, ensure_ascii=False, separators=(",", ":"))
+    index = {
+        "generated": output.get("generated", ""),
+        "default_kadencja": output.get("default_kadencja", ""),
+        "kadencje": stubs,
+    }
+    with open(out_path, "w", encoding="utf-8") as f:
+        _json.dump(index, f, ensure_ascii=False, separators=(",", ":"))
+
+
+BIP_BASE = "https://bip.lublin.eu/"
+SESSIONS_URLS = [
+    f"{BIP_BASE}rada-miasta-lublin/ix-kadencja/sesje/",
+]
+
+KADENCJE = {
+    "2024-2029": {"label": "IX kadencja (2024–2029)", "start": "2024-05-07"},
+}
+
+DELAY = 0.3  # politeness sleep przed HTTP, cache hits pomijają
+
+# Radni Lublina IX kadencja (2024-2029)
+# Based on research from BIP Lublin and election results (31 total councillors)
+# Sources: bip.lublin.eu, radio.lublin.pl
 # Źródło: config.json → club_assignments (jedno źródło prawdy)
 def _load_councilors() -> dict[str, str]:
     """Load club assignments from config.json (single source of truth)."""

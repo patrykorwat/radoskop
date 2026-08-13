@@ -54,6 +54,88 @@ except ImportError:
     print("Zainstaluj: pip install pdfplumber")
     sys.exit(1)
 
+
+def compact_named_votes(output):
+    """Convert named_votes from string arrays to indexed format for smaller JSON."""
+    for kad in output.get("kadencje", []):
+        names = set()
+        for v in kad.get("votes", []):
+            nv = v.get("named_votes", {})
+            for cat_names in nv.values():
+                for n in cat_names:
+                    if isinstance(n, str):
+                        names.add(n)
+        if not names:
+            continue
+        index = sorted(names, key=lambda n: n.split()[-1] + " " + n)
+        name_to_idx = {n: i for i, n in enumerate(index)}
+        kad["councilor_index"] = index
+        for v in kad.get("votes", []):
+            nv = v.get("named_votes", {})
+            for cat in nv:
+                nv[cat] = sorted(name_to_idx[n] for n in nv[cat] if isinstance(n, str) and n in name_to_idx)
+    return output
+
+
+
+def save_split_output(output, out_path):
+    """Save output as split files: data.json (index) + kadencja-{id}.json per kadencja."""
+    import json as _json
+    from pathlib import Path as _Path
+    compact_named_votes(output)
+    out_path = _Path(out_path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    stubs = []
+    for kad in output.get("kadencje", []):
+        kid = kad["id"]
+        stubs.append({"id": kid, "label": kad.get("label", f"Kadencja {kid}")})
+        kad_path = out_path.parent / f"kadencja-{kid}.json"
+        with open(kad_path, "w", encoding="utf-8") as f:
+            _json.dump(kad, f, ensure_ascii=False, separators=(",", ":"))
+    index = {
+        "generated": output.get("generated", ""),
+        "default_kadencja": output.get("default_kadencja", ""),
+        "kadencje": stubs,
+    }
+    with open(out_path, "w", encoding="utf-8") as f:
+        _json.dump(index, f, ensure_ascii=False, separators=(",", ":"))
+
+
+# ============================================================================
+# Config
+# ============================================================================
+
+BIP_BASE = "https://bip.katowice.eu"
+BIP_SESSIONS = f"{BIP_BASE}/RadaMiasta/Sesje/default.aspx?menu=658"
+
+KADENCJE = {
+    "2024-2029": {
+        "label": "IX kadencja (2024\u20132029)",
+        "start": "2024-05-07",
+    }
+}
+
+HEADERS = {
+    "User-Agent": "Radoskop/1.0 (https://katowice.radoskop.pl; kontakt@radoskop.pl)",
+    "Accept": "text/html,application/xhtml+xml",
+}
+
+DELAY = 1.0
+
+# Sesje starsze niż tyle dni traktujemy jako stabilne. BIP nie aktualizuje
+# protokołów po tym czasie. Dla takich sesji pomijamy GET session.aspx + GET
+# dokument.aspx (zaoszczędzone 2 HTTP × 150 sesji = ~300 requestów i ~5 min).
+STABLE_AGE_DAYS = 2  # sesje >=2 dni cache, bo vote data zwykle publikowany w 24h
+
+# Wersja schematu state.json. Bump gdy zmieni się shape pdf_links albo
+# pola wymagane do skipu HTTP. Stary cache po bumpie zostanie pominięty.
+STATE_VERSION = 1
+
+# Skład Rady Miasta Katowice IX kadencji (2024-2029)
+# Źródło: BIP Katowice (bip.katowice.eu) — Kluby radnych
+# Zweryfikowano: 2026-08-08 (BIP aktualizacja 03.07.2026)
+# Uwaga: Makowski, Biskupski, Kamiński, Kraus nie figurują na BIP (prawdop. mandaty wygasłe),
+# zachowani dla atrybucji historycznych głosowań.
 # Źródło: config.json → club_assignments (jedno źródło prawdy)
 def _load_councilors() -> dict[str, str]:
     """Load club assignments from config.json (single source of truth)."""

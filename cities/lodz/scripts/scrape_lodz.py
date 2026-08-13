@@ -53,6 +53,25 @@ except ImportError:
     print("Zainstaluj: pip install pymupdf")
     sys.exit(1)
 
+
+BIP_BASE = "https://bip.uml.lodz.pl/"
+
+# BIP Łódź URLs dla różnych kadencji
+SESSIONS_URLS = [
+    f"{BIP_BASE}wladze/rada-miejska-w-lodzi/wyniki-glosowan-z-sesji-rady-miejskiej-w-lodzi-ix-kadencji/",  # IX kadencja
+    f"{BIP_BASE}wladze/rada-miejska-w-lodzi/wyniki-glosowan-z-sesji-rady-miejskiej-w-lodzi-viii-kadencji/",  # VIII kadencja
+]
+
+KADENCJE = {
+    "2024-2029": {"label": "IX kadencja (2024–2029)", "start": "2024-05-07"},
+}
+
+DELAY = 1.0
+
+# Radni Łodzi IX kadencja (2024-2029) — 37 radnych
+# Pobrane z: https://bip.uml.lodz.pl/wladze/rada-miejska-w-lodzi/ (club pages)
+# Zweryfikowano: 2026-08-08
+# Nazwy muszą dokładnie pasować do formy w PDF (Imię Nazwisko).
 # Źródło: config.json → club_assignments (jedno źródło prawdy)
 def _load_councilors() -> dict[str, str]:
     """Load club assignments from config.json (single source of truth)."""
@@ -396,7 +415,7 @@ def extract_votes_from_pdf(pdf_path: Path, debug: bool = False) -> list[dict]:
             full_text += page.get_text() + "\n"
     except Exception as e:
         doc.close()
-        print(f"      BŁĄD parsowania PDF {pdf_url}: {e}")
+        print(f"      BŁĄD parsowania PDF {pdf_path}: {e}")
         return []
 
     if debug:

@@ -51,6 +51,28 @@ except ImportError:
     print("Zainstaluj: pip install pymupdf")
     sys.exit(1)
 
+
+BIP_BASE = "https://bip.um.wroc.pl/"
+# BIP Wrocław ma osobne kategorie artykułów dla każdej kadencji:
+#   769 = VIII kadencja (2018-2024)
+#   1179 = IX kadencja (2024-2029)
+# Sprawdzamy obie + paginację
+SESSIONS_URLS = [
+    f"{BIP_BASE}artykuly/1179/sesje-rady",   # IX kadencja — główna
+    f"{BIP_BASE}artykuly/769/sesje-rady",     # VIII kadencja — fallback
+]
+
+KADENCJE = {
+    "2024-2029": {"label": "IX kadencja (2024–2029)", "start": "2024-05-07"},
+}
+
+DELAY = 0.3  # politeness sleep przed HTTP, cache hits pomijają
+
+# Radni Wrocławia IX kadencja (2024-2029)
+# Źródło: BIP Wrocław (bip.um.wroc.pl/artykul/1187/73078/kluby-radnych)
+# Zweryfikowano: 2026-08-08 (BIP aktualizacja 10.07.2026)
+# Uwaga: Mateusz Żak (ex-KO) i Karolina Mrozowska (ex-PiS) — mandaty wygasłe,
+# zachowani dla atrybucji historycznych głosowań.
 # Źródło: config.json → club_assignments (jedno źródło prawdy)
 def _load_councilors() -> dict[str, str]:
     """Load club assignments from config.json (single source of truth)."""

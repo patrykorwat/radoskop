@@ -51,6 +51,53 @@ except ImportError:
     print("Zainstaluj: pip install pymupdf")
     sys.exit(1)
 
+
+
+# ---------------------------------------------------------------------------
+# Config
+# ---------------------------------------------------------------------------
+
+BIP_BASE = "https://bip.um.bydgoszcz.pl/"
+# Strona nadrzędna kategorii — linkuje do osobnych artykułów per ROK
+# ("...imienne-wykazy-glosowan-radnych-w-roku-{YYYY}-kadencja-{KAD}"). BIP
+# tworzy nowy artykuł co roku (2024→5811, 2025→7219, 2026→9839, ...), więc nie
+# da się zaszyć jednego URL — odkrywamy roczniki dynamicznie.
+VOTING_CATEGORY_URL = "https://bip.um.bydgoszcz.pl/artykuly/1211/imienne-wykazy-glosowan-radnych"
+KADENCJA_SLUG = "2024-2029"
+# Zachowane dla zgodności wstecznej / fallbacku, gdyby strona kategorii padła.
+VOTING_LIST_URL = "https://bip.um.bydgoszcz.pl/artykul/1211/5811/imienne-wykazy-glosowan-radnych-w-roku-2024-kadencja-2024-2029"
+
+KADENCJE = {
+    "2024-2029": {
+        "label": "IX kadencja (2024–2029)",
+        "start": "2024-05-07",
+    },
+}
+
+HEADERS = {
+    "User-Agent": "Radoskop/1.0 (https://bydgoszcz.radoskop.pl; kontakt@radoskop.pl)",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+}
+
+DELAY = 0.5
+
+# Mapper numerów sesji na daty — uzupełnić na podstawie dostępnych danych
+# Format: "nr_sesji_roman" -> "2024-MM-DD"
+SESSION_DATES = {
+    # To be filled based on BIP data
+}
+
+# Skład Rady Miasta Bydgoszczy IX kadencji (2024-2029) — 28 mandatów.
+# WAŻNE: kod to AKTUALNY KLUB RADNYCH wg oficjalnej listy BIP
+# (bip.um.bydgoszcz.pl/artykul/1473/5809/kadencja-ix-2024-2029), NIE komitet
+# wyborczy. Przypisanie musi pozostać aktualne — aktualizuj wg tej strony przy
+# zmianach mandatów/klubów. Kluby: "KO i Lewica", "Bydgoska Prawica",
+# "Niezrzeszeni" (radni z "Klub radnych: -" lub "Niezrzeszony" w BIP).
+# Stan zweryfikowany 2026-05-30 (BIP akt. 20.01.2026 + PDF XXXI sesji):
+#   - Anna Mackiewicz: mandat wygasł 31.07.2024 (została wiceprezydentem);
+#     zachowana dla atrybucji głosów z 2024, w jej miejsce Aurelia Ratajczak.
+#   - Katarzyna Zaczek (Bydgoska Prawica) — mandat w trakcie kadencji.
+#   - Czerska-Thomas, Ginther, Hoppe, Dzakanowski są niezrzeszeni wg BIP.
 # Źródło: config.json → club_assignments (jedno źródło prawdy)
 def _load_councilors() -> dict[str, str]:
     """Load club assignments from config.json (single source of truth)."""
