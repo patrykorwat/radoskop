@@ -1366,14 +1366,17 @@ async function _loadRadniStats(){
 }
 
 // Przekierowanie do dashboardu Superseta (BI) — bramka SSO przez sesję Radoskopu.
-// /api/v1/bi/token wraca 402 dla free, {} z domain/dashboard_id dla subskrybenta;
-// każdy uprawniony widzi wszystkie miasta (bez RLS). Sekcja ląduje w zakładce
-// Budżet pod analizą jako link do Superseta.
+// /api/v1/bi/token wraca 402 dla free, token dla subskrybenta; każdy uprawniony
+// widzi wszystkie miasta (bez RLS). Sekcja ląduje w zakładce Budżet pod analizą
+// jako osadzony dashboard (SDK embedded, guest token).
 var _biEmbedded = false;
-// Raport BI = przekierowanie do Superseta. Wbudowany render (iframe + SDK
-// embedded-sdk) porzucony: w tym buildzie Superseta (6.1.0, brak nowszej
-// wersji) dashboard z wykresami zawiesza render, więc jedyna niezawodna droga
-// to link. Bramka zostaje: /api/v1/bi/token — dla free (402) sekcji nie ma.
+// Raport BI = osadzony dashboard Superseta (SDK embedded, guest token z
+// /api/v1/bi/token). Uwaga — żeby to RENDEROWAŁO, na Supersecie muszą być:
+//   * FEATURE_FLAGS scalone z DEFAULT_FEATURE_FLAGS (NADpisanie całego dicta
+//     wiesza render!),
+//   * position_json w kanonicznym formacie ROOT_ID/GRID_ID (nie ROOT/GRID),
+//   * DASHBOARD_VIRTUALIZATION=False (z True wykresy nie startują).
+// SDK przez esm.sh (build jsDelivr +esm ma zepsuty interop Switchboard).
 async function embedBI() {
   if (_biEmbedded) return;
   _biEmbedded = true;  // próbuj raz na stronę (nie dubluj przy re-renderze)
@@ -1385,28 +1388,32 @@ async function embedBI() {
   if (resp.status === 402 || !resp.ok) return;  // free — bez sekcji BI
   var c;
   try { c = await resp.json(); } catch (e) { return; }
-  if (!c.domain) return;
-  var dashUrl = c.domain + (c.dashboard_id ? '/superset/dashboard/' + c.dashboard_id + '/' : '');
+  if (!c.token) return;
 
+  var host = document.createElement('div');
+  host.id = 'bi-superset';
+  host.style.cssText = 'margin-top:36px;border:1px solid var(--border);border-radius:12px;overflow:hidden;width:100%;min-height:1080px;position:relative;';
+  // SDK nie ustawia rozmiaru iframe (domyślnie ~300x150) — wymuszamy wypełnienie.
+  var biStyle = document.createElement('style');
+  biStyle.textContent = '#bi-superset iframe{width:100% !important;height:100% !important;min-height:1080px;border:0;display:block}';
+  document.head.appendChild(biStyle);
   var h = document.createElement('h2');
   h.textContent = 'Raport BI — decyzje i plany gmin (wszystkie miasta)';
   h.style.cssText = 'margin-bottom:12px';
-  var box = document.createElement('div');
-  box.style.cssText = 'margin-top:16px;padding:28px;text-align:center;border:1px solid var(--border);border-radius:12px;';
-  var btn = document.createElement('a');
-  btn.href = dashUrl;
-  btn.style.cssText = 'display:inline-block;background:var(--accent);color:#fff;padding:11px 22px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none';
-  btn.textContent = 'Otwórz raport BI w Superset →';
-  btn.addEventListener('click', function () {
-    try { trackEvent('click_bi_superset_redirect', { slug: CITY_SLUG || '' }); } catch (e) {}
-  });
-  var note = document.createElement('div');
-  note.style.cssText = 'margin-top:10px;color:var(--muted);font-size:12px';
-  note.textContent = 'Raport otwiera się w narzędziu analitycznym (wymaga logowania do Superset).';
-  box.appendChild(btn);
-  box.appendChild(note);
   container.appendChild(h);
-  container.appendChild(box);
+  container.appendChild(host);
+  try {
+    var mod = await import('https://esm.sh/@superset-ui/embedded-sdk@0.4.0/es2022/embedded-sdk.bundle.mjs');
+    await mod.embedDashboard({
+      id: c.embedded_uuid || c.dashboard_id,
+      supersetDomain: c.domain,
+      mountPoint: host,
+      fetchGuestToken: function () { return Promise.resolve(c.token); },
+      dashboardUiConfig: { hideTitle: true, hideTab: true }
+    });
+  } catch (e) {
+    host.innerHTML = '<div style="padding:20px;color:var(--muted)">Nie udało się załadować analizy BI.</div>';
+  }
 }
 
 function render() {
