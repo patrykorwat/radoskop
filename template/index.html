@@ -1365,56 +1365,8 @@ async function _loadRadniStats(){
   return _radniStatsCache;
 }
 
-// Przekierowanie do dashboardu Superseta (BI) — bramka SSO przez sesję Radoskopu.
-// /api/v1/bi/token wraca 402 dla free, token dla subskrybenta; każdy uprawniony
-// widzi wszystkie miasta (bez RLS). Sekcja ląduje w zakładce Budżet pod analizą
-// jako osadzony dashboard (SDK embedded, guest token).
-var _biEmbedded = false;
-// Raport BI = osadzony dashboard Superseta (SDK embedded, guest token z
-// /api/v1/bi/token). Uwaga — żeby to RENDEROWAŁO, na Supersecie muszą być:
-//   * FEATURE_FLAGS scalone z DEFAULT_FEATURE_FLAGS (NADpisanie całego dicta
-//     wiesza render!),
-//   * position_json w kanonicznym formacie ROOT_ID/GRID_ID (nie ROOT/GRID),
-//   * DASHBOARD_VIRTUALIZATION=False (z True wykresy nie startują).
-// SDK przez esm.sh (build jsDelivr +esm ma zepsuty interop Switchboard).
-async function embedBI() {
-  if (_biEmbedded) return;
-  _biEmbedded = true;  // próbuj raz na stronę (nie dubluj przy re-renderze)
-  var container = document.getElementById('budget-content');
-  if (!container) return;
-  var resp;
-  try { resp = await fetch(_API_HOST + '/api/v1/bi/token', { credentials: 'include' }); }
-  catch (e) { return; }
-  if (resp.status === 402 || !resp.ok) return;  // free — bez sekcji BI
-  var c;
-  try { c = await resp.json(); } catch (e) { return; }
-  if (!c.token) return;
-
-  var host = document.createElement('div');
-  host.id = 'bi-superset';
-  host.style.cssText = 'margin-top:36px;border:1px solid var(--border);border-radius:12px;overflow:hidden;width:100%;min-height:1080px;position:relative;';
-  // SDK nie ustawia rozmiaru iframe (domyślnie ~300x150) — wymuszamy wypełnienie.
-  var biStyle = document.createElement('style');
-  biStyle.textContent = '#bi-superset iframe{width:100% !important;height:100% !important;min-height:1080px;border:0;display:block}';
-  document.head.appendChild(biStyle);
-  var h = document.createElement('h2');
-  h.textContent = 'Raport BI — decyzje i plany gmin (wszystkie miasta)';
-  h.style.cssText = 'margin-bottom:12px';
-  container.appendChild(h);
-  container.appendChild(host);
-  try {
-    var mod = await import('https://esm.sh/@superset-ui/embedded-sdk@0.4.0/es2022/embedded-sdk.bundle.mjs');
-    await mod.embedDashboard({
-      id: c.embedded_uuid || c.dashboard_id,
-      supersetDomain: c.domain,
-      mountPoint: host,
-      fetchGuestToken: function () { return Promise.resolve(c.token); },
-      dashboardUiConfig: { hideTitle: true, hideTab: true }
-    });
-  } catch (e) {
-    host.innerHTML = '<div style="padding:20px;color:var(--muted)">Nie udało się załadować analizy BI.</div>';
-  }
-}
+// Raport BI (Superset) przeniesiony na stronę Radar (docs_eu/radar/index.html) —
+// zakładka Budżet miasta nie zawiera już osadzonego raportu między-miastowego.
 
 function render() {
   renderClubFilter();
@@ -1423,7 +1375,6 @@ function render() {
   _votesPage = 1;
   renderVotesTable();
   renderBudget();
-  embedBI();
   bindTabs();
   bindSort();
 }
