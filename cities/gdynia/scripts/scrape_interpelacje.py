@@ -41,6 +41,15 @@ except ImportError:
     print("Wymagany moduł: pip install requests")
     sys.exit(1)
 
+# Import shared HTTP cache (sys.path manipulacja bo scraper jest pod cities/).
+import sys as _sys
+from pathlib import Path as _Path
+_sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "scripts"))
+try:
+    from http_cache import init_cache  # noqa: E402
+except ImportError:
+    init_cache = None
+
 
 # ---------------------------------------------------------------------------
 # Config
@@ -409,7 +418,16 @@ def main():
         "--debug", action="store_true",
         help="Włącz szczegółowe logowanie"
     )
+    parser.add_argument(
+        "--cache-dir", default=None,
+        help="Katalog cache HTML (pipeline przekazuje scratch/.cache/interp)."
+    )
     args = parser.parse_args()
+
+    if init_cache:
+        init_cache(args.cache_dir)
+        if args.cache_dir:
+            print(f"Cache HTML interpelacji: {args.cache_dir}")
 
     if args.kadencja.lower() == "all":
         kadencje = list(KADENCJE.keys())
