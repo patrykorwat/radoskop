@@ -326,8 +326,14 @@ def main() -> int:
     print(f"  Listing: {len(seen)} dokumentów")
 
     records = []
+    # sesja DWR wygasa podczas długiego listingu — odśwież przed szczegółami
+    bip_handshake(session)
     for i, url in enumerate(seen, 1):
         html = fetch(session, url)
+        # error frame / zerwany handshake — odśwież sesję i spróbuj raz jeszcze
+        if not html or "Gmina Bytom" not in html:
+            bip_handshake(session)
+            html = fetch(session, url)
         rec = parse_detail(html, url)
         if not rec:
             continue
