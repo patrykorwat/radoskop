@@ -1,621 +1,478 @@
 #!/usr/bin/env python3
-"""
-Scraper interpelacji i zapytań radnych z BIP Katowice.
+"""Scraper interpelacji i zapytań radnych Rady Miasta Katowice (IX kadencja).
 
-Źródło: https://bip.katowice.eu/RadaMiasta/Radni/
+Źródło: BIP Katowice — rejestr interpelacji radnych prowadzony na SharePoint.
 
-Struktura BIP:
-  1. Lista radnych: RadaMiasta/Radni/default.aspx?menu=657
-     Linki: Radny.aspx?ido=XXX
-  2. Profil radnego: RadaMiasta/Radni/Radny.aspx?ido=XXX
-     Imie i nazwisko w tagu <h2>
-  3. Interpelacje radnego: RadaMiasta/Radni/interpelacje.aspx?ido=XXX
-     Identyfikatory dokumentow w JavaScript: var iddelement = 'NNN'
-  4. Szczegoly dokumentu: RadaMiasta/dokument.aspx?idr=NNN
-     Tytul w <h2>, zalaczniki PDF w linkach
+    https://bip.katowice.eu/RadaMiasta/Radni/
 
-UWAGA: Uruchom lokalnie.
+Struktura BIP Katowice (SharePoint, NIE CCT jak w Przemyślu):
+  1. Lista radnych:  Radni/default.aspx?menu=657
+     Każda blok `.radny` → <a href="radny.aspx?ido=X">Imię Nazwisko</a>
+  2. Rejestr interpelacji radnego: Radni/interpelacje.aspx?ido=X
+     Identyfikatory dokumentów w JS: `var iddelement = '153 419';`
+     (non-breaking space między grupami cyfr, trzeba go usunąć).
+  3. Szczegóły dokumentu: dokument.aspx?idr=Y
+     Nagłówek <h2>: "Interpelacja RI-IX/001386 z dnia 03.08.2026r., w sprawie ..."
+     Załączniki PDF: <a href="/Lists/Dokumenty/Attachments/Y/plik.pdf">...
+  4. Odpowiedzi (Udzielono/Nie udzielono): BIP ładuje je klient-side przez SOAP
+     (lista „Dokumenty_powiazania_zew", relacja IDRodzic=interpelacja,
+     IDDziecko=odpowiedź, IDTablica=1). SOAP (`/_vti_bin/lists.asmx`) zwraca 401
+     (wymaga NTLM), ale ten sam podgląd działa ANONIMOWO przez SharePoint REST:
+       /_api/web/lists/getbytitle('Dokumenty_powiazania_zew')/items?$filter=IDRodzic eq Y and IDTablica eq 1
+     → dzieci (IDDziecko). Datę odpowiedzi bierzemy z listy „Dokumenty"
+     (pole Data_dokumentu) dla każdego IDDziecko.
+
+Klub radnego brany z config.json (club_assignments -> clubs[code]['name']);
+config Katowice nie ma pól `name` w sekcji clubs, więc scraper używa localnego
+fallbacku (jednoznaczne, znane nazwy klubów RM Katowice: Koalicja Obywatelska,
+Prawo i Sprawiedliwość, Forum Samorządowe, Niezrzeszeni).
+
+Output: lista rekordów w formacie Radoskop (ten sam schemat co Przemyśl/
+Warszawa): {cri, typ, rok, kadencja, radny, przedmiot, data_wplywu, klub,
+odpowiedz_status, tresc_url, odpowiedz_url, data_odpowiedzi, bip_url}
 
 Użycie:
-    pip install requests beautifulsoup4
-    python3 scrape_interpelacje.py [--output docs/interpelacje.json] [--debug]
+    python3 scrape_interpelacje.py --output docs/interpelacje.json
+    python3 scrape_interpelacje.py --output docs/interpelacje.json --cache-dir /path/cache
+    python3 scrape_interpelacje.py --output docs/interpelacje.json --all   # także starsze kadencje (<2024)
+    python3 scrape_interpelacje.py --output ... --max-councillors 2 --limit-docs 10   # szybki test
 """
 
 import argparse
 import json
-import os
 import re
 import sys
-import time
+from pathlib import Path
 
-try:
-    import requests
-except ImportError:
-    print("Wymagany modul: pip install requests")
-    sys.exit(1)
+import requests
 
-try:
-    from bs4 import BeautifulSoup
-except ImportError:
-    print("Wymagany modul: pip install beautifulsoup4")
-    sys.exit(1)
+HERE = Path(__file__).resolve()
+sys.path.insert(0, str(HERE.parents[3] / "scripts"))
 
+from http_cache import init_cache, cached_fetch_text, cached_fetch_json  # noqa: E402
 
-# ============================================================================
-# Config
-# ============================================================================
-
-BASE_URL = "https://bip.katowice.eu"
-RADNI_LIST_URL = f"{BASE_URL}/RadaMiasta/Radni/default.aspx?menu=657"
-
-KADENCJE = {
-    "IX": {"label": "IX kadencja (2024\u20132029)"},
-}
+BIP_BASE = "https://bip.katowice.eu"
+RADNI_LIST_URL = f"{BIP_BASE}/RadaMiasta/Radni/default.aspx?menu=657"
+# Listy SharePoint (bazowe URL-e REST, bez filtra — filtrujemy w kodzie).
+LIST_DOKUMENTY = "Dokumenty"
+LIST_POWIAZANIA = "Dokumenty_powiazania_zew"
 
 HEADERS = {
-    "User-Agent": "Radoskop/1.0 (https://katowice.radoskop.pl; kontakt@radoskop.pl)",
-    "Accept": "text/html",
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/120.0 Safari/537.36"
+    ),
+    "Accept-Language": "pl-PL,pl;q=0.9",
+}
+JSON_HEADERS = {
+    "User-Agent": HEADERS["User-Agent"],
+    "Accept": "application/json;odata=verbose",
 }
 
-DELAY = 0.15  # BIP is fast, keep delay low to finish in reasonable time
+DELAY = 0.5
+MIN_ROK_DEFAULT = 2024  # tylko IX kadencja (2024-2029); starsze przez --all
 
-
-# ============================================================================
-# Category classification
-# ============================================================================
-
-CATEGORIES = {
-    "transport": ["transport", "komunikacj", "autobus", "tramwaj", "drog", "ulic", "rondo",
-                  "chodnik", "przej\u015bci", "parkow", "rower", "\u015bcie\u017ck"],
-    "infrastruktura": ["infrastru", "remont", "naprawa", "budow", "inwesty", "moderniz",
-                       "o\u015bwietl", "kanalizacj", "wodoci\u0105g", "nawierzch", "most"],
-    "bezpiecze\u0144stwo": ["bezpiecz", "stra\u017c", "policj", "monitoring", "kradzie\u017c", "wandal",
-                       "przest\u0119p", "patrol"],
-    "edukacja": ["szko\u0142", "edukacj", "przedszkol", "\u017c\u0142ob", "nauczyc", "kszta\u0142c",
-                 "o\u015bwiat", "uczni"],
-    "zdrowie": ["zdrow", "szpital", "leczni", "medyc", "lekarz", "przychodni",
-                "ambulat"],
-    "\u015brodowisko": ["\u015brodowisk", "ziele\u0144", "drzew", "park ", "recykl", "odpady",
-                   "\u015bmieci", "klimat", "ekolog", "powietrz", "smog", "ha\u0142as"],
-    "mieszkalnictwo": ["mieszka", "lokal", "zasob", "czynsz", "wsp\u00f3lnot", "kamieni",
-                       "dewelop", "budynek"],
-    "kultura": ["kultur", "bibliotek", "muzeum", "teatr", "koncert", "festiwal",
-                "zabytek", "zabytk"],
-    "sport": ["sport", "boisko", "stadion", "basen", "si\u0142owni", "hala sport",
-              "rekrea"],
-    "pomoc spo\u0142eczna": ["spo\u0142eczn", "pomoc", "bezdomn", "senior", "niepe\u0142nospr",
-                        "opiek", "zasi\u0142k"],
-    "bud\u017cet": ["bud\u017cet", "finansow", "wydatk", "dotacj", "\u015brodki", "pieni\u0105d",
-               "podatk"],
-    "administracja": ["administrac", "urz\u0105d", "pracowni", "regulam", "organizac",
-                      "procedur", "biurokrac"],
+# Konfigur Katowice nie ma pól `name` w sekcji clubs → localny fallback pełnych
+# nazw klubów RM Katowice. Używany DOPIERO gdy config nie podaje nazwy.
+CLUB_NAME_FALLBACK = {
+    "KO": "Koalicja Obywatelska",
+    "PiS": "Prawo i Sprawiedliwość",
+    "Forum": "Forum Samorządowe",
+    "Niezrzeszeni": "Niezrzeszeni",
 }
 
-
-def classify_category(text):
-    """Klasyfikuje kategorie interpelacji na podstawie tekstu."""
-    if not text:
-        return "inne"
-    text_lower = text.lower()
-    for cat, keywords in CATEGORIES.items():
-        for kw in keywords:
-            if kw in text_lower:
-                return cat
-    return "inne"
+_DEBUG = False
+_session = requests.Session()
+_session.headers.update(HEADERS)
 
 
-# ============================================================================
-# Date parsing
-# ============================================================================
+# ---------------------------------------------------------------------------
+# Klub
+# ---------------------------------------------------------------------------
 
-def parse_date(raw):
-    """Konwertuje date na format YYYY-MM-DD."""
-    if not raw:
+def _load_clubs() -> tuple[dict, dict]:
+    cfg_path = HERE.parent.parent / "config.json"
+    if not cfg_path.is_file():
+        return {}, {}
+    try:
+        cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}, {}
+    return cfg.get("club_assignments", {}) or {}, cfg.get("clubs", {}) or {}
+
+
+_CLUB_ASSIGN, _CLUBS = _load_clubs()
+
+
+def _club_for_radny(radny: str) -> str:
+    code = _CLUB_ASSIGN.get(radny, "")
+    if not code:
         return ""
-    raw = raw.strip().rstrip("r.,")
-    m = re.match(r"(\d{2})\.(\d{2})\.(\d{4})", raw)
-    if m:
-        return f"{m.group(3)}-{m.group(2)}-{m.group(1)}"
-    m = re.match(r"(\d{4})-(\d{2})-(\d{2})", raw)
-    if m:
-        return raw[:10]
-    return raw
+    club = _CLUBS.get(code)
+    if isinstance(club, dict) and club.get("name"):
+        return club["name"]
+    return CLUB_NAME_FALLBACK.get(code, "")
 
 
-# ============================================================================
-# Step 1: Get councillor list
-# ============================================================================
+# ---------------------------------------------------------------------------
+# Radni
+# ---------------------------------------------------------------------------
 
-def fetch_councillor_ids(http_session, debug=False):
-    """Get all councillor IDs from the BIP radni list page."""
-    if debug:
-        print(f"  [DEBUG] GET {RADNI_LIST_URL}")
-
-    try:
-        resp = http_session.get(RADNI_LIST_URL, headers=HEADERS, timeout=30)
-        resp.raise_for_status()
-    except Exception as e:
-        print(f"  BLAD: Nie mozna pobrac listy radnych: {e}")
-        return []
-
-    ids = re.findall(r'ido=(\d+)', resp.text)
-    unique_ids = sorted(set(ids), key=lambda x: int(x))
-
-    if debug:
-        print(f"  [DEBUG] Znaleziono {len(unique_ids)} radnych")
-
-    return unique_ids
-
-
-# ============================================================================
-# Step 2: Get councillor name and interpelacja document IDs
-# ============================================================================
-
-def fetch_councillor_name(http_session, ido, debug=False):
-    """Get councillor name from their profile page (second h-tag)."""
-    url = f"{BASE_URL}/RadaMiasta/Radni/Radny.aspx?ido={ido}"
-    if debug:
-        print(f"  [DEBUG] GET {url}")
-
-    try:
-        resp = http_session.get(url, headers=HEADERS, timeout=30)
-        resp.raise_for_status()
-    except Exception as e:
-        if debug:
-            print(f"  [DEBUG] Blad: {e}")
-        return None
-
-    soup = BeautifulSoup(resp.text, "html.parser")
-    h_tags = soup.find_all(re.compile(r'^h[1-4]'))
-
-    skip_texts = {"Rada Miasta", "Redaktorzy Biuletynu", "Adres redakcji"}
-    skip_keywords = ("Dy\u017cury", "Interpelacje", "Zapytania", "O\u015bwiadczenia", "Wnioski", "Odpowiedzi")
-
-    for h in h_tags:
-        text = h.get_text(strip=True)
-        # Normalize non-breaking spaces
-        text = text.replace('\xa0', ' ').strip()
-        # Collapse multiple spaces
-        text = re.sub(r'\s{2,}', ' ', text)
-
-        if not text or text in skip_texts:
-            continue
-        if any(kw in text for kw in skip_keywords):
-            continue
-        # A councillor name: 2+ parts, only letters/spaces/hyphens
-        if len(text) > 4 and " " in text and re.match(r'^[A-Za-z\u0080-\u024f\s\-]+$', text):
-            return text
-
-    return None
-
-
-def fetch_interpelacje_ids(http_session, ido, debug=False):
-    """Get document IDs from a councillor's interpelacje page.
-
-    The page embeds document IDs in JavaScript:
-      var iddelement = '150 884';
-    The non-breaking spaces need to be stripped.
-    """
-    url = f"{BASE_URL}/RadaMiasta/Radni/interpelacje.aspx?ido={ido}"
-    if debug:
-        print(f"  [DEBUG] GET {url}")
-
-    try:
-        resp = http_session.get(url, headers=HEADERS, timeout=30)
-        resp.raise_for_status()
-    except Exception as e:
-        if debug:
-            print(f"  [DEBUG] Blad: {e}")
-        return []
-
-    raw_ids = re.findall(r"var iddelement = '([^']+)'", resp.text)
-    cleaned = []
-    for raw in raw_ids:
-        clean = raw.replace('\xa0', '').replace(' ', '').strip()
-        if clean.isdigit():
-            cleaned.append(clean)
-
-    return cleaned
-
-
-# ============================================================================
-# Step 3: Fetch document details
-# ============================================================================
-
-def fetch_document_detail(http_session, doc_id, debug=False):
-    """Fetch a document detail page and extract title, date, type, PDF links.
-
-    Document pages have:
-      <h2>Interpelacja RI-IX/001000 z dnia 06.03.2026r., w sprawie ...</h2>
-      <a href="/Lists/Dokumenty/Attachments/NNN/filename.pdf">filename.pdf</a>
-    """
-    url = f"{BASE_URL}/RadaMiasta/dokument.aspx?idr={doc_id}"
-    if debug:
-        print(f"    [DEBUG] GET {url}")
-
-    try:
-        resp = http_session.get(url, headers=HEADERS, timeout=30)
-        resp.raise_for_status()
-    except Exception as e:
-        if debug:
-            print(f"    [DEBUG] Blad: {e}")
-        return None
-
-    soup = BeautifulSoup(resp.text, "html.parser")
-
-    # Find title in h2
-    title = ""
-    for h2 in soup.find_all("h2"):
-        text = h2.get_text(strip=True)
-        if text and len(text) > 10:
-            title = text
-            break
-
-    if not title:
-        return None
-
-    # Parse title components
-    # Pattern: "Interpelacja RI-IX/001000 z dnia 06.03.2026r., w sprawie ..."
-    typ = "interpelacja"
-    title_lower = title.lower()
-    if "wniosek" in title_lower:
-        typ = "wniosek"
-    elif "zapytanie" in title_lower:
-        typ = "zapytanie"
-
-    # Extract reference number
-    nr_match = re.search(r'(RI-[IXV]+/\d+)', title)
-    nr_sprawy = nr_match.group(1) if nr_match else ""
-
-    # Extract date
-    date_match = re.search(r'z dnia (\d{2}\.\d{2}\.\d{4})', title)
-    data_wplywu = parse_date(date_match.group(1)) if date_match else ""
-
-    # Extract subject (everything after "w sprawie" or after the date/comma)
-    przedmiot = title
-    subj_match = re.search(r'[,.]?\s*(?:w sprawie\s+)(.+)', title, re.IGNORECASE)
-    if subj_match:
-        przedmiot = subj_match.group(1).strip()
-    else:
-        # Remove the type and reference prefix
-        przedmiot = re.sub(r'^(?:Interpelacja|Wniosek|Zapytanie)\s+RI-[IXV]+/\d+\s+z dnia\s+\d{2}\.\d{2}\.\d{4}r?\.,?\s*', '', title).strip()
-
-    # Find PDF links
-    tresc_url = ""
-    odpowiedz_url = ""
-    for a in soup.find_all("a", href=True):
-        href = a["href"]
-        if ".pdf" not in href.lower():
-            continue
-        full_url = href if href.startswith("http") else BASE_URL + href
-        link_text = a.get_text(strip=True).lower()
-
-        if "odpowied" in link_text:
-            odpowiedz_url = full_url
-        elif not tresc_url:
-            tresc_url = full_url
-
-    return {
-        "doc_id": doc_id,
-        "typ": typ,
-        "nr_sprawy": nr_sprawy,
-        "data_wplywu": data_wplywu,
-        "przedmiot": przedmiot,
-        "full_title": title,
-        "bip_url": url,
-        "tresc_url": tresc_url,
-        "odpowiedz_url": odpowiedz_url,
-    }
-
-
-# ============================================================================
-# Step 4: Fetch response links via headless browser
-# ============================================================================
-# BIP Katowice stores response documents as separate SharePoint items linked
-# via the Dokumenty_powiazania_zew list (IDRodzic -> IDDziecko). This data is
-# loaded client-side by a JavaScript function (dokumentyPowiazane) that calls
-# the SharePoint SOAP API. The SOAP API requires NTLM authentication, so we
-# cannot call it from Python directly. Instead we use a headless browser to
-# render the document pages and extract the response links from the DOM.
-
-try:
-    from playwright.sync_api import sync_playwright
-    HAS_PLAYWRIGHT = True
-except ImportError:
-    HAS_PLAYWRIGHT = False
-
-
-def _parse_response_html(html):
-    """Extract response info from the dokumentypowiazane div HTML."""
-    results = []
-    for m in re.finditer(r'id="elid(\d+)"', html):
-        child_id = m.group(1)
-        start = m.start()
-        next_m = re.search(r'id="elid\d+"', html[m.end():])
-        end = m.end() + next_m.start() if next_m else len(html)
-        block = html[start:end]
-
-        pdf_match = re.search(r'href="([^"]*\.pdf[^"]*)"', block)
-        pdf_url = pdf_match.group(1) if pdf_match else ""
-
-        intro_match = re.search(r'Wprowadzenie:.*?(\d{4}-\d{2}-\d{2})', block)
-        intro_date = intro_match.group(1) if intro_match else ""
-
-        results.append({
-            "child_id": child_id,
-            "pdf_url": pdf_url,
-            "date": intro_date,
-        })
-    return results
-
-
-def fetch_responses_browser(records, debug=False):
-    """Fetch response data for all records using a headless browser.
-
-    Updates records in place with odpowiedz_url, data_odpowiedzi, and
-    odpowiedz_status fields. Returns the updated records list.
-    """
-    if not HAS_PLAYWRIGHT:
-        print("  UWAGA: playwright nie zainstalowany, pomijam pobieranie odpowiedzi")
-        print("  Zainstaluj: pip install playwright && python3 -m playwright install chromium")
-        return records
-
-    # Collect unique doc_ids that still need response data
-    need_response = {}
-    for r in records:
-        doc_id = r["doc_id"]
-        if not r.get("odpowiedz_url") and doc_id not in need_response:
-            need_response[doc_id] = True
-
-    all_doc_ids = list(need_response.keys())
-    print(f"  Dokumentow do sprawdzenia: {len(all_doc_ids)}")
-
-    responses_map = {}
-    t0 = time.time()
-
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        context = browser.new_context()
-        page = context.new_page()
-
-        for i, doc_id in enumerate(all_doc_ids):
-            url = f"{BASE_URL}/RadaMiasta/dokument.aspx?idr={doc_id}"
-            try:
-                page.goto(url, wait_until="networkidle", timeout=20000)
-
-                powiazane = page.query_selector(".dokumentypowiazane")
-                if powiazane:
-                    html = powiazane.inner_html()
-                    if html and html.strip():
-                        parsed = _parse_response_html(html)
-                        if parsed:
-                            responses_map[doc_id] = parsed
-            except Exception as e:
-                if debug:
-                    print(f"  [DEBUG] Blad dla {doc_id}: {e}")
-
-            if (i + 1) % 100 == 0 or (i + 1) == len(all_doc_ids):
-                elapsed = time.time() - t0
-                found = len(responses_map)
-                print(f"  Sprawdzono: {i+1}/{len(all_doc_ids)} ({found} z odpowiedziami)")
-
-        browser.close()
-
-    # Merge response data into records
-    updated = 0
-    for r in records:
-        doc_id = r["doc_id"]
-        if doc_id in responses_map and not r.get("odpowiedz_url"):
-            resps = responses_map[doc_id]
-            best = next((x for x in resps if x["pdf_url"]), resps[0]) if resps else None
-            if best:
-                if best["pdf_url"]:
-                    r["odpowiedz_url"] = best["pdf_url"]
-                if best["date"]:
-                    r["data_odpowiedzi"] = best["date"]
-                    r["odpowiedz_status"] = "odpowiedziano"
-                updated += 1
-
-    print(f"  Zaktualizowano {updated} rekordow z danymi odpowiedzi")
-    return records
-
-
-# ============================================================================
-# Main
-# ============================================================================
-
-def _load_previous_responses(output_path):
-    """Wczytuje doc_id \u2192 {odpowiedz_url, data_odpowiedzi, odpowiedz_status}
-    z poprzedniego interpelacje.json, je\u015bli istnieje. U\u017cywane do skipowania
-    Phase [4/4] dla doc_id kt\u00f3re ju\u017c maj\u0105 znan\u0105 odpowied\u017a.
-
-    Bez tego cache'a phase 4 robi 1028 sekwencyjnych Playwright fetchy =
-    ~50min na ka\u017cdym runie. Z cachem nowy run sprawdza tylko \u015bwie\u017ce doc_id.
-    """
-    if not output_path or not os.path.exists(output_path):
-        return {}
-    try:
-        with open(output_path, "r", encoding="utf-8") as f:
-            previous = json.load(f)
-    except (json.JSONDecodeError, OSError):
-        return {}
-    out = {}
-    for r in previous if isinstance(previous, list) else []:
-        doc_id = r.get("doc_id")
-        url = r.get("odpowiedz_url")
-        if doc_id and url:
-            out[doc_id] = {
-                "odpowiedz_url": url,
-                "data_odpowiedzi": r.get("data_odpowiedzi", ""),
-                "odpowiedz_status": r.get("odpowiedz_status", "udzielono odpowiedzi"),
-            }
+def parse_councillors(html: str) -> dict[str, str]:
+    """{ido: 'Imię Nazwisko'} z listy radnych (bloki .radny)."""
+    out: dict[str, str] = {}
+    for m in re.finditer(
+        r'<a href="[^"]*radny\.aspx\?ido=(\d+)[^"]*"[^>]*>(.*?)</a>', html, re.S
+    ):
+        ido = m.group(1)
+        name = re.sub(r"<[^>]+>", " ", m.group(2))
+        name = re.sub(r"\s+", " ", name).replace("\xa0", " ").strip()
+        if ido and name:
+            out[ido] = name
     return out
 
 
-def scrape(output_path, debug=False):
-    """Glowna funkcja scrapowania."""
-    http_session = requests.Session()
+# ---------------------------------------------------------------------------
+# Interpelacje radnego (rejestr)
+# ---------------------------------------------------------------------------
 
-    print("\n=== Radoskop Katowice \u2014 Scraper interpelacji ===")
-
-    # Za\u0142aduj cache odpowiedzi z poprzedniego runu (key: doc_id).
-    # Phase 4 u\u017cyje tego do skipowania znanych odpowiedzi.
-    previous_responses = _load_previous_responses(output_path)
-    if previous_responses:
-        print(f"  Cache odpowiedzi: {len(previous_responses)} doc_id z poprzedniego runu")
-
-    kad_name = "IX"
-    print(f"\n=== {KADENCJE[kad_name]['label']} ===")
-
-    # Step 1: Get councillor list
-    print(f"\n[1/4] Pobieranie listy radnych...")
-    councillor_ids = fetch_councillor_ids(http_session, debug=debug)
-    if not councillor_ids:
-        print("  BLAD: Nie znaleziono radnych")
-        sys.exit(1)
-    print(f"  Znaleziono: {len(councillor_ids)} radnych")
-
-    # Step 2: For each councillor, get name and interpelacja document IDs
-    print(f"\n[2/4] Pobieranie interpelacji radnych...")
-    councillor_docs = {}  # ido -> {name, doc_ids}
-    all_doc_ids = set()
-    doc_to_councillors = {}  # doc_id -> [councillor_names]
-
-    for i, ido in enumerate(councillor_ids):
-        name = fetch_councillor_name(http_session, ido, debug=debug)
-        time.sleep(DELAY * 0.3)
-
-        doc_ids = fetch_interpelacje_ids(http_session, ido, debug=debug)
-        time.sleep(DELAY * 0.3)
-
-        if name:
-            councillor_docs[ido] = {"name": name, "doc_ids": doc_ids}
-            for did in doc_ids:
-                all_doc_ids.add(did)
-                if did not in doc_to_councillors:
-                    doc_to_councillors[did] = []
-                doc_to_councillors[did].append(name)
-
-            if doc_ids:
-                print(f"  [{i+1}/{len(councillor_ids)}] {name}: {len(doc_ids)} interpelacji")
-        else:
-            if debug:
-                print(f"  [{i+1}/{len(councillor_ids)}] ido={ido}: brak nazwy")
-
-    print(f"  Razem: {len(all_doc_ids)} unikalnych dokumentow")
-
-    if not all_doc_ids:
-        print("  UWAGA: Brak interpelacji do pobrania")
-        # Save empty result
-        os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
-        with open(output_path, "w", encoding="utf-8") as f:
-            json.dump([], f)
-        return
-
-    # Step 3: Fetch document details
-    print(f"\n[3/4] Pobieranie szczegolow ({len(all_doc_ids)} dokumentow)...")
-    all_records = []
-    sorted_doc_ids = sorted(all_doc_ids, key=int, reverse=True)  # newest first
-
-    for i, doc_id in enumerate(sorted_doc_ids):
-        detail = fetch_document_detail(http_session, doc_id, debug=debug)
-
-        if detail:
-            # Assign councillor names from the mapping
-            councillors = doc_to_councillors.get(doc_id, [])
-            detail["radny"] = "\n".join(councillors) if councillors else ""
-            detail["kadencja"] = kad_name
-            detail["kategoria"] = classify_category(detail.get("przedmiot", ""))
-
-            # Determine response status
-            if detail.get("odpowiedz_url"):
-                detail["odpowiedz_status"] = "udzielono odpowiedzi"
-                detail["data_odpowiedzi"] = ""
-            else:
-                detail["odpowiedz_status"] = "oczekuje na odpowied\u017a"
-                detail["data_odpowiedzi"] = ""
-
-            all_records.append(detail)
-
-        if (i + 1) % 100 == 0 or (i + 1) == len(sorted_doc_ids):
-            print(f"  Pobrano: {i+1}/{len(sorted_doc_ids)} ({len(all_records)} z danymi)")
-
-        time.sleep(DELAY)
-
-    # Pre-fill odpowiedz_url z cache'a poprzedniego runu. fetch_responses_browser
-    # ma już skip dla records z odpowiedz_url, więc to wystarczy żeby phase 4
-    # iterowała tylko po nowych/niesprawdzonych doc_id.
-    cached_count = 0
-    for r in all_records:
-        prev = previous_responses.get(r.get("doc_id"))
-        if prev and not r.get("odpowiedz_url"):
-            r["odpowiedz_url"] = prev["odpowiedz_url"]
-            r["data_odpowiedzi"] = prev.get("data_odpowiedzi", "")
-            r["odpowiedz_status"] = prev.get("odpowiedz_status", "udzielono odpowiedzi")
-            cached_count += 1
-    if cached_count:
-        print(f"  Z cache'a: {cached_count} odpowiedzi pominiętych w phase 4")
-
-    # Step 4: Fetch response links via headless browser (SOAP API requires NTLM)
-    print(f"\n[4/4] Pobieranie odpowiedzi (headless browser)...")
-    all_records = fetch_responses_browser(all_records, debug=debug)
-
-    # Sort by date (newest first)
-    all_records.sort(key=lambda x: x.get("data_wplywu", ""), reverse=True)
-
-    # Stats
-    interp = sum(1 for r in all_records if r.get("typ") == "interpelacja")
-    wniosek = sum(1 for r in all_records if r.get("typ") == "wniosek")
-    zap = sum(1 for r in all_records if r.get("typ") == "zapytanie")
-    answered = sum(1 for r in all_records if r.get("odpowiedz_url"))
-
-    print(f"\n=== Podsumowanie ===")
-    print(f"Interpelacje: {interp}")
-    print(f"Wnioski:      {wniosek}")
-    print(f"Zapytania:    {zap}")
-    print(f"Z odpowiedzi\u0105: {answered}")
-    print(f"Razem:        {len(all_records)}")
-
-    # Councillor stats
-    radny_counts = {}
-    for r in all_records:
-        for name in r.get("radny", "").split("\n"):
-            name = name.strip()
-            if name:
-                radny_counts[name] = radny_counts.get(name, 0) + 1
-
-    print(f"\nRadni z interpelacjami: {len(radny_counts)}")
-    for name in sorted(radny_counts, key=radny_counts.get, reverse=True)[:5]:
-        print(f"  {name}: {radny_counts[name]}")
-
-    # Save
-    os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(all_records, f, ensure_ascii=False, indent=2)
-
-    size_kb = os.path.getsize(output_path) / 1024
-    print(f"\nZapisano: {output_path} ({size_kb:.1f} KB)")
+def parse_interpelacje_ids(html: str) -> list[str]:
+    """Identyfikatory dokumentów (iddelement) z rejestru radnego."""
+    out: list[str] = []
+    for m in re.finditer(r"var\s+iddelement\s*=\s*'([^']+)'", html):
+        clean = re.sub(r"\s+", "", m.group(1))  # usuwa NBSP między grupami cyfr
+        if clean.isdigit():
+            out.append(clean)
+    # dedupe, zachowaj kolejność
+    seen = set()
+    uniq = []
+    for x in out:
+        if x not in seen:
+            seen.add(x)
+            uniq.append(x)
+    return uniq
 
 
-def main():
+# ---------------------------------------------------------------------------
+# Szczegóły dokumentu
+# ---------------------------------------------------------------------------
+
+def normalize_date(raw: str) -> str:
+    """DD-MM-RRRR | DD.MM.RRRR | DD.MM.RR(??) -> RRRR-MM-DD."""
+    if not raw:
+        return ""
+    m = re.search(r"(\d{1,2})[-.](\d{1,2})[-.](\d{3,4})", raw)
+    if not m:
+        return ""
+    d, mo, y = m.groups()
+    if len(y) == 3:  # np. "30.06.026" — literówka w źródłowym tytule BIP
+        y = "2" + y
+    return f"{y}-{int(mo):02d}-{int(d):02d}"
+
+
+def parse_document_detail(
+    html: str, bip_url: str, radny: str, data_dokumentu: str = ""
+) -> dict | None:
+    """Rekord Radoskop z dokument.aspx?idr=Y (nagłówek h2 + załączniki PDF).
+
+    `data_dokumentu` (REST, Data_dokumentu) jest autorytatywnym źródłem daty
+    wpływu — używany gdy tytuł w HTML nie zawiera poprawnej daty (literówki
+    typu "a dnia" / "30.06.026" w tytułach BIP).
+    """
+    if not html:
+        return None
+    header_m = re.search(r"<h2[^>]*>(.*?)</h2>", html, re.S)
+    if not header_m:
+        return None
+    title = re.sub(r"<[^>]+>", " ", header_m.group(1))
+    title = re.sub(r"\s+", " ", title).replace("\xa0", " ").strip()
+    if not title:
+        return None
+
+    # cri: Interpelacja RI-IX/001386 ...
+    cri_m = re.search(r"(RI-?[IVX]+/\d+)", title)
+    cri = cri_m.group(1) if cri_m else ""
+
+    # data złożenia: "z dnia 03.08.2026r." (BIP bywa z literówką "a dnia")
+    date_m = re.search(r"(?:z|a)\s+dnia\s+(\d{1,2}[-.]\d{1,2}[-.]\d{3,4})", title, re.I)
+    data_wplywu = normalize_date(date_m.group(1)) if date_m else ""
+
+    # typ: zapytanie vs interpelacja (wniosek traktujemy jak interpelację)
+    low = title.lower()
+    typ = "zapytanie" if "zapytanie" in low else "interpelacja"
+
+    # przedmiot: wszystko po "w sprawie" (albo po wycięciu prefiksu)
+    przedmiot = title
+    subj = re.search(r"(?:w sprawie|w sprawach)\s+(.+)", title, re.IGNORECASE)
+    if not subj:
+        # przedmiot zaczyna się po "w sprawie"/"ws." — czasem BIP pisze "ws."
+        subj = re.search(r"\bws\.\s+(.+)", title, re.IGNORECASE)
+    if subj:
+        przedmiot = subj.group(1).strip()
+    else:
+        przedmiot = re.sub(
+            r"^(?:Interpelacja|Wniosek|Zapytanie)\b.*?r?\.,?\s*(?:w sprawie\s+)?",
+            "",
+            przedmiot,
+            count=1,
+        ).strip()
+
+    # Autorytatywna data wpływu: REST Data_dokumentu (czyste ISO) > tytuł HTML.
+    if (not data_wplywu) and data_dokumentu:
+        data_wplywu = (data_dokumentu or "")[:10]
+    if not data_wplywu:
+        # fallback: data w tytule "Rok 2027 r." itp. — zostawiamy puste
+        pass
+
+    rok = 0
+    if data_wplywu:
+        try:
+            rok = int(data_wplywu[:4])
+        except (ValueError, TypeError):
+            rok = 0
+    kadencja = "2024-2029" if rok >= 2024 else "2018-2024"
+
+    # załączniki PDF
+    tresc_url = ""
+    for href, label in re.findall(
+        r'<a[^>]+href="([^"]*\.pdf[^"]*)"[^>]*>(.*?)</a>', html, re.S
+    ):
+        if not href.startswith("http"):
+            href = BIP_BASE + href
+        lowl = label.lower()
+        if "odpowied" in lowl:
+            continue  # odpowiedź to osobny dokument (child), link wychwycony z REST
+        if not tresc_url:
+            tresc_url = href
+
+    return {
+        "cri": cri,
+        "typ": typ,
+        "rok": rok,
+        "kadencja": kadencja,
+        "radny": radny,
+        "przedmiot": przedmiot,
+        "data_wplywu": data_wplywu,
+        "klub": _club_for_radny(radny),
+        "odpowiedz_status": "Nie udzielono",  # nadpisane w rozwiązywaniu odpowiedzi
+        "tresc_url": tresc_url,
+        "odpowiedz_url": "",
+        "data_odpowiedzi": "",
+        "bip_url": bip_url,
+        "_doc_id": "",  # wewnętrzne, usuwane przed zapisem
+    }
+
+
+# ---------------------------------------------------------------------------
+# Odpowiedzi przez SharePoint REST (anonymous)
+# ---------------------------------------------------------------------------
+
+def _rest_select(collection: str, odata_filter: str, select: str) -> list[dict]:
+    """Jedna strona (≤5000) elementów listy SharePoint przez REST."""
+    url = (
+        f"{BIP_BASE}/_api/web/lists/getbytitle('{collection}')/items"
+        f"?$filter={odata_filter}&$select={select}"
+    )
+    data = cached_fetch_json(url, headers=JSON_HEADERS, delay=DELAY)
+    return (data.get("d") or {}).get("results", []) or []
+
+
+def resolve_responses(doc_ids: list[str]) -> dict[str, dict]:
+    """{doc_id: {odpowiedz_url, data_odpowiedzi}} dla interpelacji z odpowiedzią.
+
+    Łączy relację Dokumenty_powiazania_zew (IDRodzic=interpelacja, IDTablica=1,
+    IDDziecko=odpowiedź) z datą odpowiedzi z listy Dokumenty (Data_dokumentu).
+    """
+    if not doc_ids:
+        return {}
+    result: dict[str, dict] = {}
+    # Pakujemy filtry (IDRodzic eq X1 or ...) i (IDTablica eq 1) w paczki po 100.
+    for i in range(0, len(doc_ids), 100):
+        chunk = doc_ids[i : i + 100]
+        ors = " or ".join(f"IDRodzic eq {x}" for x in chunk)
+        f = f"({ors}) and IDTablica eq 1"
+        try:
+            rows = _rest_select(LIST_POWIAZANIA, f, "ID,IDRodzic,IDDziecko")
+        except Exception as e:  # noqa: BLE001
+            if _DEBUG:
+                print(f"  [debug] response lookup chunk {i}: {e}")
+            continue
+        child_ids = [str(r.get("IDDziecko")) for r in rows if r.get("IDDziecko")]
+        child_meta = {}  # child_id -> {Data_dokumentu, Tytul}
+        if child_ids:
+            cf = " or ".join(f"ID eq {c}" for c in child_ids)
+            try:
+                crows = _rest_select(LIST_DOKUMENTY, cf, "ID,Tytul,Data_dokumentu")
+                for r in crows:
+                    child_meta[str(r.get("ID"))] = r
+            except Exception:  # noqa: BLE001
+                child_meta = {}
+        for r in rows:
+            parent = str(r.get("IDRodzic"))
+            child = str(r.get("IDDziecko"))
+            if not child:
+                continue
+            meta = child_meta.get(child, {})
+            data_odp = (meta.get("Data_dokumentu") or "")[:10]
+            result[parent] = {
+                "odpowiedz_url": f"{BIP_BASE}/RadaMiasta/dokument.aspx?idr={child}",
+                "data_odpowiedzi": data_odp,
+            }
+    return result
+
+
+def fetch_documents_meta(doc_ids: list[str]) -> dict[str, dict]:
+    """{doc_id: {'Data_dokumentu', 'Tytul'}} z listy Dokumenty (REST, batch).
+
+    Data_dokumentu to autorytatywna data wpływu dokumentu (czyste ISO UTC),
+    odporna na literówki w tytułach HTML.
+    """
+    out: dict[str, dict] = {}
+    for i in range(0, len(doc_ids), 100):
+        chunk = doc_ids[i : i + 100]
+        f = " or ".join(f"ID eq {x}" for x in chunk)
+        try:
+            rows = _rest_select(LIST_DOKUMENTY, f, "ID,Tytul,Data_dokumentu")
+        except Exception as e:  # noqa: BLE001
+            if _DEBUG:
+                print(f"  [debug] meta lookup chunk {i}: {e}")
+            continue
+        for r in rows:
+            out[str(r.get("ID"))] = r
+    return out
+
+
+# ---------------------------------------------------------------------------
+# Fetch
+# ---------------------------------------------------------------------------
+
+def fetch_councillors() -> dict[str, str]:
+    html = cached_fetch_text(RADNI_LIST_URL, headers=HEADERS, delay=DELAY)
+    return parse_councillors(html)
+
+
+def fetch_interpelacje_page(ido: str) -> str:
+    url = f"{BIP_BASE}/RadaMiasta/Radni/interpelacje.aspx?ido={ido}"
+    return cached_fetch_text(url, headers=HEADERS, delay=DELAY)
+
+
+def fetch_document(doc_id: str) -> str:
+    url = f"{BIP_BASE}/RadaMiasta/dokument.aspx?idr={doc_id}"
+    return cached_fetch_text(url, headers=HEADERS, delay=DELAY)
+
+
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+
+def main() -> int:
+    global _DEBUG
     parser = argparse.ArgumentParser(
-        description="Scraper interpelacji i zapyta\u0144 radnych z BIP Katowice"
+        description="Scraper interpelacji i zapytań radnych z BIP Katowice"
+    )
+    parser.add_argument("--output", default="docs/interpelacje.json")
+    parser.add_argument("--cache-dir", default=None)
+    parser.add_argument("--debug", action="store_true")
+    parser.add_argument(
+        "--all", action="store_true",
+        help="Scrapuj też starsze kadencje (rok < 2024); domyślnie tylko 2024+",
     )
     parser.add_argument(
-        "--output", default="docs/interpelacje.json",
-        help="Sciezka do pliku wyjsciowego (domyslnie: docs/interpelacje.json)"
+        "--max-councillors", type=int, default=None,
+        help="Ogranicz liczbę radnych (test), domyślnie wszyscy",
     )
     parser.add_argument(
-        "--debug", action="store_true",
-        help="Wlacz szczegolowe logowanie"
+        "--limit-docs", type=int, default=None,
+        help="Ogranicz liczbę dokumentów na radnego (test)",
     )
     args = parser.parse_args()
+    _DEBUG = args.debug
+    min_rok = None if args.all else MIN_ROK_DEFAULT
 
-    scrape(
-        output_path=args.output,
-        debug=args.debug,
-    )
+    init_cache(args.cache_dir)
+
+    print("=== Interpelacje — BIP Katowice ===")
+
+    councillors = fetch_councillors()
+    print(f"  Radni: {len(councillors)}")
+
+    # 1) Zbierz (doc_id -> {radny}) z rejestrów per radny.
+    doc_radny: dict[str, str] = {}
+    order: list[str] = []
+    listed = 0
+    for idx, (ido, name) in enumerate(councillors.items(), start=1):
+        if args.max_councillors and idx > args.max_councillors:
+            break
+        html = fetch_interpelacje_page(ido)
+        ids = parse_interpelacje_ids(html)
+        ids = ids[: args.limit_docs] if args.limit_docs else ids
+        for d in ids:
+            if d not in doc_radny:
+                doc_radny[d] = name
+                order.append(d)
+        listed += len(ids)
+        if _DEBUG:
+            print(f"  {idx}) {name}: {len(ids)}")
+        elif idx % 5 == 0:
+            print(f"  radni {idx}/{len(councillors)}... (kumulatywnie {len(doc_radny)} dok.)")
+    print(f"  Rejestr: {len(doc_radny)} unikalnych dokumentów z {listed} wpisów radnych")
+
+    # 2) Rozwiąż odpowiedzi (REST) + metadane (Data_dokumentu) dla wszystkich dokumentów.
+    responses = {}
+    meta = {}
+    if doc_radny:
+        responses = resolve_responses(order)
+        meta = fetch_documents_meta(order)
+
+    # 3) Szczegóły każdego dokumentu.
+    records = []
+    fetched = 0
+    for doc_id in order:
+        html = fetch_document(doc_id)
+        data_dok = (meta.get(doc_id) or {}).get("Data_dokumentu", "")
+        rec = parse_document_detail(
+            html,
+            f"{BIP_BASE}/RadaMiasta/dokument.aspx?idr={doc_id}",
+            doc_radny[doc_id],
+            data_dok,
+        )
+        if not rec:
+            if _DEBUG:
+                print(f"  [skip] brak treści: {doc_id}")
+            continue
+        resp = responses.get(doc_id) or {}
+        if resp.get("data_odpowiedzi") or resp.get("odpowiedz_url"):
+            rec["odpowiedz_status"] = "Udzielono"
+            rec["odpowiedz_url"] = resp.get("odpowiedz_url", "")
+            rec["data_odpowiedzi"] = resp.get("data_odpowiedzi", "")
+        # filtr kadencji: pomiń rekordy bez rozpoznanego roku oraz spoza kadencji
+        if not rec["rok"]:
+            continue
+        if min_rok and rec["rok"] < min_rok:
+            continue
+        rec.pop("_doc_id", None)
+        records.append(rec)
+        fetched += 1
+        if fetched % 100 == 0:
+            print(f"  szczegóły: {fetched}...")
+
+    records.sort(key=lambda r: (r["data_wplywu"] or "", r["cri"]), reverse=True)
+
+    interp = sum(1 for r in records if r["typ"] == "interpelacja")
+    zap = sum(1 for r in records if r["typ"] == "zapytanie")
+    answered = sum(1 for r in records if r["odpowiedz_status"] == "Udzielono")
+    print("\n=== Podsumowanie ===")
+    print(f"Interpelacje:  {interp}")
+    print(f"Zapytania:     {zap}")
+    print(f"Z odpowiedzią: {answered}")
+    print(f"Razem:         {len(records)}")
+
+    out = Path(args.output)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(records, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"Zapisano: {out} ({out.stat().st_size / 1024:.1f} KB)")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
