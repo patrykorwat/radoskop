@@ -115,7 +115,7 @@ def _fuzzy_radny(gen: str) -> str:
         s = max(score, slast)
         if s > best:
             best, best_key = s, key
-    return best_key if best >= 0.55 else gen
+    return best_key if best >= 0.72 else gen
 
 
 def _session():
