@@ -1001,6 +1001,12 @@ def build_sessions(sessions_raw: list[dict], all_votes: list[dict]) -> list[dict
             for cat in ["za", "przeciw", "wstrzymal_sie", "brak_glosu"]:
                 attendees.update(v["named_votes"].get(cat, []))
 
+        # Sesja bez imiennych głosowań (np. nadzwyczajna / uroczysta). Brak
+        # attendees NIE znaczy, że wszyscy radni byli nieobecni — to po prostu
+        # sesja bez głosowań imiennych. Flaga każe SPA nie wyliczać fałszywych
+        # "wszyscy nieobecni" z pustej listy obecnych (patrz no_roll_call_votes).
+        no_roll_call_votes = len(session_votes) == 0
+
         # Fallback: per-city HTML/JS template uses session.number as the URL slug
         # in /sesja/{number}/. Empty or junk numbers break navigation, so use
         # the date as a stable slug.
@@ -1012,6 +1018,7 @@ def build_sessions(sessions_raw: list[dict], all_votes: list[dict]) -> list[dict
             "vote_count": len(session_votes),
             "attendee_count": len(attendees),
             "attendees": sorted(attendees),
+            "no_roll_call_votes": no_roll_call_votes,
         })
 
     return sorted(result, key=lambda x: (x["date"], x["number"]))

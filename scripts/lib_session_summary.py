@@ -153,9 +153,11 @@ def summarize_session(session: dict, votes: list, councilors: list | None = None
 
     # Nieobecni tylko gdy mamy listę obecnych i wyniki są opublikowane.
     # Brak attendees nie znaczy, że wszyscy byli nieobecni (lekcja z fallbacku
-    # results_pending w SPA).
+    # results_pending w SPA). Sesja bez głosowań imiennych (no_roll_call_votes)
+    # też nie dostaje listy nieobecnych — brak głosowań != wszyscy nieobecni.
+    no_roll_call_votes = bool(session.get("no_roll_call_votes"))
     absent: list[str] = []
-    if not results_pending and attendees:
+    if not results_pending and not no_roll_call_votes and attendees:
         # Preferuj jawny rejestr nieobecnych z samej sesji (eSesja kategoria
         # "nieobecni"). To źródło rady, w tym samym formacie co obecni, i nie
         # zawiera byłych radnych z innych sesji. Roster służy tylko jako filtr.
@@ -197,6 +199,7 @@ def summarize_session(session: dict, votes: list, councilors: list | None = None
         "attendee_count": attendee_count,
         "absent": absent,
         "results_pending": results_pending,
+        "no_roll_call_votes": no_roll_call_votes,
     }
 
 

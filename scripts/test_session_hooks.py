@@ -142,6 +142,18 @@ def test_results_pending_no_fact():
     assert L.rank_session_facts({}, s) == []
 
 
+def test_no_roll_call_votes_no_absent():
+    # Sesja bez głosowań imiennych nie może generować listy nieobecnych
+    # (brak attendees != wszyscy nieobecni). Nawet gdy attendees są puste,
+    # absent musi zostać puste i nie może być liczone z rosters.
+    s = L.summarize_session({"no_roll_call_votes": True, "attendees": []}, [], ["Anna A", "Jan B"])
+    assert s["no_roll_call_votes"] is True
+    assert s["absent"] == []
+    # results_pending traktowane niezależnie — obie flagi nie generują absent
+    s2 = L.summarize_session({"no_roll_call_votes": True}, [], ["Anna A"])
+    assert s2["absent"] == []
+
+
 def _run_all():
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_") and callable(v)]
     for fn in fns:
