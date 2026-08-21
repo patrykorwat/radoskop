@@ -208,11 +208,9 @@ def detail_pdfs(session, url):
     for m in _WPIS_RE.finditer(html):
         txt = _clean(m.group("txt"))
         info = m.group("info")
-        low_txt = txt.lower()
-        if not przedmiot and "załącznik" not in low_txt and "odpowiedź" not in low_txt and "odpowiedz" not in low_txt:
-            przedmiot = txt
-            continue
-        if "odpowiedź" in low_txt or "odpowiedz" in low_txt:
+        low_txt = txt.lower().lstrip()
+        # blok odpowiedzi: zaczyna się od 'Odpowiedź...'
+        if low_txt.startswith("odpowiedź") or low_txt.startswith("odpowiedz"):
             hm = re.search(r"href=['\"]([^'\"]+\.pdf)['\"]", info)
             if hm and not odpowiedz_url:
                 odpowiedz_url = _fix_url(hm.group(1))
@@ -223,12 +221,15 @@ def detail_pdfs(session, url):
                     mo = _MONTHS.get(dm.group(2).lower())
                     if mo:
                         data_odp = f"{dm.group(3)}-{mo:02d}-{int(dm.group(1)):02d}"
-        elif "załącznik" in low_txt:
+        elif low_txt.startswith("załącznik") or low_txt.startswith("zalacznik"):
             hm = re.search(r"href=['\"]([^'\"]+\.pdf)['\"]", info)
             if hm and not tresc_url:
                 tresc_url = _fix_url(hm.group(1))
                 if not tresc_url.startswith("http"):
                     tresc_url = BASE + tresc_url
+        elif not przedmiot:
+            # treść interpelacji/zapytania (zawiera słowo 'odpowiedź' w środku - prefiks nie pasuje)
+            przedmiot = txt
     return przedmiot, tresc_url, odpowiedz_url, data_odp
 
 
