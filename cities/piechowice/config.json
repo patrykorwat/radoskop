@@ -1,81 +1,81 @@
 {
-  "city_name": "Piechowice",
-  "city_genitive": "Piechowic",
-  "site_title": "Radoskop Piechowice — Jak głosują radni?",
-  "site_url": "https://piechowice.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Piechowic. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Piechowic.",
-  "bip_url": "https://bip.piechowice.pl/",
-  "bip_name": "BIP Piechowice",
-  "esesja_url": "https://piechowice.esesja.pl",
-  "github_url": "https://github.com/radoskoppl/radoskop",
-  "author": "Patryk Orwat",
-  "cname": "piechowice.radoskop.pl",
-  "clubs": {
-    "JK": {
-      "name": "KWW JACKA KUBIELSKIEGO",
-      "color": "#a16207",
-      "bg": "rgba(161,98,7,0.12)",
-      "avatar_bg": "#784905"
-    },
-    "DP": {
-      "name": "KWW DOROTY PIRÓG",
-      "color": "#0d9488",
-      "bg": "rgba(13,148,136,0.12)",
-      "avatar_bg": "#096f66"
-    },
-    "P": {
-      "name": "KWW - PIECHOWICE 2024",
-      "color": "#0284c7",
-      "bg": "rgba(2,132,199,0.12)",
-      "avatar_bg": "#016395"
-    },
-    "KWRD": {
-      "name": "KOMITET WYBORCZY „RAZEM DLA REGIONU”",
-      "color": "#0284c7",
-      "bg": "rgba(2,132,199,0.12)",
-      "avatar_bg": "#016395"
-    },
-    "NZ": {
-      "name": "Niezrzeszeni",
-      "color": "#6b7280",
-      "bg": "rgba(107,114,128,0.12)",
-      "avatar_bg": "#505560"
-    }
+ "city_name": "Piechowice",
+ "city_genitive": "Piechowic",
+ "site_title": "Radoskop Piechowice — Jak głosują radni?",
+ "site_url": "https://piechowice.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Piechowic. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Piechowic.",
+ "bip_url": "https://bip.piechowice.pl/",
+ "bip_name": "BIP Piechowice",
+ "esesja_url": "https://piechowice.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "piechowice.radoskop.pl",
+ "clubs": {
+  "JK": {
+   "name": "KWW JACKA KUBIELSKIEGO",
+   "color": "#a16207",
+   "bg": "rgba(161,98,7,0.12)",
+   "avatar_bg": "#784905"
   },
-  "club_assignments": {
-    "Agata Wirowska": "JK",
-    "Agnieszka Szalej": "DP",
-    "Artur Lipiński": "P",
-    "Danuta Cal": "JK",
-    "Dariusz Kluk": "P",
-    "Joanna Wąsiewska": "P",
-    "Józef Nadolny": "P",
-    "Krzysztof Marcinkiewicz": "DP",
-    "Luiza Michnowska": "P",
-    "Marcin Ramski": "KWRD",
-    "Norbert Dynia": "P",
-    "Radosław Bieniek": "KWRD",
-    "Robert Jaworski": "P",
-    "Tomasz Herba": "JK",
-    "Wojciech Zarówny": "P"
+  "DP": {
+   "name": "KWW DOROTY PIRÓG",
+   "color": "#0d9488",
+   "bg": "rgba(13,148,136,0.12)",
+   "avatar_bg": "#096f66"
   },
-  "kadencje": {
-    "2024-2029": {
-      "label": "IX kadencja (2024–2029)",
-      "start": "2024-05-07"
-    }
+  "P": {
+   "name": "KWW - PIECHOWICE 2024",
+   "color": "#0284c7",
+   "bg": "rgba(2,132,199,0.12)",
+   "avatar_bg": "#016395"
   },
-  "kadencja_active": "2024-2029",
-  "has_budget": false,
-  "has_komisje": false,
-  "budget_note": "",
-  "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Piechowic",
-  "rada_name_genitive": "Rady Miasta Piechowic",
-  "disabled": true,
-  "disabled_reason": "eSesja https://piechowice.esesja.pl/glosowania zwraca 0 sesji (audit 2026-05-19). Miasto prawdopodobnie nie używa eSesja do publikacji imiennych głosowań albo używa innej platformy.",
-  "disabled_date": "2026-05-19",
-  "disabled_audit_category": "empty_no_data",
-  "teryt": "0206031"
+  "KWRD": {
+   "name": "KOMITET WYBORCZY „RAZEM DLA REGIONU”",
+   "color": "#0284c7",
+   "bg": "rgba(2,132,199,0.12)",
+   "avatar_bg": "#016395"
+  },
+  "NZ": {
+   "name": "Niezrzeszeni",
+   "color": "#6b7280",
+   "bg": "rgba(107,114,128,0.12)",
+   "avatar_bg": "#505560"
+  }
+ },
+ "club_assignments": {
+  "Agata Wirowska": "JK",
+  "Agnieszka Szalej": "DP",
+  "Artur Lipiński": "P",
+  "Danuta Cal": "JK",
+  "Dariusz Kluk": "P",
+  "Joanna Wąsiewska": "P",
+  "Józef Nadolny": "P",
+  "Krzysztof Marcinkiewicz": "DP",
+  "Luiza Michnowska": "P",
+  "Marcin Ramski": "KWRD",
+  "Norbert Dynia": "P",
+  "Radosław Bieniek": "KWRD",
+  "Robert Jaworski": "P",
+  "Tomasz Herba": "JK",
+  "Wojciech Zarówny": "P"
+ },
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miasta Piechowic",
+ "rada_name_genitive": "Rady Miasta Piechowic",
+ "teryt": "0206031",
+ "_meta": {
+  "note": "RE-ENABLED 2026-08-22: eSesja publikuje głosowania imienne IX kad. 2024-2029 (1 sesja, 5 głosowań, 15 radnych, weryfikacja scraperem). Poprzednio disabled 2026-05-19 (empty_no_data).",
+  "re_enabled": "2026-08-22"
+ }
 }

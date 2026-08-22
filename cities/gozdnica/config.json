@@ -1,81 +1,81 @@
 {
-  "city_name": "Gozdnica",
-  "city_genitive": "Gozdnicy",
-  "site_title": "Radoskop Gozdnica — Jak głosują radni?",
-  "site_url": "https://gozdnica.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Gozdnicy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Gozdnicy.",
-  "bip_url": "https://bip.gozdnica.pl/",
-  "bip_name": "BIP Gozdnica",
-  "esesja_url": "https://gozdnica.esesja.pl",
-  "github_url": "https://github.com/radoskoppl/radoskop",
-  "author": "Patryk Orwat",
-  "cname": "gozdnica.radoskop.pl",
-  "clubs": {
-    "MO": {
-      "name": "KWW MAŁA OJCZYZNA",
-      "color": "#7c3aed",
-      "bg": "rgba(124,58,237,0.12)",
-      "avatar_bg": "#5d2bb1"
-    },
-    "NM": {
-      "name": "KW NASZE MIASTO",
-      "color": "#7c3aed",
-      "bg": "rgba(124,58,237,0.12)",
-      "avatar_bg": "#5d2bb1"
-    },
-    "DZ": {
-      "name": "KWW „DOBRA ZMIANA”",
-      "color": "#0284c7",
-      "bg": "rgba(2,132,199,0.12)",
-      "avatar_bg": "#016395"
-    },
-    "WRG": {
-      "name": "KWW WSZYSCY RAZEM GOZDNICA",
-      "color": "#0284c7",
-      "bg": "rgba(2,132,199,0.12)",
-      "avatar_bg": "#016395"
-    },
-    "NZ": {
-      "name": "Niezrzeszeni",
-      "color": "#6b7280",
-      "bg": "rgba(107,114,128,0.12)",
-      "avatar_bg": "#505560"
-    }
+ "city_name": "Gozdnica",
+ "city_genitive": "Gozdnicy",
+ "site_title": "Radoskop Gozdnica — Jak głosują radni?",
+ "site_url": "https://gozdnica.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Gozdnicy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Gozdnicy.",
+ "bip_url": "https://bip.gozdnica.pl/",
+ "bip_name": "BIP Gozdnica",
+ "esesja_url": "https://gozdnica.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "gozdnica.radoskop.pl",
+ "clubs": {
+  "MO": {
+   "name": "KWW MAŁA OJCZYZNA",
+   "color": "#7c3aed",
+   "bg": "rgba(124,58,237,0.12)",
+   "avatar_bg": "#5d2bb1"
   },
-  "club_assignments": {
-    "Adam Florczak": "MO",
-    "Andrzej Stróżyk": "NM",
-    "Anna Kulczyńska": "NM",
-    "Danuta Kozak": "MO",
-    "Elżbieta Czarnecka": "NM",
-    "Elżbieta Kolman": "NM",
-    "Ernest Szukalski": "MO",
-    "Grzegorz Madera": "DZ",
-    "Krystyna Mulik": "NM",
-    "Marzena Maciejewska": "NM",
-    "Miłosz Łagoś": "WRG",
-    "Paweł Jurgo": "NM",
-    "Paweł Laskowski": "NM",
-    "Piotr Pielach": "NM",
-    "Stanisław Kurzepa": "NM"
+  "NM": {
+   "name": "KW NASZE MIASTO",
+   "color": "#7c3aed",
+   "bg": "rgba(124,58,237,0.12)",
+   "avatar_bg": "#5d2bb1"
   },
-  "kadencje": {
-    "2024-2029": {
-      "label": "IX kadencja (2024–2029)",
-      "start": "2024-05-07"
-    }
+  "DZ": {
+   "name": "KWW „DOBRA ZMIANA”",
+   "color": "#0284c7",
+   "bg": "rgba(2,132,199,0.12)",
+   "avatar_bg": "#016395"
   },
-  "kadencja_active": "2024-2029",
-  "has_budget": false,
-  "has_komisje": false,
-  "budget_note": "",
-  "samorzad_type": "miasto",
-  "rada_name": "Rada Miasta Gozdnicy",
-  "rada_name_genitive": "Rady Miasta Gozdnicy",
-  "disabled": true,
-  "disabled_reason": "eSesja https://gozdnica.esesja.pl publikuje tylko archiwalne sesje kadencji 2018-2024 (max rok 2024, łącznie 1 sesji), brak nowej kadencji 2024-2029. Audit 2026-05-19. Sprawdzić alternatywne źródło (BIP statyczny, własna platforma).",
-  "disabled_date": "2026-05-19",
-  "disabled_audit_category": "old_only",
-  "teryt": "0810011"
+  "WRG": {
+   "name": "KWW WSZYSCY RAZEM GOZDNICA",
+   "color": "#0284c7",
+   "bg": "rgba(2,132,199,0.12)",
+   "avatar_bg": "#016395"
+  },
+  "NZ": {
+   "name": "Niezrzeszeni",
+   "color": "#6b7280",
+   "bg": "rgba(107,114,128,0.12)",
+   "avatar_bg": "#505560"
+  }
+ },
+ "club_assignments": {
+  "Adam Florczak": "MO",
+  "Andrzej Stróżyk": "NM",
+  "Anna Kulczyńska": "NM",
+  "Danuta Kozak": "MO",
+  "Elżbieta Czarnecka": "NM",
+  "Elżbieta Kolman": "NM",
+  "Ernest Szukalski": "MO",
+  "Grzegorz Madera": "DZ",
+  "Krystyna Mulik": "NM",
+  "Marzena Maciejewska": "NM",
+  "Miłosz Łagoś": "WRG",
+  "Paweł Jurgo": "NM",
+  "Paweł Laskowski": "NM",
+  "Piotr Pielach": "NM",
+  "Stanisław Kurzepa": "NM"
+ },
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miasta Gozdnicy",
+ "rada_name_genitive": "Rady Miasta Gozdnicy",
+ "teryt": "0810011",
+ "_meta": {
+  "note": "RE-ENABLED 2026-08-22: eSesja publikuje głosowania imienne IX kad. 2024-2029 (13 sesji, 75 głosowań, 15 radnych, weryfikacja scraperem). Poprzednio disabled 2026-05-19 (old_only).",
+  "re_enabled": "2026-08-22"
+ }
 }
