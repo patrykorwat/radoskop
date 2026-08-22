@@ -1,0 +1,33 @@
+{
+ "city_name": "Brzesko",
+ "city_genitive": "Brzeska",
+ "site_title": "Radoskop Brzesko — Jak głosują radni?",
+ "site_url": "https://brzesko.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Brzesku (Brzeska). Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Brzesku.",
+ "bip_url": "https://bip.malopolska.pl/umbrzesko",
+ "bip_name": "BIP Brzesko",
+ "esesja_url": "https://brzesko.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "brzesko.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Brzesku",
+ "rada_name_genitive": "Rady Miejskiej w Brzesku",
+ "teryt": "1202024",
+ "_meta": {
+  "note": "NOWE miasto (esesja old template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-22 (cron ekspansja). club_assignments pending (do uzupełnienia z BIP)."
+ }
+}
