@@ -75,7 +75,10 @@
  "rada_name_genitive": "Rady Miasta Gozdnicy",
  "teryt": "0810011",
  "_meta": {
-  "note": "RE-ENABLED 2026-08-22: eSesja publikuje głosowania imienne IX kad. 2024-2029 (13 sesji, 75 głosowań, 15 radnych, weryfikacja scraperem). Poprzednio disabled 2026-05-19 (old_only).",
-  "re_enabled": "2026-08-22"
- }
+  "note": "Re-enable 2026-08-22 testowany, ale verify_city FAIL (freshness, ostatnia sesja 2025-06-10). Wycofano do disabled."
+ },
+ "disabled": true,
+ "disabled_reason": "RE-ENABLE ATTEMPT 2026-08-22 then REVERTED: scraper znajdowal 13 sesji/75 glosowan imiennych (IX kad. 2024-2029), ale ostatnia sesja plenarna 2025-06-10 (438 dni). eSesja nie publikuje glosowan plenarnych od czerwca 2025. verify_city FAIL (freshness). Poprzednio disabled 2026-05-19 old_only.",
+ "disabled_date": "2026-08-22",
+ "disabled_audit_category": "stale_no_recent"
 }
