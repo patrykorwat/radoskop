@@ -1,0 +1,33 @@
+{
+ "city_name": "Krotoszyn",
+ "city_genitive": "Krotoszyna",
+ "site_title": "Radoskop Krotoszyn — Jak głosują radni?",
+ "site_url": "https://krotoszyn.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Krotoszyna. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Krotoszyna.",
+ "bip_url": "https://krotoszyn.bip.gov.pl",
+ "bip_name": "BIP Krotoszyn",
+ "esesja_url": "https://krotoszyn.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "krotoszyn.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miasta Krotoszyna",
+ "rada_name_genitive": "Rady Miasta Krotoszyna",
+ "teryt": "3012044",
+ "_meta": {
+  "note": "NOWE miasto (esesja old template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-22. club_assignments pending (do uzupełnienia z BIP)."
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "city_name": "Swarzędz",
+ "city_genitive": "Swarzędza",
+ "site_title": "Radoskop Swarzędz — Jak głosują radni?",
+ "site_url": "https://swarzedz.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Swarzędza. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Swarzędza.",
+ "bip_url": "https://bip.swarzedz.pl",
+ "bip_name": "BIP Swarzędz",
+ "esesja_url": "https://swarzedz.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "swarzedz.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miasta Swarzędza",
+ "rada_name_genitive": "Rady Miasta Swarzędza",
+ "teryt": "3021164",
+ "_meta": {
+  "note": "NOWE miasto (esesja old template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-22. club_assignments pending (do uzupełnienia z BIP)."
+ }
+}
