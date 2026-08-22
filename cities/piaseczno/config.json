@@ -1,0 +1,33 @@
+{
+ "city_name": "Piaseczno",
+ "city_genitive": "Piaseczna",
+ "site_title": "Radoskop Piaseczno — Jak głosują radni?",
+ "site_url": "https://piaseczno.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Piaseczna. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Piaseczna.",
+ "bip_url": "https://bip.piaseczno.eu",
+ "bip_name": "BIP Piaseczno",
+ "esesja_url": "https://piaseczno.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "piaseczno.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miasta Piaseczna",
+ "rada_name_genitive": "Rady Miasta Piaseczna",
+ "teryt": "1418044",
+ "_meta": {
+  "note": "NOWE miasto (esesja old template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-22. club_assignments pending (do uzupełnienia z BIP)."
+ }
+}

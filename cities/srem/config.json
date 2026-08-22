@@ -1,0 +1,33 @@
+{
+ "city_name": "Śrem",
+ "city_genitive": "Śremu",
+ "site_title": "Radoskop Śrem — Jak głosują radni?",
+ "site_url": "https://srem.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Śremu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Śremu.",
+ "bip_url": "https://bip.srem.pl",
+ "bip_name": "BIP Śrem",
+ "esesja_url": "https://srem.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "srem.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miasta Śremu",
+ "rada_name_genitive": "Rady Miasta Śremu",
+ "teryt": "3026044",
+ "_meta": {
+  "note": "NOWE miasto (esesja old template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-22. club_assignments pending (do uzupełnienia z BIP)."
+ }
+}
