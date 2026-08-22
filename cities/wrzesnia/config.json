@@ -1,0 +1,33 @@
+{
+ "city_name": "Września",
+ "city_genitive": "Wrześni",
+ "site_title": "Radoskop Września — Jak głosują radni?",
+ "site_url": "https://wrzesnia.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Wrześni. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Wrześni.",
+ "bip_url": "https://bip.wrzesnia.pl",
+ "bip_name": "BIP Września",
+ "esesja_url": "https://wrzesnia.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "wrzesnia.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miasta Wrześni",
+ "rada_name_genitive": "Rady Miasta Wrześni",
+ "teryt": "3030054",
+ "_meta": {
+  "note": "NOWE miasto (esesja old template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-22. club_assignments pending (do uzupełnienia z BIP)."
+ }
+}
