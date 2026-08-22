@@ -1,0 +1,33 @@
+{
+ "city_name": "Myślenice",
+ "city_genitive": "Myślenic",
+ "site_title": "Radoskop Myślenice — Jak głosują radni?",
+ "site_url": "https://myslenice.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Myślenicach (Myślenic). Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Myślenicach.",
+ "bip_url": "https://bip.myslenice.pl",
+ "bip_name": "BIP Myślenice",
+ "esesja_url": "https://myslenice.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "myslenice.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Myślenicach",
+ "rada_name_genitive": "Rady Miejskiej w Myślenicach",
+ "teryt": "1209034",
+ "_meta": {
+  "note": "NOWE miasto (esesja old template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-22 (cron ekspansja). club_assignments pending (do uzupełnienia z BIP)."
+ }
+}
