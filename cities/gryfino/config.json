@@ -1,0 +1,33 @@
+{
+ "city_name": "Gryfino",
+ "city_genitive": "Gryfina",
+ "site_title": "Radoskop Gryfino — Jak głosują radni?",
+ "site_url": "https://gryfino.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Gryfinie (Gryfina). Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Gryfinie.",
+ "bip_url": "https://bip.gryfino.pl",
+ "bip_name": "BIP Gryfino",
+ "esesja_url": "https://gryfino.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "gryfino.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Gryfinie",
+ "rada_name_genitive": "Rady Miejskiej w Gryfinie",
+ "teryt": "3206043",
+ "_meta": {
+  "note": "NOWE miasto (esesja old template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-22 (cron ekspansja). club_assignments pending (do uzupełnienia z BIP)."
+ }
+}

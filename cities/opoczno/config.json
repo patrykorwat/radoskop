@@ -1,0 +1,33 @@
+{
+ "city_name": "Opoczno",
+ "city_genitive": "Opoczna",
+ "site_title": "Radoskop Opoczno — Jak głosują radni?",
+ "site_url": "https://opoczno.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Opocznie (Opoczna). Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Opocznie.",
+ "bip_url": "https://bip.opoczno.pl",
+ "bip_name": "BIP Opoczno",
+ "esesja_url": "https://opoczno.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "opoczno.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Opocznie",
+ "rada_name_genitive": "Rady Miejskiej w Opocznie",
+ "teryt": "1007043",
+ "_meta": {
+  "note": "NOWE miasto (esesja old template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-22 (cron ekspansja). club_assignments pending (do uzupełnienia z BIP)."
+ }
+}
