@@ -78,6 +78,7 @@
  "disabled_audit_category": "empty_no_data",
  "teryt": "3208011",
  "_meta": {
-  "note": "RE-ENABLED 2026-08-22: eSesja old template, glosowania imienne IX kad. 2024-2029 (świeże sesje 2026). Wcześniej disabled (empty_no_data na nowym szablonie)."
- }
+  "note": "RE-ENABLE TEST 2026-08-22: eSesja kolobrzeg.esesja.pl pokazuje /listaglosowan + daty 2026, ale lib_esesja scrape_session_list zwraca 0 sesji dla kadencji 2024-2029 (struktura listingu niekompatybilna z old-template parserem / formatem). Wracam do disabled: brak imiennych głosowań do wyekstrahowania. Wymaga wsparcia nowego szablonu eSesja (Portal Mieszkańca) w lib_esesja."
+ },
+ "disabled": true
 }
