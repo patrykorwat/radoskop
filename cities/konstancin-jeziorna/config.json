@@ -1,0 +1,33 @@
+{
+ "city_name": "Konstancin-Jeziorna",
+ "city_genitive": "Konstancina-Jeziorny",
+ "site_title": "Radoskop Konstancin-Jeziorna — Jak głosują radni?",
+ "site_url": "https://konstancin-jeziorna.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Konstancinie-Jeziornie (Konstancina-Jeziorny). Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Konstancinie-Jeziornie.",
+ "bip_url": "https://bip.konstancinjeziorna.pl",
+ "bip_name": "BIP Konstancin-Jeziorna",
+ "esesja_url": "https://konstancin-jeziorna.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "konstancin-jeziorna.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Konstancinie-Jeziornie",
+ "rada_name_genitive": "Rady Miejskiej w Konstancinie-Jeziornie",
+ "teryt": "141802",
+ "_meta": {
+  "note": "NOWE miasto (esesja old template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-22 (cron ekspansja). club_assignments pending (do uzupełnienia z BIP)."
+ }
+}
