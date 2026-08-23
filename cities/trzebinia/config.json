@@ -1,0 +1,35 @@
+{
+  "city_name": "Trzebinia",
+  "city_genitive": "Trzebini",
+  "site_title": "Radoskop Trzebinia — Jak głosują radni?",
+  "site_url": "https://trzebinia.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Trzebini. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Trzebini.",
+  "bip_url": "https://bip.trzebinia.pl",
+  "bip_name": "BIP Trzebinia",
+  "esesja_url": "https://trzebinia.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "trzebinia.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Trzebini",
+  "rada_name_genitive": "Rady Miejskiej w Trzebini",
+  "teryt": "1203054",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-23 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 18502,
+    "voivodeship": "małopolskie"
+  }
+}
