@@ -1,0 +1,33 @@
+{
+ "city_name": "Niepołomice",
+ "city_genitive": "Niepołomic",
+ "site_title": "Radoskop Niepołomice — Jak głosują radni?",
+ "site_url": "https://niepolomice.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Niepołomicach (Niepołomic). Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Niepołomicach.",
+ "bip_url": "https://bip.malopolska.pl/umniepolomice",
+ "bip_name": "BIP Niepołomice",
+ "esesja_url": "https://niepolomice.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "niepolomice.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Niepołomicach",
+ "rada_name_genitive": "Rady Miejskiej w Niepołomicach",
+ "teryt": "1219044",
+ "_meta": {
+  "note": "NOWE miasto (esesja old template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-23 (cron ekspansja). club_assignments pending (do uzupełnienia z BIP)."
+ }
+}
