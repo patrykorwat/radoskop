@@ -1,0 +1,35 @@
+{
+  "city_name": "Kłobuck",
+  "city_genitive": "Kłobucka",
+  "site_title": "Radoskop Kłobuck — Jak głosują radni?",
+  "site_url": "https://klobuck.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Kłobuck. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Kłobuck.",
+  "bip_url": "https://bip.klobuck.pl",
+  "bip_name": "BIP Kłobuck",
+  "esesja_url": "https://klobuck.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "klobuck.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Kłobuck",
+  "rada_name_genitive": "Rady Miejskiej w Kłobucka",
+  "teryt": "2406014",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-23 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 12513,
+    "voivodeship": "śląskie"
+  }
+}
