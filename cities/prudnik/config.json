@@ -1,0 +1,35 @@
+{
+  "city_name": "Prudnik",
+  "city_genitive": "Prudnika",
+  "site_title": "Radoskop Prudnik — Jak głosują radni?",
+  "site_url": "https://prudnik.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Prudniku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Prudniku.",
+  "bip_url": "https://bip.prudnik.pl",
+  "bip_name": "BIP Prudnik",
+  "esesja_url": "https://prudnik.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "prudnik.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Prudniku",
+  "rada_name_genitive": "Rady Miejskiej w Prudniku",
+  "teryt": "1610044",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-23 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 20671,
+    "voivodeship": "opolskie"
+  }
+}

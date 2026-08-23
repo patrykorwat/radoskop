@@ -1,0 +1,35 @@
+{
+  "city_name": "Gostyń",
+  "city_genitive": "Gostynia",
+  "site_title": "Radoskop Gostyń — Jak głosują radni?",
+  "site_url": "https://gostyn.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Gostyniu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Gostyniu.",
+  "bip_url": "http://bip.gostyn.pl/",
+  "bip_name": "BIP Gostyń",
+  "esesja_url": "https://gostyn.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "gostyn.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Gostyniu",
+  "rada_name_genitive": "Rady Miejskiej w Gostyniu",
+  "teryt": "3004024",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-23 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 20250,
+    "voivodeship": "wielkopolskie"
+  }
+}
