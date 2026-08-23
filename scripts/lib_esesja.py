@@ -451,6 +451,35 @@ class EsesjaScraper:
         h = hashlib.md5(url.encode("utf-8")).hexdigest()[:16]
         return self._cache_dir / f"{h}.html"
 
+    def _resolve_encoding(self, resp) -> str:
+        """Honor the charset declared in the HTML meta instead of forcing one.
+
+        eSesja is a family of templates with different encodings. The legacy
+        template declares `windows-1250`, but the newer 'Portal Mieszkańca'
+        template declares `utf-8`. The old code force-set windows-1250 for any
+        esesja URL, which corrupts diacritic month names on UTF-8 instances
+        (`września` -> `wrzeĹ›nia`) so `MONTHS_PL` lookup fails and whole
+        plenary sessions are silently dropped from the list (Gozdnica's
+        VI sesja / 2024-09-30 was lost this way). Detecting the declared
+        charset and mapping it to a codec keeps both templates correct.
+        """
+        raw = getattr(resp, "content", b"")[:4096]
+        m = re.search(rb'charset=["\']?([\w-]+)', raw, re.I)
+        if m:
+            enc = m.group(1).decode("ascii", "ignore").lower()
+            mapping = {
+                "utf-8": "utf-8", "utf8": "utf-8",
+                "windows-1250": "windows-1250", "cp1250": "windows-1250",
+                "windows-1252": "windows-1252", "cp1252": "windows-1252",
+                "iso-8859-2": "iso-8859-2", "latin2": "iso-8859-2",
+                "iso-8859-1": "iso-8859-1", "latin1": "iso-8859-1",
+            }
+            if enc in mapping:
+                return mapping[enc]
+        # requests otherwise falls back to ISO-8859-1 and mangles Polish
+        # characters; classic eSesja declares windows-1250 in meta only.
+        return "windows-1250"
+
     def fetch(self, url: str, use_cache: bool = True) -> BeautifulSoup:
         """Pobiera URL z dyskowym cachem.
 
@@ -467,16 +496,87 @@ class EsesjaScraper:
         print(f"  GET {url}")
         resp = self._session.get(url, timeout=30)  # type: ignore[union-attr]
         resp.raise_for_status()
-        # eSesja declares windows-1250 in meta but not HTTP header; requests
-        # otherwise falls back to ISO-8859-1 and mangles Polish characters.
-        if "esesja" in url:
-            resp.encoding = "windows-1250"
+        # Auto-detect charset from the HTML meta instead of forcing one (see
+        # _resolve_encoding): classic eSesja = windows-1250, Portal Mieszkańca
+        # instances = utf-8.
+        resp.encoding = self._resolve_encoding(resp)
         if cache_file:
             try:
                 cache_file.write_text(resp.text, encoding="utf-8")
             except Exception:
                 pass
         return BeautifulSoup(resp.text, "lxml")
+
+    # -- Template detection ------------------------------------------------
+
+    def detect_template(self) -> dict:
+        """Detect which eSesja template family serves this council's /glosowania.
+
+        eSesja.pl is a family of templates, not one uniform layout:
+
+          - ``old``: classic template. ``/glosowania`` server-renders
+            ``<a href="/listaglosowan/{UUID}">`` anchors with dated
+            ``Sesja… w dniu …`` text, and each session page links to
+            ``/glosowanie/{id}/{hash}`` vote pages with ``.wim``/``.osobaa``
+            imienne (roll-call) results. This is what ``scrape_session_list()``
+            already parses.
+
+          - ``portal-mieszkanca``: newer template. Page h1 subtitle is
+            "Portal Mieszkańca", a ``var rid=N`` script marker is present and
+            the session list lives in ``<div class="sessions-list">``. It is a
+            FAMILY, not one layout:
+              * some instances (verified: ``gozdnica``) STILL server-render the
+                old-compatible ``/listaglosowan`` + ``/glosowanie`` structure,
+                so they scrape correctly with the existing parser + charset
+                auto-detection (this is the unlockable Portal Mieszkańca case);
+              * other instances (verified: ``suwalki``, ``wejherowo`` and 29
+                more disabled cities) serve an EMPTY ``.sessions-list`` that is
+                never populated server-side or via XHR for roll-call votes —
+                they publish no plenary imienne data through this surface at
+                all (they are Nefeni/bip.net or dead-end candidates instead).
+
+          - ``other``: a BIP CMS entirely different from the eSesja platform
+            (no ``var rid`` marker, no ``.sessions-list``).
+
+        Returns a dict: {template, charset, has_rid, has_sessions_list_div,
+        sessions_list_len, listaglosowan_links} for diagnostics.
+        """
+        if self._session is None:
+            self._init_session()
+        info: dict = {"template": "other", "charset": None, "has_rid": False,
+                      "has_sessions_list_div": False, "sessions_list_len": 0,
+                      "listaglosowan_links": 0}
+        try:
+            resp = self._session.get(self.sessions_url, timeout=30)  # type: ignore[union-attr]
+            resp.raise_for_status()
+        except Exception as e:
+            info["error"] = str(e)[:120]
+            return info
+        resp.encoding = self._resolve_encoding(resp)
+        info["charset"] = resp.encoding
+        try:
+            text = resp.text
+        except Exception:
+            return info
+        if "var rid" in text:
+            info["template"] = "portal-mieszkanca"
+            info["has_rid"] = True
+        soup = BeautifulSoup(text, "lxml")
+        sl = soup.find("div", class_="sessions-list")
+        if sl is not None:
+            info["has_sessions_list_div"] = True
+            info["sessions_list_len"] = len(sl.get_text(strip=True))
+        info["listaglosowan_links"] = len(
+            [a for a in soup.find_all("a", href=True) if "/listaglosowan/" in a["href"]]
+        )
+        if info["template"] == "other":
+            # A Portal Mieszkańca page that failed the marker scan, or the h1
+            # subtitle check, is still eSesja when it carries the marker; if
+            # neither marker nor sessions-list is present it is a different CMS.
+            h1 = soup.find("h1")
+            if h1 and ("Portal Mieszkańca" in h1.get_text() or "Portal Mieszkanca" in h1.get_text()):
+                info["template"] = "portal-mieszkanca"
+        return info
 
     # -- Name normalisation ------------------------------------------------
 
@@ -944,6 +1044,28 @@ class EsesjaScraper:
         sessions = self.scrape_session_list()
         if not sessions:
             print("UWAGA: Nie znaleziono sesji — zapisuję pusty wynik.")
+            # If no plenary sessions came back, say *why*: the eSesja template
+            # family matters. A Portal Mieszkańca instance may either be
+            # old-compatible (then scrape_session_list would have found
+            # sessions and we wouldn't be here) or the JS-empty variant that
+            # publishes no plenary imienne votes through /glosowania at all
+            # (suwalki/wejherowo + 29 more disabled cities).
+            try:
+                tpl = self.detect_template()
+                tmpl = tpl.get("template", "?")
+                print(f"  eSesja template: {tmpl} (charset={tpl.get('charset')}, "
+                      f"rid={tpl.get('has_rid')}, sessions-list_len={tpl.get('sessions_list_len')}, "
+                      f"listaglosowan_links={tpl.get('listaglosowan_links')})")
+                if tmpl == "portal-mieszkanca" and tpl.get("listaglosowan_links", 0) == 0 \
+                        and not tpl.get("sessions_list_len"):
+                    print("  Portal Mieszkańca wariant z PUSTYM .sessions-list — ta instancja nie "
+                          "publikuje imiennych głosowań sesji rady przez /glosowania (brak sesji "
+                          "plenarnych IX kadencji dostępnych server-side).")
+                elif tmpl == "other":
+                    print("  To NIE jest standardowy szablon eSesja (inny CMS) — sprawdź scrapera "
+                          "BIP/Nefeni (lib_bip_net / scrape_bip_net) dla tego miasta.")
+            except Exception as e:
+                print(f"  (nie udało się wykryć szablonu: {e})")
             _write_empty_outputs(output_path, profiles_path, self.kadencje, self.default_kadencja)
             return 0
         if max_sessions > 0:
