@@ -1,0 +1,35 @@
+{
+ "city_name": "Łomianki",
+ "city_genitive": "Łomianek",
+ "site_title": "Radoskop Łomianki — Jak głosują radni?",
+ "site_url": "https://lomianki.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Łomiankach. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Łomiankach.",
+ "bip_url": "https://bip.lomianki.pl",
+ "bip_name": "BIP Łomianki",
+ "esesja_url": "https://lomianki.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "lomianki.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Łomiankach",
+ "rada_name_genitive": "Rady Miejskiej w Łomiankach",
+ "teryt": "1432054",
+ "_meta": {
+  "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-23 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+  "population": 18226,
+  "voivodeship": "mazowieckie"
+ }
+}
