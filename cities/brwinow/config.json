@@ -1,0 +1,35 @@
+{
+ "city_name": "Brwinów",
+ "city_genitive": "Brwinowa",
+ "site_title": "Radoskop Brwinów — Jak głosują radni?",
+ "site_url": "https://brwinow.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Brwinowie (Brwinowa). Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Brwinowie.",
+ "bip_url": "https://bip.brwinow.pl",
+ "bip_name": "BIP Brwinów",
+ "esesja_url": "https://brwinow.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "brwinow.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Brwinowie",
+ "rada_name_genitive": "Rady Miejskiej w Brwinowie",
+ "teryt": "1421034",
+ "_meta": {
+  "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-23 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+  "population": 14482,
+  "voivodeship": "mazowieckie"
+ }
+}
