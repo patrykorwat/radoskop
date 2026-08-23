@@ -1,0 +1,35 @@
+{
+  "city_name": "Krapkowice",
+  "city_genitive": "Krapkowic",
+  "site_title": "Radoskop Krapkowice — Jak głosują radni?",
+  "site_url": "https://krapkowice.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Krapkowicach. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Krapkowicach.",
+  "bip_url": "https://bip.krapkowice.pl",
+  "bip_name": "BIP Krapkowice",
+  "esesja_url": "https://krapkowice.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "krapkowice.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Krapkowicach",
+  "rada_name_genitive": "Rady Miejskiej w Krapkowicach",
+  "teryt": "1605024",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-23 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 15786,
+    "voivodeship": "opolskie"
+  }
+}

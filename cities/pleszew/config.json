@@ -1,0 +1,35 @@
+{
+  "city_name": "Pleszew",
+  "city_genitive": "Pleszewa",
+  "site_title": "Radoskop Pleszew — Jak głosują radni?",
+  "site_url": "https://pleszew.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Pleszewie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Pleszewie.",
+  "bip_url": "https://bip.pleszew.pl",
+  "bip_name": "BIP Pleszew",
+  "esesja_url": "https://pleszew.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pleszew.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Pleszewie",
+  "rada_name_genitive": "Rady Miejskiej w Pleszewie",
+  "teryt": "3020064",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-23 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 16641,
+    "voivodeship": "wielkopolskie"
+  }
+}
