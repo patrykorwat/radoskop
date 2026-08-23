@@ -75,7 +75,7 @@
  "rada_name_genitive": "Rady Miasta Piechowic",
  "teryt": "0206031",
  "_meta": {
-  "note": "RE-ENABLED 2026-08-22: eSesja publikuje głosowania imienne IX kad. 2024-2029 (1 sesja, 5 głosowań, 15 radnych, weryfikacja scraperem). Poprzednio disabled 2026-05-19 (empty_no_data).",
+  "note": "bip.net.pl adapter (lib_bip_net.py): wyniki głosowań publikowane jako PDF/DOCX 'Raport z przeprowadzonych głosowań' na https://piechowice.bip.net.pl (Nefeni), Rada Miasta->Wyniki głosowań z sesji. IX kad. 15 sesji, ~101 głosowań imiennych (XXVII ostatnia 9.07.2026; XXVIII planowana 27.08.2026). UWAGA: publiczny listing eSesja (piechowice.esesja.pl/glosowania) to martwy szczątek (1 sesja XXII z 26.02.2026) — NIE jest źródłem. Sesja VII/2024 pominięta (format inline 'Nazwisko Imię (ZA)' bez listy).",
   "re_enabled": "2026-08-22"
  }
 }
