@@ -1,0 +1,37 @@
+{
+  "city_name": "Boguchwała",
+  "city_genitive": "Boguchwały",
+  "site_title": "Radoskop Boguchwała — Jak głosują radni?",
+  "site_url": "https://boguchwala.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Boguchwale. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Boguchwale.",
+  "bip_url": "https://bip.boguchwala.pl/",
+  "bip_name": "BIP Boguchwała",
+  "esesja_url": "https://boguchwala.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "boguchwala.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Boguchwale",
+  "rada_name_genitive": "Rady Miejskiej w Boguchwale",
+  "teryt": "1816033",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 6220,
+    "voivodeship": "podkarpackie",
+    "lat": 49.983,
+    "lon": 21.933
+  }
+}

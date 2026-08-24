@@ -1,0 +1,37 @@
+{
+  "city_name": "Rzepin",
+  "city_genitive": "Rzepina",
+  "site_title": "Radoskop Rzepin — Jak głosują radni?",
+  "site_url": "https://rzepin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Rzepinie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Rzepinie.",
+  "bip_url": "https://bip.rzepin.pl/",
+  "bip_name": "BIP Rzepin",
+  "esesja_url": "https://rzepin.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "rzepin.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Rzepinie",
+  "rada_name_genitive": "Rady Miejskiej w Rzepinie",
+  "teryt": "0805043",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 6486,
+    "voivodeship": "lubuskie",
+    "lat": 52.35,
+    "lon": 14.833
+  }
+}

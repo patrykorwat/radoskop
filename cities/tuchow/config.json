@@ -1,0 +1,37 @@
+{
+  "city_name": "Tuchów",
+  "city_genitive": "Tuchowa",
+  "site_title": "Radoskop Tuchów — Jak głosują radni?",
+  "site_url": "https://tuchow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Tuchowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Tuchowie.",
+  "bip_url": "https://tuchow.bip.gov.pl/",
+  "bip_name": "BIP Tuchów",
+  "esesja_url": "https://tuchow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "tuchow.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Tuchowie",
+  "rada_name_genitive": "Rady Miejskiej w Tuchowie",
+  "teryt": "1216103",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 6339,
+    "voivodeship": "małopolskie",
+    "lat": 49.9,
+    "lon": 21.05
+  }
+}
