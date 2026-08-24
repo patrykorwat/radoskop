@@ -1,0 +1,37 @@
+{
+  "city_name": "Witkowo",
+  "city_genitive": "Witkowa",
+  "site_title": "Radoskop Witkowo — Jak głosują radni?",
+  "site_url": "https://witkowo.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Witkowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Witkowie.",
+  "bip_url": "https://bip.witkowo.pl",
+  "bip_name": "BIP Witkowo",
+  "esesja_url": "https://witkowo.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "witkowo.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Witkowie",
+  "rada_name_genitive": "Rady Miejskiej w Witkowie",
+  "teryt": "3003104",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 7700,
+    "voivodeship": "wielkopolskie",
+    "lat": 52.43964,
+    "lon": 17.77264
+  }
+}

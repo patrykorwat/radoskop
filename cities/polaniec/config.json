@@ -1,0 +1,37 @@
+{
+  "city_name": "Połaniec",
+  "city_genitive": "Połańca",
+  "site_title": "Radoskop Połaniec — Jak głosują radni?",
+  "site_url": "https://polaniec.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Połańcu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Połańcu.",
+  "bip_url": "https://bip.polaniec.pl",
+  "bip_name": "BIP Połaniec",
+  "esesja_url": "https://polaniec.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "polaniec.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Połańcu",
+  "rada_name_genitive": "Rady Miejskiej w Połańcu",
+  "teryt": "2612054",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 8000,
+    "voivodeship": "świętokrzyskie",
+    "lat": 50.43333,
+    "lon": 21.28333
+  }
+}
