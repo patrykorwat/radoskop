@@ -1,0 +1,35 @@
+{
+  "city_name": "Orneta",
+  "city_genitive": "Ornety",
+  "site_title": "Radoskop Orneta — Jak głosują radni?",
+  "site_url": "https://orneta.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Ornecie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Ornecie.",
+  "bip_url": "https://bip.orneta.pl",
+  "bip_name": "BIP Orneta",
+  "esesja_url": "https://orneta.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "orneta.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Ornecie",
+  "rada_name_genitive": "Rady Miejskiej w Ornecie",
+  "teryt": "2809054",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 8648,
+    "voivodeship": "warmińsko-mazurskie"
+  }
+}
