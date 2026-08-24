@@ -1,0 +1,35 @@
+{
+  "city_name": "Wronki",
+  "city_genitive": "Wronek",
+  "site_title": "Radoskop Wronki — Jak głosują radni?",
+  "site_url": "https://wronki.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta i Gminy Wronki. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta i Gminy Wronki.",
+  "bip_url": "https://bip.wronki.pl",
+  "bip_name": "BIP Wronki",
+  "esesja_url": "https://wronki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wronki.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta i Gminy Wronki",
+  "rada_name_genitive": "Rady Miasta i Gminy Wronki",
+  "teryt": "3024084",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 10918,
+    "voivodeship": "wielkopolskie"
+  }
+}

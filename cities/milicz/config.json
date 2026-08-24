@@ -1,0 +1,35 @@
+{
+  "city_name": "Milicz",
+  "city_genitive": "Milicza",
+  "site_title": "Radoskop Milicz — Jak głosują radni?",
+  "site_url": "https://milicz.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Miliczu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Miliczu.",
+  "bip_url": "https://bip.milicz.pl",
+  "bip_name": "BIP Milicz",
+  "esesja_url": "https://milicz.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "milicz.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Miliczu",
+  "rada_name_genitive": "Rady Miejskiej w Miliczu",
+  "teryt": "0213034",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 11025,
+    "voivodeship": "dolnośląskie"
+  }
+}
