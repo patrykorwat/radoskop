@@ -1,0 +1,37 @@
+{
+ "city_name": "Warka",
+ "city_genitive": "Warki",
+ "site_title": "Radoskop Warka — Jak głosują radni?",
+ "site_url": "https://warka.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Warce. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Warce.",
+ "bip_url": "https://bip.warka.pl/",
+ "bip_name": "BIP Warka",
+ "esesja_url": "https://warka.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "warka.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Warce",
+ "rada_name_genitive": "Rady Miejskiej w Warce",
+ "teryt": "1406114",
+ "_meta": {
+  "note": "NOWE miasto (eSesja portal-mieszkanca-old-compatible, glosowania imienne IX kad. 2024-2029 z /glosowanie/, 37 sesji, bogaty korpus glosowan imiennych). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+  "population": 12003,
+  "voivodeship": "mazowieckie",
+  "lat": 51.78694,
+  "lon": 21.18333
+ }
+}

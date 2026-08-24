@@ -1,0 +1,37 @@
+{
+ "city_name": "Wieruszów",
+ "city_genitive": "Wieruszowa",
+ "site_title": "Radoskop Wieruszów — Jak głosują radni?",
+ "site_url": "https://wieruszow.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Wieruszowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Wieruszowie.",
+ "bip_url": "https://bip.wieruszow.pl/",
+ "bip_name": "BIP Wieruszów",
+ "esesja_url": "https://wieruszow.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "wieruszow.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Wieruszowie",
+ "rada_name_genitive": "Rady Miejskiej w Wieruszowie",
+ "teryt": "1018074",
+ "_meta": {
+  "note": "NOWE miasto (eSesja portal-mieszkanca-old-compatible, glosowania imienne IX kad. z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+  "population": 8514,
+  "voivodeship": "łódzkie",
+  "lat": 51.295,
+  "lon": 18.155
+ }
+}
