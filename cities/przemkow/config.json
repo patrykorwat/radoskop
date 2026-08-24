@@ -1,0 +1,37 @@
+{
+  "city_name": "Przemków",
+  "city_genitive": "Przemkowa",
+  "site_title": "Radoskop Przemków — Jak głosują radni?",
+  "site_url": "https://przemkow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Przemkowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Przemkowie.",
+  "bip_url": "https://przemkow.bip.gov.pl/",
+  "bip_name": "BIP Przemków",
+  "esesja_url": "https://przemkow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "przemkow.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Przemkowie",
+  "rada_name_genitive": "Rady Miejskiej w Przemkowie",
+  "teryt": "0216054",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 5608,
+    "voivodeship": "dolnośląskie",
+    "lat": 51.5283,
+    "lon": 15.7883
+  }
+}
