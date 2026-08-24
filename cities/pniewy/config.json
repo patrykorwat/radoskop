@@ -1,0 +1,37 @@
+{
+  "city_name": "Pniewy",
+  "city_genitive": "Pniew",
+  "site_title": "Radoskop Pniewy — Jak głosują radni?",
+  "site_url": "https://pniewy.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Pniewach. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Pniewach.",
+  "bip_url": "https://www.bip.pniewy.pl",
+  "bip_name": "BIP Pniewy",
+  "esesja_url": "https://pniewy.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pniewy.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Pniewach",
+  "rada_name_genitive": "Rady Miejskiej w Pniewach",
+  "teryt": "3024063",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 8100,
+    "voivodeship": "wielkopolskie",
+    "lat": 52.508888888,
+    "lon": 16.256388888
+  }
+}

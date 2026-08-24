@@ -1,0 +1,37 @@
+{
+  "city_name": "Kórnik",
+  "city_genitive": "Kórnika",
+  "site_title": "Radoskop Kórnik — Jak głosują radni?",
+  "site_url": "https://kornik.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Kórniku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Kórniku.",
+  "bip_url": "https://bip.kornik.pl",
+  "bip_name": "BIP Kórnik",
+  "esesja_url": "https://kornik.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kornik.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Kórniku",
+  "rada_name_genitive": "Rady Miejskiej w Kórniku",
+  "teryt": "3021093",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 8000,
+    "voivodeship": "wielkopolskie",
+    "lat": 52.236666666,
+    "lon": 17.098611111
+  }
+}
