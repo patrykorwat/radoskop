@@ -1,0 +1,35 @@
+{
+  "city_name": "Kostrzyn",
+  "city_genitive": "Kostrzyna",
+  "site_title": "Radoskop Kostrzyn — Jak głosują radni?",
+  "site_url": "https://kostrzyn.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska Gminy Kostrzyn. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska Gminy Kostrzyn.",
+  "bip_url": "https://kostrzyn.wlkp.pl",
+  "bip_name": "BIP Kostrzyn",
+  "esesja_url": "https://kostrzyn.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kostrzyn.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska Gminy Kostrzyn",
+  "rada_name_genitive": "Rady Miejskiej Gminy Kostrzyn",
+  "teryt": "3021084",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 9809,
+    "voivodeship": "wielkopolskie"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "city_name": "Golub-Dobrzyń",
+  "city_genitive": "Golubia-Dobrzynia",
+  "site_title": "Radoskop Golub-Dobrzyń — Jak głosują radni?",
+  "site_url": "https://golub-dobrzyn.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Golubia-Dobrzynia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Golubia-Dobrzynia.",
+  "bip_url": "https://bip.golub-dobrzyn.pl",
+  "bip_name": "BIP Golub-Dobrzyń",
+  "esesja_url": "https://golub-dobrzyn.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "golub-dobrzyn.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Golubia-Dobrzynia",
+  "rada_name_genitive": "Rady Miasta Golubia-Dobrzynia",
+  "teryt": "0405011",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 11261,
+    "voivodeship": "kujawsko-pomorskie"
+  }
+}

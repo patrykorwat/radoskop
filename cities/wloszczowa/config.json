@@ -1,0 +1,35 @@
+{
+  "city_name": "Włoszczowa",
+  "city_genitive": "Włoszczowy",
+  "site_title": "Radoskop Włoszczowa — Jak głosują radni?",
+  "site_url": "https://wloszczowa.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska we Włoszczowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska we Włoszczowie.",
+  "bip_url": "https://bip.wloszczowa.pl",
+  "bip_name": "BIP Włoszczowa",
+  "esesja_url": "https://wloszczowa.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wloszczowa.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska we Włoszczowie",
+  "rada_name_genitive": "Rady Miejskiej we Włoszczowie",
+  "teryt": "2613064",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 9520,
+    "voivodeship": "świętokrzyskie"
+  }
+}
