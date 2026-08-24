@@ -1,0 +1,37 @@
+{
+  "city_name": "Pelplin",
+  "city_genitive": "Pelplina",
+  "site_title": "Radoskop Pelplin — Jak głosują radni?",
+  "site_url": "https://pelplin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Pelplinie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Pelplinie.",
+  "bip_url": "https://bip.pelplin.pl",
+  "bip_name": "BIP Pelplin",
+  "esesja_url": "https://pelplin.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pelplin.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Pelplinie",
+  "rada_name_genitive": "Rady Miejskiej w Pelplinie",
+  "teryt": "2214043",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 7600,
+    "voivodeship": "pomorskie",
+    "lat": 53.9283,
+    "lon": 18.6983
+  }
+}

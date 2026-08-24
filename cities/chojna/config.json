@@ -1,0 +1,37 @@
+{
+  "city_name": "Chojna",
+  "city_genitive": "Chojny",
+  "site_title": "Radoskop Chojna — Jak głosują radni?",
+  "site_url": "https://chojna.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Chojnie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Chojnie.",
+  "bip_url": "https://bip.chojna.pl",
+  "bip_name": "BIP Chojna",
+  "esesja_url": "https://chojna.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "chojna.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Chojnie",
+  "rada_name_genitive": "Rady Miejskiej w Chojnie",
+  "teryt": "3206033",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 7400,
+    "voivodeship": "zachodniopomorskie",
+    "lat": 52.9642,
+    "lon": 14.4278
+  }
+}
