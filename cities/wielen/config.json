@@ -1,0 +1,37 @@
+{
+  "city_name": "Wieleń",
+  "city_genitive": "Wielenia",
+  "site_title": "Radoskop Wieleń — Jak głosują radni?",
+  "site_url": "https://wielen.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Wieleniu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Wieleniu.",
+  "bip_url": "https://www.bip.wielen.pl/",
+  "bip_name": "BIP Wieleń",
+  "esesja_url": "https://wielen.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wielen.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Wieleniu",
+  "rada_name_genitive": "Rady Miejskiej w Wieleniu",
+  "teryt": "3002084",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-08-24 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 5989,
+    "voivodeship": "wielkopolskie",
+    "lat": 52.88889,
+    "lon": 16.16806
+  }
+}
