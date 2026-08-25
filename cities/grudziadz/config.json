@@ -1,0 +1,34 @@
+{
+  "city_name": "Grudziądz",
+  "city_genitive": "Grudziądza",
+  "site_title": "Radoskop Grudziądz — Jak głosują radni?",
+  "site_url": "https://grudziadz.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska Grudziądza. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska Grudziądza.",
+  "bip_url": "https://bip.grudziadz.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Grudziądzu",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "grudziadz.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska Grudziądza",
+  "rada_name_genitive": "Rady Miejskiej Grudziądza",
+  "teryt": "0462011",
+  "_meta": {
+    "note": "NOWE miasto (custom BIP bip.grudziadz.pl). Imienne głosowania z PDF 'glosowaniesesja{N}.pdf' publikowanych per sesja w artykule 'Wydruki głosowań' (/artykul/wydruki-glosowan): dla każdego punktu nagłówek 'Głosowanie N' + agregat + tabela per radny (ZA/PRZECIW/NIEOBECNY/NIEODDANY, dwie kolumny Lp 1-12/13-23). Sesje IX kadencji (2024-05-07+) z listy artykułów, data i numer sesji z tytułu. Radni kuratorowani z BIP 'Radni Rady Miejskiej Grudziądza IX kadencji' (2x Kosiński rozróżnieni po drugim imieniu: Krzysztof oraz Krzysztof Roman). club_assignments PENDING (kuratorowane z BIP; brak bieżącej listy klubów IX kadencji na BIP). Dodane 2026-08-25 (cron ekspansja).",
+    "population": 90890,
+    "voivodeship": "kujawsko-pomorskie"
+  }
+}
