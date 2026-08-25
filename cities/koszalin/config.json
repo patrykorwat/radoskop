@@ -1,0 +1,83 @@
+{
+  "city_name": "Koszalin",
+  "city_genitive": "Koszalina",
+  "site_title": "Radoskop Koszalin — Jak głosują radni?",
+  "site_url": "https://koszalin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Koszalinie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejskiej w Koszalinie.",
+  "bip_url": "https://bip.koszalin.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Koszalinie (Logonet)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "koszalin.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#f97316",
+      "bg": "rgba(249,115,22,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1d4ed8",
+      "bg": "rgba(29,78,216,0.12)",
+      "avatar_bg": "#1e40af"
+    },
+    "WDK": {
+      "name": "Wspólnie dla Koszalina",
+      "color": "#0ea5e9",
+      "bg": "rgba(14,165,233,0.12)",
+      "avatar_bg": "#0369a1"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Dorota Chałat": "KO",
+    "Magdalena Chałat": "KO",
+    "Monika Foremna-Pilarska": "KO",
+    "Piotr Iwat": "KO",
+    "Krystyna Kościńska": "KO",
+    "Małgorzata Leśniewska-Lorek": "KO",
+    "Michał Listowski": "KO",
+    "Bartosz Malinowski": "KO",
+    "Agnieszka Połaniecka": "KO",
+    "Teresa Tałaj": "KO",
+    "Anetta Urbaniak": "KO",
+    "Izabela Wesołowska": "KO",
+    "Artur Wezgraj": "KO",
+    "Jacek Wezgraj": "KO",
+    "Andrzej Jakubowski": "PiS",
+    "Miłosz Janczewski": "PiS",
+    "Oliwia Skórka": "PiS",
+    "Artur Wiśniewski": "PiS",
+    "Piotr Jedliński": "WDK",
+    "Przemysław Krzyżanowski": "WDK",
+    "Żaneta Kwapisz": "WDK",
+    "Błażej Papiernik": "WDK",
+    "Wiktor Kamieniarz": "NZ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Koszalinie",
+  "rada_name_genitive": "Rady Miejskiej w Koszalinie",
+  "teryt": "3261011",
+  "_meta": {
+    "note": "NOWE miasto (custom CMS Logonet bip.koszalin.pl). Imienne glosowania z PDF 'Głosowanie do uchwały nr ...' publikowanych per uchwała w kategorii 'Uchwały Rady Miejskiej i głosowania radnych' (/artykuly/1744, /uchwaly/1744/{page}/15). Dla kazdej uchwaly IX kadencji PDF z glosowaniem imiennym (per radny ZA/PRZECIW/WSTRZYMUJE SIE/NIEODDANY/NIEOBECNY); sesja z tytulu PDF (np. 'XXXV Sesja Rady Miejskiej w Koszalinie w dniu 17.07.2026'). Kluby skuratorowane z BIP 'Kluby Radnych' (/artykuly/585): KO/PiS/Wspolnie dla Koszalina/Niezrzeszeni. Dodane 2026-08-25 (cron ekspansja).",
+    "population": 105883,
+    "voivodeship": "zachodniopomorskie"
+  }
+}
