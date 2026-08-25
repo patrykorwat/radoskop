@@ -1,0 +1,99 @@
+{
+  "city_name": "Siemianowice Śląskie",
+  "city_genitive": "Siemianowic Śląskich",
+  "site_title": "Radoskop Siemianowice Śląskie — Jak głosują radni?",
+  "site_url": "https://siemianowice-slaskie.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Siemianowice Śląskie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Siemianowice Śląskie.",
+  "bip_url": "https://bip.msiemianowicesl.finn.pl",
+  "bip_name": "BIP Urzędu Miasta Siemianowice Śląskie",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "siemianowice-slaskie.radoskop.pl",
+  "clubs": {
+    "SMS": {
+      "name": "SMS (Siemianowicki Ruch Miejski)",
+      "color": "#0ea5e9",
+      "bg": "rgba(14,165,233,0.12)",
+      "avatar_bg": "#0369a1"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1d4ed8",
+      "bg": "rgba(29,78,216,0.12)",
+      "avatar_bg": "#1e40af"
+    },
+    "TS": {
+      "name": "Twoi Samorządowcy",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#f59e0b",
+      "bg": "rgba(245,158,11,0.12)",
+      "avatar_bg": "#b45309"
+    },
+    "SJ": {
+      "name": "Samorząd Jedności",
+      "color": "#a855f7",
+      "bg": "rgba(168,85,247,0.12)",
+      "avatar_bg": "#7e22ce"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Tomasz Nowara": "SMS",
+    "Grzegorz Mól": "SMS",
+    "Damian Achtelik": "SMS",
+    "Michał Blacha": "SMS",
+    "Danuta Sobczyk": "PiS",
+    "Barbara Patyk-Płuciennik": "PiS",
+    "Klaudiusz Michna": "PiS",
+    "Renata Jaroń-Guzy": "TS",
+    "Alicja Piech": "TS",
+    "Jakub Piech": "TS",
+    "Marta Suchanek-Bijak": "TS",
+    "Anna Zasada-Chorab": "KO",
+    "Beata Breguła": "KO",
+    "Beata Ziemianek": "KO",
+    "Wojciech Okoń": "KO",
+    "Marcin Janota": "KO",
+    "Anna Żejmo": "KO",
+    "Patrycja Woźniczko": "KO",
+    "Bartosz Dudzik": "KO",
+    "Paweł Siegel": "SJ",
+    "Adam Cebula": "SJ",
+    "Adam Klacka": "SJ",
+    "Łukasz Rosicki": "NZ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Siemianowice Śląskie",
+  "rada_name_genitive": "Rady Miasta Siemianowice Śląskie",
+  "teryt": "2474011",
+  "_meta": {
+    "note": "NOWE miasto (własny CMS Finn.pl bip.msiemianowicesl.finn.pl, kategoria 'głosowania na sesjach rady miasta → głosowania 9. kadencja' /bipkod/35184442, per-sesyjne PDF 'Wykaz/Wyniki głosowań z NN Sesji' z tabelami głosowań imiennych). Dwa formaty PDF: nowy (bloki 'N.N. Głosowanie w sprawie ...' + tabela 'Wyniki imienne' lp/nazwisko/imie/glos) oraz stary dla I-II sesji 05-06.05.2024 ('Wynik głosowania nr N. Punkt nr M.' + lista 'Radni: Imię Nazwisko - ZA'). 30 sesji IX kadencji (I 2024-05-06 .. XXXIII 2026-06-18). Skład zmieniał się w kadencji (Łukasz Rosicki zrezygnował z PiS) - lista radnych = suma nazwisk z głosowań. Kluby kuratorowane z BIP /bipkod/35499054 (dokument 'KLUBY zmiana od 18.06.2026 r.'): SMS, Prawo i Sprawiedliwość, Twoi Samorządowcy (dawniej Samorządowcy Rafał Piech), Koalicja Obywatelska (dawniej PO+KO), Samorząd Jedności; niezrzeszeni NZ. TERYT 2474011 (miasto na prawach powiatu, woj. śląskie).",
+    "population": 63657,
+    "voivodeship": "śląskie"
+  }
+}
