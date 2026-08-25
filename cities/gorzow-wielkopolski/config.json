@@ -1,0 +1,85 @@
+{
+  "city_name": "Gorzów Wielkopolski",
+  "city_genitive": "Gorzowa Wielkopolskiego",
+  "site_title": "Radoskop Gorzów Wielkopolski — Jak głosują radni?",
+  "site_url": "https://gorzow-wielkopolski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Gorzowa Wielkopolskiego. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Gorzowa Wielkopolskiego.",
+  "bip_url": "https://bip.um.gorzow.pl",
+  "bip_name": "BIP Miasta Gorzowa Wielkopolskiego",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "gorzow-wielkopolski.radoskop.pl",
+  "clubs": {
+    "GP": {
+      "name": "Gorzów Plus",
+      "color": "#0ea5e9",
+      "bg": "rgba(14,165,233,0.12)",
+      "avatar_bg": "#0369a1"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#f97316",
+      "bg": "rgba(249,115,22,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1d4ed8",
+      "bg": "rgba(29,78,216,0.12)",
+      "avatar_bg": "#1e40af"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Maciej Buszkiewicz": "GP",
+    "Albert Madej": "GP",
+    "Piotr Paluch": "GP",
+    "Jarosław Porwich": "PiS",
+    "Aleksandra Sibińska-Szadna": "KO",
+    "Agnieszka Cierach": "NZ",
+    "Krzysztof Kielec": "PiS",
+    "Halina Kunicka": "KO",
+    "Paulina Szymotowicz": "KO",
+    "Jan Kaczanowski": "GP",
+    "Anna Kozak": "NZ",
+    "Tomasz Rafalski": "PiS",
+    "Robert Surowiec": "KO",
+    "Jerzy Synowiec": "KO",
+    "Grzegorz Ignatowicz": "KO",
+    "Jerzy Sobolewski": "KO",
+    "Roman Sondej": "PiS",
+    "Milena Surowiec-Sikora": "KO",
+    "Cezary Żołyński": "KO",
+    "Artur Andruszczak": "KO",
+    "Marta Krupa": "NZ",
+    "Sebastian Pieńkowski": "NZ",
+    "Maria Szupiluk": "KO",
+    "Piotr Wilczewski": "KO",
+    "Jarosław Baryła": "NZ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Gorzowa Wielkopolskiego",
+  "rada_name_genitive": "Rady Miasta Gorzowa Wielkopolskiego",
+  "teryt": "0861011",
+  "_meta": {
+    "note": "NOWE miasto (custom CMS bip.um.gorzow.pl). Imienne glosowania z DOCX 'wyniki glosowan z <RZYMSKA> sesji Rady Miasta z dnia ...' publikowanych per sesja w kategoriach lat Glosowania z sesji Rady Miasta (/614/2026, /604/2025, /569/2024): dla kazdego punktu temat + wynik ZA/PRZECIW/WSTRZYMUJE SIE/BRAK GLOSU/NIEOBECNI + 'Wyniki imienne' z listami nazwisk. Kluby skuratorowane z BIP 'Sklad Rady Miasta' (GP/KO/PiS/NZ). interpelacje oddzielnie (kategoria /95/Interpelacje_i_zapytania). Dodane 2026-08-25 (cron ekspansja).",
+    "population": 119964,
+    "voivodeship": "lubuskie"
+  }
+}
