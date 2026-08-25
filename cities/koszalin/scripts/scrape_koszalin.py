@@ -54,41 +54,67 @@ def _norm(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", s)
 
 
-# ---- Kuratorowany skład rady (nazwisko-imie wg formy z PDF) + kluby ----
+# ---- Kuratorowany skład rady + kluby ----
 # Źródło klubów: https://bip.koszalin.pl/artykuly/585/kluby-radnych (stan 2026-08).
-# Obok 23 obecnych radnych uwzględniamy radnych, którzy zasiadali w pierwszych
-# sesjach IX kadencji (2024) i później zostali zastąpieni — ich klub jest
-# nieznany (NZ), głosy są autentyczne z PDF.
+# ROSTER to 3-tuple (source, display, club):
+#   source  = forma nazwiska z PDF ("Nazwisko i imię", np. "Chałat Dorota") —
+#             służy tylko do dopasowywania tokenów z tabeli głosowania;
+#   display = forma standardowa Radoskopa ("Imię Nazwisko", np. "Dorota Chałat").
+# Obok obecnych radnych uwzględniamy radnych, którzy zasiadali w pierwszych
+# sesjach IX kadencji (2024) i później zostali zastąpieni — ich klub pozostaje
+# NZ, głosy są autentyczne z PDF.
 ROSTER = [
-    ("Chałat Dorota", "KO"), ("Chałat Magdalena", "KO"),
-    ("Foremna-Pilarska Monika", "KO"), ("Iwat Piotr", "KO"),
-    ("Jakubowski Andrzej", "PiS"), ("Janczewski Miłosz", "PiS"),
-    ("Jedliński Piotr", "WDK"), ("Kamieniarz Wiktor", "NZ"),
-    ("Kościńska Krystyna", "KO"), ("Krzyżanowski Przemysław", "WDK"),
-    ("Kwapisz Żaneta", "WDK"), ("Leśniewska-Lorek Małgorzata", "KO"),
-    ("Listowski Michał", "KO"), ("Malinowski Bartosz", "KO"),
-    ("Papiernik Błażej", "WDK"), ("Połaniecka Agnieszka", "KO"),
-    ("Skórka Oliwia", "PiS"), ("Tałaj Teresa", "KO"),
-    ("Urbaniak Anetta", "KO"), ("Wesołowska Izabela", "KO"),
-    ("Wezgraj Artur", "KO"), ("Wezgraj Jacek", "KO"),
-    ("Wiśniewski Artur", "PiS"),
-    # Radni z pierwszych sesji IX kadencji (2024), później zastąpieni (klub nieznany -> NZ)
-    ("Grygorcewicz Barbara", "NZ"), ("Tałaj Sebastian", "NZ"),
-    ("Reinholz Marek", "NZ"), ("Czarkowska Katarzyna", "NZ"),
-    ("Sendlewski Łukasz", "NZ"), ("Sokalski Andrzej", "NZ"),
-    ("Tarnowski Ryszard", "NZ"), ("Tiece Bogumiła", "NZ"),
-    ("Kowalik Jakub", "NZ"), ("Twardowski Marek", "NZ"),
-    ("Kuriata Jan", "NZ"), ("Mętlewicz Anna", "NZ"),
-    ("Nastarowski Mariusz", "NZ"), ("Waszkiewicz Marcin", "NZ"),
-    ("Ostrowski Leopold", "NZ"), ("Bernacki Tomasz", "NZ"),
-    ("Kaczmarek Bożena", "NZ"),
+    # obecni radni (stan 2026-08)
+    ("Chałat Dorota", "Dorota Chałat", "KO"),
+    ("Chałat Magdalena", "Magdalena Chałat", "KO"),
+    ("Foremna-Pilarska Monika", "Monika Foremna-Pilarska", "KO"),
+    ("Iwat Piotr", "Piotr Iwat", "KO"),
+    ("Jakubowski Andrzej", "Andrzej Jakubowski", "PiS"),
+    ("Janczewski Miłosz", "Miłosz Janczewski", "PiS"),
+    ("Jedliński Piotr", "Piotr Jedliński", "WDK"),
+    ("Kamieniarz Wiktor", "Wiktor Kamieniarz", "NZ"),
+    ("Kościńska Krystyna", "Krystyna Kościńska", "KO"),
+    ("Krzyżanowski Przemysław", "Przemysław Krzyżanowski", "WDK"),
+    ("Kwapisz Żaneta", "Żaneta Kwapisz", "WDK"),
+    ("Leśniewska-Lorek Małgorzata", "Małgorzata Leśniewska-Lorek", "KO"),
+    ("Listowski Michał", "Michał Listowski", "KO"),
+    ("Malinowski Bartosz", "Bartosz Malinowski", "KO"),
+    ("Papiernik Błażej", "Błażej Papiernik", "WDK"),
+    ("Połaniecka Agnieszka", "Agnieszka Połaniecka", "KO"),
+    ("Skórka Oliwia", "Oliwia Skórka", "PiS"),
+    ("Tałaj Teresa", "Teresa Tałaj", "KO"),
+    ("Urbaniak Anetta", "Anetta Urbaniak", "KO"),
+    ("Wesołowska Izabela", "Izabela Wesołowska", "KO"),
+    ("Wezgraj Artur", "Artur Wezgraj", "KO"),
+    ("Wezgraj Jacek", "Jacek Wezgraj", "KO"),
+    ("Wiśniewski Artur", "Artur Wiśniewski", "PiS"),
+    # radni z pierwszych sesji IX kadencji (2024), później zastąpieni (klub nieznany -> NZ)
+    ("Grygorcewicz Barbara", "Barbara Grygorcewicz", "NZ"),
+    ("Tałaj Sebastian", "Sebastian Tałaj", "NZ"),
+    ("Reinholz Marek", "Marek Reinholz", "NZ"),
+    ("Czarkowska Katarzyna", "Katarzyna Czarkowska", "NZ"),
+    ("Sendlewski Łukasz", "Łukasz Sendlewski", "NZ"),
+    ("Sokalski Andrzej", "Andrzej Sokalski", "NZ"),
+    ("Tarnowski Ryszard", "Ryszard Tarnowski", "NZ"),
+    ("Tiece Bogumiła", "Bogumiła Tiece", "NZ"),
+    ("Kowalik Jakub", "Jakub Kowalik", "NZ"),
+    ("Twardowski Marek", "Marek Twardowski", "NZ"),
+    ("Kuriata Jan", "Jan Kuriata", "NZ"),
+    ("Mętlewicz Anna", "Anna Mętlewicz", "NZ"),
+    ("Nastarowski Mariusz", "Mariusz Nastarowski", "NZ"),
+    ("Waszkiewicz Marcin", "Marcin Waszkiewicz", "NZ"),
+    ("Ostrowski Leopold", "Leopold Ostrowski", "NZ"),
+    ("Bernacki Tomasz", "Tomasz Bernacki", "NZ"),
+    ("Kaczmarek Bożena", "Bożena Kaczmarek", "NZ"),
 ]
 CLUB_BY_NORM = {}
 DISPLAY_BY_NORM = {}
-for _name, _club in ROSTER:
-    _key = _norm(_name)
+CLUB_BY_DISPLAY_NORM = {}
+for _src, _display, _club in ROSTER:
+    _key = _norm(_src)
     CLUB_BY_NORM[_key] = _club
-    DISPLAY_BY_NORM.setdefault(_key, _name)
+    DISPLAY_BY_NORM.setdefault(_key, _display)
+    CLUB_BY_DISPLAY_NORM.setdefault(_norm(_display), _club)
 
 CLUBS_META = {
     "KO":  {"name": "Koalicja Obywatelska", "color": "#0ea5e9",
@@ -324,7 +350,8 @@ def make_slug(name: str) -> str:
 
 
 def _club_of(name: str) -> str:
-    return CLUB_BY_NORM.get(_norm(name), "NZ")
+    # name jest formą display (Imię Nazwisko) — mapuj po display, nie po źródle.
+    return CLUB_BY_DISPLAY_NORM.get(_norm(name), "NZ")
 
 
 def build_output(records):
