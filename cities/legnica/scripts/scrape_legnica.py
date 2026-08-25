@@ -278,8 +278,41 @@ def _name_pdf_order(name: str) -> str:
     return norm
 
 
-def build_output(records, club_map, councilor_names):
-    """records: [{date, roman, votes:[{topic,counts,named}]}] ; club_map: name->club_key"""
+def _pdf_to_given_order(name: str, config_names) -> str:
+    """Konwertuje nazwę w formacie PDF (Nazwisko Imię) na format Radoskopa
+    (Imię Nazwisko), używając listy radnych z config jako wzorca.
+
+    Np. 'Jaczewska-Szymkowiak Karolina' -> 'Karolina Jaczewska-Szymkowiak'.
+    Nazwy spoza listy (np. radni zmienieni w trakcie kadencji) są konwertowane
+    heurystycznie (ostatnie słowo = imię)."""
+    norm = _norm_fullname(name)
+    if norm in config_names:
+        return norm
+    # heurystyka: przenieś ostatnie słowo (imię w formacie PDF) na początek
+    m = re.match(r"^(.*?)\s+(\S+)$", norm)
+    if m:
+        sur, given = m.group(1), m.group(2)
+        return f"{given} {sur}"
+    return norm
+
+
+def build_output(records, club_map, councilor_names, config_names):
+    """records: [{date, roman, votes:[{topic,counts,named}]}] ; club_map: name->club_key
+    (klucze 'Imię Nazwisko'). Wszystkie nazwy w wyjściu w formacie 'Imię Nazwisko'."""
+    canon = {_norm_fullname(cn): cn for cn in config_names}
+    club_by_canon = {}
+    for config_name, club in club_map.items():
+        club_by_canon[config_name] = club
+
+    def canon_name(n):
+        nn = _norm_fullname(n)
+        if nn in canon:
+            return canon[nn]
+        m = re.match(r"^(.*?)\s+(\S+)$", nn)
+        if m:
+            return f"{m.group(2)} {m.group(1)}"
+        return nn
+
     all_votes = []
     vid = 0
     sessions_by_date = {}
@@ -293,10 +326,11 @@ def build_output(records, club_map, councilor_names):
                                    "speakers": []}
         for v in rec["votes"]:
             vid += 1
-            named_clean = {k: list(vals) for k, vals in v["named"].items()}
+            named_clean = {k: [canon_name(x) for x in vals]
+                           for k, vals in v["named"].items()}
             sessions_by_date[d]["vote_count"] += 1
             for cat in ("za", "przeciw", "wstrzymal_sie", "nieoddany"):
-                sessions_by_date[d]["attendees"].update(v["named"].get(cat, []))
+                sessions_by_date[d]["attendees"].update(named_clean.get(cat, []))
             all_votes.append({
                 "id": str(vid),
                 "session_date": d,
@@ -321,14 +355,14 @@ def build_output(records, club_map, councilor_names):
         for cat_names in v["named_votes"].values():
             all_names.update(cat_names)
 
-    # Tylko realni radni: ci z aktualnego skladu IX + ci co kiedykolwiek glosowali
+    # Tylko realni radni: aktualny sklad IX + ci co kiedykolwiek wystapili
     real_names = {n for n in councilor_names if n} | {n for n in all_names
-                  if n in club_map or n in councilor_names}
+                  if n in club_by_canon or n in config_names}
 
     councilors_data = {}
     for name in sorted(real_names):
         councilors_data[name] = {
-            "name": name, "club": club_map.get(name, "NZ"), "district": None,
+            "name": name, "club": club_by_canon.get(name, "NZ"), "district": None,
             "votes_za": 0, "votes_przeciw": 0, "votes_wstrzymal": 0,
             "votes_brak": 0, "votes_nieobecny": 0,
             "votes_with_club": 0, "votes_against_club": 0, "rebellions": [],
@@ -340,9 +374,10 @@ def build_output(records, club_map, councilor_names):
         for v in rec["votes"]:
             for cat, names in v["named"].items():
                 for name in names:
-                    if name not in councilors_data:
+                    nn = canon_name(name)
+                    if nn not in councilors_data:
                         continue
-                    c = councilors_data[name]
+                    c = councilors_data[nn]
                     if cat == "za":
                         c["votes_za"] += 1
                     elif cat == "przeciw":
@@ -366,8 +401,9 @@ def build_output(records, club_map, councilor_names):
             for cat, names in v["named"].items():
                 if cat != "nieobecny":
                     for n in names:
-                        if n in councilors_data:
-                            councillor_sess[n].add(d)
+                        nn = canon_name(n)
+                        if nn in councilors_data:
+                            councillor_sess[nn].add(d)
 
     councilors_list = []
     for c in sorted(councilors_data.values(), key=lambda x: x["name"]):
@@ -402,12 +438,12 @@ def build_output(records, club_map, councilor_names):
             continue
         same = sum(1 for vid in common if vectors[a][vid] == vectors[b][vid])
         score = round(same / len(common) * 100, 1)
-        pairs.append({"a": a, "b": b, "club_a": club_map.get(a, "NZ"),
-                      "club_b": club_map.get(b, "NZ"), "score": score,
+        pairs.append({"a": a, "b": b, "club_a": club_by_canon.get(a, "NZ"),
+                      "club_b": club_by_canon.get(b, "NZ"), "score": score,
                       "common_votes": len(common)})
     pairs.sort(key=lambda x: x["score"], reverse=True)
 
-    clubs_count = Counter(club_map.get(n, "NZ") for n in real_names)
+    clubs_count = Counter(club_by_canon.get(n, "NZ") for n in real_names)
 
     kad = {
         "id": KADENCJA_ID, "label": KADENCJA_LABEL,
@@ -424,7 +460,18 @@ def build_output(records, club_map, councilor_names):
     }
 
 
-def build_profiles(records, club_map):
+def build_profiles(records, club_map, config_names):
+    canon = {_norm_fullname(cn): cn for cn in config_names}
+
+    def canon_name(n):
+        nn = _norm_fullname(n)
+        if nn in canon:
+            return canon[nn]
+        m = re.match(r"^(.*?)\s+(\S+)$", nn)
+        if m:
+            return f"{m.group(2)} {m.group(1)}"
+        return nn
+
     cv = defaultdict(lambda: {"za": 0, "przeciw": 0, "wstrzymal_sie": 0,
                               "nieobecny": 0, "brak": 0, "votes": []})
     for rec in records:
@@ -437,8 +484,9 @@ def build_profiles(records, club_map):
                     key = ("za" if cat == "za" else "przeciw" if cat == "przeciw"
                            else "wstrzymal_sie" if cat == "wstrzymal_sie"
                            else "nieobecny" if cat == "nieobecny" else "brak")
-                    cv[name][key] += 1
-                    cv[name]["votes"].append({"session": d, "vote": key})
+                    nn = canon_name(name)
+                    cv[nn][key] += 1
+                    cv[nn]["votes"].append({"session": d, "vote": key})
     profiles = []
     for name in sorted(cv.keys()):
         vd = cv[name]
@@ -487,15 +535,13 @@ def save_split(output, out_path, profiles):
 
 
 def load_club_map(config_path):
-    """club_assignments: nazwa->klucz klubu z config.json (source of truth).
-
-    Klucze configu są w kolejności 'Imię Nazwisko'; głosowania w PDF w kolejności
-    'Nazwisko Imię'. Mapujemy klucze na format PDF, by zgadzały się z radnymi."""
+    """club_assignments: 'Imię Nazwisko'->klucz klubu z config.json (source of truth).
+    Klucze zwracane w formacie config; nazwy głosowań normalizujemy do tego formatu
+    w build_output/build_profiles."""
     if config_path:
         try:
             cfg = json.loads(Path(config_path).read_text(encoding="utf-8"))
-            raw = cfg.get("club_assignments", {})
-            return {_name_pdf_order(k): v for k, v in raw.items()}
+            return dict(cfg.get("club_assignments", {}))
         except Exception:
             pass
     return {}
@@ -557,8 +603,8 @@ def main():
 
     # Rada: lista radnych z aktualnego IX-kadencji skladu (config club_assignments keys)
     councilor_names = set(club_map.keys())
-    output = build_output(records, club_map, councilor_names)
-    profiles = build_profiles(records, club_map)
+    output = build_output(records, club_map, councilor_names, councilor_names)
+    profiles = build_profiles(records, club_map, councilor_names)
     save_split(output, args.output, profiles)
 
     total_votes = sum(len(r["votes"]) for r in records)
