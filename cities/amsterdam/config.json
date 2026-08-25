@@ -249,5 +249,6 @@
     "Jim  Haijen": "SP",
     "H. Kacha": "PvdA"
   },
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "disabled": true
 }

@@ -95,5 +95,6 @@
       "bg": "hsla(34, 65%, 55%, 0.12)",
       "avatar_bg": "hsl(34, 50%, 35%)"
     }
-  }
+  },
+  "disabled": true
 }

@@ -39,5 +39,6 @@
   "has_named_votes": false,
   "councilor_count": 0,
   "province": "Groningen",
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "disabled": true
 }

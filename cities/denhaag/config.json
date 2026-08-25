@@ -263,5 +263,6 @@
     "Diego Demaree": "PvdD",
     "Tijmen van Wijngaarden": "SP"
   },
-  "scrape_disabled": true
+  "scrape_disabled": true,
+  "disabled": true
 }
