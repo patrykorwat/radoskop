@@ -1,0 +1,95 @@
+{
+  "city_name": "Rybnik",
+  "city_genitive": "Rybnika",
+  "site_title": "Radoskop Rybnik — Jak głosują radni?",
+  "site_url": "https://rybnik.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Rybnika. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Rybnika.",
+  "bip_url": "https://bip.um.rybnik.eu",
+  "bip_name": "BIP Miasta Rybnika",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "rybnik.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#f97316",
+      "bg": "rgba(249,115,22,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1d4ed8",
+      "bg": "rgba(29,78,216,0.12)",
+      "avatar_bg": "#1e40af"
+    },
+    "WdR": {
+      "name": "Wspólnie dla Rybnika",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "BRR": {
+      "name": "Bezpartyjni Radni Rybnika",
+      "color": "#7c3aed",
+      "bg": "rgba(124,58,237,0.12)",
+      "avatar_bg": "#6d28d9"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Aleksandra Nowara": "KO",
+    "Andrzej Sączek": "PiS",
+    "Andrzej Wojaczek": "PiS",
+    "Damian Twardawa": "BRR",
+    "Franciszek Kurpanik": "KO",
+    "Grzegorz Głupczyk": "KO",
+    "Jacek Mularczyk": "WdR",
+    "Jerzy Lazar": "PiS",
+    "Joanna Brzózka": "PiS",
+    "Kamil Pierchała": "WdR",
+    "Karol Szymura": "PiS",
+    "Krzysztof Kazek": "BRR",
+    "Krzysztof Szafraniec": "KO",
+    "Łukasz Kłosek": "KO",
+    "Marek Florczyk": "WdR",
+    "Marian Kaim": "PiS",
+    "Mariusz Węglorz": "PiS",
+    "Małgorzata Piaskowy": "WdR",
+    "Mirela Szutka": "PiS",
+    "Mirosław Małek": "BRR",
+    "Paweł Wawrzyn": "WdR",
+    "Radosław Knesz": "KO",
+    "Sebastian Śmieja": "KO",
+    "Tadeusz Białous": "KO",
+    "Tadeusz Pałka": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Rybnika",
+  "rada_name_genitive": "Rady Miasta Rybnika",
+  "teryt": "2473011",
+  "_meta": {
+    "note": "NOWE miasto (custom CMS bip.um.rybnik.eu, ASP.NET). Imienne glosowania z plikow RTF 'Wyniki glosowan z sesji nr <XXIX> Rady Miasta z dnia <data>.rtf' publikowanych per sesja w dziale Sesje Rady Miasta -> Wyniki glosowan (Default.aspx?Page=358): per punkt 'Za/Przeciw/Wstrzymalo sie <n> radnych' + lista 'Imie Nazwisko (KLUB)'. Pliki RTF ansicpg1250 (polskie znaki jako escape hex ODHH oraz unicode uN), parsowane recznie. IX kadencja 27 sesji (2024-05-07..2026-08-06), 662 glosowania, 25 radnych. Kluby radnych (KO/PiS/WdR/BRR) pochodza z danych glosowan (kazdy glos podaje klub radnego) + strona 'Kluby radnych': Bezpartyjni Radni Rybnika, Koalicja Obywatelska, Prawo i Sprawiedliwosc, Wspolnie dla Rybnika. club_assignments to klub BIEZACY (ostatnia sesja); uwaga: zmiany klubowe w kadencji (np. A. Wojaczek BSR->niezrzeszony->PiS; w sesji inauguracyjnej etykiety BSR/LepszyRybnik). TERYT 2473011 (Wikipedia, miasto na prawach powiatu). Dodane 2026-08-25 (cron ekspansja).",
+    "population": 133772,
+    "voivodeship": "śląskie"
+  }
+}
