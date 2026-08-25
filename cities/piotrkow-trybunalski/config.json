@@ -1,0 +1,38 @@
+{
+  "city_name": "Piotrków Trybunalski",
+  "city_genitive": "Piotrkowa Trybunalskiego",
+  "site_title": "Radoskop Piotrków Trybunalski — Jak głosują radni?",
+  "site_url": "https://piotrkow-trybunalski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Piotrkowa Trybunalskiego. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Piotrkowa Trybunalskiego.",
+  "bip_url": "https://www.bip.piotrkow.pl",
+  "bip_name": "BIP Urzędu Miasta w Piotrkowie Trybunalskim",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "piotrkow-trybunalski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Piotrkowa Trybunalskiego",
+  "rada_name_genitive": "Rady Miasta Piotrkowa Trybunalskiego",
+  "teryt": "1062011",
+  "_meta": {
+    "note": "NOWE miasto (AkcessNet BIP www.bip.piotrkow.pl, kategorie 'Wyniki głosowań z sesji Rady Miasta - {rok}' 2024/2310, 2025/2387, 2026/2474; per-sesyjne artykuły z jednym DOCX na głosowanie, tabela imienna 'Lp | Imię i nazwisko | Głos | Data'). 35 sesji IX kadencji (I 2024-05-06 .. XXXVI 2026-07-07) z opublikowanymi wynikami DOCX; głosowania tajne (wybory przewodniczącego/komisji) bez tabeli imiennej pomijane; sesje nadzwyczajne XXI/XXXVI bez DOCX (tylko PDF) pominięte. Liczba radnych = suma nazwisk z głosowań. club_assignments PENDING (kuratorować z BIP, nie fabrykować). TERYT 1062011 (miasto na prawach powiatu, łódzkie). Dodane 2026-08-25 (cron ekspansja).",
+    "population": 68978,
+    "voivodeship": "łódzkie"
+  }
+}
