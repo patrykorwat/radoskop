@@ -11,9 +11,11 @@ z wynikami imiennymi: ZA / PRZECIW / WSTRZYMUJĘ SIĘ / BRAK GŁOSU / NIEOBECNI
 per radny, temat głosowania, sesja i godzina głosowania. Dla każdej sesji jest
 jeden PDF z N głosowaniami (każde = jeden punkt uchwały).
 
-Older (2024-2025) protokoły są narracyjne (bez tabeli imiennej) — brakuje im
-raportów z głosowań; eSesja raporty zaczynają się od XV Sesji (2025-11).
-Zakres danych: 10 sesji (2025-11 .. 2026-07).
+Older (2024-10 i wcześniejsze) protokoły są narracyjne (bez tabeli imiennej) —
+brakuje im raportów z głosowań. Dane IDą od IX Sesji nadzwyczajnej (2024-11-13).
+Dwa formaty raportów eSesja: nowy (2025-03+, sekcje 'ZA (N)' + listy nazwisk)
+i stary (2024-11..2025-02, płaska lista 'Nazwisko (KATEGORIA)' per radny).
+Zakres danych: 26 sesji (2024-11 .. 2026-07), 345 głosowań imiennych.
 
 Kluby radnych: kuratorowane z BIP (protokoły) — PENDING, patrz config.json.
 
@@ -47,10 +49,46 @@ KADENCJA_ID = "2024-2029"
 KADENCJA_LABEL = "IX kadencja (2024\u20132029)"
 PAGE_CAP = 30
 
+MONTHS_PL = {
+    "stycznia": 1, "lutego": 2, "marca": 3, "kwietnia": 4, "maja": 5,
+    "czerwca": 6, "lipca": 7, "sierpnia": 8, "września": 9, "października": 10,
+    "listopada": 11, "grudnia": 12,
+    "wrzesnia": 9, "pazdziernika": 10,
+}
+
+
+def _norm_mon(mon: str):
+    mon = (mon or "").lower()
+    if mon in MONTHS_PL:
+        return mon
+    if mon.startswith("wrze"):
+        return "września"
+    if mon.startswith("pazd"):
+        return "października"
+    return None
+
+
+def _date_from_href(href: str):
+    """'/artykul/...-z-23-lipca-2026-roku' -> '2026-07-23'."""
+    m = re.search(r"z-(\d{1,2})-([a-ząćęłńóśźż]+)-(\d{4})-roku", href)
+    if not m:
+        return None
+    d, mon, y = int(m.group(1)), _norm_mon(m.group(2)), int(m.group(3))
+    if mon:
+        return f"{y:04d}-{MONTHS_PL[mon]:02d}-{d:02d}"
+    return None
+
+
+def _roman_from_href(href: str):
+    """'/artykul/...-viii-sesji-...' -> 'VIII'."""
+    m = re.search(r"-([ivxlcdm]+)-sesji", href)
+    return m.group(1).upper() if m else ""
+
 ORDER_SRC = ['ZA', 'PRZECIW', 'WSTRZYMUJĘ SIĘ', 'BRAK GŁOSU', 'NIEOBECNI']
 CNTKEY = {'ZA': 'za', 'PRZECIW': 'przeciw', 'WSTRZYMUJĘ SIĘ': 'wstrzymal_sie',
           'BRAK GŁOSU': 'brak_glosu', 'NIEOBECNI': 'nieobecni'}
 CAT_MAP = {'ZA': 'za', 'PRZECIW': 'przeciw', 'WSTRZYMUJĘ SIĘ': 'wstrzymal_sie',
+           'WSTRZYMAŁ SIĘ': 'wstrzymal_sie', 'WSTRZYMUJE SIĘ': 'wstrzymal_sie',
            'BRAK GŁOSU': 'brak_glosu', 'NIEOBECNI': 'nieobecni'}
 
 
@@ -135,7 +173,11 @@ def fetch(url, cache_dir=None, binary=False):
 # 1. Kolekcja sesji z kategorii "Wyniki głosowań"
 # ---------------------------------------------------------------------------
 def collect_sessions(cache_dir=None):
-    """Zwraca [{url, att, label}] — sesje z raportem głosowań (PDF)."""
+    """Zwraca [{url, att, label, date, roman}] — sesje IX kadencji z raportem głosowań (PDF).
+
+    Data i numer sesji pochodzą z URL artykułu ('...-z-23-lipca-2026-roku' /
+    '...-viii-sesji-...'), bo nagłówki PDF bywają niejednolite (Sesja
+    Nadzwyczajna / zwyczajna, 'w dniu 27 marca 2025' bez ISO itd.)."""
     out = []
     seen = set()
     for page in range(1, PAGE_CAP + 1):
@@ -152,6 +194,10 @@ def collect_sessions(cache_dir=None):
             break
         for a in new:
             seen.add(a)
+            date = _date_from_href(a)
+            roman = _roman_from_href(a)
+            if not date or date < KAD_START:
+                continue
             full = BIP + a
             try:
                 ah = fetch(full, cache_dir)
@@ -162,7 +208,8 @@ def collect_sessions(cache_dir=None):
             atts = [x for x in atts if 'user_attachments' not in x]
             if not atts:
                 continue
-            out.append({"url": full, "att": BIP + atts[0], "label": a})
+            out.append({"url": full, "att": BIP + atts[0], "label": a,
+                        "date": date, "roman": roman})
         print(f"    page {page}: sessions collected total {len(out)}")
         if page >= PAGE_CAP:
             break
@@ -194,17 +241,27 @@ def _pdf_lines(data):
     return lines
 
 
-def parse_report_pdf(data):
+def parse_report_pdf(data, session_date=None, session_num=None):
     lines = _pdf_lines(data)
-    session_date = None
-    session_num = None
-    for l in lines:
-        m = re.search(r'Sesja Rady Miasta w dniu (\d{4}-\d\d-\d\d)', l)
-        if m:
-            session_date = m.group(1)
-        nm = re.search(r'^\s*([IVXLCDM]+)\s+Sesja', l)
-        if nm and not session_num:
-            session_num = nm.group(1)
+    # PDF header jako fallback (gdyby URL nie niósł daty); preferowany date z URL.
+    if not session_date:
+        for l in lines:
+            m = re.search(r'Sesja (?:nadzwyczajna |Nadzwyczajna |zwyczajna |Zwyczajna )?Rady Miasta w dniu (\d{4}-\d\d-\d\d)', l)
+            if m:
+                session_date = m.group(1)
+                break
+        else:
+            for l in lines:
+                m = re.search(r'Sesja\s+\S*\s*Rady Miasta w dniu (\d{4}-\d\d-\d\d)', l)
+                if m:
+                    session_date = m.group(1)
+                    break
+    if not session_num:
+        for l in lines:
+            nm = re.search(r'^\s*([IVXLCDM]+)\s+Sesja', l)
+            if nm:
+                session_num = nm.group(1)
+                break
     block_starts = [i for i, l in enumerate(lines)
                     if re.match(r'^\s*\d+\.\s*Głosowano w sprawie:', l)]
     votes = []
@@ -230,7 +287,9 @@ def _parse_block(lines, session_date, session_num):
             topic = rest.strip().rstrip('.').strip()
     counts = {}
     for l in lines:
-        rm = re.match(r'^\s*ZA:\s*(\d+),\s*PRZECIW:\s*(\d+),\s*WSTRZYMUJĘ SIĘ:\s*(\d+),\s*BRAK GŁOSU:\s*(\d+),\s*NIEOBECNI:\s*(\d+)\s*$', l)
+        rm = re.match(r'^\s*ZA:\s*(\d+),\s*PRZECIW:\s*(\d+),'
+                      r'\s*WSTRZYMUJĘ SIĘ:\s*(\d+),\s*BRAK GŁOSU:\s*(\d+),'
+                      r'\s*NIEOBECNI:\s*(\d+)\s*$', l)
         if rm:
             counts = {'za': int(rm.group(1)), 'przeciw': int(rm.group(2)),
                       'wstrzymal_sie': int(rm.group(3)), 'brak_glosu': int(rm.group(4)),
@@ -240,24 +299,55 @@ def _parse_block(lines, session_date, session_num):
     c = blocktext.find('Uczestnictwo w głosowaniach')
     if c >= 0:
         blocktext = blocktext[:c]
-    named = {k: [] for k in cat_keys()}
-    pat = re.compile(r'(ZA|PRZECIW|WSTRZYMUJĘ SIĘ|BRAK GŁOSU|NIEOBECNI)\s*\(\s*(\d+)\s*\)')
-    matches = list(pat.finditer(blocktext))
-    for mi, mm in enumerate(matches):
-        sec = mm.group(1)
-        ncount = int(mm.group(2))
-        seg_start = mm.end()
-        seg_end = matches[mi + 1].start() if mi + 1 < len(matches) else len(blocktext)
-        seg = blocktext[seg_start:seg_end]
-        cat = CAT_MAP[sec]
-        for name in seg.split(","):
-            cn = _clean_name(name)
-            if cn:
-                named[cat].append(cn)
-        if ncount == 0:
-            named[cat] = []
+    im = blocktext.find('Wyniki imienne:')
+    if im < 0:
+        return None
+    body = blocktext[im + len('Wyniki imienne:'):]
+    named = _parse_imienne(body, counts)
     return {"session_date": session_date, "session_num": session_num,
             "topic": topic, "time": time_, "counts": counts, "named": named}
+
+
+_HDR_RE = re.compile(r'(ZA|PRZECIW|WSTRZYMUJĘ SIĘ|BRAK GŁOSU|NIEOBECNI)\s*\(\s*(\d+)\s*\)')
+_ANN_RE = re.compile(
+    r'([A-ZĄĆĘŁŃÓŚŹŻ][^\.\(\)]*?)\s*\((ZA|PRZECIW|WSTRZYMUJĘ SIĘ|WSTRZYMAŁ SIĘ|'
+    r'WSTRZYMUJE SIĘ|BRAK GŁOSU|NIEOBECNI)\)')
+
+
+def _parse_imienne(body, counts):
+    """Z 'Wyniki imienne:' dalej wyciąga nazwiska per kategoria.
+
+    Dwa formaty raportów eSesja:
+      * nowy (2025-03+): sekcje nawiasowe 'ZA (17)' z listą nazwisk pod spodem;
+      * stary (2024-11..2025-02): płaska lista 'Nazwisko (ZA), ...' — jedna
+        adnotacja per radny.
+    Decyzja po zgodności z nagłówkowymi liczbami (counts) — źródło prawdy.
+    """
+    named = {k: [] for k in cat_keys()}
+    # nowy format: sekcje 'CAT (N)'
+    ms = list(_HDR_RE.finditer(body))
+    if ms:
+        nw = {k: [] for k in cat_keys()}
+        for mi, mm in enumerate(ms):
+            cat = CAT_MAP.get(mm.group(1))
+            seg_end = ms[mi + 1].start() if mi + 1 < len(ms) else len(body)
+            seg = body[mm.end():seg_end]
+            for name in seg.split(","):
+                cn = _clean_name(name)
+                if cn:
+                    nw[cat].append(cn)
+            if mm.group(2) == "0":
+                nw[cat] = []
+        if all(len(nw[c]) == counts.get(c, -1) for c in cat_keys()):
+            return nw
+        named = nw  # fallback: zachowaj najlepsze co mamy
+    # stary format: adnotacje 'Nazwisko (KATEGORIA)'
+    for mm in _ANN_RE.finditer(body):
+        name = _clean_name(mm.group(1))
+        cat = CAT_MAP.get(mm.group(2))
+        if name and cat:
+            named[cat].append(name)
+    return named
 
 
 def cat_keys():
@@ -465,7 +555,8 @@ def main():
         except Exception as e:
             print(f"  [warn] {s['label']} pdf: {e}")
             continue
-        votes, sd, sn = parse_report_pdf(data)
+        votes, sd, sn = parse_report_pdf(data, s.get("date"), s.get("roman"))
+        sd = sd or s.get("date")
         if not sd or sd < KAD_START:
             continue
         for v in votes:

@@ -60,7 +60,7 @@
   "rada_name_genitive": "Rady Miasta Jastrzębia-Zdroju",
   "teryt": "2467011",
   "_meta": {
-    "note": "NOWE miasto (BIP Logonet bip.jastrzebie.pl, kategoria 'Wyniki głosowań' /artykuly/wyniki-glosowan-2). Imienne glosowania z PDF 'Raport z głosowań' (generowanych przez app.esesja.pl) publikowanych per sesja: ZA/PRZECIW/WSTRZYMUJE SIĘ/BRAK GŁOSU/NIEOBECNI per radny, temat+sesja+godzina. IX kadencja 16 sesji (2025-04..2026-07), 224 glosowania, 25 radnych (w tym zm. 2026 Stefan Woźniak, zastapiony przez Anne Smolucha). Kluby (KS/GM/PiS) skuratorowane z protokołu VI Sesji 2026-05-28 (przewodniczacy kluw: Foksowicz=KS, Rosinska=GM, Sławik=PiS); pelne club_assignments PENDING - wiekszosc radnych NZ do kurateli z BIP. TERYT 2467011 (miasto na prawach powiatu). Dodane 2026-08-25 (cron ekspansja).",
+    "note": "NOWE miasto (BIP Logonet bip.jastrzebie.pl, kategoria 'Wyniki głosowań' /artykuly/wyniki-glosowan-2). Imienne glosowania z PDF 'Raport z głosowań' (generowanych przez app.esesja.pl) publikowanych per sesja. Dwa formaty raportów obsłużone przez scraper: nowy (2025-03+, sekcje 'ZA (N)' + listy nazwisk) i stary (2024-11..2025-02, płaska lista 'Nazwisko (ZA)' per radny). Data sesji z URL artykułu (nagłówki PDF niejednolite). IX kadencja 26 sesji (2024-11-13..2026-07-23), 345 glosowan imiennych, 25 radnych (zmiany składu w trakcie kadencji: Andrzej Matusiak i Stefan Woźniak zastąpieni m.in. przez Annę Smołuchę). Kluby (KS/GM/PiS) skuratorowane z protokołu VI Sesji 2026-05-28 (przewodniczący klubów: Foksowicz=KS, Rosińska=GM, Sławik=PiS); pelne club_assignments PENDING - wiekszosc radnych NZ do kurateli z BIP. TERYT 2467011 (miasto na prawach powiatu). Dodane 2026-08-25 (cron ekspansja).",
     "population": 82788,
     "voivodeship": "śląskie"
   }
