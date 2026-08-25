@@ -1,0 +1,95 @@
+{
+  "city_name": "Konin",
+  "city_genitive": "Konina",
+  "site_title": "Radoskop Konin — Jak głosują radni?",
+  "site_url": "https://konin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Konina. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Konina.",
+  "bip_url": "https://bipum.konin.eu",
+  "bip_name": "BIP Urzędu Miejskiego w Koninie",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "konin.radoskop.pl",
+  "clubs": {
+    "WK": {
+      "name": "Wspólny Konin",
+      "color": "#0ea5e9",
+      "bg": "rgba(14,165,233,0.12)",
+      "avatar_bg": "#0369a1"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1d4ed8",
+      "bg": "rgba(29,78,216,0.12)",
+      "avatar_bg": "#1e40af"
+    },
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#f59e0b",
+      "bg": "rgba(245,158,11,0.12)",
+      "avatar_bg": "#b45309"
+    },
+    "OB": {
+      "name": "Obywatele Konina",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Urszula Maciaszek": "KO",
+    "Monika Lis": "KO",
+    "Katarzyna Wagner": "KO",
+    "Joachim Sikorski": "KO",
+    "Wiesław Steinke": "KO",
+    "Krystian Majewski": "PiS",
+    "Hubert Szczepański": "PiS",
+    "Zenon Chojnacki": "PiS",
+    "Krystyna Leśniewska": "PiS",
+    "Katarzyna Jaworska": "PiS",
+    "Monika Kosińska": "WK",
+    "Małgorzata Krawczyńska": "WK",
+    "Mikołaj Marcinkowski": "WK",
+    "Emilia Wasielewska": "WK",
+    "Tomasz Andrzej Nowak": "OB",
+    "Jarosław Derdziński": "OB",
+    "Jarosław Lewandowski": "OB",
+    "Robert Popkowski": "NZ",
+    "Zofia Itman": "NZ",
+    "Sławomir Lachowicz": "NZ",
+    "Piotr Czerniejewski": "NZ",
+    "Maria Królikowska": "NZ",
+    "Jarosław Sidor": "NZ",
+    "Witold Nowak": "NZ",
+    "Monika Piguła": "NZ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Konina",
+  "rada_name_genitive": "Rady Miasta Konina",
+  "teryt": "3062011",
+  "_meta": {
+    "note": "NOWE miasto (własny CMS Rekord bipum.konin.eu, kategoria 'Głosowania z sesji Rady Miasta Konina' /6499, dokumenty z PDF-ami wyników głosowań imiennych). Dwa formaty PDF: nowy zbiorczy (bloki 'Głosowanie w sprawie:' + tabela 'Lp. Imię i nazwisko Głos') oraz stary per-druk (nagłówek 'Głosowanie' + dwukolumnowa tabela 'Lp. Nazwisko i imię Głos'). 38 sesji IX kadencji (I 2024-05-06 .. XXXVIII 2026-08-18). Skład zmieniał się w kadencji (Witold Nowak i Monika Piguła zastąpieni m.in. przez Jarosława Derdzińskiego i Marię Królikowską) - lista radnych = suma nazwisk z głosowań. Kluby kuratorowane z BIP /6366 (oświadczenia o powołaniu klubów: Wspólny Konin, PiS, Koalicja Obywatelska, Obywatele Konina; Konińska Prawica Wschodniej Wielkopolski rozwiązana 2024-12-02). TERYT 3062011 (miasto na prawach powiatu). Dodane 2026-08-25 (cron ekspansja).",
+    "population": 69858,
+    "voivodeship": "wielkopolskie"
+  }
+}
