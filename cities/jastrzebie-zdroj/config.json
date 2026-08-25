@@ -1,0 +1,67 @@
+{
+  "city_name": "Jastrzębie-Zdrój",
+  "city_genitive": "Jastrzębia-Zdroju",
+  "site_title": "Radoskop Jastrzębie-Zdrój — Jak głosują radni?",
+  "site_url": "https://jastrzebie-zdroj.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Jastrzębia-Zdroju. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Jastrzębia-Zdroju.",
+  "bip_url": "https://bip.jastrzebie.pl",
+  "bip_name": "BIP Miasta Jastrzębie-Zdrój",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "jastrzebie-zdroj.radoskop.pl",
+  "clubs": {
+    "KS": {
+      "name": "Koalicja Samorządowa",
+      "color": "#0ea5e9",
+      "bg": "rgba(14,165,233,0.12)",
+      "avatar_bg": "#0369a1"
+    },
+    "GM": {
+      "name": "Górnicze Miasto Jastrzębie-Zdrój",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1d4ed8",
+      "bg": "rgba(29,78,216,0.12)",
+      "avatar_bg": "#1e40af"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Roman Foksowicz": "KS",
+    "Iwona Rosińska": "GM",
+    "Tadeusz Sławik": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Jastrzębia-Zdroju",
+  "rada_name_genitive": "Rady Miasta Jastrzębia-Zdroju",
+  "teryt": "2467011",
+  "_meta": {
+    "note": "NOWE miasto (BIP Logonet bip.jastrzebie.pl, kategoria 'Wyniki głosowań' /artykuly/wyniki-glosowan-2). Imienne glosowania z PDF 'Raport z głosowań' (generowanych przez app.esesja.pl) publikowanych per sesja: ZA/PRZECIW/WSTRZYMUJE SIĘ/BRAK GŁOSU/NIEOBECNI per radny, temat+sesja+godzina. IX kadencja 16 sesji (2025-04..2026-07), 224 glosowania, 25 radnych (w tym zm. 2026 Stefan Woźniak, zastapiony przez Anne Smolucha). Kluby (KS/GM/PiS) skuratorowane z protokołu VI Sesji 2026-05-28 (przewodniczacy kluw: Foksowicz=KS, Rosinska=GM, Sławik=PiS); pelne club_assignments PENDING - wiekszosc radnych NZ do kurateli z BIP. TERYT 2467011 (miasto na prawach powiatu). Dodane 2026-08-25 (cron ekspansja).",
+    "population": 82788,
+    "voivodeship": "śląskie"
+  }
+}
