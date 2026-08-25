@@ -1,0 +1,77 @@
+{
+  "city_name": "Legnica",
+  "city_genitive": "Legnicy",
+  "site_title": "Radoskop Legnica — Jak głosują radni?",
+  "site_url": "https://legnica.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska Legnicy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska Legnicy.",
+  "bip_url": "https://um.bip.legnica.eu",
+  "bip_name": "BIP Urzędu Miasta Legnicy (BIP-E.PL)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "legnica.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#f97316",
+      "bg": "rgba(249,115,22,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1d4ed8",
+      "bg": "rgba(29,78,216,0.12)",
+      "avatar_bg": "#1e40af"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Arkadiusz Baranowski": "KO",
+    "Laura Czajkowska": "KO",
+    "Paweł Frost": "KO",
+    "Łukasz Gudanowicz": "KO",
+    "Karolina Jaczewska-Szymkowiak": "KO",
+    "Radosława Janowska-Lascar": "KO",
+    "Urszula Juchnik-Pogorzelska": "KO",
+    "Jolanta Kowalczyk": "PiS",
+    "Andrzej Lorenc": "PiS",
+    "Anna Mokhtari": "KO",
+    "Katarzyna Odrowska": "KO",
+    "Jerzy Potycz": "KO",
+    "Jolanta Rabczenko": "KO",
+    "Rafał Rajczakowski": "PiS",
+    "Zbigniew Rogalski": "PiS",
+    "Jan Szynalski": "KO",
+    "Joanna Śliwińska-Łokaj": "PiS",
+    "Krzysztof Ślufcik": "PiS",
+    "Tomasz Tamioła": "KO",
+    "Adam Wierzbicki": "PiS",
+    "Marta Wisłocka": "PiS",
+    "Bogumiła Wszelaka": "KO",
+    "Piotr Żabicki": "NZ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska Legnicy",
+  "rada_name_genitive": "Rady Miejskiej Legnicy",
+  "teryt": "0262011",
+  "_meta": {
+    "note": "NOWE miasto (custom CMS BIP-E.PL um.bip.legnica.eu). Imienne glosowania z PDF 'glosowanie...pdf' publikowanych per sesja w kategorii Rada Miejska/Sesje/Wyniki glosowan: dla kazdego punktu agregat + tabela per radny (ZA/PRZECIW/WSTRZYMUJE SIE/NIEODDANY/NIEOBECNY); sesja i data z tytulu strony. Sesje grupowane po dacie, kazdy punkt = jedno glosowanie. Kluby kuratorowane z BIP 'Kluby radnych'/'Sklad osobowy' IX kadencji (KO 14/PiS 8/NZ 1; radni z pierwszych sesji 2024 — Krzeszewska, Mucha, Niemiec — zmienieni w trakcie kadencji). Dodane 2026-08-25 (cron ekspansja).",
+    "population": 94878,
+    "voivodeship": "dolnośląskie"
+  }
+}
