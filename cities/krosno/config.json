@@ -1,0 +1,38 @@
+{
+  "city_name": "Krosno",
+  "city_genitive": "Krosna",
+  "site_title": "Radoskop Krosno — Jak głosują radni?",
+  "site_url": "https://krosno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Krośnie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Krośnie.",
+  "bip_url": "https://bip.umkrosno.pl",
+  "bip_name": "BIP UM Krosno",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "krosno.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Krosna",
+  "rada_name_genitive": "Rady Miasta Krosna",
+  "teryt": "1861011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (dedykowany scraper custom — BIP UM Krosna bip.umkrosno.pl, podsekcja 'Imienny wykaz głosowań radnych Miasta Krosna' kat.234). Per sesja PDF 'Wykaz imiennych głosowań' (downloadFile), bloki 'Głosowanie Nr N' z tabelą imienną ZA/PRZECIW/WSTRZYMUJĘ SIĘ per radny; niektóre bloki mają 2 przebiegi (poprawka+projekt) wydawane jako osobne głosowania. 27 sesji (II..XXVIII, 2024-05-28..2026-06-29), 848 głosowań, 21 radnych (wykaz ślubowania BIP; Soliński mid-term). I sesja (inauguracyjna) bez wykazu imiennego. club_assignments pending (skład klubowy nie publikowany w BIP — do kuratorowania). TERYT 1861011 (miasto na prawach powiatu). Dodane 2026-08-26 (cron ekspansja).",
+    "population": 45057,
+    "voivodeship": "podkarpackie"
+  }
+}
