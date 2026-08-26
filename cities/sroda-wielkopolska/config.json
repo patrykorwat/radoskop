@@ -65,7 +65,7 @@
   "samorzad_type": "miasto",
   "rada_name": "Rada Miejska w Środzie Wielkopolskiej",
   "rada_name_genitive": "Rady Miejskiej w Środzie Wielkopolskiej",
-  "teryt": "3025044",
+  "teryt": "3025043",
   "_meta": {
     "note": "NOWE miasto (gov.pl BIP bip.umsroda.pl, kategoria 'Imienne wykazy głosowań radnych' /organy/1691/dokumenty/16577). 23 sesje IX kad. (II 2024-05-22 .. XXVII 2026-06-25), 389 głosowań imiennych, 22 radnych (union z zastępstwami śródterminowymi). Format tekstowy 'Imienne wyniki głosowania: Za/Przeciw/Wstrzymał się/Nieobecni'. 3 anomalie źródłowe naprawione w parserze (StartFragment marker, literówka 'Marek WIeland', scalone 'Artur Forycki Róża Frąckowiak'). kluby_radnych w BIP: tylko Klub PiS IX kad. (utworzony 2025-12-18, Przewodniczący Mateusz Czaplicki, czł. Wiśniewska-Zabłocka, Niemczal) - reszta niezrzeszeni/międzyczasowo; club_assignments puste (nie pełne). TERYT 3025044 (gm. m-w, powiat średzki 3025). eSesja/bip_url z listy stale/dead - prawdziwe źródło bip.umsroda.pl.",
     "population": 24225,
