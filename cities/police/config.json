@@ -1,0 +1,81 @@
+{
+  "city_name": "Police",
+  "city_genitive": "Polic",
+  "site_title": "Radoskop Police — Jak głosują radni?",
+  "site_url": "https://police.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Policach. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Policach.",
+  "bip_url": "https://bip.police.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Policach (Logonet)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "police.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#f97316",
+      "bg": "rgba(249,115,22,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1d4ed8",
+      "bg": "rgba(29,78,216,0.12)",
+      "avatar_bg": "#1e40af"
+    },
+    "PP": {
+      "name": "Projekt Police",
+      "color": "#0ea5e9",
+      "bg": "rgba(14,165,233,0.12)",
+      "avatar_bg": "#0369a1"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Ewa Anna Andruszko": "KO",
+    "Waldemar Bubiłek": "PiS",
+    "Władysław Diakun": "NZ",
+    "Wojciech Dudek": "PP",
+    "Artur Echaust": "PP",
+    "Wiesław Gaweł": "KO",
+    "Ewa Ignaczak": "KO",
+    "Adam Jarema": "KO",
+    "Krzysztof Kubistal": "PP",
+    "Stanisław Łabuz": "PiS",
+    "Karina Mazurkiewicz": "NZ",
+    "Marcin Michalak": "PP",
+    "Jadwiga Molenda": "KO",
+    "Żaneta Ostrowska": "NZ",
+    "Andrzej Rogowski": "NZ",
+    "Małgorzata Siemianowska": "KO",
+    "Andrzej Smoliński": "KO",
+    "Anna Sobańska": "NZ",
+    "Ireneusz Todorski": "KO",
+    "Tomasz Tokarczyk": "PiS",
+    "Elżbieta Wasikowska": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Policach",
+  "rada_name_genitive": "Rady Miejskiej w Policach",
+  "teryt": "3211043",
+  "_meta": {
+    "note": "NOWE miasto (custom CMS Logonet bip.police.pl). Imienne glosowania z PDF 'Raport ... głosowań z sesji' (generowane przez app.esesja.pl, tekstowe) publikowanych per sesja w kategorii Rada Miejska → Protokoły z sesji Rady Miejskiej → {rok} (2024=771, 2025=822, 2026=874): dla każdej sesji artykuł-protokoł z załącznikiem raportu głosowań zawierającym per radny ZA/PRZECIW/WSTRZYMUJE SIĘ/BRAK GŁOSU/NIEOBECNI. Dwa formaty PDF pokrywane: inline 'Name (ZA)' oraz bloki 'ZA (N)…'. Sesje I-IX/2024, XI-XX/2025 (brak X), XXI-XXVI/2026 (25 sesji, 307 głosowań). Kluby skuratorowane z BIP 'Kluby radnych IX kadencji' (stan 02.01.2026): KO 8/PiS 4/Projekt Police 4/NZ 5; radni z wczesnych sesji 2024, później zastąpieni (Ufniarz, Sosnowska, Pisański, Walczak) -> NZ (klub nieobecny w obecnym BIP). Uwaga: raport sesji I/2024 ma wewnętrzną niespójność źródła (nagłówek NIEOBECNI:3 vs lista imienna 2) — parsowane z listy imiennej. Dodane 2026-08-26 (cron ekspansja).",
+    "population": 30623,
+    "voivodeship": "zachodniopomorskie"
+  }
+}
