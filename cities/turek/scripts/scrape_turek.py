@@ -384,8 +384,8 @@ def main():
         except Exception as e:
             print(f"  [ERR {s['id']}] {type(e).__name__}: {e}")
 
-    output = build_output(records, roster)
-    profiles = build_profiles(records, roster)
+    output = build_output(records, roster_by_name)
+    profiles = build_profiles(records, roster_by_name)
     save_split(output, city_dir / "docs" / "data.json", profiles)
     print(f"[turek] total votes={output['kadencje'][0]['total_votes']} "
           f"sessions={output['kadencje'][0]['total_sessions']} "
