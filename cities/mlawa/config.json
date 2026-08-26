@@ -1,0 +1,34 @@
+{
+  "city_name": "Mława",
+  "city_genitive": "Mławy",
+  "site_title": "Radoskop Mława — Jak głosują radni?",
+  "site_url": "https://mlawa.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Mława. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Mława.",
+  "bip_url": "https://bip.mlawa.pl",
+  "bip_name": "BIP UM Mława",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "mlawa.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Mława",
+  "rada_name_genitive": "Rady Miasta Mława",
+  "teryt": "1413011",
+  "_meta": {
+    "note": "NOWE miasto (dedykowany scraper custom — BIP UM Mława bip.mlawa.pl, kategoria 'Imienne wykazy głosowań Radnych' 2024-2029). eSesja mlawa.esesja.pl = wildcard korporacyjny (bez BIP); bip.net.pl = 404. Per sesja artykuł z PDF-ami raportu eSesja (4 warianty formatu A/B/C/D: agregat ZA/PRZECIW/WSTRZYMUJĘ SIĘ/BRAK GŁOSU/NIEOBECNI + 'Wyniki imienne' z listami per radny; wariant C='Pkt./Wykaz głosowania' bez agregatu). Parsowanie pdfplumber + odtwarzanie nazwisk przez dopasowanie do rosteru (odporne na zawijanie/nr stron). 27 sesji (III..XXIX, 2024-06-11..2026-08-25; pominięto I inauguracyjną i II bez wykazu), 440 głosowań, 21 aktywnych radnych + 1 były (Szczechowicz, mandat wygasł 2024). Sesja XV wariant C. TERYT 1413011 (mazowieckie, powiat mławski, gmina miejska). club_assignments pending (BIP nie publikuje klubów radnych — do kuratorowania). Interpelacje: BIP ma kategorię 'Interpelacje' (/artykuly/interpelacje), ale scraper interpelacji nie budowany w tym przebiegu (bonus). Dodane 2026-08-26 (cron ekspansja).",
+    "population": 30919,
+    "voivodeship": "mazowieckie"
+  }
+}
