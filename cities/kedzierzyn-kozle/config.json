@@ -1,0 +1,81 @@
+{
+  "city_name": "Kędzierzyn-Koźle",
+  "city_genitive": "Kędzierzyna-Koźla",
+  "site_title": "Radoskop Kędzierzyn-Koźle — Jak głosują radni?",
+  "site_url": "https://kedzierzyn-kozle.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Kędzierzyn-Koźle. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kędzierzyn-Koźle.",
+  "bip_url": "https://bip.kedzierzynkozle.pl",
+  "bip_name": "BIP Miasta Kędzierzyn-Koźle",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kedzierzyn-kozle.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#f59e0b",
+      "bg": "rgba(245,158,11,0.12)",
+      "avatar_bg": "#b45309"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1d4ed8",
+      "bg": "rgba(29,78,216,0.12)",
+      "avatar_bg": "#1e40af"
+    },
+    "NZP": {
+      "name": "Niezależni z Markiem Piaseckim",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    }
+  },
+  "club_assignments": {
+    "Hanna Białas": "KO",
+    "Ewa Czubek": "KO",
+    "Marzanna Gądek-Radwanowska": "KO",
+    "Wojciech Jagiełło": "KO",
+    "Tomasz Kiel": "KO",
+    "Andrzej Kopacki": "KO",
+    "Elżbieta Kozakiewicz": "KO",
+    "Anna Kras": "KO",
+    "Małgorzata Lipczyńska": "KO",
+    "Halina Mińczuk": "KO",
+    "Michał Nowak": "KO",
+    "Adam Oczoś": "KO",
+    "Ewa Odulińska": "KO",
+    "Ireneusz Wiśniewski": "KO",
+    "Marcin Wołyniec": "KO",
+    "Agata Blachucik": "PiS",
+    "Jakub Gładysz": "PiS",
+    "Katarzyna Kukolka-Bogocz": "PiS",
+    "Fabian Pszon": "PiS",
+    "Grzegorz Draguła": "NZP",
+    "Wiesław Fąfara": "NZP",
+    "Jacek Król": "NZP",
+    "Marek Piasecki": "NZP"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Kędzierzyn-Koźle",
+  "rada_name_genitive": "Rady Miasta Kędzierzyn-Koźle",
+  "teryt": "1603011",
+  "_meta": {
+    "note": "NOWE miasto (własny CMS BIP bip.kedzierzynkozle.pl - uwaga: domena z myślnikiem bip.kedzierzyn-kozle.pl jest martwa/plesk; poprawna to bez myślnika). Kategoria Rada Miasta /artykuly/53 Protokoly i glosowania z sesji; per-sesyjne protokoly PDF z imiennymi glosowaniami ZA/PRZECIW/WSTRZYMUJE SIE/BRAK GLOSU/NIEOBECNI per radny (format tekstowy). 28 sesji IX kadencji (I 2024-05-07 do XXVIII 2026-06-25). Kluby kuratorowane z BIP /artykuly/1581 sklad osobowy 2024-2029: Koalicja Obywatelska (Klub radnych Sabiny Nowosielskiej, 15), Prawo i Sprawiedliwosc (4), Niezalezni z Markiem Piaseckim (4).",
+    "population": 56931,
+    "voivodeship": "opolskie"
+  }
+}
