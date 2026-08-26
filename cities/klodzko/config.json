@@ -1,0 +1,38 @@
+{
+  "city_name": "Kłodzko",
+  "city_genitive": "Kłodzka",
+  "site_title": "Radoskop Kłodzko — Jak głosują radni?",
+  "site_url": "https://klodzko.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Kłodzku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Kłodzku.",
+  "bip_url": "https://um.bip.klodzko.pl",
+  "bip_name": "BIP Urzędu Miasta w Kłodzku (eBOI/aste)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "klodzko.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Kłodzku",
+  "rada_name_genitive": "Rady Miejskiej w Kłodzku",
+  "teryt": "0208021",
+  "_meta": {
+    "note": "NOWE miasto (BIP eBOI/aste um.bip.klodzko.pl, kategoria 'Wyniki głosowania radnych → IX kadencja' menu=684). 37 sesji IX kadencji (I 2024-05-07 .. XXXVII 2026-07-13); per-sesja PDF imiennych glosowan (2 formaty: eSesja 'jak głosował' + legacy 'Za – N, przeciw'). 387 glosowan, 21 radnych. XXV sesja (2025-10-30) PDF pusty/broken -> 0 glosowan. Kluby radnych NIE publikowane w BIP Kłodzka (brak kategorii 'Kluby') -> club_assignments puste. TERYT 0208021 (PL wiki).",
+    "population": 25717,
+    "voivodeship": "dolnośląskie"
+  }
+}
