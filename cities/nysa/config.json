@@ -1,0 +1,38 @@
+{
+  "city_name": "Nysa",
+  "city_genitive": "Nysy",
+  "site_title": "Radoskop Nysa — Jak głosują radni?",
+  "site_url": "https://nysa.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Nysie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Nysie.",
+  "bip_url": "https://nysa.bip.net.pl",
+  "bip_name": "Rada Miejska w Nysie — imienne wykazy głosowań (Wyniki głosowań z sesji, Protokoły Sesji)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "nysa.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Nysie",
+  "rada_name_genitive": "Rady Miejskiej w Nysie",
+  "teryt": "1607053",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (dedykowany scraper custom — BIP Urzędu Miejskiego w Nysie, nysa.bip.net.pl, legacy Sputnik bip.net.pl; Protokoły Sesji per rok z załączonym tekstowym PDF-em 'Wyniki/Wykaz głosowań z NNN sesji' w formacie eSesja standard — imienne ZA/PRZECIW/WSTRZYMUJĘ SIĘ per radny; sesja III (18.06.2024) raport zeskanowany → OCR tesseract -l pol). Głosowania imienne IX kad. 2024-2029: 33 sesje, 878 zwalidowanych głosowań, 25 radnych (z uwzględnieniem zmian/uzupełnień w trakcie kadencji), 31 głosowań o rozjeździe z agregatem (formaty korekt) pominięto. Kluby (club_assignments) PENDING do kureatelizacji z BIP (nie fabrykowane). TERYT 1607053 (gmina Nysa, powiat nyski, opolskie — TERC z Wikipedia PL 'Nysa (gmina)'; brak P781 w Wikidata Q815721). Dodane 2026-08-26 (cron ekspansja).",
+    "population": 42151,
+    "voivodeship": "opolskie"
+  }
+}
