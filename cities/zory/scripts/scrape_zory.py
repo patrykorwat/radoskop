@@ -144,6 +144,7 @@ def _rate():
 
 def fetch(url, cache_dir=None, binary=False):
     if cache_dir is not None:
+        cache_dir.mkdir(parents=True, exist_ok=True)
         key = hashlib.md5(url.encode()).hexdigest()
         ext = ".bin" if binary else ".json"
         cf = cache_dir / (key + ext)
