@@ -1,0 +1,74 @@
+{
+  "city_name": "Środa Wielkopolska",
+  "city_genitive": "Środy Wielkopolskiej",
+  "site_title": "Radoskop Środa Wielkopolska — Jak głosują radni?",
+  "site_url": "https://sroda-wielkopolska.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Środzie Wielkopolskiej. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Środzie Wielkopolskiej.",
+  "bip_url": "https://bip.umsroda.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Środzie Wielkopolskiej (IDcom)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sroda-wielkopolska.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Klub Radnych Prawo i Sprawiedliwość",
+      "color": "#1d4ed8",
+      "bg": "rgba(29,78,216,0.12)",
+      "avatar_bg": "#1e40af"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Mateusz Czaplicki": "PiS",
+    "Małgorzata Wiśniewska-Zabłocka": "PiS",
+    "Krzysztof Niemczal": "PiS",
+    "Adam Wójkiewicz": "NZ",
+    "Agnieszka Ożga": "NZ",
+    "Aneta Kłopot-Wartecka": "NZ",
+    "Anna Błaszak": "NZ",
+    "Anna Kicińska": "NZ",
+    "Arkadiusz Mroczyk": "NZ",
+    "Artur Forycki": "NZ",
+    "Bogusława Deiksler": "NZ",
+    "Daniel Rydian": "NZ",
+    "Grzegorz Budasz": "NZ",
+    "Ireneusz Kubiaczyk": "NZ",
+    "Jacek Januszkiewicz": "NZ",
+    "Maciej Norkiewicz": "NZ",
+    "Marek Wieland": "NZ",
+    "Paweł Wullert": "NZ",
+    "Róża Frąckowiak": "NZ",
+    "Sylwester Stachowiak": "NZ",
+    "Wojciech Ziętkowski": "NZ",
+    "Łukasz Korcz": "NZ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Środzie Wielkopolskiej",
+  "rada_name_genitive": "Rady Miejskiej w Środzie Wielkopolskiej",
+  "teryt": "3025044",
+  "_meta": {
+    "note": "NOWE miasto (gov.pl BIP bip.umsroda.pl, kategoria 'Imienne wykazy głosowań radnych' /organy/1691/dokumenty/16577). 23 sesje IX kad. (II 2024-05-22 .. XXVII 2026-06-25), 389 głosowań imiennych, 22 radnych (union z zastępstwami śródterminowymi). Format tekstowy 'Imienne wyniki głosowania: Za/Przeciw/Wstrzymał się/Nieobecni'. 3 anomalie źródłowe naprawione w parserze (StartFragment marker, literówka 'Marek WIeland', scalone 'Artur Forycki Róża Frąckowiak'). kluby_radnych w BIP: tylko Klub PiS IX kad. (utworzony 2025-12-18, Przewodniczący Mateusz Czaplicki, czł. Wiśniewska-Zabłocka, Niemczal) - reszta niezrzeszeni/międzyczasowo; club_assignments puste (nie pełne). TERYT 3025044 (gm. m-w, powiat średzki 3025). eSesja/bip_url z listy stale/dead - prawdziwe źródło bip.umsroda.pl.",
+    "population": 24225,
+    "voivodeship": "wielkopolskie"
+  }
+}
