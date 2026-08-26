@@ -49,16 +49,17 @@ KAD_START = "2024-05-07"
 KADENCJA_ID = "2024-2029"
 KADENCJA_LABEL = "IX kadencja (2024\u20132029)"
 
-# Kanoniczny skład Rady (BIP "Radni IX kadencji 2024-2029", menu=320) + weryfikacja
-# z list imiennych w PDFach głosowań. Kluby: BIP Kłodzka nie publikuje listy klubów
-# radnych (brak kategorii "Kluby") -> club empty.
+# Kanoniczny skład Rady (BIP "Radni IX kadencji 2024-2029" — BIP podaje nazwiska
+# w kolejności "Nazwisko Imię"; Radoskop używa "Imię Nazwisko" -> poniżej przekład
+# na kanoniczną kolejność). Weryfikacja z list imiennych w PDFach głosowań.
+# Kluby: BIP Kłodzka nie publikuje listy klubów radnych (brak kategorii "Kluby").
 ROSTER_NAMES = [
-    "Banyś Iwona", "Bryła Piotr", "Duda Zdzisław", "Ferenc Stanisław",
-    "Jarosz Armin", "Karolczak Anna", "Kobak Jolanta", "Kowalski Adam",
-    "Kubasiak Mateusz", "Łyszkiewicz Wojciech", "Nowak Zbigniew",
-    "Opalińska Karolina", "Procak Bogusław", "Ptaszyńska Magdalena",
-    "Radwański Czesław", "Szmyrko-Konieczyńska Marta", "Sobczyk Iwona",
-    "Ślak Damian", "Taurogińska Magdalena", "Trocki Józef", "Trybus Elżbieta",
+    "Iwona Banyś", "Piotr Bryła", "Zdzisław Duda", "Stanisław Ferenc",
+    "Armin Jarosz", "Anna Karolczak", "Jolanta Kobak", "Adam Kowalski",
+    "Mateusz Kubasiak", "Wojciech Łyszkiewicz", "Zbigniew Nowak",
+    "Karolina Opalińska", "Bogusław Procak", "Magdalena Ptaszyńska",
+    "Czesław Radwański", "Marta Szmyrko-Konieczyńska", "Iwona Sobczyk",
+    "Damian Ślak", "Magdalena Taurogińska", "Józef Trocki", "Elżbieta Trybus",
 ]
 
 REQ_DELAY = 0.35
@@ -192,9 +193,10 @@ for _nm in ROSTER_NAMES:
         _CANON_TOKENS[_k] = _nm
 
 
-def _canonicalize_legacy(raw):
-    """Legacy format podaje 'SURNAME NAME' (nazwisko pierwsze, uppercase) ->
-    znormalizuj do kanonicznego 'Imię Nazwisko' z rostera."""
+def _canonicalize(raw):
+    """Znormalizuj nazwisko z PDF (kolejność 'Nazwisko Imię', legacy uppercase
+    SURNAME NAME) do kanonicznego 'Imię Nazwisko' z rostera — dopasowanie
+    niezależne od kolejności tokenów (frozenset)."""
     toks = [_norm2(w) for w in re.split(r'[\s,-]+', raw) if w.strip()]
     toks = [t for t in toks if t]
     for combo_len in (2, 3):
@@ -251,7 +253,7 @@ def _parse_modern(lines):
         for name, tok in cur_rows:
             cat = _vote_cat(tok)
             if cat:
-                named[cat].append(name)
+                named[cat].append(_canonicalize(name))
         topic = " ".join(t for t in pending_topic if t.strip())
         topic = re.sub(r'\s+', ' ', topic).strip()
         topic = re.sub(r'^.*?>>>', '', topic)  # usun "Wprowadź nazwę pliku >>>"
@@ -302,7 +304,7 @@ def _parse_legacy(lines):
                 break
         named = defaultdict(list)
         for raw, tok in rows:
-            nm = _canonicalize_legacy(raw)
+            nm = _canonicalize(raw)
             cat = _vote_cat(tok)
             if cat:
                 named[cat].append(nm)
