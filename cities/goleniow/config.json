@@ -1,0 +1,38 @@
+{
+  "city_name": "Goleniów",
+  "city_genitive": "Goleniowa",
+  "site_title": "Radoskop Goleniów — Jak głosują radni?",
+  "site_url": "https://goleniow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Goleniowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Goleniowie.",
+  "bip_url": "https://bip.goleniow.pl",
+  "bip_name": "BIP Urzędu Gminy i Miasta w Goleniowie (idcom/eBOI)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "goleniow.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Goleniowie",
+  "rada_name_genitive": "Rady Miejskiej w Goleniowie",
+  "teryt": "3204023",
+  "_meta": {
+    "note": "NOWE miasto (custom CMS idcom/eBOI bip.goleniow.pl, kategoria 'Imienne wykazy głosowań radnych' /artykul/imienne-wykazy-glosowan-radnych). Per-sesja PDF (wydruk eSesja, format tekstowy) z imiennym głosowaniem per radny (dwukolumnowa tabela Lp|Nazwisko i imię|Głos: ZA/PRZECIW/WSTRZYMUJĘ SIĘ/NIEOBECNY/OBECNY). Skład Rady Miejskiej w Goleniowie = 21 radnych (stabilny przez kadencję). Sesje I..XXXIII 2024-05-07..2026-06-17 (34 artykuły; 33 z tekstowym PDF, sesja III 2024-06-19 tylko skan bez warstwy tekstowej - pominięta z notką). Parser: pdfplumber word-coords, dynamiczna granica 2 kolumn, walidacja per-głos sumy == agregaty nagłówka (tylko zwalidowane głosowania). Kluby radnych: sekcja BIP to DataTable JS (nieczytalna serwerowo) - club_assignments PENDING, wszystkie radni domyślnie NZ. TERYT 3204023 (gm. m-w, powiat goleniowski 3204). eSesja goleniow.esesja.pl = martwy wildcard korporacyjny, bip_url z listy bip.goleniow.pl = faktyczne źródło. Dodane 2026-08-26 (cron ekspansja).",
+    "population": 22166,
+    "voivodeship": "zachodniopomorskie"
+  }
+}
