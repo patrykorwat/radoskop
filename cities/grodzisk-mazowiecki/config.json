@@ -1,0 +1,39 @@
+{
+  "city_name": "Grodzisk Mazowiecki",
+  "city_genitive": "Grodziska Mazowieckiego",
+  "site_title": "Radoskop Grodzisk Mazowiecki — Jak głosują radni?",
+  "site_url": "https://grodzisk-mazowiecki.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Grodzisku Mazowieckim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Grodzisku Mazowieckim.",
+  "bip_url": "https://bip.grodzisk.pl",
+  "bip_name": "BIP Grodzisk Mazowiecki",
+  "esesja_url": "https://grodzisk-mazowiecki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "grodzisk-mazowiecki.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Grodzisku Mazowieckim",
+  "rada_name_genitive": "Rady Miejskiej w Grodzisku Mazowieckim",
+  "teryt": "1405044",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (dedykowany scraper custom — BIP bip.grodzisk.pl Madkom/Splay, sekcja 'Imienne wyniki głosowań jawnych' menu 4974, IX kadencja). Per sesja PDF (attachments[] id, e,pobierz,get.html) z tabelą imienną 'Nazwa uczestnika | Odpowiedzi' (Za/Przeciw/Wstrzymał(a) się/Nie głosował(a)), czysty tekst (pdfplumber bez OCR). 25 sesji (2024-05-15..2026-07-29), 363 głosowania, 21 radnych. I sesja inauguracyjna (2024-05-07) pominięta — inny zwarty layout + tylko potwierdzenia organów (jak I sesja w Krosnie). Radna Julia Gąsińska -> Gąsińska-Szewczyk (zmiana nazwiska od 2025-07, znormalizowana). club_assignments pending. TERYT 1405044 (miasto w gm. miejsko-wiejskiej, powiat grodziski). Dodane 2026-08-26 (cron ekspansja).",
+    "population": 33708,
+    "voivodeship": "mazowieckie"
+  }
+}
