@@ -258,7 +258,8 @@ def make_slug(name):
     return re.sub(r"[^a-z0-9]+", "", slug)
 
 
-def build_output(records):
+def build_output(records, club_assign=None):
+    club_assign = club_assign or {}
     all_votes = []
     vid = 0
     sessions_by_date = {}
@@ -297,7 +298,7 @@ def build_output(records):
 
     councilors_data = {}
     for name in all_names:
-        councilors_data[name] = {"name": name, "club": "", "district": None,
+        councilors_data[name] = {"name": name, "club": club_assign.get(name, "NZ"), "district": None,
                                  "votes_za": 0, "votes_przeciw": 0, "votes_wstrzymal": 0,
                                  "votes_brak": 0, "votes_nieobecny": 0, "rebellions": []}
     for v in all_votes:
@@ -358,7 +359,8 @@ def build_output(records):
     pairs.sort(key=lambda x: x["score"], reverse=True)
 
     kad = {
-        "id": KADENCJA_ID, "label": KADENCJA_LABEL, "clubs": {},
+        "id": KADENCJA_ID, "label": KADENCJA_LABEL,
+        "clubs": dict(Counter(club_assign.get(c["name"], "NZ") for c in councilors_list)),
         "sessions": sessions_data, "total_sessions": total_sessions,
         "total_votes": total_votes, "total_councilors": len(councilors_list),
         "councilors": councilors_list, "votes": all_votes,
@@ -368,7 +370,8 @@ def build_output(records):
             "kadencje": [kad]}
 
 
-def build_profiles(records):
+def build_profiles(records, club_assign=None):
+    club_assign = club_assign or {}
     cv = defaultdict(lambda: {"za": 0, "przeciw": 0, "wstrzymal_sie": 0, "nieobecni": 0, "votes": []})
     for rec in records:
         d = rec.get("session_date")
@@ -389,7 +392,7 @@ def build_profiles(records):
         profiles.append({
             "name": nm, "slug": make_slug(nm),
             "kadencje": {KADENCJA_ID: {
-                "club": "", "has_voting_data": True,
+                "club": club_assign.get(nm, "NZ"), "has_voting_data": True,
                 "has_activity_data": False, "frekwencja": round(sess / n_sessions * 100, 1),
                 "aktywnosc": round(aktywn, 1),
                 "zgodnosc_z_klubem": 0.0,
@@ -440,8 +443,10 @@ def main():
         except Exception as e:
             print(f"  [ERR {s['href'][-40:]}] {type(e).__name__}: {e}")
 
-    output = build_output(normalize_records(records))
-    profiles = build_profiles(normalize_records(records))
+    main_cfg = json.loads((city_dir / "config.json").read_text(encoding="utf-8")) if (city_dir / "config.json").is_file() else {}
+    club_assign = main_cfg.get("club_assignments", {}) or {}
+    output = build_output(normalize_records(records), club_assign)
+    profiles = build_profiles(normalize_records(records), club_assign)
     save_split(output, city_dir / "docs" / "data.json", profiles)
     print(f"[sroda] total votes={output['kadencje'][0]['total_votes']} "
           f"sessions={output['kadencje'][0]['total_sessions']} "
