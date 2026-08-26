@@ -1,0 +1,66 @@
+{
+  "city_name": "Olkusz",
+  "city_genitive": "Olkusza",
+  "site_title": "Radoskop Olkusz — Jak głosują radni?",
+  "site_url": "https://olkusz.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Olkuszu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Olkuszu.",
+  "bip_url": "https://bip.malopolska.pl/umigolkusz",
+  "bip_name": "BIP Urzędu Miasta i Gminy w Olkuszu",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "olkusz.radoskop.pl",
+  "clubs": {
+    "SW": {"name": "Klub Radnych \"Sprawdzony Wybór\"", "color": "#f59e0b", "bg": "rgba(245,158,11,0.12)", "avatar_bg": "#b45309"},
+    "PP": {"name": "Klub Radnych \"Pewna Przyszłość\"", "color": "#16a34a", "bg": "rgba(22,163,74,0.12)", "avatar_bg": "#15803d"},
+    "BP": {"name": "Klub Radnych \"Bezpieczna Przyszłość\"", "color": "#a855f7", "bg": "rgba(168,85,247,0.12)", "avatar_bg": "#7e22ce"},
+    "PiS": {"name": "Klub Radnych Prawa i Sprawiedliwości", "color": "#1d4ed8", "bg": "rgba(29,78,216,0.12)", "avatar_bg": "#1e40af"},
+    "NZ": {"name": "Niezrzeszeni", "color": "#6b7280", "bg": "rgba(107,114,128,0.12)", "avatar_bg": "#505560"}
+  },
+  "club_assignments": {
+    "Anna Kwaśniewska": "NZ",
+    "Apolinary Ćwięczek": "SW",
+    "Grzegorz Gruca": "SW",
+    "Henryk Gamrat": "SW",
+    "Julita Mikucka": "NZ",
+    "Kamil Czopek": "PiS",
+    "Katarzyna Kamionka": "SW",
+    "Małgorzata Postołek": "BP",
+    "Maria Beszterdo": "PiS",
+    "Mariusz Gaszczyk": "PP",
+    "Michał Zasucha": "PiS",
+    "Paweł Piasny": "BP",
+    "Paulina Polak": "PP",
+    "Piotr Grabarczyk": "NZ",
+    "Piotr Ziarnik": "PP",
+    "Renata Jurczyk": "PiS",
+    "Sebastian Tomsia": "PP",
+    "Tomasz Babiuch": "SW",
+    "Tomasz Witecki": "BP",
+    "Wojciech Panek": "PiS",
+    "Zbigniew Stach": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Olkuszu",
+  "rada_name_genitive": "Rady Miejskiej w Olkuszu",
+  "teryt": "1212054",
+  "_meta": {
+    "note": "NOWE miasto 2026-08-26 (cron ekspansja): BIP Urzędu Miasta i Gminy w Olkuszu na platformie bip.malopolska.pl (Madkom SPA, encja umigolkusz). Rada -> Sesje -> Protokoły z sesji Rady -> 2024/2025/2026: 16 opublikowanych sesji IX kadencji (I-VII 2024, VIII-XIII 2025, XV/XVI/XVIII 2026), każda ma załącznik 'Głosowania z ... sesji' (PDF-skan lub DOCX/PDF-tekst 'Raport z głosowań') z głosowaniami IMiennymi (za/przeciw/wstrzymuje się per radny + nieobecni). Scraper scrape_olkusz.py: API bip.malopolska.pl (/api/menu/{id}/articles, /api/articles/{id}, /api/files/{attid}), OCR tesseract -l pol 300dpi dla skanów, walidacja sum za/przeciw/wstrzymuje vs agregat. 21 radnych, 221 głosowań, 0 pustych tematów. Skład Rady (Osoby i funkcje), kluby z BIP (Sprawdzony Wybór/Pewna Przyszłość/Bezpieczna Przyszłość/PiS; 3 niezrzeszonych). TERYT 1212054 (miasto, powiat olkuski).",
+    "population": 33462,
+    "voivodeship": "małopolskie"
+  }
+}
