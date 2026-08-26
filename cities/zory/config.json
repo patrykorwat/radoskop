@@ -1,0 +1,93 @@
+{
+  "city_name": "Żory",
+  "city_genitive": "Żor",
+  "site_title": "Radoskop Żory — Jak głosują radni?",
+  "site_url": "https://zory.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Żory. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Żory.",
+  "bip_url": "https://bip.zory.pl",
+  "bip_name": "BIP Urzędu Miasta Żory",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zory.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Koalicja Obywatelska",
+      "color": "#f59e0b",
+      "bg": "rgba(245,158,11,0.12)",
+      "avatar_bg": "#b45309"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "color": "#1d4ed8",
+      "bg": "rgba(29,78,216,0.12)",
+      "avatar_bg": "#1e40af"
+    },
+    "ZP": {
+      "name": "Żorskie Porozumienie i Waldemar Socha",
+      "color": "#16a34a",
+      "bg": "rgba(22,163,74,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "ZS": {
+      "name": "Żorska Samorządność",
+      "color": "#a855f7",
+      "bg": "rgba(168,85,247,0.12)",
+      "avatar_bg": "#7e22ce"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Kamil Owczarek": "KO",
+    "Anna Gaszka": "KO",
+    "Ewa Kałus": "KO",
+    "Mateusz Mleczko": "KO",
+    "Anna Nowacka": "KO",
+    "Weronika Porada": "KO",
+    "Anna Ujma": "KO",
+    "Krzysztof Mentlik": "PiS",
+    "Małgorzata Celińska": "PiS",
+    "Dariusz Domański": "PiS",
+    "Mieczysław Jakubowski": "PiS",
+    "Grzegorz Książek": "PiS",
+    "Krzysztof Kurek": "PiS",
+    "Jacek Świerkocki": "PiS",
+    "Michał Miłek": "ZP",
+    "Jacek Arasim": "ZP",
+    "Barbara Fiedor": "ZP",
+    "Jolanta Hrycak": "ZP",
+    "Piotr Kosztyła": "ZP",
+    "Wojciech Maroszek": "ZP",
+    "Kazimierz Dajka": "ZS",
+    "Henryk Oszek": "ZS",
+    "Dawid Świerczek": "ZS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Żory",
+  "rada_name_genitive": "Rady Miasta Żory",
+  "teryt": "2479011",
+  "_meta": {
+    "note": "NOWE miasto (własny CMS Nefeni 'Nowoczesna Gmina' bip.zory.pl / API bip-api.zory.pl, kategoria 'Rada Miasta → Kadencja Rady Miasta 2024-2029 → Sesje Rady Miasta → Protokoły' /kategorie/2668 z podkategoriami per rok, per-sesyjne załączniki 'raport z głosowań.pdf' z głosowaniami imiennymi ZA/PRZECIW/WSTRZYMUJĘ SIĘ per radny — format tekstowy eSesja). 26 sesji IX kadencji (I 2024-05-07 .. XXVII 2026-06-25; brak XI w publikowanych protokołach). Skład zmieniał się w kadencji (Daniel Wawrzyczek, Mateusz Buksa, Piotr Huzarewicz utracili mandat -> NZ). Kluby kuratorowane z BIP /kategorie/3078-kluby-radnych-: Koalicja Obywatelska, Prawo i Sprawiedliwość, Żorskie Porozumienie i Waldemar Socha, Żorska Samorządność. TERYT 2479011 (miasto na prawach powiatu, woj. śląskie).",
+    "population": 61823,
+    "voivodeship": "śląskie"
+  }
+}
