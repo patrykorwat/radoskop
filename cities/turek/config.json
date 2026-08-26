@@ -1,0 +1,93 @@
+{
+  "city_name": "Turek",
+  "city_genitive": "Turku",
+  "site_title": "Radoskop Turek — Jak głosują radni?",
+  "site_url": "https://turek.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Turku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Turku.",
+  "bip_url": "https://bip.miastoturek.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Turku",
+  "rada_url": "https://rada.miastoturek.pl",
+  "rada_name_platform": "AlfaTV System Rada",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "turek.radoskop.pl",
+  "clubs": {
+    "ZT": {
+      "name": "Klub Radnych Ziemia Turkowska",
+      "color": "#0ea5e9",
+      "bg": "rgba(14,165,233,0.12)",
+      "avatar_bg": "#0369a1"
+    },
+    "LEW": {
+      "name": "Klub Radnych Lewicy Rady Miejskiej Turku",
+      "color": "#ef4444",
+      "bg": "rgba(239,68,68,0.12)",
+      "avatar_bg": "#b91c1c"
+    },
+    "RDT": {
+      "name": "Klub Radnych Razem dla Turku",
+      "color": "#22c55e",
+      "bg": "rgba(34,197,94,0.12)",
+      "avatar_bg": "#15803d"
+    },
+    "LNT": {
+      "name": "Klub Radnych Łączy Nas Turek",
+      "color": "#8b5cf6",
+      "bg": "rgba(139,92,246,0.12)",
+      "avatar_bg": "#6d28d9"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {
+    "Paweł Borowski": "ZT",
+    "Marcin Derucki": "ZT",
+    "Henryk Kacprzak": "ZT",
+    "Mariola Kadrzyńska-Siwek": "ZT",
+    "Elżbieta Niespodziańska": "ZT",
+    "Włodzimierz Bujała": "RDT",
+    "Mariusz Drzewiecki": "RDT",
+    "Emilia Swenderska": "RDT",
+    "Dariusz Kałużny": "LNT",
+    "Mariola Pacześna": "LNT",
+    "Grzegorz Wojtczak": "LNT",
+    "Paweł Kwiatkowski": "LEW",
+    "Joanna Maciejewska": "LEW",
+    "Marian Marczewski": "LEW",
+    "Arkadiusz Tomczyk": "LEW",
+    "Radosław Idzikowski": "NZ",
+    "Marta Kiszewska": "NZ",
+    "Zbigniew Korzeniowski": "NZ",
+    "Karol Serafiński": "NZ",
+    "Jacek Sulkowski": "NZ",
+    "Mikołaj Sulkowski": "NZ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Turku",
+  "rada_name_genitive": "Rady Miejskiej w Turku",
+  "teryt": "3027011",
+  "_meta": {
+    "note": "NOWE miasto (AlfaTV 'System Rada' rada.miastoturek.pl, IX kadencja). 28 sesji IX kad. (I 2024-05-06 .. XXIX 2026-08-26), 472 glosowan imiennych, 21 radnych. Kluby skuratorowane z rady.miastoturek.pl/sklad-rady/radny/{id} (Przynależność): ZT5/LEW4/RDT3/LNT3/NZ6. TERYT 3027011 (woj 30, powiat 3027, gm. miejska 011). turek.esesja.pl = martwy wildcard eSesja; bip.turek.pl brak DNS; turek.bip.net.pl Nefeni 404 - System Rada jest jedynym i zupelnym zrodlem imiennych glowowan.",
+    "population": 24788,
+    "voivodeship": "wielkopolskie"
+  }
+}
