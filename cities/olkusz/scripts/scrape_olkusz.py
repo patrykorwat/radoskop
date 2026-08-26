@@ -252,7 +252,7 @@ def _pdf_text_pages(data):
             pages.append(p.extract_text() or "")
     return pages
 
-def _pdf_ocr_pages(data, dpi=180, cache_dir=None, name=""):
+def _pdf_ocr_pages(data, dpi=280, cache_dir=None, name=""):
     """OCR zeskanowanego PDF-a. Zwraca listę tekstów stron."""
     key = hashlib.md5((name or "x").encode()).hexdigest()
     store = None
