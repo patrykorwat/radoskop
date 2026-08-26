@@ -217,6 +217,10 @@ def _match_roster(cells):
     bysur={}
     for full in ROSTER:
         parts=full.split(); bysur.setdefault(_nk(parts[0]),[]).append(full)
+    # display = "Imię Nazwisko" (Radoskop convention); source lists surname-first
+    def disp(src):
+        toks=src.split()
+        return " ".join(reversed(toks))
     out=[]
     for nm,vote in cells:
         words=nm.split()
@@ -225,13 +229,13 @@ def _match_roster(cells):
         if not cands:
             out.append((nm,vote)); continue
         if len(cands)==1:
-            out.append((cands[0],vote)); continue
+            out.append((disp(cands[0]),vote)); continue
         given=''.join(w[0] for w in words[1:] if w and w[0].isalpha())
         best=None
         for c in cands:
             cg=''.join(pp[0] for pp in c.split()[1:])
             if cg and cg==given: best=c; break
-        out.append((best or cands[0],vote))
+        out.append((disp(best or cands[0]),vote))
     return out
 
 def parse_pdf_payload(data):
