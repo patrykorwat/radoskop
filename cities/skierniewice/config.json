@@ -1,0 +1,38 @@
+{
+  "city_name": "Skierniewice",
+  "city_genitive": "Skierniewic",
+  "site_title": "Radoskop Skierniewice — Jak głosują radni?",
+  "site_url": "https://skierniewice.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Skierniewice. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Skierniewice.",
+  "bip_url": "https://www.bip.um.skierniewice.pl",
+  "bip_name": "BIP Urzędu Miasta Skierniewice",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "skierniewice.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Skierniewice",
+  "rada_name_genitive": "Rady Miasta Skierniewice",
+  "teryt": "1063011",
+  "_meta": {
+    "note": "NOWE miasto 2026-08-26 (cron ekspansja): BIP UM Skierniewice (bip.um.skierniewice.pl), kategoria 'Imienne wykazy głosowań radnych Rady Miasta Skierniewice' (66 art., IX kad. I-XXV = 25 sesji), per-sesyjne PDF 'wykaz_glosowania_{ROMAN}_sesja_RMS.pdf' z głosowaniami imiennymi za/przeciw/wstrzymuje. Dwa formaty PDF: format A (tabela Lp/imię/głos, 1 strona = 1 głosowanie) dominujący; format B (sesja V 2024-10-31, grupy ZA:/PRZECIW:/WSTRZYMALI SIĘ:). 21 radnych, 477 głosowań, 0 pustych tematów, walidacja sum per głosowanie. kluby PENDING (BIP nie publikuje 'klubów radnych' w nawigacji rady; kuratorować ręcznie). TERYT 1063011 (powiat grodzki Skierniewice).",
+    "population": 46437,
+    "voivodeship": "łódzkie"
+  }
+}
