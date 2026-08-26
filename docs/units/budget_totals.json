@@ -1,9 +1,9 @@
 {
-  "generated": "2026-06-10T06:08:36Z",
-  "n_cities": 5,
+  "generated": "2026-08-26T22:43:29Z",
+  "n_cities": 230,
   "year_range": "2025",
-  "revenue": 9802499874.31,
-  "expenditure": 9745550323.01,
-  "deficit": 56949551.3,
-  "debt": 2519500162.19
+  "revenue": 175209981441.03,
+  "expenditure": 177973634586.4,
+  "deficit": -2763653145.37,
+  "debt": 66294867379.66
 }

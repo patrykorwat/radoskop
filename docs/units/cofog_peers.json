@@ -1,135 +1,135 @@
 {
-  "generated": "2026-06-10T06:08:36Z",
+  "generated": "2026-08-26T22:43:29Z",
   "method": "nieważona średnia udziałów COFOG po miastach klasy, najnowszy rok każdego miasta",
   "year_range": "2025–2025",
   "classes": {
     "grodzki": {
-      "n_cities": 3,
+      "n_cities": 53,
       "functions": {
         "GF01": {
           "name": "Administracja i usługi ogólne",
-          "pct_mean": 10.0,
-          "pct_median": 9.5,
-          "n": 3
+          "pct_mean": 8.6,
+          "pct_median": 8.6,
+          "n": 53
         },
         "GF02": {
           "name": "Obrona",
-          "pct_mean": 0.9,
-          "pct_median": 0.8,
-          "n": 3
+          "pct_mean": 0.8,
+          "pct_median": 0.5,
+          "n": 53
         },
         "GF03": {
           "name": "Bezpieczeństwo i porządek publiczny",
-          "pct_mean": 2.4,
+          "pct_mean": 2.6,
           "pct_median": 2.4,
-          "n": 3
+          "n": 53
         },
         "GF04": {
           "name": "Sprawy gospodarcze (transport, rolnictwo, energia)",
-          "pct_mean": 16.1,
-          "pct_median": 19.3,
-          "n": 3
+          "pct_mean": 11.7,
+          "pct_median": 9.9,
+          "n": 53
         },
         "GF05": {
           "name": "Ochrona środowiska",
-          "pct_mean": 7.2,
-          "pct_median": 6.5,
-          "n": 3
+          "pct_mean": 5.1,
+          "pct_median": 4.6,
+          "n": 53
         },
         "GF06": {
           "name": "Gospodarka mieszkaniowa i komunalna",
-          "pct_mean": 12.0,
-          "pct_median": 7.8,
-          "n": 3
+          "pct_mean": 6.9,
+          "pct_median": 5.9,
+          "n": 53
         },
         "GF07": {
           "name": "Zdrowie",
-          "pct_mean": 1.0,
-          "pct_median": 0.8,
-          "n": 3
+          "pct_mean": 0.8,
+          "pct_median": 0.6,
+          "n": 53
         },
         "GF08": {
           "name": "Rekreacja, kultura i religia",
-          "pct_mean": 6.7,
-          "pct_median": 5.0,
-          "n": 3
+          "pct_mean": 6.4,
+          "pct_median": 6.1,
+          "n": 53
         },
         "GF09": {
           "name": "Edukacja",
-          "pct_mean": 28.9,
-          "pct_median": 25.6,
-          "n": 3
+          "pct_mean": 42.4,
+          "pct_median": 41.7,
+          "n": 53
         },
         "GF10": {
           "name": "Ochrona socjalna",
-          "pct_mean": 13.2,
-          "pct_median": 13.4,
-          "n": 3
+          "pct_mean": 14.2,
+          "pct_median": 13.9,
+          "n": 53
         }
       }
     },
     "gmina": {
-      "n_cities": 2,
+      "n_cities": 177,
       "functions": {
         "GF01": {
           "name": "Administracja i usługi ogólne",
-          "pct_mean": 6.5,
-          "pct_median": 6.5,
-          "n": 2
+          "pct_mean": 11.9,
+          "pct_median": 11.2,
+          "n": 177
         },
         "GF02": {
           "name": "Obrona",
-          "pct_mean": 1.1,
-          "pct_median": 1.1,
-          "n": 2
+          "pct_mean": 0.7,
+          "pct_median": 0.5,
+          "n": 170
         },
         "GF03": {
           "name": "Bezpieczeństwo i porządek publiczny",
-          "pct_mean": 1.4,
-          "pct_median": 1.4,
-          "n": 2
+          "pct_mean": 1.1,
+          "pct_median": 0.9,
+          "n": 176
         },
         "GF04": {
           "name": "Sprawy gospodarcze (transport, rolnictwo, energia)",
-          "pct_mean": 7.0,
-          "pct_median": 7.0,
-          "n": 2
+          "pct_mean": 10.0,
+          "pct_median": 8.8,
+          "n": 176
         },
         "GF05": {
           "name": "Ochrona środowiska",
-          "pct_mean": 4.1,
-          "pct_median": 4.1,
-          "n": 2
+          "pct_mean": 7.4,
+          "pct_median": 6.7,
+          "n": 176
         },
         "GF06": {
           "name": "Gospodarka mieszkaniowa i komunalna",
-          "pct_mean": 3.6,
-          "pct_median": 3.6,
-          "n": 2
+          "pct_mean": 7.0,
+          "pct_median": 5.7,
+          "n": 177
         },
         "GF07": {
           "name": "Zdrowie",
-          "pct_mean": 0.5,
-          "pct_median": 0.5,
-          "n": 2
+          "pct_mean": 0.7,
+          "pct_median": 0.6,
+          "n": 176
         },
         "GF08": {
           "name": "Rekreacja, kultura i religia",
-          "pct_mean": 8.6,
-          "pct_median": 8.6,
-          "n": 2
+          "pct_mean": 8.0,
+          "pct_median": 7.2,
+          "n": 176
         },
         "GF09": {
           "name": "Edukacja",
-          "pct_mean": 43.0,
-          "pct_median": 43.0,
-          "n": 2
+          "pct_mean": 38.9,
+          "pct_median": 38.8,
+          "n": 176
         },
         "GF10": {
           "name": "Ochrona socjalna",
-          "pct_mean": 9.4,
-          "pct_median": 9.4,
-          "n": 2
+          "pct_mean": 15.6,
+          "pct_median": 14.7,
+          "n": 176
         }
       }
     }
