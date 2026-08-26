@@ -1,0 +1,35 @@
+{
+  "city_name": "Chełm",
+  "city_genitive": "Chełma",
+  "site_title": "Radoskop Chełm — Jak głosują radni?",
+  "site_url": "https://chelm.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Chełma. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Chełma.",
+  "bip_url": "https://umchelm.bip.lubelskie.pl",
+  "bip_name": "BIP Urzędu Miasta Chełm",
+  "esesja_url": "https://chelmmiasto.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "chelm.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Chełm",
+  "rada_name_genitive": "Rady Miasta Chełma",
+  "teryt": "0662011",
+  "_meta": {
+    "note": "NOWE miasto (eSesja Portal Mieszkańca instance, base chelmmiasto — glosowania imienne IX kad. 2024-2029 z /glosowanie/, charset utf-8 auto-detect). Dodane 2026-08-26 (cron ekspansja). eSesja slug to chelmmiasto (nie chelm — chelm.esesja.pl to wildcard-marketing). club_assignments pending (kuratorowane z BIP).",
+    "population": 59546,
+    "voivodeship": "lubelskie"
+  }
+}
