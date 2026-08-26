@@ -1,0 +1,51 @@
+{
+  "city_name": "Świdnica",
+  "city_genitive": "Świdnicy",
+  "site_title": "Radoskop Świdnica — Jak głosują radni?",
+  "site_url": "https://swidnica.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Świdnicy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Świdnicy.",
+  "bip_url": "https://radamiejska.um.swidnica.pl",
+  "bip_name": "Sesje Rady Miejskiej i imienne wykazy głosowań radnych — Świdnica",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "swidnica.radoskop.pl",
+  "clubs": {
+    "KO": {"name": "Koalicja Obywatelska", "color": "#f59e0b", "bg": "rgba(245,158,11,0.12)", "avatar_bg": "#b45309"},
+    "PiS": {"name": "Prawo i Sprawiedliwość", "color": "#1d4ed8", "bg": "rgba(29,78,216,0.12)", "avatar_bg": "#1e40af"},
+    "RDS": {"name": "Razem dla Świdnicy", "color": "#16a34a", "bg": "rgba(22,163,74,0.12)", "avatar_bg": "#15803d"},
+    "NZ": {"name": "Niezrzeszeni", "color": "#6b7280", "bg": "rgba(107,114,128,0.12)", "avatar_bg": "#505560"}
+  },
+  "club_assignments": {
+    "Józef Cygan": "PiS", "Jan Dzięcielski": "KO", "Rafał Fasuga": "NZ",
+    "Edmund Frączak": "NZ", "Joanna Gadzińska": "RDS", "Krzysztof Grudziński": "KO",
+    "Jacek Iwancz": "KO", "Krzysztof Lewandowski": "PiS", "Ryszard Makowski": "PiS",
+    "Danuta Morańska": "RDS", "Tadeusz Niedzielski": "KO", "Luiza Nowaczyńska": "PiS",
+    "Andrzej Ora": "PiS", "Sylwia Osojca-Kozłowska": "NZ", "Magdalena Rumiancew-Wróblewska": "KO",
+    "Zofia Skowrońska-Wiśniewska": "PiS", "Beata Szczepankowska": "KO", "Anna Światowa": "RDS",
+    "Violetta Wiercińska": "KO", "Michał Zastawny": "RDS", "Wiesław Żurek": "KO"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Świdnicy",
+  "rada_name_genitive": "Rady Miejskiej w Świdnicy",
+  "teryt": "0219011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (dedykowany scraper custom — radamiejska.um.swidnica.pl, Joomla portal 'Sesje Rady Miejskiej oraz imienne wykazy głosowań radnych'). Głosowania imienne IX kad. 2024-2029 jako PDF-y 'Głosowanie N [temat]' w artykule 'Imienne głosowania Radnych' per sesja; parsowane pdfplumber (tabela 2-kolumnowa Lp|Nazwisko i imię|Głos, ZA/PRZECIW/WSTRZYMUJĘ SIĘ). 25/28 sesji z głosowaniami (VI i XX — sesje bez głosowań imiennych: powodziowa/uroczysta; XXVIII 2026 — dane jeszcze nieopublikowane). Kluby kuratorowane ze strony 'Kluby Radnych RM' (KO 8, Razem dla Świdnicy 4, PiS 6, niezrzeszeni 3). TERYT 0219011 (gmina miejska, powiat świdnicki). Dodane 2026-08-26 (cron ekspansja).",
+    "population": 54792,
+    "voivodeship": "dolnośląskie"
+  }
+}
