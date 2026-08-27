@@ -1,0 +1,35 @@
+{
+  "city_name": "Grodzisk Wielkopolski",
+  "city_genitive": "Grodziska Wielkopolskiego",
+  "site_title": "Radoskop Grodzisk Wielkopolski — Jak głosują radni?",
+  "site_url": "https://grodzisk-wielkopolski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Grodzisku Wielkopolskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Grodzisku Wielkopolskim.",
+  "bip_url": "https://bip.grodzisk.wlkp.pl",
+  "bip_name": "BIP Grodzisk Wielkopolski",
+  "esesja_url": "https://grodziskwlkp.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "grodzisk-wielkopolski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Grodzisku Wielkopolskim",
+  "rada_name_genitive": "Rady Miejskiej w Grodzisku Wielkopolskim",
+  "teryt": "3005024",
+  "_meta": {
+    "note": "NOWE miasto (eSesja old-template, base grodziskwlkp — glosowania imienne IX kad. 2024-2029 z /glosowanie/, charset auto-detect). Dodane 2026-08-27 (cron ekspansja). esesja_url to grodziskwlkp.esesja.pl (NIE grodzisk-wielkopolski.esesja.pl — to wildcard-marketing). clamp blokada: bip.grodzisk-wielkopolski.pl z listy kandydatów to domena 'na sprzedaż' (parked) — realny BIP to bip.grodzisk.wlkp.pl. club_assignments pending (kuratorowane z BIP).",
+    "population": 15131,
+    "voivodeship": "wielkopolskie"
+  }
+}
