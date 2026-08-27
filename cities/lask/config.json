@@ -57,7 +57,10 @@
   "rada_name": "Rada Miejska w Łasku",
   "rada_name_genitive": "Rady Miejskiej w Łasku",
   "teryt": "1003024",
-  "scrape_disabled": true,
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
   "_meta": {
     "note": "NOWE miasto (custom BIP bip.lask.pl, 'Protokoły z sesji i wyniki głosowań' /4079/). Imienne głosowania IX kad. 2024-2029 jako per-sesja PDF 'Wyniki głosowań z N sesji' (format tekstowy eSesja: Wyniki imienne: ZA (N)…). 27 sesji z głosowaniami (II..XXX; I, XXIV, XXIX bez załącznika). Kluby kuratorowane z BIP /4481/ (BPS 6, KO 6, Prawica Łask 7; Kazimierczak i Urban bez klubu=NZ). Roster 21 radnych ze Składu Rady (DOCX /4479/). TERYT 1003024 (GUS BDL; Wikidata P781 puste). eSesja lask.esesja.pl = martwy wildcard. Dodane 2026-08-27 (cron ekspansja). Club colors auto (faction mode).",
     "population": 16576,
