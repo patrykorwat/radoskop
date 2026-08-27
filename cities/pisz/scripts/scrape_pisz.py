@@ -52,24 +52,38 @@ UA = {"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/1
 # Kanoniczny skład Rady (BIP k=53, IX kadencja 2024-2029) — 21 radnych
 # ---------------------------------------------------------------------------
 CANON = [
-    'Bobko Anna', 'Ciecierska Marzena', 'Czerwiński Krzysztof', 'Górski Jarosław',
-    'Kaczkowski Dariusz', 'Konopa Zuzanna', 'Krawczyk Adam', 'Krośniewski Robert',
-    'Olender Dariusz', 'Pardo Agnieszka', 'Pietrzyk Łukasz', 'Roszczypała Jolanta',
-    'Sawicka Aneta', 'Sparzak Maciej', 'Stawecki Wojciech', 'Szmigiel Małgorzata',
-    'Szpanko Mariusz', 'Szymborski Andrzej', 'Święconek Karol', 'Trupacz Mariusz',
-    'Zadroga Andrzej', 'Zuzga Sebastian',
+    'Anna Bobko', 'Marzena Ciecierska', 'Krzysztof Czerwiński', 'Jarosław Górski',
+    'Dariusz Kaczkowski', 'Zuzanna Konopa', 'Adam Krawczyk', 'Robert Krośniewski',
+    'Dariusz Olender', 'Agnieszka Pardo', 'Łukasz Pietrzyk', 'Jolanta Roszczypała',
+    'Aneta Sawicka', 'Maciej Sparzak', 'Wojciech Stawecki', 'Małgorzata Szmigiel',
+    'Mariusz Szpanko', 'Andrzej Szymborski', 'Karol Święconek', 'Mariusz Trupacz',
+    'Andrzej Zadroga', 'Sebastian Zuzga',
 ]
 
 
 def _normname(s):
+    """Normalizuj: usuwaj spacje/znaki, zli--- transliteracja. Niezależna od
+    kolejności słów dzięki indeksowi dopasowań w obu porządkach (NiI/iN)."""
     s = s.lower().replace('ł', 'l').replace('Ł', 'L')
     s = unicodedata.normalize('NFKD', s)
     s = ''.join(c for c in s if not unicodedata.combining(c))
     return re.sub(r'[^a-z0-9]', '', s)
 
 
-CANON_NORM = [_normname(c) for c in CANON]
-ROSTER_BY_NORM = {_normname(c): c for c in CANON}
+def _normname_rev(name):
+    """Normalizacja dla odwróconej kolejności słów (Nazwisko Imię -> Imię Nazwisko)."""
+    s = name.lower().replace('ł', 'l').replace('Ł', 'L')
+    s = unicodedata.normalize('NFKD', s)
+    s = ''.join(c for c in s if not unicodedata.combining(c))
+    toks = re.findall(r'[a-z0-9]+', s)
+    return ''.join(reversed(toks))
+
+
+# Indeks dopasowań: (znormalizowany, kanoniczny) dla obu porządków słów.
+CANON_MATCH = []
+for _c in CANON:
+    CANON_MATCH.append((_normname(_c), _c))
+    CANON_MATCH.append((_normname_rev(_c), _c))
 
 
 def _lev(a, b):
@@ -91,12 +105,12 @@ def canon_of(raw_name):
     best = None
     best_d = 99
     second_d = 99
-    for i, cn in enumerate(CANON_NORM):
+    for cn, canonical in CANON_MATCH:
         d = _lev(n, cn)
         if d < best_d:
             second_d = best_d
             best_d = d
-            best = CANON[i]
+            best = canonical
         elif d < second_d:
             second_d = d
     if best_d <= 2 and (second_d - best_d) >= 2:
