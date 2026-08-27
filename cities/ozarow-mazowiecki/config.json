@@ -1,0 +1,39 @@
+{
+  "city_name": "Ożarów Mazowiecki",
+  "city_genitive": "Ożarowa Mazowieckiego",
+  "site_title": "Radoskop Ożarów Mazowiecki — Jak głosują radni?",
+  "site_url": "https://ozarow-mazowiecki.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Ożarowie Mazowieckim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Ożarowie Mazowieckim.",
+  "bip_url": "https://bip.ozarow-mazowiecki.pl",
+  "bip_name": "BIP Gminy Ożarów Mazowiecki (bip.ozarow-mazowiecki.pl)",
+  "esesja_url": "https://ozarowmazowiecki.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ozarow-mazowiecki.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Ożarowie Mazowieckim",
+  "rada_name_genitive": "Rady Miejskiej w Ożarowie Mazowieckim",
+  "teryt": "1432064",
+  "_meta": {
+    "note": "NOWE miasto (eSesja 'Portal Mieszkańca' server-rendered ozarowmazowiecki.esesja.pl, IX kadencja 2024-2029). 29 sesji IX kad., 501 głosowań imiennych, 21 radnych. parser lib_esesja bez zmian. UWAGA slug: ozarow-mazowiecki.esesja.pl to corporate-wildcard (bez BIP); właściwa platforma bez myślnika ozarowmazowiecki.esesja.pl. bip.ozarow-mazowiecki.pl to React SPA (nv.pl, main.93f1d977.chunk.js — shell bez treści serwerowej, wzorzec oborniki; nieużywany). Kluby PENDING (kuratorowane z BIP). TERYT 1432064 (miasto Ożarów Mazowiecki, gmina miejsko-wiejska 1432063 + typ 4). Interpelacje: eSesja moduł interpelacje-i-zapytania — nie sprawdzono w tym przebiegu (bonus). Dodane 2026-08-27 (cron ekspansja).",
+    "population": 14375,
+    "voivodeship": "mazowieckie"
+  }
+}
