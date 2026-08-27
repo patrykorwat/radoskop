@@ -1,0 +1,38 @@
+{
+  "city_name": "Strzelce Opolskie",
+  "city_genitive": "Strzelec Opolskich",
+  "site_title": "Radoskop Strzelce Opolskie — Jak głosują radni?",
+  "site_url": "https://strzelce-opolskie.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Strzelcach Opolskich. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Strzelcach Opolskich.",
+  "bip_url": "https://bip.strzelceopolskie.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Strzelcach Opolskich",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "strzelce-opolskie.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Strzelcach Opolskich",
+  "rada_name_genitive": "Rady Miejskiej w Strzelcach Opolskich",
+  "teryt": "1611053",
+  "_meta": {
+    "note": "NOWE miasto. Źródło głosowań imiennych: bip.strzelceopolskie.pl -> Rada Miejska -> Sesje Rady Miejskiej -> załącznik 'Lista obecności + głosowania' przy KAŻDEJ sesji IX kadencji — ZDJĘTY (skanowany) PDF w klasycznym eSesja-fomacie tekstowym (Wyniki głosowania / Głosowano w sprawie / ZA: n, PRZECIW: n, WSTRZYMUJĘ SIĘ: n / Wyniki imienne / listy nazwisk). Każda strona OCR-owana (tesseract -l pol, dpi=150, serialnie), wynik cached. Sesje II..XXX (29), 2024-05-16..2026-08-13; sesja I (2024-05-07, konstytuująca) i XXXI (2026-08-27) nie mają opublikowanego załącznika z głosowaniami -> pominięte. 356 głosowań imiennych (odrzucono 2 bez naprawialnych list imiennych), 23 radnych (skład DYNAMICZNY: Anna Dudziec na początku, później Daniel Gordzielik / Henryk Siromski — roster budowany z danych, nie hardcoded). Szum nazwisk OCR kanonizowany przez kuratorowany słownik wariantów (Ridner/Rudner, Wdewik/Wwdowik, 'Marek Goc'->Tadeusz Goc itd. — w każdym takim głosie prawidłowy radny nieobecny, wariant zajmuje jego slot). Kluby: BIP nie publikuje sekcji klubów -> club_assignments PENDING (domyślnie NZ). TERYT 1611053 (gm. miejsko-wiejska, powiat strzelecki, woj. opolskie). Dodane 2026-08-27.",
+    "population": 17512,
+    "voivodeship": "opolskie"
+  }
+}
