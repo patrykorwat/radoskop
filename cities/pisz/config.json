@@ -1,0 +1,35 @@
+{
+  "city_name": "Pisz",
+  "city_genitive": "Piszu",
+  "site_title": "Radoskop Pisz — Jak głosują radni?",
+  "site_url": "https://pisz.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Piszu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Piszu.",
+  "bip_url": "https://bip.pisz.hi.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Piszu (bip.pisz.hi.pl)",
+  "esesja_url": "https://pisz.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pisz.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Piszu",
+  "rada_name_genitive": "Rady Miejskiej w Piszu",
+  "teryt": "2816033",
+  "_meta": {
+    "note": "NOWE miasto (custom BIP bip.pisz.hi.pl, PHP 'index.php?k='). Rada Miejska → Imienny wykaz głosowań (k=1133): per sesja artykuł z PDF 'Imienny wykaz głosowań' (tekstowy, klasyczny format eSesja) z imiennym głosowaniem per radny ZA/PRZECIW/WSTRZYMUJĘ SIĘ/NIEOBECNA (tabela 2-kolumnowa, stała numeracja Lp 1-21 zbieżna ze składem Rady). Sesje I-XXXIV IX kad. 2024-2029 (33 sesje z danymi). Skład 21 radnych z BIP 'Skład osobowy Rady Miejskiej w Piszu. Kadencja 2024-2029'; kluby niepublikowane w BIP -> club_assignments pending (PENDING, kuratorowane z BIP). TERYT 2816033 z units_src/gminy.json. Interpelacje: BIP ma kategorię Interpelacje i Zapytania radnych (k=1345, kadencja 2024-2029 k=1323) - scraper interpelacji nie budowany w tym przebiegu (bonus). eSesja publiczna (pisz.esesja.pl) = wildcard korporacyjny (bez BIP). Dodane 2026-08-27 (cron ekspansja).",
+    "population": 18245,
+    "voivodeship": "warmińsko-mazurskie"
+  }
+}
