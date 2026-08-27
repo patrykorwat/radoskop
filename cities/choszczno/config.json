@@ -1,0 +1,35 @@
+{
+  "city_name": "Choszczno",
+  "city_genitive": "Choszczna",
+  "site_title": "Radoskop Choszczno — Jak głosują radni?",
+  "site_url": "https://choszczno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Choszcznie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Choszcznie.",
+  "bip_url": "https://rada.choszczno.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Choszcznie / AlfaTV System Rada (rada.choszczno.pl)",
+  "esesja_url": "https://choszczno.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "choszczno.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Choszcznie",
+  "rada_name_genitive": "Rady Miejskiej w Choszcznie",
+  "teryt": "3202024",
+  "_meta": {
+    "note": "NOWE miasto (AlfaTV 'System Rada' rada.choszczno.pl, czysty strukturalny HTML bez OCR/PDF/JS). /glosowania = tabela sesji IX kad. (I..XXIX, 07-05-2024..06-08-2026) z linkami /glosowania/posiedzenie/{id}; każda sesja = Accordion, jeden vote per 'druk nr …', tabela zbiorcza (Głosy za/wstrzymujące/przeciw/nieoddane/Nieobecni) + 'Imienny wykaz głosowania' (Imię i nazwisko | Głos: za/przeciw/wstrzymał się/nieoddany/nieobecny). 29 sesji, 294 głosowania imienne (294/294 agregatów zwalidowanych), 15 radnych (14 aktywnych + Anetta 'Aneta' Bikowska 2024 wygaszony mandat, rotacja). Sesja I konstytuująca: 9 głosowań wyborczych (komisje/przewodniczący) publikowanych tylko agregatowo bez imiennego wykazu — pominięte. Uwaga: przez pierwsze miesiące kadencji radna Bikowska występuje jako 'Aneta Bikowska' (site /sklad-rady podaje 'Anetta'), dane wg tabel głosowań. Kluby niepublikowane w BIP -> club_assignments pending (PENDING). TERYT 3202024 (miasto wg konwencji gmina 3202023 + typ 4). Interpelacje: rada.choszczno.pl/interpelacje ma rejestr 27 interpelacji (tytuł/radny/daty/PDF-y treści i odpowiedzi) — scraper treści nie budowany w tym przebiegu (bonus). Dodane 2026-08-27 (cron ekspansja).",
+    "population": 14399,
+    "voivodeship": "zachodniopomorskie"
+  }
+}
