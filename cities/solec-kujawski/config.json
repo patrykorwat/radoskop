@@ -1,0 +1,39 @@
+{
+  "city_name": "Solec Kujawski",
+  "city_genitive": "Solca Kujawskiego",
+  "site_title": "Radoskop Solec Kujawski — Jak głosują radni?",
+  "site_url": "https://solec-kujawski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Solcu Kujawskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Solcu Kujawskim.",
+  "bip_url": "https://bip.solec-kujawski.pl",
+  "bip_name": "BIP Solec Kujawski",
+  "esesja_url": "https://soleckujawski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "solec-kujawski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Solcu Kujawskim",
+  "rada_name_genitive": "Rady Miejskiej w Solcu Kujawskim",
+  "teryt": "0403084",
+  "_meta": {
+    "note": "NOWE miasto (eSesja 'Portal Mieszkańca' server-rendered soleckujawski.esesja.pl, IX kadencja 2024-2029). Slug eSesja = `soleckujawski` (a nie solec-kujawski — hyphen = wildcard korporacyjny). 30 sesji IX kad., sesje serwerowo-renderowane (PM-instance A, old-compatible), parser lib_esesja bez zmian. Kluby PENDING (niepublicowane). TERYT 0403084 (PL Wikipedia; Wikidata brak P781). bip.solec-kujawski.pl = 410 (nieistnieje); solec-kujawski.bip.net.pl = Nefeni 404.",
+    "population": 15458,
+    "voivodeship": "kujawsko-pomorskie"
+  }
+}
