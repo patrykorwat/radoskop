@@ -1,0 +1,39 @@
+{
+  "city_name": "Skoczów",
+  "city_genitive": "Skoczowa",
+  "site_title": "Radoskop Skoczów — Jak głosują radni?",
+  "site_url": "https://skoczow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Skoczowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Skoczowie.",
+  "bip_url": "https://bip.skoczow.pl",
+  "bip_name": "BIP Skoczów",
+  "esesja_url": "https://skoczow.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "skoczow.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Skoczowie",
+  "rada_name_genitive": "Rady Miejskiej w Skoczowie",
+  "teryt": "2403104",
+  "_meta": {
+    "note": "NOWE miasto (eSesja 'Portal Mieszkańca' server-rendered skoczow.esesja.pl, IX kadencja 2024-2029). Parser lib_esesja bez zmian. Kluby publikowane w BIP jako skany PDF (Klub Radnych Samorządowcy / Skoczowska Prawica) - club_assignments PENDING wymaga OCR (bonus). TERYT 2403104 (Skoczów - miasto, GUS BDL).",
+    "population": 13814,
+    "voivodeship": "śląskie"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "city_name": "Trzebnica",
+  "city_genitive": "Trzebnicy",
+  "site_title": "Radoskop Trzebnica — Jak głosują radni?",
+  "site_url": "https://trzebnica.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Trzebnicy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Trzebnicy.",
+  "bip_url": "https://bip.trzebnica.pl",
+  "bip_name": "BIP Trzebnica",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "trzebnica.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Trzebnicy",
+  "rada_name_genitive": "Rady Miejskiej w Trzebnicy",
+  "teryt": "0220034",
+  "_meta": {
+    "note": "NOWE miasto (custom BIP bip.trzebnica.pl, idcom-jst 'artykuly' CMS; kategoria 'Protokoły i wykazy głosowań - IX kadencja'). Per-sesja PDF 'Wykaz głosowań' (tekstowy, system Rada365) z imiennymi ZA/PRZECIW/WSTRZYMUJĘ SIĘ/NIE GŁOSOWALI/NIEOBECNI; data sesji z protokołu. Parser scrape_trzebnica.py. Kluby PENDING (BIP nie publikuje; club_assignments wymaga kuratorowania). TERYT 0220034 (Trzebnica - miasto, GUS BDL).",
+    "population": 13631,
+    "voivodeship": "dolnośląskie"
+  }
+}
