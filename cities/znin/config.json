@@ -1,0 +1,40 @@
+{
+  "city_name": "Żnin",
+  "city_genitive": "Żnina",
+  "site_title": "Radoskop Żnin — Jak głosują radni?",
+  "site_url": "https://znin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Żninie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Żninie.",
+  "bip_url": "https://rada.gminaznin.pl",
+  "bip_name": "Urząd Miejski w Żninie / AlfaTV System Rada (rada.gminaznin.pl)",
+  "esesja_url": "",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "znin.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Żninie",
+  "rada_name_genitive": "Rady Miejskiej w Żninie",
+  "teryt": "0419064",
+  "_meta": {
+    "note": "NOWE miasto (AlfaTV 'System Rada' rada.gminaznin.pl, czysty strukturalny HTML bez OCR/PDF/JS). /glosowania → tabela posiedzeń IX kad. z linkami /glosowania/posiedzenie/{id}; każda sesja = Accordion: temat + 'Zakończono: DD.MM.YYYY' + tabela zbiorcza (Głosy za/wstrzymujące/przeciw/nieoddane/Nieobecni) + 'Imienny wykaz głosowania' (Imię i nazwisko | za/przeciw/wstrzymał się/nieobecny/nieoddany). 18 posiedzeń IX kad. z imiennymi wynikami (2024-05-20 .. 2026-07-03; pos. 2 bez danych pominięte), 292 głosowania imienne (292/292 agregatów zwalidowanych), 21 radnych. Kluby niepublikowane w BIP -> club_assignments pending (PENDING, verify WARN club_quality). Uwaga: bip.znin.pl (kandydat) nie istnieje (000); realny BIP/rada = rada.gminaznin.pl. TERYT 0419064 (miasto Żnin, gmina miejsko-wiejska; powiat żniński, woj. kujawsko-pomorskie).",
+    "population": 13268,
+    "voivodeship": "kujawsko-pomorskie",
+    "scraper": "custom"
+  }
+}
