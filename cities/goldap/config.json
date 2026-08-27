@@ -1,0 +1,39 @@
+{
+  "city_name": "Gołdap",
+  "city_genitive": "Gołdapi",
+  "site_title": "Radoskop Gołdap — Jak głosują radni?",
+  "site_url": "https://goldap.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Gołdapi. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Gołdapi.",
+  "bip_url": "https://bip.goldap.pl",
+  "bip_name": "BIP Gołdap",
+  "esesja_url": "https://goldapum.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "goldap.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Gołdapi",
+  "rada_name_genitive": "Rady Miejskiej w Gołdapi",
+  "teryt": "2818034",
+  "_meta": {
+    "note": "NOWE miasto (eSesja 'Portal Mieszkańca' server-rendered goldapum.esesja.pl, IX kadencja 2024-2029). Uwaga: candidate esesja_url goldap.esesja.pl to wildcard korporacyjny — realny host to goldapum.esesja.pl. 47 sesji IX kad. (2024-05-07 .. 2026-08-18), parser lib_esesja bez zmian. Kluby PENDING (kuratorowane z BIP). TERYT 2818034 (miasto Gołdap, gmina miejsko-wiejska; powiat gołdapski, woj. warmińsko-mazurskie).",
+    "population": 13378,
+    "voivodeship": "warmińsko-mazurskie"
+  }
+}
