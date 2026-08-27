@@ -1,0 +1,39 @@
+{
+  "city_name": "Jelcz-Laskowice",
+  "city_genitive": "Jelcza-Laskowic",
+  "site_title": "Radoskop Jelcz-Laskowice — Jak głosują radni?",
+  "site_url": "https://jelcz-laskowice.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Jelczu-Laskowicach. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Jelczu-Laskowicach.",
+  "bip_url": "https://bip.jelcz-laskowice.pl",
+  "bip_name": "BIP Jelcz-Laskowice",
+  "esesja_url": "https://jelczlaskowice.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "jelcz-laskowice.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Jelczu-Laskowicach",
+  "rada_name_genitive": "Rady Miejskiej w Jelczu-Laskowicach",
+  "teryt": "0215034",
+  "_meta": {
+    "note": "NOWE miasto (eSesja 'Portal Mieszkańca' server-rendered jelczlaskowice.esesja.pl, IX kadencja 2024-2029). Slug eSesja = `jelczlaskowice` (a nie jelcz-laskowice — hyphen = wildcard korporacyjny). 33 sesje IX kad., sesje serwerowo-renderowane (PM-instance A, old-compatible), parser lib_esesja bez zmian. Kluby PENDING (niepublicowane). TERYT 0215034 (PL Wikipedia; Wikidata brak P781). bip.jelcz-laskowice.pl = 4092B SPA shell (brak tresci serwerowej); jelcz-laskowice.bip.net.pl = Nefeni 404; eSesja = jedyne zrodlo imiennych.",
+    "population": 15380,
+    "voivodeship": "dolnośląskie"
+  }
+}
