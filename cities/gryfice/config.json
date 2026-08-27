@@ -1,0 +1,35 @@
+{
+  "city_name": "Gryfice",
+  "city_genitive": "Gryfic",
+  "site_title": "Radoskop Gryfice — Jak głosują radni?",
+  "site_url": "https://gryfice.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Gryficach. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Gryficach.",
+  "bip_url": "https://bip.gminagryfice.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Gryficach (bip.gminagryfice.pl, AlfaTV System Rada)",
+  "esesja_url": "https://gryfice.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "gryfice.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Gryficach",
+  "rada_name_genitive": "Rady Miejskiej w Gryficach",
+  "teryt": "3205023",
+  "_meta": {
+    "note": "NOWE miasto (AlfaTV 'System Rada' w BIP bip.gminagryfice.pl, czysty strukturalny HTML bez OCR/PDF/JS). Rada Miejska → 'Uchwały i imienne protokoły głosowań' (/artykul/uchwaly-i-imienne-protokoly-glosowan) → per-rok → per-sesja → per-uchwała strona z pełnym głosowaniem imiennym per radny: 'Wyniki głosowania: Głosowało N, ZA-x, WSTRZYMUJĄCY (SIĘ)-y, PRZECIW-z' + tabela 'Lp | Nazwisko i imię | Oddany głos' (ZA/PRZECIW/WSTRZYMUJĄCY SIĘ/-). Sesje I-XXXIII IX kad. 2024-2029 (32 sesje z głosowaniami; sesja I konstytuująca bez tabeli imiennej pominięta), 354 głosowania imienne (każda uchwała = głosowanie; walidowane 342/354 agregatów; w 12 przypadkach skrót 'Głosowało N' w źródle niespójny z tabelą imienną — tabela autorytatywna), 23 radnych (unia nazwisk; w tym 2 nazwiska z rotacją: Bujanowska, Mackojć). UWAGA: stary BIP gryfice.bip.alfatv.pl (Sesje/Protokoły/Uchwały) NIEaktualny (koniec 04.2025); właściwy (kanoniczny wg rejestru gov.pl) to bip.gminagryfice.pl. Kluby niepublikowane w BIP -> club_assignments pending (PENDING). TERYT 3205023 z .units_src/gminy.json. Interpelacje: BIP ma kategorię 'Interpelacje, zapytania i wnioski radnych' (/artykul/interpelacje-zapytania-i-wnioski-radnych) - scraper interpelacji nie budowany w tym przebiegu (bonus). eSesja publiczna (gryfice.esesja.pl) = wildcard korporacyjny (bez BIP); bip.gryfice.pl = BIP Powiatu Gryfickiego (nie miasta); gryfice.bip.net.pl 404. Dodane 2026-08-27 (cron ekspansja).",
+    "population": 15863,
+    "voivodeship": "zachodniopomorskie"
+  }
+}
