@@ -1,0 +1,66 @@
+{
+  "city_name": "Łask",
+  "city_genitive": "Łasku",
+  "site_title": "Radoskop Łask — Jak głosują radni?",
+  "site_url": "https://lask.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Łasku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Łasku.",
+  "bip_url": "https://bip.lask.pl",
+  "bip_name": "BIP Łask",
+  "esesja_url": "https://lask.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lask.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {
+    "Wojciech Madej": "Bezpartyjne Porozumienie Samorządowe",
+    "Grzegorz Rosiak": "Bezpartyjne Porozumienie Samorządowe",
+    "Agnieszka Łukaszewska": "Bezpartyjne Porozumienie Samorządowe",
+    "Grzegorz Maląg": "Bezpartyjne Porozumienie Samorządowe",
+    "Rafał Napióra": "Bezpartyjne Porozumienie Samorządowe",
+    "Halina Wawrzyniak-Licha": "Bezpartyjne Porozumienie Samorządowe",
+    "Sylwester Florczak": "Koalicja Obywatelska",
+    "Igor Jędrzejczak": "Koalicja Obywatelska",
+    "Ireneusz Kołodziejczyk": "Koalicja Obywatelska",
+    "Rafał Mencel": "Koalicja Obywatelska",
+    "Tadeusz Starzyński": "Koalicja Obywatelska",
+    "Katarzyna Wróbel": "Koalicja Obywatelska",
+    "Stanisław Bordowicz": "Prawica Łask",
+    "Andrzej Mara": "Prawica Łask",
+    "Aleksandra Kolasa": "Prawica Łask",
+    "Jolanta Nowak-Popławska": "Prawica Łask",
+    "Iwona Rynkowska": "Prawica Łask",
+    "Daniel Sałagacki": "Prawica Łask",
+    "Robert Styczyński": "Prawica Łask",
+    "Magdalena Kazimierczak": "NZ",
+    "Przemysław Urban": "NZ"
+  },
+  "councilor_roster": [
+    "Sylwester Florczak", "Agnieszka Łukaszewska", "Rafał Mencel", "Grzegorz Rosiak",
+    "Stanisław Bordowicz", "Igor Jędrzejczak", "Magdalena Kazimierczak", "Aleksandra Kolasa",
+    "Ireneusz Kołodziejczyk", "Wojciech Madej", "Grzegorz Maląg", "Andrzej Mara",
+    "Rafał Napióra", "Jolanta Nowak-Popławska", "Iwona Rynkowska", "Daniel Sałagacki",
+    "Tadeusz Starzyński", "Robert Styczyński", "Przemysław Urban", "Halina Wawrzyniak-Licha",
+    "Katarzyna Wróbel"
+  ],
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Łasku",
+  "rada_name_genitive": "Rady Miejskiej w Łasku",
+  "teryt": "1003024",
+  "scrape_disabled": true,
+  "_meta": {
+    "note": "NOWE miasto (custom BIP bip.lask.pl, 'Protokoły z sesji i wyniki głosowań' /4079/). Imienne głosowania IX kad. 2024-2029 jako per-sesja PDF 'Wyniki głosowań z N sesji' (format tekstowy eSesja: Wyniki imienne: ZA (N)…). 27 sesji z głosowaniami (II..XXX; I, XXIV, XXIX bez załącznika). Kluby kuratorowane z BIP /4481/ (BPS 6, KO 6, Prawica Łask 7; Kazimierczak i Urban bez klubu=NZ). Roster 21 radnych ze Składu Rady (DOCX /4479/). TERYT 1003024 (GUS BDL; Wikidata P781 puste). eSesja lask.esesja.pl = martwy wildcard. Dodane 2026-08-27 (cron ekspansja). Club colors auto (faction mode).",
+    "population": 16576,
+    "voivodeship": "łódzkie"
+  }
+}
