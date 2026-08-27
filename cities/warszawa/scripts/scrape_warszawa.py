@@ -103,6 +103,24 @@ def _is_session_stable(date_str: str | None) -> bool:
     return (datetime.now() - dt).days >= STABLE_AGE_DAYS
 
 
+def _within_pending_results_window(date_str: str | None) -> bool:
+    """True gdy data sesji mieści się w oknie publikacji wyników głosowań.
+
+    BIP Warszawy dorzuca docx z wynikami głosowań 3–30 dni po sesji, a sesja
+    nadchodząca/trwająca jeszcze ich nie ma. Sesja 0-głosowa w tym oknie to
+    results_pending (wyniki mogą lada dzień dojść), poza oknem — trwale bez
+    głosowań imiennych (no_roll_call_votes). Daty przyszłe/trwałe też są w
+    oknie (ujemny wiek <= okno).
+    """
+    if not date_str:
+        return False
+    try:
+        dt = datetime.strptime(date_str, "%Y-%m-%d")
+    except (ValueError, TypeError):
+        return False
+    return (datetime.now() - dt).days <= PENDING_RESULTS_WINDOW_DAYS
+
+
 def _has_pending_empty_session(out_path: "Path") -> bool:
     """True gdy zapisane data.json ma sesję z 0 głosami w oknie publikacji wyników.
 
@@ -1001,11 +1019,27 @@ def build_sessions(sessions_raw: list[dict], all_votes: list[dict]) -> list[dict
             for cat in ["za", "przeciw", "wstrzymal_sie", "brak_glosu"]:
                 attendees.update(v["named_votes"].get(cat, []))
 
-        # Sesja bez imiennych głosowań (np. nadzwyczajna / uroczysta). Brak
-        # attendees NIE znaczy, że wszyscy radni byli nieobecni — to po prostu
-        # sesja bez głosowań imiennych. Flaga każe SPA nie wyliczać fałszywych
-        # "wszyscy nieobecni" z pustej listy obecnych (patrz no_roll_call_votes).
-        no_roll_call_votes = len(session_votes) == 0
+        # Rozróżniamy DWA przypadki sesji bez zdobytych głosów:
+        #  - results_pending — sesja w oknie publikacji wyników (BIP dorzuca
+        #    docx 3–30 dni po sesji) albo nadchodząca/trwająca. Wyniki mogą
+        #    lada dzień dojść: SPA pokaże „Wyniki imiennych głosowań nie zostały
+        #    jeszcze opublikowane w BIP", a NIE mylące „Ta sesja nie miała
+        #    głosowań imiennych.".
+        #  - no_roll_call_votes — sesja POZA oknem nadal bez żadnego głosu:
+        #    trwale bez głosowań imiennych (np. nadzwyczajna / uroczysta).
+        # Wcześniej build_sessions ustawiał no_roll_call_votes dla KAŻDEJ sesji
+        # 0-głosowej, więc świeża sesja (jeszcze bez opublikowanych wyników)
+        # wyświetlała „Ta sesja nie miała głosowań imiennych." — fałszywie
+        # przesądzając, że głosowań nigdy nie było.
+        if len(session_votes) == 0:
+            pending = _within_pending_results_window(date)
+            # Brak attendees NIE znaczy, że wszyscy radni byli nieobecni —
+            # flaga każe SPA nie wyliczać fałszywych „wszyscy nieobecni".
+            results_pending = pending
+            no_roll_call_votes = not pending
+        else:
+            results_pending = False
+            no_roll_call_votes = False
 
         # Fallback: per-city HTML/JS template uses session.number as the URL slug
         # in /sesja/{number}/. Empty or junk numbers break navigation, so use
@@ -1018,6 +1052,7 @@ def build_sessions(sessions_raw: list[dict], all_votes: list[dict]) -> list[dict
             "vote_count": len(session_votes),
             "attendee_count": len(attendees),
             "attendees": sorted(attendees),
+            "results_pending": results_pending,
             "no_roll_call_votes": no_roll_call_votes,
         })
 
