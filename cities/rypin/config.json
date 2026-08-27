@@ -1,0 +1,40 @@
+{
+  "city_name": "Rypin",
+  "city_genitive": "Rypina",
+  "site_title": "Radoskop Rypin — Jak głosują radni?",
+  "site_url": "https://rypin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Rypinie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Rypinie.",
+  "bip_url": "https://bip.rypin.eu",
+  "bip_name": "BIP Urzędu Miasta Rypin",
+  "rada_url": "https://rada.rypin.eu",
+  "rada_name_platform": "AlfaTV System Rada",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "rypin.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Rypinie",
+  "rada_name_genitive": "Rady Miejskiej w Rypinie",
+  "teryt": "0412011",
+  "_meta": {
+    "note": "NOWE miasto (AlfaTV 'System Rada' rada.rypin.eu, IX kadencja 2024-2029). 25 sesji IX kad. z glosowaniami (I 2024-05-06..XXX 2026-07-13), 288 glosowan imiennych, 15 radnych. Kluby niepublikowane na platformie (brak sekcji klubow; radny detail tylko Status/Okreg/komisje) -> club_assignments PENDING/NZ. TERYT 0412011 (zweryfikowany, PL Wikipedia; Wikidata nie ma P781). bip.rypin.pl = GMINA wiejska (Rada Gminy, NIE miasto); bip.rypin.eu (Urzad Miasta) + rada.rypin.eu System Rada sa wlasciwe. rypin.esesja.pl = martwy wildcard eSesja; rypin.bip.net.pl = Nefeni 404.",
+    "population": 15832,
+    "voivodeship": "kujawsko-pomorskie"
+  }
+}
