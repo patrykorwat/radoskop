@@ -5,20 +5,13 @@
   "site_url": "https://jedrzejow.radoskop.pl",
   "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Jędrzejowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
   "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Jędrzejowie.",
-  "bip_url": "https://bip.jedrzejow.eu",
-  "bip_name": "BIP Urzędu Miejskiego w Jędrzejowie (bip.jedrzejow.eu)",
+  "bip_url": "https://bip.jedrzejow.pl",
+  "bip_name": "BIP Jędrzejów",
   "esesja_url": "https://jedrzejow.esesja.pl",
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "jedrzejow.radoskop.pl",
-  "clubs": {
-    "NZ": {
-      "name": "Niezrzeszeni",
-      "color": "#6b7280",
-      "bg": "rgba(107,114,128,0.12)",
-      "avatar_bg": "#505560"
-    }
-  },
+  "clubs": {},
   "club_assignments": {},
   "kadencje": {
     "2024-2029": {
@@ -27,6 +20,10 @@
     }
   },
   "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
   "has_budget": false,
   "has_komisje": false,
   "budget_note": "",
@@ -34,32 +31,8 @@
   "rada_name": "Rada Miejska w Jędrzejowie",
   "rada_name_genitive": "Rady Miejskiej w Jędrzejowie",
   "teryt": "2602024",
-  "councilor_roster": [
-    "Artur Biały",
-    "Andrzej Bielecki",
-    "Magdalena Foremnik-Pilarz",
-    "Marek Galant",
-    "Andrzej Jakubanis",
-    "Agnieszka Jopek-Wasilewska",
-    "Wacław Kędra",
-    "Piotr Kossakowski",
-    "Urszula Kruk",
-    "Grzegorz Kuśmierz",
-    "Eugeniusz Łata",
-    "Agnieszka Maciąg-Wojtanowska",
-    "Karina Olesińska",
-    "Tomasz Puchrowicz",
-    "Ilona Sęk",
-    "Łukasz Skrzypczak",
-    "Marek Skrzypiec",
-    "Łukasz Stanek",
-    "Michał Toborek",
-    "Paweł Wojda",
-    "Jan Ziębiński",
-    "Izabela Zmarzły-Prokop"
-  ],
   "_meta": {
-    "note": "NOWE miasto (cron ekspansja). Źródło: eSesja https://jedrzejow.esesja.pl (Rada Miejska w Jędrzejowie, IX kadencja 2024-2029) — Portal Mieszkańca instance A (serwerowo-renderowane /listaglosowan + /glosowanie imienne), scraper config-driven lib_esesja.EsesjaScraper (thin wrapper scrape_jedrzejow.py, wzorzec jelcz-laskowice). 42 sesje IX kad., głosowania imienne per radny. bip.jedrzejow.pl = martwa domena (Cyber_Folks parking); realny BIP = bip.jedrzejow.eu (custom CMS) posiada Skład Rady + rejestr interpelacji. Kluby radnych NIE publikowane w BIP Jędrzejowa → PENDING/NZ (WARN club_quality). TERYT 2602024 (miasto Jędrzejów w gminie miejsko-wiejskiej).",
+    "note": "NOWE miasto (eSesja 'Portal Mieszkańca' server-rendered jedrzejow.esesja.pl, IX kadencja 2024-2029). 42 sesje IX kad. (2024-05-07 .. 2026-07-20), parser lib_esesja bez zmian. Kluby PENDING (kuratorowane z BIP). TERYT 2602024 (miasto Jędrzejów, gmina miejsko-wiejska; Wikidata Q249259 bez P781).",
     "population": 14592,
     "voivodeship": "świętokrzyskie"
   }
