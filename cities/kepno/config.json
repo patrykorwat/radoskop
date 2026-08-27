@@ -1,0 +1,36 @@
+{
+  "city_name": "Kępno",
+  "city_genitive": "Kępna",
+  "site_title": "Radoskop Kępno — Jak głosują radni?",
+  "site_url": "https://kepno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Kępnie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Kępnie.",
+  "bip_url": "https://bip.kepno.pl",
+  "bip_name": "BIP Gminy Kępno",
+  "esesja_url": "https://kepno.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kepno.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Kępnie",
+  "rada_name_genitive": "Rady Miejskiej w Kępnie",
+  "teryt": "3008034",
+  "scrape": {"runner": "run.sh", "generate_site": true},
+  "_meta": {
+    "note": "NOWE miasto (eSesja Portal Mieszkańca server-rendered instance A — głosowania imienne IX kad. 2024-2029 z /glosowanie/, charset utf-8 auto-detect, 31 sesji / 327 głosowań / 21 radnych). Dodane 2026-08-27 (cron ekspansja). bip_url bip.kepno.pl redirect na kepno.bip.net.pl (Nefeni). club_assignments pending (kuratorowane z BIP).",
+    "population": 13951,
+    "voivodeship": "wielkopolskie"
+  }
+}
