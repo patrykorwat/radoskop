@@ -1,0 +1,38 @@
+{
+  "city_name": "Międzyrzecz",
+  "city_genitive": "Międzyrzecza",
+  "site_title": "Radoskop Międzyrzecz — Jak głosują radni?",
+  "site_url": "https://miedzyrzecz.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Międzyrzeczu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Międzyrzeczu.",
+  "bip_url": "https://bip.miedzyrzecz.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Międzyrzeczu",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "miedzyrzecz.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Międzyrzeczu",
+  "rada_name_genitive": "Rady Miejskiej w Międzyrzeczu",
+  "teryt": "0803024",
+  "_meta": {
+    "note": "NOWE miasto (BIP bip.miedzyrzecz.pl, kategoria /309/Glosowania/). Per-sesja PDF (wydruk eSesja, format tekstowy; sesje XXVI+ edytowalne form-fill) z imiennym głosowaniem (tabela Lp|Nazwisko i imię|Głos: ZA/PRZECIW/WSTRZYMUJE SIĘ/OBECNY/NIEOBECNY). 30 sesji I..XXX (2024-05-07..2026-08-05). Skład Rady DYNAMICZNY w kadencji (roster z unikalnych radnych z głosów). Walidacja per-głos sum imiennych == agregaty nagłówka (tylko zwalidowane). Kluby: brak sekcji imiennej w BIP -> club_assignments PENDING, domyślnie NZ. eSesja miedzyrzecz.esesja.pl = martwy Portal Mieszkańca. TERYT 0803024 (gm. m-w, powiat międzyrzecki). Dodane 2026-08-27.",
+    "population": 17400,
+    "voivodeship": "lubuskie"
+  }
+}

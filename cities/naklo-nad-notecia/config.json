@@ -1,0 +1,38 @@
+{
+  "city_name": "Nakło nad Notecią",
+  "city_genitive": "Nakła nad Notecią",
+  "site_title": "Radoskop Nakło nad Notecią — Jak głosują radni?",
+  "site_url": "https://naklo-nad-notecia.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Nakle nad Notecią. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Nakle nad Notecią.",
+  "bip_url": "https://bip.gmina-naklo.pl",
+  "bip_name": "BIP Urzędu Miasta i Gminy w Nakle nad Notecią (custom 'artykuly' CMS)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "naklo-nad-notecia.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Nakle nad Notecią",
+  "rada_name_genitive": "Rady Miejskiej w Nakle nad Notecią",
+  "teryt": "0410014",
+  "_meta": {
+    "note": "NOWE miasto na bip.gmina-naklo.pl (custom 'artykuly' CMS). Źródło głosowań: kategoria protokołów /artykuly/120/protokoly-z-sesji — artykuły protokołów IX kadencji (/artykul/120/{id}/...-kadencji-2024-2029-...), sesje I..XXVII 2024-05-07..2026-05-28. Pobierane WSZYSTKIE załączniki PDF (/attachments/download/{id}); parsowane tylko te w formacie imiennym eSesja 'Wyniki imienne' (per głos: temat 'Głosowano w sprawie', nagłówki ZA/PRZECIW/WSTRZYMUJĘ SIĘ/BRAK GŁOSU/NIEOBECNI + listy nazwisk); reszta (uchwały tekstowe, skany) pominięta. Walidacja per głos sum == agregaty nagłówka. Skład = zbiór radnych z głosowań (21). Kluby: PENDING (domyślnie NZ). eSesja naklo-nad-notecia.esesja.pl = wildcard (nie-BIP). Dodane 2026-08-27.",
+    "population": 17620,
+    "voivodeship": "kujawsko-pomorskie"
+  }
+}
