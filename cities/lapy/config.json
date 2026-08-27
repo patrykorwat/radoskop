@@ -1,0 +1,64 @@
+{
+  "city_name": "Łapy",
+  "city_genitive": "Łap",
+  "site_title": "Radoskop Łapy — Jak głosują radni?",
+  "site_url": "https://lapy.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Łapach. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Łapach.",
+  "bip_url": "https://bip-umlapy.podlaskie.eu",
+  "bip_name": "BIP Urzędu Miejskiego w Łapach (regionalna platforma podlaska)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lapy.radoskop.pl",
+  "clubs": {
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Łapach",
+  "rada_name_genitive": "Rady Miejskiej w Łapach",
+  "teryt": "2002064",
+  "councilor_roster": [
+    "Karol Bagiński",
+    "Karol Brzozowski",
+    "Krzysztof Dobkowski",
+    "Leszek Paweł Gulewicz",
+    "Urszula Jabłońska",
+    "Rafał Jaroszewski",
+    "Adam Karasiewicz",
+    "Iwona Kitlas",
+    "Edyta Antonina Łapińska",
+    "Piotr Łapszo",
+    "Zdzisław Malinowski",
+    "Joanna Manoś",
+    "Maciej Michno",
+    "Andrzej Witold Mojkowski",
+    "Adam Perkowski",
+    "Magdalena Petelska",
+    "Katarzyna Popławska",
+    "Piotr Pułkośnik",
+    "Dariusz Rydzewski",
+    "Wiesław Szustak",
+    "Ewa Katarzyna Śliwowska"
+  ],
+  "_meta": {
+    "note": "NOWE miasto (cron ekspansja). Źródło: BIP UM Łapy na regionalnej platformie podlaskiej (bip-umlapy.podlaskie.eu), sekcja Rada Miejska → Głosowania → Kadencja IX (2024-2029): per sesja PDF 'Głosowania NN sesja Rady Miejskiej w Łapach w dniu …' (tekstowy, generowany przez app.esesja.pl) z głosowaniami imiennymi per radny ZA/PRZECIW/WSTRZYMUJĘ SIĘ/BRAK GŁOSU/NIEOBECNI oraz nagłówkiem agregatu do walidacji. 27 sesji IX kad. (II..XXXI; I konstytuująca oraz XVII/XXIV/XXVI bez załącznika pominięte), 309 głosowań, 22 radnych (skład dynamiczny: Dariusz Wincenciak → Adam Perkowski mid-term). Wszystkie głosowania zwalidowane po liczbach z nagłówka (ZA/PRZECIW). eSesja lapy.esesja.pl = martwy Portal Mieszkańca (PM-instance B, puste sessions-list). bip.lapy.pl DNS martwy. Kluby radnych NIE publikowane w BIP Łapy → PENDING/NZ (WARN club_quality). TERYT 2002064 (miasto Łapy w gminie miejsko-wiejskiej Łapy).",
+    "population": 14790,
+    "voivodeship": "podlaskie"
+  }
+}
