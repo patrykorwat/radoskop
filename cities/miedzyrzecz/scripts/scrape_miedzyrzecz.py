@@ -214,6 +214,11 @@ def _parse_pdf(data):
                     name_toks.append(w)
                 name_toks.sort(key=lambda w: (w["top"], w["x0"]))
                 name = " ".join(w["text"] for w in name_toks).strip()
+                # wydruk eSesja w kolumnie "Lp | Nazwisko i imię | Głos" daje NAZWISKO na 1. miejscu;
+                # konwencja Radoskopa = "Imię Nazwisko" -> przenieś nazwisko na koniec
+                _ntoks = name.split()
+                if len(_ntoks) >= 2:
+                    name = " ".join(_ntoks[1:] + [_ntoks[0]])
                 cur["matched"].append((name.strip(), vote))
         return votes
 
