@@ -1,0 +1,39 @@
+{
+  "city_name": "Mosina",
+  "city_genitive": "Mosiny",
+  "site_title": "Radoskop Mosina — Jak głosują radni?",
+  "site_url": "https://mosina.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Mosinie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Mosinie.",
+  "bip_url": "https://bip.mosina.pl",
+  "bip_name": "BIP Mosina",
+  "esesja_url": "https://mosina.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "mosina.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Mosinie",
+  "rada_name_genitive": "Rady Miejskiej w Mosinie",
+  "teryt": "3021104",
+  "_meta": {
+    "note": "NOWE miasto (eSesja 'Portal Mieszkańca' server-rendered mosina.esesja.pl, IX kadencja 2024-2029). 35 sesji IX kad. (2024-05-07 .. 2026-08-27), parser lib_esesja bez zmian. Kluby PENDING (kuratorowane z BIP). TERYT 3021104 (miasto Mosina, gmina miejsko-wiejska; Wikidata Q50968 bez P781).",
+    "population": 14511,
+    "voivodeship": "wielkopolskie"
+  }
+}
