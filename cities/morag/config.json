@@ -1,0 +1,40 @@
+{
+  "city_name": "Morąg",
+  "city_genitive": "Morąga",
+  "site_title": "Radoskop Morąg — Jak głosują radni?",
+  "site_url": "https://morag.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Morągu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Morągu.",
+  "bip_url": "https://bip.morag.pl",
+  "bip_name": "BIP Morąg",
+  "esesja_url": "",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "morag.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Morągu",
+  "rada_name_genitive": "Rady Miejskiej w Morągu",
+  "teryt": "2815084",
+  "_meta": {
+    "note": "NOWE miasto (custom BIP bip.morag.pl, kategoria /10061/Glosowanie_imienne/ — tekstowe PDF-y 'Głosowanie imienne z N sesji', IX kadencja 2024-2029). 26 sesji IX kad. (2024-05-22 .. 2026-08-05), 362 głosowania imienne (359/362 agregatów zwalidowanych), 22 radnych. Kluby PENDING (kuratorowane z BIP). TERYT 2815084 (miasto Morąg, gmina miejsko-wiejska; powiat ostródzki, woj. warmińsko-mazurskie).",
+    "population": 13317,
+    "voivodeship": "warmińsko-mazurskie",
+    "scraper": "custom"
+  }
+}
