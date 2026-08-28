@@ -1,0 +1,35 @@
+{
+  "city_name": "Głogów Małopolski",
+  "city_genitive": "Głogowa Małopolskiego",
+  "site_title": "Radoskop Głogów Małopolski — Jak głosują radni?",
+  "site_url": "https://glogow-malopolski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Głogowie Małopolskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Głogowie Małopolskim.",
+  "bip_url": "https://bip.malopolska.pl/umglogowmalopolski",
+  "bip_name": "BIP Głogów Małopolski",
+  "esesja_url": "https://glogowmalopolski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "glogow-malopolski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Głogowie Małopolskim",
+  "rada_name_genitive": "Rady Miejskiej w Głogowie Małopolskim",
+  "teryt": "1816064",
+  "_meta": {
+    "note": "NOWE miasto (eSesja Portal Mieszkańca instance, base glogowmalopolski — glosowania imienne IX kad. 2024-2029 z /glosowanie/, charset utf-8 auto-detect). Dodane 2026-08-28 (cron ekspansja). eSesja slug to glogowmalopolski (nie glogow-malopolski — glogow-malopolski.esesja.pl to wildcard-marketing). club_assignments pending (kuratorowane z BIP).",
+    "population": 10232,
+    "voivodeship": "podkarpackie"
+  }
+}
