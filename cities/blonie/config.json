@@ -1,0 +1,60 @@
+{
+  "city_name": "Błonie",
+  "city_genitive": "Błonia",
+  "site_title": "Radoskop Błonie — Jak głosują radni?",
+  "site_url": "https://blonie.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Błoniu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Błoniu.",
+  "bip_url": "https://bip.blonie.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Błoniu",
+  "esesja_url": "https://blonie.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "blonie.radoskop.pl",
+  "clubs": {
+    "Forum Samorządowe Gmin": {
+      "name": "Forum Samorządowe Gmin",
+      "color": "#3b82f6",
+      "bg": "rgba(59,130,246,0.12)",
+      "avatar_bg": "#1d4ed8"
+    },
+    "Projekt Błonie": {
+      "name": "Projekt Błonie – Samorząd dla Mieszkańców",
+      "color": "#10b981",
+      "bg": "rgba(16,185,129,0.12)",
+      "avatar_bg": "#047857"
+    }
+  },
+  "club_assignments": {
+    "Katarzyna Mielcarz": "Forum Samorządowe Gmin",
+    "Jacek Cieślak": "Forum Samorządowe Gmin",
+    "Maciej Górski": "Forum Samorządowe Gmin",
+    "Marcin Kołota": "Forum Samorządowe Gmin",
+    "Marzena Cichewicz": "Projekt Błonie",
+    "Mirosław Nowakowski": "Projekt Błonie",
+    "Aneta Piotrowska": "Projekt Błonie"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Błoniu",
+  "rada_name_genitive": "Rady Miejskiej w Błoniu",
+  "teryt": "1432013",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (custom BIP bip.blonie.pl, CMS /articles). Rada Miejska -> Protokoły z sesji -> lata 2024/2025/2026. Per-sesja protokół PDF (tekstowy, bez OCR) z głosowaniami imiennymi w formacie eSesja-TEXT ('Wyniki imienne: ZA/PRZECIW/WSTRZYMUJĘ SIĘ'). 31 sesji IX kad. (I/24 2024-05-07 .. XXX/26 2026-06-09). Roster 21 radnych (Skład Rady IX kad., /articles/331); kluby: Forum Samorządowe Gmin (4), Projekt Błonie (3) z 'Kluby Radnych 2024-2029'; pozostali NZ. eSesja blonie.esesja.pl ma tylko 2 sesje 05-2024 (reszta w protokołach BIP). TERYT 1432013 (gmina miejsko-wiejska). Dodane 2026-08-28 (cron ekspansja).",
+    "population": 12152,
+    "voivodeship": "mazowieckie"
+  }
+}
