@@ -1,0 +1,52 @@
+{
+  "city_name": "Lubsko",
+  "city_genitive": "Lubska",
+  "site_title": "Radoskop Lubsko — Jak głosują radni?",
+  "site_url": "https://lubsko.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Lubsku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Lubsku.",
+  "bip_url": "https://bip.lubsko.pl",
+  "bip_name": "BIP Lubsko",
+  "esesja_url": "https://lubsko.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lubsko.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Lubsku",
+  "rada_name_genitive": "Rady Miejskiej w Lubsku",
+  "teryt": "0811064",
+  "councilor_roster": [
+    "Adriana Rotkis",
+    "Agnieszka Gawron",
+    "Alicja Kuźmińska",
+    "Artur Bondarenko",
+    "Bartosz Łapa",
+    "Dariusz Gembara",
+    "Emilia Zajączkowska",
+    "Ewa Śmiałek-Kowalewska",
+    "Jarosław Bednarek",
+    "Krzysztof Bielecki",
+    "Łukasz Michałkiewicz",
+    "Mirosław Firuta",
+    "Monika Przysmak",
+    "Radosław Bondarenko",
+    "Robert Słowikowski"
+  ],
+  "_meta": {
+    "note": "NOWE miasto (custom BIP bip.lubsko.pl /343/ Protokoły z głosowań kadencja IX: per-sesja eSesja-imienne text-format PDF 'Protokol_Rada24_posiedzenie_N.pdf', 30 sesji I..XXX 2024-05-07..2026-07-14). Scraper scrape_lubsko.py. club_assignments pending (BIP nie publikuje klubów radnych) -> NZ. TERYT 0811064 (miasto, powiat żarski, lubuskie).",
+    "population": 13240,
+    "voivodeship": "lubuskie"
+  }
+}
