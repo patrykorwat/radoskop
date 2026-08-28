@@ -30,9 +30,9 @@
   "samorzad_type": "miasto",
   "rada_name": "Rada Miejska w Krzeszowicach",
   "rada_name_genitive": "Rady Miejskiej w Krzeszowicach",
-  "teryt": "1206063",
+  "teryt": "1206064",
   "_meta": {
-    "note": "NOWE miasto (custom BIP bip.malopolska.pl/umkrzeszowice, Madkom SPA, kategoria Imienne wykazy głosowań — tekstowe PDF-y 'Protokoły głosowań z N sesji', IX kadencja 2024-2029). 30 sesji IX kad. (I 2024-05-07 .. XXX 2026-07-30), 555 głosowań imiennych (550/555 agregatów zwalidowanych, 99.1%), 21 radnych. Kluby skuratorowane z BIP (Wspólna Gmina Krzeszowice 5 / PiS 7 / Koalicja Obywatelska 3 / Rzetelna Gmina Krzeszowice 6, komplet 21). TERYT 1206063 (miasto Krzeszowice, gmina miejsko-wiejska, powiat krakowski, woj. małopolskie).",
+    "note": "NOWE miasto (custom BIP bip.malopolska.pl/umkrzeszowice, Madkom SPA, kategoria Imienne wykazy głosowań — tekstowe PDF-y 'Protokoły głosowań z N sesji', IX kadencja 2024-2029). 30 sesji IX kad. (I 2024-05-07 .. XXX 2026-07-30), 555 głosowań imiennych (550/555 agregatów zwalidowanych, 99.1%), 21 radnych. Kluby skuratorowane z BIP (Wspólna Gmina Krzeszowice 5 / PiS 7 / Koalicja Obywatelska 3 / Rzetelna Gmina Krzeszowice 6, komplet 21). TERYT 1206064 (miasto Krzeszowice w gminie miejsko-wiejskiej, powiat krakowski, woj. małopolskie).",
     "population": 9868,
     "voivodeship": "małopolskie",
     "scraper": "custom"
