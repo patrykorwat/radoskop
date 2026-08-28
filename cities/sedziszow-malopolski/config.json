@@ -1,0 +1,44 @@
+{
+  "city_name": "Sędziszów Małopolski",
+  "city_genitive": "Sędziszowa Małopolskiego",
+  "site_title": "Radoskop Sędziszów Małopolski — Jak głosują radni?",
+  "site_url": "https://sedziszow-malopolski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Sędziszowie Małopolskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Sędziszowie Małopolskim.",
+  "bip_url": "https://bip.sedziszow.pl",
+  "bip_name": "BIP Sędziszów Małopolski",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sedziszow-malopolski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "councilor_roster": [
+    "Aneta Konieczna", "Zbigniew Adamski", "Dariusz Wróbel", "Paweł Adamski",
+    "Nikodem Jawor", "Jarosław Jaworski", "Andrzej Jupowicz", "Damian Kalita",
+    "Wioletta Kamińska", "Zdzisław Makuch", "Renata Pacholec", "Jakub Soboń",
+    "Jacek Sroka", "Wiktor Tabor", "Bożena Wójcik"
+  ],
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "gmina",
+  "rada_name": "Rada Miejska w Sędziszowie Małopolskim",
+  "rada_name_genitive": "Rady Miejskiej w Sędziszowie Małopolskim",
+  "teryt": "1815043",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (custom BIP bip.sedziszow.pl, SYSTEMDOBIP.PL; Rada Miejska -> Protokoły głosowań /10176 -> /10243). Per-sesja PDF 'Protokół z głosowania - sesja NN' (format tekstowy, bez OCR: LP. Nazwisko i Imię jak głosował + GŁOSOWAŁO/ZA/PRZECIW/WSTRZYMAŁO do walidacji). Krycie: sesje XV..XXXI IX kad. (2025-04-09..2026-08-19); sesja XX/2025 i sesje 2024 (I-XIV) bez opublikowanego protokołu głosowań. 16 sesji. Roster 15 radnych ze Składu Rady (/10172). Kluby niepublikowane w BIP -> NZ (WARN club_quality). TERYT 1815043 (GUS BDL). eSesja sedziszow-malopolski.esesja.pl = martwy wildcard. Dodane 2026-08-28 (cron ekspansja).",
+    "population": 12313,
+    "voivodeship": "podkarpackie"
+  }
+}
