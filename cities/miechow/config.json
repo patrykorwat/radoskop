@@ -1,0 +1,40 @@
+{
+  "city_name": "Miechów",
+  "city_genitive": "Miechowa",
+  "site_title": "Radoskop Miechów — Jak głosują radni?",
+  "site_url": "https://miechow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Miechowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Miechowie.",
+  "bip_url": "https://bip.malopolska.pl/ugimmiechow",
+  "bip_name": "BIP Miechów",
+  "esesja_url": "",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "miechow.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Miechowie",
+  "rada_name_genitive": "Rady Miejskiej w Miechowie",
+  "teryt": "1208054",
+  "_meta": {
+    "note": "NOWE miasto (custom BIP bip.malopolska.pl/ugimmiechow, Madkom SPA, kategoria menu 314396 'Wyniki głosowań'; załączniki 'Raport z głosowań' eSesja-text imienne per-radny, IX kadencja 2024-2029). 21 sesji IX kad. (2024-05-16 .. 2026-08-27), 260/269 głosowań imiennych zwalidowanych, 15 radnych (roster kanoniczny z raportów). Sesje bez raportu: I inauguracyjna, X, XV, XVII, XXI, XXIV, XXVIII; XXV/2026-05-28 plik-raport uszkodzony (ZIP nie PDF) + 2026-04-30 empty. Kluby: BIP nie publikuje 'Klubów Radnych' IX kad. -> PENDING/NZ (WARN club_quality). TERYT 1208054 (miasto Miechów w gminie miejsko-wiejskiej Miechów, powiat miechowski, woj. małopolskie).",
+    "population": 11215,
+    "voivodeship": "małopolskie",
+    "scraper": "custom"
+  }
+}
