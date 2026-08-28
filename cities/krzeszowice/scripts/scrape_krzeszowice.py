@@ -190,7 +190,18 @@ def _reconstruct_names(tokens, count, roster_pairs):
             names.append(f"{t[i]} {t[i+1]}"); i+=2
         else:
             i+=1
-    return names[:count]
+    return [_title_case(n) for n in names[:count]]
+
+def _title_case(name):
+    """ANGELIKA BALAWEJDER -> Angelika Balawejder; Krystyna Galos stays."""
+    parts=name.split()
+    out=[]
+    for p in parts:
+        if p==p.upper() and len(p)>1:  # all caps already
+            out.append(p.title())
+        else:
+            out.append(p)
+    return " ".join(out)
 
 def _build_roster(records):
     """From all parsed votes' za token lists, derive canonical (first,last) names.
@@ -255,7 +266,7 @@ def main():
     roster_pairs=roster
 
     # build vote records
-    roster_set={f"{f} {l}" for f,l in roster_pairs}
+    roster_set={_title_case(f"{f} {l}") for f,l in roster_pairs}
     validated={'ok':0,'mismatch':0,'noim':0}
     all_votes=[]; vid=0; by_date=defaultdict(list)
     all_names=set()
