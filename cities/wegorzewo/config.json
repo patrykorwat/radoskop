@@ -1,0 +1,46 @@
+{
+    "city_name": "Węgorzewo",
+    "city_genitive": "Węgorzewa",
+    "site_title": "Radoskop Węgorzewo — Jak głosują radni?",
+    "site_url": "https://wegorzewo.radoskop.pl",
+    "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Węgorzewie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+    "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Węgorzewie.",
+    "bip_url": "https://bip.wegorzewo.pl",
+    "bip_name": "BIP Urzędu Miejskiego w Węgorzewie (idcom-jst)",
+    "esesja_url": "https://wegorzewo.esesja.pl",
+    "github_url": "https://github.com/radoskoppl/radoskop",
+    "author": "Patryk Orwat",
+    "cname": "wegorzewo.radoskop.pl",
+    "clubs": {
+        "NZ": {
+            "name": "Niezrzeszeni",
+            "color": "#6b7280",
+            "bg": "rgba(107,114,128,0.12)",
+            "avatar_bg": "#505560"
+        }
+    },
+    "club_assignments": {},
+    "kadencje": {
+        "2024-2029": {
+            "label": "IX kadencja (2024–2029)",
+            "start": "2024-05-07"
+        }
+    },
+    "kadencja_active": "2024-2029",
+    "scrape": {
+        "runner": "run.sh",
+        "generate_site": true
+    },
+    "has_budget": false,
+    "has_komisje": false,
+    "budget_note": "",
+    "samorzad_type": "miasto",
+    "rada_name": "Rada Miejska w Węgorzewie",
+    "rada_name_genitive": "Rady Miejskiej w Węgorzewie",
+    "teryt": "2819033",
+    "_meta": {
+        "note": "NOWE miasto. Źródło: BIP idcom-jst bip.wegorzewo.pl (Rada Miejska -> Sesje Rady Miejskiej -> Kadencja 2024-2029, kat. 17653), per-sesja arłamki 'Obrady N sesji' z załącznikiem PDF 'Wyniki głosowań N Sesji' (eSesja PRINT 2-kolumnowy, tekstowy, imienne ZA/PRZECIW/WSTRZYMUJE SIĘ/NIEOBECNY + agregaty walidacyjne). 29 sesji IX kad. (2024-05-07..2026-07-29), 15 radnych (stabilny roster). Kluby niepublikowane -> NZ (verify WARN club_quality). eSesja wegorzewo.esesja.pl = Portal Mieszkańca PM-B (puste sessions-list, dead-end); bip.wegorzewo.pl (z listy) martwe SSL; wegorzewo.bip.net.pl = 404 (nie Nefeni). Interpelacje: eSesja ma moduł '/interpelacje_i_zapytania' + BIP ma kategorię Interpelacje (kat. 12398, dzial 4064), scraper interpelacji nie budowany w tym przebiegu (bonus). TERYT 2819033 (GUS TERYT, Wikidata brak P781).",
+        "population": 10879,
+        "voivodeship": "warmińsko-mazurskie"
+    }
+}

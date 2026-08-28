@@ -1,0 +1,45 @@
+{
+    "city_name": "Myślibórz",
+    "city_genitive": "Myśliborza",
+    "site_title": "Radoskop Myślibórz — Jak głosują radni?",
+    "site_url": "https://mysliborz.radoskop.pl",
+    "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Myśliborzu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+    "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Myśliborzu.",
+    "bip_url": "https://bip.mysliborz.pl",
+    "bip_name": "BIP Urzędu Miejskiego w Myśliborzu (AlfaTV System Rada rada.mysliborz.pl)",
+    "github_url": "https://github.com/radoskoppl/radoskop",
+    "author": "Patryk Orwat",
+    "cname": "mysliborz.radoskop.pl",
+    "clubs": {
+        "NZ": {
+            "name": "Niezrzeszeni",
+            "color": "#6b7280",
+            "bg": "rgba(107,114,128,0.12)",
+            "avatar_bg": "#505560"
+        }
+    },
+    "club_assignments": {},
+    "kadencje": {
+        "2024-2029": {
+            "label": "IX kadencja (2024–2029)",
+            "start": "2024-05-07"
+        }
+    },
+    "kadencja_active": "2024-2029",
+    "scrape": {
+        "runner": "run.sh",
+        "generate_site": true
+    },
+    "has_budget": false,
+    "has_komisje": false,
+    "budget_note": "",
+    "samorzad_type": "miasto",
+    "rada_name": "Rada Miejska w Myśliborzu",
+    "rada_name_genitive": "Rady Miejskiej w Myśliborzu",
+    "teryt": "3210043",
+    "_meta": {
+        "note": "NOWE miasto. Źródło: AlfaTV 'System Rada' rada.mysliborz.pl (czysty strukturalny HTML, /glosowania -> /glosowania/posiedzenie/{id}), imienne wyniki per radny + agregaty walidacyjne ('Zakończono' date). https://mysliborz-rada.alfatv.pl = kopia VIII kadencji (ignorowana). eSesja mysliborz.esesja.pl = martwy; mysliborz.bip.net.pl = 404 (nie Nefeni); bip.mysliborz.pl = realny BIP (linkuje do rada.mysliborz.pl). Kluby w System Rada = KWW komitety wyborcze (nie kluby) -> NZ (verify WARN club_quality). Interpelacje: rada.mysliborz.pl/interpelacje istnieją, scraper interpelacji nie budowany w tym przebiegu (bonus). TERYT 3210043 (GUS TERYT, Wikidata brak P781).",
+        "population": 10649,
+        "voivodeship": "zachodniopomorskie"
+    }
+}
