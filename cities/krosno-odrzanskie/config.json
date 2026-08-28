@@ -1,0 +1,39 @@
+{
+    "city_name": "Krosno Odrzańskie",
+    "city_genitive": "Krosna Odrzańskiego",
+    "site_title": "Radoskop Krosno Odrzańskie — Jak głosują radni?",
+    "site_url": "https://krosno-odrzanskie.radoskop.pl",
+    "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Krośnie Odrzańskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+    "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Krośnie Odrzańskim.",
+    "bip_url": "https://bip.krosnoodrzanskie.pl",
+    "bip_name": "BIP Krosno Odrzańskie",
+    "esesja_url": "https://krosnoodrzanskie.esesja.pl",
+    "github_url": "https://github.com/radoskoppl/radoskop",
+    "author": "Patryk Orwat",
+    "cname": "krosno-odrzanskie.radoskop.pl",
+    "clubs": {},
+    "club_assignments": {},
+    "kadencje": {
+        "2024-2029": {
+            "label": "IX kadencja (2024–2029)",
+            "start": "2024-05-07"
+        }
+    },
+    "kadencja_active": "2024-2029",
+    "scrape": {
+        "runner": "run.sh",
+        "generate_site": true
+    },
+    "has_budget": false,
+    "has_komisje": false,
+    "budget_note": "",
+    "samorzad_type": "miasto",
+    "rada_name": "Rada Miejska w Krośnie Odrzańskim",
+    "rada_name_genitive": "Rady Miejskiej w Krośnie Odrzańskim",
+    "teryt": "0802063",
+    "_meta": {
+        "note": "NOWE miasto (eSesja 'Portal Mieszkańca' server-rendered krosnoodrzanskie.esesja.pl, IX kadencja 2024-2029). Slug eSesja = `krosnoodrzanskie` (a nie krosno-odrzanskie — krosno-odrzanskie.esesja.pl to wildcard korporacyjny). 28 sesji IX kad. (2024-05-08..2026-06-23, newest), sesje serwerowo-renderowane (PM-instance A, old-compatible), parser lib_esesja bez zmian. Kluby PENDING (niepublicowane). TERYT 0802063 (GUS TERYT, Wikidata brak P781). bip.krosno-odrzanskie.pl (z listy) = zaparkowana 'Domain For Sale'; realny BIP = bip.krosnoodrzanskie.pl; krosno-odrzanskie.bip.net.pl = 404 (nie Nefeni).",
+        "population": 10905,
+        "voivodeship": "lubuskie"
+    }
+}
