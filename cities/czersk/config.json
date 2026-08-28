@@ -1,0 +1,35 @@
+{
+  "city_name": "Czersk",
+  "city_genitive": "Czerska",
+  "site_title": "Radoskop Czersk — Jak głosują radni?",
+  "site_url": "https://czersk.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Czersku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Czersku.",
+  "bip_url": "https://bip.czersk.pl",
+  "bip_name": "BIP Gminy Czersk",
+  "esesja_url": "https://czersk.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "czersk.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Czersku",
+  "rada_name_genitive": "Rady Miejskiej w Czersku",
+  "teryt": "2202044",
+  "_meta": {
+    "note": "NOWE miasto (sesjaradygminy.pl Portal Radnego — platforma Nexa; glosowania imienne IX kad. 2024-2029 z /Voting/Details/{id}, lista sesji+glosowan z /Voting/All serwer-renderowana JSON). Dodane 2026-08-28 (cron ekspansja). Zrodlo glowowania: czersk.sesjaradygminy.pl (czersk.esesja.pl to martwy Portal Mieszkaniec PM-instance B). club_assignments pending (kuratorowane z BIP).",
+    "population": 9997,
+    "voivodeship": "pomorskie"
+  }
+}
