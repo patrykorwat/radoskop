@@ -1,0 +1,40 @@
+{
+  "city_name": "Złocieniec",
+  "city_genitive": "Złocieńca",
+  "site_title": "Radoskop Złocieniec — Jak głosują radni?",
+  "site_url": "https://zlocieniec.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Złocieńcu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Złocieńcu.",
+  "bip_url": "https://bip.zlocieniec.pl",
+  "bip_name": "BIP Złocieniec",
+  "rada_url": "https://rada.zlocieniec.pl",
+  "rada_name_platform": "AlfaTV System Rada",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zlocieniec.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "gmina",
+  "rada_name": "Rada Miejska w Złocieńcu",
+  "rada_name_genitive": "Rady Miejskiej w Złocieńcu",
+  "teryt": "3203063",
+  "_meta": {
+    "note": "NOWE miasto (AlfaTV 'System Rada' rada.zlocieniec.pl — czysty strukturalny HTML per-uchwała, bez OCR). Glosowania imienne IX kad. 2024-2029. eSesja zlocieniec.esesja.pl = martwy wildcard korporacyjny. BIP bip.zlocieniec.pl linkuje do rada.zlocieniec.pl. Kluby: wszystkie afiliacje to KWW (komitety wyborcze, nie kluby) -> NZ (WARN club_quality). TERYT 3203063 (GUS BDL).",
+    "population": 12373,
+    "voivodeship": "zachodniopomorskie"
+  }
+}
