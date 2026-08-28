@@ -1,0 +1,35 @@
+{
+  "city_name": "Nowa Dęba",
+  "city_genitive": "Nowej Dęby",
+  "site_title": "Radoskop Nowa Dęba — Jak głosują radni?",
+  "site_url": "https://nowa-deba.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Nowej Dębie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Nowej Dębie.",
+  "bip_url": "https://bip.nowa-deba.pl",
+  "bip_name": "BIP Nowa Dęba",
+  "esesja_url": "https://nowadeba.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "nowa-deba.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Nowej Dębie",
+  "rada_name_genitive": "Rady Miejskiej w Nowej Dębie",
+  "teryt": "1820044",
+  "_meta": {
+    "note": "NOWE miasto (eSesja Portal Mieszkańca instance, base nowadeba — glosowania imienne IX kad. 2024-2029 z /glosowanie/, charset utf-8 auto-detect; nowa-deba.esesja.pl to wildcard-marketing, wlasciwy slug to nowadeba). Dodane 2026-08-28 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 10647,
+    "voivodeship": "podkarpackie"
+  }
+}

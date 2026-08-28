@@ -1,0 +1,39 @@
+{
+  "city_name": "Parczew",
+  "city_genitive": "Parczewa",
+  "site_title": "Radoskop Parczew — Jak głosują radni?",
+  "site_url": "https://parczew.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Parczewie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Parczewie.",
+  "bip_url": "https://umparczew.bip.lubelskie.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Parczewie",
+  "esesja_url": "https://parczew.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "parczew.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Parczewie",
+  "rada_name_genitive": "Rady Miejskiej w Parczewie",
+  "teryt": "0613044",
+  "_meta": {
+    "note": "NOWE miasto (custom scraper Wrota Lubelszczyzny umparczew.bip.lubelskie.pl, kategoria 309 'wykaz głosowań na sesjach' — AJAX list-ajax + tekstowe PDF-y raport_z_glosowan z imiennymi ZA/PRZECIW/WSTRZYMUJĘ SIĘ/BRAK GŁOSU/NIEOBECNI). parczew.esesja.pl=wildcard-marketing; bip.parczew.pl=Starostwo Powiatowe (nie miasto). 28 sesji IX kad. 2024-05-07..2026-08-07. Dodane 2026-08-28 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 10519,
+    "voivodeship": "lubelskie"
+  }
+}

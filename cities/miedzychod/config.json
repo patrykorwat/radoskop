@@ -1,0 +1,39 @@
+{
+  "city_name": "Międzychód",
+  "city_genitive": "Międzychodu",
+  "site_title": "Radoskop Międzychód — Jak głosują radni?",
+  "site_url": "https://miedzychod.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska Międzychodu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska Międzychodu.",
+  "bip_url": "https://bip.miedzychod.pl",
+  "bip_name": "BIP Urzędu Miasta i Gminy w Międzychodzie",
+  "esesja_url": "https://miedzychod.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "miedzychod.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska Międzychodu",
+  "rada_name_genitive": "Rady Miejskiej Międzychodu",
+  "teryt": "3014034",
+  "_meta": {
+    "note": "NOWE miasto (AlfaTV System Rada rada.miedzychod.pl — czysty strukturalny HTML, wzorzec turek/mysliborz/znin; /glosowania/posiedzenie/{id} z tabelami imiennymi ZA/PRZECIW/WSTRZYMUJĘ SIĘ). miedzychod.esesja.pl=PM-instance B (puste .sessions-list, dead-end dla głosowań); bip.miedzychod.pl=realny BIP (rada/glosowania → ten sam System Rada); miedzychod.bip.net.pl=404. Sesje II..XXXVIII IX kad. (2024-05-28..2026-08-25; I konstytuująca 05-06 + 2 testowe przed startem pominięte). Afiliacje w System Rada to KWW (komitety wyborcze, nie kluby) -> NZ (verify WARN club_quality). Testowy Przewodniczacy (konto testowe) pominięty. Dodane 2026-08-28 (cron ekspansja).",
+    "population": 10288,
+    "voivodeship": "wielkopolskie"
+  }
+}
