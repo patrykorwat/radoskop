@@ -57,13 +57,25 @@ KADENCJA_ID = "2024-2029"
 KADENCJA_LABEL = "IX kadencja (2024\u20132029)"
 
 # Kuratorowany skład rady (z listy obecności sesji; stabilny w całej IX kadencji).
+# Źródło (PDF eSesja-print) podaje "Nazwisko Imię"; Radoskop/verify wymaga konwencji
+# "Imię Nazwisko" (heurystyka reversed w verify_city), więc zamieniono kolejność.
 # Kluby niepublikowane → NZ.
 ROSTER = [
-    "Adamejtis Wiesław", "Biłat Irena", "Kozian Dorota", "Kozłowski Zbigniew",
-    "Lipski Marek", "Mickiewicz Wiesław", "Mozyro Marcin", "Ożga Edward",
-    "Rodziewicz Mateusz", "Soczewka Adam", "Subocz Iwona", "Szram Stanisława",
-    "Tymoszczuk Włodzimierz", "Wierzchowski Tomasz", "Żerucha Władysław",
+    "Wiesław Adamejtis", "Irena Biłat", "Dorota Kozian", "Zbigniew Kozłowski",
+    "Marek Lipski", "Wiesław Mickiewicz", "Marcin Mozyro", "Edward Ożga",
+    "Mateusz Rodziewicz", "Adam Soczewka", "Iwona Subocz", "Stanisława Szram",
+    "Włodzimierz Tymoszczuk", "Tomasz Wierzchowski", "Władysław Żerucha",
 ]
+
+# Mapowanie nazw surowych z PDF ("Nazwisko Imię") na kanoniczne ("Imię Nazwisko").
+_SRC_TO_CANON = {}
+for _canon in ROSTER:
+    _parts = _canon.split()
+    _src = " ".join([_parts[-1]] + _parts[:-1])   # "Nazwisko Imię" (i ewentualne 2. imię zostaje przy nazwisku)
+    _SRC_TO_CANON[_src] = _canon
+    # także wariant z samym nazwiskiem+1.imieniem (PDF czasem skraca)
+    if len(_parts) >= 3:
+        _SRC_TO_CANON[f"{_parts[-1]} {_parts[0]}"] = _canon
 
 REQ_DELAY = 0.4
 _LAST_REQ = 0.0
@@ -227,6 +239,7 @@ def parse_report_pdf(data):
                 for mm in seq:
                     nm = _norm_name(mm[1])
                     vk = _VOTE_MAP.get(mm[2])
+                    nm = _SRC_TO_CANON.get(nm, nm)   # "Nazwisko Imię" -> "Imię Nazwisko"
                     if nm and vk:
                         named[vk].append(nm)
                 j += 1
