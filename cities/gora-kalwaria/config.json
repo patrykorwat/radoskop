@@ -1,0 +1,39 @@
+{
+    "city_name": "Góra Kalwaria",
+    "city_genitive": "Góry Kalwarii",
+    "site_title": "Radoskop Góra Kalwaria — Jak głosują radni?",
+    "site_url": "https://gora-kalwaria.radoskop.pl",
+    "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Górze Kalwarii. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+    "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Górze Kalwarii.",
+    "bip_url": "https://bip.gorakalwaria.pl",
+    "bip_name": "BIP Góra Kalwaria",
+    "esesja_url": "https://gorakalwaria.esesja.pl",
+    "github_url": "https://github.com/radoskoppl/radoskop",
+    "author": "Patryk Orwat",
+    "cname": "gora-kalwaria.radoskop.pl",
+    "clubs": {},
+    "club_assignments": {},
+    "kadencje": {
+        "2024-2029": {
+            "label": "IX kadencja (2024–2029)",
+            "start": "2024-05-07"
+        }
+    },
+    "kadencja_active": "2024-2029",
+    "scrape": {
+        "runner": "run.sh",
+        "generate_site": true
+    },
+    "has_budget": false,
+    "has_komisje": false,
+    "budget_note": "",
+    "samorzad_type": "miasto",
+    "rada_name": "Rada Miejska w Górze Kalwarii",
+    "rada_name_genitive": "Rady Miejskiej w Górze Kalwarii",
+    "teryt": "1418014",
+    "_meta": {
+        "note": "NOWE miasto (eSesja 'Portal Mieszkańca' server-rendered gorakalwaria.esesja.pl, IX kadencja 2024-2029). Slug eSesja = `gorakalwaria` (a nie gora-kalwaria — hyphen = wildcard korporacyjny). 33 sesje IX kad., sesje serwerowo-renderowane (PM-instance A, old-compatible), parser lib_esesja bez zmian. Kluby PENDING (niepublicowane). TERYT 1418014 (GUS TERYT, Wikidata brak P781). bip.gorakalwaria.pl = realny BIP (idcom-jst); bip.gora-kalwaria.pl (z listy) = domena zaparkowana/na sprzedaż (aftermarket); gora-kalwaria.bip.net.pl = 404 (nie Nefeni). Protokoły z sesji zawierają też głosowania imienne w formacie tekstowym (potwierdzenie źródła).",
+        "population": 11887,
+        "voivodeship": "mazowieckie"
+    }
+}
