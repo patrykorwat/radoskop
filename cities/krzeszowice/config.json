@@ -1,0 +1,39 @@
+{
+    "city_name": "Krzeszowice",
+    "city_genitive": "Krzeszowic",
+    "site_title": "Radoskop Krzeszowice — Jak głosują radni?",
+    "site_url": "https://krzeszowice.radoskop.pl",
+    "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Krzeszowicach. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+    "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Krzeszowicach.",
+    "bip_url": "https://bip.malopolska.pl/umkrzeszowice",
+    "bip_name": "BIP Urzędu Miejskiego w Krzeszowicach",
+    "esesja_url": "https://krzeszowice.esesja.pl",
+    "github_url": "https://github.com/radoskoppl/radoskop",
+    "author": "Patryk Orwat",
+    "cname": "krzeszowice.radoskop.pl",
+    "clubs": {},
+    "club_assignments": {},
+    "kadencje": {
+        "2024-2029": {
+            "label": "IX kadencja (2024–2029)",
+            "start": "2024-05-07"
+        }
+    },
+    "kadencja_active": "2024-2029",
+    "scrape": {
+        "runner": "run.sh",
+        "generate_site": true
+    },
+    "has_budget": false,
+    "has_komisje": false,
+    "budget_note": "",
+    "samorzad_type": "miasto",
+    "rada_name": "Rada Miejska w Krzeszowicach",
+    "rada_name_genitive": "Rady Miejskiej w Krzeszowicach",
+    "teryt": "1206064",
+    "_meta": {
+        "note": "NOWE miasto (custom BIP bip.malopolska.pl/umkrzeszowice Madkom SPA, 'Imienne wykazy głosowań' menu 310174 rozbity per rok: 2024=430283/2025=457930/2026=471942). Załączniki PDF 'Wyniki głosowań - ...' w formacie systemu ELECTOR (PROTOKÓŁ GŁOSOWANIA) — tekstowe, bez OCR. 30 sesji IX kad. (I 2024-05-07..XXX 2026-07-30), 555 głosowań imiennych (553/555 agregatów zwalidowanych; 2 drobne rozbieżności jedynie w sesji inauguracyjnej I gdzie PDF maskuje jednego radnego jako 'X X' w Brak obecności), 21 radnych (kanoniczny roster z raportów). Kluby niepublikowane w BIP -> club_assignments PENDING (verify WARN club_quality). TERYT 1206064 (GUS TERYT, Wikidata brak P781; miasto w gminie miejsko-wiejskiej 120606). eSesja krzeszowice.esesja.pl = Portal Mieszkańca PM-instance B (puste sessions-list, brak głosowań imiennych — dead-end); bip.krzeszowice.pl (z listy)=DNS martwa; krzeszowice.bip.net.pl=404 (nie Nefeni).",
+        "population": 9868,
+        "voivodeship": "małopolskie"
+    }
+}
