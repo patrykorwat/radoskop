@@ -1,0 +1,48 @@
+{
+  "city_name": "Głuchołazy",
+  "city_genitive": "Głuchołaz",
+  "site_title": "Radoskop Głuchołazy — Jak głosują radni?",
+  "site_url": "https://glucholazy.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Głuchołazach. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Głuchołazach.",
+  "bip_url": "https://bip.glucholazy.pl",
+  "bip_name": "BIP Głuchołazy",
+  "esesja_url": "https://glucholazy.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "glucholazy.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "councilor_roster": [
+    "Anna Szczegielniak", "Jadwiga Studzienna", "Teresa Wilk", "Grzegorz Gąsior",
+    "Ryszard Udziela", "Klaudia Pach-Gomulnicka", "Leszek Szeloch", "Grzegorz Ptak",
+    "Roman Stokłosa", "Jan Ćwiek", "Mariusz Migała", "Jarosław Drożdżyński",
+    "Mateusz Gargol", "Jerzy Dunaj", "Szymon Biliński", "Paweł Szpak",
+    "Radosław Mikłasz", "Szymon Zyśk", "Marek Bortniczuk", "Kamil Maciński",
+    "Edward Szupryczyński", "Stanisław Grocholski"
+  ],
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Głuchołazach",
+  "rada_name_genitive": "Rady Miejskiej w Głuchołazach",
+  "teryt": "1607014",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (custom BIP bip.glucholazy.pl, Rada Miejska -> Protokoły z sesji 2024-29 -> per-rok /7415/ /8424/ /9808/). Każdy 'Protokół nr R/YY z Sesji Rady Miejskiej w Głuchołazach' to artykuł HTML (serwer-renderowany, inline) z imiennymi głosowaniami (format: Wyniki imienne: ZA(n): <nazwiska> / PRZECIW / WSTRZYMUJĘ SIĘ / NIE GŁOSOWALI / NIEOBECNI). Data sesji z 'Obrady rozpoczęto DD-MM-YYYY'. ~25 sesji (II..XXIX, 2024-05..2026); sesja I konstytuująca + XI-XIII niepublikowane. Kluby: kategoria 'Kluby Radnych Rady Miejskiej w Głuchołazach' na BIP (kuratorowane jeśli czytelna, w razie braku PENDING/NZ). Roster ~21 radnych ze 'Skład Rady Miejskiej' /27/ + unia nazwisk z głosowań. TERYT 1607014. eSesja glucholazy.esesja.pl = martwy wildcard. Dodane 2026-08-28 (cron ekspansja). Club colors auto (faction mode).",
+    "population": 13143,
+    "voivodeship": "opolskie",
+    "powiat": "nyski"
+  }
+}
