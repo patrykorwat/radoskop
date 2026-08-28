@@ -1,0 +1,45 @@
+{
+  "city_name": "Mogilno",
+  "city_genitive": "Mogilna",
+  "site_title": "Radoskop Mogilno — Jak głosują radni?",
+  "site_url": "https://mogilno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Mogilnie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Mogilnie.",
+  "bip_url": "https://bip.mogilno.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Mogilnie",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "mogilno.radoskop.pl",
+  "clubs": {
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#505560"
+    }
+  },
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Mogilnie",
+  "rada_name_genitive": "Rady Miejskiej w Mogilnie",
+  "teryt": "0409033",
+  "_meta": {
+    "note": "NOWE miasto (cron ekspansja). Źródło: BIP Urzędu Miejskiego w Mogilnie (platforma Nefeni 'Nowoczesna Gmina' https://bip.mogilno.pl / API załączników https://bip-api.mogilno.pl). Rada Miejska publikuje głosowania imienne per sesja: kategorie roczne (2024-rok/2025-rok/2026-rok) → kategoria 'Sesja {rzymska} z {data}' → artykuł 'glosowanie-imienne' z załącznikiem PDF (format tekstowy eSesja, tabela 'UPRAWNIENI DO GŁOSOWANIA', ZA/PRZECIW/WSTRZYMUJE SIĘ per radny + agregat do walidacji). 27 sesji IX kadencji (II 2024-05-22 .. XXX 2026-08-26; Sesja I inauguracyjna + XII (2025-03-19) i XV (2025-06-18) bez artykułu glosowanie-imienne → pominięte). 397 głosowań, 21 radnych (kanoniczny roster z PDF głosowań). eSesja mogilno.esesja.pl = stary szablon, ale bez sesji IX kadencji (tylko stara 2021) → Nefeni jest właściwym źródłem. club_assignments PENDING: BIP nie publikuje kategorii 'Kluby radnych' — wszyscy radni oznaczeni NZ. TERYT 0409033 (gmina miejsko-wiejska Mogilno, powiat mogileński 0409, woj. kujawsko-pomorskie).",
+    "population": 11453,
+    "voivodeship": "kujawsko-pomorskie"
+  }
+}
