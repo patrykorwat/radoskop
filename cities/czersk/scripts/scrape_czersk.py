@@ -65,6 +65,15 @@ def _voting_all() -> list[dict]:
     return json.loads(m.group(1))
 
 
+def _reorder_name(name: str) -> str:
+    """sesjaradygminy gives names as 'Nazwisko Imię' (surname first, possibly hyphenated).
+    Radoskop expects 'Imię Nazwisko'. All councilor names here are exactly two tokens."""
+    parts = name.split()
+    if len(parts) == 2:
+        return f"{parts[1]} {parts[0]}"
+    return name
+
+
 def _voting_details(vote_id: str) -> dict[str, list[str]]:
     """Return {'za': [...], 'przeciw': [...], 'wstrzymal_sie': [...], 'brak_glosu': [...]} by name."""
     html = _fetch(f"{BASE}/Voting/Details/{vote_id}")
@@ -84,7 +93,7 @@ def _voting_details(vote_id: str) -> dict[str, list[str]]:
             label = m.group(1).strip()
             cur = label_map.get(label)
         elif m.group(2) is not None and cur:
-            out[cur].append(m.group(2).strip())
+            out[cur].append(_reorder_name(m.group(2).strip()))
     return out
 
 
