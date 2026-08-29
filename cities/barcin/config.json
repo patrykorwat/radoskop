@@ -1,0 +1,40 @@
+{
+  "city_name": "Barcin",
+  "city_genitive": "Barcina",
+  "site_title": "Radoskop Barcin — Jak głosują radni?",
+  "site_url": "https://barcin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Barcinie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Barcinie.",
+  "bip_url": "https://bip.barcin.pl",
+  "bip_name": "BIP Gminy Barcin (bip.barcin.pl)",
+  "rada_url": "https://rada.barcin.pl",
+  "rada_name_platform": "AlfaTV System Rada",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "barcin.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Barcinie",
+  "rada_name_genitive": "Rady Miejskiej w Barcinie",
+  "teryt": "0419013",
+  "_meta": {
+    "note": "NOWE miasto (long_tail → AlfaTV 'System Rada' rada.barcin.pl, IX kadencja). 27 sesji IX kad. (2024-05-07 .. 2026-08), głosowania imienne per-radny serwer-renderowane HTML (accordion + tabela 'Imienny wykaz głosowania'), roster /sklad-rady. Kluby niepublikowane w System Rada -> club_assignments PENDING, clubs {}. barcin.esesja.pl = BIP-ll ale tylko 1 sesja (2026-03) w IX kadencji -> rada.barcin.pl jest wlasciwym zrodlem. TERYT 0419013 (gm. miejsko-wiejska Barcin, powiat żniński 0419, woj. kujawsko-pomorskie 04). Dodane 2026-08-29 (cron do 500, adapter AlfaTV).",
+    "population": 7179,
+    "voivodeship": "kujawsko-pomorskie"
+  }
+}

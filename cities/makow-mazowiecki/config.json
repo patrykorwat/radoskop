@@ -1,0 +1,39 @@
+{
+  "city_name": "Maków Mazowiecki",
+  "city_genitive": "Maków Mazowiecki",
+  "site_title": "Radoskop Maków Mazowiecki — Jak głosują radni?",
+  "site_url": "https://makow-mazowiecki.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Makowie Mazowieckim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Makowie Mazowieckim.",
+  "bip_url": "https://bip.makowmazowiecki.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Makowie Mazowieckim (bip.makowmazowiecki.pl)",
+  "rada_name_platform": "DSSS Vote (BIP)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "makow-mazowiecki.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Makowie Mazowieckim",
+  "rada_name_genitive": "Rady Miejskiej w Makowie Mazowieckim",
+  "teryt": "1411011",
+  "_meta": {
+    "note": "NOWE miasto (long_tail → UNLOCK via DSSS Vote). bip.makowmazowiecki.pl kategoria /205,imienny-wykaz-glosowania-radnych-na-sesjach-rm: 92 PDF-y 'imienny wykaz głosowania radnych... na XY sesji w dniu <data>.pdf' (sesja+data w nazwie pliku, IX kad. 2024-05-07..2026-06-25 = 24 sesje). Warstwa TEKSTOWA DSSS Vote (nagłówki 'Jestem za/Jestem przeciw/Wstrzymuję się/Obecni radni, którzy nie wzięli udziału'), kolumny rekonstruowane pozycyjnie (x<320/x>=320) jak w Szydłowcu. Walidacja: każde głosowanie reconcilowane vs agregat. 24 sesje IX kad., 167 głosowań, 15 radnych. esesja/makow-mazowiecki.esesja.pl = wildcard korporacyjny (bez BIP); AlfaTV brak; bip.net.pl 404. club_assignments PENDING (kuratorowane), clubs {}. TERYT 1411011 (gm. miejska Maków Mazowiecki, powiat makowski 1411, woj. mazowieckie 14). Dodane 2026-08-29 (cron do 500 miast, adapter DSSS Vote).",
+    "population": 9173,
+    "voivodeship": "mazowieckie"
+  }
+}
