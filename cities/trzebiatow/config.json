@@ -1,0 +1,45 @@
+{
+    "city_name": "Trzebiatów",
+    "city_genitive": "Trzebiatowa",
+    "site_title": "Radoskop Trzebiatów — Jak głosują radni?",
+    "site_url": "https://trzebiatow.radoskop.pl",
+    "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Trzebiatowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+    "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Trzebiatowie.",
+    "bip_url": "https://bip.trzebiatow.pl",
+    "bip_name": "BIP Urzędu Miejskiego w Trzebiatowie (gov.pl/eBOI, Głosowanie imienne per-uchwała PDF)",
+    "github_url": "https://github.com/radoskoppl/radoskop",
+    "author": "Patryk Orwat",
+    "cname": "trzebiatow.radoskop.pl",
+    "clubs": {
+        "NZ": {
+            "name": "Niezrzeszeni",
+            "color": "#6b7280",
+            "bg": "rgba(107,114,128,0.12)",
+            "avatar_bg": "#505560"
+        }
+    },
+    "club_assignments": {},
+    "kadencje": {
+        "2024-2029": {
+            "label": "IX kadencja (2024–2029)",
+            "start": "2024-05-07"
+        }
+    },
+    "kadencja_active": "2024-2029",
+    "scrape": {
+        "runner": "run.sh",
+        "generate_site": true
+    },
+    "has_budget": false,
+    "has_komisje": false,
+    "budget_note": "",
+    "samorzad_type": "miasto",
+    "rada_name": "Rada Miejska w Trzebiatowie",
+    "rada_name_genitive": "Rady Miejskiej w Trzebiatowie",
+    "teryt": "3205084",
+    "_meta": {
+        "note": "NOWE miasto. Źródło: BIP bip.trzebiatow.pl (platforma gov.pl/eBOI, alias=bip_umtrzebiatow): kategorię 'Uchwały' (2024/2025/2026), każdy dokument uchwały ma załącznik 'Głosowanie imienne - Uchwała Nr X.pdf' (czysty tekst, tabela 2-kolumnowa per-radny ZA/PRZECIW/WSTRZYMUJĘ SIĘ + agregaty walidacyjne). 27 sesji IX kad. (I 2024-05-07..XXVIII 2026-08-26), 228 głosowań imiennych (228/228 agregatów zwalidowanych, 0 mismatch), 15 radnych (roster z 'Rada Miejska IX Kadencji' /9865641; nazwy źródło podaje 'Nazwisko Imię', odwrócone do konwencji Radoskopa). eSesja trzebiatow.esesja.pl = martwy wildcard; trzebiatow.bip.net.pl = 404; bip.trzebiatow.pl (z listy) = realny BIP (SSL wymaga verify=False). Kluby niepublikowane w BIP -> NZ (verify WARN club_quality). Interpelacje: BIP ma kategorię 'Interpelacje i Zapytania Radnych Rady Miejskiej' (rok 2024/2025/2026), scraper interpelacji nie budowany w tym przebiegu (bonus). TERYT 3205084 (Wikipedia PL infobox, Wikidata brak P781).",
+        "population": 9591,
+        "voivodeship": "zachodniopomorskie"
+    }
+}
