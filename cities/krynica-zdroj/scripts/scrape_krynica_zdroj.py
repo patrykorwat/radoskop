@@ -112,6 +112,45 @@ def _norm(s):
     return re.sub(r"[^a-z0-9]", "", str(s).lower().translate(str.maketrans(repl)))
 
 
+# Kanoniczna lista radnych IX kadencji (imię nazwisko) — z kategorii Skład Rady
+# (menu 434952) + tabel imiennych protokołów głosowań. 15 osób, stabilna całą kadencję.
+ROSTER = [
+    "Bartosz Bulanda", "Jan Boligłowa", "Marcin Dara", "Michał Kieblesz",
+    "Małgorzata Krok-Lasz", "Maria Krzeszowska", "Maria Lelito", "Jarosław Michalik",
+    "Marcin Nowak", "Beata Oleksy", "Katarzyna Probulska", "Michał Trojanowicz",
+    "Henryk Wiewióra", "Bernadeta Zygmunt", "Danuta Świętek",
+]
+ROSTER_SET = set(ROSTER)
+_ROSTER_NORM = {_norm(_r): _r for _r in ROSTER}
+
+
+def flip_to_first_name_first(raw):
+    """'Nazwisko Imię' (eSesja order) -> 'Imię Nazwisko' (Radoskop order)."""
+    parts = raw.split()
+    if len(parts) < 2:
+        return raw
+    # surname is the first 1..n tokens, given name(s) follow; rotate surname to the end
+    return " ".join(parts[1:] + [parts[0]])
+
+
+def canon_name(raw):
+    raw = re.sub(r"\s+", " ", (raw or "").strip())
+    if raw in ROSTER_SET:
+        return raw
+    flipped = flip_to_first_name_first(raw)
+    if flipped in ROSTER_SET:
+        return flipped
+    if _norm(raw) in _ROSTER_NORM:
+        return _ROSTER_NORM[_norm(raw)]
+    if _norm(flipped) in _ROSTER_NORM:
+        return _ROSTER_NORM[_norm(flipped)]
+    # fuzzy: any canonical whose normalized form shares surname
+    for cand in ROSTER:
+        if _norm(cand) == _norm(raw) or _norm(cand) == _norm(flipped):
+            return cand
+    return None
+
+
 _RE_ROMAN = re.compile(r"([IVX]+)\s*(?:Nadzwyczajna\s*|cz\.\s*\d*\s*)?Sesja", re.I)
 
 
@@ -301,17 +340,20 @@ def parse_block(blk, source):
             if not nm2 or "NAZWISKO" in nm2:
                 continue
             up = (tok or "").upper()
+            canonical = canon_name(nm2)
+            if canonical is None:
+                continue
             if up == "ZA":
-                named["za"].append(nm2)
+                named["za"].append(canonical)
             elif up == "PRZECIW":
-                named["przeciw"].append(nm2)
+                named["przeciw"].append(canonical)
             elif up in ("WSTRZYMUJĄCE SIĘ", "WSTRZYMUJĄCY SIĘ", "WSTRZYMUJE SIĘ",
                         "WSTRZYMAŁ SIĘ", "WSTRZYMAŁA SIĘ"):
-                named["wstrzymal_sie"].append(nm2)
+                named["wstrzymal_sie"].append(canonical)
             elif up in ("NIEODDANE", "NIEODDANY"):
-                named["brak_glosu"].append(nm2)
+                named["brak_glosu"].append(canonical)
             elif up in ("NIEOBECNY", "NIEOBECNA"):
-                named["nieobecni"].append(nm2)
+                named["nieobecni"].append(canonical)
     return {
         "topic": topic, "counts": counts,
         "named_votes": named,
