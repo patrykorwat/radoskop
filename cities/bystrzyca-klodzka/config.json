@@ -1,0 +1,39 @@
+{
+  "city_name": "Bystrzyca Kłodzka",
+  "city_genitive": "Bystrzycy Kłodzkiej",
+  "site_title": "Radoskop Bystrzyca Kłodzka — Jak głosują radni?",
+  "site_url": "https://bystrzyca-klodzka.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Bystrzycy Kłodzkiej. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Bystrzycy Kłodzkiej.",
+  "bip_url": "https://bip.bystrzycaklodzka.pl",
+  "bip_name": "BIP Urzędu Miasta i Gminy w Bystrzycy Kłodzkiej (bip.bystrzycaklodzka.pl)",
+  "rada_name_platform": "eSesja imienne TEXT w protokołach (BIP)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "bystrzyca-klodzka.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Bystrzycy Kłodzkiej",
+  "rada_name_genitive": "Rady Miejskiej w Bystrzycy Kłodzkiej",
+  "teryt": "0208063",
+  "_meta": {
+    "note": "NOWE miasto (long-tail → UNLOCK via eSesja imienne TEXT w protokołach sesji na bip.bystrzycaklodzka.pl). bystrzycaklodzka.esesja.pl = Portal Mieszkańca, /glosowania PUŚTE (PM-instance B, dead-end); imienne NIE są tam. Zamiast tego per-sesja protokoły PDF (TEKSTOWE, idcom-jst BIP) zawierają bloki 'Głosowano w sprawie / Wyniki głosowania (ZA:N...) / Wyniki imienne: ZA (N) <nazwiska> / PRZECIW / WSTRZYMUJĘ SIĘ'. Scraper (scrape_bystrzyca_klodzka.py) parsuje z rosterem globalnym (15 radnych) i waliduje KAŻDE głosowanie vs agregat (za+przeciw+wstrzymal == liczba nazwisk) — 331/331 (100%). 29 sesji IX kad. (2024-05-13 .. 2026-08-21), 331 głosowań, 15 radnych. 2 sesje (2024-10-10, 2024-10-17) to scan (bez warstwy tekstowej) — pominięte. Kluby niepublikowane -> club_assignments PENDING, clubs {}. TERYT 0208063 (gm. Bystrzyca Kłodzka, powiat kłodzki, woj. dolnośląskie). Dodane 2026-08-29 (cron do 500 miast, adapter eSesja imienne TEXT w protokołach).",
+    "population": 9414,
+    "voivodeship": "dolnośląskie"
+  }
+}
