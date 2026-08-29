@@ -1,0 +1,46 @@
+{
+    "city_name": "Środa Śląska",
+    "city_genitive": "Środy Śląskiej",
+    "site_title": "Radoskop Środa Śląska — Jak głosują radni?",
+    "site_url": "https://sroda-slaska.radoskop.pl",
+    "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Środzie Śląskiej. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+    "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Środzie Śląskiej.",
+    "bip_url": "https://bip.srodaslaska.pl",
+    "bip_name": "BIP Urzędu Miejskiego w Środzie Śląskiej (e-bip)",
+    "esesja_url": "",
+    "github_url": "https://github.com/radoskoppl/radoskop",
+    "author": "Patryk Orwat",
+    "cname": "sroda-slaska.radoskop.pl",
+    "clubs": {
+        "NZ": {
+            "name": "Niezrzeszeni",
+            "color": "#6b7280",
+            "bg": "rgba(107,114,128,0.12)",
+            "avatar_bg": "#505560"
+        }
+    },
+    "club_assignments": {},
+    "kadencje": {
+        "2024-2029": {
+            "label": "IX kadencja (2024–2029)",
+            "start": "2024-05-07"
+        }
+    },
+    "kadencja_active": "2024-2029",
+    "scrape": {
+        "runner": "run.sh",
+        "generate_site": true
+    },
+    "has_budget": false,
+    "has_komisje": false,
+    "budget_note": "",
+    "samorzad_type": "miasto",
+    "rada_name": "Rada Miejska w Środzie Śląskiej",
+    "rada_name_genitive": "Rady Miejskiej w Środzie Śląskiej",
+    "teryt": "0218044",
+    "_meta": {
+        "note": "NOWE miasto. Źródło: e-BIP bip.srodaslaska.pl (platforma e-bip, index.php?id=N) kategoria Rada Miejska -> Imienne wykazy głosowań radnych (id=176), per-sesja dokument 'wykazy głosowań z N Sesji Rady Miejskiej z dnia ...' - PDF generowany przez app.esesja.pl (eSesja-TEXT, tekstowy, imienne ZA/PRZECIW/WSTRZYMUJĘ SIĘ/BRAK GŁOSU/NIEOBECNI + agregaty walidacyjne). 33 sesje IX kad. (I 2024-05-06 konstytyuująca .. XXXIII 2026-08-26), wszystkie z głosowaniami. 15 radnych. Kluby niepublikowane -> NZ (verify WARN club_quality). eSesja sroda-slaska.esesja.pl = martwa (other template, 0 sesji); bip.sroda-slaska.pl / bip.sroda-slaska.eu = parkowane (Aftermarket.pl); sroda-slaska.bip.net.pl = 404 (nie Nefeni). Interpelacje: BIP ma kategorię 'Interpelacje i zapytania radnych' (id=182), scraper interpelacji nie budowany w tym przebiegu (bonus). TERYT 0218044 (miasto w gminie miejsko-wiejskiej Środa Śląska, powiat średzki).",
+        "population": 9525,
+        "voivodeship": "dolnośląskie"
+    }
+}
