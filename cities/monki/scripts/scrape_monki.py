@@ -108,6 +108,14 @@ def slugify(s):
     return re.sub(r'[^a-z0-9]+', '-', sl).strip('-')
 
 
+def to_display(name):
+    """Source lists 'Nazwisko Imię'; Radoskop convention = 'Imię Nazwisko' (swap first token)."""
+    parts = name.split()
+    if len(parts) >= 2:
+        return ' '.join(parts[1:]) + ' ' + parts[0]
+    return name
+
+
 # ---------- fetch + OCR ----------
 def fetch_attachments(cache_dir):
     """Return list of (title, local_path) for the 21 session PDFs."""
@@ -189,7 +197,7 @@ def parse_votes(attachments, cache_dir):
             for name, vote in rows:
                 ri, sc = match_roster(name); cat = vote_cat(vote)
                 if cat is None or sc < 0.8 or ri is None: continue
-                assigned.append((ROSTER[ri], cat))
+                assigned.append((to_display(ROSTER[ri]), cat))
             if not assigned: continue
             counts = {'za': 0, 'przeciw': 0, 'wstrzymal': 0}
             for _, c in assigned:
