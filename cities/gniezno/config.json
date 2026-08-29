@@ -1,0 +1,89 @@
+{
+  "city_name": "Gniezno",
+  "city_genitive": "Gniezna",
+  "site_title": "Radoskop Gniezno — Skład rady i sesje",
+  "site_url": "https://gniezno.radoskop.pl",
+  "site_description": "Radoskop — Rada Miasta Gniezna. Skład rady, kluby i kalendarz sesji kadencji 2024–2029 (bez imiennych głosowań).",
+  "site_description_short": "Otwarte monitorowanie Rady Miasta Gniezna.",
+  "bip_url": "https://bip.gniezno.eu",
+  "bip_name": "BIP UM Gniezna",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "gniezno.radoskop.pl",
+  "clubs": {
+    "KPS": {
+      "name": "Koalicja dla Pierwszej Stolicy",
+      "short": "KPS",
+      "color": "#1a6fb5",
+      "bg": "rgba(26,111,181,0.12)",
+      "avatar_bg": "#145a8f"
+    },
+    "PiS": {
+      "name": "Prawo i Sprawiedliwość",
+      "short": "PiS",
+      "color": "#b02626",
+      "bg": "rgba(176,38,38,0.12)",
+      "avatar_bg": "#8a1d1d"
+    },
+    "SZG": {
+      "name": "Stowarzyszenie Ziemia Gnieźnieńska",
+      "short": "SZG",
+      "color": "#2e7d4f",
+      "bg": "rgba(46,125,79,0.12)",
+      "avatar_bg": "#23613c"
+    }
+  },
+  "club_assignments": {
+    "Tomasz Dzionek": "KPS",
+    "Jan Budzyński": "KPS",
+    "Janusz Brzuszkiewicz": "KPS",
+    "Beata Czechańska": "KPS",
+    "Stanisław Dolaciński": "KPS",
+    "Olga Gandurska": "KPS",
+    "Michał Glejzer": "KPS",
+    "Marcin Jagodziński": "KPS",
+    "Łukasz Kaszyński": "KPS",
+    "Anna Krzymińska": "KPS",
+    "Artur Kuczma": "KPS",
+    "Andrzej Łykowski": "KPS",
+    "Martyna Matysek": "KPS",
+    "Jarosław Mikołajczyk": "KPS",
+    "Tadeusz Purol": "KPS",
+    "Natasza Szalaty": "PiS",
+    "Beata Adamczyk": "PiS",
+    "Jan Szarzyński": "PiS",
+    "Wojciech Szymczak": "PiS",
+    "Paweł Kamiński": "SZG",
+    "Robert Gaweł": "SZG",
+    "Arkadiusz Masłowski": "SZG",
+    "Sebastian Błochowiak": "SZG"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "has_voting_data": false,
+  "has_speaker_activity": false,
+  "has_named_votes": false,
+  "voting_display": "faction",
+  "councilor_count": 23,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Gniezna",
+  "rada_name_genitive": "Rady Miasta Gniezna",
+  "teryt": "3003011",
+  "scrape": {
+    "runner": "run.sh",
+    "note": "Tier-2 (roster/berliński): brak głosowań imiennych — tylko skład rady (23) + kluby + kalendarz sesji IX kadencji z BIP UM Gniezna (idcom-jst). has_voting_data:false; voting_display:faction (roster-mode)."
+  },
+  "_meta": {
+    "note": "Tier-2 (model berliński/roster): brak głosowań imiennych (skany protokołów bez wiarygodnej atrybucji per-radny). Skład 23 radnych + 3 kluby z sklad_rady.pdf/kluby_radnych.pdf; kalendarz 33 sesji IX kadencji (2024-05-29..2026-08-25) z BIP. Dodane 2026-08-29 (cron 500, Tier-2). ",
+    "population": 65452,
+    "voivodeship": "wielkopolskie"
+  }
+}
