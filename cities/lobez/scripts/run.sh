@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Pipeline scrape Rada Miejska w Łobzie (custom BIP bip.lobez.pl — per-session karty głosowania ZIP)
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CITY_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+RADOSKOP_DIR="$(cd "$CITY_DIR/../.." && pwd)"
+
+cd "$CITY_DIR"
+
+echo "[lobez] scrape_lobez.py"
+python3 "$CITY_DIR/scripts/scrape_lobez.py" \
+  --output "$CITY_DIR/docs/data.json" \
+  --profiles "$CITY_DIR/docs/profiles.json" \
+  --cache-dir "${RADOSKOP_CACHE_DIR:-/cache/lobez}"
+
+echo "[lobez] generate_site.py"
+python3 "$RADOSKOP_DIR/scripts/generate_site.py" \
+  --config "$CITY_DIR/config.json" \
+  --output "$CITY_DIR/docs/"
+
+echo "[lobez] OK"

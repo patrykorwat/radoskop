@@ -1,0 +1,40 @@
+{
+  "city_name": "Łobez",
+  "city_genitive": "Łobza",
+  "site_title": "Radoskop Łobez — Jak głosują radni?",
+  "site_url": "https://lobez.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Łobzie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Łobzie.",
+  "bip_url": "https://bip.lobez.pl",
+  "bip_name": "BIP UM Łobez",
+  "esesja_url": "",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lobez.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Łobzie",
+  "rada_name_genitive": "Rady Miejskiej w Łobzie",
+  "teryt": "3218024",
+  "_meta": {
+    "note": "NOWE miasto (custom BIP bip.lobez.pl, platforma 2ClickPortal, sekcja Protokoły z sesji → lata 2024/2025/2026). Per-sesja karty głosowania (ZIP z per-vote PDF kartami 'Karty z głosowania', tekstowe, bez OCR): 28 sesji IX kad. (2024-05-07 .. 2026-06-24), 267 głosowań imiennych (267/267 agregatów zwalidowanych), 15 radnych. Kluby PENDING (kuratorowane z BIP). TERYT 3218024 (miasto Łobez, gmina miejsko-wiejska; powiat łobeski, woj. zachodniopomorskie).",
+    "population": 9792,
+    "voivodeship": "zachodniopomorskie",
+    "scraper": "custom"
+  }
+}
