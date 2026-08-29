@@ -9,7 +9,7 @@ RADOSKOP_DIR="$(cd "$CITY_DIR/../.." && pwd)"
 cd "$CITY_DIR"
 
 echo "[piekary-slaskie] scrape_piekary.py"
-python3 "$CITY_DIR/scripts/scrape_piekary.py" --city-dir "$CITY_DIR"
+python3 "$CITY_DIR/scripts/scrape_piekary.py"
 
 echo "[piekary-slaskie] generate_site.py"
 python3 "$RADOSKOP_DIR/scripts/generate_site.py" \
