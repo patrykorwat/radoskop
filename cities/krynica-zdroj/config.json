@@ -1,0 +1,46 @@
+{
+ "city_name": "Krynica-Zdrój",
+ "city_genitive": "Krynicy-Zdroju",
+ "site_title": "Radoskop Krynica-Zdrój — Jak głosują radni?",
+ "site_url": "https://krynica-zdroj.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Krynicy-Zdroju. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Krynicy-Zdroju.",
+ "bip_url": "https://bip.malopolska.pl/umkrynicazdroj",
+ "bip_name": "BIP Urzędu Miejskiego w Krynicy-Zdroju (Wrota Małopolski, Madkom SPA)",
+ "esesja_url": "",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "krynica-zdroj.radoskop.pl",
+ "clubs": {
+  "NZ": {
+   "name": "Niezrzeszeni",
+   "color": "#6b7280",
+   "bg": "rgba(107,114,128,0.12)",
+   "avatar_bg": "#505560"
+  }
+ },
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "scrape": {
+  "runner": "run.sh",
+  "generate_site": true
+ },
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Krynicy-Zdroju",
+ "rada_name_genitive": "Rady Miejskiej w Krynicy-Zdroju",
+ "teryt": "1210074",
+ "_meta": {
+  "note": "NOWE miasto. Źródło: BIP bip.malopolska.pl/umkrynicazdroj (platforma Wrota Małopolski / Madkom SPA, API /api) kategoria Rada -> Sesje -> Protokoły głosowań (menu 310242) -> 2024-2029 (435991) per-rok (2024: 435992, 2025: 453002, 2026: 471837). 36 sesji IX kad. (I 2024-05-07 .. XXXV 2026-07-29), każda z załącznikiem PDF 'Protokół głosowania' (tekstowy, bez OCR) z imiennymi ZA/PRZECIW/WSTRZYMUJĄCE SIĘ/NIEODDANY per radny + agregaty walidacyjne + kworum. 15 radnych. Kluby niepublikowane (Skład Rady podaje tylko komitety wyborcze) -> NZ (verify WARN club_quality). eSesja krynica-zdroj.esesja.pl = wildcard korporacyjny (dead); bip.krynica-zdroj.pl / bip.krynica-zdroj.eu = DNS dead; krynica-zdroj.bip.net.pl = 404 (nie Nefeni). Interpelacje: BIP ma kategorię Rada -> Interpelacje i zapytania (menu 97777), scraper interpelacji nie budowany w tym przebiegu (bonus). TERYT 1210074 (miasto w gminie miejsko-wiejskiej Krynica-Zdrój, powiat nowosądecki).",
+  "population": 9504,
+  "voivodeship": "małopolskie"
+ }
+}
