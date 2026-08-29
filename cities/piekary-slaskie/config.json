@@ -1,0 +1,87 @@
+{
+  "city_name": "Piekary Śląskie",
+  "city_genitive": "Piekar Śląskich",
+  "site_title": "Radoskop Piekary Śląskie — Skład rady i sesje",
+  "site_url": "https://piekary-slaskie.radoskop.pl",
+  "site_description": "Radoskop — Rada Miasta Piekary Śląskie. Skład rady, kluby i kalendarz sesji kadencji 2024–2029 (bez imiennych głosowań).",
+  "site_description_short": "Otwarte monitorowanie Rady Miasta Piekary Śląskie.",
+  "bip_url": "https://piekaryslaskie.bip.net.pl",
+  "bip_name": "BIP Urzędu Miasta Piekary Śląskie (Nefeni)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "piekary-slaskie.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Klub Radnych Prawa i Sprawiedliwości",
+      "short": "PiS",
+      "color": "#b02626",
+      "bg": "rgba(176,38,38,0.12)",
+      "avatar_bg": "#8a1d1d"
+    },
+    "TGL": {
+      "name": "Klub Radnych Twój Głos w Piekarach Śląskich",
+      "short": "Twój Głos",
+      "color": "#1a6fb5",
+      "bg": "rgba(26,111,181,0.12)",
+      "avatar_bg": "#145a8f"
+    },
+    "OKR": {
+      "name": "Obywatelski Klub Radnych",
+      "short": "OKR",
+      "color": "#2e7d4f",
+      "bg": "rgba(46,125,79,0.12)",
+      "avatar_bg": "#23613c"
+    }
+  },
+  "club_assignments": {
+    "Iwona Zorychta": "OKR",
+    "Grzegorz Zieliński": "OKR",
+    "Andrzej Wymysło": "OKR",
+    "Tadeusz Wieczorek": "OKR",
+    "Tomasz Wesołowski": "OKR",
+    "Jacek Telęga": "PiS",
+    "Łukasz Świerkowski": "PiS",
+    "Agnieszka Skotarek": "PiS",
+    "Przemysław Siwek": "TGL",
+    "Jakub Różanka": "TGL",
+    "Stanisław Plajzner": "OKR",
+    "Dariusz Painta": "TGL",
+    "Krzysztof Korzec": "TGL",
+    "Marcin Kobyłecki": "OKR",
+    "Mariusz Kempys": "OKR",
+    "Małgorzata Gruszczyk": "PiS",
+    "Klaudia Franiel": "OKR",
+    "Marcin Felderhoff": "OKR",
+    "Dorota Duda": "PiS",
+    "Maciej Czempiel": "OKR",
+    "Natalia Ciupińska": "OKR"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "has_voting_data": false,
+  "has_speaker_activity": false,
+  "has_named_votes": false,
+  "voting_display": "faction",
+  "councilor_count": 21,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Piekary Śląskie",
+  "rada_name_genitive": "Rady Miasta Piekary Śląskie",
+  "teryt": "2471011",
+  "scrape": {
+    "runner": "run.sh",
+    "note": "Tier-2 (roster/berliński): brak głosowań imiennych — tylko skład rady (21) + kluby + kalendarz sesji IX kadencji z BIP Nefeni (piekaryslaskie.bip.net.pl). has_voting_data:false; voting_display:faction (roster-mode)."
+  },
+  "_meta": {
+    "note": "Tier-2 (model berliński/roster): brak głosowań imiennych (esesja wildcard; Nefeni bez per-radny głosów). Skład 21 radnych + 3 kluby (PiS/TGL/OKR) z kategorii sklad-i-pelnione-funkcje (art. 1835-1857); kalendarz 29 sesji IX kadencji z protokoly-sesji-rady-miasta. has_voting_data:false, has_speaker_activity:false. TERYT 2471011 (miasto na prawach powiatu, woj. śląskie). Dodane 2026-08-29 (cron 500, Tier-2). ",
+    "population": 51565,
+    "voivodeship": "śląskie"
+  }
+}
