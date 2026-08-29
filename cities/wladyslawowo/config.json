@@ -1,0 +1,45 @@
+{
+    "city_name": "Władysławowo",
+    "city_genitive": "Władysławowa",
+    "site_title": "Radoskop Władysławowo — Jak głosują radni?",
+    "site_url": "https://wladyslawowo.radoskop.pl",
+    "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Władysławowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+    "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Władysławowie.",
+    "bip_url": "https://bip.wladyslawowo.pl",
+    "bip_name": "BIP Gminy Władysławowo (AlfaTV System Rada rada.wladyslawowo.pl)",
+    "github_url": "https://github.com/radoskoppl/radoskop",
+    "author": "Patryk Orwat",
+    "cname": "wladyslawowo.radoskop.pl",
+    "clubs": {
+        "NZ": {
+            "name": "Niezrzeszeni",
+            "color": "#6b7280",
+            "bg": "rgba(107,114,128,0.12)",
+            "avatar_bg": "#505560"
+        }
+    },
+    "club_assignments": {},
+    "kadencje": {
+        "2024-2029": {
+            "label": "IX kadencja (2024–2029)",
+            "start": "2024-05-07"
+        }
+    },
+    "kadencja_active": "2024-2029",
+    "scrape": {
+        "runner": "run.sh",
+        "generate_site": true
+    },
+    "has_budget": false,
+    "has_komisje": false,
+    "budget_note": "",
+    "samorzad_type": "miasto",
+    "rada_name": "Rada Miejska w Władysławowie",
+    "rada_name_genitive": "Rady Miejskiej w Władysławowie",
+    "teryt": "2211044",
+    "_meta": {
+        "note": "NOWE miasto. Źródło: AlfaTV 'System Rada' rada.wladyslawowo.pl (czysty strukturalny HTML, /glosowania -> /glosowania/posiedzenie/{id}), imienne wyniki per radny + agregaty walidacyjne. 27 sesji IX kad. (2024-05-29..2026-06-25), 417 głosowań imiennych (417/417 agregatów zwalidowanych), 15 radnych. bip.wladyslawowo.pl linkuje do rada.wladyslawowo.pl; https://wladyslawowo-rada.alfatv.pl = kopia (ignorowana). eSesja wladyslawowo.esesja.pl = martwy wildcard (redirect loop); wladyslawowo.bip.net.pl = 404 (nie Nefeni). Afiliacje w System Rada to KWW komitety (nie kluby) -> NZ (verify WARN club_quality). Interpelacje: rada.wladyslawowo.pl/interpelacje istnieją (rejestr), scraper interpelacji nie budowany w tym przebiegu (bonus). TERYT 2211044 (Wikipedia PL infobox, Wikidata brak P781).",
+        "population": 9613,
+        "voivodeship": "pomorskie"
+    }
+}
