@@ -168,7 +168,12 @@ def _parse_rows(tail):
             continue
         gk = _glos_key(t.upper())
         if gk:
-            rows.append((" ".join(pending).strip(), gk))
+            # PDF ma kolejność 'nazwisko imię' — Radoskop trzyma 'imię nazwisko'
+            nm = ""
+            if pending:
+                # pierwszy token (pending[0]) = nazwisko, reszta = imiona
+                nm = (" ".join(pending[1:]) + " " + pending[0]).strip()
+            rows.append((nm, gk))
             pending = []
         else:
             pending.append(t)
