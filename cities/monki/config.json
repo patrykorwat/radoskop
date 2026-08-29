@@ -1,0 +1,40 @@
+{
+  "city_name": "Mońki",
+  "city_genitive": "Mońkach",
+  "site_title": "Radoskop Mońki — Jak głosują radni?",
+  "site_url": "https://monki.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Mońkach. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Mońkach.",
+  "bip_url": "https://bip-ummonki.podlaskie.eu",
+  "bip_name": "BIP UM Mońki (Wrota Podlasia)",
+  "esesja_url": "",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "monki.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Mońkach",
+  "rada_name_genitive": "Rady Miejskiej w Mońkach",
+  "teryt": "2008064",
+  "_meta": {
+    "note": "NOWE miasto (custom scraper OCR: BIP Wrota Podlasia bip-ummonki.podlaskie.eu → Rada → Imienne wykazy głosowań radnych → załączniki per sesja I..XXI, IX kad., ZESKANOWANE PDF). OCR tesseract -l pol 220 DPI, roster 15 radnych (fuzzy-match), walidacja agregatu per głosowanie (liczone głosowało/za/przeciw/wstrzymało == przypisane wiersze); publikowane TYLKO głosowania w pełni zwalidowane. 19 sesji IX kad. (2024-05-06..2026-06-18), 151 głosowań imiennych, 15 radnych. Uwaga: sesje IX (2024-12-05) i XIX (2026-03-23) BEZ danych — miasto opublikowało w obu miejscach TEN SAM plik (raport burmistrza 03-2026, nie wykaz głosowań) — źródłowa usterka, brak możliwości odzysku; część sesji (IV/VI/XI) ma tylko 1-3 zwalidowane głosowania (zeskanowane strony bez wierszy/truncate). Kluby niepublikowane -> NZ (verify WARN club_quality). TERYT 2008064 (miasto Mońki, gmina miejsko-wiejska; powiat moniecki, woj. podlaskie).",
+    "population": 9675,
+    "voivodeship": "podlaskie",
+    "scraper": "custom"
+  }
+}
