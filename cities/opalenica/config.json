@@ -1,0 +1,39 @@
+{
+  "city_name": "Opalenica",
+  "city_genitive": "Opalenicy",
+  "site_title": "Radoskop Opalenica — Jak głosują radni?",
+  "site_url": "https://opalenica.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Opalenicy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Opalenicy.",
+  "bip_url": "http://bip.opalenica.pl",
+  "bip_name": "BIP Miasta i Gminy Opalenica (bip.opalenica.pl)",
+  "rada_name_platform": "DSSS/eSesja PRINT (wykaz głosowań PDF w BIP)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "opalenica.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Opalenicy",
+  "rada_name_genitive": "Rady Miejskiej w Opalenicy",
+  "teryt": "3015053",
+  "_meta": {
+    "note": "NOWE miasto (long-tail → UNLOCK via DSSS/eSesja PRINT 'wykaz głosowań' PDF w bip.opalenica.pl). Rada Miejska publikuje per-sesja TEKSTOWE wykazy głosowań z per-głosowanie blokami (Podsumowanie ZA/PRZECIW/WSTRZYMAŁO SIĘ + tabela imienna lp/nazwisko/imiej/głos). Scraper (scrape_opalenica.py) parsuje wiersze imienne odpornie na (1) numer strony w pierwszym wierszu każdego PDF-a, (2) 'WSTRZYMAŁO SIĘ' rozbite na 2 wiersze, (3) brakujące lp w PDF. Każde głosowanie reconcilowane vs agregat — 169/169 (100%). Pokrycie 13 sesji IX kad. (2024-05-22 .. 2025-06-12), 169 głosowań, 15 radnych. UWAGA: sesje 2025-06+ / 2026 (XVI-XXXI) NIE publikują osobnych wykazów głosowań na BIP (brak pełnego pokrycia IX kad.). Kluby niepublikowane -> club_assignments PENDING, clubs {}. TERYT 3015053 (gm. Opalenica, powiat nowotomyski, woj. wielkopolskie). Dodane 2026-08-29 (cron do 500 miast, adapter DSSS/eSesja PRINT).",
+    "population": 9360,
+    "voivodeship": "wielkopolskie"
+  }
+}
