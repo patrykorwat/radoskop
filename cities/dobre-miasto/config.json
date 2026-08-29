@@ -1,0 +1,45 @@
+{
+  "city_name": "Dobre Miasto",
+  "city_genitive": "Dobrego Miasta",
+  "site_title": "Radoskop Dobre Miasto — Jak głosują radni?",
+  "site_url": "https://dobre-miasto.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Dobrym Mieście. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Dobrym Mieście.",
+  "bip_url": "https://bip.dobremiasto.com.pl",
+  "bip_name": "BIP Dobre Miasto",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "dobre-miasto.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "councilor_roster": [
+    "Arkadiusz Taraszkiewicz", "Barbara Michniewicz", "Beata Kurek", "Gustaw Pietrulewicz",
+    "Jakub Wilk", "Janusz Filipkowski", "Jarosław Borowik", "Kamil Tracewicz",
+    "Krzysztof Strękowski", "Magdalena Kowalska", "Marcin Lisowski", "Mariusz Borek",
+    "Małgorzata Konczalska", "Tomasz Gajowniczek", "Tomasz Iwanek"
+  ],
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Dobrym Mieście",
+  "rada_name_genitive": "Rady Miejskiej w Dobrym Mieście",
+  "teryt": "2814033",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (custom BIP bip.dobremiasto.com.pl, Rada -> Imienne wyniki głosowania radnych -> Kadencja 2024-2029 /10116/). Per-sesja artykuł (I..XXIX, 2024-05-07..2026-07-14) linkuje per-uchwała 'Imienne głosowanie nad Uchwałą Nr X/Y/Z' PDF (/system/pobierz.php?id=), tekstowy, z tabelą 2-kolumnową (Lp|Nazwisko i imię|Głos) + agregatami walidacyjnymi. 29 sesji, 233 zwalidowanych głosowań, 15 radnych (kanoniczny roster z PDF). Sesje w archiwum /10116/2/pag..; pełny spis sesji I-XIX poza strona główną (archive pagination). Kluby niepublikowane -> NZ (verify WARN club_quality). TERYT 2814033 (gmina miejsko-wiejska Dobre Miasto). Dodane 2026-08-29 (cron ekspansja). Club colors auto (faction mode).",
+    "population": 9629,
+    "voivodeship": "warmińsko-mazurskie",
+    "powiat": "olsztyński"
+  }
+}

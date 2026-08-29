@@ -1,0 +1,40 @@
+{
+  "city_name": "Nowy Dwór Gdański",
+  "city_genitive": "Nowego Dworu Gdańskiego",
+  "site_title": "Radoskop Nowy Dwór Gdański — Jak głosują radni?",
+  "site_url": "https://nowy-dwor-gdanski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Nowym Dworze Gdańskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Nowym Dworze Gdańskim.",
+  "bip_url": "https://bip.nowy-dwor-gdanski.pl",
+  "bip_name": "BIP Nowy Dwór Gdański",
+  "esesja_url": "https://nowydworgdanski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "nowy-dwor-gdanski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Nowym Dworze Gdańskim",
+  "rada_name_genitive": "Rady Miejskiej w Nowym Dworze Gdańskim",
+  "teryt": "2210023",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (eSesja Portal Mieszkańca instance A, base nowydworgdanski — glosowania imienne IX kad. 2024-2029 z /glosowanie/, charset utf-8 auto-detect). Dodane 2026-08-29 (cron ekspansja). eSesja slug to nowydworgdanski (nie nowy-dwor-gdanski — nowy-dwor-gdanski.esesja.pl to wildcard-marketing). 32 sesje /listaglosowan, ~15 radnych. club_assignments pending (kuratorowane z BIP). TERYT 2210023 (gmina miejsko-wiejska Nowy Dwór Gdański).",
+    "population": 9618,
+    "voivodeship": "pomorskie",
+    "powiat": "nowodworski"
+  }
+}
