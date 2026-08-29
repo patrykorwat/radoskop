@@ -1,0 +1,40 @@
+{
+  "city_name": "Miastko",
+  "city_genitive": "Miastka",
+  "site_title": "Radoskop Miastko — Jak głosują radni?",
+  "site_url": "https://miastko.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Miastku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Miastku.",
+  "bip_url": "https://bip.miastko.pl",
+  "bip_name": "BIP Gminy Miastko (bip.miastko.pl)",
+  "rada_url": "https://rada.miastko.pl",
+  "rada_name_platform": "AlfaTV System Rada",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "miastko.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Miastku",
+  "rada_name_genitive": "Rady Miejskiej w Miastku",
+  "teryt": "2201063",
+  "_meta": {
+    "note": "NOWE miasto (AlfaTV 'System Rada' rada.miastko.pl, IX kadencja). 34 sesje IX kad. (2024-05-07 .. 2026-08-28; w tym 3 bez glosowan imiennych -> 31 z glosowaniami), 476 glosowan imiennych, 16 radnych. Kluby NIE publikowane w System Rada u Miastka -> club_assignments PENDING, clubs {}. TERYT 2201063 (gm. Miastko, powiat bytowski, woj. pomorskie). miastko.esesja.pl = Portal Mieszkańca z pusta .sessions-list (PM-dead, jedyna data 2023); rada.miastko.pl jest jedynym i zupelnym zrodlem imiennych glowowan IX kad. Interpelacje: /interpelacje (121 wierszy, IX kad. od 2024-05-08). Dodane 2026-08-29 (cron do 500 miast, adapter AlfaTV).",
+    "population": 9491,
+    "voivodeship": "pomorskie"
+  }
+}

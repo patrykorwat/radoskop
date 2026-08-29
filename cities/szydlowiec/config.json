@@ -1,0 +1,39 @@
+{
+  "city_name": "Szydłowiec",
+  "city_genitive": "Szydłowca",
+  "site_title": "Radoskop Szydłowiec — Jak głosują radni?",
+  "site_url": "https://szydlowiec.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Szydłowcu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Szydłowcu.",
+  "bip_url": "https://bip.szydlowiec.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Szydłowcu (bip.szydlowiec.pl)",
+  "rada_name_platform": "DSSS Vote (BIP)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "szydlowiec.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Szydłowcu",
+  "rada_name_genitive": "Rady Miejskiej w Szydłowcu",
+  "teryt": "1430053",
+  "_meta": {
+    "note": "NOWE miasto (OCR-revisit → UNLOCK via tekstowy DSSS Vote, NIE OCR). bip.szydlowiec.pl 10015/Imienne_wykazy_glosowan: 25 sesji IX kad. (2024-05-16 .. 2026-08-10), kazda z attachment 'Protokoly.pdf' = per-glosowanie zalaczniki DSSS Vote z WARSTWA TEKSTOWA (name-list 'Jestem za / Jestem przeciw / Wstrzymuje sie / Obecni nie wzieli udzialu'). Rekonstrukcja pozycyjna kolumn (x<320/x>=320) daje atrybucje per-radny. Walidacja: 253 glosowan, KAZDE reconcilowane vs agregat (za+przeciw+wstrzym == suma list) — 253/253 (100%). 15 radnych (unia nazwisk z glosowan). Kluby niepublikowane -> club_assignments PENDING, clubs {}. TERYT 1430053 (gm. Szydlowiec, powiat szydlowiecki 1430, woj. mazowieckie 14). szydlowiec.esesja.pl = wildcard korporacyjny (bez BIP). Dodane 2026-08-29 (cron do 500 miast, adapter DSSS Vote text).",
+    "population": 10959,
+    "voivodeship": "mazowieckie"
+  }
+}
