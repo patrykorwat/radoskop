@@ -1,0 +1,40 @@
+{
+  "city_name": "Lwówek Śląski",
+  "city_genitive": "Lwówka Śląskiego",
+  "site_title": "Radoskop Lwówek Śląski — Jak głosują radni?",
+  "site_url": "https://lwowek-slaski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Lwówku Śląskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Lwówku Śląskim.",
+  "bip_url": "https://bip.lwowekslaski.pl",
+  "bip_name": "BIP Gminy i Miasta Lwówek Śląski (bip.lwowekslaski.pl)",
+  "rada_name_platform": "DSSS Vote PRINT (BIP protokoły)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lwowek-slaski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Lwówku Śląskim",
+  "rada_name_genitive": "Rady Miejskiej w Lwówku Śląskim",
+  "councilor_count": 15,
+  "teryt": "0212034",
+  "_meta": {
+    "note": "NOWE miasto (long_tail). bip.lwowekslaski.pl (platforma 'Organy' idcom-jst): Rada Miejska publikuje per-sesja protokół PDF z per-głosowanie blokami DSSS PRINT (Upoważnionych/Głosów ZA/PRZECIW/wstrzymujących się + 'Lista imienna:' z tokenami TAK/NIE/WSTRZ). Parsowane z warstwy tekstowej; 15 radnych (roster z /organy/808/1124); urzędnicy (Burmistrz/Z-ca/Skarbnik) odfiltrowani po 'brak uprawnień'. Każde głosowanie walidowane vs agregat (100% reconcilacja). eSesja/wildcard, AlfaTV/bip.net brak. TERYT 0212034 (gm. Lwówek Śląski, powiat lwówecki 0212, woj. dolnośląskie 02). Kluby niepublikowane -> club_assignments PENDING, clubs {}.",
+    "population": 8490,
+    "voivodeship": "dolnośląskie"
+  }
+}
