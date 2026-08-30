@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Pipeline scrape Rada Miejska w Lidzbarku (eSesja lidzbark.esesja.pl)
+# Pipeline scrape Rada Miejska w Lidzbarku (msesja.pl — Portal Informacyjny RM)
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)"
@@ -10,8 +10,7 @@ cd "$CITY_DIR"
 
 echo "[lidzbark] scrape_lidzbark.py"
 python3 "$CITY_DIR/scripts/scrape_lidzbark.py" \
-  --output "$CITY_DIR/docs/data.json" \
-  --profiles "$CITY_DIR/docs/profiles.json" \
+  --city-dir "$CITY_DIR" \
   --cache-dir "${RADOSKOP_CACHE_DIR:-/cache/lidzbark}"
 
 echo "[lidzbark] generate_site.py"

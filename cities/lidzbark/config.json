@@ -6,8 +6,8 @@
   "site_url": "https://lidzbark.radoskop.pl",
   "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Lidzbarku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
   "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Lidzbarku.",
-  "bip_url": "https://lidzbark.esesja.pl/",
-  "bip_name": "eSesja Portal Mieszkańca (lidzbark.esesja.pl)",
+  "bip_url": "https://lidzbark.msesja.pl/",
+  "bip_name": "msesja.pl — Portal Informacyjny Rady Miejskiej w Lidzbarku",
   "esesja_url": "https://lidzbark.esesja.pl",
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
@@ -33,10 +33,11 @@
     "generate_site": true
   },
   "_meta": {
-    "note": "NOWE miasto (eSesja Portal Mieszkańca old-compatible PM-A, głosowania imienne IX kad. 2024-2029 z /glosowanie/, host lidzbark.esesja.pl). club_assignments pending (kuratorowane z BIP, nie fabrykować).",
+    "note": "Głosowania imienne IX kad. z lidzbark.msesja.pl (/wyniki-glosowan, serwerowo renderowane; aggr. + listy per-głos; pułapka nieobecnych w bloku WSTRZYMAŁO SIĘ rozwiązana). club_assignments pending (kuratorowane, nie fabrykować).",
     "population": 7471,
     "voivodeship": "warmińsko-mazurskie",
     "lat": 53.2603,
     "lon": 19.8211
-  }
+  },
+  "pop": 7471
 }
