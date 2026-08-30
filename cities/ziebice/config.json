@@ -1,0 +1,47 @@
+{
+  "landing_enabled": true,
+  "city_name": "Ziębice",
+  "city_genitive": "Ziębic",
+  "site_title": "Radoskop Ziębice — Skład rady i sesje",
+  "site_url": "https://ziebice.radoskop.pl",
+  "site_description": "Radoskop — Rada Miejska w Ziębicach. Skład rady kadencji 2024–2029 (bez imiennych głosowań).",
+  "site_description_short": "Otwarte monitorowanie Rady Miejskiej w Ziębicach.",
+  "bip_url": "https://ziebice.biuletyn.net",
+  "bip_name": "BIP Gminy Ziębice (ziebice.biuletyn.net)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ziebice.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "has_voting_data": false,
+  "has_speaker_activity": false,
+  "has_named_votes": false,
+  "voting_display": "faction",
+  "councilor_count": 13,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Ziębicach",
+  "rada_name_genitive": "Rady Miejskiej w Ziębicach",
+  "teryt": "0224064",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true,
+    "note": "Tier-2 (roster/berliński): brak głosowań imiennych IX kadencji. BIP ziebice.biuletyn.net publikuje 'Wykaz głosowań imiennych' tylko dla kadencji 2018-2024 (cid1357); wykaz i sesje dla 2024-2029 (cid1433/1217) ładowane JS (advajax) — nieosiągalne przez HTTP bez przeglądarki. Skład rady 13 radnych IX kad. z /Rada Miejska/Radni w kadencji 2024-2029 (cid1432)."
+  },
+  "_meta": {
+    "note": "Tier-2 (roster/model berliński): brak imiennych głosowań IX kad. rada.ziebice.pl = tylko embed streamu (panolive.eu), nie dane; ziebice.esesja.pl=wildcard korporacyjny; bip.gov.pl=SSDIP shell. BIP ziebice.biuletyn.net: 'Wykaz głosowań imiennych' PDF tylko dla kadencji 2018-2024; IX-kad. wykaz+sesje JS-rendered (advajax) nieosiągalne przez HTTP. Skład rady 13 radnych IX kad. wg 'Radni w kadencji 2024-2029' (cid1432). has_voting_data:false, voting_display:faction, has_speaker_activity:false (sesje JS-gated).",
+    "population": 8195,
+    "voivodeship": "dolnośląskie",
+    "lat": 50.6008,
+    "lon": 17.0406
+  }
+}

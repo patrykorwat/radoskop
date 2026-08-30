@@ -1,0 +1,42 @@
+{
+  "landing_enabled": true,
+  "city_name": "Opole Lubelskie",
+  "city_genitive": "Opolu Lubelskim",
+  "site_title": "Radoskop Opole Lubelskie — Jak głosują radni?",
+  "site_url": "https://opole-lubelskie.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Opolu Lubelskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Opolu Lubelskim.",
+  "bip_url": "https://umopolelubelskie.bip.lubelskie.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Opolu Lubelskim (Wrota Lubelszczyzny)",
+  "esesja_url": "https://opolelubelskie.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "opole-lubelskie.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Opolu Lubelskim",
+  "rada_name_genitive": "Rady Miejskiej w Opolu Lubelskim",
+  "teryt": "0612054",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (eSesja Portal Mieszkańca old-compatible PM-A, głosowania imienne IX kad. 2024-2029 z /glosowanie/, host opolelubelskie.esesja.pl). club_assignments pending (kuratorowane z BIP, nie fabrykować).",
+    "population": 8135,
+    "voivodeship": "lubelskie",
+    "lat": 51.15,
+    "lon": 21.966667
+  }
+}
