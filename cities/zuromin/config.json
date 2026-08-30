@@ -1,0 +1,39 @@
+{
+  "city_name": "Żuromin",
+  "city_genitive": "Żuromina",
+  "site_title": "Radoskop Żuromin — Jak głosują radni?",
+  "site_url": "https://zuromin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Żurominie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Żurominie.",
+  "bip_url": "https://zuromin.ibip.net.pl",
+  "bip_name": "BIP Urzędu Gminy i Miasta w Żurominie (zuromin.ibip.net.pl)",
+  "rada_name_platform": "nowybip.pl / siteor — protokoły sesji z tabelami imiennymi",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zuromin.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Żurominie",
+  "rada_name_genitive": "Rady Miejskiej w Żurominie",
+  "teryt": "1437063",
+  "_meta": {
+    "note": "NOWE miasto (long_tail → UNLOCK via protokoły sesji na zuromin-strona.nowybip.pl, platforma siteor). Strona 'Protokoły 2024-2029' listuje per-sesja protokoły (PDF na fs.siteor.com/zuromin — wymagają SESJI + Referer). Format 'Wyniki imienne' (eSesja print text): per-głosowanie bloki 'głosowanie/<temat>/Podsumowanie ZA PRZECIW WSTRZYMAŁO SIĘ/Wyniki imienne lp nazwisko imię głos', walidacja agregat==suma list, 100%. Pokrycie: 5 protokołów TEKSTOWYCH sesji XII(2025-05-14)/XIV(06-25)/XVII(10-29)/XVI(09-30)/XIX(12-17) → 71 głosowań, 15 radnych. Protokoły I-XI (2024-05..2025-03) oraz XXII(2026-05) są SKANOWANE (bez warstwy tekstowej) → nie ujęte (wzorzec Scan-skip). zuromin.esesja.pl = brak BIP (timeout); bip.net.pl 404; jedyne źródło nowybip.pl. Kluby niepublikowane → club_assignments PENDING, clubs {}. TERYT 1437063 (gm. miejsko-wiejska Żuromin, powiat żuromiński 1437, woj. mazowieckie 14). Dodane 2026-08-30 (cron do 500 miast, adapter Wyniki-imienne/PDF-text).",
+    "population": 8592,
+    "voivodeship": "mazowieckie"
+  }
+}

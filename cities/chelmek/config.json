@@ -1,0 +1,39 @@
+{
+  "city_name": "Chełmek",
+  "city_genitive": "Chełmka",
+  "site_title": "Radoskop Chełmek — Jak głosują radni?",
+  "site_url": "https://chelmek.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Chełmku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Chełmku.",
+  "bip_url": "https://bip.malopolska.pl/umchelmek",
+  "bip_name": "BIP Urzędu Miejskiego w Chełmku (bip.malopolska.pl/umchelmek)",
+  "rada_name_platform": "Małopolska BIP (Nowoczesna Gmina) — protokoły z głosowań",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "chelmek.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Chełmku",
+  "rada_name_genitive": "Rady Miejskiej w Chełmku",
+  "teryt": "1213033",
+  "_meta": {
+    "note": "NOWE miasto (long_tail → UNLOCK via Małopolska BIP / Nowoczesna Gmina). bip.malopolska.pl/umchelmek to Angular SPA + backend API: kategoria 'Protokoły z głosowań' (/api/menu/309786/articles) → 22 artykuły sesji IX kad. (I..XXIII 2024-05..2026-07) → załącznik 'protokol (szczegółowy)' (PDF tekstowy) per /e,pobierz,get.html?id=. Format eSesja per-głosowanie: 'Protokół głosowania / z dnia DD-MM-YYYY / N sesja.../GŁOSOWANIE <nr> <temat> / agregaty (GŁOSY ZA/PRZECIW/WSTRZYMUJĄCE SIĘ/NIEOBECNYCH) / UPRAWNIENI DO GŁOSOWANIA / LP RADNY GŁOS (Imię Nazwisko Za/Przeciw/Wstrzymuje się/Nieobecny)'. Walidacja: KAŻDE głosowanie reconcilowane vs agregaty (za/przeciw/wstrzymal == sumy list), 100%. 15 radnych (unia nazwisk z list). chelmek.esesja.pl = brak BIP (timeout); bip.net.pl 404; jedyne źródło bip.malopolska.pl. Kluby niepublikowane? Skład Rady (artykuł 'Radni Rady Miejskiej... Kadencja 2024-2029') podaje przew./wiceprzew. i 15 nazwisk — club_assignments PENDING, clubs {}. TERYT 1213033 (gm. Chełmek, powiat oświęcimski 1213, woj. małopolskie 12). Dodane 2026-08-30 (cron do 500 miast, adapter Małopolska-BIP/API+PDF).",
+    "population": 8669,
+    "voivodeship": "małopolskie"
+  }
+}
