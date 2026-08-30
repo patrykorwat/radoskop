@@ -107,19 +107,27 @@ def discover_sessions(cache):
 # ---------------------------------------------------------------------------
 # 2. OCR pojedynczej strony -> tekst
 # ---------------------------------------------------------------------------
-def _ocr_pdf(doc, page_i, cache_key=None):
+def _ocr_pdf(doc, page_i, cache_key=None, ocr_cache=None):
+    if ocr_cache is not None and cache_key:
+        cf = Path(ocr_cache) / cache_key / f"{page_i}.txt"
+        if cf.is_file():
+            return cf.read_text(encoding="utf-8", errors="ignore")
     pix = doc[page_i].get_pixmap(dpi=DPI)
     tmp = Path(f"/tmp/_strz_ocr_{os.getpid()}_{page_i}.png")
     pix.save(tmp)
     try:
         proc = subprocess.run([TESSERACT, str(tmp), "-", "-l", "pol", "--psm", "3"],
                               capture_output=True, timeout=120)
-        return proc.stdout.decode("utf-8", errors="ignore")
+        out = proc.stdout.decode("utf-8", errors="ignore")
     finally:
         try:
             tmp.unlink()
         except OSError:
             pass
+    if ocr_cache is not None and cache_key:
+        (Path(ocr_cache) / cache_key).mkdir(parents=True, exist_ok=True)
+        (Path(ocr_cache) / cache_key / f"{page_i}.txt").write_text(out, encoding="utf-8")
+    return out
 
 
 _VOTE_TOKENS = re.compile(r"\b(TAK|NIE|WSTRZ[YU]M[IU]?J[EĄĘS]?\w*|WSTRZ)\b", re.I)
@@ -183,13 +191,15 @@ def _extract_topic(t):
     return subj[:200]
 
 
-def parse_session_pdf(pdf_bytes):
+def parse_session_pdf(pdf_bytes, ocr_cache=None):
     """Return (records, session_date, ok_votes, total_pages)."""
+    import hashlib as _h
+    pdf_key = _h.md5(pdf_bytes).hexdigest()[:12]
     doc = pymupdf.open(stream=pdf_bytes, filetype="pdf")
     records = []
     sdate = ""
     for i in range(doc.page_count):
-        t = _ocr_pdf(doc, i)
+        t = _ocr_pdf(doc, i, cache_key=pdf_key, ocr_cache=ocr_cache)
         v = _parse_page_text(t)
         if not v["named"]["za"] and not v["named"]["przeciw"] and not v["named"]["wstrzymal_sie"]:
             continue  # no parsable per-councillor list (blank/noise page)
@@ -352,6 +362,50 @@ def save_split(output, out_path, profiles):
         json.dumps(profiles, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
 
 
+def _norm_for_match(name):
+    """Uppercase, strip non-letter junk (leading /, ), [, etc.), collapse spaces."""
+    n = name.upper()
+    n = re.sub(r"[^A-ZŁŚŹŻĆŃĘÓĄ]", " ", n)
+    n = re.sub(r"\s+", " ", n).strip()
+    return n
+
+
+def _canonicalize(records, min_ratio=0.84):
+    """Merge OCR name variants into canonical councilor names (fuzzy dedup).
+
+    OCR noise creates spelling variants of the same councillor (leading junk
+    chars, doubled/missing letters, missing diacritics). We cluster variants by
+    SequenceMatcher similarity (on a normalized, junk-stripped form) against the
+    most frequent spelling, which becomes the canonical name. Returned records
+    use canonical names; per-vote cardinality is unchanged, so reconciliation
+    still holds.
+    """
+    from collections import Counter
+    import difflib
+    cnt = Counter()
+    for r in records:
+        for n in list(r["named"]["za"]) + r["named"]["przeciw"] + r["named"]["wstrzymal_sie"]:
+            cnt[n] += 1
+    canon = {}
+    nmap = {}
+    for name, _f in cnt.most_common():
+        norm = _norm_for_match(name)
+        best, br = None, 0.0
+        for c in canon:
+            ratio = difflib.SequenceMatcher(None, norm, canon[c]).ratio()
+            if ratio > br:
+                br, best = ratio, c
+        if best and br >= min_ratio:
+            canon[name] = canon[best]
+        else:
+            canon[name] = norm
+        nmap[name] = canon[name]
+    for r in records:
+        for k in ("za", "przeciw", "wstrzymal_sie"):
+            r["named"][k] = [nmap.get(n, n) for n in r["named"][k]]
+    return records
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--city-dir", required=True)
@@ -362,13 +416,14 @@ def main():
 
     sessions = discover_sessions(cache)
     print(f"[strzyzow] sesje: {len(sessions)} ({', '.join(sessions.keys())})")
+    ocr_cache = (cache / "ocr") if cache else None
     records = []
     session_map = {}
     skipped = {}
     for rom, s in sessions.items():
         try:
             data = _fetch(s["pdf"], cache, binary=True)
-            vs, sdate = parse_session_pdf(data)
+            vs, sdate = parse_session_pdf(data, ocr_cache=ocr_cache)
         except Exception as e:
             print(f"  [ERR {rom}] {e}")
             skipped[rom] = f"err:{e}"
@@ -381,6 +436,7 @@ def main():
             v["session_date"] = sdate
             records.append(v)
         print(f"  {rom} ({sdate}) votes={len(vs)} reconciled")
+    records = _canonicalize(records)
     output = build_output(records, session_map)
     profiles = build_profiles(records, session_map)
     save_split(output, city_dir / "docs" / "data.json", profiles)
