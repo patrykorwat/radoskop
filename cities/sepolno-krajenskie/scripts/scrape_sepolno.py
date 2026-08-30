@@ -193,7 +193,8 @@ def parse_pdf(data):
         date = dm.group(1).strip().split(" ")[0] if dm else ""
         date = date.replace(".", "-")
         try:
-            y, m, d = date.split("-")
+            # format is DD.MM.YYYY (np. 07.05.2024 -> 2024-05-07)
+            d, m, y = date.split("-")
             date = f"{int(y):04d}-{int(m):02d}-{int(d):02d}"
         except Exception:
             date = ""
@@ -337,6 +338,12 @@ def collect_all(sessions, cache_dir=None):
             print(f"  [warn] {s['roman']}: {e}")
             continue
         vs = parse_pdf(pdf)
+        # effective session date: prefer majority PDF vote date, else fall back to article title.
+        # The BIP article title for sesja XXI has a typo ("26 listopada 2026r." — actually 2025-11-26),
+        # which the PDF's own DATA GŁOSOWANIA dates disambiguate.
+        from collections import Counter as _C
+        pdf_dates = _C(v.get("date") for v in vs if v.get("date"))
+        sess_date = (pdf_dates.most_common(1)[0][0] if pdf_dates else "") or s["date"]
         ok = 0
         for v in vs:
             total_named = (len(v["named"]["za"]) + len(v["named"]["przeciw"]) +
@@ -349,10 +356,10 @@ def collect_all(sessions, cache_dir=None):
             if total_named == agg_total and total_named > 0:
                 ok += 1
                 rec = dict(v)
-                rec["session_date"] = s["date"]
+                rec["session_date"] = sess_date
                 rec["session_num"] = s["roman"] or s["date"]
                 records.append(rec)
-        print(f"  {s['roman']:5s} {s['date']} votes_ok={ok}/{len(vs)}")
+        print(f"  {s['roman']:5s} {s['date']} votes_ok={ok}/{len(vs)} -> {sess_date}")
     return records
 
 
