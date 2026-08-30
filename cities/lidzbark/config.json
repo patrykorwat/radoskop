@@ -1,0 +1,42 @@
+{
+  "landing_enabled": true,
+  "city_name": "Lidzbark",
+  "city_genitive": "Lidzbarku",
+  "site_title": "Radoskop Lidzbark — Jak głosują radni?",
+  "site_url": "https://lidzbark.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Lidzbarku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Lidzbarku.",
+  "bip_url": "https://lidzbark.esesja.pl/",
+  "bip_name": "eSesja Portal Mieszkańca (lidzbark.esesja.pl)",
+  "esesja_url": "https://lidzbark.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lidzbark.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Lidzbarku",
+  "rada_name_genitive": "Rady Miejskiej w Lidzbarku",
+  "teryt": "2803043",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (eSesja Portal Mieszkańca old-compatible PM-A, głosowania imienne IX kad. 2024-2029 z /glosowanie/, host lidzbark.esesja.pl). club_assignments pending (kuratorowane z BIP, nie fabrykować).",
+    "population": 7471,
+    "voivodeship": "warmińsko-mazurskie",
+    "lat": 53.2603,
+    "lon": 19.8211
+  }
+}
