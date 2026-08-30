@@ -1,0 +1,46 @@
+{
+  "city_name": "Janikowo",
+  "city_genitive": "Janikowa",
+  "site_title": "Radoskop Janikowo — Jak głosują radni?",
+  "site_url": "https://janikowo.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Janikowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych kadencji 2024–2029.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Janikowie.",
+  "bip_url": "https://bip.janikowo.bipgmina.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Janikowie (bip.janikowo.bipgmina.pl, idcom-jst)",
+  "rada_name_platform": "BIP idcom-jst — 'Imienny wykaz głosowań radnych' (PDF PROTOKÓŁ GŁOSOWANIA)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "janikowo.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true,
+    "votes_source": "idcom-jst PROTOKÓŁ GŁOSOWANIA PDF (per-sesja 'Imienny wykaz głosowań radnych')"
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "has_interpelacje": false,
+  "has_voting_data": true,
+  "has_named_votes": true,
+  "voting_display": "tokens",
+  "voting_mode": "named",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Janikowie",
+  "rada_name_genitive": "Rady Miejskiej w Janikowie",
+  "councilor_count": 16,
+  "teryt": "0407054",
+  "_meta": {
+    "note": "NOWE miasto (long-tail → UNLOCK via BIP bip.janikowo.bipgmina.pl, platforma idcom-jst, kategoria 'Imienny wykaz głosowań radnych' 11797). Per-sesja artykuły '<NR> sesja RM-DDMMYYYY - imienne głosowanie radnych' z załącznikiem PDF (PROTOKÓŁ GŁOSOWANIA, warstwa tekstowa). Parsowane: 'Głosy oddane: <Imię Nazwisko> ZA|PRZECIW|WSTRZ' per punkt. 15 radnych. has_voting_data:true. Popularność Janikowo=8354.",
+    "population": 8354,
+    "voivodeship": "kujawsko-pomorskie"
+  }
+}
