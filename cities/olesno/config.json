@@ -1,0 +1,38 @@
+{
+  "city_name": "Olesno",
+  "city_genitive": "Olesna",
+  "site_title": "Radoskop Olesno — Jak głosują radni?",
+  "site_url": "https://olesno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Oleśnie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Oleśnie.",
+  "bip_url": "https://bip.olesno.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Oleśnie",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "olesno.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Oleśnie",
+  "rada_name_genitive": "Rady Miejskiej w Oleśnie",
+  "teryt": "1608034",
+  "_meta": {
+    "note": "NOWE miasto (custom BIP bip.olesno.pl, imienne TXT w artykułach HTML kategorii 'Imienny wykaz głosowań' 8319). 34 sesje IX kad. (2024-05-14..2026-08-25), 242 głosowania imienne, 25 radnych (turnover mid-term), każdy głos reconcilowany 100% vs agregat. Kluby nie publikowane w wykazach -> club_assignments PENDING, clubs {}. TERYT 1608034 (gm. Olesno, powiat oleski, woj. opolskie). Olesno.esesja.pl = Portal Mieszkańca z tylko 6 sesjami 2026 bez imiennych; BIP bip.olesno.pl jedynym pełnym źródłem. Dodane 2026-08-30 (cron do 500 miast, adapter custom-HTML-text).",
+    "population": 9507,
+    "voivodeship": "opolskie"
+  }
+}
