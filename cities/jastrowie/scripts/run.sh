@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-# Radoskop Jastrowie — Tier-2 (roster / "model berliński"): scrape skład+sesje + generate_site.
+# Radoskop Jastrowie — FULL (DSSS Vote imienne głosowania): scrape + generate_site.
 set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CITY_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-echo "[jastrowie] scrape_jastrowie.py"
-python3 "$SCRIPT_DIR/scrape_jastrowie.py" "$CITY_DIR"
+echo "[jastrowie] scrape_jastrowie.py (DSSS Vote, per-sesja glosowanie-*.pdf)"
+python3 "$SCRIPT_DIR/scrape_jastrowie.py" --city-dir "$CITY_DIR" \
+  --cache-dir "/cache/jastrowie"
 
 echo "[jastrowie] generate_site.py"
 python3 "$CITY_DIR/../../../scripts/generate_site.py" \
