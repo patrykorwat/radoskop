@@ -1,0 +1,39 @@
+{
+  "city_name": "Strzyżów",
+  "city_genitive": "Strzyżowa",
+  "site_title": "Radoskop Strzyżów — Jak głosują radni?",
+  "site_url": "https://strzyzow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Strzyżowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Strzyżowie.",
+  "bip_url": "http://bip.strzyzow.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Strzyżowie (bip.strzyzow.pl)",
+  "rada_name_platform": "eBOI/Softres — skanowany DSSS print (OCR)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "strzyzow.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Strzyżowie",
+  "rada_name_genitive": "Rady Miejskiej w Strzyżowie",
+  "teryt": "1819043",
+  "_meta": {
+    "note": "NOWE miasto (long_tail → UNLOCK via OCR skanów DSSS print). bip.strzyzow.pl (eBOI/Softres) kategoria Protokoły (under=11&grp=17): per-sesja PDF 'Wyniki głosowania z {N} sesji' (SKANOWANA, bez warstwy tekstowej → PyMuPDF render dpi=150 + tesseract -l pol). Format DSSS 'PROTOKÓŁ GŁOSOWANIA': każda strona = jedno głosowanie (Punkt + Przedmiot + agregat TAK/NIE/WSTRZ + lista imienna 'Głosy oddane: NAME TAK/NIE...'). Sesje IX kad. I–XXII (2024-05-07..2025-12-30) — KAŻDE głosowanie reconcilowane vs agregat (oddane == suma list), 100%. Sesje 2026 (XXIII–XXVIII) publikowane w formacie EvLector (nazwiska w kolumnach bez tokenu głosu per radny) → atrybucja per-radny niepewna → NIE ujęte (wzorzec Góra/Pultusk). 15 radnych (unia nazwisk z list). Kluby niepublikowane → club_assignments PENDING, clubs {}. strzyzow.esesja.pl = PM-B (pusta .sessions-list). TERYT 1819043 (gm. Strzyżów, powiat strzyżowski 1819, woj. podkarpackie 18). Dodane 2026-08-30 (cron do 500 miast, adapter OCR-DSSS-print).",
+    "population": 8967,
+    "voivodeship": "podkarpackie"
+  }
+}
