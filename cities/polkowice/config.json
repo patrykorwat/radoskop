@@ -1,0 +1,39 @@
+{
+  "city_name": "Polkowice",
+  "city_genitive": "Polkowic",
+  "site_title": "Radoskop Polkowice — Jak głosują radni?",
+  "site_url": "https://polkowice.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Polkowicach. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Polkowicach.",
+  "bip_url": "https://bip.polkowice.eu",
+  "bip_name": "BIP Urzędu Gminy Polkowice (bip.polkowice.eu)",
+  "rada_name_platform": "eSesja print (BIP API)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "polkowice.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Polkowicach",
+  "rada_name_genitive": "Rady Miejskiej w Polkowicach",
+  "teryt": "0216044",
+  "_meta": {
+    "note": "NOWE miasto (long_tail → UNLOCK via eSesja print za pośrednictwem API bip.polkowice.eu). BIP to React SPA 'layout-default'; dane przez API /api/menu/1688/articles (30 protokołów sesji IX kad., I..XXX, 2024-05-07..2026-08-25) → /api/articles/{id} → załącznik PDF 'Głosowania z N sesji Rady Miejskiej w dniu ...' (29/30 sesji; VI 2024-09-24 bez osobnego załącznika) → /e,pobierz,get.html?id=. Format eSesja print: jeden głos na stronę, agregaty (Liczba uprawnionych/za/przeciw/wstrzymujące), tabela dwukolumnowa 'Lp | Nazwisko i imię | Głos (ZA/PRZECIW/WSTRZYMUJĘ SIĘ/NIEOBECNA)'. Walidacja: KAŻDE głosowanie reconcilowane vs agregaty (za/przeciw/wstrzymujące == sumy list; nieobecni == Liczba nieobecnych), 100%. 21 radnych (unia nazwisk). Kluby niepublikowane → club_assignments PENDING, clubs {}. polkowice.esesja.pl = wildcard korporacyjny; bip.net.pl 404; bip.polkowice.pl(bip.polkowice.eu) jedyne źródło. TERYT 0216044 (obszar miejski gminy Polkowice, powiat polkowicki 0216, woj. dolnośląskie 02). Dodane 2026-08-30 (cron do 500 miast, adapter eSesja-print/API).",
+    "population": 21505,
+    "voivodeship": "dolnośląskie"
+  }
+}
