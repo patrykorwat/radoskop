@@ -1,0 +1,39 @@
+{
+  "city_name": "Sępólno Krajeńskie",
+  "city_genitive": "Sępólna Krajeńskiego",
+  "site_title": "Radoskop Sępólno Krajeńskie — Jak głosują radni?",
+  "site_url": "https://sepolno-krajenskie.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Sępólnie Krajeńskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Sępólnie Krajeńskim.",
+  "bip_url": "https://bip.gmina-sepolno.pl",
+  "bip_name": "BIP Gminy Sępólno Krajeńskie (bip.gmina-sepolno.pl)",
+  "rada_name_platform": "BIP idcom/Waw — 'Imienny wykaz głosowań' (PDF eSesja PRINT)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sepolno-krajenskie.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Sępólnie Krajeńskim",
+  "rada_name_genitive": "Rady Miejskiej w Sępólnie Krajeńskim",
+  "teryt": "0413023",
+  "_meta": {
+    "note": "NOWE miasto (long-tail → UNLOCK via BIP bip.gmina-sepolno.pl, platforma idcom/'Waw', kategoria 'Imienny wykaz głosowań' (651/327, filtra kadencja 2024-2029). Każda sesja IX kadencji = artykuł z załącznikiem PDF 'Imienny wykaz głosowań radnych RM podczas obrad <XXn> sesji' (format eSesja PRINT, tekstowy). Scraper (scrape_sepolno.py): strona-artykuły z kategorii (strona= ?Page=N, filtra t60_f255=294), download /download/attachment/{id}/...pdf, parser per-głosowanie bloków (TYP GŁOSOWANIA/DATA GŁOSOWANIA/GŁOSY ZA/PRZECIW/WSTRZYMUJĄCE SIĘ/LICZBA NIEOBECNYCH/GŁOSY NIEODDANE + tabela 'UPRAWNIENI DO GŁOSOWANIA' LP/Nazwisko/imię/Głos). Każde głosowanie reconcilowane vs agregat. Odporności: zerówka w PDF jako litera 'o', LP '9' wyciągane jako 'g' (LP opcjonalne alfanum), nazwiska 'Nazwisko Imię' odwracane, kanonizacja fuzzy wariantów OCR do 16 realnych radnych (wzorzec Strzyzów), dedup per-głosowanie. Pokrycie: 21 sesji IX kad. (I 2024-05-07 .. XXVII 2026-05-27), 272 głosowania imienne (zwalidowane), 16 radnych. Sesje IV i XVII bez osobnego wykazu PDF (komisyjne/przerwa). Kluby niepublikowane -> club_assignments PENDING, clubs {}. TERYT 0413023 (gm. Sępólno Krajeńskie, powiat sępoleński 0413, woj. kujawsko-pomorskie 04). Dodane 2026-08-30 (cron do 500 miast, adapter idcom/Waw + eSesja PRINT).",
+    "population": 8914,
+    "voivodeship": "kujawsko-pomorskie"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "city_name": "Czarna Białostocka",
+  "city_genitive": "Czarnej Białostockiej",
+  "site_title": "Radoskop Czarna Białostocka — Jak głosują radni?",
+  "site_url": "https://czarna-bialostocka.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Czarnej Białostockiej. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Czarnej Białostockiej.",
+  "bip_url": "https://bip-umczarnabialostocka.podlaskie.eu",
+  "bip_name": "BIP Urzędu Miejskiego w Czarnej Białostockiej (bip-umczarnabialostocka.podlaskie.eu)",
+  "rada_name_platform": "BIP podlaskie.eu — 'Głosowania Rady Miejskiej' (per-sesja PDF/doc posiedzenia.pl imienne)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "czarna-bialostocka.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Czarnej Białostockiej",
+  "rada_name_genitive": "Rady Miejskiej w Czarnej Białostockiej",
+  "teryt": "2002024",
+  "_meta": {
+    "note": "NOWE miasto (long-tail → UNLOCK via BIP bip-umczarnabialostocka.podlaskie.eu, platforma podlaskie.eu, sekcja /rada-miejska/ix-kadencja/glosowania/. Każda sesja = strona z załącznikiem PDF/doc 'Wykaz głosowań na <N> sesji' (dwa formaty imienne: 2024 posiedzenia.pl 'Raport z głosowań' ZA(n) lista-tekstowa; 2025+ posiedzenia.pl tabela lp/nazwisko/imię/głos — w tym ostatnia XXVII 2026-07-15 jako .doc OLE2 UTF-16). Scraper (scrape_czarna_bialostocka.py): discover sesje z indeksu, download PDF/doc, parser dwu-formatowy, KAŻDE głosowanie reconcilowane vs agregat (ZA/PRZECIW/WSTRZYMAŁO SIĘ) z rosterem (15 radnych) do filtrowania szumu. TERYT 2002024.",
+    "source": "PLAN_500_MIAST_2026-08-29"
+  }
+}

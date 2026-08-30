@@ -1,0 +1,39 @@
+{
+  "city_name": "Stary Sącz",
+  "city_genitive": "Starego Sącza",
+  "site_title": "Radoskop Stary Sącz — Jak głosują radni?",
+  "site_url": "https://stary-sacz.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Starym Sączu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Starym Sączu.",
+  "bip_url": "https://bip.malopolska.pl/starysacz",
+  "bip_name": "BIP Gminy Stary Sącz (bip.malopolska.pl)",
+  "rada_name_platform": "Wrota Małopolski / Madkom SPA — 'Imienne wykazy głosowań radnych' (PDF eSesja PRINT)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "stary-sacz.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Starym Sączu",
+  "rada_name_genitive": "Rady Miejskiej w Starym Sączu",
+  "teryt": "1210163",
+  "_meta": {
+    "note": "NOWE miasto (long-tail → UNLOCK via BIP bip.malopolska.pl/starysacz, platforma Wrota Małopolski / Madkom SPA, API /api/contexts + /api/menu/{id}/articles + /api/articles/{id} + /api/files/{id}). Rada Miejska -> IMIENNE WYKAZY GŁOSOWAŃ RADNYCH (menu 319490) -> IX KADENCJA RADY MIEJSKIEJ (menu 438659). 28 sesji IX kadencji (I 2024-05-07 .. XXXV 2026-07-27), każda = artykuł 'sesja' z załącznikiem PDF 'glosowanieSesja<N>' (format eSesja PRINT, tekstowy, tabela 2-kolumnowa Lp/Nazwisko i imię/Głos; GŁOS ∈ ZA/PRZECIW/WSTRZYMUJĄCE SIĘ/NIEOBECNY/OBECNY[nieważny]). Scraper (scrape_stary_sacz.py): madkom API discovery + parser per-głosowanie bloków (Typ głosowania/Data głosowania/Liczba uprawnionych/Głosy za/przeciw/wstrzymujące się/Obecni niegłosujący/Uprawnieni do głosowania). Każde głosowanie reconcilowane vs agregat; zerówka jako 'o'; nazwy 'Nazwisko Imię' odwracane; kanonizacja fuzzy wariantów OCR do 21 realnych radnych (dedup per-głosowanie). Pokrycie: 25 sesji IX kad. (I..XXXV + sesje nadzwyczajne 2026-02/03), 586 głosowań imiennych (zwalidowane), 21 radnych. Kluby niepublikowane na BIP -> club_assignments PENDING, clubs {}. TERYT 1210163 (gm. Stary Sącz, powiat nowosądecki 1210, woj. małopolskie 12). Dodane 2026-08-30 (cron do 500 miast, adapter Madkom/Wrota Małopolski + eSesja PRINT).",
+    "population": 8746,
+    "voivodeship": "małopolskie"
+  }
+}
