@@ -387,6 +387,7 @@ def _canonicalize(records, min_ratio=0.84):
         for n in list(r["named"]["za"]) + r["named"]["przeciw"] + r["named"]["wstrzymal_sie"]:
             cnt[n] += 1
     canon = {}
+    canon_title = {}
     nmap = {}
     for name, _f in cnt.most_common():
         norm = _norm_for_match(name)
@@ -396,14 +397,25 @@ def _canonicalize(records, min_ratio=0.84):
             if ratio > br:
                 br, best = ratio, c
         if best and br >= min_ratio:
-            canon[name] = canon[best]
+            target = canon[best]
         else:
-            canon[name] = norm
-        nmap[name] = canon[name]
+            target = norm
+        canon[name] = target
+        if target not in canon_title:
+            canon_title[target] = _title_case(name)
+        nmap[name] = canon_title[target]
     for r in records:
         for k in ("za", "przeciw", "wstrzymal_sie"):
             r["named"][k] = [nmap.get(n, n) for n in r["named"][k]]
     return records
+
+
+def _title_case(name):
+    """Convert an ALL-CAPS OCR name to Title Case (Andrzej Sieczkowski)."""
+    import re as _re
+    out = _re.sub(r"([A-ZĄĆĘŁŃÓŚŹŻ])(\S+)", lambda m: m.group(1) + m.group(2).lower(),
+                  _re.sub(r"[^A-ZĄĆĘŁŃÓŚŹŻ ]", " ", name))
+    return _re.sub(r"\s+", " ", out).strip()
 
 
 def main():
