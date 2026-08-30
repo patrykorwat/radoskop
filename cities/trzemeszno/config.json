@@ -1,0 +1,49 @@
+{
+  "landing_enabled": true,
+  "city_name": "Trzemeszno",
+  "city_genitive": "Trzemeszna",
+  "site_title": "Radoskop Trzemeszno — Skład rady i sesje",
+  "site_url": "https://trzemeszno.radoskop.pl",
+  "site_description": "Radoskop — Rada Miejska w Trzemesznie. Skład rady kadencji 2024–2029 (bez imiennych głosowań).",
+  "site_description_short": "Otwarte monitorowanie Rady Miejskiej w Trzemesznie.",
+  "bip_url": "https://bip.trzemeszno.pl/",
+  "bip_name": "BIP UM Trzemeszno (bip.trzemeszno.pl)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "trzemeszno.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "has_voting_data": false,
+  "has_speaker_activity": false,
+  "has_named_votes": false,
+  "voting_display": "faction",
+  "councilor_count": 15,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Trzemesznie",
+  "rada_name_genitive": "Rady Miejskiej w Trzemesznie",
+  "teryt": "3003094",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true,
+    "note": "Tier-2 (roster/model berliński): brak głosowań imiennych IX kadencji. trzemeszno.esesja.pl=redirect-loop (wildcard, nie BIP), rada.trzemeszno.pl=AlfaTV bez instancji (błąd DNS), trzemeszno.bip.net.pl=404. Realny BIP: bip.trzemeszno.pl (custom CMS, artykuły .html): Rada Miejska -> kadencja 2024-2029 (skład 15 radnych), Protokoły z sesji RM (DOC/PDF, bez tabeli imiennej), Rejestr uchwał, Interpelacje radnych, Materiały sesyjne. has_voting_data:false, voting_display:faction, has_speaker_activity:false."
+  },
+  "_meta": {
+    "note": "Tier-2 (roster/model berliński): brak głosowań imiennych IX kadencji. trzemeszno.esesja.pl=redirect-loop (wildcard, nie BIP), rada.trzemeszno.pl=AlfaTV bez instancji (błąd DNS), trzemeszno.bip.net.pl=404. Realny BIP: bip.trzemeszno.pl (custom CMS, artykuły .html): Rada Miejska -> kadencja 2024-2029 (skład 15 radnych), Protokoły z sesji RM (DOC/PDF, bez tabeli imiennej), Rejestr uchwał, Interpelacje radnych, Materiały sesyjne. has_voting_data:false, voting_display:faction, has_speaker_activity:false.",
+    "note_short": "Tier-2 (roster): Trzemeszno, 15 radnych IX kad., brak głosowań imiennych. Źródło składu: bip.trzemeszno.pl/rada-miejska-trzemeszna-kadencja-2024-2029.html.",
+    "population": 7522,
+    "voivodeship": "wielkopolskie",
+    "lat": 52.5614,
+    "lon": 17.8231,
+    "qid": null
+  }
+}
