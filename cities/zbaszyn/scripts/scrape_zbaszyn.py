@@ -145,6 +145,9 @@ def item_pdf_url(iid, cache):
     body = t[i:i + 40000] if i > 0 else t
     m = re.search(r'href="([^"]+\.pdf[^"]*)"', body, re.I)
     if not m:
+        # nowe pozycje (od 2025-10): zalacznik jako index.php?type=4&func=downloadFile&value=<hash>
+        m = re.search(r'href="([^"]*func=downloadFile[^"]*)"', body, re.I)
+    if not m:
         return None, ""
     href = m.group(1).replace("&amp;", "&")
     if href.startswith("http"):
