@@ -1,0 +1,41 @@
+{
+ "city_name": "Paczków",
+ "city_genitive": "Paczkowa",
+ "site_title": "Radoskop Paczków — Skład rady i sesje",
+ "site_url": "https://paczkow.radoskop.pl",
+ "site_description": "Radoskop — Rada Miejska w Paczkowie. Skład rady i kalendarz sesji kadencji 2024–2029 (bez imiennych głosowań).",
+ "site_description_short": "Otwarte monitorowanie Rady Miejskiej w Paczkowie.",
+ "bip_url": "https://paczkow.bip.net.pl",
+ "bip_name": "BIP Urzędu Miejskiego w Paczkowie (paczkow.bip.net.pl)",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "paczkow.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "scrape": {
+  "runner": "run.sh",
+  "generate_site": true
+ },
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Paczkowie",
+ "rada_name_genitive": "Rady Miejskiej w Paczkowie",
+ "teryt": "1607074",
+ "has_voting_data": false,
+ "has_speaker_activity": false,
+ "voting_display": "faction",
+ "_meta": {
+  "note": "Tier-2 (roster/berliński): BIP paczkow.bip.net.pl (legacy Sputnik Software) publikuje protokoły sesji jako PDF-y tekstowe z WYŁĄCZNIE agregatami ZA/PRZECIW/WSTRZ per głosowanie; 'wykaz imienny głosujących zał. nr N' niewypubliczniany (brak kategorii Wyniki głosowań). paczkow.esesja.pl = wildcard dead; rada.paczkow.pl = 500/404 (AlfaTV nieaktywne); paczkow.sesja.pl = 404. Skład 15 radnych IX kad. z art. BIP a=11927 (role: przewodniczący, wiceprzewodniczące, komisje); kalendarz sesji z PDF-ów protokołów (?c=1374 -> roczne 1375/1409/1467). has_voting_data:false; voting_display:faction. TERYT 1607074 (gm. Paczków, pow. nyski, opolskie; pl.wiki TERC). Dodane 2026-08-31 (cron do 500 miast).",
+  "population": 6941,
+  "voivodeship": "opolskie"
+ }
+}
