@@ -3,8 +3,8 @@
   "city_genitive": "Zelowa",
   "site_title": "Radoskop Zelów — Jak głosują radni?",
   "site_url": "https://zelow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Zelowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Zelowie.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Zelowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Zelowie.",
   "bip_url": "https://bip.zelow.pl",
   "bip_name": "BIP Gminy Zelów (bip.zelow.pl)",
   "rada_url": "https://rada.zelow.pl",
@@ -27,14 +27,16 @@
   },
   "has_budget": false,
   "has_komisje": false,
-  "budget_note": "",
   "samorzad_type": "miasto",
   "rada_name": "Rada Miejska w Zelowie",
   "rada_name_genitive": "Rady Miejskiej w Zelowie",
-  "teryt": "1001083",
+  "teryt": "1001084",
   "_meta": {
-    "note": "NOWE miasto (long_tail → AlfaTV 'System Rada' rada.zelow.pl, IX kadencja). 25 sesji IX kad. (2024-05-07 .. 2026-08), 260 głosowań imiennych, 15 radnych, serwer-renderowane HTML (accordion + tabela 'Imienny wykaz głosowania'). Roster /sklad-rady + 'Przynależność' na stronach radnych (kluby: KW PRAWO I SPRAWIEDLIWOŚĆ, KWW ZMIANA DLA ROZWOJU) — zachowane jako clubs w kadencji; club_assignments kuratorowane PENDING, clubs {} w config (wzorzec miastko). zelow.esesja.pl = wildcard korporacyjny. TERYT 1001083 (gm. miejsko-wiejska Zelów, powiat bełchatowski 1001, woj. łódzkie 10). Dodane 2026-08-29 (cron do 500, adapter AlfaTV).",
+    "note": "NOWE miasto (AlfaTV 'System Rada' rada.zelow.pl, IX kadencja) — long_tail 500. Zelów ma wszystkie głosowania imienne serwer-renderowane w System Rada (wzorzec miastko). zelow.esesja.pl = wildcard korporacyjny (302), zelow.bip.net.pl 404, bip.zelow.pl = CMS bez kategorii głosowań. TERYT 1001084 (gm. Zelów, powiat bełchatowski, woj. łódzkie, SIMC 1001084 — gmina). Q189273, pop 7297. Kluby wg System Rada jeśli publikowane, w przeciwnym razie PENDING. Dodane 2026-08-31 (cron do 500 miast, adapter AlfaTV).",
     "population": 7297,
-    "voivodeship": "łódzkie"
+    "voivodeship": "łódzkie",
+    "lat": 51.46667,
+    "lon": 19.21667,
+    "qid": "Q189273"
   }
 }

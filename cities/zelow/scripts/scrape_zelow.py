@@ -1,26 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Radoskop Zelow — imienne głosowania Rady Miejskiej w Miastku (AlfaTV "System Rada").
+Radoskop Zelów — imienne głosowania Rady Miejskiej w Zelowie (AlfaTV "System Rada").
 
 Źródło: https://rada.zelow.pl/ (AlfaTV System Rada, IX kadencja 2024-2029).
 Pełne per-radny głosowania serwer-renderowane jako HTML (bez PDF/OCR).
 
-Struktura:
+Struktura (identyczna z rada.miastko.pl, ten sam platformowy szablon):
   /glosowania                -> lista sesji (Nazwa | data | Liczba głosowań | link)
-  /glosowania/posiedzenie/{id} -> wszystkie głosowania 1 sesji w HTML; każdy blok
-      to div.accordion-item z: temat + decyzja (Przyjęto/Odrzucono), wierszem
+  /glosowania/posiedzenie/{id} -> wszystkie głosowania 1 sesji w HTML; blok =
+      div.accordion-item z tematem + decyzją (Przyjęto/Odrzucono), wierszem
       agregatów oraz tabelą "Imienny wykaz głosowania" (Imię i nazwisko | Głos).
   /sklad-rady                 -> roster radnych (linki /sklad-rady/radny/{id})
-  /sklad-rady/radny/{id}      -> nazwisko (kluby NIE publikowane u Miastka)
-
-34 sesje IX kadencji (2024-05 .. 2026-08), 16 radnych.
-Adapter rada.zelow.pl == rada.miastoturek.pl (ten sam platformowy szablon AlfaTV).
 
 Użycie:
     python scrape_zelow.py --city-dir cities/zelow [--cache-dir .cache]
 """
-
 import argparse
 import hashlib
 import html as _html
@@ -57,7 +52,7 @@ def _rate():
     _LAST_REQ = time.time()
 
 
-def fetch(url: str, cache_dir: Path | None = None):
+def fetch(url: str, cache_dir=None):
     if cache_dir is not None:
         key = hashlib.md5(url.encode()).hexdigest()
         cf = cache_dir / (key + ".html")
@@ -65,7 +60,7 @@ def fetch(url: str, cache_dir: Path | None = None):
             return cf.read_text(encoding="utf-8", errors="ignore")
     _rate()
     resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0 (X11; Linux x86_64)"},
-                        timeout=60, verify=False)
+                        timeout=90, verify=False)
     resp.raise_for_status()
     if cache_dir is not None:
         cf = cache_dir / (hashlib.md5(url.encode()).hexdigest() + ".html")
@@ -74,10 +69,8 @@ def fetch(url: str, cache_dir: Path | None = None):
     return resp.text
 
 
-# ---------------------------------------------------------------------------
-# 1. Sesje
-# ---------------------------------------------------------------------------
 def discover_sessions(cache_dir):
+    """Lista sesji z https://rada.zelow.pl/glosowania (serwer-renderowana tabela)."""
     html = fetch(f"{BASE}/glosowania", cache_dir)
     soup = BeautifulSoup(html, "html.parser")
     out = []
@@ -85,29 +78,31 @@ def discover_sessions(cache_dir):
         row = a.find_parent("tr") or a.find_parent("div")
         txt = re.sub(r"\s+", " ", row.get_text(" ", strip=True)) if row else ""
         dm = re.search(r"(\d{4}-\d{2}-\d{2})", txt)
-        cm = re.search(r"Sesj\S+\s+Rady Miejskiej\S*\s+(.*?)\s+\d{4}-\d{2}-\d{2}", txt)
+        cm = re.search(r"([IVXLCD]+\s+ses(?:j\w+|ję)\S*)\s+(?:nadzwyczajn\S*\s+)?", txt)
+        label = cm.group(1).strip() if cm else ""
+        if not label:
+            # fallback: text before the ISO date
+            pre = txt.split("2024-")[0].split("2025-")[0].split("2026-")[0]
+            label = pre.strip()[:40]
         mid = int(re.search(r"(\d+)$", a["href"]).group(1))
-        out.append({"id": mid, "name": (cm.group(1).strip() if cm else ""),
+        out.append({"id": mid, "name": label,
                     "date": dm.group(1) if dm else ""})
-    # dedupe
     seen = set(); uniq = []
     for s in out:
         if s["id"] in seen:
             continue
         seen.add(s["id"]); uniq.append(s)
-    uniq.sort(key=lambda s: s["date"])
-    return uniq
+    uniq.sort(key=lambda s: (s["date"], s["id"]))
+    # IX kadencja only
+    return [s for s in uniq if s["date"] and s["date"] >= KAD_START]
 
 
-# ---------------------------------------------------------------------------
-# 2. Głosowania sesji
-# ---------------------------------------------------------------------------
 def parse_session_votes(html):
     soup = BeautifulSoup(html, "html.parser")
     votes = []
     for item in soup.find_all("div", class_="accordion-item"):
         tables = item.find_all("table")
-        big = [tb for tb in tables if len(tb.find_all("tr")) > 15]
+        big = [tb for tb in tables if len(tb.find_all("tr")) > 5]
         if not big:
             continue
         tbl = big[0]
@@ -119,27 +114,24 @@ def parse_session_votes(html):
             if len(tds) >= 2 and not re.match(r"^\d+$", tds[0]):
                 rows.append((tds[0], tds[1].lower()))
         itext = item.get_text(" ", strip=True)
-        # topic + decision: text before "Zakończono:"
         pre, _sep, _post = itext.partition("Zakończono:")
         dm = re.findall(r"(Przyjęto|Odrzucono)", pre)
         decision = dm[-1] if dm else ""
         topic = re.sub(r"\s*(Przyjęto|Odrzucono)\s*$", "", pre).strip()
         named = defaultdict(list)
         for nm, vt in rows:
-            if vt == "za":
+            v = vt.strip()
+            if v in ("za", "za ✓", "za +") or v.startswith("za"):
                 named["za"].append(nm)
-            elif vt == "przeciw":
+            elif v.startswith("przeciw"):
                 named["przeciw"].append(nm)
-            elif "wstrzym" in vt:
+            elif "wstrzym" in v:
                 named["wstrzymal_sie"].append(nm)
         votes.append({"topic": topic, "decision": decision,
                       "named": {k: list(v) for k, v in named.items()}})
     return votes
 
 
-# ---------------------------------------------------------------------------
-# 3. Roster + kluby
-# ---------------------------------------------------------------------------
 def fetch_roster(cache_dir):
     html = fetch(f"{BASE}/sklad-rady", cache_dir)
     links = sorted(set(re.findall(r"href=\"(/sklad-rady/radny/\d+)\"", html)),
@@ -165,22 +157,13 @@ def fetch_roster(cache_dir):
     return roster
 
 
-# ---------------------------------------------------------------------------
-# 4. Output builders (wzorzec scrape_police / scrape_klodzko)
-# ---------------------------------------------------------------------------
 def make_slug(name):
-    repl = {'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n', 'ó': 'o',
-            'ś': 's', 'ź': 'z', 'ż': 'z'}
-    slug = name.lower()
-    for pl, a in repl.items():
-        slug = slug.replace(pl, a)
-    return re.sub(r"[^a-z0-9]+", "", slug)
+    s = unicodedata.normalize("NFKD", name)
+    s = "".join(c for c in s if not unicodedata.combining(c)).replace("ł", "l")
+    return re.sub(r"[^a-z0-9]+", "", s.lower()) or "radny"
 
 
 def _club_key(name, roster):
-    # Zelow: System Rada nie publikuje klubów (Przynależność brak na stronach
-    # /sklad-rady/radny/{id}) -> club_assignments PENDING, clubs {}.
-    # Zwracamy surową nazwę klubu z radny-page (zwykle ""), NIGDY nie fabrykujemy.
     return roster.get(name, {}).get("club", "") or ""
 
 
@@ -219,8 +202,6 @@ def build_output(records, roster):
     for v in all_votes:
         for names in v["named_votes"].values():
             all_names.update(names)
-
-    # canonical roster from source (radny pages) — union with names appearing in votes
     roster_names = set(r["name"] for r in roster.values())
     all_names |= roster_names
 
@@ -276,7 +257,7 @@ def build_output(records, roster):
         common = set(vectors[a].keys()) & set(vectors[b].keys())
         if len(common) < 10:
             continue
-        same = sum(1 for vid in common if vectors[a][vid] == vectors[b][vid])
+        same = sum(1 for vid2 in common if vectors[a][vid2] == vectors[b][vid2])
         pairs.append({"a": a, "b": b, "club_a": _club_key(a, roster) or "",
                       "club_b": _club_key(b, roster) or "",
                       "score": round(same / len(common) * 100, 1), "common_votes": len(common)})
@@ -296,22 +277,24 @@ def build_output(records, roster):
 
 def build_profiles(records, roster):
     cv = defaultdict(lambda: {"za": 0, "przeciw": 0, "wstrzymal_sie": 0, "votes": []})
+    n_rec = 0
     for rec in records:
         d = rec.get("session_date")
         if not d or d < KAD_START:
             continue
+        n_rec += 1
         for cat, names in rec["named"].items():
             for nm in names:
                 cv[nm][cat] += 1
                 cv[nm]["votes"].append({"session": d, "vote": cat})
-    profiles = []
     sess_set = {r["session_date"] for r in records if r["session_date"] >= KAD_START}
     n_sessions = len(sess_set) or 1
+    profiles = []
     for nm in sorted(cv.keys()):
         vd = cv[nm]
         total = sum(vd[k] for k in ("za", "przeciw", "wstrzymal_sie")) or 1
         sess = len({v["session"] for v in vd["votes"]})
-        aktywn = (vd["za"] + vd["przeciw"] + vd["wstrzymal_sie"]) / max(1, len([1 for r in records if r["session_date"] >= KAD_START])) * 100
+        aktywn = (vd["za"] + vd["przeciw"] + vd["wstrzymal_sie"]) / max(1, n_rec) * 100
         profiles.append({
             "name": nm, "slug": make_slug(nm),
             "kadencje": {KADENCJA_ID: {
@@ -323,7 +306,8 @@ def build_profiles(records, roster):
                 "votes_wstrzymal": vd["wstrzymal_sie"], "votes_brak": 0,
                 "votes_nieobecny": 0, "votes_total": total,
                 "rebellion_count": 0, "rebellions": [], "roles": [], "notes": "",
-                "former": False, "mid_term": False}}})
+                "former": False, "mid_term": False}}},
+        )
     return {"profiles": profiles, "total": len(profiles)}
 
 
@@ -355,7 +339,6 @@ def main():
     sessions = discover_sessions(cache)
     print(f"[zelow] sesje: {len(sessions)}")
     roster = fetch_roster(cache)
-    # convert link-keyed -> name-keyed for club lookup
     roster_by_name = {v["name"]: v for v in roster.values()}
     print(f"[zelow] roster: {len(roster)}")
     for r in sorted(roster.values(), key=lambda x: x["name"]):

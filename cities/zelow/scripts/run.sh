@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Pipeline scrape Rada Miejska w Zelowie (AlfaTV "System Rada" rada.zelow.pl)
 set -euo pipefail
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CITY_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 RADOSKOP_DIR="$(cd "$CITY_DIR/../.." && pwd)"
