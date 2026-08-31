@@ -14,7 +14,7 @@ Roster: 15 radnych z tabel w PDF (uprawnieni). Interpelacje: BIP /2800-menu/.../
 
 Użycie: python scrape_olsztynek.py --city-dir cities/olsztynek [--cache-dir .cache]
 """
-import argparse, hashlib, json, re, time
+import argparse, hashlib, json, re, sys, time
 from collections import defaultdict
 from datetime import datetime
 from itertools import combinations
@@ -22,6 +22,9 @@ from pathlib import Path
 
 import pymupdf
 import requests
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_names_pl import fix_all as _fix_all_names  # noqa: E402
 
 BASE = "https://bip.olsztynek.pl"
 IDX = f"{BASE}/3939-menu/wadze-gminy-olsztynek/rada-miejska-kadencja-2024-2029/sesje-rady-miejskiej-w-olsztynku2024-2029.html"
@@ -152,6 +155,8 @@ def parse_pdf_bytes(content):
             named["przeciw"].append(n)
         elif v.startswith("WSTRZYM"):
             named["wstrzymal_sie"].append(n)
+    for cat in named:
+        named[cat] = _fix_all_names(named[cat])
     agg = (int(za.group(1)) if za else None, int(pr.group(1)) if pr else None,
            int(wz.group(1)) if wz else None)
     got = (len(named["za"]), len(named["przeciw"]), len(named["wstrzymal_sie"]))

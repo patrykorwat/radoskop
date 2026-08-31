@@ -11,7 +11,7 @@ Kamińska (przew.), Bogdan Duplaga + Grzegorz Pietryka (wice). 12 protokołów I
 
 Użycie: python scrape_brzozow.py --city-dir cities/brzozow [--cache-dir .cache]
 """
-import argparse, hashlib, json, re, time, unicodedata
+import argparse, hashlib, json, re, sys, time, unicodedata
 from collections import Counter, defaultdict
 from datetime import datetime
 from itertools import combinations
@@ -19,6 +19,9 @@ from pathlib import Path
 
 import pymupdf
 import requests
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+from lib_names_pl import fix_all as _fix_all_names  # noqa: E402
 
 BASE = "https://brzozow.bip.gov.pl"
 CAT = f"{BASE}/protokoly-z-sesji-rady-miejskiej/"
@@ -171,9 +174,9 @@ def parse_doc(doc):
         left = _lines_in_column(words, 0, 320, y_lo, 760)
         right = _lines_in_column(words, 320, 800, y_lo, 760)
         lc, rc = _parse_list(left), _parse_list(right)
-        named = {"za": lc.get("za", []) + rc.get("za", []),
-                 "przeciw": lc.get("przeciw", []) + rc.get("przeciw", []),
-                 "wstrzymal_sie": lc.get("wstrzym", []) + rc.get("wstrzym", [])}
+        named = {"za": _fix_all_names(lc.get("za", []) + rc.get("za", [])),
+                 "przeciw": _fix_all_names(lc.get("przeciw", []) + rc.get("przeciw", [])),
+                 "wstrzymal_sie": _fix_all_names(lc.get("wstrzym", []) + rc.get("wstrzym", []))}
         counts = {k: len(v) for k, v in named.items()}
         agg = (int(za.group(1)), int(pr.group(1)), int(wz.group(1)) if wz else 0)
         got = (counts["za"], counts["przeciw"], counts["wstrzymal_sie"])
