@@ -1,0 +1,38 @@
+{
+  "city_name": "Kąty Wrocławskie",
+  "city_genitive": "Kątów Wrocławskich",
+  "site_title": "Radoskop Kąty Wrocławskie — Jak głosują radni?",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Kątach Wrocławskich. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Kątach Wrocławskich.",
+  "bip_url": "https://bip.katywroclawskie.pl",
+  "bip_name": "BIP Urzędu Miasta i Gminy Kąty Wrocławskie (bip.katywroclawskie.pl)",
+  "esesja_url": "https://katywroclawskie.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "katy-wroclawskie.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Kątach Wrocławskich",
+  "rada_name_genitive": "Rady Miejskiej w Kątach Wrocławskich",
+  "teryt": "0223044",
+  "_meta": {
+    "note": "NOWE miasto (long_tail → eSesja PM-instance A old-compatible: katywroclawskie.esesja.pl, serwerowo renderowane /glosowania -> /listaglosowan -> /glosowanie imienne; 30 sesji IX kad., newest 2026-08-27). rada.katy NXDOMAIN, katy-wroclawskie.esesja.pl wildcard redirect, zbaszyn-style bip.net 404. Slug URL-owy 'katy-wroclawskie' (ogonki), domena BIP katywroclawskie.pl. TERYT 0223044 (gm. miejsko-wiejska, pow. wrocławski 02, dolnośląskie). club_assignments PENDING (kuratorować). Dodane 2026-08-31 (cron do 500 miast).",
+    "population": 7176,
+    "voivodeship": "dolnośląskie"
+  }
+}
