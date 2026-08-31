@@ -37,5 +37,6 @@
   "note": "Tier-2 (roster/berliński): BIP gminalosice.pl publikuje protokoły sesji (PDF tekstowy) z WYŁĄCZNIE agregatami ZA/PRZECIW/WSTRZYMUJĄCY per głosowanie; 'wykaz imienny głosujących' to załączniki niedostępne online, brak kategorii Wyniki głosowań, losice.esesja.pl = wildcard dead, rada.losice.pl/bip.losice.pl = redirect do samorzad.gov.pl (powiat). Rada liczy 15 radnych (skład IX kad. z BIP) + kalendarz sesji z 'Zaproszenia na sesje'. has_voting_data:false; voting_display:faction. TERYT 1410023 (gmina Łosice, gm. miejsko-wiejska, pow. łosicki, mazowieckie; pl.wiki TERC). Dodane 2026-08-31 (cron do 500 miast).",
   "population": 7033,
   "voivodeship": "mazowieckie"
- }
+ },
+ "has_named_votes": false
 }

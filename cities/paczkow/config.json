@@ -37,5 +37,6 @@
   "note": "Tier-2 (roster/berliński): BIP paczkow.bip.net.pl (legacy Sputnik Software) publikuje protokoły sesji jako PDF-y tekstowe z WYŁĄCZNIE agregatami ZA/PRZECIW/WSTRZ per głosowanie; 'wykaz imienny głosujących zał. nr N' niewypubliczniany (brak kategorii Wyniki głosowań). paczkow.esesja.pl = wildcard dead; rada.paczkow.pl = 500/404 (AlfaTV nieaktywne); paczkow.sesja.pl = 404. Skład 15 radnych IX kad. z art. BIP a=11927 (role: przewodniczący, wiceprzewodniczące, komisje); kalendarz sesji z PDF-ów protokołów (?c=1374 -> roczne 1375/1409/1467). has_voting_data:false; voting_display:faction. TERYT 1607074 (gm. Paczków, pow. nyski, opolskie; pl.wiki TERC). Dodane 2026-08-31 (cron do 500 miast).",
   "population": 6941,
   "voivodeship": "opolskie"
- }
+ },
+ "has_named_votes": false
 }
