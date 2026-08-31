@@ -1,0 +1,41 @@
+{
+  "city_name": "Zbąszyń",
+  "city_genitive": "Zbąszynia",
+  "site_title": "Radoskop Zbąszyń — Jak głosują radni?",
+  "site_url": "https://zbaszyn.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Zbąszyniu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Zbąszyniu.",
+  "bip_url": "https://bip.zbaszyn.pl",
+  "bip_name": "BIP Miasta i Gminy Zbąszyń (bip.zbaszyn.pl)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zbaszyn.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Zbąszyniu",
+  "rada_name_genitive": "Rady Miejskiej w Zbąszyniu",
+  "teryt": "3015064",
+  "_meta": {
+    "note": "NOWE miasto (long_tail → e-zeto BIP bip.zbaszyn.pl, protokoły sesji = SKANY PDF z blokami 'Wyniki głosowania' + 'Wyniki imienne'; OCR fitz+tesseract pol, cache per-strona, walidacja vs agregat per głosowanie). Roster 15 radnych IX kad. z BIP 'Radni Kadencji 2024-2029'. zbaszyn.esesja.pl wildcard, rada.zbaszyn.pl DNS none, zbaszyn.bip.net.pl 404, transmisje portal.posiedzenia.pl 403 (WAF, API niedostępne). TERYT 3015064 (miasto Zbąszyń, gm. miejsko-wiejska, powiat nowotomyski 3015, wielkopolskie 30). SIMC 0988655, Q168905. club_assignments PENDING (kuratorować). Dodane 2026-08-31 (cron do 500 miast, adapter skan-OCR e-zeto).",
+    "population": 7209,
+    "voivodeship": "wielkopolskie",
+    "lat": 52.2506,
+    "lon": 15.9253,
+    "qid": "Q168905"
+  }
+}
