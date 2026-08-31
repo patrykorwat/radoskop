@@ -1,0 +1,41 @@
+{
+  "city_name": "Łochów",
+  "city_genitive": "Łochowa",
+  "site_title": "Radoskop Łochów — Jak głosują radni?",
+  "site_url": "https://lochow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Łochowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Łochowie.",
+  "bip_url": "https://bip.gminalochow.pl",
+  "bip_name": "BIP Łochów",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lochow.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Łochowie",
+  "rada_name_genitive": "Rady Miejskiej w Łochowie",
+  "teryt": "1433054",
+  "has_voting_data": true,
+  "has_named_votes": true,
+  "councilor_count": 15,
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto: BIP bip.gminalochow.pl (CMS sesja-gpl), glosowania imienne z PDF-ów DSSS Vote App (zalaczniki do 'Protokoly z sesji', kategoria 294). Parser kolumnowy lib w scrape_lochow.py, walidacja agregat-per-lista. Dodane 2026-08-31 (cron dobijanie do 500). club_assignments pending (kuratorowane z BIP).",
+    "population": 6689,
+    "voivodeship": "mazowieckie"
+  }
+}
