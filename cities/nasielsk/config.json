@@ -1,0 +1,49 @@
+{
+  "landing_enabled": true,
+  "city_name": "Nasielsk",
+  "city_genitive": "Nasielska",
+  "site_title": "Radoskop Nasielsk — Skład rady i sesje",
+  "site_url": "https://nasielsk.radoskop.pl",
+  "site_description": "Radoskop — Rada Miejska w Nasielsku. Skład rady i sesje kadencji 2024–2029 (bez imiennych głosowań).",
+  "site_description_short": "Otwarte monitorowanie Rady Miejskiej w Nasielsku.",
+  "bip_url": "https://bip.nasielsk.pl/",
+  "bip_name": "BIP UM Nasielsk (bip.nasielsk.pl)",
+  "esesja_url": "https://nasielsk.sesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "nasielsk.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "has_voting_data": false,
+  "has_speaker_activity": true,
+  "has_named_votes": false,
+  "voting_display": "faction",
+  "councilor_count": 15,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Nasielsku",
+  "rada_name_genitive": "Rady Miejskiej w Nasielsku",
+  "teryt": "1414044",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "Tier-2 (roster/model berliński): brak głosowań imiennych IX kadencji. nasielsk.esesja.pl=wildcard korporacyjny. Nowa platforma nasielsk.sesja.pl: SPA, API vote/voters za JWT (401); jedyny publiczny endpoint /api/v1/portal/video-recordings = nagrania sesji (30 sesji I..XXX 2024-05-07..2026-08-19, świeżo do 2026-08-19). BIP bip.nasielsk.pl: protokoły SKANY, szczegóły głosowania w załącznikach DSSS Vote tylko jako skany bez warstwy tekstowej (OCR: lista radnych czytelna, znaczniki graficzne, atrybucja niewiarygodna — wzorzec Pultusk). Rejestr klubów w BIP = kadencja 2018-2023. Skład 15 radnych z rolesami z www.nasielsk.pl (radni-rady-miejskiej-w-nasielsku-wybrani-na-ix-kadencje-samorzadu-gminy-nasielsk.html). has_voting_data:false, voting_display:faction, has_speaker_activity:true (sesje).",
+    "note_short": "Tier-2 (roster): Nasielsk, 15 radnych IX kad. + 30 sesji (nagrania sesja.pl API), brak głosowań imiennych.",
+    "population": 8592,
+    "voivodeship": "mazowieckie",
+    "lat": 52.5906,
+    "lon": 20.8052,
+    "qid": "Q1579038"
+  }
+}
