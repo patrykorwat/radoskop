@@ -1,0 +1,40 @@
+{
+  "city_name": "Sobótka",
+  "city_genitive": "Sobótki",
+  "site_title": "Radoskop Sobótka — Jak głosują radni?",
+  "site_url": "https://sobotka.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Sobótce. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Sobótce.",
+  "bip_url": "https://sobotka.pl",
+  "bip_name": "BIP Gminy Sobótka (sobotka.pl)",
+  "rada_url": "https://rada.sobotka.pl",
+  "rada_name_platform": "AlfaTV System Rada",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sobotka.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Sobótce",
+  "rada_name_genitive": "Rady Miejskiej w Sobótce",
+  "teryt": "0223073",
+  "_meta": {
+    "note": "NOWE miasto (AlfaTV 'System Rada' rada.sobotka.pl, IX kadencja). Adapter AlfaTV (wzorzec miastko/turek). 35 sesji na liscie glosowan (2024-05-07 .. 2026-08-24), 16 radnych. Kluby z 'Przynależność' na stronach radny (pobiera scraper). TERYT 0223073 (gm. miejsko-wiejska Sobótka, pow. wrocławski, woj. dolnośląskie). sobotka.esesja.pl = redirect-loop (wildcard dead); sobotka.bip.net.pl = 404. Dodane 2026-08-31 (cron do 500 miast).",
+    "population": 7025,
+    "voivodeship": "dolnośląskie"
+  }
+}
