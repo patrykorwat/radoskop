@@ -112,6 +112,14 @@ def fetch_roster() -> list[dict]:
             out.append({"name": nm, "role": role})
     if not (13 <= len(out) <= 25):
         raise RuntimeError(f"Suspect roster size: {len(out)}")
+    # Źródło BIP miesza szyk: 'Barabasz Wiesław Jan' / 'Kamila Dróżdż'.
+    # Odwracamy wpisy odwrotne (nazwisko-first) — potwierdzone inicjałami
+    # e-mail: w.barabasz@brm.paczkow.pl, s.janik@brm.paczkow.pl.
+    fixes = {"Barabasz Wiesław Jan": "Wiesław Jan Barabasz",
+             "Janik Stanisław": "Stanisław Janik"}
+    for e in out:
+        if e["name"] in fixes:
+            e["name"] = fixes[e["name"]]
     return out
 
 
