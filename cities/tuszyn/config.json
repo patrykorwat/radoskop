@@ -1,0 +1,48 @@
+{
+  "landing_enabled": true,
+  "city_name": "Tuszyn",
+  "city_genitive": "Tuszyna",
+  "site_title": "Radoskop Tuszyn — Skład rady i sesje",
+  "site_url": "https://tuszyn.radoskop.pl",
+  "site_description": "Radoskop — Rada Miejska w Tuszynie. Skład rady kadencji 2024–2029 i kalendarz sesji (bez imiennych głosowań).",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Tuszynie.",
+  "bip_url": "https://tuszyn.info.pl",
+  "bip_name": "BIP Gminy Tuszyn (tuszyn.info.pl)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "tuszyn.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "has_voting_data": false,
+  "has_speaker_activity": false,
+  "has_named_votes": false,
+  "voting_display": "faction",
+  "councilor_count": 15,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Tuszynie",
+  "rada_name_genitive": "Rady Miejskiej w Tuszynie",
+  "teryt": "1006114",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true,
+    "note": "Tier-2 (roster/model berliński): brak głosowań imiennych IX kadencji w każdym źródle (zweryfikowane 2026-08-31). tuszyn.esesja.pl = wildcard korporacyjny, tuszyn.bip.gov.pl = SSDIP shell, tuszyn.bip.net.pl 404, archiwum.tuszyn.pl i bip.wart.com.pl NXDOMAIN. Roster 15 radnych (Przewodniczący Popecki + 2 Wice + 12 Radnych) z /artykul/sklad-rady-1. 32 sesje IX kad. (I 07-05-2024 ... XXXII 28-08-2026) z /artykul/zaproszenia-na-sesje-rady-miejskiej-w-tuszynie-1 (daty w tytułach zaproszeń). club_assignments PENDING. has_voting_data:false, voting_display:faction, has_speaker_activity:false."
+  },
+  "_meta": {
+    "note": "NOWE miasto (long_tail -> Tier-2 model berliński). Brak imiennych głosowań: eSesja wildcard, bip.gov.pl SSDIP shell, bip.net.pl 404, archiwum.tuszyn.pl/bip.wart.com.pl NXDOMAIN (domeny martwe), transmisje sesji wideo bez wykazów imiennych, uchwały bez wyników per-radny. Roster 15 radnych (sklad-rady-1: Przewodniczący Mirosław Popecki, Wice Iwona Parczewska + Tomasz Sobolewski, 12 Radnych) + 32 sesje IX kad. z zaproszeń (XXXII sesja 28-08-2026). club_assignments PENDING. SIMC 1006114 (P781 zweryfikowany), Q403941, pop 7221. Dodane 2026-08-31 (cron do 500 miast).",
+    "population": 7221,
+    "voivodeship": "łódzkie",
+    "lat": 51.60917,
+    "lon": 19.53,
+    "qid": "Q403941"
+  }
+}
