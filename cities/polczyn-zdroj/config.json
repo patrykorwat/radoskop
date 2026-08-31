@@ -1,0 +1,45 @@
+{
+  "landing_enabled": true,
+  "city_name": "Połczyn-Zdrój",
+  "city_genitive": "Połczyna-Zdroju",
+  "site_title": "Radoskop Połczyn-Zdrój — Jak głosują radni?",
+  "site_url": "https://polczyn-zdroj.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Połczynie-Zdroju. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Połczynie-Zdroju.",
+  "bip_url": "http://umig.polczynzdroj.ibip.pl/public/?id=61710",
+  "bip_name": "BIP Urząd Miejski w Połczynie-Zdroju (ibip.pl)",
+  "esesja_url": "https://polczynzdroj.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "polczyn-zdroj.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "has_voting_data": true,
+  "has_named_votes": true,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Połczynie-Zdroju",
+  "rada_name_genitive": "Rady Miejskiej w Połczynie-Zdroju",
+  "teryt": "3216033",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true,
+    "note": "Imienne głosowania IX kad. z tekstowych wykazów DSSS posiedzenia.pl (BIP umig.polczynzdroj.ibip.pl, kategoria 'Sesje Rady Miejskiej i protokoły z sesji' → Kadencja 2024-2029 → lata → per-sesja 'Wykaz głosowań' PDF). Reconciliacja agregatów 100%."
+  },
+  "_meta": {
+    "note": "NOWE miasto (long_tail): imienne głosowania IX kad. z per-sesja 'Wykaz głosowań' PDF (DSSS posiedzenia.pl, warstwa tekstowa, agregaty + listy imienne) na BIP umig.polczynzdroj.ibip.pl. eSesja polczynzdroj.esesja.pl porzucona (1 sesja 2022). club_assignments pending (kuratorowane z BIP).",
+    "population": 7469,
+    "voivodeship": "zachodniopomorskie",
+    "lat": 53.7442,
+    "lon": 16.0892
+  }
+}
