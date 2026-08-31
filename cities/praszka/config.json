@@ -1,0 +1,40 @@
+{
+  "city_name": "Praszka",
+  "city_genitive": "Praszki",
+  "site_title": "Radoskop Praszka — Jak głosują radni?",
+  "site_url": "https://praszka.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Praszce. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Praszce.",
+  "bip_url": "https://bip.praszka.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Praszce (bip.praszka.pl)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "praszka.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Praszce",
+  "rada_name_genitive": "Rady Miejskiej w Praszce",
+  "teryt": "1608044",
+  "_meta": {
+    "note": "NOWE miasto (long_tail 500) — protokoły sesyjne z BIP bip.praszka.pl (cat. 6000) z pełnym imiennym wykazem głosowań (tekstowy PDF, dopisek 'Wyniki imienne' na końcu protokołu). 28 sesji IX kad. (2024-05-07..2026-05-26), 244 głosowania (251 parsed, 251/251 full reconciled na poziomie cechy — 7 sesji bez głosowań). 15 radnych. TERYT 1608044 (gm. Praszka, pow. oleski, opolskie). Q569938, pop 7322. club_assignments PENDING. Dodane 2026-08-31 (cron do 500 miast).",
+    "population": 7322,
+    "voivodeship": "opolskie",
+    "lat": 51.05,
+    "lon": 18.45,
+    "qid": "Q569938"
+  }
+}
