@@ -1,0 +1,40 @@
+{
+  "landing_enabled": true,
+  "city_name": "Brzozów",
+  "city_genitive": "Brzozowa",
+  "site_title": "Radoskop Brzozów — Jak głosują radni?",
+  "site_url": "https://brzozow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Brzozowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Brzozowie.",
+  "bip_url": "https://brzozow.bip.gov.pl/protokoly-z-sesji-rady-miejskiej/",
+  "bip_name": "BIP Urzędu Miejskiego w Brzozowie (brzozow.bip.gov.pl)",
+  "rada_name_platform": "DSSS Vote (BIP gov.pl)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "brzozow.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "has_interpelacje": false,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Brzozowie",
+  "rada_name_genitive": "Rady Miejskiej w Brzozowie",
+  "teryt": "1804011",
+  "_meta": {
+    "note": "NOWE miasto (long_tail -> UNLOCK per-głosowanie DSSS Vote TEKSTOWE, nie OCR). brzozow.bip.gov.pl /protokoly-z-sesji-rady-miejskiej/ (platforma gov.pl): 12 protokołów IX kad. (10/2025..8/2026) każdy z załącznikiem 'glosowania_sesja_DD_MM_YYYY.pdf' = per-głosowanie załączniki DSSS Vote z WARSTWĄ TEKSTOWĄ (name-list 'Jestem za / Jestem przeciw / Wstrzymuję się / BRAK'). Rekonstrukcja pozycyjna kolumn (x<320/x>=320) jak szydlowiec. Walidacja: 130 głosowań per-radny, KAŻDE reconcilowane vs agregat; prot.6/2026 = skan bez warstwy (atrybucja pominięta, nie fabrykuję). Roster 21 radnych (poprzednia.brzozow.pl 'Skład i komisje'; prezydium: Dorota Kamińska przew., Bogdan Duplaga + Grzegorz Pietryka wice). club_assignments PENDING, clubs {}. TERYT 1804011 (miasto Brzozów, powiat brzozowski 1804, woj. podkarpackie 18). Dodane 2026-08-31 (cron do 500 miast).",
+    "population": 7550,
+    "voivodeship": "podkarpackie",
+    "lat": 49.695277777778,
+    "lon": 22.019444444444,
+    "qid": "Q653797"
+  }
+}

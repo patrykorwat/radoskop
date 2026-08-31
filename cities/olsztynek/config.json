@@ -1,0 +1,40 @@
+{
+  "landing_enabled": true,
+  "city_name": "Olsztynek",
+  "city_genitive": "Olsztynka",
+  "site_title": "Radoskop Olsztynek — Jak głosują radni?",
+  "site_url": "https://olsztynek.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Olsztynku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Olsztynku.",
+  "bip_url": "https://bip.olsztynek.pl/3692-menu/wadze-gminy-olsztynek/rada-miejska-kadencja-2024-2029.html",
+  "bip_name": "BIP Urzędu Miejskiego w Olsztynku (bip.olsztynek.pl)",
+  "rada_name_platform": "APWINC II per-głosowanie PDF (BIP)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "olsztynek.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "has_interpelacje": true,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Olsztynku",
+  "rada_name_genitive": "Rady Miejskiej w Olsztynku",
+  "teryt": "2814094",
+  "_meta": {
+    "note": "NOWE miasto (long_tail -> UNLOCK). bip.olsztynek.pl (JetBrains-style CMS): Rada Miejska kadencja 2024-2029 → Sesje I..XXXV → każda sesja = kategoria phocadownload z plikami 'Sesja N Głosowanie K.pdf' (per-głosowanie, format APWINC II z WARSTWĄ TEKSTOWĄ — agregaty 'Głosy za/przeciw/wstrymujące się' + tabela Lp. Nazwisko i imię → Głos ZA/PRZECIW/WSTRZYMUJĘ SIĘ/NIEOBECNA). Parser rozpoznaje tokeny; 329 głosowań (2024-05-07..2026-07-16), KAŻDE reconcilowane 100% vs agregat, 35 sesji, 15-16 radnych (turnover). brzozow-like DSSS nieobecne; interpelacje BIP /2800-menu. club_assignments PENDING, clubs {}. TERYT 2814094 (miasto Olsztynek, powiat olsztyński 2814, woj. warmińsko-mazurskie 28). Dodane 2026-08-31 (cron do 500 miast).",
+    "population": 7343,
+    "voivodeship": "warmińsko-mazurskie",
+    "lat": 53.583333333333,
+    "lon": 20.283333333333,
+    "qid": "Q999614"
+  }
+}
