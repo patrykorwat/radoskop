@@ -162,7 +162,8 @@ def main():
     out, tv, ts = _print_parser.build_output(records, club_assign)
     profiles = _print_parser.build_profiles(records, club_assign)
     docs = city_dir / "docs"; docs.mkdir(exist_ok=True)
-    (docs / "kadencja-2024-2029.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
+    kad_obj = out["kadencje"][0]  # płaski obiekt kadencji (konwencja docs/kadencja-{id}.json)
+    (docs / "kadencja-2024-2029.json").write_text(json.dumps(kad_obj, ensure_ascii=False, indent=1), encoding="utf-8")
     (docs / "profiles.json").write_text(json.dumps(profiles, ensure_ascii=False, indent=1), encoding="utf-8")
     data_json = {
         "city_name": cfg.get("city_name", "Jaworzno"),
