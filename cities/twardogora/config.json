@@ -1,0 +1,44 @@
+{
+  "landing_enabled": true,
+  "city_name": "Twardogóra",
+  "city_genitive": "Twardogóry",
+  "site_title": "Radoskop Twardogóra — Jak głosują radni?",
+  "site_url": "https://twardogora.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Twardogórze. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Twardogórze.",
+  "bip_url": "https://bip.twardogora.pl/kategorie/187-wyniki-glosowan?lang=PL",
+  "bip_name": "BIP Urzędu Miasta i Gminy w Twardogórze (bip.twardogora.pl)",
+  "rada_name_platform": "XLSX elektronicznego głosowania imiennego (BIP Nefeni)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "twardogora.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "has_interpelacje": false,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Twardogórze",
+  "rada_name_genitive": "Rady Miejskiej w Twardogórze",
+  "teryt": "0214083",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (long_tail -> UNLOCK). bip.twardogora.pl (Nowa Nefeni Next.js): kategoria 'Wyniki głosowań' /kategorie/187 (?page=N per 10) — artykuł per sesja + załącznik XLSX z terminali głosowania elektronicznego (bip-api.twardogora.pl/api/attachments/<id>). Sheet 'Wyniki osób wg głosowań': bloki 'NiI: Imię Nazwisko' + wiersze [temat, odpowiedź, typ]; odpowiedzi '1(. Jestem ZA)'/'2(. Jestem PRZECIW)'/'3(. WSTRZYMUJĘ się)'/'nie brał udziału' — atrybucja po wspólnym porządku pytań per radny. eSesja wildcard dead, AlfaTV brak DNS, bip.net.pl 404. Skład /kategorie/181/artykuly/162 (SSR __next_f <ol>). club_assignments PENDING, clubs {}. TERYT 0214083 (gmina miejsko-wiejska Twardogóra, pow. oleśnicki, dolnośląskie). Dodane 2026-09-01 (cron do 500 miast).",
+    "population": 6381,
+    "voivodeship": "dolnośląskie",
+    "lat": 51.364722222222,
+    "lon": 17.469722222222,
+    "qid": "Q1005419"
+  }
+}
