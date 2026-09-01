@@ -187,10 +187,17 @@ def _club_key(name, roster):
     return roster.get(name, {}).get("club", "") or ""
 
 
-def build_output(records, roster):
+def build_output(records, roster, all_sessions=None):
     all_votes = []
     vid = 0
     sessions_by_date = {}
+    # sesje IX kad. z listy (nawet bez opublikowanych wynikow imiennych)
+    for s in (all_sessions or []):
+        d = s.get("date")
+        if not d or d < KAD_START or d in sessions_by_date:
+            continue
+        sessions_by_date[d] = {"date": d, "number": s.get("name", "")[:20],
+                               "vote_count": 0, "attendees": set(), "speakers": []}
     for rec in records:
         d = rec.get("session_date")
         if not d or d < KAD_START:
@@ -376,7 +383,7 @@ def main():
         except Exception as e:
             print(f"  [ERR {s['id']}] {type(e).__name__}: {e}")
 
-    output = build_output(records, roster_by_name)
+    output = build_output(records, roster_by_name, all_sessions=sessions)
     profiles = build_profiles(records, roster_by_name)
     save_split(output, city_dir / "docs" / "data.json", profiles)
     print(f"[zukowo] total votes={output['kadencje'][0]['total_votes']} "
