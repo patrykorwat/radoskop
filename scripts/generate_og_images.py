@@ -161,7 +161,7 @@ def render_city_card(city_name, domain, output_path):
     draw.text((PADDING + 104, 78), f"Radoskop {city_name}", fill=_CARD_DARK, font=f_title)
 
     # Tagline + lista funkcji + domena.
-    draw.text((PADDING, 222), "Jak głosują radni Twojego miasta", fill=_CARD_DARK, font=font(40))
+    draw.text((PADDING, 222), "Zobacz, jak Twoje miasto podejmuje decyzje", fill=_CARD_DARK, font=font(40))
     draw.text((PADDING, 292), "Frekwencja  ·  głosowania  ·  interpelacje  ·  profile radnych",
               fill=GRAY, font=font(27))
     draw.text((PADDING, 350), domain, fill=ACCENT, font=font(26, bold=True))

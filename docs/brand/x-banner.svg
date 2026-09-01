@@ -8,7 +8,7 @@
   <rect width="1500" height="500" fill="url(#bg)"/>
   <text x="750.0" y="248" font-family="Liberation Sans, DejaVu Sans, sans-serif" font-size="138" font-weight="700" fill="#1a1d27" text-anchor="middle" letter-spacing="-2">Radoskop</text>
   <rect x="680.0" y="286" width="140" height="9" rx="4.5" fill="#4f46e5"/>
-  <text x="750.0" y="358" font-family="Liberation Sans, DejaVu Sans, sans-serif" font-size="46" fill="#6b7280" text-anchor="middle">Jak głosują radni Twojego miasta</text>
+  <text x="750.0" y="358" font-family="Liberation Sans, DejaVu Sans, sans-serif" font-size="46" fill="#6b7280" text-anchor="middle">Zobacz, jak Twoje miasto podejmuje decyzje</text>
   <text x="750.0" y="416" font-family="Liberation Sans, DejaVu Sans, sans-serif" font-size="30" fill="#4f46e5" text-anchor="middle">monitoring rad miejskich  ·  open source  ·  radoskop.eu</text>
   <rect x="40" y="481" width="10" height="17" rx="3" fill="#059669" opacity="0.55"/>
 <rect x="60" y="484" width="12" height="14" rx="3" fill="#0891b2" opacity="0.75"/>

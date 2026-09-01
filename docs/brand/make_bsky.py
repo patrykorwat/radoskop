@@ -28,7 +28,7 @@ banner=f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" view
   <rect width="{W}" height="{H}" fill="url(#bg)"/>
   <text x="{W/2}" y="248" font-family="{FONT}" font-size="138" font-weight="700" fill="{DARK}" text-anchor="middle" letter-spacing="-2">Radoskop</text>
   <rect x="{W/2-70}" y="286" width="140" height="9" rx="4.5" fill="{INDIGO}"/>
-  <text x="{W/2}" y="358" font-family="{FONT}" font-size="46" fill="{GRAY}" text-anchor="middle">Jak głosują radni Twojego miasta</text>
+  <text x="{W/2}" y="358" font-family="{FONT}" font-size="46" fill="{GRAY}" text-anchor="middle">Zobacz, jak Twoje miasto podejmuje decyzje</text>
   <text x="{W/2}" y="416" font-family="{FONT}" font-size="30" fill="{INDIGO}" text-anchor="middle">monitoring rad miejskich  ·  open source  ·  radoskop.eu</text>
   {bars_svg}
 </svg>'''
