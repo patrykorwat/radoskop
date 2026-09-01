@@ -157,6 +157,10 @@ def _rows_from_page(pg):
             # wiersz osoby = Lp + nazwisko + TOKEN GLOSU (bez tokstu -> temat obrad)
             if vote is not None and re.match(r"^[A-ZŁŚŹŻĆŃÓ]", name) and len(name) > 3:
                 name = re.sub(r"\s*-\s*", "-", name).strip()
+                # zrodlo: 'Nazwisko i imie' -> konwersja na 'Imie Nazwisko'
+                parts = name.split(" ")
+                if len(parts) >= 2:
+                    name = " ".join(parts[1:] + [parts[0]])
                 out.append((lp, name, vote))
     return out
 
