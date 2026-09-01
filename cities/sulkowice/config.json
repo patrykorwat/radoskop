@@ -1,0 +1,48 @@
+{
+  "landing_enabled": true,
+  "city_name": "Sułkowice",
+  "city_genitive": "Sułkowic",
+  "site_title": "Radoskop Sułkowice — Skład rady i sesje",
+  "site_url": "https://sulkowice.radoskop.pl",
+  "site_description": "Radoskop — Rada Miejska w Sułkowicach. Skład rady kadencji 2024–2029 i kalendarz sesji (bez imiennych głosowań).",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Sułkowicach.",
+  "bip_url": "https://bip.malopolska.pl/umsulkowice",
+  "bip_name": "BIP Urząd Miejski w Sułkowicach (bip.malopolska.pl)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sulkowice.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "has_voting_data": false,
+  "has_speaker_activity": false,
+  "has_named_votes": false,
+  "voting_display": "faction",
+  "councilor_count": 15,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Sułkowicach",
+  "rada_name_genitive": "Rady Miejskiej w Sułkowicach",
+  "teryt": "1209073",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true,
+    "note": "Tier-2 (model berliński): BIP Madkom bip.malopolska.pl (context umsulkowice) — skład IX /api/menu/433826/articles (15 radnych, stanowiska 7443), kalendarz sesji IX /api/menu/433827/articles (data 'Data sesji:' w treści, 37 sesji). Protokoły (menu 77314 → roczne) podają WYŁĄCZNIE agregaty 'Głosowało za/przeciw/wstrzymało się' + '(N Radnych obecnych)', zero 'imien' w tekście PDF; 'Protokół głosowania' cytowany w treści jako załącznik, ale NIE dołączony jako pobieralny plik. sulkowice.sesja.pl = ApiPlatform 'Session' portal bez publicznych głosowań (hydra pages total=0); esesja.pl wildcard; rada.sulkowice.pl placeholder hostingu; bip.net.pl DNS brak. club_assignments PENDING."
+  },
+  "_meta": {
+    "note": "NOWE miasto (long_tail -> Tier-2 model berliński). Skład 15 + kalendarz 37 sesji IX. Brak głosowań imiennych (protokoły tylko agregaty). TERYT 1209073 (gmina miejsko-wiejska Sułkowice, pow. myślenicki, małopolskie), Q1003272, pop 6542. Dodane 2026-09-01 (cron do 500 miast).",
+    "population": 6542,
+    "voivodeship": "małopolskie",
+    "lat": 49.837777777,
+    "lon": 19.795555555,
+    "qid": "Q1003272"
+  }
+}
