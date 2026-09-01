@@ -1,0 +1,305 @@
+{
+ "scraped_at": "2026-09-01T21:59:32.022016",
+ "profiles": [
+  {
+   "name": "Monika Chmielewska",
+   "slug": "monikachmielewska",
+   "kadencje": {
+    "2024-2029": {
+     "club": "NZ",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Grzegorz Flas",
+   "slug": "grzegorzflas",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Monika Garstka",
+   "slug": "monikagarstka",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Joanna Hamera-Szczerba",
+   "slug": "joannahameraszczerba",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Monika Kieliszak",
+   "slug": "monikakieliszak",
+   "kadencje": {
+    "2024-2029": {
+     "club": "PiS",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Monika Kirschenstein",
+   "slug": "monikakirschenstein",
+   "kadencje": {
+    "2024-2029": {
+     "club": "NZ",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Krzysztof Kozłowski",
+   "slug": "krzysztofkozlowski",
+   "kadencje": {
+    "2024-2029": {
+     "club": "PiS",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Anna Krasoń",
+   "slug": "annakrason",
+   "kadencje": {
+    "2024-2029": {
+     "club": "KO",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Ewa Krawczyk",
+   "slug": "ewakrawczyk",
+   "kadencje": {
+    "2024-2029": {
+     "club": "KO",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Paweł Mazulewicz",
+   "slug": "pawelmazulewicz",
+   "kadencje": {
+    "2024-2029": {
+     "club": "KO",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Katarzyna Mądrowska",
+   "slug": "katarzynamadrowska",
+   "kadencje": {
+    "2024-2029": {
+     "club": "NZ",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Wanda Nowicka",
+   "slug": "wandanowicka",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Dawid Pycz",
+   "slug": "dawidpycz",
+   "kadencje": {
+    "2024-2029": {
+     "club": "KO",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Grzegorz Rybaczuk",
+   "slug": "grzegorzrybaczuk",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Wioleta Sawicka",
+   "slug": "wioletasawicka",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Wojciech Seredyński",
+   "slug": "wojciechseredynski",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Mieczysław Skawiński",
+   "slug": "mieczyslawskawinski",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Krystyna Smolarek",
+   "slug": "krystynasmolarek",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Mariusz Smuga",
+   "slug": "mariuszsmuga",
+   "kadencje": {
+    "2024-2029": {
+     "club": "PiS",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Krzysztof Sosin",
+   "slug": "krzysztofsosin",
+   "kadencje": {
+    "2024-2029": {
+     "club": "PiS",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Joanna Suleja",
+   "slug": "joannasuleja",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Zdzisław Wilk",
+   "slug": "zdzislawwilk",
+   "kadencje": {
+    "2024-2029": {
+     "club": "PiS",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Zofia Ławrynowicz",
+   "slug": "zofialawrynowicz",
+   "kadencje": {
+    "2024-2029": {
+     "club": "KO",
+     "has_voting_data": false,
+     "has_activity_data": false,
+     "former": false,
+     "mid_term": false
+    }
+   }
+  }
+ ],
+ "total": 23
+}

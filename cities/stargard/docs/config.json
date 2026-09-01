@@ -1,0 +1,84 @@
+{
+ "city_name": "Stargard",
+ "city_genitive": "Stargardu",
+ "site_title": "Radoskop Stargard — Jak głosują radni?",
+ "site_url": "https://stargard.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Stargardzie. Sprawdź skład rady, kluby i kalendarz sesji.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Stargardzie.",
+ "bip_url": "https://bip.stargard.eu",
+ "bip_name": "BIP Urząd Miejski w Stargardzie",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "stargard.radoskop.pl",
+ "has_voting_data": false,
+ "has_speaker_activity": false,
+ "councilor_count": 23,
+ "clubs": {
+  "ZP": {
+   "name": "Klub Radnych KWW Rafała Zająca",
+   "color": "#0ea5e9",
+   "bg": "rgba(14,165,233,0.12)",
+   "avatar_bg": "#0369a1"
+  },
+  "KO": {
+   "name": "Klub Radnych Koalicji Obywatelskiej",
+   "color": "#f59e0b",
+   "bg": "rgba(245,158,11,0.12)",
+   "avatar_bg": "#b45309"
+  },
+  "PiS": {
+   "name": "Klub Radnych Prawo i Sprawiedliwość",
+   "color": "#1f4ea0",
+   "bg": "rgba(31,78,160,0.12)",
+   "avatar_bg": "#173a78"
+  }
+ },
+ "club_assignments": {
+  "Wioleta Sawicka": "ZP",
+  "Grzegorz Flas": "ZP",
+  "Monika Garstka": "ZP",
+  "Joanna Hamera-Szczerba": "ZP",
+  "Wanda Nowicka": "ZP",
+  "Grzegorz Rybaczuk": "ZP",
+  "Mieczysław Skawiński": "ZP",
+  "Wojciech Seredyński": "ZP",
+  "Krystyna Smolarek": "ZP",
+  "Joanna Suleja": "ZP",
+  "Dawid Pycz": "KO",
+  "Paweł Mazulewicz": "KO",
+  "Anna Krasoń": "KO",
+  "Ewa Krawczyk": "KO",
+  "Zofia Ławrynowicz": "KO",
+  "Mariusz Smuga": "PiS",
+  "Monika Kieliszak": "PiS",
+  "Krzysztof Kozłowski": "PiS",
+  "Krzysztof Sosin": "PiS",
+  "Zdzisław Wilk": "PiS",
+  "Monika Kirschenstein": "NZ",
+  "Katarzyna Mądrowska": "NZ",
+  "Monika Chmielewska": "NZ"
+ },
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "scrape": {
+  "runner": "run.sh",
+  "generate_site": true
+ },
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Stargardzie",
+ "rada_name_genitive": "Rady Miejskiej w Stargardzie",
+ "teryt": "3214011",
+ "_meta": {
+  "note": "Tier-2 (model berliński): brak głosowań imiennych — protokoły sesji (bip.stargard.eu kat. 5586) mają tylko kworum i przebieg narracyjny, brak tabel ZA/PRZECIW per radny; transmisje hdsystem. Skład 23 radnych (stargard.eu sklad-rady-miejskiej) + kluby (BIP 7973/dokument/62877 PDF IX kad.: ZP 11/KO 6/PiS 5 + Kirschenstein NZ (od 19.08.2025), Mądrowska niedopuszczona do klubów). Kalendarz sesji z BIP kat. 7876. Dodane 2026-09-01 (cron 500).",
+  "population": 67579,
+  "voivodeship": "zachodniopomorskie"
+ }
+}

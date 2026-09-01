@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /*?p=
+
+Sitemap: https://stargard.radoskop.pl/sitemap.xml
