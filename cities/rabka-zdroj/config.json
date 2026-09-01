@@ -1,0 +1,39 @@
+{
+  "city_name": "Rabka-Zdrój",
+  "city_genitive": "Rabki-Zdroju",
+  "site_title": "Radoskop Rabka-Zdrój — Jak głosują radni?",
+  "site_url": "https://rabka-zdroj.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Rabce-Zdroju. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Rabce-Zdroju.",
+  "bip_url": "https://bip.malopolska.pl/grabkazdroj",
+  "bip_name": "BIP Rabka-Zdrój (malopolska.pl)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "rabka-zdroj.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Rabce-Zdroju",
+  "rada_name_genitive": "Rady Miejskiej w Rabce-Zdroju",
+  "teryt": "1211124",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (custom malopolska BIP bip.malopolska.pl/grabkazdroj, Madkom SPA). Rada Miejska -> Protokoły głosowań (menu 312388/target 435880) -> artykuł 'Protokoły głosowań podczas sesji RM IX kadencji' (2460480) listuje per-sesja 'Protokół z głosowania <ROM> sesja IX kadencji <data>' PDF (/e,pobierz,get.html?id=N). PDF tekstowy (bez OCR): blok TYP GŁOSOWANIA/DATA GŁOSOWANIA/LICZBA UPRAWNIONYCH/GŁOSY ZA/PRZECIW/WSTRZYMUJĄCE SIĘ/NIEODDANE + tabela LP|NAZWISKO I IMIĘ|GŁOS (ZA/PRZECIW/WSTRZYMUJĄCE SIĘ/NIEODDANE/NIEOBECNY), 15 radnych. Kluby niepublikowane -> NZ (verify WARN club_quality). TERYT 1211124 (miasto w gminie miejsko-wiejskiej). Dodane 2026-08-29 (cron ekspansja; odblokowanie luki w kolejce).",
+    "population": 12468,
+    "voivodeship": "małopolskie",
+    "powiat": "nowotarski"
+  }
+}

@@ -1,0 +1,1065 @@
+
+<!DOCTYPE html>
+	<html lang="pl">
+		<head>
+			<title>Protokoły z sesji i wyniki głosowań - Urząd Miejski w Łasku</title>
+			<meta charset="utf-8">
+			<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge'><![endif]-->
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="csrf-token" content="e46916399790f837bebf8508564998d25d1a3b472e067ee75574735c23d2368a830828">            <meta name="theme-color" content="#ffffff">
+            <meta name="robots" content="index, follow">
+			<meta name="google-site-verification" content="SXwDZ7jm07EulQhxNp4DcIOCVfYq034budU01EMsAIU" />
+			
+			
+            <meta property="og:image" content="https://bip.lask.pl/clients/cms_lask/image/default/placeholder-fb.jpg"><meta property="og:image:height" content="746"><meta property="og:image:width" content="1200">
+            
+            <meta name="deklaracja-dostępności" content="https://bip.lask.pl/23/deklaracja-dostepnosci.html">
+			<link rel="canonical" href="http://bip.lask.pl/4079/protokoly-z-sesji-i-wyniki-glosowan.html">
+            <link rel="apple-touch-icon" sizes="180x180" href="/cms/public/image/default/bip_v4/favicon/apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="/cms/public/image/default/bip_v4/favicon/favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="/cms/public/image/default/bip_v4/favicon/favicon-16x16.png">
+            <link rel="manifest" href="/cms/public/image/default/bip_v4/favicon/site.webmanifest">
+
+            <!-- Fonts -->
+            <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+            <!-- Latest compiled and minified CSS -->
+            <!-- style start -->
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/assets/plugins/fullcalendar/css/fullcalendar.min.css&amp;v=1787809575">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/calendar/public/style/jquery.qtip.css&amp;v=1787809576">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/calendar/public/style/calendar_event_page.css&amp;v=1787809576">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/info_scroll_bar/public/style/info-scroll-bar.min.css&amp;v=1787809576">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/info_page_layer/public/style/info_page_layer.css&amp;v=1787809576">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/poll/public/style/poll.min.css&amp;v=1787809577">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/normative_acts/public/style/bootstrap_4/normative-acts.min.css&amp;v=1787809577">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/mobile_app/public/style/mobile-app.min.css&amp;v=1787809576">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/assets/plugins/leaflet/leaflet.min.css&amp;v=1787809575">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/assets/plugins/leaflet/markerCluster.min.css&amp;v=1787809575">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/assets/plugins/leaflet/markerClusterDefault.min.css&amp;v=1787809575">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/assets/css/dropzone/dropzone.min.css&amp;v=1787809575">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/assets/plugins/multiselect/jquery.multiselect.min.css&amp;v=1787809575">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/needs_map/public/style/needs-map.min.css&amp;v=1787809576">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/garbage_collection/public/style/garbage.min.css&amp;v=1787809576">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/garbage_collection/public/style/junk-search.min.css&amp;v=1787809576">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/custom_content_types/public/style/custom-content-types.min.css&amp;v=1787809576">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/custom_content_types/public/style/custom-content-types-page.min.css&amp;v=1787809576">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/forms/public/style/forms.min.css&amp;v=1787809576">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/assets/plugins/select2/css/select2.min.css&amp;v=1787809575">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/resident_card/public/style/resident-card.css&amp;v=1787809577">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/assets/swiper/css/swiper-bundle.min.css&amp;v=1787809575">
+<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/plugin/companies/public/style/companies-plugin.min.css&amp;v=1787809576">
+<!-- style stop -->
+
+            <link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/assets/bootstrap/css/jquery.gallery.blueimp.min.css&amp;v=1787809575">
+            <link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/public/style/default/bip_v4/base.min.css&amp;v=1787809577">
+            <link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/public/style/default/bip_v4/wcag/wcag.min.css&amp;v=1787809577">
+            <link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/public/style/default/bip_v4/wcag/contrast-black-white.min.css&amp;v=1787809577">
+            <link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/public/style/default/bip_v4/wcag/contrast-black-yellow.min.css&amp;v=1787809577">
+            <link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/public/style/default/bip_v4/wcag/contrast-white-black.min.css&amp;v=1787809577">
+            <link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/public/style/default/bip_v4/wcag/contrast-yellow-black.min.css&amp;v=1787809577">
+            <link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/public/style/default/bip_v4/wcag/size-medium.min.css&amp;v=1787809577">
+            <link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/public/style/default/bip_v4/wcag/size-large.min.css&amp;v=1787809577">
+			<link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?g=publicCSS&amp;path=L3Zhci93d3cvc2t5Y21zLmNvbS5wbC87L2NsaWVudHMvY21zX2xhc2svc3R5bGUvZGVmYXVsdC90ZW1wbGF0ZV9iaXA=&amp;v=1758009463">
+
+			<!-- Latest compiled and minified JavaScript -->
+            <script nonce="964f785bb1e75e6d6291d459b698332b" src="/cms/public/script/bip_v4/jquery-3.7.1.min.js"></script>
+
+		</head>
+
+<body>
+    <header class="bip-header">
+        <div class="container">
+            <div class="row">
+                <div class="bip-header__wcag bg-default col-12">
+                    <a href="#printArea" class="btn-skip-main" role="button">Przejdź do treści strony</a>
+                    <a href="#bipMenu" class="btn-skip-main" role="button">Przejdź do menu</a>
+                    <a href="#key" class="btn-skip-main" role="button">Przejdź do wyszukiwarki</a>
+                                            <a href="https://bip.lask.pl/10/mapa-biuletynu.html" class="btn-skip-main" role="button">Przejdź do mapy biuletynu</a>
+                        
+                    
+
+                    
+                    <div class="bip-header__toolbox-toggler mt-2">
+                        <button type="button" id="btn-wcag__toggler" class="btn btn-toolbox-toggler" data-toggle="collapse" data-target="#wcag-toolbox"
+                                aria-expanded="true"
+                                aria-controls="wcag-toolbox">
+                                    <span class="btn-toolbox-toggler__text">
+                                        Ukryj panel ułatwień dostępu                                    </span>
+                                    <span aria-hidden="true" class="mx-2 fa fa-chevron-up"></span>
+                        </button>
+                    </div>
+
+                    <div id="wcag-toolbox" class="wcag-border collapse show wcag-toolbox mt-2">
+                        <div class="wcag-toolbox__contrast wcag-toolbox__element">
+                            <span>Kontrast:</span>
+                            <ul id="wcag-contrast-list">
+                                <li>
+                                    <button type="button" id="contrast-normal" aria-label="Zmień kontrast na domyślny" aria-pressed="true">
+                                        <span aria-hidden="true" class="fa-regular fa-eye-slash"></span>
+                                        <span class="sr-only">Zmień kontrast na domyślny</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" id="black-yellow" aria-label="Zmień kontrast na czarno-żółty" aria-pressed="false">C1</button>
+                                </li>
+                                <li>
+                                    <button type="button" id="yellow-black" aria-label="Zmień kontrast na żółto-czarny" aria-pressed="false">C2</button>
+                                </li>
+                                <li>
+                                    <button type="button" id="black-white" aria-label="Zmień kontrast na czarno-biały" aria-pressed="false">C3</button>
+                                </li>
+                                <li>
+                                    <button type="button" id="white-black" aria-label="Zmień kontrast na biało-czarny" aria-pressed="false">C4</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="wcag-toolbox__fontsize wcag-toolbox__element">
+                            <span>Rozmiar czcionki:</span>
+                            <ul id="wcag-font-size-list">
+                                <li>
+                                    <button type="button" id="small" aria-label="Zmień rozmiar czcionki na domyślny" aria-pressed="true">A</button>
+                                </li>
+                                <li>
+                                    <button type="button" id="medium" aria-label="Zmień rozmiar czcionki na średni" aria-pressed="false">A+</button>
+                                </li>
+                                <li>
+                                    <button type="button" id="large" aria-label="Zmień rozmiar czcionki na duży" aria-pressed="false">A++</button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="wcag-toolbox__spacing wcag-toolbox__element">
+                            <span>Odstępy: </span>
+                            <ul>
+                                <li>
+                                    <button type="button" id="letterspacing" aria-label="Zmień odstęp między literami" aria-pressed="false">
+                                        <span class="sr-only">Zmień odstęp między literami</span>
+                                        <i aria-hidden="true" class="mr-1 fa-solid fa-arrows-left-right"></i>
+                                        <i aria-hidden="true" class="fa fa fa-align-left"></i>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" id="lineheight" aria-label="Zmień interlinię i margines między paragrafami" aria-pressed="false">
+                                        <span class="sr-only">Zmień interlinię i margines między paragrafami</span>
+                                        <i aria-hidden="true" class="mr-1 fa-solid fa-arrows-up-down"></i>
+                                        <i aria-hidden="true" class="fa-solid fa-align-left"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="wcag-toolbox__reset wcag-toolbox__element">
+                            <span>Reset: </span>
+                            <ul>
+                                <li>
+                                    <button type="button" id="resetsettings" aria-label="Przywróć ustawienia domyślne">
+                                        <span class="sr-only">Przywróć ustawienia domyślne</span>
+                                        <i aria-hidden="true" class="fa-solid fa-rotate"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                                                    <div class="wcag-toolbox__lector wcag-toolbox__element">
+                                <span>Lektor: </span>
+                                <div class="d-flex">
+                                    <label for="read_links" class="btn btn-onoff">
+                                        <input type="checkbox" id="read_links">
+                                        Czytaj odnośniki <span class="sr-only">do stron i plików</span>
+                                    </label>
+                                    <div class="btn-speak-container">
+                                        <button type="button" class="btn btn-speak" aria-label="Czytaj tekst" aria-pressed="false">
+                                            <i class="fa-solid fa-volume-up mr-1"></i>
+                                            Czytaj tekst
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                                            </div>
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="bip-header__top col-12 col-lg-8 col-xl-9">
+                            <div class="bip-header__title d-flex align-items-center">
+                                <a href="/" class="row">
+                                    <span class="bip-header__image px-md-3 py-2 col-3 col-md-2 col-xl-4">
+                                        <img src="/cms/public/image/default/bip_v4/bip_logo.svg" alt="" class="bip-header__logo img-fluid" height="38" width="89" aria-hidden="true">
+                                        <span class="bip-header__text d-none d-xl-block pl-3">Biuletyn <br>Informacji Publicznej</span>
+                                    </span>
+                                    <span class="bip-header__name col-9 col-md-10 col-xl-8">Urząd Miejski w Łasku</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="bip-header__right search col-12 col-lg-4 col-xl-3">
+                            <form action="https://bip.lask.pl/16/wyniki-wyszukiwania.html" class="search__form form-horizontal">
+                                <div class="search__box">
+                                    <label for="key">Wyszukiwarka</label>
+                                    <div class="search__box-inner">
+                                        <div class="clear-search-field">
+                                            <input type="text" name="Key" id="key" class="form-control" placeholder="Wpisz frazę">
+                                            <button type="button" class="btn-clear-search" aria-label="Wyczyść pole">x</button>
+                                        </div>
+                                    </div>
+                                    <button  type="submit" name="Search" id="btnSearch" class="btn btn-search active" aria-label="Szukaj">
+                                        <span class="sr-only">Szukaj</span>
+                                        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                                                <div class="bip-header__bottom col-12 d-md-none">
+                            <div class="bip-header__actions">
+                                <button type="button" id="menuBipButton" class="btn btn-header-action navbar-toggler collapsed" data-target="#bipMenu" data-toggle="collapse" aria-label="Zwiń, rozwiń menu">
+                                    <i class="fa fa-bars" aria-hidden="true"></i> Menu
+                                </button>
+                            </div>
+                        </div>
+                                            </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+	<main class="bip-main">
+        <div class="container">
+            <div class="row">
+                                    <div class="bip-sidebar col-12 col-md-5 col-lg-4 pl-0 mb-3">
+                        <div class="bg-default wcag-border">
+                            <nav id="bipMenu" class="bip-menu collapse">
+                                <ul class="navbar-nav">
+                                    <li class="nav-item"><a href="#" id="item-h-40" class="nav-link collapsed active" data-toggle="collapse" data-target="#item-40" aria-expanded="true" aria-controls="item-40"><span>Menu podmiotowe&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></span></a><ul id="item-40" class="collapse show" aria-labelledby="item-h-40"><li class="nav-item"><a href="https://bip.lask.pl/22/dane-teleadresowe.html" class="nav-link"><span>Dane teleadresowe</span></a></li><li class="nav-item"><a href="#" id="item-h-101" class="nav-link" data-toggle="collapse" data-target="#item-101" aria-expanded="false" aria-controls="item-101"><span>Urząd Miejski w Łasku</span></a><ul id="item-101" class="collapse" aria-labelledby="item-h-101"><li class="nav-item"><a href="https://bip.lask.pl/22/dane-teleadresowe.html" class="nav-link"><span>Dane teleadresowe</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/35/wladze-miasta-i-gminy.html" class="nav-link"><span>Władze Miasta i Gminy</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/27/wydzialy-i-pracownicy.html" class="nav-link"><span>Wydziały i pracownicy</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/110/statut-gminy-lask.html" class="nav-link"><span>Statut Gminy Łask</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/42/statut-urzedu-miejskiego.html" class="nav-link"><span>Statut Urzędu Miejskiego w Łasku</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/37/regulamin-organizacyjny-urzedu-miejskiego-w-lasku.html" class="nav-link"><span>Regulamin organizacyjny</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-45" class="nav-link" data-toggle="collapse" data-target="#item-45" aria-expanded="false" aria-controls="item-45"><span>Rada Miejska w Łasku</span></a><ul id="item-45" class="collapse" aria-labelledby="item-h-45"><li class="nav-item"><a href="https://bip.lask.pl/31/rada-miejska-w-lasku-viii-kadencja-2018-2024.html" class="nav-link"><span>Rada Miejska w Łasku (2018-2024)</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/4078/rada-miejska-w-lasku-ix-kadencja-2024-2029.html" class="nav-link"><span>Rada Miejska w Łasku (2024-2029)</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/4482/mlodziezowa-rada-miejska.html" class="nav-link"><span>Młodzieżowa Rada Miejska</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-123" class="nav-link" data-toggle="collapse" data-target="#item-123" aria-expanded="false" aria-controls="item-123"><span>Jednostki Gminne</span></a><ul id="item-123" class="collapse" aria-labelledby="item-h-123"><li class="nav-item"><a href="https://bip.lask.pl/65/jednostki-organizacyjne.html" class="nav-link"><span>Jednostki organizacyjne</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/66/spolki-prawa-handlowego.html" class="nav-link"><span>Spółki prawa handlowego</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/75/jednostki-pomocnicze.html" class="nav-link"><span>Jednostki pomocnicze</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/104/samorzadowe-osoby-prawne.html" class="nav-link"><span>Samorządowe osoby prawne</span></a></li></ul></li><li class="nav-item"><a href="https://bip.lask.pl/30/elektroniczna-skrzynka-podawcza.html" class="nav-link"><span>Elektroniczna Skrzynka Podawcza</span></a></li><li class="nav-item"><a href="#" id="item-h-80" class="nav-link" data-toggle="collapse" data-target="#item-80" aria-expanded="false" aria-controls="item-80"><span>Akty prawne</span></a><ul id="item-80" class="collapse" aria-labelledby="item-h-80"><li class="nav-item"><a href="http://dziennikustaw.gov.pl/" class="nav-link"><span>Dziennik Ustaw</span></a></li><li class="nav-item"><a href="http://www.rcl.gov.pl/" class="nav-link"><span>Rządowe Centrum Legislacji</span></a></li><li class="nav-item"><a href="http://monitorpolski.gov.pl/" class="nav-link"><span>Monitor Polski</span></a></li><li class="nav-item"><a href="http://dziennik.lodzkie.eu/" class="nav-link"><span>Dziennik Urzędowy Województwa Łódzkiego</span></a></li><li class="nav-item"><a href="https://ems.ms.gov.pl/start" class="nav-link"><span>Monitor Sądowy i  Gospodarczy</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-154" class="nav-link" data-toggle="collapse" data-target="#item-154" aria-expanded="false" aria-controls="item-154"><span>Ochrona danych osobowych RODO</span></a><ul id="item-154" class="collapse" aria-labelledby="item-h-154"><li class="nav-item"><a href="https://bip.lask.pl/502/klauzula-informacyjna-dotyczaca-przetwarzania-danych-osobowych.html" class="nav-link"><span>Klauzula informacyjna dotycząca przetwarzania danych osobowych</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/503/polityka-bezpieczenstwa-danych-osobowych.html" class="nav-link"><span>Polityka bezpieczeństwa danych osobowych</span></a></li></ul></li><li class="nav-item"><a href="https://bip.lask.pl/6948/sygnalisci.html" class="nav-link"><span>Sygnaliści</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-1" class="nav-link" data-toggle="collapse" data-target="#item-1" aria-expanded="false" aria-controls="item-1"><span>Menu przedmiotowe&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></span></a><ul id="item-1" class="collapse" aria-labelledby="item-h-1"><li class="nav-item"><a href="https://bip.lask.pl/29/karty-uslug.html" class="nav-link"><span>Karty usług</span></a></li><li class="nav-item"><a href="#" id="item-h-316" class="nav-link" data-toggle="collapse" data-target="#item-316" aria-expanded="false" aria-controls="item-316"><span>Aktualności</span></a><ul id="item-316" class="collapse" aria-labelledby="item-h-316"><li class="nav-item"><a href="https://bip.lask.pl/25/ogloszenia-i-komunikaty.html" class="nav-link"><span>Ogłoszenia i komunikaty</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/3355/konsultacje-spoleczne.html" class="nav-link"><span>Konsultacje społeczne</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-151" class="nav-link" data-toggle="collapse" data-target="#item-151" aria-expanded="false" aria-controls="item-151"><span>Zarządzenia Burmistrza Łasku</span></a><ul id="item-151" class="collapse" aria-labelledby="item-h-151"><li class="nav-item"><a href="https://bip.lask.pl/6930/zarzadzenia-burmistrza-lasku-2026r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2026r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/4924/zarzadzenia-burmistrza-lasku-2025r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2025r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/3532/zarzadzenia-burmistrza-lasku-2024-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2024 r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/2386/zarzadzenia-burmistrza-lasku-2023-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2023 r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/1462/zarzadzenia-burmistrza-lasku-2022-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2022 r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/485/zarzadzenia-burmistrza-lasku-2021-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2021 r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/2879/zarzadzenia-burmistrza-lasku-2020-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2020 r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/2880/zarzadzenia-burmistrza-lasku-2019-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2019 r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/3929/zarzadzenia-burmistrza-lasku-2018-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2018 r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/3932/zarzadzenia-burmistrza-lasku-2017-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2017 r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/3915/zarzadzenia-burmistrza-lasku-2016-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2016 r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/3973/zarzadzenia-burmistrza-lasku-2015-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2015 r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/3980/zarzadzenia-burmistrza-lasku-2014-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2014 r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/4488/zarzadzenia-burmistrza-lasku-2013-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2013 r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/4497/zarzadzenia-burmistrza-lasku-2012-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2012 r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/5337/zarzadzenia-burmistrza-lasku-2011-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2011 r.</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/5351/zarzadzenia-burmistrza-lasku-2010-r.html" class="nav-link"><span>Zarządzenia Burmistrza Łasku 2010 r.</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-116" class="nav-link" data-toggle="collapse" data-target="#item-116" aria-expanded="false" aria-controls="item-116"><span>Podatki i opłaty lokalne</span></a><ul id="item-116" class="collapse" aria-labelledby="item-h-116"><li class="nav-item"><a href="https://bip.lask.pl/43/informacje-o-podatkach-i-oplatach.html" class="nav-link"><span>Informacje o podatkach i opłatach</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/494/podatki-i-oplaty-druki-do-pobrania.html" class="nav-link"><span>Druki do pobrania</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/44/interpretacje-przepisow-podatkowych.html" class="nav-link"><span>Interpretacje przepisów podatkowych</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/525/uchwaly-podatkowe.html" class="nav-link"><span>Uchwały podatkowe</span></a></li><li class="nav-item"><a href="#" id="item-h-175" class="nav-link" data-toggle="collapse" data-target="#item-175" aria-expanded="false" aria-controls="item-175"><span>Pomoc publiczna</span></a><ul id="item-175" class="collapse" aria-labelledby="item-h-175"><li class="nav-item"><a href="https://bip.lask.pl/578/udzielanie-pomocy-publicznej.html" class="nav-link"><span>Udzielanie pomocy publicznej</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/579/wykaz-udzielonych-ulg.html" class="nav-link"><span>Wykaz udzielonych ulg</span></a></li></ul></li></ul></li><li class="nav-item"><a href="#" id="item-h-9" class="nav-link" data-toggle="collapse" data-target="#item-9" aria-expanded="false" aria-controls="item-9"><span>Budżet i finanse</span></a><ul id="item-9" class="collapse" aria-labelledby="item-h-9"><li class="nav-item"><a href="https://bip.lask.pl/6933/budzet-gminy-lask-na-2026-rok.html" class="nav-link"><span>Budżet Gminy Łask na 2026 rok</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/4923/budzet-gminy-lask-na-2025-rok.html" class="nav-link"><span>Budżet gminy Łask na 2025 rok</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/3481/budzet-gminy-lask-na-2024-rok.html" class="nav-link"><span>Budżet gminy Łask na 2024 rok</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/2375/budzet-gminy-lask-na-2023-rok.html" class="nav-link"><span>Budżet gminy Łask na 2023 rok</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/1515/budzet-gminy-lask-na-2022-rok.html" class="nav-link"><span>Budżet gminy Łask na 2022 rok</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/113/budzet-gminy-lask-na-2021-rok.html" class="nav-link"><span>Budżet gminy Łask na 2021 rok</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/6609/budzet-gminy-lask-na-2020-rok.html" class="nav-link"><span>Budżet gminy Łask na 2020 rok</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/6610/budzet-gminy-lask-na-2019-rok.html" class="nav-link"><span>Budżet gminy Łask na 2019 rok</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/6613/budzet-gminy-lask-na-2018-rok.html" class="nav-link"><span>Budżet gminy Łask na 2018 rok</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/6615/budzet-gminy-lask-na-2017-rok.html" class="nav-link"><span>Budżet gminy Łask na 2017 rok</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/6618/budzet-gminy-lask-na-2016-rok.html" class="nav-link"><span>Budżet gminy Łask na 2016 rok</span></a></li></ul></li><li class="nav-item"><a href="https://bip.lask.pl/218/gospodarka-odpadami.html" class="nav-link"><span>Gospodarka odpadami</span></a></li><li class="nav-item"><a href="#" id="item-h-31" class="nav-link" data-toggle="collapse" data-target="#item-31" aria-expanded="false" aria-controls="item-31"><span>Ochrona środowiska</span></a><ul id="item-31" class="collapse" aria-labelledby="item-h-31"><li class="nav-item"><a href="https://bip.lask.pl/562/program-ochrony-srodowiska.html" class="nav-link"><span>Program ochrony środowiska</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/563/program-usuwania-azbestu.html" class="nav-link"><span>Program usuwania azbestu</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/565/plan-gospodarki-niskoemisyjnej.html" class="nav-link"><span>Plan gospodarki niskoemisyjnej</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/561/portale-i-bazy-ochrona-srodowiska.html" class="nav-link"><span>Portale i bazy (ochrona środowiska)</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/4794/miejski-plan-adaptacji-do-zmian-klimatu.html" class="nav-link"><span>Miejski Plan Adaptacji do Zmian Klimatu</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/4975/rejestr-informacji-o-srodowisku.html" class="nav-link"><span>Rejestr informacji o środowisku</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-158" class="nav-link" data-toggle="collapse" data-target="#item-158" aria-expanded="false" aria-controls="item-158"><span>Planowanie przestrzenne</span></a><ul id="item-158" class="collapse" aria-labelledby="item-h-158"><li class="nav-item"><a href="#" id="item-h-159" class="nav-link" data-toggle="collapse" data-target="#item-159" aria-expanded="false" aria-controls="item-159"><span>Obwieszczenia Burmistrza Łasku</span></a><ul id="item-159" class="collapse" aria-labelledby="item-h-159"><li class="nav-item"><a href="https://bip.lask.pl/5880/obwieszczenia-burmistrza-lasku-w-sprawach-ustalenia-lokalizacji-inwestycji-celu-publicznego-i-warunkow-zabudowy.html" class="nav-link"><span>w sprawach ustalenia lokalizacji inwestycji celu publicznego i warunków zabudowy</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/523/obwieszczenia-burmistrza-lasku-w-sprawach-sporzadzania-planow-miejscowych-i-planu-ogolnego.html" class="nav-link"><span>w sprawach sporządzania miejscowych planów zagospodarowania przestrzennego</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-160" class="nav-link" data-toggle="collapse" data-target="#item-160" aria-expanded="false" aria-controls="item-160"><span>Miejscowe plany zagospodarowania przestrzennego</span></a><ul id="item-160" class="collapse" aria-labelledby="item-h-160"><li class="nav-item"><a href="https://bip.lask.pl/780/uchwalone-plany-miejscowe.html" class="nav-link"><span>Uchwalone plany miejscowe</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/781/plany-miejscowe-w-trakcie-opracowywania.html" class="nav-link"><span>Plany miejscowe w trakcie opracowywania</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/5851/wez-udzial-w-sporzadzeniu-planu-miejscowego.html" class="nav-link"><span>Weź udział w sporządzeniu planu miejscowego</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/5852/uzyskaj-wypis-i-wyrys-lub-zaswiadczenie-z-planu-miejscowego.html" class="nav-link"><span>Uzyskaj wypis i wyrys lub zaświadczenie z planu miejscowego</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-190" class="nav-link" data-toggle="collapse" data-target="#item-190" aria-expanded="false" aria-controls="item-190"><span>Studium uwarunkowań i kierunków zagospodarowania przestrzennego</span></a><ul id="item-190" class="collapse" aria-labelledby="item-h-190"><li class="nav-item"><a href="https://bip.lask.pl/779/obowiazujace-studium-uwarunkowan-i-kierunkow-zagospodarowania-przestrzennego-gminy-lask.html" class="nav-link"><span>Obowiązujące studium</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/522/archiwalne-studia.html" class="nav-link"><span>Archiwalne studia</span></a></li></ul></li><li class="nav-item"><a href="https://bip.lask.pl/4205/plan-ogolny.html" class="nav-link"><span>Plan ogólny</span></a></li><li class="nav-item"><a href="#" id="item-h-205" class="nav-link" data-toggle="collapse" data-target="#item-205" aria-expanded="false" aria-controls="item-205"><span>Uchwała reklamowa</span></a><ul id="item-205" class="collapse" aria-labelledby="item-h-205"><li class="nav-item"><a href="https://bip.lask.pl/1937/uchwala-reklamowa-w-pierwotnym-brzmieniu.html" class="nav-link"><span>Uchwała reklamowa w pierwotnym brzmieniu</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/5857/zmiana-uchwaly-reklamowej.html" class="nav-link"><span>Zmiana uchwały reklamowej</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-444" class="nav-link" data-toggle="collapse" data-target="#item-444" aria-expanded="false" aria-controls="item-444"><span>Decyzje o warunkach zabudowy i decyzje o ustaleniu lokalizacji inwestycji celu publicznego</span></a><ul id="item-444" class="collapse" aria-labelledby="item-h-444"><li class="nav-item"><a href="https://bip.lask.pl/5877/uzyskaj-decyzje-o-warunkach-zabudowy-lub-decyzje-o-ustaleniu-lokalizacji-inwestycji-celu-publicznego.html" class="nav-link"><span>Uzyskaj decyzję o warunkach zabudowy lub decyzję o ustaleniu lokalizacji inwestycji celu publicznego</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/5878/uzyskaj-zmiane-warunkow-zabudowy.html" class="nav-link"><span>Uzyskaj zmianę warunków zabudowy</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/5879/przenies-decyzje-o-warunkach-zabudowy.html" class="nav-link"><span>Przenieś decyzję o warunkach zabudowy</span></a></li></ul></li><li class="nav-item"><a href="https://bip.lask.pl/3134/uchwala-nr-lxiii7852023-rady-miejskiej-w-lasku-z-dnia-13-09-2023-w-sprawie-aktualnosci-studium-uwarunkowan-ikierunkow-zagospodarowania-przestrzennego-oraz-miejscowych-planow-zagospodarowania-przestrzennego-na-obszarze-gminy-lask.html" class="nav-link"><span>Uchwała w sprawie aktualności studium i planów miejscowych</span></a></li><li class="nav-item"><a href="http://mapa.inspire-hub.pl/#/gmina_lask" class="nav-link"><span>System informacji przestrzennej</span></a></li></ul></li><li class="nav-item"><a href="https://bip.lask.pl/945/oswiata.html" class="nav-link"><span>Oświata</span></a></li><li class="nav-item"><a href="#" id="item-h-126" class="nav-link" data-toggle="collapse" data-target="#item-126" aria-expanded="false" aria-controls="item-126"><span>Zamówienia publiczne</span></a><ul id="item-126" class="collapse" aria-labelledby="item-h-126"><li class="nav-item"><a href="https://bip.lask.pl/70/zamowienia-publiczne-powyzej-170000-pln.html" class="nav-link"><span>Postępowania w trybie PZP</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/69/zamowienia-publiczne-ponizej-170000-pln.html" class="nav-link"><span>Postępowania wyłączone z PZP</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/71/plan-postepowan-o-udzielenie-zamowien-publicznych.html" class="nav-link"><span>Plan postępowań o udzielenie zamówień publicznych</span></a></li><li class="nav-item"><a href="https://archiwum.lask.pl/archiwum/przetargi" class="nav-link"><span>Archiwum zamówień</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/1376/konkursy.html" class="nav-link"><span>Konkursy</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-138" class="nav-link" data-toggle="collapse" data-target="#item-138" aria-expanded="false" aria-controls="item-138"><span>Przetargi</span></a><ul id="item-138" class="collapse" aria-labelledby="item-h-138"><li class="nav-item"><a href="https://bip.lask.pl/611/ogloszenia-o-przetargach.html" class="nav-link"><span>Ogłoszenia o przetargach</span></a></li><li class="nav-item"><a href="https://aruchiwum.lask.pl/archiwum/przetargi" class="nav-link"><span>Archiwum przetargów</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/1102/ogloszenia-o-sprzedazy-mienia.html" class="nav-link"><span>Ogłoszenia o sprzedaży mienia</span></a></li></ul></li><li class="nav-item"><a href="https://bip.lask.pl/276/strategia-rozwoju-gminy-lask.html" class="nav-link"><span>Strategia rozwoju Gminy Łask</span></a></li><li class="nav-item"><a href="#" id="item-h-133" class="nav-link" data-toggle="collapse" data-target="#item-133" aria-expanded="false" aria-controls="item-133"><span>Oświadczenia majątkowe</span></a><ul id="item-133" class="collapse" aria-labelledby="item-h-133"><li class="nav-item"><a href="https://bip.lask.pl/600/wzory-drukow-oswiadczen-majatkowych-oraz-instrukcje.html" class="nav-link"><span>Wzory druków oświadczeń majątkowych</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/597/oswiadczenia-majatkowe-pracownikow-jednostki.html" class="nav-link"><span>Pracownicy jednostki</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/598/oswiadczenia-majatkowe-jednostek-organizacyjnych.html" class="nav-link"><span>Jednostki organizacyjne</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/599/oswiadczenia-majatkowe-spolek-prawa-handlowego.html" class="nav-link"><span>Spółki prawa handlowego</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/888/oswiadczenia-majatkowe-radnych.html" class="nav-link"><span>Radni Gminy</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-144" class="nav-link" data-toggle="collapse" data-target="#item-144" aria-expanded="false" aria-controls="item-144"><span>Audyty i kontrole</span></a><ul id="item-144" class="collapse" aria-labelledby="item-h-144"><li class="nav-item"><a href="https://bip.lask.pl/556/audyty-wewnetrzne.html" class="nav-link"><span>Audyty wewnętrzne</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/602/kontrole-zewnetrzne.html" class="nav-link"><span>Kontrole zewnętrzne</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-181" class="nav-link" data-toggle="collapse" data-target="#item-181" aria-expanded="false" aria-controls="item-181"><span>Petycje</span></a><ul id="item-181" class="collapse" aria-labelledby="item-h-181"><li class="nav-item"><a href="https://bip.lask.pl/512/petycje-wnoszone-do-rady-miejskiej-w-lasku.html" class="nav-link"><span>Petycje wnoszone do Rady Miejskiej w Łasku</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/630/petycje-wnoszone-do-burmistrza-lasku.html" class="nav-link"><span>Petycje wnoszone do Burmistrza Łasku</span></a></li></ul></li><li class="nav-item"><a href="https://bip.lask.pl/510/praca.html" class="nav-link"><span>Praca</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/632/rejestry-ewidencje-i-wykazy.html" class="nav-link"><span>Rejestry, ewidencje i wykazy</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/1572/zgromadzenia.html" class="nav-link"><span>Zgromadzenia</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/2570/ponowne-wykorzystywanie-informacji-sektora-publicznego.html" class="nav-link"><span>Ponowne wykorzystywanie</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/2648/rewitalizacja.html" class="nav-link"><span>Rewitalizacja</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/5566/bezpieczenstwo-obywateli.html" class="nav-link"><span>Bezpieczeństwo Obywateli</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-88" class="nav-link" data-toggle="collapse" data-target="#item-88" aria-expanded="false" aria-controls="item-88"><span>Menu redakcyjne&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></span></a><ul id="item-88" class="collapse" aria-labelledby="item-h-88"><li class="nav-item"><a href="https://www.gov.pl/bip" class="nav-link"><span>BIP.gov.pl</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/9/pobierz-programy.html" class="nav-link"><span>Pobierz programy</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/10/mapa-biuletynu.html" class="nav-link"><span>Mapa biuletynu</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/11/lista-kanalow-rss.html" class="nav-link"><span>Lista kanałów RSS <i class="fa fa-rss menuRssIcon" aria-hidden="true"></i></span></a></li><li class="nav-item"><a href="https://bip.lask.pl/12/statystyki-podstron.html" class="nav-link"><span>Statystyki podstron</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/13/redaktorzy-biuletynu.html" class="nav-link"><span>Redaktorzy biuletynu</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/14/jak-przegladac-bip.html" class="nav-link"><span>Jak przeglądać BIP</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/8/rejestr-zmian-stron.html" class="nav-link"><span>Rejestr zmian stron</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/63/wymagania-dotyczace-materialow-przesylanych-do-publikacji-w-bip.html" class="nav-link"><span>Materiały do BIP</span></a></li></ul></li><li class="nav-item"><a href="#" id="item-h-170" class="nav-link" data-toggle="collapse" data-target="#item-170" aria-expanded="false" aria-controls="item-170"><span>Strony powiązane&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></span></a><ul id="item-170" class="collapse" aria-labelledby="item-h-170"><li class="nav-item"><a href="http://www.lask.pl" class="nav-link"><span>Łaski Serwis Samorządowy</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/591/transmisje-sesji-rady-miejskiej-w-lasku.html" class="nav-link"><span>Transmisje sesji Rady Miejskiej w Łasku</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/1282/eko-slupek-pomiar-jakosci-powietrza.html" class="nav-link"><span>EKO-Słupek (pomiar jakości powietrza)</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/2157/artykuly-dotyczace-bezpieczenstwa.html" class="nav-link"><span>Artykuły dotyczące bezpieczeństwa</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/2215/sprzedaz-wegla.html" class="nav-link"><span>Sprzedaż Węgla</span></a></li><li class="nav-item"><a href="https://bip.lask.pl/3006/wybory-prezydenta-rp-2025.html" class="nav-link"><span>Wybory Prezydenta RP 2025</span></a></li></ul></li>
+
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="bip-content col-12 col-md-7 col-lg-8 px-0">
+                        <div id="printArea" class="bip-page bg-default wcag-border webreaderRead">
+                            
+
+
+<h1 class="pageHeader">Protokoły z sesji i wyniki głosowań</h1>
+
+<div id="webreaderContainer"></div>
+<div class="bip-page__content">
+    
+    <p><strong>I Sesja Rady Miejskiej w Łasku - 7.05.2024 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/15683/protokol-z-i-sesji.docx?v=1715344295" aria-label="Pobierz plik: Protokół z I sesji. Format: DOCX. Rozmiar: 43,69KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z I sesji (DOCX | 43,69KB)</span></a></span></li> </ul> <p><strong>II Sesja Rady Miejskiej w Łasku - 15.05.2024 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/16343/protokol-z-ii-sesji.docx?v=1718795074" aria-label="Pobierz plik: Protokół z II sesji. Format: DOCX. Rozmiar: 58,70KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z II sesji (DOCX | 58,70KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/16342/wyniki-glosowan-z-ii-sesji.pdf?v=1718794677" aria-label="Pobierz plik: Wyniki głosowań z II sesji. Format: PDF. Rozmiar: 59,71KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z II sesji (PDF | 59,71KB)</span></a></span></li> </ul> <p><strong>III Sesja Rady Miejskiej w Łasku - 5.06.2024 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/16344/protokol-z-iii-sesji.docx?v=1718795137" aria-label="Pobierz plik: Protokół z III sesji. Format: DOCX. Rozmiar: 25,88KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z III sesji (DOCX | 25,88KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/16345/wyniki-glosowan-z-iii-sesji.pdf?v=1718795190" aria-label="Pobierz plik: Wyniki głosowań z III sesji. Format: PDF. Rozmiar: 19,75KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z III sesji (PDF | 19,75KB)</span></a></span></li> </ul> <p><strong>IV Sesja Rady Miejskiej w Łasku - 26.06.2024 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/16772/protokol-z-iv-sesji.docx?v=1721645089" aria-label="Pobierz plik: Protokół z IV sesji. Format: DOCX. Rozmiar: 64,05KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z IV sesji (DOCX | 64,05KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/16773/wyniki-glosowan-z-iv-sesji.pdf?v=1721645172" aria-label="Pobierz plik: Wyniki głosowań z IV sesji. Format: PDF. Rozmiar: 65,50KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z IV sesji (PDF | 65,50KB)</span></a></span></li> </ul> <p><strong>V Sesja Rady Miejskiej w Łasku - 24.07.2024 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/17941/protokol-z-v-sesji.docx?v=1724319471" aria-label="Pobierz plik: Protokół z V sesji. Format: DOCX. Rozmiar: 29,13KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z V sesji (DOCX | 29,13KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/17942/wyniki-glosowan-z-v-sesji.pdf?v=1724319539" aria-label="Pobierz plik: Wyniki głosowań z V sesji. Format: PDF. Rozmiar: 25,63KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z V sesji (PDF | 25,63KB)</span></a></span></li> </ul> <p><strong>VI Sesja Rady Miejskiej w Łasku - 29.08.2024 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/18268/protokol-z-vi-sesji.docx?v=1726211104" aria-label="Pobierz plik: Protokół z VI sesji. Format: DOCX. Rozmiar: 29,53KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z VI sesji (DOCX | 29,53KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/18269/wyniki-glosowan-z-vi-sesji.pdf?v=1726211302" aria-label="Pobierz plik: Wyniki głosowań z VI sesji. Format: PDF. Rozmiar: 24,69KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z VI sesji (PDF | 24,69KB)</span></a></span></li> </ul> <p><strong>VII Sesja Rady Miejskiej w Łasku - 25.09.2024 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/18513/protokol-z-vii-sesji.docx?v=1728476985" aria-label="Pobierz plik: Protokół z VII sesji. Format: DOCX. Rozmiar: 74,24KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z VII sesji (DOCX | 74,24KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/18512/wyniki-glosowan-z-vii-sesji.pdf?v=1728476811" aria-label="Pobierz plik: Wyniki głosowań z VII sesji. Format: PDF. Rozmiar: 61,76KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z VII sesji (PDF | 61,76KB)</span></a></span></li> </ul> <p><strong>VIII Sesja Rady Miejskiej w Łasku - 22.10.2024 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/19218/protokol-z-viii-sesji.docx?v=1732629164" aria-label="Pobierz plik: Protokół z VIII sesji. Format: DOCX. Rozmiar: 77,03KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z VIII sesji (DOCX | 77,03KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/19219/wyniki-glosowan-z-viii-sesji.pdf?v=1732629210" aria-label="Pobierz plik: Wyniki głosowań z VIII sesji. Format: PDF. Rozmiar: 44,09KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z VIII sesji (PDF | 44,09KB)</span></a></span></li> </ul> <p><strong>IX Sesja Rady Miejskiej w Łasku - 27.11.2024 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/19376/protokol-z-ix-sesji.docx?v=1733831459" aria-label="Pobierz plik: Protokół z IX sesji. Format: DOCX. Rozmiar: 75,71KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z IX sesji (DOCX | 75,71KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/19377/wyniki-glosowan-z-ix-sesji.pdf?v=1733831515" aria-label="Pobierz plik: Wyniki głosowań z IX sesji. Format: PDF. Rozmiar: 51,17KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z IX sesji (PDF | 51,17KB)</span></a></span></li> </ul> <p><strong>X Sesja Rady Miejskiej w Łasku - 18.12.2024 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/19781/protokol-z-x-sesji.docx?v=1736339876" aria-label="Pobierz plik: Protokół z X sesji. Format: DOCX. Rozmiar: 64,72KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z X sesji (DOCX | 64,72KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/19782/wyniki-glosowan-z-x-sesji.pdf?v=1736339960" aria-label="Pobierz plik: Wyniki głosowań z X sesji. Format: PDF. Rozmiar: 50,82KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z X sesji (PDF | 50,82KB)</span></a></span></li> </ul> <p><strong>XI Sesja Rady Miejskiej w Łasku - 22.01.2025 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/20191/protokol-z-xi-sesji.docx?v=1738846937" aria-label="Pobierz plik: Protokół z XI sesji. Format: DOCX. Rozmiar: 63,59KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XI sesji (DOCX | 63,59KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/20192/wyniki-glosowan-z-xi-sesji.pdf?v=1738846993" aria-label="Pobierz plik: Wyniki głosowań z XI sesji. Format: PDF. Rozmiar: 31,35KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XI sesji (PDF | 31,35KB)</span></a></span></li> </ul> <p><strong>XII Sesja Rady Miejskiej w Łasku - 26.02.2025 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/20565/protokol-z-xii-sesji.docx?v=1741601535" aria-label="Pobierz plik: Protokół z XII sesji. Format: DOCX. Rozmiar: 66,88KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XII sesji (DOCX | 66,88KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/20566/wyniki-glosowan-z-xii-sesji.pdf?v=1741601581" aria-label="Pobierz plik: Wyniki głosowań z XII sesji. Format: PDF. Rozmiar: 37,77KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XII sesji (PDF | 37,77KB)</span></a></span></li> </ul> <p><strong>XIII Sesja Rady Miejskiej w Łasku - 26.03.2025 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/21393/protokol-z-xiii-sesji.docx?v=1743512388" aria-label="Pobierz plik: Protokół z XIII sesji. Format: DOCX. Rozmiar: 66,03KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XIII sesji (DOCX | 66,03KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/21394/wyniki-glosowan-z-xiii-sesji.pdf?v=1743512454" aria-label="Pobierz plik: Wyniki głosowań z XIII sesji. Format: PDF. Rozmiar: 33,40KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XIII sesji (PDF | 33,40KB)</span></a></span></li> </ul> <p><strong>XIV Sesja Rady Miejskiej w Łasku - 23.04.2025 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/22134/protokol-z-xiv-sesji.docx?v=1746693208" aria-label="Pobierz plik: Protokół z XIV sesji. Format: DOCX. Rozmiar: 58,76KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XIV sesji (DOCX | 58,76KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/22135/wyniki-glosowan-z-xiv-sesji.pdf?v=1746693252" aria-label="Pobierz plik: Wyniki głosowań z XIV sesji. Format: PDF. Rozmiar: 32,91KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XIV sesji (PDF | 32,91KB)</span></a></span></li> </ul> <p><strong>XV Sesja Rady Miejskiej w Łasku - 28.05.2025 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/22577/protokol-z-xv-sesji.docx?v=1749805212" aria-label="Pobierz plik: Protokół z XV sesji. Format: DOCX. Rozmiar: 71,48KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XV sesji (DOCX | 71,48KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/22578/wyniki-glosowan-z-xv-sesji.pdf?v=1749805263" aria-label="Pobierz plik: Wyniki głosowań z XV sesji. Format: PDF. Rozmiar: 54,38KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XV sesji (PDF | 54,38KB)</span></a></span></li> </ul> <p><strong>XVI Sesja Rady Miejskiej w Łasku - 9.06.2025 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/22583/protokol-z-xvi-sesji.docx?v=1750063699" aria-label="Pobierz plik: Protokół z XVI sesji. Format: DOCX. Rozmiar: 46,11KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XVI sesji (DOCX | 46,11KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/22584/wyniki-glosowan-z-xvi-sesji.pdf?v=1750064156" aria-label="Pobierz plik: Wyniki głosowań z XVI sesji. Format: PDF. Rozmiar: 18,66KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XVI sesji (PDF | 18,66KB)</span></a></span></li> </ul> <p><strong>XVII Sesja Rady Miejskiej w Łasku - 25.06.2025 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/23549/protokol-z-xvii-sesji.docx?v=1753441126" aria-label="Pobierz plik: Protokół z XVII sesji. Format: DOCX. Rozmiar: 36,63KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XVII sesji (DOCX | 36,63KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/23550/wyniki-glosowan-z-xvii-sesji.pdf?v=1753441204" aria-label="Pobierz plik: Wyniki głosowań z XVII sesji. Format: PDF. Rozmiar: 35,33KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XVII sesji (PDF | 35,33KB)</span></a></span></li> </ul> <p><strong>XVIII Sesja Rady Miejskiej w Łasku - 14.07.2025 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/24348/protokol-z-xviii-sesji.docx?v=1757076663" aria-label="Pobierz plik: Protokół z XVIII sesji. Format: DOCX. Rozmiar: 34,08KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XVIII sesji (DOCX | 34,08KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/23998/wyniki-glosowan-z-xviii-sesji.pdf?v=1754903711" aria-label="Pobierz plik: Wyniki głosowań z XVIII sesji. Format: PDF. Rozmiar: 37,85KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XVIII sesji (PDF | 37,85KB)</span></a></span></li> </ul> <p><strong>XIX Sesja Rady Miejskiej w Łasku - 28.08.2025 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/24349/protokol-z-xix-sesji.docx?v=1757076812" aria-label="Pobierz plik: Protokół z XIX sesji. Format: DOCX. Rozmiar: 38,92KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XIX sesji (DOCX | 38,92KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/24351/wyniki-glosowan-z-xix-sesji.pdf?v=1757076870" aria-label="Pobierz plik: Wyniki głosowań z XIX sesji. Format: PDF. Rozmiar: 25,20KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XIX sesji (PDF | 25,20KB)</span></a></span></li> </ul> <p><strong>XX Sesja Rady Miejskiej w Łasku - 24.09.2025 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/24872/protokol-z-xx-sesji.docx?v=1759234112" aria-label="Pobierz plik: Protokół z XX sesji. Format: DOCX. Rozmiar: 39,60KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XX sesji (DOCX | 39,60KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/24873/wyniki-glosowan-z-xx-sesji.pdf?v=1759234157" aria-label="Pobierz plik: Wyniki głosowań z XX sesji. Format: PDF. Rozmiar: 29,73KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XX sesji (PDF | 29,73KB)</span></a></span></li> </ul> <p><strong>XXI Sesja Rady Miejskiej w Łasku - 22.10.2025 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/25755/protokol-z-xxi-sesji.docx?v=1761907353" aria-label="Pobierz plik: Protokół z XXI sesji. Format: DOCX. Rozmiar: 47,17KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XXI sesji (DOCX | 47,17KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/25756/wyniki-glosowan-z-xxi-sesji.pdf?v=1761907519" aria-label="Pobierz plik: Wyniki glosowań z XXI sesji. Format: PDF. Rozmiar: 39,76KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki glosowań z XXI sesji (PDF | 39,76KB)</span></a></span></li> </ul> <p><strong>XXII Sesja Rady Miejskiej w Łasku - 19.11.2025 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/26240/protokol-z-xxii-sesji.docx?v=1764589165" aria-label="Pobierz plik: Protokół z XXII sesji. Format: DOCX. Rozmiar: 48,65KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XXII sesji (DOCX | 48,65KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/26241/wyniki-glosowan-z-xxii-sesji.pdf?v=1764589258" aria-label="Pobierz plik: Wyniki głosowań z XXII sesji. Format: PDF. Rozmiar: 31,54KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XXII sesji (PDF | 31,54KB)</span></a></span></li> </ul> <p><strong>XXIII Sesja Rady Miejskiej w Łasku - 17.12.2025 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/26911/protokol-z-xxiii-sesji.docx?v=1768392434" aria-label="Pobierz plik: Protokół z XXIII sesji. Format: DOCX. Rozmiar: 55,80KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XXIII sesji (DOCX | 55,80KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/26912/wyniki-glosowan-z-xxiii-sesji.pdf?v=1768392516" aria-label="Pobierz plik: Wyniki głosowań z XXIII sesji. Format: PDF. Rozmiar: 67,58KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XXIII sesji (PDF | 67,58KB)</span></a></span></li> </ul> <p><strong>XXIV Sesja Rady Miejskiej w Łasku - 21.01.2026 r.&nbsp;</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/27197/protokol-z-xxiv-sesji.docx?v=1771486810" aria-label="Pobierz plik: Protokół z XXIV sesji. Format: DOCX. Rozmiar: 55,07KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XXIV sesji (DOCX | 55,07KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/27198/wyniki-glosowan-z-xxiv-sesji.doc?v=1771486860" aria-label="Pobierz plik: Wyniki głosowań z XXIV sesji. Format: DOC. Rozmiar: 40,91KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOC"></span><span class="fileName">Wyniki głosowań z XXIV sesji (DOC | 40,91KB)</span></a></span></li> </ul> <p><strong>XXV Sesja Rady Miejskiej w Łasku - 24.02.2026 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/27471/protokol-z-xxv-sesji.docx?v=1773385027" aria-label="Pobierz plik: Protokół z XXV sesji. Format: DOCX. Rozmiar: 47,41KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XXV sesji (DOCX | 47,41KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/27472/wyniki-glosowan-z-xxv-sesji.pdf?v=1773385202" aria-label="Pobierz plik: Wyniki głosowań z XXV sesji. Format: PDF. Rozmiar: 38,61KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XXV sesji (PDF | 38,61KB)</span></a></span></li> </ul> <p><strong>XXVI Sesja Rady Miejskiej w Łasku - 18.03.2026 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/27564/protokol-z-xxvi-sesji.docx?v=1774268548" aria-label="Pobierz plik: Protokół z XXVI sesji. Format: DOCX. Rozmiar: 41,76KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XXVI sesji (DOCX | 41,76KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/27565/wyniki-glosowan-z-xxvi-sesji.pdf?v=1774268693" aria-label="Pobierz plik: Wyniki głosowań z XXVI sesji. Format: PDF. Rozmiar: 34,72KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XXVI sesji (PDF | 34,72KB)</span></a></span></li> </ul> <p><strong>XXVII Sesja Rady Miejskiej w Łasku - 29.04.2026 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/28426/protokol-z-xxvii-sesji.docx?v=1778240613" aria-label="Pobierz plik: Protokół z XXVII sesji. Format: DOCX. Rozmiar: 49,94KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XXVII sesji (DOCX | 49,94KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/28427/wyniki-glosowan-z-xxvii-sesji.pdf?v=1778240613" aria-label="Pobierz plik: Wyniki głosowań z XXVII sesji. Format: PDF. Rozmiar: 36,31KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XXVII sesji (PDF | 36,31KB)</span></a></span></li> </ul> <p><strong>XXVIII Sesja Rady Miejskiej w Łasku - 28.05.2026 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/29846/protokol-z-xxviii-sesji-poprawiony.docx?v=1784612475" aria-label="Pobierz plik: Protokół z XXVIII sesji - poprawiony. Format: DOCX. Rozmiar: 52,51KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XXVIII sesji - poprawiony (DOCX | 52,51KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/28938/wyniki-glosowan-z-xxviii-sesji.pdf?v=1780486467" aria-label="Pobierz plik: Wyniki głosowań z XXVIII sesji. Format: PDF. Rozmiar: 30,66KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XXVIII sesji (PDF | 30,66KB)</span></a></span></li> </ul> <p><strong>XXIX Sesja Rady Miejskiej w Łasku - 25.06.2026 r.</strong></p> <ul> <li><span><span><a class="fa-solid normative-act-ico-metric popover-normative-act" data-html="true"
+                  data-toggle="popover" data-trigger="popover click focus"
+                  data-placement="bottom"
+                  data-content="
+			&lt;div class=&#039;normative-act-data&#039;&gt;
+				&lt;div class=&#039;normative-act-header&#039;&gt;
+					Metryczka pliku &lt;span&gt;&lt;span class=&#039;clickk&#039;&gt;&amp;#215;&lt;/span&gt;&lt;/span&gt;
+				&lt;/div&gt;
+				&lt;div class=&#039;normative-act-text&#039;&gt;
+					&lt;div class=&#039;normative-act-text-content clearfix&#039;&gt;
+
+							&lt;p&gt;&lt;b&gt;Wytworzył lub za treść odpowiada&lt;/b&gt;: Elżbieta Chrostowska&lt;/p&gt;
+							&lt;p&gt;&lt;b&gt;Data wytworzenia&lt;/b&gt;: 09-07-2026&lt;/p&gt;
+							&lt;p&gt;&lt;b&gt;Opublikowano przez&lt;/b&gt;: Mariusz Ziętala&lt;/p&gt;
+							&lt;p&gt;&lt;b&gt;Data publikacji&lt;/b&gt;: 09-07-2026 13:13&lt;/p&gt;
+							&lt;p&gt;&lt;b&gt;Ilość pobrań pliku&lt;/b&gt;: 16&lt;/p&gt;
+
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		">
+    </a></span>&nbsp;<a class="fileLink" href="https://bip.lask.pl/download/attachment/29771/protokol-xxix-29-z-sesji-absolutoryjnej-z-dnia-25062026.docx?v=1783595603" aria-label="Pobierz plik: Protokół z XXIX sesji. Format: DOCX. Rozmiar: 81,34KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XXIX sesji (DOCX | 81,34KB)</span></a></span></li> <li>[file,id_cms='29772',type='attachmen</li> </ul> <p><strong>XXX Sesja Rady Miejskiej w Łasku - 22.07.2026 r.</strong></p> <ul> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/30144/protokol-z-xxx-sesji.docx?v=1786000608" aria-label="Pobierz plik: Protokół z XXX sesji. Format: DOCX. Rozmiar: 79,40KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconDOCX"></span><span class="fileName">Protokół z XXX sesji (DOCX | 79,40KB)</span></a></span></li> <li><span><a class="fileLink" href="https://bip.lask.pl/download/attachment/30145/wyniki-glosowan-z-xxx-sesji.pdf?v=1786000683" aria-label="Pobierz plik: Wyniki głosowań z XXX sesji. Format: PDF. Rozmiar: 51,96KB" target="_blank"><span aria-hidden="true" class="fileIcon fileIconPDF"></span><span class="fileName">Wyniki głosowań z XXX sesji (PDF | 51,96KB)</span></a></span><br /> &nbsp;</li> </ul> <p>&nbsp;</p>
+</div>
+
+
+
+<div class="bip-page__footer">
+            <div class="bip-page__actions">
+            <ul>
+                                    <li><a href="https://bip.lask.pl/xml/4079/protokoly-z-sesji-i-wyniki-glosowan.html" target="_blank" class="btn btn-xml"
+                           title="Wyświetl jako XML">XML</a></li>
+                                <li>
+                    <button type="button" id="printButton" class="btn btn-print" title="Drukuj stronę">
+                        <span aria-hidden="true" class="fa fa-print"></span>
+                        <span class="sr-only">Drukuj stronę</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+                    <div class="bip-page__info">
+                
+                        <div class="bip-info">
+                            <div class="bip-info__title">
+                                <span>Metryczka</span>
+                                <i class="fa-solid fa-circle-info" aria-hidden="true"></i>
+                            </div>
+                            <ul class="bip-info__list bipPageFooter">
+                        
+                                <li>
+                                    <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                    <div class="_col-2">Wytworzono:</div>
+                                    <div class="_col-3">10-05-2024</div>
+                                    <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                </li>
+                                <li>
+                                    <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                    <div class="_col-2">Wprowadzono przez:</div>
+                                    <div class="_col-3">Bem Małgorzata</div>
+                                    <div class="_col-4 text-break"></div>
+                                </li>
+                                <li>
+                                    <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                    <div class="_col-2">Udostępniono:</div>
+                                    <div class="_col-3">10-05-2024, 14:27</div>
+                                    <div class="_col-4"></div>
+                                </li>
+                                <li>
+                                    <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                    <div class="_col-2">Zmodyfikowano:</div>
+                                    <div class="_col-3">06-08-2026, 09:18</div>
+                                    <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                </li>
+                                <li>
+                                    <div class="_col-1"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></div>
+                                    <div class="_col-2">Osoba odpowiedzialna:</div>
+                                    <div class="_col-3">Bem Małgorzata</div>
+                                    <div class="_col-4"></div>
+                                </li>
+                                <li>
+                                    <div class="_col-1"><i class="fa-solid fa-building-columns" aria-hidden="true"></i></div>
+                                    <div class="_col-2">Podmiot udostępniający:</div>
+                                    <div class="_col-3">Urząd Miejski w Łasku</div>
+                                    <div class="_col-4">Odwiedzin: 1197</div>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bip-files">
+                            <button type="button" id="filesButton" class="bip-files__title collapsed" data-toggle="collapse" data-target="#filesContent" aria-expanded="false" aria-controls="filesContent">
+                                <span>Załączniki</span>
+                                <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            </button>
+                            <div id="filesContent" class="bip-files__content collapse" aria-labelledby="filesButton">
+                                <div id="filesSpinner" class="bip-files__spinner">
+                                    <i class="fa fa-spinner fa-pulse fa-4x fa-fw"></i>
+                                    <span class="sr-only">Trwa ładowanie, proszę czekać</span>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="bip-register">
+                                <button type="button" id="registerButton" class="bip-register__title collapsed" data-toggle="collapse" data-target="#registerList" aria-expanded="false" aria-controls="registerList">
+                                    <span>Rejestr zmian</span>
+                                    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                                </button>
+
+								<ul id="registerList" class="bip-register__list collapse" aria-labelledby="registerButton">
+							
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">06-08-2026 09:18:50</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">06-08-2026 09:17:36</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">06-08-2026 09:16:06</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">21-07-2026 07:42:45</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">09-07-2026 13:20:05</div>
+                                        <div class="_col-4 text-break">przez: Mariusz Ziętala</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">09-07-2026 13:17:10</div>
+                                        <div class="_col-4 text-break">przez: Mariusz Ziętala</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">09-07-2026 13:13:34</div>
+                                        <div class="_col-4 text-break">przez: Mariusz Ziętala</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">03-06-2026 15:06:46</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">03-06-2026 13:44:29</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">03-06-2026 13:35:17</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">03-06-2026 13:32:15</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">08-05-2026 13:46:03</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">23-03-2026 13:25:52</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">23-03-2026 13:23:21</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">13-03-2026 08:01:07</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">13-03-2026 07:56:16</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">19-02-2026 08:42:18</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">14-01-2026 13:09:24</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">14-01-2026 13:06:50</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">01-12-2025 12:41:49</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">01-12-2025 12:40:00</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">01-12-2025 12:38:49</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">31-10-2025 11:46:30</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">31-10-2025 11:43:04</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">31-10-2025 11:42:02</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">30-09-2025 14:10:02</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">05-09-2025 14:55:27</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">05-09-2025 14:53:15</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">05-09-2025 14:52:11</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">11-08-2025 11:16:03</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">11-08-2025 11:14:53</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">11-08-2025 11:13:34</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">25-07-2025 13:02:02</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">25-07-2025 13:01:45</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">25-07-2025 13:01:07</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">25-07-2025 12:59:25</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">16-06-2025 11:02:50</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">16-06-2025 10:54:57</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">16-06-2025 10:47:37</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">13-06-2025 11:01:57</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">08-05-2025 10:34:57</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">01-04-2025 15:01:55</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">01-04-2025 14:59:22</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">10-03-2025 11:14:07</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">06-02-2025 14:04:01</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">08-01-2025 13:40:06</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">08-01-2025 13:37:12</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">10-12-2024 12:52:46</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">10-12-2024 12:49:34</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">26-11-2024 14:54:10</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">09-10-2024 14:30:15</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">09-10-2024 14:28:55</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">09-10-2024 14:28:04</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">09-10-2024 14:25:42</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">13-09-2024 09:09:20</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">13-09-2024 09:05:42</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">22-08-2024 11:39:46</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">22-07-2024 12:47:03</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">19-06-2024 13:07:11</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">19-06-2024 13:06:08</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">19-06-2024 13:05:16</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">19-06-2024 13:03:44</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">19-06-2024 13:01:47</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">10-05-2024 14:38:16</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">10-05-2024 14:36:19</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">10-05-2024 14:28:47</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">10-05-2024 14:28:20</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">10-05-2024 14:28:08</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+                                    <li>
+                                        <div class="_col-1"><i class="fa-solid fa-calendar-days" aria-hidden="true"></i></div>
+                                        <div class="_col-2">modyfikacja strony:</div>
+                                        <div class="_col-3">10-05-2024 14:27:49</div>
+                                        <div class="_col-4 text-break">przez: Bem Małgorzata</div>
+                                        
+                                    </li>
+								</ul>
+                            </div>
+							
+            </div>
+                <div class="bip-page__back">
+        <a href=" javascript:history.go(-1)" class="pageBack">Powrót do poprzedniej strony »</a>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                            </div>
+        </div>
+	</main>
+    <footer class="bip-footer">
+    <div class="container">
+        <div class="row">
+            <div class="bip-footer__inner col-lg-12">
+                <div class="bip-footer__middle">
+                    <div class="footer-middle row">
+                        <div class="footer-middle__col-1 mb-3 col-md-4 mb-md-0">
+                            <h2 class="footer-middle__title">Dane adresowe:</h2>
+                            <p>
+                                Urząd Miejski w Łasku<br>
+                                98-100 Łask<br>
+                                ul. Warszawska 14
+                            </p>
+                        </div>
+                        <div class="footer-middle__col-2 mb-3 col-md-4 mb-md-0">
+                            <h2 class="footer-middle__title">Kontakt:</h2>
+                            <p>
+                                tel.: <a href="tel:+48436768300" title="Zadzwoń na numer +48436768300">+48436768300</a><br>
+                                faks: +48436768388<br>
+                                e-mail: <span class="liam216"></span><script nonce="964f785bb1e75e6d6291d459b698332b">/* <![CDATA[ */$(document).ready(function(){var tekst216= "3c6120687265663d226d61696c746f3a756d406c61736b2e706c22207469746c653d225779c59b6c696a20652d6d61696c206e6120616472657320756d406c61736b2e706c223e756d406c61736b2e706c3c2f613e";var i216 = 0;var len216 = tekst216.length, result216 = "";for(; i216 < len216; i216+=2)result216 += '%' + tekst216.substr(i216, 2);$(".liam216").html(decodeURIComponent(result216));});/* ]]> */</script><br>
+                                skrytka ePUAP: /5228wuxejz/skrytka<br>
+                                strona www: <a href="http://www.lask.pl" title="Wejdź na stronę www.lask.pl">www.lask.pl</a><br>
+                            </p>
+                        </div>
+                        <div class="footer-middle__col-3 col-md-4">
+                            <h2 class="footer-middle__title">Informacje dodatkowe:</h2>
+                            <p>
+                                NIP: 8311247296<br>
+                                 REGON: 000524200<br>
+                                
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bip-footer__bottom">
+                    <div class="footer-bottom row">
+                        <div class="col-8 flex-column flex-sm-row d-flex">
+                            <span class="bip-declaration"><a href="https://bip.lask.pl/23/deklaracja-dostepnosci.html" class="availability-declaration-link">Deklaracja dostępności</a></span>
+                            <a href="https://bip.lask.pl/17/polityka-prywatnosci-bip.html" class="cookie-link">Polityka prywatności</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<button type="button" id="goTopBipButton" class="btn-go-top">
+    <i class="fa fa-chevron-up"></i>
+    <span class="sr-only">Powrót na górę strony</span>
+</button>
+
+<dialog id="bipCookieDialog" class="bip-cookie-dialog" role="alertdialog" aria-labelledby="bipCookieDialogTitle" aria-describedby="bipCookieDialogDesc">
+    <div class="bip-cookie-dialog__inner">
+        <div class="bip-cookie-dialog__header">
+            <span class="bip-cookie-dialog__icon" aria-hidden="true">🍪</span>
+            <span id="bipCookieDialogTitle" class="bip-cookie-dialog__title" role="heading" aria-level="2">Ustawienia plików cookie</span>
+        </div>
+
+        <p id="bipCookieDialogDesc" class="bip-cookie-dialog__desc">
+            Strona używa plików cookies w celu poprawnego korzystania z serwisu.
+            Jeśli nie blokujesz tych plików, to zgadzasz się na ich użycie oraz zapisanie w pamięci urządzenia.
+            Pamiętaj, że możesz samodzielnie zarządzać cookies, zmieniając ustawienia przeglądarki.
+            Brak zmiany ustawienia przeglądarki oznacza wyrażenie zgody.
+            Dowiedz się więcej o tym, jak używamy plików cookies z
+            <button type="button" id="bipCookiePolicy" class="bip-cookie-dialog__policy" data-page-id="17">Polityką Prywatności</button>
+        </p>
+
+        <div class="bip-cookie-dialog__actions">
+            <button type="button" id="bipCookieAccept" class="btn-primary bip-cookie-dialog__btn bip-cookie-dialog__btn--accept" autofocus>
+                Akceptuję i przechodzę do serwisu
+            </button>
+        </div>
+    </div>
+</dialog>
+
+<script nonce="964f785bb1e75e6d6291d459b698332b">
+    document.addEventListener("DOMContentLoaded", function () {
+        showBipCookieModal();
+    })
+</script>
+
+
+
+    <link type="text/css" rel="stylesheet" href="https://bip.lask.pl/min/?f=cms/assets/bootstrap/css/jquery.gallery.blueimp.min.css&amp;v=1787809575">
+
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls"
+     aria-hidden="true" aria-modal="true" role="dialog"
+     data-continuous="true"
+     data-slideshow-interval="5000">
+    <!-- The container for the modal slides -->
+    <div class="slides">...</div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title" aria-live="polite">...</h3>
+    <div class="controls-sidebar">
+        <button type="button" id="gallery-close-btn" class="close blueimp-close" aria-label="Zamknij">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        <button type="button" class="play-pause" aria-label="Pokaz slajdów">
+            <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+        </button>
+        <button type="button" class="fullscreen" aria-label="Włącz tryb pełnoekranowy">
+            <svg class="maximize-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+            <svg class="minimize-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path></svg>
+        </button>
+        <button type="button" class="info" aria-label="Pokaż opis zdjęcia">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        </button>
+        <button type="button" class="prev" aria-label="Poprzednie zdjęcie">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button type="button" class="next" aria-label="Następne zdjęcie">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+    </div>
+    <div class="indicator-wrapper">
+        <button type="button" class="indicator-prev" aria-label="Przewiń miniatury w lewo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <ol class="indicator"></ol>
+        <button type="button" class="indicator-next" aria-label="Przewiń miniatury w prawo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+    </div>
+    <!-- Slideshow progress bar -->
+    <div class="slideshow-progress"><div class="progress-bar"></div></div>
+    <!-- ARIA Live region for status messages (WCAG 4.1.3) -->
+    <div id="blueimp-gallery-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+</div>
+
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/bootstrap/js/jquery.gallery.blueimp.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/bootstrap/js/jquery.gallery.blueimp.init.js&amp;v=1787809575"></script>
+
+
+    <!-- Core JavaScript Files -->
+        <script nonce="964f785bb1e75e6d6291d459b698332b">
+        let PAGE_ID= 4079;
+        let URL_CLIENT_REQUEST='https://bip.lask.pl/public/request.php';
+    </script>
+
+    <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/js/functions.min.js&amp;v=1787809575"></script>
+    <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/js/request.min.js&amp;v=1787809575"></script>
+    <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/js/CMSContextualSearch.min.js&amp;v=1787809575"></script>
+    <!-- scripts main -->
+    <!-- script start -->
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/js/jquery-ui.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/js/datepicker.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/js/jquery-ui-timepicker-addon.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/plugins/jstimezonedetect/jstz.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/plugins/fullcalendar/js/fullCalendar.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/plugins/fullcalendar/js/fullCalendarBootstrap.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/plugins/fullcalendar/js/fullCalendarLocales.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/plugins/small-calendar/CMSPluginCalendar.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/plugins/big-calendar/CMSPluginBigCalendar.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/calendar/public/script/CMSPluginCalendarCategoriesFilter.min.js&amp;v=1787809576"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/object_map/public/script/jquery.gmap.js&amp;v=1787809577"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/object_map/public/javascripts/CMSPluginObjectMapAddObject.js&amp;v=1787809577"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/object_map/public/javascripts/object_map_add.js&amp;v=1787809577"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/info_scroll_bar/public/script/CMSInfoScrollBar.min.js&amp;v=1787809576"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/plugins/chart/chart.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/poll/public/script/fingerprint.esm.min.js&amp;v=1787809577"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/poll/public/script/CMSPoll.min.js&amp;v=1787809577"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/poll/public/script/CMSPollCreate.min.js&amp;v=1787809577"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/newsletter/public/js/newsletter.js&amp;v=1787809577"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/plugins/normative_acts/normative-acts.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/mobile_app/public/script/CMSPluginMobileAppAdvert.min.js&amp;v=1787809576"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/plugins/leaflet/leaflet.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/plugins/leaflet/leaflet.markerCluster.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/js/dropzone.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/plugins/multiselect/jquery.multiselect.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/needs_map/public/script/CMSNeedsMapPublic.min.js&amp;v=1787809576"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/needs_map/public/script/CMSNeedsMapForm.min.js&amp;v=1787809576"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/garbage_collection/public/script/CMSGarbageCollection.min.js&amp;v=1787809576"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/garbage_collection/public/script/CMSJunksSearch.min.js&amp;v=1787809576"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/custom_content_types/public/script/CMSCustomContentTypes.min.js&amp;v=1787809576"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/forms/public/script/CMSForms.min.js&amp;v=1787809576"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/plugins/select2/js/select2.full.min.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/plugins/select2/js/i18n/pl.js&amp;v=1787809575"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/plugin/resident_card/public/script/CMSResidentCardPublic.js&amp;v=1787809577"></script>
+<script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/assets/swiper/js/swiper-bundle.min.js&amp;v=1787809575"></script>
+<!-- script stop -->
+
+    <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/public/script/bip_v4/jquery-ui.min.js&amp;v=1787809577"></script>
+    <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/public/script/bip_v4/jquery.ui.datepicker-pl.min.js&amp;v=1787809577"></script>
+    <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/public/script/bip_v4/popper.min.js&amp;v=1787809577"></script>
+    <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/public/script/bip_v4/bootstrap.min.js&amp;v=1787809577"></script>
+    <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/public/script/bip_v4/chart.min.js&amp;v=1787809577"></script>
+    <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/public/script/bip_v4/jquery.easing.min.js&amp;v=1787809577"></script>
+    <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/public/script/bip_v4/jquery.jqplot.min.js&amp;v=1787809577"></script>
+    <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/public/script/bip_v4/jqplot.canvasTextRenderer.min.js&amp;v=1787809577"></script>
+    <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/public/script/bip_v4/jqplot.canvasAxisLabelRenderer.min.js&amp;v=1787809577"></script>
+    <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/public/script/bip_v4/functions.min.js&amp;v=1787809577"></script>
+    <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/public/script/bip_v4/main.js&amp;v=1787809577"></script> <!-- TOOD -->
+            <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/public/script/bip_v4/netkoncept-reader/netkoncept-reader.js&amp;v=1787809577"></script>
+        <script nonce="964f785bb1e75e6d6291d459b698332b" src="https://bip.lask.pl/min/?f=cms/public/script/bip_v4/netkoncept-reader/netkoncept-reader-run.js&amp;v=1787809577"></script>
+    
+    <script nonce="964f785bb1e75e6d6291d459b698332b" async src="https://www.googletagmanager.com/gtag/js?id=G-HK9CDRBTV6"></script><script nonce="964f785bb1e75e6d6291d459b698332b">
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'G-HK9CDRBTV6');
+                </script><script nonce="964f785bb1e75e6d6291d459b698332b">
+                  var _paq = window._paq = window._paq || [];
+                  _paq.push(['trackPageView']);
+                  _paq.push(['enableLinkTracking']);
+                  (function() {
+                    var u="//matomo.dev.netk.pl/";
+                    _paq.push(['setTrackerUrl', u+'matomo.php']);
+                    _paq.push(['setSiteId', '68']);
+                    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+                    g.async=true; g.src=u+'matomo.js'; g.nonce = '964f785bb1e75e6d6291d459b698332b'; s.parentNode.insertBefore(g,s);
+                  })();
+                </script></body>
+</html>

@@ -1,0 +1,38 @@
+{
+  "city_name": "Pajęczno",
+  "city_genitive": "Pajęczna",
+  "site_title": "Radoskop Pajęczno — Jak głosują radni?",
+  "site_url": "https://pajeczno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Pajęcznie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Pajęcznie.",
+  "bip_url": "http://www.e-bip.pl/Start/76/InformationModule/1372/824533",
+  "bip_name": "BIP Miasta Pajęczno (e-bip.pl)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pajeczno.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Pajęcznie",
+  "rada_name_genitive": "Rady Miejskiej w Pajęcznie",
+  "teryt": "1009043",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (platforma e-bip.pl ABC PRO; kategoria 'Wyniki głosowań' sesji RM; per-głosowanie załączniki PDF z imienną tabelą dwukolumnową, warstwa tekstowa; 333 głosy IX kad. wszystkie zrebilansowane vs agregaty). eSesja = Portal Mieszkańca martwy, AlfaTV/Nefeni brak. Dodane 2026-09-01 (cron ekspansja 500). club_assignments pending.",
+    "population": 6548,
+    "voivodeship": "łódzkie"
+  }
+}
