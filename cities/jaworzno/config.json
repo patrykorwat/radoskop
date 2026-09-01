@@ -1,0 +1,81 @@
+{
+  "city_name": "Jaworzno",
+  "city_genitive": "Jaworzna",
+  "site_title": "Radoskop Jaworzno — Jak głosują radni?",
+  "site_url": "https://jaworzno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Jaworznie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Jaworznie.",
+  "bip_url": "https://bip.jaworzno.pl",
+  "bip_name": "Biuletyn Informacji Publicznej Urzędu Miejskiego w Jaworznie",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "jaworzno.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Klub \"Koalicji Obywatelskiej\"",
+      "color": "#f97316",
+      "bg": "rgba(249,115,22,0.12)",
+      "avatar_bg": "#c2570c"
+    },
+    "PiS": {
+      "name": "Klub \"Prawo i Sprawiedliwość\"",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "JMM": {
+      "name": "Klub \"Jaworzno Moje Miasto\"",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    }
+  },
+  "club_assignments": {
+    "Maciej Bochenek": "KO",
+    "Przemysław Kawka": "KO",
+    "Barbara Ziętek": "KO",
+    "Wiesława Babula": "KO",
+    "Wojciech Banasik": "KO",
+    "Barbara Boczoń": "KO",
+    "Janusz Ciołczyk": "KO",
+    "Dorota Guja": "KO",
+    "Michał Kirker": "KO",
+    "Stefan Łatak": "KO",
+    "Tomasz Sędor": "KO",
+    "Barbara Sikora": "KO",
+    "Maciej Stanek": "PiS",
+    "Bernadeta Palka": "PiS",
+    "Dawid Domagalski": "PiS",
+    "Renata Gacek": "PiS",
+    "Anna Lichota": "PiS",
+    "Janusz Papuga": "PiS",
+    "Tadeusz Kaczmarek": "JMM",
+    "Sebastian Pycia": "JMM",
+    "Mariusz Kowalski": "JMM",
+    "Mirosław Pieczara": "JMM",
+    "Jolanta Smoliło-Żabińska": "JMM"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Jaworznie",
+  "rada_name_genitive": "Rady Miejskiej w Jaworznie",
+  "teryt": "2468011",
+  "_meta": {
+    "note": "NOWE miasto (2026-09-01). BIP bip.jaworzno.pl = Madkom BIP v2 (Angular SPA, API /api/). Kategoria 'Imienne głosowania Radnych na Sesjach RM' = menu 20227: artykuły 'Zestawienie imiennych głosowań podczas <N> sesji ... w dniu <date>' z PDF-em wydruku eSesja (tekstowy, 1 głos/strona, tabela Lp|Nazwisko i imię|Głos) — parser współdzielony z miedzyrzecz (records_from_pdf). 29 zestawień IX kad. (I 2024-05-07 .. XXVIII 2026-08-27). Kluby z oficjalnego artykułu BIP 45709 (kadencja 2024-2029): KO 12, PiS 6, JMM 5 = 23 radnych (pełne pokrycie składu). eSesja jaworzno.esesja.pl = wildcard (brak BIP). TERYT 2468011 (m. Jaworzno, śląskie).",
+    "population": 90368,
+    "voivodeship": "śląskie"
+  }
+}
