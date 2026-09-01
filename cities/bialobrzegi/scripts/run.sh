@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Radoskop bialobrzegi — Tier-2: skład rady + sesje (BIP-E.PL bip.bialobrzegi.pl).
+set -euo pipefail
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CITY_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+RADOSKOP_DIR="$(cd "$CITY_DIR/../.." && pwd)"
+
+echo "[bialobrzegi] scrape_bialobrzegi.py"
+python3 "$SCRIPT_DIR/scrape_bialobrzegi.py" --city-dir "$CITY_DIR"
+
+echo "[bialobrzegi] generate_site.py"
+python3 "$RADOSKOP_DIR/scripts/generate_site.py" \
+  --config "$CITY_DIR/config.json" \
+  --output "$CITY_DIR/docs/" >/dev/null 2>&1 && echo "[ok] generate_site" || echo "[warn] generate_site"
+
+echo "[bialobrzegi] OK"

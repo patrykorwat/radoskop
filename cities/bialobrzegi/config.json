@@ -1,0 +1,48 @@
+{
+  "landing_enabled": true,
+  "city_name": "Białobrzegi",
+  "city_genitive": "Białobrzeg",
+  "site_title": "Radoskop Białobrzegi — Skład rady i sesje",
+  "site_url": "https://bialobrzegi.radoskop.pl",
+  "site_description": "Radoskop — Rada Miasta i Gminy Białobrzegi. Skład rady kadencji 2024–2029 i kalendarz sesji (bez imiennych głosowań).",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta i Gminy Białobrzegi.",
+  "bip_url": "https://bip.bialobrzegi.pl/bia/rada",
+  "bip_name": "BIP Urzędu Miasta i Gminy w Białobrzegach (bip.bialobrzegi.pl)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "bialobrzegi.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "has_voting_data": false,
+  "has_speaker_activity": false,
+  "has_named_votes": false,
+  "voting_display": "faction",
+  "councilor_count": 15,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta i Gminy Białobrzegi",
+  "rada_name_genitive": "Rady Miasta i Gminy Białobrzegi",
+  "teryt": "1401014",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true,
+    "note": "Tier-2 (roster/model berliński): brak głosowań imiennych IX kadencji w każdym źródle (zweryfikowane 2026-09-01). bialobrzegi.esesja.pl = eSesja porzucona (PM, 1 sesja 2025-07-16 / 2 głosy, potem cisza — rada przeszła na BIP-E.PL + transmisje posiedzenia.pl), rada.bialobrzegi.pl (AlfaTV) nie działa, bialobrzegi.bip.net.pl 404, protokoły BIP bez wyników imiennych, posiedzenia.pl API WAF 403. Roster 15 radnych (sklad-osobowy/31367 Kadencja-2024-2029, format NAZWISKO Imię -> swap) + 27 sesji IX kad. (I 06-05-2024 ... XXVII 17-08-2026) z porzadek-sesji-i-projekty-uchw (daty w tytułach). club_assignments PENDING. has_voting_data:false, voting_display:faction."
+  },
+  "_meta": {
+    "note": "NOWE miasto (long_tail -> Tier-2 model berliński). Brak imiennych głosowań: eSesja PM porzucona (1 sesja 2025), AlfaTV dead, Nefeni 404, BIP-E.PL protokoły bez tabel ZA/PRZECIW per-radny, DSSS posiedzenia.pl tylko wideo (API 403). Roster 15 radnych (Przew. Marcin Osowski, Wice Kaczmarek/Jachowski) + 27 sesji IX. TERYT 1401014 (miasto Białobrzegi, pow. białobrzeski, mazowieckie), Q855976, pop 6615. Dodane 2026-09-01 (cron do 500 miast).",
+    "population": 6615,
+    "voivodeship": "mazowieckie",
+    "lat": 51.64556,
+    "lon": 20.95389,
+    "qid": "Q855976"
+  }
+}
