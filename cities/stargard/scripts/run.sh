@@ -8,7 +8,9 @@ RADOSKOP_DIR="$(cd "$CITY_DIR/../.." && pwd)"
 cd "$CITY_DIR"
 
 echo "[stargard] scrape_stargard.py"
-python3 "$SCRIPT_DIR/scrape_stargard.py" "$CITY_DIR"
+python3 "$SCRIPT_DIR/scrape_stargard.py" \
+  --city-dir "$CITY_DIR" \
+  --cache-dir "${RADOSKOP_CACHE_DIR:-/cache/stargard}/html"
 
 echo "[stargard] generate_site.py"
 python3 "$RADOSKOP_DIR/scripts/generate_site.py" \

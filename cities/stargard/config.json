@@ -3,14 +3,14 @@
   "city_genitive": "Stargardu",
   "site_title": "Radoskop Stargard — Jak głosują radni?",
   "site_url": "https://stargard.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Stargardzie. Sprawdź skład rady, kluby i kalendarz sesji.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Stargardzie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
   "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Stargardzie.",
   "bip_url": "https://bip.stargard.eu",
   "bip_name": "BIP Urząd Miejski w Stargardzie",
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "stargard.radoskop.pl",
-  "has_voting_data": false,
+  "has_voting_data": true,
   "has_speaker_activity": false,
   "councilor_count": 23,
   "clubs": {
@@ -44,6 +44,8 @@
     "Wojciech Seredyński": "ZP",
     "Krystyna Smolarek": "ZP",
     "Joanna Suleja": "ZP",
+    "Monika Szotowicz": "ZP",
+    "Michał Bryła": "ZP",
     "Dawid Pycz": "KO",
     "Paweł Mazulewicz": "KO",
     "Anna Krasoń": "KO",
@@ -77,7 +79,7 @@
   "rada_name_genitive": "Rady Miejskiej w Stargardzie",
   "teryt": "3214011",
   "_meta": {
-    "note": "Tier-2 (model berliński): brak głosowań imiennych — protokoły sesji (bip.stargard.eu kat. 5586) mają tylko kworum i przebieg narracyjny, brak tabel ZA/PRZECIW per radny; transmisje hdsystem. Skład 23 radnych (stargard.eu sklad-rady-miejskiej) + kluby (BIP 7973/dokument/62877 PDF IX kad.: ZP 11/KO 6/PiS 5 + Kirschenstein NZ (od 19.08.2025), Mądrowska niedopuszczona do klubów). Kalendarz sesji z BIP kat. 7876. Dodane 2026-09-01 (cron 500).",
+    "note": "BIP bip.stargard.eu (custom CMS SSDIP): per-głosowanie PDF-y 'Głosowanie' przy każdej uchwale + dokument 'Pozostałe głosowania' per sesja (kat. Uchwały RM / Kadencja 2024-2029 /22474, sesje /{id}); wydruk 1-stronicowy z tabelą imienną ZA/PRZECIW/WSTRZYMUJĘ SIĘ/NIEOBECNA. Promocja Tier-2→pełne 2026-09-02: wcześniejsza klasyfikacja 'brak imiennych' była błędna (szukano w protokołach kat. 5586, a głosowania są w załącznikach sesji). Skład 23 radnych + kluby (BIP 7973/dokument/62877 PDF IX kad.: ZP 12 (z Szotowicz, Bryła wygasł 28.08.2024)/KO 6/PiS 5 + Kirschenstein NZ (od 19.08.2025), Mądrowska NZ). eSesja stargard.esesja.pl = wildcard, AlfaTV/bip.net.pl/brak. TERYT 3214011.",
     "population": 67579,
     "voivodeship": "zachodniopomorskie"
   }
