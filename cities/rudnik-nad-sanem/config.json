@@ -1,0 +1,47 @@
+{
+  "landing_enabled": true,
+  "city_name": "Rudnik nad Sanem",
+  "city_genitive": "Rudnika nad Sanem",
+  "site_title": "Radoskop Rudnik nad Sanem — Skład rady i sesje",
+  "site_url": "https://rudnik-nad-sanem.radoskop.pl",
+  "site_description": "Radoskop — Rada Miejska w Rudniku nad Sanem. Skład rady kadencji 2024–2029 i kalendarz sesji (bez imiennych głosowań).",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Rudniku nad Sanem.",
+  "bip_url": "https://bip.rudnik.pl",
+  "bip_name": "BIP Urzędu Gminy i Miasta Rudnik nad Sanem (bip.rudnik.pl)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "rudnik-nad-sanem.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "has_voting_data": false,
+  "has_speaker_activity": false,
+  "has_named_votes": false,
+  "voting_display": "faction",
+  "councilor_count": 15,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Rudniku nad Sanem",
+  "rada_name_genitive": "Rady Miejskiej w Rudniku nad Sanem",
+  "teryt": "1812063",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true,
+    "note": "Tier-2 (roster/model berliński): głosowania istnieją (DSSS Vote, kategoria BIP 162 'Uchwały - wyniki głosowania', PDF Protokoły DD.MM.YYYY per sesja), ALE pozycje głosów per radny są znakowane GLIFAMI BEZ ATRYBUTÓW w warstwie tekstowej PDF (span pusty, brak wektorów/obrazów/widgetów w kolumnach Za/Przeciw/Wstrzymało) — atrybucja nie do odzyskania maszynowo (zweryfikowano 2026-09-01 na sesji XXVII: 280 rysunków same ramki tabel, 0 glyphy, pikselowo szum). Wzorzec DSSS graficzny (pultusk/gora). rudnik-nad-sanem.esesja.pl wildcard, AlfaTV brak DNS, bip.net.pl 404. Roster 15 (rudnik.pl/dla-mieszkanca/rada-miejska/ kadencja 2024-2029) + sesje z PDF-ów kategoria 162. club_assignments PENDING."
+  },
+  "_meta": {
+    "note": "NOWE miasto (long_tail -> Tier-2 model berliński). Skład 15 radnych (przew. Bogdan Kupiec) + kalendarz sesji IX kad. z BIP Joomla (bip.rudnik.pl /pdf/uchwalywyniki/). Brak odzyskiwalnych głosów imiennych (DSSS Vote glify bez atrybutów). TERYT 1812063 (Wikipedia Rudnik nad Sanem (gmina)), Q1028027, pop 6565. Dodane 2026-09-01 (cron do 500 miast).",
+    "population": 6565,
+    "voivodeship": "podkarpackie",
+    "lat": 50.4439,
+    "lon": 22.2408
+  }
+}
