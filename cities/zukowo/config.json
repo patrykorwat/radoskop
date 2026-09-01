@@ -1,0 +1,40 @@
+{
+  "city_name": "Żukowo",
+  "city_genitive": "Żukowa",
+  "site_title": "Radoskop Żukowo — Jak głosują radni?",
+  "site_url": "https://zukowo.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Żukowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Żukowie.",
+  "bip_url": "https://bip.zukowo.pl",
+  "bip_name": "BIP Gminy Żukowo (bip.zukowo.pl)",
+  "rada_url": "https://rada.zukowo.pl",
+  "rada_name_platform": "AlfaTV System Rada",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zukowo.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Żukowie",
+  "rada_name_genitive": "Rady Miejskiej w Żukowie",
+  "teryt": "2205084",
+  "_meta": {
+    "note": "NOWE miasto (AlfaTV 'System Rada' rada.zukowo.pl, IX kadencja). Adapter AlfaTV (wzorzec sobotka/miastko/turek). 26 sesji na liście glosowan (2024-05-07 .. 2026-03-31), 22 radnych, 390 imiennych glosow. Kluby NIE publikowane na stronach radny (Przynaleznosc = tylko komisje) -> club_assignments PENDING. zukowo.bip.net.pl = 404; zukowo.esesja.pl = porzucona (BIP przeszedl na AlfaTV). TERYT 2205084 (miasto Żukowo, gm. miejsko-wiejska, pow. kartuski 2205, pomorskie; pl.wiki TERC). Dodane 2026-09-01 (cron do 500 miast).",
+    "population": 6652,
+    "voivodeship": "pomorskie"
+  }
+}
