@@ -1,0 +1,2918 @@
+{
+ "id": "2024-2029",
+ "label": "IX kadencja (2024–2029)",
+ "clubs": {
+  "OL": 5,
+  "DZL": 12,
+  "PiS": 4,
+  "NZ": 2
+ },
+ "sessions": [
+  {
+   "date": "2026-01-15",
+   "number": 15,
+   "vote_count": 5,
+   "attendee_count": 23,
+   "attendees": [
+    "Agnieszka Kubica-Radek",
+    "Barbara Danek",
+    "Bogusława Potocka",
+    "Daniel Rędziński",
+    "Dariusz Jankowski",
+    "Dariusz Węgrzyn",
+    "Dorota Dutkanicz",
+    "Edyta Orłowska",
+    "Edyta Zawadzka",
+    "Eliza Kaczmarek",
+    "Franciszek Wojtyczka",
+    "Grzegorz Zieliński",
+    "Izabella Polak-Salomon",
+    "Joanna Kot",
+    "Katarzyna Kulczyńska",
+    "Ksenia Dowhań-Domańska",
+    "Marian Węgrzynowski",
+    "Michał Kielan",
+    "Roman Zaprutko",
+    "Romuald Kujawa",
+    "Tadeusz Madziarczyk",
+    "Tomasz Górzyński",
+    "Violetta Duży"
+   ],
+   "speakers": []
+  },
+  {
+   "date": "2026-02-24",
+   "number": 16,
+   "vote_count": 12,
+   "attendee_count": 21,
+   "attendees": [
+    "Agnieszka Kubica-Radek",
+    "Barbara Danek",
+    "Bogusława Potocka",
+    "Daniel Rędziński",
+    "Dariusz Jankowski",
+    "Dariusz Węgrzyn",
+    "Dorota Dutkanicz",
+    "Edyta Orłowska",
+    "Edyta Zawadzka",
+    "Eliza Kaczmarek",
+    "Franciszek Wojtyczka",
+    "Izabella Polak-Salomon",
+    "Joanna Kot",
+    "Katarzyna Kulczyńska",
+    "Ksenia Dowhań-Domańska",
+    "Marian Węgrzynowski",
+    "Michał Kielan",
+    "Romuald Kujawa",
+    "Tadeusz Madziarczyk",
+    "Tomasz Górzyński",
+    "Violetta Duży"
+   ],
+   "speakers": []
+  },
+  {
+   "date": "2026-04-16",
+   "number": 17,
+   "vote_count": 5,
+   "attendee_count": 23,
+   "attendees": [
+    "Agnieszka Kubica-Radek",
+    "Barbara Danek",
+    "Bogusława Potocka",
+    "Daniel Rędziński",
+    "Dariusz Jankowski",
+    "Dariusz Węgrzyn",
+    "Dorota Dutkanicz",
+    "Edyta Orłowska",
+    "Edyta Zawadzka",
+    "Eliza Kaczmarek",
+    "Franciszek Wojtyczka",
+    "Grzegorz Zieliński",
+    "Izabella Polak-Salomon",
+    "Joanna Kot",
+    "Katarzyna Kulczyńska",
+    "Ksenia Dowhań-Domańska",
+    "Marian Węgrzynowski",
+    "Michał Kielan",
+    "Roman Zaprutko",
+    "Romuald Kujawa",
+    "Tadeusz Madziarczyk",
+    "Tomasz Górzyński",
+    "Violetta Duży"
+   ],
+   "speakers": []
+  },
+  {
+   "date": "2026-05-07",
+   "number": 18,
+   "vote_count": 5,
+   "attendee_count": 21,
+   "attendees": [
+    "Agnieszka Kubica-Radek",
+    "Barbara Danek",
+    "Bogusława Potocka",
+    "Dariusz Jankowski",
+    "Dariusz Węgrzyn",
+    "Dorota Dutkanicz",
+    "Edyta Orłowska",
+    "Edyta Zawadzka",
+    "Eliza Kaczmarek",
+    "Franciszek Wojtyczka",
+    "Grzegorz Zieliński",
+    "Izabella Polak-Salomon",
+    "Joanna Kot",
+    "Katarzyna Kulczyńska",
+    "Marian Węgrzynowski",
+    "Michał Kielan",
+    "Roman Zaprutko",
+    "Romuald Kujawa",
+    "Tadeusz Madziarczyk",
+    "Tomasz Górzyński",
+    "Violetta Duży"
+   ],
+   "speakers": []
+  },
+  {
+   "date": "2026-05-20",
+   "number": 19,
+   "vote_count": 1,
+   "attendee_count": 17,
+   "attendees": [
+    "Agnieszka Kubica-Radek",
+    "Barbara Danek",
+    "Bogusława Potocka",
+    "Daniel Rędziński",
+    "Dorota Dutkanicz",
+    "Edyta Orłowska",
+    "Edyta Zawadzka",
+    "Eliza Kaczmarek",
+    "Franciszek Wojtyczka",
+    "Izabella Polak-Salomon",
+    "Katarzyna Kulczyńska",
+    "Ksenia Dowhań-Domańska",
+    "Marian Węgrzynowski",
+    "Michał Kielan",
+    "Roman Zaprutko",
+    "Romuald Kujawa",
+    "Violetta Duży"
+   ],
+   "speakers": []
+  },
+  {
+   "date": "2026-06-16",
+   "number": 20,
+   "vote_count": 21,
+   "attendee_count": 21,
+   "attendees": [
+    "Agnieszka Kubica-Radek",
+    "Barbara Danek",
+    "Bogusława Potocka",
+    "Daniel Rędziński",
+    "Dariusz Jankowski",
+    "Dariusz Węgrzyn",
+    "Dorota Dutkanicz",
+    "Edyta Orłowska",
+    "Edyta Zawadzka",
+    "Eliza Kaczmarek",
+    "Franciszek Wojtyczka",
+    "Grzegorz Zieliński",
+    "Izabella Polak-Salomon",
+    "Joanna Kot",
+    "Katarzyna Kulczyńska",
+    "Marian Węgrzynowski",
+    "Michał Kielan",
+    "Roman Zaprutko",
+    "Romuald Kujawa",
+    "Tadeusz Madziarczyk",
+    "Tomasz Górzyński"
+   ],
+   "speakers": []
+  }
+ ],
+ "total_sessions": 6,
+ "total_votes": 49,
+ "total_councilors": 23,
+ "councilors": [
+  {
+   "name": "Agnieszka Kubica-Radek",
+   "club": "OL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 89.8,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 31,
+   "votes_przeciw": 6,
+   "votes_wstrzymal": 7,
+   "votes_brak": 0,
+   "votes_nieobecny": 0,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Barbara Danek",
+   "club": "DZL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 100.0,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 49,
+   "votes_przeciw": 0,
+   "votes_wstrzymal": 0,
+   "votes_brak": 0,
+   "votes_nieobecny": 0,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Bogusława Potocka",
+   "club": "DZL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 100.0,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 49,
+   "votes_przeciw": 0,
+   "votes_wstrzymal": 0,
+   "votes_brak": 0,
+   "votes_nieobecny": 0,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Daniel Rędziński",
+   "club": "OL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 83.7,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 31,
+   "votes_przeciw": 5,
+   "votes_wstrzymal": 5,
+   "votes_brak": 0,
+   "votes_nieobecny": 5,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Dariusz Jankowski",
+   "club": "DZL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 98.0,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 48,
+   "votes_przeciw": 0,
+   "votes_wstrzymal": 0,
+   "votes_brak": 0,
+   "votes_nieobecny": 1,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Dariusz Węgrzyn",
+   "club": "PiS",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 81.6,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 25,
+   "votes_przeciw": 5,
+   "votes_wstrzymal": 10,
+   "votes_brak": 0,
+   "votes_nieobecny": 1,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Dorota Dutkanicz",
+   "club": "DZL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 100.0,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 49,
+   "votes_przeciw": 0,
+   "votes_wstrzymal": 0,
+   "votes_brak": 0,
+   "votes_nieobecny": 0,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Edyta Orłowska",
+   "club": "DZL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 100.0,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 49,
+   "votes_przeciw": 0,
+   "votes_wstrzymal": 0,
+   "votes_brak": 0,
+   "votes_nieobecny": 0,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Edyta Zawadzka",
+   "club": "OL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 93.9,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 33,
+   "votes_przeciw": 5,
+   "votes_wstrzymal": 8,
+   "votes_brak": 0,
+   "votes_nieobecny": 0,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Eliza Kaczmarek",
+   "club": "NZ",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 100.0,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 46,
+   "votes_przeciw": 3,
+   "votes_wstrzymal": 0,
+   "votes_brak": 0,
+   "votes_nieobecny": 0,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Franciszek Wojtyczka",
+   "club": "PiS",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 75.5,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 26,
+   "votes_przeciw": 6,
+   "votes_wstrzymal": 5,
+   "votes_brak": 0,
+   "votes_nieobecny": 12,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Grzegorz Zieliński",
+   "club": "NZ",
+   "district": null,
+   "frekwencja": 83.3,
+   "aktywnosc": 63.3,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 30,
+   "votes_przeciw": 1,
+   "votes_wstrzymal": 0,
+   "votes_brak": 0,
+   "votes_nieobecny": 13,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Izabella Polak-Salomon",
+   "club": "DZL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 100.0,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 49,
+   "votes_przeciw": 0,
+   "votes_wstrzymal": 0,
+   "votes_brak": 0,
+   "votes_nieobecny": 0,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Joanna Kot",
+   "club": "DZL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 98.0,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 48,
+   "votes_przeciw": 0,
+   "votes_wstrzymal": 0,
+   "votes_brak": 0,
+   "votes_nieobecny": 1,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Katarzyna Kulczyńska",
+   "club": "DZL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 100.0,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 49,
+   "votes_przeciw": 0,
+   "votes_wstrzymal": 0,
+   "votes_brak": 0,
+   "votes_nieobecny": 0,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Ksenia Dowhań-Domańska",
+   "club": "OL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 46.9,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 17,
+   "votes_przeciw": 4,
+   "votes_wstrzymal": 2,
+   "votes_brak": 0,
+   "votes_nieobecny": 26,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Marian Węgrzynowski",
+   "club": "DZL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 100.0,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 49,
+   "votes_przeciw": 0,
+   "votes_wstrzymal": 0,
+   "votes_brak": 0,
+   "votes_nieobecny": 0,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Michał Kielan",
+   "club": "PiS",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 100.0,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 34,
+   "votes_przeciw": 5,
+   "votes_wstrzymal": 10,
+   "votes_brak": 0,
+   "votes_nieobecny": 0,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Roman Zaprutko",
+   "club": "DZL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 75.5,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 37,
+   "votes_przeciw": 0,
+   "votes_wstrzymal": 0,
+   "votes_brak": 0,
+   "votes_nieobecny": 12,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Romuald Kujawa",
+   "club": "DZL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 100.0,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 48,
+   "votes_przeciw": 0,
+   "votes_wstrzymal": 1,
+   "votes_brak": 0,
+   "votes_nieobecny": 0,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Tadeusz Madziarczyk",
+   "club": "PiS",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 95.9,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 41,
+   "votes_przeciw": 5,
+   "votes_wstrzymal": 1,
+   "votes_brak": 0,
+   "votes_nieobecny": 1,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Tomasz Górzyński",
+   "club": "DZL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 98.0,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 48,
+   "votes_przeciw": 0,
+   "votes_wstrzymal": 0,
+   "votes_brak": 0,
+   "votes_nieobecny": 1,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  },
+  {
+   "name": "Violetta Duży",
+   "club": "OL",
+   "district": null,
+   "frekwencja": 100.0,
+   "aktywnosc": 57.1,
+   "zgodnosc_z_klubem": 0.0,
+   "votes_za": 20,
+   "votes_przeciw": 5,
+   "votes_wstrzymal": 3,
+   "votes_brak": 0,
+   "votes_nieobecny": 21,
+   "votes_total": 49,
+   "rebellion_count": 0,
+   "rebellions": [],
+   "has_activity_data": false,
+   "activity": null
+  }
+ ],
+ "votes": [
+  {
+   "id": "1",
+   "session_date": "2026-01-15",
+   "session_number": 15,
+   "topic": "Adres Url:",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko"
+    ],
+    "przeciw": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Agnieszka Kubica-Radek",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Franciszek Wojtyczka",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 12,
+    "przeciw": 10,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "2",
+   "session_date": "2026-01-15",
+   "session_number": 15,
+   "topic": "w sprawie udzielenia pomocy rzeczowej Gminy Miejskiej Lubin dla Województwa Dolnośląskiego",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 23,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "3",
+   "session_date": "2026-01-15",
+   "session_number": 15,
+   "topic": "w sprawie udzielenia pomocy rzeczowej Gminy Miejskiej Lubin dla Województwa",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 23,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "4",
+   "session_date": "2026-01-15",
+   "session_number": 15,
+   "topic": "5. Uchwała w sprawie nadania nazwy ulicy na terenie miasta Lubina.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 23,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "5",
+   "session_date": "2026-01-15",
+   "session_number": 15,
+   "topic": "Adres Url:",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "wstrzymal_sie": [
+     "Franciszek Wojtyczka"
+    ]
+   },
+   "counts": {
+    "za": 22,
+    "przeciw": 0,
+    "wstrzymal_sie": 1
+   }
+  },
+  {
+   "id": "6",
+   "session_date": "2026-02-24",
+   "session_number": 16,
+   "topic": "obwodów publicznych szkół podstawowych na obszarze Gminy Miejskiej Lubin.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Marian Węgrzynowski"
+    ],
+    "przeciw": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Agnieszka Kubica-Radek",
+     "Tadeusz Madziarczyk",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Franciszek Wojtyczka",
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 11,
+    "przeciw": 10,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "7",
+   "session_date": "2026-02-24",
+   "session_number": 16,
+   "topic": "NSZZ \"Solidarność\" dotyczącego zaopiniowania projektu uchwały z dnia 21.01.2026r. Rady",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Marian Węgrzynowski"
+    ],
+    "przeciw": [
+     "Ksenia Dowhań-Domańska",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Agnieszka Kubica-Radek",
+     "Tadeusz Madziarczyk",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Franciszek Wojtyczka",
+     "Edyta Zawadzka"
+    ],
+    "wstrzymal_sie": [
+     "Violetta Duży"
+    ],
+    "nieobecni": [
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 11,
+    "przeciw": 9,
+    "wstrzymal_sie": 1
+   }
+  },
+  {
+   "id": "8",
+   "session_date": "2026-02-24",
+   "session_number": 16,
+   "topic": "udzielenie dotacji celowej.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Marian Węgrzynowski"
+    ],
+    "wstrzymal_sie": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Agnieszka Kubica-Radek",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Edyta Zawadzka"
+    ],
+    "przeciw": [
+     "Tadeusz Madziarczyk",
+     "Franciszek Wojtyczka"
+    ],
+    "nieobecni": [
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 13,
+    "przeciw": 2,
+    "wstrzymal_sie": 6
+   }
+  },
+  {
+   "id": "9",
+   "session_date": "2026-02-24",
+   "session_number": 16,
+   "topic": "udzielenie dotacji celowej.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka"
+    ],
+    "wstrzymal_sie": [
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 1
+   }
+  },
+  {
+   "id": "10",
+   "session_date": "2026-02-24",
+   "session_number": 16,
+   "topic": "udzielanych dla przedszkoli, innych form wychowania przedszkolnego i szkół prowadzonych na",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Edyta Zawadzka"
+    ],
+    "wstrzymal_sie": [
+     "Ksenia Dowhań-Domańska"
+    ],
+    "nieobecni": [
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 19,
+    "przeciw": 0,
+    "wstrzymal_sie": 1
+   }
+  },
+  {
+   "id": "11",
+   "session_date": "2026-02-24",
+   "session_number": 16,
+   "topic": "7.Uchwała w sprawie przyjęcia planu nadzoru nad żłobkami i klubami dziecięcymi.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "12",
+   "session_date": "2026-02-24",
+   "session_number": 16,
+   "topic": "Powiatu Lubińskiego w ramach zadania \"Rozbudowa ulicy Małomickiej w Lubinie na odcinku od",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "13",
+   "session_date": "2026-02-24",
+   "session_number": 16,
+   "topic": "zapobiegania bezdomności zwierząt na terenie Gminy Miejskiej Lubin na rok 2026.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "14",
+   "session_date": "2026-02-24",
+   "session_number": 16,
+   "topic": "2021r. w sprawie określenia przystanków komunikacji, których właścicielem lub zarządzającym",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "15",
+   "session_date": "2026-02-24",
+   "session_number": 16,
+   "topic": "przestrzennego miasta Lubina zwanego planem miejscowym Nr 90.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Edyta Zawadzka"
+    ],
+    "wstrzymal_sie": [
+     "Michał Kielan"
+    ],
+    "nieobecni": [
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 19,
+    "przeciw": 0,
+    "wstrzymal_sie": 1
+   }
+  },
+  {
+   "id": "16",
+   "session_date": "2026-02-24",
+   "session_number": 16,
+   "topic": "przestrzennego miasta Lubina zwanego planem miejscowym Nr 91.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "17",
+   "session_date": "2026-02-24",
+   "session_number": 16,
+   "topic": "13. Uchwała w sprawie nadania nazwy ulicy na terenie miasta Lubina.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "18",
+   "session_date": "2026-04-16",
+   "session_number": 17,
+   "topic": "oraz szczegółowe warunki przyznawania nauczycielom dodatków: motywacyjnego, funkcyjnego i",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 23,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "19",
+   "session_date": "2026-04-16",
+   "session_number": 17,
+   "topic": "publicznego transportu zbiorowego.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "wstrzymal_sie": [
+     "Violetta Duży",
+     "Agnieszka Kubica-Radek"
+    ]
+   },
+   "counts": {
+    "za": 21,
+    "przeciw": 0,
+    "wstrzymal_sie": 2
+   }
+  },
+  {
+   "id": "20",
+   "session_date": "2026-04-16",
+   "session_number": 17,
+   "topic": "publicznego transportu zbiorowego.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ],
+    "przeciw": [
+     "Violetta Duży",
+     "Agnieszka Kubica-Radek"
+    ],
+    "wstrzymal_sie": [
+     "Edyta Zawadzka"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 2,
+    "wstrzymal_sie": 1
+   }
+  },
+  {
+   "id": "21",
+   "session_date": "2026-04-16",
+   "session_number": 17,
+   "topic": "sprawie składu osobowego Komisji Rewizyjnej.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ],
+    "przeciw": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Edyta Zawadzka"
+    ],
+    "wstrzymal_sie": [
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Daniel Rędziński",
+     "Franciszek Wojtyczka"
+    ]
+   },
+   "counts": {
+    "za": 16,
+    "przeciw": 3,
+    "wstrzymal_sie": 4
+   }
+  },
+  {
+   "id": "22",
+   "session_date": "2026-04-16",
+   "session_number": 17,
+   "topic": "6. Uchwała w sprawie ustalenia harmonogramu pracy Komisji Rewizyjnej.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ],
+    "wstrzymal_sie": [
+     "Franciszek Wojtyczka",
+     "Edyta Zawadzka"
+    ]
+   },
+   "counts": {
+    "za": 21,
+    "przeciw": 0,
+    "wstrzymal_sie": 2
+   }
+  },
+  {
+   "id": "23",
+   "session_date": "2026-05-07",
+   "session_number": 18,
+   "topic": "2.Uchwała w sprawie zmiany budżetu miasta Lubina na rok 2026.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka"
+    ],
+    "wstrzymal_sie": [
+     "Michał Kielan"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Daniel Rędziński"
+    ]
+   },
+   "counts": {
+    "za": 18,
+    "przeciw": 0,
+    "wstrzymal_sie": 1
+   }
+  },
+  {
+   "id": "24",
+   "session_date": "2026-05-07",
+   "session_number": 18,
+   "topic": "2026 - 2044.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka"
+    ],
+    "wstrzymal_sie": [
+     "Michał Kielan",
+     "Tadeusz Madziarczyk",
+     "Dariusz Węgrzyn"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Daniel Rędziński"
+    ]
+   },
+   "counts": {
+    "za": 16,
+    "przeciw": 0,
+    "wstrzymal_sie": 3
+   }
+  },
+  {
+   "id": "25",
+   "session_date": "2026-05-07",
+   "session_number": 18,
+   "topic": "4.Uchwała w sprawie utworzenia Zespołu Przedszkoli Miejskich Nr 1 w Lubinie.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko"
+    ],
+    "przeciw": [
+     "Violetta Duży",
+     "Michał Kielan",
+     "Agnieszka Kubica-Radek",
+     "Tadeusz Madziarczyk",
+     "Dariusz Węgrzyn",
+     "Franciszek Wojtyczka",
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Daniel Rędziński"
+    ]
+   },
+   "counts": {
+    "za": 13,
+    "przeciw": 7,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "26",
+   "session_date": "2026-05-07",
+   "session_number": 18,
+   "topic": "Przesiadkowego w Lubinie wraz z parkingiem typu Park&Ride i z przebudową dróg dojazdowych -",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Daniel Rędziński"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "27",
+   "session_date": "2026-05-07",
+   "session_number": 18,
+   "topic": "Dolnośląskiego w ramach zadania \" Budowa Multimedialnego Centrum Przesiadkowego w",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Daniel Rędziński"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "28",
+   "session_date": "2026-05-20",
+   "session_number": 19,
+   "topic": "Lubinie w sprawie składu osobowego Komisji Rewizyjnej.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Ksenia Dowhań-Domańska",
+     "Dorota Dutkanicz",
+     "Violetta Duży",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Joanna Kot",
+     "Tadeusz Madziarczyk",
+     "Dariusz Węgrzyn",
+     "Grzegorz Zieliński"
+    ]
+   },
+   "counts": {
+    "za": 17,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "29",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "4. Uchwała w sprawie udzielenia Prezydentowi Miasta Lubina wotum zaufania.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Franciszek Wojtyczka"
+    ]
+   },
+   "counts": {
+    "za": 17,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "30",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "sprawozdaniem z wykonania budżetu miasta Lubina za 2025 rok.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Franciszek Wojtyczka"
+    ]
+   },
+   "counts": {
+    "za": 17,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "31",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "budżetu miasta za 2025 rok.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Franciszek Wojtyczka"
+    ]
+   },
+   "counts": {
+    "za": 17,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "32",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "września 2025 r. w sprawie trybu prac nad projektem uchwały budżetowej.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Franciszek Wojtyczka"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "33",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "8. Uchwała w sprawie zmiany budżetu miasta Lubina na rok 2026.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ],
+    "wstrzymal_sie": [
+     "Michał Kielan",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Franciszek Wojtyczka"
+    ]
+   },
+   "counts": {
+    "za": 16,
+    "przeciw": 0,
+    "wstrzymal_sie": 4
+   }
+  },
+  {
+   "id": "34",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "2026 - 2044.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ],
+    "wstrzymal_sie": [
+     "Michał Kielan",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Franciszek Wojtyczka"
+    ]
+   },
+   "counts": {
+    "za": 16,
+    "przeciw": 0,
+    "wstrzymal_sie": 4
+   }
+  },
+  {
+   "id": "35",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "powiatoej nr 1219D - ulicy Jana Pawła II w Lubinie zakres budowy zatok autobusowych\" z",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Franciszek Wojtyczka"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "36",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "Lubińskiego w ramach zadania \" \"Rozbudowa wraz z przebudową drogi powiatoej nr 1219D -",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Franciszek Wojtyczka"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "37",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "udzielenia pomocy rzeczowej Gminy Miejskiej Lubin dla Województwa Dolnośląskiego w ramach",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Franciszek Wojtyczka"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "38",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "zmian klimatu dla miasta Lubina do roku 2030 przyjętewgo Uchwałą Nr XXX/211/21 Rady",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Franciszek Wojtyczka"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "39",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "miasta Lubina Nr 88.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "wstrzymal_sie": [
+     "Dariusz Węgrzyn"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Franciszek Wojtyczka"
+    ]
+   },
+   "counts": {
+    "za": 19,
+    "przeciw": 0,
+    "wstrzymal_sie": 1
+   }
+  },
+  {
+   "id": "40",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "miasta Lubina Nr 89.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży",
+     "Franciszek Wojtyczka"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 0
+   }
+  },
+  {
+   "id": "41",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "Nauczycielstwa Polskiego w Lubinie dotyczącego zaopiniowania projektu uchwały Rady Miejskiej",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ],
+    "wstrzymal_sie": [
+     "Michał Kielan",
+     "Dariusz Węgrzyn",
+     "Franciszek Wojtyczka",
+     "Edyta Zawadzka"
+    ],
+    "przeciw": [
+     "Agnieszka Kubica-Radek",
+     "Daniel Rędziński"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży"
+    ]
+   },
+   "counts": {
+    "za": 15,
+    "przeciw": 2,
+    "wstrzymal_sie": 4
+   }
+  },
+  {
+   "id": "42",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "Niezależny Samorządny Związek Zawodowy \"Solidarność\" dotyczącego zaopiniowania projektu",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Grzegorz Zieliński"
+    ],
+    "przeciw": [
+     "Michał Kielan",
+     "Tadeusz Madziarczyk",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Franciszek Wojtyczka"
+    ],
+    "wstrzymal_sie": [
+     "Agnieszka Kubica-Radek",
+     "Edyta Zawadzka"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży"
+    ]
+   },
+   "counts": {
+    "za": 14,
+    "przeciw": 5,
+    "wstrzymal_sie": 2
+   }
+  },
+  {
+   "id": "43",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "przyznawania nauczycielom dodatków: motywacyjnego, funkcyjnego i za warunki pracy oraz",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "wstrzymal_sie": [
+     "Daniel Rędziński"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 1
+   }
+  },
+  {
+   "id": "44",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "nagród ze specjalnego funduszu nagród dla nauczycieli zatrudnionych w szkołach i placówkach",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "wstrzymal_sie": [
+     "Michał Kielan",
+     "Agnieszka Kubica-Radek",
+     "Dariusz Węgrzyn"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży"
+    ]
+   },
+   "counts": {
+    "za": 18,
+    "przeciw": 0,
+    "wstrzymal_sie": 3
+   }
+  },
+  {
+   "id": "45",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "20. Uchwała w sprawie zmiany uchwały w sprawie pomocy zdrowotnej nauczycieli.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "wstrzymal_sie": [
+     "Agnieszka Kubica-Radek"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 1
+   }
+  },
+  {
+   "id": "46",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "wymiaru godzin zajęć dla nauczycieli, którym powierzono stanowiska kierownicze w szkołach,",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "wstrzymal_sie": [
+     "Michał Kielan",
+     "Dariusz Węgrzyn"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży"
+    ]
+   },
+   "counts": {
+    "za": 19,
+    "przeciw": 0,
+    "wstrzymal_sie": 2
+   }
+  },
+  {
+   "id": "47",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "dyrektora zespołu przedszkoli od obowiązku realizacji tygodniowego wymiaru godzin.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Michał Kielan",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Dariusz Węgrzyn",
+     "Marian Węgrzynowski",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "wstrzymal_sie": [
+     "Franciszek Wojtyczka"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży"
+    ]
+   },
+   "counts": {
+    "za": 20,
+    "przeciw": 0,
+    "wstrzymal_sie": 1
+   }
+  },
+  {
+   "id": "48",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "gromadzonych przez jednostki budżetowe prowadzące działalność określoną w ustawie z dnia",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Joanna Kot",
+     "Agnieszka Kubica-Radek",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "wstrzymal_sie": [
+     "Michał Kielan",
+     "Dariusz Węgrzyn"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży"
+    ]
+   },
+   "counts": {
+    "za": 19,
+    "przeciw": 0,
+    "wstrzymal_sie": 2
+   }
+  },
+  {
+   "id": "49",
+   "session_date": "2026-06-16",
+   "session_number": 20,
+   "topic": "Lubiniei nadania statutu.",
+   "named_votes": {
+    "za": [
+     "Barbara Danek",
+     "Dorota Dutkanicz",
+     "Tomasz Górzyński",
+     "Dariusz Jankowski",
+     "Eliza Kaczmarek",
+     "Joanna Kot",
+     "Romuald Kujawa",
+     "Katarzyna Kulczyńska",
+     "Tadeusz Madziarczyk",
+     "Edyta Orłowska",
+     "Izabella Polak-Salomon",
+     "Bogusława Potocka",
+     "Daniel Rędziński",
+     "Marian Węgrzynowski",
+     "Franciszek Wojtyczka",
+     "Roman Zaprutko",
+     "Edyta Zawadzka",
+     "Grzegorz Zieliński"
+    ],
+    "wstrzymal_sie": [
+     "Michał Kielan",
+     "Agnieszka Kubica-Radek",
+     "Dariusz Węgrzyn"
+    ],
+    "nieobecni": [
+     "Ksenia Dowhań-Domańska",
+     "Violetta Duży"
+    ]
+   },
+   "counts": {
+    "za": 18,
+    "przeciw": 0,
+    "wstrzymal_sie": 3
+   }
+  }
+ ],
+ "similarity_top": [
+  {
+   "a": "Barbara Danek",
+   "b": "Bogusława Potocka",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 49
+  },
+  {
+   "a": "Barbara Danek",
+   "b": "Dariusz Jankowski",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 48
+  },
+  {
+   "a": "Barbara Danek",
+   "b": "Dorota Dutkanicz",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 49
+  },
+  {
+   "a": "Barbara Danek",
+   "b": "Edyta Orłowska",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 49
+  },
+  {
+   "a": "Barbara Danek",
+   "b": "Izabella Polak-Salomon",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 49
+  },
+  {
+   "a": "Barbara Danek",
+   "b": "Joanna Kot",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 48
+  },
+  {
+   "a": "Barbara Danek",
+   "b": "Katarzyna Kulczyńska",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 49
+  },
+  {
+   "a": "Barbara Danek",
+   "b": "Marian Węgrzynowski",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 49
+  },
+  {
+   "a": "Barbara Danek",
+   "b": "Roman Zaprutko",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 37
+  },
+  {
+   "a": "Barbara Danek",
+   "b": "Tomasz Górzyński",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 48
+  },
+  {
+   "a": "Bogusława Potocka",
+   "b": "Dariusz Jankowski",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 48
+  },
+  {
+   "a": "Bogusława Potocka",
+   "b": "Dorota Dutkanicz",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 49
+  },
+  {
+   "a": "Bogusława Potocka",
+   "b": "Edyta Orłowska",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 49
+  },
+  {
+   "a": "Bogusława Potocka",
+   "b": "Izabella Polak-Salomon",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 49
+  },
+  {
+   "a": "Bogusława Potocka",
+   "b": "Joanna Kot",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 48
+  },
+  {
+   "a": "Bogusława Potocka",
+   "b": "Katarzyna Kulczyńska",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 49
+  },
+  {
+   "a": "Bogusława Potocka",
+   "b": "Marian Węgrzynowski",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 49
+  },
+  {
+   "a": "Bogusława Potocka",
+   "b": "Roman Zaprutko",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 37
+  },
+  {
+   "a": "Bogusława Potocka",
+   "b": "Tomasz Górzyński",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 48
+  },
+  {
+   "a": "Dariusz Jankowski",
+   "b": "Dorota Dutkanicz",
+   "club_a": "",
+   "club_b": "",
+   "score": 100.0,
+   "common_votes": 48
+  }
+ ],
+ "similarity_bottom": [
+  {
+   "a": "Dariusz Węgrzyn",
+   "b": "Romuald Kujawa",
+   "club_a": "",
+   "club_b": "",
+   "score": 60.0,
+   "common_votes": 40
+  },
+  {
+   "a": "Dariusz Węgrzyn",
+   "b": "Tomasz Górzyński",
+   "club_a": "",
+   "club_b": "",
+   "score": 62.5,
+   "common_votes": 40
+  },
+  {
+   "a": "Dariusz Węgrzyn",
+   "b": "Marian Węgrzynowski",
+   "club_a": "",
+   "club_b": "",
+   "score": 62.5,
+   "common_votes": 40
+  },
+  {
+   "a": "Dariusz Węgrzyn",
+   "b": "Katarzyna Kulczyńska",
+   "club_a": "",
+   "club_b": "",
+   "score": 62.5,
+   "common_votes": 40
+  },
+  {
+   "a": "Dariusz Węgrzyn",
+   "b": "Joanna Kot",
+   "club_a": "",
+   "club_b": "",
+   "score": 62.5,
+   "common_votes": 40
+  },
+  {
+   "a": "Dariusz Węgrzyn",
+   "b": "Izabella Polak-Salomon",
+   "club_a": "",
+   "club_b": "",
+   "score": 62.5,
+   "common_votes": 40
+  },
+  {
+   "a": "Dariusz Węgrzyn",
+   "b": "Edyta Orłowska",
+   "club_a": "",
+   "club_b": "",
+   "score": 62.5,
+   "common_votes": 40
+  },
+  {
+   "a": "Dariusz Węgrzyn",
+   "b": "Dorota Dutkanicz",
+   "club_a": "",
+   "club_b": "",
+   "score": 62.5,
+   "common_votes": 40
+  },
+  {
+   "a": "Dariusz Jankowski",
+   "b": "Dariusz Węgrzyn",
+   "club_a": "",
+   "club_b": "",
+   "score": 62.5,
+   "common_votes": 40
+  },
+  {
+   "a": "Bogusława Potocka",
+   "b": "Dariusz Węgrzyn",
+   "club_a": "",
+   "club_b": "",
+   "score": 62.5,
+   "common_votes": 40
+  },
+  {
+   "a": "Barbara Danek",
+   "b": "Dariusz Węgrzyn",
+   "club_a": "",
+   "club_b": "",
+   "score": 62.5,
+   "common_votes": 40
+  },
+  {
+   "a": "Dariusz Węgrzyn",
+   "b": "Franciszek Wojtyczka",
+   "club_a": "",
+   "club_b": "",
+   "score": 64.3,
+   "common_votes": 28
+  },
+  {
+   "a": "Dariusz Węgrzyn",
+   "b": "Roman Zaprutko",
+   "club_a": "",
+   "club_b": "",
+   "score": 66.7,
+   "common_votes": 36
+  },
+  {
+   "a": "Michał Kielan",
+   "b": "Romuald Kujawa",
+   "club_a": "",
+   "club_b": "",
+   "score": 67.3,
+   "common_votes": 49
+  },
+  {
+   "a": "Michał Kielan",
+   "b": "Roman Zaprutko",
+   "club_a": "",
+   "club_b": "",
+   "score": 67.6,
+   "common_votes": 37
+  },
+  {
+   "a": "Franciszek Wojtyczka",
+   "b": "Michał Kielan",
+   "club_a": "",
+   "club_b": "",
+   "score": 67.6,
+   "common_votes": 37
+  },
+  {
+   "a": "Franciszek Wojtyczka",
+   "b": "Roman Zaprutko",
+   "club_a": "",
+   "club_b": "",
+   "score": 68.0,
+   "common_votes": 25
+  },
+  {
+   "a": "Franciszek Wojtyczka",
+   "b": "Grzegorz Zieliński",
+   "club_a": "",
+   "club_b": "",
+   "score": 68.4,
+   "common_votes": 19
+  },
+  {
+   "a": "Agnieszka Kubica-Radek",
+   "b": "Franciszek Wojtyczka",
+   "club_a": "",
+   "club_b": "",
+   "score": 68.6,
+   "common_votes": 35
+  },
+  {
+   "a": "Agnieszka Kubica-Radek",
+   "b": "Dariusz Węgrzyn",
+   "club_a": "",
+   "club_b": "",
+   "score": 68.6,
+   "common_votes": 35
+  }
+ ]
+}

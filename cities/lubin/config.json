@@ -1,0 +1,79 @@
+{
+  "city_name": "Lubin",
+  "city_genitive": "Lubina",
+  "site_title": "Radoskop Lubin — Jak głosują radni?",
+  "site_url": "https://lubin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Lubinie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Lubinie.",
+  "bip_url": "https://bip.um.lubin.pl",
+  "bip_name": "Biuletyn Informacji Publicznej Urząd Miejski w Lubinie",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lubin.radoskop.pl",
+  "clubs": {
+    "DZL": {
+      "name": "Klub Radnych \"Dumni z Lubina\"",
+      "color": "#0ea5e9",
+      "bg": "rgba(14,165,233,0.12)",
+      "avatar_bg": "#0369a1"
+    },
+    "PiS": {
+      "name": "Klub Radnych Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "OL": {
+      "name": "Klub Radnych \"Obywatelski Lubin\"",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    }
+  },
+  "club_assignments": {
+    "Barbara Danek": "DZL",
+    "Marian Węgrzynowski": "DZL",
+    "Dorota Dutkanicz": "DZL",
+    "Tomasz Górzyński": "DZL",
+    "Dariusz Jankowski": "DZL",
+    "Joanna Kot": "DZL",
+    "Romuald Kujawa": "DZL",
+    "Katarzyna Kulczyńska": "DZL",
+    "Edyta Orłowska": "DZL",
+    "Izabella Polak-Salomon": "DZL",
+    "Bogusława Potocka": "DZL",
+    "Roman Zaprutko": "DZL",
+    "Michał Kielan": "PiS",
+    "Dariusz Węgrzyn": "PiS",
+    "Tadeusz Madziarczyk": "PiS",
+    "Franciszek Wojtyczka": "PiS",
+    "Agnieszka Kubica-Radek": "OL",
+    "Edyta Zawadzka": "OL",
+    "Ksenia Dowhań-Domańska": "OL",
+    "Violetta Duży": "OL",
+    "Daniel Rędziński": "OL"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Lubinie",
+  "rada_name_genitive": "Rady Miejskiej w Lubinie",
+  "teryt": "0211011",
+  "_meta": {
+    "note": "NOWE miasto (2026-09-01). BIP bip.um.lubin.pl (React SSR; kategoria 'Uchwały RM Imienny wykaz głosowań' renderowana JS — API nieodkryte, sitemap XML pełny). Imienne PDF-y ('Imienny wykaz głosowań <R> sesji', format 'Szczegóły głosowania'/'Indywidualne wyniki uczestników:') publikowane OD sesji XV (2026-01-15); sesje I-XIV (2024-05..2025-12) bez imiennych załączników. eSesja lubin.esesja.pl = wildcard, AlfaTV/bip.net.pl brak. Kluby BIP kad.2024-2029: Dumni z Lubina 12, PiS 4, Obywatelski Lubin 5, niezrzeszeni 2 (E.Kaczmarek, G.Zieliński). TERYT 0211011 (wiki PL).",
+    "population": 71710,
+    "voivodeship": "dolnośląskie"
+  }
+}

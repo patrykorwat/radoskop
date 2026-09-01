@@ -1,0 +1,603 @@
+{
+ "profiles": [
+  {
+   "name": "Agnieszka Kubica-Radek",
+   "slug": "agnieszka-kubica-radek",
+   "kadencje": {
+    "2024-2029": {
+     "club": "OL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 733.3,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 31,
+     "votes_przeciw": 6,
+     "votes_wstrzymal": 7,
+     "votes_brak": 0,
+     "votes_nieobecny": 0,
+     "votes_total": 44,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Barbara Danek",
+   "slug": "barbara-danek",
+   "kadencje": {
+    "2024-2029": {
+     "club": "DZL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 816.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 49,
+     "votes_przeciw": 0,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 0,
+     "votes_total": 49,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Bogusława Potocka",
+   "slug": "boguslawa-potocka",
+   "kadencje": {
+    "2024-2029": {
+     "club": "DZL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 816.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 49,
+     "votes_przeciw": 0,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 0,
+     "votes_total": 49,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Daniel Rędziński",
+   "slug": "daniel-redzinski",
+   "kadencje": {
+    "2024-2029": {
+     "club": "OL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 683.3,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 31,
+     "votes_przeciw": 5,
+     "votes_wstrzymal": 5,
+     "votes_brak": 0,
+     "votes_nieobecny": 5,
+     "votes_total": 41,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Dariusz Jankowski",
+   "slug": "dariusz-jankowski",
+   "kadencje": {
+    "2024-2029": {
+     "club": "DZL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 800.0,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 48,
+     "votes_przeciw": 0,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 1,
+     "votes_total": 48,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Dariusz Węgrzyn",
+   "slug": "dariusz-wegrzyn",
+   "kadencje": {
+    "2024-2029": {
+     "club": "PiS",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 666.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 25,
+     "votes_przeciw": 5,
+     "votes_wstrzymal": 10,
+     "votes_brak": 0,
+     "votes_nieobecny": 1,
+     "votes_total": 40,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Dorota Dutkanicz",
+   "slug": "dorota-dutkanicz",
+   "kadencje": {
+    "2024-2029": {
+     "club": "DZL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 816.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 49,
+     "votes_przeciw": 0,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 0,
+     "votes_total": 49,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Edyta Orłowska",
+   "slug": "edyta-orlowska",
+   "kadencje": {
+    "2024-2029": {
+     "club": "DZL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 816.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 49,
+     "votes_przeciw": 0,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 0,
+     "votes_total": 49,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Edyta Zawadzka",
+   "slug": "edyta-zawadzka",
+   "kadencje": {
+    "2024-2029": {
+     "club": "OL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 766.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 33,
+     "votes_przeciw": 5,
+     "votes_wstrzymal": 8,
+     "votes_brak": 0,
+     "votes_nieobecny": 0,
+     "votes_total": 46,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Eliza Kaczmarek",
+   "slug": "eliza-kaczmarek",
+   "kadencje": {
+    "2024-2029": {
+     "club": "NZ",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 816.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 46,
+     "votes_przeciw": 3,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 0,
+     "votes_total": 49,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Franciszek Wojtyczka",
+   "slug": "franciszek-wojtyczka",
+   "kadencje": {
+    "2024-2029": {
+     "club": "PiS",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 616.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 26,
+     "votes_przeciw": 6,
+     "votes_wstrzymal": 5,
+     "votes_brak": 0,
+     "votes_nieobecny": 12,
+     "votes_total": 37,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Grzegorz Zieliński",
+   "slug": "grzegorz-zielinski",
+   "kadencje": {
+    "2024-2029": {
+     "club": "NZ",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 516.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 30,
+     "votes_przeciw": 1,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 13,
+     "votes_total": 31,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Izabella Polak-Salomon",
+   "slug": "izabella-polak-salomon",
+   "kadencje": {
+    "2024-2029": {
+     "club": "DZL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 816.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 49,
+     "votes_przeciw": 0,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 0,
+     "votes_total": 49,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Joanna Kot",
+   "slug": "joanna-kot",
+   "kadencje": {
+    "2024-2029": {
+     "club": "DZL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 800.0,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 48,
+     "votes_przeciw": 0,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 1,
+     "votes_total": 48,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Katarzyna Kulczyńska",
+   "slug": "katarzyna-kulczynska",
+   "kadencje": {
+    "2024-2029": {
+     "club": "DZL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 816.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 49,
+     "votes_przeciw": 0,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 0,
+     "votes_total": 49,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Ksenia Dowhań-Domańska",
+   "slug": "ksenia-dowhan-domanska",
+   "kadencje": {
+    "2024-2029": {
+     "club": "OL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 383.3,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 17,
+     "votes_przeciw": 4,
+     "votes_wstrzymal": 2,
+     "votes_brak": 0,
+     "votes_nieobecny": 26,
+     "votes_total": 23,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Marian Węgrzynowski",
+   "slug": "marian-wegrzynowski",
+   "kadencje": {
+    "2024-2029": {
+     "club": "DZL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 816.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 49,
+     "votes_przeciw": 0,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 0,
+     "votes_total": 49,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Michał Kielan",
+   "slug": "michal-kielan",
+   "kadencje": {
+    "2024-2029": {
+     "club": "PiS",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 816.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 34,
+     "votes_przeciw": 5,
+     "votes_wstrzymal": 10,
+     "votes_brak": 0,
+     "votes_nieobecny": 0,
+     "votes_total": 49,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Roman Zaprutko",
+   "slug": "roman-zaprutko",
+   "kadencje": {
+    "2024-2029": {
+     "club": "DZL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 616.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 37,
+     "votes_przeciw": 0,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 12,
+     "votes_total": 37,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Romuald Kujawa",
+   "slug": "romuald-kujawa",
+   "kadencje": {
+    "2024-2029": {
+     "club": "DZL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 816.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 48,
+     "votes_przeciw": 0,
+     "votes_wstrzymal": 1,
+     "votes_brak": 0,
+     "votes_nieobecny": 0,
+     "votes_total": 49,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Tadeusz Madziarczyk",
+   "slug": "tadeusz-madziarczyk",
+   "kadencje": {
+    "2024-2029": {
+     "club": "PiS",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 783.3,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 41,
+     "votes_przeciw": 5,
+     "votes_wstrzymal": 1,
+     "votes_brak": 0,
+     "votes_nieobecny": 1,
+     "votes_total": 47,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Tomasz Górzyński",
+   "slug": "tomasz-gorzynski",
+   "kadencje": {
+    "2024-2029": {
+     "club": "DZL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 800.0,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 48,
+     "votes_przeciw": 0,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 1,
+     "votes_total": 48,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Violetta Duży",
+   "slug": "violetta-duzy",
+   "kadencje": {
+    "2024-2029": {
+     "club": "OL",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 466.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 20,
+     "votes_przeciw": 5,
+     "votes_wstrzymal": 3,
+     "votes_brak": 0,
+     "votes_nieobecny": 21,
+     "votes_total": 28,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  }
+ ],
+ "total": 23
+}

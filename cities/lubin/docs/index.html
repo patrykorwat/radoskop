@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radoskop Lubin — Jak głosują radni?</title>
+<meta name="description" content="Radoskop — otwarte narzędzie monitoringu Rada Miejska w Lubinie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.">
+<meta name="keywords" content="Lubin, rada miasta, radni, głosowania, frekwencja, samorząd, monitoring, transparentność">
+<meta name="author" content="Patryk Orwat">
+<link rel="canonical" href="https://lubin.radoskop.pl/">
+<script>(function(){var c=document.querySelector('link[rel="canonical"]');if(c&&location.pathname!=='/')c.href=location.origin+location.pathname;})()</script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Radoskop Lubin — Jak głosują radni?">
+<meta property="og:description" content="Otwarte narzędzie monitoringu Rady Miasta Lubina. Frekwencja, głosowania i aktywność radnych.">
+<meta property="og:url" content="https://lubin.radoskop.pl/">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:site_name" content="Radoskop Lubin">
+<meta property="og:image" content="https://lubin.radoskop.pl/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Radoskop Lubin — Jak głosują radni?">
+<meta name="twitter:description" content="Otwarte narzędzie monitoringu Rady Miasta Lubina. Frekwencja, głosowania i aktywność radnych.">
+<meta name="twitter:image" content="https://lubin.radoskop.pl/og.png">
+<link rel="alternate" type="application/atom+xml" title="Radoskop Lubin" href="https://lubin.radoskop.pl/feed.xml">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Radoskop Lubin",
+  "description": "Otwarte narzędzie monitoringu Rady Miasta Lubina. Sprawdź frekwencję, głosowania i aktywność radnych na sesjach.",
+  "url": "https://lubin.radoskop.pl/",
+  "applicationCategory": "GovernmentApplication",
+  "operatingSystem": "Web",
+  "author": {
+    "@type": "Person",
+    "name": "Patryk Orwat"
+  },
+  "about": {
+    "@type": "GovernmentOrganization",
+    "name": "Rada Miasta Lubina",
+    "url": "https://bip.um.lubin.pl"
+  },
+  "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+  "isAccessibleForFree": true,
+  "sameAs": [
+    "https://x.com/radoskop"
+  ],
+  "inLanguage": "pl"
+}
+</script>
+<script async defer data-website-id="792c059f-c77e-4b4e-ad9c-31f4a7d5cfe4" src="https://stats.radoskop.pl/script.js"></script>
+<script>
+// Anti-FOUC: ustaw data-theme PRZED render'em CSS, żeby uniknąć migotania
+// light→dark. Inline blocking script w <head>. Ten sam mechanizm cookie
+// cross-subdomain co w toggleTheme() (sekcja niżej) — Domain=.radoskop.{pl,eu}.
+(function(){
+  try {
+    var m = document.cookie.match(/(?:^|;\s*)radoskop_theme=([^;]+)/);
+    var t = m ? decodeURIComponent(m[1]) : null;
+    if (t !== 'dark' && t !== 'light') {
+      try { var s = localStorage.getItem('radoskop_theme'); if (s === 'dark' || s === 'light') t = s; } catch(e) {}
+    }
+    if (t !== 'dark' && t !== 'light') {
+      t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+  } catch(e) { /* default: brak data-theme → light z CSS :root */ }
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
+<style id="rdsk-club">.club-dzl { background:rgba(14,165,233,0.12); color:#0ea5e9; }
+.club-pis { background:rgba(31,78,160,0.12); color:#1f4ea0; }
+.club-ol { background:rgba(13,148,136,0.12); color:#0d9488; }</style>
+<style>[data-tab="budget"]{display:none!important}</style><link rel="stylesheet" href="/assets/app.css"></head>
+<body>
+<nav class="topbar" aria-label="Główna nawigacja">
+  <a class="topbar-logo" href="/" onclick="if(window.showLanding){event.preventDefault();showLanding();}">Rado<span>skop</span> Lubin</a>
+  <div class="topbar-nav">
+    <a href="https://radoskop.eu/radar/" class="active" data-umami-event="nav-radar">Radar</a>
+    <a href="/" onclick="if(window.showLanding){event.preventDefault();showLanding();}">Strona główna</a>
+    <a href="https://radoskop.eu/reports/">Raporty</a>
+    <a href="https://radoskop.eu/pro/" class="nav-sales">Pro</a>
+    <a href="https://radoskop.eu/pricing/" class="nav-sales">Cennik</a>
+  </div>
+  <div class="topbar-actions">
+    <button class="auth-btn" id="auth-login-btn" data-umami-event="login-open" onclick="_bridgeLogin()" style="display:none">Zaloguj się</button>
+    <div class="user-chip" id="user-chip" style="display:none">
+      <button id="user-chip-link" onclick="goToProfile()" aria-label="Moje konto" title="Moje konto" style="background:none;border:none;padding:0;display:inline-flex;align-items:center;gap:8px;cursor:pointer;color:inherit;font:inherit;">
+        <span class="user-avatar" id="user-avatar" title=""></span>
+        <span id="user-name" style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span>
+      </button>
+      <button class="user-logout" onclick="doLogout()" aria-label="Wyloguj" title="Wyloguj">×</button>
+    </div>
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" aria-label="Przełącz motyw jasny/ciemny">
+      <span id="theme-icon">🌙</span> <span id="theme-label">Ciemny</span>
+    </button>
+  </div>
+</nav>
+<div class="container">
+  <!-- Duży nagłówek "Radoskop Lubin" + subtitle usunięty (2026-05-27).
+       Nazwa miasta przeniesiona do topbar-logo żeby zaoszczędzić pion.
+       VOTE_DATA_DISCLAIMER (jeśli miasto ma dane jakimi ostrzega o ich
+       jakości — np. Bratysława non-imienne) zostaje, samodzielny block. -->
+  
+
+  <div id="loading">Ładowanie danych...</div>
+
+  <!-- SEO fallback dla "/" (client-rendered landing). Statyczny, zlokalizowany
+       build-time z landing_strings. Widoczny dla crawlerów bez JS; SPA chowa go
+       inline-scriptem przy parsowaniu i usuwa w init(). -->
+  <section id="seo-content"><h1>Rada Miasta Lubina</h1><p>Tak działa rada miasta. Pełny rejestr jest otwarty i darmowy. Zobacz, jak głosował radny z Twojego okręgu, i porównaj go z resztą rady.</p><nav aria-label="Główna nawigacja"><a href="/councillors/">Lista radnych</a><a href="/interpellations/">Interpelacje</a><a href="/budget/">Budżety</a><a href="/commissions/">Komisje</a></nav></section><script>var _sc=document.getElementById("seo-content");if(_sc)_sc.style.display="none";</script>
+
+  <!-- Main dashboard view -->
+  <div id="app" style="display:none">
+    <div class="tab-row" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding-bottom:14px;border-bottom:1px solid var(--border);margin-bottom:22px">
+      <div class="tab-bar" id="tab-bar" style="margin-bottom:0">
+        <div class="tab-tier tab-tier--primary">
+          <button class="tab active" data-tab="ranking">Ranking radnych</button>
+          <button class="tab" data-tab="budget">Budżet</button>
+          <button class="tab" data-tab="votes">Głosowania</button>
+          <button class="tab" data-tab="komisje">Komisje</button>
+        </div>
+        <div class="tab-tier tab-tier--secondary">
+          <button class="tab tab-secondary" data-tab="interpelacje">Interpelacje</button>
+          <button class="tab tab-secondary" data-tab="sessions">Sesje</button>
+          <button class="tab tab-secondary" id="tab-btn-spolki" data-tab="spolki" style="display:none">Spółki</button>
+        <a href="/news/" class="tab tab-secondary" style="text-decoration:none">Aktualności</a>
+        </div>
+      </div>
+      <div class="kadencja-bar" id="kadencja-bar"></div>
+    </div>
+
+    <div id="tab-ranking" class="section">
+
+      <div class="filter-bar" id="club-filter"></div>
+      <div id="councilor-roster" style="display:none"></div>
+      <div id="councilor-table-wrap" style="overflow-x:auto">
+        <table id="councilor-table">
+          <thead>
+            <tr>
+              <th style="width:30px" aria-label="Porównaj"></th>
+              <th data-sort="name">Radny/a <span class="sort-arrow"></span></th>
+              <th data-sort="club">Klub <span class="sort-arrow"></span></th>
+              <th data-sort="frekwencja">Frekwencja <span class="sort-arrow"></span></th>
+              <th data-sort="aktywnosc">Aktywność <span class="sort-arrow"></span></th>
+              <th data-sort="zgodnosc_z_klubem">Zgodność z&nbsp;klubem <span class="sort-arrow"></span></th>
+              <th data-sort="votes_za">Za <span class="sort-arrow"></span></th>
+              <th data-sort="votes_przeciw">Przeciw <span class="sort-arrow"></span></th>
+              <th data-sort="votes_wstrzymal">Wstrzym. <span class="sort-arrow"></span></th>
+              <th data-sort="votes_brak">Brak&nbsp;gł. <span class="sort-arrow"></span></th>
+              <th data-sort="rebellion_count">Wbrew&nbsp;klubowi <span class="sort-arrow"></span></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="tab-sessions" class="section" style="display:none">
+      <div style="overflow-x:auto">
+        <table id="sessions-table">
+          <thead>
+            <tr>
+              <th>Nr</th>
+              <th>Data</th>
+              <th>Głosowań</th>
+              <th>Przyjętych</th>
+              <th>Odrzuconych</th>
+              <th>Obecnych</th>
+              <th>Mówców</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="tab-votes" class="section" style="display:none">
+      <div style="margin-bottom:12px">
+        <input type="text" id="vote-search" placeholder="Szukaj głosowań po temacie..."
+          style="width:100%;max-width:400px;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:0.9rem;font-family:inherit"
+          oninput="handleVoteSearch(this.value)">
+      </div>
+      <div class="filter-bar" id="cat-filter" style="margin-bottom:12px;flex-wrap:wrap"></div>
+      <div style="margin-bottom:8px;display:flex;gap:8px;flex-wrap:wrap">
+        <button class="session-pill vote-result-pill" data-result="all">Wszystkie wyniki</button>
+        <button class="session-pill vote-result-pill" data-result="accepted">Przyjęte</button>
+        <button class="session-pill vote-result-pill" data-result="rejected">Odrzucone</button>
+      </div>
+      <div id="vote-result-summary" style="margin-bottom:12px;color:var(--muted);font-size:0.9rem"></div>
+      <div id="votes-grouped"></div>
+    </div>
+
+    <div id="tab-komisje" class="section" style="display:none">
+      <div id="komisje-content">
+        <p style="color:var(--muted);padding:20px 0">Ładowanie komisji...</p>
+      </div>
+    </div>
+
+    <div id="tab-interpelacje" class="section" style="display:none">
+      <div id="interpelacje-content"></div>
+    </div>
+
+    <div id="tab-budget" class="section" style="display:none">
+      <div id="budget-content"></div>
+    </div>
+
+    <div id="tab-spolki" class="section" style="display:none">
+      <div id="spolki-content"></div>
+    </div>
+
+  </div>
+
+  <!-- Profile detail view -->
+  <div id="profile-view" style="display:none"></div>
+
+  <!-- Compare view -->
+  <div id="compare-view" style="display:none"></div>
+
+  <!-- City comparison view (capability based) -->
+  <div id="city-compare-view" style="display:none"></div>
+
+  <!-- Vote detail view -->
+  <div id="vote-view" style="display:none"></div>
+
+  <!-- Session detail view -->
+  <div id="session-view" style="display:none"></div>
+
+  <!-- Transcript (stenogram) detail view -->
+  <div id="transcript-view" style="display:none"></div>
+
+  <!-- Impressum / provider identification view (only shown for DE/CS instances) -->
+  <div id="impressum-view" style="display:none"></div>
+
+  <!-- Druk detail view -->
+  <div id="druk-view" style="display:none"></div>
+
+  <!-- Reports catalog view -->
+  <div id="reports-view" style="display:none"></div>
+
+  <!-- Landing (strona główna) — widok renderowany client-side z danych kadencji -->
+  
+  <div id="landing-view" style="display:none"></div>
+
+  <footer>
+    <div style="margin-bottom:12px">
+      <a href="https://radoskop.pl">Radoskop</a> · <a href="https://radoskop.pl#cities">wszystkie miasta</a> · <a href="https://x.com/radoskop" target="_blank" rel="noopener me">X (Twitter)</a> · <a href="https://bsky.app/profile/radoskop.bsky.social" target="_blank" rel="noopener me">Bluesky</a>
+    </div>
+    <div style="margin-bottom:12px">
+      <a href="https://radoskop.eu/radar/" data-umami-event="sales-radar">Radar</a> · <a href="https://radoskop.eu/reports/" data-umami-event="sales-reports">Raporty</a> · <a href="https://radoskop.eu/pricing/" data-umami-event="sales-pricing">Cennik</a> · <a href="https://radoskop.eu/pro/" data-umami-event="sales-pro">Pro</a> · <a href="https://radoskop.eu/privacy/" onclick="event.preventDefault();showPrivacy()">Polityka prywatności</a> · <a href="https://radoskop.eu/terms/" onclick="event.preventDefault();showTerms()">Regulamin</a>
+    </div>
+    <div style="color:var(--muted);font-size:0.75rem">
+      Dane źródłowe: <a href="https://bip.um.lubin.pl" target="_blank">Biuletyn Informacji Publicznej Urząd Miejski w Lubinie</a> · Kod: <a href="https://github.com/radoskoppl/radoskop" target="_blank">GitHub</a> (AGPL-3.0) · Polecane: <a href="https://www.tygodniksejmowy.pl/" target="_blank" rel="noopener">Tygodnik Sejmowy</a>
+    </div>
+    
+  </footer>
+
+</div>
+
+<script defer src="/assets/data.js"></script><script defer src="/assets/app.js"></script>
+<!-- Auth modal: login + signup -->
+<div id="auth-modal-backdrop" class="modal-backdrop" style="display:none" onclick="closeAuthModalIfBackdrop(event)">
+  <div class="auth-modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeAuthModal()" aria-label="Zamknij">×</button>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="auth-tab-login" onclick="setAuthMode('login')">Logowanie</button>
+      <button class="auth-tab" id="auth-tab-signup" onclick="setAuthMode('signup')">Rejestracja</button>
+    </div>
+    <button class="google-btn" onclick="googleLogin()">
+      <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#4285f4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/>
+        <path fill="#34a853" d="M9 18c2.43 0 4.467-.806 5.956-2.184l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/>
+        <path fill="#fbbc05" d="M3.964 10.706A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.706V4.962H.957A8.997 8.997 0 0 0 0 9c0 1.452.348 2.827.957 4.038l3.007-2.332z"/>
+        <path fill="#ea4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.962L3.964 7.294C4.672 5.167 6.656 3.58 9 3.58z"/>
+      </svg>
+      Kontynuuj z Google
+    </button>
+    <div class="auth-sep"><span>lub e-mailem</span></div>
+    <form class="auth-form" onsubmit="return submitAuth(event)">
+      <input type="email" id="auth-email" placeholder="E-mail" required autocomplete="email">
+      <input type="password" id="auth-password" placeholder="Hasło (min. 10 znaków)" required autocomplete="current-password" minlength="10">
+      <button type="submit" id="auth-submit">Zaloguj się</button>
+      <div id="auth-error" class="auth-error" style="display:none"></div>
+      <div id="auth-success" class="auth-success" style="display:none"></div>
+    </form>
+    <div class="auth-footer">
+      <a href="#" id="auth-forgot-link" onclick="forgotPassword(); return false;">Zapomniałem hasła</a>
+    </div>
+  </div>
+</div>
+
+<!-- Verification banner (po /verify redirect z ?verified=1) -->
+<div id="auth-banner" class="auth-banner" style="display:none"></div>
+
+
+</body>
+</html>

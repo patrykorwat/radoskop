@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /*?p=
+
+Sitemap: https://lubin.radoskop.pl/sitemap.xml
