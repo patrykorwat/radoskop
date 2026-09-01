@@ -1,0 +1,48 @@
+{
+  "landing_enabled": true,
+  "city_name": "Żarów",
+  "city_genitive": "Żarowa",
+  "site_title": "Radoskop Żarów — Skład rady i sesje",
+  "site_url": "https://zarow.radoskop.pl",
+  "site_description": "Radoskop — Rada Miejska w Żarowie. Skład rady kadencji 2024–2029 i kalendarz sesji (bez imiennych głosowań).",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Żarowie.",
+  "bip_url": "https://bip.um.zarow.pl/kadencja-2024-2029/873",
+  "bip_name": "BIP Urzędu Miejskiego w Żarowie (bip.um.zarow.pl)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zarow.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "has_voting_data": false,
+  "has_speaker_activity": false,
+  "has_named_votes": false,
+  "voting_display": "faction",
+  "councilor_count": 15,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Żarowie",
+  "rada_name_genitive": "Rady Miejskiej w Żarowie",
+  "teryt": "0219083",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true,
+    "note": "Tier-2 (model berliński): BIP MegaBIP bip.um.zarow.pl publikuje uchwały i protokoły sesji jako załączniki 'zalacznik/...' za wrapperem HTML BEZ pobieralnego pliku (wszystkie warianty URL zwracają stronę); brak kategorii 'wykaz głosowań' / wyników imiennych; wyszukiwarka BIP 'imienne' = 0. zarow.esesja.pl = PM martwa (0 listaglosowan, puste posiedzenia/radni), AlfaTV brak DNS, bip.net.pl 404, transmisje esesja.tv (video, bez stenogramów). Skład IX 15 radnych (przew. Marcin Perzyński) /kadencja-2024-2029/873 + kalendarz 29 sesji IX z esesja.tv/2142. club_assignments PENDING."
+  },
+  "_meta": {
+    "note": "NOWE miasto (long_tail -> Tier-2 model berliński). Skład 15 + kalendarz 29 sesji IX (esesja.tv 2142). Brak głosowań imiennych (MegaBIP załączniki nie do pobrania; eSesja PM martwa). TERYT 0219083 (gmina miejsko-wiejska Żarów, pow. świdnicki, dolnośląskie), Q393043, pop 6603. Dodane 2026-09-01 (cron do 500 miast).",
+    "population": 6603,
+    "voivodeship": "dolnośląskie",
+    "lat": 50.941111111,
+    "lon": 16.494444444,
+    "qid": "Q393043"
+  }
+}
