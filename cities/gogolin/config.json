@@ -1,0 +1,44 @@
+{
+  "landing_enabled": true,
+  "city_name": "Gogolin",
+  "city_genitive": "Gogolina",
+  "site_title": "Radoskop Gogolin — Jak głosują radni?",
+  "site_url": "https://gogolin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Gogolinie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Gogolinie.",
+  "bip_url": "https://bip.gogolin.pl/18801/protokoly-i-wykazy-glosowan-z-sesji-rady-miejskiej-w-gogolinie-2024-2029.html",
+  "bip_name": "BIP Urzędu Miejskiego w Gogolinie (bip.gogolin.pl)",
+  "rada_name_platform": "Rada365 wykaz głosowań PDF (BIP)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "gogolin.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "has_interpelacje": false,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Gogolinie",
+  "rada_name_genitive": "Rady Miejskiej w Gogolinie",
+  "teryt": "1605013",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (long_tail -> UNLOCK). bip.gogolin.pl (idcom/Stronets): kategoria 'Protokoły i wykazy głosowań z Sesji RM (2024-2029)' /18801 (paginacja ?Page=N), artykuł sesji + załącznik /download/attachment/<id>/wykaz-glosowan-*.pdf (Rada365, warstwa tekstowa; parser dwuprzebiegowy roster+agregaty, walidacja 100%). Skład /18759 'Nazwisko Imię - rola' (porządek Nazwisko-Imię — merging token-set). eSesja PM martwa (1 link, 0 sesji z datą), AlfaTV placeholder, Nefeni 404. 519 głosów / 29 sesji / 15 radnych. club_assignments PENDING, clubs {}. TERYT 1605013 (gmina miejsko-wiejska Gogolin, pow. krapkowicki, opolskie). Dodane 2026-09-01 (cron do 500 miast).",
+    "population": 6429,
+    "voivodeship": "opolskie",
+    "lat": 50.488055555,
+    "lon": 18.023888888,
+    "qid": "Q1001307"
+  }
+}
