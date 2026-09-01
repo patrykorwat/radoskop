@@ -1547,7 +1547,6 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
 
             body = "\n".join(body_parts) + "\n"
 
-            # Karta OG sesji (generate_og_images.py, render_session_card).
             og_img = f"{site_url}/{SLUG['session']}/{snum}/og.png"
             og_img_path = docs / SLUG["session"] / snum / "og.png"
             if not og_img_path.exists():

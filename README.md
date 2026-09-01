@@ -114,7 +114,7 @@ radoskop/
 │   ├── lib_slug.py               the one canonical slugifier (all scripts delegate to it)
 │   ├── generate_site.py          render per-council site from template + data.json
 │   ├── generate_seo_pages.py     per-councillor and per-vote SEO pages
-│   ├── generate_og_images.py     social preview cards (PIL)
+│   ├── generate_og_images.py     city OG card 1200x630 (PIL; per-route OG jest on-demand w data_api.py)
 │   ├── generate_feed.py          RSS/Atom plus the news (aktualności) page
 │   ├── parse_pdf.py              PDF to JSON for PDF-based pipelines
 │   └── build_metrics.py          roll up sessions and votes into data.json

@@ -9,7 +9,6 @@ stary opis w landing_strings.py został poprawiony 2026-06-10.
 
 Konsumenci:
   - generate_seo_pages.py  (prerender /session/{n}/ z podsumowaniem)
-  - generate_og_images.py  (karta OG sesji)
   - generate_feed.py       (summary itemu sesji w feed/atom)
 """
 
