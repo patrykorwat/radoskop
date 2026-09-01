@@ -1,0 +1,39 @@
+{
+  "city_name": "Ostrów Wielkopolski",
+  "city_genitive": "Ostrowa Wielkopolskiego",
+  "site_title": "Radoskop Ostrów Wielkopolski — Jak głosują radni?",
+  "site_url": "https://ostrow-wielkopolski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Ostrowie Wielkopolskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Ostrowie Wielkopolskim.",
+  "bip_url": "https://bip.umostrow.pl",
+  "bip_name": "Biuletyn Informacji Publicznej Urząd Miejski w Ostrowie Wielkopolskim",
+  "esesja_url": "https://ostrowmiasto.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ostrow-wielkopolski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Ostrowie Wielkopolskim",
+  "rada_name_genitive": "Rady Miejskiej w Ostrowie Wielkopolskim",
+  "teryt": "3017011",
+  "_meta": {
+    "note": "NOWE miasto (2026-09-01). eSesja PM-instance A: ostrowmiasto.esesja.pl/glosowania server-renderowany (29 sesji IX kad., imienne /glosowanie/). BIP bip.umostrow.pl linkuje Głosowania -> eSesja. AlfaTV/bip.net.pl/wildcard pila-style sprawdzione — tylko eSesja. Kluby PENDING (brak wykazu po stronie serwera BIP). TERYT 3017011 (m. Ostrów Wielkopolski, wielkopolskie, wiki PL).",
+    "population": 71560,
+    "voivodeship": "wielkopolskie"
+  }
+}

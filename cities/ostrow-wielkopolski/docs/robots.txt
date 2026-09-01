@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /*?p=
+
+Sitemap: https://ostrow-wielkopolski.radoskop.pl/sitemap.xml

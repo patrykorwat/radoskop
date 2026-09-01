@@ -1,0 +1,5860 @@
+
+const CFG = window.__CFG;
+
+// --- Cross-subdomain cookie helpers ---
+// Theme + cookie consent must persist across {slug}.radoskop.{pl|eu} AND
+// the root, so we set Domain=.radoskop.pl OR .radoskop.eu zależnie od TLD
+// hosta. Local fallback (e.g. dev on localhost) drops Domain attribute.
+function _radoskopCookieDomain() {
+  var m = location.hostname.match(/(?:^|\.)radoskop\.(pl|eu)$/i);
+  return m ? '; Domain=.radoskop.' + m[1] : '';
+}
+function radoskopGetCookie(name) {
+  var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)'));
+  return m ? decodeURIComponent(m[1]) : null;
+}
+function radoskopSetCookie(name, value, daysToLive) {
+  var d = new Date(); d.setTime(d.getTime() + (daysToLive || 365) * 86400000);
+  var secure = location.protocol === 'https:' ? '; Secure' : '';
+  document.cookie = name + '=' + encodeURIComponent(value)
+    + '; expires=' + d.toUTCString()
+    + '; path=/; SameSite=Lax' + secure
+    + _radoskopCookieDomain();
+}
+
+// Theme management (shared across all radoskop.{pl,eu} subdomains)
+function getTheme() {
+  // Cookie first (cross-subdomain). LocalStorage second (legacy fallback —
+  // pages migrated from old per-origin storage). System pref last.
+  var c = radoskopGetCookie('radoskop_theme');
+  if (c === 'dark' || c === 'light') return c;
+  try { const s = localStorage.getItem('radoskop_theme'); if (s) return s; } catch(e) {}
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const icon = document.getElementById('theme-icon');
+  const label = document.getElementById('theme-label');
+  if (icon) icon.textContent = theme === 'light' ? '🌙' : '☀️';
+  if (label) label.textContent = theme === 'light' ? 'Ciemny' : 'Jasny';
+  // Update Chart.js defaults
+  const s = getComputedStyle(document.documentElement);
+  Chart.defaults.color = s.getPropertyValue('--chart-text').trim() || '#4b5563';
+  Chart.defaults.borderColor = s.getPropertyValue('--chart-border').trim() || 'rgba(0,0,0,0.08)';
+}
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  const next = current === 'dark' ? 'light' : 'dark';
+  applyTheme(next);
+  radoskopSetCookie('radoskop_theme', next, 365);
+  // Best-effort: also drop legacy local copy so it doesn't override on next visit.
+  try { localStorage.removeItem('radoskop_theme'); } catch(e) {}
+  if (K) render();
+}
+applyTheme(getTheme());
+
+// API configuration
+const CITY_SLUG = location.hostname.split('.')[0] || 'sopot';
+// Dobieramy API host z TLD bieżącej strony: .eu → api.radoskop.eu, reszta → api.radoskop.pl.
+// Dzięki temu Paris (paris.radoskop.eu) nie robi cross-origin do api.radoskop.pl.
+const _API_HOST = window.RADOSKOP_API || (
+  location.hostname.endsWith('.radoskop.eu') ? 'https://api.radoskop.eu' : 'https://api.radoskop.pl'
+);
+const API_BASE = _API_HOST + '/api/' + CITY_SLUG;
+
+// Capability flags wstrzykiwane z config.json przez generate_site.py.
+// HAS_VOTING_DATA = false dla miast bez imiennych głosowań (np. Berlin —
+// Hammelsprung jest anonimowy). Wtedy zamiast "Głosowań" pokazujemy
+// "Wystąpień" / "Słów" z protokołów. HAS_SPEAKER_ACTIVITY = true dla
+// miast które parsują stenogramy/Plenarprotokolle (Berlin, Gdańsk).
+const HAS_VOTING_DATA = CFG.hasVotingData;
+const HAS_SPEAKER_ACTIVITY = CFG.hasSpeakerActivity;
+// Miasta bez radnych per osoba (Paryż: głosowanie à main levée, wynik per
+// pozycja bez listy nazwisk). Strona główna prowadzi wtedy zakładką
+// "Głosowania", a ranking radnych jest ukryty (generate_site dokłada CSS).
+const HAS_COUNCILORS = CFG.hasCouncilors;
+// Miasta faction (copenhagen, paris): tab "Radni" pokazuje listę radnych z
+// profiles.json (nazwisko, klub, komisje) zamiast tabeli metryk, których tryb
+// faction nie ma (brak frekwencji/aktywności per radny).
+const COUNCILOR_ROSTER_MODE = CFG.councilorRosterMode;
+const DEFAULT_TAB = (HAS_COUNCILORS || COUNCILOR_ROSTER_MODE) ? 'ranking' : 'votes';
+
+let RAW = null;
+let PROFILES = null;
+let K = null;
+let currentKid = null;
+let currentSort = { key: 'frekwencja', asc: false };
+let clubFilter = 'all';
+let currentSession = 'all';
+let currentCatFilter = 'all';
+let voteSearchQuery = '';
+let voteResultFilter = 'all';
+let voteStartDate = '';
+let voteEndDate = '';
+let compareList = [];
+let _votesPage = 1;
+let _votesData = null;
+let _interpPage = 1;
+let _interpKad = null;
+
+// Vote categories — auto-classification by topic keywords
+const VOTE_CATS = {
+  budzet: {label: "Budżet", order: 1},
+  inwestycje: {label: "Inwestycje", order: 2},
+  planowanie: {label: "Planowanie", order: 3},
+  nieruchomosci: {label: "Nieruchomości", order: 4},
+  transport: {label: "Transport", order: 5},
+  oswiata: {label: "Oświata", order: 6},
+  zdrowie: {label: "Zdrowie/Społeczne", order: 7},
+  srodowisko: {label: "Środowisko", order: 8},
+  kultura: {label: "Kultura", order: 9},
+  skarga: {label: "Skargi/Petycje", order: 10},
+  nazwy: {label: "Nazwy", order: 11},
+  procedura: {label: "Proceduralne", order: 12},
+  inne: {label: "Inne", order: 13},
+};
+// Reguły kategoryzacji per język wstrzykiwane przez generate_site.py /
+// generate_assembly_site.py z radoskop/scripts/vote_categories.py.
+// Dla miast PL to polskie keyword, dla zagranicznych (LT/SK/DE/LV/CS/ET)
+// odpowiednie tłumaczenia. Fallback do PL gdy locale nieobsługiwany.
+const CAT_RULES = CFG.catRules;
+// KIND_CATS: mapowanie item_kind → klucz VOTE_CATS (opcjonalne, domyślnie {}).
+// Używane przez города z głosowaniami nieimiennymi gdzie item_kind jest
+// naturalną kategorią (np. Paryż: voeu/amendement/projet_deliberation).
+const KIND_CATS = CFG.kindCats;
+// VOTE_CATS_EXTRA: dodatkowe wpisy dla miast z własnymi kategoriami.
+Object.assign(VOTE_CATS, CFG.voteCatsExtra);
+function categorizeVote(topic, itemKind) {
+  if (itemKind && KIND_CATS[itemKind]) return KIND_CATS[itemKind];
+  if (!topic) return 'inne';
+  for (const [cat, re] of CAT_RULES) {
+    if (re.test(topic)) return cat;
+  }
+  return 'inne';
+}
+function catPill(cat) {
+  const c = VOTE_CATS[cat] || VOTE_CATS.inne;
+  return `<span class="cat-pill cat-${cat}">${c.label}</span>`;
+}
+
+// Sort names by last name, then first name
+// Resolve indexed named_votes: converts integer indices to names using councilor_index.
+// Supports both old format (string arrays) and new indexed format (integer arrays).
+function resolveNV(nv, councilor_index) {
+  if (!nv || !councilor_index || councilor_index.length === 0) return nv;
+  const out = {};
+  for (const key of Object.keys(nv)) {
+    const arr = nv[key];
+    if (!Array.isArray(arr) || arr.length === 0) { out[key] = arr; continue; }
+    if (typeof arr[0] === 'number') {
+      out[key] = arr.map(i => councilor_index[i] || ('?' + i));
+    } else {
+      out[key] = arr;
+    }
+  }
+  return out;
+}
+
+function sortByLastName(names) {
+  return [...names].sort((a, b) => {
+    const pa = a.split(' '), pb = b.split(' ');
+    const lastA = pa[pa.length - 1], lastB = pb[pb.length - 1];
+    const cmp = lastA.localeCompare(lastB, 'pl');
+    return cmp !== 0 ? cmp : a.localeCompare(b, 'pl');
+  });
+}
+
+// Gender detection — female councilors (based on first name ending in 'a')
+function isFemale(name) {
+  const first = (name || '').split(' ')[0];
+  // Polish female first names almost always end in 'a'
+  // Exceptions: Lech, Bogdan etc. never end in 'a'; Kuba/Kosma are male but rare in council
+  return first.endsWith('a') && first !== 'Kosma' && first !== 'Kuba';
+}
+
+// Cache for loaded kadencja data (keyed by kid)
+const _kadCache = {};
+
+async function loadKadencja(kid) {
+  if (_kadCache[kid]) return _kadCache[kid];
+  // Support legacy single-file format (RAW.kadencje contains full objects).
+  // Wymagamy też vote_stats — niektóre starsze API responses (np. gdansk)
+  // zwracają councilors ale bez vote_stats, przez co pre-cache traktowałby
+  // niekompletny stub jako pełne dane i renderVotesTable wyświetlał "Brak
+  // danych". Wymuszamy fetch z /kadencja/<kid> żeby dostać pełen vote_stats.
+  const existing = RAW.kadencje.find(k => k.id === kid && k.councilors && k.vote_stats);
+  if (existing) { _kadCache[kid] = existing; return existing; }
+  const resp = await fetch(API_BASE + '/kadencja/' + kid);
+  const kad = await resp.json();
+  // The API returns kadencja without votes (they are fetched separately via /votes).
+  // Mark with a flag so renderVotesTable knows to use API.
+  kad._apiLoaded = true;
+  _kadCache[kid] = kad;
+  // Replace stub in RAW.kadencje with full data
+  const idx = RAW.kadencje.findIndex(k => k.id === kid);
+  if (idx >= 0) RAW.kadencje[idx] = kad;
+  return kad;
+}
+
+async function init() {
+  // Restore path from 404.html SPA redirect
+  const sp = new URLSearchParams(location.search);
+  if (sp.has('p')) {
+    history.replaceState(null, '', decodeURIComponent(sp.get('p')));
+  }
+  try {
+    const [dataResp, profResp, budgetResp] = await Promise.all([
+      fetch(API_BASE + '/data'),
+      fetch(API_BASE + '/profiles'),
+      fetch(API_BASE + '/budget', { credentials: 'include' }),
+    ]);
+    RAW = await dataResp.json();
+    PROFILES = await profResp.json();
+    window.BUDGET = await budgetResp.json();
+
+    // Determine which kadencja to load first
+    const defaultKid = RAW.default_kadencja || RAW.kadencje[RAW.kadencje.length-1].id;
+    // URL-e są angielskie; router dopasowuje na polskich tokenach → normalizuj.
+    const path = toInternalPath(routePath());
+    let initialKid = defaultKid;
+    if (path.startsWith('/kadencja/')) {
+      const parts = path.replace('/kadencja/', '').split('/');
+      const kid = SLUG_KADS[parts[0]];
+      if (kid) initialKid = kid;
+    }
+
+    // Load the initial kadencja before showing UI
+    await loadKadencja(initialKid);
+
+    document.getElementById('loading').style.display = 'none';
+    // Usuń WSZYSTKIE #seo-content (może być duplikat: homepage blok SEO
+    // + per-strona blok z generate_seo_pages). getElementById brałby tylko
+    // pierwszy, zostawiając drugi widoczny na profilu/sesji/głosowaniu.
+    document.querySelectorAll('#seo-content').forEach(function(e){ e.remove(); });
+    document.getElementById('app').style.display = 'block';
+    renderKadencjaBar();
+    // Porównywarka miast: best-effort, nie blokuje renderu strony.
+    loadCityCompareIndex();
+    // Tab Spółki: pokaż przycisk tylko gdy istnieje /spolki.json dla jednostki.
+    initSpolkiTab();
+    // Deep links
+    // Strona główna "/" → widok landingu (renderowany z danych kadencji).
+    if (path === '/' || path === '') {
+      await selectKadencjaQuiet(initialKid);
+      showLanding();
+      return;
+    }
+    // Lista radnych "/councillors/" → tab ranking w #app.
+    if (path === '/councillors' || path === '/councillors/') {
+      await selectKadencjaQuiet(initialKid);
+      hideAllViews();
+      document.getElementById('app').style.display = 'block';
+      activateTab('ranking');
+      navigateTo('/councillors/', true);
+      return;
+    }
+    if (path.startsWith('/profil/')) {
+      const slug = path.replace('/profil/', '').replace(/\/$/, '');
+      const profile = PROFILES.profiles.find(p => p.slug === slug);
+      if (profile) {
+        selectKadencjaQuiet(initialKid);
+        showProfile(profile.name, _profileTabFromQuery());
+        navigateTo(toCanonicalPath(path), true);
+        return;
+      }
+    }
+    if (path === '/glosowanie' || path === '/glosowanie/') {
+      // /vote/ bez ID → przekierowanie do najnowszego głosowania
+      // z ostatniej sesji aktualnej kadencji. (Wcześniej showVote('')
+      // wywalał stronę "Nie znaleziono głosowania" co Google Ads
+      // oznaczał jako Destination not working.)
+      selectKadencjaQuiet(initialKid);
+      try {
+        const resp = await fetch(API_BASE + '/kadencja/' + initialKid + '/votes?per_page=1');
+        const d = await resp.json();
+        const v = (d.items || [])[0];
+        if (v && v.id) {
+          showVote(v.id);
+          navigateTo('/vote/' + v.id + '/', true);
+        } else {
+          activateTab('votes');
+          navigateTo(toCanonicalPath(path), true);
+        }
+      } catch(e) {
+        activateTab('votes');
+        navigateTo(toCanonicalPath(path), true);
+      }
+      return;
+    }
+    if (path.startsWith('/glosowanie/')) {
+      selectKadencjaQuiet(initialKid);
+      const vid = path.replace('/glosowanie/', '').replace(/\/$/, '');
+      showVote(vid);
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
+    if (path === '/sesja' || path === '/sesja/') {
+      // /session/ bez numeru → lista sesji aktualnej kadencji.
+      // (Wcześniej showSession('') wywalał stronę "Nie znaleziono sesji",
+      // co Google Ads oznaczał jako Destination not working.)
+      selectKadencjaQuiet(initialKid);
+      activateTab('sessions');
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
+    if (path.startsWith('/sesja/') && /\/stenogram\/?$/.test(path)) {
+      // Strona pełnego stenogramu: /session/{n}/transcript/ (wewn. /sesja/{n}/stenogram/)
+      selectKadencjaQuiet(initialKid);
+      const snum = decodeURIComponent(
+        path.replace('/sesja/', '').replace(/\/?stenogram\/?$/, '').replace(/\/$/, ''));
+      showTranscript(snum);
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
+    if (path.startsWith('/sesja/')) {
+      selectKadencjaQuiet(initialKid);
+      const snum = decodeURIComponent(path.replace('/sesja/', '').replace(/\/$/, ''));
+      showSession(snum);
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
+    if (path === '/polityka-prywatnosci' || path === '/polityka-prywatnosci/') {
+      showPrivacy();
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
+    if (path === '/regulamin' || path === '/regulamin/') {
+      showTerms();
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
+    if (path === '/impressum' || path === '/impressum/') {
+      showImpressum();
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
+    if (path === '/raporty' || path === '/raporty/') {
+      showReports();
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
+    if (path === '/business' || path === '/business/' || path === '/premium' || path === '/premium/') {
+      // Pro offer hostowany jest jako jedna kanoniczna strona na apex
+      // międzynarodowym radoskop.eu/pro/. Per-city subdomena nie ma
+      // własnej oferty, przekierowujemy z zachowaniem ?from/druk/komisja
+      // w query string. Stary slug /premium/ też tutaj wpada (rebrand
+      // 2026-05-13). Worker robi 301 na poziomie edge, ten SPA fallback
+      // łapie tylko gdy worker by minął.
+      var search = location.search || '';
+      search += salesLangQs(!!search);
+      location.replace('https://radoskop.eu/pro/' + search);
+      return;
+    }
+    if (path === '/interpelacje' || path === '/interpelacje/') {
+      selectKadencjaQuiet(initialKid);
+      activateTab('interpelacje');
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
+    if (path === '/komisje' || path === '/komisje/') {
+      selectKadencjaQuiet(initialKid);
+      activateTab('komisje');
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
+    if (path === '/spolki' || path === '/spolki/') {
+      selectKadencjaQuiet(initialKid);
+      activateTab('spolki');
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
+    if (path.startsWith('/komisja/')) {
+      selectKadencjaQuiet(initialKid);
+      const slug = decodeURIComponent(path.replace('/komisja/', '').replace(/\/$/, ''));
+      showKomisja(slug);
+      return;
+    }
+    if (path.startsWith('/druk/')) {
+      // Format: /druk/{kadSlug}/{drukId}/
+      const parts = path.replace('/druk/', '').replace(/\/$/, '').split('/');
+      if (parts.length >= 2 && parts[0] && parts[1]) {
+        const kadSlug = parts[0];
+        const did = decodeURIComponent(parts[1]);
+        const kadId = SLUG_KADS[kadSlug] || kadSlug;
+        selectKadencjaQuiet(kadId);
+        showDruk(did, kadId);
+        return;
+      }
+    }
+    if (path === '/aktualnosci' || path === '/aktualnosci/') {
+      // /news/ to statyczna strona z listą wpisów (treść wstrzyknięta przez
+      // generate_feed.py jako #news-content — OSOBNY id, bo #seo-content jest
+      // kasowany wyżej w init). Nie ładujemy dashboardu SPA: chowamy #app,
+      // pokazujemy news i kończymy init bez przekierowywania.
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('app').style.display = 'none';
+      const sc = document.getElementById('news-content');
+      if (sc) sc.style.display = 'block';
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
+    if (path === '/budzet' || path === '/budzet/') {
+      selectKadencjaQuiet(initialKid);
+      activateTab('budget');
+      navigateTo(toCanonicalPath(path), true);
+      return;
+    }
+    if (path.startsWith('/kadencja/')) {
+      const parts = path.replace('/kadencja/', '').split('/');
+      const kid = SLUG_KADS[parts[0]];
+      const tab = SLUG_TABS[parts[1]] || DEFAULT_TAB;
+      if (kid) {
+        selectKadencjaQuiet(kid);
+        activateTab(tab);
+        // Jeśli URL miał "undefined" albo nieznany tab segment, przepisz
+        // na czysty mainPath() zamiast zostawiać brzydki path w pasku.
+        const cleanPath = (!SLUG_TABS[parts[1]]) ? mainPath() : toCanonicalPath(path);
+        navigateTo(cleanPath, true);
+        return;
+      }
+    }
+    // Fall-through: path nie pasuje do żadnego route'a (śmieciowy URL,
+    // nieistniejący profil, stary format). Worker i tak zwrócił 200 z
+    // fallback index.html, więc oznaczamy noindex — bez tego Google
+    // indeksował każdy junk URL jako alternate strony głównej.
+    setRobotsIndexable(false);
+    selectKadencja(initialKid);
+  } catch(e) {
+    document.getElementById('loading').textContent = 'Błąd ładowania danych: ' + e.message;
+  }
+}
+
+function renderKadencjaBar() {
+  const bar = document.getElementById('kadencja-bar');
+  // Ukryj cały bar gdy miasto ma tylko jedną kadencję — pojedynczy przycisk
+  // wewnątrz pill-toggle wygląda jak zepsuty switch (issue zgłoszony dla
+  // Kopenhagi 2026-05-28). Etykieta kadencji jest widoczna w innych miejscach
+  // (manifest, stopka, breadcrumbs), więc nic się nie traci.
+  if (!RAW.kadencje || RAW.kadencje.length < 2) {
+    bar.style.display = 'none';
+    bar.innerHTML = '';
+    return;
+  }
+  bar.style.display = '';
+  bar.innerHTML = RAW.kadencje.map(k =>
+    `<button class="kadencja-btn" data-kid="${k.id}">${k.label}</button>`
+  ).join('');
+  bar.querySelectorAll('.kadencja-btn').forEach(btn => {
+    btn.onclick = () => selectKadencja(btn.dataset.kid);
+  });
+}
+
+function _applyKadencja(kid) {
+  K = RAW.kadencje.find(k => k.id === kid);
+  if (!K) return;
+  currentKid = kid;
+  document.querySelectorAll('.kadencja-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.kid === kid);
+  });
+  clubFilter = 'all';
+  currentSession = 'all';
+  currentCatFilter = 'all';
+  render();
+}
+
+async function selectKadencjaQuiet(kid) {
+  if (!_kadCache[kid]) await loadKadencja(kid);
+  _applyKadencja(kid);
+}
+
+async function selectKadencja(kid) {
+  await selectKadencjaQuiet(kid);
+  // Nie wyrzucaj z widoku detalu (profil/głosowanie/sesja/druk/komisja) przy
+  // zmianie kadencji — navigateTo(mainPath()) tylko gdy jesteśmy na #app.
+  // Inaczej deep-link np. /profile/x/ był przerzucany na stronę główną.
+  if (document.getElementById('app').style.display !== 'none') {
+    navigateTo(mainPath());
+  }
+}
+
+function activateTab(tabName) {
+  const allTabs = ['ranking','sessions','votes','komisje','interpelacje','budget','spolki'];
+  // Guard: invalid tabName cofamy do ranking, żeby nie zostawić currentTab jako undefined.
+  if (!tabName || tabName === 'undefined' || tabName === 'null' || !allTabs.includes(tabName)) {
+    tabName = DEFAULT_TAB;
+  }
+  // Track tab click/navigation event for Umami analytics
+  trackEvent('view_tab', {tab_name: tabName});
+  currentTab = tabName;
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.tab === tabName);
+  });
+  allTabs.forEach(t => {
+    const el = document.getElementById('tab-'+t);
+    if (el) el.style.display = (t === tabName) ? 'block' : 'none';
+  });
+  document.getElementById('kadencja-bar').style.display = (tabName === 'budget' || tabName === 'interpelacje' || tabName === 'komisje' || tabName === 'spolki') ? 'none' : '';
+  if (tabName === 'interpelacje') renderInterpelacje();
+  if (tabName === 'komisje') renderKomisjeList();
+  if (tabName === 'spolki') renderSpolki();
+  setTitle(TAB_TITLES[tabName] || '');
+  setCanonicalPath(mainPath(tabName));
+}
+
+function hideAllViews() {
+  document.getElementById('app').style.display = 'none';
+  var _lv = document.getElementById('landing-view'); if (_lv) _lv.style.display = 'none';
+  document.getElementById('profile-view').style.display = 'none';
+  document.getElementById('compare-view').style.display = 'none';
+  var _ccv = document.getElementById('city-compare-view'); if (_ccv) _ccv.style.display = 'none';
+  document.getElementById('vote-view').style.display = 'none';
+  document.getElementById('session-view').style.display = 'none';
+  var _tv = document.getElementById('transcript-view'); if (_tv) _tv.style.display = 'none';
+  document.getElementById('reports-view').style.display = 'none';
+  document.getElementById('druk-view').style.display = 'none';
+}
+
+let currentTab = (typeof DEFAULT_TAB !== 'undefined') ? DEFAULT_TAB : 'ranking';
+const TAB_SLUGS = {ranking:'ranking',sessions:'sesje',votes:'glosowania',komisje:'komisje',interpelacje:'interpelacje',budget:'budzet',spolki:'spolki'};
+const SLUG_TABS = Object.fromEntries(Object.entries(TAB_SLUGS).map(([k,v])=>[v,k]));
+const KAD_SLUGS = {'2018-2024':'viii','2024-2029':'ix'};
+const SLUG_KADS = Object.fromEntries(Object.entries(KAD_SLUGS).map(([k,v])=>[v,k]));
+
+// URL-e serwisu są kanonicznie ANGIELSKIE (spójne z workerem PATH_REDIRECTS,
+// <link canonical> i sitemap). Router wewnętrznie używa polskich tokenów, więc
+// normalizujemy wejściowy path EN→PL przed dopasowaniem (toInternalPath), a
+// emitujemy PL→EN (toCanonicalPath, mainPath). Stare polskie URL-e (bookmarki,
+// historia) dalej działają, toInternalPath jest dla nich no-op, a w pasku
+// adresu zostają przepisane na angielski kanon. Slugi taba w /term/{kad}/{tab}/
+// też tłumaczone (votes/sessions). /impressum/ NIE migrowane (brak angielskiego
+// kanonu w workerze). Druk MA kanon angielski /bill/ (worker, sitemap, OG),
+// więc bill↔druk jest w mapie: wejściowe /bill/ → /druk/ (handler), emisja /druk/ → /bill/.
+const EN_TO_PL_SLUG = {
+  vote:'glosowanie', session:'sesja', profile:'profil', reports:'raporty',
+  interpellations:'interpelacje', commissions:'komisje', commission:'komisja',
+  companies:'spolki',
+  budget:'budzet', term:'kadencja', news:'aktualnosci', bill:'druk',
+  privacy:'polityka-prywatnosci', terms:'regulamin',
+};
+const PL_TO_EN_SLUG = Object.fromEntries(Object.entries(EN_TO_PL_SLUG).map(([k,v])=>[v,k]));
+const EN_TO_PL_TAB = {votes:'glosowania', sessions:'sesje', ranking:'ranking'};
+const PL_TO_EN_TAB = Object.fromEntries(Object.entries(EN_TO_PL_TAB).map(([k,v])=>[v,k]));
+// Internal tab → angielski slug URL (emisja w mainPath).
+const TAB_SLUGS_EN = {ranking:'ranking', sessions:'sessions', votes:'votes', spolki:'companies'};
+
+function toInternalPath(path) {
+  if (!path || path === '/') return path || '/';
+  const seg = path.split('/');                 // '/term/ix/votes' -> ['','term','ix','votes']
+  if (seg[1] && EN_TO_PL_SLUG[seg[1]]) seg[1] = EN_TO_PL_SLUG[seg[1]];
+  if (seg[1] === 'kadencja' && seg[3] && EN_TO_PL_TAB[seg[3]]) seg[3] = EN_TO_PL_TAB[seg[3]];
+  // Podstrona stenogramu: /session/{n}/transcript/ → /sesja/{n}/stenogram/
+  if (seg[1] === 'sesja' && seg[3] === 'transcript') seg[3] = 'stenogram';
+  return seg.join('/');
+}
+
+function toCanonicalPath(path) {
+  if (!path || path === '/') return '/';
+  const seg = path.split('/');
+  if (seg[1] && PL_TO_EN_SLUG[seg[1]]) seg[1] = PL_TO_EN_SLUG[seg[1]];
+  if (seg[1] === 'term' && seg[3] && PL_TO_EN_TAB[seg[3]]) seg[3] = PL_TO_EN_TAB[seg[3]];
+  // Podstrona stenogramu: /sesja/{n}/stenogram/ → /session/{n}/transcript/
+  if (seg[1] === 'session' && seg[3] === 'stenogram') seg[3] = 'transcript';
+  let out = seg.join('/');
+  if (out !== '/' && !out.endsWith('/')) out += '/';
+  return out;
+}
+
+const BASE_TITLE = '' + CFG.siteTitle + '';
+const TAB_TITLES = {ranking:'Ranking radnych',sessions:'Sesje',votes:'Głosowania',komisje:'Komisje',interpelacje:'Interpelacje',budget:'Budżet',spolki:'Spółki'};
+function setTitle(subtitle) {
+  document.title = subtitle ? subtitle + ' \u2013 ' + BASE_TITLE : BASE_TITLE;
+}
+
+function setOgMeta(opts) {
+  // opts: { title, description, url, image }
+  var t = opts.title || document.title;
+  var d = opts.description || '';
+  var u = opts.url || location.href;
+  var tags = {
+    'og:title': t,
+    'og:description': d,
+    'og:url': u,
+    'twitter:title': t,
+    'twitter:description': d
+  };
+  for (var prop in tags) {
+    var isOg = prop.indexOf('og:') === 0;
+    var sel = isOg ? 'meta[property="' + prop + '"]' : 'meta[name="' + prop + '"]';
+    var el = document.querySelector(sel);
+    if (el) el.setAttribute('content', tags[prop]);
+  }
+  // OG image
+  var imgEl = document.querySelector('meta[property="og:image"]');
+  if (opts.image) {
+    if (imgEl) { imgEl.setAttribute('content', opts.image); }
+    else {
+      imgEl = document.createElement('meta');
+      imgEl.setAttribute('property', 'og:image');
+      imgEl.setAttribute('content', opts.image);
+      document.head.appendChild(imgEl);
+    }
+    var tw = document.querySelector('meta[name="twitter:card"]');
+    if (tw) tw.setAttribute('content', 'summary_large_image');
+  } else if (imgEl) {
+    imgEl.remove();
+    var tw = document.querySelector('meta[name="twitter:card"]');
+    if (tw) tw.setAttribute('content', 'summary');
+  }
+  // Canonical
+  var can = document.querySelector('link[rel="canonical"]');
+  if (can) can.setAttribute('href', u);
+  // Meta description
+  var desc = document.querySelector('meta[name="description"]');
+  if (desc && d) desc.setAttribute('content', d);
+  // Prawidłowy widok = indeksowalny. Zdejmuje noindex ustawiony wcześniej
+  // przez widok "nie znaleziono" (SPA nie przeładowuje dokumentu).
+  setRobotsIndexable(true);
+}
+
+// Soft-404 dla SPA. Worker serwuje fallback index.html ze statusem 200 i
+// canonical strony głównej dla KAŻDEGO nieistniejącego patha, więc Google
+// klasyfikował takie URL-e jako "Alternate page with proper canonical tag"
+// (GSC, narastająco od 2026-05). Widoki "nie znaleziono" dostają meta
+// robots noindex (Googlebot renderuje JS, honoruje meta dodane client-side),
+// a prawidłowe widoki zdejmują go w setOgMeta/setCanonicalPath.
+function setRobotsIndexable(indexable) {
+  var el = document.querySelector('meta[name="robots"]');
+  if (indexable) {
+    if (el) el.remove();
+    return;
+  }
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute('name', 'robots');
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', 'noindex');
+}
+
+// Lekki wariant setOgMeta dla widoków tabów: aktualizuje tylko canonical
+// (na kanoniczny path z mainPath) i zdejmuje noindex. Bez tego canonical
+// zostawał z szablonu (strona główna) i /budget/, /interpellations/,
+// /commissions/, /term/{kad}/{tab}/ lądowały w GSC jako alternate.
+function setCanonicalPath(path) {
+  var can = document.querySelector('link[rel="canonical"]');
+  if (can) can.setAttribute('href', '' + CFG.siteUrl + '' + path);
+  setRobotsIndexable(true);
+}
+
+function mainPath(tab, kid) {
+  tab = tab || currentTab;
+  kid = kid || currentKid;
+  // Guard: jeśli tab/kid puste albo literal "undefined"/"null", użyj defaults.
+  // Zapobiega URL-om typu /term/ix/undefined/.
+  const validTabs = ['ranking','sessions','votes','komisje','interpelacje','budget','spolki'];
+  if (!tab || tab === 'undefined' || tab === 'null' || !validTabs.includes(tab)) {
+    tab = 'ranking';
+  }
+  const defaultKid = (RAW && RAW.default_kadencja) || '2024-2029';
+  if (!kid || kid === 'undefined' || kid === 'null') {
+    kid = defaultKid;
+  }
+  if (tab === 'budget') return '/budget/';
+  if (tab === 'interpelacje') return '/interpellations/';
+  if (tab === 'komisje') return '/commissions/';
+  if (tab === 'spolki') return '/companies/';
+  const kadSlug = KAD_SLUGS[kid] || kid;
+  const tabSlug = TAB_SLUGS_EN[tab] || tab;
+  if (tab === 'ranking' && kid === defaultKid) return '/councillors/';
+  return '/term/' + kadSlug + '/' + tabSlug + '/';
+}
+
+function navigateTo(path, replace) {
+  if (typeof _popstateActive !== 'undefined' && _popstateActive) return;
+  // Ensure trailing slash for all paths except root
+  if (path !== '/' && !path.endsWith('/')) path += '/';
+  if (replace) history.replaceState(null, '', path);
+  else history.pushState(null, '', path);
+}
+
+function routePath() {
+  return location.pathname.replace(/\/$/, '') || '/';
+}
+
+function findProfile(name) {
+  if (!PROFILES) return null;
+  var n = name.trim().toLowerCase();
+  var p = PROFILES.profiles.find(function(pr) { return pr.name.toLowerCase() === n; });
+  if (p) return p;
+  var parts = n.split(/\s+/);
+  if (parts.length >= 2) {
+    var flipped = parts.slice(-1).concat(parts.slice(0, -1)).join(' ');
+    p = PROFILES.profiles.find(function(pr) { return pr.name.toLowerCase() === flipped; });
+    if (p) return p;
+    if (parts.length > 2) {
+      var flip2 = parts.slice(1).concat(parts.slice(0, 1)).join(' ');
+      p = PROFILES.profiles.find(function(pr) { return pr.name.toLowerCase() === flip2; });
+      if (p) return p;
+    }
+  }
+  // Fuzzy fallback: match if profile name starts with flipped or vice versa
+  if (parts.length >= 2) {
+    var flipped = parts.slice(-1).concat(parts.slice(0, -1)).join(' ');
+    p = PROFILES.profiles.find(function(pr) {
+      var pn = pr.name.toLowerCase();
+      return pn.indexOf(flipped) === 0 || flipped.indexOf(pn) === 0;
+    });
+    if (p) return p;
+  }
+  return null;
+}
+
+function profileSlug(name) {
+  const p = findProfile(name);
+  return p ? p.slug : name.toLowerCase().replace(/\s+/g, '-');
+}
+
+// Event tracking via Umami (cookieless, no consent required).
+// script.js ładuje się async, więc eventy z bootu strony (np. pierwszy
+// view_tab) trafiałyby w pustkę. Bufor trzyma je do załadowania trackera,
+// flush co 400ms przez max 20s, potem rezygnujemy (np. adblock).
+var _umamiQueue = [];
+function _umamiReady() {
+  return typeof umami !== 'undefined' && typeof umami.track === 'function';
+}
+function trackEvent(eventName, params) {
+  if (_umamiReady()) {
+    umami.track(eventName, params || {});
+  } else {
+    _umamiQueue.push([eventName, params || {}]);
+  }
+}
+(function() {
+  var tries = 0;
+  var iv = setInterval(function() {
+    tries++;
+    if (_umamiReady()) {
+      _umamiQueue.splice(0).forEach(function(e) { umami.track(e[0], e[1]); });
+      clearInterval(iv);
+    } else if (tries > 50) {
+      clearInterval(iv);
+    }
+  }, 400);
+})();
+
+// Umami Distinct ID: anonim dostaje losowy ID w cookie radoskop_did na
+// domenie nadrzędnej (wspólne dla wszystkich subdomen danej TLD), TTL krótki
+// (2 dni), żeby skleić wizytę w obrębie kilku dni bez trwałego profilowania
+// (tak deklaruje polityka prywatności). Po zalogowaniu nadpisujemy przez
+// "u:" + public_id z /me (hook w _setAuthUser). identify() czeka na
+// załadowanie async script.js jak bufor eventów wyżej. Kopie tej logiki:
+// template/app/chrome.js (strony spółek), docs_eu/assets/topbar.js,
+// docs_eu/index.html.
+var _rkIdPending = null, _rkIdTimer = null;
+function _rkIdentifiable() {
+  return typeof umami !== 'undefined' && typeof umami.identify === 'function';
+}
+function _rkIdentify(id) {
+  return;
+  if (!id) return;
+  _rkIdPending = id;
+  if (_rkIdentifiable()) {
+    try { umami.identify(_rkIdPending); } catch (e) {}
+    _rkIdPending = null;
+    return;
+  }
+  if (_rkIdTimer) return;
+  var _rkTries = 0;
+  _rkIdTimer = setInterval(function() {
+    _rkTries++;
+    if (_rkIdentifiable()) {
+      clearInterval(_rkIdTimer); _rkIdTimer = null;
+      if (_rkIdPending) { try { umami.identify(_rkIdPending); } catch (e) {} _rkIdPending = null; }
+    } else if (_rkTries > 50) {
+      clearInterval(_rkIdTimer); _rkIdTimer = null;
+    }
+  }, 400);
+}
+function _rkCookieDomain() {
+  var h = location.hostname;
+  if (h.indexOf('radoskop.pl') !== -1) return '; domain=.radoskop.pl';
+  if (h.indexOf('radoskop.eu') !== -1) return '; domain=.radoskop.eu';
+  return '';
+}
+function _rkAnonId() {
+  try {
+    var m = document.cookie.match(/(?:^|;\s*)radoskop_did=([^;]+)/);
+    if (m) return decodeURIComponent(m[1]);
+    var id = (window.crypto && typeof crypto.randomUUID === 'function')
+      ? crypto.randomUUID()
+      : Date.now().toString(36) + '.' + Math.random().toString(36).slice(2, 12);
+    var secure = location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = 'radoskop_did=' + encodeURIComponent(id)
+      + '; path=/; max-age=172800; SameSite=Lax' + secure + _rkCookieDomain();
+    return id;
+  } catch (e) { return null; }
+}
+_rkIdentify(_rkAnonId());
+
+// trackEvent + krótkie czekanie na wysyłkę. Do eventów tuż przed
+// window.location.href (logout, google login), gdzie nawigacja
+// ubiłaby fetch trackera. Max 400ms, potem idziemy dalej.
+function trackEventBeforeNav(eventName, params) {
+  return new Promise(function(resolve) {
+    var done = setTimeout(resolve, 400);
+    try {
+      if (_umamiReady()) {
+        Promise.resolve(umami.track(eventName, params || {})).then(function() {
+          clearTimeout(done); resolve();
+        }, function() { clearTimeout(done); resolve(); });
+      } else {
+        clearTimeout(done); resolve();
+      }
+    } catch (e) { clearTimeout(done); resolve(); }
+  });
+}
+
+// Escape wolnego tekstu (treść wypowiedzi ze stenogramów z PDF) przed
+// wstawieniem do innerHTML. Nazwiska radnych są kontrolowane, ale tekst
+// wypowiedzi nie — bez tego znaki < > & psują layout / wstrzykują markup.
+function htmlEscape(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// Kanon nazwiska po stronie klienta — odpowiednik lib_session_summary.canonical_name
+// (bez ogonków, lower, tokeny posortowane). Do dopasowania mówcy w stenogramie
+// do radnego mimo różnic formatu/kolejności "Imię Nazwisko".
+function _canonName(s) {
+  return String(s == null ? '' : s)
+    .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase().replace(/\./g, ' ').split(/\s+/).filter(Boolean).sort().join(' ');
+}
+
+// Czy klub ma linię klubową (whip)? Niezrzeszeni mają kanoniczny KOD "NZ"
+// (configy miast, Berlin fraktionslos→NZ, Kopenhaga Løsgængere→NZ), Warszawa
+// literał "Niezrzeszeni", nieznany = "?"/"-"/pusty. Sprawdzamy kod, nie
+// tłumaczenie — hardcode "Niezrzeszeni" nie działa dla miast zagranicznych.
+// Bez linii klubowej "głos wbrew klubowi" / zgodność z klubem nie mają sensu.
+function clubHasLine(club){
+  if(!club) return false;
+  var c=String(club).trim().toLowerCase();
+  if(c===''||c==='?'||c==='-'||c==='n/d'||c==='nz'||c==='brak') return false;
+  if(c.indexOf('niezrzesz')===0) return false;
+  return true;
+}
+
+// Build link elements via string concatenation so crawlers
+// cannot extract href patterns from raw JS source
+function profileLink(name, content) {
+  var s = profileSlug(name);
+  var esc = name.replace(/'/g, "\\'");
+  return '<a class="name-link" ' + 'href="/profile/' + s + '/" onclick="event.preventDefault();showProfile(\'' + esc + '\')">' + (content || name) + '</a>';
+}
+
+function profileLinkStyled(name, style, content) {
+  var s = profileSlug(name);
+  var esc = name.replace(/'/g, "\\'");
+  return '<a class="name-link" ' + 'href="/profile/' + s + '/" onclick="event.preventDefault();showProfile(\'' + esc + '\')" style="' + style + '">' + (content || name) + '</a>';
+}
+
+function voteLink(voteId, content) {
+  return '<a class="name-link" ' + 'href="/vote/' + voteId + '/" onclick="event.preventDefault();showVote(\'' + voteId + '\')">' + content + '</a>';
+}
+
+function sessionLink(number, content, extraAttrs) {
+  var enc = encodeURIComponent(number);
+  return '<a class="name-link" ' + 'href="/session/' + enc + '/" onclick="event.preventDefault();showSession(\'' + number + '\')"' + (extraAttrs || '') + '>' + content + '</a>';
+}
+
+function sessionLinkStop(number, content) {
+  var enc = encodeURIComponent(number);
+  return '<a ' + 'href="/session/' + enc + '/" onclick="event.preventDefault();event.stopPropagation();showSession(\'' + number + '\')">' + content + '</a>';
+}
+
+// --- Privacy policy page ---
+// Single canonical URL: https://radoskop.eu/privacy/. Subdomeny miast (PL i
+// zagraniczne) NIE renderują własnej polityki w SPA. Funkcja jest cienkim
+// redirectem na apex .eu, treść żyje wyłącznie w radoskop-premium/templates/
+// legal/. Bilingual toggle (?lang=en) obsługiwany przez stronę apex.
+function showPrivacy() {
+  trackEvent('click_privacy_redirect_to_apex', {});
+  // Locale czytamy z <html lang> (apply_locale w generate_site.py podmienia
+  // go na "de"/"cs"/"en" dla miast non-PL). Tylko "pl" zostaje bez query.
+  var lang = (document.documentElement.lang || 'pl').toLowerCase();
+  var suffix = lang === 'pl' ? '' : '?lang=en';
+  location.assign('https://radoskop.eu/privacy/' + suffix);
+}
+
+// --- Pro landing page ---
+// Single canonical URL: https://radoskop.eu/pro/. Per-city subdomeny
+// (i radoskop.pl apex) NIE mają własnej oferty. Wszystko leci na .eu, gdzie
+// też siedzi auth/account/paywall infrastructure. Funkcja zostawiona jako
+// alias, linki z CTA wołają showPro({...}) i dostają redirect na apex
+// .eu z zachowanym query string. Worker robi 301 na poziomie edge dla
+// Googlebota, ten SPA fallback łapie gdy user kliknie CTA bez full page reload.
+function showPro(opts) {
+  opts = opts || {};
+  trackEvent('click_business_redirect_to_apex', { from: opts.from || '', druk: opts.druk || '', komisja: opts.komisja || '' });
+  var qs = [];
+  if (opts.from) qs.push('from=' + encodeURIComponent(opts.from));
+  if (opts.druk) qs.push('druk=' + encodeURIComponent(opts.druk));
+  if (opts.komisja) qs.push('komisja=' + encodeURIComponent(opts.komisja));
+  if (salesLangQs(false)) qs.push('lang=en');
+  var search = qs.length ? '?' + qs.join('&') : '';
+  location.assign('https://radoskop.eu/pro/' + search);
+}
+
+// Query param wersji językowej dla linków sprzedażowych (pro/pricing) na
+// apexie .eu. Miasta non-PL linkują do angielskiej wersji (?lang=en).
+// Locale czytamy z <html lang>, jak w showPrivacy/showTerms; statyczne
+// linki nav/footer dostają to samo przez placeholder .
+function salesLangQs(hasQuery) {
+  var lang = (document.documentElement.lang || 'pl').toLowerCase();
+  if (lang === 'pl') return '';
+  return (hasQuery ? '&' : '?') + 'lang=en';
+}
+// Backward-compat alias (jeśli stary kod jeszcze gdzieś zostawił showPremium)
+var showPremium = showPro;
+
+// --- Terms of service page ---
+// Single canonical URL: https://radoskop.eu/terms/. Cała treść regulaminu
+// żyje w radoskop-premium/templates/legal/, bilingual toggle (?lang=en)
+// obsługiwany na apex. AGPL repo nie zawiera business content (cen,
+// klauzul subskrypcyjnych), tylko cienki redirect.
+function showTerms() {
+  trackEvent('click_terms_redirect_to_apex', {});
+  // Locale czytamy z <html lang> (apply_locale w generate_site.py podmienia
+  // go na "de"/"cs"/"en" dla miast non-PL). Tylko "pl" zostaje bez query.
+  var lang = (document.documentElement.lang || 'pl').toLowerCase();
+  var suffix = lang === 'pl' ? '' : '?lang=en';
+  location.assign('https://radoskop.eu/terms/' + suffix);
+}
+
+// --- Impressum / provider identification page ---
+// Treść jest wstrzykiwana z config.json przez generate_site.py jako
+// IMPRESSUM_HTML placeholder. Dla miast PL block jest pusty (regulamin
+// pokrywa wymóg identyfikacji administratora). Dla DE/CS block zawiera
+// pełne dane wymagane przez par. 5 TMG / par. 18 MStV (Berlin) lub
+// par. 6 zákona č. 480/2004 Sb. (Praha).
+function showImpressum() {
+  hideAllViews();
+  var el = document.getElementById('impressum-view');
+  el.style.display = 'block';
+  /* IMPRESSUM_HTML_BEGIN */
+  el.innerHTML = '' + CFG.impressumHtml + '';
+  navigateTo('/impressum/');
+  setTitle('Impressum');
+  setOgMeta({
+    title: 'Impressum — Radoskop ' + CFG.cityName + '',
+    description: 'Anbieterkennzeichnung gemäß §5 TMG.',
+    url: '' + CFG.siteUrl + '/impressum/'
+  });
+  /* IMPRESSUM_HTML_END */
+  window.scrollTo(0, 0);
+}
+
+// --- Reports catalog ---
+// Wszystkie raporty katalogowane są na radoskop.eu/reports/ (jedna kanoniczna
+// strona dla całej platformy). Subdomena miasta tu tylko przekierowuje,
+// żeby uniknąć duplikatu treści i SEO konfliktów.
+function showReports() {
+  window.location.href = 'https://radoskop.eu/reports/';
+}
+
+function showMain() {
+  hideAllViews();
+  document.getElementById('app').style.display = 'block';
+  navigateTo(mainPath());
+  setTitle(TAB_TITLES[currentTab] || '');
+  setOgMeta({
+    title: BASE_TITLE,
+    description: '' + CFG.siteDescription + '',
+    url: '' + CFG.siteUrl + '' + mainPath()
+  });
+}
+
+// ── Landing (strona główna) jako widok SPA ─────────────────────────────
+function _lpNf(n){ return String(n==null?0:n).replace(/\B(?=(\d{3})+(?!\d))/g,' '); }
+function _lpDate(d){ var m=/^(\d{4})-(\d{2})-(\d{2})/.exec(d||''); return m?m[3]+'.'+m[2]+'.'+m[1]:(d||''); }
+function _lpMY(d){ var m=/^(\d{4})-(\d{2})/.exec(d||''); return m?m[2]+'.'+m[1]:''; }
+function _lpEsc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function _lpBadge(club){ if(!club||club==='?')return ''; return '<span class="lp-badge" style="background:'+clubBg(club)+';color:'+clubColor(club)+'">'+_lpEsc(club)+'</span>'; }
+function _lpGo(tab){ hideAllViews(); document.getElementById('app').style.display='block'; activateTab(tab); navigateTo(mainPath(tab), true); window.scrollTo(0,0); }
+// Katalog tłumaczeń landingu dla locale miasta (wstrzyknięty build-time z
+// landing_strings.catalog(locale)). _t klucz, _tf z podstawieniem {param}.
+const LANDING_I18N = {"nav_reports": "Raporty", "nav_business": "Pro", "theme_toggle": "Motyw", "aria_nav": "Główna nawigacja", "aria_theme": "Przełącz motyw", "hero_eyebrow": "Rada Miasta {name}", "term_word": "kadencja", "hero_title": "Tak działa [[rada miasta]].", "cta_check_votes": "Sprawdź, jak głosują radni", "cta_all_votes": "Wszystkie głosowania", "insight_full": "W tej kadencji radni {name} oddali już <strong>{votes} głosów</strong>. Spornych było <strong>{contested}</strong>.", "insight_light": "Rada {name} liczy <strong>{n}</strong> radnych. Sprawdź ich pełną listę i kluby.", "sec_numbers_h2": "Rada w liczbach", "sec_numbers_sub": "Aktualny obraz kadencji. Dane odświeżane dwa razy dziennie.", "stat_votes_label": "głosowań imiennych w kadencji", "stat_councilors_label": "radnych pod obserwacją", "stat_contested_label": "głosowań spornych (podzielona rada)", "stat_sessions_label": "sesji w archiwum", "sec_highlights_h2": "Wyróżnienia kadencji", "sec_highlights_sub": "Najciekawsze nazwiska i decyzje, wprost z rejestru głosowań.", "hl_active_tag": "Najaktywniejszy radny", "hl_active_sub": "najwyższa aktywność w głosowaniach", "hl_active_unit": "aktywności", "hl_rebel_tag": "Najczęściej głosował przeciw własnemu klubowi", "hl_rebel_sub": "rozbieżność z linią klubu", "hl_rebel_unit": "razy wbrew", "hl_vote_tag": "Najbardziej kontrowersyjne głosowanie", "hl_vote_unit": "za : przeciw", "vote_margin": "różnica {n}", "sec_activity_h2": "Aktywność w czasie", "sec_activity_sub": "Liczba głosowań na sesjach i ile z nich było spornych.", "legend_votes": "głosowania", "legend_contested": "sporne", "sec_contested_h2": "Ostatnie sporne głosowania", "sec_contested_sub": "Tam, gdzie rada była podzielona, każdy głos ważył najwięcej.", "th_vote": "Głosowanie", "th_date": "Data", "th_for": "Za", "th_against": "Przeciw", "th_abstain": "Wstrzym.", "th_split": "Rozkład", "sec_all_h2": "Cały serwis", "sec_all_sub": "Wejdź w dowolną część i sprawdź radnych z każdej strony.", "nav_label_main": "Strony podstawowe", "nav_label_extra": "Strony dodatkowe", "nav_councilors_title": "Lista radnych", "nav_councilors_desc": "Ranking, frekwencja i karta każdego radnego z pełną historią głosów.", "nav_sessions_title": "Sesje", "nav_sessions_desc": "Porządek obrad, protokoły i wyniki każdej sesji rady.", "nav_votes_title": "Głosowania", "nav_votes_desc": "Pełny, imienny rejestr głosowań z rozkładem za, przeciw, wstrzymanie.", "nav_interp_title": "Interpelacje", "nav_interp_desc": "Pytania i wnioski radnych wraz z odpowiedziami urzędu.", "nav_budget_title": "Budżety", "nav_budget_desc": "Wydatki miasta i to, kto jak głosował nad pieniędzmi.", "nav_committees_title": "Komisje", "nav_committees_desc": "Składy komisji i przebieg prac nad drukami przed sesją.", "proof_votes_label": "głosowań przeanalizowanych", "proof_councilors_label": "radnych monitorowanych", "proof_freq_value": "2× dziennie", "proof_freq_label": "dane aktualizowane", "proof_note": "Dane pochodzą bezpośrednio z {bip} i są aktualizowane automatycznie.", "cta_final_h3": "Sprawdź swojego radnego.", "cta_final_p": "Pełny rejestr jest otwarty i darmowy. Zobacz, jak głosował radny z Twojego okręgu, i porównaj go z resztą rady.", "cta_final_primary": "Sprawdź swojego radnego", "cta_rss": "Subskrybuj RSS", "footer_tagline": "to niezależny, otwarty monitoring rady", "footer_data_from": "Dane pochodzą z", "footer_license": "Kod na licencji AGPL", "footer_repo": "repozytorium", "footer_other_cities": "Pozostałe miasta", "footer_updated_2x": "i są odświeżane dwa razy dziennie", "back_home": "Wróć na stronę główną", "crumb_home": "Strona główna", "crumb_councilors": "Radni", "councilors_title": "Radni {name}", "councilors_sub": "{n} radnych w kadencji. Kliknij nagłówek, żeby posortować.", "search_placeholder": "Szukaj radnego…", "all_clubs": "Wszystkie kluby", "th_councilor": "Radny", "th_club": "Klub", "th_attendance": "Frekwencja", "th_votes_count": "Głosów", "th_agreement": "Zgodność z klubem", "shown_count": "Pokazano {n} z {total}"};
+function _t(k){ var v = LANDING_I18N && LANDING_I18N[k]; return (v==null)?'':v; }
+function _tf(k,o){ var s=_t(k); for(var p in o){ s=s.split('{'+p+'}').join(o[p]); } return s; }
+function _hl(s){ return s.replace(/\[\[(.+?)\]\]/,'<span class="hl">$1</span>'); }
+
+function _landingStats(){
+  var votes=(K&&K._landingVotes)||[], cs=(K&&K.councilors)||[], ss=(K&&K.sessions)||[];
+  // Sporne = strona mniejszościowa (za albo przeciw) ma >= 1/3 głosów
+  // rozstrzygających (za+przeciw). Próg względny: skaluje się z wielkością
+  // rady, w przeciwieństwie do dawnego |za-przeciw|<10, który w małych
+  // radach przepuszczał np. 10:1, a w dużych ucinał realne spory.
+  var contested=votes.filter(function(v){ var c=v.counts||{}, za=c.za||0, prz=c.przeciw||0, m=Math.min(za,prz); return m>0 && m*3>=(za+prz); });
+  var active=cs.slice().sort(function(a,b){ return (b.aktywnosc||0)-(a.aktywnosc||0) || (b.votes_total||0)-(a.votes_total||0); })[0];
+  // Niezrzeszeni / bez klubu nie mają linii klubowej, więc "głos wbrew klubowi"
+  // jest dla nich bez sensu (jak n/d w tabeli i profilu). Wyklucz ich z highlightu.
+  var rebel=cs.filter(function(c){return (c.rebellion_count||0)>0 && clubHasLine(c.club);}).sort(function(a,b){ return (b.rebellion_count||0)-(a.rebellion_count||0); })[0];
+  var real=votes.filter(function(v){ return ((v.counts||{}).przeciw||0)>0; });
+  var topVote=real.slice().sort(function(a,b){ var da=Math.abs((a.counts.za||0)-(a.counts.przeciw||0)), db=Math.abs((b.counts.za||0)-(b.counts.przeciw||0)); return da-db || ((b.counts.za+b.counts.przeciw)-(a.counts.za+a.counts.przeciw)); })[0];
+  // Aktywność: bazą są sesje (K.sessions ma vote_count + date + number),
+  // bo głosy per-vote (K._landingVotes) dociągane są leniwie i bywają puste.
+  // Nakładka "sporne" per data dochodzi z votes, gdy już dostępne.
+  var contestedByDate={}; contested.forEach(function(v){ var d=v.session_date||''; if(d)contestedByDate[d]=(contestedByDate[d]||0)+1; });
+  var activity;
+  if(ss.length){
+    activity=ss.filter(function(x){return x.date;})
+      .map(function(x){ return {date:x.date, number:x.number, votes:(x.vote_count||0), contested:(contestedByDate[x.date]||0)}; })
+      .sort(function(p,q){ return (p.date||'').localeCompare(q.date||''); });
+  } else {
+    var byDate={}; votes.forEach(function(v){ var d=v.session_date||''; if(!d)return; if(!byDate[d])byDate[d]={votes:0,contested:0,number:v.session_number}; byDate[d].votes++; if(contested.indexOf(v)>-1)byDate[d].contested++; });
+    activity=Object.keys(byDate).sort().map(function(d){ return {date:d,number:byDate[d].number,votes:byDate[d].votes,contested:byDate[d].contested}; });
+  }
+  var recent=contested.slice().sort(function(a,b){ return (b.session_date||'').localeCompare(a.session_date||''); }).slice(0,5);
+  return { tv:(K.total_votes!=null?K.total_votes:votes.length), tc:(K.total_councilors!=null?K.total_councilors:cs.length),
+           ts:(K.total_sessions!=null?K.total_sessions:ss.length), contested:contested.length,
+           active:active, rebel:rebel, topVote:topVote, activity:activity, recent:recent };
+}
+
+function renderLandingHTML(){
+  var s=_landingStats(), gen='' + CFG.cityGenitive + '';
+  var loaded=!!(K&&K._landingVotesLoaded);
+  var label=(K&&K.label)?String(K.label).replace(/Kadencja\s+/i,'').replace(/[–-]/g,' / '):'';
+  // Słowo "kadencja"/"term" tylko jeśli label go jeszcze nie zawiera (label
+  // bywa "IX kadencja (2024 / 2029)" albo gołe "2022 / 2026").
+  var termw=_t('term_word');
+  var termPart=label ? (' · '+((termw && label.toLowerCase().indexOf(termw.toLowerCase())>-1) ? label : (termw+' '+label))) : '';
+  var contestedTxt=loaded ? _lpNf(s.contested) : '…';
+  var a=s.active, r=s.rebel, tv=s.topVote, vm=tv?Math.abs((tv.counts.za||0)-(tv.counts.przeciw||0)):0;
+  var rows=s.recent.map(function(v){ var c=v.counts||{}, za=c.za||0, prz=c.przeciw||0, ws=c.wstrzymal_sie||0, tot=Math.max(za+prz+ws,1);
+    return '<tr><td style="font-weight:600">'+voteLink(v.id, _lpEsc(v.topic||''))+'</td><td class="mu">'+_lpDate(v.session_date)+'</td>'+
+      '<td style="text-align:right;color:var(--green);font-weight:600">'+za+'</td><td style="text-align:right;color:var(--red);font-weight:600">'+prz+'</td><td style="text-align:right" class="mu">'+ws+'</td>'+
+      '<td style="padding-left:16px"><div style="display:flex;gap:1px;height:14px"><div style="width:'+(za/tot*100).toFixed(0)+'%;background:var(--green);opacity:.85"></div><div style="width:'+(prz/tot*100).toFixed(0)+'%;background:var(--red);opacity:.85"></div><div style="width:'+(ws/tot*100).toFixed(0)+'%;background:var(--yellow);opacity:.85"></div></div></td></tr>'; }).join('');
+  var maxV=s.activity.reduce(function(x,e){ return Math.max(x,e.votes||0); },0)||1;
+  var bars=s.activity.map(function(e){ var h1=Math.round((e.votes||0)/maxV*64), h2=Math.round((e.contested||0)/maxV*64),
+      inner='<div style="position:absolute;bottom:0;width:100%;height:'+h1+'px;background:var(--accent);opacity:.6;border-radius:1px 1px 0 0"></div><div style="position:absolute;bottom:0;width:100%;height:'+h2+'px;background:var(--red);opacity:.6;border-radius:1px 1px 0 0"></div>',
+      st='flex:1;position:relative;height:64px;display:block',
+      ttl=_lpEsc((e.date||'')+' · '+(e.votes||0)+' '+_t('legend_votes')+' · '+(e.contested||0)+' '+_t('legend_contested'));
+    return e.number!=null ? '<a href="/session/'+encodeURIComponent(e.number)+'/" onclick="event.preventDefault();showSession(\''+e.number+'\')" title="'+ttl+'" style="'+st+'">'+inner+'</a>' : '<div title="'+ttl+'" style="'+st+'">'+inner+'</div>'; }).join('');
+  var ax=s.activity.length?('<span>'+_lpMY(s.activity[0].date)+'</span><span>'+_lpMY(s.activity[s.activity.length-1].date)+'</span>'):'';
+  function nav(tab,tk,dk){ return '<a class="lp-navcard" href="#" onclick="event.preventDefault();_lpGo(\''+tab+'\')"><div class="nk">'+_t(tk)+' <span class="ar">&rarr;</span></div><div class="nd">'+_t(dk)+'</div></a>'; }
+  return ''+
+  '<section class="lp-hero"><div class="lp-eyebrow">'+_tf('hero_eyebrow',{name:gen})+termPart+'</div>'+
+    '<h1 class="lp-h1">'+_hl(_t('hero_title'))+'</h1>'+
+    '<p class="lp-insight">'+_tf('insight_full',{name:gen,votes:_lpNf(s.tv),contested:contestedTxt})+'</p>'+
+    '<div class="lp-cta"><a class="lp-btn lp-btn-p" href="/councillors/" onclick="event.preventDefault();_lpGo(\'ranking\')">'+_t('cta_check_votes')+'</a>'+
+    '<a class="lp-btn lp-btn-g" href="#" onclick="event.preventDefault();_lpGo(\'votes\')">'+_t('cta_all_votes')+'</a></div></section>'+
+  '<section class="lp-sec"><h2>'+_t('sec_numbers_h2')+'</h2><div class="lp-sub">'+_t('sec_numbers_sub')+'</div><div class="lp-stats">'+
+    '<div class="lp-card lp-stat"><div class="v">'+_lpNf(s.tv)+'</div><div class="l">'+_t('stat_votes_label')+'</div></div>'+
+    '<div class="lp-card lp-stat"><div class="v">'+s.tc+'</div><div class="l">'+_t('stat_councilors_label')+'</div></div>'+
+    '<div class="lp-card lp-stat"><div class="v">'+contestedTxt+'</div><div class="l">'+_t('stat_contested_label')+'</div></div>'+
+    '<div class="lp-card lp-stat"><div class="v">'+s.ts+'</div><div class="l">'+_t('stat_sessions_label')+'</div></div></div></section>'+
+  (a?('<section class="lp-sec"><h2>'+_t('sec_highlights_h2')+'</h2><div class="lp-sub">'+_t('sec_highlights_sub')+'</div><div class="lp-hl">'+
+    '<div class="lp-hcard"><div><div class="lp-tag">'+_t('hl_active_tag')+'</div><div class="lp-name">'+profileLink(a.name)+'</div><div class="lp-hsub">'+_t('hl_active_sub')+'</div>'+_lpBadge(a.club)+'</div><div class="lp-num"><span>'+Math.round(a.aktywnosc||0)+'</span><small>'+_t('hl_active_unit')+'</small></div></div>'+
+    (r?('<div class="lp-hcard"><div><div class="lp-tag">'+_t('hl_rebel_tag')+'</div><div class="lp-name">'+profileLink(r.name)+'</div><div class="lp-hsub">'+_t('hl_rebel_sub')+'</div>'+_lpBadge(r.club)+'</div><div class="lp-num"><span>'+(r.rebellion_count||0)+'</span><small>'+_t('hl_rebel_unit')+'</small></div></div>'):'')+
+    (tv?('<div class="lp-hcard"><div><div class="lp-tag">'+_t('hl_vote_tag')+'</div><div class="lp-name">'+voteLink(tv.id, _lpEsc(tv.topic||''))+'</div><div class="lp-hsub">'+_lpDate(tv.session_date)+' · '+_tf('vote_margin',{n:vm})+'</div></div><div class="lp-num"><span>'+(tv.counts.za||0)+':'+(tv.counts.przeciw||0)+'</span><small>'+_t('hl_vote_unit')+'</small></div></div>'):'')+
+    '</div></section>'):'')+
+  (s.activity.length?('<section class="lp-sec"><h2>'+_t('sec_activity_h2')+'</h2><div class="lp-sub">'+_t('sec_activity_sub')+'</div><div class="lp-card"><div style="display:flex;gap:8px;align-items:flex-start"><div style="display:flex;flex-direction:column;justify-content:space-between;height:64px;font-size:.68rem;color:var(--muted);text-align:right;flex:0 0 auto" aria-hidden="true"><span>'+maxV+'</span><span>'+Math.round(maxV/2)+'</span><span>0</span></div><div style="flex:1;min-width:0"><div class="lp-spark">'+bars+'</div><div class="lp-axis">'+ax+'</div></div></div><div style="display:flex;gap:16px;font-size:.78rem"><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--accent)"></span><span class="mu">'+_t('legend_votes')+'</span></span><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:2px;background:var(--red)"></span><span class="mu">'+_t('legend_contested')+'</span></span></div></div></section>'):'')+
+  (rows?('<section class="lp-sec"><h2>'+_t('sec_contested_h2')+'</h2><div class="lp-sub">'+_t('sec_contested_sub')+'</div><div class="lp-card"><table><thead><tr><th>'+_t('th_vote')+'</th><th>'+_t('th_date')+'</th><th style="text-align:right">'+_t('th_for')+'</th><th style="text-align:right">'+_t('th_against')+'</th><th style="text-align:right">'+_t('th_abstain')+'</th><th style="padding-left:16px">'+_t('th_split')+'</th></tr></thead><tbody>'+rows+'</tbody></table></div></section>'):'')+
+  '<div id="lp-spolki"></div>'+
+  '<section class="lp-sec"><h2>'+_t('sec_all_h2')+'</h2><div class="lp-sub">'+_t('sec_all_sub')+'</div>'+
+    '<div class="lp-navlabel">'+_t('nav_label_main')+'</div><div class="lp-nav">'+
+    nav('ranking','nav_councilors_title','nav_councilors_desc')+
+    nav('sessions','nav_sessions_title','nav_sessions_desc')+
+    nav('votes','nav_votes_title','nav_votes_desc')+'</div>'+
+    '<div class="lp-navlabel">'+_t('nav_label_extra')+'</div><div class="lp-nav">'+
+    nav('interpelacje','nav_interp_title','nav_interp_desc')+
+    nav('budget','nav_budget_title','nav_budget_desc')+
+    nav('komisje','nav_committees_title','nav_committees_desc')+'</div></section>'+
+  _landingCompareSection()+
+  '<section class="lp-sec"><div class="lp-band"><h3>'+_t('cta_final_h3')+'</h3><p>'+_t('cta_final_p')+'</p><div class="lp-cta" style="justify-content:center"><a class="lp-btn lp-btn-p" href="/councillors/" onclick="event.preventDefault();_lpGo(\'ranking\')">'+_t('cta_final_primary')+'</a></div></div></section>';
+}
+
+function showLanding(){
+  hideAllViews();
+  var lv=document.getElementById('landing-view');
+  // Stare/niespójne prerendery SEO (np. /councillors/ sprzed przejścia na
+  // "landing jako /") nie mają kontenera #landing-view. Wcześniej showLanding
+  // robił wtedy showMain() = lista radnych, więc "Strona główna" lądowała na
+  // liście radnych zamiast na landingu. Tworzymy kontener w locie zamiast
+  // degradować do listy radnych (bez przeładowania, brak ryzyka pętli).
+  if(!lv){
+    lv=document.createElement('div');
+    lv.id='landing-view';
+    var app=document.getElementById('app');
+    if(app && app.parentNode){ app.parentNode.insertBefore(lv, app); }
+    else { document.body.appendChild(lv); }
+  }
+  lv.style.display='block';
+  try { lv.innerHTML=renderLandingHTML(); }
+  catch(e){ lv.style.display='none'; showMain(); activateTab('ranking'); return; }
+  navigateTo('/', true);
+  setTitle('');
+  setOgMeta({ title: BASE_TITLE, description: '' + CFG.siteDescription + '', url: '' + CFG.siteUrl + '/' });
+  window.scrollTo(0,0);
+  try { renderLandingSpolki(); } catch(e) {}
+  // Progressive enhancement: dociągnij staty radnych (sporne/topVote/wbrew
+  // klubowi/tabela), których K nie zawiera w payloadzie kadencji, potem
+  // przerysuj landing.
+  _loadRadniStats();
+}
+
+// Dedykowany loader statów radnych na landing (odpowiednik _loadSpolki dla
+// spółek). Sekcje "sporne", "kontrowersyjne głosowanie" i "wbrew klubowi"
+// potrzebują danych per-głos, a kadencja przychodzi bez K.votes (ładowane
+// leniwie). Loader dociąga je raz, stronicowo, cache na K; liczy i cache'uje
+// podsumowanie (_radniStatsCache) niezależnie od tego, co akurat renderuje UI,
+// i zwraca je. Po doładowaniu przerysowuje landing, jeśli wciąż widoczny.
+let _radniStatsCache = null;
+async function _loadRadniStats(){
+  if(!K) return _radniStatsCache;
+  // Dane per-głos już są (albo trwa ich pobieranie) — policz/oddaj cache.
+  if(K._landingVotesLoaded) return (_radniStatsCache = _landingStats());
+  if(K._landingVotesLoading) return _radniStatsCache;
+  if(typeof API_BASE==='undefined' || !K.id){
+    K._landingVotesLoaded = true;
+    return (_radniStatsCache = _landingStats());
+  }
+  K._landingVotesLoading = true;
+  try {
+    var all=[], page=1, totalPages=1;
+    do {
+      var resp = await fetch(API_BASE + '/kadencja/' + K.id + '/votes?per_page=500&page=' + page);
+      if(!resp.ok) break;
+      var data = await resp.json();
+      (data.items||[]).forEach(function(v){ all.push(v); });
+      totalPages = data.total_pages || 1;
+      page++;
+    } while (page <= totalPages && page <= 40);
+    K._landingVotes = all; // osobny klucz, nie koliduje z porównywarką radnych (K.votes)
+    K._landingVotesLoaded = true;
+  } catch(e) {
+    K._landingVotesLoaded = true; // degraduj cicho — sekcje bez danych zostają ukryte
+  }
+  K._landingVotesLoading = false;
+  _radniStatsCache = _landingStats();
+  var lv=document.getElementById('landing-view');
+  if(lv && lv.style.display!=='none' && (location.pathname==='/'||location.pathname==='')){
+    try { lv.innerHTML=renderLandingHTML(); renderLandingSpolki(); } catch(e){}
+  }
+  return _radniStatsCache;
+}
+
+// Raport BI (Superset) przeniesiony na stronę Radar (docs_eu/radar/index.html) —
+// zakładka Budżet miasta nie zawiera już osadzonego raportu między-miastowego.
+
+function render() {
+  renderClubFilter();
+  renderCouncilorTable();
+  renderSessionsTable();
+  _votesPage = 1;
+  renderVotesTable();
+  renderBudget();
+  bindTabs();
+  bindSort();
+}
+
+// Lista radnych aktywnej kadencji z PROFILES (tryb faction). Zwraca
+// [{name, slug, club, komisje}] posortowane klub→nazwisko.
+function rosterFromProfiles() {
+  if (!PROFILES || !PROFILES.profiles) return [];
+  const out = [];
+  PROFILES.profiles.forEach(p => {
+    if (p.is_suppleant) return;
+    const kd = (p.kadencje && (p.kadencje[currentKid] || p.kadencje[p.kadencja])) || {};
+    out.push({ name: p.name, slug: p.slug, club: p.club || kd.club || '', komisje: kd.komisje || [] });
+  });
+  out.sort((a, b) => (a.club || '').localeCompare(b.club || '', 'pl') || a.name.localeCompare(b.name, 'pl'));
+  return out;
+}
+
+function renderClubFilter() {
+  const source = COUNCILOR_ROSTER_MODE ? rosterFromProfiles() : (K.councilors || []);
+  const clubs = [...new Set(source.map(c=>c.club))].filter(c => c && c !== '?').sort();
+  const bar = document.getElementById('club-filter');
+  bar.innerHTML = `<button class="filter-btn active" data-club="all">Wszyscy</button>` +
+    clubs.map(c => `<button class="filter-btn" data-club="${c}">${c}</button>`).join('');
+  bar.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.onclick = () => {
+      clubFilter = btn.dataset.club;
+      bar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCouncilorTable();
+    };
+  });
+}
+
+function initials(name) {
+  return name.split(' ').map(w => w[0]).join('').substring(0,2);
+}
+
+function renderCouncilorRoster() {
+  const wrap = document.getElementById('councilor-table-wrap');
+  const roster = document.getElementById('councilor-roster');
+  if (wrap) wrap.style.display = 'none';
+  if (!roster) return;
+  roster.style.display = '';
+  let data = rosterFromProfiles();
+  if (clubFilter !== 'all') data = data.filter(c => c.club === clubFilter);
+  if (!data.length) {
+    roster.innerHTML = "<p style=\"color:var(--muted);padding:20px 0\">Lista radnych jeszcze niedostępna dla tego miasta.</p>";
+    return;
+  }
+  const rows = data.map(c => {
+    const komisje = (c.komisje || []).length
+      ? `<div style="margin-top:6px;display:flex;gap:4px;flex-wrap:wrap">${c.komisje.map(k => `<span class="tag" style="font-size:0.72rem;padding:2px 7px">${k}</span>`).join('')}</div>`
+      : '';
+    return `<div style="display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-top:0.5px solid var(--border)">
+      <span class="club ${clubClass(c.club)}" style="margin-top:1px">${(c.club && c.club !== '?') ? c.club : 'Niezrzeszeni'}</span>
+      <div style="min-width:0">${profileLink(c.name)}${komisje}</div>
+    </div>`;
+  }).join('');
+  roster.innerHTML = `<p style="color:var(--muted);font-size:0.9rem;margin-bottom:4px">${data.length} ${data.length === 1 ? 'radny/a' : 'radnych'}</p>${rows}`;
+}
+
+function renderCouncilorTable() {
+  if (COUNCILOR_ROSTER_MODE) { renderCouncilorRoster(); return; }
+  const tbody = document.querySelector('#councilor-table tbody');
+  let data = K.councilors || [];
+  if (clubFilter !== 'all') data = data.filter(c => c.club === clubFilter);
+
+  data = [...data].sort((a,b) => {
+    let va = a[currentSort.key], vb = b[currentSort.key];
+    if (currentSort.key === 'name') {
+      const pa = va.split(' '), pb = vb.split(' ');
+      const cmp = pa[pa.length-1].localeCompare(pb[pb.length-1], 'pl') || va.localeCompare(vb, 'pl');
+      return currentSort.asc ? cmp : -cmp;
+    }
+    if (typeof va === 'string') return currentSort.asc ? va.localeCompare(vb) : vb.localeCompare(va);
+    return currentSort.asc ? va - vb : vb - va;
+  });
+
+  tbody.innerHTML = data.map(c => {
+    const checked = compareList.includes(c.name);
+    return `<tr>
+      <td><input type="checkbox" class="compare-check" data-name="${c.name.replace(/"/g, '&quot;')}" ${checked?'checked':''} onchange="toggleCompare(this.dataset.name, this.checked)" aria-label="Porównaj ${c.name}"></td>
+      <td>${profileLink(c.name)}</td>
+      <td><span class="club ${clubClass(c.club)}">${(c.club && c.club !== '?') ? c.club : 'Niezrzeszeni'}</span></td>
+      <td>${pctBar(c.frekwencja)}</td>
+      <td>${pctBar(c.aktywnosc)}</td>
+      <td>${!clubHasLine(c.club) ? '<span style="color:var(--muted)">n/d</span>' : c.zgodnosc_z_klubem + '%'}</td>
+      <td>${c.votes_za}</td>
+      <td>${c.votes_przeciw > 0 ? `<span class="pill pill-przeciw">${c.votes_przeciw}</span>` : '0'}</td>
+      <td>${c.votes_wstrzymal > 0 ? `<span class="pill pill-wstrzymal">${c.votes_wstrzymal}</span>` : '0'}</td>
+      <td>${c.votes_brak ?? 0}</td>
+      <td>${!clubHasLine(c.club) ? '<span style="color:var(--muted)">n/d</span>' : (c.rebellion_count > 0 ? `<span class="pill pill-przeciw">${c.rebellion_count}</span>` : '0')}</td>
+    </tr>`;
+  }).join('');
+
+  // Update sort indicators
+  document.querySelectorAll('#councilor-table th[data-sort]').forEach(th => {
+    const arrow = th.querySelector('.sort-arrow');
+    if (th.dataset.sort === currentSort.key) {
+      th.classList.add('sorted');
+      arrow.textContent = currentSort.asc ? '▲' : '▼';
+    } else {
+      th.classList.remove('sorted');
+      arrow.textContent = '';
+    }
+  });
+}
+
+
+function switchProfileTab(tab, source) {
+  ['main', 'votes', 'activity'].forEach(t => {
+    const el = document.getElementById('profile-tab-' + t);
+    if (el) el.style.display = t === tab ? '' : 'none';
+  });
+  document.querySelectorAll('.profile-tab').forEach((btn, i) => {
+    const tabs = ['main', 'votes', 'activity'];
+    btn.classList.toggle('active', tabs[i] === tab);
+  });
+  // Umami: które karty profilu klikają userzy. source rozróżnia klik użytkownika
+  // ('click') od programowego ustawienia taba przy deep-linku ('deeplink',
+  // ?tab=activity z feedu/postów), które i tak liczy się jako view_profile.
+  var _slug = '';
+  try {
+    var _m = location.pathname.match(/\/profile\/([^/]+)\//);
+    if (_m) _slug = decodeURIComponent(_m[1]);
+  } catch (e) {}
+  trackEvent('profile_tab', {tab_name: tab, profile_slug: _slug, source: source || 'click'});
+}
+
+// Tab profilu z query (?tab=activity), używany przy deep-linkach np. z
+// feedu/postów social. Tylko whitelist tabów profilu; inne wartości ignorujemy.
+function _profileTabFromQuery() {
+  try {
+    const t = new URLSearchParams(location.search).get('tab');
+    return (t && ['main', 'votes', 'activity'].includes(t)) ? t : null;
+  } catch (e) { return null; }
+}
+
+function showProfile(name, initialTab) {
+  const profile = findProfile(name);
+  if (!profile) return;
+
+  trackEvent('view_profile', {profile_name: name, profile_slug: profile.slug});
+  hideAllViews();
+  const view = document.getElementById('profile-view');
+  view.style.display = 'block';
+  navigateTo('/profile/' + profile.slug + '/');
+  var _pk = profile.kadencje[Object.keys(profile.kadencje).pop()] || {};
+  // Title/meta sp\u00f3jne ze statycznym prerenderem (generate_seo_pages.py):
+  // nazwisko z przodu + obietnica tre\u015bci g\u0142osowa\u0144. Wygrywa klik na zapytanie
+  // nazwiskiem polityka.
+  //
+  // Fraza rady: 'Rada Miasta ' + CFG.cityGenitive + '' to klucz katalogu apply_locale
+  // (t\u0142umaczy si\u0119 na obce locale) i jest przechwytywana przez _assembly_transform
+  // na sejmikach ("Rada Miasta" \u2192 "Sejmik Wojew\u00f3dztwa", DE \u2192 "Landtag"). Trzymamy
+  // j\u0105 w mianowniku, bo transform odmiany lokatywnej ("w Radzie Miasta") da\u0142by
+  // b\u0142\u0119dny celownik "w Sejmikowi".
+  //
+  // Polskie frazy marketingowe ('jak g\u0142osuje', 'Zapis g\u0142osowa\u0144', ...) NIE s\u0105 w
+  // katalogu, wi\u0119c na obcych locale zosta\u0142yby po polsku \u2014 dlatego pe\u0142n\u0105 kopi\u0119
+  // dajemy tylko gdy lang=pl (miasta PL + sejmiki). Reszta dostaje rzeczowy
+  // fallback z\u0142o\u017cony z fraz t\u0142umaczonych.
+  var _council = 'Rada Miasta ' + CFG.cityGenitive + '';
+  var _isPl = (document.documentElement.lang || 'pl').toLowerCase() === 'pl';
+  var _clubShort = (_pk.club || '').trim();
+  var _clubNone = ['','niezrzeszony','niezrzeszona','niezrzeszeni','?','brak','-'].indexOf(_clubShort.toLowerCase()) !== -1;
+  var _clubParen = _clubNone ? '' : ' (' + _clubShort + ')';
+  var _hasVd = _pk.has_voting_data;
+  var _profTitle, _profDesc;
+  if (_isPl && _hasVd) {
+    _profTitle = profile.name + _clubParen + ' \u2013 jak g\u0142osuje, ' + _council;
+    var _vt = _pk.votes_total || ((_pk.votes_za||0)+(_pk.votes_przeciw||0)+(_pk.votes_wstrzymal||0));
+    _profDesc = 'Zapis g\u0142osowa\u0144: ' + profile.name + _clubParen + ', ' + _council + '. '
+      + _vt + ' g\u0142osowa\u0144, frekwencja ' + (_pk.frekwencja||0).toFixed(0) + '%, zgodno\u015b\u0107 z klubem ' + (_pk.zgodnosc_z_klubem||0).toFixed(0) + '%'
+      + (_pk.rebellion_count ? ', ' + _pk.rebellion_count + ' razy wbrew klubowi' : '')
+      + '. Sprawd\u017a pe\u0142n\u0105 aktywno\u015b\u0107 i przynale\u017cno\u015b\u0107 klubow\u0105.';
+  } else {
+    // Obce locale lub brak danych g\u0142osowa\u0144: tylko frazy z katalogu i liczby.
+    _profTitle = profile.name + _clubParen + ' \u2013 ' + _council;
+    _profDesc = profile.name + _clubParen + '. '
+      + (_hasVd ? 'Frekwencja ' + (_pk.frekwencja||0).toFixed(0) + '%. ' : '')
+      + _council + '.';
+  }
+  document.title = _profTitle;
+  setOgMeta({
+    title: _profTitle,
+    description: _profDesc,
+    url: '' + CFG.siteUrl + '/profile/' + profile.slug + '/',
+    image: '' + CFG.siteUrl + '/profile/' + profile.slug + '/og.png'
+  });
+
+  // Find which kadencje this person has data for
+  const kids = Object.keys(profile.kadencje);
+  let activeKid = kids.includes(currentKid) ? currentKid : kids[kids.length - 1];
+
+  async function renderProfileDetail(kid) {
+    const kd = profile.kadencje[kid];
+    if (!kd) return;
+
+    const club = kd.club || '?';
+    const hasVotes = kd.has_voting_data;
+
+    // Profile actions panel po prawej stronie imienia w profile-header.
+    // Stack pionowy: opcjonalna karta Mandat (okręg + komisje), Udostępnij,
+    // Alerty. Każda karta dodawana warunkowo. Wraps pod info na wąskim
+    // viewport. Cały panel chowa się gdy żadna karta nie ma sensu.
+    const _profileCards = [];
+
+    if (kd.okręg || (kd.komisje && kd.komisje.length > 0)) {
+      let _mandateBody = '';
+      if (kd.okręg) {
+        _mandateBody += `<div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:3px;font-weight:500">Okręg wyborczy</div>
+          <div style="font-size:0.95rem;font-weight:500;line-height:1.25">Okręg nr ${kd.okręg}</div>
+          ${kd.okręg_dzielnice ? `<div style="font-size:0.76rem;color:var(--muted);margin-top:2px;line-height:1.3">${kd.okręg_dzielnice}</div>` : ''}`;
+      }
+      if (kd.komisje && kd.komisje.length > 0) {
+        _mandateBody += `${kd.okręg ? '<div style="margin-top:10px;padding-top:10px;border-top:0.5px solid var(--border)"></div>' : ''}
+          <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;font-weight:500">Komisje</div>
+          <div style="display:flex;gap:4px;flex-wrap:wrap">${kd.komisje.map(k => {
+            const _kslug = komisjaSlugFromLabel(k);
+            const _kesc = _kslug.replace(/'/g, "\\'");
+            return `<a class="tag" href="/commission/${encodeURIComponent(_kslug)}/" onclick="event.preventDefault();showKomisja('${_kesc}')" style="font-size:0.72rem;padding:2px 7px;text-decoration:none;cursor:pointer">${k}</a>`;
+          }).join('')}</div>`;
+      }
+      _profileCards.push(`<div class="section" style="margin-bottom:0;padding:12px 14px">${_mandateBody}</div>`);
+    }
+
+    // ktomaco.pl — link do oświadczeń majątkowych (jeśli skonfigurowane)
+    const _ktomacoSlug = {}[profile.slug];
+    if ("https://ktomaco.pl/osoba/" && _ktomacoSlug) {
+      _profileCards.push(`<div class="section" style="margin-bottom:0;padding:12px 14px">
+        <div style="font-size:0.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:6px;font-weight:500">Oświadczenia majątkowe</div>
+        <a href="https://ktomaco.pl/osoba/${encodeURIComponent(_ktomacoSlug)}/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--accent);text-decoration:none;font-weight:500">
+          <span style="font-size:1rem">💰</span> Sprawdź na ktomaco.pl
+        </a>
+      </div>`);
+    }
+
+    // alertBtnHtml zadeklarowane w outer scope (let) bo używamy go zarówno
+    // w środku if(hasVotes) jak i w template literal niżej (przy renderowaniu
+    // inline button obok h2 z nazwiskiem). const w bloku rzucał ReferenceError.
+    let alertBtnHtml = '';
+    if (hasVotes) {
+      const profileShareUrl = '' + CFG.siteUrl + '/profile/' + profile.slug + '/';
+      const profileShareTitle = profile.name + ' – Radoskop ' + CFG.cityName + '';
+      const profileShareText = profile.name + ' (' + club + '): frekwencja ' + Math.round(kd.frekwencja) + '%, zgodność z klubem ' + Math.round(kd.zgodnosc_z_klubem) + '%. Sprawdź na Radoskopie!';
+      const _alertCitySlug = '' + CFG.citySlug + '';
+      const _alertCouncilorSlug = profile.slug;
+      const _alertCouncilorName = profile.name;
+      // Tekst musi pasować do _initAlertBtn i toggleCouncilorAlert które
+      // przypisują '🔔 Obserwuj radnego' / '🔕 Przestań obserwować'.
+      // Inaczej widać flicker między load a JS init.
+      alertBtnHtml = _authUser
+        ? `<button id="alert-toggle-btn" style="padding:5px 12px;border-radius:6px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer;font-size:0.82rem;font-family:inherit;white-space:nowrap"
+            onclick="toggleCouncilorAlert('${_alertCitySlug}','${_alertCouncilorSlug}','${_alertCouncilorName.replace(/'/g,"\'")}')"
+          >🔔 Obserwuj radnego</button>`
+        : `<button class="auth-btn" style="font-size:0.82rem;padding:5px 12px;white-space:nowrap"
+            onclick="trackEventBeforeNav('login-unlock',{unlock:'alerts'}).then(function(){window.location.href='${AUTH_FRONTEND}/?bridge_to='+encodeURIComponent(window.location.href)+'&unlock=alerts'})">
+            🔔 Zaloguj, by obserwować
+          </button>`;
+      _profileCards.push(`<div class="section" style="margin-bottom:0;padding:12px 14px">
+        <h2 style="font-size:0.95rem;margin-bottom:8px;padding-bottom:6px">Udostępnij</h2>
+        <div class="share-bar">
+          ${shareBarInner(profileShareTitle, profileShareText, profileShareUrl, 'profile-share')}
+          <button class="share-btn" onclick="downloadCard('${profile.name.replace(/'/g,"\\'")}','${club}',${kd.frekwencja},${kd.aktywnosc},${kd.zgodnosc_z_klubem},${kd.votes_za},${kd.votes_przeciw},${kd.votes_wstrzymal})">📥 Karta</button>
+          <button class="share-btn" onclick="showEmbedCode('${profile.slug}')">&lt;/&gt; Osadź</button>
+        </div>
+        <div id="embed-modal" style="display:none;margin-top:10px">
+          <textarea id="embed-code" readonly style="width:100%;height:70px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);padding:8px;font-size:0.75rem;font-family:monospace;resize:none"></textarea>
+          <button style="margin-top:6px;padding:5px 12px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;font-size:0.8rem;font-family:inherit" onclick="navigator.clipboard.writeText(document.getElementById('embed-code').value)">Kopiuj kod</button>
+        </div>
+      </div>`);
+      // Alerty card usunięta — przycisk "Obserwuj radnego" inline obok
+      // h2 z nazwiskiem w profile-info. Mniej hałasu, jasniejsza akcja,
+      // i nie powiększa sidebar'a (chronimy przestrzeń pod sekcjami).
+    }
+
+    // Float-right sidebar: cards oblywają się obok następnego contentu
+    // (avatar+info, kadencja toggle, tab bar, metric row itd.). Gdy content
+    // przerasta wysokość sidebar'a, naturalnie ciągnie się dalej pełną
+    // szerokością poniżej. Mobile (poniżej 720px): float:none przez CSS
+    // media query, cards stackują się przed contentem.
+    const _profileActionsHtml = _profileCards.length === 0 ? '' :
+      `<aside class="profile-actions" style="display:flex;flex-direction:column;gap:10px">${_profileCards.join('')}</aside>`;
+
+    // Avatar+info pierwsze pełną szerokością, potem actions (float:right
+     // przez CSS) - subsequent content (kadencja, tab bar, metric row) flow
+     // wokół. Na mobile (flex column) avatar+info → cards → kadencja → tab →
+     // metric naturalnie po DOM order, bez potrzeby trickow z order.
+    let html = `
+      <button class="profile-back" onclick="showMain()">← Strona główna</button>
+      <div class="profile-header">
+        <div style="display:flex;gap:24px;align-items:flex-start;margin-bottom:16px">
+          <div class="profile-avatar" style="background:${clubBg(club)}">${initials(profile.name)}</div>
+          <div class="profile-info" style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:28px;flex-wrap:wrap">
+              <h2 style="margin:0">${profile.name}</h2>
+              ${hasVotes ? `<div id="alert-section" style="display:inline-flex;align-items:center;gap:8px">
+                ${alertBtnHtml}
+                <span id="alert-status" style="font-size:0.78rem;color:var(--muted)"></span>
+              </div>` : ''}
+            </div>
+            <div class="subtitle">
+              <span class="club ${clubClass(club)}">${club}</span>
+              ${kd.club_full ? ` · ${kd.club_full}` : ''}
+            </div>
+            ${kd.roles && kd.roles.length > 0 ? `<div class="subtitle" style="margin-top:4px">${kd.roles.join(' · ')}</div>` : ''}
+            ${kd.mandate_end ? `<div class="subtitle" style="margin-top:4px;color:var(--yellow)">Mandat wygaszony: ${kd.mandate_end}</div>` : (kd.notes ? `<div class="subtitle" style="margin-top:4px;color:var(--yellow)">${kd.notes}</div>` : '')}
+          </div>
+        </div>
+        ${_profileActionsHtml}`;
+
+    // Kadencja toggle — always show all kadencje, disable if councilor has no data there
+    const allKadencje = RAW.kadencje.map(k => k.id);
+    html += `<div class="profile-kadencja-toggle">`;
+    for (const k of allKadencje) {
+      const kadObj = RAW.kadencje.find(kk => kk.id === k);
+      const label = kadObj ? kadObj.label : k;
+      const hasData = kids.includes(k);
+      if (hasData) {
+        html += `<button class="kadencja-btn ${k===kid?'active':''}" onclick="window._profileKadSwitch('${k}')">${label}</button>`;
+      } else {
+        html += `<button class="kadencja-btn" style="opacity:0.35;cursor:default" title="Brak danych dla tej kadencji">${label}</button>`;
+      }
+    }
+    html += `</div>`;
+
+    html += `<div class="profile-tab-bar">
+      <button class="profile-tab active" onclick="switchProfileTab('main')">Główna</button>
+      <button class="profile-tab" onclick="switchProfileTab('votes')">Głosy</button>
+      <button class="profile-tab" onclick="switchProfileTab('activity')">Aktywność</button>
+    </div>`;
+    html += `<div id="profile-tab-main">`;
+
+    // Voting summary: donut + vote breakdown + 3 KPI pills (Frek/Akt/Zgod)
+    // wszystko w jednym wierszu. Wcześniej KPI były osobnymi metric-cards
+    // wyżej, teraz są kompaktowe i siedzą obok donuta.
+    if (hasVotes) {
+      const _kpiColor = (v) => v >= 90 ? 'var(--green)' : v >= 70 ? 'var(--yellow)' : 'var(--red)';
+      html += `<div style="display:flex;gap:28px;align-items:center;margin-bottom:24px;flex-wrap:wrap">
+          <div style="flex-shrink:0">
+            <canvas id="profile-chart" style="width:110px;height:110px"></canvas>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,auto);gap:6px 18px;align-items:baseline">
+            <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">Łącznie</span>
+            <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">Za</span>
+            <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">Przeciw</span>
+            <span style="font-size:1.3rem;font-weight:700">${kd.votes_total}</span>
+            <span style="font-size:1.3rem;font-weight:700;color:var(--green)">${kd.votes_za}</span>
+            <span style="font-size:1.3rem;font-weight:700;color:var(--red)">${kd.votes_przeciw}</span>
+            <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">${isFemale(profile.name) ? 'Wstrzymała' : 'Wstrzymał'}</span>
+            <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">Brak głosu</span>
+            <span style="font-size:0.78rem;color:var(--muted);text-transform:uppercase">${isFemale(profile.name) ? 'Nieobecna' : 'Nieobecny'}</span>
+            <span style="font-size:1.3rem;font-weight:700;color:var(--yellow)">${kd.votes_wstrzymal}</span>
+            <span style="font-size:1.3rem;font-weight:700">${kd.votes_brak ?? 0}</span>
+            <span style="font-size:1.3rem;font-weight:700">${kd.votes_nieobecny}</span>
+          </div>
+          <div style="display:flex;gap:24px;flex:1;justify-content:flex-end;align-items:center;flex-wrap:wrap;padding-left:8px;border-left:1px solid var(--border);min-height:80px;padding-top:4px;padding-bottom:4px">
+            <div style="text-align:center;min-width:70px">
+              <div style="font-size:1.7rem;font-weight:700;line-height:1;color:${_kpiColor(kd.frekwencja)}">${kd.frekwencja}%</div>
+              <div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:5px">Frekwencja</div>
+            </div>
+            <div style="text-align:center;min-width:70px">
+              <div style="font-size:1.7rem;font-weight:700;line-height:1;color:${_kpiColor(kd.aktywnosc)}">${kd.aktywnosc}%</div>
+              <div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:5px">Aktywność</div>
+            </div>
+            ${!clubHasLine(kd.club) ? '' : `<div style="text-align:center;min-width:70px">
+              <div style="font-size:1.7rem;font-weight:700;line-height:1">${kd.zgodnosc_z_klubem}%</div>
+              <div style="font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;margin-top:5px">Zgodność z klubem</div>
+            </div>`}
+          </div>
+        </div>`;
+    } else if (kd.former) {
+      html += `<div class="section"><p style="color:var(--muted)">Brak danych głosowania — mandat zakończony przed dostępnym okresem danych.</p></div>`;
+    }
+
+    // Cross-city comparison widget (premium conversion)
+    if (hasVotes && kd.percentile_tier) {
+      const isLoggedIn = !!_authUser;
+      const tierLabel = kd.percentile_tier_label || '';
+      const nCities = kd.percentile_tier_n_cities || 0;
+      const nCouncilors = kd.percentile_tier_n_councilors || 0;
+      const pAkt = kd.percentile_aktywnosc ?? null;
+      const pFrek = kd.percentile_frekwencja ?? null;
+      const pZgod = kd.percentile_zgodnosc ?? null;
+
+      function _barColor(pct) {
+        if (pct >= 75) return 'var(--green)';
+        if (pct >= 40) return 'var(--yellow)';
+        return 'var(--red)';
+      }
+      function _rankLabel(pct) {
+        if (pct === null) return '';
+        // pct = percentile rank (better than X% of councilors). Etykieta
+        // "Top Y%" wymaga inwersji: Y = 100 - pct. Float, bez clampu na 1% —
+        // czubek stawki dostaje precyzyjne "Top 0,12%" w stylu OnlyFans.
+        // Granularność i tak ograniczona liczbą radnych w grupie (100/N), więc
+        // floor = 100/nCouncilors żeby nie pokazać niemożliwie małej liczby.
+        let top = 100 - pct;
+        const floor = nCouncilors > 0 ? 100 / nCouncilors : 0;
+        if (floor > 0 && top < floor) top = floor;
+        // Adaptacyjna precyzja: im bliżej czubka, tym więcej cyfr.
+        let decimals;
+        if (top >= 10) decimals = 0;
+        else if (top >= 1) decimals = 1;
+        else if (top >= 0.1) decimals = 2;
+        else decimals = 3;
+        let s = top.toFixed(decimals);
+        // Utnij zbędne zera końcowe (0,40 → 0,4; 5,0 → 5) i podmień na przecinek.
+        if (s.indexOf('.') !== -1) s = s.replace(/0+$/, '').replace(/\.$/, '');
+        return `Top ${s.replace('.', ',')}% radnych`;
+      }
+      function _metricCol(label, value, pct, blurred, neutral) {
+        // Jedna jasna wartość na metrykę: czysta odznaka "Top X%" (styl
+        // OnlyFans). Bez paska — wcześniej pasek pokazywał surową wartość, co
+        // kłóciło się wizualnie z percentylem obok. Kolor koduje pozycję
+        // (zielony = czubek, czerwony = dół stawki). Param value niewykorzystany.
+        // neutral=true: bez skali zielony/czerwony — używane dla zgodności z
+        // klubem, bo Radoskop nie ocenia dyscypliny klubowej jako dobrej/złej.
+        const blurStyle = blurred ? 'filter:blur(4px);pointer-events:none;user-select:none;' : '';
+        const color = neutral ? 'var(--text)' : _barColor(pct);
+        return `<div style="${blurStyle}">
+          <div style="font-size:0.78rem;color:var(--muted);text-transform:uppercase;margin-bottom:6px">${label}</div>
+          <div style="font-size:1.15rem;font-weight:700;color:${color};line-height:1.15">${_rankLabel(pct)}</div>
+        </div>`;
+      }
+
+      const loginUrl = AUTH_FRONTEND + '/?bridge_to=' + encodeURIComponent(window.location.href) + '&unlock=comparison';
+      // Pojedynczy CTA bez listy feature pills, mniej hałasu, jaśniejszy akcja.
+      const overlayHtml = isLoggedIn ? '' : `
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:8px;background:color-mix(in srgb,var(--bg) 60%,transparent)">
+          <button class="auth-btn" style="font-size:0.88rem;padding:8px 20px" onclick="trackEventBeforeNav('login-unlock',{unlock:'comparison'}).then(function(){window.location.href='${loginUrl}'})">Zaloguj, by zobaczyć więcej</button>
+        </div>`;
+
+      const lockedCols = isLoggedIn
+        ? _metricCol('Frekwencja na sesjach', kd.frekwencja, pFrek, false)
+          + _metricCol('Zgodność z klubem', kd.zgodnosc_z_klubem, pZgod, false, true)
+        : `<div style="position:relative;grid-column:span 2;display:grid;grid-template-columns:repeat(2,1fr);gap:16px;border-radius:8px;overflow:hidden">
+            ${_metricCol('Frekwencja na sesjach', kd.frekwencja, pFrek, true)}
+            ${_metricCol('Zgodność z klubem', kd.zgodnosc_z_klubem, pZgod, true, true)}
+            ${overlayHtml}
+           </div>`;
+
+      const cityWord = nCities === 1 ? 'miasto' : nCities < 5 ? 'miasta' : 'miast';
+      html += `<div class="section" style="margin-bottom:24px">
+        <h2 style="margin-bottom:4px">Porównanie z podobnymi miastami</h2>
+        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:16px">${tierLabel} · ${nCities} ${cityWord}, ${nCouncilors} radnych</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+          ${_metricCol('Aktywność głosowania', kd.aktywnosc, pAkt, false)}
+          ${lockedCols}
+        </div>
+      </div>`;
+    }
+
+    // Sekcja "Aktywność na sesjach" przeniesiona do taba 3 (Aktywność).
+    // Build do _activityTabBody, użyte niżej przy renderowaniu profile-tab-activity.
+    let _activityTabBody = '';
+    if (kd.has_activity_data && kd.activity) {
+      const act = kd.activity;
+      _activityTabBody = `<div class="section">
+        <h2>Aktywność na sesjach</h2>
+        <div class="profile-metrics">
+          <div class="metric-card">
+            <div class="metric-value" style="color:var(--blue)">${act.sessions_spoke}</div>
+            <div class="metric-label">Sesji z wypowiedzią</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" style="color:var(--green)">${act.total_statements}</div>
+            <div class="metric-label">Wypowiedzi łącznie</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">${act.total_words.toLocaleString('pl')}</div>
+            <div class="metric-label">Słów łącznie</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">${act.avg_statements_per_session}</div>
+            <div class="metric-label">Śr. wypowiedzi/sesję</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">${act.avg_words_per_session.toLocaleString('pl')}</div>
+            <div class="metric-label">Śr. słów/sesję</div>
+          </div>
+        </div>`;
+
+      // Activity timeline chart
+      if (act.sessions && act.sessions.length > 1) {
+        _activityTabBody += `<div class="chart-wrap" style="max-width:700px;margin-top:16px">
+          <canvas id="activity-chart"></canvas>
+        </div>`;
+      }
+      _activityTabBody += `</div>`;
+
+      // Wypowiedzi na sesjach: skróty z rozwijaniem + deep-link do stenogramu.
+      // Treść doczytywana leniwie z API stenogramu po kliknięciu (lekka zakładka).
+      if (act.sessions && act.sessions.length) {
+        const _nameAttr = profile.name.replace(/'/g, "\\'");
+        const _sorted = act.sessions.slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        _activityTabBody += `<div class="section"><h2>Wypowiedzi na sesjach</h2>
+          <p style="font-size:0.82rem;color:var(--muted);margin-bottom:6px">Skróty wypowiedzi z protokołów. Rozwiń fragment lub przejdź do pełnego stenogramu sesji.</p>`;
+        _activityTabBody += _sorted.map((s, idx) => {
+          const sn = (s.session == null ? '' : String(s.session));
+          const cid = 'prof-spk-' + kid + '-' + idx;
+          const snEsc = sn.replace(/'/g, "\\'");
+          const btn = sn
+            ? `<button data-target="${cid}" onclick="_loadProfileSpeeches('${snEsc}','${_nameAttr}','${kid}',this)" style="background:none;border:1px solid var(--border);border-radius:6px;padding:3px 10px;color:var(--accent);font-size:0.78rem;cursor:pointer;white-space:nowrap">Pokaż wypowiedzi ↓</button>`
+            : '';
+          return `<div style="padding:8px 0;border-bottom:1px solid var(--border)">
+            <div style="display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap">
+              <span style="font-size:0.88rem">${sn ? 'Sesja ' + htmlEscape(sn) + ' · ' : ''}${htmlEscape(s.date || '')}
+                <span style="color:var(--muted);font-size:0.8rem">· ${s.statements} wyp. · ${(s.words || 0).toLocaleString('pl')} słów</span></span>
+              ${btn}
+            </div>
+            <div id="${cid}" style="display:none;margin-top:4px"></div>
+          </div>`;
+        }).join('');
+        _activityTabBody += `</div>`;
+      }
+    } else if (hasVotes && K && K.sessions) {
+      // Fallback dla miast bez danych stenogramów (NL): pokaż aktywność głosowań
+      const _isNl = (document.documentElement.lang || 'pl').toLowerCase() === 'nl';
+      const _sessions = K.sessions || [];
+      const _totalVotes = kd.votes_total || 0;
+      _activityTabBody = `<div class="section">
+        <h2>${_isNl ? 'Stemactiviteit in vergaderingen' : 'Aktywność głosowań na sesjach'}</h2>
+        <div class="profile-metrics">
+          <div class="metric-card">
+            <div class="metric-value" style="color:var(--blue)">${_sessions.length}</div>
+            <div class="metric-label">${_isNl ? 'Vergaderingen' : 'Sesji'}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" style="color:var(--green)">${_totalVotes}</div>
+            <div class="metric-label">${_isNl ? 'Stemmen totaal' : 'Głosowań łącznie'}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value">${_totalVotes > 0 ? Math.round(_totalVotes / _sessions.length) : 0}</div>
+            <div class="metric-label">${_isNl ? 'Gem. stemmen/vergadering' : 'Śr. głosowań/sesję'}</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-value" style="color:${kd.zgodnosc_z_klubem >= 50 ? 'var(--green)' : 'var(--red)'}">${Math.round(kd.zgodnosc_z_klubem || 0)}%</div>
+            <div class="metric-label">${_isNl ? 'Fractiediscipline' : 'Zgodność z klubem'}</div>
+          </div>
+        </div>
+      </div>`;
+
+      // Lista sesji z liczbą głosowań
+      if (_sessions.length > 0) {
+        const _sortedSessions = _sessions.slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+        _activityTabBody += `<div class="section"><h2>${_isNl ? 'Overzicht vergaderingen' : 'Przegląd sesji'}</h2>
+          <p style="font-size:0.82rem;color:var(--muted);margin-bottom:6px">${_isNl ? 'Aantal stemmingen per vergadering' : 'Liczba głosowań na poszczególnych sesjach'}</p>`;
+        _activityTabBody += _sortedSessions.map(s => {
+          const sn = s.number || s.date || '';
+          const vc = s.vote_count || 0;
+          return `<div style="padding:8px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+            <span style="font-size:0.88rem">${s.label || htmlEscape(s.date || '')}</span>
+            <span style="font-size:0.82rem;color:var(--muted)">${vc} ${_isNl ? 'stemmingen' : 'głosowań'}</span>
+          </div>`;
+        }).join('');
+        _activityTabBody += `</div>`;
+      }
+    }
+
+    // Okręg + Komisje przeniesione do _profileCards w prawej kolumnie
+    // headera (patrz _profileActionsHtml). Widget Kadencje usunięty —
+    // kadencja-toggle pod headerem pokrywa funkcjonalność. Cała sekcja
+    // .profile-meta tym samym zniknęła.
+
+    // Udostępnij + Alerty żyją teraz po prawej stronie imienia w
+    // profile-header (patrz _profileActionsHtml). Tu zostaje tylko
+    // sekcja "W mediach" + news fetch IIFE.
+    if (hasVotes) {
+      // "W mediach" section — locale-aware header
+      const _isNl = (document.documentElement.lang || 'pl').toLowerCase() === 'nl';
+      const _newsSectionTitle = _isNl ? 'In de media' : 'W mediach';
+      const _newsSectionDesc = _isNl ? 'Recente vermeldingen in pers en op internet' : 'Ostatnie wzmianki w prasie i internecie';
+      const _newsLoading = _isNl ? 'Laden...' : 'Wczytywanie...';
+      const _newsEmpty = _isNl ? 'Geen resultaten in Google News.' : 'Brak wyników w Google News.';
+      const _newsApiBase = _API_HOST;
+      const _newsQ = encodeURIComponent(profile.name + ' ' + CFG.cityName + '');
+      html += `<div class="section">
+        <h2>${_newsSectionTitle}</h2>
+        <p style="font-size:0.82rem;color:var(--muted);margin-bottom:12px">${_newsSectionDesc}</p>
+        <div id="news-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px">
+          <div style="color:var(--muted);font-size:0.85rem">${_newsLoading}</div>
+        </div>
+        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+          <a href="https://www.google.com/search?q=${_newsQ}&tbm=nws" target="_blank" rel="noopener"
+            style="font-size:0.8rem;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px">
+            Google News →
+          </a>
+          <a href="https://duckduckgo.com/?q=${_newsQ}&ia=news" target="_blank" rel="noopener"
+            style="font-size:0.8rem;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:4px 10px">
+            DuckDuckGo →
+          </a>
+        </div>
+      </div>`;
+
+      // Fetch news async
+      (function() {
+        const rawQ = profile.name + ' ' + CFG.cityName + '';
+        fetch(_newsApiBase + '/api/news?q=' + encodeURIComponent(rawQ))
+          .then(r => r.json())
+          .then(data => {
+            const container = document.getElementById('news-list');
+            if (!container) return;
+            const items = data.items || [];
+            if (!items.length) {
+              container.innerHTML = `<div style="color:var(--muted);font-size:0.85rem">${_newsEmpty}</div>`;
+              return;
+            }
+            container.innerHTML = items.map(it => {
+              const _dateLocale = _isNl ? 'nl-NL' : 'pl-PL';
+              const dateStr = it.published ? new Date(it.published).toLocaleDateString(_dateLocale, {day:'numeric',month:'short',year:'numeric'}) : '';
+              return `<a href="${it.url}" target="_blank" rel="noopener"
+                style="display:block;padding:10px 12px;border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);background:var(--surface);transition:border-color 0.15s"
+                onmouseover="this.style.borderColor='var(--accent)'" onmouseout="this.style.borderColor='var(--border)'">
+                <div style="font-size:0.88rem;font-weight:500;line-height:1.4">${it.title}</div>
+                <div style="font-size:0.76rem;color:var(--muted);margin-top:4px">${it.source}${dateStr ? ' · ' + dateStr : ''}</div>
+              </a>`;
+            }).join('');
+          })
+          .catch(() => {
+            const container = document.getElementById('news-list');
+            if (container) container.innerHTML = `<div style="color:var(--muted);font-size:0.85rem">${_isNl ? 'Kon resultaten niet laden.' : 'Nie udało się załadować wyników.'}</div>`;
+          });
+      })();
+    }
+
+    if (hasVotes && kd.rebellion_count > 0 && clubHasLine(kd.club)) {
+      const rebs = kd.rebellions || [];
+      const REBS_PER_PAGE = 20;
+      const rebPages = Math.ceil(rebs.length / REBS_PER_PAGE) || 1;
+      const rebVoteLabel = (v) => ({za:'Za',przeciw:'Przeciw',wstrzymal_sie:isFemale(profile.name)?'wstrzymała się':'wstrzymał się'})[v]||v;
+      const rebClubLabel = (v) => ({za:'Za',przeciw:'Przeciw',wstrzymal_sie:'wstrzymał się'})[v]||v;
+
+      function renderRebPage(page) {
+        const container = document.getElementById('rebellion-list');
+        if (!container) return;
+        const slice = rebs.slice((page - 1) * REBS_PER_PAGE, page * REBS_PER_PAGE);
+        let h = slice.map(r => `<div class="rebellion-item">
+          <div class="reb-date">${r.session} · głos: <span class="pill pill-${r.their_vote === 'przeciw' ? 'przeciw' : 'wstrzymal'}">${rebVoteLabel(r.their_vote)}</span> (klub: ${rebClubLabel(r.club_majority)})</div>
+          <div>${catPill(categorizeVote(r.topic, r.item_kind))} ${r.topic}</div>
+        </div>`).join('');
+        if (rebPages > 1) {
+          const from = (page - 1) * REBS_PER_PAGE + 1;
+          const to = Math.min(page * REBS_PER_PAGE, rebs.length);
+          h += `<div style="display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap">
+            <button class="reb-prev" style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:${page>1?'var(--text)':'var(--muted)'};cursor:${page>1?'pointer':'default'};font-size:0.85rem;font-family:inherit" ${page<=1?'disabled':''}>← Poprzednie</button>
+            <span style="color:var(--muted);font-size:0.85rem">${from}–${to} z ${rebs.length}</span>
+            <button class="reb-next" style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:${page<rebPages?'var(--text)':'var(--muted)'};cursor:${page<rebPages?'pointer':'default'};font-size:0.85rem;font-family:inherit" ${page>=rebPages?'disabled':''}>Następne →</button>
+          </div>`;
+        }
+        if (kd.rebellion_count > rebs.length) {
+          h += `<div style="color:var(--muted);padding:6px 12px;font-size:0.85rem">Uwaga: profil zawiera tylko ${rebs.length} z ${kd.rebellion_count} głosów — uruchom ponownie scraper, by uzyskać pełną listę.</div>`;
+        }
+        container.innerHTML = h;
+        const prev = container.querySelector('.reb-prev');
+        const next = container.querySelector('.reb-next');
+        let curPage = page;
+        if (prev) prev.onclick = () => { if (curPage > 1) renderRebPage(curPage - 1); };
+        if (next) next.onclick = () => { if (curPage < rebPages) renderRebPage(curPage + 1); };
+      }
+
+      html += `<div class="section">
+        <h2>Głosy wbrew klubowi (${kd.rebellion_count})</h2>
+        <div id="rebellion-list"></div>
+      </div>`;
+
+      // renderRebPage called after view.innerHTML is set (below)
+      window._pendingRebPage = () => renderRebPage(1);
+    } else {
+      window._pendingRebPage = null;
+    }
+
+    html += `</div>`; // end profile-tab-main
+
+    // Interpelacje tab
+    // Tab "Aktywność" = Aktywność na sesjach (z _activityTabBody) + interpelacje
+    // (ładowane async do profile-interp-container).
+    html += `<div id="profile-tab-activity" style="display:none">${_activityTabBody}<div id="profile-interp-container"></div></div>`;
+
+    // Głosy tab
+    if (hasVotes) {
+      html += `<div id="profile-tab-votes" style="display:none"><div class="section">
+        <h2>Głosy na sesjach</h2>
+        <div class="filter-bar" id="profile-cat-filter" style="margin-bottom:12px;flex-wrap:wrap"></div>
+        <div id="profile-votes-container"><div style="color:var(--muted);padding:12px">Ładowanie głosów...</div></div>
+      </div></div>`;
+    }
+
+    // Zamknięcie .profile-header (actions wstrzyknięte na początku jako
+    // float:right, content flow'uje obok aż do końca sidebar'a, potem
+    // rozciąga się pełną szerokością; clearfix przez .profile-header::after).
+    html += `</div>`;
+
+    view.innerHTML = html;
+
+    // Init alert button state (toggle jeśli user jest zalogowany)
+    if (_authUser) {
+      _initAlertBtn('' + CFG.citySlug + '', profile.slug);
+    }
+
+    // Render rebellion votes (synchronous, data already in kd.rebellions)
+    if (window._pendingRebPage) { window._pendingRebPage(); window._pendingRebPage = null; }
+
+    // Draw pie chart if has voting data
+    if (hasVotes) {
+      const ctx = document.getElementById('profile-chart');
+      if (ctx) {
+        new Chart(ctx.getContext('2d'), {
+          type: 'doughnut',
+          data: {
+            labels: ["Za", "Przeciw", isFemale(profile.name) ? "Wstrzymała się" : "Wstrzymał się", "Brak głosu", isFemale(profile.name) ? "Nieobecna" : "Nieobecny"],
+            datasets: [{
+              data: [kd.votes_za, kd.votes_przeciw, kd.votes_wstrzymal, kd.votes_brak, kd.votes_nieobecny],
+              backgroundColor: ['rgba(34,197,94,0.8)', 'rgba(239,68,68,0.8)', 'rgba(234,179,8,0.8)', 'rgba(139,141,151,0.5)', 'rgba(75,85,99,0.5)'],
+              borderWidth: 0,
+            }]
+          },
+          options: {
+            responsive: false,
+            plugins: {
+              legend: { display: false }
+            }
+          }
+        });
+      }
+    }
+
+    // Draw activity timeline chart
+    if (kd.has_activity_data && kd.activity && kd.activity.sessions && kd.activity.sessions.length > 1) {
+      const actCtx = document.getElementById('activity-chart');
+      if (actCtx) {
+        const sessions = kd.activity.sessions;
+        new Chart(actCtx.getContext('2d'), {
+          type: 'bar',
+          data: {
+            labels: sessions.map(s => s.date || s.session),
+            datasets: [{
+              label: 'Wypowiedzi',
+              data: sessions.map(s => s.statements),
+              backgroundColor: 'rgba(59,130,246,0.7)',
+              borderRadius: 3,
+              yAxisID: 'y',
+            }, {
+              label: 'Słowa',
+              data: sessions.map(s => s.words),
+              type: 'line',
+              borderColor: 'rgba(234,179,8,0.9)',
+              backgroundColor: 'rgba(234,179,8,0.1)',
+              pointRadius: 3,
+              tension: 0.3,
+              yAxisID: 'y1',
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: { ticks: { color: '#6b7280', maxRotation: 45 }, grid: { display: false } },
+              y: { position: 'left', title: { display: true, text: 'Wypowiedzi', color: '#6b7280' }, ticks: { color: '#6b7280' }, grid: { color: 'rgba(0,0,0,0.06)' } },
+              y1: { position: 'right', title: { display: true, text: 'Słowa', color: '#6b7280' }, ticks: { color: '#6b7280' }, grid: { display: false } },
+            },
+            plugins: {
+              legend: { labels: { color: '#4b5563' } }
+            }
+          }
+        });
+      }
+    }
+
+    // Fetch interpelacje for this person async — with pagination + search
+    (async () => {
+      const iContainer = document.getElementById('profile-interp-container');
+      if (!iContainer) return;
+      try {
+        const iResp = await fetch(API_BASE + '/interpelacje?radny=' + encodeURIComponent(profile.name) + '&per_page=500');
+        const iData = await iResp.json();
+        const kadSlugUpper = (KAD_SLUGS[kid] || '').toUpperCase();
+        const pName = profile.name.trim();
+        const pLow = pName.toLowerCase();
+        const pNameParts = pName.split(' ');
+        const pRevLow = pNameParts.length >= 2
+          ? (pNameParts.slice(1).join(' ') + ' ' + pNameParts[0]).toLowerCase() : pLow;
+        function iMatchesName(f) {
+          const norm = f.replace(/\u00a0/g, ' ').replace(/\s{2,}/g, ' ');
+          const authors = norm.split(/[,;\r\n]+| i /).map(s => s.replace(/\.$/, '').trim()).filter(Boolean);
+          return authors.some(a => {
+            const al = a.toLowerCase();
+            if (al === pLow || al === pRevLow) return true;
+            const ap = al.split(/\s+/);
+            if (ap.length >= 2) {
+              const af = ap.slice(-1).concat(ap.slice(0, -1)).join(' ');
+              if (pLow.indexOf(af) === 0 || af.indexOf(pLow) === 0) return true;
+            }
+            return false;
+          });
+        }
+        const allInterp = (iData.items || []).filter(d => {
+          if (!iMatchesName(d.radny || '')) return false;
+          if (d.kadencja && kadSlugUpper) return d.kadencja.toUpperCase() === kadSlugUpper || d.kadencja === kid;
+          return true;
+        }).sort((a, b) => (b.data_wplywu || '').localeCompare(a.data_wplywu || ''));
+        if (allInterp.length === 0) return;
+
+        const INTERP_PER_PAGE = 20;
+        let _interpQuery = '';
+        let _interpPageNum = 1;
+
+        // Build stable shell once: heading, search input, and a results slot
+        iContainer.innerHTML = `<div class="section"><h2 id="interp-heading">Interpelacje i zapytania (${allInterp.length})</h2>`
+          + `<input type="text" id="interp-search" placeholder="Szukaj w interpelacjach..." style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:0.85rem;margin-bottom:12px;font-family:inherit">`
+          + `<div id="interp-results"></div></div>`;
+
+        const _interpResultsEl = document.getElementById('interp-results');
+        const _interpHeadingEl = document.getElementById('interp-heading');
+        const _interpSearchEl = document.getElementById('interp-search');
+
+        function renderProfileInterp() {
+          let filtered = allInterp;
+          if (_interpQuery) {
+            const q = _interpQuery.toLowerCase();
+            filtered = allInterp.filter(d =>
+              (d.przedmiot || '').toLowerCase().includes(q) ||
+              (d.typ || '').toLowerCase().includes(q) ||
+              (d.data_wplywu || '').includes(q)
+            );
+          }
+          const totalPages = Math.ceil(filtered.length / INTERP_PER_PAGE) || 1;
+          if (_interpPageNum > totalPages) _interpPageNum = totalPages;
+          const pageItems = filtered.slice((_interpPageNum - 1) * INTERP_PER_PAGE, _interpPageNum * INTERP_PER_PAGE);
+
+          _interpHeadingEl.textContent = `Interpelacje i zapytania (${filtered.length})`;
+
+          let iHtml = `<div style="overflow-x:auto"><table><thead><tr><th>Data</th><th>Typ</th><th>Przedmiot</th><th>Treść</th><th>Odpowiedź</th></tr></thead><tbody>`;
+          pageItems.forEach(d => {
+            const tC = d.typ === 'interpelacja' ? 'pill-za' : 'pill-wstrzymal';
+            const tL = d.typ === 'interpelacja' ? 'Interpelacja' : 'Zapytanie';
+            const tUrl = d.tresc_url ? `<a href="${d.tresc_url}" target="_blank" style="color:var(--accent)">PDF</a>` : '';
+            const oUrl = d.odpowiedz_url ? `<a href="${d.odpowiedz_url}" target="_blank" style="color:var(--accent)">PDF</a>` : (d.data_odpowiedzi ? d.data_odpowiedzi : '<span style="color:var(--muted)">brak</span>');
+            iHtml += `<tr><td style="white-space:nowrap">${d.data_wplywu || ''}</td><td><span class="pill ${tC}">${tL}</span></td><td style="max-width:400px">${d.przedmiot || ''}</td><td>${tUrl}</td><td>${oUrl}</td></tr>`;
+          });
+          iHtml += `</tbody></table></div>`;
+          if (totalPages > 1) {
+            const from = (_interpPageNum - 1) * INTERP_PER_PAGE + 1;
+            const to = Math.min(_interpPageNum * INTERP_PER_PAGE, filtered.length);
+            iHtml += `<div style="display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap">`;
+            iHtml += `<button class="prof-interp-prev" style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:${_interpPageNum > 1 ? 'var(--text)' : 'var(--muted)'};cursor:${_interpPageNum > 1 ? 'pointer' : 'default'};font-size:0.85rem;font-family:inherit" ${_interpPageNum <= 1 ? 'disabled' : ''}>&larr; Poprzednie</button>`;
+            iHtml += `<span style="color:var(--muted);font-size:0.85rem">${from}&ndash;${to} z ${filtered.length}</span>`;
+            iHtml += `<button class="prof-interp-next" style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:${_interpPageNum < totalPages ? 'var(--text)' : 'var(--muted)'};cursor:${_interpPageNum < totalPages ? 'pointer' : 'default'};font-size:0.85rem;font-family:inherit" ${_interpPageNum >= totalPages ? 'disabled' : ''}>Nast\u0119pne &rarr;</button>`;
+            iHtml += `</div>`;
+          }
+          _interpResultsEl.innerHTML = iHtml;
+
+          // Wire pagination (search input is stable, no re-wiring needed)
+          _interpResultsEl.querySelector('.prof-interp-prev')?.addEventListener('click', () => { if (_interpPageNum > 1) { _interpPageNum--; renderProfileInterp(); }});
+          _interpResultsEl.querySelector('.prof-interp-next')?.addEventListener('click', () => { if (_interpPageNum < totalPages) { _interpPageNum++; renderProfileInterp(); }});
+        }
+
+        // Wire search once on the stable input element
+        let _interpDebounce;
+        _interpSearchEl.addEventListener('input', () => {
+          clearTimeout(_interpDebounce);
+          _interpDebounce = setTimeout(() => {
+            _interpQuery = _interpSearchEl.value.trim();
+            _interpPageNum = 1;
+            renderProfileInterp();
+          }, 250);
+        });
+
+        renderProfileInterp();
+      } catch(e) {}
+    })();
+
+            // Fetch person votes from API async and render into placeholder
+    if (hasVotes) {
+      const profCatOrder = Object.keys(VOTE_CATS).sort((a,b) => (VOTE_CATS[a]?.order||99) - (VOTE_CATS[b]?.order||99));
+      const voteLabel = (v) => ({za:'Za',przeciw:'Przeciw',wstrzymal_sie:isFemale(profile.name)?'wstrzymała się':'wstrzymał się',brak_glosu:"brak głosu",nieobecny:isFemale(profile.name)?'nieobecna':'nieobecny'})[v]||v||'—';
+      const votePillClass = (v) => ({za:'za',przeciw:'przeciw',wstrzymal_sie:'wstrzymal',brak_glosu:'wstrzymal',nieobecny:'wstrzymal'})[v]||'wstrzymal';
+      let allPersonVotes = [];
+      let profCatCounts = {};
+      try {
+        let page = 1, hasMore = true;
+        while (hasMore) {
+          const resp = await fetch(API_BASE + '/kadencja/' + kid + '/votes?councilor=' + encodeURIComponent(profile.name) + '&per_page=500&page=' + page);
+          const data = await resp.json();
+          for (const v of (data.items || [])) {
+            const cat = categorizeVote(v.topic, v.item_kind);
+            allPersonVotes.push({vote: v, pv: v.person_vote, cat, sessDate: v.session_date, sessNum: v.session_number});
+            profCatCounts[cat] = (profCatCounts[cat]||0) + 1;
+          }
+          hasMore = data.page < data.total_pages;
+          page++;
+        }
+      } catch(e) {
+        const c = document.getElementById('profile-votes-container');
+        if (c) c.innerHTML = '<div style="color:var(--muted)">Błąd ładowania głosów.</div>';
+        return;
+      }
+
+      // Group votes by session
+      const sessGroups = {};
+      allPersonVotes.forEach(x => {
+        const key = x.sessDate;
+        if (!sessGroups[key]) sessGroups[key] = { date: x.sessDate, number: x.sessNum, votes: [] };
+        sessGroups[key].votes.push(x);
+      });
+      const sessKeys = Object.keys(sessGroups).sort((a,b) => b.localeCompare(a));
+
+      const PROF_SESS_PER_PAGE = 5;
+      let _profActiveCat = 'all';
+      let _profSessPage = 1;
+
+      function buildFilteredSessKeys(cat) {
+        return cat === 'all'
+          ? sessKeys
+          : sessKeys.filter(sk => sessGroups[sk].votes.some(x => x.cat === cat));
+      }
+
+      function renderProfSessPage() {
+        const container = document.getElementById('profile-votes-container');
+        if (!container) return;
+        const filteredKeys = buildFilteredSessKeys(_profActiveCat);
+        const totalPages = Math.ceil(filteredKeys.length / PROF_SESS_PER_PAGE) || 1;
+        if (_profSessPage > totalPages) _profSessPage = totalPages;
+        const pageKeys = filteredKeys.slice((_profSessPage - 1) * PROF_SESS_PER_PAGE, _profSessPage * PROF_SESS_PER_PAGE);
+
+        let html = '';
+        for (const sk of pageKeys) {
+          const { date, number, votes: pvs } = sessGroups[sk];
+          const visiblePvs = _profActiveCat === 'all' ? pvs : pvs.filter(x => x.cat === _profActiveCat);
+          html += `<div class="profile-sess-group" data-sessdate="${date}" style="margin-bottom:16px">
+            <div style="font-weight:600;margin-bottom:6px;font-size:0.9rem">
+              ${sessionLink(number, 'Sesja ' + number + ' · ' + date)}
+              <span style="color:var(--muted);font-weight:400;margin-left:8px">(${visiblePvs.length} głosowań)</span>
+            </div>
+            <table><tbody>`;
+          visiblePvs.forEach(({vote: v, pv, cat}) => {
+            html += `<tr class="vote-row" onclick="showVote('${v.id}')">
+              <td style="width:100px"><span class="pill pill-${votePillClass(pv)}">${voteLabel(pv)}</span></td>
+              <td style="text-align:left;font-size:0.85rem">${catPill(cat)} ${v.topic || '—'}</td>
+            </tr>`;
+          });
+          html += `</tbody></table></div>`;
+        }
+
+        if (!html) html = '<div style="color:var(--muted);padding:12px">Brak głosowań w tej kategorii.</div>';
+
+        if (totalPages > 1) {
+          const from = (_profSessPage - 1) * PROF_SESS_PER_PAGE + 1;
+          const to = Math.min(_profSessPage * PROF_SESS_PER_PAGE, filteredKeys.length);
+          html += `<div style="display:flex;align-items:center;gap:10px;margin-top:16px;flex-wrap:wrap">
+            <button class="prof-sess-prev" style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:${_profSessPage > 1 ? 'var(--text)' : 'var(--muted)'};cursor:${_profSessPage > 1 ? 'pointer' : 'default'};font-size:0.85rem;font-family:inherit" ${_profSessPage <= 1 ? 'disabled' : ''}>← Poprzednie</button>
+            <span style="color:var(--muted);font-size:0.85rem">Sesje ${from}–${to} z ${filteredKeys.length}</span>
+            <button class="prof-sess-next" style="padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:${_profSessPage < totalPages ? 'var(--text)' : 'var(--muted)'};cursor:${_profSessPage < totalPages ? 'pointer' : 'default'};font-size:0.85rem;font-family:inherit" ${_profSessPage >= totalPages ? 'disabled' : ''}>Następne →</button>
+          </div>`;
+        }
+
+        container.innerHTML = html;
+
+        const prevBtn = container.querySelector('.prof-sess-prev');
+        const nextBtn = container.querySelector('.prof-sess-next');
+        if (prevBtn) prevBtn.onclick = () => { if (_profSessPage > 1) { _profSessPage--; renderProfSessPage(); document.getElementById('profile-votes-container').scrollIntoView({behavior:'smooth', block:'start'}); } };
+        if (nextBtn) nextBtn.onclick = () => { if (_profSessPage < totalPages) { _profSessPage++; renderProfSessPage(); document.getElementById('profile-votes-container').scrollIntoView({behavior:'smooth', block:'start'}); } };
+      }
+
+      renderProfSessPage();
+
+      // Wire up category filter
+      const profCatBar = document.getElementById('profile-cat-filter');
+      if (profCatBar) {
+        let pf = `<button class="session-pill active" data-pcat="all">Wszystkie <span class="pill-count">(${allPersonVotes.length})</span></button>`;
+        for (const cat of profCatOrder) {
+          if (!profCatCounts[cat]) continue;
+          pf += `<button class="session-pill cat-pill cat-${cat}" data-pcat="${cat}">${VOTE_CATS[cat]?.label||cat} <span class="pill-count">(${profCatCounts[cat]})</span></button>`;
+        }
+        profCatBar.innerHTML = pf;
+        profCatBar.querySelectorAll('.session-pill').forEach(btn => {
+          btn.onclick = () => {
+            profCatBar.querySelectorAll('.session-pill').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            _profActiveCat = btn.dataset.pcat;
+            _profSessPage = 1;
+            renderProfSessPage();
+          };
+        });
+      }
+    }
+  }
+
+  window._profileKadSwitch = function(kid) {
+    activeKid = kid;
+    renderProfileDetail(kid);
+    window.scrollTo(0, 0);
+  };
+
+  renderProfileDetail(activeKid);
+  // renderProfileDetail ustawia innerHTML synchronicznie (brak await przed
+  // wstawieniem szkieletu), więc tab można przełączyć od razu po wywołaniu.
+  // Treść interpelacji doczytuje się async do już widocznego #profile-tab-activity.
+  if (initialTab) switchProfileTab(initialTab, 'deeplink');
+  window.scrollTo(0, 0);
+}
+
+function pctBar(pct) {
+  const color = pct >= 90 ? 'var(--green)' : pct >= 70 ? 'var(--yellow)' : 'var(--red)';
+  return `<div style="display:flex;align-items:center;gap:8px">
+    <div class="bar" style="flex:1"><div class="bar-fill" style="width:${pct}%;background:${color}"></div></div>
+    <span style="font-size:0.8rem;min-width:40px">${pct}%</span>
+  </div>`;
+}
+
+// Match votes to a session: prefer session_number, fall back to date if it's the only session on that date
+function getSessionVotes(votes, sessions, sess) {
+  const byNum = votes.filter(v => v.session_number === sess.number);
+  if (byNum.length > 0) return byNum;
+  // Fallback: if this date has only one session, match by date
+  const sameDateSessions = sessions.filter(s => s.date === sess.date);
+  if (sameDateSessions.length === 1) {
+    return votes.filter(v => v.session_date === sess.date);
+  }
+  return [];
+}
+
+// Vote search handler with debouncing
+let _voteSearchTimer = null;
+function handleVoteSearch(val) {
+  clearTimeout(_voteSearchTimer);
+  _voteSearchTimer = setTimeout(() => {
+    voteSearchQuery = val.trim().toLowerCase();
+    _votesPage = 1;
+    renderVotesTable();
+  }, 300);
+}
+
+// Vote result filter handler
+function handleVoteResultFilter(result) {
+  voteResultFilter = result;
+  _votesPage = 1;
+  renderVotesTable();
+}
+
+async function renderSessionsTable() {
+  const tbody = document.querySelector('#sessions-table tbody');
+  tbody.innerHTML = '<tr><td colspan="7" style="color:var(--muted)">Ładowanie sesji...</td></tr>';
+
+  let sessions;
+  try {
+    const resp = await fetch(API_BASE + '/kadencja/' + currentKid + '/sessions');
+    const data = await resp.json();
+    sessions = data.sessions || [];
+  } catch(e) {
+    // Fallback to K.sessions if API fails
+    sessions = (K.sessions || []).map(s => ({...s, passed: 0, rejected: 0, speaker_count: (s.speakers||[]).length}));
+  }
+
+  tbody.innerHTML = sessions.map(s => {
+    const voteCount = s.vote_count || 0;
+    const hasCounts = s.passed !== undefined;
+    const speakers = s.speaker_count || 0;
+    // Sesja bez opublikowanych wyników: pokaż datę, ale zamiast zer wstaw
+    // znacznik "wyniki wkrótce" zamiast mylących 0 głosowań / 0 obecnych.
+    if (s.results_pending) {
+      return `<tr class="vote-row" onclick="showSession('${s.number}')">
+        <td style="font-weight:600">${s.number || '?'}</td>
+        <td>${s.date}</td>
+        <td colspan="4" style="color:var(--muted);font-size:0.85rem">Wyniki głosowań jeszcze nieopublikowane</td>
+        <td>${speakers > 0 ? speakers : '—'}</td>
+      </tr>`;
+    }
+    // Sesja bez głosowań imiennych: zamiast mylących 0 głosowań / 0 obecnych
+    // pokazujemy „bez głosowań imiennych".
+    if (s.no_roll_call_votes) {
+      return `<tr class="vote-row" onclick="showSession('${s.number}')">
+        <td style="font-weight:600">${s.number || '?'}</td>
+        <td>${s.date}</td>
+        <td colspan="4" style="color:var(--muted);font-size:0.85rem">Bez głosowań imiennych</td>
+        <td>${speakers > 0 ? speakers : '—'}</td>
+      </tr>`;
+    }
+    return `<tr class="vote-row" onclick="showSession('${s.number}')">
+      <td style="font-weight:600">${s.number || '?'}</td>
+      <td>${s.date}</td>
+      <td>${voteCount}</td>
+      <td>${hasCounts ? `<span class="pill pill-za">${s.passed}</span>` : ''}</td>
+      <td>${hasCounts && s.rejected > 0 ? `<span class="pill pill-przeciw">${s.rejected}</span>` : (hasCounts ? '0' : '')}</td>
+      <td>${s.attendee_count}</td>
+      <td>${speakers > 0 ? speakers : '—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+async function renderVotesTable() {
+  const container = document.getElementById('votes-grouped');
+  if (!K || !K.vote_stats) {
+    if (container) container.innerHTML = '<p style="color:var(--muted)">Brak danych o indywidualnych głosowaniach.</p>';
+    return;
+  }
+
+  // Build query params for API
+  const params = new URLSearchParams();
+  params.set('page', _votesPage);
+  params.set('per_page', '50');
+  if (currentCatFilter !== 'all') params.set('category', currentCatFilter);
+  if (voteSearchQuery) params.set('q', voteSearchQuery);
+  if (voteResultFilter !== 'all') params.set('result', voteResultFilter);
+  if (voteStartDate) params.set('date_from', voteStartDate);
+  if (voteEndDate) params.set('date_to', voteEndDate);
+
+  // Show loading state
+  container.innerHTML = '<p style="color:var(--muted)">Ładowanie głosowań...</p>';
+
+  try {
+    const resp = await fetch(API_BASE + '/kadencja/' + currentKid + '/votes?' + params.toString());
+    _votesData = await resp.json();
+  } catch(e) {
+    container.innerHTML = '<p style="color:var(--red)">Błąd ładowania głosowań.</p>';
+    return;
+  }
+
+  const votes = _votesData.items || [];
+  const catCounts = _votesData.category_counts || {};
+  const totalVotes = K.vote_stats.total || 0;
+
+  // Build category filter pills
+  const catBar = document.getElementById('cat-filter');
+  const catOrder = Object.keys(VOTE_CATS).sort((a,b) => (VOTE_CATS[a]?.order||99) - (VOTE_CATS[b]?.order||99));
+  let catPillsHtml = `<button class="session-pill ${currentCatFilter==='all'?'active':''}" data-cat="all">Wszystkie <span class="pill-count">(${totalVotes})</span></button>`;
+  for (const cat of catOrder) {
+    if (!catCounts[cat]) continue;
+    catPillsHtml += `<button class="session-pill cat-pill cat-${cat} ${currentCatFilter===cat?'active':''}" data-cat="${cat}">${VOTE_CATS[cat]?.label||cat} <span class="pill-count">(${catCounts[cat]})</span></button>`;
+  }
+  catBar.innerHTML = catPillsHtml;
+  catBar.querySelectorAll('.session-pill').forEach(btn => {
+    btn.onclick = () => {
+      currentCatFilter = btn.dataset.cat;
+      _votesPage = 1;
+      renderVotesTable();
+    };
+  });
+
+  // Set up result filter pills
+  document.querySelectorAll('.vote-result-pill').forEach(btn => {
+    btn.classList.remove('active');
+    btn.onclick = () => {
+      handleVoteResultFilter(btn.dataset.result);
+    };
+    if (btn.dataset.result === voteResultFilter) btn.classList.add('active');
+  });
+
+  if (votes.length === 0) {
+    container.innerHTML = '<p style="color:var(--muted)">Brak głosowań spełniających kryteria filtrowania.</p>';
+    return;
+  }
+
+  // Group fetched votes by session (newest first)
+  const sessMap = {};
+  votes.forEach(v => {
+    const sKey = v.session_number || v.session_date || 'unknown';
+    if (!sessMap[sKey]) sessMap[sKey] = { number: v.session_number, date: v.session_date, votes: [] };
+    sessMap[sKey].votes.push(v);
+  });
+  const sessGroups = Object.values(sessMap).sort((a,b) => (b.date||'').localeCompare(a.date||''));
+
+  let html = '';
+  for (const sg of sessGroups) {
+    const sessVotes = sg.votes;
+    const passedCount = sessVotes.filter(v => v.passed).length;
+    const rejectedCount = sessVotes.length - passedCount;
+
+    // Niektóre źródła (np. kk.dk dla Kopenhagi) nie mają numerów sesji,
+    // tylko daty. Wtedy używamy daty jako klucza i nie renderujemy 'Sesja null'.
+    const sessKeyText = sg.number != null ? sg.number : sg.date;
+    const sessLabelText = sg.number != null
+      ? ('Sesja ' + sg.number + ' · ' + sg.date)
+      : ('Sesja ' + sg.date);
+    html += `<div class="votes-sess-group" data-sess="${sessKeyText}">
+      <div class="votes-sess-header" onclick="this.parentElement.classList.toggle('collapsed')">
+        <div class="votes-sess-title">
+          <span class="votes-sess-toggle">▼</span>
+          ${sessionLinkStop(sessKeyText, sessLabelText)}
+        </div>
+        <div class="votes-sess-stats">
+          <span>${sessVotes.length} głos.</span>
+          <span class="pill pill-za" style="font-size:0.75rem">${passedCount}</span>
+          ${rejectedCount > 0 ? `<span class="pill pill-przeciw" style="font-size:0.75rem">${rejectedCount}</span>` : ''}
+        </div>
+      </div>
+      <div class="votes-sess-body">
+        <table><tbody>`;
+
+    sessVotes.forEach((v, i) => {
+      const c = v.counts || {};
+      html += `<tr class="vote-row" onclick="showVote('${v.id || ''}')">
+        <td style="color:var(--muted);width:30px">${i+1}</td>
+        <td>${catPill(v.category || categorizeVote(v.topic, v.item_kind))} ${v.topic ? v.topic.substring(0,120) : '?'}${v.druk ? ` <a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${drukSlug(String(v.druk))}/" onclick="event.preventDefault();event.stopPropagation();showDruk('${String(v.druk)}','${currentKid}')" style="color:var(--muted);text-decoration:none">(druk ${v.druk})</a>` : ''}</td>
+        <td><span class="pill pill-za">${c.za||0}</span></td>
+        <td>${c.przeciw ? `<span class="pill pill-przeciw">${c.przeciw}</span>` : '0'}</td>
+        <td>${c.wstrzymal_sie ? `<span class="pill pill-wstrzymal">${c.wstrzymal_sie}</span>` : '0'}</td>
+        <td><span style="color:${v.passed?'var(--green)':'var(--red)'};font-weight:600;font-size:0.8rem">${v.passed?'Przyjęte':'Odrzucone'}</span></td>
+      </tr>`;
+    });
+
+    html += `</tbody></table></div></div>`;
+  }
+
+  // Pagination controls
+  const totalPages = _votesData.total_pages || 1;
+  const currentPage = _votesData.page || 1;
+  if (totalPages > 1) {
+    html += `<div style="display:flex;justify-content:center;gap:8px;margin-top:20px;align-items:center">`;
+    if (currentPage > 1) {
+      html += `<button class="filter-btn" onclick="_votesPage=${currentPage-1};renderVotesTable()">← Poprzednia</button>`;
+    }
+    html += `<span style="color:var(--muted);font-size:0.85rem">Strona ${currentPage} z ${totalPages} (${_votesData.total} głosowań)</span>`;
+    if (currentPage < totalPages) {
+      html += `<button class="filter-btn" onclick="_votesPage=${currentPage+1};renderVotesTable()">Następna →</button>`;
+    }
+    html += `</div>`;
+  }
+
+  // Update result summary
+  const summaryDiv = document.getElementById('vote-result-summary');
+  if (summaryDiv) {
+    const total = _votesData.total || 0;
+    const passedAll = K.vote_stats.passed || 0;
+    const rejectedAll = K.vote_stats.rejected || 0;
+    let summary = `<strong>${total}</strong> głosowań`;
+    if (voteSearchQuery) summary += ` (szukanie: "${voteSearchQuery}")`;
+    if (voteResultFilter !== 'all') {
+      summary += ` • filtr: ${voteResultFilter === 'accepted' ? 'przyjęte' : 'odrzucone'}`;
+    } else if (total > 0 && !voteSearchQuery && currentCatFilter === 'all') {
+      summary += ` • <strong>${passedAll}</strong> przyjętych, <strong>${rejectedAll}</strong> odrzuconych`;
+    }
+    summaryDiv.innerHTML = summary;
+  }
+
+  container.innerHTML = html;
+}
+
+// ── Głosowania frakcyjne ─────────────────────────────────────────────
+// Regiony jak Francja (vote "à main levée") czy część niemieckich gremiów
+// nie protokołują głosów per radny — publikują tylko "tableau des votes par
+// groupe" / wynik per Fraktion. Taki vote ma vote_mode === 'faction' i klucz
+// faction_votes zamiast list nazwisk w named_votes. faction_votes[grupa] to
+// obiekt z licznikami {za, przeciw, wstrzymal_sie, (brak_glosu), (nieobecni)}
+// oraz opcjonalnym "seats". Stanowisko grupy (dominujący kierunek) liczymy
+// tutaj, jeśli backend go nie dostarczył.
+function isFactionVote(vote) {
+  if (!vote) return false;
+  if (vote.vote_mode === 'faction') return true;
+  const fv = vote.faction_votes;
+  if (!fv || typeof fv !== 'object' || !Object.keys(fv).length) return false;
+  // Brak rozpisania imiennego → traktuj jako frakcyjne.
+  const nv = vote.named_votes || {};
+  const namedTotal = ['za','przeciw','wstrzymal_sie','brak_glosu','nieobecni']
+    .reduce((s,k) => s + ((nv[k]||[]).length), 0);
+  return namedTotal === 0;
+}
+
+function factionStance(g) {
+  const za = g.za||0, prz = g.przeciw||0, wst = g.wstrzymal_sie||0;
+  const max = Math.max(za, prz, wst);
+  // Grupa bez oddanych głosów (sami nieobecni / brak głosu) — nie udawaj, że
+  // się wstrzymała; pokaż neutralne "Nie głosowała".
+  if (max === 0) return {cls:'stance-none', key:'none'};
+  // Stanowisko jednoznaczne tylko gdy jeden kierunek dominuje.
+  const tied = [za,prz,wst].filter(v => v === max).length > 1;
+  if (tied) return {cls:'stance-mixed', key:'mixed'};
+  if (max === za) return {cls:'stance-za', key:'za'};
+  if (max === prz) return {cls:'stance-przeciw', key:'przeciw'};
+  return {cls:'stance-wstrzymal', key:'wstrzymal_sie'};
+}
+
+function renderFactionVotes(vote) {
+  const fv = vote.faction_votes || {};
+  const entries = Object.entries(fv);
+  // Sortuj malejąco po liczbie reprezentowanych głosów (seats lub suma).
+  entries.sort((a,b) => {
+    const ta = (a[1].seats != null) ? a[1].seats : (a[1].za||0)+(a[1].przeciw||0)+(a[1].wstrzymal_sie||0)+(a[1].brak_glosu||0)+(a[1].nieobecni||0);
+    const tb = (b[1].seats != null) ? b[1].seats : (b[1].za||0)+(b[1].przeciw||0)+(b[1].wstrzymal_sie||0)+(b[1].brak_glosu||0)+(b[1].nieobecni||0);
+    return tb - ta;
+  });
+  const stanceLabel = {za:"Za", przeciw:"Przeciw", wstrzymal_sie:"Wstrzymał się", mixed:"Podzielona", none:"Nie głosowała"};
+  const rowsHtml = entries.map(([name, g]) => {
+    const za = g.za||0, prz = g.przeciw||0, wst = g.wstrzymal_sie||0;
+    const brak = g.brak_glosu||0, nieob = g.nieobecni||0;
+    const cast = za + prz + wst;
+    const total = cast + brak + nieob;
+    const st = factionStance(g);
+    const seats = (g.seats != null) ? g.seats : total;
+    const seg = (n) => total > 0 ? Math.max(n/total*100, n > 0 ? 4 : 0) : 0;
+    const swatch = (typeof clubColor === 'function') ? clubColor(name) : 'var(--muted)';
+    let bar = '';
+    if (total > 0) {
+      bar = `<div class="faction-bar">
+        ${za>0?`<div style="width:${seg(za)}%;background:rgba(34,197,94,0.85)" title="Za: ${za}">${za}</div>`:''}
+        ${prz>0?`<div style="width:${seg(prz)}%;background:rgba(239,68,68,0.85)" title="Przeciw: ${prz}">${prz}</div>`:''}
+        ${wst>0?`<div style="width:${seg(wst)}%;background:rgba(234,179,8,0.85)" title="Wstrzymał się: ${wst}">${wst}</div>`:''}
+        ${brak>0?`<div style="width:${seg(brak)}%;background:rgba(139,141,151,0.5)" title="Brak głosu: ${brak}">${brak}</div>`:''}
+        ${nieob>0?`<div style="width:${seg(nieob)}%;background:rgba(75,85,99,0.5)" title="Nieobecni: ${nieob}">${nieob}</div>`:''}
+      </div>`;
+    } else {
+      bar = `<div style="color:var(--muted);font-size:0.82rem">—</div>`;
+    }
+    return `<div class="faction-row">
+      <div class="faction-row-head">
+        <span class="faction-row-name"><span class="faction-row-swatch" style="background:${swatch}"></span>${name}</span>
+        <span class="faction-stance ${st.cls}">${stanceLabel[st.key]||stanceLabel.mixed}</span>
+        <span class="faction-row-meta">${seats} ${seats === 1 ? 'mandat' : 'mandatów'}</span>
+      </div>
+      ${bar}
+    </div>`;
+  }).join('');
+
+  return `<div class="section">
+    <div class="vote-cat-header">Głosowanie według frakcji</div>
+    <div class="faction-rows">${rowsHtml}</div>
+    <div class="faction-legend">
+      <span><i style="background:rgba(34,197,94,0.85)"></i>Za</span>
+      <span><i style="background:rgba(239,68,68,0.85)"></i>Przeciw</span>
+      <span><i style="background:rgba(234,179,8,0.85)"></i>Wstrzymał się</span>
+      <span><i style="background:rgba(139,141,151,0.5)"></i>Brak głosu</span>
+      <span><i style="background:rgba(75,85,99,0.5)"></i>Nieobecni</span>
+    </div>
+  </div>`;
+}
+
+function factionNoticeHtml() {
+  return `<div class="faction-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <span>W tym regionie głosowania imienne (per radny) nie są publicznie protokołowane. Pokazujemy wynik w rozbiciu na frakcje, zgodnie z oficjalnym protokołem.</span>
+  </div>`;
+}
+
+// ── Głosowania przez podniesienie ręki (wynik bez decompte) ──────────────────
+// Regiony jak Paryż głosują domyślnie "à main levée": protokół (compte rendu
+// sommaire) podaje WYNIK pozycji (przyjęte / odrzucone / wycofane) i tryb, ale
+// bez liczb i bez rozbicia na osoby czy frakcje. Vote ma vote_mode ===
+// 'show_of_hands'. Pokazujemy wynik i tryb zamiast pustych kart z zerami.
+function isShowOfHandsVote(vote) {
+  return !!vote && vote.vote_mode === 'show_of_hands';
+}
+
+function showOfHandsNoticeHtml() {
+  return `<div class="faction-notice">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+    <span>W tym gremium głosowania odbywają się przez podniesienie ręki. Protokół podaje wynik głosowania, bez rozbicia na pojedyncze głosy ani frakcje.</span>
+  </div>`;
+}
+
+function renderShowOfHands(vote) {
+  const resultMap = {'adopté':'Przyjęte','rejeté':'Odrzucone','retiré':'Wycofane','ajourné':'Odroczone'};
+  const r = vote.result || (vote.passed === true ? 'adopté' : (vote.passed === false ? 'rejeté' : ''));
+  const label = resultMap[r] || r || '—';
+  const color = vote.passed === true ? 'var(--green)' : (vote.passed === false ? 'var(--red)' : 'var(--muted)');
+  let mode = '';
+  if (vote.unanimite) mode = 'Jednomyślnie';
+  else if (vote.modalite === 'main levée') mode = 'Przez podniesienie ręki';
+  else if (vote.modalite === 'scrutin') mode = 'W głosowaniu imiennym';
+  const dep = vote.deposited_by
+    ? `<div class="faction-row" style="margin-top:8px"><div class="faction-row-head"><span class="faction-row-name">Wniosek złożony przez</span><span class="faction-row-meta">${vote.deposited_by}</span></div></div>`
+    : '';
+  return `<div class="section">
+    <div class="profile-metrics" style="margin-bottom:8px">
+      <div class="metric-card"><div class="metric-value" style="color:${color}">${label}</div><div class="metric-label">Wynik</div></div>
+      ${mode ? `<div class="metric-card"><div class="metric-value" style="font-size:1.05rem">${mode}</div><div class="metric-label">Tryb głosowania</div></div>` : ''}
+    </div>
+    ${dep}
+  </div>`;
+}
+
+async function showVote(voteId) {
+  trackEvent('view_vote', {vote_id: voteId});
+
+  hideAllViews();
+  const view = document.getElementById('vote-view');
+  view.style.display = 'block';
+  view.innerHTML = '<p style="padding:40px;color:var(--muted)">Ładowanie głosowania...</p>';
+  navigateTo('/vote/' + voteId + '/');
+
+  // Fetch vote detail from API (try current kadencja first)
+  let vote = null;
+  let voteKid = currentKid;
+  const kidsToTry = [currentKid, ...RAW.kadencje.map(k => k.id).filter(k => k !== currentKid)];
+  for (const kid of kidsToTry) {
+    try {
+      const resp = await fetch(API_BASE + '/kadencja/' + kid + '/vote/' + voteId);
+      if (resp.ok) { vote = await resp.json(); voteKid = kid; break; }
+    } catch(e) { /* try next */ }
+  }
+  if (!vote) {
+    // Vote nie znalezione w żadnej z aktywnych kadencji w RAW.kadencje.
+    // Typowy scenariusz: stary URL z VIII/VII kadencji (np. 2019-09-26_016)
+    // ze starego deploya albo z indeksu Google. Po przejściu na nową
+    // kadencję dane historyczne nie są publikowane.
+    // UX: zamiast suchego "Nie znaleziono" pokazujemy info + linki do
+    // aktualnych głosowań, żeby user nie utknął i Google Ads nie oznaczał
+    // strony jako "Destination not working".
+    view.innerHTML = '<div style="padding:40px;max-width:560px;margin:0 auto">'
+      + '<h2 style="margin:0 0 12px">Głosowanie niedostępne</h2>'
+      + '<p style="color:var(--muted);margin:0 0 16px">'
+      + "To głosowanie nie zostało znalezione w aktualnej kadencji. "
+      + "Możliwe że pochodzi z archiwum poprzedniej kadencji albo link jest błędny."
+      + '</p>'
+      + '<p style="margin:20px 0"><a href="/" style="color:var(--text);font-weight:600">Wróć na stronę główną →</a></p>'
+      + '<p style="margin:0"><a href="/vote/" style="color:var(--text)">Zobacz aktualne głosowania →</a></p>'
+      + '</div>';
+    setTitle('Głosowanie niedostępne');
+    setRobotsIndexable(false);
+    return;
+  }
+
+  setTitle('Głosowanie: ' + (vote.topic || voteId).substring(0, 60));
+  var _vc = vote.counts || {};
+  setOgMeta({
+    title: (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop ' + CFG.cityName + '',
+    description: 'Za ' + (_vc.za||0) + ', przeciw ' + (_vc.przeciw||0) + ', wstrzym. ' + (_vc.wstrzymal_sie||0) + '. Sesja ' + (vote.session_number||'') + ', ' + (vote.session_date||'') + '.',
+    url: '' + CFG.siteUrl + '/vote/' + voteId + '/',
+    image: '' + CFG.siteUrl + '/vote/' + voteId + '/og.png'
+  });
+
+  const c = vote.counts || {};
+  // API returns already resolved named_votes
+  const nv = vote.named_votes || {};
+  const factionMode = isFactionVote(vote);
+  const resultOnly = isShowOfHandsVote(vote);
+  const total = (c.za||0) + (c.przeciw||0) + (c.wstrzymal_sie||0);
+  const passed = vote.passed !== undefined ? vote.passed : (c.za||0) > total/2;
+  const allVoted = (c.za||0) + (c.przeciw||0) + (c.wstrzymal_sie||0) + (c.brak_glosu||0) + (c.nieobecni||0);
+
+  // Result bar widths
+  const barW = (n) => allVoted > 0 ? Math.max((n/allVoted*100), n > 0 ? 4 : 0) : 0;
+
+  // Club lookup from API response
+  const clubMap = vote.club_map || {};
+
+  function renderNameList(names, bgColor) {
+    if (!names || names.length === 0) return '<div style="color:var(--muted);font-size:0.85rem">—</div>';
+    return `<div class="vote-names-grid">${sortByLastName(names).map(n => {
+      const cl = clubMap[n] || '?';
+      return `<div class="vote-name-item" style="background:${bgColor}">
+        <span class="club ${clubClass(cl)}">${cl}</span>
+        ${profileLink(n)}
+      </div>`;
+    }).join('')}</div>`;
+  }
+
+  // Karty liczników + pasek wyniku. Ukrywane dla głosowań show_of_hands
+  // (brak liczb), żeby nie pokazywać mylących zer.
+  const metricsBarHtml = `
+    <div class="profile-metrics" style="margin-bottom:24px">
+      <div class="metric-card">
+        <div class="metric-value" style="color:${passed?'var(--green)':'var(--red)'}">${passed?'Przyjęte':'Odrzucone'}</div>
+        <div class="metric-label">Wynik</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" style="color:var(--green)">${c.za||0}</div>
+        <div class="metric-label">Za</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" style="color:var(--red)">${c.przeciw||0}</div>
+        <div class="metric-label">Przeciw</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" style="color:var(--yellow)">${c.wstrzymal_sie||0}</div>
+        <div class="metric-label">Wstrzymał się</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">${c.brak_glosu||0}</div>
+        <div class="metric-label">Brak głosu</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">${c.nieobecni||0}</div>
+        <div class="metric-label">Nieobecni</div>
+      </div>
+    </div>
+
+    <div class="vote-result-bar">
+      <div style="width:${barW(c.za||0)}%;background:rgba(34,197,94,0.8)">${c.za||0}</div>
+      <div style="width:${barW(c.przeciw||0)}%;background:rgba(239,68,68,0.8)">${c.przeciw||0}</div>
+      <div style="width:${barW(c.wstrzymal_sie||0)}%;background:rgba(234,179,8,0.8)">${c.wstrzymal_sie||0}</div>
+      <div style="width:${barW(c.brak_glosu||0)}%;background:rgba(139,141,151,0.5)">${c.brak_glosu||0}</div>
+      <div style="width:${barW(c.nieobecni||0)}%;background:rgba(75,85,99,0.5)">${c.nieobecni||0}</div>
+    </div>`;
+
+  // Rozbicie głosów: imienne (lista nazwisk), frakcyjne, albo sam wynik
+  // (show_of_hands). Wydzielone z głównego szablonu, żeby uniknąć potrójnego
+  // zagnieżdżenia template literals.
+  const breakdownHtml = resultOnly
+    ? renderShowOfHands(vote)
+    : (factionMode ? renderFactionVotes(vote) : `
+    <div class="section">
+      <div class="vote-cat-header" style="color:var(--green)">Za (${(nv.za||[]).length})</div>
+      ${renderNameList(nv.za, 'rgba(34,197,94,0.08)')}
+
+      <div class="vote-cat-header" style="color:var(--red)">Przeciw (${(nv.przeciw||[]).length})</div>
+      ${renderNameList(nv.przeciw, 'rgba(239,68,68,0.08)')}
+
+      <div class="vote-cat-header" style="color:var(--yellow)">Wstrzymał się (${(nv.wstrzymal_sie||[]).length})</div>
+      ${renderNameList(nv.wstrzymal_sie, 'rgba(234,179,8,0.08)')}
+
+      <div class="vote-cat-header">Brak głosu (${(nv.brak_glosu||[]).length})</div>
+      ${renderNameList(nv.brak_glosu, 'rgba(139,141,151,0.05)')}
+
+      <div class="vote-cat-header">Nieobecni (${(nv.nieobecni||[]).length})</div>
+      ${renderNameList(nv.nieobecni, 'rgba(75,85,99,0.05)')}
+    </div>`);
+
+  // Fallback dla głosowań bez wyciągniętego numeru sesji rzymskiego (parser
+  // BIP czasem nie złapie z highlight). Używamy session_date jako klucza do
+  // showSession, bo backend API obsługuje też lookup po dacie.
+  const sessKey = vote.session_number || vote.session_date || '';
+  const sessLabel = vote.session_number || vote.session_date || '?';
+  let html = `
+    ${sessKey ? `<button class="profile-back" onclick="showSession('${sessKey}')">← Sesja ${sessLabel}</button>` : ''}
+    <div style="margin-bottom:24px">
+      <div style="color:var(--muted);font-size:0.85rem;margin-bottom:4px">${sessKey ? sessionLink(sessKey, 'Sesja ' + sessLabel + ' · ' + (vote.session_date || ''), ' style="color:var(--muted)"') : (vote.session_date ? 'Sesja · ' + vote.session_date : '')}</div>
+      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${vote.topic || '?'}</h2>
+      ${vote.summary ? `<p style="color:var(--text);margin-top:8px;font-size:0.95rem;line-height:1.6;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:8px">${vote.summary}</p>` : ''}
+      ${vote.druk ? `<div style="margin-top:4px"><a class="name-link" href="/bill/${KAD_SLUGS[voteKid]||voteKid}/${drukSlug(String(vote.druk))}/" onclick="event.preventDefault();showDruk('${String(vote.druk)}','${voteKid}')">Druk ${vote.druk} →</a></div>` : ''}
+      ${vote.resolution ? `<div style="color:var(--muted)">Uchwała: ${vote.resolution}</div>` : ''}
+      ${vote.source_url ? `<div style="margin-top:6px"><a href="${vote.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół głosowania (BIP) ↗</a></div>` : ''}
+      <div style="margin-top:12px">
+        ${shareBar(
+          (vote.topic || voteId).substring(0, 80) + ' \u2013 Radoskop ' + CFG.cityName + '',
+          (passed ? 'Przyjęte' : 'Odrzucone') + ': za ' + (c.za||0) + ', przeciw ' + (c.przeciw||0) + ', wstrzym. ' + (c.wstrzymal_sie||0) + '. ' + (vote.topic || '').substring(0, 100),
+          '' + CFG.siteUrl + '/vote/' + voteId + '/',
+          'vote-share'
+        )}
+      </div>
+    </div>
+    ${factionMode ? factionNoticeHtml() : ''}
+    ${resultOnly ? showOfHandsNoticeHtml() : ''}
+    ${resultOnly ? '' : metricsBarHtml}
+    ${breakdownHtml}
+  `;
+
+  view.innerHTML = html;
+  window.scrollTo(0, 0);
+
+}
+
+// showDruk — strona druku z treścią przez API premium i commission timeline.
+// Endpoint: GET API_BASE + '/kadencja/{kadId}/druk/{drukId}' (credentials: include)
+// Pliki źródłowe: radoskop/cities/{city}/druki/{kadId}/{drukId}.json (poza docs/)
+// URL strony (kanon angielski): /bill/{kadSlug}/{drukId}/ → np. /bill/ix/123/
+// Wejściowe /bill/ tłumaczy toInternalPath na /druk/ (handler routera).
+// drukSlug — identyfikator druku bezpieczny dla URL i klucza S3. Numery
+// druków bywają niealfanumeryczne: Wrocław '830/26' (ukośnik rozbija ścieżkę
+// SPA i routing Flask), Kraków '1321-R'. Musi być spójny z druk_slug() w
+// scrapers/druki/scrape_druki.py i lookupem w data_api.py.
+//   '830/26' -> '830-26', '1321-R' -> '1321-R', '1605' -> '1605'
+function drukSlug(d) {
+  return String(d == null ? '' : d).trim().replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+
+async function showDruk(drukId, kadId) {
+  drukId = String(drukId);
+  const drukKey = drukSlug(drukId);  // do URL/API; drukId zostaje do wyświetlenia
+  kadId = kadId || currentKid;
+  trackEvent('view_druk', { druk: drukKey, kadencja: kadId });
+
+  hideAllViews();
+  const view = document.getElementById('druk-view');
+  view.style.display = 'block';
+  view.innerHTML = '<p style="color:var(--muted);padding:20px 0">Ładowanie...</p>';
+
+  const kadSlug = KAD_SLUGS[kadId] || kadId;
+  setOgMeta({
+    title: 'Druk ' + drukId + ' – Radoskop ' + CFG.cityName + '',
+    url: '' + CFG.siteUrl + '/bill/' + kadSlug + '/' + drukKey + '/'
+  });
+  navigateTo('/bill/' + kadSlug + '/' + drukKey + '/');
+  setTitle('Druk ' + drukId);
+
+  // Fetch przez API premium (credentials: include = session cookie).
+  // data_api.py czyta pliki z radoskop/cities/{city}/druki/{kadId}/{drukId}.json
+  // i zwraca tier-zaleznie:
+  //   free tier:    { tytul, tresc_preview }   (pierwsze ~50 slow)
+  //   premium tier: { tytul, tresc, source_url } (pelna tresc + PDF na S3)
+  let entry = null;
+  try {
+    const resp = await fetch(
+      API_BASE + '/kadencja/' + encodeURIComponent(kadId) + '/druk/' + encodeURIComponent(drukKey),
+      { credentials: 'include' }
+    );
+    if (resp.ok) entry = await resp.json();
+  } catch (e) { /* brak danych = entry null */ }
+
+  const tytul = entry && entry.tytul ? entry.tytul : 'Druk ' + drukId;
+
+  let contentHtml = '';
+  if (entry && entry.tresc) {
+    // Premium: pelna tresc + link do PDF na S3
+    const localCopyLink = entry.source_url
+      ? `<div style="margin-top:12px"><a href="${entry.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">&#8599; Dokument źródłowy</a></div>`
+      : '';
+    contentHtml = `<div class="druk-tresc"><p>${entry.tresc}</p>${localCopyLink}</div>`;
+  } else if (entry && entry.tresc_preview) {
+    // Free: preview + CTA
+    contentHtml = `
+      <div class="druk-tresc">
+        <p>${entry.tresc_preview}...</p>
+        <div class="druk-paywall">
+          <p style="margin:0 0 12px;color:var(--muted);font-size:0.9rem">Pełna treść dostępna w pakiecie Pro.</p>
+          <button class="auth-btn" onclick="showPro({from:'druk_content',druk:'${drukKey}'})">Odblokuj Pro</button>
+        </div>
+      </div>`;
+  } else if (entry) {
+    // Plik druku istnieje, ale treść jest pusta: BIP tego miasta nie
+    // publikuje treści druków w maszynowym źródle (np. Gdańsk, scraper
+    // bierze tylko tytuł z topic głosowania). Nie obiecujemy "jeszcze",
+    // bo treść z tego źródła nigdy nie przyjdzie.
+    contentHtml = '<p style="color:var(--muted)">BIP tego miasta nie udostępnia treści druków w formie elektronicznej.</p>';
+  } else {
+    contentHtml = "<p style=\"color:var(--muted)\">Treść druku nie jest jeszcze dostępna.</p>";
+  }
+
+  // Opinie komisji (np. Kraków): nazwa komisji + wynik (Pozytywna/Negatywna)
+  // + data + link do PDF opinii w BIP. Dane publiczne, w obu tier.
+  const opinie = (entry && entry.opinie) || [];
+  const opinieHtml = opinie.length ? `
+    <div class="section">
+      <h2>Opinie komisji (${opinie.length})</h2>
+      ${opinie.map(o => {
+        const w = (o.wynik || '').toLowerCase();
+        const color = w.startsWith('pozyt') ? 'var(--green)' : w.startsWith('negat') ? 'var(--red)' : 'var(--muted)';
+        const link = o.pdf_url ? `<a href="${o.pdf_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none;white-space:nowrap">↗ PDF</a>` : '';
+        return `<div style="display:flex;gap:10px;align-items:baseline;padding:8px 0;border-top:0.5px solid var(--border)">
+          <span style="flex:1;min-width:0">${o.komisja || 'Komisja'}</span>
+          ${o.wynik ? `<span style="color:${color};font-weight:600;font-size:0.85rem;white-space:nowrap">${o.wynik}</span>` : ''}
+          ${o.data ? `<span style="color:var(--muted);font-size:12px;white-space:nowrap;font-variant-numeric:tabular-nums">${o.data}</span>` : ''}
+          ${link}
+        </div>`;
+      }).join('')}
+    </div>` : '';
+
+  view.innerHTML = `
+    <button class="profile-back" onclick="history.back()">← Wróć</button>
+    <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0;margin-bottom:4px">${tytul}</h2>
+    <div style="color:var(--muted);font-size:0.85rem;margin-bottom:16px">Druk nr ${drukId}</div>
+    ${contentHtml}
+    ${opinieHtml}
+    <div id="druk-commission-timeline"></div>
+  `;
+
+  renderCommissionTimeline(drukKey, document.getElementById('druk-commission-timeline'));
+  window.scrollTo(0, 0);
+}
+
+// Mini-cache per druk żeby przy szybkim klikaniu między głosowaniami
+// nie odpytywać API po raz drugi o ten sam numer. Cache jest browser-side
+// (sesyjny, w pamięci tabletu); API ma własny 10-min cache po stronie
+// serwera, więc oba poziomy razem dają minimalne S3 reads.
+const DRUK_CACHE = new Map();
+
+async function loadDrukEntry(druk) {
+  if (!druk) return null;
+  const key = String(druk);
+  if (DRUK_CACHE.has(key)) return DRUK_CACHE.get(key);
+  try {
+    // credentials: include — cookie sesji decyduje o tier (Pro widzi
+    // pełną listę komisji, free top 3). CORS allow-credentials jest po
+    // stronie checkout_server (regex subdomen radoskop.pl/.eu).
+    const resp = await fetch(API_BASE + '/druk/' + encodeURIComponent(key), { credentials: 'include' });
+    if (!resp.ok) {
+      DRUK_CACHE.set(key, null);
+      return null;
+    }
+    const data = await resp.json();
+    const entry = (data && data.available !== false && data.draft) ? data.draft : null;
+    DRUK_CACHE.set(key, entry);
+    return entry;
+  } catch (e) {
+    DRUK_CACHE.set(key, null);
+    return null;
+  }
+}
+
+async function renderCommissionTimeline(druk, container) {
+  if (!container) return;
+  container.innerHTML = '';
+  if (!druk) return;
+  const entry = await loadDrukEntry(druk);
+  if (!entry) return; // Druk nie istnieje w indeksie (brak korelacji) → nie renderuj
+
+  const status = entry.status || '';
+  // Free tier: API zwraca commissions_top (do 3) + commissions_total + commissions_hidden.
+  // Backward compat: fallback do commissions[] gdy API jeszcze stara wersja.
+  const csTop = entry.commissions_top || entry.commissions || [];
+  const csTotal = entry.commissions_total != null ? entry.commissions_total : csTop.length;
+  const csHidden = entry.commissions_hidden != null ? entry.commissions_hidden : 0;
+  const cs = csTop;
+  const hasCommissions = csTotal > 0;
+
+  // Umami event: liczba wyświetleń sekcji per status, plus ile było ukrytych
+  // za paywallem (proxy dla intent → conversion CTA).
+  trackEvent('view_commission_timeline', {
+    druk: String(druk),
+    commissions_total: csTotal,
+    commissions_hidden: csHidden,
+    lead_time: entry.lead_time_days != null ? entry.lead_time_days : -1,
+    status: status
+  });
+
+  // Title plus optional badge zależne od statusu
+  let title;
+  let badge = '';
+  if (status === 'voted' && hasCommissions) {
+    title = `Procedowanie w komisjach (${csTotal})`;
+    const lt = entry.lead_time_days;
+    if (lt != null) {
+      badge = `<span style="font-size:11px;color:var(--accent);background:rgba(99,102,241,0.12);padding:2px 8px;border-radius:999px;margin-left:auto">${lt} ${lt === 1 ? 'dzień' : 'dni'} przed sesją</span>`;
+    }
+  } else if (status === 'in_commission' && hasCommissions) {
+    title = `W komisji (${csTotal}) — jeszcze nie głosowane na sesji`;
+  } else if (status === 'voted_without_commission') {
+    title = `Bez procedowania w komisji`;
+  } else if (hasCommissions) {
+    title = `Procedowanie (${csTotal})`;
+  } else {
+    return;
+  }
+
+  // Lista komisji (top 3 w free tier). Nazwa komisji linkuje do
+  // wewnętrznego widoku /commission/{slug}/ (showKomisja fetchuje z API,
+  // działa niezależnie od taba), link BIP zostaje jako źródło.
+  const rows = cs.map(c => {
+    const kSlug = c.url_slug || '';
+    const kSlugEsc = kSlug.replace(/'/g, "\\'");
+    const kLabel = c.label || 'Komisja';
+    const labelHtml = kSlug
+      ? `<a href="/commission/${encodeURIComponent(kSlug)}/" onclick="event.preventDefault();showKomisja('${kSlugEsc}')" style="color:var(--text);text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:3px">${kLabel}</a>`
+      : kLabel;
+    return `
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-top:0.5px solid var(--border)">
+      <div style="font-size:11px;color:var(--accent);min-width:78px;padding-top:2px;font-family:var(--font-mono,monospace)">${c.date || ''}</div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:500;color:var(--text)">${labelHtml}</div>
+        <div style="font-size:12px;color:var(--muted);margin-top:2px">Druk procedowany na posiedzeniu komisji</div>
+      </div>
+      ${c.url ? `<a href="${c.url}" target="_blank" rel="noopener" style="font-size:12px;color:var(--accent);text-decoration:none;padding-top:2px">↗ BIP</a>` : ''}
+    </div>
+  `;
+  }).join('');
+
+  // Teaser dla pozostałych komisji ukrytych za paywallem
+  const hiddenTeaser = csHidden > 0 ? `
+    <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-top:0.5px solid var(--border);background:rgba(99,102,241,0.04)">
+      <div style="font-size:11px;color:var(--muted);min-width:78px;padding-left:0">...</div>
+      <div style="flex:1;font-size:13px;color:var(--text)">
+        Łącznie <strong style="font-weight:500">${csTotal} komisji</strong> w pipeline. Pełna lista w pakiecie Pro
+      </div>
+      <a href="https://radoskop.eu/pro/?from=commission_timeline_hidden&druk=${encodeURIComponent(druk)}${salesLangQs(true)}"
+         onclick="event.preventDefault();trackEvent('click_business_cta',{location:'commission_timeline_hidden',druk:'${druk}',hidden:${csHidden}});showPro({from:'commission_timeline_hidden',druk:'${druk}'})"
+         style="font-size:12px;color:var(--accent);text-decoration:none">Zapytaj o pełną analizę ↗</a>
+    </div>
+  ` : '';
+
+  // Wiersz sesji (gdy znamy)
+  const sessionRow = entry.session && entry.session.date ? `
+    <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-top:0.5px solid var(--border);opacity:0.75">
+      <div style="font-size:11px;color:var(--accent);min-width:78px;font-family:var(--font-mono,monospace)">${entry.session.date}</div>
+      <div style="flex:1;font-size:13px;color:var(--text)">⚑ Sesja${entry.session.number_roman ? ' '+entry.session.number_roman : ''}, głosowanie</div>
+    </div>
+  ` : '';
+
+  // Komunikat dla statusu bez komisji — informuje że Radoskop sprawdził,
+  // nie tylko "brak danych".
+  const noCommissionRow = status === 'voted_without_commission' ? `
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:8px 0;border-top:0.5px solid var(--border)">
+      <div style="flex:1;font-size:13px;color:var(--text)">
+        Ten projekt uchwały nie był procedowany w żadnej z 18 komisji rady miasta przed głosowaniem na sesji plenarnej.
+        <div style="font-size:12px;color:var(--muted);margin-top:4px">Może to oznaczać tryb pilny, lex specialis albo specyfikę proceduralną.</div>
+      </div>
+    </div>
+  ` : '';
+
+  // CTA dostosowane do statusu. Tylko funkcje, które istnieją (audyt
+  // 2026-06-05): bez opinii komisji i alertów, branding Pro (rename
+  // 2026-06-07, landing radoskop.eu/pro/).
+  let ctaCopy;
+  if (status === 'voted_without_commission') {
+    ctaCopy = 'Pakiet Pro: oznaczenia trybu pilnego, pełna procedura komisyjna i eksport CSV/JSON. Analizy przypadków na zamówienie.';
+  } else if (status === 'in_commission') {
+    ctaCopy = 'Pakiet Pro: pełna lista posiedzeń komisji i mapowanie druków na głosowania, zanim druk trafi na sesję.';
+  } else {
+    // Bez "treści druków": w miastach bez maszynowego źródła treści
+    // (np. Gdańsk) obietnica stałaby obok komunikatu o jej braku.
+    ctaCopy = 'Pakiet Pro: pełna procedura komisyjna, mapowanie druków na głosowania, eksport CSV/JSON i porównywarka miast.';
+  }
+
+  container.innerHTML = `
+    <div style="background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);padding:14px 16px;margin:24px 0;border-radius:0">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+        <span style="font-size:14px;font-weight:500;color:var(--text)">${title}</span>
+        ${badge}
+      </div>
+      ${rows}
+      ${hiddenTeaser}
+      ${noCommissionRow}
+      ${sessionRow}
+      <div style="font-size:12px;color:var(--muted);margin-top:12px;padding-top:12px;border-top:0.5px solid var(--border)">
+        ${ctaCopy}
+        <a href="https://radoskop.eu/pro/?from=commission_timeline&druk=${encodeURIComponent(druk)}${salesLangQs(true)}"
+           onclick="event.preventDefault();trackEvent('click_business_cta',{location:'commission_timeline',druk:'${druk}',status:'${status}',commissions:${csTotal}});showPro({from:'commission_timeline',druk:'${druk}'})"
+           style="color:var(--accent);margin-left:4px;text-decoration:none">Dowiedz się więcej ↗</a>
+      </div>
+    </div>
+  `;
+}
+
+function backFromVote() {
+  document.getElementById('vote-view').style.display = 'none';
+  document.getElementById('app').style.display = 'block';
+  currentTab = 'votes';
+  navigateTo(mainPath('votes'));
+  // Make sure votes tab is active
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  const votesTab = document.querySelector('.tab[data-tab="votes"]');
+  if (votesTab) votesTab.classList.add('active');
+  ['ranking','sessions','komisje','interpelacje','budget'].forEach(t => {
+    document.getElementById('tab-'+t).style.display = 'none';
+  });
+  document.getElementById('tab-votes').style.display = 'block';
+}
+
+// Przekrojowe statystyki sesji: frekwencja, jednomyślne vs sporne głosowania,
+// rozkład głosów per klub (z named_votes zmapowanych przez clubMap). Daje
+// obraz zachowania całej rady, nie tylko listę pojedynczych głosowań.
+function renderSessionCrosscut(votes, clubMap, presentCount, absentCount) {
+  if (!votes || !votes.length) return '';
+
+  // Jednomyślne (bez przeciw i wstrzymań) vs sporne.
+  let unanimous = 0, contested = 0;
+  votes.forEach(v => {
+    const c = v.counts || {};
+    if ((c.przeciw || 0) === 0 && (c.wstrzymal_sie || 0) === 0) unanimous++;
+    else contested++;
+  });
+
+  const totalCouncilors = presentCount + absentCount;
+  const attPct = totalCouncilors ? Math.round((presentCount / totalCouncilors) * 100) : null;
+
+  // Agregacja głosów per klub z named_votes (gdy dostępne).
+  const agg = {};
+  votes.forEach(v => {
+    const nv = v.named_votes || {};
+    ['za', 'przeciw', 'wstrzymal_sie'].forEach(cat => {
+      (nv[cat] || []).forEach(name => {
+        const cl = clubMap[name] || '?';
+        (agg[cl] = agg[cl] || { za: 0, przeciw: 0, wstrzymal_sie: 0 })[cat]++;
+      });
+    });
+  });
+  const clubs = Object.keys(agg)
+    .map(cl => { const a = agg[cl]; return { cl, ...a, tot: a.za + a.przeciw + a.wstrzymal_sie }; })
+    .filter(c => c.tot > 0)
+    .sort((a, b) => b.tot - a.tot);
+  const maxTot = clubs.length ? Math.max(...clubs.map(c => c.tot)) : 0;
+
+  let summary = `<div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px;font-size:0.82rem;color:var(--muted)">`;
+  if (attPct != null) summary += `<span>frekwencja <strong style="color:var(--text);font-weight:600">${attPct}%</strong></span>`;
+  summary += `<span><strong style="color:var(--text);font-weight:600">${unanimous}</strong> jednomyślnych</span>`;
+  summary += `<span><strong style="color:var(--text);font-weight:600">${contested}</strong> spornych</span></div>`;
+
+  let clubsHtml = '';
+  if (clubs.length) {
+    const legend = `<div style="display:flex;gap:14px;font-size:0.72rem;color:var(--muted);margin-bottom:10px">
+      <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--green);margin-right:4px"></span>Za</span>
+      <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--red);margin-right:4px"></span>Przeciw</span>
+      <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--yellow);margin-right:4px"></span>Wstrzymało się</span>
+    </div>`;
+    clubsHtml = `<div style="font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:10px">Jak głosowały kluby</div>${legend}` + clubs.map(c => {
+      const w = Math.max((c.tot / maxTot) * 100, 4);
+      const zaW = c.tot ? (c.za / c.tot) * 100 : 0;
+      const prW = c.tot ? (c.przeciw / c.tot) * 100 : 0;
+      const wsW = c.tot ? (c.wstrzymal_sie / c.tot) * 100 : 0;
+      return `<div style="display:grid;grid-template-columns:96px 1fr auto;gap:10px;align-items:center;padding:5px 0">
+        <span class="club ${clubClass(c.cl)}">${c.cl === '?' ? 'Niezrzeszeni' : c.cl}</span>
+        <div style="display:flex;height:16px;width:${w}%;min-width:40px;border-radius:4px;overflow:hidden;background:var(--surface)">
+          ${c.za ? `<div title="Za ${c.za}" style="width:${zaW}%;background:var(--green)"></div>` : ''}
+          ${c.przeciw ? `<div title="Przeciw ${c.przeciw}" style="width:${prW}%;background:var(--red)"></div>` : ''}
+          ${c.wstrzymal_sie ? `<div title="Wstrzymało się ${c.wstrzymal_sie}" style="width:${wsW}%;background:var(--yellow)"></div>` : ''}
+        </div>
+        <span style="font-size:11px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums">${c.za}/${c.przeciw}/${c.wstrzymal_sie}</span>
+      </div>`;
+    }).join('');
+  }
+
+  return `<div class="section"><h2>Przekrój głosowań</h2>${summary}${clubsHtml}</div>`;
+}
+
+// Filtr stenogramu po mówcy (global, wołany z <select onchange>).
+function _filterTranscript(name) {
+  document.querySelectorAll('#transcript-view .steno-turn').forEach(function(el) {
+    el.style.display = (!name || el.getAttribute('data-name') === name) ? '' : 'none';
+  });
+}
+
+// Deep-link #turn-N: przewiń i podświetl wypowiedź (z profilu/feedu).
+function _highlightHashTurn() {
+  var m = (location.hash || '').match(/^#turn-(\d+)$/);
+  if (!m) return;
+  var el = document.getElementById('turn-' + m[1]);
+  if (!el) return;
+  el.scrollIntoView({behavior: 'smooth', block: 'center'});
+  el.style.transition = 'background 0.4s';
+  el.style.background = 'rgba(99,102,241,0.12)';
+  setTimeout(function() { el.style.background = ''; }, 2600);
+}
+
+async function showTranscript(sessionNumber, targetSeq) {
+  if (!sessionNumber) { showMain(); return; }
+  trackEvent('view_transcript', {session_number: sessionNumber});
+
+  hideAllViews();
+  const view = document.getElementById('transcript-view');
+  view.style.display = 'block';
+  view.innerHTML = '<p style="padding:40px;color:var(--muted)">Ładowanie stenogramu…</p>';
+  navigateTo('/session/' + encodeURIComponent(sessionNumber) + '/transcript/');
+
+  // Fetch transcript: bieżąca kadencja, potem pozostałe (deep-link z archiwum).
+  let tr = null;
+  const kids = [currentKid].concat(RAW.kadencje.map(k => k.id).filter(id => id !== currentKid));
+  for (const kid of kids) {
+    try {
+      const resp = await fetch(API_BASE + '/kadencja/' + kid + '/session/'
+        + encodeURIComponent(sessionNumber) + '/transcript');
+      if (resp.ok) { tr = await resp.json(); break; }
+    } catch (e) { /* try next */ }
+  }
+
+  const sessLabelEsc = sessionNumber.replace(/'/g, "\\'");
+  if (!tr || !tr.turns || !tr.turns.length) {
+    view.innerHTML = '<button class="profile-back" onclick="showSession(\'' + sessLabelEsc + '\')">← Sesja '
+      + htmlEscape(sessionNumber) + '</button>'
+      + '<div style="padding:24px 0;max-width:560px">'
+      + '<h2 style="margin:0 0 12px">Stenogram niedostępny</h2>'
+      + '<p style="color:var(--muted)">Dla tej sesji nie opublikowano jeszcze stenogramu wypowiedzi.</p>'
+      + '</div>';
+    setTitle('Stenogram niedostępny');
+    setRobotsIndexable(false);
+    return;
+  }
+
+  const dateStr = tr.date || '';
+  const stats = tr.stats || {};
+  const enc = encodeURIComponent(sessionNumber);
+  const pct = v => (v == null ? '—' : (Math.round(v * 1000) / 10).toLocaleString('pl') + '%');
+
+  setTitle('Stenogram — Sesja ' + sessionNumber + (dateStr ? ' (' + dateStr + ')' : ''));
+  setRobotsIndexable(true);
+  setOgMeta({
+    title: 'Stenogram sesji ' + sessionNumber + (dateStr ? ' (' + dateStr + ')' : '') + ' – Radoskop ' + CFG.cityName + '',
+    description: 'Pełny zapis wypowiedzi z sesji ' + sessionNumber + '. '
+      + (stats.speaker_count || 0) + ' mówców, ' + (stats.total_statements || 0) + ' wypowiedzi, '
+      + (stats.total_words || 0) + ' słów.',
+    url: '' + CFG.siteUrl + '/session/' + enc + '/transcript/',
+    image: '' + CFG.siteUrl + '/session/' + enc + '/og.png'
+  });
+
+  // Mapa klubów z bieżącej kadencji; baked tr.turns[].club jako fallback.
+  const clubMap = {};
+  (K.councilors || []).forEach(co => { clubMap[co.name] = co.club; });
+  const clubOf = (name, fallback) => clubMap[name] || fallback || '?';
+
+  const top = stats.top_speaker;
+  const longest = stats.longest_monolog;
+
+  // Panel dominacji: neutralne metryki udziału mówców, bez interpretacji.
+  let html = '<button class="profile-back" onclick="showSession(\'' + sessLabelEsc + '\')">← Sesja '
+    + htmlEscape(sessionNumber) + '</button>'
+    + '<div style="margin:12px 0 20px">'
+    + '<h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">Stenogram — Sesja '
+    + htmlEscape(sessionNumber) + (dateStr ? ' · ' + htmlEscape(dateStr) : '') + '</h2>'
+    + (tr.source_url ? '<div style="margin-top:6px"><a href="' + htmlEscape(tr.source_url)
+        + '" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Stenogram źródłowy (BIP) ↗</a></div>' : '')
+    + '<div style="margin-top:12px">'
+    + shareBar('Stenogram sesji ' + sessionNumber + ' – Radoskop ' + CFG.cityName + '',
+        'Pełny zapis wypowiedzi z sesji ' + sessionNumber + ' i statystyki udziału mówców.',
+        '' + CFG.siteUrl + '/session/' + enc + '/transcript/', 'transcript-share')
+    + '</div></div>';
+
+  html += '<div class="section"><div class="profile-metrics">';
+  if (top) {
+    html += '<div class="metric-card"><div class="metric-value" style="font-size:1.05rem">'
+      + htmlEscape(top.name) + '</div><div class="metric-label">Najwięcej mówił · ' + pct(top.share) + ' słów</div></div>';
+  }
+  html += '<div class="metric-card"><div class="metric-value">' + pct(stats.top3_share)
+    + '</div><div class="metric-label">Udział 3 czołowych mówców</div></div>';
+  if (longest) {
+    html += '<div class="metric-card"><div class="metric-value">' + (longest.words || 0).toLocaleString('pl')
+      + '</div><div class="metric-label">Najdłuższa wypowiedź · ' + htmlEscape(longest.name || '') + '</div></div>';
+  }
+  html += '<div class="metric-card"><div class="metric-value">' + (stats.speaker_count || 0)
+    + '</div><div class="metric-label">Mówców</div></div>'
+    + '<div class="metric-card"><div class="metric-value">' + (stats.total_statements || 0).toLocaleString('pl')
+    + '</div><div class="metric-label">Wypowiedzi</div></div>'
+    + '<div class="metric-card"><div class="metric-value">' + (stats.total_words || 0).toLocaleString('pl')
+    + '</div><div class="metric-label">Słów łącznie</div></div>'
+    + '</div>';
+
+  // Ranking udziału mówców (paski jak w widoku sesji).
+  const speakers = (tr.speakers || []).slice();
+  if (speakers.length) {
+    const maxWords = speakers[0].words || 1;
+    html += '<div class="speakers-grid" style="margin-top:14px">';
+    const TOP_VIS = 8;
+    html += speakers.map((sp, idx) => {
+      const cl = clubOf(sp.name, sp.club);
+      const barPct = Math.max((sp.words / maxWords) * 100, 2);
+      const color = (typeof clubColor === 'function') ? clubColor(cl) : 'var(--accent)';
+      const hiddenCls = idx >= TOP_VIS ? ' hidden' : '';
+      return '<div class="speaker-bar' + hiddenCls + '"><span class="speaker-name">'
+        + '<span class="club ' + clubClass(cl) + '">' + cl + '</span>' + profileLink(sp.name) + '</span>'
+        + '<div class="speaker-bar-track"><div class="speaker-bar-fill" style="width:' + barPct + '%;background:' + color + '"></div></div>'
+        + '<span class="speaker-meta"><strong>' + (sp.words || 0).toLocaleString('pl') + '</strong> słów · ' + pct(sp.share) + '</span></div>';
+    }).join('');
+    if (speakers.length > TOP_VIS) {
+      html += '<button class="show-more-speakers" onclick="this.parentElement.querySelectorAll(\'.speaker-bar.hidden\').forEach(el=>el.classList.remove(\'hidden\'));this.remove();">Pokaż pozostałych ' + (speakers.length - TOP_VIS) + ' mówców ↓</button>';
+    }
+    html += '</div></div>';
+  }
+
+  // Filtr po mówcy + pełne tury.
+  let filterOpts = '<option value="">Wszyscy mówcy (' + tr.turns.length + ' wypowiedzi)</option>';
+  filterOpts += speakers.map(sp => '<option value="' + htmlEscape(sp.name) + '">' + htmlEscape(sp.name)
+    + ' (' + sp.statements + ')</option>').join('');
+  html += '<div class="section"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px">'
+    + '<h2 style="margin:0;border:none;padding:0">Pełny zapis</h2>'
+    + '<select onchange="_filterTranscript(this.value)" style="margin-left:auto;padding:6px 10px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--text);font-size:0.85rem;max-width:280px">'
+    + filterOpts + '</select></div>';
+
+  html += '<div class="steno-list">';
+  html += tr.turns.map(t => {
+    const cl = clubOf(t.name, t.club);
+    const color = (typeof clubColor === 'function') ? clubColor(cl) : 'var(--accent)';
+    return '<div class="steno-turn" id="turn-' + t.seq + '" data-name="' + htmlEscape(t.name)
+      + '" style="padding:12px 0;border-bottom:1px solid var(--border)">'
+      + '<div style="display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:4px">'
+      + '<span style="width:3px;align-self:stretch;background:' + color + ';border-radius:2px"></span>'
+      + '<span class="club ' + clubClass(cl) + '">' + cl + '</span>'
+      + '<strong>' + profileLink(t.name) + '</strong>'
+      + (t.role ? '<span style="font-size:0.78rem;color:var(--muted)">' + htmlEscape(t.role) + '</span>' : '')
+      + '<a href="/session/' + enc + '/transcript/#turn-' + t.seq + '" onclick="event.preventDefault();location.hash=\'turn-' + t.seq + '\';_highlightHashTurn()" style="margin-left:auto;font-size:0.74rem;color:var(--muted);text-decoration:none">#' + (t.seq + 1) + ' · ' + (t.words || 0) + ' słów</a>'
+      + '</div>'
+      + '<p style="margin:0;font-size:0.92rem;line-height:1.6;color:var(--text);white-space:pre-wrap">' + htmlEscape(t.text) + '</p>'
+      + '</div>';
+  }).join('');
+  html += '</div></div>';
+
+  view.innerHTML = html;
+  window.scrollTo(0, 0);
+  if (targetSeq != null) { try { location.hash = 'turn-' + targetSeq; } catch (e) {} }
+  setTimeout(_highlightHashTurn, 120);
+}
+
+// Lazy-load wypowiedzi danej osoby z sesji w zakładce Aktywność profilu.
+// Skróty z rozwijaniem + deep-link do pełnego stenogramu (#turn-N).
+async function _loadProfileSpeeches(sessionNumber, personName, kid, btn) {
+  const box = document.getElementById(btn.getAttribute('data-target'));
+  if (!box) return;
+  if (box.getAttribute('data-loaded') === '1') { // toggle widoczności
+    box.style.display = box.style.display === 'none' ? '' : 'none';
+    return;
+  }
+  box.style.display = '';
+  box.innerHTML = '<span style="color:var(--muted);font-size:0.82rem">Ładowanie…</span>';
+
+  const kids = [kid || currentKid].concat(RAW.kadencje.map(k => k.id).filter(id => id !== (kid || currentKid)));
+  let tr = null;
+  for (const k of kids) {
+    try {
+      const resp = await fetch(API_BASE + '/kadencja/' + k + '/session/'
+        + encodeURIComponent(sessionNumber) + '/transcript');
+      if (resp.ok) { tr = await resp.json(); break; }
+    } catch (e) { /* next */ }
+  }
+  box.setAttribute('data-loaded', '1');
+
+  if (!tr || !tr.turns) {
+    box.innerHTML = '<span style="color:var(--muted);font-size:0.82rem">Stenogram tej sesji jest niedostępny.</span>';
+    return;
+  }
+  const want = _canonName(personName);
+  const mine = tr.turns.filter(t => _canonName(t.name) === want);
+  if (!mine.length) {
+    box.innerHTML = '<span style="color:var(--muted);font-size:0.82rem">Brak dopasowanych wypowiedzi w stenogramie.</span>';
+    return;
+  }
+  const enc = encodeURIComponent(sessionNumber);
+  const snEsc = sessionNumber.replace(/'/g, "\\'");
+  box.innerHTML = mine.map(t => {
+    const full = (t.text || '').trim();
+    const short = full.length > 280 ? full.slice(0, 280).replace(/\s+\S*$/, '') + '…' : full;
+    const needsToggle = full.length > 280;
+    const link = '<a href="/session/' + enc + '/transcript/#turn-' + t.seq
+      + '" onclick="event.preventDefault();showTranscript(\'' + snEsc + '\',' + t.seq + ')" '
+      + 'style="font-size:0.76rem;color:var(--accent);text-decoration:none;white-space:nowrap">w stenogramie →</a>';
+    const toggle = needsToggle
+      ? '<button onclick="_toggleExcerpt(this)" style="background:none;border:none;color:var(--accent);font-size:0.76rem;cursor:pointer;padding:0">rozwiń</button>'
+      : '';
+    return '<div class="excerpt-item" style="padding:8px 0;border-top:1px solid var(--border)">'
+      + '<div style="display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:2px">'
+      + '<span style="font-size:0.72rem;color:var(--muted)">' + (t.words || 0) + ' słów</span>'
+      + '<span style="display:flex;gap:12px;align-items:center">' + toggle + link + '</span></div>'
+      + '<div class="excerpt-short" style="font-size:0.86rem;line-height:1.5;color:var(--text)">' + htmlEscape(short) + '</div>'
+      + '<div class="excerpt-full" style="display:none;font-size:0.86rem;line-height:1.5;color:var(--text);white-space:pre-wrap">' + htmlEscape(full) + '</div>'
+      + '</div>';
+  }).join('');
+}
+
+// Przełącz skrót/pełną treść wypowiedzi w zakładce Aktywność.
+function _toggleExcerpt(btn) {
+  const wrap = btn.closest('.excerpt-item');
+  if (!wrap) return;
+  const sh = wrap.querySelector('.excerpt-short');
+  const fu = wrap.querySelector('.excerpt-full');
+  if (!sh || !fu) return;
+  const showFull = fu.style.display === 'none';
+  fu.style.display = showFull ? '' : 'none';
+  sh.style.display = showFull ? 'none' : '';
+  btn.textContent = showFull ? 'zwiń' : 'rozwiń';
+}
+
+async function showSession(sessionNumber) {
+  // Guard: pusty argument prowadziłby do '/sesja//' czyli rozbitej nawigacji.
+  // Wracamy zamiast tego do strony głównej.
+  if (!sessionNumber) {
+    showMain();
+    return;
+  }
+  trackEvent('view_session', {session_number: sessionNumber});
+
+  hideAllViews();
+  const view = document.getElementById('session-view');
+  view.style.display = 'block';
+  view.innerHTML = '<p style="padding:40px;color:var(--muted)">Ładowanie sesji...</p>';
+  navigateTo('/session/' + encodeURIComponent(sessionNumber) + '/');
+
+  // Fetch session detail from API
+  let sess = null;
+  try {
+    const resp = await fetch(API_BASE + '/kadencja/' + currentKid + '/session/' + encodeURIComponent(sessionNumber));
+    if (resp.ok) sess = await resp.json();
+  } catch(e) { /* fallback below */ }
+
+  // If not found in current kadencja, try others
+  if (!sess) {
+    for (const kad of RAW.kadencje) {
+      if (kad.id === currentKid) continue;
+      try {
+        const resp = await fetch(API_BASE + '/kadencja/' + kad.id + '/session/' + encodeURIComponent(sessionNumber));
+        if (resp.ok) { sess = await resp.json(); break; }
+      } catch(e) { /* try next */ }
+    }
+  }
+  if (!sess) {
+    // Sesja nie znaleziona, prawdopodobnie stary URL z archiwum kadencji.
+    // Friendly fallback z linkami zamiast suchego błędu (Google Ads
+    // oznacza "Nie znaleziono" jako Destination not working).
+    view.innerHTML = '<div style="padding:40px;max-width:560px;margin:0 auto">'
+      + '<h2 style="margin:0 0 12px">Sesja niedostępna</h2>'
+      + '<p style="color:var(--muted);margin:0 0 16px">'
+      + "Ta sesja nie została znaleziona w aktualnej kadencji. "
+      + "Możliwe że pochodzi z archiwum poprzedniej kadencji albo link jest błędny."
+      + '</p>'
+      + '<p style="margin:20px 0"><a href="/" style="color:var(--text);font-weight:600">Wróć na stronę główną →</a></p>'
+      + '<p style="margin:0"><a href="/session/" style="color:var(--text)">Zobacz aktualne sesje →</a></p>'
+      + '</div>';
+    setTitle('Sesja niedostępna');
+    setRobotsIndexable(false);
+    return;
+  }
+
+  setTitle('Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : ''));
+  // Sumaryczna metryka sesji: dla miast z imiennymi g\u0142osowaniami liczba
+  // g\u0142osowa\u0144, dla miast typu Berlin (Hammelsprung anonimowy) liczba
+  // wypowiedzi z protoko\u0142u.
+  const sessStatementCount = sess.statements != null ? sess.statements
+    : (sess.speakers ? sess.speakers.reduce((s, sp) => s + (sp.statements ?? sp.turns ?? 0), 0) : 0);
+  const sessSummaryStat = HAS_VOTING_DATA
+    ? ((sess.vote_count || 0) + ' g\u0142osowa\u0144')
+    : (sessStatementCount + ' wyst\u0105pie\u0144');
+  setOgMeta({
+    title: 'Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' \u2013 Radoskop ' + CFG.cityName + '',
+    description: 'Sesja ' + sessionNumber + ', ' + (sess.date||'') + '. ' + sessSummaryStat + ', ' + (sess.attendee_count||0) + ' obecnych.',
+    url: '' + CFG.siteUrl + '/session/' + encodeURIComponent(sessionNumber) + '/'
+  });
+
+  // Sesja bez opublikowanych wyników głosowań. Pokazujemy datę i porządek
+  // obrad, ale NIE liczymy obecnych/nieobecnych — brak attendees nie znaczy
+  // że wszyscy byli nieobecni, tylko że BIP nie wydał jeszcze "Wykazu głosowań".
+  if (sess.results_pending) {
+    const _linkStyle = 'color:var(--accent);font-size:0.9rem;text-decoration:none';
+    const agendaLink = sess.agenda_url ? `<a href="${sess.agenda_url}" target="_blank" rel="noopener" style="${_linkStyle}">↗ Porządek obrad</a>` : '';
+    const bipLink = sess.url ? `<a href="${sess.url}" target="_blank" rel="noopener" style="${_linkStyle}">↗ Strona sesji w BIP</a>` : '';
+    view.innerHTML = `
+      <button class="profile-back" onclick="showMain()">← Strona główna</button>
+      <div style="margin-bottom:24px">
+        <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">Sesja ${sess.number != null ? sess.number + ' · ' : ''}${sess.date}</h2>
+      </div>
+      <div class="section">
+        <div style="padding:14px 16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:0.92rem;color:var(--text);line-height:1.5">
+          Wyniki imiennych głosowań z tej sesji nie zostały jeszcze opublikowane w BIP. Gdy się pojawią, pokażemy je tutaj automatycznie.
+        </div>
+        ${(agendaLink || bipLink) ? `<div style="display:flex;gap:18px;margin-top:16px;flex-wrap:wrap">${agendaLink}${bipLink}</div>` : ''}
+      </div>`;
+    return;
+  }
+
+  // Sesja bez głosowań imiennych (np. sesja nadzwyczajna / uroczysta).
+  // To NIE jest results_pending — tutaj po prostu nie było imiennych głosowań,
+  // więc nie ma ich nigdy więcej przyjść. Brak attendees nie znaczy, że wszyscy
+  // radni byli nieobecni, więc NIE liczymy obecnych/nieobecnych.
+  if (sess.no_roll_call_votes) {
+    const _linkStyle = 'color:var(--accent);font-size:0.9rem;text-decoration:none';
+    const agendaLink = sess.agenda_url ? `<a href="${sess.agenda_url}" target="_blank" rel="noopener" style="${_linkStyle}">↗ Porządek obrad</a>` : '';
+    const bipLink = sess.url ? `<a href="${sess.url}" target="_blank" rel="noopener" style="${_linkStyle}">↗ Strona sesji w BIP</a>` : '';
+    setOgMeta({
+      title: 'Sesja ' + sessionNumber + (sess.date ? ' (' + sess.date + ')' : '') + ' – Radoskop ' + CFG.cityName + '',
+      description: 'Sesja ' + sessionNumber + (sess.date ? ', ' + sess.date : '') + '. Sesja bez głosowań imiennych.',
+      url: '' + CFG.siteUrl + '/session/' + encodeURIComponent(sessionNumber) + '/'
+    });
+    view.innerHTML = `
+      <button class="profile-back" onclick="showMain()">← Strona główna</button>
+      <div style="margin-bottom:24px">
+        <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">Sesja ${sess.number != null ? sess.number + ' · ' : ''}${sess.date}</h2>
+      </div>
+      <div class="section">
+        <div style="padding:14px 16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:0.92rem;color:var(--text);line-height:1.5">
+          Ta sesja nie miała głosowań imiennych.
+        </div>
+        ${(agendaLink || bipLink) ? `<div style="display:flex;gap:18px;margin-top:16px;flex-wrap:wrap">${agendaLink}${bipLink}</div>` : ''}
+      </div>`;
+    return;
+  }
+
+  // Club lookup from current kadencja
+  const clubMap = {};
+  (K.councilors || []).forEach(co => { clubMap[co.name] = co.club; });
+
+  // Get all councilors for this kadencja to find absent ones
+  const allNames = new Set((K.councilors || []).map(c => c.name));
+  const present = new Set(sess.attendees || []);
+  const absent = sortByLastName([...allNames].filter(n => !present.has(n)));
+
+  // Session votes come from API response (already enriched)
+  const sessionVotes = sess.votes || [];
+  const hasVoteRecords = sessionVotes.length > 0;
+  const sessVoteCount = hasVoteRecords ? sessionVotes.length : (sess.vote_count || 0);
+
+  // Vote stats
+  const passed = sessionVotes.filter(v => v.passed).length;
+  const rejected = hasVoteRecords ? (sessionVotes.length - passed) : 0;
+
+  let html = `
+    <button class="profile-back" onclick="showMain()">← Strona główna</button>
+    <div style="margin-bottom:24px">
+      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">Sesja ${sess.number != null ? sess.number + ' · ' : ''}${sess.date}</h2>
+      ${sess.source_url ? `<div style="margin-top:6px"><a href="${sess.source_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">Protokół (BIP) ↗</a></div>` : ''}
+      <div style="margin-top:12px">
+        ${shareBar(
+          (sess.number != null ? 'Sesja ' + sess.number + ' ' : '') + '(' + (sess.date||'') + ') \u2013 Radoskop ' + CFG.cityName + '',
+          (sess.number != null ? 'Sesja ' + sess.number + ': ' : '') + sessSummaryStat + ', ' + (sess.attendee_count||present.size||0) + ' obecnych radnych.',
+          '' + CFG.siteUrl + '/session/' + encodeURIComponent(sessionNumber) + '/',
+          'session-share'
+        )}
+      </div>
+    </div>
+
+    <div class="profile-metrics" style="margin-bottom:24px">
+      ${HAS_VOTING_DATA ? `<div class="metric-card">
+        <div class="metric-value">${sessVoteCount}</div>
+        <div class="metric-label">Głosowań</div>
+      </div>` : `<div class="metric-card">
+        <div class="metric-value">${sessStatementCount}</div>
+        <div class="metric-label">Wystąpień</div>
+      </div>`}
+      ${hasVoteRecords ? `<div class="metric-card">
+        <div class="metric-value" style="color:var(--green)">${passed}</div>
+        <div class="metric-label">Przyjętych</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" style="color:var(--red)">${rejected}</div>
+        <div class="metric-label">Odrzuconych</div>
+      </div>` : ''}
+      ${sess.attendees ? `<div class="metric-card">
+        <div class="metric-value">${sess.attendee_count}</div>
+        <div class="metric-label">Obecnych</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" style="color:var(--muted)">${absent.length}</div>
+        <div class="metric-label">Nieobecnych</div>
+      </div>` : ''}
+    </div>`;
+
+  // Przekrojowe statystyki: frekwencja, jednomyślne vs sporne, rozkład klubów.
+  if (hasVoteRecords) {
+    html += renderSessionCrosscut(sessionVotes, clubMap, present.size, absent.length);
+  }
+
+  // Speakers
+  if (sess.speakers && sess.speakers.length > 0) {
+    const speakers = sess.speakers;
+    const maxWords = speakers[0].words;
+    const totalWords = speakers.reduce((s, sp) => s + (sp.words || 0), 0);
+    const sortedWords = speakers.map(sp => sp.words).sort((a, b) => a - b);
+    const medianWords = sortedWords[Math.floor(sortedWords.length / 2)] || 0;
+    // Schema kompatybilność: berlin scraper pisał wcześniej `turns`,
+    // Polish scrapery `statements`. Bezpiecznie czytamy oba.
+    const totalStatements = speakers.reduce((s, sp) => s + (sp.statements ?? sp.turns ?? 0), 0);
+
+    html += `<div class="section">
+      <h2>Aktywność mówców</h2>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px;font-size:0.78rem;color:var(--muted);font-variant-numeric:tabular-nums">
+        <span><strong style="color:var(--text);font-weight:500">${speakers.length}</strong> mówców</span>
+        <span><strong style="color:var(--text);font-weight:500">${totalStatements.toLocaleString('pl')}</strong> wyp.</span>
+        <span><strong style="color:var(--text);font-weight:500">${totalWords.toLocaleString('pl')}</strong> słów</span>
+        <span>mediana <strong style="color:var(--text);font-weight:500">${medianWords.toLocaleString('pl')}</strong></span>
+      </div>
+      ${sess.has_transcript ? `<div style="margin-bottom:12px"><a href="/session/${encodeURIComponent(sessionNumber)}/transcript/" onclick="event.preventDefault();showTranscript('${sessionNumber.replace(/'/g, "\\'")}')" style="display:inline-flex;align-items:center;gap:6px;font-size:0.85rem;font-weight:600;color:var(--accent);text-decoration:none">📄 Pełny stenogram sesji →</a></div>` : ''}
+      <div class="speakers-grid">`;
+    const SPEAKERS_TOP_VISIBLE = 10;
+    html += speakers.map((sp, idx) => {
+      const cl = clubMap[sp.name] || '?';
+      const barPct = Math.max((sp.words / maxWords) * 100, 2);
+      const statements = sp.statements ?? sp.turns ?? 0;
+      const color = (typeof clubColor === 'function') ? clubColor(cl) : 'var(--accent)';
+      const hiddenCls = idx >= SPEAKERS_TOP_VISIBLE ? ' hidden' : '';
+      return `<div class="speaker-bar${hiddenCls}">
+        <span class="speaker-name">
+          <span class="club ${clubClass(cl)}">${cl}</span>
+          ${profileLink(sp.name)}
+        </span>
+        <div class="speaker-bar-track">
+          <div class="speaker-bar-fill" style="width:${barPct}%;background:${color}"></div>
+        </div>
+        <span class="speaker-meta"><strong>${sp.words.toLocaleString('pl')}</strong> słów · ${statements} wyp.</span>
+      </div>`;
+    }).join('');
+    if (speakers.length > SPEAKERS_TOP_VISIBLE) {
+      const hiddenCount = speakers.length - SPEAKERS_TOP_VISIBLE;
+      html += `<button class="show-more-speakers" onclick="this.parentElement.querySelectorAll('.speaker-bar.hidden').forEach(el=>el.classList.remove('hidden'));trackEvent('speakers_expand',{total:${speakers.length}});this.remove();">Pokaż pozostałych ${hiddenCount} mówców ↓</button>`;
+    }
+    html += `</div></div>`;
+  }
+
+  // Votes grouped by category
+  const grouped = {};
+  sessionVotes.forEach(v => {
+    const cat = categorizeVote(v.topic, v.item_kind);
+    if (!grouped[cat]) grouped[cat] = [];
+    grouped[cat].push(v);
+  });
+  const catOrder = Object.keys(grouped).sort((a,b) => (VOTE_CATS[a]?.order||99) - (VOTE_CATS[b]?.order||99));
+
+  // Category summary with filter
+  html += `<div class="section">
+    <h2>Głosowania (${sessVoteCount})</h2>
+    <div class="filter-bar" id="session-cat-filter" style="margin-bottom:12px;flex-wrap:wrap">
+      <button class="session-pill active" data-scat="all">Wszystkie <span class="pill-count">(${sessionVotes.length})</span></button>`;
+  catOrder.forEach(cat => {
+    html += `<button class="session-pill cat-pill cat-${cat}" data-scat="${cat}">${VOTE_CATS[cat]?.label||cat} <span class="pill-count">(${grouped[cat].length})</span></button>`;
+  });
+  html += `</div>`;
+  if (!sessionVotes.length) {
+    html += `<p style="color:var(--muted)">Brak danych o indywidualnych głosowaniach.</p>`;
+  }
+
+  // Grouped tables
+  let globalIdx = 0;
+  catOrder.forEach(cat => {
+    const votes = grouped[cat];
+    html += `<div class="cat-group" data-catgroup="${cat}">
+      <div class="cat-group-header">${catPill(cat)} <span class="cat-group-count">${votes.length} głosowań</span></div>
+      <table class="ranking-table">
+        <thead><tr><th>#</th><th>Temat</th><th>Za</th><th>Przeciw</th><th>Wstrzym.</th><th>Wynik</th></tr></thead>
+        <tbody>`;
+    votes.forEach(v => {
+      globalIdx++;
+      const c = v.counts || {};
+      const total = (c.za||0) + (c.przeciw||0) + (c.wstrzymal_sie||0);
+      const ok = (c.za||0) > total/2;
+      html += `<tr class="vote-row" onclick="showVote('${v.id}')">
+        <td>${globalIdx}</td>
+        <td style="text-align:left">${v.topic || '—'}</td>
+        <td><span class="pill pill-za">${c.za||0}</span></td>
+        <td>${c.przeciw ? `<span class="pill pill-przeciw">${c.przeciw}</span>` : '0'}</td>
+        <td>${c.wstrzymal_sie ? `<span class="pill pill-wstrzymal">${c.wstrzymal_sie}</span>` : '0'}</td>
+        <td style="color:${ok?'var(--green)':'var(--red)'};font-weight:600">${ok?'✓':'✗'}</td>
+      </tr>`;
+    });
+    html += `</tbody></table></div>`;
+  });
+  html += `</div>`;
+
+  // Attendance
+  if (sess.attendees) {
+  html += `<div class="section">
+    <h2>Obecni (${present.size})</h2>
+    <div class="session-attendees">`;
+  sortByLastName([...present]).forEach(n => {
+    const cl = clubMap[n] || '?';
+    html += `<div class="session-attendee"><span class="club ${clubClass(cl)}">${cl}</span> ${profileLink(n)}</div>`;
+  });
+  html += `</div></div>`;
+
+  if (absent.length > 0) {
+    html += `<div class="section">
+      <h2>Nieobecni (${absent.length})</h2>
+      <div class="session-attendees">`;
+    absent.forEach(n => {
+      const cl = clubMap[n] || '?';
+      html += `<div class="session-attendee session-absent"><span class="club ${clubClass(cl)}">${cl}</span> ${profileLink(n)}</div>`;
+    });
+    html += `</div></div>`;
+  }
+  }
+
+  view.innerHTML = html;
+
+  // Wire up session category filter
+  const sCatBar = document.getElementById('session-cat-filter');
+  if (sCatBar) {
+    sCatBar.querySelectorAll('.session-pill').forEach(btn => {
+      btn.onclick = () => {
+        sCatBar.querySelectorAll('.session-pill').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.scat;
+        document.querySelectorAll('.cat-group').forEach(g => {
+          g.style.display = (cat === 'all' || g.dataset.catgroup === cat) ? '' : 'none';
+        });
+      };
+    });
+  }
+}
+
+// --- Komisje tab ---
+// Free tier: lista komisji ze statystykami (meetings, drafts_total, drafts_voted,
+// median_lead_time_days, last_meeting_date). Pełne posiedzenia są dostępne
+// w detalu komisji (showKomisja), gdzie API gateuje top N + hidden teaser.
+// Premium (Pro sub): pełna procedura komisyjna druku, bez teasera,
+// plus przycisk eksportu JSON. Flag BUSINESS_ACTIVE setowany przez
+// refreshSubscriptionStatus() przy starcie i po login/logout.
+let _komisjeListCache = null;
+let BUSINESS_ACTIVE = false;
+
+async function refreshSubscriptionStatus() {
+  // Auth API żyje na radoskop.eu (cross-origin), więc credentials: include
+  // i CORS allow-credentials musi być po stronie backendu. Brak sesji =
+  // 401, traktujemy jako free tier.
+  try {
+    const r = await fetch(AUTH_API + '/subscription-status', { credentials: 'include' });
+    if (!r.ok) { BUSINESS_ACTIVE = false; return; }
+    const d = await r.json();
+    BUSINESS_ACTIVE = !!d.business_active;
+  } catch (e) {
+    BUSINESS_ACTIVE = false;
+  }
+  // Drop cache, żeby render Komisji wyciągnął świeże dane z nowym tier.
+  _komisjeListCache = null;
+}
+
+// Slug komisji z labela w profilu radnego. Musi odwzorowywać
+// slugify_council() z backendu (scrapers/komisje/config.py) żeby link
+// trafiał w ten sam url_slug którego używa /komisja/{slug}. Najpierw
+// odcinamy rolę w nawiasie ("Komisja X (przewodniczący)" → "Komisja X").
+// Transliteracja PL + nordyckich/germańskich znaków. Bez tego litery spoza
+// [a-z0-9] (np. duńskie ø/æ/å w nazwach udvalg) wpadały w regex [^a-z0-9]+
+// jako "-", produkując pokraczne slugi typu "b-rne-og-ungdomsudvalget" dla
+// "Børne- og Ungdomsudvalget". Mapujemy je na konwencjonalne odpowiedniki
+// (ø→oe, æ→ae, å→aa, ...) żeby slug był czytelny i stabilny.
+const _KOMISJA_PL_MAP = {
+  'ł':'l','ą':'a','ę':'e','ó':'o','ś':'s','ż':'z','ź':'z','ć':'c','ń':'n',
+  'ø':'oe','æ':'ae','å':'aa','ä':'ae','ö':'oe','ü':'ue','ß':'ss',
+  'á':'a','é':'e','í':'i','ú':'u','à':'a','è':'e','ô':'o','ç':'c'
+};
+function komisjaSlugFromLabel(label) {
+  const base = String(label || '').replace(/\s*\([^)]*\)\s*$/, '').trim().toLowerCase();
+  const tr = base.replace(/[^a-z0-9]/g, ch => (ch in _KOMISJA_PL_MAP) ? _KOMISJA_PL_MAP[ch] : '-');
+  return tr.replace(/-+/g, '-').replace(/^-+|-+$/g, '');
+}
+// Stary algorytm (bez mapy nordyckiej) — slugi sprzed fixa są już zaindeksowane
+// i linkowane na zewnątrz, więc rozpoznajemy je dla przekierowania na kanon.
+function komisjaSlugLegacy(label) {
+  const base = String(label || '').replace(/\s*\([^)]*\)\s*$/, '').trim().toLowerCase();
+  const tr = base.replace(/[łąęóśżźćń]/g, ch => _KOMISJA_PL_MAP[ch] || ch);
+  return tr.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+function komisjaSlugMatches(label, slug) {
+  return komisjaSlugFromLabel(label) === slug || komisjaSlugLegacy(label) === slug;
+}
+// Etykieta komisji odtworzona ze slugu na podstawie PROFILES (bez API).
+function komisjaLabelFromSlug(slug, kid) {
+  if (!PROFILES || !PROFILES.profiles) return '';
+  for (const p of PROFILES.profiles) {
+    const kd = p.kadencje && p.kadencje[kid];
+    if (!kd || !Array.isArray(kd.komisje)) continue;
+    for (const k of kd.komisje) {
+      if (komisjaSlugMatches(k, slug)) {
+        return String(k).replace(/\s*\([^)]*\)\s*$/, '').trim();
+      }
+    }
+  }
+  return '';
+}
+
+// Rola radnego w komisji wyłuskana z nawiasu na końcu labela.
+function komisjaRoleFromLabel(label) {
+  const m = String(label || '').match(/\(([^)]*)\)\s*$/);
+  return m ? m[1].trim() : '';
+}
+
+// Skład komisji zbudowany z PROFILES dla danej kadencji. Zwraca listę
+// {name, slug, club, role} posortowaną: przewodniczący, wice, członkowie.
+function komisjaMembers(commissionSlug, kid) {
+  if (!PROFILES || !PROFILES.profiles) return [];
+  const out = [];
+  PROFILES.profiles.forEach(p => {
+    const kd = p.kadencje && p.kadencje[kid];
+    if (!kd || !Array.isArray(kd.komisje)) return;
+    kd.komisje.forEach(k => {
+      if (komisjaSlugMatches(k, commissionSlug)) {
+        out.push({ name: p.name, slug: p.slug, club: kd.club || '', role: komisjaRoleFromLabel(k) });
+      }
+    });
+  });
+  const rank = r => {
+    const lr = (r || '').toLowerCase();
+    if (lr.includes('przewodnicz') && !lr.includes('wice')) return 0;
+    if (lr.includes('wice')) return 1;
+    return 2;
+  };
+  out.sort((a, b) => rank(a.role) - rank(b.role) || a.name.localeCompare(b.name, 'pl'));
+  return out;
+}
+
+async function renderKomisjeList() {
+  const container = document.getElementById('komisje-content');
+  if (!container) return;
+  trackEvent('view_komisje_list');
+
+  if (!_komisjeListCache) {
+    container.innerHTML = '<p style="color:var(--muted);padding:20px 0">Ładowanie komisji...</p>';
+    try {
+      const resp = await fetch(API_BASE + '/komisje', { credentials: 'include' });
+      if (!resp.ok) {
+        container.innerHTML = '<p style="color:var(--muted);padding:20px 0">Dane o komisjach nie są jeszcze dostępne dla tego miasta.</p>';
+        return;
+      }
+      _komisjeListCache = await resp.json();
+    } catch (e) {
+      container.innerHTML = '<p style="color:var(--red);padding:20px 0">Błąd ładowania komisji: ' + e.message + '</p>';
+      return;
+    }
+  }
+
+  const data = _komisjeListCache;
+  if (data.available === false) {
+    container.innerHTML = '<p style="color:var(--muted);padding:20px 0">Dane o komisjach nie są jeszcze dostępne dla tego miasta. Pracujemy nad tym.</p>';
+    return;
+  }
+  const commissions = data.commissions || [];
+  if (commissions.length === 0) {
+    container.innerHTML = '<p style="color:var(--muted);padding:20px 0">Brak danych o komisjach.</p>';
+    return;
+  }
+
+  // Aggregaty łączne dla całej rady
+  const totalMeetings = commissions.reduce((s, c) => s + ((c.stats || {}).meetings || 0), 0);
+  const totalDrafts = commissions.reduce((s, c) => s + ((c.stats || {}).drafts_total || 0), 0);
+  const totalInCommission = commissions.reduce((s, c) => s + ((c.stats || {}).drafts_in_commission || 0), 0);
+  const totalPassed = commissions.reduce((s, c) => s + ((c.stats || {}).drafts_passed || 0), 0);
+  const totalRejected = commissions.reduce((s, c) => s + ((c.stats || {}).drafts_rejected || 0), 0);
+  const totalDecided = totalPassed + totalRejected;
+  const totalSkutecznosc = totalDecided > 0 ? Math.round((totalPassed / totalDecided) * 100) : null;
+
+  const cards = commissions.map(c => {
+    const s = c.stats || {};
+    const lead = s.median_lead_time_days;
+    const leadDisplay = (lead != null) ? lead + (lead === 1 ? ' dzień' : ' dni') : '—';
+    const last = s.last_meeting_date || '';
+    const inCommission = s.drafts_in_commission || 0;
+    const inCommissionBadge = inCommission > 0
+      ? `<span style="font-size:11px;color:var(--yellow);background:rgba(202,138,4,0.12);padding:2px 8px;border-radius:999px">${inCommission} w toku</span>`
+      : '';
+    // Skuteczność: % przyjętych spośród rozstrzygniętych (przyjęte + odrzucone).
+    const passed = s.drafts_passed || 0;
+    const rejected = s.drafts_rejected || 0;
+    const decided = passed + rejected;
+    const skutecznosc = decided > 0 ? Math.round((passed / decided) * 100) : null;
+    const skutecznoscBar = skutecznosc != null
+      ? `<div class="komisja-card-skutecznosc">
+           <div style="display:flex;justify-content:space-between;font-size:0.72rem;margin-bottom:4px">
+             <span style="color:var(--muted)">Skuteczność</span>
+             <span style="color:var(--text);font-weight:600">${skutecznosc}% <span style="color:var(--muted);font-weight:400">(${passed}/${decided})</span></span>
+           </div>
+           <div style="height:6px;background:var(--surface);border-radius:3px;overflow:hidden">
+             <div style="width:${skutecznosc}%;height:100%;background:var(--green)"></div>
+           </div>
+         </div>`
+      : '';
+    const esc = (c.url_slug || '').replace(/'/g, "\\'");
+    return `
+      <a class="komisja-card" href="/commission/${encodeURIComponent(c.url_slug)}/" onclick="event.preventDefault();showKomisja('${esc}')">
+        <div class="komisja-card-title">
+          <span>${c.label || c.url_slug}</span>
+          ${inCommissionBadge}
+        </div>
+        <div class="komisja-card-stats">
+          <div><span class="komisja-stat-value">${s.meetings || 0}</span><span class="komisja-stat-label">posiedzeń</span></div>
+          <div><span class="komisja-stat-value">${s.drafts_total || 0}</span><span class="komisja-stat-label">druków</span></div>
+          <div><span class="komisja-stat-value">${s.drafts_voted || 0}</span><span class="komisja-stat-label">zwotowanych</span></div>
+          <div><span class="komisja-stat-value">${leadDisplay}</span><span class="komisja-stat-label">mediana lead time</span></div>
+        </div>
+        ${skutecznoscBar}
+        ${last ? `<div class="komisja-card-last">Ostatnie posiedzenie: ${last}</div>` : ''}
+      </a>
+    `;
+  }).join('');
+
+  const businessBanner = BUSINESS_ACTIVE
+    ? `<div style="margin-top:24px;padding:14px 16px;background:rgba(34,197,94,0.08);border-left:3px solid var(--green);font-size:13px;color:var(--text);display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+         <span style="font-weight:600;color:var(--green)">✓ Pro aktywny.</span>
+         <span>Wszystkie komisje pokazują pełne archiwum posiedzeń z porządkami, protokołami i głosowaniami druków.</span>
+       </div>`
+    : `<div style="margin-top:24px;padding:16px;background:rgba(99,102,241,0.06);border-left:3px solid var(--accent);font-size:13px;color:var(--text)">
+         Pełna procedura komisyjna druków (wszystkie posiedzenia, mapowanie druk → głosowanie, eksport CSV/JSON) dostępna w pakiecie Pro.
+         <a href="https://radoskop.eu/pricing/${salesLangQs(false)}"
+            onclick="trackEvent('click_business_komisja_cta',{location:'komisje_list'})"
+            style="color:var(--accent);margin-left:6px;text-decoration:none">Zobacz cennik ↗</a>
+       </div>`;
+
+  container.innerHTML = `
+    <div style="margin-bottom:20px">
+      <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid var(--border)">Komisje rady</h2>
+      <p style="color:var(--muted);font-size:0.9rem">${commissions.length} komisji, ${totalMeetings} posiedzeń, ${totalDrafts} druków w procedowaniu${totalInCommission > 0 ? `, w tym ${totalInCommission} w toku` : ''}${totalSkutecznosc != null ? `. Skuteczność rady: ${totalSkutecznosc}% przyjętych` : ''}.</p>
+    </div>
+    <div class="komisje-grid">${cards}</div>
+    ${businessBanner}
+  `;
+}
+
+// Strona komisji oparta wyłącznie o skład z PROFILES (bez danych proceduralnych
+// z API). Używana dla miast roster/faction (np. Kopenhaga), gdzie udvalg mają
+// członków, ale nie ma archiwum posiedzeń/druków.
+function renderKomisjaRoster(view, slug, members) {
+  const label = komisjaLabelFromSlug(slug, currentKid) || slug;
+  // Slug kanoniczny (po transliteracji); jeśli wejście było starym/pokracznym
+  // slugiem, przepisujemy pasek adresu bez dorzucania wpisu do historii.
+  const canonicalSlug = (() => {
+    for (const p of (PROFILES && PROFILES.profiles) || []) {
+      const kd = p.kadencje && p.kadencje[currentKid];
+      if (!kd || !Array.isArray(kd.komisje)) continue;
+      for (const k of kd.komisje) {
+        if (komisjaSlugMatches(k, slug)) return komisjaSlugFromLabel(k);
+      }
+    }
+    return slug;
+  })();
+  if (canonicalSlug !== slug) {
+    navigateTo('/commission/' + encodeURIComponent(canonicalSlug) + '/', true);
+  }
+
+  setTitle(label);
+  setRobotsIndexable(true);
+  setOgMeta({
+    title: label + ' – Radoskop ' + CFG.cityName + '',
+    description: `Skład komisji: ${members.length} ${members.length === 1 ? 'członek' : 'członków'}.`,
+    url: '' + CFG.siteUrl + '/commission/' + encodeURIComponent(canonicalSlug) + '/'
+  });
+
+  const membersHtml = members.map(m => {
+    const roleBadge = m.role
+      ? `<span style="font-size:11px;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:1px 7px;border-radius:999px;margin-left:6px">${m.role}</span>`
+      : '';
+    return `<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-top:0.5px solid var(--border)">
+      <span class="club ${clubClass(m.club)}">${(m.club && m.club !== '?') ? m.club : 'Niezrzeszeni'}</span>
+      ${profileLink(m.name)}${roleBadge}
+    </div>`;
+  }).join('');
+
+  view.innerHTML = `
+    <button class="profile-back" onclick="backFromKomisja()">← Komisje</button>
+    <div style="margin-bottom:24px">
+      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${label}</h2>
+    </div>
+    <div class="profile-metrics" style="margin-bottom:24px">
+      <div class="metric-card">
+        <div class="metric-value">${members.length}</div>
+        <div class="metric-label">Członków</div>
+      </div>
+    </div>
+    <div class="section">
+      <h2>Skład komisji (${members.length})</h2>
+      ${membersHtml}
+    </div>
+  `;
+}
+
+// Przekrojowe statystyki komisji: rozkład statusów druków, aktywność
+// posiedzeń w czasie, najdłużej procedowane druki. Wszystko z danych
+// agregatowych API (publiczne, dostępne w obu tier). Zwraca HTML sekcji
+// albo pusty string gdy brak danych.
+function renderKomisjaAnalytics(commission) {
+  const s = commission.stats || {};
+  const blocks = [];
+
+  // 1. Rozkład statusów: zwotowane vs w toku (druki które przeszły komisję).
+  const voted = s.drafts_voted || 0;
+  const inProg = s.drafts_in_commission || 0;
+  const statusTotal = voted + inProg;
+  if (statusTotal > 0) {
+    const votedPct = Math.round((voted / statusTotal) * 100);
+    const inProgPct = 100 - votedPct;
+    blocks.push(`
+      <div style="margin-bottom:22px">
+        <div style="font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px">Rozkład statusów druków</div>
+        <div style="display:flex;height:22px;border-radius:6px;overflow:hidden;background:var(--surface)">
+          ${voted > 0 ? `<div title="Zwotowane: ${voted}" style="width:${votedPct}%;background:var(--green);min-width:2px"></div>` : ''}
+          ${inProg > 0 ? `<div title="W toku: ${inProg}" style="width:${inProgPct}%;background:var(--yellow);min-width:2px"></div>` : ''}
+        </div>
+        <div style="display:flex;gap:16px;margin-top:8px;font-size:0.78rem;color:var(--muted)">
+          <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--green);margin-right:5px"></span>Zwotowane ${voted}</span>
+          <span><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--yellow);margin-right:5px"></span>W toku ${inProg}</span>
+        </div>
+      </div>`);
+  }
+
+  // 2. Aktywność w czasie: posiedzenia per miesiąc (ostatnie 18 mies.).
+  const byMonth = (commission.meetings_by_month || []).slice(-18);
+  if (byMonth.length > 1) {
+    const maxCount = Math.max(...byMonth.map(m => m.count));
+    const bars = byMonth.map(m => {
+      const h = Math.max((m.count / maxCount) * 100, 6);
+      const yr = m.month.slice(2, 4);
+      const mo = m.month.slice(5, 7);
+      return `<div title="${m.month}: ${m.count} posiedzeń" style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0">
+        <div style="width:100%;display:flex;align-items:flex-end;height:70px">
+          <div style="width:100%;height:${h}%;background:var(--accent);border-radius:3px 3px 0 0;opacity:0.8"></div>
+        </div>
+        <span style="font-size:9px;color:var(--muted);white-space:nowrap">${mo}.${yr}</span>
+      </div>`;
+    }).join('');
+    blocks.push(`
+      <div style="margin-bottom:22px">
+        <div style="font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:10px">Aktywność w czasie</div>
+        <div style="display:flex;gap:3px;align-items:flex-end">${bars}</div>
+      </div>`);
+  }
+
+  // 3. Najdłużej procedowane druki: top wg lead time (od komisji do sesji).
+  const topLead = commission.top_lead_time_drafts || [];
+  if (topLead.length > 0) {
+    const rows = topLead.map(d => {
+      const days = d.lead_time_days;
+      const daysStr = days + (days === 1 ? ' dzień' : ' dni');
+      const icon = d.passed === true ? ' <span style="color:var(--green)">✓</span>' : d.passed === false ? ' <span style="color:var(--red)">✗</span>' : '';
+      const titleHtml = d.title ? `<span style="font-size:13px;color:var(--text);line-height:1.4">${d.title}</span>` : '';
+      return `<a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${drukSlug(String(d.number))}/" onclick="event.preventDefault();showDruk('${String(d.number)}','${currentKid}')" style="display:flex;gap:10px;align-items:baseline;padding:7px 0;border-top:0.5px solid var(--border);text-decoration:none">
+        <span style="font-size:12px;color:var(--accent);background:rgba(99,102,241,0.08);padding:1px 6px;border-radius:4px;white-space:nowrap">druk ${d.number}${icon}</span>
+        <span style="flex:1;min-width:0">${titleHtml}</span>
+        <span style="font-size:12px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums">${daysStr}</span>
+      </a>`;
+    }).join('');
+    blocks.push(`
+      <div style="margin-bottom:4px">
+        <div style="font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:4px">Najdłużej procedowane druki</div>
+        ${rows}
+      </div>`);
+  }
+
+  if (!blocks.length) return '';
+  return `<div class="section"><h2>Statystyki komisji</h2>${blocks.join('')}</div>`;
+}
+
+async function showKomisja(slug) {
+  if (!slug) { showMain(); return; }
+  trackEvent('view_komisja_detail', {slug: slug});
+
+  hideAllViews();
+  const view = document.getElementById('session-view'); // reusing detail container
+  view.style.display = 'block';
+  view.innerHTML = '<p style="padding:40px;color:var(--muted)">Ładowanie komisji...</p>';
+  navigateTo('/commission/' + encodeURIComponent(slug) + '/');
+
+  let envelope = null;
+  try {
+    const resp = await fetch(API_BASE + '/komisja/' + encodeURIComponent(slug), { credentials: 'include' });
+    if (resp.ok) envelope = await resp.json();
+  } catch (e) { /* fallthrough */ }
+
+  const commission = envelope && envelope.commission;
+  if (!envelope || envelope.available === false || !commission) {
+    // Brak procedury komisyjnej w API (miasta faction/roster jak Kopenhaga nie
+    // mają backendu komisji), ale PROFILES może znać skład udvalg. Zamiast
+    // ślepego "niedostępna" pokazujemy listę członków z profili.
+    const rosterMembers = komisjaMembers(slug, currentKid);
+    if (rosterMembers.length) {
+      renderKomisjaRoster(view, slug, rosterMembers);
+      return;
+    }
+    view.innerHTML = '<button class="profile-back" onclick="backFromKomisja()">← Komisje</button>'
+      + '<div style="padding:40px;max-width:560px;margin:0 auto">'
+      + '<h2 style="margin:0 0 12px">Komisja niedostępna</h2>'
+      + '<p style="color:var(--muted);margin:0 0 16px">'
+      + "Ta komisja nie została znaleziona w aktualnej kadencji. "
+      + "Możliwe że link jest błędny albo komisja została zlikwidowana."
+      + '</p>'
+      + '<p style="margin:20px 0"><a href="/" style="color:var(--text);font-weight:600">Wróć na stronę główną →</a></p>'
+      + '</div>';
+    setTitle('Komisja niedostępna');
+    setRobotsIndexable(false);
+    return;
+  }
+
+  const label = commission.label || slug;
+  const s = commission.stats || {};
+  const meetingsTop = commission.meetings_top || commission.meetings || [];
+  const meetingsTotal = commission.meetings_total != null ? commission.meetings_total : meetingsTop.length;
+  const meetingsHidden = commission.meetings_hidden != null ? commission.meetings_hidden : 0;
+  const lead = s.median_lead_time_days;
+  const leadDisplay = (lead != null) ? lead + (lead === 1 ? ' dzień' : ' dni') : '—';
+
+  setTitle(label);
+  setOgMeta({
+    title: label + ' – Radoskop ' + CFG.cityName + '',
+    description: `${s.meetings || 0} posiedzeń, ${s.drafts_total || 0} druków w procedowaniu, mediana lead time ${leadDisplay}.`,
+    url: '' + CFG.siteUrl + '/commission/' + encodeURIComponent(slug) + '/'
+  });
+
+  // Premium: jeśli API zwraca drafts_votes (mapa druk → {vote_id, ...}),
+  // renderuj druk jako klikalny link do strony głosowania. Free tier dostaje
+  // taki sam JSON bez tego pola, więc druki zostają niewklikalnymi badge'ami.
+  const meetingsHtml = meetingsTop.map(m => {
+    const dv = m.drafts_votes || {};
+    const dt = m.drafts_titles || {};
+    const drafts = (m.drafts || []).map(d => {
+      const dStr = String(d);
+      const info = dv[dStr];
+      const title = dt[dStr] || '';
+      const numStyle = 'color:var(--accent);font-size:12px;background:rgba(99,102,241,0.08);padding:1px 6px;border-radius:4px;white-space:nowrap';
+      const passedIcon = (info && info.passed === true) ? ' <span style="color:var(--green)">✓</span>' : (info && info.passed === false) ? ' <span style="color:var(--red)">✗</span>' : '';
+      // Każdy druk linkuje do swojej strony (showDruk), niezależnie od tego
+      // czy mamy zmapowane głosowanie. Numer + tytuł projektu (gdy znany) +
+      // ikona wyniku ✓/✗ przy numerze gdy druk był głosowany.
+      const titleHtml = title ? `<span style="font-size:13px;line-height:1.4;color:var(--text)">${title}</span>` : '';
+      return `<a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${drukSlug(String(dStr))}/" onclick="event.preventDefault();showDruk('${String(dStr)}','${currentKid}')" style="display:flex;gap:8px;align-items:baseline;padding:3px 0;text-decoration:none"><span style="${numStyle}">druk ${dStr}${passedIcon}</span>${titleHtml}</a>`;
+    }).join('');
+    const links = [];
+    if (m.page_url) links.push(`<a href="${m.page_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none">↗ BIP</a>`);
+    if (m.agenda_url) links.push(`<a href="${m.agenda_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none">↗ Porządek</a>`);
+    if (m.protocol_url) links.push(`<a href="${m.protocol_url}" target="_blank" rel="noopener" style="color:var(--accent);font-size:12px;text-decoration:none">↗ Protokół</a>`);
+    return `
+      <div style="padding:14px 0;border-top:0.5px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px">
+          <span style="font-weight:500;font-family:var(--font-mono,monospace)">${m.date || ''}</span>
+          ${(m.drafts || []).length > 0 ? `<span style="color:var(--muted);font-size:12px">${(m.drafts || []).length} druków</span>` : ''}
+          <div style="margin-left:auto;display:flex;gap:10px">${links.join('')}</div>
+        </div>
+        ${drafts ? `<div style="margin-top:4px">${drafts}</div>` : ''}
+      </div>
+    `;
+  }).join('');
+
+  // Banner pod posiedzeniami: subskrybenci dostają export JSON, free tier
+  // dostają teaser (tylko gdy są ukryte posiedzenia, inaczej brak).
+  let bannerHtml = '';
+  if (BUSINESS_ACTIVE) {
+    const exportUrl = API_BASE + '/komisja/' + encodeURIComponent(slug) + '/export.json';
+    const exportCsvUrl = API_BASE + '/komisja/' + encodeURIComponent(slug) + '/export.csv';
+    bannerHtml = `
+      <div style="margin-top:16px;padding:14px 16px;background:rgba(34,197,94,0.08);border-left:3px solid var(--green);font-size:13px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+        <span style="color:var(--green);font-weight:600">✓ Pro aktywny.</span>
+        <span>Pełne archiwum ${meetingsTotal} posiedzeń z porządkami i głosowaniami druków.</span>
+        <a href="${exportCsvUrl}" download
+           onclick="trackEvent('click_export_csv',{slug:'${slug}'})"
+           style="margin-left:auto;background:var(--accent);color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;text-decoration:none">Eksportuj CSV ↓</a>
+        <a href="${exportUrl}" download
+           onclick="trackEvent('click_export_json',{slug:'${slug}'})"
+           style="background:var(--accent);color:#fff;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;text-decoration:none">Eksportuj JSON ↓</a>
+      </div>
+    `;
+  } else if (meetingsHidden > 0) {
+    // Teaser z rozmyciem zamiast samego tekstu: pokazujemy szkielet ukrytych
+    // posiedzeń (realna struktura wiersza), żeby było widać że dane istnieją i
+    // mają właściwy kształt. UWAGA: to są wiersze-atrapy generowane na froncie,
+    // backend free tier NIE wysyła ukrytych posiedzeń — blur jest prezentacją,
+    // nie zabezpieczeniem, a prawdziwe wartości nie opuszczają serwera.
+    const _ghostRows = Math.max(1, Math.min(meetingsHidden, 4));
+    const _ghostRow = `
+      <div style="padding:14px 0;border-top:0.5px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px">
+          <span style="font-weight:500;font-family:var(--font-mono,monospace)">2025-00-00</span>
+          <span style="color:var(--muted);font-size:12px">0 druków</span>
+        </div>
+        <div style="margin-top:4px">
+          <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0">
+            <span style="color:var(--accent);font-size:12px;background:rgba(99,102,241,0.08);padding:1px 6px;border-radius:4px">druk 000</span>
+            <span style="font-size:13px;color:var(--text)">Projekt uchwały w sprawie zmiany porządku obrad komisji</span>
+          </div>
+          <div style="display:flex;gap:8px;align-items:baseline;padding:3px 0">
+            <span style="color:var(--accent);font-size:12px;background:rgba(99,102,241,0.08);padding:1px 6px;border-radius:4px">druk 000</span>
+            <span style="font-size:13px;color:var(--text)">Opiniowanie projektu budżetu i wniosków radnych</span>
+          </div>
+        </div>
+      </div>`;
+    const _ghosts = Array.from({length: _ghostRows}).map(() => _ghostRow).join('');
+    bannerHtml = `
+      <div style="position:relative;margin-top:8px">
+        <div aria-hidden="true" style="filter:blur(5px);pointer-events:none;user-select:none;opacity:0.85">${_ghosts}</div>
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px;background:linear-gradient(to bottom,color-mix(in srgb,var(--bg) 35%,transparent),color-mix(in srgb,var(--bg) 80%,transparent))">
+          <div style="font-weight:600;font-size:15px;margin-bottom:4px">Jeszcze ${meetingsHidden} posiedzeń w archiwum</div>
+          <div style="color:var(--muted);font-size:13px;max-width:440px;margin-bottom:14px">Pełna procedura komisyjna: wszystkie posiedzenia, mapowanie druk → głosowanie i eksport CSV/JSON.</div>
+          <a href="https://radoskop.eu/pricing/${salesLangQs(false)}"
+             onclick="trackEvent('click_business_komisja_cta',{location:'komisja_detail_blur',slug:'${slug}',hidden:${meetingsHidden}})"
+             style="background:var(--accent);color:#fff;padding:9px 20px;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none">Odblokuj pełne dane ↗</a>
+        </div>
+      </div>
+    `;
+  }
+
+  // Skład komisji z profili radnych (PROFILES) dla bieżącej kadencji.
+  // Rola (przewodniczący/wiceprzewodniczący) wyłuskana z labela komisji.
+  const members = komisjaMembers(slug, currentKid);
+  const membersHtml = members.length
+    ? members.map(m => {
+        const roleBadge = m.role
+          ? `<span style="font-size:11px;color:var(--muted);background:var(--surface);border:1px solid var(--border);padding:1px 7px;border-radius:999px;margin-left:6px">${m.role}</span>`
+          : '';
+        return `<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-top:0.5px solid var(--border)">
+          <span class="club ${clubClass(m.club)}">${(m.club && m.club !== '?') ? m.club : 'Niezrzeszeni'}</span>
+          ${profileLink(m.name)}${roleBadge}
+        </div>`;
+      }).join('')
+    : '';
+  const skladHtml = membersHtml
+    ? `<div class="section">
+         <h2>Skład komisji (${members.length})</h2>
+         ${membersHtml}
+       </div>`
+    : '';
+
+  // Skuteczność: % przyjętych spośród zwotowanych (przyjęte + odrzucone).
+  const passed = s.drafts_passed || 0;
+  const rejected = s.drafts_rejected || 0;
+  const decided = passed + rejected;
+  const skutecznoscCard = decided > 0
+    ? `<div class="metric-card">
+        <div class="metric-value">${Math.round((passed / decided) * 100)}%</div>
+        <div class="metric-label">Skuteczność</div>
+      </div>`
+    : '';
+
+  const analyticsHtml = renderKomisjaAnalytics(commission);
+
+  view.innerHTML = `
+    <button class="profile-back" onclick="backFromKomisja()">← Komisje</button>
+    <div style="margin-bottom:24px">
+      <h2 style="font-size:1.3rem;font-weight:600;border:none;padding:0">${label}</h2>
+    </div>
+    <div class="profile-metrics" style="margin-bottom:24px">
+      <div class="metric-card">
+        <div class="metric-value">${s.meetings || 0}</div>
+        <div class="metric-label">Posiedzeń</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">${s.drafts_total || 0}</div>
+        <div class="metric-label">Druków</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" style="color:var(--green)">${s.drafts_voted || 0}</div>
+        <div class="metric-label">Zwotowanych</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value" style="color:var(--yellow)">${s.drafts_in_commission || 0}</div>
+        <div class="metric-label">W toku</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">${leadDisplay}</div>
+        <div class="metric-label">Mediana lead time</div>
+      </div>
+      ${skutecznoscCard}
+    </div>
+    ${analyticsHtml}
+    ${skladHtml}
+    <div class="section">
+      <h2>Posiedzenia ${meetingsTotal > meetingsTop.length ? `(${meetingsTop.length} z ${meetingsTotal})` : `(${meetingsTotal})`}</h2>
+      ${meetingsHtml || '<p style="color:var(--muted);padding:14px 0">Brak posiedzeń w archiwum.</p>'}
+      ${bannerHtml}
+    </div>
+  `;
+}
+
+function backFromKomisja() {
+  hideAllViews();
+  document.getElementById('app').style.display = 'block';
+  activateTab('komisje');
+  navigateTo(mainPath('komisje'));
+}
+
+async function renderInterpelacje() {
+  trackEvent('view_interpelacje');
+  const container = document.getElementById('interpelacje-content');
+  container.innerHTML = '<p style="color:var(--muted)">Ładowanie interpelacji...</p>';
+
+  // Fetch from API
+  const params = new URLSearchParams();
+  params.set('page', _interpPage);
+  params.set('per_page', '50');
+  if (_interpKad) params.set('kadencja', _interpKad);
+
+  let result;
+  try {
+    const resp = await fetch(API_BASE + '/interpelacje?' + params.toString());
+    result = await resp.json();
+  } catch(e) {
+    container.innerHTML = '<p style="color:var(--red)">Błąd ładowania interpelacji.</p>';
+    return;
+  }
+
+  const items = result.items || [];
+  const stats = result.stats || {};
+  const kadencje = result.kadencje || [];
+  const topRadni = stats.top_radni || [];
+
+  if (!kadencje.length && !items.length) {
+    container.innerHTML = '<p style="color:var(--muted)">Brak danych o interpelacjach.</p>';
+    return;
+  }
+
+  // Set default kadencja if not set
+  if (!_interpKad && kadencje.length) {
+    _interpKad = kadencje.includes('IX') ? 'IX' : kadencje[kadencje.length - 1];
+    // Re-fetch with kadencja filter
+    params.set('kadencja', _interpKad);
+    try {
+      const resp2 = await fetch(API_BASE + '/interpelacje?' + params.toString());
+      result = await resp2.json();
+    } catch(e) { /* use unfiltered */ }
+  }
+
+  const total = stats.total || 0;
+  const interp = stats.interpelacje || 0;
+  const zapyt = stats.zapytania || 0;
+  const answered = stats.answered || 0;
+  const currentKad = _interpKad || (kadencje.length ? kadencje[kadencje.length - 1] : '');
+
+  let html = `<div class="kadencja-bar" id="interp-kad-bar" style="margin-bottom:16px">`;
+  kadencje.forEach(k => {
+    html += `<button class="kadencja-btn${k === currentKad ? ' active' : ''}" data-kad="${k}">Kadencja ${k}</button>`;
+  });
+  html += `</div>`;
+  html += `<div class="stats-grid">
+    <div class="stat-card"><div class="label">Interpelacje i zapytania</div><div class="value">${total}</div></div>
+    <div class="stat-card"><div class="label">Interpelacje</div><div class="value">${interp}</div></div>
+    <div class="stat-card"><div class="label">Zapytania</div><div class="value">${zapyt}</div></div>
+    <div class="stat-card"><div class="label">Z odpowiedzią</div><div class="value">${answered} <span style="font-size:0.9rem;color:var(--muted)">(${total ? Math.round(100*answered/total) : 0}%)</span></div></div>
+  </div>`;
+
+  // Najbardziej aktywni radni — speaker-bar layout (analogicznie do
+  // "Aktywność mówców" na stronie sesji): club pill + nazwisko | bar track |
+  // count. Top 10 widocznych, reszta za buttonem "Pokaż pozostałych".
+  if (topRadni.length > 0) {
+    const maxCount = topRadni[0].count;
+    const totalActivity = topRadni.reduce((s, r) => s + (r.count || 0), 0);
+    const sortedCounts = topRadni.map(r => r.count).sort((a, b) => a - b);
+    const medianCount = sortedCounts[Math.floor(sortedCounts.length / 2)] || 0;
+
+    // Klub: bierzemy z K.councilors (per kadencja) albo z PROFILES (cross-kad).
+    const clubLookup = {};
+    (K && K.councilors || []).forEach(co => { clubLookup[co.name] = co.club; });
+    if (PROFILES && PROFILES.profiles) {
+      PROFILES.profiles.forEach(p => {
+        if (!clubLookup[p.name]) {
+          const kad = Object.values(p.kadencje || {}).slice(-1)[0];
+          if (kad && kad.club) clubLookup[p.name] = kad.club;
+        }
+      });
+    }
+
+    html += `<div class="section">
+      <h2>Najbardziej aktywni radni</h2>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px;font-size:0.78rem;color:var(--muted);font-variant-numeric:tabular-nums">
+        <span><strong style="color:var(--text);font-weight:500">${topRadni.length}</strong> radnych w top</span>
+        <span>łącznie <strong style="color:var(--text);font-weight:500">${totalActivity.toLocaleString('pl')}</strong> interp. i zapytań</span>
+        <span>mediana <strong style="color:var(--text);font-weight:500">${medianCount}</strong> na osobę</span>
+      </div>
+      <div class="speakers-grid">`;
+    const TOP_VISIBLE = 10;
+    html += topRadni.map((r, idx) => {
+      const cl = clubLookup[r.name] || '?';
+      const barPct = Math.max((r.count / maxCount) * 100, 2);
+      const color = (typeof clubColor === 'function') ? clubColor(cl) : 'var(--accent)';
+      const hiddenCls = idx >= TOP_VISIBLE ? ' hidden' : '';
+      return `<div class="speaker-bar${hiddenCls}">
+        <span class="speaker-name">
+          <span class="club ${clubClass(cl)}">${cl}</span>
+          ${profileLink(r.name)}
+        </span>
+        <div class="speaker-bar-track">
+          <div class="speaker-bar-fill" style="width:${barPct}%;background:${color}"></div>
+        </div>
+        <span class="speaker-meta"><strong>${r.count}</strong> interp.</span>
+      </div>`;
+    }).join('');
+    if (topRadni.length > TOP_VISIBLE) {
+      const hiddenCount = topRadni.length - TOP_VISIBLE;
+      html += `<button class="show-more-speakers" onclick="this.parentElement.querySelectorAll('.speaker-bar.hidden').forEach(el=>el.classList.remove('hidden'));trackEvent('interp_top_expand',{total:${topRadni.length}});this.remove();">Pokaż pozostałych ${hiddenCount} radnych ↓</button>`;
+    }
+    html += `</div></div>`;
+  }
+
+  // List of interpelacje
+  const pageItems = result.items || [];
+  html += `<div class="section"><h2>Lista interpelacji i zapytań</h2>`;
+  html += `<div style="overflow-x:auto"><table id="interp-table"><thead><tr>
+    <th>Data</th><th>Typ</th><th>Radny/a</th><th>Przedmiot</th><th>Treść</th><th>Odpowiedź</th>
+  </tr></thead><tbody>`;
+  pageItems.forEach(d => {
+    const typClass = d.typ === 'interpelacja' ? 'pill-za' : 'pill-wstrzymal';
+    const typLabel = d.typ === 'interpelacja' ? 'Interpelacja' : 'Zapytanie';
+    const trescLink = d.tresc_url ? `<a href="${d.tresc_url}" target="_blank" style="color:var(--accent)">PDF</a>` : '';
+    const odpLink = d.odpowiedz_url ? `<a href="${d.odpowiedz_url}" target="_blank" style="color:var(--accent)">PDF</a>` : (d.data_odpowiedzi ? d.data_odpowiedzi : '<span style="color:var(--muted)">brak</span>');
+    html += `<tr>
+      <td style="white-space:nowrap">${d.data_wplywu || ''}</td>
+      <td><span class="pill ${typClass}">${typLabel}</span></td>
+      <td style="font-weight:500">${(d.radny||'').split(/[;\r\n,]+/).map(n => n.trim()).filter(Boolean).map(n => profileLink(n)).join(', ')}</td>
+      <td style="max-width:400px">${d.przedmiot}</td>
+      <td>${trescLink}</td>
+      <td>${odpLink}</td>
+    </tr>`;
+  });
+  html += `</tbody></table></div>`;
+
+  // Pagination
+  const totalPages = result.total_pages || 1;
+  const currentPage = result.page || 1;
+  if (totalPages > 1) {
+    html += `<div style="display:flex;justify-content:center;gap:8px;margin-top:20px;align-items:center">`;
+    if (currentPage > 1) {
+      html += `<button class="filter-btn" onclick="_interpPage=${currentPage-1};renderInterpelacje()">← Poprzednia</button>`;
+    }
+    html += `<span style="color:var(--muted);font-size:0.85rem">Strona ${currentPage} z ${totalPages} (${result.total} pozycji)</span>`;
+    if (currentPage < totalPages) {
+      html += `<button class="filter-btn" onclick="_interpPage=${currentPage+1};renderInterpelacje()">Następna →</button>`;
+    }
+    html += `</div>`;
+  }
+  html += `</div>`;
+
+  container.innerHTML = html;
+
+  // Bind kadencja buttons
+  container.querySelectorAll('#interp-kad-bar .kadencja-btn').forEach(btn => {
+    btn.onclick = () => { _interpKad = btn.dataset.kad; _interpPage = 1; renderInterpelacje(); };
+  });
+}
+
+let budgetChartTrend = null, budgetChartCat = null, budgetChartCofog = null, budgetChartExec = null;
+
+/* ===== Spółki: organy spółek z udziałem jednostki — fakty z KRS/MSiG ===== */
+let _spolkiCache = null;
+async function _loadSpolki() {
+  if (_spolkiCache !== null) return _spolkiCache;
+  try {
+    const r = await fetch(location.origin + '/spolki.json', {cache:'no-store'});
+    _spolkiCache = r.ok ? await r.json() : {companies:[]};
+  } catch (e) { _spolkiCache = {companies:[]}; }
+  return _spolkiCache;
+}
+async function initSpolkiTab() {
+  const d = await _loadSpolki();
+  if (d && d.companies && d.companies.length) {
+    const btn = document.getElementById('tab-btn-spolki');
+    if (btn) btn.style.display = '';
+  }
+}
+function _spDate(od){ if(!od) return ''; const p=String(od).split('-'); return p.length===3 ? p[2]+'.'+p[1]+'.'+p[0] : String(od); }
+function _spYears(od){ if(!od) return ''; const d=new Date(od); if(isNaN(d)) return ''; const y=Math.max(0,(Date.now()-d.getTime())/(365.25*864e5)); return y.toFixed(1)+' lat'; }
+function _spEsc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+async function renderSpolki() {
+  const el = document.getElementById('spolki-content');
+  if (!el) return;
+  const d = await _loadSpolki();
+  const cos = (d && d.companies) || [];
+  if (!cos.length) { el.innerHTML = '<p style="color:var(--muted);padding:20px 0">Brak danych o spółkach dla tej jednostki.</p>'; return; }
+  const intro = '<p style="color:var(--muted);margin:0 0 16px;max-width:760px">Spółki z udziałem jednostki oraz skład ich organów (zarząd, rada nadzorcza) wraz z okresem zasiadania. Dane z oficjalnych rejestrów: KRS (odpis pełny) i Monitor Sądowy i Gospodarczy. Skład organów to fakty z rejestru.' + (d.generated_at ? ' Stan na ' + _spEsc(d.generated_at) + '.' : '') + '</p>';
+  const cards = cos.map(function(co){
+    const owners = (co.owners||[]).map(o=>'<span style="font-size:11px;padding:3px 9px;border-radius:999px;background:var(--surface,#f1f5f9);border:1px solid var(--border,#e2e8f0);color:var(--muted)">'+_spEsc(o)+'</span>').join(' ');
+    let organs = '';
+    [['zarząd','zarzad'],['rada nadzorcza','rada_nadzorcza']].forEach(function(pair){
+      const mem = (co[pair[1]]||[]);
+      if (!mem.length) return;
+      organs += '<div style="margin-top:10px"><div style="font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:6px">'+pair[0]+'</div>';
+      mem.forEach(function(m){
+        const nm = _spEsc(m.name || m.rola || '—');
+        const note = m.note ? ' <span style="color:var(--muted);font-size:12px">('+_spEsc(m.note)+')</span>' : '';
+        const when = m.od ? ('od '+_spDate(m.od)+(_spYears(m.od)?' · '+_spYears(m.od):'')) : '';
+        organs += '<div style="display:flex;justify-content:space-between;gap:10px;padding:6px 8px;border-radius:8px;background:var(--surface,#f8fafc);margin-bottom:5px"><span style="font-weight:600">'+nm+note+'</span><span style="color:var(--muted);font-size:12px;white-space:nowrap">'+_spEsc(when)+'</span></div>';
+      });
+      organs += '</div>';
+    });
+    if (!organs) organs = '<p style="color:var(--muted);font-size:13px;margin-top:8px">Skład organów: do uzupełnienia (odpis pełny KRS + MSiG).</p>';
+    const krsLink = co.krs ? '<div style="color:var(--muted);font-size:12px;margin-bottom:8px">KRS '+_spEsc(co.krs)+'</div>' : '';
+    const titleHtml = co.krs
+      ? '<a href="https://radoskop.pl/company/'+encodeURIComponent(co.krs)+'/" style="color:inherit;text-decoration:none">'+_spEsc(co.name)+'</a>'
+      : _spEsc(co.name);
+    return '<div style="border:1px solid var(--border,#e2e8f0);border-radius:14px;padding:16px;margin-bottom:12px"><h3 style="margin:0 0 4px;font-size:16px">'+titleHtml+'</h3>'+krsLink+(owners?'<div style="margin-bottom:6px">'+owners+'</div>':'')+organs+'</div>';
+  }).join('');
+  el.innerHTML = intro + cards;
+}
+
+// --- Landing: bloki "Spółki miejskie" + "Kto zebrał najwięcej stanowisk" ---
+// Fakty z rejestru (KRS + MSiG), bez ocen. Odporne na starszy spolki.json bez
+// kapital/forma/historia (degradują do liczby miejsc w organach). Wpięte pod
+// sekcję spornych na landingu; chowają się, gdy jednostka nie ma spółek.
+function _spForma(s){
+  var m={'SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ':'spółka z o.o.','SPÓŁKA AKCYJNA':'spółka akcyjna','PROSTA SPÓŁKA AKCYJNA':'prosta spółka akcyjna'};
+  var k=String(s||'').trim().toUpperCase();
+  return m[k] || String(s||'').toLowerCase();
+}
+function _spKapNum(k){
+  if(!k) return null;
+  var raw=String(k.wartosc||'').replace(/\s/g,'').replace(/\./g,'').replace(',','.');
+  var n=parseFloat(raw); return isFinite(n)?n:null;
+}
+function _spKapFmt(k){
+  var n=_spKapNum(k); if(n===null) return '';
+  var cur=String((k&&k.waluta)||'PLN').toUpperCase();
+  var s=Math.round(n).toLocaleString('pl-PL').replace(/ /g,' ');
+  return s+' '+(cur==='PLN'?'zł':cur);
+}
+function _spLata(od){ var y=_spYears(od); return y?y.replace('.',','):''; }
+function _spPlSpolki(n){ var d=n%10, dd=n%100; if(n===1) return '1 spółka'; return (d>=2&&d<=4&&!(dd>=12&&dd<=14))? n+' spółki' : n+' spółek'; }
+function _spPlOsoby(n){ var d=n%10, dd=n%100; if(n===1) return '1 osoba'; return (d>=2&&d<=4&&!(dd>=12&&dd<=14))? n+' osoby' : n+' osób'; }
+function _spSeats(c){ return (c.zarzad||[]).length+(c.rada_nadzorcza||[]).length; }
+function _spPersonIndex(cos){
+  var by={};
+  function add(name,co,organ,od,obecnie){
+    name=String(name||'').split(/\s+/).join(' ').trim();
+    if(!name) return;
+    var p=by[name]||(by[name]={name:name,krs:{},cur:{},z:0,r:0,seen:{}});
+    var isZ=(organ==='zarzad'||organ==='Zarząd');
+    var sig=(co.krs||'')+'|'+(isZ?'z':'r')+'|'+(od||'');
+    if(!p.seen[sig]){ p.seen[sig]=1; if(isZ)p.z++; else p.r++; }
+    p.krs[co.krs||'']=1; if(obecnie) p.cur[co.krs||'']=1;
+  }
+  cos.forEach(function(co){
+    var h=co.historia||[];
+    if(h.length){ h.forEach(function(e){ add(e.name,co,e.organ,e.od,e.obecnie); }); }
+    else {
+      (co.zarzad||[]).forEach(function(m){ add(m.name,co,'zarzad',m.od,true); });
+      (co.rada_nadzorcza||[]).forEach(function(m){ add(m.name,co,'rada_nadzorcza',m.od,true); });
+    }
+  });
+  var out=Object.keys(by).map(function(k){ var p=by[k];
+    return {name:p.name, count:Object.keys(p.krs).length, current:Object.keys(p.cur).length, z:p.z, r:p.r}; });
+  out.sort(function(a,b){ return b.count-a.count || (b.z+b.r)-(a.z+a.r) || a.name.localeCompare(b.name,'pl'); });
+  return out;
+}
+function _spRoles(p){
+  var parts=[];
+  if(p.z) parts.push(p.z===1?'zarząd':(p.z+'× zarząd'));
+  if(p.r) parts.push(p.r===1?'rada nadzorcza':(p.r+'× rada nadzorcza'));
+  return parts.join(' · ');
+}
+function _spLastChange(cos){
+  var best=null;
+  cos.forEach(function(co){
+    var h=co.historia||[];
+    var arr = h.length ? h.map(function(e){ return {od:e.od,co:co.name}; })
+      : (co.zarzad||[]).concat(co.rada_nadzorcza||[]).map(function(m){ return {od:m.od,co:co.name}; });
+    arr.forEach(function(e){ if(e.od && (!best||e.od>best.od)) best=e; });
+  });
+  return best;
+}
+function _spLongestTenure(cos){
+  var best=null;
+  cos.forEach(function(co){
+    (co.zarzad||[]).concat(co.rada_nadzorcza||[]).forEach(function(m){
+      if(m.od && (!best||m.od<best.od)) best={od:m.od,name:m.name,co:co.name};
+    });
+  });
+  return best;
+}
+async function renderLandingSpolki(){
+  var host=document.getElementById('lp-spolki');
+  if(!host) return;
+  var d=await _loadSpolki();
+  var cos=(d&&d.companies)||[];
+  if(!cos.length){ host.innerHTML=''; return; }
+
+  var hasKap=cos.some(function(c){ return _spKapNum(c.kapital)!=null; });
+  var metric=function(c){ return hasKap ? (_spKapNum(c.kapital)||0) : _spSeats(c); };
+  var sorted=cos.slice().sort(function(a,b){ return metric(b)-metric(a); });
+  var max=metric(sorted[0])||1;
+  var totalSeats=cos.reduce(function(x,c){ return x+_spSeats(c); },0);
+  var coRows=sorted.map(function(c){
+    var val=hasKap ? (_spKapFmt(c.kapital)||'—') : (_spSeats(c)+' os.');
+    var sub=[]; if(c.forma_prawna) sub.push(_spForma(c.forma_prawna)); sub.push(_spPlOsoby(_spSeats(c))+' w organach');
+    var w=Math.round(metric(c)/max*100);
+    var nm=c.krs ? '<a href="https://radoskop.pl/company/'+encodeURIComponent(c.krs)+'/" data-umami-event="landing-spolka" style="color:inherit;text-decoration:none">'+_spEsc(c.name)+'</a>' : _spEsc(c.name);
+    return '<div style="padding:10px 0;border-top:1px solid var(--border)">'+
+      '<div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><span style="font-weight:600">'+nm+'</span><span style="font-weight:600;white-space:nowrap">'+_spEsc(val)+'</span></div>'+
+      '<div style="margin-top:6px;height:6px;background:var(--border);border-radius:999px;overflow:hidden"><div style="width:'+w+'%;height:100%;background:var(--accent)"></div></div>'+
+      '<div style="font-size:.8rem;color:var(--muted);margin-top:4px">'+_spEsc(sub.join(' · '))+'</div></div>';
+  }).join('');
+  var kapCard = hasKap ? ('<div class="lp-card lp-stat"><div class="v" style="font-size:1.5rem">'+_spEsc(_spKapFmt({wartosc:String(cos.reduce(function(x,c){return x+(_spKapNum(c.kapital)||0);},0)),waluta:'PLN'}))+'</div><div class="l">Łączny kapitał</div></div>') : '';
+  var sec1='<section class="lp-sec"><h2>Spółki miejskie</h2><div class="lp-sub">Spółki z udziałem miasta i skład ich organów. Dane z KRS i Monitora Sądowego i Gospodarczego.</div>'+
+    '<div class="lp-stats" style="margin-bottom:14px"><div class="lp-card lp-stat"><div class="v">'+cos.length+'</div><div class="l">Spółek miejskich</div></div>'+
+    '<div class="lp-card lp-stat"><div class="v">'+totalSeats+'</div><div class="l">Miejsc w organach</div></div>'+kapCard+'</div>'+
+    '<div class="lp-card" style="padding-top:0">'+coRows+'</div></section>';
+
+  var idx=_spPersonIndex(cos).filter(function(p){ return p.count>=2; });
+  var sec2='';
+  if(idx.length){
+    var top=idx.slice(0,6); var pmax=top[0].count||1;
+    var pRows=top.map(function(p,i){
+      var w=Math.round(p.count/pmax*100);
+      var histNote=(p.current===0)?' <span style="color:var(--muted);font-weight:400">(dawniej)</span>':'';
+      return '<div style="display:flex;align-items:center;gap:12px;padding:11px 0;border-top:'+(i===0?'0':'1px')+' solid var(--border)">'+
+        '<span style="width:24px;height:24px;border-radius:50%;background:'+(i===0?'var(--accent)':'var(--border)')+';color:'+(i===0?'#fff':'var(--muted)')+';font-size:.8rem;display:flex;align-items:center;justify-content:center;flex:none">'+(i+1)+'</span>'+
+        '<div style="flex:1;min-width:0"><div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><span style="font-weight:600">'+_spEsc(p.name)+histNote+'</span><span style="font-weight:600;white-space:nowrap">'+_spEsc(_spPlSpolki(p.count))+'</span></div>'+
+        '<div style="margin-top:6px;height:6px;background:var(--border);border-radius:999px;overflow:hidden"><div style="width:'+w+'%;height:100%;background:var(--accent)"></div></div>'+
+        '<div style="font-size:.8rem;color:var(--muted);margin-top:4px">'+_spEsc(_spRoles(p))+'</div></div></div>';
+    }).join('');
+    var lc=_spLastChange(cos), lt=_spLongestTenure(cos), cards='';
+    if(lc){ cards+='<div class="lp-card lp-stat"><div class="v" style="font-size:1.3rem">'+_spEsc(_spDate(lc.od))+'</div><div class="l">Ostatnia zmiana w organach · '+_spEsc(lc.co)+'</div></div>'; }
+    if(lt){ cards+='<div class="lp-card lp-stat"><div class="v" style="font-size:1.3rem">'+_spEsc(_spLata(lt.od))+'</div><div class="l">Najdłuższy staż'+(lt.name?' · '+_spEsc(lt.name):'')+'</div></div>'; }
+    sec2='<section class="lp-sec"><h2>Osoby w organach wielu spółek</h2><div class="lp-sub">Osoby zasiadające w organach więcej niż jednej spółki miejskiej. Fakt z rejestru: liczba miejsc, bez ocen. Dane z KRS i MSiG.</div>'+
+      '<div class="lp-card" style="padding-top:0;margin-bottom:14px">'+pRows+'</div>'+
+      (cards?('<div class="lp-stats">'+cards+'</div>'):'')+'</section>';
+  }
+
+  host.innerHTML=sec1+sec2;
+}
+
+function renderBudget() {
+  const B = window.BUDGET;
+  if (!B) return;
+  // Wolny tier — teaser (agregaty za 2 lata) + blokada; pełne dane w Pro
+  // (tel: /budget/compare: struktura COFOG, benchmark peer, trend, wskaźnik długu).
+  if (!B.totals) {
+    const container = document.getElementById('budget-content');
+    if (!container) return;
+    const rows = (B.summary || []).filter(t => t.year).sort((a, b) => a.year - b.year);
+    const fmtMoney = (n) => n == null ? '—' : Math.round(n).toLocaleString('pl-PL') + ' zł';
+    const fmtRow = (t) => `
+      <tr>
+        <td style="font-weight:600;padding:6px 8px">${t.year}</td>
+        <td style="padding:6px 8px">${fmtMoney(t.revenue)}</td>
+        <td style="padding:6px 8px">${fmtMoney(t.expenditure)}</td>
+        <td style="padding:6px 8px">${t.deficit == null ? '—' : (t.deficit < 0 ? '−' : '+') + fmtMoney(Math.abs(t.deficit))}</td>
+        <td style="padding:6px 8px">${fmtMoney(t.debt)}</td>
+      </tr>`;
+    container.innerHTML = `
+      <div style="border:1px solid var(--border);background:var(--soft);border-radius:12px;padding:16px 20px;margin-bottom:20px">
+        <div style="font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;margin-bottom:8px">Budżet miasta — przegląd (2 ostatnie lata)</div>
+        <table style="width:100%;border-collapse:collapse;font-size:.9rem">
+          <thead><tr style="color:var(--muted);text-align:left">
+            <th style="padding:6px 8px">Rok</th><th style="padding:6px 8px">Dochody</th><th style="padding:6px 8px">Wydatki</th><th style="padding:6px 8px">Deficyt</th><th style="padding:6px 8px">Dług</th>
+          </tr></thead>
+          <tbody>${rows.map(fmtRow).join('')}</tbody>
+        </table>
+      </div>
+      <div style="border:1px dashed var(--border);border-radius:12px;padding:20px;text-align:center">
+        <div style="font-weight:700;margin-bottom:6px">Pełna analiza budżetowa — pakiet Pro</div>
+        <div style="font-size:.85rem;color:var(--muted);margin-bottom:12px">
+          Struktura wydatków (COFOG), benchmark względem miast rówieśniczych,
+          trend wieloletni oraz porównywarka długu i wskaźnika zadłużenia.
+        </div>
+        <a href="https://radoskop.eu/pricing/" style="display:inline-block;background:var(--accent);color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:600">Zobacz Pro</a>
+      </div>
+      <div style="color:var(--muted);font-size:.8rem;margin-top:16px">Źródło: BeSTi@ (Ministerstwo Finansów), sprawozdania Rb-27S / Rb-28S / Rb-Z.</div>`;
+    return;
+  }
+  const container = document.getElementById('budget-content');
+  const fmt = (n) => (n/1e9).toFixed(2).replace('.', ',') + ' mld';
+  const fmtM = (n) => n >= 1e9 ? fmt(n) : (n/1e6).toFixed(0) + ' mln';
+  const years = B.totals.map(t => t.year);
+  const latestYear = years[years.length - 1];
+
+  // Licznik całkowitego zadłużenia miasta (najnowszy rok z danymi o długu).
+  const _debtT = B.totals.filter(t => t.debt != null).slice(-1)[0];
+  const debtBanner = _debtT ? `
+    <div class="debt-counter">
+      <div class="debt-counter-label">Całkowite zadłużenie miasta</div>
+      <div class="debt-counter-value" id="debt-counter" data-target="${_debtT.debt}">0&nbsp;zł</div>
+      <div class="debt-counter-sub">stan na koniec ${_debtT.year}</div>
+    </div>
+    <style>
+      .debt-counter{background:linear-gradient(135deg,rgba(180,83,9,0.08),rgba(245,158,11,0.04));border:1px solid rgba(180,83,9,0.3);border-radius:12px;padding:16px 20px;margin-bottom:20px;}
+      .debt-counter-label{font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700;}
+      .debt-counter-value{font-size:2rem;font-weight:800;color:#b45309;line-height:1.1;margin:4px 0;font-variant-numeric:tabular-nums;}
+      .debt-counter-sub{font-size:.8rem;color:var(--muted);}
+    </style>` : '';
+
+  // Static shell: year selector at top + placeholders for dynamic content
+  let html = debtBanner + `
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap">
+      <span style="font-weight:600">Rok budżetowy:</span>
+      <div class="kadencja-bar" id="budget-year-bar">
+        ${years.map(y => `<button class="kadencja-btn ${y===latestYear?'active':''}" data-byear="${y}">${y}</button>`).join('')}
+      </div>
+    </div>
+    <div id="budget-year-detail"></div>
+    <h2 style="margin-top:32px">Dochody i wydatki ${years[0]}–${latestYear}</h2>
+    <div class="chart-wrap" style="max-width:800px;margin-bottom:16px">
+      <canvas id="budget-trend-chart"></canvas>
+    </div>
+    <div style="color:var(--muted);font-size:0.8rem;margin-top:16px">
+      Źródło: ${CFG.bipName}, dokumenty budżetowe. Dane 2015–2021 mają charakter szacunkowy (pokrycie ~60–83%).
+      Dane 2022–${latestYear} na podstawie uchwalonych budżetów.
+    </div>`;
+  container.innerHTML = html;
+
+  // Animowane odliczanie licznika długu.
+  (function(){
+    const el = document.getElementById('debt-counter');
+    if (!el) return;
+    const target = parseFloat(el.getAttribute('data-target')) || 0;
+    const t0 = performance.now(), dur = 1100;
+    function step(now){
+      const p = Math.min((now - t0) / dur, 1);
+      const v = target * (1 - Math.pow(1 - p, 3));
+      el.innerHTML = Math.round(v).toLocaleString('pl-PL') + '&nbsp;zł';
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  })();
+
+  // --- Year detail renderer ---
+  function renderYearDetail(year) {
+    const yStr = String(year);
+    const totals = B.totals.find(t => t.year === year);
+    const cats = B.categories[yStr] || [];
+    const totalExp = cats.reduce((s, c) => s + c.amount, 0);
+    const prevCats = B.categories[String(year - 1)] || [];
+    const prevMap = {};
+    prevCats.forEach(c => { prevMap[c.name] = c.amount; });
+    const votes = (B.votes || {})[yStr] || [];
+
+    let dhtml = '';
+
+    // Metrics
+    if (totals) {
+      const est = totals.estimated ? ' *' : '';
+      dhtml += `<div class="profile-metrics" style="margin-bottom:24px">
+        <div class="metric-card">
+          <div class="metric-value" style="color:var(--green);font-size:1.4rem">${fmt(totals.revenue)}</div>
+          <div class="metric-label">Dochody${est}</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value" style="font-size:1.4rem">${fmt(totals.expenditure)}</div>
+          <div class="metric-label">Wydatki${est}</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value" style="color:var(--red);font-size:1.4rem">${fmt(totals.deficit)}</div>
+          <div class="metric-label">Deficyt${est}</div>
+        </div>
+        ${totals.debt != null ? `<div class="metric-card">
+          <div class="metric-value" style="color:var(--yellow);font-size:1.4rem">${fmt(totals.debt)}</div>
+          <div class="metric-label">Zadłużenie${est}</div>
+        </div>` : ''}
+      </div>`;
+      if (totals.estimated) {
+        dhtml += `<div style="background:rgba(202,138,4,0.08);border:1px solid rgba(202,138,4,0.25);border-radius:8px;padding:12px 16px;margin-top:-8px;margin-bottom:16px;font-size:0.85rem;color:var(--text)">
+          <strong style="color:var(--yellow)">⚠ Dane niepełne</strong> — budżet za ${year} rok oparty jest na częściowo dostępnych dokumentach (pokrycie ~${totals.coverage_percentage || '60–83'}%). ${CFG.budgetNote}</div>`;
+      }
+    }
+
+    // Category breakdown: doughnut + table side by side
+    if (cats.length > 0) {
+      dhtml += `<h2>Struktura wydatków ${year}</h2>
+        <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;margin-bottom:24px">
+          <div style="width:320px;flex-shrink:0">
+            <canvas id="budget-cat-chart"></canvas>
+          </div>
+          <div style="flex:1;min-width:280px">
+            <table><tbody>${cats.map(c => {
+              const pct = totalExp > 0 ? (c.amount / totalExp * 100).toFixed(1) : '0';
+              const prev = prevMap[c.name];
+              let changeHtml = '';
+              if (prev && prev > 0) {
+                const changePct = ((c.amount - prev) / prev * 100).toFixed(0);
+                const color = changePct > 0 ? 'var(--green)' : changePct < 0 ? 'var(--red)' : 'var(--muted)';
+                changeHtml = `<span style="color:${color};font-size:0.8rem;margin-left:6px">${changePct > 0 ? '+' : ''}${changePct}%</span>`;
+              }
+              return `<tr>
+                <td style="font-size:0.85rem">${c.name}</td>
+                <td style="font-size:0.85rem;text-align:right;white-space:nowrap">${fmtM(c.amount)} zł</td>
+                <td style="width:80px"><div class="bar"><div class="bar-fill" style="width:${pct}%;background:var(--accent)"></div></div></td>
+                <td style="font-size:0.8rem;color:var(--muted);width:45px;text-align:right">${pct}%</td>
+                <td style="text-align:right">${changeHtml}</td>
+              </tr>`;
+            }).join('')}</tbody></table>
+          </div>
+        </div>`;
+    }
+
+    // COFOG: struktura funkcjonalna tego miasta vs średnia jego klasy (benchmark
+    // rówieśniczy z cofog_peers, wstrzyknięty do budget.json jako cofog_peer).
+    const cofY = (B.cofog || {})[yStr] || [];
+    if (cofY.length > 0 && B.cofog_peer && B.cofog_peer.functions) {
+      const klassLabel = B.cofog_peer.class === 'grodzki' ? 'miast na prawach powiatu' : 'gmin miejskich';
+      dhtml += `<h2>Wydatki wg funkcji na tle innych ${klassLabel}</h2>
+        <p style="color:var(--muted);font-size:0.85rem;margin-top:-8px">Udział funkcji (klasyfikacja COFOG) w wydatkach ${year}, w porównaniu ze średnią ${B.cofog_peer.n_cities} ${klassLabel} (te same dane sprawozdawcze).</p>
+        <div style="max-width:660px;margin-bottom:24px"><canvas id="budget-cofog-chart"></canvas></div>`;
+    }
+
+    // Realizacja narastająco po kwartałach z najświeższego roku z danymi (może
+    // być bieżący, niepełny). Pokazujemy raz, na domyślnym (najnowszym pełnym)
+    // widoku, niezależnie od którego roku dotyczą totale.
+    const exec = B.execution;
+    const showExec = exec && yStr === String(latestYear) && (exec.quarters || []).length > 0;
+    if (showExec) {
+      const qc = exec.quarters.length;
+      const qInfo = qc >= 4 ? 'cały rok' : ('dane z ' + qc + ' z 4 kwartałów, rok w trakcie');
+      dhtml += `<h2>Realizacja budżetu ${exec.year} <span style="font-weight:400;font-size:0.78rem;color:var(--muted)">(${qInfo})</span></h2>
+        <p style="color:var(--muted);font-size:0.85rem;margin-top:-8px">Ile procent rocznego planu wykonano narastająco do końca każdego dostępnego kwartału.</p>
+        <div style="max-width:520px;margin-bottom:24px"><canvas id="budget-exec-chart"></canvas></div>`;
+    }
+
+    // Budget votes for this year
+    if (votes.length > 0) {
+      const uchwalenie = votes.filter(v => /uchwaleni[aeu]\s+budżet/i.test(v.topic) && !/zmian|poprawka/i.test(v.topic));
+      const poprawki = votes.filter(v => /poprawka/i.test(v.topic));
+      const zmiany = votes.filter(v => /zmienij?ąca.*budżet/i.test(v.topic));
+      const inne = votes.filter(v => !uchwalenie.includes(v) && !poprawki.includes(v) && !zmiany.includes(v));
+
+      const renderVoteRow = (v) => {
+        const passed = v.za > (v.za + v.przeciw) / 2;
+        return `<tr class="vote-row" onclick="showVote('${v.id}')">
+          <td style="width:80px;font-size:0.8rem;color:var(--muted)">${v.date}</td>
+          <td style="text-align:left;font-size:0.85rem">${v.topic.length > 120 ? v.topic.substring(0,120)+'…' : v.topic}</td>
+          <td style="width:50px"><span class="pill pill-za">${v.za}</span></td>
+          <td style="width:50px">${v.przeciw ? `<span class="pill pill-przeciw">${v.przeciw}</span>` : '0'}</td>
+          <td style="width:70px;font-size:0.8rem;font-weight:600;color:${passed?'var(--green)':'var(--red)'}">${passed?'Przyjęte':'Odrzucone'}</td>
+        </tr>`;
+      };
+
+      dhtml += `<h2>Głosowania budżetowe (${votes.length})</h2><table><tbody>`;
+      if (uchwalenie.length) dhtml += uchwalenie.map(renderVoteRow).join('');
+      if (poprawki.length) {
+        dhtml += `<tr><td colspan="5" style="font-size:0.8rem;color:var(--muted);padding:4px 12px">Poprawki (${poprawki.length})</td></tr>`;
+        dhtml += poprawki.map(renderVoteRow).join('');
+      }
+      if (zmiany.length) {
+        dhtml += `<tr><td colspan="5" style="font-size:0.8rem;color:var(--muted);padding:4px 12px">Zmiany w trakcie roku (${zmiany.length})</td></tr>`;
+        dhtml += zmiany.map(renderVoteRow).join('');
+      }
+      if (inne.length) dhtml += inne.map(renderVoteRow).join('');
+      dhtml += `</tbody></table>`;
+    }
+
+    document.getElementById('budget-year-detail').innerHTML = dhtml;
+
+    // Doughnut chart
+    if (cats.length > 0) {
+      const top = cats.slice(0, 8);
+      const rest = cats.slice(8);
+      const restSum = rest.reduce((s, c) => s + c.amount, 0);
+      const labels = top.map(c => c.name);
+      const values = top.map(c => c.amount / 1e6);
+      if (restSum > 0) { labels.push('Pozostałe'); values.push(restSum / 1e6); }
+      const colors = ['#4f46e5','#0ea5e9','#10b981','#f59e0b','#ef4444','#8b5cf6','#ec4899','#6b7280','#a3a3a3'];
+      if (budgetChartCat) budgetChartCat.destroy();
+      const catCtx = document.getElementById('budget-cat-chart');
+      if (catCtx) {
+        budgetChartCat = new Chart(catCtx.getContext('2d'), {
+          type: 'doughnut',
+          data: { labels, datasets: [{ data: values, backgroundColor: colors, borderWidth: 0 }] },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: 'bottom', labels: { color: '#4b5563', padding: 10, font: { size: 11 } } },
+              tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${ctx.parsed.toFixed(0)} mln PLN` } }
+            }
+          }
+        });
+      }
+    }
+
+    // COFOG comparison bar chart (poziomy): to miasto vs średnia klasy.
+    if (cofY.length > 0 && B.cofog_peer && B.cofog_peer.functions) {
+      const peerF = B.cofog_peer.functions;
+      const rows = cofY.slice().sort((a, b) => b.pct - a.pct);
+      const labels = rows.map(r => r.name.length > 26 ? r.name.slice(0, 24) + '…' : r.name);
+      const cityVals = rows.map(r => r.pct);
+      const peerVals = rows.map(r => peerF[r.code] != null ? peerF[r.code] : 0);
+      if (budgetChartCofog) budgetChartCofog.destroy();
+      const cc = document.getElementById('budget-cofog-chart');
+      if (cc) {
+        budgetChartCofog = new Chart(cc.getContext('2d'), {
+          type: 'bar',
+          data: { labels, datasets: [
+            { label: 'To miasto', data: cityVals, backgroundColor: '#4f46e5' },
+            { label: 'Średnia klasy', data: peerVals, backgroundColor: '#cbd5e1' }
+          ] },
+          options: {
+            indexAxis: 'y', responsive: true,
+            scales: { x: { ticks: { callback: v => v + '%', color: '#6b7280' } }, y: { ticks: { color: '#4b5563', font: { size: 11 } } } },
+            plugins: {
+              legend: { position: 'bottom', labels: { color: '#4b5563', font: { size: 11 } } },
+              tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.x.toFixed(1)}%` } }
+            }
+          }
+        });
+      }
+    }
+
+    // Realizacja kwartalna: słupki = wykonanie narastająco (mln zł), linie = plan.
+    if (showExec) {
+      const qs = exec.quarters.slice().sort((a, b) => a.q - b.q);
+      const mln = v => v != null ? v / 1e6 : null;
+      if (budgetChartExec) budgetChartExec.destroy();
+      const ec = document.getElementById('budget-exec-chart');
+      if (ec) {
+        budgetChartExec = new Chart(ec.getContext('2d'), {
+          data: {
+            labels: qs.map(q => 'Q' + q.q),
+            datasets: [
+              { type: 'bar', label: 'Dochody wykonane', data: qs.map(q => mln(q.revenue)), backgroundColor: '#15803d', order: 2 },
+              { type: 'bar', label: 'Wydatki wykonane', data: qs.map(q => mln(q.expenditure)), backgroundColor: '#4f46e5', order: 2 },
+              { type: 'line', label: 'Plan dochodów', data: qs.map(q => mln(q.revenue_plan)), borderColor: '#15803d', borderDash: [5, 3], pointRadius: 0, fill: false, order: 1 },
+              { type: 'line', label: 'Plan wydatków', data: qs.map(q => mln(q.expenditure_plan)), borderColor: '#4f46e5', borderDash: [5, 3], pointRadius: 0, fill: false, order: 1 }
+            ]
+          },
+          options: {
+            responsive: true,
+            scales: { y: { beginAtZero: true, ticks: { callback: v => v + ' mln', color: '#6b7280' } }, x: { ticks: { color: '#4b5563' } } },
+            plugins: {
+              legend: { position: 'bottom', labels: { color: '#4b5563', font: { size: 11 } } },
+              tooltip: { callbacks: { label: (ctx) => {
+                const q = qs[ctx.dataIndex];
+                const isRev = ctx.dataset.label.indexOf('ochod') >= 0;
+                const pct = isRev ? q.revenue_exec_pct : q.expenditure_exec_pct;
+                const isPlan = ctx.dataset.label.indexOf('Plan') === 0;
+                return ctx.dataset.label + ': ' + Math.round(ctx.parsed.y) + ' mln zł'
+                  + (!isPlan && pct != null ? ' (' + pct.toFixed(0) + '% planu)' : '');
+              } } }
+            }
+          }
+        });
+      }
+    }
+  }
+
+  // Year bar buttons
+  document.querySelectorAll('#budget-year-bar .kadencja-btn').forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll('#budget-year-bar .kadencja-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderYearDetail(Number(btn.dataset.byear));
+    };
+  });
+
+  // Initial render
+  renderYearDetail(latestYear);
+
+  // --- Trend chart ---
+  if (budgetChartTrend) budgetChartTrend.destroy();
+  const trendCtx = document.getElementById('budget-trend-chart');
+  if (trendCtx) {
+    budgetChartTrend = new Chart(trendCtx.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: B.totals.map(t => t.year),
+        datasets: [{
+          label: 'Dochody',
+          data: B.totals.map(t => t.revenue / 1e9),
+          borderColor: 'rgba(34,197,94,0.8)',
+          backgroundColor: 'rgba(34,197,94,0.1)',
+          fill: true, tension: 0.3, pointRadius: 4,
+        }, {
+          label: 'Wydatki',
+          data: B.totals.map(t => t.expenditure / 1e9),
+          borderColor: 'rgba(99,102,241,0.8)',
+          backgroundColor: 'rgba(99,102,241,0.1)',
+          fill: true, tension: 0.3, pointRadius: 4,
+        }, {
+          label: 'Deficyt',
+          data: B.totals.map(t => t.deficit / 1e9),
+          borderColor: 'rgba(239,68,68,0.7)',
+          backgroundColor: 'rgba(239,68,68,0.05)',
+          fill: true, tension: 0.3, pointRadius: 4, borderDash: [5, 3],
+        }, {
+          label: 'Zadłużenie',
+          data: B.totals.map(t => t.debt != null ? t.debt / 1e9 : null),
+          borderColor: 'rgba(180,83,9,0.8)',
+          backgroundColor: 'rgba(245,158,11,0.08)',
+          fill: false, tension: 0.3, pointRadius: 4, borderDash: [2, 2],
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: { grid: { display: false } },
+          y: { title: { display: true, text: 'mld PLN', color: '#6b7280' }, ticks: { color: '#6b7280' }, grid: { color: 'rgba(0,0,0,0.06)' } }
+        },
+        plugins: { legend: { labels: { color: '#4b5563' } } }
+      }
+    });
+  }
+}
+
+function bindTabs() {
+  document.querySelectorAll('.tab').forEach(tab => {
+    if (!tab.dataset.tab) return;  // Aktualności jest <a> z href, nie data-tab
+    tab.onclick = () => {
+      activateTab(tab.dataset.tab);
+      navigateTo(mainPath());
+    };
+  });
+}
+
+function bindSort() {
+  document.querySelectorAll('#councilor-table th[data-sort]').forEach(th => {
+    th.onclick = () => {
+      const key = th.dataset.sort;
+      if (currentSort.key === key) currentSort.asc = !currentSort.asc;
+      else { currentSort.key = key; currentSort.asc = key === 'name'; }
+      renderCouncilorTable();
+    };
+  });
+}
+
+// Handle browser back/forward — suppress pushState during popstate
+let _popstateActive = false;
+// ── Compare feature ──────────────────────────────────────────────────
+function toggleCompare(name, checked) {
+  if (checked && !compareList.includes(name)) {
+    if (compareList.length >= 3) {
+      const removed = compareList.shift();
+      const cb = document.querySelector(`.compare-check[data-name="${CSS.escape(removed)}"]`);
+      if (cb) cb.checked = false;
+    }
+    compareList.push(name);
+  } else {
+    compareList = compareList.filter(n => n !== name);
+  }
+  renderCompareBar();
+}
+function renderCompareBar() {
+  let bar = document.getElementById('compare-bar');
+  if (compareList.length < 2) { if (bar) bar.remove(); return; }
+  if (!bar) { bar = document.createElement('div'); bar.id = 'compare-bar'; bar.className = 'compare-bar'; document.body.appendChild(bar); }
+  bar.style.display = 'flex';
+  bar.innerHTML = `<span>Porównaj: <strong>${compareList.join(' vs ')}</strong></span>
+    <button class="compare-go" onclick="showCompare()">Porównaj ${compareList.length} radnych</button>
+    <button class="compare-clear" onclick="clearCompare()">Wyczyść</button>`;
+}
+function clearCompare() {
+  compareList = [];
+  document.querySelectorAll('.compare-check').forEach(cb => cb.checked = false);
+  renderCompareBar();
+}
+function showCompare() {
+  if (compareList.length < 2) return;
+  hideAllViews();
+  const view = document.getElementById('compare-view');
+  view.style.display = 'block';
+  const councilors = compareList.map(name => K.councilors.find(c => c.name === name)).filter(Boolean);
+  if (councilors.length < 2) return;
+  const cols = councilors.length;
+  let html = `<button class="profile-back" onclick="showMain()">← Strona główna</button>
+    <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:20px">Porównanie radnych</h2>
+    <div class="compare-grid" style="grid-template-columns:repeat(${cols},1fr)">`;
+  councilors.forEach(c => {
+    html += `<div class="compare-col">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+        <div style="width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:700;color:white;background:${clubBg(c.club)}">${initials(c.name)}</div>
+        <div><h3 style="border:none;padding:0;margin:0">${c.name}</h3><span class="club ${clubClass(c.club)}">${c.club}</span></div>
+      </div>
+      <div style="display:grid;gap:8px">
+        <div>Frekwencja: ${pctBar(c.frekwencja)}</div>
+        <div>Aktywność: ${pctBar(c.aktywnosc)}</div>
+        <div>Zgodność z klubem: ${!clubHasLine(c.club) ? '<span style="color:var(--muted)">n/d</span>' : c.zgodnosc_z_klubem + '%'}</div>
+        <div style="display:flex;gap:6px;margin-top:4px">
+          <span class="pill pill-za">Za: ${c.votes_za}</span>
+          <span class="pill pill-przeciw">Przeciw: ${c.votes_przeciw}</span>
+          <span class="pill pill-wstrzymal">Wstrzym.: ${c.votes_wstrzymal}</span>
+        </div>
+        <div style="color:var(--muted);font-size:0.85rem">Buntów: ${c.rebellion_count}</div>
+      </div>
+    </div>`;
+  });
+  html += `</div>`;
+  // Radar chart
+  html += `<div class="section"><h2>Porównanie metryk</h2><div class="chart-wrap" style="max-width:500px;margin:0 auto"><canvas id="compare-radar"></canvas></div></div>`;
+  // Votes where they disagreed
+  const names = councilors.map(c => c.name);
+  const diffs = [];
+  for (const v of (K.votes || [])) {
+    const nv = v.named_votes || {};
+    const voteOf = {};
+    for (const [cat, nlist] of Object.entries(nv)) { for (const n of nlist) { if (names.includes(n)) voteOf[n] = cat; } }
+    const active = names.filter(n => voteOf[n] && ['za','przeciw','wstrzymal_sie'].includes(voteOf[n]));
+    if (active.length >= 2 && new Set(active.map(n => voteOf[n])).size > 1) {
+      diffs.push({ topic: v.topic, id: v.id, session: v.session_date, votes: voteOf });
+    }
+  }
+  if (diffs.length > 0) {
+    html += `<div class="section"><h2>Głosowania, w których się różnili (${diffs.length})</h2>`;
+    diffs.slice(0, 30).forEach(d => {
+      html += `<div class="diff-row"><div class="diff-topic"><a class="name-link" onclick="showVote('${d.id}')">${(d.topic||'?').substring(0,100)}</a><div style="color:var(--muted);font-size:0.8rem">${d.session}</div></div>`;
+      names.forEach(n => {
+        const v = d.votes[n]; const cls = v==='za'?'pill-za':v==='przeciw'?'pill-przeciw':v==='wstrzymal_sie'?'pill-wstrzymal':'';
+        html += `<div style="min-width:80px"><span class="pill ${cls}">${v||'brak'}</span></div>`;
+      });
+      html += `</div>`;
+    });
+    if (diffs.length > 30) html += `<div style="color:var(--muted);padding:8px 0;font-size:0.85rem">...i ${diffs.length - 30} więcej</div>`;
+    html += `</div>`;
+  }
+  view.innerHTML = html;
+  window.scrollTo(0, 0);
+  // Radar chart
+  const radarCtx = document.getElementById('compare-radar');
+  if (radarCtx) {
+    const rc = ['rgba(99,102,241,0.7)','rgba(34,197,94,0.7)','rgba(239,68,68,0.7)'];
+    const rb = ['rgba(99,102,241,0.15)','rgba(34,197,94,0.15)','rgba(239,68,68,0.15)'];
+    new Chart(radarCtx.getContext('2d'), {
+      type: 'radar',
+      data: { labels: ['Frekwencja','Aktywność','Zgodność z klubem','Głosy za (%)','Głosy przeciw (%)'],
+        datasets: councilors.map((c, i) => ({
+          label: c.name,
+          data: [c.frekwencja, c.aktywnosc, c.zgodnosc_z_klubem,
+            c.votes_total>0?Math.round(c.votes_za/c.votes_total*100):0,
+            c.votes_total>0?Math.round(c.votes_przeciw/c.votes_total*100):0],
+          borderColor: rc[i%3], backgroundColor: rb[i%3], pointRadius: 4,
+        }))
+      },
+      options: { responsive:true, scales:{ r:{ beginAtZero:true, max:100 } } }
+    });
+  }
+  const bar = document.getElementById('compare-bar'); if (bar) bar.style.display = 'none';
+}
+
+// ── Porównywarka miast (capability based, Premium) ───────────────────
+// Funkcja Premium. Logika i metryki żyją za API (data_api): free tier dostaje
+// listę porównywalnych miast + capabilities (do wyszukiwarki) z /compare, a
+// pełne metryki obu miast tylko z /compare/<other> za subskrypcją (402 bez).
+// Moduł deklaruje, jakich zdolności (capabilities) potrzebuje; render pokazuje
+// tylko obszary wspólne dla obu miast.
+let CITY_COMPARE = null;        // {modules, cities:[public], tier} z /compare
+let CITY_COMPARE_SELF = null;   // rekord bieżącego miasta (public, bez metryk)
+
+function ccNum(n){ return (n==null)?'n/d':Number(n).toLocaleString('pl-PL'); }
+function ccPct(n){ return (n==null)?'n/d':(Number(n).toLocaleString('pl-PL',{maximumFractionDigits:1})+'%'); }
+function ccDec(n){ return (n==null)?'n/d':Number(n).toLocaleString('pl-PL',{maximumFractionDigits:1}); }
+function ccMoneyM(n,cur){ return (n==null)?'n/d':((n/1e6).toLocaleString('pl-PL',{maximumFractionDigits:0})+' mln '+(cur||'')).trim(); }
+function ccMoney(n,cur){ return (n==null)?'n/d':(Math.round(n).toLocaleString('pl-PL')+' '+(cur||'')).trim(); }
+
+function capIntersection(a,b){ const bs=new Set(b.capabilities||[]); return (a.capabilities||[]).filter(x=>bs.has(x)); }
+function ccGet(rec,mod,key){ const m=(rec.metrics||{})[mod]||{}; return (key in m)?m[key]:null; }
+
+// Wiersz porównania: etykieta + dwie wartości + proporcjonalny pasek magnitudy.
+// drawBar=false dla wartości nieporównywalnych liniowo (np. różne waluty).
+function ccMetric(label, va, vb, fmt, drawBar){
+  const fa=(va==null)?'n/d':fmt(va), fb=(vb==null)?'n/d':fmt(vb);
+  let barHtml='';
+  if(drawBar!==false && typeof va==='number' && typeof vb==='number' && (va+vb)>0){
+    const wa=Math.round(va/(va+vb)*100);
+    barHtml=`<div class="cc-bar"><div class="cc-bar-a" style="width:${wa}%"></div><div class="cc-bar-b" style="width:${100-wa}%"></div></div>`;
+  } else { barHtml='<div class="cc-bar"></div>'; }
+  const big=(typeof va==='number'&&typeof vb==='number')?(va>vb?'a':(vb>va?'b':'')):'';
+  return `<div class="cc-metric"><div class="cc-metric-label">${label}</div><div class="cc-metric-vals">`
+    +`<span class="cc-val ${big==='a'?'cc-big':''}">${fa}</span>${barHtml}<span class="cc-val ${big==='b'?'cc-big':''}">${fb}</span></div></div>`;
+}
+
+const CITY_COMPARE_MODULES = [
+  { id:'voting_activity', requires:['voting_activity'], label:'Aktywność głosowań',
+    render:(a,b)=> ccMetric('Sesje', ccGet(a,'voting_activity','sessions'), ccGet(b,'voting_activity','sessions'), ccNum)
+      + ccMetric('Głosowania', ccGet(a,'voting_activity','votes'), ccGet(b,'voting_activity','votes'), ccNum)
+      + ccMetric('Głosowań na sesję', ccGet(a,'voting_activity','votes_per_session'), ccGet(b,'voting_activity','votes_per_session'), ccDec) },
+  { id:'attendance', requires:['attendance'], label:'Frekwencja',
+    render:(a,b)=> ccMetric('Średnia frekwencja', ccGet(a,'attendance','avg_frekwencja'), ccGet(b,'attendance','avg_frekwencja'), ccPct) },
+  { id:'club_cohesion', requires:['club_cohesion'], label:'Dyscyplina klubowa',
+    render:(a,b)=> ccMetric('Średnia zgodność z klubem', ccGet(a,'club_cohesion','avg_zgodnosc'), ccGet(b,'club_cohesion','avg_zgodnosc'), ccPct)
+      + ((ccGet(a,'club_cohesion','avg_rebellions')!=null && ccGet(b,'club_cohesion','avg_rebellions')!=null)
+        ? ccMetric('Średnio głosów wbrew klubowi', ccGet(a,'club_cohesion','avg_rebellions'), ccGet(b,'club_cohesion','avg_rebellions'), ccDec) : '') },
+  { id:'council_composition', requires:['council_composition'], label:'Skład rady',
+    render:(a,b)=> ccMetric('Liczba radnych', ccGet(a,'council_composition','councilors'), ccGet(b,'council_composition','councilors'), ccNum)
+      + ccMetric('Liczba klubów', ccGet(a,'council_composition','num_clubs'), ccGet(b,'council_composition','num_clubs'), ccNum)
+      + ccMetric('Udział największego klubu', ccGet(a,'council_composition','largest_club_share'), ccGet(b,'council_composition','largest_club_share'), ccPct) },
+  { id:'demographics', requires:['demographics'], label:'Skala',
+    render:(a,b)=> ccMetric('Populacja', ccGet(a,'demographics','population'), ccGet(b,'demographics','population'), ccNum)
+      + ((ccGet(a,'demographics','councilors_per_100k')!=null && ccGet(b,'demographics','councilors_per_100k')!=null)
+        ? ccMetric('Radnych na 100 tys. mieszk.', ccGet(a,'demographics','councilors_per_100k'), ccGet(b,'demographics','councilors_per_100k'), ccDec) : '')
+      + ((ccGet(a,'demographics','votes_per_100k')!=null && ccGet(b,'demographics','votes_per_100k')!=null)
+        ? ccMetric('Głosowań na 100 tys. mieszk.', ccGet(a,'demographics','votes_per_100k'), ccGet(b,'demographics','votes_per_100k'), ccDec) : '') },
+  { id:'budget', requires:['budget'], label:'Budżet',
+    render:(a,b)=>{
+      const ca=ccGet(a,'budget','currency')||'', cb=ccGet(b,'budget','currency')||'';
+      const sameCur=ca===cb;
+      const ya=ccGet(a,'budget','year'), yb=ccGet(b,'budget','year');
+      let html='';
+      if(!sameCur) html+=`<p class="cc-note">Waluty różne (${ca} vs ${cb}) — porównanie poglądowe, bez przeliczania kursem. Najbardziej miarodajny jest wydatek per capita.</p>`;
+      html+=`<div class="cc-metric"><div class="cc-metric-label">Rok</div><div class="cc-metric-vals"><span class="cc-val">${ya||'n/d'}${ccGet(a,'budget','estimated')?' (szac.)':''}</span><div class="cc-bar"></div><span class="cc-val">${yb||'n/d'}${ccGet(b,'budget','estimated')?' (szac.)':''}</span></div></div>`;
+      html+=ccMetric('Wydatki per capita', ccGet(a,'budget','per_capita_expenditure'), ccGet(b,'budget','per_capita_expenditure'), (n)=>ccMoney(n, n===ccGet(a,'budget','per_capita_expenditure')?ca:cb), sameCur);
+      html+=ccMetric('Wydatki ogółem', ccGet(a,'budget','expenditure'), ccGet(b,'budget','expenditure'), (n)=>ccMoneyM(n, n===ccGet(a,'budget','expenditure')?ca:cb), sameCur);
+      html+=ccMetric('Dochody ogółem', ccGet(a,'budget','revenue'), ccGet(b,'budget','revenue'), (n)=>ccMoneyM(n, n===ccGet(a,'budget','revenue')?ca:cb), sameCur);
+      const ta=ccGet(a,'budget','top_categories')||[], tb=ccGet(b,'budget','top_categories')||[];
+      if(ta.length||tb.length){
+        const fmtCats=(t)=> t.length? t.map(c=>`${c.name}: ${ccPct(c.share)}`).join('<br>') : 'n/d';
+        html+=`<div class="cc-metric"><div class="cc-metric-label">Główne działy (udział wydatków)</div><div class="cc-metric-vals"><span class="cc-val cc-val-multi">${fmtCats(ta)}</span><div class="cc-bar"></div><span class="cc-val cc-val-multi">${fmtCats(tb)}</span></div></div>`;
+      }
+      return html;
+    } },
+];
+
+async function loadCityCompareIndex(){
+  try{
+    // Free tier: lista porównywalnych miast + capabilities (bez metryk).
+    // Metryki są za Premium i przychodzą z /compare/<other>. credentials:include
+    // wysyła cookie sesji, żeby tier był znany (premium widzi to samo, ale klik
+    // w miasto nie trafia na paywall).
+    const resp=await fetch(API_BASE+'/compare',{credentials:'include'});
+    if(!resp.ok) return;
+    const data=await resp.json();
+    if(!data || !data.available || !Array.isArray(data.cities)) return;
+    CITY_COMPARE={modules:data.modules||[], cities:data.cities, tier:data.tier};
+    CITY_COMPARE_SELF=data.self||null;
+    // Sekcja porównania na landingu renderuje się dopiero gdy CITY_COMPARE jest
+    // załadowany. Fetch jest async i może skończyć po pierwszym renderze landingu,
+    // więc jeśli landing jest właśnie widoczny — przerysuj go raz.
+    const lv=document.getElementById('landing-view');
+    if(lv && lv.style.display!=='none' && (location.pathname==='/'||location.pathname==='')){
+      // Re-render landingu gubił blok "Spółki miejskie": renderLandingHTML
+      // odtwarza pusty placeholder #lp-spolki, a wypełnia go dopiero async
+      // renderLandingSpolki. Bez tego wywołania blok znika, gdy /compare
+      // doładuje się po pierwszym renderze. (Zgodnie z re-renderem w 1311.)
+      try{ lv.innerHTML=renderLandingHTML(); renderLandingSpolki(); }catch(e){}
+    }
+  }catch(e){}
+}
+
+// Miasta porównywalne: inne niż bieżące i mające wspólną przynajmniej jedną
+// zdolność (capability) z bieżącym miastem.
+function ccComparableCities(){
+  if(!CITY_COMPARE || !CITY_COMPARE_SELF) return [];
+  return CITY_COMPARE.cities
+    .filter(c=>c.slug!==CITY_SLUG && capIntersection(CITY_COMPARE_SELF,c).length>0)
+    .sort((a,b)=>a.name.localeCompare(b.name,'pl'));
+}
+
+// Sekcja landingu: wyszukiwarka miast (skaluje się do setek miast inaczej niż
+// dropdown). Zwraca pusty string, gdy brak miast do porównania.
+function _landingCompareSection(){
+  if(ccComparableCities().length===0) return '';
+  var self=(CITY_COMPARE_SELF&&CITY_COMPARE_SELF.name)?_lpEsc(CITY_COMPARE_SELF.name):'to miasto';
+  return '<section class="lp-sec"><h2>Porównaj z innym miastem</h2>'+
+    '<div class="lp-sub">Zestaw '+self+" z dowolnym innym miastem. Pokazujemy tylko obszary, dla których oba mają dane.</div>"+
+    '<div class="lp-card cc-search">'+
+      '<input type="text" autocomplete="off" placeholder="Wpisz nazwę miasta…" '+
+        'oninput="ccSearchInput(this)" onfocus="ccSearchInput(this)">'+
+      '<div class="cc-search-results"></div>'+
+    '</div></section>';
+}
+
+function ccSearchInput(input){
+  // Kontener wyników znajdujemy względem inputu (nie po globalnym id), bo
+  // wyszukiwarka żyje i w landingu, i w widoku porównania jednocześnie.
+  var box=(input && input.parentNode) ? input.parentNode.querySelector('.cc-search-results') : null;
+  if(!box) return;
+  var q=((input && input.value) || '').trim().toLowerCase();
+  var list=ccComparableCities();
+  if(q) list=list.filter(function(c){ return c.name.toLowerCase().indexOf(q)>-1; });
+  if(list.length===0){ box.innerHTML='<div class="cc-search-empty">Brak pasujących miast</div>'; return; }
+  box.innerHTML=list.slice(0,80).map(function(c){
+    var sub=[c.voivodeship||'', (c.country&&c.country!=='pl')?c.country.toUpperCase():''].filter(Boolean).join(' · ');
+    return '<button type="button" class="cc-search-item" onclick="openCityCompare(\''+c.slug+'\')">'+
+      '<span class="cc-search-name">'+_lpEsc(c.name)+'</span>'+
+      (sub?'<span class="cc-search-meta">'+_lpEsc(sub)+'</span>':'')+
+    '</button>';
+  }).join('');
+}
+
+async function openCityCompare(slug){
+  if(!slug) return;
+  hideAllViews();
+  var view=document.getElementById('city-compare-view');
+  view.style.display='block';
+  view.innerHTML='<button class="profile-back" onclick="(typeof showLanding===\'function\'?showLanding():showMain())">← Strona główna</button>'+
+    '<p style="color:var(--muted);padding:20px 0">Ładowanie porównania…</p>';
+  window.scrollTo(0,0);
+  try{
+    // Metryki porównania są Premium: endpoint zwraca 402 bez aktywnej subskrypcji.
+    var resp=await fetch(API_BASE+'/compare/'+encodeURIComponent(slug),{credentials:'include'});
+    if(resp.status===402){ renderCityComparePaywall(slug); return; }
+    if(!resp.ok){
+      view.innerHTML='<button class="profile-back" onclick="(typeof showLanding===\'function\'?showLanding():showMain())">← Strona główna</button>'+
+        '<p style="color:var(--muted);padding:20px 0">Nie udało się wczytać porównania.</p>';
+      return;
+    }
+    var data=await resp.json();
+    if(!data || !data.a || !data.b){ renderCityComparePaywall(slug); return; }
+    renderCityCompare(data.a, data.b);
+  }catch(e){
+    view.innerHTML='<button class="profile-back" onclick="(typeof showLanding===\'function\'?showLanding():showMain())">← Strona główna</button>'+
+      '<p style="color:var(--muted);padding:20px 0">Nie udało się wczytać porównania.</p>';
+  }
+}
+
+// Paywall: free tier widzi z czym mógłby porównać (teaser modułów z capabilities,
+// bez wartości) i CTA do Pro. Wartości nie są nigdy wysyłane bez subskrypcji.
+function renderCityComparePaywall(slug){
+  hideAllViews();
+  var view=document.getElementById('city-compare-view');
+  view.style.display='block';
+  var other=((CITY_COMPARE&&CITY_COMPARE.cities)||[]).find(function(c){return c.slug===slug;});
+  var oname=other?other.name:slug;
+  var sname=(CITY_COMPARE_SELF&&CITY_COMPARE_SELF.name)||'to miasto';
+  var caps=(CITY_COMPARE_SELF&&other)?capIntersection(CITY_COMPARE_SELF, other):[];
+  var mods=CITY_COMPARE_MODULES.filter(function(m){return m.requires.every(function(r){return caps.indexOf(r)>-1;});});
+  var teaser=mods.length?('<div class="cc-paywall-teaser">Porównalibyśmy: '+mods.map(function(m){return m.label;}).join(', ')+'.</div>'):'';
+  view.innerHTML='<button class="profile-back" onclick="(typeof showLanding===\'function\'?showLanding():showMain())">← Strona główna</button>'+
+    '<h2 style="font-size:1.3rem;font-weight:600;margin-bottom:6px">'+_lpEsc(sname)+' vs '+_lpEsc(oname)+'</h2>'+
+    teaser+
+    '<div class="cc-paywall"><p>Porównywarka miast jest częścią pakietu Pro.</p>'+
+    '<button class="auth-btn" onclick="showPro({from:\'city_compare\',city:\''+slug+'\'})">Odblokuj porównywarkę</button></div>';
+  window.scrollTo(0,0);
+}
+
+function renderCityCompare(a,b){
+  hideAllViews();
+  const view=document.getElementById('city-compare-view');
+  view.style.display='block';
+  const caps=capIntersection(a,b);
+  const mods=CITY_COMPARE_MODULES.filter(m=>m.requires.every(r=>caps.includes(r)));
+  const skipped=CITY_COMPARE_MODULES.filter(m=>!m.requires.every(r=>caps.includes(r)));
+  let html=`<button class="profile-back" onclick="(typeof showLanding==='function'?showLanding():showMain())">← Strona główna</button>
+    <h2 style="font-size:1.3rem;font-weight:600;margin-bottom:6px">${a.name} vs ${b.name}</h2>`;
+  html+=`<div class="cc-search" style="margin-bottom:18px"><input type="text" autocomplete="off" placeholder="Zmień miasto…"
+    oninput="ccSearchInput(this)" onfocus="ccSearchInput(this)"><div class="cc-search-results"></div></div>`;
+  html+=`
+    <p style="color:var(--muted);font-size:0.85rem;margin-bottom:20px">Porównywane są tylko obszary, dla których oba miasta mają dane. Lewa kolumna: ${a.name}. Prawa: ${b.name}.</p>`;
+  if(mods.length===0){
+    html+=`<p style="color:var(--muted)">Te miasta nie mają wspólnego zestawu danych do porównania.</p>`;
+  } else {
+    mods.forEach(m=>{ html+=`<div class="section cc-module"><h2>${m.label}</h2>${m.render(a,b)}</div>`; });
+  }
+  if(skipped.length){
+    html+=`<div class="cc-note" style="margin-top:16px">Niedostępne dla tej pary: ${skipped.map(m=>m.label).join(', ')}. Powód: brak odpowiednich danych w przynajmniej jednym z miast.</div>`;
+  }
+  view.innerHTML=html;
+  const sel=document.getElementById('city-compare-select'); if(sel) sel.value='';
+  window.scrollTo(0,0);
+}
+
+// ── Card download & embed ────────────────────────────────────────────
+function downloadCard(name, club, frek, akt, zgod, za, przeciw, wstrzym) {
+  const canvas = document.createElement('canvas');
+  canvas.width = 600; canvas.height = 340;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#1a1d27'; ctx.beginPath(); ctx.roundRect(0,0,600,340,16); ctx.fill();
+  ctx.fillStyle = '#4f46e5'; ctx.fillRect(0,0,600,6);
+  const clubColors = {'WdG':'#166534','KO':'#1e3a5f','PiS':'#7f1d1d'};
+  ctx.fillStyle = clubColors[club]||'#374151';
+  ctx.beginPath(); ctx.arc(50,60,28,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#fff'; ctx.font='bold 18px -apple-system,sans-serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(name.split(' ').map(w=>w[0]).join('').substring(0,2),50,60);
+  ctx.textAlign='left'; ctx.textBaseline='top';
+  ctx.fillStyle='#e4e4e7'; ctx.font='bold 22px -apple-system,sans-serif'; ctx.fillText(name,90,40);
+  ctx.fillStyle='#8b8d97'; ctx.font='14px -apple-system,sans-serif'; ctx.fillText('Klub '+club+'  ·  Rada Miasta ' + CFG.cityGenitive + '',90,68);
+  const metrics = [
+    {label:'Frekwencja',value:frek+'%',color:frek>=90?'#22c55e':frek>=70?'#eab308':'#ef4444'},
+    {label:'Aktywność',value:akt+'%',color:akt>=90?'#22c55e':akt>=70?'#eab308':'#ef4444'},
+    {label:'Zgodność z klubem',value:zgod+'%',color:'#e4e4e7'},
+  ];
+  metrics.forEach((m,i) => {
+    const x=30+i*180, y=120;
+    ctx.fillStyle='#0f1117'; ctx.beginPath(); ctx.roundRect(x,y,170,80,10); ctx.fill();
+    ctx.fillStyle=m.color; ctx.font='bold 28px -apple-system,sans-serif'; ctx.textAlign='center';
+    ctx.fillText(m.value,x+85,y+18);
+    ctx.fillStyle='#8b8d97'; ctx.font='11px -apple-system,sans-serif';
+    ctx.fillText(m.label.toUpperCase(),x+85,y+55);
+  });
+  const total=za+przeciw+wstrzym;
+  if(total>0) {
+    const barY=220,barH=20,barW=540,zaW=za/total*barW,przW=przeciw/total*barW;
+    ctx.fillStyle='rgba(34,197,94,0.8)'; ctx.beginPath(); ctx.roundRect(30,barY,zaW,barH,4); ctx.fill();
+    ctx.fillStyle='rgba(239,68,68,0.8)'; ctx.fillRect(30+zaW,barY,przW,barH);
+    ctx.fillStyle='rgba(234,179,8,0.8)'; ctx.beginPath(); ctx.roundRect(30+zaW+przW,barY,barW-zaW-przW,barH,4); ctx.fill();
+    ctx.textAlign='left'; ctx.fillStyle='#8b8d97'; ctx.font='12px -apple-system,sans-serif';
+    ctx.fillText(`Za: ${za}  ·  Przeciw: ${przeciw}  ·  Wstrzymał się: ${wstrzym}`,30,barY+30);
+  }
+  ctx.fillStyle='#2a2d3a'; ctx.fillRect(0,300,600,40);
+  ctx.fillStyle='#6366f1'; ctx.font='bold 13px -apple-system,sans-serif'; ctx.textAlign='center';
+  ctx.fillText('Radoskop ' + CFG.cityName + '  ·  ' + CFG.rootHost + '',300,315);
+  const link=document.createElement('a');
+  link.download=`radoskop-${name.toLowerCase().replace(/\s/g,'-')}.png`;
+  link.href=canvas.toDataURL('image/png'); link.click();
+}
+async function toggleCouncilorAlert(citySlug, councilorSlug, councilorName) {
+  const btn = document.getElementById('alert-toggle-btn');
+  const status = document.getElementById('alert-status');
+  if (btn) btn.disabled = true;
+
+  try {
+    const listRes = await fetch(_API_HOST + '/api/auth/alerts', {credentials:'include'});
+    const listData = await listRes.json();
+    const existing = (listData.alerts || []).find(
+      a => a.city_slug === citySlug && a.councilor_slug === councilorSlug
+    );
+
+    if (existing) {
+      await fetch(_API_HOST + '/api/auth/alerts/' + existing.id, {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {'Origin': window.location.origin},
+      });
+      if (btn) { btn.textContent = '🔔 Obserwuj radnego'; btn.disabled = false; }
+      if (status) status.textContent = 'Alert wyłączony.';
+    } else {
+      await fetch(_API_HOST + '/api/auth/alerts', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {'Content-Type':'application/json','Origin':window.location.origin},
+        body: JSON.stringify({
+          city_slug: citySlug,
+          councilor_slug: councilorSlug,
+          councilor_name: councilorName,
+          alert_rebellion: true,
+          alert_interpelacja: true,
+          alert_session_miss: false,
+        }),
+      });
+      if (btn) { btn.textContent = '🔕 Przestań obserwować'; btn.disabled = false; }
+      if (status) status.textContent = 'Dostaniesz email gdy radny złoży interpelację lub zagłosuje przeciw klubowi.';
+    }
+  } catch(e) {
+    if (btn) btn.disabled = false;
+    if (status) status.textContent = 'Błąd — spróbuj ponownie.';
+  }
+}
+
+async function _initAlertBtn(citySlug, councilorSlug) {
+  const btn = document.getElementById('alert-toggle-btn');
+  if (!btn) return;
+  try {
+    const res = await fetch(_API_HOST + '/api/auth/alerts', {credentials:'include'});
+    const data = await res.json();
+    const active = (data.alerts || []).some(
+      a => a.city_slug === citySlug && a.councilor_slug === councilorSlug
+    );
+    btn.textContent = active ? '🔕 Przestań obserwować' : '🔔 Obserwuj radnego';
+  } catch(e) {}
+}
+
+function showEmbedCode(slug) {
+  const modal=document.getElementById('embed-modal'), code=document.getElementById('embed-code');
+  if(modal.style.display==='none'){
+    modal.style.display='block';
+    code.value=`<iframe src="${CFG.siteUrl}/profile/${slug}/" width="400" height="500" frameborder="0" style="border:1px solid #e2e5e9;border-radius:12px" title="Radoskop ${CFG.cityName}"></iframe>`;
+  } else { modal.style.display='none'; }
+}
+
+// Social sharing
+function shareBarInner(title, text, url, containerId) {
+  var hasNative = typeof navigator.share === 'function';
+  var svgShare = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>';
+  var svgX = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>';
+  var svgFb = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>';
+  var svgLink = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>';
+
+  var encodedUrl = encodeURIComponent(url);
+  var encodedTitle = encodeURIComponent(title);
+  var encodedText = encodeURIComponent(text);
+
+  var html = '';
+  if (hasNative) {
+    html += '<button class="share-btn share-native" onclick="nativeShare(\'' + encodedTitle + '\',\'' + encodedText + '\',\'' + encodedUrl + '\')">' + svgShare + ' Udostępnij</button>';
+  }
+  html += '<a class="share-btn" href="https://x.com/intent/tweet?text=' + encodedText + '&url=' + encodedUrl + '" target="_blank" rel="noopener" title="Udostępnij na X">' + svgX + ' X</a>';
+  html += '<a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl + '" target="_blank" rel="noopener" title="Udostępnij na Facebooku">' + svgFb + ' Facebook</a>';
+  html += '<button class="share-btn" id="' + containerId + '-copy" onclick="copyShareLink(\'' + encodedUrl + '\',\'' + containerId + '-copy\')" title="Kopiuj link">' + svgLink + ' Kopiuj link</button>';
+  return html;
+}
+
+function shareBar(title, text, url, containerId) {
+  return '<div class="share-bar">' + shareBarInner(title, text, url, containerId) + '</div>';
+}
+
+function nativeShare(encodedTitle, encodedText, encodedUrl) {
+  navigator.share({
+    title: decodeURIComponent(encodedTitle),
+    text: decodeURIComponent(encodedText),
+    url: decodeURIComponent(encodedUrl)
+  }).catch(function(){});
+}
+
+function copyShareLink(encodedUrl, btnId) {
+  var url = decodeURIComponent(encodedUrl);
+  navigator.clipboard.writeText(url).then(function() {
+    var btn = document.getElementById(btnId);
+    if (btn) {
+      btn.classList.add('share-copied');
+      var orig = btn.innerHTML;
+      var svgCheck = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><polyline points="20 6 9 17 4 12"/></svg>';
+      btn.innerHTML = svgCheck + ' Skopiowano!';
+      setTimeout(function() { btn.innerHTML = orig; btn.classList.remove('share-copied'); }, 2000);
+    }
+  });
+}
+
+window.addEventListener('popstate', async () => {
+  _popstateActive = true;
+  const path = toInternalPath(routePath());
+  
+  // Track page view for SPA navigation
+  // Extract meaningful page type from path for Umami analytics
+  let pageType = 'landing';
+  if (path.startsWith('/profil/')) pageType = 'profile';
+  else if (path.startsWith('/glosowanie/')) pageType = 'vote';
+  else if (path.startsWith('/sesja/')) pageType = 'session';
+  else if (path.startsWith('/komisja/')) pageType = 'commission';
+  else if (path === '/budzet' || path === '/budzet/') pageType = 'budget';
+  else if (path === '/interpelacje' || path === '/interpelacje/') pageType = 'interpellations';
+  else if (path === '/komisje' || path === '/komisje/') pageType = 'commissions';
+  else if (path === '/spolki' || path === '/spolki/') pageType = 'companies';
+  else if (path.startsWith('/kadencja/')) {
+    const parts = path.replace('/kadencja/', '').split('/');
+    const tab = parts[1] || 'ranking';
+    pageType = 'tab_' + (SLUG_TABS[tab] || tab);
+  }
+  trackEvent('page_view', {page_type: pageType, path: location.pathname});
+  
+  if (path === '/' || path === '') { showLanding(); _popstateActive = false; return; }
+  if (path === '/councillors' || path === '/councillors/') {
+    hideAllViews(); document.getElementById('app').style.display = 'block';
+    activateTab('ranking'); _popstateActive = false; return;
+  }
+  if (path.startsWith('/profil/')) {
+    const slug = path.replace('/profil/', '').replace(/\/$/, '');
+    const profile = PROFILES && PROFILES.profiles.find(p => p.slug === slug);
+    if (profile) { showProfile(profile.name, _profileTabFromQuery()); _popstateActive = false; return; }
+  }
+  if (path === '/glosowanie' || path === '/glosowanie/') {
+    // /vote/ bez ID → najnowsze głosowanie z aktualnej kadencji.
+    try {
+      const resp = await fetch(API_BASE + '/kadencja/' + currentKid + '/votes?per_page=1');
+      const d = await resp.json();
+      const v = (d.items || [])[0];
+      if (v && v.id) {
+        showVote(v.id);
+      } else {
+        activateTab('votes');
+      }
+    } catch(e) {
+      activateTab('votes');
+    }
+    _popstateActive = false;
+    return;
+  }
+  if (path.startsWith('/glosowanie/')) {
+    const vid = path.replace('/glosowanie/', '').replace(/\/$/, '');
+    showVote(vid);
+    _popstateActive = false;
+    return;
+  }
+  if (path === '/sesja' || path === '/sesja/') {
+    // /session/ bez numeru → lista sesji aktualnej kadencji.
+    activateTab('sessions');
+    _popstateActive = false;
+    return;
+  }
+  if (path.startsWith('/sesja/') && /\/stenogram\/?$/.test(path)) {
+    const snum = decodeURIComponent(
+      path.replace('/sesja/', '').replace(/\/?stenogram\/?$/, '').replace(/\/$/, ''));
+    showTranscript(snum);
+    _popstateActive = false;
+    return;
+  }
+  if (path.startsWith('/sesja/')) {
+    const snum = decodeURIComponent(path.replace('/sesja/', '').replace(/\/$/, ''));
+    showSession(snum);
+    _popstateActive = false;
+    return;
+  }
+  if (path === '/polityka-prywatnosci' || path === '/polityka-prywatnosci/') {
+    showPrivacy();
+    _popstateActive = false;
+    return;
+  }
+  if (path === '/regulamin' || path === '/regulamin/') {
+    showTerms();
+    _popstateActive = false;
+    return;
+  }
+  if (path === '/impressum' || path === '/impressum/') {
+    showImpressum();
+    _popstateActive = false;
+    return;
+  }
+  if (path === '/raporty' || path === '/raporty/') {
+    showReports();
+    _popstateActive = false;
+    return;
+  }
+  if (path.startsWith('/komisja/')) {
+    const slug = decodeURIComponent(path.replace('/komisja/', '').replace(/\/$/, ''));
+    showKomisja(slug);
+    _popstateActive = false;
+    return;
+  }
+  // Main page tab/kadencja paths
+  hideAllViews();
+  document.getElementById('app').style.display = 'block';
+  if (path === '/komisje' || path === '/komisje/') {
+    activateTab('komisje');
+  } else if (path === '/interpelacje' || path === '/interpelacje/') {
+    activateTab('interpelacje');
+  } else if (path === '/aktualnosci' || path === '/aktualnosci/') {
+    // Powrót na /aktualnosci/ przez back/forward — SPA nie reloaduje strony,
+    // ale strona aktualnosci to oddzielny dokument. Wymuszamy reload.
+    location.reload();
+    return;
+  } else if (path === '/budzet' || path === '/budzet/') {
+    activateTab('budget');
+  } else if (path === '/spolki' || path === '/spolki/') {
+    activateTab('spolki');
+  } else if (path.startsWith('/kadencja/')) {
+    const parts = path.replace('/kadencja/', '').split('/');
+    const kid = SLUG_KADS[parts[0]];
+    const tab = SLUG_TABS[parts[1]] || 'ranking';
+    if (kid && kid !== currentKid) {
+      await selectKadencjaQuiet(kid);
+    }
+    activateTab(tab);
+    // Jeśli oryginalny URL miał "undefined" albo niezrozumiały segment,
+    // przepisz historię na czysty URL żeby user zobaczył sensowną ścieżkę.
+    if (!kid || !SLUG_TABS[parts[1]]) {
+      history.replaceState(null, '', mainPath());
+    }
+  } else {
+    // Root path — default kadencja + ranking
+    const defaultKid = RAW.default_kadencja || RAW.kadencje[RAW.kadencje.length-1].id;
+    if (defaultKid !== currentKid) await selectKadencjaQuiet(defaultKid);
+    activateTab('ranking');
+  }
+  _popstateActive = false;
+});
+
+init();
+
+
+// ============================================================================
+// Auth: cross-domain login do api.radoskop.eu
+// ============================================================================
+// Cookie sesji jest HttpOnly+Secure+SameSite=None na .radoskop.eu. Z radoskop.pl
+// frontend fetchuje api.radoskop.eu z credentials:include, przeglądarka dokleja
+// cookie automatycznie bo target host kończy się na .radoskop.eu.
+
+// /me lokalny: api.radoskop.pl (cookie .radoskop.pl po bridge / signup .pl).
+// Cross-TLD cookies blokowane przez Firefox Total Cookie Protection, Safari ITP,
+// Chrome Privacy Sandbox, więc pytamy backend o sesję na BIEŻĄCEJ TLD.
+const AUTH_API = (window.RADOSKOP_AUTH_API || _API_HOST) + '/api/auth';
+
+// Token bridge: gdy user nie ma sesji na .pl, otwieramy radoskop.eu (gdzie
+// może mieć sesję np. po Google login). Apex .eu z parametrem bridge_to
+// minuje HMAC token i odsyła na api.radoskop.pl/bridge-exchange które
+// ustawia cookie .radoskop.pl, po czym 302 z powrotem na docelowy URL.
+async function _bridgeLogin() {
+  await trackEventBeforeNav('login_start', { method: 'bridge' });
+  const bridgeUrl = 'https://radoskop.eu/?bridge_to=' + encodeURIComponent(window.location.href);
+  window.location.href = bridgeUrl;
+}
+const AUTH_FRONTEND = window.RADOSKOP_AUTH_FRONTEND || 'https://radoskop.eu';
+
+// Cache user info w sessionStorage żeby przy reload nie czekać na /me przed
+// pokazaniem chipa. Walidacja przez /me dzieje się asynchronicznie i podmienia.
+let _authUser = null;
+try {
+  const cached = sessionStorage.getItem('radoskop_user');
+  if (cached) _authUser = JSON.parse(cached);
+} catch (e) {}
+
+function _setAuthUser(user) {
+  _authUser = user;
+  try {
+    if (user) sessionStorage.setItem('radoskop_user', JSON.stringify(user));
+    else sessionStorage.removeItem('radoskop_user');
+  } catch (e) {}
+  // Umami Distinct ID: zalogowany "u:" + public_id, wylogowany wraca na anon.
+  if (typeof _rkIdentify === 'function') {
+    _rkIdentify(user && user.id ? 'u:' + user.id : _rkAnonId());
+  }
+  _renderAuthHeader();
+}
+
+function _renderAuthHeader() {
+  const btn = document.getElementById('auth-login-btn');
+  const chip = document.getElementById('user-chip');
+  if (!btn || !chip) return;
+  // linki sprzedażowe (Pro, Cennik) znikają użytkownikom z aktywnym Pro
+  document.querySelectorAll('.topbar-nav .nav-sales').forEach(function(a){ a.style.display = (_authUser && _authUser.pro) ? 'none' : ''; });
+  if (_authUser) {
+    btn.style.display = 'none';
+    chip.style.display = 'inline-flex';
+    const av = document.getElementById('user-avatar');
+    av.textContent = (_authUser.email || '?')[0].toUpperCase();
+    av.title = _authUser.email;
+    const nameEl = document.getElementById('user-name');
+    const dn = _authUser.display_name && _authUser.display_name.trim()
+      ? _authUser.display_name.trim()
+      : (_authUser.email || '').split('@')[0];
+    nameEl.textContent = dn;
+    nameEl.title = _authUser.email;
+  } else {
+    btn.style.display = '';
+    chip.style.display = 'none';
+  }
+}
+
+// Pull /me przy load, niezależnie od cache (cache może być nieaktualny).
+// Razem refreshujemy też subscription status, żeby gating Pro był
+// spójny po login/logout/initial load.
+// Auto bridge sesji cross TLD. Na .radoskop.pl cookie sesji jest pierwszorzędne
+// dopiero po bridge z .radoskop.eu (tam user się loguje i kupuje Pro).
+// Gdy /me na .pl zwraca 401, robimy JEDEN cichy probe: top level redirect na
+// radoskop.eu/?bridge_to=<bieżący URL>&probe=1. Apex .eu z sesją mintuje token
+// i przez api.radoskop.pl/bridge-exchange ustawia cookie .pl, po czym wraca na
+// bieżący URL już zalogowany. Bez sesji .eu apex wraca po cichu (probe=1, bez
+// modala logowania). Guard w sessionStorage daje jeden przelot na sesję
+// przeglądarki, więc nie ma pętli ani powtórek. Tylko .pl; na .eu cookie jest
+// first party i /me działa bez bridge.
+function _maybeAutoBridge() {
+  const host = location.hostname;
+  const onPl = host === 'radoskop.pl' || host.endsWith('.radoskop.pl');
+  if (!onPl) return false;
+  try {
+    if (sessionStorage.getItem('radoskop_bridge_probed') === '1') return false;
+    sessionStorage.setItem('radoskop_bridge_probed', '1');
+  } catch (e) {
+    // Brak sessionStorage (tryb prywatny): nie próbujemy, żeby nie zapętlić.
+    return false;
+  }
+  location.replace('https://radoskop.eu/?bridge_to='
+    + encodeURIComponent(location.href) + '&probe=1');
+  return true;
+}
+
+async function _refreshAuth() {
+  try {
+    const r = await fetch(AUTH_API + '/me', { credentials: 'include' });
+    if (!r.ok) {
+      // Brak sesji .pl: spróbuj raz zbridgeować sesję z .eu. Jeśli redirect
+      // ruszył, przerywamy (strona wczyta się od nowa po powrocie).
+      if (_maybeAutoBridge()) return;
+      _setAuthUser(null); BUSINESS_ACTIVE = false; _komisjeListCache = null; return;
+    }
+    const data = await r.json();
+    _setAuthUser(data.user || null);
+  } catch (e) {
+    // Network error: zostaw cache jak był, /me retry przy następnym razie.
+  }
+  if (typeof refreshSubscriptionStatus === 'function') {
+    await refreshSubscriptionStatus();
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Modal otwieranie/zamykanie + tab switch
+// ----------------------------------------------------------------------------
+
+let _authMode = 'login';
+
+function openAuthModal(mode) {
+  trackEvent('open_auth_modal', { mode: mode || 'login' });
+  setAuthMode(mode || 'login');
+  document.getElementById('auth-error').style.display = 'none';
+  document.getElementById('auth-success').style.display = 'none';
+  document.getElementById('auth-email').value = '';
+  document.getElementById('auth-password').value = '';
+  document.getElementById('auth-modal-backdrop').style.display = 'flex';
+  setTimeout(() => document.getElementById('auth-email').focus(), 50);
+}
+
+function closeAuthModal() {
+  document.getElementById('auth-modal-backdrop').style.display = 'none';
+}
+
+function closeAuthModalIfBackdrop(ev) {
+  if (ev.target.id === 'auth-modal-backdrop') closeAuthModal();
+}
+
+function setAuthMode(mode) {
+  _authMode = mode;
+  document.getElementById('auth-tab-login').classList.toggle('active', mode === 'login');
+  document.getElementById('auth-tab-signup').classList.toggle('active', mode === 'signup');
+  document.getElementById('auth-submit').textContent = mode === 'signup' ? 'Zarejestruj się' : 'Zaloguj się';
+  document.getElementById('auth-password').setAttribute('autocomplete', mode === 'signup' ? 'new-password' : 'current-password');
+  document.getElementById('auth-forgot-link').style.display = mode === 'login' ? '' : 'none';
+  document.getElementById('auth-error').style.display = 'none';
+  document.getElementById('auth-success').style.display = 'none';
+}
+
+function _showAuthError(msg) {
+  const el = document.getElementById('auth-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+  document.getElementById('auth-success').style.display = 'none';
+}
+
+function _showAuthSuccess(msg) {
+  const el = document.getElementById('auth-success');
+  el.textContent = msg;
+  el.style.display = 'block';
+  document.getElementById('auth-error').style.display = 'none';
+}
+
+// ----------------------------------------------------------------------------
+// Auth actions
+// ----------------------------------------------------------------------------
+
+async function submitAuth(ev) {
+  ev.preventDefault();
+  const email = document.getElementById('auth-email').value.trim().toLowerCase();
+  const password = document.getElementById('auth-password').value;
+  const submitBtn = document.getElementById('auth-submit');
+  const endpoint = _authMode === 'signup' ? '/signup' : '/login';
+
+  submitBtn.disabled = true;
+  document.getElementById('auth-error').style.display = 'none';
+
+  try {
+    const r = await fetch(AUTH_API + endpoint, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await r.json().catch(() => ({}));
+
+    if (!r.ok) {
+      const msg = _authErrorMessage(data, _authMode);
+      _showAuthError(msg);
+      submitBtn.disabled = false;
+      return false;
+    }
+
+    _setAuthUser(data.user);
+    closeAuthModal();
+    if (_authMode === 'signup') {
+      trackEvent('signup_success', { method: 'password' });
+      _showBanner('Konto utworzone. Sprawdź skrzynkę, żeby potwierdzić e-mail.');
+    } else {
+      trackEvent('login_success', { method: 'password' });
+      _showBanner('Zalogowano jako ' + data.user.email);
+    }
+  } catch (e) {
+    _showAuthError('Błąd połączenia z serwerem.');
+  } finally {
+    submitBtn.disabled = false;
+  }
+  return false;
+}
+
+function _authErrorMessage(data, mode) {
+  if (!data || !data.error) return 'Coś poszło nie tak. Spróbuj jeszcze raz.';
+  switch (data.error) {
+    case 'invalid_email': return 'Niepoprawny adres e-mail.';
+    case 'invalid_password': return data.message || 'Hasło musi mieć co najmniej 10 znaków.';
+    case 'email_taken': return 'Konto z tym adresem już istnieje. Zaloguj się.';
+    case 'invalid_credentials': return 'Niepoprawny e-mail lub hasło.';
+    case 'missing_fields': return 'Wypełnij wszystkie pola.';
+    case 'csrf_blocked': return 'Błąd bezpieczeństwa. Otwórz stronę bezpośrednio.';
+    default: return data.message || 'Coś poszło nie tak.';
+  }
+}
+
+async function googleLogin() {
+  await trackEventBeforeNav('login_start', { method: 'google' });
+  // Marker glogin=1 w return_to: po powrocie z OAuth strzelamy login_success
+  // (detekcja niżej) i czyścimy parametr z URL.
+  const u = new URL(window.location.href);
+  u.searchParams.set('glogin', '1');
+  const returnTo = encodeURIComponent(u.toString());
+  window.location.href = AUTH_API + '/google/start?return_to=' + returnTo;
+}
+
+// Powrót z Google OAuth (marker doklejony w googleLogin powyżej).
+(function() {
+  try {
+    const u = new URL(window.location.href);
+    if (u.searchParams.get('glogin') === '1') {
+      trackEvent('login_success', { method: 'google' });
+      u.searchParams.delete('glogin');
+      const qs = u.searchParams.toString();
+      history.replaceState(null, '', u.pathname + (qs ? '?' + qs : '') + u.hash);
+    }
+  } catch (e) {}
+})();
+
+async function doLogout() {
+  await trackEventBeforeNav('logout', {});
+  // 1. Local logout na bieżącej TLD (.pl)
+  try {
+    await fetch(AUTH_API + '/logout', { method: 'POST', credentials: 'include' });
+  } catch (e) {}
+  _setAuthUser(null);
+  // 2. Cross-TLD logout: top-level nav na radoskop.eu z ?logout_remote=1
+  // żeby też wyczyścić sesję .eu (cookie partycjonowane, nie dostępne
+  // z fetch z .pl). Po wylogowaniu .eu odbija z powrotem na current URL.
+  const returnTo = encodeURIComponent(window.location.href);
+  window.location.href = 'https://radoskop.eu/?logout_remote=1&return_to=' + returnTo;
+}
+
+// Przejście do strony "Moje konto" zalogowanego usera.
+//
+// Profile page żyje na radoskop.eu/profile/. Z subdomeny miasta .pl
+// user ma sesję na .radoskop.pl (cookie partycjonowane per TLD), więc
+// proste window.location na .eu zgubiłoby login. Mintujemy bridge token
+// na bieżącej domenie, redirektujemy na api.radoskop.eu/bridge-exchange
+// który tworzy sesję .eu i odsyła na /profile/.
+async function goToProfile() {
+  const profileUrl = 'https://radoskop.eu/profile/';
+  // Jeśli już jesteśmy na .eu, nie trzeba bridge'ować
+  if (window.location.hostname.endsWith('.radoskop.eu') || window.location.hostname === 'radoskop.eu') {
+    window.location.href = profileUrl;
+    return;
+  }
+  try {
+    const r = await fetch(AUTH_API + '/bridge-token', { credentials: 'include' });
+    if (!r.ok) {
+      // Brak sesji albo bridge wyłączony — fallback: zwykły redirect
+      // (user dostanie modal logowania na .eu jeśli nie ma cookie)
+      window.location.href = profileUrl;
+      return;
+    }
+    const data = await r.json();
+    const token = data.token;
+    if (!token) {
+      window.location.href = profileUrl;
+      return;
+    }
+    // Exchange na .eu, return_to to /profile/
+    const exchangeUrl = 'https://api.radoskop.eu/api/auth/bridge-exchange'
+      + '?token=' + encodeURIComponent(token)
+      + '&return_to=' + encodeURIComponent(profileUrl);
+    window.location.href = exchangeUrl;
+  } catch (e) {
+    window.location.href = profileUrl;
+  }
+}
+
+async function forgotPassword() {
+  const email = (document.getElementById('auth-email').value || '').trim().toLowerCase();
+  if (!email) {
+    _showAuthError('Wpisz e-mail i kliknij ponownie "Zapomniałem hasła".');
+    document.getElementById('auth-email').focus();
+    return;
+  }
+  try {
+    await fetch(AUTH_API + '/reset-request', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email })
+    });
+    _showAuthSuccess('Wysłaliśmy link resetu na ' + email + ' (jeśli konto istnieje).');
+  } catch (e) {
+    _showAuthError('Błąd połączenia z serwerem.');
+  }
+}
+
+function _showBanner(text) {
+  const b = document.getElementById('auth-banner');
+  b.textContent = text;
+  b.style.display = 'block';
+  setTimeout(() => { b.style.display = 'none'; }, 4000);
+}
+
+// ----------------------------------------------------------------------------
+// Init: render header z cache, potem /me, plus query-param hooks
+// ----------------------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', () => {
+  _renderAuthHeader();
+  _refreshAuth();
+
+  // Pokazuj banner po Google callback i email verify redirectach
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('verified') === '1') {
+    _showBanner('E-mail potwierdzony.');
+  }
+  const authError = params.get('auth_error');
+  if (authError) {
+    _showBanner('Błąd logowania: ' + authError.replace(/_/g, ' '));
+  }
+});
+
+// Klawisz Escape zamyka modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && document.getElementById('auth-modal-backdrop').style.display !== 'none') {
+    closeAuthModal();
+  }
+});
