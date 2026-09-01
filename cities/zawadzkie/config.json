@@ -1,0 +1,40 @@
+{
+  "landing_enabled": true,
+  "city_name": "Zawadzkie",
+  "city_genitive": "Zawadzkiego",
+  "site_title": "Radoskop Zawadzkie — Jak głosują radni?",
+  "site_url": "https://zawadzkie.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Zawadzkiem. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Zawadzkiem.",
+  "bip_url": "https://bip.zawadzkie.pl/4711/posiedzenia-sesji-2024-r.html",
+  "bip_name": "BIP Urzędu Miejskiego w Zawadzkiem (bip.zawadzkie.pl)",
+  "rada_name_platform": "Rada365 wykaz głosowań PDF + starsze protokoły głosowania (BIP)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zawadzkie.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "has_interpelacje": true,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Zawadzkiem",
+  "rada_name_genitive": "Rady Miejskiej w Zawadzkiem",
+  "teryt": "1611073",
+  "_meta": {
+    "note": "NOWE miasto (long_tail -> UNLOCK). bip.zawadzkie.pl: kategorie 'Posiedzenia sesji 2024/2025/2026' z załącznikami 'protokol-glosowan-*.pdf' — dwa formaty: nowszy Rada365 'Wykaz głosowań' (Wyniki imienne, listy przecinkowe) i starszy 'PROTOKÓŁ GŁOSOWANIA' per-page (nazwisko+token w osobnych wierszach). Parser dwuprzebiegowy (roster pass + atrybucja z walidacją agregatami 100%). Sesja III/2024-06-24 = skan 20 str. bez warstwy tekstu — pominięta. 231 głosów / 23 sesje / 15 radnych. eSesja PM-B martwa, AlfaTV 500, bip.net.pl 404. club_assignments PENDING, clubs {}. TERYT 1611073 (gmina miejsko-wiejska Zawadzkie, pow. strzelecki, opolskie). Dodane 2026-09-01 (cron do 500 miast).",
+    "population": 6639,
+    "voivodeship": "opolskie",
+    "lat": 50.609444444444,
+    "lon": 18.48,
+    "qid": "Q167731"
+  }
+}
