@@ -1,0 +1,79 @@
+{
+  "city_name": "Piła",
+  "city_genitive": "Piły",
+  "site_title": "Radoskop Piła — Jak głosują radni?",
+  "site_url": "https://pila.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Piły. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Piły.",
+  "bip_url": "https://bip.pila.pl",
+  "bip_name": "Biuletyn Informacji Publicznej Urzędu Miasta Piły",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pila.radoskop.pl",
+  "clubs": {
+    "KO": {
+      "name": "Klub Radnych Koalicji Obywatelskiej",
+      "color": "#f97316",
+      "bg": "rgba(249,115,22,0.12)",
+      "avatar_bg": "#c2570c"
+    },
+    "PiS": {
+      "name": "Klub Radnych Prawo i Sprawiedliwość",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#173a78"
+    },
+    "PS": {
+      "name": "Klub Radnych Stowarzyszenie \"Porozumienie Samorządowe\"",
+      "color": "#0d9488",
+      "bg": "rgba(13,148,136,0.12)",
+      "avatar_bg": "#096f66"
+    }
+  },
+  "club_assignments": {
+    "Marek Andruszkiewicz": "KO",
+    "Kama Frąckowska - Pilarska": "KO",
+    "Zdzisława Karpińska": "KO",
+    "Teresa Kasior": "KO",
+    "Maria Kubica": "KO",
+    "Wioletta Stalęga": "KO",
+    "Lucjan Szutkowski": "KO",
+    "Marek Toboła": "KO",
+    "Ewa Krupka - Zaręba": "KO",
+    "Kamila Karwacka": "KO",
+    "Agnieszka Molęda": "KO",
+    "Jan Szwedziński": "KO",
+    "Mirosław Nalepa": "KO",
+    "Maria Miler": "PiS",
+    "Gabriela Milska": "PiS",
+    "Przemysław Jarecki": "PiS",
+    "Halina Łuś": "PiS",
+    "Anna Solarska": "PiS",
+    "Emilia Piechocka": "PS",
+    "Józef Jopek": "PS",
+    "Magdalena Pabich": "PS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Piły",
+  "rada_name_genitive": "Rady Miasta Piły",
+  "teryt": "3019011",
+  "_meta": {
+    "note": "NOWE miasto (2026-09-01). BIP bip.pila.pl (server-rendered, eBOI-look): strony sesji z roku (/5417-2026.html? itd.) -> 'Głosowania z sesji' -> Załącznik protokol-glosowania.pdf. DWA warianty wydruku: 2024/2025 'Wyniki głosowania: ZA (N), … / Lista imienna / ZA: nazwiska…' (parser blokowy w scrape_pila.py) i 2026 eSesja-standard (lib_voting_pdf_table). Walidacja per-głos z agregatami: 437/470 głosów OK w 29 sesjach IX kad. eSesja pila.esesja.pl = wildcard, AlfaTV brak. Kluby z /kluby-radnych.html (kad. 2024-2029): KO 13, PiS 5, PS 3 = 21/23; P.Pazdej i A.Żmuda bez klubu — PENDING. TERYT 3019011 (m. Piła, wielkopolskie, wiki PL).",
+    "population": 72527,
+    "voivodeship": "wielkopolskie"
+  }
+}
