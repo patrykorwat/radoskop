@@ -1,0 +1,41 @@
+{
+  "city_name": "Tarnowskie Góry",
+  "city_genitive": "Tarnowskich Gór",
+  "site_title": "Radoskop Tarnowskie Góry — Jak głosują radni?",
+  "site_url": "https://tarnowskie-gory.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Tarnowskich Górach. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Tarnowskich Górach.",
+  "bip_url": "https://bip.tarnowskiegory.pl",
+  "bip_name": "BIP Urząd Miejski w Tarnowskich Górach",
+  "esesja_url": "https://tarnowskiegory.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "tarnowskie-gory.radoskop.pl",
+  "has_voting_data": true,
+  "has_speaker_activity": false,
+  "councilor_count": 23,
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": true,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Tarnowskich Górach",
+  "rada_name_genitive": "Rady Miejskiej w Tarnowskich Górach",
+  "teryt": "2413041",
+  "_meta": {
+    "note": "eSesja tarnowskiegory.esesja.pl = Portal Mieszkańca instance A (old-compatible): /glosowania server-renduje /listaglosowan, newest sesja 2026-08-26, 33 sesje IX kadencji. BIP bip.tarnowskiegory.pl = własny React CMS (/api/menu, /api/articles) z protokołami per miesiąc, bez tabel imiennych — dane wzięte z eSesja. AlfaTV brak, Nefeni 404. TERYT 2413041 (Wikipedia PL). Kluby PENDING (BIP 'Kluby Radnych RM' m,6449 do kuratoracji).",
+    "population": 61756,
+    "voivodeship": "śląskie"
+  }
+}

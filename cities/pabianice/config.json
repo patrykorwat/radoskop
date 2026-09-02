@@ -1,0 +1,78 @@
+{
+  "landing_enabled": true,
+  "city_name": "Pabianice",
+  "city_genitive": "Pabianic",
+  "site_title": "Radoskop Pabianice — Jak głosują radni?",
+  "site_url": "https://pabianice.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej Pabianic. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska Pabianic.",
+  "bip_url": "https://bip.um.pabianice.pl/",
+  "bip_name": "BIP Pabianice",
+  "scrape_note": "Głosowania imienne z REJESTRU UCHWAŁ BIP (bip.um.pabianice.pl/uchwaly/25): per-uchwała załącznik 'Wyniki głosowania jawnego imiennego' = PDF dwukolumnowy (Lp|Nazwisko i imię|Głos). pabianice.esesja.pl = pętla 302 redirect (subdomena nieaktywna); AlfaTV/bip.net.pl Brak. Kluby z BIP 'Kluby radnych' (aktualizacja 18.06.2024): PiS 7, Koalicja dla Pabianic 13, niezrzeszeni 3 (Krebs, Rąkowski, Różycki).",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pabianice.radoskop.pl",
+  "clubs": {
+    "PiS": {
+      "name": "Klub Radnych Prawa i Sprawiedliwości",
+      "color": "#1f4ea0",
+      "bg": "rgba(31,78,160,0.12)",
+      "avatar_bg": "#1e3a8a"
+    },
+    "KdP": {
+      "name": "Klub Radnych \"Koalicja dla Pabianic\"",
+      "color": "#ea580c",
+      "bg": "rgba(234,88,12,0.12)",
+      "avatar_bg": "#c2410c"
+    },
+    "NZ": {
+      "name": "Niezrzeszeni",
+      "color": "#6b7280",
+      "bg": "rgba(107,114,128,0.12)",
+      "avatar_bg": "#4b5563"
+    }
+  },
+  "club_assignments": {
+    "Emilia Dychto": "PiS",
+    "Waldemar Flajszer": "PiS",
+    "Adam Kaczorowski": "PiS",
+    "Katarzyna Miękina": "PiS",
+    "Tadeusz Gęs": "PiS",
+    "Jarosław Lesman": "PiS",
+    "Włodzimierz Stanek": "PiS",
+    "Gabriel Grzejszczak": "KdP",
+    "Joanna Habura": "KdP",
+    "Krzysztof Hile": "KdP",
+    "Bożenna Kozłowska": "KdP",
+    "Joanna Kupś": "KdP",
+    "Gracjan Majewski": "KdP",
+    "Iwona Marczak": "KdP",
+    "Aleksandra Stasiak": "KdP",
+    "Jadwiga Wadowska-Gryzel": "KdP",
+    "Renata Witczak": "KdP",
+    "Grażyna Wójcik": "KdP",
+    "Aleksander Wójtowicz": "KdP",
+    "Anna Zaborowska": "KdP",
+    "Marcin Krebs": "NZ",
+    "Krzysztof Rąkowski": "NZ",
+    "Piotr Różycki": "NZ"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "teryt": "1008021",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska Pabianic",
+  "has_voting_data": true,
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "Dodane 2026-09-02 (cron ekspansja 500 miast, long_tail). Źródło: rejestr uchwał BIP Nexa + PDF-y 'Wyniki głosowania jawnego imiennego' per uchwała."
+  }
+}
