@@ -70,6 +70,22 @@ def make_slug(name: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", slug)
 
 
+def _fix_name_case(name: str) -> str:
+    """AlfaTV zapisuje nazwiska wersalikami (Marta LUBLIN) -> Przyjdź do Title Case.
+
+    Tokeny w pełni wielkie i >=3 litery dostają wielką pierwszą; krótkie
+    przyimki (w, de, von) zostają małe. To kosmetyka zapisu, nie zmiana danych.
+    """
+    out = []
+    for tok in name.split():
+        letters = [c for c in tok if c.isalpha()]
+        if len(letters) >= 3 and letters == [c.upper() for c in letters]:
+            out.append(tok[0].upper() + tok[1:].lower() if tok[0].isalpha() else tok)
+        else:
+            out.append(tok)
+    return " ".join(out)
+
+
 class AlfTVScraper:
     """base_url = https://rada.<miasto>.pl ; kadencja 2024-2029 IX start 2024-05-07."""
 
@@ -128,6 +144,7 @@ class AlfTVScraper:
             topic = re.sub(r"\s*(Przyjęto|Odrzucono)\s*$", "", pre).strip()
             named = defaultdict(list)
             for nm, vt in rows:
+                nm = _fix_name_case(nm)
                 if vt == "za":
                     named["za"].append(nm)
                 elif vt == "przeciw":
@@ -150,7 +167,7 @@ class AlfTVScraper:
             try:
                 ph = fetch(f"{self.base}{l}", cache_dir)
                 tm = re.search(r"<title>(.*?)</title>", ph, re.S)
-                name = _html.unescape(tm.group(1).strip().split(" | ")[0].strip()) if tm else ""
+                name = _fix_name_case(_html.unescape(tm.group(1).strip().split(" | ")[0].strip())) if tm else ""
                 club = ""
                 soup = BeautifulSoup(ph, "html.parser")
                 for dt in soup.find_all("dt"):
