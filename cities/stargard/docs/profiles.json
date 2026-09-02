@@ -1,157 +1,26 @@
 {
- "scraped_at": "2026-09-01T21:59:32.022016",
  "profiles": [
   {
-   "name": "Monika Chmielewska",
-   "slug": "monikachmielewska",
-   "kadencje": {
-    "2024-2029": {
-     "club": "NZ",
-     "has_voting_data": false,
-     "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Grzegorz Flas",
-   "slug": "grzegorzflas",
-   "kadencje": {
-    "2024-2029": {
-     "club": "ZP",
-     "has_voting_data": false,
-     "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Monika Garstka",
-   "slug": "monikagarstka",
-   "kadencje": {
-    "2024-2029": {
-     "club": "ZP",
-     "has_voting_data": false,
-     "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Joanna Hamera-Szczerba",
-   "slug": "joannahameraszczerba",
-   "kadencje": {
-    "2024-2029": {
-     "club": "ZP",
-     "has_voting_data": false,
-     "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Monika Kieliszak",
-   "slug": "monikakieliszak",
-   "kadencje": {
-    "2024-2029": {
-     "club": "PiS",
-     "has_voting_data": false,
-     "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Monika Kirschenstein",
-   "slug": "monikakirschenstein",
-   "kadencje": {
-    "2024-2029": {
-     "club": "NZ",
-     "has_voting_data": false,
-     "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Krzysztof Kozłowski",
-   "slug": "krzysztofkozlowski",
-   "kadencje": {
-    "2024-2029": {
-     "club": "PiS",
-     "has_voting_data": false,
-     "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
    "name": "Anna Krasoń",
-   "slug": "annakrason",
+   "slug": "anna-krason",
    "kadencje": {
     "2024-2029": {
      "club": "KO",
-     "has_voting_data": false,
+     "has_voting_data": true,
      "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Ewa Krawczyk",
-   "slug": "ewakrawczyk",
-   "kadencje": {
-    "2024-2029": {
-     "club": "KO",
-     "has_voting_data": false,
-     "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Paweł Mazulewicz",
-   "slug": "pawelmazulewicz",
-   "kadencje": {
-    "2024-2029": {
-     "club": "KO",
-     "has_voting_data": false,
-     "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Katarzyna Mądrowska",
-   "slug": "katarzynamadrowska",
-   "kadencje": {
-    "2024-2029": {
-     "club": "NZ",
-     "has_voting_data": false,
-     "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Wanda Nowicka",
-   "slug": "wandanowicka",
-   "kadencje": {
-    "2024-2029": {
-     "club": "ZP",
-     "has_voting_data": false,
-     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1200.0,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 329,
+     "votes_przeciw": 3,
+     "votes_wstrzymal": 4,
+     "votes_brak": 0,
+     "votes_nieobecny": 22,
+     "votes_total": 336,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
      "former": false,
      "mid_term": false
     }
@@ -159,12 +28,77 @@
   },
   {
    "name": "Dawid Pycz",
-   "slug": "dawidpycz",
+   "slug": "dawid-pycz",
    "kadencje": {
     "2024-2029": {
      "club": "KO",
-     "has_voting_data": false,
+     "has_voting_data": true,
      "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1278.6,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 352,
+     "votes_przeciw": 5,
+     "votes_wstrzymal": 1,
+     "votes_brak": 0,
+     "votes_nieobecny": 3,
+     "votes_total": 358,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Ewa Krawczyk",
+   "slug": "ewa-krawczyk",
+   "kadencje": {
+    "2024-2029": {
+     "club": "KO",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1082.1,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 296,
+     "votes_przeciw": 3,
+     "votes_wstrzymal": 4,
+     "votes_brak": 0,
+     "votes_nieobecny": 52,
+     "votes_total": 303,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Grzegorz Flas",
+   "slug": "grzegorz-flas",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1239.3,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 343,
+     "votes_przeciw": 4,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 12,
+     "votes_total": 347,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
      "former": false,
      "mid_term": false
     }
@@ -172,90 +106,51 @@
   },
   {
    "name": "Grzegorz Rybaczuk",
-   "slug": "grzegorzrybaczuk",
+   "slug": "grzegorz-rybaczuk",
    "kadencje": {
     "2024-2029": {
      "club": "ZP",
-     "has_voting_data": false,
+     "has_voting_data": true,
      "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1271.4,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 352,
+     "votes_przeciw": 2,
+     "votes_wstrzymal": 2,
+     "votes_brak": 0,
+     "votes_nieobecny": 5,
+     "votes_total": 356,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
      "former": false,
      "mid_term": false
     }
    }
   },
   {
-   "name": "Wioleta Sawicka",
-   "slug": "wioletasawicka",
+   "name": "Joanna Hamera-Szczerba",
+   "slug": "joanna-hamera-szczerba",
    "kadencje": {
     "2024-2029": {
      "club": "ZP",
-     "has_voting_data": false,
+     "has_voting_data": true,
      "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Wojciech Seredyński",
-   "slug": "wojciechseredynski",
-   "kadencje": {
-    "2024-2029": {
-     "club": "ZP",
-     "has_voting_data": false,
-     "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Mieczysław Skawiński",
-   "slug": "mieczyslawskawinski",
-   "kadencje": {
-    "2024-2029": {
-     "club": "ZP",
-     "has_voting_data": false,
-     "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Krystyna Smolarek",
-   "slug": "krystynasmolarek",
-   "kadencje": {
-    "2024-2029": {
-     "club": "ZP",
-     "has_voting_data": false,
-     "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Mariusz Smuga",
-   "slug": "mariuszsmuga",
-   "kadencje": {
-    "2024-2029": {
-     "club": "PiS",
-     "has_voting_data": false,
-     "has_activity_data": false,
-     "former": false,
-     "mid_term": false
-    }
-   }
-  },
-  {
-   "name": "Krzysztof Sosin",
-   "slug": "krzysztofsosin",
-   "kadencje": {
-    "2024-2029": {
-     "club": "PiS",
-     "has_voting_data": false,
-     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1150.0,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 318,
+     "votes_przeciw": 4,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 35,
+     "votes_total": 322,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
      "former": false,
      "mid_term": false
     }
@@ -263,12 +158,441 @@
   },
   {
    "name": "Joanna Suleja",
-   "slug": "joannasuleja",
+   "slug": "joanna-suleja",
    "kadencje": {
     "2024-2029": {
      "club": "ZP",
-     "has_voting_data": false,
+     "has_voting_data": true,
      "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1275.0,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 353,
+     "votes_przeciw": 4,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 4,
+     "votes_total": 357,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Katarzyna Mądrowska",
+   "slug": "katarzyna-madrowska",
+   "kadencje": {
+    "2024-2029": {
+     "club": "NZ",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 82.1,
+     "aktywnosc": 885.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 244,
+     "votes_przeciw": 4,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 58,
+     "votes_total": 248,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Krystyna Smolarek",
+   "slug": "krystyna-smolarek",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1228.6,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 340,
+     "votes_przeciw": 4,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 11,
+     "votes_total": 344,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Krzysztof Kozłowski",
+   "slug": "krzysztof-kozlowski",
+   "kadencje": {
+    "2024-2029": {
+     "club": "PiS",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1228.6,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 318,
+     "votes_przeciw": 16,
+     "votes_wstrzymal": 10,
+     "votes_brak": 0,
+     "votes_nieobecny": 16,
+     "votes_total": 344,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Krzysztof Sosin",
+   "slug": "krzysztof-sosin",
+   "kadencje": {
+    "2024-2029": {
+     "club": "PiS",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1192.9,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 291,
+     "votes_przeciw": 13,
+     "votes_wstrzymal": 30,
+     "votes_brak": 0,
+     "votes_nieobecny": 17,
+     "votes_total": 334,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Mariusz Smuga",
+   "slug": "mariusz-smuga",
+   "kadencje": {
+    "2024-2029": {
+     "club": "PiS",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1182.1,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 316,
+     "votes_przeciw": 8,
+     "votes_wstrzymal": 7,
+     "votes_brak": 0,
+     "votes_nieobecny": 21,
+     "votes_total": 331,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Michał Bryła",
+   "slug": "michal-bryla",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 17.9,
+     "aktywnosc": 178.6,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 50,
+     "votes_przeciw": 0,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 0,
+     "votes_total": 50,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Mieczysław Skawiński",
+   "slug": "mieczyslaw-skawinski",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1232.1,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 341,
+     "votes_przeciw": 3,
+     "votes_wstrzymal": 1,
+     "votes_brak": 0,
+     "votes_nieobecny": 16,
+     "votes_total": 345,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Monika Chmielewska",
+   "slug": "monika-chmielewska",
+   "kadencje": {
+    "2024-2029": {
+     "club": "NZ",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 78.6,
+     "aktywnosc": 960.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 265,
+     "votes_przeciw": 4,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 15,
+     "votes_total": 269,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Monika Garstka",
+   "slug": "monika-garstka",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1139.3,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 314,
+     "votes_przeciw": 4,
+     "votes_wstrzymal": 1,
+     "votes_brak": 0,
+     "votes_nieobecny": 39,
+     "votes_total": 319,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Monika Kieliszak",
+   "slug": "monika-kieliszak",
+   "kadencje": {
+    "2024-2029": {
+     "club": "PiS",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1221.4,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 325,
+     "votes_przeciw": 7,
+     "votes_wstrzymal": 10,
+     "votes_brak": 0,
+     "votes_nieobecny": 10,
+     "votes_total": 342,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Monika Kirschenstein",
+   "slug": "monika-kirschenstein",
+   "kadencje": {
+    "2024-2029": {
+     "club": "NZ",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1150.0,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 309,
+     "votes_przeciw": 10,
+     "votes_wstrzymal": 3,
+     "votes_brak": 0,
+     "votes_nieobecny": 37,
+     "votes_total": 322,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Monika Szotowicz",
+   "slug": "monika-szotowicz",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 21.4,
+     "aktywnosc": 196.4,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 55,
+     "votes_przeciw": 0,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 15,
+     "votes_total": 55,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Paweł Mazulewicz",
+   "slug": "pawel-mazulewicz",
+   "kadencje": {
+    "2024-2029": {
+     "club": "KO",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1264.3,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 348,
+     "votes_przeciw": 5,
+     "votes_wstrzymal": 1,
+     "votes_brak": 0,
+     "votes_nieobecny": 6,
+     "votes_total": 354,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Wanda Nowicka",
+   "slug": "wanda-nowicka",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1264.3,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 350,
+     "votes_przeciw": 4,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 5,
+     "votes_total": 354,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Wioleta Sawicka",
+   "slug": "wioleta-sawicka",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1289.3,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 357,
+     "votes_przeciw": 3,
+     "votes_wstrzymal": 1,
+     "votes_brak": 0,
+     "votes_nieobecny": 0,
+     "votes_total": 361,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
+     "former": false,
+     "mid_term": false
+    }
+   }
+  },
+  {
+   "name": "Wojciech Seredyński",
+   "slug": "wojciech-seredynski",
+   "kadencje": {
+    "2024-2029": {
+     "club": "ZP",
+     "has_voting_data": true,
+     "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1132.1,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 309,
+     "votes_przeciw": 7,
+     "votes_wstrzymal": 1,
+     "votes_brak": 0,
+     "votes_nieobecny": 43,
+     "votes_total": 317,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
      "former": false,
      "mid_term": false
     }
@@ -276,12 +600,25 @@
   },
   {
    "name": "Zdzisław Wilk",
-   "slug": "zdzislawwilk",
+   "slug": "zdzislaw-wilk",
    "kadencje": {
     "2024-2029": {
      "club": "PiS",
-     "has_voting_data": false,
+     "has_voting_data": true,
      "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1085.7,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 290,
+     "votes_przeciw": 10,
+     "votes_wstrzymal": 4,
+     "votes_brak": 0,
+     "votes_nieobecny": 49,
+     "votes_total": 304,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
      "former": false,
      "mid_term": false
     }
@@ -289,17 +626,30 @@
   },
   {
    "name": "Zofia Ławrynowicz",
-   "slug": "zofialawrynowicz",
+   "slug": "zofia-lawrynowicz",
    "kadencje": {
     "2024-2029": {
      "club": "KO",
-     "has_voting_data": false,
+     "has_voting_data": true,
      "has_activity_data": false,
+     "frekwencja": 100.0,
+     "aktywnosc": 1096.4,
+     "zgodnosc_z_klubem": 0.0,
+     "votes_za": 303,
+     "votes_przeciw": 4,
+     "votes_wstrzymal": 0,
+     "votes_brak": 0,
+     "votes_nieobecny": 51,
+     "votes_total": 307,
+     "rebellion_count": 0,
+     "rebellions": [],
+     "roles": [],
+     "notes": "",
      "former": false,
      "mid_term": false
     }
    }
   }
  ],
- "total": 23
+ "total": 25
 }
