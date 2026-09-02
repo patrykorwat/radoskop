@@ -1,0 +1,39 @@
+{
+  "city_name": "Stalowa Wola",
+  "city_genitive": "Stalowej Woli",
+  "site_title": "Radoskop Stalowa Wola — Jak głosują radni?",
+  "site_url": "https://stalowa-wola.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Stalowej Woli. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Stalowej Woli.",
+  "bip_url": "https://bip.stalowawola.pl",
+  "bip_name": "BIP Stalowa Wola",
+  "esesja_url": "https://stalowawola.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "stalowa-wola.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Stalowej Woli",
+  "rada_name_genitive": "Rady Miejskiej w Stalowej Woli",
+  "teryt": "1818011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (eSesja PM-A stalowawola.esesja.pl, glosowania imienne IX kad., 31 sesji). Dodane 2026-09-02 (cron 500). club_assignments PENDING.",
+    "population": 59623,
+    "voivodeship": "podkarpackie"
+  }
+}
