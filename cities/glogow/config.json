@@ -1,0 +1,40 @@
+{
+  "city_name": "Głogów",
+  "city_genitive": "Głogowa",
+  "site_title": "Radoskop Głogów — Jak głosują radni?",
+  "site_url": "https://glogow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Głogowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Głogowie.",
+  "bip_url": "https://glogow.bip.info.pl",
+  "bip_name": "BIP Urząd Miejski w Głogowie",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "glogow.radoskop.pl",
+  "has_voting_data": true,
+  "has_speaker_activity": false,
+  "councilor_count": 23,
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": true,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Głogowie",
+  "rada_name_genitive": "Rady Miejskiej w Głogowie",
+  "teryt": "0203011",
+  "_meta": {
+    "note": "BIP glogow.bip.info.pl (platforma b.info.pl — Angular SPA + JSON API /api/fo/search/getResult, pliki /api/fo/files/{id}/download). Kategoria 'Wyniki glosowan jawnych z sesji Rady Miejskiej kadencja 2024 - 2029' = per-sesja DOCX 'wyniki glosowan jawnych' z eksportem eSesja tekstowym (Glosowano w sprawie / Wyniki imienne: ZA(n) listy). eSesja glogow.esesja.pl = Portal Mieszkania B (sessions-list puste, listaglosowan 0) — dane wzieta z BIP DOCX. TERYT 0203011.",
+    "population": 66120,
+    "voivodeship": "dolnośląskie"
+  }
+}
