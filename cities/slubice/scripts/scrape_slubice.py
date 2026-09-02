@@ -69,7 +69,10 @@ def get_roster() -> list[dict]:
         name = re.sub(r"\d{4}.*$", "", name).strip()
         if not (3 < len(name) < 60) or re.search(r"kadencji|Skład|Rady", name):
             continue
-        # names are "Nazwisko Imię [Imię]" or free; keep as-is
+        # BIP podaje szyk "Nazwisko Imię [Imię]" — normalizuj do "Imię ... Nazwisko"
+        toks = name.split()
+        if len(toks) >= 2:
+            name = " ".join(toks[1:] + [toks[0]])
         rows.append({"name": name, "role": role})
     # dedup by name
     seen, out = set(), []
