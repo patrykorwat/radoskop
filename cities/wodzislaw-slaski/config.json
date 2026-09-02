@@ -1,0 +1,35 @@
+{
+  "city_name": "Wodzisław Śląski",
+  "city_genitive": "Wodzisławia Śląskiego",
+  "site_title": "Radoskop Wodzisław Śląski — Jak głosują radni?",
+  "site_url": "https://wodzislaw-slaski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Wodzisławiu Śląskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Wodzisławiu Śląskim.",
+  "bip_url": "https://bip.wodzislaw-slaski.pl",
+  "bip_name": "BIP Wodzisław Śląski",
+  "esesja_url": "https://wodzislawslaski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wodzislaw-slaski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Wodzisławiu Śląskim",
+  "rada_name_genitive": "Rady Miejskiej w Wodzisławiu Śląskim",
+  "teryt": "2415041",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/; eSesja pod domeną wodzislawslaski.esesja.pl, BIP Finn/Liferay linkuje Portal Mieszkańca). Dodane 2026-09-02 (cron ekspansja 500). club_assignments pending (kuratorowane z BIP).",
+    "population": 47576,
+    "voivodeship": "śląskie"
+  }
+}
