@@ -94,13 +94,18 @@ def get_roster() -> list[dict]:
                 continue
         elif re.match(r"^[A-ZŁŚŻÓŃĆĘĄŹ]", t) and "Rady" not in t and len(t.split()) <= 6:
             mid = "wygaśnięcie" in t or "obsadzenie" in t
-            nm = re.split(r"\s+-\s+", t)[0].strip()
+            if mid:
+                nm = re.split(r"\s+-\s+", t)[0].strip()
+            else:
+                nm = t.strip()  # 'Makowska - Mainka Dagmara' to podwójne nazwisko, nie status
             if mid and "obsadzenie" not in t:
                 continue  # wygasłe mandaty poza aktualnym składem
             rows.append((nm, "Radny"))
     # normalize 'Nazwisko Imię' -> 'Imię Nazwisko', dedupe
     seen, out = set(), []
     for nm, role in rows:
+        # podwójne nazwiska pisane 'Makowska - Mainka Dagmara' -> 'Makowska-Mainka Dagmara'
+        nm = re.sub(r"([A-ZŁŚŻÓŃĆĘĄŹ][\wŁŚŻÓŃĆĘĄŹ]+)\s+-\s+([A-ZŁŚŻÓŃĆĘĄŹ])", r"\1-\2", nm)
         toks = nm.split()
         if len(toks) >= 2:
             name = " ".join(toks[1:] + [toks[0]])
