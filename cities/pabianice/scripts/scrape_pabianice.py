@@ -207,6 +207,14 @@ class PabianiceScraper(BipScraper):
 
     def parse_session_votes(self, session: dict) -> list[dict]:
         votes: list[dict] = []
+
+        def _first_last(nm: str) -> str:
+            """PDF BIP kolumna 'Nazwisko i imię' -> 'Imię Nazwisko' (kolejność PL)."""
+            parts = nm.split()
+            if len(parts) >= 2:
+                return " ".join([parts[-1]] + parts[:-1])
+            return nm
+
         for uw in self._uchwaly.get(session["date"], []):
             try:
                 data = self._fetch_pdf(uw["vote_url"])
@@ -215,6 +223,7 @@ class PabianiceScraper(BipScraper):
                 continue
             for pv in parse_glosowanie_pdf(data, uw["vote_url"]):
                 nv = pv.get("named_votes") or {}
+                nv = {k: [_first_last(x) for x in v] for k, v in nv.items()}
                 if not any(nv.values()):
                     continue
                 topic = uw["topic"] or re.sub(
