@@ -27,6 +27,10 @@
   "rada_name": "Rada Miejska w Tarnowskich Górach",
   "rada_name_genitive": "Rady Miejskiej w Tarnowskich Górach",
   "teryt": "2413041",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
   "_meta": {
     "note": "NOWE miasto (eSesja 'Portal Mieszkańca' PM-A tarnowskiegory.esesja.pl, glosowania imienne IX kad., 33 sesje). Dodane 2026-09-02 (cron 500). club_assignments PENDING.",
     "population": 61756,
