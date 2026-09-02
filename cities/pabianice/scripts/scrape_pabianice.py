@@ -1,192 +1,271 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""Radoskop Pabianice — Tier-2 (roster / "model berliński") scraper.
-
-Brak imiennych głosowań: BIP bip.um.pabianice.pl publikuje protokoły sesji
-z AGREGATAMI ("Głosowanie jawne imienne -za- 21, przeciw-0...") i wynikami
-imiennymi tylko jako załączniki "do wglądu w Biurze Rady" (brak plików).
-Miasto dodawane jako Tier-2: skład rady + kalendarz sesji IX kadencji.
-
-Źródła (BIP custom CMS "Solidarnościowy" — nie Nefeni/Sputnik):
-  - Skład: /artykul/89/20969 = "Radni Rady Miejskiej IX kadencji" — lista
-    nazwisk w treści (23 radnych, z funkcjami po myślniku).
-  - Sesje: /artykuly/1228|1205|1150/{2026,2025,2024}-rok — artykuły
-    "XXX sesja Rady Miejskiej w Pabianicach - 2 września 2026 r."
-
-has_voting_data:false, voting_display:faction (roster-mode).
 """
+Radoskop Pabianice — imienne głosowania z BIP (rejestr uchwał), NIE z eSesja.
+
+ŹRÓDŁO
+======
+Portal eSesja: pabianice.esesja.pl = pętla 302 redirect (subdomena nieaktywna).
+BIP: https://bip.um.pabianice.pl (platforma Nexa 'artykuly'), rejestr uchwał:
+    https://bip.um.pabianice.pl/uchwaly/25          (strona 1)
+    https://bip.um.pabianice.pl/uchwaly/25/{N}/10   (kolejne strony, 10 na stronę)
+Każda uchwała ma stronę /uchwala/{id}/{slug} z:
+  - <time datetime="YYYY-MM-DD"> (data uchwały = data sesji),
+  - numerem 'Uchwała Nr XXIX/298/26',
+  - tematem 'w sprawie ...',
+  - załącznikiem 'Wyniki głosowania jawnego imiennego' = PDF dwukolumnowy
+    (Lp | Nazwisko i imię | Głos; wartości ZA/NIEOBECNY/WSTRZYMUJĘ SIĘ/...),
+    format = per-page, obsługiwany przez lib_voting_pdf_table.
+    parse_voting_pdf_per_page().
+Grupowanie po dacie datetime = sesje.
+
+Ograniczenie: głosowania NAD UCHWAŁAMI (rejestr); wnioski formalne publikowane
+tylko w protokołach sesji — pominięte (komplet merytoryczny zachowany).
+
+Rada: /artykul/89/20969/radni-rady-miejskiej-ix-kadencji (23 radnych, nazwisko
+pierwsze — ta sama kolejność co w PDF głosowań).
+"""
+
+from __future__ import annotations
+
+import io
 import json
 import re
-import ssl
 import sys
-import unicodedata
-import urllib.request
-from datetime import datetime
 from pathlib import Path
 
-_CTX = ssl.create_default_context()
-_CTX.check_hostname = False
-_CTX.verify_mode = ssl.CERT_NONE
-HEADERS = {"User-Agent": "Mozilla/5.0 (Radoskop cron)"}
+HERE = Path(__file__).resolve()
+sys.path.insert(0, str(HERE.parents[3] / "scripts"))
 
-BASE = "https://bip.um.pabianice.pl"
-KAD_START = "2024-05-07"
-KAD = "2024-2029"
-ROSTER_ART = "/artykul/89/20969"
-SESSION_CATS = {
-    "1228": "2026-rok",
-    "1205": "2025-rok",
-    "1150": "2024-rok",
+from lib_bip_static import BipScraper  # noqa: E402
+from lib_voting_pdf_table import (  # noqa: E402
+    _parse_per_page_vote,
+    parse_voting_pdf_per_page,
+)
+
+
+def parse_glosowanie_pdf(data: bytes, name: str) -> list[dict]:
+    """PDF 'Wyniki głosowania jawnego imiennego' (1 strona = 1 głosowanie,
+    dwukolumnowa tabela Lp|Nazwisko|Głos). Najszybciej: warstwa tekstu
+    pymupdf; fallback: pełny parser lib (OCR dla skanów)."""
+    import pymupdf
+
+    doc = pymupdf.open(stream=data, filetype="pdf")
+    pages = [p.get_text() for p in doc]
+    doc.close()
+    if sum(len(t.strip()) for t in pages) >= 50 * max(1, len(pages)):
+        votes = []
+        for idx, pt in enumerate(pages):
+            v = _parse_per_page_vote(pt, len(votes))
+            if v:
+                votes.append(v)
+        return votes
+    import tempfile
+
+    with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tf:
+        tf.write(data)
+        tmp = tf.name
+    try:
+        parsed = parse_voting_pdf_per_page(tmp)
+        return parsed.get("votes", [])
+    finally:
+        Path(tmp).unlink(missing_ok=True)
+
+KADENCJE = {
+    "2024-2029": {"label": "IX kadencja (2024–2029)", "start": "2024-05-07"},
 }
 
-MONTHS_PL = {
-    "stycznia": 1, "lutego": 2, "marca": 3, "kwietnia": 4, "maja": 5, "czerwca": 6,
-    "lipca": 7, "sierpnia": 8, "września": 9, "października": 10, "listopada": 11,
-    "grudnia": 12,
-}
+BIP_BASE = "https://bip.um.pabianice.pl"
+REGISTER_URL = f"{BIP_BASE}/uchwaly/25"
+MAX_LISTING_PAGES = 60
+
+UCHWALA_LINK_RE = re.compile(r'href="(https://bip\.um\.pabianice\.pl/uchwala/\d+/[^"]+)"')
+NR_RE = re.compile(r"Uchwała Nr\s+([IVXLCDM]+(?:/\d+/\d{2})?)")
+DATETIME_RE = re.compile(r'datetime="(\d{4}-\d{2}-\d{2})')
+TOPIC_RE = re.compile(r"w sprawie (.+?) status uchwa", re.S)
+ATT_RE = re.compile(
+    r'<a[^>]+href="(https://bip\.um\.pabianice\.pl/attachments/download/\d+)"[^>]*>\s*([^<]{0,80})',
+    re.S,
+)
+VOTE_ATT_LABEL = re.compile(r"glosowan|głosowan", re.I)
 
 
-def _http(url):
-    req = urllib.request.Request(url, headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=45, context=_CTX) as r:
-        return r.read().decode("utf-8", "replace")
+def _load_councilors() -> dict[str, str]:
+    config_path = HERE.parent.parent / "config.json"
+    if not config_path.is_file():
+        return {}
+    try:
+        cfg = json.loads(config_path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    return cfg.get("club_assignments", {}) or {}
 
 
-def _main_text(html):
-    m = re.search(r"<main.*?</main>", html, re.S)
-    txt = m.group(0) if m else html
-    txt = re.sub(r"<script.*?</script>|<style.*?</style>", " ", txt, flags=re.S)
-    return txt
+COUNCILORS = _load_councilors()
 
 
-def fetch_roster():
-    """23 radnych IX kadencji z artykułu 'Radni Rady Miejskiej IX kadencji'.
-    Funkcje (Przewodnicząca / Wiceprzewodniczący) po ' - ' w tekście."""
-    html = _http(f"{BASE}{ROSTER_ART}/x")
-    txt = _main_text(html)
-    plain = re.sub(r"<[^>]+>", " ", txt)
-    plain = re.sub(r"\s+", " ", plain)
-    i = plain.find("IX kadencji")
-    seg = plain[i: i + 1600] if i > 0 else plain
-    # cut at address
-    j = seg.find("95-200")
-    if j > 0:
-        seg = seg[:j]
-    roles = {}
-    _NOISE = {"miejskiej", "miejski", "rady", "radnych", "rada", "biuro", "urząd",
-              "kadencji", "sesji", "komisji", "rady", "piętro", "pokój"}
-    for m in re.finditer(
-        r"([A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+(?:-[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+)?\s+[A-ZĄĆĘŁŃÓŚŹŻ][a-ząćęłńóśźż]+)"
-        r"(?:\s*-\s*(Przewodnicząca|Przewodniczący|Wiceprzewodnicząca|Wiceprzewodniczący))?",
-        seg,
-    ):
-        raw = re.sub(r"\s+", " ", m.group(1)).strip()
-        parts = raw.split()
-        if len(parts) < 2:
-            continue
-        if any(p.lower() in _NOISE for p in parts):
-            continue
-        # BIP podaje 'Nazwisko Imię' (np. 'Dychto Emilia') -> zamień na 'Imię Nazwisko'
-        name = " ".join(parts[1:] + [parts[0]])
-        if name not in roles:
-            roles[name] = m.group(2) or ""
-    return roles
+class PabianiceScraper(BipScraper):
+    def _fetch_text_raw(self, url: str, use_cache: bool = True) -> str:
+        if self._session is None:
+            self._init_session()
+        cf = self._cache_path(url) if (use_cache and self.cache_dir) else None
+        if cf and cf.is_file():
+            return cf.read_text(encoding="utf-8", errors="replace")
+        resp = self._session.get(url, timeout=60)
+        resp.raise_for_status()
+        html = resp.text
+        if cf:
+            cf.parent.mkdir(parents=True, exist_ok=True)
+            cf.write_text(html, encoding="utf-8")
+        return html
 
+    def _fetch_pdf(self, url: str) -> bytes:
+        if self._session is None:
+            self._init_session()
+        cf = self._cache_path(url + ".pdf") if self.cache_dir else None
+        if cf and cf.is_file():
+            return cf.read_bytes()
+        resp = self._session.get(url, timeout=60)
+        resp.raise_for_status()
+        data = resp.content
+        if cf:
+            cf.parent.mkdir(parents=True, exist_ok=True)
+            cf.write_bytes(data)
+        return data
 
-def fetch_sessions():
-    out = []
-    for cat, slug in SESSION_CATS.items():
-        try:
-            html = _http(f"{BASE}/artykuly/{cat}/{slug}")
-        except Exception:
-            continue
-        for aid, ttl in re.findall(
-            r'artykul/\d+/(\d+)/[^"]+"[^>]*>\s*([^<]{5,140})<', html
-        ):
-            if "sesja Rady" not in ttl:
+    # -- discovery ----------------------------------------------------------
+
+    def discover_sessions(self) -> list[dict]:
+        kad_start = self.kadencje[self.default_kadencja]["start"]
+        urls: list[str] = []
+        seen: set[str] = set()
+        page = 1
+        while page <= MAX_LISTING_PAGES:
+            url = REGISTER_URL if page == 1 else f"{REGISTER_URL}/{page}/10"
+            try:
+                html = self._fetch_text_raw(url, use_cache=False)
+            except Exception as e:
+                print(f"  Blad listing {url}: {e}")
+                break
+            new = 0
+            for m in UCHWALA_LINK_RE.finditer(html):
+                u = m.group(1)
+                if u in seen:
+                    continue
+                seen.add(u)
+                urls.append(u)
+                new += 1
+            if new == 0:
+                break
+            page += 1
+        print(f"  Rejestr BIP: {len(urls)} uchwał")
+
+        sessions_map: dict[str, dict] = {}
+        self._uchwaly: dict[str, list[dict]] = {}
+        for i, u in enumerate(urls, 1):
+            try:
+                html = self._fetch_text_raw(u, use_cache=True)
+            except Exception as e:
+                print(f"    Blad {u}: {e}")
                 continue
-            m = re.search(r"(\d{1,2})\s+(" + "|".join(MONTHS_PL) + r")\s+(\d{4})", ttl)
-            if not m:
+            dm = DATETIME_RE.search(html)
+            if not dm:
                 continue
-            d = f"{m.group(3)}-{int(MONTHS_PL[m.group(2)]):02d}-{int(m.group(1)):02d}"
-            if d < KAD_START:
+            date = dm.group(1)
+            if date < kad_start:
                 continue
-            num = re.match(r"([IVXL]+)\s+sesja", ttl.strip())
-            out.append({"date": d, "number": num.group(1) if num else "",
-                        "title": re.sub(r"\s+", " ", ttl).strip()[:80]})
-    seen = set(); uniq = []
-    for s in sorted(out, key=lambda x: x["date"]):
-        k = (s["date"], s["number"])
-        if k in seen:
-            continue
-        seen.add(k); uniq.append(s)
-    return uniq
+            nr_m = NR_RE.search(re.sub(r"<[^>]+>", " ", html))
+            plain = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html))
+            tm = TOPIC_RE.search(plain)
+            topic = tm.group(1).strip() if tm else ""
+            # załącznik z wynikami głosowania
+            vote_url = ""
+            for m in ATT_RE.finditer(html):
+                if VOTE_ATT_LABEL.search(m.group(2)):
+                    vote_url = m.group(1)
+                    break
+            if not vote_url:
+                continue
+            num = nr_m.group(1) if nr_m else date
+            session_key = date
+            if session_key not in sessions_map:
+                sessions_map[session_key] = {
+                    "date": date,
+                    "number": num.split("/")[0],
+                    "url": u,
+                }
+            self._uchwaly.setdefault(session_key, []).append(
+                {"url": u, "vote_url": vote_url, "topic": topic, "nr": num}
+            )
+            if i % 25 == 0:
+                print(f"  ... {i}/{len(urls)} przetworzonych")
 
+        out = sorted(sessions_map.values(), key=lambda s: s["date"])
+        print(f"  Sesji z głosowaniami: {len(out)}")
+        return out
 
-def _slug(name):
-    s = unicodedata.normalize("NFKD", name)
-    s = "".join(c for c in s if not unicodedata.combining(c)).lower().replace("ł", "l")
-    s = re.sub(r"[^a-z0-9]+", "", s)
-    return s or "radny"
+    # -- votes ---------------------------------------------------------------
 
+    def parse_session_votes(self, session: dict) -> list[dict]:
+        votes: list[dict] = []
 
-def _proper(name):
-    """'Dychto Emila' (kolejność nazwisko-imię z załącznika) nie użyta;
-    artykuł podaje 'Imię Nazwisko' — zwracamy jak jest."""
-    return re.sub(r"\s+", " ", name).strip()
+        def _first_last(nm: str) -> str:
+            """PDF BIP kolumna 'Nazwisko i imię' -> 'Imię Nazwisko' (kolejność PL)."""
+            parts = nm.split()
+            if len(parts) >= 2:
+                return " ".join([parts[-1]] + parts[:-1])
+            return nm
 
-
-def build(city_dir: Path) -> int:
-    cfg = json.loads((city_dir / "config.json").read_text(encoding="utf-8"))
-    docs = city_dir / "docs"
-    docs.mkdir(parents=True, exist_ok=True)
-    roles = fetch_roster()
-    sessions = fetch_sessions()
-    names = sorted(roles.keys(), key=lambda n: n.split()[-1])
-    print(f"  pabianice roster: {len(names)}  sessions IX: {len(sessions)}")
-    if len(names) < 10:
-        print("  [ERR] roster zbyt mały — przerywam (nie fabrykujemy)")
-        return 1
-
-    kadencja = {
-        "id": KAD, "label": cfg["kadencje"][KAD]["label"], "clubs": {},
-        "sessions": [{"date": s["date"], "number": s["number"], "vote_count": 0,
-                      "attendee_count": None, "attendees": [], "speakers": []}
-                     for s in sessions],
-        "total_sessions": len(sessions), "total_votes": 0, "total_councilors": len(names),
-        "councilors": [{"name": n, "club": "", "district": None, "frekwencja": None,
-                        "aktywnosc": None, "zgodnosc_z_klubem": None, "votes_total": 0,
-                        "rebellion_count": 0, "has_activity_data": False} for n in names],
-        "votes": [], "similarity_top": [], "similarity_bottom": [],
-    }
-    (docs / f"kadencja-{KAD}.json").write_text(
-        json.dumps(kadencja, ensure_ascii=False, indent=1), encoding="utf-8")
-    (docs / "data.json").write_text(json.dumps(
-        {"generated": datetime.now().isoformat(), "default_kadencja": KAD,
-         "kadencje": [{"id": KAD, "label": cfg["kadencje"][KAD]["label"]}]},
-        ensure_ascii=False), encoding="utf-8")
-
-    profiles = []
-    for n in names:
-        role = roles.get(n, "")
-        profiles.append({
-            "name": n, "slug": _slug(n),
-            "kadencje": {KAD: {
-                "club": "", "has_voting_data": False, "has_activity_data": False,
-                "frekwencja": None, "aktywnosc": None, "zgodnosc_z_klubem": None,
-                "votes_za": 0, "votes_przeciw": 0, "votes_wstrzymal": 0,
-                "votes_brak": 0, "votes_nieobecny": 0, "votes_total": 0,
-                "rebellion_count": 0, "rebellions": [],
-                "roles": [role] if role else [], "notes": "",
-                "former": False, "mid_term": False}},
-        })
-    (docs / "profiles.json").write_text(
-        json.dumps({"profiles": profiles, "total": len(profiles)},
-                   ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"  [ok] kadencja + profiles ({len(profiles)})")
-    return 0
+        for uw in self._uchwaly.get(session["date"], []):
+            try:
+                data = self._fetch_pdf(uw["vote_url"])
+            except Exception as e:
+                print(f"    Blad PDF {uw['vote_url']}: {e}")
+                continue
+            for pv in parse_glosowanie_pdf(data, uw["vote_url"]):
+                nv = pv.get("named_votes") or {}
+                nv = {k: [_first_last(x) for x in v] for k, v in nv.items()}
+                if not any(nv.values()):
+                    continue
+                topic = uw["topic"] or re.sub(
+                    r"^\s*\d+[\s.]*", "", (pv.get("topic") or "")
+                )[:300]
+                votes.append(
+                    {
+                        "id": f"{session['date']}_{uw['nr']}",
+                        "topic": f"Uchwała {uw['nr']}: {topic}"[:500],
+                        "resolution": uw["nr"],
+                        "source_url": uw["url"],
+                        "named_votes": nv,
+                    }
+                )
+        return votes
 
 
 if __name__ == "__main__":
-    city_dir = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parents[1]
-    raise SystemExit(build(city_dir))
+    import argparse
+
+    ap = argparse.ArgumentParser(prog="Radoskop Pabianice")
+    ap.add_argument("--output", required=True)
+    ap.add_argument("--profiles", required=True)
+    ap.add_argument("--cache-dir")
+    ap.add_argument("--max-sessions", type=int, default=0)
+    ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--force-full", action="store_true")
+    args = ap.parse_args()
+
+    sc = PabianiceScraper(
+        base_url=BIP_BASE,
+        kadencje=KADENCJE,
+        councilors=COUNCILORS,
+        delay=0.7,
+        cache_dir=Path(args.cache_dir) if args.cache_dir else None,
+    )
+    raise SystemExit(
+        sc.run(
+            output_path=args.output,
+            profiles_path=args.profiles,
+            max_sessions=args.max_sessions,
+            dry_run=args.dry_run,
+            force_full=args.force_full,
+        )
+    )
