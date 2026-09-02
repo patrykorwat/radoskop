@@ -90,13 +90,23 @@ def discover_sessions(cache_dir=None):
 NAME_ROW_RE = re.compile(r"^\d+\.\s*([A-ZŁŚŃŹŻĆÓ][\wŁŁŚŃŹŻĆÓąęłńóźżść]+(?:\s+[A-ZŁŚŃŹŻĆÓąęłńóźżść]+)+)", re.M)
 
 
+def _fn(nm: str) -> str:
+    """Platforma publikuje 'Nazwisko Imię' (jak BIP 'Nazwisko i imię') — zamień
+    na porządek 'Imię Nazwisko' (reguła verify_city councilor_names).
+    Ostatni token = imię; poprzednie = nazwisko(a) (joint allowed)."""
+    parts = nm.split()
+    if len(parts) < 2:
+        return nm
+    return " ".join(parts[1:]) + " " + parts[0]
+
+
 def parse_protocol(html: str):
     """-> (roster_names list, votes list[{topic, named{za,przeciw,wstrzymal_sie}, absent}])"""
     roster = []
     # roster = longest numbered name list (appears at top / lista obecności)
     best = []
     for m in re.finditer(r"<tr><td>(\d+)\.\s*</td><td>([^<]+)</td>", html):
-        nm = re.sub(r"\s+", " ", m.group(2)).strip()
+        nm = _fn(re.sub(r"\s+", " ", m.group(2)).strip())
         if nm and nm not in best:
             best.append(nm)
         if m.group(1) == "1":
@@ -130,7 +140,7 @@ def parse_protocol(html: str):
                     pn = re.sub(r"^\s*\d+\)\s*", "", pn).strip()
                     pn = re.sub(r"\s*\d+\)\s*$", "", pn).strip()
                     if pn and "brak" not in pn.lower():
-                        names.append(pn)
+                        names.append(_fn(pn))
             if lab.startswith("ZA"):
                 named["za"] = names
             elif lab.startswith("PRZECIW"):
