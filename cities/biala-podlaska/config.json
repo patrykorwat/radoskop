@@ -1,0 +1,35 @@
+{
+  "landing_enabled": true,
+  "city_name": "Biała Podlaska",
+  "city_genitive": "Białej Podlaskiej",
+  "site_title": "Radoskop Biała Podlaska — Jak głosują radni?",
+  "site_url": "https://biala-podlaska.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Białej Podlaskiej. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Białej Podlaskiej.",
+  "bip_url": "https://umbialapodlaska.bip.lubelskie.pl/",
+  "bip_name": "BIP Urząd Miasta Biała Podlaska",
+  "scrape_note": "Głosowania imienne z BIP lubelskie (umbialapodlaska.bip.lubelskie.pl), menu 'Wyniki głosowań / Kadencja 2024-2029' (id 1092): lista przez AJAX list-ajax, raport DOCX per sesja w formacie eSesja standard (Głosowano w sprawie / Wyniki imienne). bialapodlaska.esesja.pl = wildcard redirect (brak BIP eSesja); AlfaTV i bip.net.pl — brak. Kluby PENDING (kuratorować z BIP).",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "biala-podlaska.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "teryt": "0661011",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Białej Podlaskiej",
+  "has_voting_data": true,
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "Dodane 2026-09-02 (cron ekspansja 500 miast, long_tail). Źródło: BIP lubelskie eBOI menu 1092 'Wyniki głosowań' + raporty DOCX eSesja-standard per sesja."
+  }
+}
