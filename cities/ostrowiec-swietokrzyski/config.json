@@ -1,0 +1,40 @@
+{
+  "city_name": "Ostrowiec Świętokrzyski",
+  "city_genitive": "Ostrowca Świętokrzyskiego",
+  "site_title": "Radoskop Ostrowiec Świętokrzyski — Jak głosują radni?",
+  "site_url": "https://ostrowiec-swietokrzyski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ostrowca Świętokrzyskiego. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Ostrowca Świętokrzyskiego.",
+  "bip_url": "https://bip.um.ostrowiec.pl",
+  "bip_name": "BIP Urząd Miasta Ostrowca Świętokrzyskiego",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ostrowiec-swietokrzyski.radoskop.pl",
+  "has_voting_data": true,
+  "has_speaker_activity": false,
+  "councilor_count": 24,
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": true,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Ostrowca Świętokrzyskiego",
+  "rada_name_genitive": "Rady Miasta Ostrowca Świętokrzyskiego",
+  "teryt": "2607011",
+  "_meta": {
+    "note": "BIP bip.um.ostrowiec.pl: kategoria 'Imienne Wykazy Głosowań Rady Miasta' (3103) z podkategorią roczną per rok (2024=3276, 2025=3308, 2026=3353), lista przez /artykuly/xml/{cat}/1/1; artykuł sesji = załącznik-PDF 'Wykaz głosowań radnych na sesji' (DSSS Vote, listy imienne w 4 ćwiartkach, walidacja agregatami 'jestem za/przeciw/wstrzymuję się'). Skład 23 radnych z /artykul/62/28303 (kadencja 2024-2029). Kluby: nie publikowane w BIP — club_assignments PENDING. eSesja ostrowiec-swietokrzyski.esesja.pl = wildcard, AlfaTV = parked domain, bip.net.pl 404. TERYT 2607011 (pl.wikipedia TERC). Roster 23 (BIP sklad) + Daniel Strojny (radny do 2025-07, mandat wygasl — realne dane z wydrukow).",
+    "population": 67404,
+    "voivodeship": "świętokrzyskie"
+  }
+}
