@@ -1,62 +1,17 @@
 {
-  "landing_enabled": true,
   "city_name": "Pabianice",
   "city_genitive": "Pabianic",
-  "site_title": "Radoskop Pabianice — Jak głosują radni?",
+  "site_title": "Radoskop Pabianice — Skład rady i sesje",
   "site_url": "https://pabianice.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej Pabianic. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska Pabianic.",
-  "bip_url": "https://bip.um.pabianice.pl/",
-  "bip_name": "BIP Pabianice",
-  "scrape_note": "Głosowania imienne z REJESTRU UCHWAŁ BIP (bip.um.pabianice.pl/uchwaly/25): per-uchwała załącznik 'Wyniki głosowania jawnego imiennego' = PDF dwukolumnowy (Lp|Nazwisko i imię|Głos). pabianice.esesja.pl = pętla 302 redirect (subdomena nieaktywna); AlfaTV/bip.net.pl Brak. Kluby z BIP 'Kluby radnych' (aktualizacja 18.06.2024): PiS 7, Koalicja dla Pabianic 13, niezrzeszeni 3 (Krebs, Rąkowski, Różycki).",
+  "site_description": "Radoskop — Rada Miejska w Pabianicach. Skład rady i kalendarz sesji kadencji 2024–2029 (bez imiennych głosowań w BIP).",
+  "site_description_short": "Otwarte monitorowanie Rady Miejskiej w Pabianicach.",
+  "bip_url": "https://bip.um.pabianice.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Pabianicach",
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "pabianice.radoskop.pl",
-  "clubs": {
-    "PiS": {
-      "name": "Klub Radnych Prawa i Sprawiedliwości",
-      "color": "#1f4ea0",
-      "bg": "rgba(31,78,160,0.12)",
-      "avatar_bg": "#1e3a8a"
-    },
-    "KdP": {
-      "name": "Klub Radnych \"Koalicja dla Pabianic\"",
-      "color": "#ea580c",
-      "bg": "rgba(234,88,12,0.12)",
-      "avatar_bg": "#c2410c"
-    },
-    "NZ": {
-      "name": "Niezrzeszeni",
-      "color": "#6b7280",
-      "bg": "rgba(107,114,128,0.12)",
-      "avatar_bg": "#4b5563"
-    }
-  },
-  "club_assignments": {
-    "Emilia Dychto": "PiS",
-    "Waldemar Flajszer": "PiS",
-    "Adam Kaczorowski": "PiS",
-    "Katarzyna Miękina": "PiS",
-    "Tadeusz Gęs": "PiS",
-    "Jarosław Lesman": "PiS",
-    "Włodzimierz Stanek": "PiS",
-    "Gabriel Grzejszczak": "KdP",
-    "Joanna Habura": "KdP",
-    "Krzysztof Hile": "KdP",
-    "Bożenna Kozłowska": "KdP",
-    "Joanna Kupś": "KdP",
-    "Gracjan Majewski": "KdP",
-    "Iwona Marczak": "KdP",
-    "Aleksandra Stasiak": "KdP",
-    "Jadwiga Wadowska-Gryzel": "KdP",
-    "Renata Witczak": "KdP",
-    "Grażyna Wójcik": "KdP",
-    "Aleksander Wójtowicz": "KdP",
-    "Anna Zaborowska": "KdP",
-    "Marcin Krebs": "NZ",
-    "Krzysztof Rąkowski": "NZ",
-    "Piotr Różycki": "NZ"
-  },
+  "clubs": {},
+  "club_assignments": {},
   "kadencje": {
     "2024-2029": {
       "label": "IX kadencja (2024–2029)",
@@ -64,15 +19,24 @@
     }
   },
   "kadencja_active": "2024-2029",
-  "teryt": "1008021",
+  "has_budget": false,
+  "has_komisje": false,
+  "has_voting_data": false,
+  "has_speaker_activity": false,
+  "has_named_votes": false,
+  "voting_display": "faction",
+  "councilor_count": 23,
   "samorzad_type": "miasto",
-  "rada_name": "Rada Miejska Pabianic",
-  "has_voting_data": true,
+  "rada_name": "Rada Miejska w Pabianicach",
+  "rada_name_genitive": "Rady Miejskiej w Pabianicach",
+  "teryt": "1008021",
   "scrape": {
     "runner": "run.sh",
-    "generate_site": true
+    "note": "Tier-2 (roster/berliński): brak głosowań imiennych — protokoły z agregatami, wyniki imienne tylko 'do wglądu w Biurze Rady'"
   },
   "_meta": {
-    "note": "Dodane 2026-09-02 (cron ekspansja 500 miast, long_tail). Źródło: rejestr uchwał BIP Nexa + PDF-y 'Wyniki głosowania jawnego imiennego' per uchwała."
+    "note": "Tier-2 (model berliński): brak głosowań imiennych — BIP bip.um.pabianice.pl publikuje protokoły z AGREGATAMI ('Głosowanie jawne imienne -za- 21...'), załączniki 'Wyniki imiennego głosowania' NIE są publikowane (do wglądu w Biurze Rady). pabianice.esesja.pl = wildcard redirect; rada.pabianice.pl = brak DNS; pabianice.bip.net.pl = 404. Skład 23 radnych + 28 sesji IX z BIP. Dodane 2026-09-02 (cron 500).",
+    "population": 63945,
+    "voivodeship": "łódzkie"
   }
 }

@@ -1,38 +1,39 @@
 {
-    "city_name": "Tomaszów Mazowiecki",
-    "city_genitive": "Tomaszowa Mazowieckiego",
-    "site_title": "Radoskop Tomaszów Mazowiecki — Jak głosują radni?",
-    "site_url": "https://tomaszow-mazowiecki.radoskop.pl",
-    "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Tomaszowie Mazowieckim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-    "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Tomaszowie Mazowieckim.",
-    "bip_url": "https://bip.tomaszow.miasta.pl",
-    "bip_name": "BIP Urząd Miasta Tomaszowa Mazowieckiego (AlfaTV System Rada rada.tomaszow-maz.pl)",
-    "github_url": "https://github.com/radoskoppl/radoskop",
-    "author": "Patryk Orwat",
-    "cname": "tomaszow-mazowiecki.radoskop.pl",
-    "clubs": {},
-    "club_assignments": {},
-    "kadencje": {
-        "2024-2029": {
-            "label": "IX kadencja (2024–2029)",
-            "start": "2024-05-07"
-        }
-    },
-    "kadencja_active": "2024-2029",
-    "scrape": {
-        "runner": "run.sh",
-        "generate_site": true
-    },
-    "has_budget": false,
-    "has_komisje": false,
-    "budget_note": "",
-    "samorzad_type": "miasto",
-    "rada_name": "Rada Miejska w Tomaszowie Mazowieckim",
-    "rada_name_genitive": "Rady Miejskiej w Tomaszowie Mazowieckim",
-    "teryt": "1016011",
-    "_meta": {
-        "note": "NOWE miasto. Źródło: AlfaTV 'System Rada' rada.tomaszow-maz.pl (server-rendered HTML: /glosowania -> /glosowania/posiedzenie/{id}, tabela 'Imienny wykaz glosowania' per radny + agregaty; /sklad-rady/radny/{id} = rola + klub). eSesja tomaszow-mazowiecki.esesja.pl = martwy wildcard; tomaszow-maz.pl = portal miejski (linkuje rada.*); tomaszowmazowiecki-rada.alfatv.pl = kopia VIII kadencji (ignorowana); Nefeni 404. I sesja IX kad. 2024-05-06 (dzien przed ogólnokrajowym startem). TERYT 1016011 (BIP nagłówek 'Kod terytorialny'). Kluby PENDING (radny pages 'Klub radnego' do kuratoracji).",
-        "population": 61338,
-        "voivodeship": "łódzkie"
+  "city_name": "Tomaszów Mazowiecki",
+  "city_genitive": "Tomaszowa Mazowieckiego",
+  "site_title": "Radoskop Tomaszów Mazowiecki — Jak głosują radni?",
+  "site_url": "https://tomaszow-mazowiecki.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Tomaszowie Mazowieckim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Tomaszowie Mazowieckim.",
+  "bip_url": "https://bip.um.tomaszow-maz.pl",
+  "bip_name": "BIP Tomaszów Mazowiecki",
+  "esesja_url": "https://rada.tomaszow-maz.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "tomaszow-mazowiecki.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
     }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Tomaszowie Mazowieckim",
+  "rada_name_genitive": "Rady Miejskiej w Tomaszowie Mazowieckim",
+  "teryt": "1016011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (AlfaTV 'System Rada' rada.tomaszow-maz.pl, glosowania imienne IX kad. 2024-2029). Dodane 2026-09-02 (cron 500). club_assignments PENDING (klubow brak na portrecie radnego — kuratorować z BIP/sejmik).",
+    "population": 57438,
+    "voivodeship": "łódzkie"
+  }
 }

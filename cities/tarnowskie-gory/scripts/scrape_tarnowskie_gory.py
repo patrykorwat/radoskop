@@ -1,11 +1,6 @@
 #!/usr/bin/env python3
-"""Radoskop Tarnowskie Góry — eSesja scraper (thin wrapper around scripts/lib_esesja.py).
-
-Backend: https://tarnowskiegory.esesja.pl (Rada Miejska w Tarnowskich Górach,
-IX kadencja 2024-2029). Portal Mieszkańca instance A — old-template compatible
-(server-rendered /listaglosowan). Dodane 2026-09-02 (cron ekspansja 500 miast).
-"""
-
+# -*- coding: utf-8 -*-
+"""Radoskop Tarnowskie Góry — eSesja thin wrapper (tarnowskiegory.esesja.pl, PM-A)."""
 import json
 import sys
 from pathlib import Path

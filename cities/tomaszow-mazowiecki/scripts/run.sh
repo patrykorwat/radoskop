@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Pipeline scrape Rada Miejska w Tomaszowie Mazowieckim (AlfaTV System Rada rada.tomaszow-maz.pl)
+# Pipeline scrape Rada Miejska Tomaszów Mazowiecki (AlfaTV "System Rada" rada.tomaszow-maz.pl)
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -10,9 +10,8 @@ cd "$CITY_DIR"
 
 echo "[tomaszow-mazowiecki] scrape_tomaszow_mazowiecki.py"
 python3 "$CITY_DIR/scripts/scrape_tomaszow_mazowiecki.py" \
-  --output "$CITY_DIR/docs/data.json" \
-  --profiles "$CITY_DIR/docs/profiles.json" \
-  --cache-dir "${RADOSKOP_CACHE_DIR:-/cache/tomaszow-mazowiecki}/html"
+  --city-dir "$CITY_DIR" \
+  --cache-dir "${RADOSKOP_CACHE_DIR:-/cache/tomaszow-mazowiecki}"
 
 echo "[tomaszow-mazowiecki] generate_site.py"
 python3 "$RADOSKOP_DIR/scripts/generate_site.py" \
