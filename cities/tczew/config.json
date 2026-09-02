@@ -1,0 +1,42 @@
+{
+  "city_name": "Tczew",
+  "city_genitive": "Tczewa",
+  "site_title": "Radoskop Tczew — Jak głosują radni?",
+  "site_url": "https://tczew.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Tczewie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Tczewie.",
+  "bip_url": "https://bip.tczew.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Tczewie",
+  "rada_url": "https://www.sesje.tczew.pl/wyniki/",
+  "rada_name_platform": "Elektroniczny rejestr głosowań",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "tczew.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "has_named_votes": true,
+  "has_voting_data": true,
+  "has_speaker_activity": false,
+  "voting_display": "individual",
+  "councilor_count": 23,
+  "locale": "pl",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Tczewie",
+  "teryt": "2214011",
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (Elektroniczny rejestr głosowań sesje.tczew.pl — custom PHP, imienne ZA/PRZECIW/WSTRZYMALI per radny w protokole HTML sesji, IX kad. 29 sesji/472 glosy/23 radnych). Dodane 2026-09-02 (cron 500). club_assignments PENDING (platforma nie publikuje klubow). eSesja wildcard, AlfaTV brak, Nefeni 404.",
+    "population": 57990,
+    "voivodeship": "pomorskie"
+  }
+}
