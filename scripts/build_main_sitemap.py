@@ -64,6 +64,7 @@ APEX_PAGES = {
         ("https://radoskop.eu/pricing/", "0.8", "monthly"),
         ("https://radoskop.eu/radar/", "0.7", "weekly"),
         ("https://radoskop.eu/reports/", "0.7", "weekly"),
+        ("https://radoskop.eu/o-radoskopie/", "0.8", "monthly"),
     ],
 }
 
