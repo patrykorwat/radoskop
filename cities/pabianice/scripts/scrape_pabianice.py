@@ -86,7 +86,7 @@ ATT_RE = re.compile(
     r'<a[^>]+href="(https://bip\.um\.pabianice\.pl/attachments/download/\d+)"[^>]*>\s*([^<]{0,80})',
     re.S,
 )
-VOTE_ATT_LABEL = re.compile(r"glosowanie|głosowanie", re.I)
+VOTE_ATT_LABEL = re.compile(r"glosowan|głosowan", re.I)
 
 
 def _load_councilors() -> dict[str, str]:
