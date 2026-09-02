@@ -63,9 +63,29 @@ VOTE_MAP = {
 
 
 def _nk(s):
-    s = str(s or "").lower().replace("\u0142", "l")
+    s = str(s or "").lower().replace("ł", "l")
     s = unicodedata.normalize("NFKD", s)
     return re.sub(r"[^a-z0-9]", "", "".join(c for c in s if not unicodedata.combining(c)))
+
+
+def _fix_name(s):
+    """AlfaTV zwraca nazwiska WIELKIMI LITERAMI w tabelach imiennych ('Barbara KLATKA').
+    Normalizujemy do Title Case, zachowując człon 'Nie' i przedimki."""
+    s = re.sub(r"\s+", " ", str(s or "").strip())
+    if not s or not s.isupper() and not re.search(r"\b[A-ZŁŚŹŻĆŃÓĄĘ]{3,}\b", s):
+        return s
+    words = []
+    for w in s.split(" "):
+        if not w:
+            continue
+        if w.isupper() and len(w) > 1:
+            # nazwiska złożone z myślnikiem: WADOWSKA-GRYZEL -> Wadowska-Gryzel
+            parts = w.lower().split("-")
+            w = "-".join(p[:1].upper() + p[1:] for p in parts if p)
+        else:
+            w = w[:1].upper() + w[1:].lower() if w else w
+        words.append(w)
+    return " ".join(words)
 
 
 def _norm_vote(txt):
@@ -194,6 +214,7 @@ def parse_session(html):
             if len(tds) < 2:
                 continue
             name, vote_txt = tds[0], tds[-1]
+            name = _fix_name(name)
             if not name or _nk(name) in ("imie i nazwisko", "imienazwisko"):
                 continue
             cat = _norm_vote(vote_txt)
@@ -248,7 +269,7 @@ def get_roster(cache_dir=None, club_assign=None):
     for a in soup.find_all("a", href=True):
         m = re.search(r"/sklad-rady/radny/(\d+)", a["href"])
         if m:
-            name = re.sub(r"\s+", " ", a.get_text(" ", strip=True))
+            name = _fix_name(re.sub(r"\s+", " ", a.get_text(" ", strip=True)))
             if name and len(name) > 3:
                 ids.setdefault(m.group(1), name)
     roles = {}
