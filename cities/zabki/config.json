@@ -1,0 +1,41 @@
+{
+  "city_name": "Ząbki",
+  "city_genitive": "Ząbek",
+  "site_title": "Radoskop Ząbki — Jak głosują radni?",
+  "site_url": "https://zabki.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Ząbki. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Ząbki.",
+  "bip_url": "https://bip.zabki.pl",
+  "bip_name": "BIP Miasta Ząbki",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zabki.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Ząbki",
+  "rada_name_genitive": "Rady Miasta Ząbki",
+  "teryt": "1434031",
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (BIP bip.zabki.pl platforma ESC VelaBIP; kategoria 'Protokoły z sesji Rady' /protokoly-z-sesji-rady-1; per-sesja załączniki 'RRRR NN raport z głosowań data.pdf' z systemu DSSS Vote — głosowania jawne z listami imiennymi kwadransowymi 'Jestem za/przeciw/Wstrzymuję się'; parser pozycyjny pdfplumber + walidacja vs agregaty proporcji). zabki.esesja.pl wildcard 302-loop, rada.zabki.pl DNS none, zabki.bip.net.pl 404. TERYT 1434031 (powiat wołomiński, jednostka miejska; WdG Q248999 bez P781). club_assignments PENDING (kuratorować). Dodane 2026-09-03 (cron do 500 miast).",
+    "population": 43740,
+    "voivodeship": "mazowieckie",
+    "qid": "Q248999",
+    "lat": 52.29278,
+    "lon": 21.11611
+  }
+}
