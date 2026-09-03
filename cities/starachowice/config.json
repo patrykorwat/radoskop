@@ -1,0 +1,38 @@
+{
+  "city_name": "Starachowice",
+  "city_genitive": "Starachowic",
+  "site_title": "Radoskop Starachowice — Jak głosują radni?",
+  "site_url": "https://starachowice.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Starachowicach. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Starachowicach.",
+  "bip_url": "https://bip.um.starachowice.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Starachowicach (custom CMS selectsite)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "starachowice.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Starachowicach",
+  "rada_name_genitive": "Rady Miejskiej w Starachowicach",
+  "teryt": "2611011",
+  "_meta": {
+    "note": "NOWE miasto na bip.um.starachowice.pl (custom CMS selectsite; eSesja=widełcard, bip.net.pl=N/A). Źródło głosowań: kategoria 'Uchwały i protokoły z sesji RM' -> podstrony roczne -> per-sesji załącznik 'Głosowanie(s) imienne' PDF w eSesja FORMAT TEKSTOWY; część skanów -> OCR tesseract -l pol. Skład 21 radnych. Kluby PENDING. TERYT 2611011 (gmina miejska Starachowice). Dodane 2026-09-03.",
+    "population": 47638,
+    "voivodeship": "świętokrzyskie"
+  }
+}
