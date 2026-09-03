@@ -1,0 +1,38 @@
+{
+  "city_name": "Kwidzyn",
+  "city_genitive": "Kwidzyna",
+  "site_title": "Radoskop Kwidzyn — Jak głosują radni?",
+  "site_url": "https://kwidzyn.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Kwidzynie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Kwidzynie.",
+  "bip_url": "https://bip.kwidzyn.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Kwidzynie",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kwidzyn.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Kwidzynie",
+  "rada_name_genitive": "Rady Miejskiej w Kwidzynie",
+  "teryt": "2207011",
+  "_meta": {
+    "note": "NOWE miasto (BIP bip.kwidzyn.pl — Madkom Nowy BIP, React SPA + /api/). Discovery: /api/contexts/default/articles (wszystkie artykuły) -> 'Imienny wykaz głosowań … Sesji Rady Miejskiej' (per-sesja), PDF załącznik przez /api/articles/{id} + /api/files/{attId}. Format wydruku systemowego: bloki '<pp.pp>. temat', Podsumowanie ZA/PRZECIW/WSTRZYMAŁO + tabela 'Wyniki imienne' lp|nazwisko|imię|głos (ZA/PRZECIW/WSTRZYMAŁ SIĘ|SIĘ/nieobecny|na/nie głosowała). Walidacja per-głos: liczone == agregaty; tylko zwalidowane. Skład dynamiczny (roster z głosów). Kluby: club_assignments PENDING (BIP 'Kluby radnych' do kukatorowania). TERYT 2207011 (m. Kwidzyn, pow. kwidzyński). eSesja/Nefeni/AlfaTV: brak. Dodane 2026-09-03.",
+    "population": 38329,
+    "voivodeship": "pomorskie"
+  }
+}
