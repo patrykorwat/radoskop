@@ -1,0 +1,37 @@
+{
+  "city_name": "Szczecinek",
+  "city_genitive": "Szczecinka",
+  "site_title": "Radoskop Szczecinek — Jak głosują radni?",
+  "site_url": "https://szczecinek.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Szczecinek. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Szczecinek.",
+  "bip_url": "https://bip.szczecinek.pl",
+  "bip_name": "BIP Urząd Miasta Szczecinek",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "szczecinek.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Szczecinek",
+  "rada_name_genitive": "Rady Miasta Szczecinek",
+  "teryt": "3215011",
+  "_meta": {
+    "note": "NOWE miasto (long_tail → custom BIP bip.szczecinek.pl (CMS artykuly/uchwaly): kazda uchwala ma zalacznik 'glosowanie NNN' = wydruk eSesja per-glosowanie, dwukolumnowa tabela Lp|Nazwisko i imię|Glos (ZA/PRZECIW/WSTRZYMUJE SIĘ/NIEOBECNY/OBECNY), parser wzorowany na goleniow + walidacja vs agregaty). protokoly sesji narracyjne bez tabel imiennych; szczecinek.esesja.pl wildcard (korporacyjny), rada.szczecinek.pl DNS none, szczecinek.bip.net.pl 404. TERYT 3215011 (z BIP stopka). Q848999. club_assignments PENDING (kuratorowac). Dodane 2026-09-03 (cron do 500 miast).",
+    "population": 39827,
+    "voivodeship": "zachodniopomorskie",
+    "lat": 53.70778,
+    "lon": 16.69917,
+    "qid": "Q848999"
+  }
+}
