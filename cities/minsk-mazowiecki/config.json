@@ -1,0 +1,35 @@
+{
+  "city_name": "Mińsk Mazowiecki",
+  "city_genitive": "Mińska Mazowieckiego",
+  "site_title": "Radoskop Mińsk Mazowiecki — Jak głosują radni?",
+  "site_url": "https://minsk-mazowiecki.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Mińsk Mazowiecki. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Mińsk Mazowiecki.",
+  "bip_url": "https://bip.minsk-maz.pl",
+  "bip_name": "BIP Urząd Miasta Mińsk Mazowiecki",
+  "esesja_url": "https://minsk.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "minsk-mazowiecki.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Mińsk Mazowiecki",
+  "rada_name_genitive": "Rady Miasta Mińsk Mazowiecki",
+  "teryt": "1412011",
+  "_meta": {
+    "note": "NOWE miasto (eSesja PM-A old-compatible, glosowania imienne IX kad. z /glosowanie/). Dodane 2026-09-03 (cron do 500 miast). club_assignments pending (kuratorować z BIP — bip.minsk-maz.pl Kluby radnych).",
+    "population": 40916,
+    "voivodeship": "mazowieckie"
+  }
+}
