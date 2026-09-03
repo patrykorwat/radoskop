@@ -1,0 +1,38 @@
+{
+  "city_name": "Świnoujście",
+  "city_genitive": "Świnoujścia",
+  "site_title": "Radoskop Świnoujście — Jak głosują radni?",
+  "site_url": "https://swinoujscie.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Świnoujście. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Świnoujście.",
+  "bip_url": "https://bip.um.swinoujscie.pl",
+  "bip_name": "BIP Urząd Miasta Świnoujście",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "swinoujscie.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Świnoujście",
+  "rada_name_genitive": "Rady Miasta Świnoujście",
+  "teryt": "3263011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (BIP bip.um.swinoujscie.pl, per-sesja załącznik 'Wyniki głosowania' PDF = wydruk eSesja z tabelą imienną per radny, walidacja sum vs agregaty). Dodane 2026-09-03 (cron 500). club_assignments pending (brak oficjalnej listy klubów w BIP).",
+    "population": 40948,
+    "voivodeship": "zachodniopomorskie"
+  }
+}
