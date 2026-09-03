@@ -1,0 +1,35 @@
+{
+  "city_name": "Świdnik",
+  "city_genitive": "Świdnika",
+  "site_title": "Radoskop Świdnik — Jak głosują radni?",
+  "site_url": "https://swidnik.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Świdnik. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Świdnik.",
+  "bip_url": "https://swidnik.esesja.pl",
+  "bip_name": "eSesja Rada Miasta Świdnik",
+  "esesja_url": "https://swidnik.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "swidnik.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Świdnik",
+  "rada_name_genitive": "Rady Miasta Świdnik",
+  "teryt": "0617011",
+  "_meta": {
+    "note": "NOWE miasto (eSesja wariant WCAG-ASP /wcag/posiedzenie.asp + glosowanie.asp — lista imienna ZA/PRZECIW/WSTRZYMUJĘ/NIEOBECNI). Dodane 2026-09-03 (cron do 500 miast). club_assignments pending (brak klubów publikowanych; weryfikować).",
+    "population": 36993,
+    "voivodeship": "lubelskie"
+  }
+}
