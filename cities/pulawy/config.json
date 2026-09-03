@@ -1,0 +1,37 @@
+{
+  "city_name": "Puławy",
+  "city_genitive": "Puław",
+  "site_title": "Radoskop Puławy — Jak głosują radni?",
+  "site_url": "https://pulawy.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Puławy. Skład rady, sesje i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Puławy.",
+  "bip_url": "https://bip.pulawy.pl",
+  "bip_name": "BIP Urząd Miasta Puławy",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pulawy.radoskop.pl",
+  "has_voting_data": false,
+  "voting_display": "faction",
+  "has_speaker_activity": false,
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Puławy",
+  "rada_name_genitive": "Rady Miasta Puławy",
+  "teryt": "0614011",
+  "_meta": {
+    "note": "Tier-2 (model berliński): brak głosowań imiennych — tylko skład rady + sesje/aktywność. eSesja wildcard martwy; BIP Wrota Lubelszczyzny publikuje protokoły narracyjne bez tabel ZA/PRZECIW per radny. Dodane 2026-09-03 (cron ekspansja 500).",
+    "population": 46304,
+    "voivodeship": "lubelskie"
+  }
+}
