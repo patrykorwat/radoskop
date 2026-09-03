@@ -135,7 +135,8 @@ def _ocr_words(doc, page_index):
     """Render pymupdf page -> tesseract TSV -> words [{'x0','top','text'}] in PDF pt.
     Used for DSSS PDFs with broken font mapping (no usable text layer)."""
     import subprocess
-    png = f"/opt/data/workspace/radoskoppl/tmp/ocr_zabki_p{page_index}.png"
+    import tempfile
+    png = str(Path(tempfile.gettempdir()) / f"ocr_zabki_p{page_index}.png")
     pm = doc[page_index].get_pixmap(dpi=150)
     pm.save(png)
     out = subprocess.run(["tesseract", png, "-", "-l", "pol", "tsv"],
