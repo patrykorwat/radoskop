@@ -1,0 +1,41 @@
+{
+  "city_name": "Nowa Sól",
+  "city_genitive": "Nowej Soli",
+  "site_title": "Radoskop Nowa Sól — Jak głosują radni?",
+  "site_url": "https://nowasol.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Nowej Soli. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Nowej Soli.",
+  "bip_url": "https://bip.nowasol.pl",
+  "bip_name": "BIP Urząd Miejski w Nowej Soli",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "nowasol.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Nowej Soli",
+  "rada_name_genitive": "Rady Miejskiej w Nowej Soli",
+  "teryt": "0804011",
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (System Posiedzenia / portal-posiedzenia.pl, subdomena nowasol; BIP bip.nowasol.pl kategoria 'Wykaz imiennych głosowań radnych' linkuje nowasol.posiedzenia.pl?action=glosowania&cadency=2024). Adapter lib_posiedzenia_pl.py: sesja anonima + O3 lista sesji + O7 chart JSON (persons votes [1]=ZA [2]=PRZECIW [3]=WSTRZYMAŁ, present=false=>nieobecny; partia=>club). Krzyżowa walidacja z tabelą HTML 'Wyniki imienne' (mismatch=0). nowasol.esesja.pl wildcard redirect, rada.nowasol.pl brak DNS, nowasol.bip.net.pl 404. TERYT 0804011 (pl.wikipedia). club_assignments PENDING (kluby: FNW Wadima Tyszkiewicza, PiS, Koalicja dla Nowej Soli — z API partia). Dodane 2026-09-03 (cron do 500 miast).",
+    "population": 38191,
+    "voivodeship": "lubuskie",
+    "qid": "Q157190",
+    "lat": 51.80333,
+    "lon": 15.71694
+  }
+}
