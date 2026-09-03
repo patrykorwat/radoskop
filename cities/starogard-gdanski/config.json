@@ -1,0 +1,35 @@
+{
+  "city_name": "Starogard Gdański",
+  "city_genitive": "Starogardu Gdańskiego",
+  "site_title": "Radoskop Starogard Gdański — Jak głosują radni?",
+  "site_url": "https://starogard-gdanski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Starogardzie Gdańskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Starogardzie Gdańskim.",
+  "bip_url": "https://starogardgdanski.esesja.pl",
+  "bip_name": "eSesja Starogard Gdański",
+  "esesja_url": "https://starogardgdanski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "starogard-gdanski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Starogardzie Gdańskim",
+  "rada_name_genitive": "Rady Miejskiej w Starogardzie Gdańskim",
+  "teryt": "2213031",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-09-03 (cron ekspansja 500). club_assignments pending (kuratorowane z BIP).",
+    "population": 45437,
+    "voivodeship": "pomorskie"
+  }
+}
