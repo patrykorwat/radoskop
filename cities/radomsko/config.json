@@ -1,0 +1,34 @@
+{
+  "city_name": "Radomsko",
+  "city_genitive": "Radomska",
+  "site_title": "Radoskop Radomsko — Jak głosują radni?",
+  "site_url": "https://radomsko.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Radomsku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Radomsku.",
+  "bip_url": "https://bip.radomsko.pl",
+  "bip_name": "BIP Miasta Radomska",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "radomsko.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Radomsku",
+  "rada_name_genitive": "Rady Miejskiej w Radomsku",
+  "teryt": "1012011",
+  "_meta": {
+    "note": "NOWE miasto (eurzad.finn.pl gmradomsko rejestr WGRM 'Wykazy głosowań Rady Miejskiej' — imienne tabele ZA/NIE/WSTRZYMUJĘ w tekstowych PDF). Dodane 2026-09-03 (cron ekspansja 500). club_assignments pending (kuratorowane z BIP).",
+    "population": 42718,
+    "voivodeship": "łódzkie"
+  }
+}
