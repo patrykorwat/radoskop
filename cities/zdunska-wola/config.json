@@ -1,0 +1,35 @@
+{
+  "site_url": "https://zdunska-wola.radoskop.pl",
+  "site_title": "Rada Miasta Zduńska Wola — głosowania imienne",
+  "site_description": "Głosowania imienne Rady Miasta Zduńska Wola (IX kadencja). Sprawdź jak głosują Twoi radni.",
+  "city_name": "Zduńska Wola",
+  "city_genitive": "Zduńskiej Woli",
+  "bip_url": "https://bip.zdunskawola.pl/artykuly/555/protokoly-z-sesji",
+  "bip_name": "BIP Miasta Zduńska Wola",
+  "github_url": "https://github.com/patrykorwat/pl-radoskop",
+  "author": "Radoskop",
+  "cname": "zdunska-wola.radoskop.pl",
+  "teryt": "1019011",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Zduńska Wola",
+  "has_voting_data": true,
+  "has_named_votes": true,
+  "has_speaker_activity": false,
+  "voting_display": "individual",
+  "kadencja_active": "2024-2029",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024\u20132029)",
+      "start": "2024-05-07"
+    }
+  },
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "Głosowania imienne inline w protokołach z sesji (format tekstowy eSesja 'Wyniki imienne') w BIP Logonet bip.zdunskawola.pl, kategoria 555 Protokoły z sesji (IX kad.). club_assignments PENDING."
+  }
+}
