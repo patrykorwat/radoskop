@@ -1,7 +1,7 @@
 {
   "city_name": "Puławy",
   "city_genitive": "Puław",
-  "site_title": "Radoskop Puławy — Jak głosują radni?",
+  "site_title": "Radoskop Puławy — Skład rady i sesje",
   "site_url": "https://pulawy.radoskop.pl",
   "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Puławy. Skład rady, sesje i aktywność radnych.",
   "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Puławy.",
@@ -11,6 +11,7 @@
   "author": "Patryk Orwat",
   "cname": "pulawy.radoskop.pl",
   "has_voting_data": false,
+  "has_named_votes": false,
   "voting_display": "faction",
   "has_speaker_activity": false,
   "clubs": {},
