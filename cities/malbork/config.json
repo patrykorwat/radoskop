@@ -1,0 +1,38 @@
+{
+  "city_name": "Malbork",
+  "city_genitive": "Malborka",
+  "site_title": "Radoskop Malbork — Jak głosują radni?",
+  "site_url": "https://malbork.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Malborka. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Malborka.",
+  "bip_url": "https://bip.malbork.pl",
+  "bip_name": "BIP Urzędu Miasta Malborka",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "malbork.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Malborka",
+  "rada_name_genitive": "Rady Miasta Malborka",
+  "teryt": "2209011",
+  "_meta": {
+    "note": "NOWE miasto (BIP bip.malbork.pl — Madkom Nowy BIP, React SPA + /api/, jak Kwidzyn). Discovery: /api/menu/657/articles ('IX RM Imienne głosowania', 32 artykuły sesji IX kad.). Każdy załącznik PDF = raport 1 głosowania systemu kongresowego Deputy ('RAPORT PRZEPROWADZONEGO GŁOSOWANIA', Głosy indywidualne TAK/NIE/WST, 'brak uprawnień' = poza składem, 'Mównica' pomijana). PDF: /e,pobierz,get.html?id=. Walidacja per-głos: liczone == agregaty ZA/WSTRZ/PRZECIW; tylko zwalidowane. Skład dynamiczny. Kluby: club_assignments PENDING. TERYT 2209011 (m. Malbork, pl.wiki infobox). eSesja/Nefeni/AlfaTV: brak. Dodane 2026-09-03.",
+    "population": 38101,
+    "voivodeship": "pomorskie"
+  }
+}
