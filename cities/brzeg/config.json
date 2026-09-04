@@ -1,0 +1,38 @@
+{
+  "city_name": "Brzeg",
+  "city_genitive": "Brzegu",
+  "site_title": "Radoskop Brzeg — Jak głosują radni?",
+  "site_url": "https://brzeg.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej Brzegu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej Brzegu.",
+  "bip_url": "https://bip.brzeg.pl",
+  "bip_name": "BIP Miasta Brzegu",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "brzeg.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska Brzegu",
+  "rada_name_genitive": "Rady Miejskiej Brzegu",
+  "teryt": "1601011",
+  "_meta": {
+    "note": "NOWE miasto (BIP SISCO eDcms, wydruki DSSS Vote z kategorii 'Wykazy imienne z głosowań > kadencja 2024-2029' (5_1478); glosowania imienne IX kad. Dodane 2026-09-03 (cron ekspansja 500). club_assignments pending (kuratorowane z BIP).",
+    "population": 35226,
+    "voivodeship": "opolskie"
+  }
+}
