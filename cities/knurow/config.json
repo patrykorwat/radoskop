@@ -3,16 +3,14 @@
   "city_genitive": "Knurowa",
   "site_title": "Radoskop Knurów — Jak głosują radni?",
   "site_url": "https://knurow.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Knurowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Knurowie.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Knurowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Knurowie.",
   "bip_url": "https://knurow.bip.info.pl",
-  "bip_name": "BIP Urząd Miasta Knurów",
+  "bip_name": "BIP Urzędu Miasta Knurów (knurow.bip.info.pl)",
+  "rada_name_platform": "Protokoły PDF z imiennymi wynikami głosowań (BIP Szafr)",
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "knurow.radoskop.pl",
-  "has_voting_data": true,
-  "has_speaker_activity": false,
-  "councilor_count": 21,
   "clubs": {},
   "club_assignments": {},
   "kadencje": {
@@ -27,14 +25,15 @@
     "generate_site": true
   },
   "has_budget": false,
-  "has_komisje": true,
+  "has_komisje": false,
+  "budget_note": "",
   "samorzad_type": "miasto",
   "rada_name": "Rada Miejska w Knurowie",
   "rada_name_genitive": "Rady Miejskiej w Knurowie",
   "teryt": "2405011",
   "_meta": {
-    "note": "BIP knurow.bip.info.pl (platforma bip.info.pl — Angular SPA + JSON API /api/fo/search/getResult + /api/fo/articles/{slug} + /api/fo/files/{id}/download). Kategoria 'Rada Miasta > Kadencja 2024-2029 > Sesje > Protokoły z sesji Rady Miasta' = per-sesja PDF protokół narracyjny z blokami eSesja tekstowymi (ZA:/PRZECIW: + Wyniki imienne: ZA(n) listy) bez linii 'Głosowano w sprawie'; temat z najbliższego zdania narracji. eSesja knurow.esesja.pl = wildcard (brak BIP), AlfaTV/bip.net.pl brak. TERYT 2405011 (pl.wiki TERC).",
-    "population": 36498,
+    "note": "NOWE miasto (long-tail → UNLOCK via protokoły sesji PDF z blokami 'Wyniki głosowania / Wyniki imienne: ZA (N) <nazwiska>' na BIP Szafr knurow.bip.info.pl). knurow.esesja.pl = wildcard redirect (brak BIP eSesja); rada.knurow.pl DNS none; knurow.bip.net.pl 404. Scraper (scrape_knurow.py) używa API /api/fo/articles (Szafr Next.js, path+filter JSON), pobiera załączniki PDF /api/fo/files/{id}/download, parse tekstowy (pymupdf), walidacja per-głos vs agregat (za+przeciw+wstrzymal == listy nazwisk) — 352/364 (96,7%; odrzucane tylko niereconcylowane). 29 sesji IX kad. (2024-05-07 .. 2026-05-13), 352 głosowania, 22 radnych (roster z głosowań, w zmiany kadencji mid-term). Pułapki parsera: brak dwukropka po 'Wyniki głosowania', łamanie nazwisk miękkim dywizem (Ma-\\nrian), ogon narracyjny sklejony z ostatnim nazwiskiem po kropce. Kluby PENDING (kuratorować). TERYT 2405011 (Knurów, powiat gliwicki, woj. śląskie). Dodane 2026-09-04 (cron do 500 miast, adapter BIP Szafr protokoły PDF).",
+    "population": 37801,
     "voivodeship": "śląskie"
   }
 }
