@@ -1,0 +1,45 @@
+{
+  "city_name": "Libiąż",
+  "city_genitive": "Libiąża",
+  "site_title": "Radoskop Libiąż — Skład rady i sesje",
+  "site_url": "https://libiaz.radoskop.pl",
+  "site_description": "Radoskop — Rada Miejska w Libiążu. Skład rady i kalendarz sesji kadencji 2024–2029 (bez imiennych głosowań).",
+  "site_description_short": "Otwarte monitorowanie Rady Miejskiej w Libiążu.",
+  "bip_url": "https://bip.malopolska.pl/umlibiaz",
+  "bip_name": "BIP Urząd Miejski w Libiążu",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "libiaz.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "has_voting_data": false,
+  "has_speaker_activity": false,
+  "has_named_votes": false,
+  "voting_display": "faction",
+  "councilor_count": 21,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Libiążu",
+  "rada_name_genitive": "Rady Miejskiej w Libiążu",
+  "teryt": "1203044",
+  "scrape": {
+    "runner": "run.sh",
+    "note": "Tier-2 (roster/berliński): protokoły głosowania przy uchwałach = skany (OCR bez wiarygodnej atrybucji per radny); eSesja PM-B pusta. Skład 21 radnych (artykuł email-kontakty kadencji) + kalendarz sesji IX kad. z BIP eBOI malopolska API. has_voting_data:false; voting_display:faction (roster-mode)."
+  },
+  "_meta": {
+    "note": "Tier-2 (model berliński/roster): BIP eBOI malopolska (bip.malopolska.pl/umlibiaz) — przy każdej uchwale załącznik 'Protokół głosowania' jako SKAN (brak warstwy tekstu; tesseract -l pol zwraca nieczytelną tablicę kolumnową, atrybucja per radny niemożliwa). libiaz.esesja.pl = Portal Mieszkańca instance-B (0 sesji IX kad.), rada.libiaz.pl = hosting parking, bip.net.pl 404. Skład 21 radnych IX kad. z artykułu BIP 2730966; kalendarz 26 sesji (IX 2024-05 .. XXVI 2026-09) z kategorii menu 433975. TERYT 1203044 (miasto Libiąż, GUS/PFRON). Dodane 2026-09-04 (cron 500, Tier-2).",
+    "population": 16288,
+    "voivodeship": "małopolskie",
+    "lat": 50.1036,
+    "lon": 19.3156
+  }
+}
