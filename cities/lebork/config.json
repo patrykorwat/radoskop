@@ -1,0 +1,39 @@
+{
+  "city_name": "Lębork",
+  "city_genitive": "Lęborka",
+  "site_title": "Radoskop Lębork — Jak głosują radni?",
+  "site_url": "https://lebork.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Lęborku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Lęborku.",
+  "bip_url": "https://bip.um.lebork.pl",
+  "bip_name": "BIP Urząd Miejski w Lęborku",
+  "esesja_url": "https://rada.um.lebork.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lebork.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Lęborku",
+  "rada_name_genitive": "Rady Miejskiej w Lęborku",
+  "teryt": "2208011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (AlfaTV 'System Rada' rada.um.lebork.pl, glosowania imienne IX kad. 2024-2029). Dodane 2026-09-04 (cron 500). club_assignments PENDING (kuratorować z BIP 'Kluby radnych').",
+    "population": 33865,
+    "voivodeship": "pomorskie"
+  }
+}
