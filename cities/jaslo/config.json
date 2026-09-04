@@ -1,0 +1,35 @@
+{
+  "city_name": "Jasło",
+  "city_genitive": "Jasła",
+  "site_title": "Radoskop Jasło — Jak głosują radni?",
+  "site_url": "https://jaslo.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska Jasła. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska Jasła.",
+  "bip_url": "https://bip.um.jaslo.pl",
+  "bip_name": "BIP Urzędu Miasta Jasła",
+  "esesja_url": "https://jaslo.sesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "jaslo.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska Jasła",
+  "rada_name_genitive": "Rady Miejskiej Jasła",
+  "teryt": "1805011",
+  "_meta": {
+    "note": "NOWE miasto (archiwum głosowań www2.um.jaslo.pl/sesje/ — własny format eSesja-export UTF-16, imienne listy ZA/PRZECIW/WSTRZYMAŁO/NIE GŁOSOWAŁO per głosowanie; video na jaslo.sesja.pl). Dodane 2026-09-04 (cron do 500 miast). club_assignments pending (kuratorować z BIP).",
+    "population": 34542,
+    "voivodeship": "podkarpackie"
+  }
+}

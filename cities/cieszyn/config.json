@@ -1,0 +1,35 @@
+{
+  "city_name": "Cieszyn",
+  "city_genitive": "Cieszyna",
+  "site_title": "Radoskop Cieszyn — Jak głosują radni?",
+  "site_url": "https://cieszyn.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska Cieszyna. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska Cieszyna.",
+  "bip_url": "https://bip.um.cieszyn.pl",
+  "bip_name": "BIP Miasta Cieszyna",
+  "esesja_url": "https://cieszynmiasto.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "cieszyn.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska Cieszyna",
+  "rada_name_genitive": "Rady Miejskiej Cieszyna",
+  "teryt": "2403011",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template na host custom cieszynmiasto.esesja.pl, glosowania imienne IX kad. z /glosowanie/). Dodane 2026-09-04 (cron do 500 miast). club_assignments pending (kuratorować z BIP: bip.um.cieszyn.pl/artykuly/2758/kluby-radnych-kadencja-2024-2029).",
+    "population": 33981,
+    "voivodeship": "slaskie"
+  }
+}
