@@ -1,0 +1,34 @@
+{
+  "city_name": "Oława",
+  "city_genitive": "Oławy",
+  "site_title": "Radoskop Oława — Jak głosują radni?",
+  "site_url": "https://olawa.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Oławie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Oławie.",
+  "bip_url": "https://bip.um.olawa.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Oławie",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "olawa.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Oławie",
+  "rada_name_genitive": "Rady Miejskiej w Oławie",
+  "teryt": "215011",
+  "_meta": {
+    "note": "NOWE miasto (BIP Madkom SPA bip.um.olawa.pl, JSON API /api/menu/434/articles + per-głosowanie PDF-y wydruk eSesja z załączników sesji). Dodane 2026-09-04 (cron do 500 miast). club_assignments pending (brak kategorii 'Kluby radnych' w BIP — kuratorować z protokołów/statutu).",
+    "population": 33087,
+    "voivodeship": "dolnoslaskie"
+  }
+}
