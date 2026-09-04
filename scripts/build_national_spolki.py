@@ -367,8 +367,14 @@ def _company_body(rec: dict, links_by_name: dict | None = None,
                 sub += f", {n_anon} bez pełnego nazwiska"
             parts.append(f'<div class="tn" style="margin:10px 0 4px">{esc(sub)}</div>')
             for h in rows:
-                who = esc(h.get("name") or h.get("inicjaly") or "—")
-                anon = "" if h.get("name") else ' <span class="tn">(inicjały — KRS anonimizuje JSON)</span>'
+                has_name = bool(h.get("name"))
+                who = esc(h.get("name") or h.get("funkcja") or h.get("inicjaly") or "—")
+                if not has_name:
+                    why = "nazwisko zanonimizowane w rejestrze" if h.get("funkcja") \
+                          else "inicjały — KRS anonimizuje JSON"
+                    anon = f' <span class="tn">({why})</span>'
+                else:
+                    anon = ""
                 also = _also_html(h.get("name"), rec["krs"], links_by_name)
                 _kt_hist = _ktomaco_link(h.get("name"), ktomaco_map)
                 od = _fmt(h["od"]) if h.get("od") else "?"
