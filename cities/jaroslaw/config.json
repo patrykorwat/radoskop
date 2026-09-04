@@ -1,0 +1,40 @@
+{
+  "city_name": "Jarosław",
+  "city_genitive": "Jarosławia",
+  "site_title": "Radoskop Jarosław — Jak głosują radni?",
+  "site_url": "https://jaroslaw.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Jarosławia. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Jarosławia.",
+  "bip_url": "https://bip.miastojaroslaw.pl",
+  "bip_name": "BIP Miasta Jarosławia",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "jaroslaw.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Jarosławia",
+  "rada_name_genitive": "Rady Miasta Jarosławia",
+  "teryt": "1804011",
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (System Posiedzenia / portal-posiedzenia.pl, subdomena miastojaroslaw; BIP bip.miastojaroslaw.pl kategoria 'imienne raporty z głosowań' = wydruki z tego systemu, PDF-y z błędami OCR -> dane brać z API chart). Adapter lib_posiedzenia_pl.py: sesja anonima + O3 lista sesji + O7 chart JSON. jaroslaw.esesja.pl wildcard, rada.brak DNS, bip.net.pl 404. TERYT 1804011 (pl.wikipedia TERC). club_assignments PENDING (API partia puste). Dodane 2026-09-04 (cron do 500 miast).",
+    "population": 37073,
+    "voivodeship": "podkarpackie",
+    "lat": 50.0189,
+    "lon": 22.6836
+  }
+}
