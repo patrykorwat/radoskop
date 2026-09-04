@@ -1,0 +1,40 @@
+{
+  "city_name": "Knurów",
+  "city_genitive": "Knurowa",
+  "site_title": "Radoskop Knurów — Jak głosują radni?",
+  "site_url": "https://knurow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Knurowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Knurowie.",
+  "bip_url": "https://knurow.bip.info.pl",
+  "bip_name": "BIP Urząd Miasta Knurów",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "knurow.radoskop.pl",
+  "has_voting_data": true,
+  "has_speaker_activity": false,
+  "councilor_count": 21,
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": true,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Knurowie",
+  "rada_name_genitive": "Rady Miejskiej w Knurowie",
+  "teryt": "2405011",
+  "_meta": {
+    "note": "BIP knurow.bip.info.pl (platforma bip.info.pl — Angular SPA + JSON API /api/fo/search/getResult + /api/fo/articles/{slug} + /api/fo/files/{id}/download). Kategoria 'Rada Miasta > Kadencja 2024-2029 > Sesje > Protokoły z sesji Rady Miasta' = per-sesja PDF protokół narracyjny z blokami eSesja tekstowymi (ZA:/PRZECIW: + Wyniki imienne: ZA(n) listy) bez linii 'Głosowano w sprawie'; temat z najbliższego zdania narracji. eSesja knurow.esesja.pl = wildcard (brak BIP), AlfaTV/bip.net.pl brak. TERYT 2405011 (pl.wiki TERC).",
+    "population": 36498,
+    "voivodeship": "śląskie"
+  }
+}
