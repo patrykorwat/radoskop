@@ -18,6 +18,12 @@ from __future__ import annotations
 # trafień (np. "Sesje" trafiło by w "Sesje rady" gdybyśmy najpierw zamienili
 # słowo, a potem frazę).
 PL_TO_EN: list[tuple[str, str]] = [
+    # ── Druki na stronie sesji (2026-09-04) ──
+    ('Druki tej sesji', 'Documents of this session'),
+    ('Zobacz treść i przebieg →', 'View content and procedure →'),
+    ('Darmowy podgląd to początek treści każdego druku.', 'The free preview shows the beginning of each document.'),
+    ('Pełna treść dokumentów — w pakiecie Pro →', 'Full document content — in the Pro plan →'),
+
     # ── Stenogramy / transcript (2026-06-22) ── apply_locale sortuje DESC ──
     ("Skróty wypowiedzi z protokołów. Rozwiń fragment lub przejdź do pełnego stenogramu sesji.",
      "Excerpts of speeches from official records. Expand a fragment or open the full session transcript."),
@@ -583,6 +589,12 @@ PL_TO_EN: list[tuple[str, str]] = [
 
 
 PL_TO_DE: list[tuple[str, str]] = [
+    # ── Druki na stronie sesji (2026-09-04) ──
+    ('Druki tej sesji', 'Dokumente dieser Sitzung'),
+    ('Zobacz treść i przebieg →', 'Inhalt und Verlauf ansehen →'),
+    ('Darmowy podgląd to początek treści każdego druku.', 'Die kostenlose Vorschau zeigt den Anfang jedes Dokuments.'),
+    ('Pełna treść dokumentów — w pakiecie Pro →', 'Vollständiger Dokumentinhalt — im Pro-Paket →'),
+
     # ── Stenogramy / Wortprotokoll (2026-06-22) ── apply_locale sortuje DESC ──
     ("Skróty wypowiedzi z protokołów. Rozwiń fragment lub przejdź do pełnego stenogramu sesji.",
      "Auszüge der Wortmeldungen aus den Protokollen. Fragment ausklappen oder das vollständige Sitzungsprotokoll öffnen."),
@@ -1173,6 +1185,12 @@ PL_TO_DE: list[tuple[str, str]] = [
 # strukturę PL_TO_DE — apply_locale i tak sortuje po długości DESC, więc
 # kolejność wpisów nie wpływa na poprawność.
 PL_TO_FR: list[tuple[str, str]] = [
+    # ── Druki na stronie sesji (2026-09-04) ──
+    ('Druki tej sesji', 'Documents de cette session'),
+    ('Zobacz treść i przebieg →', 'Voir le contenu et le déroulé →'),
+    ('Darmowy podgląd to początek treści każdego druku.', "L'aperçu gratuit affiche le début de chaque document."),
+    ('Pełna treść dokumentów — w pakiecie Pro →', "Contenu intégral des documents — avec l'offre Pro →"),
+
     ("Przekrój głosowań", "Aperçu des votes"),
     ("Jak głosowały kluby", "Comment les groupes ont voté"),
     ("jednomyślnych", "à l'unanimité"),
@@ -1635,6 +1653,12 @@ PL_TO_FR: list[tuple[str, str]] = [
 # bez głosowania). To region docelowy dla widoku frakcyjnego analogicznie
 # do Paryża.
 PL_TO_DA: list[tuple[str, str]] = [
+    # ── Druki na stronie sesji (2026-09-04) ──
+    ('Druki tej sesji', 'Dokumenter for denne møde'),
+    ('Zobacz treść i przebieg →', 'Se indhold og forløb →'),
+    ('Darmowy podgląd to początek treści każdego druku.', 'Den gratis forhåndsvisning viser starten på hvert dokument.'),
+    ('Pełna treść dokumentów — w pakiecie Pro →', 'Fuldt dokumentindhold — i Pro-pakken →'),
+
     ("Przekrój głosowań", "Afstemningsoversigt"),
     ("Jak głosowały kluby", "Sådan stemte grupperne"),
     ("jednomyślnych", "enstemmige"),
@@ -2091,6 +2115,12 @@ PL_TO_DA: list[tuple[str, str]] = [
 
 
 PL_TO_CS: list[tuple[str, str]] = [
+    # ── Druki na stronie sesji (2026-09-04) ──
+    ('Druki tej sesji', 'Dokumenty tohoto zasedání'),
+    ('Zobacz treść i przebieg →', 'Zobrazit obsah a průběh →'),
+    ('Darmowy podgląd to początek treści każdego druku.', 'Bezplatný náhled zobrazuje začátek každého dokumentu.'),
+    ('Pełna treść dokumentów — w pakiecie Pro →', 'Plný obsah dokumentů — v balíčku Pro →'),
+
     ("Przekrój głosowań", "Přehled hlasování"),
     ("Jak głosowały kluby", "Jak hlasovaly kluby"),
     ("jednomyślnych", "jednomyslných"),
@@ -2561,6 +2591,12 @@ PL_TO_CS: list[tuple[str, str]] = [
 #   - Liczebność: większość rzeczowników odmienia się przez przypadki, my
 #     trzymamy się mianownika i dopełniacza zgodnie z polskim oryginałem.
 PL_TO_LT: list[tuple[str, str]] = [
+    # ── Druki na stronie sesji (2026-09-04) ──
+    ('Druki tej sesji', 'Šios sesijos dokumentai'),
+    ('Zobacz treść i przebieg →', 'Peržiūrėti turinį ir eigą →'),
+    ('Darmowy podgląd to początek treści każdego druku.', 'Nemokamas peržiūra rodo kiekvieno dokumento pradžią.'),
+    ('Pełna treść dokumentów — w pakiecie Pro →', 'Pilnas dokumentų turinys — Pro pakete →'),
+
     ("Przekrój głosowań", "Balsavimų apžvalga"),
     ("Jak głosowały kluby", "Kaip balsavo frakcijos"),
     ("jednomyślnych", "vienbalsių"),
@@ -3028,6 +3064,12 @@ PL_TO_LT: list[tuple[str, str]] = [
 
 
 PL_TO_SK: list[tuple[str, str]] = [
+    # ── Druki na stronie sesji (2026-09-04) ──
+    ('Druki tej sesji', 'Dokumenty tohto zasadnutia'),
+    ('Zobacz treść i przebieg →', 'Zobraziť obsah a priebeh →'),
+    ('Darmowy podgląd to początek treści każdego druku.', 'Bezplatný náhľad zobrazuje začiatok každého dokumentu.'),
+    ('Pełna treść dokumentów — w pakiecie Pro →', 'Plný obsah dokumentov — v balíčku Pro →'),
+
     ("Przekrój głosowań", "Prehľad hlasovaní"),
     ("Jak głosowały kluby", "Ako hlasovali kluby"),
     ("jednomyślnych", "jednomyseľných"),
@@ -3483,6 +3525,12 @@ PL_TO_SK: list[tuple[str, str]] = [
 
 
 PL_TO_ET: list[tuple[str, str]] = [
+    # ── Druki na stronie sesji (2026-09-04) ──
+    ('Druki tej sesji', 'Selle istungi dokumendid'),
+    ('Zobacz treść i przebieg →', 'Vaata sisu ja kulg →'),
+    ('Darmowy podgląd to początek treści każdego druku.', 'Tasuta eelvaade näitab iga dokumendi algust.'),
+    ('Pełna treść dokumentów — w pakiecie Pro →', 'Täielik dokumentide sisu — Pro paketis →'),
+
     ("Przekrój głosowań", "Hääletuste ülevaade"),
     ("Jak głosowały kluby", "Kuidas fraktsioonid hääletasid"),
     ("jednomyślnych", "ühehäälset"),
@@ -3954,6 +4002,12 @@ PL_TO_ET: list[tuple[str, str]] = [
 
 
 PL_TO_LV: list[tuple[str, str]] = [
+    # ── Druki na stronie sesji (2026-09-04) ──
+    ('Druki tej sesji', 'Šīs sēdes dokumenti'),
+    ('Zobacz treść i przebieg →', 'Skatīt saturu un gaitu →'),
+    ('Darmowy podgląd to początek treści każdego druku.', 'Bezmaksas priekšskatījums rāda katra dokumenta sākumu.'),
+    ('Pełna treść dokumentów — w pakiecie Pro →', 'Pilns dokumentu saturs — Pro paketā →'),
+
     ("Przekrój głosowań", "Balsojumu pārskats"),
     ("Jak głosowały kluby", "Kā balsoja frakcijas"),
     ("jednomyślnych", "vienprātīgu"),
@@ -4456,6 +4510,12 @@ PL_TO_LV: list[tuple[str, str]] = [
 
 
 PL_TO_NL: list[tuple[str, str]] = [
+    # ── Druki na stronie sesji (2026-09-04) ──
+    ('Druki tej sesji', 'Documenten van deze zitting'),
+    ('Zobacz treść i przebieg →', 'Bekijk inhoud en verloop →'),
+    ('Darmowy podgląd to początek treści każdego druku.', 'De gratis voorvertoning toont het begin van elk document.'),
+    ('Pełna treść dokumentów — w pakiecie Pro →', 'Volledige documentinhoud — in het Pro-pakket →'),
+
     ("Przekrój głosowań", "Stemoverzicht"),
     ("Jak głosowały kluby", "Hoe fracties stemden"),
     ("jednomyślnych", "unaniem"),
@@ -4953,6 +5013,12 @@ PL_TO_NL: list[tuple[str, str]] = [
 # realiów węgierskiego samorządu: képviselő=radny, frakció=klub,
 # közgyűlés/ülés=sesja, szavazás=głosowanie.
 PL_TO_HU: list[tuple[str, str]] = [
+    # ── Druki na stronie sesji (2026-09-04) ──
+    ('Druki tej sesji', 'Az ülés dokumentumai'),
+    ('Zobacz treść i przebieg →', 'Tartalom és lefolyás megtekintése →'),
+    ('Darmowy podgląd to początek treści każdego druku.', 'Az ingyenes előnézet minden dokumentum elejét mutatja.'),
+    ('Pełna treść dokumentów — w pakiecie Pro →', 'A dokumentumok teljes tartalma — a Pro csomagban →'),
+
     ("Przekrój głosowań", "Szavazási áttekintés"),
     ("Jak głosowały kluby", "Hogyan szavaztak a frakciók"),
     ("jednomyślnych", "egyhangú"),
@@ -5446,6 +5512,12 @@ PL_TO_HU: list[tuple[str, str]] = [
 
 
 PL_TO_UK: list[tuple[str, str]] = [
+    # ── Druki na stronie sesji (2026-09-04) ──
+    ('Druki tej sesji', 'Документи цієї сесії'),
+    ('Zobacz treść i przebieg →', 'Переглянути зміст і перебіг →'),
+    ('Darmowy podgląd to początek treści każdego druku.', 'Безкоштовний попередній перегляд показує початок кожного документа.'),
+    ('Pełna treść dokumentów — w pakiecie Pro →', 'Повний зміст документів — у пакеті Pro →'),
+
     ("Przekrój głosowań", "Огляд голосувань"),
     ("Jak głosowały kluby", "Як голосували фракції"),
     ("jednomyślnych", "одноголосних"),

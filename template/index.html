@@ -3763,7 +3763,7 @@ async function showSession(sessionNumber) {
       const ok = (c.za||0) > total/2;
       html += `<tr class="vote-row" onclick="showVote('${v.id}')">
         <td>${globalIdx}</td>
-        <td style="text-align:left">${v.topic || '—'}</td>
+        <td style="text-align:left">${v.topic || '—'}${v.druk ? ` <a href="/bill/${KAD_SLUGS[currentKid]||currentKid}/${drukSlug(String(v.druk))}/" onclick="event.preventDefault();event.stopPropagation();showDruk('${String(v.druk)}','${currentKid}')" style="color:var(--muted);text-decoration:none">(druk ${v.druk})</a>` : ''}</td>
         <td><span class="pill pill-za">${c.za||0}</span></td>
         <td>${c.przeciw ? `<span class="pill pill-przeciw">${c.przeciw}</span>` : '0'}</td>
         <td>${c.wstrzymal_sie ? `<span class="pill pill-wstrzymal">${c.wstrzymal_sie}</span>` : '0'}</td>
@@ -3773,6 +3773,31 @@ async function showSession(sessionNumber) {
     html += `</tbody></table></div>`;
   });
   html += `</div>`;
+
+  // Druki tej sesji — zagregowane z głosowań (v.druk). Same linki do
+  // widoku druku (showDruk), który ma już paywall snippeta (50 słów + CTA
+  // Pro) po stronie API. Jedno zbiorcze CTA za całą listę, tylko dla
+  // niezalogowanych/free — Pro nie potrzebujemy zasłaniać.
+  const drukNums = [...new Set(sessionVotes.filter(v => v.druk != null && v.druk !== '').map(v => String(v.druk)))];
+  if (drukNums.length > 0) {
+    const isProNow = _authUser && _authUser.pro;
+    const kadSlugCur = KAD_SLUGS[currentKid] || currentKid;
+    html += `<div class="section">
+      <h2>Druki tej sesji (${drukNums.length})</h2>
+      <div style="display:flex;flex-direction:column;gap:6px">`;
+    drukNums.forEach(dn => {
+      const dnEsc = dn.replace(/'/g, "\\'");
+      html += `<a href="/bill/${kadSlugCur}/${drukSlug(dn)}/" onclick="event.preventDefault();showDruk('${dnEsc}','${currentKid}')" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:0.5px solid var(--border);border-radius:8px;color:var(--text);text-decoration:none;font-size:0.9rem">
+        <span style="font-family:var(--font-mono,monospace);font-size:0.78rem;color:var(--accent);white-space:nowrap">druk ${dn}</span>
+        <span style="flex:1;color:var(--muted);font-size:0.82rem">Zobacz treść i przebieg →</span>
+      </a>`;
+    });
+    html += `</div>`;
+    if (!isProNow) {
+      html += `<p style="margin:12px 0 0;color:var(--muted);font-size:0.88rem">Darmowy podgląd to początek treści każdego druku. <a href="#" onclick="event.preventDefault();showPro({from:'session_druki'})" style="color:var(--accent);text-decoration:none;font-weight:600">Pełna treść dokumentów — w pakiecie Pro →</a></p>`;
+    }
+    html += `</div>`;
+  }
 
   // Attendance
   if (sess.attendees) {
