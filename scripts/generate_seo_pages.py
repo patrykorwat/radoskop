@@ -707,12 +707,12 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
 
         club = kad.get("club", "")
         club_full = kad.get("club_full", club)
-        frekwencja = kad.get("frekwencja", 0)
-        aktywnosc = kad.get("aktywnosc", 0)
-        zgodnosc = kad.get("zgodnosc_z_klubem", 0)
-        votes_za = kad.get("votes_za", 0)
-        votes_przeciw = kad.get("votes_przeciw", 0)
-        votes_wstrzymal = kad.get("votes_wstrzymal", 0)
+        frekwencja = kad.get("frekwencja") or 0
+        aktywnosc = kad.get("aktywnosc") or 0
+        zgodnosc = kad.get("zgodnosc_z_klubem") or 0
+        votes_za = kad.get("votes_za") or 0
+        votes_przeciw = kad.get("votes_przeciw") or 0
+        votes_wstrzymal = kad.get("votes_wstrzymal") or 0
 
         canonical = f"{site_url}/{SLUG['profile']}/{slug}/"
 
