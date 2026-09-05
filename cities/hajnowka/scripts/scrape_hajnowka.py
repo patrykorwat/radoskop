@@ -330,8 +330,6 @@ def main() -> int:
                 if not votes and "Rozkład głosów" in text:
                     # PDF w układzie 'GŁOSOWANIE N' (jak ODT) — spróbuj parsera blokowego
                     votes, names = parse_odt_text(text)
-            for nm in names:
-                all_names.setdefault(nm, None)
             if not votes:
                 print(f"  [warn] 0 zwalidowanych głosowań: {date} {slug[:60]}")
                 continue
@@ -348,8 +346,18 @@ def main() -> int:
             print(f"  {date}: {len(votes)} głosowań")
 
     sessions = sorted(seen_dates.values(), key=lambda s: s["date"])
+
+    def disp(nm: str) -> str:
+        """BIP drukuje 'nazwisko imię [drugie imię]' — odwracamy do 'imię(2) nazwisko'."""
+        parts = nm.split()
+        if len(parts) < 2:
+            return nm
+        return " ".join(parts[1:] + [parts[0]])
+
     for s in sessions:
         for v in s["votes"]:
+            for key in ("za", "przeciw", "wstrzymal_sie", "nieobecni"):
+                v[key] = [disp(n) for n in v[key]]
             for nm in v["za"] + v["przeciw"] + v["wstrzymal_sie"] + v["nieobecni"]:
                 all_names.setdefault(nm, None)
     councilor_index = list(all_names.keys())
