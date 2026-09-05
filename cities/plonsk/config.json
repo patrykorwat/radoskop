@@ -1,0 +1,38 @@
+{
+ "city_name": "Płońsk",
+ "city_genitive": "Płońska",
+ "site_title": "Radoskop Płońsk — Jak głosują radni?",
+ "site_url": "https://plonsk.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Płońsku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Płońsku.",
+ "bip_url": "https://umplonsk.bip.org.pl",
+ "bip_name": "BIP Urząd Miejski w Płońsku (umplonsk.bip.org.pl)",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "plonsk.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "scrape": {
+  "runner": "run.sh",
+  "generate_site": true
+ },
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Płońsku",
+ "rada_name_genitive": "Rady Miejskiej w Płońsku",
+ "teryt": "1420011",
+ "_meta": {
+  "note": "NOWE miasto (long_tail; BIP umplonsk.bip.org.pl 'Glosowania IX Kadencja' -> podstrony roczne z docx 'Wyniki imiennego glosowania z <sesji>' pod /pliki/ugplonsk1/; scraper DOCX parser (per-radny 'Nazwisko Imie - Za/Przeciw/Wstrzymal sie' + naglowki sum, walidacja per glosowanie, nazwiska dwuczlonowe z myslnikiem). eSesja {slug}.esesja.pl wildcard redirect; alfa prx02 placeholder; bip.net.pl 404; bip.gov.pl SSDIP. TERYT 1420011 (gm. miejska, pow. plonski 20, mazowieckie; pl.wikipedia infobox). club_assignments PENDING (kuratorowac). Dodane 2026-09-05 (cron do 500 miast).",
+  "population": 21924,
+  "voivodeship": "mazowieckie"
+ }
+}

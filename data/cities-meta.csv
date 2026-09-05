@@ -1,7 +1,5 @@
 slug,voivodeship,population,country,lat,lon
 
-
-
 aachen,nordrhein-westfalen,250000,de,50.7753,6.0839
 aleksandrow-kujawski,kujawsko-pomorskie,12000,pl,52.8765,18.6936
 aleksandrow-lodzki,łódzkie,22148,pl,51.816667,19.3
@@ -278,7 +276,6 @@ riga,riga,605000,lv,56.9496,24.1052
 rogozno,wielkopolskie,10959,pl,52.75222,16.99250
 ropczyce,podkarpackie,15855,pl,50.0528608,21.6116324
 rostock,mecklenburg-vorpommern,210000,de,54.0833,12.1333
-rostock,mecklenburg-vorpommern,210000,de,54.0924,12.0991
 ruda-slaska,śląskie,133793,pl,50.27639,18.86389
 rumia,pomorskie,54107,pl,54.5696,18.3849
 rybnik,śląskie,133772,pl,50.0833,18.5000
@@ -424,7 +421,6 @@ polczyn-zdroj,zachodniopomorskie,7469,pl,53.7442,16.0892
 zwolen,mazowieckie,7417,pl,51.35542,21.58768
 brzozow,podkarpackie,7550,pl,49.695278,22.019444
 olsztynek,warmińsko-mazurskie,7343,pl,53.583333,20.283333
-zelow,łódzkie,7297,pl,51.46667,19.21667
 praszka,opolskie,7322,pl,51.05,18.45
 tuszyn,łódzkie,7221,pl,51.60917,19.53
 zbaszyn,wielkopolskie,7209,pl,52.2506,15.9253
@@ -496,3 +492,4 @@ sandomierz,świętokrzyskie,22997,pl,50.6797,21.7492
 swiebodzice,dolnośląskie,22642,pl,50.8597,16.3200
 laziska-gorne,śląskie,22130,pl,50.1494,18.8419
 ostrow-mazowiecka,mazowieckie,22216,pl,52.8000,21.9000
+plonsk,mazowieckie,21924,pl,52.6222,20.3700
