@@ -164,27 +164,38 @@ def parse_roster(t: str):
 
 
 def parse_sessions():
+    """Sesje IX kad. z DWÓCH katalogów BIP: Protokoły Sesji RM (3804, titles
+    'Protokół z XVIII sesji ... dnia 13 sierpnia 2025') + Zaproszenia na Sesje RM
+    (3805, 'Porządek obrad XXIX Sesji ... dnia 16 czerwca 2026 r.') — protokoły są
+    opóźnione, zaproszenia aktualne do bieżącego miesiąca."""
     sessions, seen = {}, set()
-    for pg in range(1, 6):
-        try:
-            t = fetch(PROTO_BASE + str(pg))
-        except Exception:
-            break
-        found = 0
-        for m in re.finditer(r"Protok[óo][łl] z ([IVXLCDM]+) sesji[^<]{0,90}?(\d{1,2})\s+([a-z]+)\.?\s*(\d{4})", t):
-            roman, d, mon, y = m.group(1), int(m.group(2)), m.group(3).lower().rstrip("."), m.group(4)
-            if mon not in PL_MONTHS:
-                continue
-            iso = f"{y}-{PL_MONTHS[mon]:02d}-{d:02d}"
-            if iso < KAD_START or roman in seen:
-                continue
-            seen.add(roman)
-            sessions[roman] = {"date": iso, "number": roman,
-                               "label": f"Sesja {roman} ({iso})",
-                               "url": PROTO_BASE + "1", "vote_count": 0}
-            found += 1
-        if found == 0 and pg > 1:
-            break
+    for cat in ("3804", "3805"):
+        for pg in range(1, 6):
+            try:
+                t = fetch(PROTO_BASE.replace("3804", cat) + str(pg))
+            except Exception:
+                break
+            t2 = re.sub(r"<[^>]+>", " ", re.sub(r"<(script|style).*?</\1>", "", t, flags=re.S))
+            found = 0
+            pats = [
+                r"Protok[óo][łl] z ([IVXLCDM]+) sesji[^<\n]{0,90}?(\d{1,2})\s+([a-z]+)\.?\s*(\d{4})",
+                r"([IVXLCDM]+)(?:\s+nadzwyczajnej)?\s*[Ss]esji[^.]{0,120}?(\d{1,2})\s+([a-z]+)\s+(20[2-3]\d)\b",
+            ]
+            for pat in pats:
+                for m in re.finditer(pat, t2):
+                    roman, d, mon, y = m.group(1), int(m.group(2)), m.group(3).lower().rstrip("."), m.group(4)
+                    if mon not in PL_MONTHS:
+                        continue
+                    iso = f"{y}-{PL_MONTHS[mon]:02d}-{d:02d}"
+                    if iso < KAD_START or roman in seen:
+                        continue
+                    seen.add(roman)
+                    sessions[roman] = {"date": iso, "number": roman,
+                                       "label": f"Sesja {roman} ({iso})",
+                                       "url": PROTO_BASE + "1", "vote_count": 0}
+                    found += 1
+            if found == 0 and pg > 1:
+                break
     out = sorted(sessions.values(), key=lambda s: s["date"], reverse=True)
     return out
 
