@@ -1,0 +1,44 @@
+{
+  "city_name": "Ząbkowice Śląskie",
+  "city_genitive": "Ząbkowic Śląskich",
+  "site_title": "Radoskop Ząbkowice Śląskie — Skład rady i aktywność",
+  "site_url": "https://zabkowice-slaskie.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Ząbkowicach Śląskich. Sprawdź skład rady, sesje i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Ząbkowicach Śląskich.",
+  "bip_url": "https://bip.zabkowiceslaskie.pl",
+  "bip_name": "BIP Urząd Miejski w Ząbkowicach Śląskich",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zabkowice-slaskie.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "has_voting_data": false,
+  "has_speaker_activity": false,
+  "voting_display": "faction",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Ząbkowicach Śląskich",
+  "rada_name_genitive": "Rady Miejskiej w Ząbkowicach Śląskich",
+  "teryt": "0224053",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "Tier-2 (model berliński): brak głosowań imiennych — tylko skład rady + sesje/aktywność. BIP bip.zabkowiceslaskie.pl (custom CMS): protokoły sesji jako skany PDF bez warstwy tekstu, brak kategorii wyników imiennych; esesja wildcard, alfatv NX, bip.net.pl 404, mojregion 500. Roster 15 radnych z artykul/379/8612; kalendarz sesji z porządków (kat 384) + protokołów (kat 388). TERYT 0224053 (romek.info). Dodane 2026-09-05 (cron do 500 miast).",
+    "population": 15004,
+    "voivodeship": "dolnośląskie",
+    "qid": "Q246693",
+    "lat": 50.58969,
+    "lon": 16.81239
+  }
+}
