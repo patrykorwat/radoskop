@@ -115,6 +115,54 @@ def _rows(page):
     return {y: sorted(v) for y, v in r.items()}
 
 
+class _OcrPage:
+    """Shim: strona zeskanowana (bez warstwy tekstu) po OCR — API jak strona PDF."""
+    def __init__(self, text, words):
+        self._t, self._w = text, words
+
+    def get_text(self, mode="text"):
+        return self._w if mode == "words" else self._t
+
+    def get_images(self):
+        return []
+
+
+def _ocr_page(pg):
+    """Render + tesseract -l pol (TSV z koordynatami) -> _OcrPage w punktach PDF."""
+    import subprocess
+    import tempfile
+    import os
+    try:
+        pix = pg.get_pixmap(dpi=150)
+    except Exception:
+        return None
+    sx = pg.rect.width / pix.width
+    sy = pg.rect.height / pix.height
+    with tempfile.TemporaryDirectory() as td:
+        png = os.path.join(td, "p.png")
+        pix.save(png)
+        try:
+            out = subprocess.run(["tesseract", png, "stdout", "-l", "pol", "tsv"],
+                                 capture_output=True, text=True, timeout=120).stdout
+        except Exception:
+            return None
+    words, texts = [], []
+    for line in out.splitlines()[1:]:
+        c = line.split("\t")
+        if len(c) < 12 or c[11].strip() == "":
+            continue
+        try:
+            l, t_, w_, h_ = float(c[6]), float(c[7]), float(c[8]), float(c[9])
+        except ValueError:
+            continue
+        txt = c[11].strip()
+        texts.append(txt)
+        words.append((l * sx, t_ * sy, (l + w_) * sx, (t_ + h_) * sy, txt, 0, 0, len(words)))
+    if not words:
+        return None
+    return _OcrPage(" ".join(texts), words)
+
+
 def _norm_name(n: str) -> str:
     # PDF układa "NAZWISKO Imię" (nazwisko wersalikami) -> "Imię Nazwisko"
     parts = n.split()
@@ -132,9 +180,15 @@ def parse_session_pdf(pdf_bytes: bytes):
     votes = []
     for pg in d:
         t = " ".join(pg.get_text().split())
+        if not t and pg.get_images():
+            ocr = _ocr_page(pg)
+            if ocr is None:
+                return None
+            pg = ocr
+            t = pg.get_text()
         mh = re.search(r'w dniu (\d{1,2}) (\w+) (\d{4}) r\s*\.?\s*[–-]?\s*(.+?)\s*Lp\.', t)
         ma = re.search(r'Wyniki głosowania:\s*[„"]ZA[”"]\s*(\d+|-)\s*[„"]PRZECIW[”"]\s*(\d+|-)'
-                       r'\s*[„"]WSTRZYMUJĄCE[”"]\s*(\d+|-)\s*NIE GŁOSOWANO\s*(\d+|-)?', t)
+                       r'\s*[„"]WSTRZYMUJĄCE[”"]?\s*(\d+|-)?\s*NIE GŁOSOWANO\s*(\d+|-)?', t)
         cb = _col_cols(pg)
         if not (mh and ma and cb):
             return None
