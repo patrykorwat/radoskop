@@ -44,6 +44,7 @@ MODULE_REGISTRY: List[Dict[str, Any]] = [
     {"id": "council_composition", "requires": ["council_composition"]},
     {"id": "demographics", "requires": ["demographics"]},
     {"id": "budget", "requires": ["budget"]},
+    {"id": "fiscal", "requires": ["fiscal"]},
 ]
 
 
@@ -118,6 +119,37 @@ def load_budget_summary(city_dir: Path) -> Optional[Dict[str, Any]]:
     return summary
 
 
+def load_fiscal_summary(city_dir: Path) -> Optional[Dict[str, Any]]:
+    """Najnowszy rok z docs/fiscal-indicators.json (build_fiscal_indicators.py,
+    definicje MF OSF). Tylko PL (BeSTi@) — stąd capability 'fiscal' pojawia się
+    naturalnie wyłącznie dla polskich miast."""
+    fiscal = _load_json(city_dir / "docs" / "fiscal-indicators.json")
+    if not fiscal:
+        return None
+    years = [y for y in (fiscal.get("years") or []) if y.get("year")]
+    if not years:
+        return None
+    latest = max(years, key=lambda y: y["year"])
+    keep = {
+        "WB3": "operating_surplus_share",   # nadwyżka operacyjna / dochody bieżące
+        "WB4": "capital_spending_share",    # wydatki majątkowe / wydatki
+        "WB12": "debt_service_ratio",       # spłaty art. 243 / dochody
+        "WZ1": "debt_to_revenue",           # dług / dochody
+        "WZ3": "debt_service_to_revenue",   # obsługa długu / dochody
+        "WL2": "surplus_per_capita",        # zł/mieszk.
+        "WL3": "debt_per_capita",           # zł/mieszk.
+    }
+    out: Dict[str, Any] = {"year": int(latest["year"])}
+    for src, dst in keep.items():
+        v = _num(latest.get(src))
+        if v is not None:
+            out[dst] = v
+    # Zostaw przynajmniej 2 wskaźniki, inaczej moduł nie ma sensu.
+    if len(out) < 3:
+        return None
+    return out
+
+
 def detect_capabilities(metrics: Dict[str, Any]) -> List[str]:
     """Wykrywa zdolności z obecności i sensowności danych. Bez flag w config."""
     caps: List[str] = []
@@ -138,6 +170,8 @@ def detect_capabilities(metrics: Dict[str, Any]) -> List[str]:
         caps.append("demographics")
     if metrics.get("budget"):
         caps.append("budget")
+    if metrics.get("fiscal"):
+        caps.append("fiscal")
     return caps
 
 
@@ -220,6 +254,11 @@ def build_city_record(
         if population and budget.get("revenue"):
             budget["per_capita_revenue"] = round(budget["revenue"] / population, 1)
         metrics["budget"] = budget
+
+    # fiscal ------------------------------------------------------------------
+    fiscal = load_fiscal_summary(cities_root / slug)
+    if fiscal:
+        metrics["fiscal"] = fiscal
 
     if not metrics:
         return None

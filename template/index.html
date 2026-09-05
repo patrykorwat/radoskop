@@ -5442,6 +5442,34 @@ const CITY_COMPARE_MODULES = [
       }
       return html;
     } },
+  { id:'fiscal', requires:['fiscal'], label:'Sytuacja finansowa (MF)',
+    render:(a,b)=>{
+      // Wskaźniki MF OSF, definicje 1:1 (BeSTi@). Kierunek "lepiej" per
+      // wskaźnik: nadwyżka i wydatki majątkowe — im więcej tym lepiej;
+      // dług, obsługa, per capita długu — im mniej tym lepiej.
+      const ya=ccGet(a,'fiscal','year'), yb=ccGet(b,'fiscal','year');
+      const row=(label,key,fmt,higherBetter)=>{
+        const va=ccGet(a,'fiscal',key), vb=ccGet(b,'fiscal',key);
+        let mark='';
+        if(typeof va==='number'&&typeof vb==='number'&&va!==vb){
+          const winA=higherBetter? va>vb : va<vb;
+          mark=`<span class="cc-val${winA?' cc-best':''}">${fmt(va)}</span>`;
+          const bTxt=`<span class="cc-val${winA?'':' cc-best'}">${fmt(vb)}</span>`;
+          return `<div class="cc-metric"><div class="cc-metric-label">${label}</div><div class="cc-metric-vals">${mark}<div class="cc-bar"></div>${bTxt}</div></div>`;
+        }
+        return ccMetric(label, va, vb, fmt, false);
+      };
+      let html='';
+      if(ya&&yb&&ya!==yb) html+=`<p class="cc-note">Rok danych: ${a.name||'A'} ${ya}, ${b.name||'B'} ${yb} (najnowsze dostępne).</p>`;
+      html+=row('Nadwyżka operacyjna (WB3)','operating_surplus_share',ccPct,true);
+      html+=row('Wydatki majątkowe (WB4)','capital_spending_share',ccPct,true);
+      html+=row('Dług vs dochody (WZ1)','debt_to_revenue',ccPct,false);
+      html+=row('Spłaty wg art. 243 (WB12)','debt_service_ratio',ccPct,false);
+      html+=row('Obsługa długu (WZ3)','debt_service_to_revenue',ccPct,false);
+      html+=row('Dług na mieszkańca (WL3)','debt_per_capita',(n)=>ccMoney(n,'zł'),false);
+      html+='<p class="cc-note">Definicje Ministerstwa Finansów („Wskaźniki do oceny sytuacji finansowej JST”), dane BeSTi@. Zieleń = korzystniejsza wartość.</p>';
+      return html;
+    } },
 ];
 
 async function loadCityCompareIndex(){

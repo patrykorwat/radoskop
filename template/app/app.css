@@ -470,6 +470,9 @@ footer a { color:var(--accent); text-decoration:none; }
 .cc-val:first-child { text-align:right; }
 .cc-val:last-child { text-align:left; }
 .cc-val.cc-big { font-weight:700; color:var(--accent); }
+/* Kierunek-wartościowy (wskaźniki MF): zieleń = korzystniejsza wartość,
+   niezależnie od tego, która strona ma większą liczbę. */
+.cc-val.cc-best { font-weight:700; color:var(--green); }
 .cc-val-multi { font-size:0.82rem; line-height:1.5; color:var(--text); }
 .cc-bar { display:flex; height:8px; border-radius:4px; overflow:hidden; background:var(--border); }
 .cc-bar-a { background:var(--accent); }
