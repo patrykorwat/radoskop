@@ -85,16 +85,17 @@ def _col_cols(page):
     pos = {}
     for w in band:
         t = _norm(w[4])
+        cx = (w[0] + w[2]) / 2.0
         if t == 'za' and 'za' not in pos:
-            pos['za'] = w[0]
+            pos['za'] = cx
         elif t == 'przeciw' and 'przeciw' not in pos:
-            pos['przeciw'] = w[0]
+            pos['przeciw'] = cx
         elif t.startswith('wstrzy') and 'wstrzymal_sie' not in pos:
-            pos['wstrzymal_sie'] = w[0]
+            pos['wstrzymal_sie'] = cx
         elif (t.startswith('głosowa') or t == 'głosowano') and 'brak_glosu' not in pos:
-            pos['brak_glosu'] = w[0]
+            pos['brak_glosu'] = cx
         elif t.startswith('nieobecno') and 'nieobecni' not in pos:
-            pos['nieobecni'] = w[0]
+            pos['nieobecni'] = cx
     if not ('za' in pos and 'przeciw' in pos and 'wstrzymal_sie' in pos):
         return None
     order = [k for k in ('za', 'przeciw', 'wstrzymal_sie', 'brak_glosu', 'nieobecni') if k in pos]
@@ -104,7 +105,7 @@ def _col_cols(page):
         lo = xs[i] - 30 if i == 0 else (xs[i - 1] + xs[i]) / 2.0
         hi = 9999 if i == len(order) - 1 else (xs[i] + xs[i + 1]) / 2.0
         bounds.append((k, lo, hi))
-    return xs[0] - 30, bounds
+    return min(w[0] for w in band if _norm(w[4]) == 'za') - 30, bounds
 
 
 def _rows(page):
@@ -159,12 +160,15 @@ def parse_session_pdf(pdf_bytes: bytes):
                 if _norm(w).startswith('nieobecno'):
                     cat = 'nieobecni'
                     break
-                if w.strip() in ("X", "x"):
+                if w.strip() == 'X':
                     for k, lo, hi in bounds:
                         if lo <= x < hi:
                             cat = k
                             break
-            parsed[cat if cat else "brak_glosu"].append(name)
+            if cat is None:
+                # wiersz bez żadnego znaku (myślniki = brak głosu, nie liczony)
+                continue
+            parsed[cat].append(name)
         ok = all(len(parsed[k]) == agg.get(k, 0) for k in ("za", "przeciw", "wstrzymal_sie", "brak_glosu"))
         votes.append({
             "topic": topic.strip(" –"),
