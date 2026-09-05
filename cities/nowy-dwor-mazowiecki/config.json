@@ -1,0 +1,35 @@
+{
+  "city_name": "Nowy Dwór Mazowiecki",
+  "city_genitive": "Nowego Dworu Mazowieckiego",
+  "site_title": "Radoskop Nowy Dwór Mazowiecki — Jak głosują radni?",
+  "site_url": "https://nowy-dwor-mazowiecki.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Nowym Dworze Mazowieckim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Nowym Dworze Mazowieckim.",
+  "bip_url": "http://nowydwormaz.pl",
+  "bip_name": "BIP Urząd Miejski w Nowym Dworze Mazowieckim",
+  "esesja_url": "https://nowydwormaz.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "nowy-dwor-mazowiecki.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Nowym Dworze Mazowieckim",
+  "rada_name_genitive": "Rady Miejskiej w Nowym Dworze Mazowieckim",
+  "teryt": "1414011",
+  "_meta": {
+    "note": "NOWE miasto (esesja Portal Mieszkańca instance-A /glosowania server-render, glosowania imienne IX kad. z /glosowanie/). Dodane 2026-09-05 (cron ekspansja 500). club_assignments pending (kuratorowane z BIP).",
+    "population": 28691,
+    "voivodeship": "mazowieckie"
+  }
+}
