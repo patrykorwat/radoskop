@@ -1,0 +1,39 @@
+{
+  "city_name": "Tomaszów Lubelski",
+  "city_genitive": "Tomaszowa Lubelskiego",
+  "site_title": "Radoskop Tomaszów Lubelski — Jak głosują radni?",
+  "site_url": "https://tomaszow-lubelski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Tomaszów Lubelski. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Tomaszów Lubelski.",
+  "bip_url": "https://umtomaszowlubelski.bip.lubelskie.pl",
+  "bip_name": "BIP Urząd Miasta Tomaszów Lubelski",
+  "esesja_url": "https://tomaszowlubelski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "tomaszow-lubelski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Tomaszów Lubelski",
+  "rada_name_genitive": "Rady Miasta Tomaszów Lubelski",
+  "teryt": "0618011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/; subdomena esesja bez myślnika: tomaszowlubelski.esesja.pl). Dodane 2026-09-05 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 18783,
+    "voivodeship": "lubelskie"
+  }
+}

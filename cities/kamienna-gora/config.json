@@ -1,0 +1,38 @@
+{
+  "city_name": "Kamienna Góra",
+  "city_genitive": "Kamiennej Góry",
+  "site_title": "Radoskop Kamienna Góra — Jak głosują radni?",
+  "site_url": "https://kamienna-gora.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Kamiennej Górze. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Kamiennej Górze.",
+  "bip_url": "https://bip.kamiennagora.pl",
+  "bip_name": "BIP Urząd Miasta Kamienna Góra",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kamienna-gora.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Kamiennej Górze",
+  "rada_name_genitive": "Rady Miejskiej w Kamiennej Górze",
+  "teryt": "0207011",
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (System Posiedzenia / portal-posiedzenia.pl, subdomena miastokamiennagora; BIP bip.kamiennagora.pl kategoria 'Głosowania radnych na Sesjach Rady Miasta' linkuje miastokamiennagora.posiedzenia.pl?action=glosowania&cadency=2024). Adapter lib_posiedzenia_pl.py (sesja anonima + O3 + O7 chart). sokolow/kamienna esesja wildcard, brak DNS alfatv; kamienna-gora.bip.net.pl = starostwo powiatowe nie miasto. TERYT 0207011 (adresy.app/teryt). club_assignments PENDING (partia z chart API). Dodane 2026-09-05 (cron do 500 miast).",
+    "population": 18585,
+    "voivodeship": "dolnośląskie"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "city_name": "Sokołów Podlaski",
+  "city_genitive": "Sokołowa Podlaskiego",
+  "site_title": "Radoskop Sokołów Podlaski — Jak głosują radni?",
+  "site_url": "https://sokolow-podlaski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Sokołowie Podlaskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Sokołowie Podlaskim.",
+  "bip_url": "http://bip.sokolowpodl.pl",
+  "bip_name": "BIP Miasta Sokołów Podlaski",
+  "esesja_url": "https://sokolowpodlaski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sokolow-podlaski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Sokołowie Podlaskim",
+  "rada_name_genitive": "Rady Miejskiej w Sokołowie Podlaskim",
+  "teryt": "1429011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-09-05 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 18814,
+    "voivodeship": "mazowieckie"
+  }
+}
