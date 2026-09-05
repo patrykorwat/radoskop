@@ -116,9 +116,13 @@ def _rows(page):
 
 
 def _norm_name(n: str) -> str:
+    # PDF układa "NAZWISKO Imię" (nazwisko wersalikami) -> "Imię Nazwisko"
     parts = n.split()
     if len(parts) == 2 and parts[0].upper() == parts[0] and parts[1].upper() != parts[1]:
-        return f"{parts[1]} {parts[0]}"
+        surname = parts[0].capitalize()
+        if "-" in surname:
+            surname = "-".join(p.capitalize() for p in surname.split("-"))
+        return f"{parts[1]} {surname}"
     return " ".join(parts)
 
 
