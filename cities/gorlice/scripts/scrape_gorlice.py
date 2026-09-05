@@ -41,4 +41,5 @@ if __name__ == "__main__":
         base_url="https://gorlice.esesja.pl",
         kadencje=KADENCJE,
         councilors=COUNCILORS,
+        name_order="as_is",
     ).run_cli(prog_name="Radoskop Gorlice (https://gorlice.esesja.pl)"))
