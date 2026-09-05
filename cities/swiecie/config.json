@@ -1,0 +1,38 @@
+{
+  "city_name": "Świecie",
+  "city_genitive": "Świecia",
+  "site_title": "Radoskop Świecie — Jak głosują radni?",
+  "site_url": "https://swiecie.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Świeciu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Świeciu.",
+  "bip_url": "https://bip.swiecie.eu",
+  "bip_name": "BIP Urząd Miejski w Świeciu",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "swiecie.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Świeciu",
+  "rada_name_genitive": "Rady Miejskiej w Świeciu",
+  "teryt": "0414094",
+  "_meta": {
+    "note": "NOWE miasto (własny BIP bip.swiecie.eu; głosowania imienne jako załącznik 'Wyniki do N' per protokół sesji — eksport systemu obrad z tabelą Wyniki imienne). Dodane 2026-09-05 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 25486,
+    "voivodeship": "kujawsko-pomorskie"
+  }
+}

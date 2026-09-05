@@ -1,0 +1,39 @@
+{
+  "city_name": "Bielsk Podlaski",
+  "city_genitive": "Bielska Podlaskiego",
+  "site_title": "Radoskop Bielsk Podlaski — Jak głosują radni?",
+  "site_url": "https://bielsk-podlaski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Bielsk Podlaski. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Bielsk Podlaski.",
+  "bip_url": "https://bip-umbielsk.podlaskie.eu",
+  "bip_name": "BIP Urzędu Miasta Bielsk Podlaski",
+  "esesja_url": "https://bielskpodlaskimiasto.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "bielsk-podlaski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Bielsk Podlaski",
+  "rada_name_genitive": "Rady Miasta Bielsk Podlaski",
+  "teryt": "2003011",
+  "_meta": {
+    "note": "NOWE miasto (eSesja na hostcie bielskpodlaskimiasto.esesja.pl, glosowania imienne IX kad. 2024-2029 z /glosowanie/; slug esesji rozniejszy się od sluga miasta). Dodane 2026-09-05 (cron ekspansja). club_assignments pending (kuratorowane z BIP).",
+    "population": 25044,
+    "voivodeship": "podlaskie"
+  }
+}
