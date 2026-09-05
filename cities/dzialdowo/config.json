@@ -1,0 +1,41 @@
+{
+  "city_name": "Działdowo",
+  "city_genitive": "Działdowa",
+  "site_title": "Radoskop Działdowo — Jak głosują radni?",
+  "site_url": "https://dzialdowo.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Działdowo. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Działdowo.",
+  "bip_url": "https://bip.dzialdowo.eu",
+  "bip_name": "BIP Urzędu Miasta Działdowo",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "dzialdowo.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Działdowo",
+  "rada_name_genitive": "Rady Miasta Działdowo",
+  "teryt": "2803011",
+  "has_voting_data": true,
+  "has_named_votes": true,
+  "councilor_count": 15,
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto: BIP bip.dzialdowo.eu (CMS Logonet), glosowania imienne z per-sesja PDF 'Protokoly glosowan' (artykul/954/5230, 1 strona=1 glosowanie, tabela X w kolumnach; kolumny per-strona z pozycji x naglowkow, walidacja agregat-per-kolumna). TERYT 2803011 ze stopy BIP. Dodane 2026-09-05 (cron do 500 miast). club_assignments pending (kuratorowac z BIP 'Kluby Radnych').",
+    "population": 21145,
+    "voivodeship": "warmińsko-mazurskie"
+  }
+}
