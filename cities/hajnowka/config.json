@@ -1,0 +1,38 @@
+{
+  "city_name": "Hajnówka",
+  "city_genitive": "Hajnówki",
+  "site_title": "Radoskop Hajnówka — Jak głosują radni?",
+  "site_url": "https://hajnowka.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Hajnówka. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Hajnówka.",
+  "bip_url": "https://bip.hajnowka.pl",
+  "bip_name": "BIP Miasta Hajnówka",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "hajnowka.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Hajnówka",
+  "rada_name_genitive": "Rady Miasta Hajnówka",
+  "teryt": "2005011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (BIP siteor bip.hajnowka.pl, kategoria 'Wyniki głosowania' -> per-sesja PDF/ODT eksport posiedzenia.pl z listami imiennymi ZA/PRZECIW/WSTRZYMUJĘ; IX kadencja 2024-2029). Dodane 2026-09-05 (cron do 500 miast). eSesja=hajnowka.esesja.pl wildcard (martwy), AlfaTV rada.hajnowka.pl brak DNS, bip.net.pl 404.",
+    "population": 20265,
+    "voivodeship": "podlaskie"
+  }
+}
