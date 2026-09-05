@@ -629,7 +629,9 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
             KAD_SLUGS[m.group(1)] = m.group(2)
     if not KAD_SLUGS:
         for k in kadencje:
-            KAD_SLUGS[k["id"]] = k["id"]
+            # kadencje bywa listą stringów (id) zamiast listą dictów — odpornie.
+            kid = k["id"] if isinstance(k, dict) else k
+            KAD_SLUGS[kid] = kid
 
     sitemap_entries = []
 
@@ -1080,8 +1082,8 @@ def process_city(city_dir: Path, output_dir: Path | None = None, force: bool = F
                 _kc = vote_seq_counts.setdefault(kid, {})
                 _kc[_gm.group(1)] = _kc.get(_gm.group(1), 0) + 1
 
-            topic = vote.get("topic", "").replace(";", "").strip()
-            counts = vote.get("counts", {})
+            topic = (vote.get("topic") or "").replace(";", "").strip()
+            counts = vote.get("counts") or {}
             za = counts.get("za", 0)
             przeciw = counts.get("przeciw", 0)
             wstrzymal = counts.get("wstrzymal_sie", 0)
