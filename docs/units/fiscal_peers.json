@@ -1,0 +1,15 @@
+{
+  "generated": "2026-09-05T07:31:15Z",
+  "source": "Mediany wskaźników MF OSF (WB/WL/WZ) liczonych przez build_fiscal_indicators.py po miastach Radoskop, per klasa JST",
+  "methodology": "Ministerstwo Finansów, Wskaźniki do oceny sytuacji finansowej JST (definice wskaźników); mediana klasy jako benchmark rówieśniczy",
+  "classes": {
+    "grodzki": {
+      "n_cities": 0,
+      "years": {}
+    },
+    "gmina": {
+      "n_cities": 0,
+      "years": {}
+    }
+  }
+}

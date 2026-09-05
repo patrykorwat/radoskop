@@ -18,6 +18,36 @@ from __future__ import annotations
 # trafień (np. "Sesje" trafiło by w "Sesje rady" gdybyśmy najpierw zamienili
 # słowo, a potem frazę).
 PL_TO_EN: list[tuple[str, str]] = [
+    # ── Wskaźniki MF OSF (fiscal panel, 2026-09-05) ──
+    ('Sytuacja finansowa — metodologia Ministerstwa Finansów', 'Financial situation — Ministry of Finance methodology'),
+    ('Wskaźnik jedn. średniej z art. 243 u.f.p.', 'Average debt-service indicator (Art. 243 Act on Public Finance)'),
+    ('Udział dochodów bieżących w dochodach ogółem', 'Current income share of total income'),
+    ('Udział transferów bieżących w dochodach bieżących', 'Current transfers share of current income'),
+    ('Udział nadwyżki operacyjnej w dochodach bieżących', 'Operating surplus share of current income'),
+    ('Udział wydatków majątkowych w wydatkach ogółem', 'Capital expenditure share of total spending'),
+    ('Obciążenie wydatków bieżących wynagrodzeniami', 'Wages burden on current expenditure'),
+    ('Nadwyżka operacyjna + sprzedaż majątku vs dochody', 'Operating surplus + asset sales vs income'),
+    ('Samofinansowanie inwestycji (No+Dm vs Wm)', 'Investment self-financing (No+Dm vs Wm)'),
+    ('Dochody pozostałe po zakończeniu roku', 'Income remaining after year-end'),
+    ('Potencjał rozwojowy vs wydatki majątkowe i spłaty', 'Development potential vs capital spending and repayments'),
+    ('Potencjał inwestycyjny vs wydatki majątkowe', 'Investment potential vs capital spending'),
+    ('Wykorzystanie potencjału inwestycyjnego', 'Use of investment potential'),
+    ('Transfery bieżące na mieszkańca', 'Current transfers per capita'),
+    ('Nadwyżka operacyjna na mieszkańca', 'Operating surplus per capita'),
+    ('Zadłużenie na mieszkańca', 'Debt per capita'),
+    ('Potencjał rozwojowy na mieszkańca', 'Development potential per capita'),
+    ('Potencjał inwestycyjny na mieszkańca', 'Investment potential per capita'),
+    ('Zadłużenie vs dochody ogółem', 'Debt vs total income'),
+    ('Zadłużenie vs nadwyżka operacyjna (krotność)', 'Debt vs operating surplus (multiple)'),
+    ('Obsługa długu vs dochody ogółem', 'Debt service vs total income'),
+    ('Odsetki vs zadłużenie', 'Interest vs debt'),
+    ('Obsługa długu vs dochody bieżące', 'Debt service vs current income'),
+    ('Odsetki vs spłaty kapitału', 'Interest vs principal repayments'),
+    ('mediana klasy', 'class median'),
+    ('Wskaźnik', 'Indicator'),
+    ('Pełna historia i wszystkie wskaźniki (dochodowe, wydatkowe, dług, per capita) — w pakiecie Pro.', 'Full history and all indicators (income, spending, debt, per capita) — in the Pro plan.'),
+    ('Metoda: Ministerstwo Finansów', 'Method: Ministry of Finance'),
+
     # ── Druki na stronie sesji (2026-09-04) ──
     ('Druki tej sesji', 'Documents of this session'),
     ('Zobacz treść i przebieg →', 'View content and procedure →'),
@@ -589,6 +619,8 @@ PL_TO_EN: list[tuple[str, str]] = [
 
 
 PL_TO_DE: list[tuple[str, str]] = [
+    # ── Wskaźniki MF OSF (panel PL-only; etykiety zostają po polsku) ──
+
     # ── Druki na stronie sesji (2026-09-04) ──
     ('Druki tej sesji', 'Dokumente dieser Sitzung'),
     ('Zobacz treść i przebieg →', 'Inhalt und Verlauf ansehen →'),
@@ -1185,6 +1217,8 @@ PL_TO_DE: list[tuple[str, str]] = [
 # strukturę PL_TO_DE — apply_locale i tak sortuje po długości DESC, więc
 # kolejność wpisów nie wpływa na poprawność.
 PL_TO_FR: list[tuple[str, str]] = [
+    # ── Wskaźniki MF OSF (panel PL-only; etykiety zostają po polsku) ──
+
     # ── Druki na stronie sesji (2026-09-04) ──
     ('Druki tej sesji', 'Documents de cette session'),
     ('Zobacz treść i przebieg →', 'Voir le contenu et le déroulé →'),
@@ -1653,6 +1687,8 @@ PL_TO_FR: list[tuple[str, str]] = [
 # bez głosowania). To region docelowy dla widoku frakcyjnego analogicznie
 # do Paryża.
 PL_TO_DA: list[tuple[str, str]] = [
+    # ── Wskaźniki MF OSF (panel PL-only; etykiety zostają po polsku) ──
+
     # ── Druki na stronie sesji (2026-09-04) ──
     ('Druki tej sesji', 'Dokumenter for denne møde'),
     ('Zobacz treść i przebieg →', 'Se indhold og forløb →'),
@@ -2115,6 +2151,8 @@ PL_TO_DA: list[tuple[str, str]] = [
 
 
 PL_TO_CS: list[tuple[str, str]] = [
+    # ── Wskaźniki MF OSF (panel PL-only; etykiety zostają po polsku) ──
+
     # ── Druki na stronie sesji (2026-09-04) ──
     ('Druki tej sesji', 'Dokumenty tohoto zasedání'),
     ('Zobacz treść i przebieg →', 'Zobrazit obsah a průběh →'),
@@ -2591,6 +2629,8 @@ PL_TO_CS: list[tuple[str, str]] = [
 #   - Liczebność: większość rzeczowników odmienia się przez przypadki, my
 #     trzymamy się mianownika i dopełniacza zgodnie z polskim oryginałem.
 PL_TO_LT: list[tuple[str, str]] = [
+    # ── Wskaźniki MF OSF (panel PL-only; etykiety zostają po polsku) ──
+
     # ── Druki na stronie sesji (2026-09-04) ──
     ('Druki tej sesji', 'Šios sesijos dokumentai'),
     ('Zobacz treść i przebieg →', 'Peržiūrėti turinį ir eigą →'),
@@ -3064,6 +3104,8 @@ PL_TO_LT: list[tuple[str, str]] = [
 
 
 PL_TO_SK: list[tuple[str, str]] = [
+    # ── Wskaźniki MF OSF (panel PL-only; etykiety zostają po polsku) ──
+
     # ── Druki na stronie sesji (2026-09-04) ──
     ('Druki tej sesji', 'Dokumenty tohto zasadnutia'),
     ('Zobacz treść i przebieg →', 'Zobraziť obsah a priebeh →'),
@@ -3525,6 +3567,8 @@ PL_TO_SK: list[tuple[str, str]] = [
 
 
 PL_TO_ET: list[tuple[str, str]] = [
+    # ── Wskaźniki MF OSF (panel PL-only; etykiety zostają po polsku) ──
+
     # ── Druki na stronie sesji (2026-09-04) ──
     ('Druki tej sesji', 'Selle istungi dokumendid'),
     ('Zobacz treść i przebieg →', 'Vaata sisu ja kulg →'),
@@ -4002,6 +4046,8 @@ PL_TO_ET: list[tuple[str, str]] = [
 
 
 PL_TO_LV: list[tuple[str, str]] = [
+    # ── Wskaźniki MF OSF (panel PL-only; etykiety zostają po polsku) ──
+
     # ── Druki na stronie sesji (2026-09-04) ──
     ('Druki tej sesji', 'Šīs sēdes dokumenti'),
     ('Zobacz treść i przebieg →', 'Skatīt saturu un gaitu →'),
@@ -4510,6 +4556,8 @@ PL_TO_LV: list[tuple[str, str]] = [
 
 
 PL_TO_NL: list[tuple[str, str]] = [
+    # ── Wskaźniki MF OSF (panel PL-only; etykiety zostają po polsku) ──
+
     # ── Druki na stronie sesji (2026-09-04) ──
     ('Druki tej sesji', 'Documenten van deze zitting'),
     ('Zobacz treść i przebieg →', 'Bekijk inhoud en verloop →'),
@@ -5013,6 +5061,8 @@ PL_TO_NL: list[tuple[str, str]] = [
 # realiów węgierskiego samorządu: képviselő=radny, frakció=klub,
 # közgyűlés/ülés=sesja, szavazás=głosowanie.
 PL_TO_HU: list[tuple[str, str]] = [
+    # ── Wskaźniki MF OSF (panel PL-only; etykiety zostają po polsku) ──
+
     # ── Druki na stronie sesji (2026-09-04) ──
     ('Druki tej sesji', 'Az ülés dokumentumai'),
     ('Zobacz treść i przebieg →', 'Tartalom és lefolyás megtekintése →'),
@@ -5512,6 +5562,8 @@ PL_TO_HU: list[tuple[str, str]] = [
 
 
 PL_TO_UK: list[tuple[str, str]] = [
+    # ── Wskaźniki MF OSF (panel PL-only; etykiety zostają po polsku) ──
+
     # ── Druki na stronie sesji (2026-09-04) ──
     ('Druki tej sesji', 'Документи цієї сесії'),
     ('Zobacz treść i przebieg →', 'Переглянути зміст і перебіг →'),
