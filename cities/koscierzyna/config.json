@@ -1,0 +1,40 @@
+{
+  "city_name": "Kościerzyna",
+  "city_genitive": "Kościerzyny",
+  "site_title": "Radoskop Kościerzyna — Jak głosują radni?",
+  "site_url": "https://koscierzyna.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kościerzyny. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Kościerzyny.",
+  "bip_url": "https://bip.koscierzyna.gda.pl",
+  "bip_name": "BIP Gmina Miejska Kościerzyna",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "koscierzyna.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Kościerzyny",
+  "rada_name_genitive": "Rady Miasta Kościerzyny",
+  "teryt": "2206011",
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (System Posiedzenia / portal-posiedzenia.pl, subdomena koscierzyna — link 'Wyniki głosowań' z BIP bip.koscierzyna.gda.pl wskazuje na portal.posiedzenia.pl/KOSCIERZYNA; podmiot 593 Rada Miasta Kościerzyna; API chart = głosowania jawne imienne). koscierzyna.esesja.pl wildcard (302-loop), koscierzyna.bip.net.pl 404, koscierzyna.bip.gov.pl = gmina WIEJSKA (nie miasto). Adapter lib_posiedzenia_pl.py. TERYT 2206011 (miasto Kościerzyna, sygnatura jednostki katalog sesje.live/powiat koscierski). club_assignments PENDING (API partia puste). Dodane 2026-09-05 (cron do 500 miast).",
+    "population": 23778,
+    "voivodeship": "pomorskie",
+    "lat": 53.9796,
+    "lon": 17.9866
+  }
+}
