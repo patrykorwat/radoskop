@@ -384,7 +384,7 @@ def main() -> int:
         "total_votes": len(votes_out),
     }
     (out_dir / f"kadencja-{KAD_ID}.json").write_text(
-        json.dumps({"kadencja": kad}, ensure_ascii=False, indent=1), encoding="utf-8")
+        json.dumps(kad, ensure_ascii=False, indent=1), encoding="utf-8")
     data = {"generated": datetime.now().isoformat(), "default_kadencja": KAD_ID,
             "kadencje": [{"id": KAD_ID, "label": "IX kadencja (2024–2029)"}]}
     (out_dir / "data.json").write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
