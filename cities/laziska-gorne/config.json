@@ -1,0 +1,39 @@
+{
+ "city_name": "Łaziska Górne",
+ "city_genitive": "Łazisk Górnych",
+ "site_title": "Radoskop Łaziska Górne — Jak głosują radni?",
+ "site_url": "https://laziska-gorne.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Łaziskach Górnych. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Łaziskach Górnych.",
+ "bip_url": "https://bip.laziska.pl",
+ "bip_name": "BIP Miasta Łaziska Górne (bip.laziska.pl)",
+ "esesja_url": "https://laziskagorne.esesja.pl",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "laziska-gorne.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "scrape": {
+  "runner": "run.sh",
+  "generate_site": true
+ },
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Łaziskach Górnych",
+ "rada_name_genitive": "Rady Miejskiej w Łaziskach Górnych",
+ "teryt": "2408011",
+ "_meta": {
+  "note": "NOWE miasto (long_tail → eSesja old-template laziskagorne.esesja.pl; slug-slugified 'laziska-gorne' nie istnieje — domena realna bez ogonków 'laziskagorne'; /glosowania -> /listaglosowan -> /glosowanie imienne; 28 sesji IX kad., newest 2026-08-25). alfa rada 403, bip.net.pl 404, bip.gov.pl SSDIP placeholder. TERYT 2408011 (gm. miejska, pow. mikołowski 08, śląskie; pl.wikipedia infobox). club_assignments PENDING (kuratorować). Dodane 2026-09-05 (cron do 500 miast).",
+  "population": 22130,
+  "voivodeship": "śląskie"
+ }
+}
