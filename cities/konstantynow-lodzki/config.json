@@ -1,0 +1,41 @@
+{
+  "city_name": "Konstantynów Łódzki",
+  "city_genitive": "Konstantynowa Łódzkiego",
+  "site_title": "Radoskop Konstantynów Łódzki — Jak głosują radni?",
+  "site_url": "https://konstantynow-lodzki.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Konstantynowie Łódzkim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Konstantynowie Łódzkim.",
+  "bip_url": "https://samorzad.gov.pl/web/gmina-konstantynow-lodzki",
+  "bip_name": "BIP Gminy Konstantynów Łódzki (samorzad.gov.pl)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "konstantynow-lodzki.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Konstantynowie Łódzkim",
+  "rada_name_genitive": "Rady Miejskiej w Konstantynowie Łódzkim",
+  "teryt": "1008011",
+  "has_voting_data": true,
+  "has_named_votes": true,
+  "councilor_count": 15,
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto: BIP = samorzad.gov.pl/web/gmina-konstantynow-lodzki (glowny eSesja tylko VIII-kadencja 2022). Kategoria 'Sprawozdania z glosowan' = per-sesja PDF /attachment/{uuid} 'Glosowania imienne <RZYMSKA> sesja' (eSesja-export: WYNIKI GLOSOVANIE Za/Przeciw/Wstrzymali/Uprawnieni + tabela 'lp / Imie i nazwisko / glos' slowami; walidacja licznikami). Daty glosowania 'Czas glosowania' w PDF. TERYT 1008011 (pl.wiki infobox TERC). Dodane 2026-09-06 (cron do 500 miast). club_assignments pending (kuratorowac).",
+    "population": 18335,
+    "voivodeship": "łódzkie"
+  }
+}
