@@ -1,0 +1,41 @@
+{
+  "city_name": "Ozorków",
+  "city_genitive": "Ozorkowa",
+  "site_title": "Radoskop Ozorków — Jak głosują radni?",
+  "site_url": "https://ozorkow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Ozorkowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Ozorkowie.",
+  "bip_url": "https://ozorkow.bip.net.pl",
+  "bip_name": "BIP Miasta Ozorkowa",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ozorkow.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Ozorkowie",
+  "rada_name_genitive": "Rady Miejskiej w Ozorkowie",
+  "teryt": "1020021",
+  "has_voting_data": true,
+  "has_named_votes": true,
+  "councilor_count": 15,
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto: Nefeni BIP ozorkow.bip.net.pl (Nowoczesna Gmina Next.js; uwaga: slug ozorkow.pl na aftermarket.pl, wlasciwy BIP = ozorkow.bip.net.pl). Kategorie 'Uchuly Rady Miejskiej w Ozorkowie z roku {2024,2025,2026}' (133/126/99) -> per-sesja artykul z zalacznikiem 'raport z glosowan' (ozorkow-api.bip.net.pl/api/attachments). Raport SED: ponumerowane glosowania 'wyniki: ZA/PRZECIW/WSTRZYMUJE SIE/BRAK GLOSU/NIEOBECNI' + 'Wyniki imienne:' listy 'Imie Nazwisko (ZA)'; walidacja licznikami per glosowanie. TERYT 1020021 (pl.wiki infobox). Dodane 2026-09-05 (cron do 500 miast). club_assignments pending.",
+    "population": 19128,
+    "voivodeship": "łódzkie"
+  }
+}

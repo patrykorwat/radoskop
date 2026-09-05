@@ -1,0 +1,41 @@
+{
+  "city_name": "Chełmno",
+  "city_genitive": "Chełmna",
+  "site_title": "Radoskop Chełmno — Jak głosują radni?",
+  "site_url": "https://chelmno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Chełmna. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Chełmna.",
+  "bip_url": "https://bip.chelmno.pl",
+  "bip_name": "BIP Urzędu Miasta Chełmna",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "chelmno.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Chełmna",
+  "rada_name_genitive": "Rady Miasta Chełmna",
+  "teryt": "0404011",
+  "has_voting_data": true,
+  "has_named_votes": true,
+  "councilor_count": 15,
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto: BIP bip.chelmno.pl (CMS Logonet), kategoria 150 'Protokoly, imienne glosowania z sesji'; per-sesja artykul, zalaczniki /attachments/download/ID = wydruki glosowan (1 strona=1 glosowanie, tabela dwukolumnowa 'lp Nazwisko imie Glos' slowami po pozycji x; walidacja liczb per kolumna vs naglowek 'Glosy za/przeciw/wstrzymujace'). TERYT 0404011 (pl.wiki infobox). Dodane 2026-09-05 (cron do 500 miast). club_assignments pending (kuratorowac).",
+    "population": 19205,
+    "voivodeship": "kujawsko-pomorskie"
+  }
+}
