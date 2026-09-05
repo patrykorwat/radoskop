@@ -1243,6 +1243,40 @@ function _landingStats(){
            active:active, rebel:rebel, topVote:topVote, activity:activity, recent:recent };
 }
 
+// Zajawka sytuacji finansowej na stronie głównej (landing). Tylko PL:
+// fiscal-indicators.json istnieje wyłącznie dla miast z BeSTi@. Karty:
+// 4 wskaźniki nagłówkowe + pasek pozycji min–Q1–mediana–Q3–max klasy
+// rówieśniczej. Pełna tabela 23 wskaźników × lata — w zakładce Budżet (Pro).
+// Etykiety PL inline: panel renderuje się tylko gdy /fiscal ma dane (PL).
+function _landingFiscalSection(){
+  var F = window.FISCAL;
+  if(!F || !F.available || !F.latest_year) return '';
+  var HEAD = [['WB3','Nadwyżka operacyjna'],['WB4','Wydatki majątkowe'],['WZ1','Dług vs dochody'],['WB12','Spłaty wg art. 243']];
+  function fmt1(v){ return v==null?'—':Number(v).toLocaleString('pl-PL',{maximumFractionDigits:1,minimumFractionDigits:1})+'%'; }
+  var cards = HEAD.map(function(h){
+    var id=h[0], v=(F.headline||{})[id], st=(F.class_stats||{})[id]||{};
+    var bar='';
+    if(st.q1!=null && st.q3!=null && st.min!=null && v!=null){
+      var rg=(st.max-st.min)||1;
+      var pc=function(x){return Math.min(100,Math.max(0,(x-st.min)/rg*100)).toFixed(1)+'%';};
+      bar='<div style="position:relative;height:5px;border-radius:3px;background:linear-gradient(90deg,var(--border) 0 '+pc(st.q1)+',var(--accent) '+pc(st.q1)+' '+pc(st.q3)+',var(--border) '+pc(st.q3)+' 100%);margin-top:9px;opacity:.9">'
+        +'<div style="position:absolute;left:'+pc(st.med)+';top:-3px;width:2px;height:11px;background:var(--muted)"></div>'
+        +'<div style="position:absolute;left:calc('+pc(v)+' - 4px);top:-3px;width:8px;height:11px;border-radius:2px;background:#fff;border:1px solid var(--accent)"></div></div>'
+        +'<div style="display:flex;justify-content:space-between;font-size:.62rem;color:var(--muted);margin-top:3px"><span>mediana klasy '+fmt1(st.med)+'</span><span>n='+st.n+'</span></div>';
+    } else if(st.med!=null){
+      bar='<div style="font-size:.68rem;color:var(--muted);margin-top:6px">mediana klasy '+fmt1(st.med)+'</div>';
+    }
+    return '<a class="lp-card lp-stat" href="#" onclick="event.preventDefault();_lpGo(\'budget\')" style="cursor:pointer;text-decoration:none;color:inherit">'
+      +'<div class="v" style="font-size:1.35rem">'+fmt1(v)+'</div>'
+      +'<div class="l">'+h[1]+'</div>'+bar+'</a>';
+  }).join('');
+  var nCls = (F.class_stats && F.class_stats.WB3 && F.class_stats.WB3.n) || null;
+  return '<section class="lp-sec"><h2>Sytuacja finansowa — '+F.latest_year+'</h2>'
+    +'<div class="lp-sub">Definicje Ministerstwa Finansów (BeSTi@). Pasek pod wartością: pozycja miasta'+(nCls?(' wśród '+nCls+' miast tej samej klasy'):'')+'.</div>'
+    +'<div class="lp-stats">'+cards+'</div>'
+    +'<div style="font-size:.78rem;color:var(--muted);margin-top:8px">Wszystkie 23 wskaźniki i historia kilku lat — w zakładce <a href="#" onclick="event.preventDefault();_lpGo(\'budget\')" style="color:var(--accent)">Budżet</a>.</div></section>';
+}
+
 function renderLandingHTML(){
   var s=_landingStats(), gen='{{CITY_GENITIVE}}';
   var loaded=!!(K&&K._landingVotesLoaded);
@@ -1276,6 +1310,7 @@ function renderLandingHTML(){
     '<div class="lp-card lp-stat"><div class="v">'+s.tc+'</div><div class="l">'+_t('stat_councilors_label')+'</div></div>'+
     '<div class="lp-card lp-stat"><div class="v">'+contestedTxt+'</div><div class="l">'+_t('stat_contested_label')+'</div></div>'+
     '<div class="lp-card lp-stat"><div class="v">'+s.ts+'</div><div class="l">'+_t('stat_sessions_label')+'</div></div></div></section>'+
+  _landingFiscalSection()+
   (a?('<section class="lp-sec"><h2>'+_t('sec_highlights_h2')+'</h2><div class="lp-sub">'+_t('sec_highlights_sub')+'</div><div class="lp-hl">'+
     '<div class="lp-hcard"><div><div class="lp-tag">'+_t('hl_active_tag')+'</div><div class="lp-name">'+profileLink(a.name)+'</div><div class="lp-hsub">'+_t('hl_active_sub')+'</div>'+_lpBadge(a.club)+'</div><div class="lp-num"><span>'+Math.round(a.aktywnosc||0)+'</span><small>'+_t('hl_active_unit')+'</small></div></div>'+
     (r?('<div class="lp-hcard"><div><div class="lp-tag">'+_t('hl_rebel_tag')+'</div><div class="lp-name">'+profileLink(r.name)+'</div><div class="lp-hsub">'+_t('hl_rebel_sub')+'</div>'+_lpBadge(r.club)+'</div><div class="lp-num"><span>'+(r.rebellion_count||0)+'</span><small>'+_t('hl_rebel_unit')+'</small></div></div>'):'')+
