@@ -1,0 +1,39 @@
+{
+  "city_name": "Gorlice",
+  "city_genitive": "Gorlic",
+  "site_title": "Radoskop Gorlice — Jak głosują radni?",
+  "site_url": "https://gorlice.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta w Gorlicach. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta w Gorlicach.",
+  "bip_url": "https://bip.malopolska.pl/umgorlice",
+  "bip_name": "BIP Urzędu Miejskiego w Gorlicach (bip.malopolska.pl/umgorlice)",
+  "esesja_url": "https://gorlice.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "gorlice.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta w Gorlicach",
+  "rada_name_genitive": "Rady Miasta w Gorlicach",
+  "teryt": "1205011",
+  "_meta": {
+    "note": "NOWE miasto (esesja PM-A gorlice.esesja.pl; IX kad.: sesja 2025-10-16 z 12 glosowaniami imiennymi — malа liczba sesji na portalu). Dodane 2026-09-05 (cron do 500 miast). club_assignments pending.",
+    "population": 26973,
+    "voivodeship": "małopolskie"
+  },
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  }
+}
