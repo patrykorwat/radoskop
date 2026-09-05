@@ -160,50 +160,24 @@ def parse_pdf(data, url=""):
     a_nieb = agg(r"Liczba nieobecnych\s+(\d+)")
     a_nieg = agg(r"Obecni niegłosujący\s+(\d+)")
 
-    # Robust two-column split: rows begin at a small left x (Lp digit) OR column-2 start x.
-    # Column-2 start = most common x0 among body words that are preceded (in same row) by a
-    # word ending further right in column 1 (i.e. the leftmost frequent x0 in the right half).
+    # Column boundary from the table header row: two "Nazwisko" and two "Głos" headers.
+    # mid = midpoint between the first "Głos" header x and the second "Nazwisko" header x —
+    # robust across both observed layouts (with/without Lp column).
     header_words = [w for w in words if w["text"] == "Nazwisko"]
     header_top = min((w["top"] for w in header_words), default=None)
-    body = [w for w in words if header_top is None or w["top"] > header_top + 2]
+    if header_top is None:
+        return None
+    glos_xs = sorted(w["x0"] for w in words if w["text"] == "Głos" and w["top"] < header_top + 6)
+    naz_xs = sorted(w["x0"] for w in words if w["text"] == "Nazwisko" and w["top"] < header_top + 6)
+    if len(glos_xs) < 2 or len(naz_xs) < 2:
+        return None
+    mid = (glos_xs[0] + naz_xs[1]) / 2.0
+
+    body = [w for w in words if w["top"] > header_top + 2]
     # drop footer line ("Wydrukowano: ...")
     body = [w for w in body if not re.match(r"^Wydrukowano|^Wygenerowano", w["text"])]
     if not body:
         return None
-    # cluster rows by top
-    tops = defaultdict(list)
-    for w in body:
-        tops[round(w["top"] / 5.0)].append(w)
-    col_starts = Counter()
-    for key, ws in tops.items():
-        ws = sorted(ws, key=lambda w: w["x0"])
-        col_starts[round(ws[0]["x0"])] += 1
-        for w in ws[1:]:
-            # a new visual column begins when the gap from previous word is large
-            pass
-    if len(col_starts) < 1:
-        return None
-    lp_x = col_starts.most_common(1)[0][0]  # dominant row-start (col 1, with/without Lp)
-    # find second column start: dominant x0 > lp_x + 100
-    right_starts = Counter()
-    for key, ws in tops.items():
-        ws = sorted(ws, key=lambda w: w["x0"])
-        cand = [w for w in ws if w["x0"] > lp_x + 100]
-        if cand:
-            right_starts[round(cand[0]["x0"])] += 1
-    if not right_starts:
-        return None
-    col2_x = right_starts.most_common(1)[0][0]
-    # boundary = midpoint between the right-most frequent vote-token x of col1 and col2_x.
-    # vote tokens are the words that match _vote_token; take their max x0 < col2_x.
-    vote_x1 = [w["x0"] for w in body
-               if _vote_token(w["text"]) and w["text"].isupper() and w["x0"] < col2_x - 20]
-    if vote_x1:
-        import statistics
-        v1max = max(set(vote_x1), key=vote_x1.count) + 40  # most common vote token x + "WSTRZYMUJĘ" width
-        mid = (v1max + col2_x) / 2.0
-    else:
-        mid = (lp_x + col2_x) / 2.0 + 120
 
     rows = defaultdict(list)  # (col, round(top/5)) → words
     for w in body:
