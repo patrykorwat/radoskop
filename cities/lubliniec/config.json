@@ -1,0 +1,82 @@
+{
+  "city_name": "Lubliniec",
+  "city_genitive": "Lublinca",
+  "site_title": "Radoskop Lubliniec — Jak głosują radni?",
+  "site_url": "https://lubliniec.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Lublińcu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Lublińcu.",
+  "bip_url": "https://lubliniec.bip.info.pl/index.php?idmp=264&r=o",
+  "bip_name": "BIP Urząd Miejski w Lublińcu",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lubliniec.radoskop.pl",
+  "clubs": {
+    "KREM": {
+      "name": "Klub Radnych Burmistrza Edwarda Maniury",
+      "short": "KREM",
+      "color": "#1a6fb5",
+      "bg": "rgba(26,111,181,0.12)",
+      "avatar_bg": "#145a8f"
+    },
+    "FSL": {
+      "name": "Klub Radnych Forum Samorządu Lublinieckiego",
+      "short": "FSL",
+      "color": "#2e7d4f",
+      "bg": "rgba(46,125,79,0.12)",
+      "avatar_bg": "#23613c"
+    },
+    "PiS": {
+      "name": "Klub Radnych Prawo i Sprawiedliwość",
+      "short": "PiS",
+      "color": "#b02626",
+      "bg": "rgba(176,38,38,0.12)",
+      "avatar_bg": "#8a1d1d"
+    }
+  },
+  "club_assignments": {
+    "Agnieszka Buchelt": "KREM",
+    "Mariola Honisz": "KREM",
+    "Iwona Janic": "KREM",
+    "Michał Kopyciok": "KREM",
+    "Marcin Małek": "KREM",
+    "Tomasz Mańka": "KREM",
+    "Iwona Ochman": "KREM",
+    "Adam Richter": "KREM",
+    "Joanna Walczak": "KREM",
+    "Piotr Wojtulek": "KREM",
+    "Czesława Włuka": "KREM",
+    "Ireneusz Kłobus": "FSL",
+    "Jan Springwald": "FSL",
+    "Damian Włodarczyk": "FSL",
+    "Franciszek Wróbel": "FSL",
+    "Irena Dyczkowska": "PiS",
+    "Jan Maniura": "PiS",
+    "Andrzej Musioł": "PiS",
+    "Zbigniew Werner": "PiS"
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Lublińcu",
+  "rada_name_genitive": "Rady Miejskiej w Lublińcu",
+  "teryt": "2407011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (BIP bip.info.pl kategoria 'Protokoły z głosowań' idmp=264 — PDF per sesja z tabelami imiennymi ZA/PRZECIW/WSTRZYMAŁ/NIEOBECNY, per-vote walidacja vs agregaty). Dodane 2026-09-05 (cron ekspansja 500). Kluby z zawiadomień klubowych BIP (idmp=116, OCR skanów); Pinkowska-Boguś i Woźniak-Rybka bez klubu w źródłach (pozostali radnymi spoza sygnatariuszy).",
+    "population": 23551,
+    "voivodeship": "śląskie"
+  },
+  "has_voting_data": true,
+  "councilor_count": 22
+}
