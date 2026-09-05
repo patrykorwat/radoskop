@@ -1,0 +1,39 @@
+{
+  "city_name": "Nowa Ruda",
+  "city_genitive": "Nowej Rudy",
+  "site_title": "Radoskop Nowa Ruda — Jak głosują radni?",
+  "site_url": "https://nowa-ruda.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Nowej Rudzie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Nowej Rudzie.",
+  "bip_url": "https://bip.nowaruda.pl",
+  "bip_name": "BIP Miasta Nowa Ruda",
+  "esesja_url": "https://nowaruda.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "nowa-ruda.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Nowej Rudzie",
+  "rada_name_genitive": "Rady Miejskiej w Nowej Rudzie",
+  "teryt": "0208041",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template, glosowania imienne IX kad. 2024-2029 z /glosowanie/). Dodane 2026-09-05 (cron do 500 miast). club_assignments pending (kuratorować z BIP).",
+    "population": 21643,
+    "voivodeship": "dolnośląskie"
+  }
+}
