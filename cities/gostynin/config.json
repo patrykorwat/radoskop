@@ -1,0 +1,41 @@
+{
+  "city_name": "Gostynin",
+  "city_genitive": "Gostynina",
+  "site_title": "Radoskop Gostynin — Jak głosują radni?",
+  "site_url": "https://gostynin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Gostyninie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Gostyninie.",
+  "bip_url": "http://umgostynin.bip.org.pl",
+  "bip_name": "BIP Urzędu Miasta Gostynin",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "gostynin.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Gostyninie",
+  "rada_name_genitive": "Rady Miejskiej w Gostyninie",
+  "teryt": "1404011",
+  "has_voting_data": true,
+  "has_named_votes": true,
+  "councilor_count": 15,
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto: BIP umgostynin.bip.org.pl (old-template), kategorie 'Sesje Rady Miejskiej - ROK 2024/2025/2026' (id 5490/5853/6215). Zalaczniki /pliki/umgostynin/protokol*.pdf = protokol; w tresci bloki '...glosowano nastepujaco: Za - n: List nazwisk. Przeciw - n[: names] Wstrzymalo sie - n[: names]' (nazwiska 'Nazwisko Imie', walidacja licznikami + roster ze skladu na gostynin.pl/579). Roster 15 radnych. TERYT 1404011 (miasto Gostynin, geoportal-krajowy). Dodane 2026-09-06 (cron do 500 miast). club_assignments pending (kuratorowac).",
+    "population": 18355,
+    "voivodeship": "mazowieckie"
+  }
+}
