@@ -1,0 +1,38 @@
+{
+ "city_name": "Ostrów Mazowiecka",
+ "city_genitive": "Ostrowa Mazowiecka",
+ "site_title": "Radoskop Ostrów Mazowiecka — Jak głosują radni?",
+ "site_url": "https://ostrow-mazowiecka.radoskop.pl",
+ "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Ostrowa Mazowiecka. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+ "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Ostrowa Mazowiecka.",
+ "bip_url": "https://www.bip.ostrowmaz.pl/public/",
+ "bip_name": "BIP Miasto Ostrów Mazowiecka (bip.ostrowmaz.pl)",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "ostrow-mazowiecka.radoskop.pl",
+ "clubs": {},
+ "club_assignments": {},
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "scrape": {
+  "runner": "run.sh",
+  "generate_site": true
+ },
+ "has_budget": false,
+ "has_komisje": false,
+ "budget_note": "",
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miasta Ostrowa Mazowiecka",
+ "rada_name_genitive": "Rady Miasta Ostrowa Mazowiecka",
+ "teryt": "1416011",
+ "_meta": {
+  "note": "NOWE miasto (long_tail; custom BIP bip.ostrowmaz.pl/public/ 'Sesje Rady Miasta -> IX Kadencja' — per sesja zalacznik 'Wyniki głosowania' = SKANOWANY PDF raport eSesja format TEXT (Glosowano w sprawie / Wyniki imienne: ZA (n) listy); scraper z OCR pymupdf+tesseract -l pol, serial, walidacja licznikow per kategoria). eSesja {slug}.esesja.pl = wildcard corporate redirect; alfa NXDOMAIN; bip.net.pl 404; bip.gov.pl SSDIP placeholder. TERYT 1416011 (gm. miejska, pow. ostrowski 16, mazowieckie; pl.wikipedia infobox). club_assignments PENDING (kuratorowac). Dodane 2026-09-05 (cron do 500 miast).",
+  "population": 22216,
+  "voivodeship": "mazowieckie"
+ }
+}
