@@ -1,0 +1,39 @@
+{
+  "city_name": "Szczytno",
+  "city_genitive": "Szczytna",
+  "site_title": "Radoskop Szczytno — Jak głosują radni?",
+  "site_url": "https://szczytno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Szczytnie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Szczytnie.",
+  "bip_url": "https://bip.um.szczytno.pl",
+  "bip_name": "BIP Urząd Miejski w Szczytnie",
+  "esesja_url": "https://rada.miastoszczytno.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "szczytno.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Szczytnie",
+  "rada_name_genitive": "Rady Miejskiej w Szczytnie",
+  "teryt": "2817011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (AlfaTV 'System Rada' rada.miastoszczytno.pl, glosowania imienne IX kad. 2024-2029). Dodane 2026-09-05 (cron 500). szczytno.esesja.pl = wildcard korporacyjny, szczytno.bip.net.pl 404. Kluby nie publikowane na stronach radny -> club_assignments PENDING. TERYT 2817011 (pl.wiki infobox).",
+    "population": 22813,
+    "voivodeship": "warmińsko-mazurskie"
+  }
+}
