@@ -1,0 +1,41 @@
+{
+ "landing_enabled": true,
+ "city_name": "Nisko",
+ "city_genitive": "Niska",
+ "site_title": "Radoskop Nisko — Skład rady i sesje",
+ "site_url": "https://nisko.radoskop.pl",
+ "site_description": "Radoskop — Rada Miejska w Nisku. Skład rady kadencji 2024–2029 i kalendarz sesji (bez imiennych głosowań).",
+ "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Nisku.",
+ "bip_url": "https://bip.nisko.pl/organy/1081/rada_miejska",
+ "bip_name": "BIP Gminy i Miasta Nisko (bip.nisko.pl)",
+ "github_url": "https://github.com/radoskoppl/radoskop",
+ "author": "Patryk Orwat",
+ "cname": "nisko.radoskop.pl",
+ "kadencje": {
+  "2024-2029": {
+   "label": "IX kadencja (2024–2029)",
+   "start": "2024-05-07"
+  }
+ },
+ "kadencja_active": "2024-2029",
+ "has_budget": false,
+ "has_komisje": false,
+ "has_interpelacje": false,
+ "has_voting_data": false,
+ "has_speaker_activity": false,
+ "has_named_votes": false,
+ "voting_display": "faction",
+ "councilor_count": 21,
+ "samorzad_type": "miasto",
+ "rada_name": "Rada Miejska w Nisku",
+ "rada_name_genitive": "Rady Miejskiej w Nisku",
+ "teryt": "1812054",
+ "scrape": {
+  "runner": "run.sh",
+  "generate_site": true,
+  "note": "Tier-2 (model berliński): brak głosowań imiennych IX kadencji w każdym źródle (zweryfikowane 2026-09-05). nisko.esesja.pl = wildcard korporacyjny (brak BIP), rada.nisko.pl nie działa, nisko.bip.net.pl brak, bip.nisko.pl (idcom) protokoły Sesji RM bez tabel ZA/PRZECIW per-radny, www.nisko.pl/sesje/ tylko załączniki PDF (403 na indeks, załączniki to uchwały/protokoły zbiorcze). Roster 21 radnych (www.nisko.pl/samorzad/rada-miejska-w-nisku, format NAZWISKO Imię -> swap) + 11 sesji IX (V 2024-07-12 ... XVIII 2025-08-13) z protokołów BIP. club_assignments PENDING. has_voting_data:false, voting_display:faction."
+ },
+ "_meta": {
+  "note": "NOWE miasto (pula Tier-2 -> model berliński). Roster 21 radnych + kalendarz 11 sesji IX kadencji; brak imiennych głosowań w źródłach. Źródła sprawdzone 2026-09-05."
+ }
+}
