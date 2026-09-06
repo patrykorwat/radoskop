@@ -1,0 +1,41 @@
+{
+  "city_name": "Siemiatycze",
+  "city_genitive": "Siemiatycz",
+  "site_title": "Radoskop Siemiatycze — Jak głosują radni?",
+  "site_url": "https://siemiatycze.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Siemiatycze. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Siemiatycze.",
+  "bip_url": "https://bip-umsiemiatycze.podlaskie.eu",
+  "bip_name": "BIP Miasta Siemiatycze",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "siemiatycze.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Siemiatycze",
+  "rada_name_genitive": "Rady Miasta Siemiatycze",
+  "teryt": "2010011",
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (BIP bip-umsiemiatycze.podlaskie.eu serwer-renderowany; kategoria /rada-miasta/protokoly_z_sesji/ paginacja ?p=<rok>; per-sesja PDF protokołu TEKSTOWY z tabelami imiennymi głosowania tabletowego 'Lp. Nazwisko i imię głosowanie' + tokeny za/przeciw/nieobecny, agregat 'N za' po tabeli = walidacja). siemiatycze.esesja.pl redirect-loop (wildcard), brak bip.net.pl/AlfaTV. TERYT 2010011 (pl.wiki infobox). club_assignments PENDING. Dodane 2026-09-07 (cron do 500 miast).",
+    "population": 14210,
+    "voivodeship": "podlaskie",
+    "qid": "Q218980",
+    "lat": 52.42722,
+    "lon": 22.86250
+  }
+}
