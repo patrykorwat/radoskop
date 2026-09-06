@@ -116,8 +116,16 @@ def main(city_dir: Path):
             continue
         did = rec["id_dokumentu"]
         try:
-            page = _get(f"/index.php?id={MENU_GLOSOWANIA}&id_dokumentu={did}&akcja=szczegoly&p2={did}").decode("utf-8", "replace")
-            m = re.search(r'href="([^"]*upload/pliki/[^"]+\.pdf)"', page, re.I)
+            page = _get(BASE + f"/index.php?id={MENU_GLOSOWANIA}&id_dokumentu={did}&akcja=szczegoly&p2={did}").decode("utf-8", "replace")
+            m = None
+            for mm in re.finditer(r'href="([^"]*upload/pliki/[^"]+\.pdf)"', page):
+                ctx = page[mm.end():mm.end() + 200]
+                if "Plik" in ctx and "dłowy" in ctx.replace("\u0142", "ł"):
+                    m = mm
+                    break
+            if not m:
+                cands = list(re.finditer(r'href="([^"]*upload/pliki/[^"]+imienne[^\"]*\.pdf)"', page, re.I))
+                m = cands[0] if cands else None
             if not m:
                 print(f"  [skip] {title} — brak pliku źródłowego")
                 continue
