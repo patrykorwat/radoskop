@@ -1,0 +1,39 @@
+{
+  "city_name": "Przeworsk",
+  "city_genitive": "Przeworska",
+  "site_title": "Radoskop Przeworsk — Jak głosują radni?",
+  "site_url": "https://przeworsk.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Przeworska. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Przeworska.",
+  "bip_url": "https://przeworsk.bip.info.pl/index.php?idmp=1&r=r",
+  "bip_name": "BIP Urząd Miasta Przeworska",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "przeworsk.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Przeworska",
+  "rada_name_genitive": "Rady Miasta Przeworska",
+  "teryt": "1814011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (BIP bip.info.pl; menu 'Uchwały...Rady Miasta' → Kadencja 2024-2029 idmp=827 → kategorie per sesja; każdy dokument uchwały ma załącznik 'Wyniki głosowania radnych' = PDF DSSS Vote App z warstwą tekstową, listy imienne kolumnowe 'Jestem za/przeciw/Wstrzymuję się', per-vote walidacja vs agregat). Dodane 2026-09-06 (cron ekspansja 500). club_assignments PENDING (kuratorować z BIP/zawiadomień klubowych, nie fabrykować).",
+    "population": 15105,
+    "voivodeship": "podkarpackie"
+  },
+  "has_voting_data": true
+}
