@@ -5,8 +5,9 @@ Effekt pojedynczego miasta wymaga mediany rówieśniczej ze WSZYSTKICH miast;
 uruchamianie build_policy_effects.py per miasto z --peers-glob czytałoby
 383 pliki 383 razy. Ten driver:
   1. wczytuje fiscal-indicators.json wszystkich miast (jedno przejście),
-  2. liczy medianę rówieśniczą per wskaznik per rok (jedna mediana krajowa —
-     dopracowanie: per klasa JST, patrz build_fiscal_peers),
+  2. liczy mediane rowiesnicza per wskaznik per rok PER KLASA JST (grodzki =
+     miasto na prawach powiatu wg TERYT, gmina = reszta; dokladnie jak
+     build_fiscal_peers.py) + jedna mediana krajowa jako zapas,
   3. dla kazdego miasta z data.json + fiscal pisze cities/{slug}/docs/
      policy-effects.json (serwowane z S3 per miasto),
   4. agreguje zdarzenia z chipem sygnaturowym do docs/units/policy_effects.json
@@ -27,6 +28,7 @@ from build_policy_effects import (  # noqa: E402
     ALL_INDICATORS, EFFECTS, EFFECTIVE_NEXT_YEAR, SIGNATURE,
     adopted, classify, load_votes, window,
 )
+from build_fiscal_peers import city_class  # noqa: E402
 
 
 def main() -> int:
@@ -41,36 +43,62 @@ def main() -> int:
     repo = Path(args.repo)
     cities = repo / "cities"
 
-    # 1. fiscal per miasto + 2. mediana krajowa
+    # 1. fiscal per miasto + klasa JST (TERYT jak build_fiscal_peers)
     fiscals: dict[str, dict[str, dict]] = {}
+    klass_of: dict[str, str] = {}
     for f in sorted(cities.glob("*/docs/fiscal-indicators.json")):
         try:
             d = json.loads(f.read_text())
         except (json.JSONDecodeError, OSError):
             continue
         yrs = {y["year"]: y for y in d.get("years", []) if y.get("year")}
-        if yrs:
-            fiscals[f.parts[-3]] = yrs
+        slug = f.parts[-3]
+        if not yrs:
+            continue
+        fiscals[slug] = yrs
+        cfg_p = f.parents[1] / "config.json"
+        try:
+            cfg = json.loads(cfg_p.read_text())
+        except (json.JSONDecodeError, OSError):
+            cfg = {}
+        klass_of[slug] = city_class(cfg.get("teryt", "")) or "gmina"
     if not fiscals:
         print("brak fiscal-indicators.json pod", cities, file=sys.stderr)
         return 1
 
-    acc: dict[str, dict[str, list[float]]] = {}
-    for yrs in fiscals.values():
+    # 2. mediana rowiesnicza per klasa JST per rok (+ krajowa jako zapas)
+    import statistics
+
+    def accumulate():
+        return {}
+
+    acc_class: dict[str, dict[str, dict[str, list[float]]]] = {"grodzki": accumulate(), "gmina": accumulate()}
+    acc_nat: dict[str, dict[str, list[float]]] = {}
+    n_class: dict[str, set[str]] = {"grodzki": set(), "gmina": set()}
+    for slug, yrs in fiscals.items():
+        klass = klass_of[slug]
+        n_class[klass].add(slug)
         for y, row in yrs.items():
             for ind in ALL_INDICATORS:
                 v = row.get(ind)
                 if isinstance(v, (int, float)):
-                    acc.setdefault(y, {}).setdefault(ind, []).append(v)
-    import statistics
-    peer_med = {y: {i: statistics.median(xs) for i, xs in row.items() if xs}
+                    acc_class[klass].setdefault(y, {}).setdefault(ind, []).append(v)
+                    acc_nat.setdefault(y, {}).setdefault(ind, []).append(v)
+
+    def medify(acc):
+        return {y: {i: statistics.median(xs) for i, xs in row.items() if xs}
                 for y, row in acc.items()}
+
+    peer_by_class = {k: medify(a) for k, a in acc_class.items()}
+    peer_national = medify(acc_nat)
 
     # 3. per miasto
     out_index_events: list[dict] = []
     n_files = 0
     for slug, fiscal in sorted(fiscals.items()):
         docs = cities / slug / "docs"
+        klass = klass_of[slug]
+        peer_med = peer_by_class[klass]
         has_votes = (docs / "data.json").is_file() or any(docs.glob("kadencja-*.json"))
         if not has_votes:
             continue
@@ -139,9 +167,12 @@ def main() -> int:
         out = {
             "generated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
             "source": "uchwaly z BIP (topic glosowania) x wskazniki OSF MF (BeSTi@) — build_policy_effects.py",
-            "method": "delta srednia(eff..eff+1) vs srednia(eff-2..eff-1), wskaznik MF; mediana rowiesnicza krajowa. Asocjacja czasowa, nie kauzacja.",
+            "method": "delta srednia(eff..eff+1) vs srednia(eff-2..eff-1), wskaznik MF; mediana rowiesnicza per klasa JST. Asocjacja czasowa, nie kauzacja.",
             "caveat": "Wspolwystepowanie wielu czynnikow; pojedyncza uchwala rzadko jest jedynym sprawca zmiany wskaznika.",
-            "peer_basis": f"mediana wskaznikowa z {len(fiscals)} miast",
+            "jst_class": klass,
+            "peer_basis": (f"mediana wskaznikowa wsrod {len(n_class[klass])} miast klasy "
+                           + ("grodzki (miasta na prawach powiatu)" if klass == "grodzki"
+                              else "gmina/miejsko-wiejska")),
             "series": {"miasto": series_city, "mediana": series_peer},
             "events": events,
         }
