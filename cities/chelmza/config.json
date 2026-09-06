@@ -1,0 +1,41 @@
+{
+  "city_name": "Chełmża",
+  "city_genitive": "Chełmży",
+  "site_title": "Radoskop Chełmża — Jak głosują radni?",
+  "site_url": "https://chelmza.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Chełmży. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Chełmży.",
+  "bip_url": "https://www.bip.chelmza.pl",
+  "bip_name": "BIP Urząd Miasta Chełmży",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "chelmza.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Chełmży",
+  "rada_name_genitive": "Rady Miejskiej w Chełmży",
+  "teryt": "0415011",
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (System Posiedzenia / portal-posiedzenia.pl, subdomena chelmza; BIP bip.chelmza.pl kategoria 'Zawiadomienia o sesji' linkuje chelmza.posiedzenia.pl). Adapter lib_posiedzenia_pl.py: sesja anonima + O3 lista sesji + O7 chart JSON (persons votes [1]=ZA [2]=PRZECIW [3]=WSTRZYMAŁ, present=false=>nieobecny). chelmza.esesja.pl wildcard redirect, rada.chelmza.pl brak DNS, chelmza.bip.net.pl 404. TERYT 0415011 (pl.wikipedia). club_assignments PENDING (chart 'partia' puste dla Chełmży — kuratorować z BIP). Dodane 2026-09-06 (cron do 500 miast).",
+    "population": 14362,
+    "voivodeship": "kujawsko-pomorskie",
+    "qid": null,
+    "lat": 53.18583,
+    "lon": 18.61056
+  }
+}
