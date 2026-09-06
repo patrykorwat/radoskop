@@ -1,0 +1,40 @@
+{
+  "city_name": "Łowicz",
+  "city_genitive": "Łowicza",
+  "site_title": "Radoskop Łowicz — Jak głosują radni?",
+  "site_url": "https://lowicz.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Łowiczu. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Łowiczu.",
+  "bip_url": "https://www.lowicz.eu/bip/",
+  "bip_name": "BIP Miasto Łowicz",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lowicz.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Łowiczu",
+  "rada_name_genitive": "Rady Miejskiej w Łowiczu",
+  "teryt": "1008011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (custom BIP lowicz.eu, załącznik 'Wykaz głosowań' PDF = wydruk eSesja z Wynikami imiennymi per radny). Dodane 2026-09-05 (cron ekspansja). club_assignments pending (kuratorowane z BIP/wyborów).",
+    "population": 27896,
+    "voivodeship": "łódzkie"
+  },
+  "has_voting_data": true,
+  "councilor_count": 22
+}

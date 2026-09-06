@@ -1,0 +1,43 @@
+{
+  "landing_enabled": true,
+  "city_name": "Gryfów Śląski",
+  "city_genitive": "Gryfowa Śląskiego",
+  "site_title": "Radoskop Gryfów Śląski — Jak głosują radni?",
+  "site_url": "https://gryfow-slaski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Gryfowie Śląskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Gryfowie Śląskim.",
+  "bip_url": "https://bip.gryfow.pl",
+  "bip_name": "BIP Urzędu Gminy i Miasta Gryfów Śląski (bip.gryfow.pl)",
+  "esesja_url": "https://gryfowslaski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "gryfow-slaski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska Gminy Gryfów Śląski",
+  "rada_name_genitive": "Rady Miejskiej Gminy Gryfów Śląski",
+  "teryt": "0212013",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (long_tail -> eSesja old-template na NIESPÓJNYM slugu 'gryfowslaski' (nie gryfow-slaski!) — {slug}.esesja.pl wildcard, ale gryfowslaski.esesja.pl = Rada Miejska Gminy Gryfów Śląski, 27 sesji IX z /listaglosowan/ + imienne /glosowanie/ (osobaa za/przeciw/wstrzymuje). Dodane 2026-09-01 (cron do 500 miast). club_assignments PENDING.",
+    "population": 6386,
+    "voivodeship": "dolnośląskie",
+    "lat": 51.028,
+    "lon": 15.4148,
+    "qid": "Q988179"
+  }
+}

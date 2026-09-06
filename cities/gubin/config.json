@@ -1,0 +1,48 @@
+{
+  "landing_enabled": true,
+  "city_name": "Gubin",
+  "city_genitive": "Gubina",
+  "site_title": "Radoskop Gubin — Jak głosują radni?",
+  "site_url": "https://gubin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Gubinie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Gubinie.",
+  "bip_url": "https://bip.gubin.pl/",
+  "bip_name": "BIP Miasto Gubin",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "gubin.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "has_interpelacje": false,
+  "has_voting_data": true,
+  "has_speaker_activity": false,
+  "has_named_votes": true,
+  "councilor_count": 15,
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Gubinie",
+  "rada_name_genitive": "Rady Miejskiej w Gubinie",
+  "teryt": "0802011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true,
+    "note": "Glosowania imienne: bip.gubin.pl rejestr aktow /akty/1394/typ/1/ (per akt zalacznik 'wynik glosowania' = 1-stronicowy PDF z warstwa TEKSTU: GLOSOWALO/ZA/PRZECIW/WSTRZYMALO + pary 'Nazwisko Imie' + glos (ZA/PRZECIW/WSTRZYMAŁ SIĘ/nie głosował/nieobecny), walidacja licznikami). Rzymski w nr uchwały = numer sesji. Sklad 15 radnych: /xml/695/1597/ roster XML BIP. eSesja = wildcard korporacyjny; brak AlfaTV/Nefeni."
+  },
+  "_meta": {
+    "note": "NOWE miasto (2026-09-06, cron ekspansja 500): glosowania imienne IX kad. z PDF-ow 'wynik glosowania' per uchwala (rejestr aktow BIP). club_assignments pending (kuratorowac).",
+    "note_short": "Glosowania imienne z BIP rejestr aktow; 15 radnych IX.",
+    "population": 16528,
+    "voivodeship": "lubuskie",
+    "lat": 51.9492,
+    "lon": 14.7168,
+    "qid": null
+  }
+}
