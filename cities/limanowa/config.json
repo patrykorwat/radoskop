@@ -1,0 +1,39 @@
+{
+  "city_name": "Limanowa",
+  "city_genitive": "Limanowej",
+  "site_title": "Radoskop Limanowa — Jak głosują radni?",
+  "site_url": "https://limanowa.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Limanowa. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Limanowa.",
+  "bip_url": "https://bip.malopolska.pl/umlimanowa,m,38164,rada-miasta-limanowa.html",
+  "bip_name": "BIP Urząd Miasta Limanowa (bip.malopolska.pl)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "limanowa.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Limanowa",
+  "rada_name_genitive": "Rady Miasta Limanowa",
+  "teryt": "1207011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (Małopolska BIP / Madkom SPA: kategoria 'Imienny wykaz głosowania' menu 312044 → artykuł per sesja → załącznik 'protokol' PDF = eSesja print per-głosowanie 'Protokół głosowania' + tabele imienne LP/RADNY/GŁOS, per-vote walidacja vs agregaty ZA/PRZECIW/WSTRZYMUJĘ). limanowa.esesja.pl = wildcard (brak eSesja BIP), bip.net.pl 404 — jedyne źródło bip.malopolska.pl. Dodane 2026-09-06 (cron ekspansja 500). club_assignments PENDING, clubs {}.",
+    "population": 15067,
+    "voivodeship": "małopolskie"
+  },
+  "has_voting_data": true
+}
