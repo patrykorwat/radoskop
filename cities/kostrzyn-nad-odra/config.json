@@ -1,0 +1,40 @@
+{
+  "city_name": "Kostrzyn nad Odrą",
+  "city_genitive": "Kostrzyna nad Odrą",
+  "site_title": "Radoskop Kostrzyn nad Odrą — Jak głosują radni?",
+  "site_url": "https://kostrzyn-nad-odra.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Kostrzyn nad Odrą. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Kostrzyn nad Odrą.",
+  "bip_url": "https://kostrzyn.nowoczesnagmina.pl",
+  "bip_name": "BIP Urzędu Miasta Kostrzyn nad Odrą",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kostrzyn-nad-odra.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Kostrzyn nad Odrą",
+  "rada_name_genitive": "Rady Miasta Kostrzyn nad Odrą",
+  "teryt": "0801011",
+  "has_voting_data": true,
+  "has_named_votes": true,
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto: BIP kostrzyn.nowoczesnagmina.pl (Sputnik nowoczesnagmina, ?c=/?a=, dokumenty ?p=document&action=show). Kategoria kadencja 2024-2029 (c=1229) -> per-sesja podkategorie 'N sesja...' -> artykul 'protokół głosowań' -> PDF DSSS Vote App (layout dwoch kolumn 'Jestem za/przeciw', parser kolumnowy x<345 jak Lochow, walidacja agregatami). eSesja kostrzyn.esesja.pl = Rada Gminy Kostrzyn (gmina wiejska, NIE miasto) — nierozwazane. TERYT 0801011 (gmina miejska, rky+geoportal2). Dodane 2026-09-06 (cron do 500 miast). club_assignments pending (kuratorowac).",
+    "population": 17536,
+    "voivodeship": "lubuskie"
+  }
+}
