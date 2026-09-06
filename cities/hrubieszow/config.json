@@ -1,0 +1,41 @@
+{
+  "city_name": "Hrubieszów",
+  "city_genitive": "Hrubieszowa",
+  "site_title": "Radoskop Hrubieszów — Jak głosują radni?",
+  "site_url": "https://hrubieszow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Hrubieszowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Hrubieszowie.",
+  "bip_url": "https://umhrubieszow.bip.lubelskie.pl",
+  "bip_name": "Biuletyn Informacji Publicznej Urzędu Miasta Hrubieszów",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "hrubieszow.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Hrubieszowie",
+  "rada_name_genitive": "Rady Miejskiej w Hrubieszowie",
+  "teryt": "0604011",
+  "has_voting_data": true,
+  "has_named_votes": true,
+  "councilor_count": 12,
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto: BIP umhrubieszow.bip.lubelskie.pl = platforma lubelskie.pl (serwer-render + DataTables AJAX: POST /index.php?id=246&action=list-ajax lista 'Imienne wykazy glosowan' 104 dok; strona dok ?id_dokumentu=N&akcja=szczegoly&p2=N -> 'Plik zrodlowy' /upload/pliki/*.pdf). PDF TEKSTOWY per-glosowanie tablica 'Radny|Oddany glos' pary nazwisko/'Jestem za|Jestem przeciw|Wstrzymuje sie' (bez licznikow agregowanych). eSesja/bip.net.pl/mojregion = martwe (wildcard/500). TERYT 0604011 (strona urzedu miasto.hrubieszow.pl node/3467). Dodane 2026-09-06 (cron do 500 miast). club_assignments pending (kuratorowac).",
+    "population": 17232,
+    "voivodeship": "lubelskie"
+  }
+}
