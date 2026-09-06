@@ -1,0 +1,41 @@
+{
+  "city_name": "Zielonka",
+  "city_genitive": "Zielonki",
+  "site_title": "Radoskop Zielonka — Jak głosują radni?",
+  "site_url": "https://zielonka.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Zielonka. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Zielonka.",
+  "bip_url": "https://bip.zielonka.pl",
+  "bip_name": "Biuletyn Informacji Publicznej Miasta Zielonka",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "zielonka.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Zielonka",
+  "rada_name_genitive": "Rady Miasta Zielonka",
+  "teryt": "1434041",
+  "has_voting_data": true,
+  "has_named_votes": true,
+  "councilor_count": 15,
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto: BIP bip.zielonka.pl = Madkom React-SPA z jawnym API JSON (jak Oborniki: /api/menu/{id}/submenu, /api/menu/{id}/articles, /api/articles/{id}, pobierz e,pobierz,get.html?id=N). Kategoria 'Glosowania z Sesji Rady Miasta' (1737) -> IX Kadencja (4410) -> 29 kategorii sesji (per-sesja art 'Protokoly z glosowan' + zalacznik PDF). PDF-y SKANOWANE eSesja-print (0 znakow tekstu) -> scraper robi OCR fitz dpi=150 + tesseract -l pol, parser TEXT ZA/PRZECIW/WSTRZYMUJE SIE/BRAK GLOSU/NIEOBECNI z walidacja licznikami. eSesja zielonka.esesja.pl = wildcard (korporacyjny redirect). TERYT 1434041 (gm. miejska Zielonka, BDL GUS jednostka 2143 + pl.wiki TERC). Dodane 2026-09-06 (cron do 500 miast). club_assignments pending (kuratorowac).",
+    "population": 17486,
+    "voivodeship": "mazowieckie"
+  }
+}
