@@ -1,0 +1,40 @@
+{
+  "city_name": "Ostrzeszów",
+  "city_genitive": "Ostrzeszowa",
+  "site_title": "Radoskop Ostrzeszów — Jak głosują radni?",
+  "site_url": "https://ostrzeszow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Ostrzeszowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Ostrzeszowie.",
+  "bip_url": "https://ostrzeszow.biuletyn.net",
+  "bip_name": "BIP Urząd Miasta i Gminy w Ostrzeszowie",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "ostrzeszow.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Ostrzeszowie",
+  "rada_name_genitive": "Rady Miejskiej w Ostrzeszowie",
+  "teryt": "3018074",
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (BIP ostrzeszow.biuletyn.net platforma biuletyn.net/FLS, serwer-renderowany; kategoria cid=139 'Protokoły z sesji i wyniki głosowań' = per-sesja PDF 'Wyniki głosowań z N sesji' TEKSTOWY eSesja-print (wiersze 'LP Nazwisko Imię | głosował ZA/WSTRZYMAŁ się/nie głosował', x-koorydynaty pdfplumber, walidacja per-głos vs zagregaty GŁOSOWAŁO/ZA/PRZECIW/WSTRZYMAŁO). ostrzeszow.esesja.pl wildcard redirect, rada.ostrzeszow.pl brak DNS, ostrzeszow.bip.net.pl 404; portal-posiedzenia.pl sub ostrzeszow żyje (podmiot 1020) ale 0 sesji API — pominięty. Transmisje ostrzeszow.posiedzenia.pl wideo. TERYT 3018074 (pl.wikipedia). club_assignments PENDING. Dodane 2026-09-06 (cron do 500 miast, pula tier2 -> pełne).",
+    "population": 14095,
+    "voivodeship": "wielkopolskie",
+    "lat": 51.42639,
+    "lon": 17.93306
+  }
+}

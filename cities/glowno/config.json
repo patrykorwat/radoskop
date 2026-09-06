@@ -1,0 +1,41 @@
+{
+  "city_name": "Głowno",
+  "city_genitive": "Głowna",
+  "site_title": "Radoskop Głowno — Jak głosują radni?",
+  "site_url": "https://glowno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Głownie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Głownie.",
+  "bip_url": "https://glowno.bip.net.pl",
+  "bip_name": "BIP Urząd Miejski w Głownie",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "glowno.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Głownie",
+  "rada_name_genitive": "Rady Miejskiej w Głownie",
+  "teryt": "1020011",
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (System Posiedzenia / portal-posiedzenia.pl, subdomena glowno; BIP glowno.bip.net.pl kategoria 198 'Wykazy głosowań' -> artykuł linkuje glowno.posiedzenia.pl zakładka Głosowania). Adapter lib_posiedzenia_pl.py: sesja anonima + O3 lista sesji + O7 chart JSON imienne ZA/PRZECIW/WSTRZYMAŁ. glowno.esesja.pl wildcard redirect, rada.glowno.pl brak. TERYT 1020011 (BDL GUS, gmina miejska). club_assignments PENDING. Dodane 2026-09-07 (cron do 500 miast).",
+    "population": 13961,
+    "voivodeship": "łódzkie",
+    "qid": null,
+    "lat": 51.9225,
+    "lon": 19.7072
+  }
+}
