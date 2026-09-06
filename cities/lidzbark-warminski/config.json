@@ -1,0 +1,41 @@
+{
+  "city_name": "Lidzbark Warmiński",
+  "city_genitive": "Lidzbarka Warmińskiego",
+  "site_title": "Radoskop Lidzbark Warmiński — Jak głosują radni?",
+  "site_url": "https://lidzbark-warminski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Lidzbarku Warmińskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Lidzbarku Warmińskim.",
+  "bip_url": "https://bip.lidzbarkw.pl",
+  "bip_name": "BIP Urząd Miejski w Lidzbarku Warmińskim",
+  "esesja_url": "https://lidzbarkwarminski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "lidzbark-warminski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Lidzbarku Warmińskim",
+  "rada_name_genitive": "Rady Miejskiej w Lidzbarku Warmińskim",
+  "teryt": "2809011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (2026-09-06, cron ekspansja 500): eSesja skrocone subdomena lidzbarkwarminski.esesja.pl (PM-instance A, serwer-render /listaglosowan; 'lidzbark-warminski.esesja.pl' = wildcard). Glosowania imienne IX kad. club_assignments pending (kuratorowac).",
+    "population": 15489,
+    "voivodeship": "warminsko-mazurskie",
+    "lat": 54.1222,
+    "lon": 20.5828
+  }
+}
