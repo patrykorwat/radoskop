@@ -1,0 +1,39 @@
+{
+  "city_name": "Międzyrzec Podlaski",
+  "city_genitive": "Międzyrzeca Podlaskiego",
+  "site_title": "Radoskop Międzyrzec Podlaski — Jak głosują radni?",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Międzyrzec Podlaski. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Międzyrzec Podlaski.",
+  "site_url": "https://miedzyrzec-podlaski.radoskop.pl",
+  "bip_url": "https://bip.miedzyrzec.pl",
+  "bip_name": "BIP Urząd Miasta Międzyrzec Podlaski",
+  "esesja_url": "https://miedzyrzecpodlaski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "miedzyrzec-podlaski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta w Międzyrzecu Podlaskim",
+  "rada_name_genitive": "Rady Miasta w Międzyrzecu Podlaskim",
+  "teryt": "0601011",
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template; sesje tytułowane 'posiedzenie Sesji Rady Miasta ...' — filtr lib_esesja poluzowany 2026-09-06 by akceptować prefiks 'posiedzenie' gdy tytuł zawiera 'sesj'; 31 sesji IX kad., imienne /glosowanie/). Dodane 2026-09-06 (cron ekspansja do 500). club_assignments pending (kuratorować z BIP). TERYT 0601011 (miasto Międzyrzec Podlaski).",
+    "population": 16667,
+    "voivodeship": "lubelskie"
+  }
+}

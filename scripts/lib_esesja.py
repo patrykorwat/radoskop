@@ -688,8 +688,14 @@ class EsesjaScraper:
                 # zamrożone na maju 2024. Teraz: akceptuj gdy tytuł zawiera rdzeń
                 # "sesj", a odrzucaj komisje i inne posiedzenia.
                 low = text.strip().lower()
-                if "komisj" in low or low.startswith(
-                    ("posiedzenie", "wspólne", "wspolne", "konwent", "spotkanie", "narada", "debata")
+                # "posiedzenie Sesji Rady Miasta ..." (miedzyrzec-podlaski) to
+                # PLENUM mimo prefiksu "posiedzenie" — odrzucamy prefiks tylko
+                # gdy tytuł NIE zawiera rdzenia "sesj" (komisje i konwenty).
+                if "komisj" in low or (
+                    low.startswith(
+                        ("posiedzenie", "wspólne", "wspolne", "konwent", "spotkanie", "narada", "debata")
+                    )
+                    and "sesj" not in low
                 ):
                     continue
                 if "sesj" not in low:

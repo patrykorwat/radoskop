@@ -1,166 +1,170 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""Radoskop Libiąż — Tier-2 (roster / "model berliński") scraper.
+"""Radoskop Libiąż — imienne głosowania Rady Miejskiej w Libiążu (IX kadencja).
 
-Brak głosowań imiennych w formie maszynowo czytelnej: BIP eBOI malopolska
-(bip.malopolska.pl/umlibiaz) publikuje przy każdej uchwale załącznik
-"Protokół głosowania" jako SKAN (obraz 1653x2338, brak warstwy tekstu) —
-OCR tabeli kolumnowej bez wiarygodnej atrybucji per radny.
-eSesja libiaz.esesja.pl = PM-instance B (sessions-list 0 sesji IX kad.).
-Strona pokazuje SKŁAD RADY (21 radnych, IX kadencja) + KALENDARZ SESJI.
-
-Skład: artykuł /api/articles/2730966 ("Dane kontaktowe do radnych (email)
-- kadencja 2024-2029", nazwisko imię + email służbowy @libiaz.pl).
-Kalendarz: kategoria /api/menu/433975/articles ("Rada > Sesje > IX kadencja")
-— artykuły "Zawiadomienie o <RZYMSKA> sesji - DD.MM.RRRR r.".
+Źródło: portal-posiedzenia.pl (System Posiedzenia), subdomena `libiaz`
+(BIP bip.malopolska.pl/umlibiaz publikuje 'Protokół głosowania' jako skan —
+dane bierzemy z API chart portalu; libiaz.posiedzenia.pl osadza ten portal).
+Adapter: radoskop/scripts/lib_posiedzenia_pl.py.
+Głosowania jawne imienne per punkt sesji.
+Upgrade Tier-2 -> pełne: 2026-09-06 (cron do 500; wykryto chart API z imiennymi).
 """
+import argparse
 import json
-import re
-import ssl
 import sys
-import unicodedata
-import urllib.request
-from datetime import datetime
+from collections import defaultdict
+from datetime import datetime, timezone
 from pathlib import Path
 
-API = "https://bip.malopolska.pl/api"
-ROSTER_ART = 2730966
-SESSIONS_CAT = 433975
+SCRIPTS = Path(__file__).resolve().parents[3] / "scripts"
+sys.path.insert(0, str(SCRIPTS))
+from lib_posiedzenia_pl import (PosiedzeniaClient, classify_sessions,  # noqa: E402
+                                session_num, votes_from_chart)
+
+SUBDOMENA = "libiaz"
 KAD_START = "2024-05-07"
-KAD = "2024-2029"
-
-_CTX = ssl.create_default_context()
-_CTX.check_hostname = False
-_CTX.verify_mode = ssl.CERT_NONE
-_UA = {"User-Agent": "Mozilla/5.0 (Radoskop; info@radoskop.eu)"}
+KADENCJA_ID = "2024-2029"
+KADENCJA_LABEL = "IX kadencja (2024\u20132029)"
 
 
-def _get_json(url):
-    import time
-    for att in range(4):
-        try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers=_UA),
-                                        timeout=40, context=_CTX) as r:
-                return json.loads(r.read().decode("utf-8", "replace"))
-        except Exception as e:  # noqa: BLE001
-            if att == 3:
-                raise
-            time.sleep(2 + att * 3)
-
-
-MONTHS = {"stycznia": 1, "lutego": 2, "marca": 3, "kwietnia": 4, "maja": 5,
-          "czerwca": 6, "lipca": 7, "sierpnia": 8, "września": 9,
-          "października": 10, "listopada": 11, "grudnia": 12}
-
-
-def _slug(name):
-    s = unicodedata.normalize("NFKD", name)
-    s = "".join(c for c in s if not unicodedata.combining(c))
-    s = s.lower().replace("ł", "l")
-    s = re.sub(r"[^a-z0-9]+", "", s)
-    return s or "radny"
-
-
-def fetch_roster():
-    d = _get_json(f"{API}/articles/{ROSTER_ART}")
-    import html as h
-    c = h.unescape(re.sub("<[^>]+>", "\n", d.get("content") or ""))
-    pairs = re.findall(
-        r"([A-ZŁŚŻŹĆĘÓĄ][\wŁŚŻŹĆĘÓĄ\-]+)\s+([A-ZŁŚŻŹĆĘÓĄ][\wŁŚŻŹĆĘÓĄ\-]+)\s*-\s*\n?\s*[\w.\-]+@[\w.\-]+",
-        c.replace("\r", ""))
-    names = [f"{first} {fam}" for fam, first in pairs]
-    return sorted(set(names), key=lambda n: n.split()[-1])
-
-
-ROMAN_VAL = 0
-
-
-def _roman(s):
-    vals = {"I": 1, "V": 5, "X": 10, "L": 50}
-    total, prev = 0, 0
-    for ch in reversed(s):
-        v = vals.get(ch, 0)
-        total += v if v >= prev else -v
-        prev = max(prev, v)
-    return total
-
-
-def fetch_sessions():
-    out = []
-    j = _get_json(f"{API}/menu/{SESSIONS_CAT}/articles?limit=100&offset=0")
-    for a in (j.get("articles") or []):
-        title = (a.get("aliasFields") or [{}])[0].get("value") or a.get("title") or ""
-        m = re.search(r"([IVXL]+)\s+sesji?\s*-\s*(\d{1,2})\.(\d{1,2})\.(\d{4})", title)
-        if not m:
-            continue
-        roman, dd, mm, yy = m.group(1), int(m.group(2)), int(m.group(3)), int(m.group(4))
-        date = f"{yy:04d}-{mm:02d}-{dd:02d}"
-        if date < KAD_START:
-            continue
-        out.append({"date": date, "number": _roman(roman)})
-    seen = {}
-    for s in out:
-        seen.setdefault(s["date"], s)
-    return sorted(seen.values(), key=lambda s: s["date"])
-
-
-def build(city_dir):
-    cfg = json.loads((Path(city_dir) / "config.json").read_text(encoding="utf-8"))
-    docs = Path(city_dir) / "docs"
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--city-dir", required=True)
+    args = ap.parse_args()
+    city = Path(args.city_dir)
+    docs = city / "docs"
     docs.mkdir(parents=True, exist_ok=True)
-    names = fetch_roster()
-    print(f"  roster: {len(names)}")
-    if len(names) < 10:
-        raise SystemExit("roster too small — abort")
-    sessions = fetch_sessions()
-    print(f"  sessions: {len(sessions)}")
-    if len(sessions) < 5:
-        raise SystemExit("too few sessions — abort")
 
-    clubs = cfg.get("clubs", {}) or {}
-    assignments = cfg.get("club_assignments", {}) or {}
-    kadencja = {
-        "id": KAD, "label": cfg["kadencje"][KAD]["label"],
-        "clubs": {k: v.get("name", k) for k, v in clubs.items()},
-        "sessions": [{"date": s["date"], "number": s["number"], "vote_count": 0,
-                      "attendee_count": None, "attendees": [], "speakers": []}
-                     for s in sessions],
-        "total_sessions": len(sessions), "total_votes": 0,
-        "total_councilors": len(names),
-        "councilors": [{"name": n, "club": assignments.get(n, ""), "district": None,
-                        "frekwencja": None, "aktywnosc": None,
-                        "zgodnosc_z_klubem": None, "votes_total": 0,
-                        "rebellion_count": 0, "has_activity_data": False}
-                       for n in names],
-        "votes": [], "similarity_top": [], "similarity_bottom": [],
-    }
-    (docs / f"kadencja-{KAD}.json").write_text(
-        json.dumps(kadencja, ensure_ascii=False, indent=1), encoding="utf-8")
-    profiles = {
-        "scraped_at": datetime.now().isoformat(),
-        "profiles": [{"name": n, "slug": _slug(n),
-                      "kadencje": {KAD: {"club": assignments.get(n, ""),
-                                         "has_voting_data": False,
-                                         "has_activity_data": False,
-                                         "former": False, "mid_term": False}}}
-                     for n in names],
-        "total": len(names),
-    }
-    (docs / "profiles.json").write_text(
-        json.dumps(profiles, ensure_ascii=False, indent=1), encoding="utf-8")
+    c = PosiedzeniaClient(SUBDOMENA)
+    d = c.login()
+    print(f"[{SUBDOMENA}] podmiot={c.podmiot} {c.nazwa}", flush=True)
+    sess = classify_sessions(c.sessions(), KAD_START)
+    print(f"[{SUBDOMENA}] sesje IX: {len(sess)}", flush=True)
+
+    all_votes = []
+    clubs = {}
+    seen_names = set()
+    for s in sess:
+        date = s["date"][:10]
+        num = session_num(s["name"])
+        for p in s["points"]:
+            ch = c.vote_detail(p["id"])
+            res = votes_from_chart(ch, None) if ch else None
+            if res is None:
+                continue
+            named, nieob, vclubs = res
+            if not any(named.values()) and not nieob:
+                continue
+            for nm, cl in vclubs.items():
+                clubs[nm] = cl
+            for nm in list(named["za"]) + list(named["przeciw"]) + \
+                    list(named["wstrzymal_sie"]) + nieob:
+                seen_names.add(nm)
+            all_votes.append({"date": date, "session_num": num,
+                              "topic": (p.get("name") or "").strip(),
+                              "ts": ch.get("startDateTime", ""),
+                              "za": named["za"], "przeciw": named["przeciw"],
+                              "wstrzymal_sie": named["wstrzymal_sie"],
+                              "nieobecni_glos": nieob})
+    print(f"[{SUBDOMENA}] głosowania: {len(all_votes)} radni: {len(seen_names)}",
+          flush=True)
+    if len(all_votes) < 20:
+        raise SystemExit(f"ZA MAŁO głosów ({len(all_votes)}) — przerywam")
+
+    # ---- build (format jak zabki/lib_esesja) ----
+    councilors_seen = sorted(seen_names)
+    all_votes.sort(key=lambda v: (v["date"], v.get("ts", "")))
+    sessions_data = []
+    by_sess = defaultdict(list)
+    for i, v in enumerate(all_votes, 1):
+        v["id"] = str(i)
+        by_sess[v["date"]].append(v)
+    for dd, vs in sorted(by_sess.items()):
+        sessions_data.append({"date": dd, "number": dd,
+                              "label": f"Sesja {vs[0].get('session_num','')} ({dd})",
+                              "vote_count": len(vs)})
+    votes_out = []
+    for v in all_votes:
+        nv = {"za": v["za"], "przeciw": v["przeciw"],
+              "wstrzymal_sie": v["wstrzymal_sie"]}
+        votes_out.append({"id": v["id"], "session_date": v["date"],
+                          "session_number": v.get("session_num", ""),
+                          "topic": v["topic"], "named_votes": nv,
+                          "counts": {"for_": len(v["za"]),
+                                     "against": len(v["przeciw"]),
+                                     "abstain": len(v["wstrzymal_sie"]),
+                                     "absent": len(v.get("nieobecni_glos", []))}})
+    total_votes = len(votes_out)
+    total_sessions = len(sessions_data)
+    cdata = {n: {"name": n, "club": clubs.get(n, ""), "votes_za": 0,
+                 "votes_przeciw": 0, "votes_wstrzymal": 0, "votes_brak": 0,
+                 "votes_nieobecny": 0} for n in councilors_seen}
+    csess = defaultdict(set)
+    for v in votes_out:
+        for cat, key in (("za", "votes_za"), ("przeciw", "votes_przeciw"),
+                         ("wstrzymal_sie", "votes_wstrzymal")):
+            for nm in v["named_votes"][cat]:
+                if nm in cdata:
+                    cdata[nm][key] += 1
+                    csess[nm].add(v["session_date"])
+    councilors_list = []
+    for cc in cdata.values():
+        present = cc["votes_za"] + cc["votes_przeciw"] + cc["votes_wstrzymal"]
+        councilors_list.append({
+            "name": cc["name"], "club": cc["club"], "district": None,
+            "frekwencja": round((len(csess.get(cc["name"], set())) / total_sessions * 100) if total_sessions else 0, 1),
+            "aktywnosc": round((present / total_votes * 100) if total_votes else 0, 1),
+            "zgodnosc_z_klubem": 0.0,
+            "votes_za": cc["votes_za"], "votes_przeciw": cc["votes_przeciw"],
+            "votes_wstrzymal": cc["votes_wstrzymal"], "votes_brak": cc["votes_brak"],
+            "votes_nieobecny": cc["votes_nieobecny"],
+            "votes_total": present + cc["votes_nieobecny"],
+            "rebellion_count": 0, "rebellions": [],
+            "has_activity_data": False, "activity": None})
+    club_counts = defaultdict(int)
+    for cc in councilors_list:
+        if cc["club"]:
+            club_counts[cc["club"]] += 1
+    kad = {"id": KADENCJA_ID, "label": KADENCJA_LABEL,
+           "clubs": dict(club_counts), "sessions": sessions_data,
+           "total_sessions": total_sessions, "total_votes": total_votes,
+           "total_councilors": len(councilors_list),
+           "councilors": councilors_list, "votes": votes_out,
+           "similarity_top": [], "similarity_bottom": []}
+    (docs / f"kadencja-{KADENCJA_ID}.json").write_text(
+        json.dumps(kad, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    def slugify(nm):
+        import unicodedata
+        s = unicodedata.normalize("NFKD", nm.lower())
+        s = "".join(ch for ch in s if not unicodedata.combining(ch))
+        return "".join(ch for ch in s if ch.isalnum() or ch == " ").strip().replace(" ", "-")
+    profiles = {"profiles": [{"name": cc["name"], "slug": slugify(cc["name"]),
+                              "kadencje": {KADENCJA_ID: {
+                                  "club": cc["club"], "has_voting_data": True,
+                                  "has_activity_data": False,
+                                  "frekwencja": cc["frekwencja"],
+                                  "aktywnosc": cc["aktywnosc"],
+                                  "zgodnosc_z_klubem": 0.0,
+                                  "votes_za": cc["votes_za"],
+                                  "votes_przeciw": cc["votes_przeciw"],
+                                  "votes_wstrzymal": cc["votes_wstrzymal"],
+                                  "votes_brak": cc["votes_brak"],
+                                  "votes_nieobecny": cc["votes_nieobecny"],
+                                  "votes_total": cc["votes_total"],
+                                  "rebellion_count": 0, "rebellions": [],
+                                  "roles": [], "notes": "",
+                                  "former": False, "mid_term": False}}}
+                             for cc in councilors_list],
+               "total": len(councilors_list)}
+    (docs / "profiles.json").write_text(json.dumps(profiles, ensure_ascii=False, indent=1), encoding="utf-8")
     (docs / "data.json").write_text(json.dumps({
-        "generated": datetime.now().isoformat(),
-        "default_kadencja": KAD,
-        "kadencje": [{"id": KAD, "label": cfg["kadencje"][KAD]["label"]}]},
+        "generated": datetime.now(timezone.utc).isoformat(),
+        "default_kadencja": KADENCJA_ID,
+        "kadencje": [{"id": KADENCJA_ID, "label": KADENCJA_LABEL}]},
         ensure_ascii=False, indent=1), encoding="utf-8")
-    (docs / "config.json").write_text(
-        json.dumps(cfg, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"  OK {len(names)} radnych, {len(sessions)} sesji")
-    return 0
+    print(f"[{SUBDOMENA}] ZAPISANO: {total_sessions} sesji, {total_votes} głosowań, "
+          f"{len(councilors_list)} radnych", flush=True)
 
 
 if __name__ == "__main__":
-    city_dir = Path(__file__).resolve().parent.parent
-    if len(sys.argv) > 1:
-        city_dir = Path(sys.argv[1])
-    raise SystemExit(build(city_dir))
+    main()
