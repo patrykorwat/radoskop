@@ -1,15 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Radoskop Oborniki — Tier-2 (roster / "model berliński") scraper.
+"""Radoskop Oborniki — głosowania imienne (BIP Madkom bip.umoborniki.nv.pl, API JSON).
 
-eSesja Portal Mieszkańca oborniki.esesja.pl: /glosowania nie działa (PM-B,
-0 sesji w liście), ALE profile radnych /radny/{id}/{slug}.htm serwują realne
-statystyki per radny: obecność na posiedzeniach (27/33), udział w głosowaniach
-(341/452), rozkład głosów ZA/PRZECIW/WSTRZYMUJĄCE, wypowiedzi (ogólne/ad vocem
-+ minuty). Skład 21 radnych z /posiedzenia. Brak kalendarza sesji (Archiwum 0).
+BIP = React-SPA Madkom z jawnym API JSON:
+  /api/menu/{id}/submenu            podkategorie
+  /api/menu/{id}/articles?limit=..  artykuły kategorii (Uchwały RM menu 135 -> lata 409/361/335)
+  /api/articles/{id}                artykuł + attachments[]
+Każdy artykuł "Sesja <RZYMSKA> <data> r." ma załącznik "Wyniki głosowań"
+(/e,pobierz,get.html?id=N) = eSesja-print TEXT: per głosowanie
+  "Głosowano w sprawie: <temat>"
+  " ZA: n, PRZECIW: n, WSTRZYMUJĘ SIĘ: n, BRAK GŁOSU: n, NIEOBECNI: n"
+  "Wyniki imienne:" / "ZA (n)" / listy nazwisk po przecinkach / "Głosowanie z dnia: DD.MM.RRRR"
+Walidacja: liczba nazwisk per kategoria == licznik w nagłówku.
 
-has_voting_data:false (brak tabel per głosowanie),
-has_speaker_activity:true (wypowiedzi per radny).
+Użycie: python scrape_oborniki.py [city_dir]
 """
 import json
 import re
@@ -17,149 +21,252 @@ import ssl
 import sys
 import time
 import unicodedata
-import urllib.parse
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
-_CTX = ssl.create_default_context()
-_CTX.check_hostname = False
-_CTX.verify_mode = ssl.CERT_NONE
-HEADERS = {"User-Agent": "Mozilla/5.0 (Radoskop cron)"}
+import pymupdf
 
-BASE = "https://oborniki.esesja.pl"
-KAD = "2024-2029"
-_last = 0.0
-
-
-def _http(url):
-    global _last
-    d = time.time() - _last
-    if d < 0.35:
-        time.sleep(0.35 - d)
-    _last = time.time()
-    req = urllib.request.Request(urllib.parse.quote(url, safe=":/?&=%"), headers=HEADERS)
-    with urllib.request.urlopen(req, timeout=45, context=_CTX) as r:
-        raw = r.read()
-    for enc in ("utf-8", "windows-1250"):
-        try:
-            return raw.decode(enc)
-        except UnicodeDecodeError:
-            continue
-    return raw.decode("utf-8", "replace")
+BASE = "https://bip.umoborniki.nv.pl"
+MENU_UCHWALY = "135"
+UA = {"User-Agent": "Mozilla/5.0 Radoskop/1.0 (info@radoskop.eu)"}
+CTX = ssl.create_default_context()
+CTX.check_hostname = False
+CTX.verify_mode = ssl.CERT_NONE
+IX_START = "2024-05-07"
+MONTHS = {"stycznia": 1, "lutego": 2, "marca": 3, "kwietnia": 4, "maja": 5,
+          "czerwca": 6, "lipca": 7, "sierpnia": 8, "września": 9,
+          "października": 10, "listopada": 11, "grudnia": 12}
 
 
-def _slug(name):
+def _get(url: str) -> bytes:
+    req = urllib.request.Request(url, headers=UA)
+    with urllib.request.urlopen(req, timeout=60, context=CTX) as r:
+        return r.read()
+
+
+def _json(path: str):
+    return json.loads(_get(BASE + path).decode("utf-8"))
+
+
+def slugify(name: str) -> str:
     s = unicodedata.normalize("NFKD", name)
-    s = "".join(c for c in s if not unicodedata.combining(c)).lower().replace("ł", "l")
-    s = re.sub(r"[^a-z0-9]+", "", s)
-    return s or "radny"
+    s = "".join(c for c in s if not unicodedata.combining(c))
+    s = s.lower().replace("ł", "l")
+    return re.sub(r"[^a-z0-9]+", "-", s).strip("-") or "radny"
 
 
-def fetch_roster_links():
-    t = _http(f"{BASE}/posiedzenia")
-    rows = re.findall(r'href="(/radny/(\d+)/[^"]*)"><strong>([^<]+)</strong>', t)
-    out = {}
-    for href, rid, name in rows:
-        out[int(rid)] = (href, re.sub(r"\s+", " ", name).strip())
-    return out
-
-
-def fetch_radny_stats(href):
-    t = _http(f"{BASE}{href}")
-    body = re.sub(r"<script.*?</script>|<style.*?</style>", " ", t, flags=re.S)
-    body = re.sub(r"<[^>]+>", " ", body)
-    body = re.sub(r"\s+", " ", body)
-    stats = {}
-    m = re.search(r"Obecność na posiedzeniach:\s*(\d+)/(\d+)", body)
+def parse_date(text: str) -> str:
+    m = re.search(r"(\d{1,2})\s+(" + "|".join(MONTHS) + r")\s+(\d{4})", text, re.I)
     if m:
-        stats["sess_present"], stats["sess_total"] = int(m.group(1)), int(m.group(2))
-    m = re.search(r"Udział w głosowaniach:\s*(\d+)/(\d+)", body)
+        return f"{m.group(3)}-{MONTHS[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
+    m = re.search(r"(\d{1,2})\.(\d{2})\.(\d{4})", text)
     if m:
-        stats["votes_part"], stats["votes_total"] = int(m.group(1)), int(m.group(2))
-    m = re.search(r"Głosy:\s*ZA\s*-\s*(\d+)\s*,\s*PRZECIW\s*-\s*(\d+)\s*,\s*WSTRZYMUJĄCE\s*-\s*(\d+)", body)
-    if m:
-        stats["za"], stats["przeciw"], stats["wstrzymal"] = (int(m.group(i)) for i in (1, 2, 3))
-    m = re.search(r"Wypowiedź ogólna:\s*(\d+)x\s*,\s*minuty wypowiedzi:\s*(\d+)", body)
-    if m:
-        stats["wyp_ogolne"], stats["min_ogolne"] = int(m.group(1)), int(m.group(2))
-    m = re.search(r"Ad vocem:\s*(\d+)x", body)
-    if m:
-        stats["ad_vocem"] = int(m.group(1))
-    m = re.search(r"strong>(Radny|Radna|Przewodniczący|Przewodnicząca|Wiceprzewodniczący|Wiceprzewodnicząca)</strong", t)
-    if not m:
-        m = re.search(r">\s*(Przewodniczący|Przewodnicząca|Wiceprzewodniczący|Wiceprzewodnicząca)\s*<", t)
-    stats["role"] = m.group(1) if m else ""
-    return stats
+        return f"{m.group(3)}-{m.group(2)}-{m.group(1).zfill(2)}"
+    return ""
 
 
-def build(city_dir: Path) -> int:
-    cfg = json.loads((city_dir / "config.json").read_text(encoding="utf-8"))
+CAT_MAP = {"ZA": "za", "PRZECIW": "przeciw", "WSTRZYMUJĘ SIĘ": "wstrzymal_sie",
+           "WSTRZYMUJE SIE": "wstrzymal_sie", "BRAK GŁOSU": "brak_glosu",
+           "BRAK GLOSU": "brak_glosu", "NIEOBECNI": "nieobecni"}
+
+
+def parse_wyniki(pdf: bytes):
+    doc = pymupdf.open(stream=pdf, filetype="pdf")
+    text = "\n".join(p.get_text() for p in doc)
+    doc.close()
+    # złącz przeniesienia "Witek-\nStefańska" i złamania linii
+    text = re.sub(r"-\n(?=[A-ZŁŚŻŹĆĄŃÓ])", "-", text)
+    votes = []
+    blocks = re.split(r"\nWyniki głosowania\n", "\n" + text)
+    for b in blocks[1:] if len(blocks) > 1 else blocks:
+        gm = re.search(r"Głosowano w sprawie:\s*(.+?)\s*\n\s*(ZA:\s*\d+,.+?)\n", b, re.S)
+        if not gm:
+            continue
+        topic = " ".join(gm.group(1).split())
+        agg_line = " ".join(gm.group(2).split())
+        counts = dict(re.findall(r"(ZA|PRZECIW|WSTRZYMUJĘ SIĘ|BRAK GŁOSU|NIEOBECNI):\s*(\d+)", agg_line))
+        dm = re.search(r"Głosowanie z dnia:\s*(\d{2})\.(\d{2})\.(\d{4})", b)
+        date = f"{dm.group(3)}-{dm.group(2)}-{dm.group(1)}" if dm else ""
+        if not date:
+            continue
+        # sekcje imienne — finditer (puste sekcje '(0)' nie zjadają następnego nagłówka)
+        hdr = re.compile(r"\n(WSTRZYMUJĘ SIĘ|WSTRZYMUJE SIE|ZA|PRZECIW|BRAK GŁOSU|BRAK GLOSU|NIEOBECNI)\s*\((\d+)\)")
+        heads = list(hdr.finditer("\n" + b))
+        full = "\n" + b
+        per = {}
+        for j, h in enumerate(heads):
+            key_raw, n_decl = h.group(1), int(h.group(2))
+            key = CAT_MAP.get(key_raw.upper())
+            if not key:
+                continue
+            end = heads[j + 1].start() if j + 1 < len(heads) else len(full)
+            names_txt = " ".join(full[h.end():end].split())
+            names_txt = re.split(r"Głosowanie z dnia:|Wygenerowano", names_txt)[0]
+            names = [x.strip(" .") for x in names_txt.split(",") if x.strip(" .")]
+            names = [re.sub(r"\s+", " ", x) for x in names if re.match(r"^[A-ZŁŚŻŹĆĄŃÓ][\włżźćąóńś-]+", x)]
+            if len(names) != n_decl:
+                per = None
+                break
+            per[key] = names
+        if per is None:
+            continue
+        votes.append({"date": date, "topic": topic[:250], "per": per,
+                      "counts": {CAT_MAP.get(k, k): int(v) for k, v in counts.items()}})
+    return votes
+
+
+def main(city_dir: Path):
     docs = city_dir / "docs"
-    docs.mkdir(parents=True, exist_ok=True)
-    links = fetch_roster_links()
-    print(f"  oborniki roster links: {len(links)}")
-    if len(links) < 10:
-        print("  [ERR] roster zbyt mały — przerywam")
-        return 1
-
-    profiles = []
-    councilors = []
-    for rid, (href, name) in sorted(links.items()):
+    docs.mkdir(exist_ok=True)
+    subs = _json(f"/api/menu/{MENU_UCHWALY}/submenu")
+    years = subs if isinstance(subs, list) else subs.get("data", [])
+    art_ids = []
+    for y in years:
+        yid, yname = str(y.get("id")), str(y.get("name", ""))
+        ym = re.search(r"(\d{4})", yname)
+        if not ym or ym.group(1) < "2024":
+            continue
+        off = 0
+        while True:
+            d = _json(f"/api/menu/{yid}/articles?limit=50&offset={off}")
+            arts = d.get("articles", [])
+            for a in arts:
+                t = ""
+                for al in a.get("aliasFields") or []:
+                    if al.get("alias") == "title":
+                        t = str(al.get("value", ""))
+                if not t:
+                    for cf in a.get("columnFields") or []:
+                        if cf.get("fieldId") == 22:
+                            t = str(cf.get("value", ""))
+                t = " ".join(t.split())
+                if re.match(r"^S[ae]sja\b", t, re.I):
+                    art_ids.append((str(a["id"]), t))
+            off += len(arts)
+            if len(arts) < 50 or off >= d.get("total", 0):
+                break
+        time.sleep(0.2)
+    print(f"[oborniki] {len(art_ids)} artykułów 'Sesja*'")
+    all_names, sessions, votes_out = [], [], []
+    seen_pdf = set()
+    for aid, title in art_ids:
+        date = parse_date(title)
+        if not date or date < IX_START:
+            continue
         try:
-            st = fetch_radny_stats(href)
+            art = _json(f"/api/articles/{aid}")
         except Exception as e:
-            print(f"  [warn] {name}: {type(e).__name__}")
-            st = {}
-        frekw = round(st.get("sess_present", 0) / st.get("sess_total", 1) * 100, 1) if st.get("sess_total") else None
-        aktywn = round(st.get("votes_part", 0) / st.get("votes_total", 1) * 100, 1) if st.get("votes_total") else None
-        councilors.append({
-            "name": name, "club": "", "district": None,
-            "frekwencja": frekw, "aktywnosc": aktywn, "zgodnosc_z_klubem": None,
-            "votes_za": st.get("za", 0), "votes_przeciw": st.get("przeciw", 0),
-            "votes_wstrzymal": st.get("wstrzymal", 0),
-            "votes_total": st.get("votes_part", 0),
-            "rebellion_count": 0, "has_activity_data": True,
-            "activity": {"wypowiedzi_ogolne": st.get("wyp_ogolne", 0),
-                         "minuty_wypowiedzi": st.get("min_ogolne", 0),
-                         "ad_vocem": st.get("ad_vocem", 0)},
-        })
-        profiles.append({
-            "name": name, "slug": _slug(name),
-            "kadencje": {KAD: {
-                "club": "", "has_voting_data": False, "has_activity_data": True,
-                "frekwencja": frekw, "aktywnosc": aktywn, "zgodnosc_z_klubem": None,
-                "votes_za": st.get("za", 0), "votes_przeciw": st.get("przeciw", 0),
-                "votes_wstrzymal": st.get("wstrzymal", 0), "votes_brak": 0,
-                "votes_nieobecny": 0, "votes_total": st.get("votes_part", 0),
-                "rebellion_count": 0, "rebellions": [],
-                "roles": [st["role"]] if st.get("role") else [], "notes": "",
-                "former": False, "mid_term": False}},
-        })
-        print(f"    {name:<30} {frekw}% {aktywn}% wyp={st.get('wyp_ogolne',0)}")
-
-    # kadencja-level aggregate for sparkline: use union of sess_total (calendar unknown)
-    max_sess = max((c["frekwencja"] or 0) for c in councilors) if councilors else 0
-    kadencja = {
-        "id": KAD, "label": cfg["kadencje"][KAD]["label"], "clubs": {},
-        "sessions": [], "total_sessions": 0, "total_votes": 0,
-        "total_councilors": len(councilors),
-        "councilors": councilors,
-        "votes": [], "similarity_top": [], "similarity_bottom": [],
-    }
-    (docs / f"kadencja-{KAD}.json").write_text(
-        json.dumps(kadencja, ensure_ascii=False, indent=1), encoding="utf-8")
-    (docs / "data.json").write_text(json.dumps(
-        {"generated": datetime.now().isoformat(), "default_kadencja": KAD,
-         "kadencje": [{"id": KAD, "label": cfg["kadencje"][KAD]["label"]}]},
-        ensure_ascii=False), encoding="utf-8")
+            print(f"  [warn] art {aid}: {e}")
+            continue
+        atts = [a for a in art.get("attachments", [])
+                if str(a.get("name", "")).strip().lower().startswith("wyniki głosowań")]
+        if not atts:
+            print(f"  [skip] {title} — brak 'Wyniki głosowań'")
+            continue
+        att = atts[0]
+        url = BASE + "/" + att["link"].lstrip("/")
+        if url in seen_pdf:
+            continue
+        seen_pdf.add(url)
+        try:
+            vs = parse_wyniki(_get(url))
+        except Exception as e:
+            print(f"  [warn] parse {title}: {e}")
+            continue
+        time.sleep(0.25)
+        if not vs:
+            print(f"  [skip] {title} — parser 0")
+            continue
+        rm = re.search(r"S[ae]sja\s+(?:\w+\s+)?([IVXLCDM]+)", title, re.I)
+        roman = rm.group(1).upper() if rm else date
+        idx = {nm: n for n, nm in enumerate(all_names)}
+        n_ok = 0
+        for v in vs:
+            nv = {"za": [], "przeciw": [], "wstrzymal_sie": [], "brak_glosu": [], "nieobecni": []}
+            for k, names in v["per"].items():
+                for nm in names:
+                    if nm not in idx:
+                        idx[nm] = len(all_names)
+                        all_names.append(nm)
+                    nv[k].append(idx[nm])
+            c = {"uprawnieni": sum(len(x) for x in nv.values()),
+                 **{k: len(v["per"].get(k, [])) for k in ("za", "przeciw", "wstrzymal_sie")}}
+            votes_out.append({
+                "id": f"{v['date']}_{len(votes_out):03d}", "source_url": url,
+                "session_date": v["date"], "session_number": roman,
+                "topic": v["topic"], "druk": "None",
+                "resolution": "przyjete" if c["za"] > c["przeciw"] else "odrzucone",
+                "counts": c, "named_votes": nv})
+            n_ok += 1
+        sessions.append({"date": date, "number": roman,
+                         "label": f"Sesja {roman} ({date})", "vote_count": n_ok,
+                         "attendee_count": None, "attendees": [], "speakers": []})
+        print(f"  [ok] {title} -> {n_ok} głosów")
+    councilors = []
+    for nm in all_names:
+        i = all_names.index(nm)
+        z = p_ = w = b_ = nb = 0
+        for v in votes_out:
+            nv = v["named_votes"]
+            if i in nv["za"]:
+                z += 1
+            elif i in nv["przeciw"]:
+                p_ += 1
+            elif i in nv["wstrzymal_sie"]:
+                w += 1
+            elif i in nv["brak_glosu"]:
+                b_ += 1
+            elif i in nv["nieobecni"]:
+                nb += 1
+        tot = z + p_ + w + b_
+        councilors.append({"name": nm, "club": "", "district": None,
+                           "votes_za": z, "votes_przeciw": p_, "votes_wstrzymal": w,
+                           "votes_brak": b_, "votes_nieobecny": nb, "votes_total": tot,
+                           "frekwencja": round(100.0 * (z + p_ + w) / tot, 1) if tot else None,
+                           "aktywnosc": None, "zgodnosc_z_klubem": None,
+                           "rebellion_count": 0, "has_activity_data": False})
+    councilors.sort(key=lambda c: -c["votes_total"])
+    sessions.sort(key=lambda x: x["date"], reverse=True)
+    kad = {"id": "2024-2029", "label": "IX kadencja (2024–2029)",
+           "names_normalized": True, "clubs": {},
+           "sessions": sessions, "total_sessions": len(sessions),
+           "total_votes": len(votes_out), "total_councilors": len(all_names),
+           "councilors": councilors, "votes": votes_out,
+           "similarity_top": [], "similarity_bottom": [],
+           "councilor_index": list(all_names)}
+    (docs / "kadencja-2024-2029.json").write_text(
+        json.dumps(kad, ensure_ascii=False, indent=1), encoding="utf-8")
+    profiles = {"scraped_at": datetime.now(timezone.utc).isoformat(), "profiles": [],
+                "total": len(councilors)}
+    for c in councilors:
+        profiles["profiles"].append({"name": c["name"], "slug": slugify(c["name"]),
+                                     "club": "", "role": "", "photo_url": "", "bio": "",
+                                     "email": "", "social_links": {},
+                                     "kadencje": {"2024-2029": {
+                                         "club": "", "frekwencja": c["frekwencja"],
+                                         "aktywnosc": 0, "zgodnosc_z_klubem": None,
+                                         "votes_za": c["votes_za"],
+                                         "votes_przeciw": c["votes_przeciw"],
+                                         "votes_wstrzymal": c["votes_wstrzymal"],
+                                         "votes_brak": c["votes_brak"],
+                                         "votes_nieobecny": c["votes_nieobecny"],
+                                         "votes_total": c["votes_total"],
+                                         "rebellion_count": 0, "rebellions": [],
+                                         "has_voting_data": True,
+                                         "has_activity_data": False, "former": False,
+                                         "mid_term": False}}})
     (docs / "profiles.json").write_text(
-        json.dumps({"profiles": profiles, "total": len(profiles)},
-                   ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"  [ok] {len(profiles)} profili (kadencja-level stats)")
-    return 0
+        json.dumps(profiles, ensure_ascii=False, indent=1), encoding="utf-8")
+    (docs / "data.json").write_text(json.dumps({
+        "generated": datetime.now(timezone.utc).isoformat(),
+        "default_kadencja": "2024-2029",
+        "kadencje": [{"id": "2024-2029", "label": "IX kadencja (2024–2029)"}],
+    }, ensure_ascii=False, indent=1), encoding="utf-8")
+    print(f"[oborniki] DONE: {len(sessions)} sesji, {len(votes_out)} głosów, {len(all_names)} radnych")
+    if not votes_out:
+        sys.exit(2)
 
 
 if __name__ == "__main__":
-    city_dir = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parents[1]
-    raise SystemExit(build(city_dir))
+    main(Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).resolve().parent.parent)
