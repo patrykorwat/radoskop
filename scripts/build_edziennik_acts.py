@@ -40,16 +40,27 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-# Hosty e-dzienników. Nazwy zweryfikowane 2026-09-06 (odpowiedziały /api/eli/acts);
-# reszta do dodania po probingu z sieci PL. Kod ELI pobierany z API, nie z listy.
+# Hosty e-dzienników wg oficjalnego katalogu dziennikiurzedowe.gov.pl
+# (dzienniki-wojewodztw.html); wszystkie odpowiedziały /api/eli/acts z ATX 2026-09-06.
+# Kod ELI pobierany z API, nie z listy. Uwaga: Podlaskie i Kujawsko-Pomorskie
+# zwracaja klucze PascalCase (obsłużone w year_acts/detail).
 HOSTS = [
-    "edziennik.gdansk.uw.gov.pl",      # Pomorskie
-    "edziennik.poznan.uw.gov.pl",      # Wielkopolskie
-    "edziennik.lublin.uw.gov.pl",      # Lubelskie
-    "edziennik.bialystok.uw.gov.pl",   # Podlaskie
-    "edziennik.rzeszow.uw.gov.pl",     # Podkarpackie
-    "duwo.opole.uw.gov.pl",            # Opolskie
-    "edziennik.kielce.uw.gov.pl",      # Świętokrzyskie
+    "edziennik.gdansk.uw.gov.pl",        # Pomorskie
+    "edziennik.poznan.uw.gov.pl",        # Wielkopolskie
+    "edziennik.lublin.uw.gov.pl",        # Lubelskie
+    "edziennik.bialystok.uw.gov.pl",     # Podlaskie (PascalCase)
+    "edziennik.rzeszow.uw.gov.pl",       # Podkarpackie
+    "duwo.opole.uw.gov.pl",              # Opolskie
+    "edziennik.kielce.uw.gov.pl",        # Świętokrzyskie
+    "edzienniki.duw.pl",                 # Dolnośląskie
+    "dzienniki.slask.eu",                # Śląskie
+    "e-dziennik.szczecin.uw.gov.pl",     # Zachodniopomorskie
+    "edzienniki.bydgoszcz.uw.gov.pl",    # Kujawsko-Pomorskie (PascalCase)
+    "edzienniki.olsztyn.uw.gov.pl",      # Warmińsko-Mazurskie
+    "edziennik.malopolska.uw.gov.pl",    # Małopolskie (powolny; http->https 301)
+    "dziennik.lodzkie.eu",               # Łódzkie (powolny; http->https 301)
+    "dzienniki.luw.pl",                  # Lubuskie (powolny; http->https 301)
+    # Mazowieckie: edziennik.mazowieckie.pl nie odpowiada (2026-09-06, obie strony)
 ]
 USER_AGENT = "RadoskopBot/1.0 (kolektor aktow publicznych; kontakt: kontakt@radoskop.eu)"
 
