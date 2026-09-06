@@ -1,0 +1,40 @@
+{
+  "city_name": "Garwolin",
+  "city_genitive": "Garwolina",
+  "site_title": "Radoskop Garwolin — Jak głosują radni?",
+  "site_url": "https://garwolin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Garwolina. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Garwolina.",
+  "bip_url": "https://garwolin.bip.gov.pl",
+  "bip_name": "BIP Urzędu Miasta Garwolin",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "garwolin.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Garwolin",
+  "rada_name_genitive": "Rady Miasta Garwolina",
+  "teryt": "1403011",
+  "has_voting_data": true,
+  "has_named_votes": true,
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto: BIP eBOI garwolin.bip.gov.pl, kategoria 'Imienne wykazy głosowań radnych' (per-sesja artykul + zalacznik PDF /fobjects/download -> 'Protokół z przebiegu głosowania imiennego', bloki 'głosowanie/temat/wynik/Podsumowanie/Wyniki imienne' lp-nazwisko-imie-glos, walidacja licznikami; formy WSTRZYMAŁ/WSTRZYMAŁA SIĘ w 2 liniach). eSesja garwolin.esesja.pl = wildcard (brak BIP). TERYT 1403011 (gmina miejska, rky). Dodane 2026-09-06 (cron do 500 miast). club_assignments pending (kuratorowac).",
+    "population": 17267,
+    "voivodeship": "mazowieckie"
+  }
+}
