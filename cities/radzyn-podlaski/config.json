@@ -1,0 +1,39 @@
+{
+  "city_name": "Radzyń Podlaski",
+  "city_genitive": "Radzynia Podlaskiego",
+  "site_title": "Radoskop Radzyń Podlaski — Jak głosują radni?",
+  "site_url": "https://radzyn-podlaski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Radzyniu Podlaskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Radzyniu Podlaskim.",
+  "bip_url": "https://radzynpodlaski.esesja.pl",
+  "bip_name": "eSesja Radzyń Podlaski",
+  "esesja_url": "https://radzynpodlaski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "radzyn-podlaski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Radzyniu Podlaskim",
+  "rada_name_genitive": "Rady Miejskiej w Radzyniu Podlaskim",
+  "teryt": "0615011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (eSesja, glosowania imienne IX kad. 2024-2029). Subdomena eSesja skrócona: radzynpodlaski.esesja.pl. Dodane 2026-09-06 (cron ekspansja 500). club_assignments pending (kuratorowane z BIP).",
+    "population": 15428,
+    "voivodeship": "lubelskie"
+  }
+}

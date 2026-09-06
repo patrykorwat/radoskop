@@ -1,0 +1,38 @@
+{
+  "city_name": "Staszów",
+  "city_genitive": "Staszowa",
+  "site_title": "Radoskop Staszów — Jak głosują radni?",
+  "site_url": "https://staszow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Staszowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Staszowie.",
+  "bip_url": "https://bip.staszow.pl",
+  "bip_name": "BIP Staszów",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "staszow.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Staszowie",
+  "rada_name_genitive": "Rady Miejskiej w Staszowie",
+  "teryt": "2612074",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (BIP bip.staszow.pl Joomla; per-sesja skan PDF 'Wykaz imienny głosowań' -> OCR tesseract -l pol, token głosu w linii nazwiska, walidacja agregatami). Dodane 2026-09-06 (cron ekspansja 500, przejęcie lokalnych danych z 2026-08-27). club_assignments pending.",
+    "population": 14699,
+    "voivodeship": "świętokrzyskie"
+  }
+}
