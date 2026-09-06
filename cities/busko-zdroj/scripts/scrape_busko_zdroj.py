@@ -109,9 +109,11 @@ def _roman_from(t: str) -> str:
 
 def fetch_sessions() -> list[dict]:
     found: dict[str, dict] = {}
+    from datetime import date
+    today = date.today().isoformat()
 
     def add(date, roman, title):
-        if not date or date < KAD_START:
+        if not date or date < KAD_START or date > today:
             return
         cur = found.get(date)
         if cur:
