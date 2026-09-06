@@ -190,6 +190,27 @@ def parse_pdf(pdf: bytes):
     return roster, votes
 
 
+def uchwaly_sessions():
+    """Najnowsze sesje z kategorii Uchwały Kadencji IX (numer+data z 'Uchwała Nr R/nn/RRRR ... z dnia D mies RRRR').
+    Kategoria 'Imienne wykazy' opóźnia się ~8 mies.; sesje jednak obradują (pitfall freshness Tier-2)."""
+    out = {}
+    for page_url in ("/kadencja-ix-2024-2029/", "/kadencja-ix-2024-2029/?p=1"):
+        try:
+            h = _html(BASE + page_url)
+        except Exception:
+            continue
+        for title in re.findall(r'>(Uchwała Nr ([IVXLCDM]+)/\d+/\d{4}[^<]{0,90})<', h):
+            t = title[0]
+            m = re.search(r"z dnia (\d{1,2})\s+(\w+)\s+(\d{4})", t)
+            if not m or m.group(2).lower() not in MONTHS:
+                continue
+            date = f"{m.group(3)}-{MONTHS[m.group(2).lower()]:02d}-{int(m.group(1)):02d}"
+            roman = title[1]
+            if roman not in out or date > out[roman]:
+                out[roman] = date
+    return out
+
+
 def main(city_dir: Path):
     docs = city_dir / "docs"
     docs.mkdir(exist_ok=True)
@@ -255,6 +276,25 @@ def main(city_dir: Path):
                 },
             })
         print(f"  [ok] {a['title'][:60]} -> {len(pvotes)} glosow")
+    # sesje z Uchwał (kategoria imiennych opóźniona) — dopisz aktualne sesje bez protokołu głosowań
+    try:
+        us = uchwaly_sessions()
+    except Exception as e:
+        print(f"  [warn] uchwały: {e}")
+        us = {}
+    known = {s["number"] for s in sessions}
+    added_u = 0
+    for roman, date in us.items():
+        if roman in known or date < IX_START:
+            continue
+        sessions.append({"date": date, "number": roman,
+                         "label": f"Sesja {roman} ({date})",
+                         "vote_count": 0,
+                         "attendee_count": None, "attendees": [], "speakers": []})
+        added_u += 1
+    if added_u:
+        print(f"[garwolin] +{added_u} sesji z kategorii Uchwały (bez protokołu imiennego)")
+    sessions.sort(key=lambda s: s["date"])
     councilors = []
     for nm in all_names:
         i = all_names.index(nm)
