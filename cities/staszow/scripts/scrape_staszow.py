@@ -204,9 +204,11 @@ def vote_key(v):
 
 
 def reverse_name(name):
-    # strip stray leading/trailing punctuation/symbols (OCR noise: "_", "."), collapse spaces
-    name = name.strip(' \t._-,')
+    # strip stray leading/trailing punctuation/symbols (OCR noise: "_", ".", "|"), collapse spaces
+    name = name.strip(' \t._-,|')
+    name = re.sub(r'[|\u2502\u2500]+', '', name)
     name = re.sub(r'\s+', ' ', name)
+    name = name.strip()
     toks = name.split()
     if len(toks) >= 2:
         return ' '.join(toks[1:] + [toks[0]])
@@ -252,7 +254,10 @@ def collect_all(cache_dir):
                 if agg[1] == za and agg[2] == pr and agg[3] == wz:
                     validated['ok'] += 1
                 else:
+                    # OCR garble (dup columns/lost rows): the named table contradicts the
+                    # printed aggregate — drop the vote rather than publish corrupt attribution.
                     validated['mismatch'] += 1
+                    continue
             else:
                 validated['noagg'] += 1
             sess_records.append({
@@ -404,6 +409,56 @@ def save_split(output, out_path, profiles):
         json.dump(profiles, f, ensure_ascii=False, separators=(',', ':'))
 
 
+def _diacritic_key(name):
+    """Surname+firstname key tolerant of OCR diacritic flips (Ż->Z...) and doubled
+    letters (MAŻZGAJ->MAZGAJ): strip diacritics, collapse repeated chars."""
+    tr = {'Ą': 'A', 'Ć': 'C', 'Ę': 'E', 'Ł': 'L', 'Ń': 'N', 'Ó': 'O', 'Ś': 'S', 'Ź': 'Z', 'Ż': 'Z'}
+    u = name.upper()
+    u = ''.join(tr.get(ch, ch) for ch in u)
+    u = re.sub(r"(.)\1+", r"\1", u)
+    toks = u.split()
+    if len(toks) < 2:
+        return u
+    first, surname = toks[0], toks[-1]
+    return f"{surname}|{first}"
+
+
+def normalize_roster(results):
+    """Merge OCR twin spellings (same surname+firstname mod diacritics, never listed
+    together in one vote) into the most frequent spelling, e.g. 'Anna MAŻZGAJ' -> 'Anna MAZGAJ'."""
+    from collections import Counter, defaultdict
+    freq = Counter()
+    seen_in = defaultdict(set)   # name -> set of (session_date, topic) it appears in
+    for sess in results:
+        for ri, rec in enumerate(sess['records']):
+            tag = (sess['date'], ri)
+            for names in rec['named'].values():
+                for n in names:
+                    freq[n] += 1
+                    seen_in[n].add(tag)
+    groups = defaultdict(list)
+    for n in freq:
+        groups[_diacritic_key(n)].append(n)
+    canon = {}
+    for names in groups.values():
+        if len(names) < 2:
+            continue
+        # merge only spellings that never co-occur in the same vote (true OCR twins);
+        # if two spellings DO co-occur they are two different people -> keep both.
+        names.sort(key=lambda x: -freq[x])
+        best = names[0]
+        for n in names[1:]:
+            if not (seen_in[n] & seen_in[best]):
+                canon[n] = best
+    if canon:
+        print(f"[staszow] roster merge: {len(canon)} wariantow -> kanoniczne: " +
+              ", ".join(f"{a}->{b}" for a, b in sorted(canon.items())))
+        for sess in results:
+            for rec in sess['records']:
+                rec['named'] = {c: [canon.get(n, n) for n in lst] for c, lst in rec['named'].items()}
+    return results
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--output', required=True)
@@ -412,6 +467,7 @@ def main():
     args = ap.parse_args()
 
     results, validated = collect_all(args.cache_dir)
+    results = normalize_roster(results)
     output, validated = build_output(results, validated)
     k = output['kadencje'][0]
     print(f"[staszow] sesje: {k['total_sessions']}, glosowania: {k['total_votes']}, radni: {k['total_councilors']}")
