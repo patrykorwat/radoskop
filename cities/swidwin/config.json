@@ -1,0 +1,38 @@
+{
+  "city_name": "Świdwin",
+  "city_genitive": "Świdwina",
+  "site_title": "Radoskop Świdwin — Jak głosują radni?",
+  "site_url": "https://swidwin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Świdwin. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Świdwin.",
+  "bip_url": "https://swidwin.biuletyn.net",
+  "bip_name": "BIP Urzędu Miasta Świdwin (biuletyn.net)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "swidwin.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Świdwin",
+  "rada_name_genitive": "Rady Miasta Świdwin",
+  "teryt": "3216011",
+  "_meta": {
+    "note": "NOWE miasto (BIP biuletyn.net swidwin.biuletyn.net, kategorie 'Uchwały Rady Miasta' cid 1492/1507/1522). Głosowania imienne per uchwała jako PDF 'wyniki_glosowania_N.pdf' z systemu DSSS Vote App (dwukolumnowa tabela nazwisk: lewa=ZA, prawa=PRZECIW; sekcje Wstrzymuję się/Obecni-niegłosujący pod tabelą). Parser pdfplumber word-coords PRZECIW_X=340 + naprawy OCR; walidacja per głos: listy nazwisk == agregaty nagłówka. eSesja swidwin.esesja.pl = Portal Mieszkańca z pustą /glosowania (tylko posiedzenia z 2022, PM-dead). Skład 15 radnych. Kluby: BIP 'Klub Radnych MY dla Świdwina' (załączniki; club_assignments PENDING). TERYT 3216011 (m. Świdwin, powiat świdwiński 3216). Dodane 2026-09-06 (cron ekspansja).",
+    "population": 15338,
+    "voivodeship": "zachodniopomorskie"
+  }
+}
