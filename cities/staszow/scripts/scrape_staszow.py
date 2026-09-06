@@ -211,8 +211,14 @@ def reverse_name(name):
     name = name.strip()
     toks = name.split()
     if len(toks) >= 2:
-        return ' '.join(toks[1:] + [toks[0]])
-    return name
+        out = ' '.join(toks[1:] + [toks[0]])
+    else:
+        out = name
+    # source is ALL-CAPS "NAZWISKO Imię" — render as proper "Imię Nazwisko" (title case,
+    # keep hyphenated parts capitalized: Gajek-Dyl)
+    def _tc(t):
+        return "-".join(p[:1].upper() + p[1:].lower() if p else p for p in t.split("-"))
+    return " ".join(_tc(t) for t in out.split())
 
 
 def make_slug(name):
