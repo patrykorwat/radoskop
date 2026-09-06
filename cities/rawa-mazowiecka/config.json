@@ -1,0 +1,41 @@
+{
+  "city_name": "Rawa Mazowiecka",
+  "city_genitive": "Rawy Mazowieckiej",
+  "site_title": "Radoskop Rawa Mazowiecka — Jak głosują radni?",
+  "site_url": "https://rawa-mazowiecka.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Rawie Mazowieckiej. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Rawie Mazowieckiej.",
+  "bip_url": "https://bip.rawamazowiecka.pl",
+  "bip_name": "Biuletyn Informacji Publicznej UM Rawa Mazowiecka",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "rawa-mazowiecka.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Rawie Mazowieckiej",
+  "rada_name_genitive": "Rady Miejskiej w Rawie Mazowieckiej",
+  "teryt": "1013011",
+  "has_voting_data": true,
+  "has_named_votes": true,
+  "councilor_count": 15,
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto: BIP bip.rawamazowiecka.pl = serwer-render CMS; kategoria 'Imienne wykazy glosowania radnych' (2839) — jeden HTML z linkami plik,<id>,<slug>.pdf po rokach; dwa formaty tytulow ('Wyniki glosowan z <RZYM> sesji' 2026+, 'Imienny wykaz glosowania radnych podczas <RZYM> Sesji' 2024-25). PDF TEKSTOWY per-glosowanie: 'Nazwa glosowania/Data glosowania' + 'podsumowanie zbiorcze (Uprawnionych/Za/Przeciw/Nieobecni/Wstrzymalo sie)' + tabela lp/imie/glos slowami (Za|Przeciw|Wstrzymalo sie|Nieobecny); walidacja licznikami (36/36 w probie). eSesja/bip.net.pl = martwe. TERYT 1013011 (gm. miejska, pl.wiki TERC). Dodane 2026-09-06 (cron do 500 miast). club_assignments pending (kuratorowac).",
+    "population": 17193,
+    "voivodeship": "łódzkie"
+  }
+}
