@@ -1,0 +1,42 @@
+{
+  "city_name": "Sztum",
+  "city_genitive": "Sztumu",
+  "site_title": "Radoskop Sztum — Jak głosują radni?",
+  "site_url": "https://sztum.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Sztumie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Sztumie.",
+  "bip_url": "https://bip.sztum.pl",
+  "bip_name": "BIP Sztum",
+  "esesja_url": "https://sztum.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sztum.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Sztumie",
+  "rada_name_genitive": "Rady Miejskiej w Sztumie",
+  "teryt": "2216054",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template sztum.esesja.pl, glosowania imienne IX kad. 2024-2029; 35 sesji, newest 2026-08-26 zweryfikowane 2026-09-07). Dodane 2026-09-07 (cron do 500 miast). club_assignments pending (kuratorować z BIP).",
+    "population": 9175,
+    "voivodeship": "pomorskie",
+    "lat": 53.92083,
+    "lon": 19.02972,
+    "qid": null
+  }
+}

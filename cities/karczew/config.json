@@ -1,0 +1,42 @@
+{
+  "city_name": "Karczew",
+  "city_genitive": "Karczewa",
+  "site_title": "Radoskop Karczew — Jak głosują radni?",
+  "site_url": "https://karczew.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Karczewie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Karczewie.",
+  "bip_url": "https://bip.karczew.pl",
+  "bip_name": "BIP Urząd Miejski w Karczewie",
+  "esesja_url": "https://karczew.posiedzenia.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "karczew.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Karczewie",
+  "rada_name_genitive": "Rady Miejskiej w Karczewie",
+  "teryt": "1417044",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (platforma posiedzenia.pl — BIP kieruje wykazy imienne od 2024-07-15 na karczew.posiedzenia.pl; scraper headless-playwright przez zawartosc.php O3/O7, API 432 glosowan, sesja PHP tylko w originie portalu; 24 sesje IX zweryfikowane 2026-09-07). Dodane 2026-09-07 (cron do 500 miast). club_assignments pending.",
+    "population": 9338,
+    "voivodeship": "mazowieckie",
+    "lat": 52.07583,
+    "lon": 21.25028,
+    "qid": null
+  }
+}
