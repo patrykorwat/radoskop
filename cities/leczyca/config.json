@@ -1,0 +1,41 @@
+{
+  "city_name": "Łęczyca",
+  "city_genitive": "Łęczycy",
+  "site_title": "Radoskop Łęczyca — Jak głosują radni?",
+  "site_url": "https://leczyca.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Łęczycy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Łęczycy.",
+  "bip_url": "https://bip.leczyca.info.pl",
+  "bip_name": "BIP Urząd Miejski w Łęczycy",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "leczyca.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Łęczycy",
+  "rada_name_genitive": "Rady Miejskiej w Łęczycy",
+  "teryt": "1004011",
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (platforma radni.info — API JSON leczyca.radni.info: /api/session/ended + /api/session/{id}/agenda + /api/session/vote/{id}/result = imienne głosowania per radny; walidacja list vs agregaty API; filtr sesji plnernych 'Rady Miejskiej' odrzuca posiedzenia komisji; BIP bip.leczyca.info.pl = Nefeni own-domain linkuje leczyca.radni.info; leczyca.esesja.pl wildcard, brak bip.net.pl, AlfaTV dead. TERYT 1004011 (pl.wiki TERC). club_assignments PENDING. Dodane 2026-09-07 (cron do 500 miast).",
+    "population": 13786,
+    "voivodeship": "łódzkie",
+    "qid": "Q325727",
+    "lat": 52.058333,
+    "lon": 19.2
+  }
+}
