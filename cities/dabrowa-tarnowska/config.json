@@ -1,0 +1,41 @@
+{
+  "city_name": "Dąbrowa Tarnowska",
+  "city_genitive": "Dąbrowy Tarnowskiej",
+  "site_title": "Radoskop Dąbrowa Tarnowska — Jak głosują radni?",
+  "site_url": "https://dabrowa-tarnowska.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Dąbrowie Tarnowskiej. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Dąbrowie Tarnowskiej.",
+  "bip_url": "https://bip.malopolska.pl/umdabrowatarnowska",
+  "bip_name": "BIP Dąbrowa Tarnowska",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "dabrowa-tarnowska.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Dąbrowie Tarnowskiej",
+  "rada_name_genitive": "Rady Miejskiej w Dąbrowie Tarnowskiej",
+  "teryt": "1204024",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (BIP Malopolska bip.malopolska.pl/umdabrowatarnowska — Angular SPA + JSON API; imienne glosowania z zalacznikow 'wyniki_glosowania_N' PDF przy uchwalach, format TEXT eSesja 'Wyniki imienne', walidacja licznikowa 252/252; roster+kluby wyborcze z kategorii 'Skład Rady > 2024-2029'). eSesja dabrowatarnowska.esesja.pl zamrozone na inauguracyjnej (tylko 2 sesje 2024). Dodane 2026-09-07 (cron do 500 miast).",
+    "population": 11458,
+    "voivodeship": "malopolskie",
+    "lat": 50.17444,
+    "lon": 20.98639,
+    "qid": null
+  }
+}
