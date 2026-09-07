@@ -27,6 +27,7 @@
   "rada_name_genitive": "Rady Miejskiej w Głubczycach",
   "teryt": "1602034",
   "has_voting_data": false,
+  "has_named_votes": false,
   "has_speaker_activity": false,
   "voting_display": "faction",
   "scrape": {
