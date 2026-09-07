@@ -1,0 +1,41 @@
+{
+  "city_name": "Kolno",
+  "city_genitive": "Kolna",
+  "site_title": "Radoskop Kolno — Jak głosują radni?",
+  "site_url": "https://kolno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Kolno. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Kolno.",
+  "bip_url": "https://bip-umkolno.podlaskie.eu",
+  "bip_name": "BIP Urzędu Miasta Kolno",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kolno.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Kolno",
+  "rada_name_genitive": "Rady Miasta Kolna",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "teryt": "2006011",
+  "_meta": {
+    "note": "Głosowania imienne z BIP bip-umkolno.podlaskie.eu kategoria 'Imienny wykaz głosowań radnych' — per-głosowanie PDF-y systemu DSSS Vote (tabela 2-kolumnowa, atrybucja po współrzędnych x, walidacja agregatami; 114 głosowań zwalidowanych, niezgodne odrzucane). Uwaga: kolno.eu/kolno.pl = domeny obce (zaparkowane/kancelaria); wlasciwy serwis: umkolno.pl. Kluby: Rada nie publikuje przynależności klubowej — club_assignments pusty (PENDING). Dodane 2026-09-07 (cron do 500 miast).",
+    "population": 10143,
+    "voivodeship": "podlaskie",
+    "lat": 53.6397,
+    "lon": 21.9894,
+    "qid": null
+  }
+}
