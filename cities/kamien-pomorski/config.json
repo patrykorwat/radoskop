@@ -1,0 +1,39 @@
+{
+  "city_name": "Kamień Pomorski",
+  "city_genitive": "Kamienia Pomorskiego",
+  "site_title": "Radoskop Kamień Pomorski — Jak głosują radni?",
+  "site_url": "https://kamien-pomorski.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Kamieniu Pomorskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Kamieniu Pomorskim.",
+  "bip_url": "https://bip.kamienpomorski.pl",
+  "bip_name": "BIP Urząd Miejski w Kamieniu Pomorskim",
+  "esesja_url": "https://rada.kamienpomorski.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kamien-pomorski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Kamieniu Pomorskim",
+  "rada_name_genitive": "Rady Miejskiej w Kamieniu Pomorskim",
+  "teryt": "3207034",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (AlfaTV 'System Rada' rada.kamienpomorski.pl, glosowania imienne IX kad. 2024-2029). Dodane 2026-09-07 (cron 500). club_assignments PENDING (kuratorować z BIP 'Kluby radnych').",
+    "population": 8677,
+    "voivodeship": "zachodniopomorskie"
+  }
+}
