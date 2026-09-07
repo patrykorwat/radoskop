@@ -1,0 +1,62 @@
+{
+  "city_name": "Skwierzyna",
+  "city_genitive": "Skwierzyny",
+  "site_title": "Radoskop Skwierzyna — Skład rady i sesje",
+  "site_url": "https://skwierzyna.radoskop.pl",
+  "site_description": "Radoskop — Rada Miejska w Skwierzynie. Skład rady i kalendarz sesji kadencji 2024–2029 (bez imiennych głosowań).",
+  "site_description_short": "Otwarte monitorowanie Rady Miejskiej w Skwierzynie.",
+  "bip_url": "https://bip.skwierzyna.pl",
+  "bip_name": "BIP Gmina Skwierzyna",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "skwierzyna.radoskop.pl",
+  "has_voting_data": false,
+  "has_speaker_activity": false,
+  "voting_display": "faction",
+  "councilor_count": 15,
+  "clubs": {},
+  "club_assignments": {
+    "Aleksandra Dziurda": "",
+    "Alfreda Lidia Okupska": "",
+    "Anetta Sidorowicz": "",
+    "Arkadiusz Edward Dudkiewicz": "",
+    "Artur Leon Riedel": "",
+    "Damian Hofanowski": "",
+    "Dorota Ewa Stefańska": "",
+    "Edward Dudkiewicz": "",
+    "Ewa Runge": "",
+    "Ewa Teresa Januchowska": "",
+    "Joanna Maria Rumin-Stańczuk": "",
+    "Leszek Czesław Hamulski": "",
+    "Mateusz Jan Raniś": "",
+    "Michał Mateusz Mytych": "",
+    "Tomasz Kownacki": ""
+  },
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": true,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Skwierzynie",
+  "rada_name_genitive": "Rady Miejskiej w Skwierzynie",
+  "teryt": "0803053",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true,
+    "note": "Tier-2 (roster/berliński): rejestry imienne BIP to skany eSesja-print bez warstwy tekstu; OCR sladow nie daje wiarygodnej atrybucji (nazwiska w wielu kolumnach, liczniki nie reconciluja). Sklad 15 radnych kuratorowany z BIP (Komisje stale IX kad. + lista imienna protokolu 28.08.2026); kalendarz 27 sesji IX z rejestru /202/."
+  },
+  "_meta": {
+    "note": "Tier-2 (model berliński): brak IMIENNYCH głosowań nadających się do maszynowego parsowania — 'Imienne wykazy głosowań' (BIP kategoria 202) = skany PDF (Rada24 print) bez warstwy tekstu; OCR (tesseract -l pol, 150dpi) nie przypisuje glosow do radnych pozycyjnie (uklad wielokolumnowy, agregaty nie reconciluja). Roster 15 radnych = union skladow komisji stalych IX kad. (BIP 105) potwierdzony lista imienna skanu XXVIII/2026. Kalendarz sesji z rejestru BIP /202/ (27 sesji IX, najnowsza 2026-08-07; rada24.pl potwierdza). eSesja/AlfaTV/Nefeni = brak. Dodane 2026-09-07 (cron do 500 miast).",
+    "population": 9454,
+    "voivodeship": "lubuskie",
+    "lat": 52.6,
+    "lon": 15.5,
+    "qid": "Q994585"
+  }
+}
