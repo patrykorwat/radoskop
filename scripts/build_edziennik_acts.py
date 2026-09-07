@@ -33,6 +33,7 @@ import argparse
 import json
 import re
 import sys
+import threading
 import time
 import unicodedata
 import urllib.error
@@ -74,10 +75,33 @@ def norm(s: str) -> str:
     return s
 
 
-def http_json(url: str, timeout: int = 40):
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+def _grab(req: urllib.request.Request, timeout: int) -> bytes:
     with urllib.request.urlopen(req, timeout=timeout) as r:
-        return json.loads(r.read().decode("utf-8"))
+        return r.read()
+
+
+def http_json(url: str, total_timeout: int = 90):
+    """GET+JSON z TWARDOYM terminem calym zazadaniem. socket-timeout nie chroni
+    przed serwerem kapanym bajtami (dolnoslaski wisial 35 min, Recv-Q nie rasta).
+    Watek-daemon + join z terminem: po przekroczeniu rzucamy TimeoutError i
+    zostawiamy wiszace polaczenie za sobiem (daemon umrze razem z procesem)."""
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    box: dict = {}
+
+    def worker():
+        try:
+            box["data"] = _grab(req, min(40, total_timeout))
+        except BaseException as e:  # noqa: BLE001 — przenosimy wyjatek do watku glownego
+            box["err"] = e
+
+    t = threading.Thread(target=worker, daemon=True)
+    t.start()
+    t.join(total_timeout)
+    if t.is_alive():
+        raise TimeoutError(f"HTTP twardy limit {total_timeout}s: {url}")
+    if "err" in box:
+        raise box["err"]
+    return json.loads(box["data"].decode("utf-8"))
 
 
 def city_forms_map(cities_dir: Path) -> tuple[dict[str, str], dict[str, str]]:
