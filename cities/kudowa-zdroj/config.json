@@ -1,0 +1,42 @@
+{
+  "city_name": "Kudowa-Zdrój",
+  "city_genitive": "Kudowy-Zdroju",
+  "site_title": "Radoskop Kudowa-Zdrój — Jak głosowali radni?",
+  "site_url": "https://kudowa-zdroj.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Kudowie-Zdroju. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Kudowie-Zdroju.",
+  "bip_url": "https://bip.kudowa.pl",
+  "bip_name": "BIP UM Kudowa-Zdrój",
+  "esesja_url": null,
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "kudowa-zdroj.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Kudowie-Zdroju",
+  "rada_name_genitive": "Rady Miejskiej w Kudowie-Zdroju",
+  "teryt": "0208031",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (BIP bip.kudowa.pl, platforma 2clickportal: rejestr 'Głosowania RM' per-sesyjnymi PDF WYKAZ GŁOSOWAŃ z pełnymi wynikami imiennymi w warstwie tekstowej; scraper scrape_kudowa_zdroj.py, walidacja liczniki Podsumowanie vs imienne). Dodane 2026-09-07 (cron do 500 miast). club_assignments pending.",
+    "population": 9772,
+    "voivodeship": "dolnośląskie",
+    "lat": 50.4333,
+    "lon": 16.2333,
+    "qid": "Q954130"
+  }
+}

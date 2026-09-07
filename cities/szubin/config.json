@@ -1,0 +1,42 @@
+{
+  "city_name": "Szubin",
+  "city_genitive": "Szubina",
+  "site_title": "Radoskop Szubin — Jak głosowali radni?",
+  "site_url": "https://szubin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Szubinie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Szubinie.",
+  "bip_url": "https://bip.szubin.pl",
+  "bip_name": "BIP Gmina Szubin",
+  "esesja_url": "https://szubin.posiedzenia.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "szubin.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Szubinie",
+  "rada_name_genitive": "Rady Miejskiej w Szubinie",
+  "teryt": "0410053",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (platforma posiedzenia.pl — BIP 'Wykazy głosowań radnych' kieruje na szubin.posiedzenia.pl; scraper wrapper scrape_karczew.PosiedzeniaPlScraper, headless playwright O3/O7; eSesja szubin.esesja.pl = porzucona, 1 sesja z 2021). Dodane 2026-09-07 (cron do 500 miast). club_assignments pending.",
+    "population": 9578,
+    "voivodeship": "kujawsko-pomorskie",
+    "lat": 53.0096,
+    "lon": 17.7423,
+    "qid": "Q999598"
+  }
+}
