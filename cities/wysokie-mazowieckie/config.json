@@ -1,0 +1,42 @@
+{
+  "city_name": "Wysokie Mazowieckie",
+  "city_genitive": "Wysokiego Mazowieckiego",
+  "site_title": "Radoskop Wysokie Mazowieckie — Jak głosują radni?",
+  "site_url": "https://wysokie-mazowieckie.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Wysokie Mazowieckie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Wysokie Mazowieckie.",
+  "bip_url": "https://bip.wysokiemazowieckie.pl",
+  "bip_name": "BIP Miasta Wysokie Mazowieckie",
+  "esesja_url": "https://wysokiemazowieckieum.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wysokie-mazowieckie.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Wysokie Mazowieckie",
+  "rada_name_genitive": "Rady Miasta Wysokie Mazowieckie",
+  "teryt": "2013011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (eSesja Portal Mieszkańca instancja A = old-compatible). eSesja na SKRÓCONYM subdomenie wysokiemazowieckieum.esesja.pl (slugowe wysokie-mazowieckie.esesja.pl = wildcard korporacyjny). Imienne /glosowanie/ page, lib_esesja scrapuje wprost. ~24 sesje IX kad. (najnowsza 2026-08-27). Kluby PENDING (kuraturacja z BIP później). TERYT 2013011 (pl.wikipedia). Dodane 2026-09-07 (cron do 500 miast).",
+    "population": 9336,
+    "voivodeship": "podlaskie",
+    "lat": 52.919167,
+    "lon": 22.514444,
+    "qid": "Q335580"
+  }
+}
