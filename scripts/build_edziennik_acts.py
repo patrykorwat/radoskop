@@ -32,6 +32,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import subprocess
 import sys
 import threading
 import time
@@ -192,16 +193,50 @@ def act_detail(host: str, item: dict, sleep: float) -> dict | None:
             html = h.get("Content") or ""
         except Exception:
             pass
+    atts = [{"file": x.get("FileName"), "oid": x.get("Oid"),
+             "kb": (x.get("FileSizeBytes") or 0) // 1024}
+            for x in (a.get("Attachments") or []) if x.get("Extension") == "PDF" and x.get("Oid")]
     return {
         "oid": oid,
         "act_date": a.get("ActDate"), "status": a.get("ActStatus"),
         "publishers": [p.get("Name") for p in (a.get("Publishers") or a.get("PublishersList") or []) if p],
-        "attachments": [{"file": x.get("FileName"), "oid": x.get("Oid"),
-                         "kb": (x.get("FileSizeBytes") or 0) // 1024}
-                        for x in (a.get("Attachments") or []) if x.get("Extension") == "PDF"],
+        "attachments": atts,
+        "pdf_oid": atts[0]["oid"] if atts else None,
         "html_chars": len(html),
         "html": html[:400_000],
     }
+
+
+def http_bytes(url: str, total_timeout: int = 120) -> bytes:
+    """GET z twardym terminem (jak http_json) — do PDF-ów."""
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    box: dict = {}
+
+    def worker():
+        try:
+            box["data"] = _grab(req, min(60, total_timeout))
+        except BaseException as e:  # noqa: BLE001
+            box["err"] = e
+
+    t = threading.Thread(target=worker, daemon=True)
+    t.start()
+    t.join(total_timeout)
+    if t.is_alive():
+        raise TimeoutError(f"HTTP twardy limit {total_timeout}s: {url}")
+    if "err" in box:
+        raise box["err"]
+    return box["data"]
+
+
+def pdf_to_text(raw: bytes) -> str:
+    """pdftotext (poppler) przez stdin/stdout. Pusty wynik = skan bez warstwy tekstu."""
+    try:
+        p = subprocess.run(
+            ["pdftotext", "-enc", "UTF-8", "-", "-"],
+            input=raw, capture_output=True, timeout=45)
+        return p.stdout.decode("utf-8", "replace")
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        return ""
 
 
 def main() -> int:
@@ -280,8 +315,22 @@ def main() -> int:
                 except Exception as e:
                     print(f"  tekst {it.get('eli')}: blad {type(e).__name__}", file=sys.stderr)
                     continue
-                if not d or not d.get("html"):
+                if not d:
                     continue
+                text_html = d.get("html") or ""
+                text_pdf = ""
+                if not text_html and d.get("pdf_oid"):
+                    # niektore dzienniki (np. dolnoslaski) nie maja endpointu HTML
+                    # (500 Object reference) — tekst wycagamy z ogloszonego akt.pdf
+                    try:
+                        raw = http_bytes(f"https://{host}/GetFileXml.ashx?signature=true&id={d['pdf_oid']}")
+                        text_pdf = pdf_to_text(raw)
+                        time.sleep(args.sleep)
+                    except Exception as e:
+                        print(f"  pdf {it.get('eli')}: blad {type(e).__name__}", file=sys.stderr)
+                        continue
+                if not text_html and not text_pdf.strip():
+                    continue  # skan bez warstwy tekstu — do OCR pozniej
                 m = NUM_RE.search(it.get("title") or "")
                 dst.parent.mkdir(parents=True, exist_ok=True)
                 dst.write_text(json.dumps({
@@ -294,12 +343,15 @@ def main() -> int:
                     "resolution_no": m.group(1) if m else None,
                     "city": slug, "why": why,
                     "source": f"https://{host}/",
-                    "text_html": d.get("html"),
+                    "text_html": text_html,
+                    "text_pdf": text_pdf if not text_html else "",
                     "generated": datetime.now(timezone.utc).isoformat(),
                 }, ensure_ascii=False))
                 n_text += 1
                 if n_text % 50 == 0:
-                    print(f"  teksty: {n_text}")
+                    print(f"  teksty: {n_text}", flush=True)
+            n_done = sum(1 for _ in (out / "city").glob(f"*/acts/{year}/*.json"))
+            print(f"  {year}: teksty zapisane (narastajaco): {n_done}", flush=True)
 
     # indeks
     idx = {"generated": datetime.now(timezone.utc).isoformat(), "cities": {}, "kraj_rn": 0}
