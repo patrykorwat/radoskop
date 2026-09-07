@@ -46,7 +46,10 @@ import requests
 HERE = Path(__file__).resolve()
 sys.path.insert(0, str(HERE.parents[3] / "scripts"))
 
-from http_cache import init_cache  # noqa: E402
+from http_cache import init_cache, cached_fetch_text  # noqa: E402
+
+# TTL cache dla stron szczegółowych (stabilne URL-e). Listingi zawsze force.
+DETAIL_TTL = 3 * 86400
 
 REJESTR_URL = "https://bip.radom.pl/ra/rada-miejska/interpelacje-i-zapytani"
 
@@ -112,18 +115,13 @@ def _session() -> requests.Session:
     return s
 
 
-def fetch_text(session: requests.Session, url: str) -> str:
-    """Fetch z politeness delay + retry na przejściowych 403/429/5xx."""
-    time.sleep(DELAY)
+def fetch_text(session: requests.Session, url: str, *, force: bool = False,
+               ttl: float | None = DETAIL_TTL) -> str:
+    """Fetch z disk cache (TTL) + politeness delay + retry na 403/429/5xx."""
     for attempt in range(3):
         try:
-            resp = session.get(url, timeout=30)
-            if resp.status_code == 200:
-                return resp.text
-            _log(f"  {resp.status_code} {url}")
-            if resp.status_code in (403, 429) or resp.status_code >= 500:
-                time.sleep(3)
-                continue
+            return cached_fetch_text(url, session=session, timeout=30,
+                                     delay=DELAY, force=force, ttl=ttl)
         except requests.RequestException as e:
             _log(f"  błąd {url}: {e}")
             time.sleep(2)
@@ -132,8 +130,8 @@ def fetch_text(session: requests.Session, url: str) -> str:
 
 def fetch_listing(session: requests.Session, page: int) -> str:
     url = REJESTR_URL if page == 1 else f"{REJESTR_URL}?page={page}"
-    time.sleep(DELAY)
-    return fetch_text(session, url)
+    # Listing: zawsze HTTP — nowe wpisy przesuwa stronicowanie.
+    return fetch_text(session, url, force=True, ttl=0)
 
 
 # ---------------------------------------------------------------------------

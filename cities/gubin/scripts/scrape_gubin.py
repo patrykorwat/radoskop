@@ -47,12 +47,33 @@ MONTHS = {"stycznia": 1, "lutego": 2, "marca": 3, "kwietnia": 4, "maja": 5,
           "grudzien": 12, "grudzień": 12}
 
 
+_CACHE_DIR: Path | None = None
+
+
+def _cache_path(url: str) -> Path | None:
+    """Disk cache w scratch (pomija strony rejestru — tam dochodzą akty)."""
+    if _CACHE_DIR is None or "/akty/1394/typ/" in url:
+        return None
+    import hashlib
+    return _CACHE_DIR / (hashlib.md5(url.encode()).hexdigest()[:16] + ".bin")
+
+
 def _get(url: str) -> bytes:
+    cf = _cache_path(url)
+    if cf and cf.is_file() and cf.stat().st_size > 100:
+        return cf.read_bytes()
     req = urllib.request.Request(url, headers=UA)
     for attempt in range(4):
         try:
             with urllib.request.urlopen(req, timeout=60, context=CTX) as r:
-                return r.read()
+                data = r.read()
+            if cf:
+                try:
+                    cf.parent.mkdir(parents=True, exist_ok=True)
+                    cf.write_bytes(data)
+                except Exception:
+                    pass
+            return data
         except Exception:
             if attempt == 3:
                 raise
@@ -148,7 +169,11 @@ def parse_wynik(text: str):
     return counts, per, date, topic
 
 
-def main(city_dir: Path):
+def main(city_dir: Path, cache_dir: str = ""):
+    global _CACHE_DIR
+    if cache_dir:
+        _CACHE_DIR = Path(cache_dir)
+        _CACHE_DIR.mkdir(parents=True, exist_ok=True)
     docs = city_dir / "docs"
     docs.mkdir(exist_ok=True)
 
@@ -314,4 +339,5 @@ def main(city_dir: Path):
 
 
 if __name__ == "__main__":
-    main(Path(sys.argv[1]) if len(sys.argv) > 1 else Path("."))
+    main(Path(sys.argv[1]) if len(sys.argv) > 1 else Path("."),
+         sys.argv[2] if len(sys.argv) > 2 else "")

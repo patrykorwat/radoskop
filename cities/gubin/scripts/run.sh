@@ -6,7 +6,7 @@ CITY_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 RADOSKOP_DIR="$(cd "$CITY_DIR/../.." && pwd)"
 
 echo "[gubin] scrape_gubin.py"
-python3 "$SCRIPT_DIR/scrape_gubin.py" "$CITY_DIR"
+python3 "$SCRIPT_DIR/scrape_gubin.py" "$CITY_DIR" "${RADOSKOP_SCRATCH:-}/.cache"
 
 echo "[gubin] generate_site.py"
 python3 "$RADOSKOP_DIR/scripts/generate_site.py" \

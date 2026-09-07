@@ -43,7 +43,11 @@ import requests
 HERE = Path(__file__).resolve()
 sys.path.insert(0, str(HERE.parents[3] / "scripts"))
 
-from http_cache import init_cache  # noqa: E402
+from http_cache import init_cache, cached_fetch_text  # noqa: E402
+
+# TTL cache strony szczegółowe — stabilne URL-e, treść zmienia się dopiero
+# gdy pojawi się odpowiedź. Listingi zawsze force (stronicowanie się przesuwa).
+DETAIL_TTL = 3 * 86400
 
 # Rejestr interpelacji/zapytań — moduł CCT na BIP Częstochowy.
 LISTING_URL = "https://bip.czestochowa.pl/interpelacje/szukaj"
@@ -58,7 +62,7 @@ HEADERS = {
 
 DELAY = 0.5
 MAX_PAGES = 400
-PER_PAGE = 10
+PER_PAGE = 50  # serwer przyjmuje (zweryfikowane live); dawniej 10 → 400 stron listy
 # Domyślnie tylko bieżąca kadencja (IX, 2024-2029). Starsze — przez --all.
 MIN_ROK_DEFAULT = 2024
 
@@ -138,17 +142,13 @@ def _session() -> requests.Session:
     return s
 
 
-def fetch_text(session: requests.Session, url: str) -> str:
-    """Fetch z politeness delay + retry na przejściowych 403/5xx."""
+def fetch_text(session: requests.Session, url: str, *, force: bool = False,
+               ttl: float | None = DETAIL_TTL) -> str:
+    """Fetch z disk cache (TTL) + politeness delay + retry na 403/5xx."""
     for attempt in range(3):
         try:
-            resp = session.get(url, timeout=30)
-            if resp.status_code == 200:
-                return resp.text
-            _log(f"  {resp.status_code} {url}")
-            if resp.status_code in (403, 429):
-                time.sleep(3)
-                continue
+            return cached_fetch_text(url, session=session, timeout=30,
+                                     delay=0.2, force=force, ttl=ttl)
         except requests.RequestException as e:
             _log(f"  błąd {url}: {e}")
             time.sleep(2)
@@ -158,7 +158,8 @@ def fetch_text(session: requests.Session, url: str) -> str:
 def fetch_listing(session: requests.Session, term_id: int, page: int) -> str:
     url = f"{LISTING_URL}?keyword=&type_id=-1&number=&regarding=&councillor=&term_id={term_id}&page={page}&perPage={PER_PAGE}"
     time.sleep(DELAY)
-    return fetch_text(session, url)
+    # Listing: zawsze HTTP — nowe wpisy przesuwa stronicowanie.
+    return fetch_text(session, url, force=True, ttl=0)
 
 
 # ---------------------------------------------------------------------------

@@ -42,10 +42,15 @@ import requests
 HERE = Path(__file__).resolve()
 sys.path.insert(0, str(HERE.parents[3] / "scripts"))
 
-from http_cache import init_cache  # noqa: E402
+from http_cache import init_cache, cached_fetch_text  # noqa: E402
+
+# TTL cache dla stron szczegolowych (URL-e stabilne, tresc zmienia sie
+# tylko gdy radny dostanie odpowiedz). Listingi zawsze force (nowe rekordy
+# przesuwa stronicowanie). 3 dni = kompromis swiezosc/wolumen zapytan.
+DETAIL_TTL = 3 * 86400
 
 BASE_URL = "https://bip.torun.pl"
-LISTING_TPL = f"{BASE_URL}/interpelacje/{{page}}/10"
+LISTING_TPL = f"{BASE_URL}/interpelacje/{{page}}/100"
 MAX_PAGES = 130
 MIN_ROK_DEFAULT = 2024
 
@@ -94,16 +99,13 @@ def _session() -> requests.Session:
     return s
 
 
-def fetch_text(session: requests.Session, url: str) -> str:
+def fetch_text(session: requests.Session, url: str, *, force: bool = False,
+               ttl: float | None = DETAIL_TTL) -> str:
+    """Fetch z disk cache (TTL per strona) + retry na przejsciowych bledach."""
     for attempt in range(3):
         try:
-            resp = session.get(url, timeout=30)
-            if resp.status_code == 200:
-                return resp.text
-            _log(f"  {resp.status_code} {url}")
-            if resp.status_code in (403, 429):
-                time.sleep(3)
-                continue
+            return cached_fetch_text(url, session=session, timeout=30,
+                                     delay=0.2, force=force, ttl=ttl)
         except requests.RequestException as e:
             _log(f"  błąd {url}: {e}")
             time.sleep(2)
@@ -112,7 +114,8 @@ def fetch_text(session: requests.Session, url: str) -> str:
 
 def fetch_listing(session: requests.Session, page: int) -> str:
     time.sleep(DELAY)
-    return fetch_text(session, LISTING_TPL.format(page=page))
+    # Listing: zawsze HTTP (force) — nowe wpisy przesuwaja stronicowanie.
+    return fetch_text(session, LISTING_TPL.format(page=page), force=True, ttl=0)
 
 
 # ---------------------------------------------------------------------------

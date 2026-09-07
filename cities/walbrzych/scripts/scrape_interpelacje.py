@@ -36,7 +36,10 @@ from bs4 import BeautifulSoup
 HERE = Path(__file__).resolve()
 sys.path.insert(0, str(HERE.parents[3] / "scripts"))
 
-from http_cache import init_cache  # noqa: E402
+from http_cache import init_cache, cached_fetch_text  # noqa: E402
+
+# TTL cache dla stron szczegółowych (stabilne URL-e). Listingi zawsze force.
+DETAIL_TTL = 3 * 86400
 
 BASE = "https://bip.um.walbrzych.pl"
 LIST_ROOT = f"{BASE}/interpelacje"
@@ -110,16 +113,11 @@ def _session():
     return s
 
 
-def fetch_text(session, url):
+def fetch_text(session, url, *, force=False, ttl=DETAIL_TTL):
     for attempt in range(3):
         try:
-            resp = session.get(url, timeout=40)
-            if resp.status_code == 200:
-                resp.encoding = "utf-8"
-                return resp.text
-            if resp.status_code in (403, 429):
-                time.sleep(3)
-                continue
+            return cached_fetch_text(url, session=session, timeout=40,
+                                     delay=0.2, force=force, ttl=ttl)
         except requests.RequestException as e:
             _log(f"  błąd {url}: {e}")
             time.sleep(2)
@@ -219,7 +217,7 @@ def main() -> int:
     session = _session()
 
     print("=== Interpelacje/zapytania — Wałbrzych (BIP) ===")
-    html = fetch_text(session, f"{LIST_ROOT}/1/10")
+    html = fetch_text(session, f"{LIST_ROOT}/1/100", force=True, ttl=0)
     soup = BeautifulSoup(html, "html.parser")
     total_pages = _total_pages(soup)
     pages = min(total_pages, args.max_pages) if args.max_pages else total_pages
@@ -230,7 +228,7 @@ def main() -> int:
     for page in range(1, pages + 1):
         if page > 1:
             time.sleep(DELAY)
-            ph = fetch_text(session, f"{LIST_ROOT}/{page}/10")
+            ph = fetch_text(session, f"{LIST_ROOT}/{page}/100", force=True, ttl=0)
             soup = BeautifulSoup(ph, "html.parser") if ph else None
             if soup is None:
                 print(f"  [skip] strona {page}")
@@ -276,7 +274,6 @@ def main() -> int:
         if min_rok and rec["rok"] and rec["rok"] < min_rok:
             continue
         final.append(rec)
-        time.sleep(DELAY)
 
     # dedupe po bip_url
     uniq, seen_url = [], set()
