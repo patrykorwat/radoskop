@@ -32,6 +32,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import ssl
 import subprocess
 import sys
 import threading
@@ -76,9 +77,44 @@ def norm(s: str) -> str:
     return s
 
 
-def _grab(req: urllib.request.Request, timeout: int) -> bytes:
-    with urllib.request.urlopen(req, timeout=timeout) as r:
+def _grab(req: urllib.request.Request, timeout: int, ctx=None) -> bytes:
+    with urllib.request.urlopen(req, timeout=timeout, context=ctx) as r:
         return r.read()
+
+
+_INSECURE_CTX = ssl._create_unverified_context()
+
+
+def _retry_sleep(attempt: int) -> None:
+    time.sleep(1.5 * (attempt + 1))
+
+
+def _get(url: str, total_timeout: int) -> bytes:
+    """Jedno zadanie z twardym terminem; retry + fallback na uszkodzony cats
+    (lubuskie/lodzkie ida na wlasnym CA — weryfikacja zawodzi, -k dziala)."""
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    last: BaseException = RuntimeError("no attempts")
+    for attempt in range(3):
+        for ctx in (None, _INSECURE_CTX):
+            box: dict = {}
+
+            def worker():
+                try:
+                    box["data"] = _grab(req, min(40, total_timeout), ctx)
+                except BaseException as e:  # noqa: BLE001 — przenosimy do watku glownego
+                    box["err"] = e
+
+            t = threading.Thread(target=worker, daemon=True)
+            t.start()
+            t.join(total_timeout)
+            if t.is_alive():
+                last = TimeoutError(f"HTTP twardy limit {total_timeout}s: {url}")
+                continue
+            if "err" not in box:
+                return box["data"]
+            last = box["err"]
+        _retry_sleep(attempt)
+    raise last
 
 
 def http_json(url: str, total_timeout: int = 90):
@@ -86,23 +122,7 @@ def http_json(url: str, total_timeout: int = 90):
     przed serwerem kapanym bajtami (dolnoslaski wisial 35 min, Recv-Q nie rasta).
     Watek-daemon + join z terminem: po przekroczeniu rzucamy TimeoutError i
     zostawiamy wiszace polaczenie za sobiem (daemon umrze razem z procesem)."""
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    box: dict = {}
-
-    def worker():
-        try:
-            box["data"] = _grab(req, min(40, total_timeout))
-        except BaseException as e:  # noqa: BLE001 — przenosimy wyjatek do watku glownego
-            box["err"] = e
-
-    t = threading.Thread(target=worker, daemon=True)
-    t.start()
-    t.join(total_timeout)
-    if t.is_alive():
-        raise TimeoutError(f"HTTP twardy limit {total_timeout}s: {url}")
-    if "err" in box:
-        raise box["err"]
-    return json.loads(box["data"].decode("utf-8"))
+    return json.loads(_get(url, total_timeout).decode("utf-8"))
 
 
 def city_forms_map(cities_dir: Path) -> tuple[dict[str, str], dict[str, str]]:
@@ -208,24 +228,8 @@ def act_detail(host: str, item: dict, sleep: float) -> dict | None:
 
 
 def http_bytes(url: str, total_timeout: int = 120) -> bytes:
-    """GET z twardym terminem (jak http_json) — do PDF-ów."""
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    box: dict = {}
-
-    def worker():
-        try:
-            box["data"] = _grab(req, min(60, total_timeout))
-        except BaseException as e:  # noqa: BLE001
-            box["err"] = e
-
-    t = threading.Thread(target=worker, daemon=True)
-    t.start()
-    t.join(total_timeout)
-    if t.is_alive():
-        raise TimeoutError(f"HTTP twardy limit {total_timeout}s: {url}")
-    if "err" in box:
-        raise box["err"]
-    return box["data"]
+    """GET z twardym terminem i retry (jak http_json) — do PDF-ów."""
+    return _get(url, total_timeout)
 
 
 def pdf_to_text(raw: bytes) -> str:
