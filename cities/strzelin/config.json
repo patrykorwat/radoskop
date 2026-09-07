@@ -1,0 +1,39 @@
+{
+  "city_name": "Strzelin",
+  "city_genitive": "Strzelina",
+  "site_title": "Radoskop Strzelin — Jak głosują radni?",
+  "site_url": "https://strzelin.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Strzelinie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Strzelinie.",
+  "bip_url": "https://strzelin.esesja.pl",
+  "bip_name": "eSesja Rada Miejska Strzelin (strzelin.esesja.pl)",
+  "esesja_url": "https://strzelin.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "strzelin.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Strzelinie",
+  "rada_name_genitive": "Rady Miejskiej w Strzelinie",
+  "teryt": "0217044",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (eSesja old-template strzelin.esesja.pl; lib_esesja wrapper; 35 sesji IX kadencji 2024-05-28..2026-08-25, glosowania imienne). Dodane 2026-09-07 (cron ekspansja 500). club_assignments pending (kuratorowane z BIP).",
+    "population": 12383,
+    "voivodeship": "dolnośląskie"
+  }
+}
