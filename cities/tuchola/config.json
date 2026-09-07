@@ -3,13 +3,15 @@
   "city_genitive": "Tucholi",
   "site_title": "Radoskop Tuchola — Jak głosują radni?",
   "site_url": "https://tuchola.radoskop.pl",
-  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Tucholi. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
-  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Tucholi.",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Tucholi. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Tucholi.",
   "bip_url": "https://bip.tuchola.pl",
-  "bip_name": "BIP Urząd Miejskiej w Tucholi",
+  "bip_name": "BIP Urzędu Miejskiego w Tucholi (Madkom BIP SPA)",
   "github_url": "https://github.com/radoskoppl/radoskop",
   "author": "Patryk Orwat",
   "cname": "tuchola.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
   "kadencje": {
     "2024-2029": {
       "label": "IX kadencja (2024–2029)",
@@ -17,6 +19,11 @@
     }
   },
   "kadencja_active": "2024-2029",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true,
+    "deps": "requests pymupdf"
+  },
   "has_budget": false,
   "has_komisje": false,
   "budget_note": "",
@@ -24,18 +31,9 @@
   "rada_name": "Rada Miejska w Tucholi",
   "rada_name_genitive": "Rady Miejskiej w Tucholi",
   "teryt": "0416064",
-  "clubs": {},
-  "club_assignments": {},
-  "scrape": {
-    "runner": "run.sh",
-    "generate_site": true
-  },
   "_meta": {
-    "note": "NOWE miasto (BIP bip.tuchola.pl React-SPA Madkom playout; API /api/contexts/default/articles + /api/articles/{id}; kategoria 'Imienne wykazy głosowań radnych' = 1 artykuł na głosowanie, załącznik PDF DSSS Vote TEKSTOWY, dwukolumnowa tabela LEWA=ZA / PRAWA(x>=340)=PRZECIW + stopy Wstrzymuję się / Obecni nieobecni, walidacja list vs agregat 'jestem za N, przeciw M, wstrzymało się K'). rada.tuchola.pl = LOCO webmail (nie System Rada), tuchola.esesja.pl redirect-loop, brak bip.net.pl. TERYT 0416064 (pl.wiki infobox TERC). club_assignments PENDING. Dodane 2026-09-07 (cron do 500 miast, pula tier2).",
-    "population": 12969,
-    "voivodeship": "kujawsko-pomorskie",
-    "qid": null,
-    "lat": 53.60500,
-    "lon": 18.01139
+    "note": "NOWE miasto (Madkom 'Nowoczesny BIP' React SPA bip.tuchola.pl z JSON API bez klucza: /api/menu/1128/articles -> /api/articles/{id} -> /api/files/{fid}). Kategoria 'Imienne wykazy głosowań radnych' (menu 1128, 767 artykułów od 2010). Per-uchwała PDF wydruk DSSS Vote (system głosowań radnych, tekstowy, 1 strona): nagłówek 'na <R> sesji w dniu <data>' + 'jestem za N, jestem przeciw N, wstrzymało się N' + dwukolumnowy układ imienny (Jestem za / Wstrzymuję się | Jestem przeciw / Obecni którzy nie wzięli udziału). Parser: pymupdf word-coords + strefy kolumnowe (x=340), walidacja per-głos sumy nazwisk == agregaty (tylko zwalidowane; niezgodne odrzucane). Rada 15 radnych. Kluby: club_assignments PENDING (nie fabrykować), wszyscy NZ. TERYT 0416064 (miasto w gm. m-w Tuchola, powiat tucholski 0416, woj. kujawsko-pomorskie 04). eSesja/rada.*.pl/bip.net.pl = martwe dla Tucholi; źródłem wyłącznie bip.tuchola.pl. Dodane 2026-09-07 (cron ekspansja, tor główny 500).",
+    "population": 13534,
+    "voivodeship": "kujawsko-pomorskie"
   }
 }

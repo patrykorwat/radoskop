@@ -1,0 +1,350 @@
+{
+ "id": "2024-2029",
+ "label": "IX kadencja (2024–2029)",
+ "clubs": {},
+ "sessions": [
+  {
+   "date": "2026-08-11",
+   "number": "XXX",
+   "vote_count": 6,
+   "attendee_count": null,
+   "attendees": [],
+   "speakers": [],
+   "title": "Sesja XXX w dniu 2026-08-11"
+  }
+ ],
+ "total_sessions": 1,
+ "total_votes": 6,
+ "total_councilors": 12,
+ "councilors": [
+  {
+   "name": "Adam Brzoszczyk",
+   "slug": "adambrzoszczyk",
+   "club": "",
+   "district": null,
+   "frekwencja": null,
+   "aktywnosc": null,
+   "zgodnosc_z_klubem": null,
+   "votes_total": 6,
+   "rebellion_count": 0,
+   "has_activity_data": false
+  },
+  {
+   "name": "Andrzej Galinski",
+   "slug": "andrzejgalinski",
+   "club": "",
+   "district": null,
+   "frekwencja": null,
+   "aktywnosc": null,
+   "zgodnosc_z_klubem": null,
+   "votes_total": 6,
+   "rebellion_count": 0,
+   "has_activity_data": false
+  },
+  {
+   "name": "Barbara Drewczyńska",
+   "slug": "barbaradrewczynska",
+   "club": "",
+   "district": null,
+   "frekwencja": null,
+   "aktywnosc": null,
+   "zgodnosc_z_klubem": null,
+   "votes_total": 6,
+   "rebellion_count": 0,
+   "has_activity_data": false
+  },
+  {
+   "name": "Barbara Grontkowska",
+   "slug": "barbaragrontkowska",
+   "club": "",
+   "district": null,
+   "frekwencja": null,
+   "aktywnosc": null,
+   "zgodnosc_z_klubem": null,
+   "votes_total": 6,
+   "rebellion_count": 0,
+   "has_activity_data": false
+  },
+  {
+   "name": "Dariusz Karnowski",
+   "slug": "dariuszkarnowski",
+   "club": "",
+   "district": null,
+   "frekwencja": null,
+   "aktywnosc": null,
+   "zgodnosc_z_klubem": null,
+   "votes_total": 6,
+   "rebellion_count": 0,
+   "has_activity_data": false
+  },
+  {
+   "name": "Ewa Jaroch",
+   "slug": "ewajaroch",
+   "club": "",
+   "district": null,
+   "frekwencja": null,
+   "aktywnosc": null,
+   "zgodnosc_z_klubem": null,
+   "votes_total": 6,
+   "rebellion_count": 0,
+   "has_activity_data": false
+  },
+  {
+   "name": "Ireneusz Wesołowski",
+   "slug": "ireneuszwesolowski",
+   "club": "",
+   "district": null,
+   "frekwencja": null,
+   "aktywnosc": null,
+   "zgodnosc_z_klubem": null,
+   "votes_total": 6,
+   "rebellion_count": 0,
+   "has_activity_data": false
+  },
+  {
+   "name": "Jan Świerczyński",
+   "slug": "janswierczynski",
+   "club": "",
+   "district": null,
+   "frekwencja": null,
+   "aktywnosc": null,
+   "zgodnosc_z_klubem": null,
+   "votes_total": 6,
+   "rebellion_count": 0,
+   "has_activity_data": false
+  },
+  {
+   "name": "Mariusz Górecki",
+   "slug": "mariuszgorecki",
+   "club": "",
+   "district": null,
+   "frekwencja": null,
+   "aktywnosc": null,
+   "zgodnosc_z_klubem": null,
+   "votes_total": 6,
+   "rebellion_count": 0,
+   "has_activity_data": false
+  },
+  {
+   "name": "Paweł Cieślewicz",
+   "slug": "pawelcieslewicz",
+   "club": "",
+   "district": null,
+   "frekwencja": null,
+   "aktywnosc": null,
+   "zgodnosc_z_klubem": null,
+   "votes_total": 6,
+   "rebellion_count": 0,
+   "has_activity_data": false
+  },
+  {
+   "name": "Romuald Gierszewski",
+   "slug": "romualdgierszewski",
+   "club": "",
+   "district": null,
+   "frekwencja": null,
+   "aktywnosc": null,
+   "zgodnosc_z_klubem": null,
+   "votes_total": 6,
+   "rebellion_count": 0,
+   "has_activity_data": false
+  },
+  {
+   "name": "Tomasz Wegner",
+   "slug": "tomaszwegner",
+   "club": "",
+   "district": null,
+   "frekwencja": null,
+   "aktywnosc": null,
+   "zgodnosc_z_klubem": null,
+   "votes_total": 6,
+   "rebellion_count": 0,
+   "has_activity_data": false
+  }
+ ],
+ "votes": [
+  {
+   "id": "tch-33500",
+   "date": "2026-08-11",
+   "title": "XXX/251/26 w sprawie ustalenia regulaminu korzystania z fontanny zlokalizowanej na Placu Wolności w Tucholi",
+   "session_date": "2026-08-11",
+   "session_number": "XXX",
+   "named_votes": {
+    "za": [
+     "Adam Brzoszczyk",
+     "Romuald Gierszewski",
+     "Barbara Grontkowska",
+     "Mariusz Górecki",
+     "Dariusz Karnowski",
+     "Paweł Cieślewicz",
+     "Andrzej Galinski",
+     "Barbara Drewczyńska",
+     "Ewa Jaroch",
+     "Jan Świerczyński",
+     "Tomasz Wegner",
+     "Ireneusz Wesołowski"
+    ],
+    "przeciw": [],
+    "wstrzymal_sie": [],
+    "nieobecny": [],
+    "obecny_nieglosujacy": []
+   },
+   "total_za": 12,
+   "total_przeciw": 0,
+   "total_wstrzymal": 0
+  },
+  {
+   "id": "tch-33501",
+   "date": "2026-08-11",
+   "title": "XXX/252/26 w sprawie udzielenia pomocy rzeczowej dla Województwa Kujawsko-Pomorskiego",
+   "session_date": "2026-08-11",
+   "session_number": "XXX",
+   "named_votes": {
+    "za": [
+     "Adam Brzoszczyk",
+     "Romuald Gierszewski",
+     "Barbara Grontkowska",
+     "Mariusz Górecki",
+     "Dariusz Karnowski",
+     "Paweł Cieślewicz",
+     "Andrzej Galinski",
+     "Barbara Drewczyńska",
+     "Ewa Jaroch",
+     "Jan Świerczyński",
+     "Tomasz Wegner",
+     "Ireneusz Wesołowski"
+    ],
+    "przeciw": [],
+    "wstrzymal_sie": [],
+    "nieobecny": [],
+    "obecny_nieglosujacy": []
+   },
+   "total_za": 12,
+   "total_przeciw": 0,
+   "total_wstrzymal": 0
+  },
+  {
+   "id": "tch-33502",
+   "date": "2026-08-11",
+   "title": "XXX/253/26 w sprawie udzielenia pomocy w formie rzeczowej dla Województwa Kujawsko-Pomorskiego",
+   "session_date": "2026-08-11",
+   "session_number": "XXX",
+   "named_votes": {
+    "za": [
+     "Adam Brzoszczyk",
+     "Romuald Gierszewski",
+     "Barbara Grontkowska",
+     "Mariusz Górecki",
+     "Dariusz Karnowski",
+     "Paweł Cieślewicz",
+     "Andrzej Galinski",
+     "Barbara Drewczyńska",
+     "Ewa Jaroch",
+     "Jan Świerczyński",
+     "Tomasz Wegner",
+     "Ireneusz Wesołowski"
+    ],
+    "przeciw": [],
+    "wstrzymal_sie": [],
+    "nieobecny": [],
+    "obecny_nieglosujacy": []
+   },
+   "total_za": 12,
+   "total_przeciw": 0,
+   "total_wstrzymal": 0
+  },
+  {
+   "id": "tch-33503",
+   "date": "2026-08-11",
+   "title": "XXX/254/26 w sprawie udzielenia pomocy rzeczowej dla Województwa Kujawsko-Pomorskiego",
+   "session_date": "2026-08-11",
+   "session_number": "XXX",
+   "named_votes": {
+    "za": [
+     "Adam Brzoszczyk",
+     "Romuald Gierszewski",
+     "Barbara Grontkowska",
+     "Mariusz Górecki",
+     "Dariusz Karnowski",
+     "Paweł Cieślewicz",
+     "Andrzej Galinski",
+     "Barbara Drewczyńska",
+     "Ewa Jaroch",
+     "Jan Świerczyński",
+     "Tomasz Wegner",
+     "Ireneusz Wesołowski"
+    ],
+    "przeciw": [],
+    "wstrzymal_sie": [],
+    "nieobecny": [],
+    "obecny_nieglosujacy": []
+   },
+   "total_za": 12,
+   "total_przeciw": 0,
+   "total_wstrzymal": 0
+  },
+  {
+   "id": "tch-33504",
+   "date": "2026-08-11",
+   "title": "XXX/255/26 w sprawie udzielenia pomocy rzeczowej dla Województwa Kujawsko-Pomorskiego",
+   "session_date": "2026-08-11",
+   "session_number": "XXX",
+   "named_votes": {
+    "za": [
+     "Adam Brzoszczyk",
+     "Romuald Gierszewski",
+     "Barbara Grontkowska",
+     "Mariusz Górecki",
+     "Dariusz Karnowski",
+     "Paweł Cieślewicz",
+     "Andrzej Galinski",
+     "Barbara Drewczyńska",
+     "Ewa Jaroch",
+     "Jan Świerczyński",
+     "Tomasz Wegner",
+     "Ireneusz Wesołowski"
+    ],
+    "przeciw": [],
+    "wstrzymal_sie": [],
+    "nieobecny": [],
+    "obecny_nieglosujacy": []
+   },
+   "total_za": 12,
+   "total_przeciw": 0,
+   "total_wstrzymal": 0
+  },
+  {
+   "id": "tch-33505",
+   "date": "2026-08-11",
+   "title": "XXX/256/26 zmieniająca uchwałę w sprawie uchwalenia budżetu Gminy Tuchola na 2026 rok wraz z autopoprawkami",
+   "session_date": "2026-08-11",
+   "session_number": "XXX",
+   "named_votes": {
+    "za": [
+     "Adam Brzoszczyk",
+     "Romuald Gierszewski",
+     "Barbara Grontkowska",
+     "Mariusz Górecki",
+     "Dariusz Karnowski",
+     "Paweł Cieślewicz",
+     "Andrzej Galinski",
+     "Barbara Drewczyńska",
+     "Ewa Jaroch",
+     "Jan Świerczyński",
+     "Tomasz Wegner",
+     "Ireneusz Wesołowski"
+    ],
+    "przeciw": [],
+    "wstrzymal_sie": [],
+    "nieobecny": [],
+    "obecny_nieglosujacy": []
+   },
+   "total_za": 12,
+   "total_przeciw": 0,
+   "total_wstrzymal": 0
+  }
+ ],
+ "similarity_top": [],
+ "similarity_bottom": [],
+ "named_votes_index": {}
+}
