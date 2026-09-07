@@ -1,0 +1,41 @@
+{
+  "city_name": "Tuchola",
+  "city_genitive": "Tucholi",
+  "site_title": "Radoskop Tuchola — Jak głosują radni?",
+  "site_url": "https://tuchola.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Tucholi. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Tucholi.",
+  "bip_url": "https://bip.tuchola.pl",
+  "bip_name": "BIP Urząd Miejskiej w Tucholi",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "tuchola.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Tucholi",
+  "rada_name_genitive": "Rady Miejskiej w Tucholi",
+  "teryt": "0416064",
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (BIP bip.tuchola.pl React-SPA Madkom playout; API /api/contexts/default/articles + /api/articles/{id}; kategoria 'Imienne wykazy głosowań radnych' = 1 artykuł na głosowanie, załącznik PDF DSSS Vote TEKSTOWY, dwukolumnowa tabela LEWA=ZA / PRAWA(x>=340)=PRZECIW + stopy Wstrzymuję się / Obecni nieobecni, walidacja list vs agregat 'jestem za N, przeciw M, wstrzymało się K'). rada.tuchola.pl = LOCO webmail (nie System Rada), tuchola.esesja.pl redirect-loop, brak bip.net.pl. TERYT 0416064 (pl.wiki infobox TERC). club_assignments PENDING. Dodane 2026-09-07 (cron do 500 miast, pula tier2).",
+    "population": 12969,
+    "voivodeship": "kujawsko-pomorskie",
+    "qid": null,
+    "lat": 53.60500,
+    "lon": 18.01139
+  }
+}
