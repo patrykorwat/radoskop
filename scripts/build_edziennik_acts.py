@@ -235,23 +235,25 @@ def main() -> int:
         for year in [y for y in meta["years"] if y >= int(args.years)]:
             cat_p = cat_dir / f"{meta['code']}_{year}.json"
             if cat_p.exists():
-                continue
-            try:
-                items = year_acts(host, meta["code"], year, args.sleep)
-            except Exception as e:
-                print(f"  {year}: blad {type(e).__name__} {e}", file=sys.stderr)
-                continue
-            for it in items:
-                t = norm(it.get("title") or "")
-                it["journal"] = meta["code"]
-                it["rada_match"] = best_match(t, rada_forms)        # atrybucja aktu radzie
-                it["city_mention"] = best_match(t, mention_forms)   # wzmianka miasta (routing RN/Wyrok)
-            cat_p.write_text(json.dumps(
-                {"generated": datetime.now(timezone.utc).isoformat(),
-                 "host": host, "journal": meta["code"], "year": year,
-                 "count": len(items), "items": items}, ensure_ascii=False))
-            matched = sum(1 for i in items if i["rada_match"])
-            print(f"  {year}: {len(items)} aktow (akty rad portfela: {matched})")
+                # wznawianie: katalog jest, ale teksty mogly przerwac sie w polowie
+                items = json.loads(cat_p.read_text(encoding="utf-8")).get("items") or []
+            else:
+                try:
+                    items = year_acts(host, meta["code"], year, args.sleep)
+                except Exception as e:
+                    print(f"  {year}: blad {type(e).__name__} {e}", file=sys.stderr)
+                    continue
+                for it in items:
+                    t = norm(it.get("title") or "")
+                    it["journal"] = meta["code"]
+                    it["rada_match"] = best_match(t, rada_forms)        # atrybucja aktu radzie
+                    it["city_mention"] = best_match(t, mention_forms)   # wzmianka miasta (routing RN/Wyrok)
+                cat_p.write_text(json.dumps(
+                    {"generated": datetime.now(timezone.utc).isoformat(),
+                     "host": host, "journal": meta["code"], "year": year,
+                     "count": len(items), "items": items}, ensure_ascii=False))
+            matched = sum(1 for i in items if i.get("rada_match"))
+            print(f"  {year}: {len(items)} aktow (akty rad portfela: {matched})", flush=True)
 
             # teksty: akty rad portfela + RN + Wyrok
             for it in items:
