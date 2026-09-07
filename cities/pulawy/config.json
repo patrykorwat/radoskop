@@ -1,4 +1,5 @@
 {
+  "scrape": {"runner": "run.sh"},
   "city_name": "Puławy",
   "city_genitive": "Puław",
   "site_title": "Radoskop Puławy — Skład rady i sesje",

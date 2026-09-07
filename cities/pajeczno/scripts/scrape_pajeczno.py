@@ -317,7 +317,8 @@ def main():
     (docs / "profiles.json").write_text(json.dumps(profiles, ensure_ascii=False, indent=1), encoding="utf-8")
 
     data = {"city": "Pajeczno", "scraped_at": datetime.now(timezone.utc).isoformat(),
-            "kadencje": [KADENCJA_ID], "sessions": len(sessions),
+            # kontrakt generate_seo_pages: kadencje jako list [{id,label}]
+            "kadencje": [{"id": KADENCJA_ID, "label": KADENCJA_LABEL}], "sessions": len(sessions),
             "votes": len(all_votes), "councilors": len(councilors)}
     out = Path(args.output) if args.output else (docs / "data.json")
     out.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")

@@ -1,4 +1,5 @@
 {
+  "scrape": {"runner": "run.sh"},
   "city_name": "Lubsko",
   "city_genitive": "Lubska",
   "site_title": "Radoskop Lubsko — Jak głosują radni?",

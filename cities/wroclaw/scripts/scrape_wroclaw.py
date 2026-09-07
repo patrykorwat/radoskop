@@ -30,6 +30,9 @@ from itertools import combinations
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+
+# BIP-y z niepełnym łańcuchem TLS (bip.um.wroc.pl: leaf-only) — SSL_CERT_FILE z certs/*.pem
+import ca_bundle  # noqa: F401,E402
 from lib_clubs import club_has_line  # noqa: E402
 from urllib.parse import parse_qs, urljoin, urlparse
 

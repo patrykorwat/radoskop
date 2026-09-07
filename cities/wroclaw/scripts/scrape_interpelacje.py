@@ -19,6 +19,11 @@ import json
 import os
 import re
 import sys
+
+from pathlib import Path  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "scripts"))
+# BIP-y z niepełnym łańcuchem TLS (bip.um.wroc.pl: leaf-only)
+import ca_bundle  # noqa: E402,F401
 import time
 
 try:

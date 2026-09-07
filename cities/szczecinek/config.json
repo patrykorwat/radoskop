@@ -1,4 +1,5 @@
 {
+  "scrape": {"runner": "run.sh"},
   "city_name": "Szczecinek",
   "city_genitive": "Szczecinka",
   "site_title": "Radoskop Szczecinek — Jak głosują radni?",

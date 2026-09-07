@@ -1,4 +1,5 @@
 {
+  "scrape": {"runner": "run.sh"},
   "city_name": "Oława",
   "city_genitive": "Oławy",
   "site_title": "Radoskop Oława — Jak głosują radni?",

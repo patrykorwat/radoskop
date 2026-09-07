@@ -67,8 +67,22 @@ def _plain(html_frag: str) -> str:
 
 
 def fetch_roster():
-    """Skład z tabeli dyżurów (artykuł coroczny) + korekty po nazwisku."""
+    """Skład z tabeli dyżurów (artykuł coroczny) + korekty po nazwisku.
+
+    Slug jest roczny (…-w-<rok>-roku) — gdy się zmienił, szukamy najnowszego
+    posta z frazą 'dyżur' po ID."""
+    import urllib.parse as _up
     d = _get_json(f"{WP}/posts?slug={DYZUR_SLUG}&_fields=content")
+    if not d:
+        q = _up.quote("dyżur")
+        lst = _get_json(f"{WP}/posts?search={q}&_fields=slug&per_page=20&orderby=id&order=desc") or []
+        # kandydaci w kolejność API (najnowsze pierwsze), tylko 'dyzury…radn…'
+        alts = [x.get("slug", "") for x in lst
+                if "dyz" in x.get("slug", "") and "radn" in x.get("slug", "")]
+        for alt in alts:
+            d = _get_json(f"{WP}/posts?slug={alt}&_fields=content")
+            if d:
+                break
     if not d:
         raise RuntimeError("Nie pobrano artykułu o dyżurach radnych")
     txt = _plain(d[0]["content"]["rendered"])

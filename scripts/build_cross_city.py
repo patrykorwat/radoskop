@@ -185,9 +185,12 @@ def build_cross_city_json(base_path: Path, output_path: Path):
         if not councilors:
             continue
 
-        avg_frekwencja = sum(c.get('frekwencja', 0) for c in councilors) / len(councilors)
-        avg_aktywnosc = sum(c.get('aktywnosc', 0) for c in councilors) / len(councilors)
-        avg_zgodnosc = sum(c.get('zgodnosc_z_klubem', 0) for c in councilors) / len(councilors)
+        def _avg(key):
+            vals = [c.get(key) for c in councilors if isinstance(c.get(key), (int, float))]
+            return sum(vals) / len(vals) if vals else None
+        avg_frekwencja = _avg('frekwencja')
+        avg_aktywnosc = _avg('aktywnosc')
+        avg_zgodnosc = _avg('zgodnosc_z_klubem')
 
         city_slug = city_dir.name
         population = population_lookup.get(city_slug) or config.get('population')
@@ -200,9 +203,9 @@ def build_cross_city_json(base_path: Path, output_path: Path):
             'councilor_count': len(councilors),
             'session_count': kadencja.get('total_sessions', 0),
             'vote_count': kadencja.get('total_votes', 0),
-            'avg_frekwencja': round(avg_frekwencja, 2),
-            'avg_aktywnosc': round(avg_aktywnosc, 2),
-            'avg_zgodnosc': round(avg_zgodnosc, 2),
+            'avg_frekwencja': round(avg_frekwencja, 2) if avg_frekwencja is not None else None,
+            'avg_aktywnosc': round(avg_aktywnosc, 2) if avg_aktywnosc is not None else None,
+            'avg_zgodnosc': round(avg_zgodnosc, 2) if avg_zgodnosc is not None else None,
         }
         cities_data.append(city_record)
 

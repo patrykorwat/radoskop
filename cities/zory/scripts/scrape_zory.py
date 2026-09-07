@@ -195,8 +195,20 @@ def collect_sessions(cache_dir=None):
     """Zwraca [{article_id, article_slug, title, roman, date, num}] — IX kadencja."""
     out, seen = [], set()
     for cat in YEAR_CATS:
-        data = fetch(f"{API}/api/page-content/{cat}?lang=PL", cache_dir)
-        item = (data.get("contentData") or {}).get("item") or {}
+        try:
+            data = fetch(f"{API}/api/page-content/{cat}?lang=PL", cache_dir)
+        except Exception as e:
+            # API BIP Żor miewa 5xx per kategoria — nie traćmy reszty lat
+            print(f"  [warn] {cat}: {e}")
+            continue
+        if isinstance(data, str):
+            data = json.loads(data)
+        cd = data.get("contentData") or {}
+        if isinstance(cd, str):
+            cd = json.loads(cd)
+        if isinstance(cd, list):
+            cd = cd[0] if cd and isinstance(cd[0], dict) else {}
+        item = (cd or {}).get("item") or {}
         for a in item.get("articles") or []:
             slug = a.get("slug")
             if not slug or slug in seen:

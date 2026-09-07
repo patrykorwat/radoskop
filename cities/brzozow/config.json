@@ -1,4 +1,5 @@
 {
+  "scrape": {"runner": "run.sh"},
   "landing_enabled": true,
   "city_name": "Brzozów",
   "city_genitive": "Brzozowa",
@@ -28,7 +29,7 @@
   "samorzad_type": "miasto",
   "rada_name": "Rada Miejska w Brzozowie",
   "rada_name_genitive": "Rady Miejskiej w Brzozowie",
-  "teryt": "1804011",
+  "teryt": "1802014",
   "_meta": {
     "note": "NOWE miasto (long_tail -> UNLOCK per-głosowanie DSSS Vote TEKSTOWE, nie OCR). brzozow.bip.gov.pl /protokoly-z-sesji-rady-miejskiej/ (platforma gov.pl): 12 protokołów IX kad. (10/2025..8/2026) każdy z załącznikiem 'glosowania_sesja_DD_MM_YYYY.pdf' = per-głosowanie załączniki DSSS Vote z WARSTWĄ TEKSTOWĄ (name-list 'Jestem za / Jestem przeciw / Wstrzymuję się / BRAK'). Rekonstrukcja pozycyjna kolumn (x<320/x>=320) jak szydlowiec. Walidacja: 130 głosowań per-radny, KAŻDE reconcilowane vs agregat; prot.6/2026 = skan bez warstwy (atrybucja pominięta, nie fabrykuję). Roster 21 radnych (poprzednia.brzozow.pl 'Skład i komisje'; prezydium: Dorota Kamińska przew., Bogdan Duplaga + Grzegorz Pietryka wice). club_assignments PENDING, clubs {}. TERYT 1804011 (miasto Brzozów, powiat brzozowski 1804, woj. podkarpackie 18). Dodane 2026-08-31 (cron do 500 miast).",
     "population": 7550,

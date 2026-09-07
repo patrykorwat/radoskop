@@ -1,4 +1,5 @@
 {
+  "scrape": {"runner": "run.sh"},
   "city_name": "Łapy",
   "city_genitive": "Łap",
   "site_title": "Radoskop Łapy — Jak głosują radni?",

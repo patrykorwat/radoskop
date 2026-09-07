@@ -25,7 +25,7 @@
   "samorzad_type": "miasto",
   "rada_name": "Rada Miejska w Łowiczu",
   "rada_name_genitive": "Rady Miejskiej w Łowiczu",
-  "teryt": "1008011",
+  "teryt": "1005011",
   "scrape": {
     "runner": "run.sh",
     "generate_site": true

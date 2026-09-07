@@ -1,4 +1,5 @@
 {
+  "scrape": {"runner": "run.sh"},
   "city_name": "Giżycko",
   "city_genitive": "Giżycka",
   "site_title": "Radoskop Giżycko — Jak głosują radni?",
