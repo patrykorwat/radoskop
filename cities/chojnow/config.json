@@ -1,0 +1,38 @@
+{
+  "city_name": "Chojnów",
+  "city_genitive": "Chojnowa",
+  "site_title": "Radoskop Chojnów — Jak głosują radni?",
+  "site_url": "https://chojnow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Chojnowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Chojnowie.",
+  "bip_url": "https://bip.chojnow.net.pl",
+  "bip_name": "BIP Urząd Miejski w Chojnowie",
+  "bip_kind": "posiedzenia_pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "chojnow.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Chojnowie",
+  "rada_name_genitive": "Rady Miejskiej w Chojnowie",
+  "teryt": "0209011",
+  "has_voting_data": true,
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "Głosowania imienne z portal-posiedzenia.pl (subdomena chojnow, podmiot 656 Rada Miejska Chojnowa); adapter lib_posiedzenia_pl; BIP bip.chojnow.net.pl kat. 'Imienne wykazy głosowań radnych' linkuje PDF-y print z tego systemu. Dodane 2026-09-07 (cron ekspansja 500). club_assignments PENDING kuratoracji."
+  }
+}
