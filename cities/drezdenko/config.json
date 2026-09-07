@@ -1,0 +1,42 @@
+{
+  "city_name": "Drezdenko",
+  "city_genitive": "Drezdenka",
+  "site_title": "Radoskop Drezdenko — Jak głosują radni?",
+  "site_url": "https://drezdenko.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Drezdenku. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Drezdenku.",
+  "bip_url": "https://www.bip.drezdenko.pl",
+  "bip_name": "BIP Drezdenko",
+  "esesja_url": "https://drezdenko.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "drezdenko.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Drezdenku",
+  "rada_name_genitive": "Rady Miejskiej w Drezdenku",
+  "teryt": "0806024",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template drezdenko.esesja.pl, glosowania imienne IX kad. 2024-2029; 36 sesji, ~10+ glosowan per sesja zweryfikowane 2026-09-07). Dodane 2026-09-07 (cron do 500 miast). club_assignments pending (kuratorować z BIP).",
+    "population": 9400,
+    "voivodeship": "lubuskie",
+    "lat": 52.83611,
+    "lon": 15.83111,
+    "qid": null
+  }
+}
