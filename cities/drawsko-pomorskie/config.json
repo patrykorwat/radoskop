@@ -1,0 +1,41 @@
+{
+  "city_name": "Drawsko Pomorskie",
+  "city_genitive": "Drawska Pomorskiego",
+  "site_title": "Radoskop Drawsko Pomorskie — Jak głosują radni?",
+  "site_url": "https://drawsko-pomorskie.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Drawsku Pomorskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Drawsku Pomorskim.",
+  "bip_url": "https://umdrawsko.bip.gov.pl",
+  "bip_name": "BIP Drawsko Pomorskie",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "drawsko-pomorskie.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Drawsku Pomorskim",
+  "rada_name_genitive": "Rady Miejskiej w Drawsku Pomorskim",
+  "teryt": "3203024",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (BIP SSDIP umdrawsko.bip.gov.pl, kategoria 'SESJE - Glosowania': per-sesja PDF 'Raport Glosowania' eSesja, parser wspolrzednosciowy pdfplumber, jeden glos na strone, walidacja agregatami + fallback per-wiersz TAK/NIE dla sesji XXIX z bledem kworum zrodla; 30 sesji / 307 glosowan / 15 radnych zweryfikowane 2026-09-07). drawsko.esesja.pl = Rada GMINY (nie miasto). Dodane 2026-09-07 (cron do 500 miast). club_assignments pending.",
+    "population": 11343,
+    "voivodeship": "zachodniopomorskie",
+    "lat": 53.53083,
+    "lon": 15.81028,
+    "qid": null
+  }
+}
