@@ -1,0 +1,40 @@
+{
+  "city_name": "Brzeziny",
+  "city_genitive": "Brzezin",
+  "site_title": "Radoskop Brzeziny — Jak głosują radni?",
+  "site_url": "https://brzeziny.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Brzeziny. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Brzeziny.",
+  "bip_url": "https://bip.brzeziny.pl",
+  "bip_name": "BIP Urząd Miasta Brzeziny",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "brzeziny.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Brzeziny",
+  "rada_name_genitive": "Rady Miasta Brzeziny",
+  "teryt": "1001011",
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (System Posiedzenia / portal-posiedzenia.pl, subdomena brzeziny; BIP bip.brzeziny.pl Rada Miasta -> 'Nagrania sesji rady' = https://portal.posiedzenia.pl/brzeziny). Adapter lib_posiedzenia_pl.py: sesja anonima + O3 lista sesji + O7 chart JSON (persons votes [1]=ZA [2]=PRZECIW [3]=WSTRZYMAŁ). Protokoły BIP-E (tekstowe PDF) bez tabel imiennych — głosowania tylko z portalu posiedzeń. brzeziny.esesja.pl = redirect-loop (wildcard), brzeziny.bip.net.pl 404, rada.brzeziny.pl brak. Skład 15 radnych potwierdzony BIP sklad-rady. TERYT 1001011 (gmina miejska Brzeziny). club_assignments PENDING. Dodane 2026-09-07 (cron do 500 miast).",
+    "population": 12365,
+    "voivodeship": "łódzkie",
+    "lat": 51.8167,
+    "lon": 19.7833
+  }
+}
