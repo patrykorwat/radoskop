@@ -1,0 +1,38 @@
+{
+  "city_name": "Nowe Miasto Lubawskie",
+  "city_genitive": "Nowego Miasta Lubawskiego",
+  "site_title": "Radoskop Nowe Miasto Lubawskie — Jak głosują radni?",
+  "site_url": "https://nowe-miasto-lubawskie.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Nowym Mieście Lubawskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Nowym Mieście Lubawskim.",
+  "bip_url": "https://bip.umnowemiasto.pl",
+  "bip_name": "BIP Urzędu Miejskiego w Nowym Mieście Lubawskim",
+  "rada_url": "https://rada.umnowemiasto.pl",
+  "rada_name_platform": "AlfaTV System Rada",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "nowe-miasto-lubawskie.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Nowym Mieście Lubawskim",
+  "rada_name_genitive": "Rady Miejskiej w Nowym Mieście Lubawskim",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "teryt": "2812011",
+  "_meta": {
+    "note": "AlfaTV System Rada (rada.umnowemiasto.pl) — pełne głosowania imienne IX kadencji. Kluby: PENDING (platforma nie publikuje przynależności klubowej na stronach radnych)."
+  }
+}
