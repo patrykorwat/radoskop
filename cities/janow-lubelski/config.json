@@ -1,0 +1,41 @@
+{
+  "city_name": "Janów Lubelski",
+  "city_genitive": "Janowa Lubelskiego",
+  "site_title": "Radoskop Janów Lubelski — Jak głosują radni?",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Janowie Lubelskim. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Janowie Lubelskim.",
+  "bip_url": "https://bip.janow-lubelski.pl",
+  "bip_name": "BIP Janów Lubelski",
+  "esesja_url": "https://janowlubelski.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "janow-lubelski.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Janowie Lubelskim",
+  "rada_name_genitive": "Rady Miejskiej w Janowie Lubelskim",
+  "teryt": "0605054",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (esesja old-template na skróconej subdomenie janowlubelski.esesja.pl, glosowania imienne IX kad. 2024-2029 z /glosowanie/; 32 sesje, ~296 glosowan zweryfikowane 2026-09-07). Dodane 2026-09-07 (cron do 500 miast). club_assignments pending (kuratorować z BIP).",
+    "population": 11661,
+    "voivodeship": "lubelskie",
+    "lat": 50.70667,
+    "lon": 22.41083,
+    "qid": null
+  }
+}
