@@ -1,0 +1,40 @@
+{
+  "city_name": "Brzeg Dolny",
+  "city_genitive": "Brzegu Dolnego",
+  "site_title": "Radoskop Brzeg Dolny — Jak głosują radni?",
+  "site_url": "https://brzeg-dolny.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Brzegu Dolnym. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Brzegu Dolnym.",
+  "bip_url": "https://bip.brzegdolny.pl",
+  "bip_name": "BIP Urząd Miejski w Brzegu Dolnym",
+  "bip_kind": "posiedzenia_pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "brzeg-dolny.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Brzegu Dolnym",
+  "rada_name_genitive": "Rady Miejskiej w Brzegu Dolnym",
+  "teryt": "0222014",
+  "has_voting_data": true,
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "Głosowania imienne z portal-posiedzenia.pl (subdomena brzegdolny, podmiot 1057 Urząd Miejski w Brzegu Dolnym); adapter lib_posiedzenia_pl; 29 sesji IX / 198 głosowań. Dodane 2026-09-07 (cron ekspansja 500). club_assignments PENDING kuratoracji.",
+    "population": 12480,
+    "voivodeship": "dolnośląskie"
+  }
+}
