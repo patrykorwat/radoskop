@@ -75,11 +75,11 @@ def fetch_roster():
     pairs = re.findall(
         r"\d{2}\.\d{2}\.\d{4} Radn\w+ ([A-ZŁŚŻ][\wąęćłńóśźż-]+(?: [A-ZŁŚŻ][\wąęćłńóśźż'’ -]+?)) w ", txt)
     names = set(re.sub(r"\s*–\s*", "-", n).strip() for n in pairs)
-    # tabela "Radna Ewa Madalińsk – Marciniak" (regex tnie po mylniku)
-    if "Madalińsk" in txt and not any("Madalińsk" in n for n in names):
-        m = re.search(r"Madalińsk[\w-]*(?: ?-? ?Marciniak)?", txt)
-        if m:
-            names.add(re.sub(r"\s+", "", m.group(0)))
+    # tabela "Radna Ewa Madalińsk – Marciniak" — literówka portalu; oficjalnie
+    # "Ewa Madalińska-Marciniak (PKW 2024/2006, gk24.pl, portalsamorzadowy.pl)
+    names = {("Ewa Madalińska-Marciniak" if "Madali" in n else n) for n in names}
+    if "Madali" in txt and not any("Madali" in n for n in names):
+        names.add("Ewa Madalińska-Marciniak")
     names = sorted(names)
     if len(names) < 12:
         raise RuntimeError(f"Podejrzanie mały roster: {len(names)}")
@@ -109,6 +109,14 @@ def _session_date(title: str, text: str, post_date: str) -> str:
                 d = f"{year}-{mon:02d}-{int(m.group(1)):02d}"
                 if KAD_START <= d <= post_date:
                     return d
+    # "D miesiąca b.r." (bieżącego roku) — rok z daty posta
+    m = re.search(rf"(\d{{1,2}}) ({MONTH}) b\.?\s?r\.?", srcs[0])
+    if m:
+        mon = MONTHS.get(m.group(2))
+        if mon:
+            d = f"{year}-{mon:02d}-{int(m.group(1)):02d}"
+            if KAD_START <= d <= post_date:
+                return d
     return post_date
 
 
@@ -124,8 +132,10 @@ def fetch_sessions():
             continue
         title = html_module.unescape(po["title"]["rendered"])
         text = _plain(po["content"]["rendered"])
-        # pominąć wpisy nie-o-sesji (nagrody itp.)
-        if "sesj" not in (title + text[:400]).lower():
+        # pominąć wpisy nie-o-sesji (nagrody itp.); relacje sesyjne bywają
+        # bez słowa "sesja" w leadzie (np. "Jednogłośne absolutorium…")
+        low = (title + text[:400]).lower()
+        if not any(k in low for k in ("sesj", "absolutor", "wotum", "uchwal")):
             continue
         num = ""
         m = re.search(r"(\d{1,3})\.?\s+Sesja", title, re.I)
