@@ -1,0 +1,41 @@
+{
+  "city_name": "Głubczyce",
+  "city_genitive": "Głubczyc",
+  "site_title": "Radoskop Głubczyce — Jak głosują radni?",
+  "site_url": "https://glubczyce.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej w Głubczycach. Sprawdź frekwencję i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej w Głubczycach.",
+  "bip_url": "https://bip.glubczyce.pl",
+  "bip_name": "BIP Urząd Miejski w Głubczycach",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "glubczyce.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Głubczycach",
+  "rada_name_genitive": "Rady Miejskiej w Głubczycach",
+  "teryt": "1602034",
+  "has_voting_data": false,
+  "has_speaker_activity": false,
+  "voting_display": "faction",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "Tier-2 (model berliński): brak głosowań imiennych — tylko skład rady + sesje. Rada Głubczyce publicznie przyznała (protokół XXVIII/26), że nie publikuje imiennych tabel głosowań; protokoły mają tylko agregaty. Roster 21 radnych IX z kat. oświadczeń majątkowych BIP 5837; kalendarz sesji z protokołów PDF (kat. 5658). Dodane 2026-09-07 (cron do 500 miast).",
+    "population": 12441,
+    "voivodeship": "opolskie"
+  }
+}
