@@ -1,0 +1,42 @@
+{
+  "city_name": "Pobiedziska",
+  "city_genitive": "Pobiedzisk",
+  "site_title": "Radoskop Pobiedziska — Jak głosują radni?",
+  "site_url": "https://pobiedziska.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miejskiej Gminy Pobiedziska. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miejskiej Gminy Pobiedziska.",
+  "bip_url": "https://bip.pobiedziska.pl",
+  "bip_name": "BIP Gminy Pobiedziska",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pobiedziska.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": true,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska Gminy Pobiedziska",
+  "rada_name_genitive": "Rady Miejskiej Gminy Pobiedziska",
+  "teryt": "3021124",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true,
+    "note": "BIP bip.pobiedziska.pl = Madkom React-SPA; JSON API /api/menu/{id}/articles + /api/articles/{id}; protokoły sesji (menuId 55) jako załączniki PDF z imiennymi głosowaniami eSesja-TEXT. eSesja pobiedziska.esesja.pl = Portal Mieszkańca PM-B (pusta sessions-list, bez danych)."
+  },
+  "_meta": {
+    "note": "NOWE miasto (custom BIP Madkom React SPA, API /api/). Rada Gminy -> Protokoły (menuId 55) -> per-sesja protokół PDF (tekstowy, bez OCR) z głosowaniami imiennymi w formacie eSesja-TEXT ('Wyniki imienne: ZA/PRZECIW/WSTRZYMUJĘ SIĘ/BRAK GŁOSU/NIEOBECNI'). Roster 15 radnych kuratorowany z BIP 'Skład Rady' (artykuł 15259, IX kad.). Kluby PENDING (brak kategorii 'Kluby radnych' w BIP). TERYT 3021124 (pl.wikipedia). Dodane 2026-09-07 (cron do 500 miast).",
+    "population": 9451,
+    "voivodeship": "wielkopolskie",
+    "lat": 52.477917,
+    "lon": 17.267111,
+    "qid": "Q50992"
+  }
+}
