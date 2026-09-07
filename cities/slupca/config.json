@@ -1,0 +1,38 @@
+{
+  "city_name": "Słupca",
+  "city_genitive": "Słupcy",
+  "site_title": "Radoskop Słupca — Jak głosują radni?",
+  "site_url": "https://slupca.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Słupcy. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Słupcy.",
+  "bip_url": "https://www.bip.umslupca.finn.pl",
+  "bip_name": "BIP Gminy Miejskiej Słupca",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "slupca.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Słupcy",
+  "rada_name_genitive": "Rady Miasta Słupcy",
+  "teryt": "3023011",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (eurzad.finn.pl gmslupca rejestr 'ruigr2024-2029' Rejestr imiennych wykazów głosowań radnych — per-głosowanie tekstowe PDF-y z tabelą imienną ZA/NIE/WSTRZYMUJĘ, walidacja agregatami). Dodane 2026-09-07 (cron ekspansja 500). Ordynacja większościowa jednomandatowa — kluby radnych niepublikowane w BIP; club_assignments puste celowo.",
+    "population": 13564,
+    "voivodeship": "wielkopolskie"
+  }
+}
