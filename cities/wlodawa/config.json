@@ -1,0 +1,38 @@
+{
+  "city_name": "Włodawa",
+  "city_genitive": "Włodawy",
+  "site_title": "Radoskop Włodawa — Jak głosują radni?",
+  "site_url": "https://wlodawa.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska we Włodawie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska we Włodawie.",
+  "bip_url": "https://umwlodawa.bip.lubelskie.pl",
+  "bip_name": "BIP Urząd Miejski we Włodawie",
+  "bip_kind": "wlodawa_ebib_lubelskie",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wlodawa.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska we Włodawie",
+  "rada_name_genitive": "Rady Miejskiej we Włodawie",
+  "teryt": "0619011",
+  "has_voting_data": true,
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "Głosowania imienne z PDF-ów 'Głosowanie' (raporty systemu Deputy, TEKSTOWE) doczepionych do protokołów sesji w kat. 729 BIP bip.lubelskie.pl (list-ajax DataTables). Od sesji XXV (2026-02) w górę — wcześniejsze protokoły bez załącznika. Walidacja agregatami ZA/PRZECIW/WSTRZ per głosowanie. Dodane 2026-09-07 (cron ekspansja 500). club_assignments PENDING kuratoracji."
+  }
+}
