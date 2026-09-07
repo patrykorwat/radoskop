@@ -1,0 +1,39 @@
+{
+  "city_name": "Sucha Beskidzka",
+  "city_genitive": "Suchej Beskidzkiej",
+  "site_title": "Radoskop Sucha Beskidzka — Jak głosują radni?",
+  "site_url": "https://sucha-beskidzka.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rady Miasta Sucha Beskidzka. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rady Miasta Sucha Beskidzka.",
+  "bip_url": "https://bip.malopolska.pl/umSuchaBeskidzka",
+  "bip_name": "BIP Urząd Miejski w Suchej Beskidzkiej",
+  "esesja_url": "https://suchabeskidzka.esesja.pl",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "sucha-beskidzka.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta Sucha Beskidzka",
+  "rada_name_genitive": "Rady Miasta Sucha Beskidzka",
+  "teryt": "1215021",
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "NOWE miasto (eSesja, subdomena suchabeskidzka.esesja.pl = PM-instance A old-compatible; imienne /glosowanie/ z klasami osobaa). ~26 sesji IX kad. (najnowsza 2026-08-27), 15 radnych. Kluby PENDING. TERYT 1215021 (rejestr TERYT GUS). Dodane 2026-09-07 (cron do 500 miast).",
+    "population": 9044,
+    "voivodeship": "małopolskie"
+  }
+}
