@@ -1,0 +1,38 @@
+{
+  "city_name": "Wąbrzeźno",
+  "city_genitive": "Wąbrzeźna",
+  "site_title": "Radoskop Wąbrzeźno — Jak głosują radni?",
+  "site_url": "https://wabrzezno.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miasta Wąbrzeźno. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miasta Wąbrzeźno.",
+  "bip_url": "https://mst-wabrzezno.rbip.mojregion.info",
+  "bip_name": "BIP Urząd Miasta Wąbrzeźno",
+  "bip_kind": "wabrzezno_mojregion_zip",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "wabrzezno.radoskop.pl",
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miasta w Wąbrzeźnie",
+  "rada_name_genitive": "Rady Miasta w Wąbrzeźnie",
+  "teryt": "0417011",
+  "has_voting_data": true,
+  "clubs": {},
+  "club_assignments": {},
+  "scrape": {
+    "runner": "run.sh",
+    "generate_site": true
+  },
+  "_meta": {
+    "note": "Głosowania imienne z ZIP-ów 'Raporty z głosowań' na BIP mojregion (kat. 507 IX kadencja): per-glosowanie 'Raport Glosowania N.pdf' TEKSTOWY, walidacja agregatami ZA/PRZECIW/WSTRZYMAŁO. Dodane 2026-09-07 (cron ekspansja 500). club_assignments PENDING kuratoracji."
+  }
+}
