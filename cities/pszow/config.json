@@ -1,0 +1,34 @@
+{
+  "city_name": "Pszów",
+  "city_genitive": "Pszowa",
+  "site_title": "Radoskop Pszów — Jak głosują radni?",
+  "site_url": "https://pszow.radoskop.pl",
+  "site_description": "Radoskop — otwarte narzędzie monitoringu Rada Miejska w Pszowie. Sprawdź frekwencję, głosowania imienne i aktywność radnych.",
+  "site_description_short": "Otwarte narzędzie monitoringu Rada Miejska w Pszowie.",
+  "bip_url": "https://bip.gmpszow.finn.pl",
+  "bip_name": "BIP Miasta Pszów (bip.gmpszow.finn.pl)",
+  "github_url": "https://github.com/radoskoppl/radoskop",
+  "author": "Patryk Orwat",
+  "cname": "pszow.radoskop.pl",
+  "clubs": {},
+  "club_assignments": {},
+  "kadencje": {
+    "2024-2029": {
+      "label": "IX kadencja (2024–2029)",
+      "start": "2024-05-07"
+    }
+  },
+  "kadencja_active": "2024-2029",
+  "has_budget": false,
+  "has_komisje": false,
+  "budget_note": "",
+  "samorzad_type": "miasto",
+  "rada_name": "Rada Miejska w Pszowie",
+  "rada_name_genitive": "Rady Miejskiej w Pszowie",
+  "teryt": "2415011",
+  "_meta": {
+    "note": "NOWE miasto (eurzad.finn.pl gmpszow rejestr PRM6 — per-sesyjne PDF 'Protokół głosowania' z tabelami imiennymi Za/Przeciw( Nie/Wstrzymuje się/Nieobecny/Nieoddany + agregaty GŁOSY ZA/PRZECIW/WSTRZYMUJĄCE SIĘ). 27 sesji IX kadencji. Dodane 2026-09-07 (cron ekspansja 500). club_assignments pending (kuratorowane z BIP).",
+    "population": 13734,
+    "voivodeship": "śląskie"
+  }
+}
